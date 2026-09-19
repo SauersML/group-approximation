@@ -1,0 +1,27 @@
+[job] 08:55:15 acn112 waiting for clone lock
+[job] delta sync 41d370c6e..4b3f40eec: 5 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 4b3f40eec log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-085504-40251.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+--- errors (first 80 lines)
+6:✖ [2440/2442] Building GroupApproximation.Analysis.McDuffFactor (6.5s)
+8:error: GroupApproximation/Analysis/McDuffFactor.lean:1:0: import GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup failed, environment already contains 'GroupApproximation.GroupVonNeumann.instDecidableEq_groupApproximation_2' from GroupApproximation.Analysis.GroupStandardFormInstance
+9:error: Lean exited with code 1
+23:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.HyperlinearOneSumModels
+BUILT GroupApproximation.Analysis.HyperlinearTraceVanishingProof
+mentioned-not-built GroupApproximation.Analysis.McDuffFactor (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.McDuffFactor
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

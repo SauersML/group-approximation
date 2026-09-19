@@ -1,0 +1,47 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3078 oleans
+[job] acn112 cores=64-71 threads=8 base=526d8d488d043c89ebab13fd58c53c2deded915a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+ℹ [3299/3384] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4990/4990] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (10s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:444:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_faceClassStep_range' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:445:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_facePerm_of_not_keep' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:446:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_sigma_of_alpha' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:447:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.iff_of_eqvGen_adjacent' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:449:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.not_phiKeepO_of_faceOf_eq_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:451:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eqvGen_of_faceOf_eq_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:453:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_of_sameCycle_collapsed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:454:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eq_of_holdsCellAtO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:456:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.exists_eqvGen_phiMapO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:458:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideCellO_not_mem_endCellsO_of_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:460:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.exists_holdsCellAtO_of_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:461:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_heldCellsO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:462:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_sourceRegionsO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:464:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.card_add_three_mul_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:465:14: 'GroupApproximation.GGT.VanKampen.cellFaceCountInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4990 jobs).
+EXIT=0

@@ -1,0 +1,17 @@
+[job] 10:02:18 acn112 waiting for clone lock
+[job] delta sync 8f0f73966..526d8d488: 3 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 526d8d488 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-100213-68371.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3078 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/IntroLimitingTraceSentence.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:465:14: 'GroupApproximation.GGT.VanKampen.cellFaceCountInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4990 jobs).
+EXIT=0
+PROBE GREEN

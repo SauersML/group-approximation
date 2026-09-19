@@ -1,0 +1,30 @@
+[job] 18:03:14 acn112 waiting for clone lock
+[job] delta sync 2e12b4cf6..254812811: 7 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 254812811 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-180300-88794.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3349 oleans
+--- errors (first 80 lines)
+55:✖ [10091/10092] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketArcTrim (27s)
+57:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:117:19: unsolved goals
+76:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:119:34: This simp argument is unused:
+85:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:232:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimSourceLast' depends on axioms outside the classical allowlist: [sorryAx]
+86:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+91:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:234:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.simple_trimSourceLast_iff' depends on axioms outside the classical allowlist: [sorryAx]
+92:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+94:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:235:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimSourceLast_sourceArc_lt' depends on axioms outside the classical allowlist: [sorryAx]
+95:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+100:error: Lean exited with code 1
+123:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketArcTrim (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketArcTrim
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

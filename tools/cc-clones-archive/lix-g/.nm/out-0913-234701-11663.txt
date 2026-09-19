@@ -1,0 +1,22 @@
+[job] 23:47:08 acn112 waiting for clone lock
+[job] delta sync 649cb1f80..9a3f7d886: 10 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 9a3f7d886 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-234701-11663.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3656 oleans
+--- errors (first 80 lines)
+166:✖ [10222/10223] Building GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure (31s)
+168:error: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:210:44: unexpected token ']''; expected ']'
+188:error: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:238:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.firstTurn_getElem_succ' depends on axioms outside the classical allowlist: [sorryAx]
+189:  full closure: [propext, sorryAx, Quot.sound]
+191:error: Lean exited with code 1
+201:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosure
+mentioned-not-built GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosure.lean
+- GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

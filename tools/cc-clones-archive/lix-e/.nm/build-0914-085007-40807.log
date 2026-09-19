@@ -1,0 +1,85 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4377 oleans
+[job] acn112 cores=64-71 threads=8 base=84799a1c516ce70f9fd0c592aba35498c28ae403 mods: GroupApproximation.Analysis.MatrixModelFormPositivity GroupApproximation.Analysis.LocalLiftingFactorization
+ℹ [3247/3344] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4622/4623] Built GroupApproximation.Analysis.MatrixModelFormPositivity (12s)
+✖ [4623/4623] Building GroupApproximation.Analysis.LocalLiftingFactorization (23s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Analysis/LocalLiftingFactorization.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Analysis/LocalLiftingFactorization.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Analysis/LocalLiftingFactorization.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Analysis/LocalLiftingFactorization.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Analysis/LocalLiftingFactorization.setup.json --json
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:58:18: failed to synthesize instance of type class
+  NormedRing ↥(ModelBoundedSequence X)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:59:16: failed to synthesize instance of type class
+  StarRing ↥(ModelBoundedSequence X)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:62:21: failed to synthesize instance of type class
+  NormedAlgebra ℂ ↥(ModelBoundedSequence X)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:64:4: Tactic `constructor` failed: no applicable constructor found
+
+X : ℕ → FiniteModel
+⊢ StarModule ℂ ↥(ModelBoundedSequence X)
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:85:17: Type mismatch
+  rfl
+has type
+  ?m.40 = ?m.40
+but is expected to have type
+  ↑((algebraMap ℂ ↥(ModelBoundedSequence X)) x✝) n = (algebraMap ℂ (Matrix (X n).carrier (X n).carrier ℂ)) x✝
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:97:0: Not a definitional equality: the left-hand side
+  (euclideanCoordinateStarAlgHom n) a
+is not definitionally equal to the right-hand side
+  (euclideanize (X n)) (↑a n)
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:98:68: Type mismatch
+  rfl
+has type
+  ?m.8 = ?m.8
+but is expected to have type
+  (euclideanCoordinateStarAlgHom n) a = (euclideanize (X n)) (↑a n)
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:307:6: Type mismatch
+  π.toNonUnitalStarAlgHom
+has type
+  MaximalGroupCStar G →⋆ₙₐ[ℂ] TracialMatrixQuotient M.model atTop
+but is expected to have type
+  MaximalGroupCStar G →ₗ[ℂ] TracialMatrixQuotient M.model atTop
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:295:69: unsolved goals
+G : Type
+inst✝ : Group G
+hLLP : HasLocalLiftingProperty (MaximalGroupCStar G)
+M : TracePreservingMatrixModel G
+F : Finset G
+ε : ℝ
+hε : 0 < ε
+this : ∀ (n : ℕ), Nonempty (M.model n).carrier
+π : MaximalGroupCStar G →⋆ₐ[ℂ] TracialMatrixQuotient M.model atTop
+hπ : ∀ (g : G), π (maximalGroupCStarGenerator G g) = (tracialMatrixQuotientMk M.model atTop) (modelSeq M g)
+hEsys : IsOperatorSystem (generatorSystem (generatorSet F))
+hsurj : Function.Surjective ⇑(tracialMatrixQuotientQuotient M.model atTop)
+⊢ ∃ Y,
+    ∃ (_ : Nonempty Y.carrier),
+      ∃ φ,
+        φ 1 = 1 ∧
+          IsCompletelyPositiveOnMatrices Y ⇑φ ∧
+            (∀ g ∈ F,
+                ∀ h ∈ F,
+                  hsNorm Y
+                      (φ (maximalGroupCStarGenerator G g * maximalGroupCStarGenerator G h) -
+                        φ (maximalGroupCStarGenerator G g) * φ (maximalGroupCStarGenerator G h)) <
+                    ε) ∧
+              ∀ g ∈ F,
+                ‖(canonicalMaximalTrace G) (maximalGroupCStarGenerator G g) -
+                      normTrace Y (φ (maximalGroupCStarGenerator G g))‖ <
+                  ε
+info: GroupApproximation/Analysis/LocalLiftingFactorization.lean:504:14: 'GroupApproximation.LocalLifting.LocalLiftingFactorizationStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:505:21: 'GroupApproximation.LocalLifting.localLiftingFactorizationStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.LocalLiftingFactorization
+error: build failed
+EXIT=1

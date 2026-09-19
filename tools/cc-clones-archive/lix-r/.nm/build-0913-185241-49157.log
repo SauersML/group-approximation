@@ -1,0 +1,30 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3444 oleans
+[job] acn112 cores=64-71 threads=8 base=acfbb7877804a60efc08f3c26f79919dfcb32f1e mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCell
+ℹ [3370/3511] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10164/10172] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_of_noncrossing_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:193:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:195:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:196:21: 'GroupApproximation.GGT.VanKampen.cellPocketKeptCellNoncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10172/10172] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCell (32s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCell.lean:94:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkEitherFollowsStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCell.lean:95:14: 'GroupApproximation.GGT.VanKampen.cellPocketWalkSideRelatorCell_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10172 jobs).
+EXIT=0

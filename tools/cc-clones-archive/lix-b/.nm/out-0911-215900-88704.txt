@@ -1,0 +1,35 @@
+[job] 22:00:53 acn61 waiting for clone lock
+[job] delta sync 9376e7605..b42b3e553: 15 files changed
+===== SUMMARY
+host acn61 cores slurm base b42b3e553 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-215900-88704.log
+purged 125 stale artifact sets (source-newer=4, import-newer=121) of 2176 oleans
+--- errors (first 80 lines)
+28:✖ [8818/8825] Building GroupApproximation.CharClass.MayerVietorisPullOf (333s)
+30:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:166:6: Type mismatch
+38:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:175:30: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+61:Full error:
+73:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:165:54: This simp argument is unused:
+80:error: Lean exited with code 1
+119:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.RelHomotopyIdentity
+BUILT GroupApproximation.CharClass.RelativeSplitField
+BUILT GroupApproximation.CharClass.RelativeSubspaceIsoOf
+BUILT GroupApproximation.CharClass.RelativeProdContractibleOf
+BUILT GroupApproximation.CharClass.RelativeLocalModelOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethSplitOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethSphereOf
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethHemiOf (replayed or failed)
+--- rebuilt GroupApproximation modules: 12
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean
+COMPILED GroupApproximation/CharClass/RelHomotopyIdentity.lean
+COMPILED GroupApproximation/CharClass/RelativeLocalModelOf.lean
+COMPILED GroupApproximation/CharClass/RelativeProdContractibleOf.lean
+COMPILED GroupApproximation/CharClass/RelativeSplitField.lean
+COMPILED GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean
+- GroupApproximation.CharClass.MayerVietorisPullOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

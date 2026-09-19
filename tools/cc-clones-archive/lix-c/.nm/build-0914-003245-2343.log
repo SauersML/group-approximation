@@ -1,0 +1,507 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3556 oleans
+[job] acn112 cores=64-71 threads=8 base=031245e7d1dd7bd5ecb14ae09436e68482761bef mods: GroupApproximation.GGT.VanKampen.BridgeComponentValue
+ℹ [3348/3508] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4958/4958] Building GroupApproximation.GGT.VanKampen.BridgeComponentValue (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/BridgeComponentValue.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/BridgeComponentValue.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/BridgeComponentValue.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/BridgeComponentValue.setup.json --json
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:45:41: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  l.head ⋯
+in the target expression
+  N.facePerm ↑(l.getLast ⋯) = ↑(l.head ⋯)
+
+case refine_2
+N : CombMap
+S : N.Dart → Prop
+hα : ∀ (x : N.Dart), S (N.alpha x) ↔ S x
+hσ : ∀ (x : N.Dart), S (N.sigma x) ↔ S x
+l : List (N.restrict S hα hσ).Dart
+hl : (N.restrict S hα hσ).IsFaceCycle l
+⊢ N.facePerm ↑(l.getLast ⋯) = ↑(l.head ⋯)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    l
+  has type
+    List (N.restrict S hα hσ).Dart
+  but is expected to have type
+    List { x // S x }
+  in the application
+    l.getLast
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:156:7: unsolved goals
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+⊢ (List.map Subtype.val
+        (List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩)).length =
+    m
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:157:78: Tactic `rfl` failed: The left-hand side
+  EdgeDeletion.value X.toCombMap a
+    (List.map Subtype.val
+        (List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩))[j]
+is not definitionally equal to the right-hand side
+  (X.toCombMap.facePerm ^ (j + 1)) a
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+j : ℕ
+h1 :
+  j <
+    (List.map (EdgeDeletion.value X.toCombMap a)
+        (List.map Subtype.val
+          (List.ofFn fun t =>
+            ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩))).length
+h2 : j < (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).length
+⊢ EdgeDeletion.value X.toCombMap a
+      (List.map Subtype.val
+          (List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩))[j] =
+    (X.toCombMap.facePerm ^ (j + 1)) a
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:247:19: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  @Membership.mem ?m.2233 (List ?m.2233) List.instMembership (List.ofFn ?m.2235) ?m.2236
+in the target expression
+  @Membership.mem { x // Side X.toCombMap a hface hstart x } (List (component X.toCombMap a hface hstart).Dart)
+    List.instMembership
+    (List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩) z
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+hlOval :
+  List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO) =
+    List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)
+hLne : List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m) ≠ []
+hLnd : (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).Nodup
+hLch :
+  List.IsChain (fun d e => EdgeDeletion.next X.toCombMap a d = e)
+    (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m))
+hLcl :
+  ∀ u ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).getLast?,
+    ∀ v ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).head?,
+      EdgeDeletion.next X.toCombMap a u = v
+hO : (component X.toCombMap a hface hstart).IsFaceCycle lO
+label : (component X.toCombMap a hface hstart).Dart → RelLetter G Lambda
+hlabel_def :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart), label x = X.label (EdgeDeletion.value X.toCombMap a ↑x)
+hlabel :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart),
+    label ((component X.toCombMap a hface hstart).alpha x) = HullSC.RelWord.inv (label x)
+l : List (component X.toCombMap a hface hstart).Dart
+hl : (component X.toCombMap a hface hstart).IsFaceCycle l
+hne :
+  (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ≠ (component X.toCombMap a hface hstart).faceOf (lO.head ⋯)
+a✝ : (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ∉ ∅
+hlN : (EdgeDeletion.toCombMap X.toCombMap a).IsFaceCycle (List.map Subtype.val l)
+z : { x // Side X.toCombMap a hface hstart x }
+hz : z ∈ l
+hy : ↑z ∈ List.map Subtype.val l
+h : X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a ↑z) = X.toCombMap.alpha a
+hzv : EdgeDeletion.value X.toCombMap a ↑z = (X.toCombMap.facePerm ^ m) a
+⊢ z ∈ List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x
+  has type
+    (EdgeDeletion.toCombMap X.toCombMap a).Dart
+  but is expected to have type
+    EdgeDeletion.Dart X.toCombMap a
+  in the application
+    Side X.toCombMap a hface hstart x
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:255:25: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (List.map ?m.2295 ?m.2296).head ?w
+in the target expression
+  EdgeDeletion.value X.toCombMap a ((List.map Subtype.val l).head ⋯) = EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+hlOval :
+  List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO) =
+    List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)
+hLne : List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m) ≠ []
+hLnd : (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).Nodup
+hLch :
+  List.IsChain (fun d e => EdgeDeletion.next X.toCombMap a d = e)
+    (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m))
+hLcl :
+  ∀ u ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).getLast?,
+    ∀ v ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).head?,
+      EdgeDeletion.next X.toCombMap a u = v
+hO : (component X.toCombMap a hface hstart).IsFaceCycle lO
+label : (component X.toCombMap a hface hstart).Dart → RelLetter G Lambda
+hlabel_def :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart), label x = X.label (EdgeDeletion.value X.toCombMap a ↑x)
+hlabel :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart),
+    label ((component X.toCombMap a hface hstart).alpha x) = HullSC.RelWord.inv (label x)
+l : List (component X.toCombMap a hface hstart).Dart
+hl : (component X.toCombMap a hface hstart).IsFaceCycle l
+hne :
+  (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ≠ (component X.toCombMap a hface hstart).faceOf (lO.head ⋯)
+a✝ : (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ∉ ∅
+hlN : (EdgeDeletion.toCombMap X.toCombMap a).IsFaceCycle (List.map Subtype.val l)
+hgood :
+  ∀ y ∈ List.map Subtype.val l,
+    X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ a ∧
+      X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ X.toCombMap.alpha a
+hlM : X.toCombMap.IsFaceCycle (List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l))
+⊢ EdgeDeletion.value X.toCombMap a ((List.map Subtype.val l).head ⋯) = EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x
+  has type
+    (EdgeDeletion.toCombMap X.toCombMap a).Dart
+  but is expected to have type
+    EdgeDeletion.Dart X.toCombMap a
+  in the application
+    Side X.toCombMap a hface hstart x
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:287:26: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.map ?m.2641 (List.map ?m.2642 ?m.2643)
+in the target expression
+  List.map label l = List.map (X.label ∘ EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l)
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+hlOval :
+  List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO) =
+    List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)
+hLne : List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m) ≠ []
+hLnd : (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).Nodup
+hLch :
+  List.IsChain (fun d e => EdgeDeletion.next X.toCombMap a d = e)
+    (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m))
+hLcl :
+  ∀ u ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).getLast?,
+    ∀ v ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).head?,
+      EdgeDeletion.next X.toCombMap a u = v
+hO : (component X.toCombMap a hface hstart).IsFaceCycle lO
+label : (component X.toCombMap a hface hstart).Dart → RelLetter G Lambda
+hlabel_def :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart), label x = X.label (EdgeDeletion.value X.toCombMap a ↑x)
+hlabel :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart),
+    label ((component X.toCombMap a hface hstart).alpha x) = HullSC.RelWord.inv (label x)
+l : List (component X.toCombMap a hface hstart).Dart
+hl : (component X.toCombMap a hface hstart).IsFaceCycle l
+hne :
+  (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ≠ (component X.toCombMap a hface hstart).faceOf (lO.head ⋯)
+a✝ : (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ∉ ∅
+hlN : (EdgeDeletion.toCombMap X.toCombMap a).IsFaceCycle (List.map Subtype.val l)
+hgood :
+  ∀ y ∈ List.map Subtype.val l,
+    X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ a ∧
+      X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ X.toCombMap.alpha a
+hlM : X.toCombMap.IsFaceCycle (List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l))
+hhead :
+  (List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l)).head ⋯ =
+    EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)
+hpathHead :
+  Relation.EqvGen (AvoidEdgeStep X.toCombMap a) (X.toCombMap.alpha a) (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯))
+hFout : X.toCombMap.faceOf (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)) ≠ X.outerFace
+hFcell : X.toCombMap.faceOf (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)) ≠ X.toCombMap.faceOf a
+hval :
+  RelLetter.listVal
+      (List.map X.label (X.faceBoundary (X.toCombMap.faceOf (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)))).darts) =
+    1
+k : ℕ
+hk : k ≤ (X.faceBoundary (X.toCombMap.faceOf (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)))).darts.length
+hrot :
+  (X.faceBoundary (X.toCombMap.faceOf (EdgeDeletion.value X.toCombMap a ↑(l.head ⋯)))).darts.rotate k =
+    List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l)
+⊢ List.map label l = List.map (X.label ∘ EdgeDeletion.value X.toCombMap a) (List.map Subtype.val l)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x
+  has type
+    (EdgeDeletion.toCombMap X.toCombMap a).Dart
+  but is expected to have type
+    EdgeDeletion.Dart X.toCombMap a
+  in the application
+    Side X.toCombMap a hface hstart x
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:298:42: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.map ?m.2770 (List.map ?m.2771 ?m.2772)
+in the target expression
+  List.map label lO = List.map (X.label ∘ EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO)
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+X : DiscDiagram W
+inst✝ : DecidableEq X.toCombMap.Dart
+a : X.toCombMap.Dart
+hface : X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a)
+hout : X.toCombMap.faceOf a ≠ X.outerFace
+hor : AvoidEdgeStep.Oriented X.toCombMap X.outerFace a
+m : ℕ
+hm : 0 < m
+hstep : (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a
+hne_a : ∀ t < m + 1, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a
+hne_alpha : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfree :
+  ∀ C ∈ X.relatorCells,
+    C.face ≠ X.toCombMap.faceOf a →
+      ∀ (x : X.toCombMap.Dart),
+        X.toCombMap.faceOf x = C.face → ¬Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)
+htail : X.toCombMap.sigma a ≠ a
+hstart : X.toCombMap.sigma (X.toCombMap.alpha a) ≠ X.toCombMap.alpha a
+hret : ∀ t < m, (X.toCombMap.facePerm ^ (t + 1)) a ≠ a ∧ (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a
+hfstep :
+  ∀ (x : EdgeDeletion.Dart X.toCombMap a),
+    Relation.EqvGen (EdgeDeletion.toCombMap X.toCombMap a).Adjacent x
+      ((EdgeDeletion.toCombMap X.toCombMap a).facePerm x)
+hnext :
+  ∀ (t : ℕ),
+    t + 1 < m →
+      EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) = (X.toCombMap.facePerm ^ (t + 1 + 1)) a
+hlast : EdgeDeletion.next X.toCombMap a ((X.toCombMap.facePerm ^ m) a) = (X.toCombMap.facePerm ^ (0 + 1)) a
+hside :
+  ∀ (t : ℕ) (ht : t < m),
+    Side X.toCombMap a hface hstart (EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (t + 1)) a) ⋯ ⋯)
+lO : List (component X.toCombMap a hface hstart).Dart
+hlO : lO = List.ofFn fun t => ⟨EdgeDeletion.ofValue X.toCombMap a ((X.toCombMap.facePerm ^ (↑t + 1)) a) ⋯ ⋯, ⋯⟩
+hlOval :
+  List.map (EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO) =
+    List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)
+hLne : List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m) ≠ []
+hLnd : (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).Nodup
+hLch :
+  List.IsChain (fun d e => EdgeDeletion.next X.toCombMap a d = e)
+    (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m))
+hLcl :
+  ∀ u ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).getLast?,
+    ∀ v ∈ (List.map (fun t => (X.toCombMap.facePerm ^ (t + 1)) a) (List.range m)).head?,
+      EdgeDeletion.next X.toCombMap a u = v
+hO : (component X.toCombMap a hface hstart).IsFaceCycle lO
+label : (component X.toCombMap a hface hstart).Dart → RelLetter G Lambda
+hlabel_def :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart), label x = X.label (EdgeDeletion.value X.toCombMap a ↑x)
+hlabel :
+  ∀ (x : (component X.toCombMap a hface hstart).Dart),
+    label ((component X.toCombMap a hface hstart).alpha x) = HullSC.RelWord.inv (label x)
+htriv :
+  ∀ (l : List (component X.toCombMap a hface hstart).Dart) (hl : (component X.toCombMap a hface hstart).IsFaceCycle l),
+    (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ≠
+        (component X.toCombMap a hface hstart).faceOf (lO.head ⋯) →
+      (component X.toCombMap a hface hstart).faceOf (l.head ⋯) ∉ ∅ → RelLetter.listVal (List.map label l) = 1
+hK : (component X.toCombMap a hface hstart).IsPlanar
+hprod : RelatorDefectBudget.IsRelatorProduct ∅ 0 (RelLetter.listVal (List.map label lO))
+h1 : RelLetter.listVal (List.map label lO) = 1
+⊢ List.map label lO = List.map (X.label ∘ EdgeDeletion.value X.toCombMap a) (List.map Subtype.val lO)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x
+  has type
+    (EdgeDeletion.toCombMap X.toCombMap a).Dart
+  but is expected to have type
+    EdgeDeletion.Dart X.toCombMap a
+  in the application
+    Side X.toCombMap a hface hstart x
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:156:38: This simp argument is unused:
+  List.length_ofFn
+
+Hint: Omit it from the simp argument list.
+  simp only [List.length_map, List.length_o̵f̵F̵n̵,̵ ̵L̵i̵s̵t̵.̵l̵e̵n̵g̵t̵h̵_̵range]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:157:34: This simp argument is unused:
+  List.getElem_ofFn
+
+Hint: Omit it from the simp argument list.
+  simp only [List.getElem_map, List.getElem_o̵f̵F̵n̵,̵ ̵L̵i̵s̵t̵.̵g̵e̵t̵E̵l̵e̵m̵_̵range]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:304:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.isFaceCycle_val' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:305:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.isFaceCycle_of_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:306:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.listVal_pocket_eq_one' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.BridgeComponentValue
+error: build failed
+EXIT=1

@@ -1,0 +1,38 @@
+[job] 19:42:31 cn1132 waiting for clone lock
+[job] delta sync 00e7c08fd..79f422ef2: 6 files changed
+===== SUMMARY
+host cn1132 cores slurm base 79f422ef2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-194043-12796.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3472 oleans
+--- errors (first 80 lines)
+41:✖ [1854/1854] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal (51s)
+43:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:84:37: linarith failed to find a contradiction
+80:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:84:68: linarith failed to find a contradiction
+117:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:87:6: linarith failed to find a contradiction
+156:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:209:37: This simp argument is unused:
+163:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:274:7: unknown tactic
+164:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:273:83: unsolved goals
+185:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:265:44: unsolved goals
+207:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:225:91: unsolved goals
+224:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:322:14: 'GroupApproximation.SimpleKazhdanSofic.exists_bounded_return' depends on axioms outside the classical allowlist: [sorryAx]
+225:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+228:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:324:14: 'GroupApproximation.SimpleKazhdanSofic.exists_occurrence_of_mem_carrier' depends on axioms outside the classical allowlist: [sorryAx]
+229:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+231:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:325:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_isMinimal' depends on axioms outside the classical allowlist: [sorryAx]
+232:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+234:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:326:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_infinite' depends on axioms outside the classical allowlist: [sorryAx]
+235:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+237:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:327:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftInfiniteMinimal' depends on axioms outside the classical allowlist: [sorryAx]
+238:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+240:error: Lean exited with code 1
+243:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal (replayed or failed)
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

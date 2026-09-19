@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3395 oleans
+[job] acn46 cores=slurm threads=8 base=ec3c531fc0b873efee7b44751d6174fc09fca26b mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonNoncrossingRoute
+ℹ [3346/3421] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10143/10143] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonNoncrossingRoute (44s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:149:14: 'GroupApproximation.GGT.VanKampen.TwoGonNoncrossingPocketInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:150:14: 'GroupApproximation.GGT.VanKampen.outerFace_not_mem_sideFaces_of_target_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:151:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_noncrossingPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10143 jobs).
+EXIT=0

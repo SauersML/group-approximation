@@ -1,0 +1,17 @@
+[job] 19:11:00 acn112 waiting for clone lock
+[job] delta sync 6220bb856..fce977066: 4 files changed
+===== SUMMARY
+host acn112 cores 80-87 base fce977066 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-191053-43225.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4303 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.TwoEndedUnitGroup
+BUILT GroupApproximation.Dynamics.TwoEndedUnitsLEF
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/TwoEndedUnitGroup.lean
+COMPILED GroupApproximation/Dynamics/TwoEndedUnitsLEF.lean
+ Quot.sound]
+Build completed successfully (4115 jobs).
+EXIT=0
+PROBE GREEN

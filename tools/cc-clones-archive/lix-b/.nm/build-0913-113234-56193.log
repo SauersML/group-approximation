@@ -1,0 +1,8 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3308 oleans
+[job] acn112 cores=72-79 threads=8 base=520f030210ed0119078c4a78df2be610c859813d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion
+ℹ [3332/3511] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4917/4917] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion (9.5s)
+Build completed successfully (4917 jobs).
+EXIT=0

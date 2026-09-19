@@ -1,0 +1,31 @@
+[job] 13:34:04 n47 waiting for clone lock
+[job] delta sync 7a3f05eb6..224d5a765: 1 files changed
+===== SUMMARY
+host n47 cores slurm base 224d5a765 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-113555-81760.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4138 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.McDuffBrownFormulation
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/McDuffTensorHyperfinite.lean
+COMPILED GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/TracialMatrixQuotientUnitBall.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean
+COMPILED GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean
+COMPILED GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/McDuffBrownFormulation.lean
+ Quot.sound]
+Build completed successfully (4626 jobs).
+EXIT=0
+PROBE GREEN

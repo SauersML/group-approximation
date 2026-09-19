@@ -1,0 +1,22 @@
+[job] 00:09:32 acn112 waiting for clone lock
+[job] delta sync 1f3ee6058..9c15285d0: 21 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 9c15285d0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-000906-43468.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2098 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.ChernSplittingOfInjective
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ChernSplittingOfInjective.lean
+COMPILED GroupApproximation/CharClass/ParityPDecomposable.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepD.lean
+COMPILED GroupApproximation/CharClass/ParityPTwistSymm.lean
+COMPILED GroupApproximation/CharClass/ParityPWuAxiomGuard.lean
+COMPILED GroupApproximation/CharClass/ParityPWuComponent.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransport.lean
+COMPILED GroupApproximation/CharClass/ParityPWuValue.lean
+✔ [3421/3421] Built GroupApproximation.CharClass.ChernSplittingOfInjective (13s)
+Build completed successfully (3421 jobs).
+EXIT=0
+PROBE GREEN

@@ -58,22 +58,28 @@ namespace Absorption
 
 open Polynomial
 
+/-- The residual over one commutative ring `A` (the form of `suslinZHalf_BadStatement` for a
+general `A`, so that `A[X]` takes its semiring structure from the ring structure of `A`; see
+`suslinZLocal_BadAt` for why). -/
+abbrev suslinZHalf_BadAt (A : Type) [CommRing A] : Prop :=
+  (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary A N') →
+    ∀ σ : Matrix.GeneralLinearGroup (Fin 2) (Polynomial A),
+      Matrix.det (σ : Matrix (Fin 2) (Fin 2) (Polynomial A)) = 1 →
+      elementaryMatrixUnitMap (ι := Fin 2) (Polynomial.constantCoeff (R := A)) σ = 1 →
+      ¬ suslinZHalf_Witness σ →
+      ∀ (𝔪 : Ideal A) (_ : 𝔪.IsMaximal),
+        stabilizeUnit (R := Polynomial (Localization.AtPrime 𝔪)) (κ := Unit)
+            (elementaryMatrixUnitMap (ι := Fin 2)
+              (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) σ) ∈
+          elementaryGroup (Fin 2 ⊕ Unit) (Polynomial (Localization.AtPrime 𝔪))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZHalf_BadAt
+
 /-- **The residual.**  `SuslinBase3StabLocal (Chain.SIntPoly m k) 2`, restricted to those `σ`
 with no elementary monic witness.  TRUE (implied by the target), strictly smaller in proof
 content, and not a restatement; see the module docstring. -/
 def suslinZHalf_BadStatement : Prop :=
-  ∀ (m k : ℕ), (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.SIntPoly m k) N') →
-    ∀ σ : Matrix.GeneralLinearGroup (Fin 2) (Polynomial (Chain.SIntPoly m k)),
-      Matrix.det (σ : Matrix (Fin 2) (Fin 2) (Polynomial (Chain.SIntPoly m k))) = 1 →
-      elementaryMatrixUnitMap (ι := Fin 2) (Polynomial.constantCoeff (R := Chain.SIntPoly m k))
-          σ = 1 →
-      ¬ suslinZHalf_Witness σ →
-      ∀ (𝔪 : Ideal (Chain.SIntPoly m k)) (_ : 𝔪.IsMaximal),
-        stabilizeUnit (R := Polynomial (Localization.AtPrime 𝔪)) (κ := Unit)
-            (elementaryMatrixUnitMap (ι := Fin 2)
-              (Polynomial.mapRingHom (algebraMap (Chain.SIntPoly m k)
-                (Localization.AtPrime 𝔪))) σ) ∈
-          elementaryGroup (Fin 2 ⊕ Unit) (Polynomial (Localization.AtPrime 𝔪))
+  ∀ (m k : ℕ), suslinZHalf_BadAt (Chain.SIntPoly m k)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZHalf_BadStatement
 

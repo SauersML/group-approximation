@@ -1,0 +1,46 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3372 oleans
+[job] acn112 cores=72-79 threads=8 base=30ab64d739bd4625307cf7ae62af661d2500ea20 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+✔ [3804/3807] Built GroupApproximation.SurjunctiveNonsofic.LaurentPair (12s)
+✔ [3805/3807] Built GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan (16s)
+✔ [3806/3807] Built GroupApproximation.Pestov91.Kazhdan (21s)
+✖ [3807/3807] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:53:6: failed to synthesize instance of type class
+  Bracket (Matrix (Fin 3) (Fin 3) R)ˣ (Matrix (Fin 3) (Fin 3) R)ˣ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:55:8: declaration uses `sorry`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:171:13: This simp argument is unused:
+  Subgroup.coe_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [S̵u̵b̵g̵r̵o̵u̵p̵.̵c̵o̵e_̵m̵k̵,̵ ̵e̵lementaryUnit, Matrix.add_apply,
+  ̵  ̵ ̵ ̵Matrix.one_apply_ne (show (0 : Fin 3) ≠ 1 by decide),
+  ̲  ̲ ̲ ̲Matrix.single_apply_same,
+  ̵  ̵ ̵ ̵zero_add] at hval
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.exists_third_index_fin_three' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:192:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_locallyConstant_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:193:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup_fin_three_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:194:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryIdentities' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:195:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:196:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:197:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+error: build failed
+EXIT=1

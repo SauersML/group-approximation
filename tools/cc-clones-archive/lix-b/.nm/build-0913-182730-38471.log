@@ -1,0 +1,34 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3484 oleans
+[job] acn112 cores=72-79 threads=8 base=2562633bc40b05a501fe06bcacc8a630c42fb758 mods: GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass
+ℹ [3297/3434] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4979/4979] Building GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass (9.4s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.setup.json --json
+error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:60:48: don't know how to synthesize placeholder for argument `d`
+context:
+M : CombMap
+faces : Finset M.Face
+boundary : BoundaryCycle M faces
+hwalk : boundary.FollowsBoundary
+x : BoundaryDart M faces
+y b✝ : M.Dart
+a✝ : Relation.ReflTransGen (fun u v => InternalDart M faces u ∧ M.sigma u = v) (M.facePerm ↑x) b✝
+ih : Relation.EqvGen (M.FaceClassStep (walkKeep M boundary.cycle)) (↑x) b✝
+hin : M.faceOf b✝ ∈ faces
+halpha : M.faceOf (M.alpha b✝) ∈ faces
+⊢ M.Dart
+error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:119:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_boundaryPerm_of_followsBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:120:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_of_mem_of_followsBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:121:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eqvGen_of_mem_of_innerFollows' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass
+error: build failed
+EXIT=1

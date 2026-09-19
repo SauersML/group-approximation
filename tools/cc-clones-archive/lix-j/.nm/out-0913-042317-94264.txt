@@ -1,0 +1,32 @@
+[job] 04:23:22 acn112 waiting for clone lock
+[job] delta sync 72599dad7..37252fbab: 68 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 37252fbab log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-042317-94264.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2492 oleans
+--- errors (first 80 lines)
+6:✖ [4587/4587] Building GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences (16s)
+8:error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:173:4: Type mismatch
+14:error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:376:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonAlgebra' depends on axioms outside the classical allowlist: [sorryAx]
+15:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+26:error: Lean exited with code 1
+29:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinaryPower.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySLUnion.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySimple.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBlocks.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearGroup.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearTransvections.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryLinearMF.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonFiniteMatrices.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonSymbol.lean
+- GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

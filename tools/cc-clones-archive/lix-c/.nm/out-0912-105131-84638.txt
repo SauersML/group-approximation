@@ -1,0 +1,17 @@
+[job] 10:57:37 acn112 waiting for clone lock
+[job] delta sync 2d420fc26..8c49e4396: 65 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 8c49e4396 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-105131-84638.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 2340 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.CohomologyKunnethLixNOf
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethLixN.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethTorusN.lean
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:316:14: 'GroupApproximation.CharClass.KnLix.slice_map_zClass' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9238 jobs).
+EXIT=0
+PROBE GREEN

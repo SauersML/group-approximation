@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4590 oleans
+[job] acn112 cores=88-95 threads=8 base=a39b2f5fb5fa04cf3985e83e3d2b6eb638e20359 mods: GroupApproximation.Dynamics.ItineraryInverseLimit
+ℹ [1000/1082] Replayed GroupApproximation.Dynamics.ItinerarySubshift
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:111:14: 'GroupApproximation.ChainCore.continuous_itinerary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:112:14: 'GroupApproximation.ChainCore.itinerary_zpow_apply' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:113:14: 'GroupApproximation.ChainCore.itinerary_apply_self' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:114:14: 'GroupApproximation.ChainCore.isClosed_itinerarySubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:115:14: 'GroupApproximation.ChainCore.mapsTo_shift_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:116:14: 'GroupApproximation.ChainCore.continuous_oneBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:117:14: 'GroupApproximation.ChainCore.oneBlock_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:118:14: 'GroupApproximation.ChainCore.oneBlock_oneBlock' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:119:14: 'GroupApproximation.ChainCore.oneBlock_itinerary' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:120:14: 'GroupApproximation.ChainCore.oneBlock_image_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+ℹ [1082/1082] Built GroupApproximation.Dynamics.ItineraryInverseLimit (4.9s)
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:103:14: 'GroupApproximation.ChainCore.mem_inverseLimitCore' depends on axioms: [Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:104:14: 'GroupApproximation.ChainCore.isClosed_inverseLimitCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:105:14: 'GroupApproximation.ChainCore.itinerary_mem_of_le' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:106:14: 'GroupApproximation.ChainCore.preimage_itinerary_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:107:14: 'GroupApproximation.ChainCore.itinerary_image_inverseLimitCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:108:14: 'GroupApproximation.ChainCore.inverseLimitCore_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:109:14: 'GroupApproximation.ChainCore.mapsTo_zpow_inverseLimitCore' depends on axioms: [propext, Quot.sound]
+Build completed successfully (1082 jobs).
+EXIT=0

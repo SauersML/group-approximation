@@ -1,0 +1,12 @@
+purged 20 stale artifact sets (source-newer=2, import-newer=18) of 3224 oleans
+[job] acn147 cores=slurm threads=8 base=c3cfee8441f2ff15cada37401252508cd2ec0015 mods: GroupApproximation.Manuscript.NonMF.RegularNonMFAlgebra GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+ℹ [2838/2906] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4455/4456] Built GroupApproximation.Manuscript.NonMF.RegularNonMFAlgebra (121s)
+ℹ [4456/4456] Built GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences (17s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:557:2: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4456 jobs).
+EXIT=0

@@ -8,7 +8,9 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators
 
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean` fails to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 4 error lines).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: bh-pal-wire.
-Source changed on main since that build: no.
+Source changed on main since that build: yes.
+
+**Repair landed, unprobed.** 90089df2a1: BH metabelian chain: generic clearing-denominators lemma; two latent Subgroup API fixes (u. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

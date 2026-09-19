@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4329 oleans
+[job] acn112 cores=64-71 threads=8 base=690d9b12c39169502a5fbb87510a3edf10801342 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+ℹ [3826/3826] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (14s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:184:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:185:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3826 jobs).
+EXIT=0

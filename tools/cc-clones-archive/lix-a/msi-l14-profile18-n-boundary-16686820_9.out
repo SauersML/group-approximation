@@ -1,0 +1,17 @@
+TRACE carrier=10 rotations=1 syllables=0
+TRACE carrier=10 rotation=0 target=0 states=1
+TRACE carrier=10 rotation=0 target=1 states=1
+TRACE carrier=10 rotation=0 target=2 states=1
+TRACE carrier=10 rotation=0 target=3 states=1
+carrier=10 words=4 states=4
+carrier_states=45
+distinct_augmented_words=4
+boundary_states=4
+nonempty_q=0
+free_nonempty_q=0
+direct_killed_q=0
+power_killed_q=0
+saturation_killed_q=0
+involution_killed_q=0
+difference_killed_q=0
+unresolved_q=0

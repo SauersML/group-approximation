@@ -1,0 +1,17 @@
+[job] 04:02:34 acn112 waiting for clone lock
+[job] delta sync a4c5b47db..42d443298: 42 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 42d443298 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-040230-50292.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2449 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementarySentence (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGaussValuations.lean
+COMPILED GroupApproximation/Algebra/IntegerPlacesMinpoly.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean
+  [apply] abel_nf
+Build completed successfully (4585 jobs).
+EXIT=0
+PROBE GREEN

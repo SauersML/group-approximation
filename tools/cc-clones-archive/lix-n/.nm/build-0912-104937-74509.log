@@ -1,0 +1,533 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+[job] acn112 cores=64-71 threads=8 base=de1be2b160a1fa4137e95ba5c95e85c31bd497c5 mods: GroupApproximation.CharClass.OddPTopPowerAW
+✖ [2173/2173] Building GroupApproximation.CharClass.OddPTopPowerAW (29s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/CharClass/OddPTopPowerAW.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTopPowerAW.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTopPowerAW.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPTopPowerAW.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPTopPowerAW.setup.json --json
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:118:51: `Fin.lt_iff_val_lt_val` has been deprecated: Use `Fin.lt_def` instead
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:118:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:119:36: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:121:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:123:6: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  d ≥ 1
+  c ≥ 0
+  b ≥ 0
+  b - d ≤ 0
+  a ≥ 0
+  a - b ≥ 0
+  a - c ≤ 0
+  a - d ≥ 0
+where
+ a := ↑↑j
+ b := ↑↑i
+ c := ↑⦋n⦌.len
+ d := if ↑(↑j + 1) ≤ ↑(n + 1) then ↑(↑j + 1) else ↑(n + 1)
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:148:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  vtx (vtx σ (a + 1) v hv).snd a (succAb l) ⋯
+in the target expression
+  (-1) ^ l • Finsupp.single (vtx (vtx σ (a + 1) v hv).snd a (succAb l) ⋯) 1 =
+    (-1) ^ l • Finsupp.single (vtx σ a (v ∘ succAb l) ⋯) 1
+
+X : TopCat
+K : Type
+inst✝ : CommRing K
+k : ℕ
+σ : singularSimplices X k
+a : ℕ
+v : ℕ → ℕ
+hv : Monotone v
+h :
+  tagBd K X ⟨a + 1, (vtx σ (a + 1) v hv).snd⟩ =
+    ∑ l ∈ Finset.range (a + 2), (-1) ^ l • Finsupp.single (vtx (vtx σ (a + 1) v hv).snd a (succAb l) ⋯) 1
+l : ℕ
+x✝ : l ∈ Finset.range (a + 2)
+⊢ (-1) ^ l • Finsupp.single (vtx (vtx σ (a + 1) v hv).snd a (succAb l) ⋯) 1 =
+    (-1) ^ l • Finsupp.single (vtx σ a (v ∘ succAb l) ⋯) 1
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (vtx σ (a + 1) v hv).snd
+  has type
+    singularSimplices X (vtx σ (a + 1) v hv).fst
+  but is expected to have type
+    singularSimplices X (a + 1)
+  in the application
+    vtx (vtx σ (a + 1) v hv).snd
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:11: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:35: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:18: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:4: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:186:6: Failed to rewrite using equation theorems for `catLin`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:11: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:35: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:18: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:56: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:39: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:4: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:202:48: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:15: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:75: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:58: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:8: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:45: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:69: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:52: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:38: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:238:2: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:32: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:56: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:39: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:77: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:60: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:25: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:15: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:76: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:59: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:8: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:47: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:71: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:54: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:40: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:32: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:58: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:41: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:25: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:15: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:57: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:40: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:8: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:271:34: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:271:27: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:272:28: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  eq_on_supported K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:272:12: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:273:41: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:273:34: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:274:14: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:274:7: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:275:33: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:275:26: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:277:17: This simp argument is unused:
+  LinearMap.comp_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵c̵o̵m̵p̵_̵a̵p̵p̵l̵y̵,̵ ̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵f̵l̵i̵p̵_̵a̵p̵p̵l̵y̵,̵[̲L̲i̲n̲e̲a̲r̲M̲a̲p̲.̲f̲l̲i̲p̲_̲a̲p̲p̲l̲y̲,̲ LinearMap.add_apply, LinearMap.smul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:277:39: This simp argument is unused:
+  LinearMap.flip_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [LinearMap.comp_apply, L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵f̵l̵i̵p̵_̵a̵p̵p̵l̵y̵,̵ ̵LinearMap.add_apply, LinearMap.smul_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:278:8: This simp argument is unused:
+  LinearMap.smul_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [LinearMap.comp_apply, LinearMap.flip_apply, LinearMap.add_apply,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵s̵m̵u̵l̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:11: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:37: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:20: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:4: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:28: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  eq_on_supported K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:12: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:41: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:34: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:311:5: unexpected token ','; expected '|'
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:317:37: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:10: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:34: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:17: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:4: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:45: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:321:6: Failed to rewrite using equation theorems for `awLin`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:321:6: declaration uses `sorry`
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:324:10: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:328:10: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:329:13: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  catLin K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:329:26: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:329:76: failed to synthesize instance of type class
+  OfNat (↑X) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  ↑X
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:329:48: failed to synthesize instance of type class
+  Zero ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:329:6: failed to synthesize instance of type class
+  CommRing ↑X
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:334:10: Application type mismatch: The argument
+  K
+has type
+  Type
+but is expected to have type
+  TopCat
+in the application
+  awAll K
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:344:8: Unknown identifier `awAll_succ`
+info: GroupApproximation/CharClass/OddPTopPowerAW.lean:356:14: 'GroupApproximation.CharClass.TopPow.vtx_vtx' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:357:14: 'GroupApproximation.CharClass.TopPow.tagBd_vtx' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:358:14: 'GroupApproximation.CharClass.TopPow.tupDAll_catLin_of_mem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPTopPowerAW.lean:359:14: 'GroupApproximation.CharClass.TopPow.awAll_mem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPTopPowerAW
+error: build failed
+EXIT=1

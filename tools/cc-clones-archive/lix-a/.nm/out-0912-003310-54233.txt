@@ -1,0 +1,32 @@
+[job] 00:33:27 acn112 waiting for clone lock
+[job] delta sync 0f038ff96..fee3cc504: 19 files changed
+===== SUMMARY
+host acn112 cores 80-87 base fee3cc504 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0912-003310-54233.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2304 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenLocalRes
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenBaseChart.lean
+COMPILED GroupApproximation/CharClass/LIXKGenBundle.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChart.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChartZero.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChern.lean
+COMPILED GroupApproximation/CharClass/LIXKGenDeriv.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalHomeo.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalPair.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalRes.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSect.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSectInverse.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSector.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean
+COMPILED GroupApproximation/CharClass/LIXKGenStepCHalf.lean
+COMPILED GroupApproximation/CharClass/LIXKGenStepCWired.lean
+COMPILED GroupApproximation/CharClass/LIXKGenThomTerm.lean
+COMPILED GroupApproximation/CharClass/LIXKGenTopLine.lean
+COMPILED GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean
+ Quot.sound]
+Build completed successfully (9266 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,25 @@
+[job] 19:43:31 acn112 waiting for clone lock
+[job] delta sync 79f422ef2..e2312fb7f: 7 files changed
+===== SUMMARY
+host acn112 cores 88-95 base e2312fb7f log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-194328-33349.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3473 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+ Quot.sound]
+Build completed successfully (1541 jobs).
+EXIT=0
+PROBE GREEN

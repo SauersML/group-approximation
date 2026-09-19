@@ -1,0 +1,15 @@
+[job] 23:18:08 n53 waiting for clone lock
+[job] delta sync 553e6ad86..c0c8041cd: 2 files changed
+===== SUMMARY
+host n53 cores slurm base c0c8041cd log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-230906-80909.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2139 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.LIXPowersEquatorChart
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXPowersEquatorChart.lean
+✔ [2397/2397] Built GroupApproximation.Analysis.LIXPowersEquatorChart (106s)
+Build completed successfully (2397 jobs).
+EXIT=0
+PROBE GREEN

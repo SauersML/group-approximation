@@ -1,0 +1,82 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3510 oleans
+[job] acn32 cores=slurm threads=8 base=9bd2b60276a695012f29686824c0c51a662d29d8 mods: GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower GroupApproximation.Analysis.PauliHyperfiniteDensity
+ℹ [2384/2444] Replayed GroupApproximation.Analysis.MatrixUnitHom
+info: GroupApproximation/Analysis/MatrixUnitHom.lean:152:14: 'GroupApproximation.MatrixUnits.matrixUnitSum_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/MatrixUnitHom.lean:153:14: 'GroupApproximation.MatrixUnits.matrixUnitSum_star' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/MatrixUnitHom.lean:154:14: 'GroupApproximation.MatrixUnits.trace_matrixUnitSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2385/2444] Replayed GroupApproximation.Analysis.DyadicCornerEmbedding
+info: GroupApproximation/Analysis/DyadicCornerEmbedding.lean:94:14: 'GroupApproximation.MatrixUnits.cornerUnit_isMatrixUnits' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/DyadicCornerEmbedding.lean:95:14: 'GroupApproximation.MatrixUnits.trace_cornerHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2522/2563] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannFactor
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:318:14: 'GroupApproximation.TwistedGroupVonNeumann.exists_smul_one_of_mem_centralizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:319:14: 'GroupApproximation.TwistedGroupVonNeumann.isFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:320:14: 'GroupApproximation.TwistedGroupVonNeumann.twistedTrace_isFaithfulNormalTracialState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:321:14: 'GroupApproximation.TwistedGroupVonNeumann.isIIOneFactor_twistedVonNeumannAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2523/2563] Replayed GroupApproximation.Analysis.PauliHyperfiniteFactor
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:280:14: 'GroupApproximation.Hyperfinite.pauliCocycle_isTwistedICC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:281:14: 'GroupApproximation.Hyperfinite.isIIOneFactor_hyperfiniteFactor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:282:14: 'GroupApproximation.Hyperfinite.pauliCocycle_interleave' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2524/2563] Replayed GroupApproximation.Analysis.PauliStageOperators
+info: GroupApproximation/Analysis/PauliStageOperators.lean:127:14: 'GroupApproximation.TwistedGroupVonNeumann.star_twistedLeftOperator_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:128:14: 'GroupApproximation.Hyperfinite.pauliOp_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:129:14: 'GroupApproximation.Hyperfinite.star_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:130:14: 'GroupApproximation.Hyperfinite.coefficient_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2546/2593] Replayed GroupApproximation.Analysis.PauliMatrixUnits
+info: GroupApproximation/Analysis/PauliMatrixUnits.lean:322:14: 'GroupApproximation.Hyperfinite.sum_zsign_fdot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliMatrixUnits.lean:323:14: 'GroupApproximation.Hyperfinite.stageUnit_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliMatrixUnits.lean:324:14: 'GroupApproximation.Hyperfinite.sum_stageUnit_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliMatrixUnits.lean:325:14: 'GroupApproximation.Hyperfinite.coefficient_stageHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2963/3052] Replayed GroupApproximation.Analysis.TracialUltrapower
+info: GroupApproximation/Analysis/TracialUltrapower.lean:266:14: 'GroupApproximation.TracialUltrapower.TracialVector.norm_mul_apply_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapower.lean:267:14: 'GroupApproximation.TracialUltrapower.nullIdeal_star_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2964/3052] Replayed GroupApproximation.Analysis.TracialUltrapowerTrace
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:247:14: 'GroupApproximation.TracialUltrapower.ultratrace_mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:248:14: 'GroupApproximation.TracialUltrapower.ultratrace_star_mul_self_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:249:14: 'GroupApproximation.TracialUltrapower.ultratrace_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:250:14: 'GroupApproximation.TracialUltrapower.diag_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3050/3052] Replayed GroupApproximation.Analysis.HyperfiniteStageCorner
+info: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:118:14: 'GroupApproximation.Hyperfinite.norm_stageCorner_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:119:14: 'GroupApproximation.Hyperfinite.coefficient_stageCorner_eq_normTrace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:120:14: 'GroupApproximation.Hyperfinite.norm_stageCorner_deltaOne_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:121:14: 'GroupApproximation.Hyperfinite.norm_one_sub_stageCorner_one_deltaOne_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3051/3052] Built GroupApproximation.Analysis.PauliHyperfiniteDensity (26s)
+info: GroupApproximation/Analysis/PauliHyperfiniteDensity.lean:138:14: 'GroupApproximation.Hyperfinite.stageOp_eq_stageHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteDensity.lean:139:14: 'GroupApproximation.Hyperfinite.hyperfiniteFactor_approximatelyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [3052/3052] Building GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (34s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.setup.json --json
+error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:145:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.norm_one_sub_stageCorner_one_deltaOne_sq'`:
+  [∀ (n : ℕ), Nonempty (X n).carrier]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [∀ (n : ℕ), Nonempty (X n).carrier] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:310:14: 'GroupApproximation.Hyperfinite.one_sub_stageFactor_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:311:14: 'GroupApproximation.Hyperfinite.isNull_seqMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:312:14: 'GroupApproximation.Hyperfinite.ultratrace_matrixUltraproductToHyperfiniteUltrapower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower
+error: build failed
+EXIT=1

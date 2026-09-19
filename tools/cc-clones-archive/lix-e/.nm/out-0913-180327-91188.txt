@@ -1,0 +1,25 @@
+[job] 18:03:37 acn112 waiting for clone lock
+[job] delta sync 6b11f577f..345831214: 8 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 345831214 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-180327-91188.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4223 oleans
+--- errors (first 80 lines)
+8:✖ [1929/1930] Building GroupApproximation.Algebra.SupportedCodimension (6.5s)
+10:error: GroupApproximation/Algebra/SupportedCodimension.lean:36:0: automatically included section variable(s) unused in theorem `GroupApproximation.SupportedCodimension.isCompl_supported_compl`:
+16:error: GroupApproximation/Algebra/SupportedCodimension.lean:44:60: failed to synthesize
+20:error: GroupApproximation/Algebra/SupportedCodimension.lean:61:14: 'GroupApproximation.SupportedCodimension.finrank_quotient_supported_compl' depends on axioms outside the classical allowlist: [sorryAx]
+21:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+23:error: GroupApproximation/Algebra/SupportedCodimension.lean:62:14: 'GroupApproximation.SupportedCodimension.card_eq_of_map_supported_compl' depends on axioms outside the classical allowlist: [sorryAx]
+24:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+26:error: Lean exited with code 1
+34:error: build failed
+--- per-module
+BUILT GroupApproximation.Dynamics.TwoEndedRepresentation
+mentioned-not-built GroupApproximation.Algebra.SupportedCodimension (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/TwoEndedRepresentation.lean
+- GroupApproximation.Algebra.SupportedCodimension
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

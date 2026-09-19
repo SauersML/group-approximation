@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3183 oleans
+[job] acn112 cores=88-95 threads=8 base=6401c70a6f64c4ecde540afcb41da9f1242c6ef6 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels
+ℹ [3299/3414] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4985/4985] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels (13s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:209:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_outer_of_isTwoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:210:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.phiRegionO_facePerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:211:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.phiRegionO_of_faceOf_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:212:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sameSection_of_not_gapHoldsCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:213:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_exteriorAt_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:214:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_twoGonLabels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4985 jobs).
+EXIT=0

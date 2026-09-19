@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4049 oleans
+[job] acn222 cores=slurm threads=8 base=d5d1b9db7ac0204c5930062907bc69974b0a586d mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.InfiniteSimpleICC GroupApproximation.Analysis.GroupVonNeumannIIOneFactor GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup GroupApproximation.Analysis.VonNeumannTwistedAmplification GroupApproximation.Analysis.HyperlinearTraceVanishingModels
+ℹ [3691/3754] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4611/4612] Built GroupApproximation.Analysis.HyperlinearTraceVanishingModels (41s)
+ℹ [4612/4612] Built GroupApproximation.Analysis.VonNeumannTwistedAmplification (57s)
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4612 jobs).
+EXIT=0

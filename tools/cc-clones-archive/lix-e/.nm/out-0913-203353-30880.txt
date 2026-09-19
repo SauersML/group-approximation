@@ -1,0 +1,19 @@
+[job] 20:35:52 acn54 waiting for clone lock
+[job] delta sync 690d9b12c..7d859d6c8: 31 files changed
+===== SUMMARY
+host acn54 cores slurm base 7d859d6c8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-203353-30880.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4330 oleans
+--- errors (first 80 lines)
+3:✖ [3828/3829] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (20s)
+5:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:146:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.compactSpace_carrier`:
+17:error: Lean exited with code 1
+20:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

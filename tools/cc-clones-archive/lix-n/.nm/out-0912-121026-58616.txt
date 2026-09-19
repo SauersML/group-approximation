@@ -1,0 +1,32 @@
+[job] 12:10:32 acn112 waiting for clone lock
+[job] delta sync 2e8f27ae8..4c762c123: 69 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 4c762c123 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0912-121026-58616.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2340 oleans
+--- errors (first 80 lines)
+8:✖ [8803/8811] Building GroupApproximation.CharClass.OddPTopPowerAWChain (9.0s)
+10:error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:323:49: Type mismatch
+16:error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:326:47: Type mismatch
+22:error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:335:64: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+46:error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:339:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+65:error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:361:14: 'GroupApproximation.CharClass.TopPow.tupAllMap_awAll' depends on axioms outside the classical allowlist: [sorryAx]
+66:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+68:error: Lean exited with code 1
+69:✖ [8806/8811] Building GroupApproximation.CharClass.OddPDiagonalAug (24s)
+71:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:262:0: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+76:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:271:8: (kernel) unknown constant 'GroupApproximation.CharClass.tupD_exists_preimage_stdSimplexTop_zmod'
+77:error: Lean exited with code 1
+81:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.OddPTopPowerAW
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAWChain (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAWEval (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerHomotopy (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPower (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTopPowerAW.lean
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

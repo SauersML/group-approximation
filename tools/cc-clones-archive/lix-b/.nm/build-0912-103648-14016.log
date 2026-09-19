@@ -1,0 +1,147 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2329 oleans
+[job] acn197 cores=slurm threads=8 base=7e8a94ac96020cd6533a5bb7d7ff630b14819bf3 mods: GroupApproximation.CharClass.LIXKGenLocalSquare GroupApproximation.CharClass.LIXKGenLocalNonzero
+ℹ [8756/8841] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8773/8864] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8880/9105] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8893/9117] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8934/9264] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8935/9264] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8981/9309] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9003/9309] Replayed GroupApproximation.CharClass.ThomBridgeNaturalSquare
+info: GroupApproximation/CharClass/ThomBridgeNaturalSquare.lean:58:14: 'GroupApproximation.CharClass.relPullback_comm_of_map_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9007/9309] Replayed GroupApproximation.CharClass.LIXKRelativeMV
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:270:14: 'GroupApproximation.CharClass.LIXKRelMV.splitDrop_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:271:14: 'GroupApproximation.CharClass.LIXKRelMV.splitKeep_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:272:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_relCocycle_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9167/9309] Replayed GroupApproximation.CharClass.LIXKGenLocalSplit
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:114:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_kgen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:115:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_ne_zero_kgen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:116:14: 'GroupApproximation.CharClass.KGen.kZeroStepCData_of_localNonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9169/9309] Replayed GroupApproximation.CharClass.LIXKGenLocalEta
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:260:14: 'GroupApproximation.CharClass.KGen.lixKSection_eq_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:261:14: 'GroupApproximation.CharClass.KGen.Vmat_mulVec_lixKEtaLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:262:14: 'GroupApproximation.CharClass.KGen.lixKEtaLin_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9187/9309] Replayed GroupApproximation.CharClass.LIXKGenLocalLinear
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:350:14: 'GroupApproximation.CharClass.KGen.lixKGFrame_mulVec_lixKGLin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:351:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGHomeo_eq_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9189/9309] Replayed GroupApproximation.CharClass.LIXKGenLocalHomotopy
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:672:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:673:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:674:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:675:14: 'GroupApproximation.CharClass.KGen.lixKChartPt_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:676:14: 'GroupApproximation.CharClass.KGen.lixKGRmap_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:677:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:678:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9262/9309] Replayed GroupApproximation.CharClass.ThomChernDegreewise
+info: GroupApproximation/CharClass/ThomChernDegreewise.lean:147:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9263/9309] Replayed GroupApproximation.CharClass.ThomRestrictSquare
+info: GroupApproximation/CharClass/ThomRestrictSquare.lean:90:14: 'GroupApproximation.CharClass.ThomChernDeg.absToSub_sum_lhTerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9264/9309] Replayed GroupApproximation.CharClass.LIXThomLH
+info: GroupApproximation/CharClass/LIXThomLH.lean:86:14: 'GroupApproximation.CharClass.lhTopEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9265/9309] Replayed GroupApproximation.CharClass.LIXThomAssembly
+info: GroupApproximation/CharClass/LIXThomAssembly.lean:127:14: 'GroupApproximation.CharClass.thomData_of_absToSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9266/9309] Replayed GroupApproximation.CharClass.ThomHabs
+info: GroupApproximation/CharClass/ThomHabs.lean:145:14: 'GroupApproximation.CharClass.ThomChernDeg.range_thomJm_eq_ker_restrictMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9267/9309] Replayed GroupApproximation.CharClass.ThomDataFromLH
+info: GroupApproximation/CharClass/ThomDataFromLH.lean:83:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9274/9309] Replayed GroupApproximation.CharClass.LerayHirschGammaIso
+info: GroupApproximation/CharClass/LerayHirschGammaIso.lean:94:14: 'GroupApproximation.CharClass.LH.gamma_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9284/9309] Replayed GroupApproximation.CharClass.ThomBridgeTotal
+info: GroupApproximation/CharClass/ThomBridgeTotal.lean:138:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9290/9309] Replayed GroupApproximation.CharClass.ThomHyperplaneLH
+info: GroupApproximation/CharClass/ThomHyperplaneLH.lean:117:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_taut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9292/9309] Replayed GroupApproximation.CharClass.ThomBridgeTotalNatural
+info: GroupApproximation/CharClass/ThomBridgeTotalNatural.lean:122:14: 'GroupApproximation.CharClass.bridgeTotal_natural' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9293/9309] Replayed GroupApproximation.CharClass.LIXThomClassOfTaut
+info: GroupApproximation/CharClass/LIXThomClassOfTaut.lean:95:14: 'GroupApproximation.CharClass.ThomChernDeg.exists_lixThomClass_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9294/9309] Replayed GroupApproximation.CharClass.LIXThomClassTerm
+info: GroupApproximation/CharClass/LIXThomClassTerm.lean:222:14: 'GroupApproximation.CharClass.lixThomClassTerm_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9295/9309] Replayed GroupApproximation.CharClass.LIXChernTopGamma
+info: GroupApproximation/CharClass/LIXChernTopGamma.lean:79:14: 'GroupApproximation.CharClass.lixChern_top_eq_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9296/9309] Replayed GroupApproximation.CharClass.ThomCoordinates
+info: GroupApproximation/CharClass/ThomCoordinates.lean:92:14: 'GroupApproximation.CharClass.thomJmTotal_lixThomClassTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9302/9309] Replayed GroupApproximation.CharClass.ThomChartTautZero
+info: GroupApproximation/CharClass/ThomChartTautZero.lean:191:14: 'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9303/9309] Replayed GroupApproximation.CharClass.ThomBridgeRelToAbs
+info: GroupApproximation/CharClass/ThomBridgeRelToAbs.lean:122:14: 'GroupApproximation.CharClass.relToAbs_bridgeTotal' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9304/9309] Replayed GroupApproximation.CharClass.LIXHclass
+info: GroupApproximation/CharClass/LIXHclass.lean:238:14: 'GroupApproximation.CharClass.lixHclass' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [9308/9309] Building GroupApproximation.CharClass.LIXKGenLocalSquare (190s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/LIXKGenLocalSquare.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenLocalSquare.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenLocalSquare.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKGenLocalSquare.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKGenLocalSquare.setup.json --json
+error: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:126:32: unsolved goals
+ℓ n k : ℕ
+dd : Fin ℓ → ℕ
+i : Fin (k + 1)
+G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ
+hGc : Continuous G
+hGu : ∀ (m : Gen.baseM n dd), IsCornerUnitary (Gen.Vmat n m) (G m)
+hGe : ∀ (m : Gen.baseM n dd), G m *ᵥ (aVecK n m ⊕ᵥ 0) = bVecK n k m ⊕ᵥ 0
+hbs :
+  ∀ y ∈ Subtype.val ⁻¹' (lixKZeroSet n k dd)ᶜ,
+    (ConcreteCategory.hom (sInclusion (lixKTrivBall n k dd i hGc hGu) ≫ lixKS n k hGc hGu hGe)) y ∈
+      lixPuncturedInTotal n hGc hGu
+s1 :
+  relPullback (ZMod 2) (lixKGLmap n k dd i hGc hGu hGe) ⋯ (2 * lixRank n dd) =
+    relPullback (ZMod 2) (sInclusion (lixKTrivBall n k dd i hGc hGu) ≫ lixKS n k hGc hGu hGe) hbs (2 * lixRank n dd) ≫
+      relPullback (ZMod 2) (lixKChartPt n k dd i hGc hGu) ⋯ (2 * lixRank n dd)
+s2 :
+  relPullback (ZMod 2) (sInclusion (lixKTrivBall n k dd i hGc hGu) ≫ lixKS n k hGc hGu hGe) hbs (2 * lixRank n dd) =
+    lixKSRel n k hGc hGu hGe (2 * lixRank n dd) ≫
+      LIXKRelMV.restrictTo (ZMod 2) (lixKTrivBall n k dd i hGc hGu) (lixKZeroSet n k dd)ᶜ (2 * lixRank n dd)
+⊢ (lixKSRel n k hGc hGu hGe (2 * lixRank n dd) ≫
+        LIXKRelMV.restrictTo (ZMod 2) (lixKTrivBall n k dd i hGc hGu) (lixKZeroSet n k dd)ᶜ (2 * lixRank n dd)) ≫
+      relPullback (ZMod 2) (lixKChartPt n k dd i hGc hGu) ⋯ (2 * lixRank n dd) =
+    (lixKSRel n k hGc hGu hGe (2 * lixRank n dd) ≫
+        LIXKRelMV.restrictTo (ZMod 2) (lixKTrivBall n k dd i hGc hGu) (lixKZeroSet n k dd)ᶜ (2 * lixRank n dd)) ≫
+      relPullback (ZMod 2) (lixKChartPt n k dd i hGc hGu) ⋯ (2 * lixRank n dd)
+info: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:284:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKFar_eq_lixKGR'' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:285:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGL_eq_lixKGR' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:286:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGL_chain' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:287:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGR_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXKGenLocalSquare
+error: build failed
+EXIT=1

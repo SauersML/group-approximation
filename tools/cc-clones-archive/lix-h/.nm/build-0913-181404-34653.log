@@ -1,0 +1,16 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3176 oleans
+[job] acn165 cores=slurm threads=8 base=28b2567e005b13c2b35d78c8148cb5c758271f0b mods: GroupApproximation.Dynamics.ReturnCornerGeneration
+ℹ [1760/1763] Replayed GroupApproximation.Dynamics.ReturnCells
+info: GroupApproximation/Dynamics/ReturnCells.lean:217:14: 'GroupApproximation.ChainCore.image_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:218:14: 'GroupApproximation.ChainCore.sum_indicator_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:219:14: 'GroupApproximation.ChainCore.clopenExtendByZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1762/1763] Replayed GroupApproximation.Dynamics.ReturnRingUnit
+info: GroupApproximation/Dynamics/ReturnRingUnit.lean:255:14: 'GroupApproximation.ChainCore.returnUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnRingUnit.lean:256:14: 'GroupApproximation.ChainCore.returnV_mul_coeff_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1763/1763] Built GroupApproximation.Dynamics.ReturnCornerGeneration (64s)
+info: GroupApproximation/Dynamics/ReturnCornerGeneration.lean:385:14: 'GroupApproximation.ChainCore.mem_closure_returnCornerGenerators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCornerGeneration.lean:386:14: 'GroupApproximation.ChainCore.surjective_of_generators' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1763 jobs).
+EXIT=0

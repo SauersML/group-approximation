@@ -1,0 +1,2 @@
+/var/spool/slurmd/job16693130/slurm_script: line 20: 767766 Killed                  python3 msi-stage/solve-l14-profile27-131-qblock.py i0131 --rotation="$rotation" --target="$target" --prefix="$prefix" --prefix-bits=5
+[2026-08-22T09:49:29.831] error: Detected 1 oom_kill event in StepId=16693130.batch. Some of the step tasks have been OOM Killed.

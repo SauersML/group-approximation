@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4040 oleans
+[job] acn01 cores=slurm threads=8 base=0a0b6190020bce9bfabc22c20ae600e3bd4f9adf mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetricTwoThreshold
+ℹ [2831/2880] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4924/4924] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetricTwoThreshold (138s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetricTwoThreshold.lean:330:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePairTwo.exists_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetricTwoThreshold.lean:331:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePairTwo_of_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetricTwoThreshold.lean:332:21: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.unboundOrientedWordPolygonMonotoneTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetricTwoThreshold.lean:333:21: 'GroupApproximation.GGT.VanKampen.osinLemma94AntiparallelMetricTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4924 jobs).
+EXIT=0

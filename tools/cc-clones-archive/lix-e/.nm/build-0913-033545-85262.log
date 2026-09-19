@@ -1,0 +1,27 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2448 oleans
+[job] acn112 cores=72-79 threads=8 base=a4c5b47dbc1f3ebe281ca1a90d6e706af543d5e3 mods: GroupApproximation.Kazhdan.GHWCharZeroPlaces GroupApproximation.Algebra.IntegerPlacesMinpoly
+ℹ [1651/1745] Replayed GroupApproximation.Algebra.IntegerGaussValuations
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:301:14: 'GroupApproximation.IntegerGaussValuations.padicValuation_natCast_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:302:14: 'GroupApproximation.IntegerGaussValuations.degValuation_inv_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:303:14: 'GroupApproximation.IntegerGaussValuations.degValuation_algebraMap_le_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:304:14: 'GroupApproximation.IntegerGaussValuations.exists_algebraMap_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2672/2673] Built GroupApproximation.Kazhdan.GHWCharZeroPlaces (10s)
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:196:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:197:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:198:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2673/2673] Built GroupApproximation.Algebra.IntegerPlacesMinpoly (7.2s)
+info: GroupApproximation/Algebra/IntegerPlacesMinpoly.lean:52:14: 'GroupApproximation.IntegerPlacesMinpoly.exists_places_minpoly_coeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2673 jobs).
+EXIT=0

@@ -1,0 +1,23 @@
+[job] 10:43:27 acn112 waiting for clone lock
+[job] delta sync 97bac0021..9c00f7100: 37 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 9c00f7100 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0912-103259-94881.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2330 oleans
+--- errors (first 80 lines)
+151:✖ [9469/9474] Building GroupApproximation.CharClass.OddPTotalInterface (8.6s)
+153:error: GroupApproximation/CharClass/OddPTotalInterface.lean:111:37: Variable name `hd` is not explicitly referenced.
+162:error: Lean exited with code 1
+212:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXStepDGenReal
+BUILT GroupApproximation.CharClass.LIXStepDGenRealTorus
+BUILT GroupApproximation.CharClass.LIXStepDGenRealTorusModel
+mentioned-not-built GroupApproximation.CharClass.LIXStepDGenTorusPModel (replayed or failed)
+BUILT GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrongAssemblyOddP
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXStepDGenReal.lean
+- GroupApproximation.CharClass.OddPTotalInterface
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

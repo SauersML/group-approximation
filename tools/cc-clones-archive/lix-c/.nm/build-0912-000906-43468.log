@@ -1,0 +1,5 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2098 oleans
+[job] acn112 cores=64-71 threads=8 base=9c15285d0d411b5223c0cd64f68aa4112c185316 mods: GroupApproximation.CharClass.ChernSplittingOfInjective
+✔ [3421/3421] Built GroupApproximation.CharClass.ChernSplittingOfInjective (13s)
+Build completed successfully (3421 jobs).
+EXIT=0

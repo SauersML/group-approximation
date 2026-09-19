@@ -1,0 +1,23 @@
+[job] 09:12:41 acn124 waiting for clone lock
+[job] delta sync 048db97d4..7445a5a2d: 12 files changed
+===== SUMMARY
+host acn124 cores slurm base 7445a5a2d log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-091223-50882.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3523 oleans
+--- errors (first 80 lines)
+6:✖ [4665/4665] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (90s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:97:68: unsolved goals
+32:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:116:14: 'GroupApproximation.GGT.VanKampen.CombMap.four_le_faceDegree_of_bipartite' depends on axioms outside the classical allowlist: [sorryAx]
+33:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+35:error: Lean exited with code 1
+38:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+error: build failed
+EXIT=1
+PROBE FAILED rc=1
