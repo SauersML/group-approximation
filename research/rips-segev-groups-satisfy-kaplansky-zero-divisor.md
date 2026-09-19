@@ -434,3 +434,24 @@ the Kaplansky zero-divisor conjecture."
      - The edge equation becomes `X(b z) = -Y(z)`, linking right cosets `<a> z` to `<a> b z`.
      - The copies are left translates, with lines in left cosets, so the port graph has to be rebuilt.
      - After that comes `b`-degree at least two.
+
+25. **Elements supported in `<a><b>` have no left annihilator; degree-one elements are two-sided regular (proposed established; `rips-segev-ab-layered-elements-have-no-left-annihilator`).**
+   - *Every `b`-degree, left side.*  If `alpha (sum_{j=0}^d u_j(a) b^j) = 0` with some `u_j != 0`, then
+     `alpha = 0`, over every field.  By the involution, nonzero elements supported in `<b><a>` have no right
+     annihilator.
+     - With `X_j = alpha u_j`, each `b`-line satisfies `sum_j X_j(v b^{-j}) = 0`.  So its active points form
+       clusters with gaps `<= d`.  The `b`-edges inside cluster spans form a port graph of minimum degree 2, and
+       the leaf-block flow cycle of the previous item applies.
+     - A multi-layer rank-one lemma, `P^i_T P^j_T' = P^i_T' P^j_T`, allows at most one pure active untouched line
+       per copy.  Inactive untouched lines carry only pass-through points at the middle positions `0, C`.  In
+       Steenbock's gluing (`b`-runs of at most 2 edges) the neighbours of a middle are never middles, so two such
+       lines are never consecutive.
+     - Among 6 consecutive untouched lines of a copy this is impossible, so visits have 3 to 8 edges.  A 13-edge
+       Greendlinger arc then meets two copies in 4 common cosets, against the two-copy bound of 3.
+   - *Flip (any group).*  If `alpha (u + v b^{±1} w) = 0` with `v w != 0`, let `g = gcd(u, w)`,
+     `u = g u_0`, `w = g w_0`.  Then coset-wise `alpha = eta w_0` and `eta (u_0 + w_0 v b^{±1}) = 0`.
+   - *Two-sided, degree one.*  Every `u + v b^{±1} w` with `v w != 0` is a non-zero-divisor on both sides.  In
+     particular this settles the right-annihilator step `(u + w b) alpha = 0`.
+   - *Open.*  Right annihilators of `b`-degree `>= 2`, i.e. `alpha (sum_j b^j v_j) = 0`.  The port graph, the
+     flow cycle and the purity step transfer.  The rank-one step does not: the port vector of a coset lies in the
+     syzygy module of `(v_0, ..., v_d)`, which has rank `d >= 2`.
