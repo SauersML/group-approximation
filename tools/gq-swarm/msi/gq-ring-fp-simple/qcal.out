@@ -1,0 +1,30 @@
+generators 38 J 1 QSET two MAXLEN 3 RLEN 1 target planted s-1X(1) s0X(-1)
+level 1 new 38 time 0.4 overflow 0
+level 2 new 1202 time 1.4 overflow 0
+level 3 new 37378 time 32.4 overflow 4
+ball 38619 overflow 4 stopped_early False
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 902
+near misses (fix both axes and (1,-1)): 16
+target-translated words checked 39 overflow 0 matches 39
+  THIT |det L| = 1 planted | s-1X(1) | = L target | 
+  THIT |det L| = 1 planted | s-1X(2) | = L target | s-1X(1)
+  THIT |det L| = 1 planted | s-1X(1) s-1Y(-2) | = L target | s-1Y(1)
+  THIT |det L| = 1 planted |  | = L target | s-1X(-1)
+  THIT |det L| = 1 planted | s-1X(-1) | = L target | s-1Y(-1)
+  THIT |det L| = 1 planted | s-1X(1) s-1X(2) | = L target | s-1X(2)
+  THIT |det L| = 1 planted | s-1Y(2) s-1X(1) | = L target | s-1Y(2)
+  THIT |det L| = 1 planted | s-1X(-1) | = L target | s-1X(-2)
+  THIT |det L| = 1 planted | s-1X(-1) s-1Y(2) | = L target | s-1Y(-2)
+  THIT |det L| = 1 planted | s-1X(1) s-1X(1/2) | = L target | s-1X(1/2)
+  THIT |det L| = 1 planted | s-1Y(1/2) s-1X(1) | = L target | s-1Y(1/2)
+  THIT |det L| = 1 planted | s-1X(1/2) | = L target | s-1X(-1/2)
+  THIT |det L| = 1 planted | s-1Y(1/2) s-1X(-1) | = L target | s-1Y(-1/2)
+  THIT |det L| = 1 planted | s0X(1) s-1X(1) | = L target | s0X(1)
+  THIT |det L| = 1 planted | s0Y(1) s-1X(1) | = L target | s0Y(1)
+  THIT |det L| = 1 planted | s0X(-1) s-1X(1) | = L target | s0X(-1)
+  THIT |det L| = 1 planted | s0Y(-1) s-1X(1) | = L target | s0Y(-1)
+  THIT |det L| = 1 planted | s0X(2) s-1X(1) | = L target | s0X(2)
+  THIT |det L| = 1 planted | s0Y(2) s-1X(1) | = L target | s0Y(2)
+  THIT |det L| = 1 planted | s0X(-2) s-1X(1) | = L target | s0X(-2)
+total time 32.5

@@ -1,0 +1,15 @@
+|L_2x2| = 50 all Wang-valid: True
+min side of omega^k(a): {1: 1, 2: 2, 3: 3, 4: 5, 5: 8, 6: 13, 7: 21, 8: 34}
+omega^2  R=0  k=2  distinct windows=19  conflicts=268  (0.1s)
+   example window (columns bottom->top): ((13,),) parses 0 8
+omega^2  R=1  k=2  distinct windows=94  conflicts=26  (0.1s)
+   example window (columns bottom->top): ((1, 9, 1), (6, 14, 6), (1, 11, 1)) parses 14 17
+omega^2  R=2  k=4  distinct windows=229  conflicts=144  (0.1s)
+   example window (columns bottom->top): ((1, 8, 9, 1, 8), (3, 16, 14, 2, 16), (7, 15, 13, 4, 13), (1, 8, 9, 1, 9), (2, 16, 14, 6, 14)) parses 0 4
+omega^2  R=3  k=5  distinct windows=420  conflicts=0  (0.2s)
+omega^1  R=0  k=1  distinct windows=19  conflicts=119  (0.2s)
+   example window (columns bottom->top): ((17,),) parses 0 9
+omega^1  R=1  k=2  distinct windows=94  conflicts=0  (0.2s)
+RESULT omega^2: {0: 268, 1: 26, 2: 144, 3: 0}
+RESULT omega: {0: 119, 1: 0}
+total 0.2s
