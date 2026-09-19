@@ -635,3 +635,25 @@ content in that region.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
+
+* **Outermost-circuit / dyadic-RSW refinement of that chain (w13-123,
+  2026-09-18): obstruction.** See
+  `fpbs-bisector-split-chain-caps-at-inverse-theta-squared`. Every
+  refinement of Step 4 only lower-bounds `Theta^±`, and the exact values
+  are small.
+
+  On the straight path with pattern `{e_{k-1}, e_{k+1}}`, every dual circuit
+  around the cut leaves `L`. So `P(A^L) = P(B^R) = 1`, and
+  `Theta^± = q(S^±) <= theta/p'`. The chain then outputs at least
+  `p'^2/theta^2`, while the true value is `K <= 2/theta`.
+
+  On sparse dyadic patterns, finger circuits cap `Theta^±` at
+  `(1-c_0)^{#scales <= L(p')}`.
+
+  The loss is in Step 1, which discards the shared arm. Monte Carlo at
+  `M = 32, 64, 128` puts the true `K*theta` in `[0.78, 0.85]` on every
+  dyadic pattern, so `C/theta` remains plausible.
+
+  **Next:** either a Step 1 that keeps one shared arm (arm separation), or,
+  for the gate alone, the bound `Theta^± >= c theta^{gamma/2}` with
+  `gamma < 36/5`.
