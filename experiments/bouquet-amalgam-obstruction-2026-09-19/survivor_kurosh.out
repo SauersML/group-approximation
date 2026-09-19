@@ -1,0 +1,81 @@
+pi_s=a pi_t=e a s|0=A s t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e pi_t=a s|0=s E t|0=t A s|3=t | sigma=tau=1 True | supp S [1, 2, 3] supp T [4] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e pi_t=a s|0=E s t|0=A t s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e pi_t=e a s|0=E s t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e pi_t=a a s|0=E s t|0=A t A s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a e pi_t=a s|0=A s E t|0=A t s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a e pi_t=e a s|0=A s E t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a e pi_t=a a s|0=A s E t|0=A t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a E pi_t=a s|0=A s e t|0=A t s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a E pi_t=e a s|0=A s e t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a E pi_t=a a s|0=A s e t|0=A t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e a pi_t=a s|0=E s A t|0=A t s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e a pi_t=a a s|0=E s A t|0=A t A s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a a pi_t=e a s|0=A s A t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 4] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=a a pi_t=e a s|0=E s E t|0=E t A s|3=t | sigma=tau=1 False | supp S [2, 3, 7] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres NOT hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e e pi_t=a s|0=A s A t|0=A t s|3=t | sigma=tau=1 False | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres NOT hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e e pi_t=a s|0=E s E t|0=A t s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e e pi_t=e a s|0=E s E t|0=E t A s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [9] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e e pi_t=a a s|0=A s A t|0=A t A s|3=t | sigma=tau=1 False | supp S [2, 3, 4] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres NOT hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+pi_s=e e pi_t=a a s|0=E s E t|0=A t A s|3=t | sigma=tau=1 True | supp S [2, 3, 7] supp T [5] | loops True | ord T 11 | |Q_E| 3 | pure True | H-pres hand
+    F(S,T)  S T S' T'
+    F(S,T)  T T T T T T T T T T T
+    F(a,e)  a a a a a a a a a a a
+survivors: 20 | all Q_E pure: 20 | pure and H-pres by hand: 17
