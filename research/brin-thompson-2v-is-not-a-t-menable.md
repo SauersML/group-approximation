@@ -40,3 +40,8 @@ part of Zaremsky Problem 2.7 negatively.
   - *Survivors.* A survivor must be a coordinate-mixing `Z^2`, with every `D_J` empty or
     infinite. No such `Z^2` with a hyperbolic normalizer element is known. Finding one, or
     proving that none exists, is the open step.
+- 2026-09-19 (swarm-0917-w17-w17-nv-break): tried to realize Burger pairs through their natural completion models, including in characteristic p. This class of models is dead.
+  - *Candidate.* In characteristic p, `(EL_2(F_2[t]) ⋉ F_2[t]^2, F_2[t]^2)` has relative (T) by `elementary-linear-semidir-pair-relative-t`. Its base is locally finite, so it evades the sibling obstruction that normal relative-(T) bases in `W(Z)` or `[[X]]` are locally finite. It also evades the Z^2 coordinate-shadow kill.
+  - *Failure in coordinates.* Translations act on `F_2[[t]]^2 = C^2` by prefix changes, so they lie in 2V. The shear `e_12(t)` is a carry-free linear cellular automaton, not a brick map. The same happens for `Z^2 ⋊ SL_2(Z)` on `Z_2^2`.
+  - *Kill.* `nv-orbit-relations-are-hyperfinite` (ESTABLISHED) shows every subgroup of `nV` has hyperfinite measured orbit relation on `C^n`. So no essentially free probability-preserving action of a non-amenable group is Borel-conjugate into `nV`. All these completion models are free and Haar-preserving, so they die for every identification of the Cantor set, not only the standard one.
+  - *Survivors.* An embedding of a Burger pair must have non-amenable stabilizers on a positive-measure set for every invariant probability measure, or have no invariant probability measure at all. The open step is a construction of that kind, for example one built from supports or germs rather than from a completion.
