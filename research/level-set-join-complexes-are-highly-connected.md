@@ -105,6 +105,14 @@ defect group `⟨Δ⟩` is either finite, or infinite cyclic with every defect s
 
 ## What remains for surface groups
 
+**Update (09-19, `gq-bh-finf-hyp-pentagon-three-checks.md`).**
+- Check (i), boundedness, is supported: every `Mor(v)` is trivial at the tested depth, and a half-space argument
+  puts `sing(s)` over the endpoints of `H_s`.
+- Check (ii) **fails**: the true `H_0` is `Z^5` and the defect group has rank 5, one direction per wall orbit, with
+  half-integer relations. So the theorem above does not yet apply to the pentagon RSG.
+- The corollary needs a `Z^r` version of Theorem L, or a coarser base whose `H_0` is `Z`.
+
+
 The right-angled pentagon RSG `[[P | ∂_h P]]` satisfies the hypotheses if three finite checks hold:
 - (i) boundedness (evidence so far: 4 non-branching singular rays per generator at depths ≤ 5);
 - (ii) its true defect group is `Z`, with no torsion in the kernel of the map to the coarse `H_0 ≅ Z`;
