@@ -1,0 +1,16 @@
+$ python3 folding_check.py 7
+n 2 maxlen 3 trials 500 violations 0
+n 2 maxlen 6 trials 500 violations 0
+n 2 maxlen 12 trials 500 violations 0
+n 3 maxlen 3 trials 500 violations 0
+n 3 maxlen 6 trials 500 violations 0
+n 3 maxlen 12 trials 500 violations 0
+n 4 maxlen 3 trials 500 violations 0
+n 4 maxlen 6 trials 500 violations 0
+n 4 maxlen 12 trials 500 violations 0
+n 6 maxlen 3 trials 500 violations 0
+n 6 maxlen 6 trials 500 violations 0
+n 6 maxlen 12 trials 500 violations 0
+n 10 maxlen 3 trials 500 violations 0
+n 10 maxlen 6 trials 500 violations 0
+n 10 maxlen 12 trials 500 violations 0

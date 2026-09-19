@@ -14,6 +14,8 @@ artifacts:
   - experiments/fpbs-iid-chord-union-bound-2026-09-17/s3_long_out.txt
   - experiments/fpbs-iid-chord-union-bound-2026-09-17/s3_mid.py
   - experiments/fpbs-iid-chord-union-bound-2026-09-17/s3_mid_out.txt
+  - research/artifacts/fpbs-chain-count-leftmost-merge-2026-09-19.md
+  - experiments/fpbs-chain-count-leftmost-merge-2026-09-17/offdiag.py
 ---
 
 **OPEN.** Let `F = F(a, b)` and `K = <a, b a b^{-2}>`, and let
@@ -56,3 +58,23 @@ possible values. A crude count therefore gives only
 proved either. A family where `N_3` grows with the label length would refute
 the uniform claim. It would also kill the uniform union-bound route, but not
 the floor itself.
+
+## Attempts
+
+**Closed-walk folding plus leftmost merges (swarm-0917-w16, 2026-09-19).**
+This proves the claim with `rho = 184`, through
+`fpbs-mal-simple-chain-count-uniform-proof` (artifact
+`research/artifacts/fpbs-chain-count-leftmost-merge-2026-09-19.md`).
+- Close the chain's hull-and-bridge path into a walk in the Cayley tree.
+  Because the hulls of `K` and `Kb` meet, the walk is closed.
+- A bridge never cancels against an adjacent hull path. Two hull paths
+  cancel in at most 2 edges. So some interior hull path has length at
+  most 4.
+- Delete the leftmost such hull. The triple of neighbours is rigid up to
+  the diagonal action given the two labels and the short word, so the
+  deleted hull can be recovered.
+- The leftmost indices form a ballot-type sequence, and at most 46 short
+  words occur. Hence `N_n <= 4^{n-2} 46^{n-1}`.
+
+The feared attachment offsets of long buried syllables never enter,
+because no hull is ever located relative to a non-neighbour.
