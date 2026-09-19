@@ -142,16 +142,35 @@ iff the relator kernel `N` is a finitely generated lift ideal.
 - **Infinite-state `G`.** Step (1c) of that proof breaks: word-level sections no longer have length at most `|w|`.
   So the section closure of a finite set of relators can be infinite, and the finite presentation of `V̂` would then
   need infinitely many relators `L(r)`.
-  - Finiteness survives if `N = ⟨⟨R⟩⟩_lift` for a finite **section-closed** `R`. The splitting relations `(S)`
-    remain finite, since each generator has finitely many word-level sections.
-  - Extending Theorem A's sufficiency to such `(G, R)` is plausible, but not re-verified line by line.
+  - Finiteness survives if `N = ⟨⟨R⟩⟩_lift` for a finite `R`. The splitting relations `(S)` remain finite, since each
+    generator has finitely many word-level sections.
+  - **Correction (same lane).** Section closure is **not** needed for sufficiency, and Theorem A's sufficiency does
+    extend. Both are shown in `lift-ideal-criterion-sufficiency-holds-for-infinite-state`.
 
 **A weaker, sufficient target.** It is enough to embed `S` in a self-similar `H`, possibly infinite-state, whose
-relator kernel is `⟨⟨R⟩⟩_lift` for a finite section-closed `R`. Then:
-1. `V_{md}(H)` is finitely presented, given the extension above;
+relator kernel is `⟨⟨R⟩⟩_lift` for a finite `R`. Then:
+1. `V_{md}(H)` is finitely presented, by the extension above;
 2. the regrouping `(R)` of `rover-nekrashevych-finite-presentation-criteria` makes the abelianization finite;
-3. so `S` lies in a finitely presented simple commutator subgroup. This follows Zaremsky's steps, but only step 1
-   uses anything beyond FP1, and that is unchecked.
+3. so `S` lies in a finitely presented simple commutator subgroup. This follows Zaremsky's steps. Only step 1 goes beyond FP1,
+   and it is now proved.
 
 A finite presentation of `H` is not needed. Membership in a lift ideal is `Σ_1` with no complexity bound. So such
 hosts are compatible with arbitrarily hard, solvable word problems, which is where the hardness must go.
+
+### Referee note (bh-ref-q12, 2026-09-19) on the 09-19 section (354df8d20d) and its correction (235a8af31d)
+
+- **Theorem A is quoted here, not proved.** It is proved in `rover-nekrashevych-fp-iff-finite-lift-presentation`,
+  whose proof passes in both directions (review c327ef1ef3).
+- **The correction of 235a8af31d is right.**
+  - Section-closure of `R` is not needed for sufficiency, and step (1c) is used only in necessity.
+  - Sufficiency for infinite-state `G`, with any finite wreath recursion, is `lift-ideal-criterion-sufficiency-holds-for-infinite-state`,
+    item 1 (PASS).
+  - So item 1 of the weaker target is proved.
+- **Still unchecked.** Items 2–3 of the weaker target: finite abelianization via the regrouping `(R)`, and a finitely
+  presented simple commutator subgroup along Zaremsky's steps. "Only step 1 goes beyond FP1, and it is now proved"
+  should read "step 1 is now proved; steps 2–3 follow Zaremsky and were not re-checked here."
+- **The complexity remarks are correct in principle.** A computable recursion makes `N` co-r.e. If `N` is a finitely
+  generated lift ideal it is also r.e., so the word problem is solvable. Subgroup word problems reduce to the
+  host's.
+- **Persistent actions** (`persistent-actions-make-lift-ideals-normal-closures`, reviewed) show that, for
+  finite-state hosts, the host action must not be persistent.

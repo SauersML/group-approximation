@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.CharZero.BTri.DomainType: autom
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharZero/BTri/DomainType.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: fix-bh-b (reassigned 09-19 by the coordinator; the file was fix-bh-a's).
 
+**Repair landed, unprobed.** dad2ded24f: BTri/DomainType: repair the red char-zero building module (red in b1789850259; unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
@@ -17,7 +19,6 @@ error: GroupApproximation/BooneHigmanLinear/CharZero/BTri/DomainType.lean:147:2:
 error: GroupApproximation/BooneHigmanLinear/CharZero/BTri/DomainType.lean:149:14: 'GroupApproximation.BooneHigmanLinear.BTri.pval_mul' depends on axioms outside the classical allowlist: [sorryAx]
 ```
 
-**Repair landed, unprobed.** fix-bh-b's commit that edits this node also fixes the file. It makes six fixes and changes no statement:
 - `omit [IsDomain A] in` for coe_pU and coe_unitsMap. With IsDomain included, coe_pU could not fire in the IsDomain-free Lattices section, which is why the simp in smul_latOf reported it as unused.
 - pval_mul: `exact mul_mul_mul_comm _ _ _ _` replaces the AC `simp only [mul_comm, mul_left_comm, mul_assoc]`, which hit the heartbeat limit.
 - latOf_le_of_eq_mul: a `show` beta-reduces the goal `(fun j i => h i j) j` before `rw [hcol]`.

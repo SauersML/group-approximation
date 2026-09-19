@@ -95,14 +95,19 @@ at most `r·b^Λ` prefixes to check.
 
 ## Lesson for general BH
 
-**Finite-type finiteness engines cannot manufacture hardness.**
-- **What they certify.** A Farley–Hughes structure with finitely many domain types and finite structure groups
-  certifies only groups that act rationally on the address tree, finite-state after a bounded prefix swap. Such
-  groups evaluate orbits in quadratic time and solve their word problems in exponential time.
-- **Equidecomposability does not help.** Taking domains up to equidecomposability changes nothing, because any
-  admissible finite-type structure is covered.
-- **What this closes.** The route "hard seed + finite-type Farley–Hughes certificate" is **closed**. This also
-  explains why T0 went through: its seed is finite-state.
-- **What remains.** Hardness for the hard-actor and seed-full-group routes must be imported through infinite,
-  `F_∞`, self-similar structure groups (Röver–Nekrashevych type), or through finiteness engines that are not of
-  Farley–Hughes finite type.
+**Refereed scope** (`farley-hughes-complexity-caps-review`, 508b190dbb): items 1–4 pass, but the route-closing
+reading needed two qualifiers.
+
+**Finite-type engines move points cheaply. They do not create hardness, but they can transfer it.**
+- **What they certify.** A Farley–Hughes structure with nested domains, finitely many types and **finite maximal**
+  structure groups, or finite-state S-maps, certifies only groups that act rationally on the address tree. Such
+  groups move a point in quadratic time and solve their word problems in time `2^(O(n))`.
+- **What is closed.** Hard seeds certified **on their own orbit**, with `{y_*}` a domain (a finite address) and
+  letter cylinders finite unions of domains.
+- **What is not closed.**
+  - **Seeds with an infinite address.** There the same argument computes `y_*(w)` quadratically only **from an
+    `O(|w|)` prefix of `addr(y_*)`**, so hardness can sit in the address.
+  - **Certificates on other sets.**
+  - **Certificates with a non-maximal chosen `𝕊`** that is finite while the maximal groups are infinite. FH's Röver
+    structure is one. These are covered only when the S-maps are finite-state.
+- **Why T0 went through.** Its seed is a domain with a finite-state structure.

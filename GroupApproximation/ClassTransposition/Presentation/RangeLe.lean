@@ -35,7 +35,8 @@ theorem hatH_split_two_out {i n : ℕ} (h : ¬ i + 1 < n) : hatH P (.split i 2) 
   rw [hatH, e, map_one]
 
 theorem layer_two (j p : ℕ) : layer j 2 p = [.split j p, .split (j + p) p] := by
-  simp [layer, List.range_succ]
+  rw [layer, show List.range 2 = [0, 1] from rfl]
+  simp
 
 section Le
 
