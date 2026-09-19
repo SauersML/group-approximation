@@ -8,11 +8,14 @@ distinct_from:
   kurosh-relative-seeds-and-the-b1-digit-splitting: that reduced (B_1, <t,a_i>) to three stable-letter pairs; this treats the first, (Z_J, F(a)), and through an automorphism also (Z_J, Sigma).
 ---
 
-**Status.**
-- §§1–3 are **ESTABLISHED** (lane proof, bh-invent-14, 2026-09-18; not reviewed): the SFT, (RS1),
-  the stabilizer, and the (RS2) classification.
-- §4, (RS3), is **reduced, not proved**. The derived subshift is tree data plus one global sign, the
-  situation of bh-invent-10's Baumslag–Gersten template. The monotone-chain step is sketched.
+**Status (corrected 2026-09-19 by bh-invent-14).**
+- §§1–2 are **ESTABLISHED**: the SFT, (RS1), and the stabilizer `F(a)`.
+- §3, the (RS2) classification, is **REFUTED for `k ≥ 2`**. Item (β) is wrong: the rules force equal
+  phases only for siblings. Cores whose deeper digits differ between branches satisfy every rule, and
+  they are not limits of translates. See `digit-group-cores-need-m-adic-coherence`.
+- The title claim is therefore **not established for `k ≥ 2`**. For `k = 1` the core is a line with no
+  branching, and the construction reduces to bh-invent-10's line sink.
+- §4 (RS3) and §5 are moot until (RS2) is repaired.
 
 ## Setting
 
@@ -81,9 +84,9 @@ so (T) makes all of `F(a)⟨x⟩` core with `y_*`'s letters.
 Points of `Y_F` are of three kinds.
 - **(α) Anchored cores.** These are the translates `g·y_*`, by §2 applied at any anchor.
 - **(β) Anchorless cores.**
-  - By (K) and (Ph), a core is a full `2k`-regular subtree whose down choices are coherent. So it
-    is determined by one core vertex and one `m`-adic number `ρ ∈ Z_m`, the phase digits level by
-    level.
+  - **[REFUTED for `k ≥ 2`, see Status.]** By (K) and (Ph), a core is a full `2k`-regular subtree.
+    The claim that its down choices are coherent across branches, and so determined by one core
+    vertex and one `m`-adic number `ρ ∈ Z_m`, is false.
   - By (Sg) and `C_Z`, all its letters equal one global sign `ε ∈ {+, −}`.
   - Each `(ρ, ε)` is a limit of `x^{r_n}·y_*` with `r_n → ρ` in `Z_m` and `r_n → ∓∞` in `Z`.
 - **(γ) No core.** Then (E) makes the configuration an end orientation of `T`, since every cell has
