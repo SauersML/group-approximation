@@ -186,3 +186,19 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
     forcing `b_2^{(2)} = 0` decides nothing.
   - *Next step.* Prove `rk coker Φ = 0` at the finite level, from structure of the covers that
     is not induced from `Q[K]`: `H_2(N_i)` swallowed by finitely many relators up to `δ[K:N_i]`.
+- **2026-09-18 (lane `w20-112`): the finite-level `coker Φ` step is the target, and Følner
+  tilings compute `χ` rather than bound it.** See
+  `folner-tile-collapse-of-cycle-module-computes-chi-exactly` (proposed ESTABLISHED,
+  obstruction).
+  - *Exact collapse.* In the Cayley-cycle model `Q[X] ⊗ P → Q[X]^n → Q[X]`, every tile, at every
+    scale and with no relator-length condition, spans an acyclic subcomplex whose 2-cycles meet
+    `H_2(N)` in `0`. Hence `H_2(N) ≅ H_2(C/T_*)`, with quotient dimensions
+    `(χ[K:N] + β − c, β, 0)` for a transversal. Also `b_1(N) <= β − c + 1`.
+  - *Blindness.* Følner transversals give `b_2(N_i)/[K:N_i] → χ` with no Lück approximation, and
+    every estimate from the collapse has the form `b_2 = χ[K:N] + O(β)`. `χ` enters only through
+    Swan's `r = χ + n − 1`. Covering `H_2(N_i)` by finitely many relators up to `δ[K:N_i]` is
+    equivalent to `χ <= δ`, so the step has no content beyond the target. The relator-depth race
+    becomes the single number `r`.
+  - *Next step.* Bound `dim H_0(N_i; Q ⊗ P) <= (n − 1)[K:N_i] + o` from a non-tiling input. On
+    the escape side, look for a torsion-free, amenable, non-elementary-amenable group of cd 2
+    whose finite-index subgroups all have `b_1 = 0`.
