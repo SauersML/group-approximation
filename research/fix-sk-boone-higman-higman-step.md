@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.BooneHigman.HigmanS
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/BooneHigman/HigmanStep.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```
 error: GroupApproximation/Manuscript/SimpleKazhdanSofic/BooneHigman/HigmanStep.lean:70:65: typeclass instance problem is stuck
