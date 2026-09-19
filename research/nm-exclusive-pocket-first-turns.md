@@ -89,11 +89,12 @@ Osin's argument survives the exclusion of x and y:
    (`faces_nonempty`).
 5. **Proper source arc.** The gap arc misses the nonempty source arc of `x`, so its length is less than `|∂Π|`,
    as `SectionPocketFaceSetFirstTurnInput` requires.
-6. **Still to check: the edge conditions for the inner sides.** The walk must have distinct darts and use no edge
-   in both directions (`FirstTurnWalk.isNoncrossingClosedWalk`). The landed `PocketWalk.CopyClean` has `regions`
-   (no `x`–`y` edge). Its `side_cell` and `side_outer` are stated for the OUTER sides `y.leftSide ++ x.rightSide`.
-   The exclusive walk needs them for the inner sides `y.rightSide ++ x.leftSide`. Check whether the landed copy
-   (`RegionPairThickening`, `sectionPocketRegionsCopy`) gives them on both sides.
+6. **Edge conditions for the inner sides: settled by the landed copy.** The walk must have distinct darts and use
+   no edge in both directions (`FirstTurnWalk.isNoncrossingClosedWalk`). The proved `SectionPocketRegionsCopyStatement`
+   (`Estimating/OsinPocketFaceSetOnCopy`) gives a copy with no `IsOuterSideDart` and no `IsCellSideDart`. Both are
+   stated for `a.2.rightSide ++ a.2.leftSide`, so they cover the inner sides as well as the outer ones: no exterior
+   face across a side, and no relator cell of perimeter > 1 across a side. The copy also has no edge joining two
+   distinct regions. The inclusive `CopyClean` used only the outer halves.
 
 ## Formal target
 
