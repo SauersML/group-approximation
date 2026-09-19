@@ -13,6 +13,7 @@ artifacts:
   - research/bilateral-laurent-haar-relation-is-sofic.md
   - research/jacobson-toeplitz-extension-is-a-mirror-quotient-of-a-lef-group.md
   - research/mirror-extension-lifts-over-every-amenable-subgroup.md
+  - research/laurent-solenoid-invariant-measures-are-haar-or-periodic.md
 ---
 
 **OPEN.** Posed by swarm-0917-w15-w15-nh-pull, 2026-09-19.
@@ -136,3 +137,23 @@ survivor side.
       complex, and it is where (T) must act.
     * (G3): `K_2(n, F_2[x,x^-1]) = 0` (`K_2(A) = 0` holds, but stability injectivity is unverified).
     * A refutation of (HS) must break (G2).
+* **Measure rigidity of the Laurent dual; Laurent-realized lifts are dead (swarm-0917-w17-w17-nh-follow, 2026-09-19,
+  entropy-measure).** Recorded in `laurent-solenoid-invariant-measures-are-haar-or-periodic` (ESTABLISHED,
+  unreviewed). The hole stays OPEN.
+  - **Theorem M.** For `n >= 2`, every `SL_n(A)`-invariant probability on `X = Hom(A^n, F_2)` is `c mu` plus a
+    measure on the countable set of shift-periodic points.
+    * Step 1: averaging characters over the column unipotents `1 + c e_j^T` confines `nu^(a)` to the annihilator
+      of `a_j H_j`.
+    * Step 2: infinitely many `Q`-translates of that annihilator meet pairwise inside periodic points, because two
+      distinct rank `n-1` summands span a cofinite submodule. So the annihilator carries no mass off `Per`.
+  - **Theorem C.** No Borel equivariant map from an atomless p.m.p. `Q`-space into `(X, L)` has countable-to-one
+    negative coordinate.
+    * So no lift `Q -> N_-`, and no p.m.p. `Q`-action on `X_-` at all, is Laurent-realized, that is, satisfies
+      `pr_- Phi(x) T_- x` for an equivariant `Phi`.
+    * Nor is there an equivariant positive half `psi : X_- -> X_+`, even a countably-valued one.
+  - **Class-kill.** Extending the polynomial half-lift mechanism (compression along `X_- x {0}`) to all of `Q`, in
+    any tail-corrected measurable form, is dead.
+    * Named invariant: the simplex of `Q`-invariant measures on `X`.
+    * Death step: the push-forward of `mu_-` is forced to be `mu`, and its image is then Fubini-null.
+  - **Consequence for (G2).** A glued lift must be non-Laurent-realized. Like the amenable lifts, it must be
+    abstract. (G3) is plausibly `K_2(A) = 0` plus van der Kallen injective stability, but this is not verified here.
