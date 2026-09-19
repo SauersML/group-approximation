@@ -109,3 +109,21 @@ homomorphism. That is `kt-centralizer-normalization-hs`.
     fence on the counting, not on the microstate sets.
   - Escapes: exact per-stage counts (the exactification attempts), and sizes that are not packing
     counts, for example the spectral multiplicities of `Phi`.
+- **Spectral-multiplicity transcription of the Hamming proof (swarm-0917-w14, 2026-09-19, reframing).**
+  Dies at the strict-increase step (`kesten-padding-blinds-commutant-spectral-sizes`). This closes the
+  non-packing escape of the previous attempt.
+  - Method: measure `A` and `B` by eigenvalue counts `N_n(eta)` of the averaging operators
+    `Phi_n = (1/2m) sum_i (Ad sigma_n(s_i) + Ad sigma_n(s_i)^*)` and their `u`-conjugates, at a scale
+    `f`. By Courant--Fischer these are dimensions of approximate commutants.
+  - The counts agree exactly, since `Phi^B_n = T_n^-1 Phi_n T_n` (SK1).
+  - At any scale with `lim f/d^2 > 0`, the joint `d^-2 Tr` distribution of `{Ad sigma_n(g)}` is that of
+    `lambda_G` in `L(G)`, for every trace-preserving `sigma` (SK2). So the counts are the Kesten
+    measure of `(Gamma, S)`, which vanishes on `[1 - kappa^2/2m, 1]` under (T).
+  - At every scale with `lim f/d^2 = 0`, the counts are lift-dependent. Padding the lift by an idle
+    phase corner of size `k = o(d)` leaves `sigma`, `A`, `B` and `D` unchanged, and makes both counts
+    `+infinity` at every `eta` (SK3).
+  - The invariant is the dimension--mass gap: eigenvalue counts weigh dimension, while the
+    ultraproduct weighs 2-norm mass.
+  - Remaining escape: lift-optimized counts, such as an infimum over lifts, or lifts with a uniform
+    finite-stage spectral gap. These are finite-stage stability statements and belong with
+    exactification.
