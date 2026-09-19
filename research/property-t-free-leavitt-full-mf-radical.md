@@ -1246,3 +1246,27 @@ the whole Haagerup-infinite branch for `V`.
    approximation content sits in `ker kappa`, which is `L^x` itself.
 4. **Status.** DEAD as a route. Target OPEN. The parity node's firewall, that nothing follows about `V` itself,
    remains correct. The (T)-free route through `V` is still only `property-t-free-leavitt-via-thompson-v-not-mf`.
+
+**2026-09-19 (swarm-0917 w18, belief breaker, stability-approximation): chromatic codes prove non-hyperlinearity, not just non-MF.**
+
+1. **Established.** `chromatic-codes-kill-marks-in-compact-metric-approximations` has an elementary, self-contained
+   proof. Take any bounded-area CCC or CDC code over a finite presentation. Then its mark dies in every metric
+   ultraproduct of compact groups with bi-invariant metrics. This covers `U(n)` with the operator norm (MF), `U(n)`
+   with the normalized HS norm (hyperlinear), `Sym(n)` (sofic), and finite bi-invariant groups (weakly sofic).
+   - The area of a word bounds its defect in every bi-invariant metric, because conjugators cost nothing.
+   - An `eta`-net of the compact group is a finite palette.
+   - The operator norm is never used.
+2. **Belief changed.** The code family is not an MF-specific tool.
+   - The w17 leaf `lifted-thompson-t-bounded-area-chromatic-code` (bounty 60, "hence whole goal") implies that
+     Thompson's `T` is neither hyperlinear nor weakly sofic. The argument: non-central mark, then normal subgroups
+     of `T̄` are `<z^m>` or `T̄`, then `T̄ -> T`. It follows that `thompson-v-not-hyperlinear` holds.
+   - `binary-leavitt-bounded-area-chromatic-code` implies that `Delta`, and so the Leavitt unit group, is not
+     hyperlinear. So it is **incompatible** with the OPEN `binary-leavitt-unit-group-hyperlinear`: the two
+     leaves cannot both hold.
+3. **Class fenced.** Invariant: compactness together with bi-invariance. Step: the finite colouring.
+   - Every chromatic-code route to this goal costs at least a first non-hyperlinear group. On the lifted-T
+     route, that group is a Haagerup group.
+   - Such a route cannot exploit any gap between MF and hyperlinearity.
+   - MF-specific mechanisms survive the fence: eigencorners, K-theory, and non-compact operator-norm steps.
+4. **Status.** The target stays OPEN. As a (T)-free shortcut, the code approach is recorded dead at the
+   colouring step: it is strictly harder than the goal requires.
