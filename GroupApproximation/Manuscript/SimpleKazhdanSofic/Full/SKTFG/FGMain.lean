@@ -29,7 +29,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
     threeCycle f U ∈ G := by
   haveI := SimpleKazhdanSofic.compactSpace_carrier S
   haveI := hinf
-  set T := SimpleKazhdanSofic.subshiftHomeo S with hTdef
+  set T := SimpleKazhdanSofic.subshiftHomeo S
   have hmin' : SimpleKazhdanSofic.IsMinimalSystem T :=
     SimpleKazhdanSofic.minimalSubshift_dense_orbits S hmin
   refine threeCycle_mem_of_local hU hdat fun x hxU => ?_
@@ -47,15 +47,15 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
     · rw [perm_zpow_apply_zpow_apply, hij, neg_add_cancel, zpow_zero, Equiv.Perm.one_apply]
       exact hxW
   -- the span of the three levels `0, E 1, E 2`
-  set m : ℤ := min (min 0 (E 1)) (E 2) with hm
-  set Mx : ℤ := max (max 0 (E 1)) (E 2) with hMx
+  set m : ℤ := min (min 0 (E 1)) (E 2)
+  set Mx : ℤ := max (max 0 (E 1)) (E 2)
   have hm0 : m ≤ 0 := (min_le_left _ _).trans (min_le_left _ _)
   have hm1 : m ≤ E 1 := (min_le_left _ _).trans (min_le_right _ _)
   have hm2 : m ≤ E 2 := min_le_right _ _
   have hM0 : 0 ≤ Mx := (le_max_left _ _).trans (le_max_left _ _)
   have hM1 : E 1 ≤ Mx := (le_max_right _ _).trans (le_max_left _ _)
   have hM2 : E 2 ≤ Mx := le_max_right _ _
-  set K : ℕ := (Mx - m).toNat with hKdef
+  set K : ℕ := (Mx - m).toNat
   have hK : (K : ℤ) = Mx - m := Int.toNat_of_nonneg (by omega)
   have hE10 : E 1 ≠ 0 := fun h => by
     have := hEinj (h.trans hE0.symm)
@@ -68,7 +68,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
     ⟨fun y hy h => hdat.1 y (hA'U hy) (hA'U h), fun y hy h => hdat.2 y (hA'U hy) (hA'U h)⟩
   refine threeCycle_mem_of_cyl S hdatA r (fun y hy => hrA y hy r (by omega)) fun y hy => ?_
   have hPW : cyl S y.1 (-(r : ℤ)) r ⊆ W := (hrA y hy r (by omega)).trans hA'W
-  set P := cyl S y.1 (-(r : ℤ)) r with hP
+  set P := cyl S y.1 (-(r : ℤ)) r
   have hdP := hdisj P hPW
   -- the three-cycle is a tower action on the eight levels
   have s1 : swapAlong f P = towerPerm T.toEquiv P E hdP (swap 0 1) :=
@@ -91,8 +91,6 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
       (by decide +kernel)
   rw [← hsub1]
   have hc0 : E3 0 = 0 := hE0
-  have hc1 : E3 1 = E 1 := rfl
-  have hc2 : E3 2 = E 2 := rfl
   have hlo : ∀ i, m ≤ E3 i := by
     intro i
     fin_cases i
@@ -122,7 +120,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
   have hEe : ∀ i, towerLevels K (e i) = E3 i + -m := fun i => by
     rw [towerLevels_val, he_val]
     ring
-  set B' := cyl S (fun n => y.1 (n - -m)) (-(r : ℤ) + -m) (r + -m) with hB'
+  set B' := cyl S (fun n => y.1 (n - -m)) (-(r : ℤ) + -m) (r + -m)
   have hBP : ∀ z, z ∈ B' ↔ (T.toEquiv ^ (-m)) z ∈ P := fun z => mem_zpow_cyl_iff S (-m) z
   have hdK : TowerDisj T.toEquiv B' K :=
     towerDisj_of_sepK (cyl_sepK S (hRK.mono S (by omega)) (by omega))
@@ -162,7 +160,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
     show towerPerm T.toEquiv B' (towerLevels K) hdK (adjSwap i * adjSwap j) ∈ G
     have hiK : (i : ℕ) + 2 ≤ K := by have := j.isLt; omega
     set B'' := cyl S (fun n => (fun n => y.1 (n - -m)) ((i : ℤ) + n))
-      ((-(r : ℤ) + -m) - i) ((r + -m) - i) with hB''
+      ((-(r : ℤ) + -m) - i) ((r + -m) - i)
     have hBB : ∀ z, z ∈ B' ↔ (T.toEquiv ^ ((i : ℕ) : ℤ)) z ∈ B'' :=
       fun z => mem_cyl_zpow_iff S ((i : ℕ) : ℤ) z
     have hd2 : TowerDisj T.toEquiv B'' 2 :=
@@ -203,7 +201,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
         towerPerm T.toEquiv B'' (towerLevels 4) hd4
           (adjSwap (⟨0, by norm_num⟩ : Fin 4) * adjSwap (⟨1, by norm_num⟩ : Fin 4)) :=
       towerPerm_eq_of_sub hd2 hd4 (Fin.castLE (by norm_num)) 0
-        (fun t => by rw [towerLevels_val, towerLevels_val, Fin.coe_castLE, add_zero])
+        (fun t => by rw [towerLevels_val, towerLevels_val, Fin.val_castLE, add_zero])
         (fun z => by rw [zpow_zero, Equiv.Perm.one_apply]) c3' _
         (by rw [hc3']; decide +kernel) (by rw [hc3']; decide +kernel)
     rw [← hsub3, hsub4]
@@ -213,8 +211,9 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
 
 /-- **Matui's theorem** (Internat. J. Math. 2006, Thm 5.4): the derived topological full group of
 an infinite minimal subshift over a finite alphabet is finitely generated. -/
-theorem derivedFullGroupSubshift_fg (hinf : Infinite S.carrier)
-    (hmin : SimpleKazhdanSofic.IsMinimal S) : Group.FG ↥(derivedFullGroupSubshift S) := by
+theorem derivedFullGroupSubshift_eq_closure_gens (hinf : Infinite S.carrier)
+    (hmin : SimpleKazhdanSofic.IsMinimal S) :
+    ∃ N : ℕ, derivedFullGroupSubshift S = Subgroup.closure (gens S N) := by
   haveI := SimpleKazhdanSofic.compactSpace_carrier S
   haveI := hinf
   obtain ⟨R, hR⟩ := exists_sepRadius S hinf hmin 5
@@ -245,8 +244,13 @@ theorem derivedFullGroupSubshift_fg (hinf : Infinite S.carrier)
       split_ifs with h
       · exact good_derived S (isClopen_cylW S _ p.1) h p.2.1 p.2.2
       · exact (derivedFullGroupSubshift S).one_mem
+  exact ⟨2 * R + 1, hDG⟩
+
+theorem derivedFullGroupSubshift_fg (hinf : Infinite S.carrier)
+    (hmin : SimpleKazhdanSofic.IsMinimal S) : Group.FG ↥(derivedFullGroupSubshift S) := by
+  obtain ⟨N, hDG⟩ := derivedFullGroupSubshift_eq_closure_gens S hinf hmin
   rw [Group.fg_iff_subgroup_fg, hDG]
-  exact ⟨(gens_finite S (2 * R + 1)).toFinset, by rw [Set.Finite.coe_toFinset]⟩
+  exact ⟨(gens_finite S N).toFinset, by rw [Set.Finite.coe_toFinset]⟩
 
 /-- `DerivedFullGroupSubshiftFGStatement` holds: the finite generation input of SK row
 `e5932a45f053`. -/
