@@ -90,3 +90,41 @@ promise moves that make codings from different base points resynchronize.** The 
 So the question "does class `𝒞` satisfy Boone–Higman?" becomes, for geometric classes, "do its
 spaces have a finite-state, promise-closed prefix order with disjoint mcms?" Median geometry is
 one sufficient answer. It is not the only one, and it is the one that excludes Kazhdan groups.
+
+## Referee (bh-ref-q115-b, 2026-09-19): PASS, with one credit correction
+
+I checked `cuntz-garside-coded-actions-host-proof` adversarially, concentrating on the
+finite-unit step.
+
+**Credit.** Units are native to Li's framework, so "the finite-unit extension is new here"
+should be narrowed.
+- Li's finiteness theorem already allows units. It is stated for `𝐅(I_l ⋉ ∂Ω)` "of type `F_n` if
+  `ℭ*(𝔳,𝔳)` is of type `F_n` for all `𝔳`" (arXiv:2110.04505v2, TeX l.619, read at source).
+- `lem:Stab`, (F), (3_Γ) and `cor:thmA` are Li's, with units. Li also notes verbatim that
+  "Condition (F) is for example satisfied if ℭ is cancellative".
+- Dehornoy's criterion is quoted verbatim by Li: "𝔖∪ℭ* generates ℭ and 𝔖♯ is closed under mcms
+  and right divisors (see [13], Chapter IV, Proposition 2.25)".
+- What is new is running the pure-hole Cuntz datum, Lemma L and the (Acyc) height with units, in
+  place of Li's (`t<d`).
+
+**Checks.**
+- **(U1).** Pure holes are carried to pure holes by `𝔠₂* = 𝔠* × {1}`.
+  - `u a_i = a'_i u'_i` keeps norms, so (3_Γ) holds.
+  - (4_Γ) applies to `ω u^{-1}`, and `c_k ∈ mcm ⊆ 𝔖₂^♯` gives (5_Γ).
+  - One must use an `=*`-transversal of `𝔖₂`, since `(u,x) =* (1,x)`. U1 does so.
+- **(U2).** `([u_i,U_i])_i` is a unit of `𝐂_𝐗` by (1_𝔛), and invertible morphisms have unit
+  components by `lem:aU=bU`.
+- **(U3).**
+  - Doubling on unit classes uses `δ_{τ'}` for any `τ' ∈ [τ]`.
+  - The merge `α = δ_τ·(id ⊔ [u^{-1},uτ])` is an atom, since atoms are closed under right unit
+    multiplication. It lies in `Div(Δ)`: `Δ(τ) = δ_τρ = α·((id ⊔ [u,τ])ρ)`.
+  - Pigeonhole is over `|𝒯(*)|` classes.
+- **(U4).** A cycle gives `U_0 = σU_0` with `σ` a non-unit, by left cancellation. The height
+  increments are those of the trivial-unit case.
+- **(U5).** The unit groups are finite.
+- **Items 2–4.** The product of effective groupoids is effective, since an open subset of the
+  isotropy contains a product of open bisections. Uniqueness of the bisection `β_g` under
+  effectiveness makes `g ↦ β_g` a homomorphism. The prefix-code wreath and Krasner–Kaloujnine
+  are correct.
+
+No gap found. The Euclidean-building application added in 37f53166d2 is outside this review.
