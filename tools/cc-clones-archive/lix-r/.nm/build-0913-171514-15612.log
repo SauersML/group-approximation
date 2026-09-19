@@ -1,0 +1,42 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3313 oleans
+[job] acn112 cores=88-95 threads=8 base=eb25dd6067d2d978ab2e2ecc2445e10a57d116d6 mods: GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps
+ℹ [3626/3681] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4060/4060] Built GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps (42s)
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:253:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedTwoCopiesConverse' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:255:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedTwoCopiesFourEquations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:257:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedCompressorMarkProducts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:258:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w0_mul_v1_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:260:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.sum_t_pow_sub_mul_e_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:261:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w1_mul_v0_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:263:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.sum_e_mul_s_pow_sub_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:264:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w1_mul_v1_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:266:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.compressorMatrix_mul_centralMarkMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:268:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.elementaryMatrix_mul_compressorMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:270:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.compressorMatrix_mul_centralMarkMatrix_lastCol' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:272:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.elementaryMatrix_mul_compressorMatrix_firstRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4060 jobs).
+EXIT=0

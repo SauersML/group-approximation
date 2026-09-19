@@ -1,0 +1,16 @@
+[job] 16:01:22 acn112 waiting for clone lock
+[job] delta sync d42e8ab4a..c0ff0a5f9: 9 files changed
+===== SUMMARY
+host acn112 cores 64-71 base c0ff0a5f9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-160048-79950.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3326 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.SubshiftCyclePeriodic
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean
+COMPILED GroupApproximation/Dynamics/SubshiftWordGraph.lean
+ Quot.sound]
+Build completed successfully (1238 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,22 @@
+eq3_substitution_states=458
+distinct_transformed_eq1_inputs=223
+processed=100 combined=26
+processed=200 combined=40
+transformed_eq1_schemes=395
+combined_substitution_states=43
+combined_abstract_presentations=4
+carrier=5 boundary_states=20
+carrier=10 boundary_states=40
+carrier=15 boundary_states=60
+carrier=20 boundary_states=80
+carrier=25 boundary_states=100
+carrier=30 boundary_states=120
+carrier=35 boundary_states=140
+carrier=40 boundary_states=160
+boundary_schemes_by_target={0: 43, 1: 43, 2: 46, 3: 43}
+boundary_states=173
+nontrivial_q_images=3
+free_nontrivial_q_images=0
+NONTRIVIAL (3, ((-12, -6, -6, -6, -6, -6, -6, 12), (-12, -6, -6, -6, 12), (-12, -6, -6, 12), (-12, 6, 6, 6, 12), (-12, 6, 6, 12), (-6, -6), (-6, -6, -6), (6, 6, 6)), (-12, 6, 6, 12), ((-12, -6, -6), (-12, 6, 6, 6), (-6, -6, -6, 12), (6, 6), (), (6,), (), (-6, -6, -6, 12), (12,), (-6, -6, -6, 12), (12,), (12,)))
+NONTRIVIAL (3, ((-6, -6), (-6, -6, -6), (2, -6, -6, -6, -6, -6, -6, -2), (2, -6, -6, -6, -2), (2, -6, -6, -2), (2, 6, 6, -2), (2, 6, 6, 6, -2), (6, 6), (6, 6, 6)), (2, 6, 6, -2), ((2, -6, -6, -6, -6, -6), (2,), (-2,), (6, 6), (), (6,), (), (-2,), (6, 6, 6, -2), (-2,), (6, 6, 6, -2), (6, 6, 6, -2)))
+NONTRIVIAL (3, ((-6, -6), (-6, -6, -6), (2, -6, -6, -6, -6, -6, -6, -2), (2, -6, -6, -6, -2), (2, -6, -6, -2), (2, 6, 6, -2), (2, 6, 6, 6, -2), (6, 6, 6)), (2, 6, 6, -2), ((2, -6, -6, -6, -6, -6), (2,), (-2,), (6, 6), (), (6,), (), (-2,), (6, 6, 6, -2), (-2,), (6, 6, 6, -2), (6, 6, 6, -2)))

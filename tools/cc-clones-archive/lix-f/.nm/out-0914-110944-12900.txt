@@ -1,0 +1,19 @@
+[job] 11:10:27 acn112 waiting for clone lock
+[job] delta sync 85fdee4bb..83164235d: 24 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 83164235d log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0914-110944-12900.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3668 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCut
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCut.lean
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCut.lean:89:21: 'GroupApproximation.GGT.VanKampen.sameCellPocketLoopCut' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10244 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,61 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3503 oleans
+[job] acn112 cores=72-79 threads=8 base=99d005f8ef96d5e90706c59c9cc67bd354784f8c mods: GroupApproximation.Analysis.TwistedGroupVonNeumannFactor GroupApproximation.Analysis.PauliHyperfiniteFactor GroupApproximation.Analysis.TracialUltrapower GroupApproximation.Analysis.TracialUltrapowerTrace
+ℹ [2414/2417] Built GroupApproximation.Analysis.TwistedGroupVonNeumannFactor (13s)
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:318:14: 'GroupApproximation.TwistedGroupVonNeumann.exists_smul_one_of_mem_centralizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:319:14: 'GroupApproximation.TwistedGroupVonNeumann.isFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:320:14: 'GroupApproximation.TwistedGroupVonNeumann.twistedTrace_isFaithfulNormalTracialState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:321:14: 'GroupApproximation.TwistedGroupVonNeumann.isIIOneFactor_twistedVonNeumannAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2415/2417] Built GroupApproximation.Analysis.TracialUltrapower (17s)
+info: GroupApproximation/Analysis/TracialUltrapower.lean:266:14: 'GroupApproximation.TracialUltrapower.TracialVector.norm_mul_apply_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapower.lean:267:14: 'GroupApproximation.TracialUltrapower.nullIdeal_star_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2416/2417] Building GroupApproximation.Analysis.PauliHyperfiniteFactor (8.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/PauliHyperfiniteFactor.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/PauliHyperfiniteFactor.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/PauliHyperfiniteFactor.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/PauliHyperfiniteFactor.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/PauliHyperfiniteFactor.setup.json --json
+error: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:199:17: This simp argument is unused:
+  hne
+
+Hint: Omit it from the simp argument list.
+  simp [hik,̵ ̵h̵n̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:281:14: 'GroupApproximation.Hyperfinite.pauliCocycle_isTwistedICC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:282:14: 'GroupApproximation.Hyperfinite.isIIOneFactor_hyperfiniteFactor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:283:14: 'GroupApproximation.Hyperfinite.pauliCocycle_interleave' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [2417/2417] Building GroupApproximation.Analysis.TracialUltrapowerTrace (16s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/TracialUltrapowerTrace.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/TracialUltrapowerTrace.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/TracialUltrapowerTrace.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/TracialUltrapowerTrace.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/TracialUltrapowerTrace.setup.json --json
+error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:139:6: Type mismatch: After simplification, term
+  Tendsto.comp (Continuous.tendsto Complex.continuous_ofReal 0) hsq
+ has type
+  Tendsto (Complex.ofReal ∘ fun n => ‖(↑a n) τ.vec‖ ^ 2) (↑ω) (nhds 0)
+but is expected to have type
+  Tendsto (fun n => ↑‖(↑a n) τ.vec‖ ^ 2) (↑ω) (nhds 0)
+error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:224:8: typeclass instance problem is stuck
+  NormedAddCommGroup ?m.72
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `NormedAddCommGroup` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:244:14: 'GroupApproximation.TracialUltrapower.ultratrace_mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:245:14: 'GroupApproximation.TracialUltrapower.ultratrace_star_mul_self_eq_zero_iff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:246:14: 'GroupApproximation.TracialUltrapower.ultratrace_diag' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:247:14: 'GroupApproximation.TracialUltrapower.diag_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.PauliHyperfiniteFactor
+- GroupApproximation.Analysis.TracialUltrapowerTrace
+error: build failed
+EXIT=1

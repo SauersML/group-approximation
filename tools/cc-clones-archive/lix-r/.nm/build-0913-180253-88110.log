@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3356 oleans
+[job] acn112 cores=64-71 threads=8 base=b26b3329822d1a6c9b01fe3ac5b1e6ec88c763f6 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterSpurFirstTurns
+ℹ [3302/3397] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10152/10152] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterSpurFirstTurns (37s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean:119:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.outerSpurThickening_firstTurnChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean:120:21: 'GroupApproximation.GGT.VanKampen.pocketOuterSpurFirstTurnChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10152 jobs).
+EXIT=0

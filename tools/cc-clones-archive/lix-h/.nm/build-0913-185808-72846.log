@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3630 oleans
+[job] acn112 cores=64-71 threads=8 base=2c885772a713d82e59e4ad8c6598ba5b8d66ac9f mods: GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection
+ℹ [3668/3745] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4307/4307] Built GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection (15s)
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:220:21: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreKillsDefectsAndI' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:221:21: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreIZeroIff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:222:14: 'GroupApproximation.ChainCore.CoreRingReflection.restrict_surjective_of_isClosed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:223:14: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreRingReflection_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:224:14: 'GroupApproximation.ChainCore.CoreRingReflection.coreRingReflectionStatement_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4307 jobs).
+EXIT=0

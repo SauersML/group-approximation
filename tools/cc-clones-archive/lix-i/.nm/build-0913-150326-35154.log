@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3337 oleans
+[job] acn112 cores=64-71 threads=8 base=09b3b57e4db99234ac497799733927aa58bb5c84 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellUnpinched
+ℹ [3295/3399] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10138/10138] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellUnpinched (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellUnpinched.lean:98:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.isSimpleClosedWalk_of_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellUnpinched.lean:99:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10138 jobs).
+EXIT=0

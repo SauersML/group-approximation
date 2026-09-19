@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3460 oleans
+[job] acn229 cores=slurm threads=8 base=dbdcb6ca23f359d9391b32539a149ac8ab3758ca mods: GroupApproximation.Dynamics.TransientCells
+ℹ [1317/1368] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1828/1848] Replayed GroupApproximation.Dynamics.ClopenSwapInvolution
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1846/1848] Replayed GroupApproximation.Dynamics.TransientSupport
+info: GroupApproximation/Dynamics/TransientSupport.lean:281:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:282:14: 'GroupApproximation.ClopenCrossedProduct.exists_clopen_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.exists_wandering_clopen_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:284:14: 'GroupApproximation.ClopenCrossedProduct.exists_uniform_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1847/1848] Replayed GroupApproximation.Dynamics.InvolutionLocalizationRing
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:222:14: 'GroupApproximation.ClopenCrossedProduct.zpow_mem_chainRecurrentSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:223:14: 'GroupApproximation.ClopenCrossedProduct.charFn_eq_sum_of_partition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:224:14: 'GroupApproximation.ClopenCrossedProduct.involutionLocalizationRingClause_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1848/1848] Built GroupApproximation.Dynamics.TransientCells (59s)
+info: GroupApproximation/Dynamics/TransientCells.lean:201:14: 'GroupApproximation.ClopenCrossedProduct.mem_of_charFn_mul_eq_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:202:14: 'GroupApproximation.ClopenCrossedProduct.zpow_mem_of_mul_charFn_eq_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:203:14: 'GroupApproximation.ClopenCrossedProduct.isLocallyConstant_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:204:14: 'GroupApproximation.ClopenCrossedProduct.exists_cells' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:205:14: 'GroupApproximation.ClopenCrossedProduct.exists_transientCells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1848 jobs).
+EXIT=0

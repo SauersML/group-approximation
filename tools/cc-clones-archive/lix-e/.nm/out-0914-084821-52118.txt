@@ -1,0 +1,21 @@
+[job] 08:48:34 acn112 waiting for clone lock
+[job] delta sync d97dfb2a6..cf951f010: 8 files changed
+===== SUMMARY
+host acn112 cores 64-71 base cf951f010 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-084821-52118.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4377 oleans
+--- errors (first 80 lines)
+38:✖ [4617/4617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (14s)
+40:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:126:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.isMinimal_shift`:
+47:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:133:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.isTopologicallyFree_shift`:
+53:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:146:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+60:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier`:
+77:error: Lean exited with code 1
+80:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

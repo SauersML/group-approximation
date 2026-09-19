@@ -1,0 +1,43 @@
+[job] 21:26:36 acn112 waiting for clone lock
+[job] delta sync 604ace823..1b6ad96f5: 7 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1b6ad96f5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-212621-52975.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+--- errors (first 80 lines)
+3:✖ [1758/1758] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (11s)
+5:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:63:38: Invalid field `toContinuousMap`: The environment does not contain `Homeomorph.toContinuousMap`, so it is not possible to project the field `toContinuousMap` from an expression
+8:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:64:15: Invalid field `toContinuousMap`: The environment does not contain `Homeomorph.toContinuousMap`, so it is not possible to project the field `toContinuousMap` from an expression
+11:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:84:46: Invalid field `toContinuousMap`: The environment does not contain `Homeomorph.toContinuousMap`, so it is not possible to project the field `toContinuousMap` from an expression
+14:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:90:22: don't know how to synthesize placeholder for argument `hπ`
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:197:64: Unknown identifier `Subshift`
+29:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:197:84: Unknown identifier `Subshift`
+30:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:204:2: Type mismatch
+44:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.conjRingEquiv' depends on axioms outside the classical allowlist: [sorryAx]
+45:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+48:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:212:14: 'GroupApproximation.SimpleKazhdanSofic.nonempty_elementaryGroup_equiv_of_conj_or_flip' depends on axioms outside the classical allowlist: [sorryAx]
+49:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+51:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:213:21: 'GroupApproximation.SimpleKazhdanSofic.printedConjugacyIsomorphism' depends on axioms outside the classical allowlist: [sorryAx]
+52:  full closure: [sorryAx]
+54:error: Lean exited with code 1
+57:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

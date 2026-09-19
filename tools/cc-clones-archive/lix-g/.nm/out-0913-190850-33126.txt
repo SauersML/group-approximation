@@ -1,0 +1,15 @@
+[job] 19:11:25 acn219 waiting for clone lock
+[job] delta sync 20f65e6be..c42cb1e80: 13 files changed
+===== SUMMARY
+host acn219 cores slurm base c42cb1e80 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-190850-33126.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3590 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean
+ Quot.sound]
+Build completed successfully (10092 jobs).
+EXIT=0
+PROBE GREEN

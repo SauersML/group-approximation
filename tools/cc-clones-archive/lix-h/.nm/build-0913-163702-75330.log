@@ -1,0 +1,25 @@
+purged 16 stale artifact sets (source-newer=6, import-newer=10) of 3121 oleans
+[job] acn112 cores=64-71 threads=8 base=e87355863233d379fc93ac0de35ee1981a1ca956 mods: GroupApproximation.Algebra.ReturnTowerUnits GroupApproximation.Dynamics.ReturnTowerStatements
+ℹ [1750/1751] Built GroupApproximation.Algebra.ReturnTowerUnits (11s)
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:447:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.cornerEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:448:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.isDedekindFiniteMonoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:449:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.phi_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:450:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.unitizeGL_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:451:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.flatUnitizeGL_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/ReturnTowerUnits.lean:452:14: 'GroupApproximation.ChainCore.ReturnTowerUnits.map_flat_elementaryGroup_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1751/1751] Building GroupApproximation.Dynamics.ReturnTowerStatements (7.4s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/Dynamics/ReturnTowerStatements.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnTowerStatements.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnTowerStatements.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnTowerStatements.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnTowerStatements.setup.json --json
+error: GroupApproximation/Dynamics/ReturnTowerStatements.lean:87:66: Unknown identifier `TotallyDisconnectedSpace`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ReturnTowerStatements
+error: build failed
+EXIT=1

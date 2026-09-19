@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3779 oleans
+[job] acn40 cores=slurm threads=8 base=50b95d51dbabf1f4044e905e57f8bde5a568c7aa mods: GroupApproximation.Algebra.BilateralThreeCellCorner GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge
+ℹ [1736/1827] Replayed GroupApproximation.Algebra.BilateralThreeCellMatrices
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:464:14: 'GroupApproximation.BilateralThreeCell.Cell.W_conj_mem_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:465:14: 'GroupApproximation.BilateralThreeCell.Cell.c_commute_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1893/2009] Replayed GroupApproximation.Dynamics.BilateralThreeCellClopen
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:77:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:78:14: 'GroupApproximation.ClopenCrossedProduct.defectD_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2879/2940] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4432/4514] Building GroupApproximation.Algebra.BilateralThreeCellCorner (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Algebra/BilateralThreeCellCorner.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellCorner.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellCorner.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellCorner.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellCorner.setup.json --json
+error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:87:12: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:88:12: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:152:4: Application type mismatch: The argument
+  Subtype.val_injective (congrArg (fun M => M r s) h2)
+has type
+  ↑(↑g r s) = ↑(↑g' r s)
+but is expected to have type
+  ↑↑(↑g r s) = ↑↑(↑g' r s)
+in the application
+  Subtype.val_injective (Subtype.val_injective (congrArg (fun M => M r s) h2))
+error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:209:14: 'GroupApproximation.BilateralThreeCell.Cell.cornerEmbed_injective' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:210:14: 'GroupApproximation.BilateralThreeCell.Cell.range_cornerEmbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:211:14: 'GroupApproximation.BilateralThreeCell.Cell.unit_conj_mem_range' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:212:14: 'GroupApproximation.BilateralThreeCell.Cell.isOfFinOrder_z' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.BilateralThreeCellCorner
+error: build failed
+EXIT=1

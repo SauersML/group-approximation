@@ -1,0 +1,40 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3351 oleans
+[job] acn112 cores=80-87 threads=8 base=cc9c256aa878100d4fca4d3a0b8a32cb47574f24 mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnKernel
+ℹ [1668/1670] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:202:14: 'GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:203:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:204:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:205:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:206:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:207:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitizeGL_placementUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:208:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:209:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1670/1670] Built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnKernel (12s)
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:114:14: 'GroupApproximation.ChainCore.DynamicRankBudget.units_map_mapMatrix_eq_one_of_forall_mem_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:115:14: 'GroupApproximation.ChainCore.DynamicRankBudget.glEmbedding_returnPlacement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:116:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:117:14: 'GroupApproximation.ChainCore.DynamicRankBudget.returnPlacement_sub_one_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1670 jobs).
+EXIT=0

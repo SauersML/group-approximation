@@ -1,0 +1,26 @@
+[job] 17:59:19 acn112 waiting for clone lock
+[job] delta sync 66adf4dea..6b11f577f: 9 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 6b11f577f log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-175912-73628.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4222 oleans
+--- errors (first 80 lines)
+8:✖ [1796/1796] Building GroupApproximation.Dynamics.TwoEndedRepresentation (8.0s)
+10:error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:151:37: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+13:error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:153:9: unsolved goals
+20:error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:176:47: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+23:error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:207:14: 'GroupApproximation.TwoEndedShift.rho_apply_single_apply' depends on axioms outside the classical allowlist: [sorryAx]
+24:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+26:error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:208:14: 'GroupApproximation.TwoEndedShift.rho_injective' depends on axioms outside the classical allowlist: [sorryAx]
+27:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+31:error: Lean exited with code 1
+34:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.FinitaryGeneralLinear
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedRepresentation (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/FinitaryGeneralLinear.lean
+- GroupApproximation.Dynamics.TwoEndedRepresentation
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

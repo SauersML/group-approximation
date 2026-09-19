@@ -1,0 +1,53 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3376 oleans
+[job] acn112 cores=80-87 threads=8 base=e7c4bb17385757897f604048572944f1da92b595 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+ℹ [3295/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10163/10163] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell (25s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:384:13: Function expected at
+  wordNorm
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D.alphabet.carrier
+
+Hint: The identifier `wordNorm` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:392:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_eq_append_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:393:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_rotate_eq_append_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:394:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_arc_darts_eq_rotate_four' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:395:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.arcs_disjoint_of_face_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:396:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_cellDarts_rotate_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:397:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.listVal_arc_eq_of_value_one_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:398:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.listVal_arc_eq_of_value_one_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:399:14: 'GroupApproximation.GGT.VanKampen.false_of_sameCell_value_one_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:400:14: 'GroupApproximation.GGT.VanKampen.false_of_sameCell_value_one_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:401:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_rCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:402:14: 'GroupApproximation.GGT.VanKampen.false_of_pocketRegion_of_below' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+error: build failed
+EXIT=1

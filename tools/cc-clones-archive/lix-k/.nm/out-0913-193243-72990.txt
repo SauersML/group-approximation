@@ -1,0 +1,20 @@
+[job] 19:34:23 acn229 waiting for clone lock
+[job] delta sync 30ab64d73..c7217781c: 8 files changed
+===== SUMMARY
+host acn229 cores slurm base c7217781c log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-193243-72990.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3378 oleans
+--- errors (first 80 lines)
+4:✖ [1748/1748] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits (7.0s)
+6:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:44:58: This simp argument is unused:
+24:error: Lean exited with code 1
+27:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

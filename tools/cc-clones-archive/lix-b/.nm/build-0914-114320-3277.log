@@ -1,0 +1,71 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3537 oleans
+[job] acn112 cores=80-87 threads=8 base=590f6ae0b9b9e5742227b4ff32a3a2467acebe5f mods: GroupApproximation.GGT.VanKampen.ListFilterMapChanges
+ℹ [613/615] Replayed GroupApproximation.GGT.VanKampen.ListNoABABLength
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:133:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:134:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [614/615] Built GroupApproximation.GGT.VanKampen.ListNoABABChanges (22s)
+info: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:73:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_cons_add_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:74:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_add_two_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [615/615] Building GroupApproximation.GGT.VanKampen.ListFilterMapChanges (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListFilterMapChanges.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListFilterMapChanges.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListFilterMapChanges.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListFilterMapChanges.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:57:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.ListNoABAB.getLast?_filterMap_range_succ`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:64:2: failed to synthesize instance of type class
+  DecidablePred fun s => s + 1 < n ∧ ∃ x y, f s = some x ∧ f (s + 1) = some y ∧ x ≠ y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:69:9: unsolved goals
+α : Type u_1
+inst✝ : DecidableEq α
+f : ℕ → Option α
+⊢ (sorry ()).card ≤ adjChanges []
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:74:34: failed to synthesize instance of type class
+  DecidablePred fun s => s + 1 = n ∧ ∃ x y, f s = some x ∧ f (s + 1) = some y ∧ x ≠ y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:88:21: failed to synthesize instance of type class
+  DecidablePred fun s => s + 1 = n ∧ ∃ x y, f s = some x ∧ f (s + 1) = some y ∧ x ≠ y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:108:21: failed to synthesize instance of type class
+  DecidablePred fun s => s + 1 = n ∧ ∃ x y, f s = some x ∧ f (s + 1) = some y ∧ x ≠ y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:115:23: failed to synthesize instance of type class
+  DecidablePred fun s => s + 1 = n ∧ ∃ x y, f s = some x ∧ f (s + 1) = some y ∧ x ≠ y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:69:18: declaration uses `sorry`
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:77:37: This simp argument is unused:
+  Finset.mem_filter
+
+Hint: Omit it from the simp argument list.
+  simp only [consecutiveChanges, F̵i̵n̵s̵e̵t̵.̵m̵e̵m̵_̵f̵i̵l̵t̵e̵r̵,̵ ̵Finset.mem_range] at hs
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:77:56: This simp argument is unused:
+  Finset.mem_range
+
+Hint: Omit it from the simp argument list.
+  simp only [consecutiveChanges, Finset.mem_filter,̵ ̵F̵i̵n̵s̵e̵t̵.̵m̵e̵m̵_̵r̵a̵n̵g̵e̵] at hs
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:127:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_append_singleton' depends on axioms: [propext, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:128:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.card_consecutiveChanges_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ListFilterMapChanges
+error: build failed
+EXIT=1

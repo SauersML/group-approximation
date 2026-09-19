@@ -1,0 +1,23 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=25 words=1516 states=295
+carrier=50 words=2820 states=534
+carrier=75 words=4328 states=661
+carrier=100 words=6116 states=918
+carrier=125 words=7928 states=1114
+carrier=150 words=8708 states=1190
+carrier=175 words=9984 states=1292
+carrier=200 words=11012 states=1332
+carrier=225 words=11624 states=1352
+carrier=250 words=12252 states=1441
+carrier=275 words=13092 states=1545
+carrier=300 words=14580 states=87410
+carrier=325 words=15596 states=187954
+carrier=350 words=16396 states=189313
+carrier=375 words=16956 states=192233
+carrier=400 words=17912 states=200344
+carrier=425 words=18456 states=200445
+[2026-08-22T06:36:37.282] error: *** JOB 16680732 ON acn222 CANCELLED AT 2026-08-22T06:36:37 DUE to SIGNAL Terminated ***

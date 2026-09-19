@@ -1,0 +1,29 @@
+[job] 22:00:50 acn78 waiting for clone lock
+[job] delta sync a0ff25d62..19c641d25: 2 files changed
+===== SUMMARY
+host acn78 cores slurm base 19c641d25 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-215816-84275.log
+purged 7 stale artifact sets (source-newer=0, import-newer=7) of 2065 oleans
+--- errors (first 80 lines)
+39:✖ [8710/8710] Building GroupApproximation.Analysis.LIXCor4PowersStage (23s)
+41:error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:245:14: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+62:error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:275:13: typeclass instance problem is stuck
+68:error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:419:14: 'GroupApproximation.LIX.Gen.false_of_path_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+69:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+71:error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:420:14: 'GroupApproximation.LIX.Gen.climb_pow_notMem_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+72:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:422:14: 'GroupApproximation.LIX.Gen.continuousMvNEquiv_of_unitary_field' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+78:error: Lean exited with code 1
+81:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.LIXCor4PowersShape
+BUILT GroupApproximation.Analysis.LIXCor4PowersField
+mentioned-not-built GroupApproximation.Analysis.LIXCor4PowersStage (replayed or failed)
+--- rebuilt GroupApproximation modules: 14
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+- GroupApproximation.Analysis.LIXCor4PowersStage
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

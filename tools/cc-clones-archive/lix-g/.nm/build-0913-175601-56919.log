@@ -1,0 +1,347 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3525 oleans
+[job] acn112 cores=64-71 threads=8 base=ee34b333bac66cfa970eff08912eecd3b6ec0236 mods: GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+ℹ [3302/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5072/5072] Building GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:40:8: Function expected at
+  List.cons_append
+but this term has type
+  ?m.43 :: ?m.44 ++ ?m.45 = ?m.43 :: (?m.44 ++ ?m.45)
+
+Note: Expected a function because this term is being applied to the argument
+  c
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:39:36: unsolved goals
+α : Type u_1
+dl q : List α
+a b c : α
+⊢ ([a, b] ++ c :: (q ++ dl)).rotate ([a, b] ++ c :: q).length = dl ++ [a] ++ [b] ++ c :: q
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:145:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.sigma_alpha_of_digon`:
+  [DecidableEq Delta.toCombMap.Dart]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Delta.toCombMap.Dart] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:150:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.faceOf_digon`:
+  [DecidableEq Delta.toCombMap.Dart]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Delta.toCombMap.Dart] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:162:10: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => p ++ X.q = p.dropLast ++ p.getLast ⋯ :: X.q
+Error: Application type mismatch: The argument
+  X
+has type
+  Strip Delta S p (d :: r)
+but is expected to have type
+  Strip Delta S p _a
+in the application
+  X.q
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+inst✝ : DecidableEq Delta.toCombMap.Dart
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+⊢ p ++ X.q = p.dropLast ++ p.getLast ⋯ :: X.q
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:227:14: unsolved goals
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+inst✝ : DecidableEq Delta.toCombMap.Dart
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+hnot : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d
+hn : Delta.toCombMap.faceOf (Delta.toCombMap.alpha n) ∈ S
+⊢ ¬p ++ [d] = []
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:247:36: Tactic `clear` failed: target depends on 'pinchStrip'
+
+case inl
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+inst✝ : DecidableEq Delta.toCombMap.Dart
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+hnot : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d
+hn : Delta.toCombMap.faceOf (Delta.toCombMap.alpha n) ∈ S
+e : (digonInput X hdigon hnot).diagram.toCombMap.Dart
+he : e ∈ n :: X.q
+h✝ : e = n
+⊢ ?m.161 ∈ ?m.160
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:251:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?as ++ ?bs ++ ?cs
+in the target expression
+  IsSimpleClosedWalk (digonInput X hdigon hnot).diagram.toCombMap (p ++ [d] ++ r)
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+inst✝ : DecidableEq Delta.toCombMap.Dart
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+hnot : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d
+hn : Delta.toCombMap.faceOf (Delta.toCombMap.alpha n) ∈ S
+⊢ IsSimpleClosedWalk (digonInput X hdigon hnot).diagram.toCombMap (p ++ [d] ++ r)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    p ++ [d]
+  has type
+    List Delta.toCombMap.Dart
+  but is expected to have type
+    List (digonInput X hdigon hnot).diagram.toCombMap.Dart
+  in the application
+    HAppend.hAppend (p ++ [d])
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:255:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?as ++ ?bs ++ ?cs
+in the target expression
+  Surgery.MapCollapse.IsBoundaryDart (digonInput X hdigon hnot).diagram.toCombMap ((digonInput X hdigon hnot).faceSet S)
+      e ↔
+    e ∈ p ++ [d] ++ r
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+inst✝ : DecidableEq Delta.toCombMap.Dart
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+hnot : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d
+hn : Delta.toCombMap.faceOf (Delta.toCombMap.alpha n) ∈ S
+e : (digonInput X hdigon hnot).diagram.toCombMap.Dart
+⊢ Surgery.MapCollapse.IsBoundaryDart (digonInput X hdigon hnot).diagram.toCombMap ((digonInput X hdigon hnot).faceSet S)
+      e ↔
+    e ∈ p ++ [d] ++ r
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    p ++ [d]
+  has type
+    List Delta.toCombMap.Dart
+  but is expected to have type
+    List (digonInput X hdigon hnot).diagram.toCombMap.Dart
+  in the application
+    HAppend.hAppend (p ++ [d])
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:344:23: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (FaceEdgeDoubling.map Delta f j hlen).faceOf (EdgeInsertion.embed Delta.toCombMap (p.head ⋯))
+in the target expression
+  (FaceEdgeDoubling.cell Delta f j hlen hf C₀).face ≠
+    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf (EdgeInsertion.embed Delta.toCombMap (p.head ⋯))
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+f : Delta.toCombMap.Face
+j : Fin (Delta.faceBoundary f).darts.length
+hlen : 1 < (Delta.faceBoundary f).darts.length
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+hf : f ≠ Delta.outerFace
+X : Strip Delta S p (FaceEdgeDoubling.dart Delta f j :: r)
+hS : f ∈ S
+C₀ : RelatorCell Delta.toCombMap Delta.outerFace W
+hC₀ : C₀ ∈ Delta.relatorCells
+hC : FaceEdgeDoubling.cell Delta f j hlen hf C₀ ∈ List.map (FaceEdgeDoubling.cell Delta f j hlen hf) Delta.relatorCells
+⊢ (FaceEdgeDoubling.cell Delta f j hlen hf C₀).face ≠
+    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf (EdgeInsertion.embed Delta.toCombMap (p.head ⋯))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    FaceEdgeDoubling.cell Delta f j hlen hf C₀
+  has type
+    @RelatorCell G inst✝ Lambda (FaceEdgeDoubling.map Delta f j hlen)
+      (FaceEdgeDoubling.keep Delta f j hlen Delta.outerFace) W
+  but is expected to have type
+    @RelatorCell G inst✝ Lambda (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap
+      (FaceEdgeDoubling.diagram Delta f j hlen hf).outerFace W
+  in the application
+    (FaceEdgeDoubling.cell Delta f j hlen hf C₀).face
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:399:4: Tactic `rfl` failed: The left-hand side
+  List.map (⇑T₂.embedding)
+    (List.map (EdgeInsertion.embed Delta.toCombMap) p ++
+      [EdgeInsertion.embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)])
+is not definitionally equal to the right-hand side
+  List.map (⇑(T₁.trans T₂).embedding) p ++ [(T₁.trans T₂).embedding (FaceEdgeDoubling.dart Delta f j)]
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base
+Delta : DiscDiagram W
+hlabel : ∀ (d : Delta.toCombMap.Dart), D.IsLetter (Delta.label d)
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+f : Delta.toCombMap.Face
+hS : f ∈ S
+hlen : 1 < (Delta.faceBoundary f).darts.length
+hf : f ≠ Delta.outerFace
+j : Fin (Delta.faceBoundary f).darts.length
+X : Strip Delta S p (FaceEdgeDoubling.dart Delta f j :: r)
+hdmem : FaceEdgeDoubling.dart Delta f j ∈ p ++ FaceEdgeDoubling.dart Delta f j :: r
+hlen2 : 2 ≤ (p ++ FaceEdgeDoubling.dart Delta f j :: r).length
+hmono : (Delta.faceBoundary (Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j))).darts.length ≠ 1
+hpos : 0 < (Delta.faceBoundary (Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j))).darts.length
+hfd : Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j) = f
+Delta₂ : DiscDiagram W
+S₂ : Finset Delta₂.toCombMap.Face
+T₂ : Transport D (FaceEdgeDoubling.collarFaceSet Delta f j hlen S) Delta₂ S₂
+X₂ :
+  Strip Delta₂ S₂
+    (List.map (⇑T₂.embedding)
+      (List.map (EdgeInsertion.embed Delta.toCombMap) p ++
+        [EdgeInsertion.embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)]))
+    (List.map (⇑T₂.embedding) (List.map (EdgeInsertion.embed Delta.toCombMap) r))
+T₁ : Transport D S (FaceEdgeDoubling.diagram Delta f j hlen hf) (FaceEdgeDoubling.collarFaceSet Delta f j hlen S) :=
+  FaceEdgeDoubling.collarTransport Delta f j hlen hf D hsymm hlabel hS
+⊢ List.map (⇑T₂.embedding)
+      (List.map (EdgeInsertion.embed Delta.toCombMap) p ++
+        [EdgeInsertion.embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)]) =
+    List.map (⇑(T₁.trans T₂).embedding) p ++ [(T₁.trans T₂).embedding (FaceEdgeDoubling.dart Delta f j)]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:402:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.map ?m.507 (List.map ?m.508 ?m.509)
+in the target expression
+  List.map (⇑T₂.embedding) (List.map (EdgeInsertion.embed Delta.toCombMap) r) = List.map (⇑(T₁.trans T₂).embedding) r
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base
+Delta : DiscDiagram W
+hlabel : ∀ (d : Delta.toCombMap.Dart), D.IsLetter (Delta.label d)
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+f : Delta.toCombMap.Face
+hS : f ∈ S
+hlen : 1 < (Delta.faceBoundary f).darts.length
+hf : f ≠ Delta.outerFace
+j : Fin (Delta.faceBoundary f).darts.length
+X : Strip Delta S p (FaceEdgeDoubling.dart Delta f j :: r)
+hdmem : FaceEdgeDoubling.dart Delta f j ∈ p ++ FaceEdgeDoubling.dart Delta f j :: r
+hlen2 : 2 ≤ (p ++ FaceEdgeDoubling.dart Delta f j :: r).length
+hmono : (Delta.faceBoundary (Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j))).darts.length ≠ 1
+hpos : 0 < (Delta.faceBoundary (Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j))).darts.length
+hfd : Delta.toCombMap.faceOf (FaceEdgeDoubling.dart Delta f j) = f
+Delta₂ : DiscDiagram W
+S₂ : Finset Delta₂.toCombMap.Face
+T₂ : Transport D (FaceEdgeDoubling.collarFaceSet Delta f j hlen S) Delta₂ S₂
+X₂ :
+  Strip Delta₂ S₂
+    (List.map (⇑T₂.embedding)
+      (List.map (EdgeInsertion.embed Delta.toCombMap) p ++
+        [EdgeInsertion.embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)]))
+    (List.map (⇑T₂.embedding) (List.map (EdgeInsertion.embed Delta.toCombMap) r))
+T₁ : Transport D S (FaceEdgeDoubling.diagram Delta f j hlen hf) (FaceEdgeDoubling.collarFaceSet Delta f j hlen S) :=
+  FaceEdgeDoubling.collarTransport Delta f j hlen hf D hsymm hlabel hS
+e₁ :
+  List.map (⇑T₂.embedding)
+      (List.map (EdgeInsertion.embed Delta.toCombMap) p ++
+        [EdgeInsertion.embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)]) =
+    List.map (⇑(T₁.trans T₂).embedding) (p ++ [FaceEdgeDoubling.dart Delta f j])
+⊢ List.map (⇑T₂.embedding) (List.map (EdgeInsertion.embed Delta.toCombMap) r) = List.map (⇑(T₁.trans T₂).embedding) r
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    FaceEdgeDoubling.collarFaceSet Delta f j hlen S
+  has type
+    Finset (FaceEdgeDoubling.map Delta f j hlen).Face
+  but is expected to have type
+    Finset (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.Face
+  in the application
+    @Transport.embedding G inst✝ Lambda W D (FaceEdgeDoubling.diagram Delta f j hlen hf)
+      (FaceEdgeDoubling.collarFaceSet Delta f j hlen S)
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:398:32: This simp argument is unused:
+  List.map_map
+
+Hint: Omit it from the simp argument list.
+  simp only [List.map_append, List.map_m̵a̵p̵,̵ ̵L̵i̵s̵t̵.̵m̵a̵p̵_̵cons, List.map_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:417:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rotate_merged' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [sorryAx]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:418:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.vertexOf_alpha_getLast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:419:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.not_mem_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:420:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.faceOf_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:421:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.kept_mem_faceSet_iff_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:422:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:423:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.digonInput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:424:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchStrip' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:425:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStep_of_digon' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:426:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.isFaceCycle_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:427:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.doubleStrip' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:428:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStepStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:429:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:430:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.geodesicCollarStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+error: build failed
+EXIT=1

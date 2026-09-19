@@ -1,0 +1,94 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3526 oleans
+[job] cn1046 cores=slurm threads=8 base=d5d1b9db7ac0204c5930062907bc69974b0a586d mods: GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+ℹ [3345/3421] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4672/5042] Running GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+error: no such file or directory (error code: 4294967294)
+  file: /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean
+✖ [4708/5061] Running GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean: bad import 'GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion'
+✖ [5060/5061] Building GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet (54s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:84:12: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Finset.subtype ?p ?s).card
+in the target expression
+  T'.card ≤ n
+
+n : ℕ
+ih :
+  ∀ (M : CombMap) (T : Finset M.Dart),
+    T.card ≤ n → (∀ (x : M.Dart), ∃ t ∈ T, Relation.EqvGen M.Adjacent x t) → M.eulerCharacteristic ≤ 2 * ↑n
+M : CombMap
+T : Finset M.Dart
+hT : T.card ≤ n + 1
+hhit : ∀ (x : M.Dart), ∃ t ∈ T, Relation.EqvGen M.Adjacent x t
+t : M.Dart
+ht : t ∈ T
+S : M.Dart → Prop := fun x => Relation.EqvGen M.Adjacent t x
+hα : ∀ (x : M.Dart), S (M.alpha x) ↔ S x
+hσ : ∀ (x : M.Dart), S (M.sigma x) ↔ S x
+hconn : (M.restrict S hα hσ).IsConnected
+h1 : (M.restrict S hα hσ).eulerCharacteristic ≤ 2
+T' : Finset (M.restrict (fun x => ¬S x) ⋯ ⋯).Dart := Finset.subtype (fun x => ¬S x) T
+hsub : {x ∈ T | ¬S x} ⊆ T.erase t
+⊢ T'.card ≤ n
+error: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:111:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [5061/5061] Building GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts (54s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:51:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:88:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (M.sigma ^ m) ((Function.Embedding.subtype keep) ((alpha M keep hkeep) b))
+in the target expression
+  M.faceOf ((M.sigma ^ m) (M.alpha ↑b)) = M.faceOf ↑b
+
+M : CombMap
+keep : M.Dart → Prop
+hkeep : ∀ (d : M.Dart), keep (M.alpha d) ↔ keep d
+hdel : ∀ (y : M.Dart), ¬keep y → M.faceOf (M.alpha y) = M.faceOf y
+b : (toCombMap M keep hkeep).Dart
+m : ℕ
+hm : 0 < m
+heq :
+  (M.sigma ^ m) ((Function.Embedding.subtype keep) ((alpha M keep hkeep) b)) =
+    (Function.Embedding.subtype keep) ((sigma M keep) ((alpha M keep hkeep) b))
+hskip :
+  ∀ (k : ℕ),
+    0 < k →
+      k < m →
+        (M.sigma ^ k) ((Function.Embedding.subtype keep) ((alpha M keep hkeep) b)) ∉
+          Set.range ⇑(Function.Embedding.subtype keep)
+key : ∀ (k : ℕ), 0 < k → k ≤ m → M.faceOf ((M.sigma ^ k) (M.alpha ↑b)) = M.faceOf ↑b
+h3 : M.faceOf ((M.sigma ^ m) (M.alpha ↑b)) = M.faceOf ↑b
+⊢ M.faceOf ↑((toCombMap M keep hkeep).facePerm b) = M.faceOf ↑b
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:141:9: Unknown constant `Equiv.Perm.apply_symm_apply`
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:139:73: unsolved goals
+M : CombMap
+X : Finset M.Dart
+hfix : ∀ x ∈ X, M.sigma x ≠ x
+y : M.Dart
+h : M.vertexOf (M.sigma ((Equiv.symm M.sigma) y)) = M.vertexOf ((Equiv.symm M.sigma) y)
+⊢ M.vertexOf ((Equiv.symm M.sigma) y) = M.vertexOf y
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:176:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+- GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+- GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+error: build failed
+EXIT=1

@@ -1,0 +1,27 @@
+[job] 08:50:20 acn112 waiting for clone lock
+[job] delta sync 24a27e527..145f2a6f1: 12 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 145f2a6f1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-085015-47527.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+--- errors (first 80 lines)
+6:✖ [4921/4921] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows (9.9s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:133:23: `simp` made no progress
+9:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:133:56: `simp` made no progress
+10:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:135:23: `simp` made no progress
+11:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:135:55: `simp` made no progress
+12:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:143:80: `simp` made no progress
+13:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:144:59: `simp` made no progress
+18:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:152:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.class_four_windows' depends on axioms outside the classical allowlist: [sorryAx]
+19:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+21:error: Lean exited with code 1
+24:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,15 @@
+[job] 03:59:38 n9 waiting for clone lock
+[job] delta sync f005179f6..4d91f2870: 87 files changed
+===== SUMMARY
+host n9 cores slurm base 4d91f2870 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-035624-34720.log
+purged 19 stale artifact sets (source-newer=2, import-newer=17) of 3103 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.RegionShellingSpurCounterexample
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/RegionShellingSpurCounterexample.lean
+ Quot.sound]
+Build completed successfully (4592 jobs).
+EXIT=0
+PROBE GREEN

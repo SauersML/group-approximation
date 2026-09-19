@@ -1,0 +1,29 @@
+[job] 09:18:16 acn112 waiting for clone lock
+[job] delta sync 7445a5a2d..cfc754854: 17 files changed
+===== SUMMARY
+host acn112 cores 72-79 base cfc754854 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-091804-73265.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3523 oleans
+--- errors (first 80 lines)
+49:✖ [5055/5055] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap (13s)
+51:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:286:74: omega could not prove the goal:
+64:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:323:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.contactMap_sigma_ne' depends on axioms outside the classical allowlist: [sorryAx]
+65:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+67:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:324:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.four_le_faceDegree_contactMap' depends on axioms outside the classical allowlist: [sorryAx]
+68:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+70:error: Lean exited with code 1
+73:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

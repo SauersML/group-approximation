@@ -1,0 +1,44 @@
+[job] 11:02:26 acn112 waiting for clone lock
+[job] delta sync efd80066b..63eeb5e54: 38 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 63eeb5e54 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0912-105801-21712.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4791 oleans
+--- errors (first 80 lines)
+859:✖ [4995/4996] Building GroupApproximation.GGT.VanKampen.FaceSetBoundaryGlue (11s)
+861:error: GroupApproximation/GGT/VanKampen/FaceSetBoundaryGlue.lean:276:48: This simp argument is unused:
+897:error: Lean exited with code 1
+898:✖ [4996/4996] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge (11s)
+900:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:103:4: omega could not prove the goal:
+924:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:178:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_cons_singleton' depends on axioms outside the classical allowlist: [sorryAx]
+925:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+927:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:179:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_collapse_singleton' depends on axioms outside the classical allowlist: [sorryAx]
+928:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+930:error: Lean exited with code 1
+934:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.FaceSetBoundaryGlue (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCBoundedImageEmbedding.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44BoundedJointRespellingHullRelator.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaA.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaB.lean
+COMPILED GroupApproximation/GGT/HullSCUnconePathPoints.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeSides.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeThin.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeWalk.lean
+COMPILED GroupApproximation/GGT/RelHypOsin24PublishedHullStep.lean
+COMPILED GroupApproximation/GGT/RelHypProp23FromHullStep.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3698 oleans
+[job] acn112 cores=64-71 threads=8 base=900f377bd7c9f7ecb7487a2a61e6f34b81768a14 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassCornerMove
+ℹ [3295/3342] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10163/10163] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassCornerMove (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCornerMove.lean:283:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.SideAt.eq_or_block_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCornerMove.lean:284:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.not_inGap_corner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCornerMove.lean:285:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_cornerMove' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCornerMove.lean:286:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_cornerPair_of_twoThreshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10163 jobs).
+EXIT=0

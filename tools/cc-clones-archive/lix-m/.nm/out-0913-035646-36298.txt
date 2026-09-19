@@ -1,0 +1,18 @@
+[job] 03:59:38 n9 waiting for clone lock
+[job] delta sync e745e3c8c..7380da4b3: 49 files changed
+===== SUMMARY
+host n9 cores slurm base 7380da4b3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0913-035646-36298.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2726 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean
+ Quot.sound]
+Build completed successfully (4058 jobs).
+EXIT=0
+PROBE GREEN

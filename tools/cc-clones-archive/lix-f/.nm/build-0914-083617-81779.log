@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3639 oleans
+[job] acn112 cores=80-87 threads=8 base=0011fcb931469e35efe70e67fd7eedf2dfe821e9 mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingModel
+ℹ [3297/3389] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4983/4983] Built GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingModel (10s)
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:65:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.enclosedFaceSetSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:66:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.bridgeDarts_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:67:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.bridge_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:68:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.faceOf_eq_outerFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4983 jobs).
+EXIT=0

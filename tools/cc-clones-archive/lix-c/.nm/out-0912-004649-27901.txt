@@ -1,0 +1,26 @@
+[job] 00:47:12 acn112 waiting for clone lock
+[job] delta sync d8d675324..386f6eb27: 4 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 386f6eb27 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-004649-27901.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2308 oleans
+--- errors (first 80 lines)
+3:✖ [2237/2237] Building GroupApproximation.CharClass.OddPZmodDiamondProbe (33s)
+5:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:9:52: failed to synthesize instance of type class
+9:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:12:64: failed to synthesize instance of type class
+13:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:15:65: failed to synthesize instance of type class
+17:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:18:26: failed to synthesize instance of type class
+21:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:19:25: failed to synthesize instance of type class
+25:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:20:27: failed to synthesize instance of type class
+29:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:21:21: failed to synthesize instance of type class
+33:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:17:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+38:error: GroupApproximation/CharClass/OddPZmodDiamondProbe.lean:25:8: declaration uses `sorry`
+39:error: Lean exited with code 1
+42:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPZmodDiamondProbe (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPZmodDiamondProbe
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

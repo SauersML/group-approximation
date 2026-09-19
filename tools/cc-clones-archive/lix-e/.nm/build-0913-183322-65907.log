@@ -1,0 +1,50 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4234 oleans
+[job] n62 cores=slurm threads=8 base=c60bf78a2a64ed21c6fbd664ca0f2d3a55232fc2 mods: GroupApproximation.Dynamics.TwoEndedTailSymbols GroupApproximation.Dynamics.TwoEndedTailBalance GroupApproximation.Dynamics.TwoEndedUnitGroup GroupApproximation.Dynamics.TwoEndedUnitsLEF
+ℹ [1793/1823] Replayed GroupApproximation.Algebra.FinitaryGeneralLinear
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:366:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1795/1823] Replayed GroupApproximation.Algebra.LaurentMonomialUnits
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:169:14: 'GroupApproximation.LaurentMonomialUnits.coeff_mul_add_of_forall_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:170:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_of_mul_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:171:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2865/2916] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4112/4115] Building GroupApproximation.Dynamics.TwoEndedTailSymbols (69s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedTailSymbols.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedTailSymbols.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedTailSymbols.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedTailSymbols.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedTailSymbols.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:135:6: Unknown identifier `map_finsupp_sum`
+error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:133:91: unsolved goals
+k : Type u_1
+inst✝ : CommRing k
+e : TwoEnded
+he : shift e = e
+x : ClopenCrossedProduct shift k
+v : ℤ →₀ k
+m : ℤ
+⊢ (((symbolOp k e he) x) (v.sum single)) m = v.sum fun j r => r * (((symbolOp k e he) x) (single 0 1)) (m - j)
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:268:14: 'GroupApproximation.TwoEndedShift.symbolOp_apply_single_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:269:14: 'GroupApproximation.TwoEndedShift.symbol_mul' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:270:14: 'GroupApproximation.TwoEndedShift.exists_tail_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:271:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:272:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedTailSymbols
+error: build failed
+EXIT=1

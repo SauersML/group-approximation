@@ -1,0 +1,32 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3590 oleans
+[job] acn219 cores=slurm threads=8 base=c42cb1e8026edb2bf37e5e20b76d941cd406f73d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing
+ℹ [3336/3392] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10092/10092] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing (325s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:421:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.facePerm_getLast_of_rotate_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:422:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_of_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:423:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.not_walkKeep_head_p' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:424:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.not_walkKeep_alpha_getLast_q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:425:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_chain_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:426:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_close_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:427:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:428:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10092 jobs).
+EXIT=0

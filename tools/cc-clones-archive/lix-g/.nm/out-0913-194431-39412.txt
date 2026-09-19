@@ -1,0 +1,26 @@
+[job] 19:44:34 acn112 waiting for clone lock
+[job] delta sync c42cb1e80..f61392374: 40 files changed
+===== SUMMARY
+host acn112 cores 64-71 base f61392374 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-194431-39412.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3591 oleans
+--- errors (first 80 lines)
+137:✖ [10216/10216] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellRCellAssembly (28s)
+139:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean:139:13: typeclass instance problem is stuck
+148:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean:217:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneRCell_of_walkShapes' depends on axioms outside the classical allowlist: [sorryAx]
+149:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+151:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean:218:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_walkShapes' depends on axioms outside the classical allowlist: [sorryAx]
+152:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+154:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean:219:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneRCell_of_residuals' depends on axioms outside the classical allowlist: [sorryAx]
+155:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+157:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean:220:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_residuals' depends on axioms outside the classical allowlist: [sorryAx]
+158:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+160:error: Lean exited with code 1
+163:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellRCellAssembly (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellRCellAssembly
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

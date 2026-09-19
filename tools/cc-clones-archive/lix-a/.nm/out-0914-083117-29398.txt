@@ -1,0 +1,23 @@
+[job] 08:31:26 acn222 waiting for clone lock
+[job] delta sync f338faeb5..d5d1b9db7: 2 files changed
+===== SUMMARY
+host acn222 cores slurm base d5d1b9db7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-083117-29398.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4049 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.InfiniteSimpleICC (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.GroupVonNeumannIIOneFactor (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup (replayed or failed)
+BUILT GroupApproximation.Analysis.VonNeumannTwistedAmplification
+BUILT GroupApproximation.Analysis.HyperlinearTraceVanishingModels
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4612 jobs).
+EXIT=0
+PROBE GREEN

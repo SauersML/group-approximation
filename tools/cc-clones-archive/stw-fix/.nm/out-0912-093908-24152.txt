@@ -1,0 +1,48 @@
+[job] 09:39:12 acn112 waiting for clone lock
+[job] delta sync e4cb2d641..864fdf3d2: 11 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 864fdf3d2 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0912-093908-24152.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4769 oleans
+--- errors (first 80 lines)
+625:✖ [4967/4970] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi (11s)
+627:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:37:4: try 'simp' instead of 'simpa'
+630:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:39:4: try 'simp' instead of 'simpa'
+633:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:108:8: `simp` made no progress
+636:Full error:
+645:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:117:24: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+646:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:118:25: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+647:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:134:33: This simp argument is unused:
+654:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:158:33: This simp argument is unused:
+661:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:195:15: unsolved goals
+678:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:234:49: Application type mismatch: The argument
+686:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:235:51: Application type mismatch: The argument
+694:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:237:94: Application type mismatch: The argument
+702:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:392:31: Tactic `rewrite` failed: motive is not type correct:
+741:Full error:
+750:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:394:6: Unknown identifier `hfn`
+751:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:368:93: unsolved goals
+774:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:539:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_cross' depends on axioms outside the classical allowlist: [sorryAx]
+775:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+777:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:540:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.PhiData.cross_unique' depends on axioms outside the classical allowlist: [sorryAx]
+778:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+780:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:541:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsed_faceOf_eq_of_face_eq' depends on axioms outside the classical allowlist: [sorryAx]
+781:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+783:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:542:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.phiSubdividedGraph' depends on axioms outside the classical allowlist: [sorryAx]
+784:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+786:error: Lean exited with code 1
+789:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiBound (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

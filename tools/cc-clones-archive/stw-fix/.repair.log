@@ -1,0 +1,5 @@
++ cp -a /projects/standard/hsiehph/sauer354/cc_clones/_base/lakefile.toml /projects/standard/hsiehph/sauer354/cc_clones/_base/lean-toolchain /projects/standard/hsiehph/sauer354/cc_clones/_base/lake-manifest.json /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/
++ rsync -a /projects/standard/hsiehph/sauer354/cc_clones/_base/.lake/packages/ /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/
++ rsync -a /projects/standard/hsiehph/sauer354/cc_clones/_base/.lake/build/ /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/
++ echo REPAIR_DONE
+REPAIR_DONE

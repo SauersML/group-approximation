@@ -1,0 +1,18 @@
+[job] 15:43:07 acn112 waiting for clone lock
+[job] delta sync dc864839f..bea690544: 6 files changed
+===== SUMMARY
+host acn112 cores 64-71 base bea690544 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-154223-29890.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3379 oleans
+--- errors (first 80 lines)
+3:✖ [1042/1042] Building GroupApproximation.Dynamics.SubshiftLanguageStabilization (5.3s)
+5:error: GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean:63:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.exists_eq_iInter_of_antitone`:
+11:error: Lean exited with code 1
+14:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.SubshiftLanguageStabilization (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.SubshiftLanguageStabilization
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

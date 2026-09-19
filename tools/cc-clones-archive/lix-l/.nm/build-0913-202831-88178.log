@@ -1,0 +1,8 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3794 oleans
+[job] acn06 cores=slurm threads=8 base=5d22e07f25aa8df1e75e6a0fb17a0dce6225c86e mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+ℹ [1985/1985] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (74s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:140:21: 'GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.printedContinuumManyDegrees' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1985 jobs).
+EXIT=0

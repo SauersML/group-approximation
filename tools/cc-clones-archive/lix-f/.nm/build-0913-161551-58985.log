@@ -1,0 +1,53 @@
+purged 48 stale artifact sets (source-newer=12, import-newer=36) of 3246 oleans
+[job] acn112 cores=64-71 threads=8 base=6dfa779fe4bc1ce99cb0e6a10b8fe20f3ae8d36d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapMonogon GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRose
+ℹ [3295/3389] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10011/10089] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:303:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:304:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10088/10089] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapMonogon (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:93:2: 'change M.faceOf (M.alpha d) = g ∨ M.faceOf (M.alpha d) ∈ faces' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:190:75: Application type mismatch: The argument
+  h.chain
+has type
+  List.IsChain (fun d e => X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e)
+    [X.toCombMap.alpha x, X.toCombMap.alpha o]
+but is expected to have type
+  List.IsChain Eq
+    [X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha x)), X.toCombMap.vertexOf (X.toCombMap.alpha o)]
+in the application
+  List.isChain_pair.mp h.chain
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.eq_or_mem_of_cycle_eq_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_simple_of_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.no_simple_of_oEquivalent_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStatement_of_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchPinchedStatement_of_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:256:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchLabelledStatement_of_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:257:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStepStatement_of_monogons' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapMonogon
+error: build failed
+EXIT=1

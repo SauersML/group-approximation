@@ -1,0 +1,98 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3374 oleans
+[job] acn112 cores=72-79 threads=8 base=1c2f0e1aaaf6a2b00d7cb3dce6da94e1ec4bba8e mods: GroupApproximation.Dynamics.ReturnPlacement
+✖ [1211/1211] Building GroupApproximation.Dynamics.ReturnPlacement (8.7s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Dynamics/ReturnPlacement.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnPlacement.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnPlacement.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/ReturnPlacement.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/ReturnPlacement.setup.json --json
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:89:10: unexpected token '\'; expected command
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:92:2: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:92:2: Type mismatch
+  Set.diff_subset
+has type
+  ?m.8 \ ?m.9 ⊆ ?m.8
+but is expected to have type
+  coverPiece W K j ⊆ K ∩ W j
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:96:2: Type mismatch
+  IsClopen.diff (IsClopen.inter hK (hW j)) (isClopen_biUnion_finset fun i x => hW i)
+has type
+  IsClopen ((K ∩ W j) \ ⋃ i ∈ ?m.21, W i)
+but is expected to have type
+  IsClopen (coverPiece W K j)
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:101:12: Tactic `rcases` failed: `left✝ : K x` is not an inductive datatype
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:113:4: Invalid `⟨...⟩` notation: The expected type `K x` is not an inductive type
+
+Note: This notation can only be used when the expected type is an inductive type with a single constructor
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:114:2: `simp` made no progress
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:134:40: Application type mismatch: The argument
+  h
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  A j h
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:136:36: Application type mismatch: The argument
+  h
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  A j h
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:136:64: Application type mismatch: The argument
+  h'
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  A j' h'
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:143:27: Unknown constant `Set.disjoint_empty_left`
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:313:57: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:350:27: Application type mismatch: The argument
+  hg
+has type
+  x ∈ good g
+but is expected to have type
+  ?m.1083 g
+in the application
+  Exists.intro g hg
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:373:38: Application type mismatch: The argument
+  g
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  mem_good g
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:374:29: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:375:13: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:393:38: Application type mismatch: The argument
+  g
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  mem_good g
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:394:15: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:399:38: Application type mismatch: The argument
+  g'
+has type
+  ℤ
+but is expected to have type
+  ℕ
+in the application
+  mem_good g'
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:400:15: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ReturnPlacement
+error: build failed
+EXIT=1

@@ -1,0 +1,47 @@
+[job] 00:03:19 acn112 waiting for clone lock
+[job] delta sync c3cfc4aac..9d422f49d: 27 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 9d422f49d log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-000248-5432.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2093 oleans
+--- errors (first 80 lines)
+10:✖ [3404/3404] Building GroupApproximation.CharClass.ChernSplittingOfInjective (11s)
+12:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:97:40: Unknown identifier `cmap`
+15:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:98:15: Unknown identifier `cmap`
+16:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:98:24: Unknown identifier `cmap`
+17:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:97:52: unsolved goals
+27:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:119:23: Unknown identifier `cmap`
+30:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:120:40: Unknown identifier `cmap`
+33:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:121:13: Unknown identifier `cmap`
+34:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:122:8: Unknown identifier `cmap`
+35:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:122:37: Unknown identifier `cmap`
+36:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:120:74: unsolved goals
+47:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:133:40: Unknown identifier `cmap`
+50:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:134:2: Unknown identifier `totalHOf_map_injective_of_leftInv`
+51:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:142:44: Unknown identifier `cmap`
+54:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:143:42: Unknown identifier `cmap`
+57:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:146:27: Unknown identifier `flagProj_zero_map_injective`
+58:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:149:17: Unknown identifier `cmap`
+59:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:150:10: Unknown identifier `cmap`
+60:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:150:41: Unknown identifier `cmap`
+61:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:162:41: Unknown identifier `cmap`
+64:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:163:40: Unknown identifier `cmap`
+67:error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:164:2: Unknown identifier `flagProj_map_injective`
+68:error: Lean exited with code 1
+71:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.ChernSplittingOfPowers
+mentioned-not-built GroupApproximation.CharClass.ChernSplittingOfInjective (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ChernSplittingOfPowers.lean
+COMPILED GroupApproximation/CharClass/ParityPDecomposable.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepD.lean
+COMPILED GroupApproximation/CharClass/ParityPTwistSymm.lean
+COMPILED GroupApproximation/CharClass/ParityPWuAxiomGuard.lean
+COMPILED GroupApproximation/CharClass/ParityPWuComponent.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransport.lean
+COMPILED GroupApproximation/CharClass/ParityPWuValue.lean
+- GroupApproximation.CharClass.ChernSplittingOfInjective
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

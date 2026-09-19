@@ -1,0 +1,30 @@
+purged 3 stale artifact sets (source-newer=2, import-newer=1) of 2606 oleans
+[job] acn112 cores=88-95 threads=8 base=27f56e14bccaacde74e3dd9a0083e040eb0f17c3 mods: GroupApproximation.Kazhdan.GHWCharZeroPlaces GroupApproximation.Algebra.IntegerPlacesMinpoly
+ℹ [1651/1685] Replayed GroupApproximation.Algebra.IntegerGaussValuations
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:301:14: 'GroupApproximation.IntegerGaussValuations.padicValuation_natCast_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:302:14: 'GroupApproximation.IntegerGaussValuations.degValuation_inv_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:303:14: 'GroupApproximation.IntegerGaussValuations.degValuation_algebraMap_le_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:304:14: 'GroupApproximation.IntegerGaussValuations.exists_algebraMap_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2672/2673] Built GroupApproximation.Kazhdan.GHWCharZeroPlaces (11s)
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:242:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:243:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:244:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:245:14: 'GroupApproximation.GHW.exists_intPoly_eq_pow_mul_minpoly_coeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2673/2673] Built GroupApproximation.Algebra.IntegerPlacesMinpoly (7.6s)
+info: GroupApproximation/Algebra/IntegerPlacesMinpoly.lean:52:14: 'GroupApproximation.IntegerPlacesMinpoly.exists_places_minpoly_coeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2673 jobs).
+EXIT=0
