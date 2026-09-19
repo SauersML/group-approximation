@@ -1,0 +1,1 @@
+{"name": "P1_11", "npts": 12, "cap": 0.0195, "status": 2, "msg": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)", "eps": null, "secs": 715.5}
