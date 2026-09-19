@@ -382,3 +382,16 @@ vocabulary rather than its content.
   dies. For invariant measures, a survivor needs positive entropy or **infinite
   spelling multiplicity**: infinitely many forward words from `1` with a common
   endpoint, on a set of positive measure.
+
+* **Infinite spelling multiplicity on a cocompact `Sp(n,1)` lattice (w14-026,
+  `fpbs-backward-locally-finite-ray-codes-die`).** The aim was to escape the
+  finite-fibre theorem by codes with infinitely many forward words sharing an
+  endpoint. **Such codes exist and die:** a Toeplitz respelling of the lattice
+  odometer code has continuum spelling multiplicity on full measure, zero
+  entropy and the same class. **Where it dies:** the freezing step needs only
+  that the code relation `R` (backward, forward endpoint pairs of code lines)
+  has backward sections accumulating only at their forward point, and null
+  forward sections. Respelling never moves `R`, and no entropy is used, so the
+  positive-entropy route dies under the same hypothesis. Zero-entropy code
+  classes have local dimension zero, so size filters are blind there. A
+  survivor, of any entropy, needs **accumulating backward sections** of `R`.
