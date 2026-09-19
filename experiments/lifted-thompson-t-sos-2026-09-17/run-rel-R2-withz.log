@@ -1,0 +1,7 @@
+R=2 |S|=8 |B_R|=51  (0.0s)
+support |B^-1 B| = 901  (1.4s)
+  prob.solve(solver=solver, verbose=False, **kw)
+status optimal_inaccurate  lam* = 0.003286387453080598  (181.9s)
+min eig P = -2.401e-05  max eig P = 8.003e+00
+l1 residual of PSD-projected Gram matrix = 5.089e-04
+trace(P) = 17.9933
