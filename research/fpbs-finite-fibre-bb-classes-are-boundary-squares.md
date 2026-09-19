@@ -85,3 +85,20 @@ the square of one of them can be conservative.
   obstruction, and invariance has not yet been used in it).
 - **Infinite fibres.** When the fibres are infinite (for example Maharam extensions of type III classes), whether a
   conservative crossing diagonal forces a sigma-finite invariant measure in `C x C` remains open.
+
+## Attempts
+
+- **fp-audit (2026-09-19), calibration lane: an attempt to refute this node. It survives, and one clause is
+  corrected.**
+  - **Checked against the Bevilacqua--Bowen TeX source** (arXiv:2510.05459):
+    - the verbatim PDR definition;
+    - amenable implies limit-amenable with normalized cost 1;
+    - the proof chain of Theorem 8.1: ergodic component, then Bernoulli product, then Poisson suspension.
+  - **Checked in this node's proof:** the cocycle formula, Steps 2 and 3 in both directions, and Proposition 5.
+  - **The gap.** Theorem 2 says `lambda` is nonatomic, but the Setting does not assume that `C` is nonatomic. For an
+    atomic `C`, `lambda` is `c` times counting measure on one orbit.
+  - **Why Corollary 4 and Theorem 3 stand.** An atomic finite-fibre class always has an infinite dissipative part in
+    its square, so it never gives a conservative crossing diagonal.
+  - **Calibration.** `Gamma = (Z/2 * Z/2) * Z` acting on `Gamma / <st>` has cost `> 1`. The conservative part of its
+    square is nonzero but not conull, and the action is not PDR. So the nonatomic hypothesis of Theorem 3 is needed.
+  - Recorded in `fpbs-finite-fibre-boundary-squares-atomic-class-audit` and its proof. No `invalidates:` claim.
