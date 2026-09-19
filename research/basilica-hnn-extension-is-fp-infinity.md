@@ -72,6 +72,20 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
     Geom. Dyn. 6 (2012), DOI 10.4171/GGD/169, Theorem 4.7 and Corollary 4.10; used there for the
     first Grigorchuk group in Theorem 4.11) needs jump rational cohomology of finite height. `B`
     does not have it, because it contains `Z^n` of cohomological dimension `n` for every `n`.
+  - **Reductions of the membership question** (bh-free-58, 2026-09-19; elementary; no decision).
+    - For countable groups `H𝔉 = LH𝔉`: a countable directed union `⋃ G_i` acts on a tree with
+      vertex stabilizers conjugate to the `G_i`.
+    - `B ∈ H𝔉 ⟺ B′ ∈ H𝔉 ⟺ B~ ∈ H𝔉`.
+      - ⇐ from `B′`: `B` acts cellularly on the square tiling of `R^2` through `B/B′ ≅ Z^2`, with
+        stabilizers `B′`.
+      - ⇒ from `B` to `B~`: the Bass–Serre tree.
+      - The other directions: `H𝔉` is closed under subgroups.
+    - Self-similarity cannot start an induction. `B` is weakly regular branch over `B′`, so
+      `ψ(B′)` contains `B′ × B′`, and each geometric reduction (restriction to level stabilizers,
+      or to `ψ(B′)` modulo `B′ × B′`) returns to `B′` itself.
+    - Deciding `B ∈ H𝔉` in either direction therefore needs a tool other than jump cohomology,
+      commensurability, `F`-subgroups or fixed-point properties. The literature leaves this open:
+      Gandini (loc. cit., §1) lists "which branch groups belong to `H𝔉`" as an important question.
 - **Euler characteristic and `L^2` (no obstruction).** The presentation complex has Euler
   characteristic `1 − 2 + 2 = 1`. `B~` is infinite amenable, so its first `L^2`-Betti number is
   `0`. So the second `L^2`-Betti number of the universal cover of the presentation complex is `1`,
