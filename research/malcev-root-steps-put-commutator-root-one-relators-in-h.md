@@ -196,3 +196,18 @@ computations. Item 3 is an obstruction with a sharpness example. Nothing is new 
   - **Left.** The 8 words with `(α, β) = (-1, 1)`. There the sign rule fails, and generalized torsion kills
     bi-orderable targets. Next: find an 𝓗-target with generalized torsion for `N_[0,3]` of `G(2; -1, 1)`, or prove
     that every such target kills `y`.
+- **The `(-1, 1)` towers keep bi-ordered targets (w17-059).** Partial result, in
+  [[commutator-root-minus-one-towers-keep-bi-ordered-targets]] (written proof, unreviewed).
+  - **Obstruction removed.** The generalized-torsion identity kills maps of `G`. On the tower `N_[0,n]`, which
+    ignores `t`, its factors are conjugates of two different letters, so it only forces `y_1, y_2, …` to alternate
+    in sign. So it cannot show that every 𝓗-target kills `y`.
+  - **Proved.** `Γ` receives `N_[0,4]` of `G(K; -1, 1)` with every letter kept, for every `K`, with signs
+    `(-, -, +, -, -)`. The mirror of the w16 conjugator lemma gives conjugators above `x`. So `N_[0,4] ∈ 𝓗`.
+  - **Where it stops.** The always-available conjugator sign is `σ_{n+1} = σ_{n-1} σ_n`. From `N_[0,5]` on, every
+    `(+, -)` step needs the other sign, which exists iff an Abel difference `V_{y_{n-1}} - V_{y_n^{-K} y_{n-1}}`
+    is bounded above.
+  - **Computed.** Ball SAT for `G(2; -1, 1)`: `t`-invariant bi-orders are UNSAT; bi-orders of `N_[0,W-1]` and
+    `t`-reversing bi-orders are SAT up to `W = 7`, `r = 3`. A `t`-reversing bi-order of `N` would put
+    `G(K; -1, 1)` in 𝓗.
+  - **Next.** Bound one Abel difference at `N_[0,5]` by choosing `Y_0, Y_1` and the conjugator parameters, or
+    build a `t`-reversing bi-order of `N`.
