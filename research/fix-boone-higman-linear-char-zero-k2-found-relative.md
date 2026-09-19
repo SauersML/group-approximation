@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BooneHigmanLinear.CharZero.K2Found.Relative: Inva
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharZero/K2Found/Relative.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-linear-char0.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789839564 on main 9add2d485e).**
 
 ```
 error: GroupApproximation/BooneHigmanLinear/CharZero/K2Found/Relative.lean:113:25: Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.207

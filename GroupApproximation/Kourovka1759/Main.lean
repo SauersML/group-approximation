@@ -37,10 +37,10 @@ theorem mem_ct_of_canon {g : Perm ℤ} {c d : List Box} (hg : List.Forall₂ (Ca
 
 theorem classOf_child {L : ℕ} (hL : 0 < L) (j : Fin L) : classOf L hL (child L j).r = j := by
   apply Fin.ext
-  show ((j : ℤ) % (L : ℤ)).toNat = j
-  have h1 : ((j : ℕ) : ℤ) % (L : ℤ) = j := Int.emod_eq_of_lt (by positivity) (by exact_mod_cast j.isLt)
-  rw [h1]
-  simp
+  show (((j : ℕ) : ℤ) % (L : ℤ)).toNat = (j : ℕ)
+  have h1 : ((j : ℕ) : ℤ) % (L : ℤ) = ((j : ℕ) : ℤ) :=
+    Int.emod_eq_of_lt (by positivity) (by exact_mod_cast j.isLt)
+  rw [h1, Int.toNat_natCast]
 
 /-- A two-level tree: the `L`-split with class `j` split by `k j`. -/
 theorem ty_node {L : ℕ} (hL : 2 ≤ L) (k : Fin L → ℕ) (hk : ∀ j, 2 ≤ k j) :
@@ -104,7 +104,7 @@ theorem mem_ct_of_isPC {g : Perm ℤ} (hg : IsPC g) : g ∈ classTranspositionGr
   have hcovB : ∀ n, ∃ j, (B j).Mem n := fun n => by
     refine ⟨classOf L hL0 (g⁻¹ n), ?_⟩
     have := (hB (classOf L hL0 (g⁻¹ n))).mem (mem_classOf L hL0 (g⁻¹ n))
-    rwa [Perm.apply_inv_self] at this
+    simpa only [Perm.coe_inv, Equiv.apply_symm_apply] using this
   obtain ⟨N, k, hk2, hkm⟩ : ∃ (N : ℕ) (k : Fin L → ℕ), (∀ j, 2 ≤ k j) ∧
       ∀ j, (k j : ℤ) * (B j).m = N := by
     have hpos : 0 < ∏ j, (B j).m.toNat :=
@@ -113,14 +113,13 @@ theorem mem_ct_of_isPC {g : Perm ℤ} (hg : IsPC g) : g ∈ classTranspositionGr
       fun j => Finset.dvd_prod_of_mem (fun i => (B i).m.toNat) (Finset.mem_univ j)
     choose c hc using hdvd
     refine ⟨2 * ∏ i, (B i).m.toNat, fun j => 2 * c j, fun j => ?_, fun j => ?_⟩
-    · show 2 ≤ 2 * c j
-      have h0 : 0 < c j := by
+    · have h0 : 0 < c j := by
         rcases Nat.eq_zero_or_pos (c j) with h | h
         · have := hc j
           rw [h, mul_zero] at this
           omega
         · exact h
-      omega
+      exact (by omega : 2 ≤ 2 * c j)
     · have h2 : (((B j).m.toNat : ℕ) : ℤ) = (B j).m := Int.toNat_of_nonneg (B j).m_pos.le
       rw [hc j]
       simp only [Nat.cast_mul, Nat.cast_ofNat, h2]
@@ -131,8 +130,9 @@ theorem mem_ct_of_isPC {g : Perm ℤ} (hg : IsPC g) : g ∈ classTranspositionGr
     have h3 := (B ⟨0, hL0⟩).m_pos
     have : (2 : ℤ) ≤ N := by rw [← h1]; nlinarith
     exact_mod_cast this
-  have hf : List.Forall₂ (CanonOn g) (srcList L k) (tgtList L k B) :=
-    forall₂_flatMap fun j _ => forall₂_canon_map (hB j) _
+  have hf : List.Forall₂ (CanonOn g) (srcList L k) (tgtList L k B) := by
+    unfold srcList tgtList
+    exact forall₂_flatMap fun j _ => forall₂_canon_map (hB j) _
   have hdl : (tgtList L k B).Pairwise Box.Disj := by
     rw [tgtList, List.pairwise_flatMap]
     refine ⟨fun j _ => ?_, ?_⟩
@@ -147,15 +147,15 @@ theorem mem_ct_of_isPC {g : Perm ℤ} (hg : IsPC g) : g ∈ classTranspositionGr
     intro n
     obtain ⟨j, hj⟩ := hcovB n
     obtain ⟨X, hX, hXn⟩ := cover (tail [k j]) (wf_tail (by simpa using hk2 j)) (n / (B j).m)
-    exact ⟨place (B j) X, List.mem_flatMap.2 ⟨j, List.mem_finRange j, List.mem_map.2 ⟨X, hX, rfl⟩⟩,
-      mem_place.2 ⟨hj, hXn⟩⟩
+    refine ⟨place (B j) X, ?_, mem_place.2 ⟨hj, hXn⟩⟩
+    unfold tgtList
+    exact List.mem_flatMap.2 ⟨j, List.mem_finRange j, List.mem_map.2 ⟨X, hX, rfl⟩⟩
   have hdT : (tgtList L k B : Multiset Box) = ml (tail [N]) := by
     rw [Multiset.Nodup.ext (Multiset.coe_nodup.2 (hdl.imp fun h => ne_of_disj h)) (pd_ml _).nodup]
     intro x
-    rw [Multiset.mem_coe, mem_ml_tail_single]
+    rw [Multiset.mem_coe, mem_ml_tail_single, tgtList, List.mem_flatMap]
     constructor
-    · intro hx
-      obtain ⟨j, -, hx⟩ := List.mem_flatMap.1 hx
+    · rintro ⟨j, -, hx⟩
       obtain ⟨X, hX, rfl⟩ := List.mem_map.1 hx
       have hXm : X.m = k j := mem_ml_tail_single.1 (Multiset.mem_coe.2 hX)
       rw [place_m, hXm, hkm j]
@@ -165,10 +165,11 @@ theorem mem_ct_of_isPC {g : Perm ℤ} (hg : IsPC g) : g ∈ classTranspositionGr
       have hYm : Y.m * (B j).m = (k j : ℤ) * (B j).m := by
         rw [hkm j, ← hx]
         exact (congrArg Box.m hY).symm
-      refine List.mem_flatMap.2 ⟨j, List.mem_finRange j, List.mem_map.2 ⟨Y, ?_, hY.symm⟩⟩
+      refine ⟨j, List.mem_finRange j, List.mem_map.2 ⟨Y, ?_, hY.symm⟩⟩
       exact Multiset.mem_coe.1 (mem_ml_tail_single.2 (mul_right_cancel₀ (B j).m_ne hYm))
   have hcS : (srcList L k : Multiset Box) = ∑ j, (ml (tail [k j])).map (place (child L j)) := by
-    rw [srcList, coe_flatMap, Fin.sum_univ_def] <;> rfl
+    rw [srcList, coe_flatMap, Fin.sum_univ_def]
+    rfl
   have hTS : Ty (srcList L k : Multiset Box) L (∑ j, {k j}) := (ty_node hL k hk2).congr2 hcS.symm rfl
   have hTT : Ty (tgtList L k B : Multiset Box) N 0 := by
     rw [hdT]
