@@ -1,0 +1,62 @@
+{
+  "cellular_input_sha256": "6724f22be13eb934d0f25e363426e805e8a94fbe761e8032c09adf58237e008e",
+  "d2_dimensions": [
+    80,
+    100
+  ],
+  "d2_rational_rank": 56,
+  "elapsed_seconds": 0.17923830705694854,
+  "exact_index_diagnostics": [
+    {
+      "divided_residual_rows": 2,
+      "elimination_updates": 201,
+      "initial_active_equations": 97,
+      "initial_nonzeros": 354,
+      "peak_active_nonzeros": 354,
+      "residual_equations": 2,
+      "residual_row_gcd_histogram": {
+        "5": 2
+      },
+      "round": 0,
+      "unit_pivots": 55
+    },
+    {
+      "divided_residual_rows": 0,
+      "elimination_updates": 1,
+      "initial_active_equations": 2,
+      "initial_nonzeros": 20,
+      "peak_active_nonzeros": 20,
+      "residual_equations": 0,
+      "residual_row_gcd_histogram": {},
+      "round": 1,
+      "unit_pivots": 1
+    }
+  ],
+  "h1_torsion_invariant_factors": [
+    25
+  ],
+  "h1_torsion_is_cyclic": true,
+  "h1_torsion_order": 25,
+  "h1_torsion_order_prime_factors": {
+    "5": 2
+  },
+  "level": 25,
+  "primary_parts": [
+    {
+      "cyclic_primary_part": true,
+      "minimum_generator_count": 1,
+      "modular_rank": 55,
+      "order_exponent": 2,
+      "prime": 5
+    }
+  ],
+  "profile_seconds": 0.003274697926826775,
+  "projective_degree": 775,
+  "proof": "Sat(im d2)/im d2 is Tor(coker d2)=Tor(H1); its order is the exact row-lattice saturation index. For each prime, the rational-to-modular rank drop is the primary generator count.",
+  "rational_coinvariant_dimensions": [
+    45,
+    100,
+    80,
+    28
+  ]
+}

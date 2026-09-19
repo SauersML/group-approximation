@@ -1,0 +1,76 @@
+{
+  "chart": "projective",
+  "chart_prime": 53,
+  "chain_dimensions": [
+    11452,
+    28630,
+    57260
+  ],
+  "free_columns": [
+    22551,
+    21965
+  ],
+  "profile_characteristic": 101,
+  "profile_ranks": {
+    "d2_transpose": 8590,
+    "d3": 20038
+  },
+  "solver": {
+    "dense_block_size": 14000,
+    "name": "SpaSM",
+    "source_revision": "09c4094",
+    "threads": 4
+  },
+  "systems": [
+    {
+      "characteristic": 101,
+      "dense_core_dimension": 13458,
+      "echelonization_seconds": 29.683,
+      "full_rank": 28628,
+      "matrix_nnz": 474612,
+      "matrix_sha256": "f9e21b8f8c4f52051221dc315994976dbcf35cfb3c6122ecdfeebff2902f9a02",
+      "residue_sha256": "701d7598b2cfcf270c458356f3008b5ae93f3950e928838823dd502b3773e218",
+      "rhs_nnz": 24,
+      "rhs_sha256": "779c9738b04558cbb64a258b6acd7c2498f98aa1ba88bd988220b35e636b3517",
+      "sparse_pivots": 15170,
+      "verified_d2_nonzero_residuals": 0,
+      "verified_d3_nonzero_residuals": 0
+    },
+    {
+      "characteristic": 1009,
+      "dense_core_dimension": 13407,
+      "echelonization_seconds": 40.227,
+      "full_rank": 28628,
+      "matrix_nnz": 474612,
+      "matrix_sha256": "d3eb92d17cd030068a739eab44ec60b43d291993e98bbda543b247db7625a974",
+      "residue_sha256": "9f8226f46a53078ea5e552e331aae7f55fcea12d9b0509f3ecb0a0c210445724",
+      "rhs_nnz": 24,
+      "rhs_sha256": "678b4580d86b96047af51a146123437608b363de60826e2c69a7b7ed627f6acc",
+      "sparse_pivots": 15221,
+      "verified_d2_nonzero_residuals": 0,
+      "verified_d3_nonzero_residuals": 0
+    },
+    {
+      "characteristic": 10007,
+      "dense_core_dimension": 13408,
+      "echelonization_seconds": 45.601,
+      "full_rank": 28628,
+      "matrix_nnz": 474612,
+      "matrix_sha256": "80713563a11b03870aa4267c8eff4a11283b99bf1ab7529a6fca7b6a404b2a02",
+      "residue_sha256": "6d3416269035553b99761cb19c65d6437849572d8edd50f254050d6bbf23ed92",
+      "rhs_nnz": 24,
+      "rhs_sha256": "bd9fb25ceb968fc808f027772ec7f9d06f67259425613118da7ae45554783127",
+      "sparse_pivots": 15220,
+      "verified_d2_nonzero_residuals": 0,
+      "verified_d3_nonzero_residuals": 0
+    }
+  ],
+  "three_prime_crt": {
+    "modulus": 1019803363,
+    "rational_reconstructions": 34424,
+    "stable_from_two_prime_reconstruction": 6,
+    "total_coordinates": 57260,
+    "two_prime_modulus": 101909,
+    "two_prime_rational_reconstructions": 34356
+  }
+}

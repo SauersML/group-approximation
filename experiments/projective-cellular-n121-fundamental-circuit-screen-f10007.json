@@ -1,0 +1,111 @@
+{
+  "balanced_l1": {
+    "maximum": 3076312,
+    "median": 2883417,
+    "minimum": 1,
+    "p90": 2971616,
+    "p99": 3041739
+  },
+  "balanced_l2_squared": {
+    "maximum": 10569330868,
+    "median": 9611453115,
+    "minimum": 1,
+    "p90": 10052720550,
+    "p99": 10456626110
+  },
+  "balanced_maximum_coefficient": {
+    "maximum": 5003,
+    "median": 5000,
+    "minimum": 1,
+    "p90": 5003,
+    "p99": 5003
+  },
+  "balanced_unit_coefficient_count": 2859,
+  "balanced_unit_coefficient_fraction": 0.004165519291206077,
+  "basis_role": "finite-field right-kernel echelon basis; a pivot-choice screen, not an integral fundamental-circuit certificate",
+  "boundary_rank": 625,
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "characteristic": 10007,
+  "cycle_matrix_dimensions": [
+    2028,
+    1940
+  ],
+  "cycle_matrix_rank": 1308,
+  "greedy_homology_packet": [
+    {
+      "balanced_l1": 40032,
+      "balanced_l2_squared": 200240080,
+      "balanced_maximum_coefficient": 5003,
+      "kernel_row": 310,
+      "support_size": 16
+    },
+    {
+      "balanced_l1": 55039,
+      "balanced_l2_squared": 275330105,
+      "balanced_maximum_coefficient": 5003,
+      "kernel_row": 586,
+      "support_size": 17
+    },
+    {
+      "balanced_l1": 2848232,
+      "balanced_l2_squared": 9978912480,
+      "balanced_maximum_coefficient": 5003,
+      "kernel_row": 608,
+      "support_size": 1105
+    },
+    {
+      "balanced_l1": 2770517,
+      "balanced_l2_squared": 9217829695,
+      "balanced_maximum_coefficient": 5003,
+      "kernel_row": 602,
+      "support_size": 1111
+    },
+    {
+      "balanced_l1": 2959373,
+      "balanced_l2_squared": 10192706819,
+      "balanced_maximum_coefficient": 5003,
+      "kernel_row": 607,
+      "support_size": 1127
+    },
+    {
+      "balanced_l1": 2941399,
+      "balanced_l2_squared": 9844232911,
+      "balanced_maximum_coefficient": 4995,
+      "kernel_row": 362,
+      "support_size": 1151
+    },
+    {
+      "balanced_l1": 2864648,
+      "balanced_l2_squared": 9560451868,
+      "balanced_maximum_coefficient": 4998,
+      "kernel_row": 193,
+      "support_size": 1154
+    }
+  ],
+  "greedy_homology_packet_maximum_balanced_l2_squared": 10192706819,
+  "greedy_homology_packet_maximum_support": 1154,
+  "homology_dimension": 7,
+  "kernel_dimension": 632,
+  "kernel_residual_zero": true,
+  "level": 121,
+  "nonzero_coefficient_count": 686349,
+  "projective_degree": 16093,
+  "rational_coinvariant_dimensions": [
+    721,
+    2028,
+    1940,
+    654
+  ],
+  "support_size": {
+    "maximum": 1257,
+    "median": 1157,
+    "minimum": 1,
+    "p90": 1162,
+    "p99": 1183
+  }
+}

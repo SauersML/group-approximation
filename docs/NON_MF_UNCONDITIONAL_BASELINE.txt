@@ -1,0 +1,33 @@
+# Findings of `scripts/check_non_mf_unconditional.py` that are known,
+# written up, and not yet discharged.  One line per accepted finding:
+#
+#     <detector> <declaration>  -- why it is accepted
+#
+# This register is not a budget.  A finding not listed here fails the
+# gate, and a line here that matches nothing fails it too -- so a
+# discharged item cannot be left behind to license its own return.
+# Every line must correspond to a row of docs/NON_MF_CONDITIONAL_INVENTORY.md.
+# Regenerate with:
+#
+#     python3 scripts/check_non_mf_unconditional.py --write-baseline
+#
+# and delete a line the moment its mathematics lands.
+#
+# Empty since 2026-08-17: `--strict` and `--baseline` now agree, and the
+# register carries no exemption at all.  The three lines it used to hold
+# went for two different reasons, both recorded in the inventory.
+#
+#   * Row 1's `conditional-data` line, on
+#     `MarkovMFConsequences.operatorMF_recognition_undecidable`: discharged.
+#     `Computability.operatorMF_recognition_not_computable` proves MF
+#     recognition undecidable with nothing quantified, so the quantified
+#     form is no longer the corollary's only support.
+#   * Row 18's two `buried-conditional` lines, on
+#     `presentationCodes_recognition_undecidable_of_haltingReduction` and
+#     `…_negative_side_not_re_of_haltingReduction`: the declarations are no
+#     longer cited anywhere in `non_mf_groups_exist.tex`, so the detector
+#     never reaches them.  Off the badge surface is not the same as proved;
+#     row 18 says which.
+#
+# Both readings were checked against `--explain`, which reports every cited
+# declaration unconditional and no finding of any status.
