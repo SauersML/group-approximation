@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-free-60, 2026-09-19; elementary given the imports listed in the
-route; not reviewed). No priority is claimed. The finite-presentation input is Kneser's criterion
+route; referee PASS on 2026-09-19 by bh-ref-kourovka-b, see Referee). No priority is claimed. The finite-presentation input is Kneser's criterion
 (Abels, LNM 1261, 0.2.8) and Cornulier's verification of Abels' Theorem 3.1 for his block group
 (arXiv:math/0502140v4, Lemmas 3.2, 3.6), both read at source and recorded in
 `twisted-prufer-corners-embed-in-isolated-cornulier-hosts`.
@@ -121,3 +121,54 @@ remain OPEN:
 - So for S-unit twists, the arithmetic side of Question 4 on soluble minimax inputs is complete.
   What remains is structural: whether every such input's radical is algebraic and reachable
   through a corner.
+
+## Referee (bh-ref-kourovka-b, 2026-09-19): PASS
+
+**Verdict: PASS.** I checked all six steps, and every cited theorem against its source. The design
+by lane bh-free-60 is clean: the number field enters only through the corner module, so finite
+presentation is paid once over `Q`.
+
+**1. Kneser over `Q`, for Cornulier's block group, at source.**
+- **Abels, LNM 1261.**
+  - 0.2.8 (Introduction, p. 3; Kneser 1964): for a linear algebraic group `G` over `Q`, an
+    S-arithmetic subgroup is finitely presented iff `G_{Q_p}` is compactly presented for every
+    `p ∈ S`. The number-field form is 6.1.2 (p. 124).
+  - `𝐇_r(Z[1/m]) = 𝐇_{Z(S)}`, with `S` the primes dividing `m`, is S-arithmetic in exactly this sense.
+- **Cornulier, arXiv:math/0502140v4.**
+  - Definition 2.4 allows any `n_1, n_4 ≥ 1` with `n_2, n_3 ≥ 3`, so the blocks `(r, 3, 3, 1)` are
+    admissible.
+  - The corrected Theorem 3.1 matches Abels 6.4.3 together with Remark 6.4.5 (pp. 131–132). There,
+    for semisimple `L` with no rank-one factor, condition 1) reduces to `0 ∉ W_dom(H_1(u))`.
+  - Lemmas 3.2 and 3.6 compute weights in `Z^{n_2+n_3}/P`, independent of `p` and of `n_1, n_4`.
+    Lemma 3.6 even shows that 0 is not a `D`-weight of `H_2(u)`, which is stronger than needed.
+- So `𝐇(Q_q)` is compactly presented for every prime `q`, and `𝐇(Z[1/m])` is finitely presented.
+  No `K_v` enters.
+
+**2. Commutator push-down (Theorem A of `twisted-prufer-corners-embed-in-isolated-cornulier-hosts`).**
+I recomputed the block commutators:
+- `[h, e_23(Y)]` has `(1,3)` block `A_12 Y`, `(2,4)` block `−Y A_34` and `(1,4)` block `−A_12 Y A_34`;
+- for `h` in the second layer, `[h, e_34(Y)] = e_14(A_13 Y)` and `[e_12(Y), h] = e_14(Y A_24)`, exactly.
+
+The Levi step also holds. `(Ã, B_2, B_3, 1)` acting trivially on `u_12 ⊕ u_23 ⊕ u_34` forces, in
+turn, `B_3 = I`, `B_2 = I` and `Ã = I`. Only the layer structure `U ⊋ U_{≥2} ⊋ U_14` is used, not an
+identification of the group commutator subgroup. PASS.
+
+**3. Weil restriction, on the module only.**
+- `O[1/m] = O ⊗ Z[1/m]` is free over `Z[1/m]`, via an integral basis.
+- `O_S^×` and `U_k(O)` act `Z[1/m]`-linearly and invertibly (`O_S ⊆ O[1/m]`), so
+  `Δ ≤ GL_r(Z[1/m])`. `diag(Ã, I, I, 1)` normalizes `𝐇_r`, and `𝐇` itself is never restricted.
+- The other steps also check:
+  - step 2: CRT surjectivity, and kernel `O[1/m] ∩ O_𝔭 = O_S`;
+  - step 3(i): `O_S = O[a_𝔮^{-1}]`, since `(a_𝔮) = 𝔮^h` has `𝔮` as its only prime factor;
+  - step 4: `Δ` is f.g. abelian times f.g. nilpotent, hence finitely presented, and Behr is not needed;
+  - step 6: I re-derived that finite products of f.p. finitely discriminable groups are finitely
+    discriminable, since their centres are finitely cogenerated.
+
+**Notes** (none affects the verdict).
+1. **Step 3(ii).** Theorem A needs "no nonzero `Z[1/m]`-submodule in `L`". Step 3(ii) is phrased with
+   `Rx`, `R = O[1/m]`. The argument uses only `p^{-n} ∈ Z[1/m]`, so it proves the needed form. The
+   wording should say `Z[1/m]x ⊆ L`.
+2. **"Consequently … E".** Literally this gives `D ⋊ φ(E) ≤ Γ`. For `D ⋊ E` itself, embed it
+   in `Γ × I` by `(d, e) ↦ ((d, φ(e)), e)`, given an isolated `I ⊇ E`.
+3. **Imports** used as black boxes: Dirichlet's S-unit theorem, and CGP's "f.p. + finitely
+   discriminable ⇒ isolated".
