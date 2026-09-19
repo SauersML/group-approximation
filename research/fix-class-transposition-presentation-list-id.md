@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.ClassTransposition.Presentation.ListId: Type mism
 **OPEN.** Lean module `GroupApproximation/ClassTransposition/Presentation/ListId.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** 8349c08c3e: Kourovka 17.61 lane: probe fixes in Moves, ListId, RelFC, RelAll. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
