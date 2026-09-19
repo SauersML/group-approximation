@@ -1226,3 +1226,23 @@ the whole Haagerup-infinite branch for `V`.
    - Routes that do not use compression, such as the Thompson V route, are untouched.
 4. **Status.** The goal stays OPEN. The approach "use relative (T) in place of (T)" is recorded dead at the transport
    step.
+
+**2026-09-19 (swarm-0917 w17, belief breaker, cohomology-index): the K1/parity cluster is a (T) theorem.**
+
+1. **Candidate chain.** `leavitt-mf-quotients-see-thompson-vd-through-parity` (ESTABLISHED) gives
+   `V_2 <= Rad_MF(L^x)`. With `GL_n = EL_n` (`leavitt-gl-equals-el-and-perfect-unit-group`, internal algebra),
+   simplicity of `EL_n(L)`, and the central-`K_2` lift to `St_20`, this would give `Rad_MF(Delta) = Delta`.
+   The only `V`-specific input is the transposition class `[-1] = 1` in `K_1(L_k(1,2))`, which is scalar algebra.
+2. **Where it dies.** The inclusion `ker kappa <= Rad_MF(L^x)` comes from
+   `purely-infinite-unit-group-max-mf-quotient-is-k1`, then `purely-infinite-matrix-mf-quotient-proof`, then
+   `full-complementary-idempotent-elementary-full-mf-radical-proof`. That last step uses Ershov--Jaikin (T) for
+   `EL_3(S)` and `normal-kazhdan-defect-non-mf`. `purely-infinite-matrix-mf-quotient-proof` says this in its
+   last paragraph. The remark "no AGP input propositions" refers only to the K-theory citation. It does not mean
+   the chain is (T)-free.
+3. **Class fenced.** Every ESTABLISHED statement of the form "`Rad_MF(R^x) = [R^x,R^x]`" or "maximal MF quotient is
+   `K_1`" is (T)-downstream. That covers the all-rank, canonical-`K_1`, Steinberg-GL and parity nodes, and their
+   rank or Morita transports. Such a node can be routed here only after that one prerequisite is replaced. The
+   K-theoretic content cannot help: it only computes the abelian quotient, which is `0` here. All the
+   approximation content sits in `ker kappa`, which is `L^x` itself.
+4. **Status.** DEAD as a route. Target OPEN. The parity node's firewall, that nothing follows about `V` itself,
+   remains correct. The (T)-free route through `V` is still only `property-t-free-leavitt-via-thompson-v-not-mf`.
