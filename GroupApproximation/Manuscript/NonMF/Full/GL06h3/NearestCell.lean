@@ -139,8 +139,9 @@ theorem contiguityDegree_lt_half_mu_of_targetArc_le {D : RelGenSet G Lambda}
 non_mf_groups_exist.tex ~2121).  A least-area subdiagram `Ξ` with at least one and fewer relator
 cells than `Δ`, whose boundary is four sections `u p̂ R p̂⁻¹`:
 * the section `u` has length at most `ε + ε`;
-* a region of an O-equivalent copy of `Ξ` to `p̂` or `p̂⁻¹` has target arc at most `ε + ε`,
-  since `p` is a shortest path from the boundary to a cell;
+* a region of an O-equivalent copy of `Ξ` to `p̂` or `p̂⁻¹` with a nonempty source arc has
+  target arc at most `ε + ε`, since `p` is a shortest path from the boundary to a cell.  A region
+  with an empty source arc has degree `0` and needs no bound;
 * a region of an O-equivalent copy of `Ξ` to `R` becomes, after gluing the nearest cell back, a
   region of an O-equivalent copy of `Δ` between two distinct cells, of the same degree. -/
 structure NearestCellCut {W : Set (List (RelLetter G Lambda))}
@@ -157,7 +158,7 @@ structure NearestCellCut {W : Set (List (RelLetter G Lambda))}
   near : ∀ j : Fin sections.count, ((j : ℕ) = 1 ∨ (j : ℕ) = 3) →
     ∀ (Xi : DiscDiagram.{u, w, v} W), OEquivalentDiscDiagram enclosed Xi →
       ∀ a : RegionCandidate D eps Xi,
-        RegionCandidate.TargetsSectionIndex sections j a →
+        RegionCandidate.TargetsSectionIndex sections j a → 0 < a.2.sourceArc.length →
           a.2.targetArc.length ≤ eps + eps
   transport : ∀ j : Fin sections.count, (j : ℕ) = 2 →
     ∀ (Xi : DiscDiagram.{u, w, v} W), OEquivalentDiscDiagram enclosed Xi →
@@ -210,6 +211,13 @@ theorem NearestCellCut.false_of_below {D : RelGenSet G Lambda}
       exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 Embedded.o52LeastArea
         hcondition hlambda hmu hrho hlarge3 (EY.leastArea hlea) b htarget hne)
     · rw [if_neg hcell]
+      by_cases hsrc : (region j).2.sourceArc.length = 0
+      · have hdeg : (region j).contiguityDegree = 0 := by
+          unfold RegionCandidate.contiguityDegree
+          rw [hsrc]
+          simp
+        rw [hdeg]
+        linarith
       have hL : (region j).2.targetArc.length ≤ eps + eps := by
         by_cases hzero : (j : ℕ) = 0
         · have hs := cut.side_short j hzero
@@ -218,6 +226,7 @@ theorem NearestCellCut.false_of_below {D : RelGenSet G Lambda}
           omega
         · have hnear : (j : ℕ) = 1 ∨ (j : ℕ) = 3 := by omega
           exact cut.near j hnear T.diagram T.equiv (region j) (htargets j hj)
+            (Nat.pos_of_ne_zero hsrc)
       exact le_of_lt (contiguityDegree_lt_half_mu_of_targetArc_le hcondition hlambda hmu hrho
         hlarge hboundary (region j) (htargets j hj) hL)
   have hle := Finset.sum_le_sum hbound
