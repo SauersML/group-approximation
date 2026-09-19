@@ -1,0 +1,2 @@
+# n=1000 Vc=8 Vb=3 V=8000 classes=law seeds_in_class=1000 D0=5000
+greedy seeds 114 density 0.1140 overfold_used 0

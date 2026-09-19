@@ -1,0 +1,66 @@
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 6 k 2 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 276), (-1, 24)]
+worst ell-|P|, rank N, P: (-1, 7, [(34, 35), (35, 39)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 6 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 7, [(36, 39), (24, 28)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 6 k 3 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 217), (-1, 15), (-2, 68)]
+worst ell-|P|, rank N, P: (-1, 17, [(13, 14), (25, 29), (9, 13)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 6 k 2 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 31), (-2, 169)]
+worst ell-|P|, rank N, P: (-1, 20, [(26, 30), (27, 31), (8, 12)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 8 k 2 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 282), (-1, 18)]
+worst ell-|P|, rank N, P: (-1, 12, [(49, 53), (48, 49)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 8 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 7, [(0, 3), (40, 44)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 8 k 3 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 254), (-1, 2), (-2, 44)]
+worst ell-|P|, rank N, P: (-1, 40, [(2, 3), (32, 35), (44, 47)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 8 k 2 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 12), (-2, 188)]
+worst ell-|P|, rank N, P: (-1, 24, [(17, 21), (44, 47), (8, 12)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 12 k 2 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 291), (-1, 9)]
+worst ell-|P|, rank N, P: (-1, 7, [(85, 86), (67, 71)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 12 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 7, [(2, 4), (40, 44)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 12 k 3 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 265), (-2, 35)]
+worst ell-|P|, rank N, P: (-2, 12, [(43, 47), (10, 12), (48, 54)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 12 k 2 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 10), (-2, 190)]
+worst ell-|P|, rank N, P: (-1, 19, [(90, 91), (90, 94), (32, 36)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 20 k 2 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 293), (-1, 7)]
+worst ell-|P|, rank N, P: (-1, 7, [(32, 38), (37, 38)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 20 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 7, [(24, 25), (128, 132)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 20 k 3 lawful 0 radius 20 trials 300
+hist ell-|P| (empty = no lawful part): [('empty', 278), (-1, 1), (-2, 21)]
+worst ell-|P|, rank N, P: (-1, 14, [(112, 115), (113, 117), (122, 126)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 20 k 2 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 5), (-2, 195)]
+worst ell-|P|, rank N, P: (-1, 19, [(81, 84), (85, 86), (16, 20)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 5 k 2 lawful 0 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [('empty', 200)]
+worst ell-|P|, rank N, P: None
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 5 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 48, [(60, 63), (0, 11)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 8 k 2 lawful 0 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [('empty', 199), (-1, 1)]
+worst ell-|P|, rank N, P: (-1, 16, [(2, 15), (9, 15)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 8 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 24, [(48, 57), (40, 51)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 12 k 2 lawful 0 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [('empty', 198), (-1, 2)]
+worst ell-|P|, rank N, P: (-1, 16, [(205, 208), (2, 6)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 12 k 1 lawful 1 radius 20 trials 200
+hist ell-|P| (empty = no lawful part): [(-1, 200)]
+worst ell-|P|, rank N, P: (-1, 16, [(108, 114), (200, 211)])

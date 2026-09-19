@@ -67,3 +67,25 @@ This is one of the two halves of
     `{ D(ω,σ) : σ ≠ ω }` is a family of copies closed under closures of
     symmetric differences. Decide whether some such family, `F_ω`-invariant,
     can exist for `K`.
+- 2026-09-19 (swarm-0917-w17-w17-z-last1, reframing). One new node, and the
+  claim is still OPEN.
+  - `thompson-f-two-transitive-colour-pairs-are-totally-mixed` covers any
+    number of colours. Every ordered pair of distinct colours occurs between
+    every pair of points. At every point component of a disagreement set,
+    every colour pair is dense (two splicings reduce a missing pair to an
+    empty `D^{ij}`). The set-wise stabilizer of any one colour `P` is already
+    `F_ω`.
+  - Reduction. In the Cantor case, `Ω ≅ F·P` as `F`-sets, and
+    `D(aH,bH) = cl(aP ∖ bP) = cl(bP ∖ aP)`. So this claim follows from (†)
+    in that node: no dense, codense `P` in an irrational orbit has a
+    stabilizer that is transitive on `F·P ∖ {P}` together with equal,
+    nowhere dense closures of the one-sided differences.
+  - Kills: inclusion models (`fP ⊊ P`), one-way local moves, and every
+    three-or-more-colour model with a missing colour pair near a point
+    component.
+  - Where it dies: the binary sum rule and injectivity of `σ ↦ D(ω,σ)` are
+    still not available in the Cantor case. The step left is to exclude a
+    subset `P` whose translates differ from it in a checkerboard pattern,
+    with equal, nowhere dense one-sided difference closures. The converse of
+    the reduction is not proved either, since it needs
+    `D(P,fP) ⊂ cl(fP Δ P)`.
