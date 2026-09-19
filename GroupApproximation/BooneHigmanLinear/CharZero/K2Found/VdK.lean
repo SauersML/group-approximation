@@ -1,6 +1,9 @@
 import GroupApproximation.Steinberg.Basic
 import Mathlib.Data.Matrix.Mul
 import Mathlib.Tactic.Group
+import Mathlib.Tactic.NoncommRing
+import Mathlib.Tactic.Module
+import Mathlib.Data.Matrix.Basis
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -23,10 +26,13 @@ This file proves everything except Theorem 1 itself:
 * `StStar`, the generators `X` and the two relations `X_mul`, `X_conj`, with `X_zero`, `X_neg`;
 * the ordinary pairs `stdPair p q a = (ε_p, a ε_qᵀ)`, and `phi`, which is vdK 3.5. Its adjacent
   Steinberg relation is derived from the two `St*` relations;
+* `eUnit` and `piStar` (vdK 2.4: `X(i, j) ↦ e(i, j) = 1 + i j`, both relations checked in
+  `GL(n, A)`), and `piStar_comp_phi`: `π ∘ φ` is the canonical projection `St(n, A) → E(n, A)`;
 * `Theorem1At`, vdK's Theorem 1 as a named statement (**owed**: vdK §3, 3.6–3.22);
 * `Elements` and `elementsOfTheorem1`, the consumer-facing form of F.1 (a) on the k2-poly board:
-  well-defined elements `X(v, w) ∈ St(n, A)` for every `(v, w) ∈ U`, satisfying both relations
-  and restricting to `x_pq(a)` on the ordinary pairs. This follows from Theorem 1.
+  well-defined elements `X(v, w) ∈ St(n, A)` for every `(v, w) ∈ U`, satisfying both relations,
+  restricting to `x_pq(a)` on the ordinary pairs, with `π(X(v, w)) = 1 + v w`. This follows from
+  Theorem 1.
 
 Columns and rows are both functions `I → A`, and `j i` is `j ⬝ᵥ i`.
 -/
@@ -284,6 +290,128 @@ def phi : SteinbergGroup I A →* StStar I A :=
 
 #audit_axioms phi_x
 
+/-! ### vdK 2.1 and 2.4: `π : St*(n, A) → GL(n, A)`, `X(i, j) ↦ e(i, j) = 1 + i j` -/
+
+/-- `e(v, w) = 1 + v w` (vdK 2.1). It is a unit when `w v = 0`, with inverse `1 - v w`, since
+`(v w)² = v (w v) w = 0`. -/
+def eUnit (v w : I → A) (h : w ⬝ᵥ v = 0) : (Matrix I I A)ˣ where
+  val := 1 + Matrix.vecMulVec v w
+  inv := 1 - Matrix.vecMulVec v w
+  val_inv := by
+    have hx : Matrix.vecMulVec v w * Matrix.vecMulVec v w = 0 := by
+      rw [Matrix.vecMulVec_mul_vecMulVec, h, zero_smul, Matrix.vecMulVec_zero]
+    rw [add_mul, one_mul, mul_sub, mul_one, hx, sub_zero, sub_add_cancel]
+  inv_val := by
+    have hx : Matrix.vecMulVec v w * Matrix.vecMulVec v w = 0 := by
+      rw [Matrix.vecMulVec_mul_vecMulVec, h, zero_smul, Matrix.vecMulVec_zero]
+    rw [sub_mul, one_mul, mul_add, mul_one, hx, add_zero, add_sub_cancel_right]
+
+@[simp] theorem eUnit_val (v w : I → A) (h : w ⬝ᵥ v = 0) :
+    (eUnit v w h : Matrix I I A) = 1 + Matrix.vecMulVec v w :=
+  rfl
+
+/-- vdK's first relation holds for `e`: `e(i, j) e(i, k) = e(i, j + k)`. -/
+theorem eUnit_mul (i j k : I → A) (h₁ : j ⬝ᵥ i = 0) (h₂ : k ⬝ᵥ i = 0) (h₃ : (j + k) ⬝ᵥ i = 0) :
+    eUnit i j h₁ * eUnit i k h₂ = eUnit i (j + k) h₃ := by
+  apply Units.ext
+  change (1 + Matrix.vecMulVec i j) * (1 + Matrix.vecMulVec i k) = 1 + Matrix.vecMulVec i (j + k)
+  have hx : Matrix.vecMulVec i j * Matrix.vecMulVec i k = 0 := by
+    rw [Matrix.vecMulVec_mul_vecMulVec, h₁, zero_smul, Matrix.vecMulVec_zero]
+  rw [Matrix.vecMulVec_add, add_mul, one_mul, mul_add, mul_one, hx, add_zero]
+  abel
+
+#audit_axioms eUnit_mul
+
+/-- vdK's second relation holds for `e`: `e(i, j) e(k, l) e(i, j)⁻¹ = e(k + i (j k), l - (l i) j)`.
+With `P = i j` and `Q = k l`, both sides equal `1 + Q + P Q - Q P - P Q P`, because `P² = 0`,
+`P Q = (j k) • i l`, `Q P = (l i) • k j` and `P Q P = (j k) • (l i) • i j`. -/
+theorem eUnit_conj (p q : (I → A) × (I → A)) (hp : p.2 ⬝ᵥ p.1 = 0) (hq : q.2 ⬝ᵥ q.1 = 0)
+    (h : (q.2 - (q.2 ⬝ᵥ p.1) • p.2) ⬝ᵥ (q.1 + (p.2 ⬝ᵥ q.1) • p.1) = 0) :
+    eUnit p.1 p.2 hp * eUnit q.1 q.2 hq * (eUnit p.1 p.2 hp)⁻¹ =
+      eUnit (q.1 + (p.2 ⬝ᵥ q.1) • p.1) (q.2 - (q.2 ⬝ᵥ p.1) • p.2) h := by
+  apply Units.ext
+  change (1 + Matrix.vecMulVec p.1 p.2) * (1 + Matrix.vecMulVec q.1 q.2) *
+      (1 - Matrix.vecMulVec p.1 p.2) =
+    1 + Matrix.vecMulVec (q.1 + (p.2 ⬝ᵥ q.1) • p.1) (q.2 - (q.2 ⬝ᵥ p.1) • p.2)
+  have expand : ∀ P Q : Matrix I I A,
+      (1 + P) * (1 + Q) * (1 - P) = 1 + Q - Q * P - P * P + P * Q - P * Q * P := by
+    intro P Q
+    noncomm_ring
+  have hPP : Matrix.vecMulVec p.1 p.2 * Matrix.vecMulVec p.1 p.2 = 0 := by
+    rw [Matrix.vecMulVec_mul_vecMulVec, hp, zero_smul, Matrix.vecMulVec_zero]
+  have hPQ : Matrix.vecMulVec p.1 p.2 * Matrix.vecMulVec q.1 q.2 =
+      (p.2 ⬝ᵥ q.1) • Matrix.vecMulVec p.1 q.2 := by
+    rw [Matrix.vecMulVec_mul_vecMulVec, Matrix.vecMulVec_smul]
+  have hQP : Matrix.vecMulVec q.1 q.2 * Matrix.vecMulVec p.1 p.2 =
+      (q.2 ⬝ᵥ p.1) • Matrix.vecMulVec q.1 p.2 := by
+    rw [Matrix.vecMulVec_mul_vecMulVec, Matrix.vecMulVec_smul]
+  have hPQP : Matrix.vecMulVec p.1 p.2 * Matrix.vecMulVec q.1 q.2 * Matrix.vecMulVec p.1 p.2 =
+      (p.2 ⬝ᵥ q.1) • ((q.2 ⬝ᵥ p.1) • Matrix.vecMulVec p.1 p.2) := by
+    rw [hPQ, Matrix.smul_mul, Matrix.vecMulVec_mul_vecMulVec, Matrix.vecMulVec_smul]
+  rw [expand, hPQP, hPP, hPQ, hQP]
+  simp only [Matrix.add_vecMulVec, Matrix.vecMulVec_sub, Matrix.vecMulVec_smul,
+    Matrix.smul_vecMulVec]
+  module
+
+#audit_axioms eUnit_conj
+
+variable (I A) in
+/-- **vdK's `π : St*(n, A) → GL(n, A)`** (2.4), `X(i, j) ↦ e(i, j)`. -/
+def piStar : StStar I A →* (Matrix I I A)ˣ :=
+  PresentedGroup.toGroup
+    (f := fun g : Gen I A => eUnit g.1.1 g.1.2 (mem_U.1 g.2).2)
+    (by
+      intro w hw
+      change IsRel w at hw
+      cases hw with
+      | add i j k h₁ h₂ h₃ =>
+          simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
+          change eUnit i j (mem_U.1 h₁).2 * eUnit i k (mem_U.1 h₂).2 *
+            (eUnit i (j + k) (mem_U.1 h₃).2)⁻¹ = 1
+          rw [eUnit_mul i j k (mem_U.1 h₁).2 (mem_U.1 h₂).2 (mem_U.1 h₃).2, mul_inv_cancel]
+      | conj p q hp hq =>
+          simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
+          have hc : eUnit p.1 p.2 (mem_U.1 hp).2 * eUnit q.1 q.2 (mem_U.1 hq).2 *
+              (eUnit p.1 p.2 (mem_U.1 hp).2)⁻¹ =
+              eUnit (conjPair p q).1 (conjPair p q).2 (mem_U.1 (conjPair_mem hp hq)).2 :=
+            eUnit_conj p q (mem_U.1 hp).2 (mem_U.1 hq).2 (mem_U.1 (conjPair_mem hp hq)).2
+          change eUnit p.1 p.2 (mem_U.1 hp).2 * eUnit q.1 q.2 (mem_U.1 hq).2 *
+            (eUnit p.1 p.2 (mem_U.1 hp).2)⁻¹ *
+            (eUnit (conjPair p q).1 (conjPair p q).2 (mem_U.1 (conjPair_mem hp hq)).2)⁻¹ = 1
+          rw [hc, mul_inv_cancel])
+
+@[simp] theorem piStar_X (p : (I → A) × (I → A)) (hp : p ∈ U I A) :
+    piStar I A (X p hp) = eUnit p.1 p.2 (mem_U.1 hp).2 :=
+  PresentedGroup.toGroup.of _
+
+#audit_axioms piStar_X
+
+/-- `e(ε_p, a ε_qᵀ)` is the elementary matrix `x_pq(a) = 1 + a E_pq`. -/
+theorem vecMulVec_single_single (p q : I) (a : A) :
+    Matrix.vecMulVec (Pi.single p (1 : A)) (Pi.single q a) = Matrix.single p q a := by
+  ext r s
+  rw [Matrix.vecMulVec_apply, Matrix.single_apply]
+  rcases eq_or_ne r p with rfl | hr
+  · rcases eq_or_ne s q with rfl | hs
+    · rw [Pi.single_eq_same, Pi.single_eq_same, one_mul, if_pos ⟨rfl, rfl⟩]
+    · rw [Pi.single_eq_same, Pi.single_eq_of_ne hs, mul_zero, if_neg (fun h => hs h.2.symm)]
+  · rw [Pi.single_eq_of_ne hr, zero_mul, if_neg (fun h => hr h.1.symm)]
+
+/-- **vdK 2.4 and 3.5 together:** `π ∘ φ` is the canonical projection
+`St(n, A) → E(n, A) ⊆ GL(n, A)`. -/
+theorem piStar_comp_phi :
+    (piStar I A).comp (phi I A) = (elementaryGroup I A).subtype.comp projection := by
+  apply PresentedGroup.ext
+  rintro ⟨p, q, hpq, a⟩
+  change piStar I A (phi I A (x p q hpq a)) =
+    ((projection (x p q hpq a) : elementaryGroup I A) : (Matrix I I A)ˣ)
+  rw [phi_x, piStar_X, projection_x]
+  apply Units.ext
+  change 1 + Matrix.vecMulVec (Pi.single p 1) (Pi.single q a) = 1 + Matrix.single p q a
+  rw [vecMulVec_single_single]
+
+#audit_axioms piStar_comp_phi
+
 /-! ### vdK Theorem 1 and the consumer-facing elements `X(v, w) ∈ St(n, A)` -/
 
 variable (I A) in
@@ -306,6 +434,9 @@ structure Elements where
   conj : ∀ (p q : (I → A) × (I → A)) (hp : p ∈ U I A) (hq : q ∈ U I A),
     elt p hp * elt q hq * (elt p hp)⁻¹ = elt (conjPair p q) (conjPair_mem hp hq)
   std : ∀ (p q : I) (hpq : p ≠ q) (a : A), elt (stdPair p q a) (stdPair_mem hpq a) = x p q hpq a
+  /-- `π(X(v, w)) = e(v, w) = 1 + v w`. -/
+  proj : ∀ (p : (I → A) × (I → A)) (hp : p ∈ U I A),
+    ((projection (elt p hp) : elementaryGroup I A) : (Matrix I I A)ˣ) = eUnit p.1 p.2 (mem_U.1 hp).2
 
 /-- vdK's Theorem 1 gives the elements `X(v, w) ∈ St(n, A)`: transport `X` along `φ⁻¹`. -/
 noncomputable def elementsOfTheorem1 (h : Theorem1At I A) : Elements I A :=
@@ -317,7 +448,15 @@ noncomputable def elementsOfTheorem1 (h : Theorem1At I A) : Elements I A :=
       rw [← map_inv, ← map_mul, ← map_mul, X_conj]
     std := fun p q hpq a => by
       rw [MulEquiv.symm_apply_eq]
-      exact (phi_x p q hpq a).symm }
+      exact (phi_x p q hpq a).symm
+    proj := fun p hp => by
+      have hc : piStar I A (phi I A (e.symm (X p hp))) =
+          ((projection (e.symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) :=
+        DFunLike.congr_fun (piStar_comp_phi (I := I) (A := A)) (e.symm (X p hp))
+      have he : phi I A (e.symm (X p hp)) = X p hp := e.apply_symm_apply (X p hp)
+      show ((projection (e.symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) =
+        eUnit p.1 p.2 (mem_U.1 hp).2
+      rw [← hc, he, piStar_X] }
 
 end Presentation
 
