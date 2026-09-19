@@ -221,3 +221,35 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+**Attempt (faithful point column transplant, swarm-0917-w14; OPEN).** This transplants the
+probability/random-walk habit of reading an operator through one random starting point to the regular
+representation of the host. The result is `steinberg-ore-domains-have-faithful-point-columns`, ESTABLISHED
+(unreviewed) with a self-contained route.
+
+- **Lemma.** A nonzero left Ore domain `C` inside `LC(X, k) ⋊ P`, or inside any ample groupoid algebra with
+  compact unit space, acts faithfully on the column of one point `x`. That is, `c |-> π_x(c) δ_e` is
+  injective.
+- **Proof idea.** The points killed by a nonzero `c` form a clopen set. Compactness plus the Ore condition
+  produce one nonzero `h` killing every column. The columns separate elements, so `h = 0`.
+- **Where it applies.**
+  - `dim V_n <= |B_P(mn)|` for Ore inputs, with no pattern count factor.
+  - So `B_Ω` alone, and every crossed product over a virtually nilpotent group of growth degree `D`, contains
+    no `F_2[Z^(D+1)]`, whatever the space. This includes exponential-complexity free minimal SFTs.
+  - The boundary factor is therefore needed for the input `Z^3` for every choice of `Ω`, not only for slow
+    `Ω`.
+- **Where it dies on (E).**
+  - Here `P = Z^2 × F_d`, and the orbit balls `B_P(mn)` grow exponentially. The count is vacuous at every
+    Ore input.
+  - What survives is the structural fact: any unital `F_2[Z^4] ⊆ B_Ω ⊗ L_∂` acts faithfully on a single
+    column `k^(Z^2 × F_d)` at some point `(ω, ξ)`, with the degree-`n` part supported on
+    `B_(Z^2)(mn) × B_(F_d)(mn)`.
+  - Turning this into a NO for `Z^4` requires a linear analog of the monomial tree-slab argument on that
+    column. Such an analog would also have to exclude `F_2[Z^2] ⊆ L(1,2)`, and so decide the direction
+    of `leavitt-commuting-units-are-algebraically-dependent`. The reason:
+    - `F_2[Z^2] ⊆ B_Ω` through the `v_p`, and tensor products of injective maps over a field are
+      injective.
+    - So `F_2[Z^2] ⊆ L(1,2)` would give `F_2[Z^4] ⊆ B_Ω ⊗ L(1,2)`.
+    - By the swarm's binary-Leavitt reduction, that is the same as an embedding in `B_Ω ⊗ L_∂`. That exclusion is the `F_2` shadow of Ara–Cortiñas Question 5.7
+    (arXiv:1108.0352v3, p. 8), which is open.
+  - So the attempt stops at that firewall.
+- **Status.** (E) stays OPEN.
