@@ -7,6 +7,13 @@ distinct_from:
   loop-braid-descending-links-are-increasingly-connected: that is the target (all of X_n highly connected); this is a stronger-in-one-degree statement about the q in {0,3} subcomplex Y, not implied by the target, which suffices for it via the Morse filtration
 artifacts:
   - research/artifacts/zp-loop-braid-forbidden-ring-push-reduction-2026-09-17.md
+  - research/artifacts/zp-loop-braid-isotropy-spectral-sequence-2026-09-17.md
+  - experiments/loop-braid-isotropy-2026-09-17/e2_row1.py
+  - experiments/loop-braid-isotropy-2026-09-17/e2_Y11_p3.txt
+  - experiments/loop-braid-isotropy-2026-09-17/e2_validation.txt
+  - experiments/loop-braid-isotropy-2026-09-17/e2_Y12_p3.txt
+  - experiments/loop-braid-isotropy-2026-09-17/om_homology.py
+  - experiments/loop-braid-isotropy-2026-09-17/om_homology_output.txt
 ---
 
 Notation is from the artifact §0–§1.
@@ -45,3 +52,18 @@ Evidence (artifact §6):
   Thm 3.10 step (★), "cut along α ∪ α' to get a smaller surface", has no analogue because annulus
   compatibility is a global unlink condition (artifact §7). The open sub-question there,
   one-ring pushes `b' = A_{vc}·b`, is the next step.
+- 2026-09-19 (swarm-0917-w19-w19-z-last1, family cohomology-index): **refutation test passed, CS
+  still open.** Artifact `zp-loop-braid-isotropy-spectral-sequence-2026-09-17.md`.
+  - Tool: the P-isotropy spectral sequence of Y. By Jensen–McCammond–Meier together with cabling,
+    E^1 is a subspace coefficient system U^q ⊂ H_q(P). Row 0 splits, because the domain is strict.
+  - Theorem A: CS at N = 11 forces H_2(Q_Y) = 0 and E^2_{1,1} = H_1(Q_Y; U^1) = 0 over every
+    field.
+  - A Čech resolution of W/U turns E^2_{1,1} into the cokernel of a finite linear map
+    (`e2_row1.py`). In degree 1 the script reproduces the §6 colimit ranks, including the N = 7
+    3-torsion anomaly.
+  - At N = 11 over F_3, which is the only nonvacuous characteristic, since
+    H_1(OM(K_7); Z) = Z/3: the target has dim 288, the rank is 288, and coker = 0. At N = 12 the
+    test is vacuous.
+  - Consequence: the N = 7 obstruction mechanism does not recur in the first new degree. The
+    spectral sequence gives no further information at total degree 2. This family cannot prove CS,
+    and a proof needs geometric input (the nerve, or the one-ring push).

@@ -1,0 +1,3 @@
+mode=Y n=12 |F|=0 d=2 p=3: target H_3(Q;C) dim = 0
+# run stopped by `timeout 1200` during the H_2(Q;B) bookkeeping loop.
+# The target is 0, so coker = 0 and the degree-2 row-1 test is vacuous at N = 12.
