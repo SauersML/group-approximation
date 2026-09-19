@@ -134,6 +134,29 @@ over hyperbolic lattices. (RA′) at Osajda's group is not touched.
   sit at the same place. **The measured problem at `G` is: does `G` preserve a probability measure on
   the boundary of its cuts?** (Heuristic; not proved.)
 
+### Precision: exactness does not decide the cut-boundary question (bh-ra-proof, 2026-09-19)
+
+- Take the full family of thick cuts. Its orientations are coarse ultrafilters, and they live on the
+  Higson corona. That corona can carry invariant measures for **exact** non-amenable groups.
+- **Example.** In `F_2 × Z`, the sequence `a_n = (1, n)` satisfies `d(λa_n, a_n) = |λ|` for every
+  `λ ∈ F_2 × {0}`, and likewise for `(1, m)`. So its Higson-corona limit is fixed by the whole group. A
+  Dirac measure there is invariant, and the stabilizer `F_2 × Z` is not amenable. So the corona action
+  of this exact group is not amenable. Amenability for exact groups holds on `βΛ`, not on coarse
+  coronas.
+- This fixed point sits exactly where the (RA) refuter over `(F_2 × Z) ∗ Z` puts its non-amenable
+  stabilizer (`rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`).
+- So the measured question at a group `Λ` is not "is `Λ` exact?" It is **"does `Λ` preserve a
+  probability measure on the orientation space of some rich cut family?"**
+  - For hyperbolic lattices the answer is no (this node).
+  - For groups with a non-amenable subgroup almost commuting with a sequence going to infinity (as in
+    `F_2 × Z`), the answer is yes.
+  - For Osajda's `G` it is open. It is torsion-free small cancellation, so centralizers are cyclic
+    (recalled). That excludes fixed corona points of this almost-commuting kind, but not invariant
+    measures in general.
+- Measured counterexamples that remain are forced to be tight spacetimes. Over `Λ_0 × Γ`, a subshift
+  whose restriction to one slab `Λ_0 × B_R` is injective is exactly a time lift of `Γ → Aut(slab shift)`,
+  by Curtis–Hedlund–Lyndon. That is bh-invent-16's automorphism face (targets T1 and T2).
+
 ## Lesson for general BH
 
 **Invariant measures on rigid subshifts live on codimension-one tight points.**
