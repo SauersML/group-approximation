@@ -1113,3 +1113,38 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   2. *Non-ring gluings.* Decide whether every genuine representation of `Gamma` is, up to a
      uniformly small `||.||_2` correction, a direct sum of ring shadows. That would reduce `(QC)`
      to step 1.
+
+### Every ring shadow satisfies the cone-cover head bound (swarm-0917-w17-w17-ptl-pull, transplanter, reframing, 2026-09-19)
+
+- **Attempt.** This is next step 1 of the previous entry, radical shadows, and the "uniform bound for all
+  ring-induced gluings" asked for in `leavitt-cone-head-bound-is-finite-congruence-gluing`'s lane. The
+  one-sided row group of the semisimple proof is replaced by a two-sided block root group
+  `{x_ik : i in I, k in K} = M_(10 x 10)(B)`.
+- **Result: a class kill, ESTABLISHED,** in two nodes.
+  - `char-two-root-displacement-is-two-sided-ideal-dominated`. For any ring with `2 = 0` and any unitary
+    representation of `St_n`, `n = p + r`:
+    `nu(Q)^2 <= 4/((1-1/p)(1-1/r)) sum_i nu(e_i)^2` whenever `Q in (e_1, ..., e_s)`.
+    - *Proof:* two-sided averaging turns one character entry into a degree-2 `F_2`-polynomial, which
+      equals 1 with probability at least 1/4 when it is nonconstant (Reed--Muller bound).
+    - *Check:* exhaustive, by `experiments/ring-shadow-head-bound-2026-09-17/verify_block_averaging.py`,
+      on six rings of order 4 and 8, radical ones included.
+  - `leavitt-cone-head-bound-holds-for-all-ring-shadows`. Every `rho` factoring through
+    `Phi_P : Gamma -> St_20(R_+ *_(R_0) R_-)` satisfies
+    `||rho(z) - 1||_2 <= sqrt(30) max_d L_d max_i ||rho(k_i) - 1||_2`, with no hypothesis on `B`.
+  - *Invariant:* `J(c)`, the largest two-sided ideal killed by a character `c` of the block root group.
+  - *Death step:* `1[q not in J(c)] <= sum_d 1[d not in J(c)]`, because the six defects generate every
+    finite shadow ring. Infinite shadows reduce to finite ones via
+    `positive-characteristic-steinberg-unitary-images-are-finite`.
+  - The radical-shadow survivor is dead.
+- **What survives.** Only *non-ring gluings*: genuine representations of `Gamma` that stay
+  quantitatively far from factoring through `Phi_P`.
+  - Each half is still a finite ring shadow of itself.
+  - The relators of `ker Phi_P ∩ K` (cross-commutators `[x_ij(a), x_kl(b)]`, `a in R_+`, `b in R_-`) are only
+    `delta`-trivial.
+  - So `(QC)` is equivalent to a stability statement for `ker Phi_P` inside `K`.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Decide whether `delta`-trivial cross-commutation relators force the
+  `x_13`-block spectral measure within `O(delta)` of that of some `St_20(P)`-representation.
+  - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
+    smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
+  - A *yes* proves `(QC)` by the node above.
