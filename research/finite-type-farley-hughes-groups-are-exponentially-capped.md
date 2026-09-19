@@ -8,6 +8,7 @@ distinct_from:
   finite-state-li-coded-full-groups-have-exponential-word-problem: that caps full groups coded by finite-state Li codings; this caps the Farley–Hughes finiteness engine itself, for any S-structure of finite type with finite structure groups, including domains taken up to equidecomposability.
   decidable-fp-groups-need-not-embed-in-rational-group: that shows the rational group does not host every decidable fp group; this shows finite-type Farley–Hughes groups act rationally on domain addresses, which explains why they inherit a cap.
   seed-evaluation-is-bounded-by-the-forcing-radius: that bounds seed evaluation by the forcing radius; this bounds it by a quadratic whenever the full group carries a finite-type Farley–Hughes structure seeing the seed.
+  rational-homeomorphism-subgroups-have-exponential-wp: that already proves the 2^O(n) word problem for finitely generated groups of rational homeomorphisms, which is the source of item 3; this adds only that finite-type Farley–Hughes structures act rationally on domain addresses, and the quadratic orbit and seed consequence.
 ---
 
 **ESTABLISHED** (lane bh-invent-03, 2026-09-19; elementary; not reviewed; no priority claimed). The mechanism is the
