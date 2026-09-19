@@ -98,7 +98,7 @@ theorem exists_injective_wreath_commutator [Finite X] [Nontrivial X]
   obtain ⟨_N, c, hc, hlen⟩ := exists_words ((↥V ⧸ commutator ↥V) × Bool) X
   have hsep : ConesSeparated c := conesSeparated_of_length hc hlen
   have hF : ∀ a b : ↥V ⧸ commutator ↥V, a * b = b * a := fun a b =>
-    mul_comm (a : Abelianization ↥V) b
+    mul_comm (G := Abelianization ↥V) a b
   let ρ : ↥(commutator ↥V) →* Equiv.Perm (Cantor X) := V.subtype.comp (commutator ↥V).subtype
   have hρ : Function.Injective ρ := Subtype.val_injective.comp Subtype.val_injective
   have hρC : ∀ s : ↥(commutator ↥V), ρ s ∈ ⁅V, V⁆ := fun s => by

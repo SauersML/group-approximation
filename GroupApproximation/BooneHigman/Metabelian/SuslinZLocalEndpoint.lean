@@ -48,25 +48,33 @@ namespace Absorption
 
 open Polynomial
 
+/-- The residual over one commutative ring `A`: if `SL_N(A) = E_N(A)` for `N ≥ 3`, take any
+`σ ∈ SL₂(A[X])` with `σ(0) = 1` and no transvection monic witness.  Then for every maximal `𝔪` at
+which `σ_𝔪` has no transvection monic witness over `A_𝔪`, `diag(σ_𝔪, 1) ∈ E₃(A_𝔪[X])`.  It is stated
+for a general `A`, so that `A[X]` takes its semiring structure from the ring structure of `A`.
+Written directly at `A = ℤ[1/m][x]`, `A[X]` elaborates through `Localization.Away`'s
+commutative-semiring instance, and `Matrix.det` then finds no `CommRing (A[X])`. -/
+abbrev suslinZLocal_BadAt (A : Type) [CommRing A] : Prop :=
+  (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary A N') →
+    ∀ σ : Matrix.GeneralLinearGroup (Fin 2) (Polynomial A),
+      Matrix.det (σ : Matrix (Fin 2) (Fin 2) (Polynomial A)) = 1 →
+      elementaryMatrixUnitMap (ι := Fin 2) (Polynomial.constantCoeff (R := A)) σ = 1 →
+      ¬ suslinZLocal_Witness σ →
+      ∀ (𝔪 : Ideal A) (_ : 𝔪.IsMaximal),
+        ¬ suslinZLocal_Witness (elementaryMatrixUnitMap (ι := Fin 2)
+            (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) σ) →
+        stabilizeUnit (R := Polynomial (Localization.AtPrime 𝔪)) (κ := Unit)
+            (elementaryMatrixUnitMap (ι := Fin 2)
+              (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) σ) ∈
+          elementaryGroup (Fin 2 ⊕ Unit) (Polynomial (Localization.AtPrime 𝔪))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZLocal_BadAt
+
 /-- **The residual.**  For `A = ℤ[1/m][x₁,…,x_k]` with `SL_N(A) = E_N(A)` for `N ≥ 3`, take any
 `σ ∈ SL₂(A[X])` with `σ(0) = 1` and no transvection monic witness.  Then for every maximal
 `𝔪` at which `σ_𝔪` has no transvection monic witness over `A_𝔪`, `diag(σ_𝔪, 1) ∈ E₃(A_𝔪[X])`. -/
 def suslinZLocal_BadStatement : Prop :=
-  ∀ (m k : ℕ), (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.SIntPoly m k) N') →
-    ∀ σ : Matrix.GeneralLinearGroup (Fin 2) (Polynomial (Chain.SIntPoly m k)),
-      Matrix.det (σ : Matrix (Fin 2) (Fin 2) (Polynomial (Chain.SIntPoly m k))) = 1 →
-      elementaryMatrixUnitMap (ι := Fin 2) (Polynomial.constantCoeff (R := Chain.SIntPoly m k))
-          σ = 1 →
-      ¬ suslinZLocal_Witness σ →
-      ∀ (𝔪 : Ideal (Chain.SIntPoly m k)) (_ : 𝔪.IsMaximal),
-        ¬ suslinZLocal_Witness (elementaryMatrixUnitMap (ι := Fin 2)
-            (Polynomial.mapRingHom (algebraMap (Chain.SIntPoly m k)
-              (Localization.AtPrime 𝔪))) σ) →
-        stabilizeUnit (R := Polynomial (Localization.AtPrime 𝔪)) (κ := Unit)
-            (elementaryMatrixUnitMap (ι := Fin 2)
-              (Polynomial.mapRingHom (algebraMap (Chain.SIntPoly m k)
-                (Localization.AtPrime 𝔪))) σ) ∈
-          elementaryGroup (Fin 2 ⊕ Unit) (Polynomial (Localization.AtPrime 𝔪))
+  ∀ (m k : ℕ), suslinZLocal_BadAt (Chain.SIntPoly m k)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZLocal_BadStatement
 
