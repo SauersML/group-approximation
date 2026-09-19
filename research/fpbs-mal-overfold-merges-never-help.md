@@ -45,6 +45,18 @@ artifacts:
   - experiments/fpbs-overfold-relative-rank-2026-09-17/top_vs_law_n6_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exact_multi_s3_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exh_n3_j3.txt
+  - research/artifacts/fpbs-overfold-exact-c-census-2026-09-19.md
+  - experiments/fpbs-overfold-exact-c-2026-09-17/deep.c
+  - experiments/fpbs-overfold-exact-c-2026-09-17/export.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/check_auts.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run12_j1_cap5.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run24a_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run24b_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j1_cap3.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j1_law5_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j2_cap3.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run20e_cap4.txt
   - research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md
   - experiments/fpbs-overfold-breaker-2026-09-17/pb.py
   - experiments/fpbs-overfold-breaker-2026-09-17/smallk.py
@@ -265,6 +277,43 @@ such as rank 2 and the single lawful component above.
 
     For the same reason, the 1-dimensional local-system bound on `law` does
     not bound `deep`.
+
+- **2026-09-19, swarm-0917-w17-w17-fp-last1 (census-computation).** Exact C
+  solver on the hardest known levels. No counterexample; the target stays
+  OPEN. Details are in
+  `research/artifacts/fpbs-overfold-exact-c-census-2026-09-19.md`.
+  - *Tools.* `export.py` writes instances, and `deep.c` searches them.
+    - The search is an exact breadth-first search over fold-closed
+      partitions, reduced by the lifted automorphisms of `Q`.
+    - `check_auts.py` verifies that those automorphisms are valid.
+    - The lawful-only mode reproduces every known `law` value.
+  - *Order-12 three-orbit Cayley level*, `(0,1,2,4,3),(1,0,3,4,2)` at
+    `j = 1` (`run12_j1_cap5.txt`):
+    - `law = 6`, and all-seed search is exhaustive up to 5 seeds, covering
+      793171 states and 114216624 extensions;
+    - so `deep = 6 = law`. w16 had only reached `deep ≥ 4`.
+  - *The two `n = 24` three-orbit levels with `law = 6`*,
+    `(0,1,3,2),(1,2,0,3)` and `(1,2,3,0),(0,2,3,1)`: `deep ≥ 5` for both
+    (`run24a_cap4.txt`, `run24b_cap4.txt`).
+  - *Census over the 54 Cayley levels of `local_cayley24_j1.txt`*
+    (`census.py`):
+    - at `j = 1`, `deep = law` exactly on every level with `law ≤ 5`;
+    - every level with `law ≥ 6` has `deep ≥ 4`, and the three `law = 6`
+      levels have `deep ≥ 5`;
+    - at `j = 2` (`V ≤ 256`), `deep = law` wherever `law ≤ 4`.
+  - *Lemma A (proved).* Fold consequences of a lawful pair are lawful, and
+    those of an overfold pair are overfold, because `Γ_j(Q)` is folded.
+    - Lawful identifications from overfold seeds therefore arise only by
+      transitivity, along cycles of overfold orbits through `Γ_j(Q)`.
+  - *Hanna Neumann counting is vacuous (proved).*
+    - The strengthened Hanna Neumann inequality for `H = ⟨K, seeds⟩` and the
+      rank-2 group `L_j` gives only `deep ≥ |p·L_j| − |p·L_{j+1}|`, summed
+      over components. That is the orbit-count bound.
+    - The other double-coset terms are unforced, since `L_j` is malnormal.
+    - So on towers with `o(|Q|)` orbits of `L_{j+1}`, this route cannot give
+      the floor.
+  - *Remaining.* The weak form `deep ≥ c · law` has to use the double-coset
+    restriction on seeds, or the cycle structure from Lemma A.
 - **2026-09-19, swarm-0917-w17-w17-fp-break (belief breaker): OPEN; no
   counterexample; (O) reduced to its level-0 part.** Details:
   `research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md`.
