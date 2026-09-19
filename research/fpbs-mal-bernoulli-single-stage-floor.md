@@ -467,3 +467,42 @@ Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
   - (D1) deep-label arguments.
 
   The claim stays OPEN.
+### swarm-0917-w15 (fp-pull): (D0) is proved; word chords never beat vertex merges, and the Sanov 3-adic tower is the witness
+
+- **Result 1.** [[fpbs-word-chords-are-dominated-by-merges]] is ESTABLISHED
+  through its route.
+  - Take a finite folded graph `Γ`, attach `k` arcs with any labels, and
+    fold. The identification induced on `V(Γ)` is the fold-closure of at most
+    `k − (E_Δ − V_Δ) ≤ k` pairs.
+  - The proof is a potential `|P| + E_Δ − V_Δ`, which no fold increases.
+  - The fold `Γ_Q^K` of the `K`-coset graph over a finite `Q` has three
+    vertices over each point. Its merges are exactly 2-of-3 seeds.
+  - So the least number of chords with arbitrary labels is `d(Q) = r(Q)`.
+    `rho_vs_r.py` checks the merge half, `ρ = r`, on 48 of 48 random levels.
+- **Result 2.** [[fpbs-profinite-relcost-equals-fold-seed-density]] is
+  ESTABLISHED through its route.
+  - For every essentially free profinite `X`, `relC(X) = σ_b(X)`. The route
+    re-derives the chord folding criterion and the clopen approximation
+    inline.
+  - The Sanov 3-adic action of `L` on `SL_2(Z_3)` is free, has transitive
+    levels, and is an expander tower (Selberg `(τ)`, Bourgain–Gamburd). So
+    Theorem S gives `σ_b > 0` for it.
+  - Abért–Weiss and Theorem M then give `Q_0 = relC(ρ) ≥ relC(Sanov_3) > 0`.
+    This is (D0).
+  - It refutes `fpbs-relative-fixed-price-free-pairs`, and the free-pair case
+    of `fpbs-relative-fixed-price-fg-pairs`. Those nodes are left for their
+    owners to update.
+- **Invariant.** The fold potential `|P| + E_Δ − V_Δ`. Every chord, of any
+  length and in any circuit, is charged to at most one vertex merge. This is
+  global, so the local bootstrap obstruction `bab ⊔ bbab` of w12 does not
+  apply.
+- **Where this claim still stops: (D1).** At depth `j ≥ 1`, `Q_j` allows
+  labels anywhere in `L`. The same potential gives the normal form
+  `H = Γ_j / cl(m pairs)` plus a Δ-part of excess at most `k − m`. The
+  target `t_j`-readings may pass through the Δ-part, and a single bridge can
+  serve many base points. So `k ≥ m` no longer bounds a depth-`j` seed number.
+- **Next step that can fail.** A rerouting inequality: move the
+  `t_j`-readings through the Δ-part into `Γ_j / cl(P')` with
+  `|P'| ≤ C(m + excess)`, where `C` does not depend on `j`.
+
+  The claim stays OPEN, with (D0) settled and (D1) open.
