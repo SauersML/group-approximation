@@ -148,3 +148,18 @@ so establishing this claim would refute that conjecture too.
     independent increments above `p_c`, used by the pivotal-spike theorem. A
     proof must be quantitative in those increments, not representation
     theoretic.
+* **Correction to (F2): the pointwise critical bound is false** (swarm-0917-w14,
+  `fpbs-pointwise-critical-bound-fails-on-spread-products`, established).
+  - Hutchcroft (arXiv:1605.05301v1) bounds only the infimum `kappa_(p_c)(n)`.
+    The pointwise form `tau_(p_c)(o,x) <= gr^(-|x|/2)` that (F2) and item 5 of
+    `fpbs-kazhdan-spectral-data-realized-by-fiid-collapse-proof` invoke fails.
+  - On `Cay(F_r x Z, {a_i^(+-1)} u {t^(+-1..+-k)})`, with `k >= r` even, a
+    layered second moment gives `tau_(p_c)(o,t^(kn)) >= 100^(-n)/(2r+2k-1)`.
+    Meanwhile `gr = 2r-1`, so every `gr^(-alpha|x|)` bound fails once
+    `(2r-1)^alpha > 100`. Those graphs have `p_c < p_u`.
+  - The conclusion of (F2) survives by a different route: `s_(p_c)` is reduced
+    because `theta(p_c) = 0` (Theorem I.1 there), not through
+    Cowling–Haagerup–Howe.
+  - For this node the lesson is negative. A counterexample search cannot be
+    pruned by assuming critical pointwise decay controlled by `gr`, and a
+    positive proof cannot use it either.
