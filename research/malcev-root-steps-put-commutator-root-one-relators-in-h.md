@@ -16,6 +16,8 @@ artifacts:
   - experiments/amalgam-segment-steps-2026-09-17/frontier-L14.txt
   - experiments/amalgam-segment-steps-2026-09-17/probe.py
   - experiments/amalgam-segment-steps-2026-09-17/vcs_triage.py
+  - experiments/amalgam-segment-steps-2026-09-17/census-L15.txt
+  - experiments/amalgam-segment-steps-2026-09-17/frontier-L15.txt
 ---
 
 **ESTABLISHED** (written proof, unreviewed) by
