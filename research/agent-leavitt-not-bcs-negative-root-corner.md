@@ -851,3 +851,33 @@ construction or refutation of (LNC2)-(LNC3).
 - **Next falsifiable step.** Lift (C1)-(C6) to `St_3(J)` or `St_20(R)`, that is, decide whether each relator is
   trivial in the Steinberg group or only central. If they are trivial, `Delta` is not LEF and every finite partial
   model of `P_z C[Delta] P_z` fails on an explicit ball.
+
+### Charges on the cone-cover kernel (swarm-0917-w14-w14-ptm-pull, obstruction-miner, cohomology-index, 2026-09-19)
+
+*Approach tried.* Measure the K-essential step of the Cuntz-cone cover `Γ = Δ_+ *_(Δ_0) Δ_- -> Δ` (landing-branch node
+`leavitt-cuntz-cone-halves-have-rf-amalgam-cover`) by an index or charge on the kernel `K`.
+
+*Result* (`leavitt-cone-cover-kernel-is-free-and-gamma-perfect`, established, unreviewed).
+- `K ≅ π_1` of the `Δ`-coset graph on `Δ/Δ_+ ⊔ Δ/Δ_-`, and `K` is nonabelian free.
+- `K = [K, Γ]`: halves perfect, and `H_2(Δ) = 0` by Khanh.
+- So every `Γ`-invariant abelian charge on `K` vanishes, and a representation of `Γ` in which `K` acts centrally (for
+  example by scalars) is a representation of `Δ`.
+- For unitary `M`, `H^1(Γ; M) ≅ M^(Δ_0)/(M^(Δ_+) + M^(Δ_-))` embeds in `Hom_Δ(K^ab, M)`. This uses (T) for the halves
+  and for `Δ`.
+- For `M = l^2 Δ` there is an explicit nonzero charge on
+  `kappa = [x_12(s_1), x_23(t_1)] z^(-1)`:
+  `1_(abΔ_0) - 1_(aΔ_0) + 1_(Δ_0) - 1_(aba^(-1)Δ_0)`.
+
+*Where it dies.* Scalar and central charges (relator counts, winding numbers on the coset graph, determinant or
+Fredholm-index homomorphisms) are zero on `[K, Γ] = K`. A central relaxation of the cover MF test is literally the test
+for `Δ`. The first nonzero linear charges take values in the regular representation of `Δ`, which is the object whose
+approximability is in question. So cohomology-index invariants of `K` add nothing unless they use `l^2(Δ_0\Δ)`-type
+coefficients.
+
+*Next falsifiable step.* For finite-dimensional unitary `Δ`-modules `M`, compute the two pieces that control
+`Hom_Δ(K^ab, M)`:
+- `M^(Δ_0)/(M^(Δ_+) + M^(Δ_-))`;
+- `ker(H^2(Δ; M) -> H^2(Γ; M))`.
+
+If both vanish for every such `M`, then every finite-dimensional linearisation of `K` is trivial, and the K-essential
+step is invisible to first-order (abelianised-kernel) MF arguments.
