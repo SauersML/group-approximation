@@ -1,0 +1,2 @@
+P a [1, 2, 0] b [2, 0, 1] law 2 K: alpha [1, 2, 0] tau [2, 0, 1] ok hits (level,law): [((2, 2), 1)] 
+j 2 d 3 K classes 1 total hits [((2, 2), 1)]

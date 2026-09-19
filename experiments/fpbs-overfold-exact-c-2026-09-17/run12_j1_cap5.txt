@@ -1,0 +1,11 @@
+V 96 n 12 seeds 144 auts 12 ALL SEEDS
+level 1: no goal; 144 extensions tested; 12 new states stored
+level 2: no goal; 1728 extensions tested; 828 new states stored
+level 3: no goal; 119232 extensions tested; 30595 new states stored
+level 4: no goal; 4405680 extensions tested; 793171 new states stored
+level 5: no goal; 114216624 extensions tested; 0 new states stored
+no goal within 5 seeds
+
+real	12m14.428s
+user	2m10.452s
+sys	0m0.351s

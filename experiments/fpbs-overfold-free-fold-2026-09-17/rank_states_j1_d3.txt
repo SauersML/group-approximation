@@ -1,0 +1,12 @@
+j 1 d 3 kmax 2
+(k, kind, rbar(J)-d, cover, hit): count
+  (1, 'law', 0, False, True) 5
+  (1, 'law', 1, False, False) 28
+  (1, 'over', 1, False, False) 688
+  (2, 'mixed', 0, False, True) 1
+  (2, 'mixed', 0, True, True) 5
+  (2, 'mixed', 1, False, True) 13
+  (2, 'mixed', 1, True, False) 1
+  (2, 'mixed', 1, True, True) 1
+  (2, 'mixed', 2, False, False) 22220
+  (2, 'mixed', 2, True, False) 1

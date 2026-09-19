@@ -1,0 +1,2 @@
+j 2 d 1 kmax 2 not split 0
+[((1, "J=K'"), 1), ((1, 0, True, 'law', 1), 2), ((2, 1, True, 'law', 1), 10)]
