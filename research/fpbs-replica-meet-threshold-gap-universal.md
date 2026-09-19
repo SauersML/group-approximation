@@ -49,3 +49,16 @@ indistinguishability and insertion tolerance.
   `F_2/F_2^(m) -> F_2`. See Section 3 of the artifact.
 
 ## Attempts
+
+1. **Calibration against the companion question [cap_inf] (2026-09-19,
+   swarm-0917 w14-bs-follow).** The hope was that `p_cap^(k) ↑ p_u`. Together
+   with BS, that would make this hole equivalent to BS. It is false.
+   - On `G = Cay(Z^2 * Z/2, {a^±1, b^±1, t})`, every `p_cap^(k) <= p_c(Z^2)`,
+     and `p_c(Z^2) <= 9/10` by an exact Peierls count. Yet `p_u(G) = 1`
+     (`fpbs-replica-meet-cap-inf-fails-free-products`, with artifact
+     `research/artifacts/fpbs/docs/replica-meet-cap-inf-counterexample-2026-09-19.md`).
+   - So any proof of this hole must find `p_c < p_cap^(k)` inside the relative
+     window of a thick amenable piece, not the nonuniqueness window.
+   - The hole itself stays **OPEN**, including on `Z^2 * Z/2`, where it needs
+     `p_c(G) < p_cap^(k) <= p_c(Z^2)`.
+   - [cap_inf] on one-ended graphs also stays open.
