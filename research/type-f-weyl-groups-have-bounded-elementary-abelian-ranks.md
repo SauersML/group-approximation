@@ -145,3 +145,14 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   generated homology. Survivors need `K` to act on `φ(U) ⊂ Hk` with infinite
   image. Open: a type `F` commensurated witness for `Z/2 ≀ Z` whose core has
   infinite index.
+- 2026-09-18 (w15-117, obstruction): proposed-established
+  `ascending-completions-give-only-virtually-cyclic-quotients`. The
+  BS(1,2)-style construction for `Z/2 ≀ Z` is impossible. If one letter `t`
+  contracts `Σ` into itself (`tΣt^{-1} ≤ Σ` of finite index) and
+  `F ⊆ (⋃_k t^{-k}Σt^k)⟨t⟩`, then `P = F/N` is finite or finite-by-`Z`.
+  The same holds for any cut-out `N = ρ^{-1}(K')` in an ascending tdlc
+  completion. No finiteness or torsion hypothesis is needed, so this also
+  excludes `U`, `V`, Grigorchuk's group and `Z^2`. Two contracting letters
+  (`Z[1/6] ⋊ Z^2`) already give `Z^2`. For `Z/2 ≀ Z` in general, every
+  lamp must be non-parabolic for both `τ` and `τ^{-1}`. Open: a two-sided
+  characteristic-`p` or non-linear completion.
