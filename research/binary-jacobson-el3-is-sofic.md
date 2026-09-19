@@ -163,3 +163,17 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
     which is why `psi` exists there.
   - **Survivors.** Partial lifts that do not globalize. Global lifts whose `L`-module is a non-split finitary
     extension.
+* **Contraction-trap soficity (swarm-0917-w14-w14-nh-follow, 2026-09-19). Class-kill; the claim stays OPEN.**
+  Recorded in `contraction-trap-groups-are-sofic` (ESTABLISHED, unreviewed).
+  - **Setting.** The non-LEF certificate for `EL_3(J)` on the landing branch is a map `Gamma_3 -> EL_3(R)`. Here
+    `Gamma_3 = T(F_6, phi_C) = < F_6, g, e | g x g^(-1) = phi_C(x), [e, x] = 1 >`, with `phi_C` injective of
+    rank 6 (Stallings, checked exactly) and `a1 notin phi_C(F_6)`.
+  - **Result.** Every such trap group `T(F, phi)` over a residually finite `F` with separable `phi^j(F)` is sofic and
+    hyperlinear. The kernel over `<g>` is an increasing union of copies of iterated centralizing HNN extensions
+    `M_m`. A separability-transfer lemma makes each `M_m` residually finite, and Elek--Szabo finishes.
+  - **Invariant.** The injective endomorphism `Ad g` of the hull of `F` in the model.
+  - **Step where every member dies.** "Injective, hence surjective." It holds in finite quotients, where it kills
+    the witness `[e, g^(-1) a1 g]`. It fails in sofic models, where by the universal group the witness stays far
+    from `1`.
+  - **Consequence.** A non-soficity proof for `E` must use relations outside every contraction-trap certificate,
+    such as relations inside `A` or property (T). The trap certifies non-LEF and nothing more.
