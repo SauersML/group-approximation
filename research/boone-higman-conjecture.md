@@ -705,6 +705,40 @@ presented.** See `linear-m11-bouquet-recursions-are-not-finitely-presented`.
 things: three or more state letters, a section of weight at least 2, or a two-letter section
 cycle. In each case the aim is that no finite-order loop has a section-closed letter block.
 
+**September 19: the amalgam obstruction extends to infinite edge groups and to polynomial
+recursions with any number of letters.** See
+`unit-weight-polynomial-recursions-split-over-loop-edges`.
+
+- *Lemma T* replaces one-endedness. Let `G` be fully self-replicating with a perfect,
+  transitive root group (such as `M_11`). Then every `G`-tree without inversions has a
+  vertex fixed by `G`, or an edge stabilizer that contains a coordinate copy `ι_y(G')`.
+- *Tree-of-factors obstruction.* Suppose the stable relators lie, up to conjugacy, in the
+  vertex factors of a tree of free factors of `F`, no edge factor maps onto a group
+  containing `ι_y(G')`, and no vertex factor maps onto `G`. Then `G` is not finitely
+  presented. The edge images may be infinite; the bouquet node needed them finite.
+- *Polynomial loop star.* This covers M_11 recursions with unit-weight sections (U) and
+  polynomial activity (Poly), with any number of letters and with section cycles such as
+  `s → t → s^{-1} → …`. The stable relators live in the lower-degree letters or in the
+  loop-graph components. The lower-degree centre maps into `Pol(d − 1)`, so it is proper
+  automatically. A component is harmless when its lower loops form a forest and its
+  rank is at most 1 (free split), or when its edge is small and its loop group is proper.
+- *Screen.* The screen covered 16,384 three-letter M_11 recursions in four families: chain,
+  fan, section cycle `s ↔ t`, and signed cycle. It killed 15,011 of them exactly, including
+  367 whose edge loops have no finite order `≤ 60` (so the bouquet obstruction cannot touch
+  them). The 1373 survivors all fail only (b). Each has a non-free loop component
+  containing `s, t, u` whose loops are transitive on levels 1–3, and in the 48 inspected
+  cases the level-2 image is full `M_11 ≀ M_11`. These are the first candidates on which the
+  amalgam argument genuinely fails, provided the loops generate `G`. The example is chain
+  with `(ps, pt, pu) = (a, a, e)` and no decorations.
+- Nontrivial loops are never finitary. So the bouquet node's design rule ("no finite-order
+  loop with a section-closed letter block") does not describe the obstruction.
+
+*Design rule (replaces the September 19 bouquet rule)*: a finitely presented unit-weight
+polynomial host needs a loop-graph component with `rank π_1 ≥ 2`, or a cycle of lower
+loops, that contains a top-degree letter and whose loops generate all of `G`. The other
+ways out are leaving (U), with a section of weight at least 2, or leaving (Poly), with
+exponential activity.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively
