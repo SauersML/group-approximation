@@ -165,6 +165,20 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     pinned and the tuples give no candidate.
   - *Next.* Search for tuples in which both flats eject their cluster point, and compare their
     `Π_{ab}`-classes.
+- **Joint shadow certificates see only vertex-free tuples** (w11-042,
+  `h4-i25-joint-certificates-refute-only-vertex-free-tuples`, established plus machine).
+  - *Vertex criterion.* With `c_01 = β_1α_2β_1^{-1}`, `c_12 = β_1^{-1}α_1β_1` and `c_20 = β_3α_1β_3^{-1}`, the
+    hexagon vertex `u_P` is a pure centre iff `c_P ∈ F·P_X` (for `P = 12`, iff `c_12 ∈ P_X·F`).
+  - *Shadow form.* In each fibred shadow, `ρ_a(b_P) ∈ Sol_a` iff `ρ_a(c_P) ∈ F^{(a)}_Y`.
+  - *Consequence.* Every multi-flat joint certificate, including w10's `Π_{ab}` pencil-loop matching, can
+    refute only tuples in which each `P` fails in some shadow.
+  - *Machine.* Double ejection is common. Exact Garside tuples with `|α| ≤ 1, |β| ≤ 2` and `|α| ≤ 2, |β| ≤ 1`
+    give 1224 and 1368 doubly ejected tuples, and zero-winding commutator searches give 368 more.
+  - *No mismatch.* Every doubly ejected tuple has a common ejecting pair. A Burau-hashed search, complete for
+    its word lengths (`|α| ≤ 2, |β| ≤ 2` and `|α| ≤ 3, |β| ≤ 1`: 91360 and 53156 genuine tuples, plus 14832 from a partial `|α| ≤ 1, |β| ≤ 3` run), finds 0 vertex-free tuples: every genuine tuple has a Garside-verified `c_P ∈ F`. So no
+    `Π_{ab}` mismatch occurs.
+  - *Next.* Prove (VC), that every Case 1 tuple has a pure centre among `u_01, u_12, u_20`; this would settle
+    Case 1. Otherwise, find a vertex-free tuple at longer words and only then run the joint test on it.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
