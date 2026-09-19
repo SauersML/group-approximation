@@ -2,7 +2,7 @@
 id: fix-classtransposition-presentation
 kind: route
 rg: 2
-title: "Fix GroupApproximation.ClassTransposition.Presentation.{Statement,Basic,Presented}: unprobed (Slurm blocked); Kourovka 17.61 reduced to two open claims"
+title: "Fix GroupApproximation.ClassTransposition.Presentation.{Statement,Basic,Presented,ShiftFC}: unprobed (Slurm blocked); Kourovka 17.61 reduced to two open claims"
 target: class-transposition-relations-present-ct-p-z
 status: OPEN
 ---
@@ -39,3 +39,13 @@ Neither is formalized. So `kourovka_17_61` is **not** provable outright from thi
 **Resolve when.** A trusted build (`gqprobe-lean.sh`) of
 `GroupApproximation.ClassTransposition.Presentation.Presented` is green and those bytes are on main.
 This node then covers only the module. The mathematical debt stays on the two claim nodes.
+
+**Added 09-19: `.../ShiftFC.lean`** (Mathlib only). Lemma FC of
+`ct-p-z-is-finitely-presented-by-position-shifting`, abstractly:
+- `fc_of_base`: the base far-commutation relations at positions 1–2, together with the shift
+  definitions (D), imply every far-commutation relation;
+- `window_of_base`: a shift-invariant window family holds at every position once it holds at
+  position 2.
+
+This is the group-theoretic core of the elementary finite presentation of `CT_P(Z)`. It does not
+depend on the transposition presentation. The module is unprobed and not root-wired.

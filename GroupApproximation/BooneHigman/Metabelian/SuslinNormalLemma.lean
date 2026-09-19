@@ -54,7 +54,7 @@ theorem suslinNormal_decomposition (u v w : ι → A) (huv : u ⬝ᵥ v = 1) (hw
   funext m
   simp only [suslinNormalTerm, Finset.sum_apply, Pi.smul_apply, Pi.sub_apply, smul_eq_mul,
     mul_sub, Finset.sum_sub_distrib]
-  have hA : ∀ p, ∑ q, u p * w q * Pi.single q (v p) m = w m * (u p * v p) := by
+  have hA : ∀ p, ∑ q, u p * w q * (Pi.single q (v p) : ι → A) m = w m * (u p * v p) := by
     intro p
     rw [Finset.sum_eq_single m]
     · rw [Pi.single_eq_same]
@@ -63,7 +63,7 @@ theorem suslinNormal_decomposition (u v w : ι → A) (huv : u ⬝ᵥ v = 1) (hw
       rw [Pi.single_eq_of_ne' hqm, mul_zero]
     · intro hm
       exact absurd (Finset.mem_univ m) hm
-  have hB : ∑ p, ∑ q, u p * w q * Pi.single p (v q) m = u m * (w ⬝ᵥ v) := by
+  have hB : ∑ p, ∑ q, u p * w q * (Pi.single p (v q) : ι → A) m = u m * (w ⬝ᵥ v) := by
     rw [Finset.sum_comm, dotProduct, Finset.mul_sum]
     refine Finset.sum_congr rfl (fun q _ => ?_)
     rw [Finset.sum_eq_single m]
