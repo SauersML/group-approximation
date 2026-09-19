@@ -1,0 +1,3 @@
+j 1 d 4 (matching, max class, rbar(J)-d): count
+  (False, 3, 1) 844
+  (True, 2, 1) 7856

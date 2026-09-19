@@ -45,6 +45,32 @@ artifacts:
   - experiments/fpbs-overfold-relative-rank-2026-09-17/top_vs_law_n6_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exact_multi_s3_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exh_n3_j3.txt
+  - research/artifacts/fpbs-overfold-free-fold-2026-09-19.md
+  - experiments/fpbs-overfold-free-fold-2026-09-17/freefold.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/bfs_free.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_law0.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/law_census.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/census_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/all_single.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j1_d5.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j1_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j2_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/single_stats.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j1_d5.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j2_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j3_d2.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/level2.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/l2_j1_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/l2_j1_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/retract_test.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rt_j1_d3.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rt_j2_d2.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_nonsplit.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_nonsplit.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rank_states.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rank_states_j1_d3.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/matching.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/matching_j1_d4.txt
   - research/artifacts/fpbs-overfold-exact-c-census-2026-09-19.md
   - experiments/fpbs-overfold-exact-c-2026-09-17/deep.c
   - experiments/fpbs-overfold-exact-c-2026-09-17/export.py
@@ -277,6 +303,55 @@ such as rank 2 and the single lawful component above.
 
     For the same reason, the 1-dimensional local-system bound on `law` does
     not bound `deep`.
+- **2026-09-19, swarm-0917-w17-w17-fp-pull (reframer + compute scout):
+  OPEN; one lemma proved, one route killed, exact checks made
+  `Q`-universal.** Details are in
+  `research/artifacts/fpbs-overfold-free-fold-2026-09-19.md`, with scripts
+  in `experiments/fpbs-overfold-free-fold-2026-09-17/`.
+  - **Free-fold form (proved, Proposition 1).** Let `K` have index `d` in
+    `L_{j+1}`. A seed is a vertex pair of `Γ_K`, and `J = ⟨K, g_1..g_k⟩`
+    is the result of `k` seed folds. Call `J` realizable if
+    `J ∩ L_{j+1} = K`, and a hit if `[L_j : J ∩ L_j] = d`.
+    - (F) says: every realizable hit has `rk(J ∩ L_j : K) ≤ k`.
+    - (O) implies (F), using M. Hall's theorem to build a finite-index
+      `S ⊇ J` with `S ∩ L_j = J ∩ L_j`.
+    - (F) implies (O) on every `L_j`-orbit that is a single
+      `L_{j+1}`-orbit, in every finite `Q`.
+    - So exact checks of (F) at fixed `d` hold for all `Q`, of any size.
+      They do not reach cross-orbit levels.
+  - **Exact verification.** Two scripts do the checks:
+    - an all-class single-seed scan, `all_single.py`: 0 realizable
+      overfold hits for `d ≥ 2`;
+    - an exact two-seed BFS on the three law-3 classes at `d = 6`,
+      `level2.py`: no law-3 `K'` is reached.
+
+    Together they give (O) on coincident orbits of size `d ≤ 6` for
+    `j = 1`, and `d ≤ 4` for `j = 2`, in every finite `L`-set.
+  - **No-drop lemma (proved, Lemma 2).** Every hit has
+    `δ = rk K + k − rk J ≥ 1`.
+    - Suppose `δ = 0`. Hopficity gives `J = K * ⟨g⟩` and
+      `J = K' * ⟨g⟩`, because `rk K = rk K' = d + 1`.
+    - Killing the `g_i` then maps both `K` and `K'` isomorphically onto
+      the same quotient, so `K = K'`.
+    - That is impossible, since `[L_j : L_{j+1}] = ∞`.
+  - **Conjecture (R)** is the missing input for the level-1 case of (O),
+    which is `deep = 1 ⇒ law = 1`, for all `j` and `d`.
+    - (R) says a realizable single overfold seed with `d ≥ 2` never drops
+      rank. Lemma 2 then does the rest.
+    - It is checked for `j = 1, d ≤ 5`; `j = 2, d ≤ 4`; `j = 3, d ≤ 2`.
+    - It is false at `d = 1`, where it is harmless.
+    - Two proof routes fail on the data: the closure is not a matching of
+      the tree type, and SHNC equality does not force finite index.
+  - **Conjecture (O')** is `law(K') ≤ δ(J)`. It implies (F). There are 0
+    violations in the depth-2 runs.
+  - **Where it dies: the retract route (G) is false.** (G) says `K'` is a
+    retract of every witness `J`, or a free factor, or split in `H_1`.
+    - The first law-2 level already refutes it: `j = 1`, `Q = Z/3` with
+      `a = +1` and `b = −1`, so `law = 2`.
+    - Two seeds give `J = S`. The map `H_1(K') → H_1(S)` has determinant
+      −4, computed independently by Reidemeister–Schreier in
+      `check_nonsplit.py`.
+    - So no proof of (O) can go through a map `J → K'` that fixes `K'`.
 
 - **2026-09-19, swarm-0917-w17-w17-fp-last1 (census-computation).** Exact C
   solver on the hardest known levels. No counterexample; the target stays

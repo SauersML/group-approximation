@@ -1,0 +1,4 @@
+P a [1, 2, 3, 4, 5, 0] b [2, 0, 1, 5, 3, 4] law 3 K: alpha [1, 2, 3, 4, 5, 0] tau [5, 0, 1, 2, 3, 4] ok hits (level,law): [((2, 2), 2)] 
+P a [1, 2, 3, 4, 5, 0] b [2, 0, 4, 5, 3, 1] law 3 K: alpha [1, 2, 3, 4, 5, 0] tau [2, 3, 4, 5, 0, 1] ok hits (level,law): [((2, 2), 1)] 
+P a [1, 2, 0, 4, 5, 3] b [2, 0, 3, 5, 1, 4] law 3 K: alpha [1, 2, 0, 4, 5, 3] tau [4, 5, 3, 0, 1, 2] ok hits (level,law): [((2, 2), 1)] 
+j 1 d 6 K classes 3 total hits [((2, 2), 4)]
