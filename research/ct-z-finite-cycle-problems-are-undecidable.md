@@ -264,3 +264,17 @@ Theorems 3 and 6, used exactly as printed.
 **Flag, per the coordinator.** The bh-free-58 hand-off `gq-bh-bh-free-58-kourovka-state-2026-09-19` lists 06eb299b0 correctly as **PASS** (e2b397604f). What is still **unreviewed** is `ct-z-orbit-transversal-dichotomy-is-collatz-hard` (7b84a747f).
 - The PASSes of 06eb299b0 and bc9e6452b import its items 1–2 (`ν_(G_T)(N) = o(N)`; orbits of `G_T` correspond to 3x+1 components).
 - It should be refereed next.
+
+**Prior-solution check (bh-ref-q11, 2026-09-19).** None found. So this node is a new result, not an independent rediscovery.
+- **Kourovka Notebook** arXiv:1401.0300v46 (1 Sep 2026, the latest edition). 21.73 and 21.74 (S. Kohl, 21st issue) have no asterisk and no comment. The Archive of Solved Problems does not list them.
+- **arXiv.** All papers with "class transposition(s)" or "residue-class-wise" in the abstract: 2401.15642, 2409.13341, 2504.08595, 2604.12553 and 2607.17477 (which solves other Kourovka problems). None treats conjugacy, cycles or undecidability in `CT(Z)`.
+- **Kohl's papers.**
+  - Math. Z. 264 (2010) introduces `CT(Z)`.
+  - J. Group Theory 20 (2017) gives the Collatz groups `G_C` and `G_T`.
+  - The RCWA manual: its "respected partitions" and tameness are a different question.
+  - None of these decides 21.73 or 21.74(b),(c).
+- **Belk–Bleak–Matucci–Zaremsky.** Neither the survey (arXiv:2306.16356v3, full text searched) nor BBMZ mentions `CT(Z)` or RCWA groups.
+- **The nearest precedents,** to be credited as analogues:
+  - Salo (arXiv:2011.07827), conjugacy in `2V`;
+  - Belk–Bleak (arXiv:1405.0982), undecidability results for `2V`;
+  - Kari–Ollinger 2008 and Morita 1996 for the machine inputs.
