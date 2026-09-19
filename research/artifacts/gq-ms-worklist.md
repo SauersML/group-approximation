@@ -7,7 +7,7 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 
 ## L. LIVE COUNT: rows NOT yet unconditional (ms-map keeps this current)
 - NM: 717 rows. 658 complete (528 formalized + 75 definition + 55 structural). 22 partial. 37 attribution/provenance (6 of them assert mathematics).
-- SK: 228 rows. 211 complete (166 formalized + 26 definition + 19 structural). 1 open. 16 attribution (7 of them assert mathematics: S2–S5).
+- SK: 228 rows. After batches b000f0610 and 642f73677 (census regen pending): 213 complete (168 formalized + 26 definition + 19 structural), **0 open**, 15 attribution. Of those, 5 assert mathematics (S2–S4) and 1 is 768ac9454e9b (S1, now attribution).
 - Build caveat: no endpoint module of either note has a green MSI build on current main. Slurm has been blocked since 09-18 20:55 (item C).
 
 | # | census | rows (key @tex line) | what is owed | owner(s) |
@@ -16,16 +16,17 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 | N1a | NM | the same 8aead549f1fe, 4895f03fdf5f | 29 Osin 9.4 register lines (alternative route); they collapse once hG has a closed producer (plan 66d8a812c) | **nm-osin94** |
 | N2 | NM | 7 route rows: 1d0f9a56866c, fd026a61f84f, 46f3810145ee, 5079b22a3633 @1510; 07ab0fbe6cfc, 3468c60b2946, 6baf73489057 @1685 | proved at source (Full/NMRegradeA over NM19, f7e7fbf92). Unprobed and not root-wired, so HELD partial (691b03881) | probe: ms-nm-partial-a; wire + flip: ms-map |
 | N3 | NM | literature claims in attribution rows: 14ee41b7f3cc@312 (BK97 NF iff nuclear + inner QD), de554b7cd342@338 (Kun, Kun–Thom), 9e2046c330c8@338 (Bachner–Dogon–Lubotzky), a494a9e94d28@338 (Eckhardt) | not used by any proof. They need Lean statements and proofs, or a census-owner ruling that they are background. | UNOWNED: needs a lane (ms-map triage) |
-| N3a | NM | afe1782dc7bc@1273 (AGP facts), 27e0c2f96db3@305 (Fournier-Facio route) | AGP: `manuscriptAGPInputs` is a proved theorem, so regrade (ms-map batch 2). 27e0: cites TheoremC.LiteratureInputs, to triage. | ms-map |
+| N3a | NM | afe1782dc7bc@1273 (AGP facts) | `manuscriptAGPInputs` is a proved theorem; regrade attribution → formalized (NM batch 2) | ms-map |
+| N1b | NM | 27e0c2f96db3@305 (attribution; builds Q from Fournier-Facio) | cites TheoremC.LiteratureInputs, a hypothesis bundle (Chiodo, Kotowski–Ollivier, FF Prop 2.3, Minasyan–Osin, Hull 7.4). It is inhabited only `_of_greendlinger` (TorsionFreeEndpoints/Closed), so it rides the waist. | nm-gl06e/nm-gl03d; regrade ms-nm-uncond-b |
 | N4 | NM | 512b53c80bd2@1604 | re-pointed to printedBilateralThreeRootAddition_closed (691b03881); needs census regen only | ms-map (E) |
-| S1 | SK | 768ac9454e9b@733 (finitely presented case, K₂) | stable K₂(L_2(F₂)) = 0: two-generator Gersten (skLoc_GerstenTwoStatement) and localization Core-B (skLoc_LocalizationStatement), LVPolyK2/Localization 00afa9438 | **sk-k2-gersten**, **sk-k2-loc**, led by ms-sk-uncond-a |
+| S1 | SK | 768ac9454e9b@733 (finitely presented case) | open → attribution (642f73677, coordinator decision: a citation of Caprace–Rémy plus an open problem, used by no theorem). The K₂ route (LVWire/Chain; skLoc_GerstenTwo, skLoc_Localization) stays as partial evidence, off the count. | sk-k2-gersten, sk-k2-loc (optional), ms-sk-uncond-a |
 | S2 | SK | 3eaee0a2dc7e@307 (Matui), e5932a45f053@724 (Grigorchuk–Medynets) | topological full group layer: Matui generation (1–3 kLOC), then effective generation and WP ⇔ recursive | **sk-tfg** |
 | S3 | SK | fc84c012b409@477, clause (b) | rides the GL waist (N1) | nm-gl06e/nm-gl03d; regrade ms-sk-open |
 | S4 | SK | aaf5fe1a98c3@63 (Arzhantseva ARF), 9fe4e2896405@447 (Boone–Higman in Thompson's form) | proved in SkOpen (e7fff6d62), unprobed | probe: ms-sk-open; regrade: ms-map |
-| S5 | SK | 503221e301f6@309 (Stepanov), 8212b1470040@473 (Kionke–Schesler) | closed decls exist; regrade attribution → formalized | ms-map (SK batch) |
+| S5 | SK | 503221e301f6@309 (Stepanov), 8212b1470040@473 (Kionke–Schesler) | DONE at source: graded formalized in b000f0610; census regen pending | ms-map (E) |
 | S6 | SK | 91 formalized rows audited only in unwired SKAttestA/B | module green, then root wiring | probe: ms-sk-uncond-a (A), ms-sk-uncond-b (B); wire: ms-map (armed watcher) |
-- Totals. NM: 15 math-open (N1) + 4 unowned literature (N3) + 11 pending build/census (N2, N3a, N4).
-- SK: 4 math-open (S1, S2 ×2, S3) + 4 pending build/census (S4, S5), plus 91 rows pending build attestation (S6).
+- Totals. NM: 16 math-open (N1 ×15, N1b) + 4 unowned literature (N3) + 9 pending build/census (N2 ×7, N3a, N4).
+- SK: 3 math-open (S2 ×2, S3) + 4 pending build/census (S4, S5), plus 91 rows pending build attestation (S6). SK open count: 0.
 - Not owed (history/provenance sentences, census-owner grading): NM 31 attribution/provenance rows; SK 9 attribution rows (5c1d, 7fa0, 54e3, 8339, b67f, 2745, 1e63, 5c45, a51f).
 
 ## B. ZONE B IS FREE (09-19 10:30)
@@ -39,7 +40,7 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 - Still check `git log -3 origin/main -- <file>` before editing: if the other session resumes, the 2-hour rule applies again.
 
 ## C. Build status
-- $GQ/state/SLURM-BLOCKED: since 09-18 20:55 every sbatch fails with AssocMaxSubmitJobLimit, and gqprobe-lean.sh answers DEFERRED. NO Lean verdict exists for either note's endpoints on current main.
+- sbatch is still rejected (AssocMaxSubmitJobLimit, 09-19 10:38). Since 09-19 (user: "direct ssh go") gqprobe-lean.sh v5 builds DIRECTLY on acn112, pinned to cores 120-127, and SLURM-BLOCKED is gone. So probes work again. NO Lean verdict exists yet for either note's endpoints on current main.
 - ms-map's endpoint probe (SK Full.Root.Manuscript, AbstractIntro.MainProof; NM TorsionFreeEndpoints.Closed, OneSidedMFRadical endpoints) never built: the VPN outage hit it, then the v2 and v4 moves. It is NOT re-queued, because ms-green-sk and ms-green-nm cover the same closures and will probe once when the flag clears.
 - Partial evidence: batch 1338076 (09-18 21:13, base e6c93a1fe, TIMEOUT) finished 1303 NM-closure modules with 0 `error:` lines (ms-green-nm).
 
@@ -50,7 +51,9 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
   - sentence_census.py, --verify-decls and --verify-unconditional, with --badges-need-rows as in CI;
   - sk_sentence_census.py --merge.
   Outputs go to work/ms-map/census/out/<stamp>/ and ms-map lands them after review.
-- Next batches: SK (S5; S4 after green); NM (N3a; N2 after green; nm-osin94 rows as they come).
+- SK batch 1 = b000f0610 (S5: 503221e301f6 and 8212b1470040 graded formalized in zz-full-sk16, plus 2 override drops).
+- Regeneration run 1 is in progress (09-19 10:38, base b000f0610). It runs directly on the node (1 process, cores 120-127, nice 19) because sbatch is rejected.
+- Next batches: SK (S4 after green); NM (N3a; N2 after green; nm-osin94 rows as they come).
 
 ## A. Endpoint status (read 09-18; section L supersedes the counts)
 
@@ -152,6 +155,19 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 
 10. [ms-map] ROOT WIRING for green manuscript modules (NMRegrade*, NMUncond*, SKAttest*, K2Colimit/K2Product), after a cyclecheck, together with the worklist upkeep.
    - ms-sk-uncond-b 09-19: wiring SKAttestA.{General,Intro} + SKAttestB.{LEFHosts,WordProblems} (after green) root-attests 91 more SK rows; list in work/ms-sk-uncond-b/all/rows-needing-wiring.tsv.
+   - ms-sk-uncond-b 09-19, the 91 rows (key:tex line) that become root-attested when SKAttestA.{General,Intro} and SKAttestB.{LEFHosts,WordProblems} are wired after a green probe:
+     2e0bf7506f2a:33 5b6a5a222cdd:54 6e81aea57b64:57 34bf973db4c8:76 8e2fecfd278a:78 f3342a6d3614:115 cbcaca37b5ec:117 c873cc5ffa5b:125 10c6704796c1:184 
+     47723a292327:234 f7fd3c8f31ea:257 f7414546517d:259 128014aac9d0:261 d0c1d6b200d3:262 5ce2f653f637:273 18ac299bc474:276 16fd7b95d922:279 
+     2b5ba855ed5c:292 ebd3562205bb:294 8269b12fdd2c:302 98c0dc44dff3:321 aae3dce58326:322 fe0b43aae359:325 dc18fb5cd4e3:327 a339b883c9d3:331 
+     7c94ad64771a:333 0b0cbb3733fe:334 10c9c86a2224:336 8624ac81bcce:338 f43470fad63f:349 5b15f5d8faae:350 879174153d4e:359 4d2e3277d31f:360 
+     0fd8cf7d1eed:362 2ffe206d32dd:369 63b955601626:371 e0aae9c0b4eb:373 72e70d46a29f:375 a62656a98556:378 eaea133373a7:383 769f446cc3f5:388 
+     0f50f8a77012:394 4f364612bc6c:396 97d4813d2d34:397 0475e15cae3f:400 21987895ad32:402 6a7d80148886:410 6ba1d861e3e3:411 c7a82dda7b3a:413 
+     2bbbe17ed1de:415 3c6fe3cf8fbe:438 3597b9cfdaff:454 cc439ae277d4:464 9b1a6e7489a1:466 73a7e1f78cbb:486 597b938ffe5c:490 72824238072d:495 
+     8b9c8012260d:497 b4a7b7c6fe7a:499 d00f0309aff7:502 bfda87b78048:504 e4fdf594781d:508 f5195da75a78:509 91ec6641e988:513 ef91849e35eb:515 
+     2c6ae3ce7655:519 59fd8ce03585:522 ac91c158ed24:542 a8760ee6d3af:544 2bcb951d302e:547 bd0a4c539428:552 cdb7675d1521:567 ba51377f43f6:569 
+     66cb283340f3:580 e6ac216a5107:594 6ca89f8e4ff1:619 86b1b005fc2a:647 edd233afbf7b:672 d8731f9b0b15:684 09c0f2ecb56e:687 614923742ac7:693 
+     5092adf162d8:696 229c4a7b2e24:698 5959e4fd6209:702 aa090b172df4:708 4ee0770eb47c:711 a686ac809830:712 ebffe49fd098:716 af3a1cf3d48e:719 
+     e19e0d3328ad:730 b3fbc4494a6c:735
 
 11. [unowned; take when free] REFEREE of the other session's waist reduction. Read-only.
     - Is `relativeGreendlinger_zero_of_allCells_of_core` built and #audit_axioms-clean?
@@ -179,3 +195,7 @@ CLAIMED ms-sk-uncond-a 2026-09-18 15:35 CDT. New dir Full/LVPolyK2/ (registered 
 - [ms-nm-uncond-a 16:40] item 8 DONE: live detector gives 0 NEW / 0 STALE / 78 ACCEPTED, all at l.1604 (inlined bilateral-three), l.2135 and l.2149 (waist family), nothing at l<=1300 (c26d53b50). WO-NM14-2 is already proved by NM19 Full/AtomRepresentatives; only the census regrade (item 0) is owed, and ms-nm-partial-a is staging it.
 - ms-nm-partial-a (09-18 21:05): accepted the ruling (WO-NM14-3 only). ms-nm-uncond-a: my Full/NMRegradeA/TransientAtomSentences.lean (on main, unprobed) already restates the 4 WO-NM14-2 sentences over NM19. Draft census rows: $GQ/work/ms-nm-partial-a/rows-for-ms-nm-uncond-a.tsv. Consume or supersede them, as you prefer. WO-NM14-3: InvolutionAtomBlocks on main; probe queued; SLURM-BLOCKED.
 - [ms-nm-uncond-a 09-19] Register lines hhard (lem:saturation) and hroot (bilateral-three): closed in Lean on main, owed only as map-row edits (d47b29ce6). STAGED rows and remove-lists in work/ms-nm-uncond-a/metadata (row 2f55113239ce) and work/ms-nm-uncond-b/metadata (row 512b53c80bd2). They need the item-0 metadata lander, then a census regeneration and a detector re-run on MSI. The other 29 lines are nm-osin94's; please stage removals as remove-lists too.
+- ms-sk-uncond-b 09-19, census entry for ms-map (row 3eaee0a2dc7e, tex l.307–309, Matui): add the decls
+  `GroupApproximation.Full.StepanovMatui.Matui.printedMatuiRemark`, `...Matui.printedMatuiRemarkSubshift`, and
+  `GroupApproximation.Full.SKTFGMatui.matuiDerivedFullGroupSimple` (landed 9907951763, unprobed, not wired). Keep the grade
+  `attribution` (fidelity note on board/sk-tfg.md). Wire SKTFGMatui.Simple only after a green probe.
