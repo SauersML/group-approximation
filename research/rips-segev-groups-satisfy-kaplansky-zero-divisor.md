@@ -407,3 +407,30 @@ the Kaplansky zero-divisor conjecture."
      a counterexample: it leaves at least 33 lines untouched.
    - Next step: prove the linked-cycle lemma for 15 or more copies, via an outermost copy.  Also handle
      `u(1) + w(1) != 0`, where the chain has rays along the cosets with `f_T(1) != 0`.
+
+24. **Two-layer elements have no left annihilator (proposed established; `rips-segev-two-layer-elements-have-no-left-annihilator`).**
+   - The previous item reduced the half `u(1) + w(1) = 0` to a linked-cycle lemma, known for at most 14 copies.
+     Both halves now close: `alpha (u + w b^{±1}) = 0` with `w != 0` forces `alpha = 0`, in `k[G]` for every
+     field `k`.
+   - *Hopping lemma, every `N`.*  In any finite family of distinct copies carrying nonzero cycles, some copy has at
+     least three lines of its cycle support untouched by the others.
+     - Otherwise walk through the cycle supports, leaving the current copy at the first touched coset among the
+       3rd, 4th and 5th.  The walk closes into a cyclically non-backtracking loop.
+     - Its label is a cyclically reduced relation of `K`.  Greendlinger's arc (`> 5 gamma/8` syllables) puts
+       13 consecutive `b`-edges of it into one copy.
+     - Those 13 edges contain 3 consecutive edges, spanning 4 cosets, of each of two distinct copies.  Two distinct
+       copies share at most 3 cosets.
+   - *Removing `u(1) + w(1) = 0`.*  The edges `y <a> -- y b <a>` with `(alpha w)(y) != 0` form a graph in which
+     every active coset has degree `>= 2`.
+     - A leaf 2-edge-connected block carries a nowhere-zero flow over `k(s)`.  Filled along the cosets, it is a
+       nonzero cycle that splits over copies as before.
+     - Away from the block's bridge end, every port edge carries the cycle.  So untouched lines there are pure,
+       and rows allow at most one per copy.  With the bridge end, that makes at most two, which the hopping lemma
+       excludes.
+   - This closes the line of `N`-copy attempts (items 13–15 and the linked-cycle reduction) for left
+     annihilators.  By `g -> g^{-1}`, elements `u' + b^{±1} w'` have no nonzero right annihilator.
+   - Next step: the other side, `(u + w b) alpha = 0`.  Equivalently, left annihilators of `w' + b u'`, with `b`
+     to the left of the coefficient.
+     - The edge equation becomes `X(b z) = -Y(z)`, linking right cosets `<a> z` to `<a> b z`.
+     - The copies are left translates, with lines in left cosets, so the port graph has to be rebuilt.
+     - After that comes `b`-degree at least two.
