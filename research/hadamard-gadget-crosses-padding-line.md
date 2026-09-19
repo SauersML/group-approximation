@@ -77,3 +77,25 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
     `hadamard-gadget-k4-true-soundness-beats-wiman`.
   * **What this does not decide.** Nothing here moves `k >= 6`, since the
     `k = 5` census, with `2^31` variables, is out of reach for this code.
+* **Folding gap as residual 2-SAT, and a metric-LP kill.** Done 2026-09-19
+  by swarm-0917-w17-w17-ugc-break. It leaves this node OPEN.
+  * **New result.** `hadamard-folding-gap-is-antipodal-residual-component`
+    (ESTABLISHED) proves three things.
+    * Optimal weightings may be taken symmetric.
+    * Folded and relaxed pinned min cuts agree exactly when the residual
+      graph of a symmetric max flow has no strongly connected component
+      `C = -C`.
+    * The odd-walk LP caps at 2 at every `k`. This LP is the relaxation
+      with every `x -> -x` walk added, and so it is strictly stronger than
+      Wiman's.
+  * **What a witness needs.** At its optimal `w`, a positive-probability
+    set of patterns must have antipodal residual components, and the
+    certificate must be non-metric. Every odd-cycle packing dies at the
+    count `walk length >= K/2`.
+  * **Dead heuristic.** An eligible-union threshold-carving adversary
+    (dictator `tau x_i` flipped on the union of balls of radius `tK` around
+    the disagreeing pins, with shared random `t`) was priced but not
+    written up as a claim. Anchored edges cost `1 + delta(u F' - F)`, and
+    multi-anchor bulk edges cost `1 + F'`. That gives about `5/2` at
+    `delta = 1/2`, the same limit as the decoded adversary. So
+    threshold-carving adversaries do not reach the `lim R* <= 2` kill.
