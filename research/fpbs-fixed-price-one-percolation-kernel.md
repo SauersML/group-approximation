@@ -123,3 +123,27 @@ title: Every Cayley graph of a nonamenable fixed-price-one group has strict perc
   case must have every infinite, finitely generated, infinite-index subgroup of
   finite "height" in the sense that some finite intersection of its conjugates
   is finite. This is where soft arguments might still live.
+
+- **Finite-component forests force treeability (2026-09-19,
+  swarm-0917-w18-w18-bs-break, operator-algebras).** Established node
+  `fpbs-price-one-forests-have-infinitely-many-components`, with route
+  `fpbs-price-one-forests-have-infinitely-many-components-proof`.
+
+  If an invariant random spanning forest on a Cayley graph of `Γ` has exactly
+  `k<∞` components, then its coset lift with hairs to the marked tree is a
+  treeing of a free p.m.p. action of cost `1+(E deg/2-1)/k`. So `Γ` is
+  treeable and `C_*(Γ)` equals that value. For nonamenable `Γ` with `C_*=1`,
+  Gaboriau's Corollary 2.26 then gives a contradiction. Hence on every Cayley
+  graph of every group in this kernel, the FMSF, WMSF, FUSF, WUSF and every
+  other invariant spanning forest have infinitely many components almost
+  surely.
+
+  **Invariant:** `C_*(Γ)=1`, that is, non-treeability. **Step where every
+  member dies:** the hair treeing of the coset lift.
+
+  This is a class-killing obstruction for routes that try to reach `p_c<p_u`
+  through a connected, or finite-component, invariant or FIID forest. Examples
+  are a connected FMSF, one tree per finite-index coset, and a connected
+  spanning forest inside `H_{R,M}`. Every such route is vacuous on the whole
+  kernel, so an FMSF-excess proof (`fpbs-msf-excess-equals-nonuniqueness`) must
+  control `δ_G` with infinitely many trees. The kernel stays **OPEN**.

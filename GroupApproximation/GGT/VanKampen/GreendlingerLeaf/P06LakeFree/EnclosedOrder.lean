@@ -4,6 +4,8 @@ import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSucc
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellFaceSet
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, Route B: the planar order of a lake-free pocket petal
 

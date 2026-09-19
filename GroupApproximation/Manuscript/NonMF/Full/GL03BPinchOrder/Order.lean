@@ -2,6 +2,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.OrderList
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.OrderOrbit
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # The outer walk reads the walk backwards
 
