@@ -3,6 +3,8 @@ rg: 2
 id: thompson-f-ramsey-radius-double-gap-below-reiter-radius
 kind: claim
 title: In Thompson's F, the coarse Reiter radius is not bounded by any bounded tower wrapped around two compositions of the Ramsey function (RGAP₂)
+refuted_by: [thompson-f-coarse-reiter-radius-is-one-ramsey-call-away]
+artifacts: [experiments/one-ramsey-call-referee-2026-09-17/check_self_wreath.py, experiments/one-ramsey-call-referee-2026-09-17/output.txt]
 distinct_from:
   thompson-f-ramsey-amplification-needs-unbounded-tower-overhead: that is ¬AMP, about the fine function R̃; this compares only the precision-1/2 Ramsey radius R with the coarse Reiter radius CR, and implies ¬AMP by Corollary 3 of thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap.
   thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap: that is the established sandwich RGAP₂ ⇒ ¬AMP ⇒ RGAP₁; this is its strong end, left open.
@@ -155,3 +157,55 @@ route is dead.
     `R̃` at precision about `η`, however, not on `R`. It therefore meets RGAP₂ only through an amplification step,
     and it meets ¬AMP directly. The naive extraction is circular:
     picking a `w` with `π_w ≈ u_A` needs `μ_Z` to be nearly `A`-invariant near `w`.
+- **2026-09-19 (swarm-0917-w14-w14-f-pull, referee of the refutation).** **RGAP₂ is REFUTED.** This entry adds
+  `refuted_by: [thompson-f-coarse-reiter-radius-is-one-ramsey-call-away]`. That claim was landed by w12-f-break as
+  ESTABLISHED but unreviewed, and this node was never linked to it. This lane re-derived its proof independently.
+  - *Direct implication, with no sandwich needed.* RGAP₂ ⇒ RGAP₁ holds by monotonicity alone. Fix `D` and let `M`
+    witness RGAP₂(D). Then `A + 4M ≥ M`. `R` is nondecreasing with `R(x) ≥ x`, and `exp_D` is monotone. So
+    `exp_D(R(exp_D(A+4M)) + 4M) ≥ exp_D(R(exp_D(M)))`, and `N = M` witnesses RGAP₁ at `E = D`.
+    RGAP₁ is exactly "no `E` has CRE(E)". Step 8 of the refuting proof gives CRE(E) for one explicit `E`, which refutes
+    RGAP₁ and hence RGAP₂. This uses only the theorem `CR(M) ≤ A·R(A·6^{556M²}) + A·M²`. It does not use Corollaries 1
+    and 3 of `thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap`, nor Proposition D.
+  - *Line-by-line check of `thompson-f-coarse-reiter-radius-is-one-ramsey-call-away-proof`.* Every step passes.
+    - Step 0: the definition matches Moore's verbatim one in `moore-ramsey-criterion-for-amenability`, since
+      `μν(E) = Σ_x μ(x)·(xν)(E)` and `P(A)ν ⊆ P(B)` means `A·supp ν ⊆ B`.
+    - Step 1: the smoothing proof was rerun at threshold 3/2. It gives `⟨λ_gξ, ξ⟩ ≥ 1/4`, `ρ ≥ 1 − ln 4/K′`, and
+      `10√(2 ln 4/278) ≈ 0.9987 < 1`.
+    - Step 2: the tiling `I_k` holds, and so do `α_{k+1} = σα_k` and `W ≅ F ≀ Z`, because `σ^s` has slope `2^{−s}` at 0.
+      The coordinate identities hold.
+    - Step 3: both exponents are read correctly from the one-sided slopes at `0⁺` and `1/2⁺`. The restriction lemma
+      holds. In case (a), `J` contains a leaf of `T_+`, so it is an ancestor of that leaf and hence a vertex of `T_+`.
+      In case (b), an affine map with `z(J) = J` is the identity.
+    - Step 4: the lengths add up to `≤ βKM + 18K|σ| + 7`.
+    - Step 5, the key step:
+      - the coset transfer `v(hx) = h·v(x)` holds;
+      - dithering gives `|#{s<8 : x > (s+½)/8}/8 − x| ≤ 1/16`;
+      - shift identity: `y_i(σ^ja_jv) = g_i·y_{i−j}(v)` for `0 ≤ i < K`;
+      - moving the window costs at most `Σ_i p_i·2i/J ≤ 1/8`;
+      - a single averaged marginal `ν̄` serves every `f_i`, which is the point where the w9 selector kill is escaped.
+    - Step 6: this is finite von Neumann minimax, with `f_g = p_g⁻¹ Σ_E π(g,E)·1_E ∈ [0,1]`.
+    - Steps 7–8: the arithmetic is correct.
+  - *Machine check (artifact `experiments/one-ramsey-call-referee-2026-09-17/check_self_wreath.py`, output
+    `output.txt`).* The script uses exact rational PL maps and checks the F-specific algebra of Steps 2–5:
+    - `σφ_k(y)σ⁻¹ = φ_{k+1}(y)`;
+    - that each `φ_k` is a homomorphism supported in `J_k`;
+    - recovery of `(z, s, t, y_k)` from the slopes at `0⁺` and `1/2⁺`;
+    - `N(y_k) ≤ N(z)`;
+    - `σ^ja_j = Pσ^j`;
+    - the shift identity for `K = 3`;
+    - the dithering bound.
+
+    All checks pass on seeded random samples.
+  - *Residual trust.* Two imports are taken on trust: the word-length/caret-count comparison
+    (`thompson-f-word-length-is-comparable-to-caret-count`, a standard citation) and the finite minimax theorem. Three
+    nits are not load-bearing. The proof header lists the sandwich and Proposition D as required, but refuting RGAP₁
+    and RGAP₂ needs neither. `|u^r| ≤ 7`, not 8. Corollary 4 (`R_F` is not elementary) does depend on Proposition D,
+    which this lane did not re-check.
+  - *Consequences for neighbours (not edited here: one target per lane).*
+    - RGAP₁ (`thompson-f-ramsey-radius-single-gap-below-reiter-radius`) is false, by the same Step 8.
+    - Because RGAP₁ ⇔ ¬AMP ∨ SFG (`thompson-f-ramsey-radii-in-the-elementary-degree-order`), SFG
+      (`thompson-f-second-test-function-costs-more-than-any-tower`) is false too.
+    - ¬AMP is false via Corollary 1 of the sandwich.
+
+    All three should carry the same `refuted_by`. The route `thompson-f-costly-amplification-via-double-ramsey-reiter-gap`
+    is invalidated now, because its premise is refuted.

@@ -1,0 +1,8 @@
+PASS C0 sanity: N(e)=0, N(x0)=2, N(x1)=3, slopes of sigma at 0+ is 1/2
+PASS C1 sigma phi_k(y) sigma^-1 = phi_{k+1}(y)
+PASS C2 phi_k homomorphism, recovered by restriction
+PASS C3 slopes at 0+ and 1/2+ give s and t; coordinates recovered
+PASS C4 restriction lemma N(y_k) <= N(z)
+PASS C5 shift identity y_i(sigma^j a_j v) = g_i y_{i-j}(v), y_i(sigma^j v) = y_{i-j}(v)
+PASS C6 sigma^j a_j = P sigma^j
+PASS C7 threshold dithering error <= 1/16
