@@ -1,0 +1,3 @@
+Refute LD_atom a second way: a split tree whose restriction to a child is a non-tree dissection into the child's own descendants
+
+A ten-piece split tree of the triangle cone respects x0 = x1; all seven pieces in the half x1 <= x0 descend from that half, yet they form no split tree of it (exact check with calibrated descendance test). So the rearrangement lemma fails for tree reasons as well as synchronization reasons, and tree domination genuinely needs refinement; here two extra splits suffice. Notes on the tree-domination node and a correction of a stale remark on the common-refinement node.

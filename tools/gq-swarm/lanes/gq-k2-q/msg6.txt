@@ -1,0 +1,9 @@
+gq-k2-q: single-register designs cannot divide [1] at infinitely many primes
+
+An element of infinite order in a group built from a finitely generated
+module over a finitely generated commutative ring by finite extensions and
+finite quotients is p-power divisible for only finitely many primes (generic
+freeness). Under the Pimsner hypothesis this applies to K_0 of register
+completions with one register per type, shift or reset letters and eventually
+constant availability, whatever the resolvent coefficients: Q[1] needs
+relations of unbounded support.

@@ -1,0 +1,11 @@
+bh-near-actions: computability obstruction for Stein groups; metallic Juschenko-Monod BH
+
+- stein-derived-groups-need-computable-modules (+proof): D(V(Gamma,Lambda,l)) with solvable WP on
+  f.g. subgroups forces Gamma/l computable (via Sturmian IE subgroups + Grigorchuk-Medynets); so
+  D(V_lambda) for noncomputable lambda is 2-generated simple with unsolvable WP. Necessary condition
+  for Tanner's question.
+- norm-minus-one-sturmian-jm-groups-satisfy-boone-higman (+proof): JM groups of Sturmian
+  subshifts with angle in Q(sqrt(m^2+4)) embed in fp simple D(V(Z[eps_m],<eps_m>,N)) (index <= 4 via AH;
+  F_infty via Cleary as cited by Matui). Golden case is Tanner's remark.
+- transcendental-slope-thompson-groups-satisfy-boone-higman: OPEN test case.
+- artifact gq-bh-bh-near-actions-stein-slopes-reading.md (sources read at source).

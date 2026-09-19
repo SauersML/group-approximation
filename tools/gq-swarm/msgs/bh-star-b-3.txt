@@ -1,0 +1,7 @@
+Group subshifts are quantum rigid iff the lamp group is finitely presented; consequences over free groups and for (RA)
+
+- Over any finitely presented Λ, a group SFT is quantum rigid over C iff its lamp group M ⋊ Λ is finitely presented. This is proved directly from the quantum-family relations.
+- Over F_n (n >= 2) no infinite group subshift is rigid, since the fixed point 0 would give an F_n-fixed end. Hence M ⋊ F_n is never finitely presented for an infinite finitely generated F_p[F_n]-module M.
+- Over Λ_0 × F_n, rigid group subshifts are uniformly tight spacetimes.
+- Full coset shifts are rigid iff the double-coset space is finite, which matches Cornulier's criterion.
+- The (RA) node records that minimality is essential (the Cornulier-regime coset shifts are rigid, measure-preserving and non-amenable) and the one-ended reduction.

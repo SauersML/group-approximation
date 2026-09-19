@@ -1,0 +1,3 @@
+Referee report: cycling relators, linear-activity odometer automaton, relator-complexity descent PASS
+
+Proof-gap lens on polynomial-automata-reduce-to-cycling-relators (179117785), linear-activity-odometer-automaton-has-fp-nekrashevych-group and relator-complexity-descent-gives-free-splitting (81d9e9bb6). Multiset complexity, secondary nu-descent, letter table and special-word classification checked; four nits.

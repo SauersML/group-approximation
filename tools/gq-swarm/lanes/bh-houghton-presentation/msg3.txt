@@ -1,0 +1,9 @@
+Answer Mallery-Zaremsky Question 3.18 and read the F_m imports at source
+
+Sparse transpositions rho_k = prod (2^i-k, 2^i-k+1) together with FSym give an infinite
+shift-similar group whose germ shifting map is not onto, so it is not strongly shift-similar. It is
+not finitely generated. The finitely generated form is recorded OPEN: it is the only case of
+Question 5.13 left, since finite G give H_n(G) = H_n. Brown's criterion (Geoghegan 7.3.1), finite-index
+invariance (7.2.4) and closure of F_m under extensions (Section 7.2, Exercise 1) were read in the
+Geoghegan chapter fetched on MSI. This corrects the earlier citation of Theorem 7.2.21, which is the
+quotient statement. Also record a calibrated, bounded priority search.

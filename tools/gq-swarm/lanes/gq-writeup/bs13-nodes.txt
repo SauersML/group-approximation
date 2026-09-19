@@ -1,0 +1,14 @@
+research/aff-q-embeds-in-fp-simple-group.md
+research/bs13-embeds-in-brin-thompson-3v.md
+research/bs13-in-3v-via-smart-renormalization.md
+research/crossing-move-hierarchies-have-odd-branching-proof.md
+research/crossing-move-hierarchies-have-odd-branching.md
+research/renormalizable-thompson-elements-give-baumslag-solitar-proof.md
+research/renormalizable-thompson-elements-give-baumslag-solitar.md
+research/smart-induced-map-has-brick-local-height-3-renormalization-proof.md
+research/smart-induced-map-has-brick-local-height-3-renormalization.md
+research/smart-induced-on-genuine-moves-has-exact-tripling-proof.md
+research/smart-induced-on-genuine-moves-has-exact-tripling.md
+research/smart-level-zero-return-map-factors-onto-3-adic-odometer-proof.md
+research/smart-level-zero-return-map-factors-onto-3-adic-odometer.md
+research/some-brin-thompson-element-factors-onto-an-odometer.md

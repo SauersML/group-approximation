@@ -1,0 +1,6 @@
+gq-referee-b: review of prime-shift-affine-group-a1-is-not-finitely-presented
+
+Citation/hypothesis review with proof check: PASS. Baumslag 1961, the
+finite-quotient step and the Pi_1 quotient are used correctly; the germ
+argument is correct; the type (A) route is dead as stated. The K_n scope
+remark is honest but its reason is imprecise.

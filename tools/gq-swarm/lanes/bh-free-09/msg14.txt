@@ -1,0 +1,7 @@
+Building transplants pass the separable-modifications test
+
+Changing the chamber at infinity changes the sector germ at every vertex of every apartment that
+contains both chambers, and the Busemann coordinates of those vertices fill a full coset of L. So every
+skeleton modification reaches every horospherical level and meets every other modification. The
+A~2 transplants therefore pass the test whenever their Z^2 fibre does, which closes the open check
+left by the tree-product audit.

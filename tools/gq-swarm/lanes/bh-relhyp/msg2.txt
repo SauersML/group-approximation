@@ -1,0 +1,12 @@
+bh-relhyp: permutational BH class closed under amalgams over centralizers; cusp extensions of torsion-free hyperbolic groups satisfy BH
+
+New construction (lane proofs, elementary, not reviewed; no priority claimed):
+- centralizer-amalgams-are-free-permutational-wreaths (+ route): A *_C (C x P) is the
+  free permutational wreath product of P by A over A/C, and restricts to subgroups.
+- centralizer-amalgams-embed-in-relative-holomorphs (+ route): for any group G, finite
+  F and P <= G, G *_{C_G(F)} (C_G(F) x P) sits in (G * Z) ⋊ Aut_G(G * Z), via
+  conjugates of P by explicit words permuted by t -> t h.
+- pbh-class-closed-under-centralizer-amalgams (+ route): M, P in B_A gives
+  M *_{C_M(F)} (C_M(F) x P) in B_A; extensions of centralizers in particular.
+- cusp-extensions-of-torsion-free-hyperbolic-groups-satisfy-pbh (+ route):
+  H *_{E(h)} (E(h) x P) is relatively hyperbolic and embeds in a fp simple group.

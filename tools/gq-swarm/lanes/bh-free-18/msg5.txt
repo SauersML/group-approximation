@@ -1,0 +1,7 @@
+Record a binary move hierarchy design for BS(1,2) and its completeness gap
+
+Costs and parity force E -> E R, S -> R S, R -> E S with exactly 2^k leaves and bounded junctions.
+A peek at the fresh cell resolves the first-junction collision, and a radius-1 reverse read
+dissolves the reversibility regress of one-cell matchings. That machine class is outside all
+searches so far. What remains is completeness: two local patterns have no parent chain.
+Design notes only, no claim.

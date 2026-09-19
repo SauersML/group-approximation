@@ -1,0 +1,15 @@
+(M2) for all residually finite groups; Bass-Serre route to (M2) for free products with Z
+
+- The residually finite Toeplitz subshift built from a normal chain is free at every point,
+  not only topologically free.
+- With the decidable-language node this gives (M2), an effectively closed minimal free
+  subshift, for every infinite effectively residually finite group with solvable word
+  problem. That includes every infinite fp RF group and every infinite f.g. linear group.
+- New conditional theorem: A * Z satisfies (M2) whenever A has one computable
+  hyperaperiodic point that is universal at the origin. Minimality comes from the Bass-Serre
+  tree: only the top vertex of any ball is seen away from its rooted fiber.
+- New OPEN nodes: the route-relevant form of (M2) (some fp decidable envelope per input), its
+  route through the free product with Z, and the single-point universality premise.
+- Attempt 8 on the (M2) node: effectivity accounting, and the status of St_10(R_L).
+
+Lane proofs, not independently reviewed.

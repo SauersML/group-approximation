@@ -1,0 +1,3 @@
+Referee report: prime-shift K_n finite presentation reduces to a metabelian quotient PASS
+
+Proof-gap lens on prime-shift-kn-fp-reduces-to-a-metabelian-quotient (e7a442014). Items 1-6 PASS incl. |det| quotient, ascending-HNN step and one-sided translation; Attempt 1 axis computation of the OPEN companion checked; nits N1-N2.

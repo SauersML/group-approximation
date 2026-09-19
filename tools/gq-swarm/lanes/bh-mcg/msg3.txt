@@ -1,0 +1,9 @@
+Braid groups in 2V: open question and a route through pure braid groups in RAAGs
+
+New OPEN claim braid-groups-virtually-embed-in-brin-thompson-2v (the stepping
+stone for nV hosts of closed MCGs), with route
+braid-groups-in-2v-via-pure-braid-raag-embedding and OPEN premise
+pure-braid-groups-embed-in-raags. m <= 3 holds (PB_3 = F_2 x Z). The premise
+sits next to the open virtual-specialness problem for braid groups (Agol ICM
+2014; Wu-Ye 2608.13978 abstract). All standard obstructions pass (bi-orderable,
+RTFN, RFRS, no distortion).

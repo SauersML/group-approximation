@@ -1,0 +1,10 @@
+nV elements with a non-periodic point have at least logarithmic movement
+
+Lane bh-testcases. Pointwise pumping: for g in nV and x non-periodic, some
+t < 2^(n(L+2K+1)) has |δ_{g^t}(x)|_∞ > K; so limsup E_g(N)/log N ≥ 1/(2n).
+No element of nV has unbounded o(log N) movement, so slow counters at all
+times do not exist; the growth gap for Higman images is open only along
+sparse times. Gives Θ(log) movement for every Baumslag–Solitar base in nV
+(with the existing upper bound); fails in 2V_tau (odometer). Records attempt 2
+on the gap node: the double BS chain in nV would refute the gap at powers of 2.
+Lane proof, unreviewed; no priority claimed.

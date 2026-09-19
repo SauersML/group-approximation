@@ -1,0 +1,6 @@
+Referee report: Q in a fg subgroup of integral Leavitt units PASS
+
+Proof-gap review of integral-leavitt-unit-group-contains-q (c71dd8fe4): the
+refinement identity, the V-transitivity on proper cone configurations, the
+power identity, injectivity and the cokernel argument against conjugating t
+to t^p all check.

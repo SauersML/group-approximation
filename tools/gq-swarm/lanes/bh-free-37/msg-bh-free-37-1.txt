@@ -1,0 +1,7 @@
+Kourovka 21.75 answered negatively: CT_P1(Z) and CT_P2(Z) always generate CT_(P1 u P2)(Z)
+
+Every class transposition with (P1 u P2 u {2})-smooth moduli is a product of at most 60
+class transpositions from CT_P1(Z) and CT_P2(Z). Split it 4-fold into proper 2-adic balls,
+route it through a box of modulus 4, and transport the P1-part with a two-transposition
+element of CT_P2(Z). The proof is elementary. An explicit six-letter word for tau_{0(6),1(10)}
+is included. Lane proof, not reviewed; no priority claimed.

@@ -1,0 +1,9 @@
+Show mixed identities of homeomorphism groups depend only on the closure; decide them for dense tame 1-dimensional groups
+
+Word maps are continuous, so a group of homeomorphisms has the same mixed
+identities as its closure. Groups dense in the homeomorphisms of a Cantor space
+are therefore mixed-identity-free. For dense subgroups of Homeo_+ of the interval
+or circle with semialgebraic generators, non-identities are existential
+sentences over the reals, so Tarski-Seidenberg decides every J_k. This covers
+F, T, Stein, irrational-slope and piecewise-projective groups, and it removes all
+Thompson-type fp simple groups as candidates for non-recursive mixed identities.

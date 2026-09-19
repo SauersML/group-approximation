@@ -1,0 +1,12 @@
+FW inputs pass the shell window-zero gate only via proper self-embeddings (closes both Schreier gaps for Kazhdan inputs)
+
+bh-shell-kazhdan (BH swarm, free mode). New claim fw-inputs-pass-window-zero-only-via-proper-self-embeddings
+with proof route (lane proof, elementary modulo Delorme–Guichardet; unreviewed). For P with property FW
+(every Kazhdan group): (1) index formula — the graph of a near-equivariant partial bijection is commensurated
+in the product, so FW transfixes it and ind f = |F_Y| - |F_X| for finite invariant sets; (2) every infinite
+orbit has a one-ended Schreier graph; (3) sign +1 windows force all orbits finite, for every injective
+endomorphism twist; (4) sign -1 windows need |Fin(rho psi^m)| = |Fin(rho)| + m, hence a proper self-embedding
+of infinite index; (5) for simple inputs, psi^m(P) fixes exactly m new points, and with finitely many orbits the
+action is highly transitive on an orbit. So for Boone–Higman's reduced inputs (infinite simple Kazhdan), the
+genuine-action shell needs window N >= 1 except through a highly transitive self-similar action with a proper
+self-embedding of infinite index. Update section on one-ended-schreier-orbits-force-index-zero; artifact third pass.

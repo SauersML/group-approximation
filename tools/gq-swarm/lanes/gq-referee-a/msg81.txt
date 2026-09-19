@@ -1,0 +1,3 @@
+Referee report: Hecke products and commensurator-rigid groups lack faithful BS members PASS
+
+Proof-gap lens on faithful-hecke-members-products-proof (1d818075c) and commensurator-finite-no-faithful-bs-proof (8462f018b). Criterion, products, rho respecting relations, pull-back into edge groups, compatibility, one normal N, and the arithmeticity dichotomy checked; nits N1-N2.

@@ -1,0 +1,7 @@
+start Fri Sep 18 17:20:35 CDT 2026 on acl04
+===== REQ 1 =====
+RC_1 1
+===== REQ 2 =====
+RC_2 1
+===== REQ 3 =====
+[2026-09-18T18:06:40.840] error: *** JOB 1328760 ON acl04 CANCELLED AT 2026-09-18T18:06:40 DUE to SIGNAL Terminated ***

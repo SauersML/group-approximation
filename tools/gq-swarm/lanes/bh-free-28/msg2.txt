@@ -1,0 +1,3 @@
+Record the rank-2 settlement and the r >= 4 reduction on the free centre-by-metabelian node
+
+Status line: OPEN for r >= 3, rank 2 settled by free-centre-by-metabelian-group-of-rank-two-satisfies-pbh. Attempt 5 records the second-order Magnus embedding and the residual-finiteness reduction.

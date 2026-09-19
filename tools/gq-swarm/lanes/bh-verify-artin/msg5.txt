@@ -1,0 +1,1 @@
+bh-verify-artin: D̃_n node, Attempts 3–4 (single-object fibrations fail; the filled bundle is a quotient)

@@ -1,0 +1,10 @@
+Synthesize the Boone-Higman obstructions: zero-set confinement, fp rigidity, hereditary approximation, and the complexity wall
+
+Adds zero-set-confinement-unifies-host-obstructions (lane proof, elementary): Kazhdan/FW
+subgroups and Baumslag-Solitar root groups lie in the zero set of every stable length
+(translation, cocycle, commensurated-set, word), so hosts with confined zero sets exclude them.
+Adds the synthesis artifact gq-bh-synth-obstructions: every 09-17/18 obstruction is (Z), (R)
+(fp is open in the space of marked groups) or (H) (hereditary approximation); rank >= 2 hosts
+already break the Kazhdan, distortion and RF walls; the structurally unbroken wall is
+word-problem complexity, since every fp certificate on main certifies deterministic local rules;
+plus a host design specification, an honest falsity verdict and a ranked agenda.

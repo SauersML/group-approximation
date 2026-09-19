@@ -1,0 +1,9 @@
+Reduce rigidity of hyperbolic SFT compactifications to the horofunction boundary
+
+hyperbolic-seed-rigidity-is-a-horofunction-boundary-question: the distance-gradient seed is locally
+forced (the Cannon-cone induction reads one ball per step), so by the derived-subshift theorem Y_k
+is quantum rigid iff the horofunction boundary SFT is. That boundary is rigid for trees of finite
+groups (recoding of the tree gluing, including free groups with free bases). On one-ended groups,
+Bellman uniqueness rules out finite-modification wall certificates. Rigidity beyond trees, surface
+groups included, stays open. The node records why the tree chain, the determinism closure and the fp
+certificate (which would need BBMZ for the V-stabilized full group) each fall short. Lane proof, unreviewed.

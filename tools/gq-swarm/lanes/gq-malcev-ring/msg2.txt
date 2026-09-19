@@ -1,0 +1,7 @@
+Rational Leavitt path algebras: K_1 scalar kernel vs K_2 symbol image
+
+From the Ara-Brustenga-Cortinas sequence, Q -> L_Q(E) sends K_n(Q) to
+K_n(Q) tensor [1]. So the rational scalars have finitely generated K_1 kernel
+exactly when [1] has infinite order in K_0, and then the image of K_2(Q) in
+K_2 is not finitely generated. The purely infinite host escape from the
+scalar obstruction is paid for in K_2; a two-vertex example is given.

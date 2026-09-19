@@ -1,0 +1,3 @@
+Status hygiene: the characteristic-zero permutational input of the linear-groups node is reviewed
+
+finitely-generated-linear-groups-satisfy-boone-higman said the last input of char-zero-linear-groups-satisfy-permutational-boone-higman was unreviewed and that the uniform permutational statement "waits on that review". That input has PASS in review-pbh-charzero-spherical-2026-09-13 (row 3), and bh-verify-metabelian re-checked the chain (05d6a15ff). Status line corrected; no new claim is made.

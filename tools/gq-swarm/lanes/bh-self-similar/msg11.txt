@@ -1,0 +1,3 @@
+Locate the error in arXiv:2609.01868 Theorem A for Z wr_X PSL_2(Z[1/2])
+
+The source verifies condition (Omega) for PSL_2(Z) correctly, but PSL_2(Z) acts transitively on the four cosets of the index-4 subgroup, so no lamp is ever killed and every lamp acts on the tree as the same automorphism: the representation is not faithful, the zero-sum lamp subgroup lies in the f-core, and the faithfulness step of their Theorem A fails. Consistent with the non-residual-finiteness refutation already on main.

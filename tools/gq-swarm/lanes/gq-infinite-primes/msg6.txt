@@ -1,0 +1,7 @@
+Restore fg-metabelian roots node overwritten by a749fbb6b; add addendum
+
+Lane gq-infinite-primes landed the same claim id four minutes after another
+lane (98a1f1c0f) and overwrote its claim and proof. Restore both files
+byte-for-byte from 98a1f1c0f and append a labelled addendum: the root
+statement for every element of infinite order (reduction to G'), and the
+consequence for the Hecke host and the Z_(l) bottleneck.

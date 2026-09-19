@@ -1,0 +1,5 @@
+Apply gq-referee-b amendments to host-forms node
+
+Name the Theorem C (iii)=>(i) step that puts VA, hence every countable
+abelian group, in B_A; quote Remark 3.5 as in the source; replace the
+trust-surface note by the review (fd335d944) and record both referee PASSes.

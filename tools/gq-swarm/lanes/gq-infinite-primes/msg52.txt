@@ -1,0 +1,9 @@
+Leavitt refinement identifies all unstable K_2 levels of R_L
+
+Lane gq-infinite-primes. Voronetsky refinement (via Khanh, arXiv:2609.08428,
+read in TeX) gives St_r(R) = St_(r+1)(R) for rings with a Leavitt pair, r >= 3,
+compatible with stable K_2 through one Leavitt block conjugation. So the
+stabilization kernels U_r of R_L are all isomorphic, and injective stability and
+the word problem hold at one level iff at every level. With the Leavitt block
+elementary, (i) is equivalent to two-step injectivity at every level. Attempt 3
+on the reduction node; absolute input still open.

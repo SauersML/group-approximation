@@ -1,0 +1,4 @@
+Record on the free minimal Z^2 rigidity gate that the free case is done by crossing-wire tiles
+
+Attempts entry: crossing-wire fixed-point tile sets are aperiodic and quantum rigid; the open part of the
+gate is minimality (a minimal sub-SFT, or a DR-style minimal construction keeping the layout conditions).

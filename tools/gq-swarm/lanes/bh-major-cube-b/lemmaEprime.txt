@@ -1,0 +1,28 @@
+**Lemma E′** (replaces the original Lemma E, which referee bh-ref-q115-a showed false when
+`B` has holes whose witness walls lie beyond the first cube; the repair is theirs, written out
+here). Let `B = λ·X(v;e)` be a nonempty basic open subset of `X_∞`, ending at `(p,μ)`, with
+holes `f = (u_f, τ_f) ∈ e` (one-step morphisms from `(p,μ)`). Pick a Roller point `ω_0 ∈ B`.
+- **Why `ω_0` avoids each hole.** Since `ω_0 ∈ B`, for each `f ∈ e` either
+  `u_f ∉ I(p,ω_0)`, or `u_f ∈ I(p,ω_0)` and `ω_0` crosses a **witness wall**
+  `K_f ∈ τ_f ∩ H(u_f,ω_0)`.
+- **Choice of `q`.** Choose a vertex `q` on a geodesic ray of `ω_0` from `p` beyond:
+  - (i) every crossing of a wall of `adj(p)` that `ω_0` crosses;
+  - (ii) the crossing of each witness wall `K_f`.
+
+  If `q` is entered by a `c`-edge, move `q` one step further along the ray. If the ray's
+  next step is also a `c`-edge, then instead leave the ray by one internal edge of the new
+  copy. That edge is allowed, because after a `c`-edge the only forbidden wall is the
+  `c`-wall behind it, and `ω_0` has already passed (i) and (ii).
+- **Then:**
+  - Both `c`-edges at `q` are allowed. Their walls are adjacent only to `q` and its
+    `c`-neighbours, and `q` was entered by a non-`c` edge, so these walls are neither crossed
+    nor propagated labels.
+  - Let `ω'` follow `ω_0`'s path (or the one-edge detour) to `q`, then take either `c`-edge,
+    then anything in that branch. Then `ω' ∈ B`:
+    - it crosses exactly the walls of `adj(p)` that `ω_0` crosses, so `u_f ∈ I(p,ω')` iff
+      `u_f ∈ I(p,ω_0)`;
+    - it crosses each witness `K_f` after `u_f`;
+    - it never crosses a wall of `μ`, since after `q` it stays in a branch disjoint from
+      `p`'s copy and from the other `c`-edges at `p`.
+  - From the landing vertex, every vertex of the new copy is a geodesic continuation. So
+    every end of the branch beyond either `c`-edge at `q` is realized in `B`.

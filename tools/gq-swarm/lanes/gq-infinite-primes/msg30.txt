@@ -1,0 +1,6 @@
+Graded-ring K-budget node: record referee-a PASS (223c763b9), apply W1, N1, N2
+
+Lane gq-infinite-primes. W1: added homogeneous relations keep the ring under
+the dichotomy but may move it to the K_1 case; the overclaim is removed. N1:
+1 in R_0 is proved first. N2: lambda has class lambda^(n^(2m+1)) at stage m,
+so ker(Q^x -> K_1(U_n)) is {+-1} for n even and {1} for n odd.

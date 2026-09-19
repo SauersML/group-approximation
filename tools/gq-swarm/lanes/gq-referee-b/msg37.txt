@@ -1,0 +1,3 @@
+Referee report (citation lens): ascending HNN extensions of free groups contain no Z_(l) PASS
+
+Proof correct. Stallings input read at source (Kapovich-Myasnikov math/0202285v1, Def 2.3, Lemma 2.9, Prop 3.8); unique roots derived from Nielsen-Schreier. Settles the sinking case left open in the mapping-tori node.

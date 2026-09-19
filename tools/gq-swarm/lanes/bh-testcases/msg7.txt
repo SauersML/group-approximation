@@ -1,0 +1,9 @@
+Twisted Brin–Thompson branch labels are a rigid cocycle; no conjugacy fusion
+
+Lane bh-testcases. When the actor G has no finitary elements, the branch label
+of an SV_G element at a point is well defined, locally constant and a cocycle.
+Evaluating at a constant configuration shows that two elements of G conjugate
+in SV_G are conjugate in G. In SV over 2V_tau: the baker map is never conjugate
+to its square, and two consecutive Higman generators cannot both be pure labels
+when the base is of odometer type, so a copy of H4 there must use non-pure
+elements. Lane proof, unreviewed; no priority claimed.

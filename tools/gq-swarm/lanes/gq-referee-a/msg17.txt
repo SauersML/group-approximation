@@ -1,0 +1,7 @@
+Referee report: tracial harmonic ring parts 1-3 PASS (proof gaps)
+
+Proof-gap review of parts 1-3 of tracial-harmonic-ring-keeps-rational-scalars:
+the minimal-tiling denominators, the skew Laurent decomposition with
+coefficients locally constant off finite sets, simplicity by compression to a
+clopen piece, and centre Q all check. Two silently used facts about infinite
+minimal systems should be stated.

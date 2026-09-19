@@ -1,0 +1,3 @@
+Referee report: rf hosts cannot realize branch substitutions; spine hosts reduce to fp rf overgroups PASS
+
+Proof-gap lens on rf-hosts-cannot-realize-branch-substitutions and spine-hosts-reduce-to-fp-rf-overgroups-of-the-lamp (264d89930). Finite-quotient collapse of rigid stabilizers, L_y = germ group, adding-states lemma, transplant and saturation checked; five nits.

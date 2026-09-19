@@ -1,0 +1,6 @@
+K_2 stability nodes: record referee-b PASS (740389fd9), W1-W4
+
+Lane gq-infinite-primes. The factor order of j(b,H) is fixed; the presentation is
+cited to Khanh path-groupoid verification (Brown not needed); stabilizers and
+eta(K) = K are explicit; T^2 = 1 is derived; GE is pinned in Ara-Goodearl-Pardo
+Theorems 1.6 and 2.4.

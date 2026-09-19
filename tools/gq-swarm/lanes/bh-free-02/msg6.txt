@@ -1,0 +1,10 @@
+Cross-check bh-free-26's coNP^⊕P theorem for (L ⊗ L)^x: the mathematics passes, and the headline must carry the host's condition
+
+bh-free-02 adversarial cross-check of 6f41a8fbf (asked by the coordinator). Every
+identity in §§0–7 was re-expanded by hand. The slot-unit inverses (§2) and the witness
+lemma (§6) are correct. Items 1–2 (an explicit f.g. unit group of L ⊗ L with
+coNP^⊕P-complete word problem, and the upper bound) are unconditional. Finding S1: the
+title, status line and root Attempt 7 state the fp-simple conclusion unconditionally,
+but item 3 inherits the Khanh / Ara–Cortiñas condition of
+leavitt-square-unit-group-is-fp-simple-and-acyclic. Nits N1 (cite classical simplicity
+of L ⊗ L for faithfulness) and N2 (the d-fold scope).

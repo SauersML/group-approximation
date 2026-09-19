@@ -1,0 +1,13 @@
+Add piecewise-commutative-linear-hosts-miss-linear-gl-n-q (obstruction)
+
+In a finitely generated group of homeomorphisms that are piecewise in a
+topologically free group L (finitely many pieces per generator off a closed
+nowhere dense set), every element agreeing with some l in L on an open set has
+l in the finitely generated piece group H. If L is linear over a commutative
+ring, H is residually finite (Mal'cev), so no linear copy of GL_n(Q), SL_n(Q),
+PGL_n(Q), Aff(Q), U_3(Q) or (Q,+) fits. Instances: adelic affine and projective
+Cantor models, the adelic prefix group on Z-hat, real piecewise-projective
+groups (T, Monod H(A), PIP, Lodha-Moore type), d-adic prefix groups (V_d, Sc(n),
+Roever-Nekrashevych groups of affine self-similar groups, nV). The artifact
+records the adelic models built for GL_n(Q) and why none can be finitely
+generated. Lane proof, not independently reviewed.

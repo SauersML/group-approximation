@@ -1,0 +1,8 @@
+Refute the capacity-chain presentation: a bi-infinite chain module
+
+The finite relations of R_cap admit a module on words over a bi-infinite
+c-chain with capacity 1/2 - n; X_k = [L=k](1 - sum_{i<=k}[Delta=i]) acts
+as 1 there but vanishes in the concrete model, so the presented ring is not
+simple, with or without a_u. Comparisons between two unbounded registers
+create hidden positivity identities that finitely many relations cannot
+generate. Mark the candidate refuted.

@@ -1,0 +1,14 @@
+State the fold transfer theorem in final form: fibres with a local rule into one rational half-plane
+
+Final, application-ready statement. The fibre condition (D) is one local rule x(z) = G(x|z+F) with F strictly on one
+side of a rational line, equivalent to a rational determining normal. Checks are given for corner rules, row rules,
+and one level of a recognizable square hierarchy: SW-deterministic macro tiles at a single level suffice, so the
+ground tiles need not be deterministic. That corrects the ground-level wording in the acceptance node and the open
+target. Given (D), ABHT's fold of the normalized fibre is homeomorphic to X x boundary(F_n) with an explicit
+Busemann cocycle. Freeness transfers both ways and orbit closures transfer exactly, so minimality does too, both
+proved directly. Quantum rigidity transfers both ways with the scale bound max(2 D_X, R+1). In the free minimal
+rigid case the crossed product over F_n x Z is finitely presented and central simple.
+
+Lesson for general BH: the whole interface between an amenable fibre and a non-amenable tree fold is (D). The fold
+changes nothing dynamically, so E2 over F_n x Z is E2 over Z^2 plus one half-plane rule, and for hierarchical
+constructions that rule can be bought at any single level.

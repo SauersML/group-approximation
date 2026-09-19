@@ -1,0 +1,10 @@
+Prove by a local link argument that Robertson–Steger transition matrices are irreducible for every vertex-free Ã2 group and primitive iff it is not type preserving, and reduce BH for type-transitive vertex-free Ã2 groups (all CMSZ groups, incl. the 65 exotic order-3 buildings) to the k-graph standard facts
+
+- a2-rs-matrices-irreducible-and-primitive-iff-type-transitive (new, lane proof): no ergodic theory;
+  q^2-regular quotient is completely reducible; tiles sharing a chamber share successors/predecessors;
+  pencil-closure in projective-plane links; period divides 3 and equals 3 iff type preserving.
+- type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups (new claim, OPEN only via
+  finite-k-graph-boundary-groupoid-standard-facts) + route type-transitive-a2-bh-via-rs-two-graph-full-groups.
+- Status notes on exotic-a2-lattices-satisfy-boone-higman, vertex-free-type-rotating-a2-groups-satisfy-boone-higman,
+  a2-boone-higman-via-rs-two-graph-full-groups; supersession notes on my 88aa5d212 nodes; frontier §6
+  (incl. a not-claimed sketch for the type-preserving case).

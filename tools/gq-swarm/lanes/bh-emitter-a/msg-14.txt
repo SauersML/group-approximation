@@ -1,0 +1,13 @@
+Isolated-order word problems are bounded by positive distortion; Higman-type bases carry no isolated order
+
+isolated-order-word-problems-are-bounded-by-positive-distortion (ESTABLISHED, lane proof): for a finitely
+presented group with a finitely generated positive cone, WP is in NTIME and coNTIME of a polynomial in the
+positive distortion D_P and the Dehn function, since short positive words certify non-triviality. So a
+CAP counterexample in this class needs super-polynomial D_P or area. Regularity of the cone is automatic
+and forces nothing. Free products carry no isolated order (Rivas, via Ito), so the Z^2*Z and free-product
+stages of Higman and Aanderaa-Cohen towers cannot hold a machine in a cone. New open question (O''): is
+D_P elementary on every such group?
+
+Lesson for general BH: all the complexity of an isolated order is its positive distortion plus the area.
+A machine in an isolated order must make positive words much longer than the elements they represent,
+and the Higman base admits no isolated order at all.

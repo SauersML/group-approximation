@@ -1,0 +1,9 @@
+Reformulate permutational Boone-Higman through full clopen-transitive Cantor hosts
+
+The canonical permutational host SV_G is already a full group of Cantor
+homeomorphisms with clopen-transitive local maps, so the landed one-group
+criterion runs in both directions: a group lies in B_A exactly when it embeds
+in a finitely presented full clopen-transitive group of Cantor homeomorphisms.
+The same brick argument makes every nV such a host, which puts the virtually
+special groups, the cubulated hyperbolic groups and the additive rationals in
+B_A; those three also follow from BFFHZ Remark 3.5, and the node says so.

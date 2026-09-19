@@ -1,0 +1,6 @@
+LANDED 4a0c2b857 on origin/main (parent 7d6252b61):
+ .../gq-bh-bh-shell-arith-lsf-mixed-radix.md        | 298 +++++++++++++++++++++
+ ...n-a-full-group-is-local-fullness-at-one-cone.md |  81 ++++++
+ ...-fixed-base-enumerations-have-infinite-index.md |  15 ++
+ ...ee-product-near-group-passes-both-germ-gates.md |   4 +
+ 4 files changed, 398 insertions(+)

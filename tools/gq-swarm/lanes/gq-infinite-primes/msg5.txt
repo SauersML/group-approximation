@@ -1,0 +1,10 @@
+RF resolvent ring: Z_(l) in f.g. RF groups; f.p. RF bottleneck
+
+Lane gq-infinite-primes. An explicit five-generated residually finite ring
+R_l-bar (invertible shift x with x u x^-1 = u + l plus one resolvent) has a
+corner containing Z_(l); so SL_n(Z_(l)), GL_n(Z_(l)) embed in the f.g. RF
+groups E_N(R_l-bar). F.g. metabelian groups have roots at finitely many
+primes (kills f.p. metabelian hosts). New OPEN bottleneck: Z_(l) in a f.p.
+RF group, implied by the Hecke, affine self-similar and rational Iwahori
+host hypotheses; candidate: E_N(R_l-bar) finitely presented. Hecke node
+attempts and route review notes updated.

@@ -1,0 +1,5 @@
+Record referee-a PASS on the Kazhdan almost-V nodes
+
+Referee-a passed the central-V lemma, the Deligne germ-group corollary and the
+Corollary 2.10 Kazhdan finiteness (bdc9e959c). Apply nit N1: the basin minus
+its attracting point is nonempty because C has no isolated points.

@@ -1,0 +1,3 @@
+Referee report (citation lens): Euler base in St_N(T_l) FAIL in item 3 (repair supplied); unstable K_2 inputs read
+
+Items 1-2 PASS (rank-five hypotheses match; T_l presentation checked). Item 3: g -> diag(g, g^-1) is not a homomorphism on nonabelian G_l; diag(g,1) misses E_N by a determinant; psi with compensating slots embeds G_l in E_3. T1 read in Xi 1107.5380 Lemma 4.1; T2 via ABC 3.6/7.2; T3 centrality via Voronetsky; Stafford needs right Noetherian, vdK Thm 1 commutative only.

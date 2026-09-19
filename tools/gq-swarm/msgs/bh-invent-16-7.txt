@@ -1,0 +1,8 @@
+(RA prime): time lifts reduce it to automorphism groups of rigid rows; homology is blind to amenability
+
+A finitely generated group of automorphisms of a minimal free quantum-rigid Z^d-SFT, meeting the
+shifts trivially, times Z^d carries a minimal free rigid SFT. So (RA prime) forces such automorphism
+groups to be exact, a non-exact one refutes it, and a finitely presented one is a carrier. A non-exact
+one needs infinite fibres over the equicontinuous factor: a profinite distal layer (open for residually
+finite inputs such as Osajda's group) or a relatively weakly mixing layer. V-full groups of minimal
+systems are acyclic whether or not the action is amenable, so a proof of (RA prime) must be analytic.

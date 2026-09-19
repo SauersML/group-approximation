@@ -1,0 +1,8 @@
+Z[1/P] with P infinite lies in no f.g. linear group; localization lattice
+
+Lane gq-infinite-primes. A congruence-filtration lemma: over a mixed-
+characteristic DVR with finitely generated residue field, a matrix with
+q^j-th roots for all j is torsion. Consequences: for infinite P, Z[1/P]
+(hence GL_n(Z[1/P]) and GL_n(Q)) embeds in no finitely generated linear
+group over any field; and Z[1/P] embeds in GL_N(Z[1/P']) only if P is
+contained in P'. Lane proofs, not independently reviewed.

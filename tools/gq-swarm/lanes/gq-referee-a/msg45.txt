@@ -1,0 +1,3 @@
+Referee report: St_N(D) is a retract of St_N(T_l) PASS
+
+Proof-gap lens on euler-triangular-steinberg-retracts-to-euler-steinberg (0db9f0179). Retract, K_2 map, detection, retract of f.p. quotients checked; N1 identifies T_l-symbols of D-units with St(iota) of D-symbols via St_N(D x Z) = St_N(D) x St_N(Z).

@@ -14,3 +14,35 @@
 **Needs:** nothing blocking. Open side-questions: finite presentation of V(Z[β],⟨β⟩,ℓ) itself for norm +1 slopes (V is not an RSG in the flip coding); a published source for the monotone SRS criterion.
 **Dead:** positive-base (F) codings for fields without isolated-sign units (Akiyama Prop. 1 + relative-norm parity); Ito–Sadahiro normalization (boundaries in the wrong coset ℓ_β + Z[β]).
 **Sparks:** (1) Flip codings for 2-D: piecewise ±β^k-similarity groups on boxes / Brin–Thompson-type products over algebraic data. (2) The SYNTHESIS G3g gate asks for finiteness of non-deterministic codings; test whether a sign/orientation twist of a non-deterministic coding makes it deterministic (as here). (3) Algebraic data with slopes in a rank ≥ 2 unit group (several β at once) — needs a simultaneous coding.
+**Pass after the 14:15 restart (09-18 ~16:30).** Recovery: every lane draft was already on main; nothing re-landed.
+- **e8df48ee6 `integral-slope-stein-v-groups-are-k-graph-full-groups`.** For multiplicatively independent n_j, V(Z[1/∏n_j],⟨n_j⟩) is the full group of the one-vertex k-graph of aligned subintervals.
+  - So it is F_∞ (Li cor:OneVertex), with finite-index simple D(V).
+  - V_{2,3} is simple.
+  - It acts with type (A) on breakpoints, so PBH holds for all subgroups (F_{2,3}, T_{2,3}).
+  - Route `stein-group-v23-pbh-via-k-graph-finiteness`: `stein-group-v23-subgroups-satisfy-pbh` is now ESTABLISHED. The T_{2,3} half of `stein-groups-t23-and-v23-are-finitely-presented` is still open (note added).
+  - Its k-graph is the OPPOSITE of the CT_P(Z) k-graph. Open side question: is CT_P(Z) ≅ V_{P'}?
+- **e8df48ee6 `pisot-number-slope-stein-groups-are-contracting-rsgs` (+proof).** The unit hypothesis is removed.
+  - The β-coding exists iff (F).
+  - For non-units D(V) is a finite-index fp simple group in every degree.
+  - Every real quadratic field has such slopes, e.g. 1+√3 for Q(√3).
+  - Quadratic (F) is exactly Winstone's tree-pair condition.
+  - Rank-one lemma: affine codings never make two independent slopes contracting, so V_{2,3} is contracting in no affine coding.
+**Next.**
+- (a) T_{2,3} finite presentation, via a circle version of the k-graph argument (not a tfg).
+- (b) Mixed algebraic multi-slope Stein groups, e.g. ⟨2, τ⟩: need a Garside category that is not a k-graph, or a Perron-type Li criterion (bh-invent-perron).
+- (c) CT_P(Z) vs V_{P'} isomorphism.
+**8c548b3da (09-18 ~17:00).**
+- `oligomorphic-actions-with-f-n-set-stabilizers-are-f-n`: general lemma.
+- `circle-pl-groups-inherit-finiteness-from-interval-groups`: T(A,P) is F_n if F(A,P) is, under (S),(R). So T_{2,3} and T_τ are F_∞, with type (A).
+- New routes close `stein-groups-t23-and-v23-are-finitely-presented` and `irrational-slope-t-tau-and-v-tau-are-finitely-presented`. V_τ is fp via the golden Pisot coding.
+- `irrational-slope-v-tau-subgroups-satisfy-pbh` is ESTABLISHED. T_xz and V_xz are fp simple groups.
+- Open: F_∞ for V_τ, which BNR assert; CT_P(Z) ≅ V_{P'}?; mixed algebraic multi-slope groups.
+**c7909ca44 (09-18 ~18:00).** `irrational-slope-v-tau-is-of-type-f-infinity` (+proof): V_τ and V_xz are F_∞. Route: golden Ore category, Garside family {id,L,R,M}, Witzel Thm 3.12, M-couple bad-simplex argument. So F_τ, T_τ and V_τ are all F_∞ on main.
+- Oligomorphic-lemma survey of OPEN finiteness nodes: no further T-type target with an F_∞ interval group on main.
+  - V-types are circular.
+  - Lodha's S is already F_∞ (Lodha); its Q3.4 gap is finite generation of Stab_S(∞).
+  - Metallic n ≥ 2 T-versions fail (R) and have n length classes.
+- Next candidates:
+  - (i) quadratic Pisot (F) V-groups: extend Lemma A to Winstone carets;
+  - (ii) T_{2,n,...} once Stein's F_{n_1..n_k} is imported;
+  - (iii) CT_P(Z) ≅ V_{P'}?

@@ -1,0 +1,7 @@
+Answer Kourovka 17.57: Out(CT(Z)) = C_2, by two routes (Bell 54A; Adamczewski-Bell)
+
+Every homeomorphism of the profinite integers normalizing CT(Z) and fixing N_0 restricts to a bijection of N_0 that is 2- and 3-regular with polynomial growth.
+- Route 1 (ct-z-normalizers-are-2-and-3-regular): Bell's Theorem 1.4 (Sem. Lothar. Combin. 54A (2006), B54Ap; pinned at source by bell-generalized-cobham-theorem) gives a linear recurrence. The citation is corrected from "55, B55f" and the conditional status is dropped.
+- Route 2 (new node out-ct-z-is-c2): Adamczewski-Bell arXiv:1303.2019 Thm main (read at source) makes the generating function rational. The steps from regular to Mahler, from rational integer-valued to quasi-polynomial (Z-lattice integrality plus Kronecker), and the counting step to an affine class are written out in full.
+
+In both routes the reduction node then gives Out(CT(Z)) = <n -> -n-1> = C_2. Lane proof, not reviewed.

@@ -1,0 +1,7 @@
+Relative seeds over free products have finite ropes
+
+Branch lemma: across an edge with trivial stabilizer a relative seed transmits bounded data, so far
+branches carry finitely many canonical labellings. Hence seeded subgroups of free groups are finitely
+generated, over P*Q only finitely many (C cap P)-cosets of conjugates of Q meet C, and the
+Aanderaa-Cohen rope has no relative seed over Z^2*Z: it must be seeded through the scaling letters
+of K_M. Lane proof, not reviewed.

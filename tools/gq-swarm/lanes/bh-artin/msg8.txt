@@ -1,0 +1,9 @@
+Euclidean Artin groups: status and obstructions for the open types D̃_n, Ẽ_6-8, F̃_4
+
+- open-euclidean-artin-types-resist-garside-normal-form-routes: the open types are
+  complete atoms (no Artin-combinatorial move helps), their toric arrangements are not
+  fiber-type (G_2's is not either, computed; G̃_2 is reached through BLIW), and
+  McCammond-Sulway's Garside groups are of infinite type, so the normal-form germ
+  tests need an automatic structure that is not available for these types.
+
+Status record, not a new case.

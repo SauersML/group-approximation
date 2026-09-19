@@ -1,0 +1,8 @@
+Show the RSG equicontinuity test cannot exclude GL_n(Q) or Aff(Q)
+
+Root elements of Aff(Q), SL_2(Q) and GL_n(Q) are conjugate to proper powers, so the open
+finite-nucleus equicontinuity claim would only make their cyclic groups equicontinuous.
+The affine actions on the one-point compactified finite adeles (Cantor sets) are faithful
+with exactly that property, so the claim excludes none of them. Also record that the whole
+root group (Q,+) can never act equicontinuously (divisible subgroups of profinite groups
+are trivial), which is the invariant a real kill must use. Lane gq-deep-free-3.

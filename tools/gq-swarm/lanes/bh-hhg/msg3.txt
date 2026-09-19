@@ -1,0 +1,5 @@
+Correct the rational-attractor sketch for Röver--Nekrashevych groups
+
+The fixed point of y = beta h(y) is rational because its letters are produced
+by a finite deterministic system (state of h, window of length |beta|). The
+earlier formula as a product of sections of h was wrong.

@@ -1,0 +1,5 @@
+gq-en-ring: record referee B PASS on the R_T group-side nodes
+
+Cite gq-referee-b PASS for clopen-crossed-product-subrings-have-local-
+annihilation and sl3-toeplitz-harmonic-pe-groups-are-simple, and state the
+dependence on parts 1-3 of the ring node as one referee pass.

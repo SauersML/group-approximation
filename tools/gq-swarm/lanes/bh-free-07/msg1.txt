@@ -1,0 +1,8 @@
+Ledger classical embedding techniques against the live BH gates
+
+bh-free-07 (free lane, older-literature seed): research/artifacts/gq-bh-bh-free-07-classical-ledger.md.
+Maps 1958–2004 techniques (Higman, Boone–Higman, Thompson, Kuznetsov, Macintyre–Neumann,
+Sacerdote, Scott, Brown, Röver, Wilson, Bridson, BORS, Ol'shanskii–Sapir, Clapham, Valiev) to
+repo coverage and live gates, with read-at-source flags. Proposal P2 reads the shell germ-gate
+failures as a one/two-ray Houghton phenomenon (Brown 1987) and records why the naive 2V
+multi-ray shell violates BHM Thm 2.1 (1). No theorem claimed.

@@ -1,0 +1,8 @@
+Apply referee b's fixes to the commensurator-rigid and symmetric-space nodes
+
+W1: Mostow-Prasad isometries may be orientation-reversing or antiholomorphic, so
+Comm(G) is Comm_(Isom(X))(G), containing Comm_L(G) with index <= 2; discreteness
+unaffected. Non-arithmetic PU(n,1) lattices are known only for n <= 3. W2: Witte
+Morris pins (Mostow (15.1.2), Borel density Cor 4.5.3, commensurator criterion
+Rem 5.2.5(1)/Ex 5.2#3, arithmeticity Thm 5.2.1) moved into the trust surfaces.
+Referee b PASS (1e7a02690) recorded on four claims.

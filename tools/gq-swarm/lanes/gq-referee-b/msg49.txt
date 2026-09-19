@@ -1,0 +1,3 @@
+Referee report (citation lens): unimodular line pairs detect cyclic quotients PASS
+
+Items 1-4 correct; gate items 3-4 match; AGP remark optional and marked unread.

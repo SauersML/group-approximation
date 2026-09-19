@@ -1,0 +1,4 @@
+Cite the priority check on the Leavitt resolvent ring node
+
+No source found stating a finitely presented simple ring of characteristic
+zero; list the partial results (Leavitt over F_p, Bokut 1976, Belyaev 1978).

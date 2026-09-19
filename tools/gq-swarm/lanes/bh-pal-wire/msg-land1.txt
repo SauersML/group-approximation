@@ -1,0 +1,20 @@
+BH metabelian chain: repair 27 red modules (unprobed) and rewire FrontierFour to route A
+
+Repairs to the red modules in the route-A closure, written against their first-error set in the
+3c8b417428 MSI build. They are not yet build-verified; a probe is queued.
+- Mechanical fixes. Noncomputable sections. `omit ... in` for unused section variables. Missing
+  imports (Commute.Hom, Subgroup.Lattice/Map, Localization.Away, Field.ZMod). Renamed lemmas
+  (MonoidHom.map_closure, explicit Subgroup.closure_le argument, Subalgebra.fg_adjoin_finset,
+  MulAut.mul_apply with its explicit type). `open scoped Matrix`, struct-field alignment, the
+  smul_mem' implicit binder, and dropped no-op `change`s.
+- Proof fixes. `.elim` on False in EuclidKill, typed `Commute.all`/`Pi.single` in AffineFPModel,
+  and getElem_ofFn in CantorAction. ArtinHasseAlg: sigma is now built through a restricted
+  conjugation `conjB`, and the CommRing instance is explicit.
+- Localization.Away semiring diamond. ElemFPCharZeroK2Split states its nil statements through
+  generic helpers `K2NilFGAt`/`K2NilPosAt` over any commutative ring; they are instantiated at
+  Z[1/m] and their meaning is unchanged. CharZeroCoordsDenominators uses Set.range for
+  MvPolynomial.map.
+- FrontierFour. T1, T2 and T3 now come from the four route-A inputs S1, P1, Z1 and H1, replacing
+  the stale six-gap interface.
+
+Fix nodes: research/fix-bh-met-*.md stay OPEN until a green probe.

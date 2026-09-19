@@ -1,0 +1,1 @@
+Ore gate node: synchronization is now proved in every rank, so the Ore half is exactly tree domination

@@ -1,0 +1,10 @@
+Split tree-product lattices into irreducible blocks and settle blocks with just-non-compact closures
+
+A discrete projection to a proper sub-product splits a faithful lattice on a
+product of leafless trees virtually as a direct product of two lattices, so every
+such lattice is virtually a product of irreducible blocks. In an irreducible
+block, unimodularity rules out fixed ends and abelian normal subgroups of the
+factor closures. When those closures are just-non-compact, Bader-Shalom then makes
+every projection injective, and a faithful factor puts the block in the type (A)
+class. For three trees, the only lattices left outside B_A are irreducible ones
+with a non-just-non-compact factor closure (Attempt 5).

@@ -1,0 +1,5 @@
+(SS-hard)_1 is the faithful finite-index HNN condition; KMS test reduces to one commensuration
+
+- faithful-finite-index-hnn-upgrades-to-half-tree-free: a faithful HNN extension of A over finite-index subgroups (ascending allowed), twisted by a Baumslag-Solitar letter on A x Z, is non-ascending, and no element fixes a half-tree. So (SS-hard)_1 in HNN form is equivalent to attempt 5 of the complexity root, and to the finite-index case of the hard self-similar node.
+- KMS structure lemma: the torsion set N = T.H_1^{H_2} is locally finite and G/N = Z^{4K}. A faithful HNN needs a commensuration with no invariant normal subgroup in the torsion layer, and every shape available from the presentation is dead.
+- Cross-references updated in the two nodes landed at 1908f110d1.

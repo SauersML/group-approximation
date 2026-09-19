@@ -1,0 +1,6 @@
+Write out the crossing-wire layout: tiles, crossing box, head-edge zone, poly(log N) checks
+
+Artifact giving the explicit tile families (wires, turns, fan-out, crossing, end), the crossing box that
+meets every input pair, the one-head tableau encoding with head edges used by Step 2(c), channel routing
+of side bits, and the check that every rule is coordinate-fixed and poly(log N)-checkable, so the DRS/DR
+fixed-point argument applies. Both crossing-wire claims now cite it (referee request after 11493c386).

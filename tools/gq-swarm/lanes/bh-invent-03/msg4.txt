@@ -1,0 +1,9 @@
+Locally finite splittings preserve rigid SFT compactifications: BS(m,n), GBS groups, mapping tori, polycyclic groups lie in class C
+
+A finite graph of groups with finite-index edge groups has a quantum-rigid SFT compactification once one
+vertex group does: pointers toward a unique sink coset are finite labels, rigid by exact transport, edge
+exclusivity and monotone chains; the sink coset runs the vertex compactification. This settles the (star-C)
+test cases BS(1,2) and H_3(Z) and closes C under finite-index overgroups and mapping tori. The remaining
+gate is infinite-index edge groups (relative seeds) and groups without splittings.
+
+Lane bh-invent-03; elementary lane proof, unreviewed.

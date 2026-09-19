@@ -1,0 +1,5 @@
+Rigid subshifts without isolated points factor onto the end space; (RA) holds for virtually free groups and reduces to one-ended groups
+
+- Over any finitely generated group, the free components of nested ball-cylinders converge to a Freudenthal end, giving a continuous equivariant map X → Ends(Λ).
+- So (RA) holds for every virtually free group. Over multi-ended groups, non-amenable isotropy lives only over ends of one-ended vertex groups.
+- The (RA) node records the decisive weaker form (RA′): does a minimal, topologically free, rigid subshift force the group to be exact?

@@ -1,0 +1,6 @@
+Constrain cyclic-centralizer subgroups of V by attractor dynamics
+
+In a torsion-free subgroup of V with cyclic centralizers, every nontrivial
+support meets the attractors, repellers or identity region of every other
+element's flow power. This is a V-specific necessary condition for survey
+Question 4.7; it does not decide it.

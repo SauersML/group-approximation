@@ -1,0 +1,9 @@
+Re-check the metabelian Boone–Higman chain end to end: it holds modulo standard inputs
+
+Adversarial check triggered by bh-lit finding F1: main marks BBMZ Problem 5.3(7)
+(finitely presented metabelian groups) established while the literature lists it as open.
+Primary sources re-read: Wehrfritz 1975 Cor 1.2, Zaremsky 2405.09722 Thm 1.1 and Def 2.1,
+BFFHZ 2503.21882 Thm C, Rem 3.5 and l.203. Parameter-coordinate states re-derived. No gap
+found; the remaining trust inputs are listed in the report. Status lines on the metabelian
+root and the char-0 permutational node now record the re-check. Priority search is
+bounded to arXiv (Scholar/MathSciNet unreachable); no priority claimed.

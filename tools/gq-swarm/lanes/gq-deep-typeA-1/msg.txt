@@ -1,0 +1,8 @@
+Add D_2 = Q x|_2 Z in B_A with Hall overgroup and tower-route analysis
+
+The rational hull D_2 of BS(1,2) is the smallest stepping stone carrying both
+root obstructions O1 and O4. Land the open B_A question for it, necessary for
+the B_A form of the root, and a proved Hall-type embedding of D_2 in an explicit
+4-generator solvable group with solvable word problem, giving a route whose one
+hole is a single finitely generated group. Record the twisted Brin-Thompson
+tower reduction and why it fails with vertical factor V.

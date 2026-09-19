@@ -1,0 +1,13 @@
+Show finite-state Li-coded certificates cannot reach hard SFT hosts
+
+Three nodes for gate G3g(j), the rigid-SFT-to-Li bridge. In an effective finitely
+coded Li groupoid with condition (F), unit groups embed in products of finite
+symmetric groups of cylinders, so they are residually finite. Full groups of
+effective Li-coded groupoids with N^k degrees and finite-state unit data have
+word problem in time 2^(C l^2), and 2^(C l) for Zappa-Szep products of k-graphs,
+so no such host class is universal. With the SFT-language lower bound this
+shows no finitely generated group containing the master route's subgroup Q
+embeds in such a full group when the SFT language is harder than 2^(C n^8).
+The bridge therefore fails for hard SFTs regardless of rigidity. Hard cases
+need non-finite-state residually finite units or a finiteness theorem that
+produces no normal form.

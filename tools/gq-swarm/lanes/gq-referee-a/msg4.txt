@@ -1,0 +1,7 @@
+Referee report: Leavitt pairs embed SL_N(Q) in Steinberg groups PASS
+
+Proof-gap review of leavitt-pairs-embed-sl-n-q-in-steinberg-groups
+(b9dd69f0a): the room lemma over a noncommutative ring, the block-expansion
+homomorphism, the Whitehead square swap, the centrality argument on a perfect
+group and the swindle all check. The route to an explicit finitely presented
+overgroup of GL_n(Q) then needs only its cited finite-presentation input.

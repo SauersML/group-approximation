@@ -1,0 +1,8 @@
+Tree-product Busemann transplants pass the separable-modifications test
+
+In the transplant over F_m x F_n with the arrow skeleton, changing an end flips pointers on a whole
+geodesic line times the other tree. That slab has Busemann image all of Z^2, so it meets every other
+modification. Pure fibre modifications are pullbacks, and their distances equal those in Z^2. So the
+transplant has separable modifications only if its fibre does, and bh-invent-04's F_2 x F_2
+transplant passes. For A~2, the chamber-change sets still need to be checked for Busemann
+surjectivity.

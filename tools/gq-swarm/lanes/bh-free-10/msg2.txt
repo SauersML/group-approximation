@@ -1,0 +1,14 @@
+PBH class: free permutational products over finite stabilizers; the arbitrary-G-set wreath closure is false
+
+- New: free-permutational-products-preserve-pbh (+ proof route). (*_X K) ⋊ W lies in
+  B_A whenever Z/2 wr_X W does, in particular over W-sets with finite stabilizers.
+  So B_A contains the centralizing amalgams W *_C (C × K) over finite C without any
+  retraction (e.g. HNN extensions and doubles of V over finite subgroups), and there
+  are criteria for general amalgams and HNN extensions over finite subgroups.
+- New: pbh-wreath-closure-fails-over-undecidable-stabilizers. Mihailova's subgroup
+  gives Z/2 wr_(G/C) G, G = F_2 × F_2, with unsolvable word problem. This refutes
+  pbh-closed-under-permutational-wreaths-with-infinite-stabilizers as stated
+  (refuted_by added).
+- New OPEN node: pbh-closed-under-decidable-permutational-wreaths, the corrected
+  form, with decidable stabilizers.
+Lane proofs, not reviewed; no priority claimed.

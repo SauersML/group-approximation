@@ -1,0 +1,13 @@
+Groups undistorted in a type (A) actor form a class closed under products and finite extensions
+
+Tracking word metrics through Zaremsky's product and finite-extension constructions, and
+through the Belk-Zaremsky quasi-retraction, shows three things. The class QB_A of groups
+undistorted in some type (A) actor quasi-isometrically embeds in finitely presented simple
+groups. QB_A is closed under undistorted subgroups, finite direct products and finite-index
+overgroups. It contains hyperbolic groups, Aut(F_n), braid groups and bordered mapping
+class groups.
+
+Consequences: mapping class groups of punctured spheres, since their pure subgroups are
+direct factors of pure braid groups. The closed genus-two mapping class group, by
+Birman-Hilden and residual finiteness. Dihedral Artin groups. All their finite products
+and finite extensions.

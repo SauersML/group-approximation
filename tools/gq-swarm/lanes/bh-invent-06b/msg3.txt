@@ -1,0 +1,11 @@
+V-stabilized inflation hosts: F_infinity without faults, open with faults; nonzero Euler characteristic forbids endomorphism inflations
+
+- v-times-inflation-host-full-groups-are-finitely-presented (OPEN): F(G_V x inflation
+  groupoid) is F_infinity in the fault-free odometer case (relaxed Thumann, transformations Z^d,
+  spine = halving, digit split, grid). With faults, translations are rational maps with lag, the
+  BBMZ nucleus is infinite in the product coding, and the missing engine is a product theorem for
+  contracting RSGs.
+- nonzero-euler-characteristic-forbids-endomorphism-inflations: a VF group with chi != 0 has no
+  proper finite-index injective endomorphism, so over F_2 x F_2 (and Lambda_1 x Lambda_1 with
+  chi != 0) no subshift has a compressing endomorphism inflation; unlabelled compression there must
+  be non-coset or seed-type.

@@ -1,0 +1,8 @@
+Soluble groups of type FP_∞ are in B_A modulo Kropholler's locally finite radical
+
+Kropholler's Theorem B (BLMS 1993, read at source) makes G/T constructible-by-finite,
+hence virtually torsion-free of finite rank and residually finite. So the residually
+finite finite-rank node puts G/T, and G itself whenever T is finite, into the
+permutational Boone–Higman class. This covers torsion-free, metanilpotent and
+constructible soluble FP_∞ groups. Whether T can be infinite is Kropholler's
+stated open problem.

@@ -1,0 +1,7 @@
+Generic V * Z in Homeo(Cantor): fp and dense, but no clopen stabilizer is f.g.
+
+A Baire argument with fresh points shows a generic t gives <V,t> = V * Z.
+Bass-Serre theory then shows every clopen stabilizer maps onto an infinite-rank
+free group. So the stabilizer clause in the dense-Cantor form of PBH cannot be
+dropped; the parent node is updated. Lane proof, not reviewed; no novelty
+claimed.

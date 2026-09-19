@@ -1,0 +1,12 @@
+Show Boolean inverse monoid finite presentation is finite type; units lose rigidity
+
+Groupoid Higman embedding, first pass (bh-invent-03). For a finitely presented
+Lambda and a subshift X, the Boolean inverse monoid of Lambda ⋉ X (with or
+without V) is finitely presented exactly when X is of finite type: idempotents
+commute by axiom, so rigidity never appears. Its group of units need not be
+finitely presented: A^Lambda x Y_0 has a finitely presented monoid but a
+non-finitely-presented V-stabilized full group, by the quantum-rigidity
+necessity theorem. Open: the transfer conjecture (full group fp iff Steinberg
+algebras fp) and a rigid groupoid Higman embedding, which together give BH.
+Artifact adds cocycle lifting and a sketch that renormalization cannot escape
+rigidity. Lane proofs, unreviewed.

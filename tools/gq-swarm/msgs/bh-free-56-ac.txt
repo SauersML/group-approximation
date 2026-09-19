@@ -1,0 +1,3 @@
+Seed tower, rung 1c: Aanderaa-Cohen associated subgroups are decidable; relative seeds descend to quotients
+
+Every associated subgroup of the Aanderaa-Cohen Higman tower has decidable membership when WP(C) and H_0(M) are decidable (good-subgroup Britton algorithm, retraction lemma, Nielsen change); the machine subgroup has membership Turing-equivalent to H_0(M), so CAP is decided at (K_M, T_M). Gluing alone reaches the input only through a seed on C x F_n. Relative seeds descend through normal subgroups of their stabilizer, so Mihailova towers only relocate the problem.

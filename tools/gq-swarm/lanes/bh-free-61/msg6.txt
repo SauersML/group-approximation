@@ -1,0 +1,15 @@
+Prove edge-split synchronization in every rank via a half-tube shared-vertex lemma
+
+- half-tube-lattice-points-are-edge-split-vertices: in rank >= 3, every primitive lattice point
+  within sup-distance 1/2 of the ray of a generic point (in a cell's coordinates) is a vertex of a
+  descendant containing the point. The proof is a pigeonhole on the rounding error that keeps the
+  tube invariant. Dirichlet then gives any two cells a shared vertex.
+- unimodular-cells-synchronize-under-edge-splits-proof: generalized vertex lemma, shared ray to
+  common descendant, and induction over the rational hull of the point. (Sync_m) holds for every
+  m, so the descent-ordered dissection poset of the rational projective full groups is directed.
+- The claim node is now ESTABLISHED (lane proof). Attempt 4 records that the pointwise
+  one-round entry-sum lemma is false (67 of 1369 stuck matrices of entry sum <= 26).
+- The rank-two node and the finite-presentation gate node record the closure. The gate's
+  hierarchy step and link connectivity stay open.
+- Artifact: MSI checks (860000 rank-3 and about 85000 rank-4-8 half-tube runs, no logical
+  failure; exhaustive game search agrees).

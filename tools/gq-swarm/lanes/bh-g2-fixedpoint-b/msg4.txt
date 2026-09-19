@@ -1,0 +1,11 @@
+Seeded transport codings over end flows are quantum rigid, spine sheet included, so the unseeded computation is unsplittable
+
+New claim seeded-transport-codings-over-end-flows-are-quantum-rigid, with route seeded-transport-rigidity-downhill-proof. Lane proofs, elementary and algebraic, unreviewed.
+
+Over H x F_m with base Y (x) end shift: a computation letter transported by base-dependent bijections along the space generators and along second-child time steps, and seeded at every other time step, is D-quantum rigid over every field on every module. Three steps:
+- downhill centrality of the time-flow letters: a step away from the target forces the target's flow letter;
+- space centrality, by bijective transport;
+- commutation of computation letters: an away step forces the target's time chain back onto the source.
+On the unique spine sheet a completion is fixed by one letter, so it carries at most |C| global choices. The explicit instances are the spine bit, the clocks Z/q (C_Z read along second-child time), and data-dependent cyclic phases.
+
+Lesson for general BH: synthesis v6 gets rigidity of seeds from monotone chains toward the seed. This is that mechanism in operator form, for seeded coordinates of any finite phase type. Functional (graph) phase fields are always rigid, and the unseeded spine costs nothing. By the (heuristic) phase-field trichotomy, graph couplings kill minimality. So the remaining E1-and-E2 difficulty on non-amenable squares is expected to be a relational, non-graph phase coupling that is still unsplittable.

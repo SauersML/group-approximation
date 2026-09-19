@@ -1,0 +1,11 @@
+Show central elements of Kazhdan subgroups of 2V have slope zero at every periodic point
+
+Let K be a Kazhdan (or FW) subgroup of nV and z a central element. At the fixed
+points of z^m the slope is K-invariant, and the fixed set with a given nonzero slope
+is locally a point times a J-cube, where J is the set of zero coordinates of the
+slope. K acts on that set through |J|V. When |J| <= 1 that action has finite image,
+because V has the Haagerup property. The germ character of the finite-index kernel
+at a fixed point must then vanish, but it takes the nonzero slope on z^m. So in 2V
+every periodic point of such a z has slope zero. For general nV the same holds if
+Kazhdan subgroups of lower-dimensional kV are finite. This reduces the open
+finite-center question in 2V to slope-free central elements, such as minimal ones.

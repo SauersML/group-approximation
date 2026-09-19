@@ -1,0 +1,7 @@
+Aperiodic singular points already defeat Theorem 2.1
+
+Sharpen the consequence for simple Kazhdan inputs: at an aperiodic singular
+point Fix_V(p) is not finitely generated, so a Theorem-2.1-certified host has
+only periodic singular points, and the input sits in one finitely presented
+germ group at a periodic point whose V-dilation it does not virtually
+normalize.

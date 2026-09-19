@@ -1,0 +1,8 @@
+Adversarial check PASS: every finitely generated linear group satisfies Boone--Higman
+
+Re-derived both halves of finitely-generated-linear-groups-satisfy-boone-higman step
+by step: coordinates by Nagata normalization, SL_n = E_n, finite presentation of E_n
+and of the affine extension, and both self-similar state formulas. Zaremsky's
+Definition 2.1 and Theorem 1.1 were re-read at source. No gap found. A bounded
+priority search found no prior proof; BFFHZ 2025 still lists the exceptional spherical
+Artin groups as open. MathSciNet was not searched. All reviews are internal.

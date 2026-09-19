@@ -1,0 +1,11 @@
+SL_3(Z) remnant: Q by harmonic elimination; first candidate ring R_T
+
+Over any odometer factor one harmonic function and the translation units
+generate a ring containing Q: e_(d-1) - S e_d of the translates by coset
+representatives cancels the one wild value. For SL_3(Z) the transfer from
+Gamma(d)^ab to Gamma(d^2)^ab vanishes (Lee-Szczarba plus a computation). On a
+Toeplitz SL_3(Z)-subshift with a Haar-conjugate measure this gives a
+finitely generated simple ring with centre Q, Q^x detected in K_1, K_2(Q)
+killed by matricial divisibility, and trivial rational symbols on group and
+block units. Record the open rest of the K-budget (letter-cylinder corners,
+general units), and apply the gq-referee-a amendments to three earlier nodes.

@@ -1,0 +1,7 @@
+Record the dead Leavitt base-change route on the Deligne lattice node
+
+Adds an Attempts entry: Deligne's lattice is StSp_2g(Z) for g >= 4
+(Funar--Pitsch, Lavrenov at source), and the symplectic Leavitt
+swindle kills its centre in every central-extension lift of base
+change into R_L-type rings, so there is no reduction to the GL_n(Q)
+shell instance this way.

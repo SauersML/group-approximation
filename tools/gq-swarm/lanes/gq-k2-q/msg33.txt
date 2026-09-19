@@ -1,0 +1,5 @@
+gq-k2-q: split the one-sided-inverse node into claim and proof route; record referee-b PASS
+
+The rg:2 schema wants the proof of an established claim as a -proof route
+(gq-referee-b structural note). Both one-sided and small-finite-quotient nodes
+now carry PASS reports from both referees.

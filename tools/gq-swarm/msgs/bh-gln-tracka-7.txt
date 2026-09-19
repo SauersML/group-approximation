@@ -1,0 +1,7 @@
+GL_n(Q) Track A: the group-side finiteness gates need only finite presentation of the acting group; K_3 limits higher finiteness
+
+gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity: over (St_10(R_L)*Z) x Z^2, (B_N) holds for every finitely
+generated group and P2prime-b for every group. So E3prime = P2prime-a = (A_N) in degree 1, and it comes down to quantum
+rigidity of the SFT plus the open rigidity-to-finite-presentation theorem. Nothing about St_10(R_L) beyond finite
+presentation enters. H_3(St(R_L)) = K_3(R_L) = K_2(Q) is not finitely generated, so if degree-3 homology
+stabilizes by rank 10, St_10(R_L) is not FP_3 and neither is the acting group.

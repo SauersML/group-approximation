@@ -1,0 +1,37 @@
+k(1,1) = (Fraction(2, 1), Fraction(1, 1))  r on probes: [('1', '0'), ('0', '1'), ('168', '-10'), ('1', '-1'), ('-29', '200'), ('701', '-2402'), ('-2097', '18958'), ('-346', '201'), ('-32', '95'), ('4216', '2118')]
+generators: 14  wide = False  J = 1  MAXLEN = 5  RLEN = 1
+level 1 new elements 14 time 0.4 overflow 0
+level 2 new elements 158 time 0.4 overflow 0
+level 3 new elements 1646 time 1.0 overflow 0
+level 4 new elements 16789 time 6.0 overflow 36
+level 5 new elements 167723 time 54.9 overflow 2170
+ball size 186331 overflow 2170 stopped_early False
+linear-collision hits (|det L| != 1): 0
+near misses (fix both axes and (1,-1)): 185
+  near 3 / 10 probes agree with r | s-1X s0x
+  near 3 / 10 probes agree with r | s-1X s1x
+  near 3 / 10 probes agree with r | s-1Y s0y
+  near 3 / 10 probes agree with r | s-1Y s1y
+  near 3 / 10 probes agree with r | s0X s-1x
+  near 3 / 10 probes agree with r | s0X s1x
+  near 3 / 10 probes agree with r | s0Y s-1y
+  near 3 / 10 probes agree with r | s0Y s1y
+  near 3 / 10 probes agree with r | s1X s-1x
+  near 3 / 10 probes agree with r | s1X s0x
+r-translated words checked 14 overflow 1 matches 0
+TABULATION over 185 near misses (words in N_0 fixing both axes and (1,-1))
+  line (1, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, 2) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (2, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, 3) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (3, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (2, 3) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, -2) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  r on (1, 1) -> ('168', '-10') line kept False scalar None content ratio 2
+  r on (1, 2) -> ('701', '-2402') line kept False scalar None content ratio 1
+  r on (2, 1) -> ('-29', '200') line kept False scalar None content ratio 1
+  r on (1, 3) -> ('1436', '678') line kept False scalar None content ratio 2
+  r on (3, 1) -> ('6135', '-5567') line kept False scalar None content ratio 1
+  r on (2, 3) -> ('3715', '-2682') line kept False scalar None content ratio 1
+  r on (1, -2) -> ('-49', '-46') line kept False scalar None content ratio 1
+total time 55.1

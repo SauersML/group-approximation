@@ -1,0 +1,11 @@
+Almost automorphism groups have residually finite f.g. torsion subgroups; free Burnside hosts (BBMZ 5.3(6))
+
+New claim almost-automorphism-torsion-subgroups-are-rf (+ proof, lane proof):
+every finitely generated torsion subgroup of the almost automorphism group of the rooted
+d-ary tree is residually finite (virtually in G^(d^n) inside Röver–Nekrashevych V_d(G));
+so V, all V_d and all V_d(G) contain no infinite f.g. group of finite exponent (Zelmanov).
+Recovers Röver's torsion local finiteness of V.
+
+Burnside node free-burnside-groups-satisfy-boone-higman (BBMZ 5.3(6), owned by bh-bbmz-problems):
+added the almost-automorphism host exclusion and Attempt 2; new OPEN fp-simple-groups-can-contain-infinite-finite-exponent-groups
+(necessary for BH; live hosts nV, twisted BT, Kac-Moody).

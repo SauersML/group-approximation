@@ -1,0 +1,9 @@
+Prove that BS(1,k) conjugators of cocompactly wandering maps have invariant compacta
+
+A homeomorphism a of a compact metric space that acts properly and
+cocompactly on its wandering set forces every b with b a b^-1 = a^k
+(|k| >= 2) to have a nonempty compact invariant subset of that set:
+b^-1 divides levels by k, so a bounded band of fundamental domains is
+backward invariant. With a finite non-wandering set this rules out
+t a t^-1 = b, so in Baumslag--Gersten-type actions the generator a is
+never of finite Morse--Smale type. Lane proof, elementary, unreviewed.

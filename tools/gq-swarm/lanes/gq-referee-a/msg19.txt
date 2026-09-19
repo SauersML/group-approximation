@@ -1,0 +1,7 @@
+Referee report: SMART level-0 return map odometer factor PASS
+
+Proof-gap review of smart-level-zero-return-map-factors-onto-3-adic-odometer
+(37c1222a1) against the Callard-Salo source: the substitution, the radius-1
+level-0 set, the count 2*3^k, the parent table on Z-tapes, equivariance and
+the 2V conjugation all check. Bounded returns rest on the cited minimality of
+the 8-state machine, left to the citation referee.

@@ -1,0 +1,6 @@
+Kourovka 21.46 inputs: RSV doubles never virtually simple; AL torsion reduces to square diagonals
+
+Lane bh-free-extensions (lane proofs, elementary, not reviewed; no priority claimed).
+- rsv-quaternionic-doubles-are-never-virtually-simple: RSV's own exact sequence gives each double a nontrivial infinite-index normal subgroup, a product of free groups, in every finite-index subgroup. So the RSV route to an f.p. simple group of cd > 2 is closed, answering RSV's l.754 question negatively.
+- amir-lazarovich-lattice-torsion-is-square-diagonals: in the Amir-Lazarovich lattices on T_c x X_{O_d} (arXiv 2605.09493), every torsion element of the colour-preserving part is conjugate to a square diagonal DD'. So their simple lattice is torsion-free, hence of cd 3, iff each DD' survives in a finite quotient.
+- artifact gq-bh-bh-free-extensions-cd3-sources.md: reading record of both TeX sources.

@@ -1,0 +1,1 @@
+Rotation (self-chosen): adversarial PASS on MZ Question 3.18 counterexample (infinite shift-similar, not strongly)

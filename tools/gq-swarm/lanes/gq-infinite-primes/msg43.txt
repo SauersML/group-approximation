@@ -1,0 +1,9 @@
+Mixed-degree and bracket nodes: referee fixes
+
+Lane gq-infinite-primes. Mixed-degree: referee-a PASS (1a50e4465), referee-b PASS
+(f9605d67e); the exact-sequence part of (CSL) is derivable from ABC Theorem 3.6
+and the proof of Proposition 7.5 (ultramatricial unitization is regular
+supercoherent), leaving K_*(Q)-linearity and the index formula; N1-N4 applied.
+Bracket: item 7 inhomogeneous branch is a reduction, not an exclusion; sl_2
+item marked heuristic; What remains extended to (a)-(h), including matricial
+designs outside items 5-6 and rank-one bases of infinite stable range.

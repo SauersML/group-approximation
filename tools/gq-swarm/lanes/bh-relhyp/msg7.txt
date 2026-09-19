@@ -1,0 +1,9 @@
+bh-relhyp: good subgroups pass to finite-index overgroups; cusp extensions of relatively hyperbolic groups (torsion allowed) stay in B_A
+
+- pbh-coset-condition-passes-to-finite-index-overgroups (+ proof): the indicator of a
+  finite set of cosets in Z/2 wr_(G/C) G has centralizer the setwise stabilizer.
+- cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh (+ proof): G in B_A relatively
+  hyperbolic, cusps E(g_i) x K_i along non-commensurable loxodromics; result in B_A and
+  relatively hyperbolic. Settles the torsion case.
+- Cross-reference to pbh-coset-wreaths-iff-identity-edge-hnns; OPEN node updated.
+Lane proofs, not reviewed.

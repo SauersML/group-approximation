@@ -1,0 +1,3 @@
+Correct the Britton check wording in the VA-images node
+
+The middle t-segment of the commutator needs a not in <a^3>, not <a^2>; mathematics unchanged.

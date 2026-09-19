@@ -1,0 +1,9 @@
+gq-en-ring: elementary-group route to GL_n(Q), rational-scalar obstruction
+
+Land the matrix-ring route into gl-n-q-embeds-in-fp-simple-group. An elementary
+lemma embeds GL_n(Q) in PE_N(R) for every ring R containing Q (N >= n+2, every
+N when R = M_2(R)). The open premise asks for one such R with PE_N(R) finitely
+presented and simple for infinitely many N. A new established obstruction: a
+finitely presented PE_N(R) forces the elementary rational scalars to form a
+finitely generated group, so GL_N(R) = E_N(R) (the K_1 = K_2 = 0 Leavitt tensor
+template) and perfect unit groups modulo centre are ruled out in characteristic 0.

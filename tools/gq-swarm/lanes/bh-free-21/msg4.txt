@@ -1,0 +1,8 @@
+Centralizers of elements with a dense-basin attractor embed in the germ group there
+
+A homeomorphism with an attracting fixed point of open dense basin has its centralizer
+(on that point's stabilizer) embedded in the germ group at the point. In 2V, where corner
+germ groups are Z^2, a diagonal north-south flow z^p x z^q with pq nonzero has centralizer
+exactly Z^2. This kills the diagonal-fiber design for two-leaf graph manifolds recorded in
+the automatic-germ-extensions artifact, and gives the general rule that large centralizers
+need large germ groups at attractors.

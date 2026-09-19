@@ -1,0 +1,5 @@
+Finite factors of the minimal crossing-wire shift are 3-groups; nZ^2 is minimal for 3 not dividing n
+
+Blank rank-K blocks recur in every rank-(K+1) macrotile, so every finite factor contains L_(K+1)Z^2 with
+L_(K+1) a power of 3. Hence nZ^2 acts minimally for n prime to 3, as needed by phase-skeleton Busemann
+transplants. The full maximal equicontinuous factor is not determined.

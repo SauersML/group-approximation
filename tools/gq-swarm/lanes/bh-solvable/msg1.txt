@@ -1,0 +1,7 @@
+Residually finite soluble groups of finite rank satisfy Boone–Higman
+
+Pyber–Segal (Thm 1.1, Cor 1.3; read in the TeX) make every finitely generated
+residually finite virtually soluble group of finite Prüfer rank linear in
+characteristic zero, so the reviewed quasi-linear node puts it in B_A. Also
+records the open non-residually-finite minimax case with Abels' central
+quotient as calibration, and a status note on soluble classes.

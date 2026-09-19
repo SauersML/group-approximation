@@ -1,0 +1,9 @@
+Referee C: end-to-end reviews of three class-level BH nodes
+
+- char-two-linear-groups-satisfy-boone-higman: PASS-with-fixes. The chain is
+  complete at statement level. The status line should name its conditions (the
+  Khanh preprint, the unreviewed Farrell-Jones derivation). Two places still say
+  Zaremsky settles GL_n(Q).
+- countable-decidable-groups-embed-in-fp-simple-groups and its two routes: PASS.
+- fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups: PASS-with-fixes;
+  the title's "contains 2V" needs H infinite.

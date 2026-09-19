@@ -1,0 +1,9 @@
+Busemann transplant minimality is horospherical minimality; F_2 x F_2 gets a free minimal quantum-rigid SFT (conditional)
+
+A transplant of a minimal fibre is minimal once the zero-lag (horospherical) relation of the skeleton is
+minimal, meaning every horosphere sees every germ. The only obstruction is a finite Busemann phase
+meeting a finite factor of the fibre. This holds outright for products of free groups, so the transplant
+of the one-way minimal crossing-wire fibre is a free, minimal, quantum-rigid SFT over F_m x F_n, which
+answers gate G2(c) conditionally on unreviewed lane proofs. For A~2 lattices, germ primitivity (a finite
+2-graph check, not performed) suffices, with the phase modulus prime to 3 for DR zooms. Records the
+conditional answer on the F_2 x F_2 node.

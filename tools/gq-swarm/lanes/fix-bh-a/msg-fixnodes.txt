@@ -1,0 +1,5 @@
+Cairn fix graph: 27 fix nodes for the red BooneHigman/Metabelian modules on main
+
+One route node per module that fails in the trusted MSI build of 3c8b417428, with its first errors, the kind of
+breakage, the owning lane (bh-pal-wire, repairs written and waiting for a probe) and the resolve condition. Status OPEN.
+They target fp-metabelian-groups-satisfy-boone-higman, whose metabelian chain cannot build until they are green.

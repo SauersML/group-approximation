@@ -1,0 +1,10 @@
+Add expert summary of the 09-18 obstruction theorems (gq-writeup)
+
+Compile the obstruction theorems landed on 2026-09-18 from their current node
+text on main (476938cdb), each stated exactly with the review status the node
+records: Part I the Z_(l) bottleneck (exclusion classes, resolvent and Euler
+ring K_2 and Steinberg results, the two live candidates and what is open);
+Part II prime mixing and type (A) actors (prime-shift groups, restricted
+products, torus amalgams, rational symbols, line pairs, graded rings, the ring
+gate); Part III the BS(1,2) return-time test with the +4 offset evidence and
+the withdrawn hash-bug counts; and a graph-hygiene list for the owners.

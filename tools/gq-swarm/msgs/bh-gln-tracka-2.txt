@@ -1,0 +1,10 @@
+End-shift SFTs of cocompact trees; boundary route for inputs containing Q needs fp RF semilocal hosts
+
+end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups: the end shift of a cocompact locally finite
+tree with finitely generated vertex stabilizers is an SFT over the acting group. If that group is finitely
+presented, contains (Q,+) and acts topologically freely on the ends, a vertex group is finitely presented,
+residually finite and contains Z_(S). St_10(R_L) can never act there. This is the boundary alternative to
+(M2) for GL_n(Q).
+
+z-localized-embeds-in-fp-rf-group: record this fourth consumer, which needs only the semilocal form.
+bounded-valence-trees-scale-only-primes-below-the-valence: cross-reference the tree dichotomy node.

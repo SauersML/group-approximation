@@ -1,0 +1,6 @@
+Add the proof route for one-steinberg-group-contains-every-gl-n-q
+
+The claim was stated ESTABLISHED through its Attempts proof but had no route,
+so the two St_4 routes into the Problem 2.7 root could not fire. The route
+points at that proof and requires the ring D and the Steinberg finite
+presentation theorem. Its body lists the classical K_2 inputs the proof cites.

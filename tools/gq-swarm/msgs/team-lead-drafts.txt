@@ -1,0 +1,5 @@
+Preserve 17 unlanded lane drafts as artifacts after a coordinator restart
+
+Copies of research drafts that never reached main (7 missing, 10 newer than main), kept verbatim under research/artifacts/gq-draft-* so nothing is lost. Not reviewed; nodes on main are unchanged.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

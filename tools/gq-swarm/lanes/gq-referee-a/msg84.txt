@@ -1,0 +1,3 @@
+Referee report: Houghton-like envelopes have fp germs iff fp near shift group PASS items 1-4, W1
+
+Proof-gap lens on houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group (9b43b26d1). Ray germs, the n >= 3 gate and retract, R wr C_2 via Schreier generators, the 2n-factor kernel and the n = 1 consistency checked. W1: item 5 rests on a node with no status line.

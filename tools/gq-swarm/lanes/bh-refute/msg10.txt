@@ -1,0 +1,6 @@
+Adversarial check: substitution-subshift full groups and quadratic IET groups satisfy BH — PASS (conditional on imports)
+
+Artifact gq-bh-bh-refute-verify-substitution-full-groups.md: independent red-team verification of
+bh-free-03's stationary-vershik-maps-generate-contracting-rsgs (local actions, no stacking of
+singular germs, finite nucleus), the full-closure step, and the IET step; attacks tried; bounded
+priority search.

@@ -1,0 +1,14 @@
+Isolated engine conjecture and its route; cross-link the parallel emitter obstruction proofs
+
+- isolated-vertex-groups-have-fp-stabilizer-engines (OPEN): D(F_B) is finitely presented for every
+  infinite isolated B. Every hypothesis is necessary, so it would be a characterization. First tests:
+  Thompson's F, T, V and Houghton's H_3.
+- boone-higman-via-isolated-stabilizer-engines (route): CGP Question 4 envelope, doubling via CGP
+  Thm. 7, then the engine. Granted the conjecture, BH is equivalent to CGP Question 4.
+- stabilizer-engines-need-finitely-discriminable-vertex-groups (swept in as WIP): banner pointing to
+  the two parallel isolation proofs; it keeps the quotient transfer lemma and the abstract schema
+  (hypotheses (a), (b)) that other host constructions can be tested against.
+
+Lesson for general BH: once finite presentation of a uniform one-emitter engine is known to force
+isolation, the emitter gate is exactly "isolated in, finitely presented simple out"; the live
+question moves to isolated vertex groups, and the envelope step is CGP Question 4.

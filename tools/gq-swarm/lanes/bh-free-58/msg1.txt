@@ -1,0 +1,12 @@
+bh-free-58: Kourovka 21.74(b),(c) — finite-cycle problems in CT(Z) are undecidable
+
+For a reversible 2-counter machine M, explicit words F_M and H_M in class
+transpositions (moduli {2,3,5,7,11,13}-smooth) satisfy two equivalences:
+F_M has only finite cycles iff every configuration of M is periodic, and
+H_M has no finite cycles iff M has no periodic configuration. Kari–Ollinger
+(MFCS 2008) Theorems 3 and 6 then settle 21.74(b) and (c) negatively.
+H_M fills the garbage classes with conjugates of an explicit five-transposition
+element psi that has no finite cycles and permutes no nontrivial
+residue-class partition (new node).
+
+Lane proof, not reviewed. Parts 21.74(a) and 21.73 remain open.

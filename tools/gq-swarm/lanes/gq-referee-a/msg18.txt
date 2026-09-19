@@ -1,0 +1,7 @@
+Referee reports: characteristic-zero ring envelopes PASS (proof gaps)
+
+Proof-gap reviews of the four gq-ring-fp-simple nodes in 36d65161f:
+rational function fields in fp simple rings, char-0 representable rings,
+algebraic closures, and fp simple Q-algebras. All proofs pass; the reports
+list wording fixes, the most important being that part 3 of the closure node
+claims GL_n(K) in the units of R_L where only R_k tensor L_Q is shown.

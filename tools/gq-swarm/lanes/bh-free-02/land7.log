@@ -1,0 +1,7 @@
+LANDED b71a260de on origin/main (parent 4b9855740):
+ .../gq-bh-bh-free-02-wachter-weiss-reading.md      |  17 +-
+ ...self-similar-groups-embed-in-fp-self-similar.md |  10 +-
+ ...utator-wachter-weiss-groups-are-not-fp-proof.md | 185 ++++++++++++---------
+ ...e-commutator-wachter-weiss-groups-are-not-fp.md | 118 ++++++++-----
+ ...ar-groups-with-arbitrarily-hard-word-problem.md |  29 ++--
+ 5 files changed, 213 insertions(+), 146 deletions(-)

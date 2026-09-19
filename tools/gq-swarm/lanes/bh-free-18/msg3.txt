@@ -1,0 +1,6 @@
+Embed BS(1,-m) in 3V for every odd m by symmetrizing a renormalizable element
+
+If T in kV has a height-m renormalization, so does T on one cone together with T^-1 on the other,
+and the swap of the two cones conjugates that element to its inverse. Composing the swap with the
+renormalization conjugator gives t s t^-1 = s^-m, hence BS(1,-m) <= (k+1)V. With SMART_m this puts
+BS(1,-m) in 3V for every odd m >= 3. Lane proofs, not reviewed.

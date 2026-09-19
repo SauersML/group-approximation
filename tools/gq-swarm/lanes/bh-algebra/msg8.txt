@@ -1,0 +1,3 @@
+Self-similar premise: reduction to a lossless transducer, and the crux stated
+
+Attempts on decidable-algebras-embed-in-simple-self-similar-completions: (1) the monomial benchmark A_X reduces to designing a lossless row-monomial recursion whose dying words are exactly those with a factor xy^n x, n in X; (2) a level of psi rewrites output letters again, so dying-at-level-N runs as a branching substitution with N far exceeding word length, which is why the injective fence (level bound 2l) does not apply; (3) crux: a row-monomial recursion is a fixed finite substitution, and whether its dying set can be an arbitrary decidable X (vs a branching-D0L class) is open; no obstruction, fence inapplicable, dynamics Turing-shaped.

@@ -1,0 +1,10 @@
+K-theory of R_L: K_n(R_L) = K_(n-1)(Q); K_2(R_L) = Q^x on {lambda, N+1}
+
+Lane gq-infinite-primes. Adding the vacuum projections q_k = s_1^k s_2 t_2 t_1^k
+to the diagonal ring gives B+ = B + (direct sum of Q delta_k), and R_L is the
+single-register completion over B+ with spine s_1 and point indicators. So the
+refereed register Pimsner sequence applies. With the localization splitting of
+K_*(B), 1 - [X] is injective with cokernel K_(n-1)(Q) by residue sum. Hence
+K_0 = 0, K_1 = Z[N+1], K_2 = Q^x via {lambda, N+1}, K_2(N,R_L) onto for N >= 3,
+and E_N(R_L) not finitely presented. Attempt on the word-problem reduction:
+the K_2 = 0 shortcut is closed; a computable detector stays open.

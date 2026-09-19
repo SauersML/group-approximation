@@ -1,0 +1,17 @@
+## Lesson for general BH
+
+- **Two involutions suffice.** Every bijection `f` of a periodic set `X`, piecewise a
+  canonical class map, lies in a fixed fp simple group `CT_P(Z)` once `f` is doubled to
+  `f ⊕ f^{-1}` on a disjoint copy `2X`. It is the product `s_2 s_1` of two involutions,
+  each a product of disjoint class transpositions. This is a Bennett-style
+  reversibilization done inside the host. It needs no full-group theory, K-theory or
+  17.59.
+- **The host is universal at the level of single elements.** A fixed fp simple group of
+  type `F_∞` contains, as single elements, arbitrary reversible Minsky machines. Its
+  word problem stays trivial, while the cycle structure of its elements is
+  undecidable.
+- **What this says about BH.** A BH embedding does not lack computational expressiveness
+  in fp simple hosts: an element can already run the word-problem algorithm. The whole
+  difficulty is turning that computation into a homomorphism, i.e. relations that hold
+  identically. The dynamical properties of the element must not leak into the image
+  subgroup.

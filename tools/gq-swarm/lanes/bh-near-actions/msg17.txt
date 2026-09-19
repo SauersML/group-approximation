@@ -1,0 +1,6 @@
+bh-near-actions: flip codings remove the sign obstruction (every real field has a (-F) Pisot unit); lesson paragraphs
+
+New OPEN node flip-codings-remove-the-sign-obstruction-for-iet-groups: items 1-3 established (Dirichlet +
+simultaneous approximation => every real field is Q(beta) with KSV-dominant totally positive Pisot unit,
+hence (-F); no parity obstruction for negative base); open step: negative-base RSG theorem needs
+finiteness on the boundary coset (S(y)={beta(1-y)}). Lesson for general BH added to the Pisot RSG node.

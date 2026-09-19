@@ -1,0 +1,6 @@
+Almost-automorphism torsion theorem: characterization of torsion subgroups (item 7)
+
+almost-automorphism-torsion-subgroups-are-rf: a f.g. torsion group embeds in the rooted-tree almost
+automorphism group iff it is virtually a subgroup of Aut(X*); it embeds in some Röver-Nekrashevych
+group iff it is virtually a subgroup of a self-similar group. Proof step 6b (Kaloujnine-Krasner for
+the converse). Lane proof, not reviewed.

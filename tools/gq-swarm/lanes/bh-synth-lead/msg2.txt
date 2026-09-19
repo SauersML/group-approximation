@@ -1,0 +1,8 @@
+Synthesis v2: merge the reductions, obstructions and hosts syntheses into one route
+
+The three sibling syntheses converge on the rigid-SFT Leavitt-units route and name one missing
+theorem: finite type plus local rigidity gives finite presentation for non-deterministic codings.
+It is proved ring-side and open group-side (P2', non-LCM Li). v2 records that. It corrects the
+reading "M1 + M2 give (E)" (they give only P1; (E) needs quantum rigidity), keeps St_10(R_L) as an
+acting group over F_2 for GL_n(Q), and proposes that fixed-point tilings with unique parse are
+quantum rigid as the cross-depth rule the obstructions demand.

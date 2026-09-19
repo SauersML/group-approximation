@@ -1,0 +1,9 @@
+Existence gate E1: minimal free SFTs on fp overgroups exist iff effective minimal free subshifts do
+
+Plane-constant Durand-Romashchenko lifting over Lambda_0 x Z^2 with diversification slots keyed by
+each plane's own table: freeness of the input makes the keys injective on every finite window of
+planes, so every floating tuple recurs, and input and hierarchy in commuting factors remove DR's
+alignment step. This proves (M1) for free inputs (design-level lane proof), gives a P1 route with
+the single open premise decidable-groups-embed-in-fp-groups-satisfying-m2, and the converse via
+Jeandel (read at source), so P1 is equivalent to (M2) on overgroups. Notes appended to M1, P1 and
+the plane-tuple crux, which is bypassed for free inputs.

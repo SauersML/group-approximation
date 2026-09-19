@@ -1,0 +1,14 @@
+Splitting categories are connected exactly when root graphs are; condition (G) reduces to atom pairs
+
+Split trees of one dissection are coherent: any two are joined by local moves at minimal common
+upper bounds of two atoms, and such a move disconnects the splitting category only when it is the
+whole dissection. Hence, for every dissection with at least three pieces, the splitting category
+is connected if and only if the root graph (atoms below it, joined when it is not their minimal
+common upper bound) is connected. Only first-level spine elements can split disconnectedly.
+
+So condition (G) for finite presentation holds when pairs of atoms have finitely many minimal
+common upper bounds. For the closed-MCG edge-split host, finite presentation now needs Ore plus
+finitely many two-sided minimal common upper bounds of two edge splits, not a finite spine.
+Calibrated on twisted Brin-Thompson grids and on the flop computation. Also corrects the
+connectivity indices in the proof of thumann-finiteness-without-finite-type; its statement is
+unchanged.

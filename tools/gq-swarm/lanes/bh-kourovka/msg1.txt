@@ -1,0 +1,3 @@
+Answer Kourovka 17.61 and 17.59: CT_P(Z) is a one-vertex k-graph full group, simple and F_infinity
+
+For finite P, Kohl's class transposition group CT_P(Z) is the topological full group of an explicit one-vertex (|P|+1)-graph on the profinite completion prod_{p in P+2} Z_p. Hence it is simple and of type F_infinity (Li, Garside II), which answers Kourovka 17.61 positively. As a consequence CT(Z) is exactly the group of residue-class-wise affine permutations fixing N_0 setwise (Kourovka 17.59, positive). CT_P and CT_Q are non-isomorphic when |P| != |Q| (partial 17.60, via Matui's isomorphism theorem and isotropy rank). Also lands the Kourovka problem list for the BH swarm. Lane proofs, not reviewed; all cited theorems read at source.

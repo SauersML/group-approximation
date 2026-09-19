@@ -1,0 +1,7 @@
+Commensurator-rigid FA groups sit in BLIW tree hosts only with infinite index
+
+With property FA, such a group fixes a vertex of any faithful cocompact
+locally finite tree action; the tree group then lies in BS of the vertex
+stabilizer, so finite index would contradict the no-faithful-member theorem.
+Applies to Out(F_n), n >= 4, and closed Mod(S_g), g >= 3. Lane proof, not
+reviewed.

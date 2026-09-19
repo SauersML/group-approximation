@@ -1,0 +1,9 @@
+Countable fields: no-RF obstruction for all infinite fields, char-p host facts
+
+SL_n(K) has no finite quotients for every infinite field K, so GL_n(K) has no
+residually finite overgroup in any characteristic; GL_n over an algebraic
+extension of F_p lies in V (calibration: that obstruction never excludes a
+finitely presented simple host); linear groups of positive characteristic
+have no distorted cyclic subgroups, so the distortion obstruction O4 is
+characteristic-zero specific; and for n >= 3 the Kazhdan lattice SL_3(F_p[t])
+excludes V and VA for GL_n of a transcendental characteristic-p field.

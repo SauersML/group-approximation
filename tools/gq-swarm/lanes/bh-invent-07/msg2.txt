@@ -1,0 +1,12 @@
+Thumann's operad finiteness holds without finite type when large elementary classes split connectedly
+
+Thumann's F_infinity theorem for operad groups uses finite type in one place only: the corona
+estimate, which bounds the degrees of strictly elementary classes. That bound can be replaced by
+condition (G)_n: the splitting category of every large elementary class is (n-2)-connected. The
+theorem then gives type F_n for finitely generated operads with F_n transformations and any spine,
+and a variant covers infinitely many moves. Finite presentation needs only connected splittings.
+
+Calibrations: Thumann (finite type), Rover-Nekrashevych, and twisted Brin-Thompson groups, where
+(G) is the grid-sphere computation. Consequences: the finite-spine half of the closed-MCG
+edge-split gate can be replaced by connected splittings of large spine elements, and the
+connectivity gate of the oligomorphic-operad conjecture is proved under (G).

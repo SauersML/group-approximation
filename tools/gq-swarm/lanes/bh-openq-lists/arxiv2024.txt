@@ -1,0 +1,173 @@
+172 list.txt
+ 2006-05-04 Trees, ultrametrics, and noncommutative geometry
+ 2002-04-24 The groups of Richard Thompson and complexity
+ 2006-07-22 Testing spherical transitivity in iterated wreath products of cyclic groups
+ 2007-03-21 Some remarks on depth of dead ends in groups
+arXiv Query: search_query=cat:math.GR AND abs:"topological full group"&amp;id_list=&amp;start=0&amp;max_results=100
+ 2004-05-24 On the growth of iterated monodromy groups
+ 2005-10-03 On approximation of homeomorphisms of a Cantor set
+ 2004-06-02 Higher Dimensional Thompson Groups
+ 2006-11-07 Full groups, flip conjugacy, and orbit equivalence of Cantor minimal systems
+ 2005-07-05 Context-Freeness of Higman-Thompson group's co-word problem
+ 2003-10-21 Circuits, coNP-completeness, and the groups of Richard Thompson
+ 2003-06-17 Automata and Square Complexes
+ 2005-07-18 An incoherent simple group
+ 2004-11-24 A finitely presented torsion-free simple group
+2609.14702 2026-09-13 Finiteness properties of closed subgroups of Thompson's group $F$
+2609.12290 2026-09-10 Cayley-graph density of Thompson's group F: local deletions and finite-window bounds
+2609.08849 2026-09-08 Asymptotically conformal and asymptotically rigid mapping class groups
+2609.01996 2026-09-02 Baumslag-Solitar Subgroups Obstruct Model Companions for Fields with Group Actions
+2609.01868 2026-09-01 On the Self-Similarity of Permutational Wreath Products and Their Embedding into Finitely Presented Simple Groups
+2608.30127 2026-08-31 Simplicity and pure infiniteness for $\text{C}^*$-algebras associated with stabilizers of boundary actions
+2608.21953 2026-08-22 Forcible groups and Frattini covers
+2608.20703 2026-08-21 Group-product rigidity and Higman-Thompson reassociation groups
+2608.17891 2026-08-18 Thompson's Conjecture for Finite Simple Groups of Lie Type over Small Fields
+2608.17193 2026-08-17 Every copy of Thompson's group $F$ in $F$ is undistorted
+2608.16193 2026-08-17 Conjugacy classes with covering number two in hyperbolic orthogonal groups
+2608.16530 2026-08-17 $\mathbb{Z}^2$-free subgroups of Thompson's $T$ are virtually free
+2608.13620 2026-08-13 A Note on the FC-Center of Thompson's Group $F$
+2608.10894 2026-08-11 FormaTheoria: Constructing Large-Scale Lean Theories from Mathematical Literature $-$ Toward the Formalization of the Classification of Finite Simple Groups
+2608.10150 2026-08-10 Quasirandomness and Uniform Twin-Width
+2608.07950 2026-08-08 Presentations of the cactus Thompson group
+2608.03813 2026-08-04 The Dehn function of Thompson's group $V$ is at most sextic
+2608.02111 2026-08-03 A graph-theoretical characterisation of subgroups of Thompson's group $V$
+2608.01168 2026-08-02 On context-free subgroups and R. Thompson's group $V$
+2607.28406 2026-07-30 Thompson's Group $V$ and Virtual Link Theory
+2607.28893 2026-07-30 Piecewise isometry groups of Euclidean tessellations
+2607.28316 2026-07-30 Mixed-identity-freeness and primitivity of group rings
+2607.26572 2026-07-29 Near full groups of bounded type, \rom{2}
+2607.26644 2026-07-29 Automorphism-invariant refinements of weakly branch actions via overlap functions
+2607.25729 2026-07-28 Near full groups of bounded type: full group completion
+2607.21754 2026-07-23 Generating simple vigorous groups
+2607.18011 2026-07-20 From local giants to locality in long-range percolation
+2607.13776 2026-07-15 Commensurating actions and self-similar groups
+2607.10961 2026-07-12 Irreducible fast sets of bump homeomorphisms generate copies of Thompson's groups $F_n$
+2607.04300 2026-07-05 Topological full groups and stable rank one
+2607.04038 2026-07-04 Higman--Thompson groups $F_n$ all the way down
+2607.03081 2026-07-03 The Baer Transform for Skew Braces
+2606.24741 2026-06-23 All mixed identities are singular in groups with no algebraicity
+2606.23896 2026-06-22 The one-point Schreier Poisson boundary of Thompson's group $F$
+2606.07430 2026-06-05 Spectral properties of the Schreier graphs of the basilica group
+2606.00863 2026-05-30 On the generation problem in Thompson's groups $F_n$
+2605.30605 2026-05-28 Thue-Morse sequence and groups of intermediate growth
+2605.30163 2026-05-28 Non-uniform exponential growth and the decay of growth rates in growing dimensions
+2605.28963 2026-05-27 Generalisable presentations and compactness properties of locally compact right-angled Artin groups
+2605.20564 2026-05-19 Action graphs, semiconjugacy, and non-embedding in Thompson's group $V$
+2605.17814 2026-05-18 Geometric properties of the golden ration Thompson's group
+2605.13406 2026-05-13 Groups with classifiable actions on the line
+2605.02889 2026-05-04 Gluing diagrams part 1: A constructive solution for the Higman-Thompson group isomorphism problem
+2604.21988 2026-04-23 Local growth laws determine global shape of molluscan shells
+2604.18104 2026-04-20 Counting automorphic orbits in finitely generated groups
+2604.01011 2026-04-01 A residually finite analogue of Kegel's theorem on splitting automorphisms
+2603.28228 2026-03-30 Stationary boundaries on the space of amenable subgroups and C*-simplicity
+2603.24687 2026-03-25 Abstract twisted Brin--Thompson groups
+2603.18410 2026-03-19 On subgroups of Brin-Thompson groups $nV$
+2603.14556 2026-03-15 Self-similarity of the generalized Baumslag-Solitar groups
+2602.18197 2026-02-20 An embedding version of Rubin's theorem
+2602.16885 2026-02-18 Characters and $II_1$-Factor Representations of Full Groups of Cantor Minimal Systems
+2602.12912 2026-02-13 Bases of Permutation Groups and Boolean Representable Simplicial Complexes
+2602.04839 2026-02-04 Distorted and undistorted subgroups of the Lodha-Moore group
+2601.19417 2026-01-27 Concentration inequalities for maximal displacement of random walks on groups of polynomial growth
+2601.15185 2026-01-21 The Zariski Topology on Homeomorphism groups
+2601.13058 2026-01-19 Period growth and co-context-free groups
+2601.13279 2026-01-19 On constructing topology from algebra
+2512.19500 2025-12-22 Transitive sets of derangements in primitive actions of PSL_2(q)
+2512.18943 2025-12-22 Finitely presented simple groups with no piecewise projective actions
+2512.14324 2025-12-16 Boundary actions of outer automorphism groups of Thompson-like groups
+2512.12033 2025-12-12 Dense Conjugacy Classes and Stability of Locally Finite Graphs
+2511.21175 2025-11-26 The Pseudocentre of a Group (with an appendix by Anthony Genevois)
+2511.21259 2025-11-26 Constructing Thompson representatives via pointed links
+2511.07917 2025-11-11 Diagonal-preserving Isomorphisms of Algebras from Infinite Graphs
+2511.08518 2025-11-11 A Note on the Metric of Thompson's group V
+2510.16879 2025-10-19 Embedding groups into acyclic groups
+2510.13309 2025-10-15 Non-strong ergodicity of canonical actions of the Thompson groups
+2510.11336 2025-10-13 Asymptotically rigid mapping class groups III: Presentations and isomorphisms
+2510.01952 2025-10-02 Infinitely presented simple groups separated by homological finiteness properties
+2509.26237 2025-09-30 Products of strictly hyperbolic conjugacy classes in symplectic groups
+2509.20035 2025-09-24 Limit groups with respect to Thompson's group $F$ and other hereditarily separating groups
+2509.16947 2025-09-21 On self-similarity of finitely generated torsion-free nilpotent groups
+2509.05798 2025-09-06 Non self-similar metabelian groups
+2509.05524 2025-09-05 Semigroups, groups, and algebras of dynamical origin
+2508.20739 2025-08-28 Limit spaces of vertex and edge replacement systems
+2508.21264 2025-08-28 Asymptotically rigid mapping class groups of infinite graphs
+2508.20005 2025-08-27 Stabilized automorphism groups and full groups of odometers
+2508.20061 2025-08-27 Frame Vector Group Representations and Amenability Properties
+2508.07816 2025-08-11 Finiteness properties of Subgroups of Houghton Groups of full Hirsch length
+2508.02582 2025-08-04 Topological Full Groups of Irreducible Edge Shifts have Solvable Conjugacy Problem
+2507.18821 2025-07-24 On Similarity Structure Groups and their W$^*$ and C$^*$-Algebras
+2507.09784 2025-07-13 On bireversible automata and commensurators of groups in automorphisms of their Cayley graphs
+2507.06599 2025-07-09 Minimal sofic shift on a group that is not finitely-generated
+2506.07991 2025-06-09 Automorphism groups of solvable groups of finite abelian ranks
+2506.02319 2025-06-02 Finiteness properties of stabilisers of oligomorphic actions
+2505.23142 2025-05-29 On a question of Abért and Virág
+2504.11048 2025-04-15 Freeness Obstructions for Self-Similar Groups Acting on Rooted Trees
+2504.01283 2025-04-02 The Poisson boundary of Thompson's group $T$ is not the circle
+2504.01363 2025-04-02 Embedding Higman-Thompson groups of unfolding trees into the Leavitt path algebras
+2503.21882 2025-03-27 Boone-Higman embeddings of $\mathrm{Aut}(F_n)$ and mapping class groups of punctured surfaces
+2503.14298 2025-03-18 Recursive Self-Similarity in Deep Weight Spaces of Neural Architectures: A Fractal and Coarse Geometry Perspective
+2503.11594 2025-03-14 Orderable Thompson-like groups arising from Ore categories
+2503.13523 2025-03-14 Just infinite quotients of finitely generated subgroups of $PL^+[0,1]$
+2503.00185 2025-02-28 On the fixed-point proportion of self-similar groups
+2502.14970 2025-02-20 The Diophantine problem in Thompson's group F
+2502.12590 2025-02-18 Hyperbolic structures on Houghton groups
+2502.07936 2025-02-11 On a Class of Self-Similar Polycyclic Groups
+2502.04540 2025-02-06 Cops and robbers for hyperbolic and virtually free groups
+2502.01544 2025-02-03 Simple Expansion Sets and Non-Positive Curvature
+2501.11482 2025-01-20 Simplicity of $C^*$-algebras of contracting self-similar groups
+2501.07522 2025-01-13 The Lodha--Moore groups and their $n$-adic generalizations are not SCY
+2501.04112 2025-01-07 A Class of Non-Contracting Branch Groups with Non-Torsion Rigid Kernels
+2501.00908 2025-01-01 Locally compact piecewise full groups of homeomorphisms
+2501.00515 2024-12-31 A family of level-transitive groups with positive fixed-point proportion and positive Hausdorff dimension
+2412.15112 2024-12-19 Homology of Steinberg algebras
+2412.08784 2024-12-11 Dynamical Tits alternative for groups of almost automorphisms of trees
+2412.05492 2024-12-07 Classifying Stein's groups
+2412.04932 2024-12-06 Trickle groups
+2412.04138 2024-12-05 Eventually Self-Similar Groups acting on Fractals
+2412.02339 2024-12-03 Rearrangement Groups of Fractals: Structure and Conjugacy
+2411.12569 2024-11-19 McCleary--Rubin reconstruction for simple forest-skein groups
+2411.11806 2024-11-18 Cyclicity, hypercyclicity and randomness in self-similar groups
+2411.09069 2024-11-13 The Higman--Thompson groups $V_n$ are $(2,2,2)$-generated
+2410.23088 2024-10-30 Thompson's group T has quadratic Dehn function
+2410.22639 2024-10-30 Self-similarity of the classical $p$-adic Lie groups and Lie algebras
+2410.16108 2024-10-21 Locally approximating groups of homeomorphisms of manifolds
+2410.07512 2024-10-10 On Ulam widths of finitely presented infinite simple groups
+2410.04788 2024-10-07 On a family of finitely generated simple groups of homeomorphisms of the circle
+2409.19491 2024-09-29 Growth of finitely generated subgroups of the topological full groups of inverse semigroups of bounded type
+2409.12700 2024-09-19 Topological normal generation of big mapping class groups
+2409.12621 2024-09-19 The Maximality of $T$ in Thompson's group $V$
+2409.09195 2024-09-13 Finite generation for the group $F\left(\frac32\right)$
+2409.05502 2024-09-09 Non-planar ends are continuously unforgettable
+2409.02359 2024-09-04 Homology and K-theory for self-similar actions of groups and groupoids
+2409.00870 2024-09-01 Normal extensions and full restricted semidirect products of inverse semigroups
+2408.14355 2024-08-26 Contracting Self-similar Groups in Group-Based Cryptography
+2408.12051 2024-08-22 A tensor product for representations of the Cuntz algebra and of the R. Thompson groups
+2408.10875 2024-08-20 Half grid diagrams and Thompson links
+2408.08081 2024-08-15 Scissors automorphism groups and their homology
+2408.07732 2024-08-14 A note about solvable and non-solvable finite groups of the same order type
+2408.05673 2024-08-11 On the Boone--Higman Conjecture for groups acting on locally finite trees
+2408.05323 2024-08-09 Groups with ET0L co-word problem
+2408.00442 2024-08-01 Simplicity of $*$-algebras of non-Hausdorff $\mathbb{Z}_2$-multispinal groupoids
+2407.18720 2024-07-26 Automorphisms of the two-sided shift and the Higman--Thompson groups III: extensions
+2407.07703 2024-07-10 Embedding groups into boundedly acyclic groups
+2407.06058 2024-07-08 Thompson's quandle
+2407.03149 2024-07-03 Finite Germ Extensions
+2406.17587 2024-06-25 Small-ball estimates for random walks on groups
+2406.12982 2024-06-18 Hyperbolic actions of Thompson's group $F$ and generalizations
+2406.11996 2024-06-17 The Lamplighter groups have infinite weak cop number
+2406.10665 2024-06-15 Self-similarity of some soluble relatively free groups
+2406.09718 2024-06-14 Forest-skein groups III: simplicity
+2406.02967 2024-06-05 Atomic representations of R. Thompson's groups and Cuntz's algebra
+2405.19923 2024-05-30 Divergence functions of higher-dimensional Thompson's groups
+2405.18354 2024-05-28 Finite presentability of twisted Brin-Thompson groups
+2405.17695 2024-05-27 The Limit Space of Self-similar Groups and Schreier graphs
+2405.16678 2024-05-26 On wreath product occurring as subgroup of automata group
+2405.10234 2024-05-16 Boone--Higman Embeddings for Contracting Self-Similar Groups
+2405.09722 2024-05-15 Embedding finitely presented self-similar groups into finitely presented simple groups
+2405.03445 2024-05-06 An elementary proof of the Benjamini-Nekrashevych-Pete conjecture for the semi-direct products $\mathbb{Z}^n\rtimes \mathbb{Z}$
+2404.19273 2024-04-30 Torsion groups of subexponential growth cannot act on finite-dimensional CAT(0)-spaces without a fixed point
+2403.16876 2024-03-25 The Hausdorff dimension of the generalized Brunner-Sidki-Vieira Groups
+2403.16364 2024-03-25 On maximal subgroups of ample groups
+2403.06480 2024-03-11 SFT covers for actions of the first Grigorchuk group
+2403.04941 2024-03-07 BNSR-Invariants of Surface Houghton Groups
+2402.01372 2024-02-02 The Freeness Problem for Automaton Semigroups
+2401.06886 2024-01-12 On the growth of actions of free products

@@ -1,0 +1,12 @@
+2. **These points are dense in `A`.**
+   - Case (1) fails exactly when every ancestor of `y`'s level-1 move is a last sub-move. Last sub-moves
+     are `p` (in `b` or `p` parents) or `q` (in `d` or `q` parents), and the last sub-move of a `p` or `q`
+     move is again `p` or `q`. So the chain is all `p` (or all `q`) from level 1 up.
+   - For an all-`p` chain, each ancestor has `s_* = 0` (the `p`-parent case of the table), and all share
+     the right end cell, with value `v ∈ {1,2}`. So the tape left of the domains is all `0`.
+   - Set one far-left cell to `1`, outside a given window. The ancestor whose `s_*` it is then has
+     `s_* ≠ 0`. If `v = 2` its parent is `q`, with index 1, not last. If `v = 1` its parent is `b`, with
+     index 2, and `b` is never a last sub-move, so the grandparent case is not last.
+   - Either way case (1) holds for the perturbed configuration. It keeps the window, so it stays in `A`
+     with the same lower chain. The all-`q` case is the mirror image.
+   - So case (1) points accumulate at every point of `A`.

@@ -1,0 +1,3 @@
+Type (A) actors are closed under lamp wreaths twisted at a point by a stabilizer homomorphism
+
+Repair route for the chain group after the referee failure of the Kaloujnine-Krasner step: let the point stabilizer act on its own lamp through a homomorphism into the lamp actor. Faithfulness, pair orbits, stabilizers and the Cornulier presentation go through with one extra family of relations. Corollary: the twisted lamplighter M_1, hence G_1, lies in B_A once BS(1,2) sits in a type (A) actor whose base generator has a stabilizer character equal to one; that requires a non-tame base generator with a regular hyperbolic fixed point moved by the dilator.

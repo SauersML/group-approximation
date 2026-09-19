@@ -1,0 +1,9 @@
+Shell germ algebra: finite presentation forces only an input-bounded presentation of the germ group
+
+bh-ck-kernel. New lane proof shell-germ-algebra-fp-forces-bounded-germ-presentation: if the
+germ Steinberg algebra A_nu is finitely presented, the germ group Q at p has a presentation
+with boundedly many input letters per relator but arbitrary shift exponents. Method: a
+matrix model of A over F_2[Q'] on the orbit of p, where Q' is the input-length truncation.
+The group gate forces a FINITE presentation of Q, so the only possible gain of the algebra
+gate is the shift exponent, i.e. the ascending-HNN clause. Attempt 1 recorded on the open
+full implication.

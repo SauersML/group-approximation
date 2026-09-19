@@ -1,0 +1,9 @@
+Gate E1: decidable free subshifts on A x Z for every decidable A, closing the existence route
+
+For every finitely generated A with solvable word problem, A x Z carries a nonempty free subshift
+with decidable language: each aperiodicity scale (a maximal net with a proper coloring of its
+2r+k graph) lives on its own Toeplitz rows of the Z column, so levels never interact and every
+constraint is greedily completable with a one-annulus look-ahead. This is premise (D) on the
+overgroup Lambda_1 x Z. With the tree gluing of 876c511de (bh-g1-universal-point) and the
+keyed-slot lift of 695a89096 (bh-g1-simulation), every decidable group embeds in the finitely
+presented ((Lambda_1 x Z) * Z) x Z^2 carrying a minimal free SFT. Lane proofs, unreviewed.

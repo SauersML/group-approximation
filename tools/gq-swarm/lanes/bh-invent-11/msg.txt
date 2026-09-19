@@ -1,0 +1,13 @@
+Two new hereditary Boone-Higman separator candidates, and a kill of the naive central one
+
+The integral Jacobi group Sp_2n(Z) ⋉ H(Z) is an integral linear Kazhdan group with
+infinite cyclic centre, so "Kazhdan subgroups have finite centre" fails on finitely
+presented simple groups. Its residual refinement P_Z (central elements of Kazhdan
+subgroups that die in every finite quotient) holds on every rank-one cone host, and is
+violated by the decidable groups Deligne's lattice and St_N(R_L). So P_Z separates
+Boone-Higman iff every finitely presented simple group satisfies it; this is left open.
+
+Likewise P_eff (every finitely generated residually finite subgroup is effectively
+residually finite) is hereditary and excludes Rauzy's decidable lamplighter amalgams
+L(A), read at source. It separates iff every finitely presented simple group satisfies
+it; the existence side is recorded open, with constraints on any host for L(A).

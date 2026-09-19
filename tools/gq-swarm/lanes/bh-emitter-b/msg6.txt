@@ -1,0 +1,6 @@
+Covering lemma for far commutation; Ã2 seed boundaries block every midpoint covering
+
+A midpoint-covering lemma turns domination into far commutation and recovers the tree case. In the Ã2
+seed boundary, sideways chamber fields block every midpoint covering at every radius, and the wall
+strata are open but not closed, so neither tree-type forcing along wall sets nor central splitting
+proves the seed rigid. What survives is a finitely presented host for the whole perfect boundary.

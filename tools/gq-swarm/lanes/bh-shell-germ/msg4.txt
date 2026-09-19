@@ -1,0 +1,5 @@
+Fixed-base inputs: torsion congruence and a digit-rotation seed
+
+In a fixed-base shell enumeration over V_(h,r)(<a>), every finite subgroup C of the
+input satisfies gcd(|C|, h-1) | r (calibrated on the A_5*A_5 enumeration, h = 59, r = 2),
+and the level-one digit rotation v gives s v^-1 = the local odometer on digit 0.

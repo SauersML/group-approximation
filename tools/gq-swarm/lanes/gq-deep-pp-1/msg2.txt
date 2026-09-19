@@ -1,0 +1,7 @@
+Mark circle-germ obstruction as germ-local form of pp-circle theorem
+
+lane gq-pp-psl2q landed pp-circle-divisible-subgroups-act-freely and
+pp-circle-and-lift-hosts-miss-gl-n-q (d65ff92ff) with the same argument for
+finitely-breakpoint hosts and their lifts. State the relation: this node needs
+only divisible-free point-germ groups, so it adds germ extensions with
+accumulating breakpoints and index-2 overgroups, and does not cover T-bar.

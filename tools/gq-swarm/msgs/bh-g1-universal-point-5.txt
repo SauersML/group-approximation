@@ -1,0 +1,5 @@
+Referee on lemma (E) of identifier-markers-give-decidable-free-subshifts: plausible, three repairable gaps
+
+Independent review. No counterexample; the finite-horizon lemma looks true once N is enlarged to
+cover level-J windows, level-J promote flags are unfrozen outside F, and the undefined condition (2)
+is replaced by a chain-top argument (at most one forced flag or ID bit per level above J).

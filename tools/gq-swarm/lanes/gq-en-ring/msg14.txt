@@ -1,0 +1,5 @@
+gq-en-ring: close the R_T host attempt after the harmonic truncation refutation
+
+Record in the host premise and in sl3-toeplitz-harmonic-pe-groups-are-simple
+that E_N(R_T) is not finitely presented (bounded-harmonic-rings-are-not-
+finitely-presented), so R_T is not a host although PE_N(R_T) is simple.

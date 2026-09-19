@@ -1,0 +1,3 @@
+Referee report: unimodular line pairs detect cyclic quotients PASS
+
+Proof-gap lens on unimodular-line-pairs-detect-cyclic-quotients (27c30bc22). Kernel computation, GL_N invariance, idempotent classes, distinctness of [f_n] checked; N1: Z(E_N(R)) is central scalars, so PE_N always acts on lines.

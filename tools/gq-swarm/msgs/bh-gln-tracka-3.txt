@@ -1,0 +1,11 @@
+Correct the end-shift node: it duplicates a concurrent landing and BLIW subsumes the route; the lasting content is that every BLIW host of a Q-input needs (SL)
+
+end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups:
+- part 1 duplicates locally-finite-tree-end-shifts-are-quantum-rigid-sfts (landed the same hour);
+- BLIW Theorem A (read at source) already embeds every group of part 2 in an fp simple group, so the end-shift route
+  to (star-prime) adds nothing where it applies.
+New parts:
+- part 5: every BLIW host (faithful, cocompact, locally finite, fp edge stabilizers) of an input containing (Q,+) has a
+  vertex group that is fp, RF and contains Z_(S);
+- part 6: locally finite splittings cannot create (SL) witnesses.
+z-localized-embeds-in-fp-rf-group: reword the consumer note accordingly.

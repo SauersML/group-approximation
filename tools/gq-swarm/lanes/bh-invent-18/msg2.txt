@@ -1,0 +1,4 @@
+Mark item 3(d) of the isolated-engine node as superseded by the collapse theorem
+
+B = F, T, V are decided negatively by stabilizer-engines-need-torsion-vertex-groups (58db3f3f9).
+Note only; the owning lane asked for it and is not editing the file.

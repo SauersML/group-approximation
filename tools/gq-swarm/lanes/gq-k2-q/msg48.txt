@@ -1,0 +1,1 @@
+gq-k2-q: partial-gauge core: wording fix and the character/cokernel coincidence

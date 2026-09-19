@@ -1,0 +1,7 @@
+Register every hypothesis the non-MF Lean endpoints still carry
+
+Signature audit of all 1293 declarations cited by formalized and partial rows of the non-MF sentence
+census, and of the 31 conditional-register entries. The only hypothesis without a producer on main is
+the relative Greendlinger lemma at least-area diagrams (GL06 residuals, owned by the GL lanes). Every
+other named binder has a binder-free producer, which is listed. The seven non-Greendlinger partial rows are
+route mismatches (WO-NM14-2/3). This is not a build attestation.

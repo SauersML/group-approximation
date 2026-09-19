@@ -1,0 +1,8 @@
+Survey the 2022-2026 Boone-Higman literature against the repo graph
+
+Maps sixteen arXiv papers to their main theorems and to the repo nodes that
+import them, and transcribes every named open problem found (survey Problem 5.3,
+BBMZ hyperbolic Q1.1-1.6, Zaremsky Conj 5.1 and Q5.13, BFFHZ Q3.1-3.6, FFKLZ Q2.4,
+FWZ Q5.7 and 5.9). Flags that the repo marks fp metabelian, spherical Artin and
+all f.g. linear groups as ESTABLISHED by internal proofs while the literature
+still lists them as open, and that FFKLZ Thm 1.1 applies to GL_n(Q).

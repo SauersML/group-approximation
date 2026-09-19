@@ -1,0 +1,5 @@
+U_3(Q) stepping stone: record the one-coordinate cocycle towers as dead
+
+Attempt 4 cites q-free-normal-towers-omit-aff-q (U_3(Q) has a Q-free normal
+tower through U(Z,Z,Q)) and u3-q-not-in-q-free-cantor-wreaths (the last step
+is not a continuous wreath with a Q-free acting group).

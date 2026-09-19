@@ -1,0 +1,10 @@
+SMART's level-0 return map has free divergence, so it hosts no ternary Toeplitz factor
+
+At every point of SMART's induced map, phases diverging at every large level
+occur nearby, because each hierarchy level adds one free cell. So the odometer
+phase is open off two Z-orbits, and no continuous labelling depends on the
+3-adic depth mod r near a hole. Hence neither SMART's induced map nor any
+finite skew product of it factors onto T_3 or onto the ternary fragmentation
+Schreier subshift, by any factor map. This settles the openness heuristic left
+in smart-renormalization-admits-no-graded-basins. The graded-renormalization
+input and the nV periodic-group target record the design constraint.

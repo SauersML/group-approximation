@@ -1,0 +1,11 @@
+Every hyperbolic group, Kazhdan ones included, lies in the rigid compactification class
+
+hyperbolic-groups-lie-in-the-rigid-compactification-class: an abstract window-chain lemma
+(monotone forward and backward events plus conditional determinism of the endpoint letters imply
+commutation) applied to the horofunction boundary. On a geodesic, "f drops almost fully from
+c_(i-1) to c_i" events form a non-degrading chain. Each implication is anchored to the centre by
+the four-point condition, and the target squeeze makes each window determine the letter upstream.
+So the distance-gradient SFT is quantum rigid for every hyperbolic group, including uniform
+Sp(n,1) lattices, and hyperbolic groups lie in C. Rigidity without walls: property (T) is no
+obstruction to (star-C) on the dynamics side. Marks the rigidity question as settled in the reduction
+node. Lane proof, unreviewed.

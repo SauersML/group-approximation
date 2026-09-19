@@ -1,0 +1,1 @@
+Fix one word in the derived-subshift Referee section: the rule-based forcing notion is the stronger one

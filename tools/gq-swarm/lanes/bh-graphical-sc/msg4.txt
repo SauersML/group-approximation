@@ -1,0 +1,13 @@
+Polynomial-time word problem for a non-exact group: a reduction to decodable labellings, and the SL_2(F_p) gap
+
+Land the OPEN claim non-exact-group-with-polytime-word-problem-exists. It is a necessary
+first step toward any non-exact subgroup of V, since coCF implies a cubic-time word
+problem.
+
+Also land the ESTABLISHED lane theorem decodable-small-cancellation-families-give-polytime-wp,
+with its route. A Gr'(1/6) large-girth family whose components admit polynomial-time path
+decoding and a short-complement oracle gives such a group, via Dehn's algorithm.
+
+Attempt: congruence Cayley graphs of SL_2(F_p) with Sanov generators handle short
+complements by unique lifting and long ones heuristically by hash-attack lifting. The
+intermediate range is a small-norm lifting problem with no known polynomial algorithm.

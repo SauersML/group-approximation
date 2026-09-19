@@ -1,0 +1,5 @@
+LANDED 099b88463 on origin/main (parent 638f8acf5):
+ ...scaping-forces-infinitely-many-double-cosets.md | 47 +++++++++++++++
+ ...coset-finite-subgroups-have-dense-limit-sets.md | 68 ++++++++++++++++++++++
+ research/out-free-groups-satisfy-boone-higman.md   | 15 +++++
+ 3 files changed, 130 insertions(+)

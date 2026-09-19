@@ -1,0 +1,5 @@
+gq-en-ring: link the K_1/K_2 scalar dichotomy in the host premise
+
+In Attempt 4 of q-algebra-with-fp-simple-projective-elementary-group, note that
+the Leavitt-free calibration pays in K_2 (rational-leavitt-path-k1-k2-scalar-
+dichotomy), which is the next test for a finitely presented host.

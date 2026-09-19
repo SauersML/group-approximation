@@ -1,0 +1,8 @@
+gq-k2-q: read Dennis-Stein and van der Kallen at source; finite residual of St_N(R_l) not fp-normal
+
+Both classical inputs were read from the MSI-downloaded PDFs: Dennis-Stein survey
+(LNM 342, sec. 12) gives K_2(Z/p^m) = 1 for p odd and Z/2 for p = 2, m >= 2;
+van der Kallen (LNM 551, Thm 1) gives K_2(N, Z/l^r) = K_2(Z/l^r) for N >= 3.
+Stability is applied only to the commutative local rings Z/l^r. Flip
+resolvent-steinberg-rf-residual-is-infinitely-normally-generated to ESTABLISHED;
+it refutes the finite-residual route through St_N(R_l).

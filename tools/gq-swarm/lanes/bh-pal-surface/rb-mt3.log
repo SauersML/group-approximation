@@ -1,0 +1,10 @@
+==> syncing sources to /projects/standard/hsiehph/sauer354/nonsofic_existence
+==> building PalomarBooneHigmanModelTests on the compute node (log tag: bhpalsurface)
+===== ERROR INDEX =====
+===== CONTEXT (from first error) =====
+===== STATUS =====
+info: GroupApproximation/GroupTheory/HydeLodha/HigmanInfiniteSimple.lean:31:21: 'GroupApproximation.HydeLodha.higman_infinite_simple' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [4515/4517] Built Palomar.BooneHigmanSolution (62s)
+✔ [4516/4517] Built Palomar.BooneHigmanModelTests (48s)
+Build completed successfully (4517 jobs).
+RC=0

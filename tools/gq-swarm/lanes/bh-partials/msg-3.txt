@@ -1,0 +1,11 @@
+Tanner's question: self-similar interval codings exist only for weak Perron inverse slopes
+
+A finite self-similar subdivision of intervals with ratios in ⟨λ⟩ forces 1/λ to be a weak Perron number. The finite
+places give an algebraic integer (det(I − M(x)) has constant term 1). The infinite places give a dominant conjugate
+(Perron–Frobenius monotonicity). So every coding-based finiteness proof for Stein groups, all those on main included,
+stops there: λ = 2/3, transcendental λ, and inverses with a larger conjugate are out of reach. V_{2/3} = V(Z[1/6],⟨2/3⟩,1)
+is perfect, simple and 2-generated, lies in Stein's derived group with slopes ⟨2,3⟩ (so it satisfies Boone–Higman), and
+its own finite presentation stays open.
+
+Lesson for general BH: Perron–Frobenius is the barrier for self-similar hosts. Inside it the gate is a finite nucleus
+(Pisot); just inside, for Perron but not Pisot slopes, it is BBMZ's non-contracting question Q1.4.

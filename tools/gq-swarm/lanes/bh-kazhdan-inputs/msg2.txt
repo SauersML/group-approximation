@@ -1,0 +1,5 @@
+Apply referee-a nits to the simple Kazhdan germ-group node
+
+Spell out the eventually periodic case (z = az forces z = a^infinity, so the
+germ group is trivial or infinite cyclic) and note that the fixed set F is
+nonempty. Record the referee-a PASS (31d8c753b) on the claim.

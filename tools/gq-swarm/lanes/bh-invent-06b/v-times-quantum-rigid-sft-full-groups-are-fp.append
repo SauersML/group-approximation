@@ -1,0 +1,15 @@
+
+**Attempt 3 (2026-09-18, bh-invent-06b): changing the host instead of the engine.**
+- **Every labelled host fails.** `labelled-hosts-of-free-actions-have-no-contracting-loops` extends Attempt 2 from
+  `G_V × (Λ ⋉ X)` to every groupoid carrying a continuous `Λ`-label over an open map to `X`. That covers skew
+  products, fibre extensions, Boolean powers and V-stabilizations. The same holds when `X` is minimal with an
+  invariant measure, or distal, even if not free. So no passive enlargement of this node's host is ever finitely
+  coded.
+- **Unlabelled inflation succeeds.** `substitution-inflation-hosts-are-full-contracting-rsgs` adjoins the
+  inflation germs of a recognizable primitive box substitution. The translation-plus-inflation full group is then
+  a full contracting RSG, hence finitely presented.
+  - This needs no quantum rigidity and no finite type.
+  - It includes Labbé's shift, where this node's host is finitely presented only if the open rigidity gate holds.
+- **For this node.** For substitutive `X`, P2′ is not needed for Boone–Higman purposes: the inflation host already
+  carries `Λ = Z^d`. For Track A over non-amenable `Λ`, inflation along an expanding endomorphism is impossible
+  (Gromov), so this node, or E3′, remains the gate for the non-amenable directions.

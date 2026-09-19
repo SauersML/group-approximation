@@ -1,0 +1,5 @@
+Exact twisted shells = exact factorizations; Thompson F has none
+
+bh-shell-universal: exactly twisted genuine shell actions of P with twist phi are the actions
+of P *_phi on Z with t = +1 and P fixing negatives, equivalently exact factorizations
+R = <t>H with P in all t^-k H t^k. F with the shift endomorphism has none. Lane proof, not reviewed.

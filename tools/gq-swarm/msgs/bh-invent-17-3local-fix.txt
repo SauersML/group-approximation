@@ -1,0 +1,3 @@
+Crossing-wire 3-locality node: soften unproved claims
+
+Pairwise crossings are "not known" to suffice, and the finite-certificate check is semi-decidable, not a finite computation.

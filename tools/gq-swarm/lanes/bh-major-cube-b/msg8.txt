@@ -1,0 +1,7 @@
+Q1.15 host: fix Lemma E for a c-edge first cube; write out the flagged Garside verification in full
+
+After re-review d6778b5f5f (conditional pass): Lemma E takes one more internal step when the first cube
+is a c-edge, so two fresh c-edges are available for the two-branch escape and minimality. New route
+flagged-pointed-cube-garside-verification: Dehornoy mcm criterion, explicit normal form (Niblo-Reeves
+cubes with maximal compatible labels) with normality proof, norm = hyperplane-poset height, left-divisor
+closure. Claim stays OPEN pending the Li lemma check.

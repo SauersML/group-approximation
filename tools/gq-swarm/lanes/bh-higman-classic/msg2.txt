@@ -1,0 +1,14 @@
+Name BBMZ-hyperbolic Question 1.4 and build its first open test family
+
+- fp-rsgs-have-fp-full-closures (OPEN): the printed question (TeX l. 236), known cases, and the
+  open family.
+- contracting-rsgs-have-fp-full-closures (+proof): [[G]] has the same nucleus as G, so the
+  contracting case follows from Theorem B. Counterexamples must be non-contracting.
+- v-normalizer-rsgs-contract-iff-finite-outer-order (+proof): for t normalizing V, V ⋊ <t> is
+  a finitely presented RSG, contracting iff t has finite order in Out(V), not full
+  otherwise, and of type (A) on clopens.
+- synchronous-cores-in-out-v-have-order-at-most-two (+proof): by Hedlund, synchronous cores
+  are id or flip. So for outer order >= 3 the full closure is asynchronous, and Scott/SWZ
+  do not apply.
+
+Lane proofs, not reviewed. No priority claimed. The family is from bh-free-23's artifact.

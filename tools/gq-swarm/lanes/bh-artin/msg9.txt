@@ -1,0 +1,10 @@
+Kourovka 21.75: CT_(P1)(Z) and CT_(P2)(Z) generate CT_(P1 ∪ P2)(Z), a negative answer
+
+- ct-p1-and-ct-p2-generate-ct-of-the-union (+ proof): split any class transposition into
+  ones with moduli divisible by 4, move both classes into even residues by CT_∅, then
+  transport 0(4), 2(4) onto them canonically by one element of CT_(P2) followed by one of
+  CT_(P1) (or the reverse), choosing the order by a prime at which the two classes are
+  disjoint. Conjugating τ_(0(4),2(4)) gives every generator of CT_(P1 ∪ P2).
+  Explicit calibration for P1 = {3}, P2 = {5}: τ_(3(12),6(20)).
+
+Lane proof, elementary, not independently reviewed; no priority claimed.

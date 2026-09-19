@@ -1,0 +1,5 @@
+Record that the attempt-13 lifted block is not free, with the centralizer criterion
+
+Attempt 14 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: three of the four lifted
+generators commute with the relator image T_y, so [r, a_1] dies and the candidate block is
+not free. Any freely lifted block needs every generator's push part outside <ℓ>.

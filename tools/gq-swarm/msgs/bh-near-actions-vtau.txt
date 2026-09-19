@@ -1,0 +1,10 @@
+Cleary golden V_tau is F_infinity: golden subdivisions are Ore with lcm-closed splits {L,R,M}
+
+- irrational-slope-v-tau-is-of-type-f-infinity (+ -proof): the admissible golden subdivisions form a
+  cancellative Ore category (Lemma A: L divides P iff tau is in dP, R iff tau^2 is, lcm = M), with Garside family
+  {id,L,R,M}. Descending links are labelled matching complexes with M-couples, and they are
+  (floor((n-2)/3)-1)-connected by a bad-simplex argument. Witzel gives F_infinity. This writes out the
+  assertion Burillo-Nucinkis-Reeves deferred. V_xz is F_infinity too.
+- irrational-slope-t-tau-and-v-tau-are-finitely-presented: update line.
+
+Lesson: non-commuting splitting rules keep finiteness when their lcm is again a finite elementary split.

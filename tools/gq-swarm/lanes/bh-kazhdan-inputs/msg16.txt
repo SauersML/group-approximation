@@ -1,0 +1,5 @@
+Apply referee-a nits to the fp germ-group theorem
+
+Record the referee-a PASS (97f2f5761). Say that inverse letters need no extra
+free arrows, that the relator prefix acts as a permutation of C, and that
+V-orbits are tail classes (which a V_(d,r) transfer must check).

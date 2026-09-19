@@ -1,0 +1,3 @@
+Groupoid Higman artifact: record pass 2 (Kakutani invariance of the rigidity gate; outer extensions)
+
+Lane bh-invent-03.

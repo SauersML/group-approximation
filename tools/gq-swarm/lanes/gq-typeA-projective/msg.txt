@@ -1,0 +1,11 @@
+gq: projective type (A) target for PGL_m(Q) and a germ lemma
+
+Add pgl-q-projective-type-a-extension (OPEN): a finitely presented overgroup
+of PGL_m(Q) whose type (A) action contains P^(m-1)(Q), for infinitely many m,
+with its strong and subgroup reformulations and a route into
+gl-n-q-in-permutational-boone-higman-class. Its Attempts record three dead or
+located classes: natural piecewise hosts, near actions on P^(m-1)(Q) (hand
+proof), and homeomorphism hosts, where the germ group at a rational point must
+be a finitely generated non-residually-finite overgroup of the parabolic. Add
+the general lemma type-a-orbit-accumulation-forces-fg-nontrivial-germs with
+its proof route.

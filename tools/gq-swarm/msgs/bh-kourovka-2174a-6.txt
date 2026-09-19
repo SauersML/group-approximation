@@ -1,0 +1,8 @@
+Torsion in CT(Z) reduces to hyperbolic primes; decidable when 2 is the only one; the amusical permutation is a full shift
+
+Primes where every slope is a unit collapse to a finite set without changing the order. With no
+hyperbolic prime the element has finite order. If 2 is the only hyperbolic prime, finitely generated
+subgroups embed in V, so torsion is decidable there. Compression and non-trivial periodic germs are
+semi-decidable certificates of infinite order; explicit elements show neither is complete alone.
+Conway's amusical permutation acts on Z_2 x Z_3 as the full 3-shift. Completeness of the two
+certificates together is conjectured; it would decide torsion in CT(Z).

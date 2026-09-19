@@ -1,0 +1,3 @@
+Mark the isolated engine conjecture refuted and its route dead (collapse transfer)
+
+stabilizer-engines-need-torsion-vertex-groups (58db3f3f9) refutes isolated-vertex-groups-have-fp-stabilizer-engines at B = F, T, V; record the status in both nodes.

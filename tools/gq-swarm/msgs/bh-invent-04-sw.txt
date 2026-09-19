@@ -1,0 +1,10 @@
+SW-deterministic crossing-wire tiles transplant to free quantum-rigid SFTs on Kazhdan A~2 lattices; four-way determinism puts rigidity on axis faults
+
+Co-location certifies rigidity only through face rules, so a crossing-wire fixed-point layout with
+rightward/upward flow (one-way CA zone) is SW-deterministic and still rigid. Sheared into the open cone,
+its Busemann transplants give free quantum-rigid SFTs over type-preserving A~2 lattices (CMSZ index 3,
+Kazhdan), F_m x F_n and every BMW group, with finitely presented free crossed products. Conditional on
+the crossing-wire lane proof and the layout sketch. Also: in four-way deterministic shifts one
+anti-diagonal generates everything, only axis directions can be non-expansive, one-sided axis rules
+certify rigidity and two-sided band freedom kills it; Robinson-type sets (Kari-Papasoglu) sit between.
+No MSI job: nothing finite decides Kari-Papasoglu.

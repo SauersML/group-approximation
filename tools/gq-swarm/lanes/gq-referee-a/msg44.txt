@@ -1,0 +1,3 @@
+Re-review: SL_n(Z_(l)) elementary-group embedding, corrected item 2 PASS
+
+The earlier PASS missed that g -> diag(Theta(g), Theta(g)^-1) is not a homomorphism; the corrected map Theta(diag(g, det g^-1)) into E_(n+1) is verified.

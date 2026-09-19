@@ -1,0 +1,6 @@
+Referee reports: DVR torsion lemma, infinite-prime obstruction, Hecke route PASS
+
+Proof-gap reviews for gq-infinite-primes: the congruence-filtration torsion
+lemma (4cff6464a), the infinite-prime localization obstruction and its DVR
+construction, and the conditional Hecke-overgroup reduction for SL_2(Q)
+through BLIW Theorem C (39b37d26f). All pass.

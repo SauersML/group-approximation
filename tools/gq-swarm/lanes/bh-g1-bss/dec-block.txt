@@ -1,0 +1,63 @@
+**Decidable language.** It suffices to decide patterns `p` on windows
+`W = B(m) x [−N, N]`, since every finite pattern extends to such a window by a finite search.
+Let `2^K ≤ 2N+1 < 2^{K+1}`.
+
+*Step 1: ruler.*
+- `p`'s ruler must be `A`-constant, and its row must agree on `[−N,N]` with some `T_ω`.
+- Only finitely many cases arise: the classes `ω mod 2^{K+2}`, together with the value at the
+  one possible position of higher level. So consistency is decidable.
+- For each consistent class, every window position of level `≤ K+2` has a determined level.
+- The positions of level `≥ K+3` lie in one coset of spacing `2^{K+2} > 2N+1`, so there is at
+  most one such position `n*`. Its level can be made any `ℓ* ≥ K+3`, or infinite, by
+  choosing the higher bits of `ω`.
+
+*Step 2: revealed data.* For a consistent class:
+- constancy (rule 2) is checked inside `W`;
+- the window then reveals, for each level `ℓ ≤ K+2` occurring in it, the field `f_ℓ` on
+  `B(m)`, plus the row at `n*`.
+- Only finitely many `k` have a revealed slot.
+
+Choose `ℓ* = ℓ(k*, j*)` for a level `k*` with no other revealed slot and
+`r_{k*} > 2m + 2`, which is possible since `ℓ*` is free. Then:
+- If `j* ≥ 1`, the row at `n*` imposes nothing. Place all markers of level `k*` outside
+  `B(m)`, one of them at distance `m+1` from `1`; it covers `B(m)`. Color bits at non-markers
+  are unconstrained.
+- If `j* = 0`, the row would be a marker field. So take `j* ≥ 1`, which is always available
+  since `J_k ≥ 1` for all `k`.
+
+*Step 3: each level separately.* Levels never interact. Fix `k` with a revealed slot. The
+revealed data are:
+- possibly the marker bits on `B(m)`;
+- some of the color bits on `B(m)`.
+
+**Claim.** `p` extends at level `k` iff the following finite search succeeds. There is a set
+`N ⊆ B(m + r_k)` such that:
+- (a) `N ∩ B(m)` agrees with the revealed marker bits, if they are revealed;
+- (b) `N` is `r_k`-separated, and every point of `B(m)` is within distance `< r_k` of `N`;
+- (c) there is an assignment of color strings to `N` that agrees with the revealed color bits
+  at the points of `N ∩ B(m)` and is proper for the `E_k`-graph.
+
+*Proof of the claim.*
+- **Necessity.** Restrict a global solution to `B(m + r_k)`.
+- **Sufficiency, markers.** Scan `A \ B(m + r_k)` greedily in shortlex order, adding each
+  point at distance `≥ r_k` from all markers chosen so far, those of `N` included. The union
+  `M` is `r_k`-separated.
+  - Points of `B(m)` are covered by `N`.
+  - A point of `B(m + r_k) \ B(m)` that is not covered by `N` is covered by the scan: it lies
+    within distance 1 of a scanned point, and every scanned point is either added or within
+    `r_k − 1` of an existing marker.
+  - *Caveat.* That last step may need radius `r_k`, not `r_k − 1`. To avoid it, (b) should
+    require `N` to cover all of `B(m + r_k)` except points within distance 1 of its
+    complement. Then any gap is covered by a scanned neighbour.
+  - Every point outside `B(m + r_k)` is either added or skipped because a marker was nearer
+    than `r_k`.
+  - So `M` is maximal, and `M ∩ B(m + r_k) = N`.
+- **Sufficiency, colors.** Color the new markers greedily. Each has fewer than `P_k` colored
+  neighbours. Non-marker sites of `B(m)` keep their revealed color bits, which no rule
+  constrains.
+
+*Conclusion.* `p ∈ L(Y)` iff, for some consistent ruler class, constancy holds in `W` and the
+Step 3 search succeeds for each of the finitely many `k` with a revealed slot.
+- The other levels are filled greedily, as in the nonemptiness proof.
+- The row at `n*`, if any, is handled by Step 2.
+- All searches are finite, so `L(Y)` is decidable. ∎

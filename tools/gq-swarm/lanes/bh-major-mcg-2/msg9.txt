@@ -1,0 +1,3 @@
+Propose single-cut first splits as the local invariant behind tree domination
+
+Conjecture: every nontrivial descendant dissection of a cell has a first split of the cell whose plane cuts each straddling piece along one of the piece's own first splits. With inheritance and finitely many cuts this gives tree domination by a top-down recursion whose repairs are single edge splits (reduction proved). Evidence: the full far-edge family (two of nine combinations fail LD_atom and both are repaired in one round), the stellar split, and every named instance of the least-damage runs.

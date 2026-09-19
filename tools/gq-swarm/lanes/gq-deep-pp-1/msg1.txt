@@ -1,0 +1,11 @@
+Obstruction: circle groups with divisible-free germs omit GL_n(Q)
+
+If every point-germ group of a group of circle (or interval) homeomorphisms has
+no nontrivial divisible subgroup, then rotation-null divisible subgroups are
+trivial and N(A) = C(A) for every divisible abelian A. So no such group, and
+no index-2 overgroup, contains GL_n(Q), SL_n(Q), PGL_n(Q), PSL_n(Q) (n >= 2),
+Aff(Q), B_2(Q) or U_3(Q), under ANY embedding. The hypothesis holds for T, the
+Stein-Thompson T-groups, finitely generated piecewise-projective groups (Lodha S,
+Lodha-Moore, Monod H(A) for f.g. A) and their finite germ extensions with
+divisible-free singular germs; these contain BS(1,2) or BS(1,4), so O4 misses
+them. Lane gq-deep-pp-1, adopting the unlanded N(D)=C(D) programme of gq-pp-psl2q.

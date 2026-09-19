@@ -1,0 +1,3 @@
+Referee batch: E2 tools for the (star-prime) build
+
+PASS for cylinder transport closure, cross-layer separable modifications, the fibre-product kill and transport criterion (the kill also follows directly from the far-modification lemma), the Crossing Lemma with item 1 (the fault audit remains design-level), and downhill centrality. Cited dependencies not refereed here are listed in each section.

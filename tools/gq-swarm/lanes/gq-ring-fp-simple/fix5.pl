@@ -1,0 +1,4 @@
+undef $/; $_ = <STDIN>;
+s/(  resolvent-vacuum-rings-have-no-k0-state: [^\n]*\n)---/$1refuted_by:\n  - capacity-chain-presentation-is-not-simple\n---/;
+s/\*\*OPEN\.\*\* The ring `R_cap` below is finitely presented, simple and purely infinite\./**REFUTED (2026-09-18)** by `capacity-chain-presentation-is-not-simple`: the finitely many\nrelations below admit a bi-infinite `c`-chain module with non-integral capacity, so the\npresented ring is not simple, with or without `a_u`. The concrete ring may still be simple,\nbut it is not presented by these relations. Lane `gq-k2-q` also found 4-torsion in `K_0`\nwith `a_u`, and a non-finitely-generated tail-unit cokernel\n(`resolvent-register-units-give-rational-symbols`).\n\n**Refuted statement.** The ring `R_cap` below is finitely presented, simple and purely infinite./;
+print;

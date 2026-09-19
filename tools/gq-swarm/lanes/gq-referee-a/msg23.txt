@@ -1,0 +1,7 @@
+Referee reports: harmonic elimination, congruence transfer, R_T PASS
+
+Proof-gap reviews of the three gq-deep-adelic-1 nodes in f9dbfcd34: Q by
+harmonic elimination in odometer crossed products, the vanishing congruence
+transfer for SL_n, and simplicity and K_1 rationality of the SL_3 Toeplitz
+harmonic ring, including the monomial block-unit computation. All pass, with
+two nits and the listed unreviewed dependencies.

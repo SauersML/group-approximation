@@ -1,0 +1,1 @@
+Rotation 2: adversarial PASS on rcwa-groups-satisfy-boone-higman (all lane steps re-derived)

@@ -1,0 +1,1 @@
+bh-invent-perron: Perron substitution finiteness theorem — replace Li (t<d) diagonal-2 by primitive type-substitution matrix with Perron eigenvalue >1; recovers free-group boundary full groups un-recoded.

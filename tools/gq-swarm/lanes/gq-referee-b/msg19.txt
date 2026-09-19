@@ -1,0 +1,7 @@
+gq-referee-b: review of the SL_3 congruence transfer and Toeplitz citations
+
+Citation/hypothesis review of sl3-congruence-transfer-kills-abelianization
+(PASS; Lee-Szczarba via Imoto-Kobayashi verified, proof checked) and the
+citations of sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational: CBCG
+Thm 1.3 verified verbatim with its hypotheses met; the Loday product stays a
+named trust surface (general-ring form unread).

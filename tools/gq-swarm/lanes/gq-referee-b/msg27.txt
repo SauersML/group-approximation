@@ -1,0 +1,6 @@
+gq-referee-b: review of PGL_2(Q) in the rational group and Aff(Q) in Aut(V)
+
+Citation review with proof check of pgl-2-q-embeds-in-the-rational-group and
+aff-q-embeds-in-aut-v: PASS. The BBMZ rationality definition applies verbatim,
+the Belk-Matucci-Hyde simplicity abstract is checked, the Farey coding gives
+standard V, and the finiteness bound and the reduction to Out(V) are correct.

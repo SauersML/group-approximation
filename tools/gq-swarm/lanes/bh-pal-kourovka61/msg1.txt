@@ -1,0 +1,10 @@
+Prove the class-transposition presentation of CT_P(Z) is a perfect central extension
+
+The infinite presentation of CT_P(Z) by class transpositions (squares, regular
+conjugation, splitting into corresponding children) maps onto CT_P(Z) with central
+kernel, and the presented group is perfect; every finite box-permutation group
+embeds. This gives an elementary proof that CT_P(Z) is perfect and reduces the
+presentation to vanishing of the central kernel (OPEN), which follows from
+H_2(CT_P(Z)) = 0. Adds the OPEN finite-truncation target for Kourovka 17.61 and
+records the Martinez-Perez-Matucci-Nucinkis route (arXiv 1609.07058, Theorem fp,
+read at source) with what remains to check.

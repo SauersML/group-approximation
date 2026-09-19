@@ -1,0 +1,7 @@
+Referee the gate E1 closure: (D) on A x Z and tree gluing PASS; identifier-marker route not established
+
+bh-ref-e1-a referee sections.
+- decidable-groups-times-z-have-decidable-free-subshifts: PASS; Step 3 finite search and one-annulus greedy completion checked line by line.
+- free-products-with-z-inherit-m2-from-decidable-free-subshifts: PASS with the B-top Sturmian-window repair, found independently of bh-ref-ffwz.
+- The E1 route node: Steps 1-3 PASS; Step 4, the keyed-slot lift 695a89096, not refereed.
+- identifier-markers-give-decidable-free-subshifts: Lemma (E) not established (four gaps listed); it is not needed for E1.

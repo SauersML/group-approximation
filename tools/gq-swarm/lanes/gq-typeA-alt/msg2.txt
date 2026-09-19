@@ -1,0 +1,9 @@
+Obstruction: U_3(Q) is not a Q-free continuous wreath over U(Z,Z,Q)
+
+U_3(Q) embeds in no LC(C,H) x| Gamma with Gamma Q-free (e.g. V) when the
+divisible subgroups of H are torsion-free and meet [H,H] in finitely
+generated groups, in particular for H = U(Z,Z,Q), the middle level of the
+Q-free tower of U_3(Q). Finite orbits are fixed points by divisibility of
+the quotient; minimal sets then force recurrence, and local constancy makes
+the rational centre die in [H,H]. So cocycle rationalization over one
+V-coordinate cannot reach U_3(Q).

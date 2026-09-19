@@ -1,0 +1,8 @@
+Fiber-detecting block characters force non-positive curvature for graph manifolds
+
+New claim fiber-detecting-block-characters-force-npc-graph-manifolds (lane proof; imports
+Svetlov arXiv:math/0112308 Theorem III, read at source): a block has zero charge iff some
+rational character detects its fiber and kills its neighbors' fibers; all charges zero on a
+loopless graph gives H_M = 0, hence non-positive curvature. So local product host designs
+cannot contain non-virtually-fibered graph manifold groups. Attempt 9 on
+nonfibered-closed-graph-manifold-groups-satisfy-pbh.

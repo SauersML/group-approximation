@@ -1,0 +1,7 @@
+- **Sufficiency, markers.** Start from `N`, then scan `A \ (B(m) ∪ N)` greedily in shortlex
+  order, adding each point at distance `≥ r_k` from all markers present. The union `M` is
+  `r_k`-separated.
+  - Points of `B(m)` are covered by `N`, by (b).
+  - Every other point is in `N`, was added, or was skipped because a marker was nearer than
+    `r_k`.
+  - So `M` is maximal. The scan adds nothing inside `B(m)`, so `M ∩ B(m) = N ∩ B(m)`.

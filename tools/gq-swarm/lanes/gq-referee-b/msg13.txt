@@ -1,0 +1,7 @@
+gq-referee-b: reviews of three K-theory obstruction nodes
+
+Citation/hypothesis reviews of laurent-rational-symbols-block-fp-elementary-groups,
+infinitely-generated-symbols-block-fp-elementary-groups and part 4 of
+tracial-harmonic-ring-keeps-rational-scalars: all PASS, with two named trust
+surfaces (naturality of the ABC connecting map; Fuglede-Kadison via a
+secondary source).

@@ -1,0 +1,5 @@
+Root gl-n-q: prime-shift follow-up under Attempt 18
+
+Record that the prime-shift HNN groups are not finitely presented, the hidden
+relation that finite presentation of A_1 or K_n would need, and that no tame
+version of the prime shift exists (lane gq-deep-typeA-2).

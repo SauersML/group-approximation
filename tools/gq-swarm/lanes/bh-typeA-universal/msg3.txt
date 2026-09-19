@@ -1,0 +1,9 @@
+Identify BBMZ Questions 1.5 and 1.6 with PBH and BFFHZ Question 3.4
+
+The clopen action of a finitely presented twisted Brin--Thompson group is
+oligomorphic with finitely presented stabilizers of finite subsets, and Clapham
+removes the finitely presented hypothesis, so BBMZ Question 1.5 is equivalent
+to the permutational Boone--Higman conjecture. In its faithful reading Question
+1.6 is BFFHZ Question 3.4; its abstract reading is answered by FFWZ Theorem C,
+and the gap is kernel removal. Also fix a theorem-letter reference in the
+hyperbolic B_A route.

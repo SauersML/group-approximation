@@ -1,0 +1,15 @@
+Free-product boundary groupoids carry the vertex-group homology; Reid's d = 0 Higman-Thompson variant has abelianization Z + Z/2 (MO 339541)
+
+For D = Z/k * B with B infinite, D acting on its Bass-Serre tree compactified by the
+B-vertices is purely infinite minimal on a Cantor set. Its groupoid homology is Z in
+degree 0 (a signed Euler measure, [1_X] = k) and H_n(B; Z) for n >= 1: Mayer-Vietoris
+over the tree, finite vertex groups induced, and a descent argument kills the
+connecting kernel. With Matui, Nekrashevych and Li: D(F) is simple, f.g. for f.g. B,
+contains every perfect subgroup of B, and F_ab sits in H_2(B) -> Z/2 -> F_ab -> B_ab -> 0.
+For k = 2, B = Z this answers Colin Reid's MathOverflow 339541 on the d = 0 member:
+homology Z, Z, 0, ...; abelianization Z + Z/2 with an explicit index map; G' simple,
+f.g., rationally acyclic. Finite presentation stays open.
+
+Lesson for general BH: infinite vertex groups survive as isotropy and as homology, so
+Z/2 * B is an isotropy host for any B. Finite presentation of such hosts cannot be
+read from isotropy or homology (unsolvable-WP perfect B gives non-fp simple D(F)).

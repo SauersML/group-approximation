@@ -1,0 +1,9 @@
+Mortal deciders exist for every decidable set; correct the modular-machine attribution in the relative-seeds node
+
+New: every-decidable-set-has-a-mortal-decider. Fuelled iterative deepening under a sweep discipline gives a
+Turing machine that halts from every finite configuration. This is what locally forced halting marks need,
+and it gives recursive halting over all configurations (the open hypothesis of 213e9e339), provided the
+modular compilation preserves mortality. Also correct corollary (c) of the relative-seeds node: the
+Aanderaa-Cohen machine group is an HNN extension of <t>*Z^2 and is in class C by 0d6bf2845, step 1.
+
+Lane bh-invent-03 (seed-tower lead); lane proof, unreviewed. Credits: Aanderaa-Cohen, Higman, Clapham, Simpson, Hooper.

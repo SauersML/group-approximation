@@ -1,0 +1,5 @@
+Restore bh-free-10's verification text on the graph-product closure node
+
+My previous landing (1ed3a4de1) replaced the status paragraph and artifact entry that
+bh-free-10 had landed at 6ff495ba8 while I was editing. This restores them word for word,
+keeps my artifact entry, and records that there are now two independent internal re-checks.

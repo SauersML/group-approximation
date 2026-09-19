@@ -1,0 +1,6 @@
+Finite-index odometer near shift groups pass the shell germ gate
+
+For fixed-base enumerations, R_nu of finite index in V_(h,r)(<a>) gives R_nu F_infinity
+with finitely generated index kernel, so the window holds and Q_nu is finitely presented.
+Also: bounded-displacement enumerations force virtually cyclic inputs, so fixed-base
+enumerations of larger inputs must use prefix-length-changing pieces.

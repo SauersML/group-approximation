@@ -1,0 +1,4 @@
+gq-k2-q: Z_(l) survives in the RF quotient of the central-deformation host
+
+x_12(Z_(l) m_0) maps injectively to E_N(T_l), which is residually finite, so
+Z_(l) embeds in St_N(T_p)/St_N(T_p)_rf without assuming T_p residually finite.

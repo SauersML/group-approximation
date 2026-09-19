@@ -1,0 +1,6 @@
+# bh-pal-kourovka57
+Direction: Kourovka 17.57 (Out(CT(Z)) = C_2). (1) adversarial check of `out-ct-z-is-c2` and its two parents; (2) unconditional Lean in GroupApproximation/ClassTransposition/Out/, statement on bh-pal-kourovka59's Statement.lean definitions.
+- 09-18 ~14:50 start. Review status per results summary: [IC] bh-free-43 PASS, otherwise lane proof.
+- 14:55 LANDED de5229224 research/artifacts/gq-bh-pal-kourovka57-adversarial-check.md. Verdict: PASS (second route, Adamczewski-Bell, steps 1-8 re-derived; Hausdorff groupoid checked). Conditional on Matui spatial + Adamczewski-Bell, as stated.
+- Lean (unconditional, Mathlib only): GroupApproximation/ClassTransposition/Out/{Flip,Outer}.lean. Main theorem `kourovka_17_57_flip_is_outer_of_order_two`: σ normalizes CT(Z), σ ∉ CT(Z), sigmaAut² = 1, sigmaAut not inner (via trivial centralizer of the class transpositions). This is only the LOWER BOUND ⟨σ⟩ ≅ C_2 ≤ Out. The upper bound (every automorphism is inner up to σ) needs Matui + Adamczewski-Bell and is NOT formalized.
+- Overlay includes a byte-identical copy of bh-pal-kourovka59's Kourovka1759/Statement.lean (md5 15ea4611...), because it is not on main yet. If I land it first, kourovka59's lander sees identical bytes and passes; for a later edit, use GQ_BASE.

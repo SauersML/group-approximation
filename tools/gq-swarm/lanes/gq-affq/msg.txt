@@ -1,0 +1,9 @@
+Aff(Q) stepping stone; flat Q-copies in nV; aperiodic Q in 3V
+
+Add the OPEN target aff-q-embeds-in-fp-simple-group with the host
+conditions landed so far. Prove that a copy of Q in nV with one element
+conjugate to a proper power is exponent-flat, so the landed copy of Q in 2V
+(base t x id, hyperbolic fixed point) can never carry the translations of an
+embedded Aff(Q) or the root subgroup of SL_k(Q), GL_k(Q). Build a copy of Q
+in 3V with no periodic points, as the root tower over the minimal SMART
+moving-tape map encoded in 2V. Lane proofs, not independently reviewed.

@@ -1,0 +1,15 @@
+Record the calibrated bounded-range certificate search (Singular letterplace, D = 1) and its driver
+
+Two single-core msismall jobs (16 min total).
+- The window algebra of the local tiling relations is reduced modulo a truncated two-sided Groebner basis; a
+  commutator that reduces to 0 is a sound certificate.
+- Calibration: Ledrappier is certified in all 6 directions at distance 3. Ledrappier with local coordinates
+  (planted H1-type rigid) is certified in all 6 tested directions. The full shift certifies nothing.
+- The colour product is certified exactly off the wall pairs: 8/16 at (3,0), the undecided 8 being the pairs
+  with a two-dimensional wall family.
+- Labbe's 19 tiles time out even at degree 3, so there is no conclusion about Omega_U.
+- No self-simulating candidate was searched: by sfts-without-two-sided-faults-are-quantum-rigid a determinism
+  certificate exists only without two-sided faults.
+
+Lesson for general BH: the search reproduces determinism and stops at walls; its noncommutative reach needs a
+rigid SFT with a two-sided fault as a test, and a structure-aware engine to reach real candidates.

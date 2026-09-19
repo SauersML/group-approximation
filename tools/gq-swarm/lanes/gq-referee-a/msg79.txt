@@ -1,0 +1,3 @@
+Referee report: hyperbolic groups lie in the permutational class; BBMZ questions are PBH forms PASS
+
+Proof-gap lens on hyperbolic-groups-in-b-a-proof (fa1747017, 6932547c3) and bbmz-oligomorphic-twisted-questions-proof. Type (A) verification from the four BBMZ inputs, contracting implies finite-state, closure steps, and the oligomorphic upgrade with finitely presented finite-set stabilizers checked; nits N1-N2.

@@ -1,0 +1,6 @@
+Referee reports: harmonic Cuntz ring nodes PASS; Lambda_h is not fp
+
+Proof-gap reviews of the three harmonic Cuntz nodes (f07d0119c). All pass.
+The EL_3 report records that Lambda_h = EL_3(C_h)/Q^x is not finitely
+presented, by the reviewed central-scalar obstruction, so the open claim
+harmonic-cuntz-simple-group-is-finitely-presented is false.

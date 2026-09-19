@@ -1,0 +1,15 @@
+Dilated registers are sealed; natural Q x| <2> in 2V_H iff H holds the odd roots of the odometer
+
+dilated-registers-are-sealed: any homeomorphism t with t q_a t^-1 = q_(da) for a register copy
+of a non-cyclic A <= Q reads the register coordinate only from itself, as a lift of the d-fold
+covering with finitely many rotation constants. The copy-invariant twist is locally constant,
+because a split point of the coding forbids small twists of either sign. So no odometer, adder
+or other cross-coordinate germ can feed a dilated register. In hosts that are almost-automorphic
+on the register coordinate this bounds denominators, generalizing
+one-coordinate-registers-admit-no-dilation.
+
+natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots: for every self-similar H <= Aut(T_2), the
+natural Q x| <2> lies in 2V_H iff H contains the binary odometer and a root of every odd order.
+Such H is never contracting, polynomial-activity or finitely generated affine. With Li's
+finiteness this reduces BH for Q x| <2> in these hosts to one question: a finitely presented
+self-similar group in which the odometer is odd-divisible. Lane proofs, unreviewed.

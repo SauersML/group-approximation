@@ -1,0 +1,8 @@
+Cone sliding: in V-times-groupoid full groups, disjoint-support relations reduce to bounded diameter
+
+Cone-localized global bisections conjugate a conditioned V-element onto a translated
+condition while commuting with everything on other cones. So every commutation relation
+between elements with disjoint V-supports, however far apart their windows, follows from
+relators of diameter at most diam F + diam F' + 1 (at most 1 for site conditions). The
+finite-presentation problem for G_V x (Lambda x| X) full groups thus lives entirely in the
+fibrewise relations that quantum rigidity measures.

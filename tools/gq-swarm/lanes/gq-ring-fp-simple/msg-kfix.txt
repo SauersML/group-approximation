@@ -1,0 +1,5 @@
+K_infinity tape: apply referee a and b fixes (both PASS)
+
+V is free abelian (partial fractions); Baumslag 1972 precursor via Z[Gamma];
+letter convention a^s = a a^t; Oinert Thm 6.13 for skew group ring simplicity;
+title and Krull-dimension reading scoped.

@@ -1,0 +1,5 @@
+Referee C: PASS for Leavitt-pair embedding of SL_N(Q) in St_(6N+1)(S)
+
+Independent re-derivation of steps (a)-(f) of leavitt-pairs-embed-sl-n-q-in-steinberg-groups,
+with calibration: the swindle is psi_* = id and psi o iota = iota + iota at finite rank; S^N = S^(2N)
+enters only through the square swap W. The Steinberg finite-presentation node is not reviewed here.

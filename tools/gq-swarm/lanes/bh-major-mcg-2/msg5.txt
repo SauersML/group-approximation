@@ -1,0 +1,3 @@
+Compute the splitting category of the flop spine elements of the edge-split operad
+
+The two five-piece flop spine elements have splitting category homotopy equivalent to S^0: six elements in two contractible components, exactly like a full split in two directions. This calibrates the connected-splitting condition that can replace a finite spine in the closed-MCG route; the test is whether large spine elements have more than two sides.

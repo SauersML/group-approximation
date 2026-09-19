@@ -1,0 +1,3 @@
+Referee report: RCWA groups satisfy Boone-Higman PASS
+
+Proof-gap lens on rcwa-groups-satisfy-boone-higman (222a364e8). Sign-doubling table, box extension, carry arithmetic, pseudo-freeness, effective/Hausdorff, normal form and perfectness checked; general-P case depends on the unreviewed ct-p-z k-graph node for Li thm:deg; three nits.

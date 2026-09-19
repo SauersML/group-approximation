@@ -1,0 +1,10 @@
+Out(V): the Lipschitz part is the inert group of the full 2-shift; root bounds contain Boyle problem
+
+Lane gq-infinite-primes. From Belk-Bleak-Cameron-Olukoya (read in TeX): L_2 =
+O_2 cap SL_2 is Aut(X_2^Z, sigma)/<sigma>, the extension splits since 2 is not
+a proper power, so L_2 is the inert group, residually finite, and contains no
+Q. A copy of Q in Out(V) needs non-Lipschitz transducers. Roots of infinite-order
+shift automorphisms pass to nontrivial roots in O_2, so any bound on roots in
+O_2 decides a case of the open root problem (Boyle 2008 via Salo 2023) and
+whether Z[1/2] embeds. Reading artifact with the exact definitions and the
+torsion, order and core-growth results. Attempt on aff-q-embeds-in-aut-v.

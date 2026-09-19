@@ -1,0 +1,11 @@
+Obstruction: normal-germ extensions of V contain no SL_3(Z)
+
+SL_3(Z) has property FW, so any copy in a finite germ extension G of a
+Higman-Thompson group fixes a vertex of the Belk-Hyde-Matucci germ cube
+complex; by Margulis a finite-index subgroup then embeds in a finite product
+of germ groups. If every singular germ group contains (V)_p with finite
+index, or normalizes it at a periodic point (VA, bounded-automata
+Rover-Nekrashevych groups, the Corollary 2.10 regime), those germ groups are
+abelian-by-(subgroups of V) and Higman's nilpotent theorem gives a
+contradiction. So GL_n(Q), n >= 3, lies in no such G; germ groups of this
+regime also carry no BS(1,2). Record it under Attempts of the GL_n(Q) root.

@@ -1,0 +1,3 @@
+Gate U one-dimensional core: algebraic Kirchberg embedding with an oracle (OPEN), monomial case solved
+
+New OPEN claim decidable-algebras-embed-in-oracle-leavitt-crossed-products: every fg decidable F_2-algebra embeds in (LC(Y,F_2) x Z) ⊗ L for an effective Z-subshift Y. With R_Gamma (EL_3 = H_Gamma, M_3(L) = L), row lifting to Z², G2 and the Khanh import, this gives BH through Track B. Known: all monomial algebras with decidable relations (padded language). Constraints: L essential beyond linear-sofic; Y depends on A and must be decidable; general linear relations need superposed conditioned paths. Lesson for general BH included.

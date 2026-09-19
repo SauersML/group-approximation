@@ -1,0 +1,8 @@
+Odometer hole: claim YES via SMART induced on level-0 configurations
+
+SMART moves nest by the constant-length-3 substitution b->bdp, d->dbq,
+p->bqp, q->dpq; inducing on the clopen set of level-0 configurations makes
+level-k moves exactly 2*3^k long, and the position in each move is read off
+k+2 cells, so the induced map (conjugate into 2V by the first-return tool)
+factors onto Z/2 x Z_3. Landed OPEN pending two referees, with the route into
+some-brin-thompson-element-factors-onto-an-odometer.

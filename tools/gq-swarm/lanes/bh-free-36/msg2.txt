@@ -1,0 +1,10 @@
+Record the tree-product lattice hosts on the cubulated-groups node, and why rank-one recoding fails there
+
+The Q1.15 node now lists every cocompact lattice on a product of thick trees as a
+known case, via the cube k-graph full groups of the tree-product lattice nodes.
+It narrows the open part to cubulated groups whose cube complex is not a product of
+trees. A new attempt records why the V-germ recoding theorem cannot apply to
+Niblo-Reeves normal forms on a product of two thick trees: an element hyperbolic
+in one factor and fixing the base vertex of the other is singular on a whole
+clopen set, because it shifts the two coordinates of the square sequence by
+different amounts.

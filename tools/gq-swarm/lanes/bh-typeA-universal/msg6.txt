@@ -1,0 +1,15 @@
+Prove the Belk-Zaremsky type F_n criterion for twisted Brin-Thompson groups
+
+For a faithful action G on S, SV_G is of type F_n exactly when the action is
+of type (A_n), and of type FP_n exactly when it is of type (HA_n). This settles
+Conjecture H of Belk-Zaremsky (arXiv:2001.04579), which Fournier-Facio-Wu-
+Zaremsky record as open for 3 <= n < infinity; necessity is their Corollary
+4.18, imported here.
+
+The proof filters the Stein sublevel complex by interval length. An
+elementary interval is a homotopy (e-2)-sphere when every tree is a full brick
+split in e colors in total, and contractible otherwise (BZ's nerve argument,
+restated). So only grid intervals contribute, in degree e, with stabilizers
+commensurable to products of e-or-fewer-set stabilizers, which is exactly the
+(A_n) indexing. A homological Brown criterion for filtered complexes gives
+FP_n, and finite presentation upgrades it to F_n. Lane proof, not reviewed.

@@ -1,0 +1,3 @@
+Land bh-pal-kourovka57 work in progress (coordinator sweep: everything on main, red allowed)
+
+Files the lane had drafted but not yet landed. Lean modules are unwired (not imported by the root) and may not build yet; fixes are tracked in the Cairn fix graph (research/fix-*.md).

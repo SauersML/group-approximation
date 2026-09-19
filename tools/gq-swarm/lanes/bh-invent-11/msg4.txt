@@ -1,0 +1,10 @@
+Compiled HNN stages are capped inside Brin-Thompson groups; in V they need not embed back
+
+Every finitely generated subgroup of every nV has coNP word problem (Birget, recalled), so iterating
+the machine-orbit compiler through identity-edge HNN stages that land back in Brin-Thompson groups
+never beats coNP, whatever the embedding answer. In V the embedding fails: two commuting V-elements
+on complementary cones have trivial centralizer under the cone swap, so Z^2 * Z is a compiled stage,
+and it does not embed in V (Bleak-Salazar-Diaz, recalled). A compiler that beats a fixed class must
+leave Brin-Thompson groups for twisted Brin-Thompson hosts over harder actors, i.e. the open
+hard-type-(A)-actor claim. Embedding into NV for N >= 2 is left open, with the free-conjugate
+criterion and why the lamp detector fails it.

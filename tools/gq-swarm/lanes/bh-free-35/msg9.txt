@@ -1,0 +1,15 @@
+Adversarial referee PASS (conditional) for the minimal crossing-wire rigid shift; correct an overstated lesson
+
+- minimal-crossing-wire-fixed-point-shift-is-quantum-rigid: Referee section (bh-free-35), PASS conditional on three
+  layout facts: the fixed point exists with the added gadgets; DR's minimal layout keeps side-local margins with
+  constant corners; frame tiles are unique per coordinate. The kill attempts all fail: thin walls and
+  information-free columns, fault fibres (quadrants are unique because the corner maps are constant),
+  horizontal-fault chains (their differences stay connected), and opposite-quadrant pairs. The slot scalar
+  argument (A2-A3) is verified as operator identities with no circularity. No conflict with
+  sfts-without-two-sided-faults-are-quantum-rigid or with the strip theorem.
+- no-two-sided-fault-sfts-have-rich-strips-in-all-directions: correct the Lesson. Irreversibility is forced only at
+  non-expansive lines, and the "must run inside a Ledrappier-type rule" heuristic is withdrawn.
+
+Lesson for general BH: co-location plus decimation proves rigidity without an irreversible rule. The determinism
+theory's constraints bind only where lines are non-expansive, and side-local hierarchies can make every rational
+line expansive.

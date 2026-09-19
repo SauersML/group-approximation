@@ -1,0 +1,7 @@
+Minimal crossing-wire shift passes the separable-modifications test
+
+The audit of the Durand-Romashchenko minimal version is complete. The rank field and the encoding-zone
+role pattern are fixed by coordinates, every macro-colour bit travels on wires that meet by (M1), and
+diversification slots are frame-forced and independent of the macrotile type. So no side component
+bypasses the crossing box. Refinement: complete crossing is needed only among the bits of a
+determining set of sides, for example bottom and left for SW-deterministic tiles.

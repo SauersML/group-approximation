@@ -1,0 +1,1 @@
+bh-verify-artin: complex braid open node, Attempt 1 (Klein arrangement: pencil obstructions)

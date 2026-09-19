@@ -1,0 +1,8 @@
+gq-k2-q: Euler symbols survive in the boundary folding base; the crossed-product half is one finite ring
+
+At r = l the base C_l = Z[u]/(l,u)^l maps to O_K/p^l (u -> zeta_l - 1), where
+K_2 = Z/l and c_q has Hilbert symbol zeta^-q: every c_q with l not dividing q
+survives in K_2(C_l). The shift extends to an order-l automorphism, giving
+F_(l,N) -> G_l = (O_K/p^l) x| Z/l of order l^(l+1); the orbit norm is blind
+there. For l = 3, G_3 has order 81, Heisenberg units and K_1 = +-1 x (Z/3)^2;
+whether {zeta, -2} survives in K_2(G_3) is left open.

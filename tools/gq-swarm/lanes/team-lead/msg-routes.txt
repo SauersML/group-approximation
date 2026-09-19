@@ -1,0 +1,7 @@
+Problem 2.7 routes: require the refereed rank-five Steinberg node
+
+Both routes to gl-n-q-explicit-natural-fp-overgroup now require
+steinberg-groups-of-fp-rings-are-fp-in-rank-five (referees a and b) instead of
+the Krstic-McCool import, so the ESTABLISHED status no longer flows through the
+unread paper, and the presentations are fully explicit. Mark the ring-quotient
+lemma as reviewed. Found by gq-writeup (bdbb0af76).

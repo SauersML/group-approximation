@@ -1,0 +1,5 @@
+Levelled actions: split finitary extensions of virtually nilpotent groups are never FP_2
+
+Corollary added to levelled-actions-make-finitary-extensions-not-fp2: for G finitely generated
+virtually nilpotent and any action with an infinite orbit, FSym(X) x| G is not FP_2 over Q, since
+subgroups spanning H_1 of a nilpotent group have finite index.

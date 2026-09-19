@@ -1,0 +1,8 @@
+Finite-type seeds on Ã2 lattices: the origin-projection SFT
+
+Every lattice acting simply transitively on the vertices of a thick Ã2 building carries an SFT
+compactification. Labels are the simplex of the link carrying the geodesic to the origin. Projective-plane
+incidence forces outward labels, descents form a confluent diamond system, and together these give the
+isolated trivially stabilized seed and the density of its orbit. Seed idempotents are central in
+every quantum family. The chamber-boundary shift is a subshift of the seed, so the phase-free seed's
+rigidity would settle that open claim; the open rigidity statement is posed for the phase seed.

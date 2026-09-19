@@ -1,0 +1,1264 @@
+#### GroupApproximation.ChainRadical.exists_cornerUnitHom_eq
+theorem exists_cornerUnitHom_eq (hφ : Function.Injective φ) (g : (Matrix ι ι R)ˣ)
+    (hg : ∀ k l, ∃ x, φ x = ((g : Matrix ι ι R) - 1) k l)
+    (hg' : ∀ k l, ∃ x, φ x = (((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) - 1) k l) :
+    ∃ h : (Matrix ι ι A)ˣ, cornerUnitHom φ h = g := by
+#### GroupApproximation.ClopenCrossedProduct.unit_mul_coeff_mul_inv
+theorem unit_mul_coeff_mul_inv (f : LocallyConstant X k) :
+    (unit T k : ClopenCrossedProduct T k) * coeff T k f * ↑(unit T k)⁻¹ =
+      coeff T k (LocallyConstant.comap ⟨⇑T.symm, T.symm.continuous⟩ f) := by
+#### GroupApproximation.elementaryUnit_commutator
+theorem elementaryUnit_commutator (i j k : ι)
+    (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (a b : R) :
+    ⁅elementaryUnit i j hij a, elementaryUnit j k hjk b⁆ =
+      elementaryUnit i k hik (a * b) := by
+#### GroupApproximation.FinitaryLinear.elementaryGroup_zmodTwo_eq_top
+theorem elementaryGroup_zmodTwo_eq_top : elementaryGroup ι (ZMod 2) = ⊤ := by
+#### GroupApproximation.FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo
+theorem isSimpleGroup_units_matrix_zmodTwo (hcard : 3 ≤ Fintype.card ι) :
+    IsSimpleGroup (Matrix ι ι (ZMod 2))ˣ := by
+#### GroupApproximation.Full.A2Endpoint.exists_fg_kazhdan_lef_not_rf_not_fp_not_simple
+theorem exists_fg_kazhdan_lef_not_rf_not_fp_not_simple :
+    ∃ (E : Type) (_ : Group E), Group.FG E ∧ HasKazhdanPropertyT.{0, 0} E ∧ IsLEF E ∧
+      ¬ IsResiduallyFinite E ∧ ¬ HasFactorizationProperty E ∧ ¬ IsSimpleGroup E := by
+#### GroupApproximation.Full.A2Endpoint.not_hasFactorizationProperty_of_kazhdan_of_not_residuallyFinite
+theorem not_hasFactorizationProperty_of_kazhdan_of_not_residuallyFinite {G : Type} [Group G]
+    (hT : HasKazhdanPropertyT.{0, 0} G) (hnrf : ¬ IsResiduallyFinite G) :
+    ¬ HasFactorizationProperty G := fun hF ↦
+#### GroupApproximation.Full.A2Endpoint.not_isSimpleGroup_thomGroup_zmod
+theorem not_isSimpleGroup_thomGroup_zmod (p : ℕ) [Fact p.Prime] :
+    ¬ IsSimpleGroup (ThomGroup (ZMod p)) :=
+#### GroupApproximation.Full.A2Endpoint.ozawa_not_hasLocalLiftingProperty
+theorem ozawa_not_hasLocalLiftingProperty (G : Type) [Group G] [IsSimpleGroup G] [Infinite G]
+    (hT : HasKazhdanPropertyT.{0, 0} G) (hH : IsHyperlinear G) :
+    ¬ A2LocalLifting.HasLocalLiftingProperty.{1, 0} (MaximalGroupCStar G) := by
+#### GroupApproximation.Full.A2Kirchberg.isResiduallyFinite_of_hasKazhdanPropertyT_of_hasFactorizationProperty
+theorem isResiduallyFinite_of_hasKazhdanPropertyT_of_hasFactorizationProperty
+    {G : Type u} [Group G] (hT : HasKazhdanPropertyT.{u, u} G)
+    (hF : NinetyNineProblems.HasFactorizationProperty G) :
+    IsResiduallyFinite G := by
+#### GroupApproximation.Full.A2Kirchberg.not_hasFactorizationProperty_of_isSimpleGroup_of_infinite_of_kazhdan
+theorem not_hasFactorizationProperty_of_isSimpleGroup_of_infinite_of_kazhdan
+    (G : Type u) [Group G] [IsSimpleGroup G] [Infinite G]
+    (hT : HasKazhdanPropertyT.{u, u} G) :
+    ¬ NinetyNineProblems.HasFactorizationProperty G := fun hF ↦
+#### GroupApproximation.Full.A2LocalLifting.HasLocalLiftingProperty
+def HasLocalLiftingProperty (A : Type u) [CStarAlgebra A] : Prop :=
+#### GroupApproximation.Full.A2LocalLifting.not_hasLocalLiftingProperty_of_not_hasFactorizationProperty
+theorem not_hasLocalLiftingProperty_of_not_hasFactorizationProperty
+    (G : Type) [Group G] [Countable G] (hH : IsHyperlinear G)
+    (hF : ¬ NinetyNineProblems.HasFactorizationProperty G) :
+    ¬ HasLocalLiftingProperty.{1, 0} (MaximalGroupCStar G) := fun hLLP ↦
+#### GroupApproximation.Full.SK01.IsFiniteSimpleSL3NF2
+def IsFiniteSimpleSL3NF2 (Q : Type) [Group Q] : Prop :=
+#### GroupApproximation.Full.SK01.limitsOfFiniteGroupsAreLEF
+theorem limitsOfFiniteGroupsAreLEF {m : ℕ} {Q : ℕ → Type} [∀ k, Group (Q k)]
+    [∀ k, Finite (Q k)] (q : ∀ k, Fin m → Q k) {G : Type*} [Group G] (g : Fin m → G)
+    (h : MarkedConverges q g) : IsLEF G :=
+#### GroupApproximation.Full.SK01.limitsOfFiniteGroupsAreLEFPrinted
+theorem limitsOfFiniteGroupsAreLEFPrinted {m : ℕ} {Q : ℕ → Type} [∀ k, Group (Q k)]
+    [∀ k, Finite (Q k)] (q : ∀ k, Fin m → Q k) {G : Type*} [Group G] (g : Fin m → G)
+    (h : MarkedConverges q g) : IsLEFPrinted G :=
+#### GroupApproximation.Full.SK01.printedIsHyperlinear_of_isSofic
+theorem printedIsHyperlinear_of_isSofic (hG : IsSofic G) : PrintedIsHyperlinear G :=
+#### GroupApproximation.Full.SK01.printedIsSofic_iff
+theorem printedIsSofic_iff : PrintedIsSofic G ↔ IsSofic G :=
+#### GroupApproximation.Full.SK02.commutator_mem_ne_one
+theorem commutator_mem_ne_one {G : Type*} [Group G] {K : Subgroup G} (hK : K.Normal) {g h : G}
+    (hg : g ∈ K) (hgh : ¬ Commute g h) :
+    g * h * g⁻¹ * h⁻¹ ∈ K ∧ g * h * g⁻¹ * h⁻¹ ≠ 1 := by
+#### GroupApproximation.Full.SK02.generalSimple
+theorem generalSimple {Λ Z : Type*} [Group Λ] [TopologicalSpace Z]
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z] [CompactSpace Z] [TotallySeparatedSpace Z]
+    [Nonempty Z] [MulAction.IsMinimal Λ Z]
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 3 ≤ n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) :=
+#### GroupApproximation.Full.SK02.generalSimple_printed
+theorem generalSimple_printed {Λ Z : Type*} [Group Λ]
+    [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z] [CompactSpace Z]
+    [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [Nonempty Z]
+    (hmin : MulAction.IsMinimal Λ Z)
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z)
+    {n : ℕ} (hn : 3 ≤ n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) :=
+#### GroupApproximation.Full.SK02.stepOne_commutator
+theorem stepOne_commutator
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {n : ℕ} (hn : 2 ≤ n)
+    {K : Subgroup (elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))}
+    (hK : K.Normal)
+    {g : elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)} (hgK : g ∈ K)
+    (hD : ∀ (p q : Fin n) (ξ : Λ),
+      ξ ∈ SkewMonoidAlgebra.support (SimpleKazhdanSofic.General.mat g p q) → ξ ∈ D)
+    (hg1 : g ≠ 1) :
+    ∃ (V : Set Z) (hV : IsClopen V), V.Nonempty ∧ SimpleKazhdanSofic.General.IsSmall D B F V ∧
+      ∃ (i j : Fin n) (hij : i ≠ j),
+        g * elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)) *
+            g⁻¹ *
+            (elGen i j hij
+              (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)))⁻¹ ∈ K ∧
+          g * elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)) *
+            g⁻¹ *
+            (elGen i j hij
+              (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)))⁻¹ ≠ 1 := by
+#### GroupApproximation.Full.SK02.stepOne_movedPointsDense
+theorem stepOne_movedPointsDense [T2Space Z]
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D : Finset Λ) :
+    Dense {z : Z | ∀ ξ ∈ D, ξ ≠ 1 → ξ • z ≠ z} :=
+#### GroupApproximation.Full.SK02.stepOne_nonCommutingRoot
+theorem stepOne_nonCommutingRoot
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {n : ℕ} (hn : 2 ≤ n)
+    {g : elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)}
+    (hD : ∀ (p q : Fin n) (ξ : Λ),
+      ξ ∈ SkewMonoidAlgebra.support (SimpleKazhdanSofic.General.mat g p q) → ξ ∈ D)
+    (hg1 : g ≠ 1) :
+    ∃ (V : Set Z) (hV : IsClopen V), V.Nonempty ∧ SimpleKazhdanSofic.General.IsSmall D B F V ∧
+      ∃ (i j : Fin n) (hij : i ≠ j),
+        ¬ Commute g
+          (elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))) :=
+#### GroupApproximation.Full.SK02.stepOne_smallSets
+theorem stepOne_smallSets [TotallySeparatedSpace Z]
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {A : Set Z} (hA : IsClopen A) (hne : A.Nonempty) :
+    ∃ V : Set Z, IsClopen V ∧ V.Nonempty ∧ V ⊆ A ∧ SimpleKazhdanSofic.General.IsSmall D B F V :=
+#### GroupApproximation.Full.SK02.stepThree_charFn_smul_mem
+theorem stepThree_charFn_smul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (hcard : 3 ≤ Fintype.card ι)
+    (K : Subgroup (elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))) [K.Normal]
+    {V : Set Z} (hV : IsClopen V)
+    (hmem : coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K) (ξ : Λ) :
+    coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) (SimpleKazhdanSofic.isClopen_smul ξ hV)) ∈
+      levelIdeal hcard K := by
+#### GroupApproximation.Full.SK02.stepThree_eq_top_of_one_mem
+theorem stepThree_eq_top_of_one_mem {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+    (hcard : 3 ≤ Fintype.card ι) (K : Subgroup (elementaryGroup ι R)) [K.Normal]
+    (h1 : (1 : R) ∈ levelIdeal hcard K) : K = ⊤ := by
+#### GroupApproximation.Full.SK02.stepThree_finiteCover
+theorem stepThree_finiteCover [CompactSpace Z] [MulAction.IsMinimal Λ Z] {V : Set Z}
+    (hV : IsOpen V) (hne : V.Nonempty) : ∃ s : Finset Λ, ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V :=
+#### GroupApproximation.Full.SK02.stepThree_levelIdeal
+theorem stepThree_levelIdeal {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+    (hcard : 3 ≤ Fintype.card ι) (K : Subgroup (elementaryGroup ι R)) [K.Normal] (r : R) :
+    r ∈ levelIdeal hcard K ↔ ∀ (p q : ι) (hpq : p ≠ q), elGen p q hpq r ∈ K :=
+#### GroupApproximation.Full.SK02.stepThree_normalSubgroupEqTop
+theorem stepThree_normalSubgroupEqTop [TotallySeparatedSpace Z] [CompactSpace Z]
+    [MulAction.IsMinimal Λ Z]
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 3 ≤ n)
+    (K : Subgroup (elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)))
+    (hK : K.Normal) (hne : K ≠ ⊥) : K = ⊤ :=
+#### GroupApproximation.Full.SK02.stepThree_one_mem
+theorem stepThree_one_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (hcard : 3 ≤ Fintype.card ι) {V : Set Z}
+    (hV : IsClopen V) (s : Finset Λ) (hs : ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V)
+    (K : Subgroup (elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))) [K.Normal]
+    (hmem : coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K) :
+    (1 : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) ∈ levelIdeal hcard K :=
+#### GroupApproximation.Full.SK02.stepTwo_commutatorWitness
+theorem stepTwo_commutatorWitness [TotallySeparatedSpace Z]
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 2 ≤ n) :
+    GeneralCommutatorWitness (coeffHom Λ Z) (unitHom Λ Z) n :=
+#### GroupApproximation.Full.SK02.stepTwo_epsilon_mul_epsilon
+theorem stepTwo_epsilon_mul_epsilon
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    (hdisj : TranslatesDisjoint B V) {a b a' b' : Λ} (hb : b ∈ B) (ha' : a' ∈ B) :
+    epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b * epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a' b' =
+      if b = a' then epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b' else 0 :=
+#### GroupApproximation.Full.SK02.stepTwo_epsilon_ne_zero
+theorem stepTwo_epsilon_ne_zero
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {V : Set Z} (hV : IsClopen V) (hne : V.Nonempty) (a b : Λ) :
+    epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b ≠ 0 :=
+#### GroupApproximation.Full.SK02.stepTwo_epsilonSpan_mul_mem
+theorem stepTwo_epsilonSpan_mul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V) (hdisj : TranslatesDisjoint B V)
+    {x y : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hx : x ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV)
+    (hy : y ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) :
+    x * y ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV :=
+#### GroupApproximation.Full.SK02.stepTwo_glSimple
+theorem stepTwo_glSimple (κ : Type*) [Fintype κ] [DecidableEq κ] (hcard : 3 ≤ Fintype.card κ) :
+    IsSimpleGroup (Matrix κ κ (ZMod 2))ˣ :=
+#### GroupApproximation.Full.SK02.stepTwo_mul_charFn_mul_mem
+theorem stepTwo_mul_charFn_mul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    {c c' : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hc : ∀ a ∈ SkewMonoidAlgebra.support c, a ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c a (a • x) = SkewMonoidAlgebra.coeff c a (a • y))
+    (hc' : ∀ b ∈ SkewMonoidAlgebra.support c', b⁻¹ ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c' b x = SkewMonoidAlgebra.coeff c' b y) :
+    c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c' ∈
+      epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV :=
+#### GroupApproximation.Full.SK02.stepTwo_ringCopy
+theorem stepTwo_ringCopy
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    (hdisj : TranslatesDisjoint B V) (hne : V.Nonempty) :
+    ∃ ψ : Matrix B B (ZMod 2) →ₙ+* SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ,
+      Function.Injective ψ ∧
+      (∀ a b : B, ψ (Matrix.single a b 1) = epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b) ∧
+      ∀ x ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV, ∃ M, ψ M = x := by
+#### GroupApproximation.Full.SK02.stepTwo_towerCopy
+theorem stepTwo_towerCopy
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {ι : Type*} [Fintype ι] [DecidableEq ι] [Nontrivial ι] {B : Finset Λ}
+    {V : Set Z} (hV : IsClopen V) (hdisj : TranslatesDisjoint B V) (hne : V.Nonempty) :
+    ∃ H : (Matrix (ι × B) (ι × B) (ZMod 2))ˣ →*
+        (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ,
+      Function.Injective H ∧
+      (∀ x, H x ∈ elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) ∧
+      (∀ (p q : ι) (hpq : p ≠ q) (a b : B) (h : ((p, a) : ι × B) ≠ (q, b)),
+        H (elementaryUnit (p, a) (q, b) h (1 : ZMod 2)) =
+          elementaryUnit p q hpq (epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b)) ∧
+      ∀ g : (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ,
+        (∀ p q, ((g : Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) - 1) p q ∈
+          epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) →
+        (∀ p q, (((g⁻¹ : (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ) :
+            Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) - 1) p q ∈
+          epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) →
+        ∃ x, H x = g := by
+#### GroupApproximation.Full.SK03.closure_elementaryGenerators_eq_top
+theorem closure_elementaryGenerators_eq_top {R : Type*} [Ring R] (S : Set R) (hS1 : (1 : R) ∈ S)
+    (hS : Subring.closure S = ⊤) {n : ℕ} (hn : 3 ≤ n) :
+    Subgroup.closure (elementaryGenerators S n) = ⊤ := by
+#### GroupApproximation.Full.SK03.elementaryGeneration
+theorem elementaryGeneration {R : Type*} [Ring R] (S : Set R) (hS1 : (1 : R) ∈ S)
+    (hS : Subring.closure S = ⊤) {n : ℕ} (hn : 3 ≤ n) :
+    elementaryGroup (Fin n) R =
+      Subgroup.closure {z | ∃ (i j : Fin n) (h : i ≠ j) (s : R), s ∈ S ∧
+        elementaryUnit i j h s = z} := by
+#### GroupApproximation.Full.SK03.elementaryGroup_fg
+theorem elementaryGroup_fg {R : Type*} [Ring R] (S : Finset R) (hS1 : (1 : R) ∈ S)
+    (hS : Subring.closure (S : Set R) = ⊤) {n : ℕ} (hn : 3 ≤ n) :
+    Group.FG ↥(elementaryGroup (Fin n) R) :=
+#### GroupApproximation.Full.SK03.elementaryGroup_hasKazhdanPropertyT
+theorem elementaryGroup_hasKazhdanPropertyT {R : Type} [Ring R] (S : Finset R)
+    (hS : Subring.closure (S : Set R) = ⊤) {n : ℕ} (hn : 3 ≤ n) :
+    HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin n) R) :=
+#### GroupApproximation.Full.SK03.generalInfiniteFGKazhdan
+theorem generalInfiniteFGKazhdan (Λ : Type) [Group Λ] (C : Type) [TopologicalSpace C]
+    [CompactSpace C] [TopologicalSpace.MetrizableSpace C] [TotallyDisconnectedSpace C]
+    [PerfectSpace C] [Nonempty C] [MulAction Λ C] [ContinuousConstSMul Λ C]
+    (S : Finset (ClopenGroupCrossedProduct Λ C (ZMod 2)))
+    (hS1 : (1 : ClopenGroupCrossedProduct Λ C (ZMod 2)) ∈ S)
+    (hS : Subring.closure (S : Set (ClopenGroupCrossedProduct Λ C (ZMod 2))) = ⊤)
+    {n : ℕ} (hn : 3 ≤ n) :
+    Infinite ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) ∧
+      Group.FG ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) ∧
+      HasKazhdanPropertyT.{0, 0}
+        ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) := by
+#### GroupApproximation.Full.SK03.infinite_elementaryGroup_of_injective
+theorem infinite_elementaryGroup_of_injective {K R : Type*} [Ring K] [Infinite K] [Ring R]
+    (φ : K →+* R) (hφ : Function.Injective φ) {n : ℕ} (hn : 2 ≤ n) :
+    Infinite ↥(elementaryGroup (Fin n) R) := by
+#### GroupApproximation.Full.SK03.printedE12Infinite
+theorem printedE12Infinite : PrintedE12Infinite := by
+#### GroupApproximation.Full.SK03.printedEJZ
+theorem printedEJZ : PrintedEJZ :=
+#### GroupApproximation.Full.SK03.printedGeneralElementaryIdentities
+theorem printedGeneralElementaryIdentities : PrintedGeneralElementaryIdentities := by
+#### GroupApproximation.Full.SK03.printedGeneralPartA
+theorem printedGeneralPartA : PrintedGeneralPartA := by
+#### GroupApproximation.Full.SK03.printedGeneralRing
+theorem printedGeneralRing : PrintedGeneralRing := by
+#### GroupApproximation.Full.SK04.closure_range_elementaryLetterMarking
+theorem closure_range_elementaryLetterMarking (n : ℕ) (hn : 3 ≤ n) (X : Type*) :
+    Subgroup.closure (Set.range (elementaryLetterMarking n X)) = ⊤ := by
+#### GroupApproximation.Full.SK04.coe_elementaryBlockEquivSL_apply
+theorem coe_elementaryBlockEquivSL_apply (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N)
+    (g : ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2)))) :
+    ((SimpleKazhdanSofic.elementaryBlockEquivSL n hn N hN g :
+        Matrix.SpecialLinearGroup (Fin n × Fin N) (ZMod 2)) :
+      Matrix (Fin n × Fin N) (Fin n × Fin N) (ZMod 2)) =
+      Matrix.comp (Fin n) (Fin n) (Fin N) (Fin N) (ZMod 2)
+        ((g : (Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2)))ˣ) :
+          Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) := by
+#### GroupApproximation.Full.SK04.eventually_entries_lift
+theorem eventually_entries_lift [Fintype ι] [DecidableEq ι] {α : Type*}
+    (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
+    (hmul : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r * r') = φ k r * φ k r')
+    (h1 : ∀ k, φ k 1 = 1)
+    (t : α → (Matrix ι ι R)ˣ) (t' : ∀ k, α → (Matrix ι ι (M k))ˣ)
+    (hval : ∀ x, ∀ᶠ k in atTop, ∀ i j : ι,
+      φ k (((t x : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
+        ((t' k x : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j)
+    (hinv : ∀ x, ∀ᶠ k in atTop, ∀ i j : ι,
+      φ k ((((t x)⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
+        (((t' k x)⁻¹ : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j)
+    (w : FreeGroup α) :
+    ∀ᶠ k in atTop, ∀ i j : ι,
+      φ k (((FreeGroup.lift t w : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
+        ((FreeGroup.lift (t' k) w : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j := by
+#### GroupApproximation.Full.SK04.eventually_lift_eq_one
+theorem eventually_lift_eq_one [Fintype ι] [DecidableEq ι] {α : Type*}
+    (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
+    (hmul : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r * r') = φ k r * φ k r')
+    (h1 : ∀ k, φ k 1 = 1)
+    (t : α → (Matrix ι ι R)ˣ) (t' : ∀ k, α → (Matrix ι ι (M k))ˣ)
+    (hval : ∀ x, ∀ᶠ k in atTop, ∀ i j : ι,
+      φ k (((t x : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
+        ((t' k x : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j)
+    (hinv : ∀ x, ∀ᶠ k in atTop, ∀ i j : ι,
+      φ k ((((t x)⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
+        (((t' k x)⁻¹ : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j)
+    (w : FreeGroup α) (hw : FreeGroup.lift t w = 1) :
+    ∀ᶠ k in atTop, FreeGroup.lift (t' k) w = 1 := by
+#### GroupApproximation.Full.SK04.eventually_lift_ne_one
+theorem eventually_lift_ne_one {α G : Type*} [Group G] [IsSimpleGroup G] (s : α → G)
+    {H : ℕ → Type*} [∀ k, Group (H k)] (σ : ∀ k, α → H k)
+    (hs : Subgroup.closure (Set.range s) = ⊤)
+    (hfwd : ∀ w : FreeGroup α, FreeGroup.lift s w = 1 →
+      ∀ᶠ k in atTop, FreeGroup.lift (σ k) w = 1)
+    (i₀ : α) (hi₀ : ∀ k, σ k i₀ ≠ 1) (w : FreeGroup α) (hw : FreeGroup.lift s w ≠ 1) :
+    ∀ᶠ k in atTop, FreeGroup.lift (σ k) w ≠ 1 := by
+#### GroupApproximation.Full.SK04.isExpanderFamily_matricial
+theorem isExpanderFamily_matricial {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
+    [IsSimpleGroup (elementaryGroup (Fin n) R)] [Infinite (elementaryGroup (Fin n) R)]
+    (S : Finset R) (hS1 : (1 : R) ∈ S) (hS : Subring.closure (S : Set R) = ⊤)
+    (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
+    (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) (hφ : IsPrintedMatricial S N φ) :
+    SimpleKazhdanSofic.IsExpanderFamily (matricialMarking n S N φ) := by
+#### GroupApproximation.Full.SK04.isExpanderFamily_of_hasKazhdanPropertyT_images
+theorem isExpanderFamily_of_hasKazhdanPropertyT_images {Γ : Type u} [Group Γ]
+    (hT : HasKazhdanPropertyT.{u, v} Γ) {κ : Type w} [Finite κ] (t : κ → Γ)
+    (ht : Subgroup.closure (Set.range t) = ⊤) {ι : Type w'} [Finite ι] {H : ℕ → Type v}
+    [∀ ℓ, Group (H ℓ)] [∀ ℓ, Finite (H ℓ)] (π : ∀ ℓ, Γ →* H ℓ)
+    (hπ : ∀ ℓ, Function.Surjective (π ℓ))
+    (hcard : Tendsto (fun ℓ ↦ Nat.card (H ℓ)) atTop atTop) (σ : ∀ ℓ, ι → H ℓ) (f : κ → ι)
+    (hf : ∀ ℓ j, π ℓ (t j) = σ ℓ (f j)) :
+    SimpleKazhdanSofic.IsExpanderFamily σ := by
+#### GroupApproximation.Full.SK04.isExpanderFamily_slMarking
+theorem isExpanderFamily_slMarking {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
+    [IsSimpleGroup (elementaryGroup (Fin n) R)] [Infinite (elementaryGroup (Fin n) R)]
+    (S : Finset R) (hS1 : (1 : R) ∈ S) (hS : Subring.closure (S : Set R) = ⊤)
+    (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
+    (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) (hφ : IsPrintedMatricial S N φ) :
+    SimpleKazhdanSofic.IsExpanderFamily (slMarking n hn S N hN φ) := by
+#### GroupApproximation.Full.SK04.isMarkedLimit_matricial
+theorem isMarkedLimit_matricial {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
+    [IsSimpleGroup (elementaryGroup (Fin n) R)]
+    (S : Finset R) (hS1 : (1 : R) ∈ S) (hS : Subring.closure (S : Set R) = ⊤)
+    (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
+    (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) (hφ : IsPrintedMatricial S N φ) :
+    SimpleKazhdanSofic.IsMarkedLimit (elementaryMarking n S) (matricialMarking n S N φ) := by
+#### GroupApproximation.Full.SK04.isMarkedLimit_slMarking
+theorem isMarkedLimit_slMarking {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
+    [IsSimpleGroup (elementaryGroup (Fin n) R)]
+    (S : Finset R) (hS1 : (1 : R) ∈ S) (hS : Subring.closure (S : Set R) = ⊤)
+    (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
+    (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) (hφ : IsPrintedMatricial S N φ) :
+    SimpleKazhdanSofic.IsMarkedLimit (elementaryMarking n S) (slMarking n hn S N hN φ) := by
+#### GroupApproximation.Full.SK04.isSimpleGroup_sl
+theorem isSimpleGroup_sl (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    IsSimpleGroup (Matrix.SpecialLinearGroup (Fin n × Fin N) (ZMod 2)) := by
+#### GroupApproximation.Full.SK04.lift_surjective_of_closure
+theorem lift_surjective_of_closure {R : Type*} (S : Finset R) {N : ℕ}
+    (ψ : R → Matrix (Fin N) (Fin N) (ZMod 2))
+    (hgen : Subring.closure (ψ '' (S : Set R)) = ⊤) :
+    Function.Surjective
+      (FreeAlgebra.lift (ZMod 2) fun j : Fin S.card ↦ ψ (S.equivFin.symm j : R)).toRingHom := by
+#### GroupApproximation.Full.SK04.printedGeneralTheorem
+theorem printedGeneralTheorem : PrintedGeneralTheorem := by
+#### GroupApproximation.Full.SK04.tendsto_card_of_isMarkedLimit
+theorem tendsto_card_of_isMarkedLimit {ι G : Type*} [Group G] [Infinite G] {s : ι → G}
+    {H : ℕ → Type*} [∀ ℓ, Group (H ℓ)] {σ : ∀ ℓ, ι → H ℓ}
+    (hlim : SimpleKazhdanSofic.IsMarkedLimit s σ) (hfin : ∀ ℓ, Finite (H ℓ)) :
+    Tendsto (fun ℓ => Nat.card (H ℓ)) atTop atTop := by
+#### GroupApproximation.Full.SK04.thm_general_b_printed
+theorem thm_general_b_printed (Λ : Type) [Group Λ] [Group.FG Λ] (C : Type) [TopologicalSpace C]
+    [CompactSpace C] [TopologicalSpace.MetrizableSpace C] [TotallyDisconnectedSpace C]
+    [PerfectSpace C] [Nonempty C] [MulAction Λ C] [ContinuousConstSMul Λ C]
+    (hmin : MulAction.IsMinimal Λ C)
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set C, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z)
+    (S : Finset (ClopenGroupCrossedProduct Λ C (ZMod 2)))
+    (hS1 : (1 : ClopenGroupCrossedProduct Λ C (ZMod 2)) ∈ S)
+    (hS : Subring.closure (S : Set (ClopenGroupCrossedProduct Λ C (ZMod 2))) = ⊤)
+    (n : ℕ) (hn : 3 ≤ n) (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
+    (φ : ∀ k, ClopenGroupCrossedProduct Λ C (ZMod 2) → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))
+    (hφ : IsPrintedMatricial S N φ) :
+    SimpleKazhdanSofic.IsMarkedLimit (elementaryMarking n S) (slMarking n hn S N hN φ) ∧
+      SimpleKazhdanSofic.IsExpanderFamily (slMarking n hn S N hN φ) ∧
+      (∀ k, SK05.IsFiniteSimpleSLMultiple n
+        (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2))) ∧
+      Tendsto N atTop atTop ∧
+      SimpleKazhdanSofic.ThmMainA.IsExpanderLimitOfClass (SK05.IsFiniteSimpleSLMultiple n)
+        ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) := by
+#### GroupApproximation.Full.SK05.covariance
+theorem covariance [DiscreteTopology A] [Finite A] (S : Subshift A ℤ)
+    (f : LocallyConstant S.carrier (ZMod 2)) :
+    (unit (subshiftHomeo S) (ZMod 2) : R S) * coeff (subshiftHomeo S) (ZMod 2) f *
+        (((unit (subshiftHomeo S) (ZMod 2))⁻¹ : (R S)ˣ) : R S) =
+      coeff (subshiftHomeo S) (ZMod 2)
+        (LocallyConstant.comap ⟨⇑(subshiftHomeo S).symm, (subshiftHomeo S).symm.continuous⟩ f) :=
+#### GroupApproximation.Full.SK05.exists_periodic_sameWords_carrier
+theorem exists_periodic_sameWords_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier)
+    (hmin : IsMinimal S) (ℓ m₀ : ℕ) :
+    ∃ (m : ℕ) (_ : NeZero m) (y : ZMod m → A), m₀ ≤ m ∧
+      (∀ n : ZMod m,
+        (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
+      ∀ u ∈ language S.carrier (2 * ℓ + 1),
+        ∃ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) = u :=
+#### GroupApproximation.Full.SK05.exists_recurrence_segment
+theorem exists_recurrence_segment (S : Subshift A ℤ) (hmin : IsMinimal S) {x : ℤ → A}
+    (hx : x ∈ S.carrier) (ℓ m₀ : ℕ) :
+    ∃ m : ℕ, m₀ ≤ m ∧ 2 * ℓ + 1 ≤ m ∧ word x 0 (2 * ℓ) = word x m (2 * ℓ) ∧
+      ∀ u ∈ language S.carrier (2 * ℓ + 1),
+        ∃ i : ℕ, i + (2 * ℓ + 1) ≤ m ∧ word x i (2 * ℓ + 1) = u :=
+#### GroupApproximation.Full.SK05.forwardOrbit_dense
+theorem forwardOrbit_dense (S : Subshift A ℤ) (hmin : IsMinimal S) {x : ℤ → A}
+    (hx : x ∈ S.carrier) :
+    S.carrier ⊆ closure (Set.range fun n : ℕ => shift (n : ℤ) x) :=
+#### GroupApproximation.Full.SK05.ingredients_finiteModels
+theorem ingredients_finiteModels (S : Subshift A ℤ) (hinf : Infinite S.carrier)
+    (hmin : IsMinimal S) : IngredientsFiniteModels S := by
+#### GroupApproximation.Full.SK05.ingredients_normal_contains_copy
+theorem ingredients_normal_contains_copy {Q G : Type*} [Group Q] [IsSimpleGroup Q] [Group G]
+    (H : Q →* G) (K : Subgroup G) (hK : K.Normal) {x : Q} (hx : x ≠ 1) (hxK : H x ∈ K) (y : Q) :
+    H y ∈ K := by
+#### GroupApproximation.Full.SK05.ingredients_propertyT
+theorem ingredients_propertyT (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    IngredientsPropertyT S :=
+#### GroupApproximation.Full.SK05.IngredientsFiniteModels
+abbrev IngredientsFiniteModels (S : Subshift A ℤ) : Prop :=
+#### GroupApproximation.Full.SK05.IngredientsPropertyT
+abbrev IngredientsPropertyT (S : Subshift A ℤ) : Prop :=
+#### GroupApproximation.Full.SK05.isCantorSpace_subshift
+theorem isCantorSpace_subshift [DiscreteTopology A] [Finite A] (S : Subshift A ℤ)
+    (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    CompactSpace S.carrier ∧ T2Space S.carrier ∧ TotallyDisconnectedSpace S.carrier ∧
+      PerfectSpace S.carrier ∧ Nonempty S.carrier :=
+#### GroupApproximation.Full.SK05.main
+theorem main : PrintedSimpleKazhdanSoficMain :=
+#### GroupApproximation.Full.SK05.main_printed
+theorem main_printed (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : SimpleKazhdanSofic.IsMinimal S) :
+    Infinite (SimpleKazhdanSofic.G S) ∧ Group.FG (SimpleKazhdanSofic.G S) ∧
+      IsSimpleGroup (SimpleKazhdanSofic.G S) ∧ HasKazhdanPropertyT.{0, 0} (SimpleKazhdanSofic.G S) ∧
+      ThmMainA.IsExpanderLimitOfClass (IsFiniteSimpleSLMultiple 3) (SimpleKazhdanSofic.G S) ∧
+      IsLEF (SimpleKazhdanSofic.G S) ∧ IsSofic (SimpleKazhdanSofic.G S) ∧
+      IsHyperlinear (SimpleKazhdanSofic.G S) :=
+#### GroupApproximation.Full.SK05.main_printed_sk01
+theorem main_printed_sk01 (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : SimpleKazhdanSofic.IsMinimal S) :
+    Infinite (SimpleKazhdanSofic.G S) ∧ Group.FG (SimpleKazhdanSofic.G S) ∧
+      IsSimpleGroup (SimpleKazhdanSofic.G S) ∧ HasKazhdanPropertyT.{0, 0} (SimpleKazhdanSofic.G S) ∧
+      SK01.IsExpanderLimitOfClass SK01.IsFiniteSimpleSL3NF2 (SimpleKazhdanSofic.G S) ∧
+      SK01.IsLEFPrinted (SimpleKazhdanSofic.G S) ∧ SK01.PrintedIsSofic (SimpleKazhdanSofic.G S) ∧
+      SK01.PrintedIsHyperlinear (SimpleKazhdanSofic.G S) := by
+#### GroupApproximation.Full.SK05.perfectSpace_subshift
+theorem perfectSpace_subshift [DiscreteTopology A] [Finite A] (S : Subshift A ℤ)
+    (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    PerfectSpace S.carrier := by
+#### GroupApproximation.Full.SK05.periodicApproximationsRemark
+theorem periodicApproximationsRemark :
+    PrintedPeriodicMatricialStatement ∧ PrintedMainTheorem :=
+#### GroupApproximation.Full.SK05.periodicMatricial_printed
+theorem periodicMatricial_printed (A : Type) [TopologicalSpace A] [DiscreteTopology A]
+    [DecidableEq A] [Finite A] (S : Subshift A ℤ) (hinf : Infinite S.carrier)
+    (hmin : SimpleKazhdanSofic.IsMinimal S) :
+    ∃ (N : ℕ → ℕ) (φ : ∀ k, SimpleKazhdanSofic.R S → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)),
+      IsMatricialVia (printedGenerators S) N φ :=
+#### GroupApproximation.Full.SK05.printedFigureA
+theorem printedFigureA : PrintedFigureA :=
+#### GroupApproximation.Full.SK05.printedFigureB
+theorem printedFigureB : PrintedFigureB := by
+#### GroupApproximation.Full.SK05.printedIngredientsSimplicity
+theorem printedIngredientsSimplicity : PrintedIngredientsSimplicity := by
+#### GroupApproximation.Full.SK05.printedMainProofRest
+theorem printedMainProofRest : PrintedMainProofRest := by
+#### GroupApproximation.Full.SK05.printedMainTheoremSK01
+theorem printedMainTheoremSK01 : PrintedMainTheoremSK01 := by
+#### GroupApproximation.Full.SK05.printedProofIngredients
+theorem printedProofIngredients : PrintedProofIngredients := by
+#### GroupApproximation.Full.SK05.prod_coordIndicator_apply
+theorem prod_coordIndicator_apply [DiscreteTopology A] [Finite A] [DecidableEq A]
+    (S : Subshift A ℤ) (I : Finset ℤ) (w : ℤ → A) (x : S.carrier) :
+    (∏ t ∈ I, coordIndicator S t (w t)) x = if ∀ t ∈ I, x.1 t = w t then 1 else 0 := by
+#### GroupApproximation.Full.SK05.rest_conj_diagonal
+theorem rest_conj_diagonal (j : ℤ) (d : ZMod N → ZMod 2) :
+    shiftMatrix (ZMod 2) N j * Matrix.diagonal d * shiftMatrix (ZMod 2) N (-j) =
+      Matrix.diagonal fun t => d (t - (j : ZMod N)) :=
+#### GroupApproximation.Full.SK05.rest_cutoffModel_eq_sum
+theorem rest_cutoffModel_eq_sum (D : ClopenCoeff T (ZMod 2) →+* (ZMod N → ZMod 2)) {ℓ : ℕ}
+    {r : ClopenCrossedProduct T (ZMod 2)}
+    (hr : ∀ g ∈ SkewMonoidAlgebra.support r, DependsOnWindow T ℓ (SkewMonoidAlgebra.coeff r g)) :
+    cutoffModel D ℓ r = ∑ g ∈ SkewMonoidAlgebra.support r,
+      Matrix.diagonal (D (SkewMonoidAlgebra.coeff r g)) * shiftMatrix (ZMod 2) N (toAdd g) := by
+#### GroupApproximation.Full.SK05.rest_diagonal_mulVec_single
+theorem rest_diagonal_mulVec_single (d : ZMod N → ZMod 2) (t : ZMod N) :
+    Matrix.diagonal d *ᵥ Pi.single t (1 : ZMod 2) = Pi.single t (d t) := by
+#### GroupApproximation.Full.SK05.rest_matrixUnits
+theorem rest_matrixUnits {A : Type*} [DecidableEq A] (c : ZMod N → A)
+    (hdist : ∀ t t' : ZMod N, (∀ i : ZMod N, c (t + i) = c (t' + i)) → t = t') :
+    (∀ (i : ZMod N) (a : A), (Matrix.diagonal fun t => if c (t + i) = a then (1 : ZMod 2) else 0) ∈
+      Subring.closure (periodicGenerators c)) ∧
+    (∀ t : ZMod N, Matrix.single t t (1 : ZMod 2) ∈ Subring.closure (periodicGenerators c)) ∧
+    (∀ s t : ZMod N, Matrix.single s t (1 : ZMod 2) ∈ Subring.closure (periodicGenerators c)) ∧
+    Subring.closure (periodicGenerators c) = ⊤ :=
+#### GroupApproximation.Full.SK05.rest_models
+theorem rest_models (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S)
+    {x : ℤ → A} (hx : x ∈ S.carrier) : ProofRestModels S x := by
+#### GroupApproximation.Full.SK05.rest_theoremGeneralApplies
+theorem rest_theoremGeneralApplies : PrintedSimpleKazhdanSoficMain :=
+#### GroupApproximation.Full.SK05.subring_closure_printedGenerators_eq_top
+theorem subring_closure_printedGenerators_eq_top [DiscreteTopology A] [Finite A] [DecidableEq A]
+    (S : Subshift A ℤ) :
+    Subring.closure (insert (1 : R S) (ringGenerators S)) = ⊤ :=
+#### GroupApproximation.Full.SK05.subshiftHomeo_zpow_apply_ne_self
+theorem subshiftHomeo_zpow_apply_ne_self [DiscreteTopology A] [Finite A] (S : Subshift A ℤ)
+    (hinf : Infinite S.carrier)
+    (hmin : IsMinimal S) {j : ℤ} (hj : j ≠ 0) (x : S.carrier) : (subshiftHomeo S ^ j) x ≠ x := by
+#### GroupApproximation.Full.SK05.unit_zpow_mul_letterIndicator_mul_inv
+theorem unit_zpow_mul_letterIndicator_mul_inv [DiscreteTopology A] [Finite A] [DecidableEq A]
+    (S : Subshift A ℤ) (j : ℤ) (a : A) :
+    ((unit (subshiftHomeo S) (ZMod 2) ^ j : (R S)ˣ) : R S) *
+        coeff (subshiftHomeo S) (ZMod 2) (letterIndicator S a) *
+        (((unit (subshiftHomeo S) (ZMod 2) ^ j)⁻¹ : (R S)ˣ) : R S) =
+      coeff (subshiftHomeo S) (ZMod 2) (coordIndicator S (-j) a) :=
+#### GroupApproximation.Full.SK06.brownForm_gx
+theorem brownForm_gx (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : SimpleKazhdanSofic.IsMinimal S) :
+    McDuff.IsMcDuffFactor (McDuff.tensorHyperfinite
+        (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))) ∧
+      (∃ φ : SimpleKazhdanSofic.G S →* unitary ↥(McDuff.tensorHyperfinite
+          (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))).toStarSubalgebra,
+        Function.Injective φ) ∧
+      ∀ ω : Ultrafilter ℕ, (ω : Filter ℕ) ≤ Filter.cofinite →
+        ∃ Φ : ↥(McDuff.tensorHyperfinite
+              (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))).toStarSubalgebra
+            →⋆ₐ[ℂ] Hyperfinite.HyperfiniteUltrapower ω, Function.Injective Φ := by
+#### GroupApproximation.Full.SK06.brownFormulation_general
+theorem brownFormulation_general (Λ : Type) [Group Λ] [Group.FG Λ] (C : Type) [TopologicalSpace C]
+    [CompactSpace C] [TopologicalSpace.MetrizableSpace C] [TotallyDisconnectedSpace C]
+    [PerfectSpace C] [Nonempty C] [MulAction Λ C] [ContinuousConstSMul Λ C]
+    (hmin : MulAction.IsMinimal Λ C)
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set C, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z)
+    (S : Finset (ClopenGroupCrossedProduct Λ C (ZMod 2)))
+    (hS1 : (1 : ClopenGroupCrossedProduct Λ C (ZMod 2)) ∈ S)
+    (hS : Subring.closure (S : Set (ClopenGroupCrossedProduct Λ C (ZMod 2))) = ⊤)
+    (n : ℕ) (hn : 3 ≤ n) (N : ℕ → ℕ)
+    (φ : ∀ k, ClopenGroupCrossedProduct Λ C (ZMod 2) → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))
+    (hN : ∀ k, 0 < N k) (hφ : SK04.IsPrintedMatricial S N φ) :
+    IsLEF ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) ∧
+      IsSofic ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) ∧
+      IsHyperlinear ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) ∧
+      IsBrownROmegaForm ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ C (ZMod 2))) := by
+#### GroupApproximation.Full.SK06.exists_groupVonNeumann_embedding
+theorem exists_groupVonNeumann_embedding {G : Type} [Group G] [Countable G] (hG : IsSofic G)
+    (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ cofinite) :
+    ∃ Φ : ↥(GroupVonNeumann.groupVonNeumannAlgebra G).toStarSubalgebra →⋆ₐ[ℂ]
+        Hyperfinite.HyperfiniteUltrapower ω, Function.Injective Φ ∧
+      ∀ T : ↥(GroupVonNeumann.groupVonNeumannAlgebra G).toStarSubalgebra,
+        Hyperfinite.hyperfiniteUltratrace ω (Φ T)
+          = ⟪deltaOne G, (T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)⟫_ℂ := by
+#### GroupApproximation.Full.SK06.exists_gx_brownForm
+theorem exists_gx_brownForm :
+    ∃ S : Subshift Bool ℤ, Infinite S.carrier ∧ SimpleKazhdanSofic.IsMinimal S ∧
+      Infinite (SimpleKazhdanSofic.G S) ∧ Group.FG (SimpleKazhdanSofic.G S) ∧
+      IsSimpleGroup (SimpleKazhdanSofic.G S) ∧ HasKazhdanPropertyT.{0, 0} (SimpleKazhdanSofic.G S) ∧
+      IsSofic (SimpleKazhdanSofic.G S) ∧ IsBrownROmegaForm (SimpleKazhdanSofic.G S) := by
+#### GroupApproximation.Full.SK06.exists_tensorHyperfinite_embedding
+theorem exists_tensorHyperfinite_embedding {G : Type} [Group G] [Countable G] (hG : IsSofic G)
+    (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ Filter.cofinite) :
+    ∃ Φ : ↥(McDuff.tensorHyperfinite
+          (GroupVonNeumann.groupVonNeumannAlgebra G)).toStarSubalgebra →⋆ₐ[ℂ]
+        HyperfiniteUltrapower ω, Function.Injective Φ := by
+#### GroupApproximation.Full.SK06.isBrownROmegaForm
+theorem isBrownROmegaForm {G : Type} [Group G] [Countable G] (hsimple : IsSimpleGroup G)
+    (hinf : Infinite G) (hsofic : IsSofic G) : IsBrownROmegaForm G := by
+#### GroupApproximation.Full.SK06.IsBrownROmegaForm
+def IsBrownROmegaForm (G : Type) [Group G] : Prop :=
+#### GroupApproximation.Full.SK06.printedBrownFactors
+theorem printedBrownFactors : PrintedBrownFactors.{u} := by
+#### GroupApproximation.Full.SK07.exists_subshift_conj_of_fg
+theorem exists_subshift_conj_of_fg {X : Type} [TopologicalSpace X] [CompactSpace X]
+    [T2Space X] [TotallyDisconnectedSpace X] (T : X ≃ₜ X)
+    (hfg : ∃ s : Finset (ClopenCrossedProduct T (ZMod 2)),
+      Subring.closure (s : Set (ClopenCrossedProduct T (ZMod 2))) = ⊤) :
+    ∃ (A : Type) (_ : TopologicalSpace A) (_ : DiscreteTopology A) (_ : Finite A)
+      (S : Subshift A ℤ) (φ : X ≃ₜ S.carrier), ∀ x, φ (T x) = subshiftHomeo S (φ x) := by
+#### GroupApproximation.Full.SK07.isMinimal_of_conj
+theorem isMinimal_of_conj {A : Type} [TopologicalSpace A] (S : Subshift A ℤ)
+    (φ : X ≃ₜ S.carrier) (hφ : ∀ x, φ (T x) = subshiftHomeo S (φ x))
+    (h : ∀ Y : Set X, IsClosed Y → Y.Nonempty → Y ≠ Set.univ → T '' Y = Y → False) :
+    IsMinimal S := by
+#### GroupApproximation.Full.SK07.itineraryConjugacy_sentence
+theorem itineraryConjugacy_sentence {X : Type} [TopologicalSpace X] [CompactSpace X]
+    [T2Space X] [TotallyDisconnectedSpace X] (T : X ≃ₜ X)
+    (s : Finset (ClopenCrossedProduct T (ZMod 2)))
+    (hs : Subring.closure (s : Set (ClopenCrossedProduct T (ZMod 2))) = ⊤) :
+    ∃ F : Finset (LocallyConstant X (ZMod 2)),
+      (∀ f ∈ F, ∃ r ∈ s, ∃ g : Multiplicative ℤ, g ∈ SkewMonoidAlgebra.support r ∧
+        (ClopenCoeff.of T (ZMod 2)).symm (SkewMonoidAlgebra.coeff r g) = f) ∧
+      Subring.closure (translates T (F : Set (LocallyConstant X (ZMod 2)))) = ⊤ ∧
+      (∀ U : Set X, ∀ hU : IsClopen U, LocallyConstant.charFn (ZMod 2) hU ∈
+        Subring.closure (translates T (F : Set (LocallyConstant X (ZMod 2))))) ∧
+      ∃ φ : X ≃ₜ (atomSubshift T F).carrier,
+        (∀ x, ((φ x : (atomSubshift T F).carrier) : ℤ → (↥F → ZMod 2)) = atomItinerary T F x) ∧
+        ∀ x, φ (T x) = subshiftHomeo (atomSubshift T F) (φ x) := by
+#### GroupApproximation.Full.SK07.kazhdanEntriesGenerateRing_sentence
+theorem kazhdanEntriesGenerateRing_sentence (R : Type) [Ring R]
+    (hT : HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) R)) :
+    Group.FG (elementaryGroup (Fin 3) R) ∧
+      (∃ S : Set (elementaryGroup (Fin 3) R), S.Finite ∧ Subgroup.closure S = ⊤ ∧
+        (entries S).Finite ∧ Subring.closure (entries S) = ⊤) ∧
+      ∀ r : R, ((elementaryUnit (0 : Fin 3) 1 fin3_zero_ne_one r : (Matrix (Fin 3) (Fin 3) R)ˣ) :
+        Matrix (Fin 3) (Fin 3) R) 0 1 = r := by
+#### GroupApproximation.Full.SK07.not_isSimpleGroup_of_invariant
+theorem not_isSimpleGroup_of_invariant {Y : Set X} (hYc : IsClosed Y) (hne : Y.Nonempty)
+    (hproper : Y ≠ Set.univ) (hY : T '' Y = Y) :
+    ¬ IsSimpleGroup (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))) :=
+#### GroupApproximation.Full.SK07.restrict_surjective
+theorem restrict_surjective {Y : Set X} (hYc : IsClosed Y) (hY : T '' Y = Y) :
+    Function.Surjective (ClopenCrossedProduct.restrict T (ZMod 2) hY) := by
+#### GroupApproximation.Full.SK07.restrictionNotSimple_sentence
+theorem restrictionNotSimple_sentence {Y : Set X} (hYc : IsClosed Y)
+    (hne : Y.Nonempty) (hproper : Y ≠ Set.univ) (hY : T '' Y = Y) :
+    Function.Surjective
+        (elementaryGroupMap (ι := Fin 3) (ClopenCrossedProduct.restrict T (ZMod 2) hY)) ∧
+#### GroupApproximation.Full.SK07.simpleKazhdan_of_conj_minimalSubshift
+theorem simpleKazhdan_of_conj_minimalSubshift {X : Type} [TopologicalSpace X] [T2Space X]
+    [PerfectSpace X] [Nonempty X] (T : X ≃ₜ X) (A : Type) [TopologicalSpace A]
+    [DiscreteTopology A] [Finite A] (S : Subshift A ℤ) (φ : X ≃ₜ S.carrier) (hmin : IsMinimal S)
+    (hφ : ∀ x, φ (T x) = subshiftHomeo S (φ x)) :
+    IsSimpleGroup (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))) ∧
+      HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))) := by
+#### GroupApproximation.Full.SK07.simpleKazhdanIffMinimalSubshift
+theorem simpleKazhdanIffMinimalSubshift {X : Type} [TopologicalSpace X] [CompactSpace X]
+    [T2Space X] [TotallyDisconnectedSpace X] [TopologicalSpace.MetrizableSpace X]
+    [PerfectSpace X] [Nonempty X] (T : X ≃ₜ X) :
+    (IsSimpleGroup (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))) ∧
+        HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2)))) ↔
+      ∃ (A : Type) (_ : TopologicalSpace A) (_ : DiscreteTopology A) (_ : Finite A)
+        (S : Subshift A ℤ) (φ : X ≃ₜ S.carrier),
+        IsMinimal S ∧ ∀ x, φ (T x) = subshiftHomeo S (φ x) := by
+#### GroupApproximation.Full.SK07.subring_closure_entries_eq_top
+theorem subring_closure_entries_eq_top {S : Set (elementaryGroup (Fin 3) R)}
+    (hS : Subgroup.closure S = ⊤) : Subring.closure (entries S) = ⊤ := by
+#### GroupApproximation.Full.SK08.displayedD
+def displayedD : Matrix (Fin 5) (Fin 5) (ZMod 2) :=
+#### GroupApproximation.Full.SK08.displayedP
+def displayedP : Matrix (Fin 5) (Fin 5) (ZMod 2) :=
+#### GroupApproximation.Full.SK08.fibonacciConjugateE44
+theorem fibonacciConjugateE44 :
+    (∀ j : ℤ, fibonacciModel ((ClopenCrossedProduct.unit 𝓣 (ZMod 2) ^ j : 𝓡ˣ) : 𝓡) =
+      ((fibP ^ j : 𝓜ˣ) : 𝓜)) ∧
+      ((fibP ^ (3 : ℤ) : 𝓜ˣ) : 𝓜) * fibonacciModel (fibLetter true) *
+          ((fibP ^ (-3 : ℤ) : 𝓜ˣ) : 𝓜) =
+        Matrix.diagonal (fun t : ZMod 5 =>
+          if fibonacciY (((t.val : ℕ) : ℤ) - 3) = true then (1 : ZMod 2) else 0) ∧
+      fibonacciModel (fibLetter true) *
+          (((fibP ^ (3 : ℤ) : 𝓜ˣ) : 𝓜) * fibonacciModel (fibLetter true) *
+            ((fibP ^ (-3 : ℤ) : 𝓜ˣ) : 𝓜)) =
+        Matrix.single (4 : ZMod 5) (4 : ZMod 5) (1 : ZMod 2) := by
+#### GroupApproximation.Full.SK08.fibonacciDisplay
+theorem fibonacciDisplay :
+    fibonacciModel fibU = Pestov91.shiftMatrix (ZMod 2) 5 1 ∧
+      (∀ t : ZMod 5, Matrix.mulVec (Pestov91.shiftMatrix (ZMod 2) 5 1) (Pi.single t 1) =
+        Pi.single (t + 1) 1) ∧
+      (∀ a b : Fin 5, fibonacciModel fibU ((a : ℕ) : ZMod 5) ((b : ℕ) : ZMod 5) =
+        displayedP a b) ∧
+      fibonacciModel (fibLetter true) =
+        Matrix.diagonal (fibonacciWindowModel
+          (ClopenCoeff.of 𝓣 (ZMod 2)
+            (SimpleKazhdanSofic.letterIndicator fibonacciSubshift true))) ∧
+      ∀ a b : Fin 5, fibonacciModel (fibLetter true) ((a : ℕ) : ZMod 5) ((b : ℕ) : ZMod 5) =
+        displayedD a b := by
+#### GroupApproximation.Full.SK08.fibonacciGeneratesMatrices
+theorem fibonacciGeneratesMatrices :
+    Subring.closure (fibonacciModel '' fibGenerators) = ⊤ ∧
+      elementaryGroup (Fin 3) 𝓜 = ⊤ ∧
+      Subgroup.closure fibElementaryGenerators = ⊤ :=
+#### GroupApproximation.Full.SK08.fibonacciGeneratesSL15
+theorem fibonacciGeneratesSL15 :
+    Subgroup.closure (fibFlatten '' fibElementaryGenerators) = ⊤ := by
+#### GroupApproximation.Full.SK08.fibonacciMatrixUnits
+theorem fibonacciMatrixUnits :
+    (∀ t : ZMod 5, ((fibP ^ (((t.val : ℕ) : ℤ) - 4) : 𝓜ˣ) : 𝓜) *
+        Matrix.single (4 : ZMod 5) (4 : ZMod 5) (1 : ZMod 2) *
+        ((fibP ^ (4 - ((t.val : ℕ) : ℤ)) : 𝓜ˣ) : 𝓜) = Matrix.single t t (1 : ZMod 2)) ∧
+      ∀ t' t : ZMod 5, ((fibP ^ (((t'.val : ℕ) : ℤ) - ((t.val : ℕ) : ℤ)) : 𝓜ˣ) : 𝓜) *
+        Matrix.single t t (1 : ZMod 2) = Matrix.single t' t (1 : ZMod 2) := by
+#### GroupApproximation.Full.SK08.fibonacciModel_letter_false
+theorem fibonacciModel_letter_false :
+    fibonacciModel (fibLetter false) = 1 - fibonacciModel (fibLetter true) := by
+#### GroupApproximation.Full.SK08.fibonacciModelGeneratesMatrixRing
+theorem fibonacciModelGeneratesMatrixRing :
+    Subring.closure (fibonacciModel '' fibGenerators) = ⊤ := by
+#### GroupApproximation.Full.SK08.fibonacciModelSetup
+theorem fibonacciModelSetup :
+    Function.minimalPeriod (shift (1 : ℤ)) fibonacciY = 5 ∧
+      Set.range (fun i : ℤ => WordGraph.word fibonacciY i 3) =
+        WordGraph.language fibonacciSubshift.carrier 3 ∧
+      (∀ f : 𝓒, DependsOnWindowOne f → ∀ (t : ZMod 5) (z : fibonacciSubshift.carrier),
+        (∀ i : ℤ, |i| ≤ 1 → z.1 i = fibonacciY ((t.val : ℕ) + i)) →
+          fibonacciWindowModel f t = (ClopenCoeff.of 𝓣 (ZMod 2)).symm f z) ∧
+      (∀ r : 𝓡, (∀ g ∈ SkewMonoidAlgebra.support r,
+          DependsOnWindowOne (SkewMonoidAlgebra.coeff r g)) →
+        fibonacciModel r = Pestov91.periodicModel fibonacciWindowModel r) ∧
+      (∀ r : 𝓡, ¬ (∀ g ∈ SkewMonoidAlgebra.support r,
+          DependsOnWindowOne (SkewMonoidAlgebra.coeff r g)) →
+        fibonacciModel r = 0) ∧
+      (∀ (j : ℤ) (f : 𝓒), DependsOnWindowOne f →
+        fibonacciModel (SkewMonoidAlgebra.single (ofAdd j) f) =
+          Matrix.diagonal (fibonacciWindowModel f) * Pestov91.shiftMatrix (ZMod 2) 5 j) ∧
+      fibonacciModel 1 = 1 ∧
+      fibonacciModel (fibLetter false) = 1 - fibonacciModel (fibLetter true) :=
+#### GroupApproximation.Full.SK08.fibonacciPeriodicWords
+theorem fibonacciPeriodicWords :
+    WordGraph.word fibonacciY 0 5 = ![false, true, false, false, true] ∧
+      (∀ n : ℤ, fibonacciY ((5 : ℕ) + n) = fibonacciY n) ∧
+      Set.range (fun i : ℤ => WordGraph.word fibonacciY i 3) =
+        WordGraph.language fibonacciSubshift.carrier 3 ∧
+      Function.minimalPeriod (shift (1 : ℤ)) fibonacciY = 5 ∧
+      ∀ (z : ℤ → Bool) (p : ℕ), 0 < p → (∀ n : ℤ, z (p + n) = z n) →
+        Set.range (fun i : ℤ => WordGraph.word z i 3) =
+          WordGraph.language fibonacciSubshift.carrier 3 → 5 ≤ p := by
+#### GroupApproximation.Full.SK08.fibonacciSL15
+noncomputable def fibonacciSL15 :
+    elementaryGroup (Fin 3) 𝓜 ≃* Matrix.SpecialLinearGroup (Fin 15) (ZMod 2) :=
+#### GroupApproximation.Full.SK08.fibonacciWindowsEqual
+theorem fibonacciWindowsEqual :
+    WordGraph.word fibonacciY ((1 : ℤ) - 1) 3 = ![false, true, false] ∧
+      WordGraph.word fibonacciY ((4 : ℤ) - 1) 3 = ![false, true, false] ∧
+      ∀ f : 𝓒, DependsOnWindowOne f →
+        Matrix.diagonal (fibonacciWindowModel f) 1 1 =
+          Matrix.diagonal (fibonacciWindowModel f) 4 4 := by
+#### GroupApproximation.Full.SK08.fibonacciWordsLengthThree
+theorem fibonacciWordsLengthThree :
+    WordGraph.language fibonacciSubshift.carrier 3 =
+      {![false, false, true], ![false, true, false], ![true, false, false],
+        ![true, false, true]} := by
+#### GroupApproximation.Full.SK08.fibonacciY
+def fibonacciY (n : ℤ) : Bool :=
+#### GroupApproximation.Full.SK08.five_le_of_periodic_words
+theorem five_le_of_periodic_words (z : ℤ → Bool) (p : ℕ) (hp : 0 < p)
+    (hper : ∀ n : ℤ, z (p + n) = z n)
+    (hwords : Set.range (fun i : ℤ => WordGraph.word z i 3) =
+      WordGraph.language fibonacciSubshift.carrier 3) :
+    5 ≤ p := by
+#### GroupApproximation.Full.SK11.halflineA
+theorem halflineA (Γ : Type) [Group Γ] (hfg : Group.FG Γ) (hLEF : IsLEF Γ) :
+    ∃ (Δ : Type) (_ : Group Δ), Infinite Δ ∧ Group.FG Δ ∧ IsLEF Δ ∧
+      (∃ f : Γ →* Δ, Function.Injective f ∧ ∀ γ, f γ ∈ commutator Δ) ∧
+      ∀ (ι κ : Type) [Primcodable ι] [Finite ι] [Primcodable κ] [Finite κ] (s : ι → Γ) (t : κ → Δ),
+        Subgroup.closure (Set.range s) = ⊤ → TuringReducible (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.Full.SK11.halflineB
+theorem halflineB (Δ : Type) [Group Δ] :
+    ∀ (ι κ : Type) [Primcodable ι] [Finite ι] [Primcodable κ] [Finite κ] (s : ι → Δ)
+      (u : κ → ↥(elementaryGroup (Fin 3) (LampRing Δ))),
+      Subgroup.closure (Set.range s) = ⊤ → TuringReducible (wordProblemOracle u) (wordProblemOracle s) :=
+#### GroupApproximation.Full.SK11.lamplighterHostSolvableWP
+theorem lamplighterHostSolvableWP : Lamplighter.PrintedLamplighterHostSolvableWordProblem := by
+#### GroupApproximation.Full.SK12.corHost_countableLEFSubgroupOfHost
+theorem corHost_countableLEFSubgroupOfHost (Γ : Type) [Group Γ] (hc : Countable Γ)
+    (hΓ : IsTextbookLEF Γ) :
+    ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.Full.SK12.corHost_familyEmbedsIffLEFCountableClasses
+theorem corHost_familyEmbedsIffLEFCountableClasses {ι : Type u} (Γ : ι → Type)
+    [∀ i, Group (Γ i)] (hfg : ∀ i, Group.FG (Γ i)) :
+    (∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∀ i, ∃ f : Γ i →* E, Function.Injective f) ↔
+      (∀ i, IsTextbookLEF (Γ i)) ∧
+        ∃ (J : Type) (_ : Countable J) (H : J → Type) (_ : ∀ j, Group (H j)),
+          ∀ i, ∃ j, Nonempty (Γ i ≃* H j) := by
+#### GroupApproximation.Full.SK12.corHost_recursivelyPresentedInstances
+theorem corHost_recursivelyPresentedInstances :
+    ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧
+      (∀ (Γ : Type) [Group Γ], Group.FG Γ → Nonempty (Higman.RecursivePresentation Γ) →
+        IsTextbookLEF Γ → ∃ f : Γ →* E, Function.Injective f) ∧
+      (∀ (Γ : Type) [Group Γ], Group.IsFinitelyPresented Γ → Group.ResiduallyFinite Γ →
+        ∃ f : Γ →* E, Function.Injective f) ∧
+      (∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
+        [Primcodable A] (S : Subshift A ℤ), Infinite S.carrier →
+          GroupApproximation.SimpleKazhdanSofic.IsMinimal S →
+          Partrec (GroupApproximation.SimpleKazhdanSofic.languageOracle S) →
+          ∃ f : GroupApproximation.SimpleKazhdanSofic.G S →* E, Function.Injective f) := by
+#### GroupApproximation.Full.SK12.corLef_hostWithSameTuringDegree
+theorem corLef_hostWithSameTuringDegree (Γ : Type) [Group Γ] (hfg : Group.FG Γ)
+    (hΓ : IsTextbookLEF Γ) :
+    ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+      ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ)
+        (s : ι → E), Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+          TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.Full.SK12.corLef_lefIffSubgroupOfHost
+theorem corLef_lefIffSubgroupOfHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ) :
+    IsTextbookLEF Γ ↔
+      ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.Full.SK12.corLef_lefIffSubgroupOfSameTuringDegreeHost
+theorem corLef_lefIffSubgroupOfSameTuringDegreeHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ) :
+    IsTextbookLEF Γ ↔
+      ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+        ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ)
+          (s : ι → E), Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+            TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.Full.SK12.corLef_lefSolvableWordProblemIffSubgroupOfHost
+theorem corLef_lefSolvableWordProblemIffSubgroupOfHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ) :
+    (IsTextbookLEF Γ ∧ HasSolvableWordProblem Γ) ↔
+      ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ HasSolvableWordProblem E ∧
+        ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.Full.SK12.corLef_solvableWordProblemIffSubgroupOfHost
+theorem corLef_solvableWordProblemIffSubgroupOfHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ)
+    (hΓ : IsTextbookLEF Γ) :
+    HasSolvableWordProblem Γ ↔
+      ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ HasSolvableWordProblem E ∧
+        ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.Full.SK12.countableSubgroupsOfGeneral_iff
+theorem countableSubgroupsOfGeneral_iff (Γ : Type) [Group Γ] (hc : Countable Γ) :
+    IsTextbookLEF Γ ↔
+      ∃ (Λ : Type) (_ : Group Λ) (_ : Group.FG Λ) (Z : Type) (_ : TopologicalSpace Z)
+        (_ : CompactSpace Z) (_ : TopologicalSpace.MetrizableSpace Z)
+        (_ : TotallyDisconnectedSpace Z) (_ : PerfectSpace Z) (_ : Nonempty Z) (_ : MulAction Λ Z)
+        (_ : ContinuousConstSMul Λ Z),
+        MulAction.IsMinimal Λ Z ∧
+        (∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z) ∧
+        ∃ (S : Finset (ClopenGroupCrossedProduct Λ Z (ZMod 2))) (N : ℕ → ℕ)
+          (φ : ∀ k, ClopenGroupCrossedProduct Λ Z (ZMod 2) → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)),
+          1 ∈ S ∧ Subring.closure (S : Set (ClopenGroupCrossedProduct Λ Z (ZMod 2))) = ⊤ ∧
+          IsMatricialVia S N φ ∧
+          ∃ n : ℕ, 3 ≤ n ∧
+            ∃ f : Γ →* ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))),
+              Function.Injective f := by
+#### GroupApproximation.Full.SK13.sturmian_infinite_minimal
+theorem sturmian_infinite_minimal (α : ℝ) (hα : Irrational α) (h0 : 0 < α) (h1 : α < 1) :
+    (sturmianSubshift α).carrier.Infinite ∧ IsMinimal (sturmianSubshift α) :=
+#### GroupApproximation.Full.SKRoot.cor_host
+theorem cor_host :
+    type_of% @Full.SK12.corHost_countableLEFSubgroupOfHost ∧
+    type_of% @Full.SK12.corHost_familyEmbedsIffLEFCountableClasses.{u} ∧
+    type_of% @Full.SK12.corHost_recursivelyPresentedInstances :=
+#### GroupApproximation.Full.SKRoot.cor_lef
+theorem cor_lef :
+    type_of% @Full.SK12.corLef_lefIffSubgroupOfHost ∧
+    type_of% @Full.SK12.corLef_hostWithSameTuringDegree ∧
+    type_of% @Full.SK12.corLef_lefIffSubgroupOfSameTuringDegreeHost ∧
+    type_of% @Full.SK12.corLef_solvableWordProblemIffSubgroupOfHost ∧
+    type_of% @Full.SK12.corLef_lefSolvableWordProblemIffSubgroupOfHost :=
+#### GroupApproximation.Full.SKRoot.eq_elementary
+theorem eq_elementary :
+    type_of% @Full.SK03.printedGeneralElementaryIdentities ∧
+    type_of% @Full.SK03.printedGeneralElementaryGeneration ∧
+    type_of% @Full.SK03.printedEJZ :=
+#### GroupApproximation.Full.SKRoot.intro_ozawa_thom
+theorem intro_ozawa_thom :
+    type_of% @Full.A2Endpoint.ozawa_not_hasLocalLiftingProperty ∧
+    type_of% @Full.A2Endpoint.not_hasFactorizationProperty_of_kazhdan_of_not_residuallyFinite ∧
+    type_of% @Full.A2Endpoint.exists_fg_kazhdan_lef_not_rf_not_fp_not_simple ∧
+    type_of% @Full.A2Endpoint.not_isSimpleGroup_thomGroup_zmod :=
+#### GroupApproximation.Full.SKRoot.thm_general
+theorem thm_general :
+    type_of% @Full.SK04.printedGeneralTheorem ∧
+    type_of% @Full.SK03.printedGeneralPartA ∧
+    type_of% @Full.SK02.generalSimple_printed.{u, v} :=
+#### GroupApproximation.Full.SKRoot.thm_main
+theorem thm_main :
+    type_of% @Full.SK05.main ∧
+    type_of% @Full.SK05.printedMainTheorem ∧
+    type_of% @Full.SK05.printedMainTheoremSK01 ∧
+    type_of% @Full.SK05.main_el ∧
+    type_of% @Full.SK05.main_printed :=
+#### GroupApproximation.Manuscript.SimpleKazhdanSofic.TuringHost.exists_isLEFHost_sameTuringDegree
+theorem exists_isLEFHost_sameTuringDegree (Γ : Type) [Group Γ] (hfg : Group.FG Γ) (hΓ : IsLEF Γ) :
+    ∃ (E : Type) (_ : Group E), IsLEFHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+      ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ) (s : ι → E),
+        Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+          TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.Manuscript.SimpleKazhdanSofic.TuringHost.lefIffSubgroupOfSameTuringDegreeHost
+theorem lefIffSubgroupOfSameTuringDegreeHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ) :
+    IsLEF Γ ↔ ∃ (E : Type) (_ : Group E), IsLEFHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+      ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ) (s : ι → E),
+        Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+          TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.Manuscript.SimpleKazhdanSofic.TuringHost.manuscriptSentence_lefIffSubgroupOfSimpleKazhdanExpanderLimitSameTuringDegree
+theorem manuscriptSentence_lefIffSubgroupOfSimpleKazhdanExpanderLimitSameTuringDegree (Γ : Type) [Group Γ]
+    (hfg : Group.FG Γ) :
+    (IsLEF Γ ↔ ∃ (E : Type) (_ : Group E), IsLEFHost E ∧ ∃ f : Γ →* E, Function.Injective f) ∧
+      (IsLEF Γ → ∃ (E : Type) (_ : Group E), IsLEFHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+        ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ) (s : ι → E),
+          Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+            TuringEquivalent (wordProblemOracle t) (wordProblemOracle s)) :=
+#### GroupApproximation.Pestov91.SimpleModCentre.levelIdeal
+def levelIdeal (hcard : 3 ≤ Fintype.card ι) (N : Subgroup (elementaryGroup ι R)) [N.Normal] :
+    TwoSidedIdeal R :=
+#### GroupApproximation.Pestov91.SimpleModCentre.mem_levelIdeal
+theorem mem_levelIdeal (hcard : 3 ≤ Fintype.card ι) (N : Subgroup (elementaryGroup ι R))
+    [N.Normal] (a : R) :
+    a ∈ levelIdeal hcard N ↔ ∀ (p q : ι) (hpq : p ≠ q), elGen p q hpq a ∈ N :=
+#### GroupApproximation.SimpleKazhdanSofic.AsymptoticModels
+abbrev AsymptoticModels {A : Type} [TopologicalSpace A] (X : Set (ℤ → A)) (T : ↥X ≃ₜ ↥X)
+    (x : ℤ → A) (k : Type) [Ring k] : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.center_units_matrix_zmodTwo_eq_bot
+theorem center_units_matrix_zmodTwo_eq_bot (ι : Type*) [Fintype ι] [DecidableEq ι]
+    (hcard : 3 ≤ Fintype.card ι) : Subgroup.center (Matrix ι ι (ZMod 2))ˣ = ⊥ := by
+#### GroupApproximation.SimpleKazhdanSofic.coefficientSubringFin
+def coefficientSubringFin {R : Type*} [Ring R] {n : ℕ} (hn : 3 ≤ n)
+    (H : Subgroup (Matrix (Fin n) (Fin n) R)ˣ)
+    (hone : ∀ (i j : Fin n) (h : i ≠ j), elementaryUnit i j h (1 : R) ∈ H) : Subring R where
+#### GroupApproximation.SimpleKazhdanSofic.compactSpace_carrier
+theorem compactSpace_carrier (S : Subshift A ℤ) : CompactSpace S.carrier :=
+#### GroupApproximation.SimpleKazhdanSofic.det_units_matrix_zmodTwo
+theorem det_units_matrix_zmodTwo {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (u : (Matrix ι ι (ZMod 2))ˣ) : (u : Matrix ι ι (ZMod 2)).det = 1 := by
+#### GroupApproximation.SimpleKazhdanSofic.eventually_mapMatrix_eq_one
+theorem eventually_mapMatrix_eq_one {n : ℕ} (h1 : ∀ k, φ k 1 = 1)
+    (hadd : ∀ r s : R, ∀ᶠ k in atTop, φ k (r + s) = φ k r + φ k s)
+    (hmul : ∀ r s : R, ∀ᶠ k in atTop, φ k (r * s) = φ k r * φ k s)
+    (hletter : ∀ b : β, ∀ᶠ k in atTop,
+      φ k (π (FreeAlgebra.ι (ZMod 2) b)) = ρ k (FreeAlgebra.ι (ZMod 2) b))
+    (A : Matrix (Fin n) (Fin n) (FreeAlgebra (ZMod 2) β)) (hA : π.mapMatrix A = 1) :
+    ∀ᶠ k in atTop, (ρ k).mapMatrix A = 1 := by
+#### GroupApproximation.SimpleKazhdanSofic.exists_asymptoticModels
+theorem exists_asymptoticModels {A : Type} [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X)
+    (hinf : X.Infinite)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X)
+    (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) {x : ℤ → A} (hx : x ∈ X)
+    (k : Type) [Ring k] : AsymptoticModels X T x k := by
+#### GroupApproximation.SimpleKazhdanSofic.exists_nat_word_eq_of_minimal
+theorem exists_nat_word_eq_of_minimal [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ m : ℤ, Set.MapsTo (shift m) X X)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X) {x : ℤ → A} (hx : x ∈ X) {n : ℕ} {u : Fin n → A} (hu : u ∈ language X n) :
+    ∃ i : ℕ, word x i n = u := by
+#### GroupApproximation.SimpleKazhdanSofic.General.blockFlatEquiv
+noncomputable def blockFlatEquiv (ι κ : Type*) [Fintype ι] [DecidableEq ι] [Fintype κ]
+    [DecidableEq κ] :
+    (Matrix (ι × κ) (ι × κ) (ZMod 2))ˣ ≃* (Matrix ι ι (Matrix κ κ (ZMod 2)))ˣ :=
+#### GroupApproximation.SimpleKazhdanSofic.General.coeff_charFn_mul_apply
+theorem coeff_charFn_mul_apply (c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) {V : Set Z}
+    (hV : IsClopen V) (ξ : Λ) (y : Z) :
+    SkewMonoidAlgebra.coeff (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c)
+        ξ y =
+      LocallyConstant.charFn (ZMod 2) hV y * SkewMonoidAlgebra.coeff c ξ y := by
+#### GroupApproximation.SimpleKazhdanSofic.General.coeff_diag_eq_zero
+theorem coeff_diag_eq_zero
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {n : ℕ}
+    {g : elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)}
+    (hg : ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → IsSmall D B F V →
+      ∀ (i j : Fin n) (hij : i ≠ j),
+        Commute g (elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))))
+    (hD : ∀ (p q : Fin n) (ξ : Λ), ξ ∈ SkewMonoidAlgebra.support (mat g p q) → ξ ∈ D)
+    {i j : Fin n} (hij : i ≠ j) {ξ : Λ} (hξ : ξ ≠ 1) :
+    SkewMonoidAlgebra.coeff (mat g i i) ξ = 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.coeff_mul_charFn_apply
+theorem coeff_mul_charFn_apply
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) {V : Set Z} (hV : IsClopen V) (ξ : Λ)
+    (y : Z) :
+    SkewMonoidAlgebra.coeff (c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))
+        ξ y =
+      SkewMonoidAlgebra.coeff c ξ y * LocallyConstant.charFn (ZMod 2) hV (ξ⁻¹ • y) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.commute_elGen_iff
+theorem commute_elGen_iff (g : elementaryGroup ι R) {i j : ι} (hij : i ≠ j) (r : R) :
+    Commute g (elGen i j hij r) ↔
+      (∀ p : ι, p ≠ i → mat g p i * r = 0) ∧ (∀ q : ι, q ≠ j → r * mat g j q = 0) ∧
+        mat g i i * r = r * mat g j j := by
+#### GroupApproximation.SimpleKazhdanSofic.General.copyGL
+noncomputable def copyGL (ι : Type*) [Fintype ι] [DecidableEq ι] (hdisj : TranslatesDisjoint B V)
+    (hV : IsClopen V) : (Matrix (ι × B) (ι × B) (ZMod 2))ˣ →* (Matrix ι ι R)ˣ :=
+#### GroupApproximation.SimpleKazhdanSofic.General.copyGL_injective
+theorem copyGL_injective {ι : Type*} [Fintype ι] [DecidableEq ι] (hdisj : TranslatesDisjoint B V)
+    (hV : IsClopen V) (hne : V.Nonempty) : Function.Injective (copyGL hcov ι hdisj hV) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.copyGL_mem_elementaryGroup
+theorem copyGL_mem_elementaryGroup {ι : Type*} [Fintype ι] [DecidableEq ι] [Nontrivial ι]
+    (hdisj : TranslatesDisjoint B V) (hV : IsClopen V)
+    (x : (Matrix (ι × B) (ι × B) (ZMod 2))ˣ) :
+    copyGL hcov ι hdisj hV x ∈ elementaryGroup ι R := by
+#### GroupApproximation.SimpleKazhdanSofic.General.copyGL_transvection
+theorem copyGL_transvection {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) {p q : ι} (hpq : p ≠ q) (a b : B)
+    (h : (p, a) ≠ (q, b)) :
+    copyGL hcov ι hdisj hV (elementaryUnit (p, a) (q, b) h 1) =
+      elementaryUnit p q hpq (epsilon coeff u hV a b) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilon_mul_epsilon
+theorem epsilon_mul_epsilon [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    (hdisj : TranslatesDisjoint B V) {a b a' b' : Λ} (hb : b ∈ B) (ha' : a' ∈ B) :
+    epsilon coeff u hV a b * epsilon coeff u hV a' b' =
+      if b = a' then epsilon coeff u hV a b' else 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilon_ne_zero
+theorem epsilon_ne_zero {V : Set Z} (hV : IsClopen V) (hne : V.Nonempty) (a b : Λ) :
+    epsilon coeff u hV a b ≠ 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilon_one_one
+theorem epsilon_one_one {V : Set Z} (hV : IsClopen V) :
+    epsilon coeff u hV 1 1 = coeff (LocallyConstant.charFn (ZMod 2) hV) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilonHom
+noncomputable def epsilonHom (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) :
+    Matrix B B (ZMod 2) →ₙ+* R where
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_injective
+theorem epsilonHom_injective (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) (hne : V.Nonempty) :
+    Function.Injective (epsilonHom hcov hdisj hV) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_single
+theorem epsilonHom_single (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) (a b : B) :
+    epsilonHom hcov hdisj hV (Matrix.single a b 1) = epsilon coeff u hV a b := by
+#### GroupApproximation.SimpleKazhdanSofic.General.epsilonSpan_mul_mem
+theorem epsilonSpan_mul_mem [DecidableEq Λ] {R : Type*} [Ring R]
+    {coeff : LocallyConstant Z (ZMod 2) →+* R} {u : Λ →* Rˣ} (hcov : IsCovariantPair coeff u)
+    {B : Finset Λ} {V : Set Z} (hV : IsClopen V) (hdisj : TranslatesDisjoint B V) {x y : R}
+    (hx : x ∈ epsilonSpan coeff u B hV) (hy : y ∈ epsilonSpan coeff u B hV) :
+    x * y ∈ epsilonSpan coeff u B hV := by
+#### GroupApproximation.SimpleKazhdanSofic.General.eq_top_of_generalCommutatorWitness
+theorem eq_top_of_generalCommutatorWitness {n : ℕ} (hn : 3 ≤ n)
+    (hw : GeneralCommutatorWitness coeff u n)
+    (hcover : ∀ V : Set Z, IsClopen V → V.Nonempty → ∃ s : Finset Λ, ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V)
+    (K : Subgroup (elementaryGroup (Fin n) R)) (hK : K.Normal) (hne : K ≠ ⊥) : K = ⊤ := by
+#### GroupApproximation.SimpleKazhdanSofic.General.eq_zero_of_forall_charFn_mul
+theorem eq_zero_of_forall_charFn_mul
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hc : ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → IsSmall D B F V →
+      SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c = 0) : c = 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.eq_zero_of_forall_mul_charFn
+theorem eq_zero_of_forall_mul_charFn
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hc : ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → IsSmall D B F V →
+      c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) = 0) : c = 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.exists_copyGL_eq
+theorem exists_copyGL_eq [DecidableEq Λ] {ι : Type*} [Fintype ι] [DecidableEq ι] {B : Finset Λ}
+    {V : Set Z} (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) (hne : V.Nonempty)
+    (g : (Matrix ι ι R)ˣ)
+    (hg : ∀ p q, ((g : Matrix ι ι R) - 1) p q ∈ epsilonSpan coeff u B hV)
+    (hginv : ∀ p q, (((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) - 1) p q ∈ epsilonSpan coeff u B hV) :
+    ∃ x, copyGL hcov ι hdisj hV x = g := by
+#### GroupApproximation.SimpleKazhdanSofic.General.exists_eq_one_of_ne_zero
+theorem exists_eq_one_of_ne_zero {f : LocallyConstant Z (ZMod 2)} (hf : f ≠ 0) :
+    ∃ y, f y = 1 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.exists_forall_coeff_charFn_mul_ne_zero
+theorem exists_forall_coeff_charFn_mul_ne_zero
+    {c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ} {ξ : Λ}
+    (hc : SkewMonoidAlgebra.coeff c ξ ≠ 0) :
+    ∃ W : Set Z, IsClopen W ∧ W.Nonempty ∧ ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → V ⊆ W →
+      SkewMonoidAlgebra.coeff
+        (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c) ξ ≠ 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.exists_forall_coeff_mul_charFn_ne_zero
+theorem exists_forall_coeff_mul_charFn_ne_zero [ContinuousConstSMul Λ Z]
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ} {ξ : Λ}
+    (hc : SkewMonoidAlgebra.coeff c ξ ≠ 0) :
+    ∃ W : Set Z, IsClopen W ∧ W.Nonempty ∧ ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → V ⊆ W →
+      SkewMonoidAlgebra.coeff
+        (c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)) ξ ≠ 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.exists_isSmall_not_commute_elGen
+theorem exists_isSmall_not_commute_elGen
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {n : ℕ} (hn : 2 ≤ n)
+    {g : elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)}
+    (hD : ∀ (p q : Fin n) (ξ : Λ), ξ ∈ SkewMonoidAlgebra.support (mat g p q) → ξ ∈ D)
+    (hg1 : g ≠ 1) :
+    ∃ (V : Set Z) (hV : IsClopen V), V.Nonempty ∧ IsSmall D B F V ∧
+      ∃ (i j : Fin n) (hij : i ≠ j),
+        ¬ Commute g (elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))) := by
+#### GroupApproximation.SimpleKazhdanSofic.General.generalCommutatorWitness
+theorem generalCommutatorWitness
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 2 ≤ n) :
+    GeneralCommutatorWitness (coeffHom Λ Z) (unitHom Λ Z) n := by
+#### GroupApproximation.SimpleKazhdanSofic.General.mem_range_epsilonHom_of_mem_epsilonSpan
+theorem mem_range_epsilonHom_of_mem_epsilonSpan [DecidableEq Λ] {B : Finset Λ} {V : Set Z}
+    (hdisj : TranslatesDisjoint B V) (hV : IsClopen V) {x : R} (hx : x ∈ epsilonSpan coeff u B hV) :
+    ∃ M, epsilonHom hcov hdisj hV M = x := by
+#### GroupApproximation.SimpleKazhdanSofic.General.mul_charFn_mul_mem
+theorem mul_charFn_mul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    {c c' : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hc : ∀ a ∈ SkewMonoidAlgebra.support c, a ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c a (a • x) = SkewMonoidAlgebra.coeff c a (a • y))
+    (hc' : ∀ b ∈ SkewMonoidAlgebra.support c', b⁻¹ ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c' b x = SkewMonoidAlgebra.coeff c' b y) :
+    c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c' ∈
+      epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV := by
+#### GroupApproximation.SimpleKazhdanSofic.General.offDiag_eq_zero
+theorem offDiag_eq_zero
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) (D B : Finset Λ)
+    (F : Finset (LocallyConstant Z (ZMod 2))) {n : ℕ} (hn : 2 ≤ n)
+    {g : elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)}
+    (hg : ∀ (V : Set Z) (hV : IsClopen V), V.Nonempty → IsSmall D B F V →
+      ∀ (i j : Fin n) (hij : i ≠ j),
+        Commute g (elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))))
+    {p i : Fin n} (hpi : p ≠ i) : mat g p i = 0 := by
+#### GroupApproximation.SimpleKazhdanSofic.General.one_mem_levelIdeal_of_smul_cover
+theorem one_mem_levelIdeal_of_smul_cover {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (hcard : 3 ≤ Fintype.card ι) {V : Set Z} (hV : IsClopen V) (s : Finset Λ)
+    (hs : ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V) (K : Subgroup (elementaryGroup ι R)) [K.Normal]
+    (hmem : coeff (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K) :
+    (1 : R) ∈ levelIdeal hcard K := by
+#### GroupApproximation.SimpleKazhdanSofic.General.single_mul_charFn_mul_single_mem
+theorem single_mul_charFn_mul_single_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {B : Finset Λ} {V : Set Z} (hV : IsClopen V) {a b : Λ} (ha : a ∈ B) (hb : b⁻¹ ∈ B)
+    {f f' : LocallyConstant Z (ZMod 2)} (hf : ∀ x ∈ V, ∀ y ∈ V, f (a • x) = f (a • y))
+    (hf' : ∀ x ∈ V, ∀ y ∈ V, f' x = f' y) :
+    SkewMonoidAlgebra.single a f * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) *
+        SkewMonoidAlgebra.single b f' ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV := by
+#### GroupApproximation.SimpleKazhdanSofic.General.unit_mul_charFn_mul_inv
+theorem unit_mul_charFn_mul_inv (ξ : Λ) {V : Set Z} (hV : IsClopen V) :
+    (u ξ : R) * coeff (LocallyConstant.charFn (ZMod 2) hV) * (((u ξ)⁻¹ : Rˣ) : R) =
+      coeff (LocallyConstant.charFn (ZMod 2) (isClopen_smul ξ hV)) := by
+#### GroupApproximation.SimpleKazhdanSofic.IsCovariantPair
+structure IsCovariantPair : Prop where
+#### GroupApproximation.SimpleKazhdanSofic.isMarkedLimit_of_matricial
+theorem isMarkedLimit_of_matricial {n : ℕ} (hn : 3 ≤ n) (hS1 : (1 : R) ∈ S)
+    (hS : Subring.closure (S : Set R) = ⊤) (h1 : ∀ k, φ k 1 = 1)
+    (hgen : ∀ k, Subring.closure (φ k '' (S : Set R)) = ⊤)
+    (hev : ∀ r s : R, ∀ᶠ k in atTop, φ k (r + s) = φ k r + φ k s ∧ φ k (r * s) = φ k r * φ k s)
+    (hpos : ∀ᶠ k in atTop, 0 < N k) [IsSimpleGroup ↥(elementaryGroup (Fin n) R)] :
+    IsMarkedLimit (rootMarking n (Subtype.val : ↥S → R))
+      (fun k => rootMarking n (fun s : ↥S => φ k s)) := by
+#### GroupApproximation.SimpleKazhdanSofic.isTopologicallyFree_shift
+theorem isTopologicallyFree_shift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    ∀ ξ : Multiplicative ℤ, ξ ≠ 1 → ∀ U : Set S.carrier, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z := by
+#### GroupApproximation.SimpleKazhdanSofic.IsTopologicallyFreeAction
+def IsTopologicallyFreeAction (Λ Z : Type*) [Group Λ] [MulAction Λ Z] [TopologicalSpace Z] :
+    Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.LamplighterWP.hostProof
+theorem hostProof : Lamplighter.PrintedLamplighterHostSolvableWordProblem := by
+#### GroupApproximation.SimpleKazhdanSofic.LamplighterWP.manuscriptSentence_lefHostWordProblemAbove
+theorem manuscriptSentence_lefHostWordProblemAbove (Γ : Type) [Group Γ] (hfg : Group.FG Γ)
+    (hΓ : IsLEF Γ) :
+    ∃ (E : Type) (_ : Group E), LEFCorollaries.IsExpanderLimitHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+      ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ) (s : ι → E),
+        Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+          TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.SimpleKazhdanSofic.LamplighterWP.manuscriptSentence_solvableWordProblem_of_subgroupOfSolvableHost
+theorem manuscriptSentence_solvableWordProblem_of_subgroupOfSolvableHost (Γ : Type) [Group Γ]
+    (hfg : Group.FG Γ) :
+    (IsLEF Γ ∧ HasSolvableWordProblem Γ) ↔
+      ∃ (E : Type) (_ : Group E), LEFCorollaries.IsExpanderLimitHost E ∧ HasSolvableWordProblem E ∧
+        ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.IsExpanderLimitHost
+def IsExpanderLimitHost (E : Type) [Group E] : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.IsNeighborExpanderFamily
+def IsNeighborExpanderFamily {ι : Type*} {H : ℕ → Type*} [∀ ℓ, Group (H ℓ)]
+    (σ : ∀ ℓ, ι → H ℓ) : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.manuscriptSentence_familyEmbedsIffLEFCountableClasses
+theorem manuscriptSentence_familyEmbedsIffLEFCountableClasses {ι : Type u} (Γ : ι → Type)
+    [∀ i, Group (Γ i)] (hfg : ∀ i, Group.FG (Γ i)) :
+    (∃ (E : Type) (_ : Group E), IsExpanderLimitHost E ∧
+        ∀ i, ∃ f : Γ i →* E, Function.Injective f) ↔
+      (∀ i, IsLEF (Γ i)) ∧
+        ∃ (J : Type) (_ : Countable J) (H : J → Type) (_ : ∀ j, Group (H j)),
+          ∀ i, ∃ j, Nonempty (Γ i ≃* H j) := by
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.manuscriptSentence_lefHostWordProblemAbove
+theorem manuscriptSentence_lefHostWordProblemAbove (Γ : Type) [Group Γ] (hfg : Group.FG Γ)
+    (hΓ : IsLEF Γ) :
+    ∃ (E : Type) (_ : Group E), IsExpanderLimitHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+      ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ) (s : ι → E),
+        Subgroup.closure (range t) = ⊤ → Subgroup.closure (range s) = ⊤ →
+          TuringReducible (wordProblemOracle t) (wordProblemOracle s) := by
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.manuscriptSentence_lefIffSubgroupOfExpanderLimitHost
+theorem manuscriptSentence_lefIffSubgroupOfExpanderLimitHost (Γ : Type) [Group Γ]
+    (hfg : Group.FG Γ) :
+    IsLEF Γ ↔
+      ∃ (E : Type) (_ : Group E), IsExpanderLimitHost E ∧ ∃ f : Γ →* E, Function.Injective f := by
+#### GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.manuscriptSentence_solvableWordProblem_of_subgroupOfSolvableHost
+theorem manuscriptSentence_solvableWordProblem_of_subgroupOfSolvableHost (Γ : Type) [Group Γ]
+    (hfg : Group.FG Γ)
+    (h : ∃ (E : Type) (_ : Group E), IsExpanderLimitHost E ∧ HasSolvableWordProblem E ∧
+      ∃ f : Γ →* E, Function.Injective f) :
+    IsLEF Γ ∧ HasSolvableWordProblem Γ := by
+#### GroupApproximation.SimpleKazhdanSofic.lefLamplighterStatement
+theorem lefLamplighterStatement : LEFLamplighterStatement :=
+#### GroupApproximation.SimpleKazhdanSofic.lefUltraproductEmbeddingStatement
+theorem lefUltraproductEmbeddingStatement : LEFUltraproductEmbeddingStatement :=
+#### GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier
+theorem perfectSpace_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    PerfectSpace S.carrier := by
+#### GroupApproximation.SimpleKazhdanSofic.periodicExt
+def periodicExt (x : ℤ → A) (m : ℕ) (t : ℤ) : A :=
+#### GroupApproximation.SimpleKazhdanSofic.printedBrownOzawaPestovAnswer
+theorem printedBrownOzawaPestovAnswer : PrintedBrownOzawaPestovAnswer := by
+#### GroupApproximation.SimpleKazhdanSofic.printedCountableLEFHost
+theorem printedCountableLEFHost : PrintedCountableLEFHost :=
+#### GroupApproximation.SimpleKazhdanSofic.PrintedCountableLEFHost
+def PrintedCountableLEFHost : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.printedFinitelyPresentedRFInstance
+theorem printedFinitelyPresentedRFInstance : PrintedFinitelyPresentedRFInstance :=
+#### GroupApproximation.SimpleKazhdanSofic.printedGeneralElementaryGeneration
+theorem printedGeneralElementaryGeneration : PrintedGeneralElementaryGeneration := by
+#### GroupApproximation.SimpleKazhdanSofic.printedGeneralElementaryIdentities
+theorem printedGeneralElementaryIdentities : PrintedGeneralElementaryIdentities := by
+#### GroupApproximation.SimpleKazhdanSofic.printedGXAnswersBrownOzawaPestov_of_main
+theorem printedGXAnswersBrownOzawaPestov_of_main (h : PrintedSimpleKazhdanSoficMain) :
+    PrintedGXAnswersBrownOzawaPestov := by
+#### GroupApproximation.SimpleKazhdanSofic.printedRecursiveLanguageInstance
+theorem printedRecursiveLanguageInstance : PrintedRecursiveLanguageInstance :=
+#### GroupApproximation.SimpleKazhdanSofic.printedRecursivelyPresentedLEFHost
+theorem printedRecursivelyPresentedLEFHost : PrintedRecursivelyPresentedLEFHost :=
+#### GroupApproximation.SimpleKazhdanSofic.PrintedRecursivelyPresentedLEFHost
+def PrintedRecursivelyPresentedLEFHost : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.printedRecursivelyPresentedLEFHostInstances
+theorem printedRecursivelyPresentedLEFHostInstances : PrintedRecursivelyPresentedLEFHostInstances :=
+#### GroupApproximation.SimpleKazhdanSofic.PrintedRecursivelyPresentedLEFHostInstances
+def PrintedRecursivelyPresentedLEFHostInstances : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain
+theorem printedSimpleKazhdanSoficMain : PrintedSimpleKazhdanSoficMain :=
+#### GroupApproximation.SimpleKazhdanSofic.PrintedSimpleKazhdanSoficMain
+def PrintedSimpleKazhdanSoficMain : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_pieces
+theorem printedSimpleKazhdanSoficMain_of_pieces (hfg : PrintedSubshiftRingFGStatement)
+    (hsimple : PrintedSimplicityStatement) (hmarked : PrintedMarkedLimitExpandersStatement)
+    (hlef : PrintedMarkedLimitLEFStatement) : PrintedSimpleKazhdanSoficMain := by
+#### GroupApproximation.SimpleKazhdanSofic.ringEquiv
+noncomputable def ringEquiv (S : Subshift A ℤ) :
+    R S ≃+* ClopenGroupCrossedProduct (Multiplicative ℤ) S.carrier (ZMod 2) :=
+#### GroupApproximation.SimpleKazhdanSofic.shift_smul_apply
+theorem shift_smul_apply (S : Subshift A ℤ) (ξ : Multiplicative ℤ) (x : S.carrier) :
+    ξ • x = (subshiftHomeo S ^ toAdd ξ) x :=
+#### GroupApproximation.SimpleKazhdanSofic.shiftMatrix_mul_diagonal_mul_shiftMatrix_neg
+theorem shiftMatrix_mul_diagonal_mul_shiftMatrix_neg (i : ℤ) (d : ZMod N → ZMod 2) :
+    shiftMatrix (ZMod 2) N i * diagonal d * shiftMatrix (ZMod 2) N (-i) =
+      diagonal fun t => d (t - (i : ZMod N)) := by
+#### GroupApproximation.SimpleKazhdanSofic.shiftMulAction
+noncomputable instance shiftMulAction (S : Subshift A ℤ) : MulAction (Multiplicative ℤ) S.carrier where
+#### GroupApproximation.SimpleKazhdanSofic.single_mem_closure
+theorem single_mem_closure (hdist : ∀ t t' : ZMod N, (∀ i : ZMod N, c (t + i) = c (t' + i)) → t = t')
+    (s t : ZMod N) : single s t (1 : ZMod 2) ∈ Subring.closure (periodicGenerators c) := by
+#### GroupApproximation.SimpleKazhdanSofic.single_self_mem_closure
+theorem single_self_mem_closure (hdist : ∀ t t' : ZMod N, (∀ i : ZMod N, c (t + i) = c (t' + i)) → t = t')
+    (t₀ : ZMod N) : single t₀ t₀ (1 : ZMod 2) ∈ Subring.closure (periodicGenerators c) := by
+#### GroupApproximation.SimpleKazhdanSofic.subset_closure_forwardOrbit_of_minimal
+theorem subset_closure_forwardOrbit_of_minimal [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ m : ℤ, Set.MapsTo (shift m) X X)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X) {x : ℤ → A} (hx : x ∈ X) :
+    X ⊆ closure (Set.range fun n : ℕ => shift (n : ℤ) x) := by
+#### GroupApproximation.SimpleKazhdanSofic.ThmMainA.isExpanderLimit_of_isMarkedLimit
+theorem isExpanderLimit_of_isMarkedLimit {ι G : Type*} [Group G] {s : ι → G} {H : ℕ → Type*}
+    [∀ ℓ, Group (H ℓ)] {σ : ∀ ℓ, ι → H ℓ} (hlim : IsMarkedLimit s σ)
+    (hexp : IsExpanderFamily σ) :
+    ∃ (m : ℕ) (g : Fin m → G) (q : ∀ ℓ, Fin m → H ℓ), IsExpanderLimit q g := by
+#### GroupApproximation.SimpleKazhdanSofic.ThmMainA.IsExpanderLimitOfClass
+def IsExpanderLimitOfClass (C : ∀ (Q : Type) [Group Q], Prop) (G : Type*) [Group G] : Prop :=
+#### GroupApproximation.SimpleKazhdanSofic.ThmMainA.manuscriptSentence_limitsOfFiniteGroupsAreLEF
+theorem manuscriptSentence_limitsOfFiniteGroupsAreLEF {m : ℕ} {Q : ℕ → Type} [∀ k, Group (Q k)]
+    (q : ∀ k, Fin m → Q k) {G : Type*} [Group G] (g : Fin m → G) (hfin : ∀ k, Finite (Q k))
+    (hconv : MarkedConverges q g) : IsTextbookLEF G := by
+#### GroupApproximation.SimpleKazhdanSofic.toeplitzSubshift_infinite
+theorem toeplitzSubshift_infinite : Infinite toeplitzSubshift.carrier := by
+#### GroupApproximation.SimpleKazhdanSofic.toeplitzSubshift_isMinimal
+theorem toeplitzSubshift_isMinimal : IsMinimal toeplitzSubshift := by
+#### GroupApproximation.SimpleKazhdanSofic.translates_distinct_of_leastPeriod
+theorem translates_distinct_of_leastPeriod (y : ℤ → A) {N : ℕ} [NeZero N] (hN : leastPeriod y = N) :
+    ∀ t t' : ZMod N, (∀ i : ZMod N, y ((t + i).val : ℕ) = y ((t' + i).val : ℕ)) → t = t' := by
+#### GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self
+theorem zpow_apply_ne_self [T2Space Y] [Infinite Y] (hmin : IsMinimalSystem T) {j : ℤ} (hj : j ≠ 0)
+    (y : Y) : (T ^ j) y ≠ y := by
+#### GroupApproximation.WordGraph.exists_radius
+theorem exists_radius [TopologicalSpace A] [DiscreteTopology A] [Finite A] {X : Set (ℤ → A)}
+    (hXc : IsClosed X) {Y : Type*} (f : LocallyConstant ↥X Y) :
+    ∃ r : ℕ, ∀ y z : ↥X, (∀ i : ℤ, |i| ≤ r → y.1 i = z.1 i) → f y = f z := by

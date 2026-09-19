@@ -1,0 +1,9 @@
+Prime odometer groups generate the class-wise increasing RCWA_P group
+
+The groups V_(p,1)(<a>), one per prime in P u {2}, acting on Z generate R_P. The piecewise
+translations are reached by a Jordan-type argument on classes mod 6^k plus a lattice count; box
+3-cycles come from commutators of a cone transposition with its conjugates by that part; and the
+simplicity of CT_P(Z) absorbs them. So G_(2,3) = <B, B_3> = R_(3) is F_infinity, and the free
+kernel of B *_<a> B_3 is finitely normally generated: kernel removal by generation, with no
+disjoint-support relators. Also records the at-source recheck of Li's thm:deg hypotheses for
+Lambda_P without the extra colour, which makes R_P F_infinity unconditionally.

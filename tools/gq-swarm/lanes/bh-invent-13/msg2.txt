@@ -1,0 +1,8 @@
+Finite-type branch blow-ups are SFT compactifications; hyperbolic groups get a unique seed
+
+A finite-type S-compactification is exactly an SFT compactification in the tree-gluing sense, and its
+blow-up engine is the tree gluing over Z/2 * S. So a rigid finite-type blow-up is a (star-prime)
+instance with the input as a vertex group. One-ended inputs need an infinite, clopen-indecomposable
+remainder. For hyperbolic S, Kazhdan ones included, the distance-gradient SFT has a unique seed with
+trivial stabilizer, by Cannon cone types. (C2) reduces to a horofunction lemma (HL), which is left open.
+The parent node withdraws its classifiability remark and replaces it with proved amenability facts.

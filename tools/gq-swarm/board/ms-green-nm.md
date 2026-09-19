@@ -1,0 +1,9 @@
+# ms-green-nm
+Direction: make the non-MF manuscript's endpoint closure (every module holding a declaration named in metadata/NON_MF_SENTENCE_CENSUS.tsv) build GREEN on current main, via gqprobe-lean.sh on MSI; minimal fixes; 2-hour rule for the other session's NM/GL files.
+- 09-18 ~14:50: census decls 1741 → 710 candidate module files (short-name grep, over-approximate) → 215 maximal modules under imports (closure ≈ 4150 modules). Lists: $GQ/work/ms-green-nm/{modfiles,maximal}.txt.
+- Probe 1 (origin/main as is, 215 maximal targets): queued behind the team-lead calibration probe.
+- 14:55: refined by namespace → 486 module files, 110 maximal targets (closure ≈ 3358 modules; no BH/SK modules). None of the 486 was changed on main in the last 3 h. Probe 1 queued (task bj4tp6tlt) behind bh-pal-integrate.
+- 15:30: static facts. All 3358 closure modules are inside the root import closure (8047 modules), so the default root build covers them. No code-level sorry/admit/axiom in the closure. The closure has no BooneHigman or SimpleKazhdanSofic modules, so none of the 30 red modules bh-pal-wire found at 10:40 is in it. The last change to any closure file is af2f33982 (09-18 00:04 UTC); the other session's live NM/GL work (NMWire2, GL03BPinch, TorsionFreeEndpoints) is outside the census closure.
+- 15:27: the MSI VPN dropped (DNS failure at 15:26, since recovered); the probes of ms-nm-uncond-b and ms-green-sk failed to connect. Probe 1 is still queued on the lock.
+- 15:52: coordinator stopped probe 1 (old v1 path). Re-queued the same 110-target probe on v2 (Slurm msismall, checksum sync), task bsjadrs1k.
+- 16:42: coordinator stopped the v3 waiter. Re-queued on v4 (batched Slurm) as 3 requests of 37/37/36 targets (work/ms-green-nm/part.aa/ab/ac), tasks b63kx4asv, bqfo5hr90, bcn3zjr7p.

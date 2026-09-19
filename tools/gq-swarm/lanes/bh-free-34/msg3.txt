@@ -1,0 +1,11 @@
+Show that single-machine singular germ schedules are at most exponential
+
+Take a singular point with annuli A_d, the annulus contraction z, and a germ h_f that runs one
+fixed infinite-order homeomorphism m for f(d) steps on A_d. The germ group <z, h_f> is metabelian,
+namely M semidirect <z> with M abelian and torsion-free. By Bieri-Strebel, if it is finitely
+presented then it is an ascending HNN extension over a finitely generated base. So the shifts of f
+satisfy a linear recurrence, and |f(d)| <= C K^d. For <V, h_f> at 0^infinity this germ group is the
+host's singular germ group, so Belk-Hyde-Matucci certification forces the exponential bound.
+
+This kills the Ackermann-schedule design for Kourovka 7.19 (Attempt 3 there). An Ackermann schedule
+needs non-commuting germs.

@@ -1,0 +1,8 @@
+BS(1,2): two-head / even-arity design pass, no candidate
+
+Land the design analysis of the two-head route. Two heads on one tape are not
+kV elements; a displacement stack makes the Jacobsthal turn test bounded but
+moves the cost into merging nested counters; a 3-stack Tower of Hanoi
+machine doubles exactly but its even move needs an order comparison of
+unbounded labels, which bounded labels fail to decide on MSI. Record the
+common obstruction as a conjecture on the bs12 node.

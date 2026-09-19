@@ -1,0 +1,15 @@
+Rigid anticipation needs scale-bounded fault detection; decoding fix for the seed orbit-problem nodes
+
+New claim: with injective walks, a quantum rigid anticipation layer admits no two separated
+non-terminating chains. By compactness, long walks of the seed are isolated at every scale. For
+walks that run a reversible machine with local tape edits, this forces every cell at a fixed offset
+to be approached within bounded time. Ordinary deciders sweeping growing workspaces violate that,
+so the raw halting rung is not rigid. A rigid rung needs sparse hard inputs and fault detection at
+every scale (Gacs/DRS-type self-checking).
+
+Referee fixes (bh-ref-misc):
+- The seed full group node gains a decoding item: E_t queries at g t^-1 read off y_*(gt) once
+  y_*(g) is known, so evaluation reduces to the orbit problem of a finitely generated subgroup by a
+  polynomial-time Turing reduction. The title and Lesson are adjusted.
+- The forcing-radius node allows windows in B_(Cn+c) and marks the claim about recorded seeds as
+  needing a seed-by-seed check.

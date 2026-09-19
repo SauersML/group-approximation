@@ -1,0 +1,34 @@
+calibration ok: golden [[1,1],[1,0]] {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 2}
+calibration ok: swap [[0,1],[1,0]] {'irreducible': True, 'period': 2, 'primitive': False, 'exponent': None}
+calibration ok: triangular [[1,1],[0,1]] {'irreducible': False, 'period': None, 'primitive': False, 'exponent': None}
+calibration ok: Wielandt n=5 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 17}
+calibration ok: 6-cycle {'irreducible': True, 'period': 6, 'primitive': False, 'exponent': None}
+tp_q2.json[0] lam=[0, 1, 2, 4, 6, 5, 3]: q=2 tiles=42 (expect 42) squares=672 rowsums1={4} colsums1={4} rowsums2={4} colsums2={4} (expect {4}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q2.json[1] lam=[0, 1, 2, 5, 4, 6, 3]: q=2 tiles=42 (expect 42) squares=672 rowsums1={4} colsums1={4} rowsums2={4} colsums2={4} (expect {4}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q2.json[2] lam=[0, 1, 2, 6, 4, 5, 3]: q=2 tiles=42 (expect 42) squares=672 rowsums1={4} colsums1={4} rowsums2={4} colsums2={4} (expect {4}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q2.json[3] lam=[0, 1, 3, 2, 4, 6, 5]: q=2 tiles=42 (expect 42) squares=672 rowsums1={4} colsums1={4} rowsums2={4} colsums2={4} (expect {4}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q2.json[4] lam=[0, 1, 3, 5, 4, 2, 6]: q=2 tiles=42 (expect 42) squares=672 rowsums1={4} colsums1={4} rowsums2={4} colsums2={4} (expect {4}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 5}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q3.json[0] lam=[6, 7, 8, 1, 5, 4, 10, 11, 12, 2, 3, 9, 0]: q=3 tiles=156 (expect 156) squares=12636 rowsums1={9} colsums1={9} rowsums2={9} colsums2={9} (expect {9}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+tp_q3.json[1] lam=[11, 1, 2, 0, 12, 8, 10, 4, 6, 9, 5, 7, 3]: q=3 tiles=156 (expect 156) squares=12636 rowsums1={9} colsums1={9} rowsums2={9} colsums2={9} (expect {9}) M1M2=M2M1:True
+   M1 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 4}
+   M1+M2 {'irreducible': True, 'period': 1, 'primitive': True, 'exponent': 3}
+PRIMCHECK_DONE

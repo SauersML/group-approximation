@@ -1,0 +1,12 @@
+BH results summary: nine refereed full answers, LISW Q1.11, the Matui reduction and four new general mechanisms
+
+- Referee passes: Kourovka 17.60 and 21.73 (5821ec240); 21.74(b),(c) and 21.75 (fac0259d6); MO 339541, Kohl's factorization and the RSV doubles (6a0a3642f). Their conditions are recorded: Kari-Ollinger's printed theorems for 21.74, and Morita's result, not read at source, for 21.73. The 21.73 host is corrected to CT_{3,5,7,11,13,17}(Z).
+- Adds the LISW Q1.11 row, answered by fg-linear-groups-embed-in-fp-self-similar-groups. Q1.10 stays partial.
+- The Matui row now records the exact reduction to minimal free Z^N SFTs, with Labbe's shift as the first test.
+- Kourovka rows are held as "priority check pending" against arXiv:2607.17477.
+- New section 7a: centrality (C) for tree folds; P2'b <=> FSG(Lambda, A); product closure and joint embedding across the recorded census; E1's input half from (D).
+- Corrects the earlier premature census claim in section 5.
+
+Counts: 21 full answers (9 refereed, 12 checked, 0 lane-only) and 10 partial answers.
+
+Lesson for general BH: the day's gates collapse to universal objects. The full shift A^(F_n) decides P2'b, the Z^2 fibre decides E2 along folds, and minimal free SFTs decide Matui. So each gate is one concrete test, not a family.

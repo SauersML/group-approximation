@@ -1,0 +1,11 @@
+Virtually torsion-free CAT(0) groups on (irreducible symmetric space) x tree lie in B_A
+
+Structure theorem: if G is torsion-free with trivial virtual center and finite
+index in its abstract commensurator, every virtually torsion-free member of BS_G is
+virtually N x F with N commensurable with G and F virtually free (the tree-fixing
+normal subgroup has finite Out). With the faithful Hecke members for lattices with
+non-discrete commensurator this gives a dichotomy with no open case: every
+virtually torsion-free group acting geometrically on X x T, X an irreducible
+symmetric space of noncompact type, satisfies permutational Boone-Higman
+(non-arithmetic fibres give linear groups via Mostow-Prasad). Also applies referee
+a's nits (PASS, f2d09ab6d). Lane proofs; no priority claimed.

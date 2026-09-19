@@ -1,0 +1,4 @@
+K_2 stability chain: record referee-a PASS (b8e762b33) on all four nodes, nits
+
+Lane gq-infinite-primes. M_i >= D in the multiplier, no case split in the prefix
+argument, the frame node T^2 remark superseded by P_12 in E_n.

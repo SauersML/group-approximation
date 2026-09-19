@@ -1,0 +1,4 @@
+Cross-link the duplicate SL_2(Q) claim ids
+
+Lane gq-infinite-primes: add sl2-q-embeds-in-fp-simple-group (same statement,
+landed first by gq-sl2q) to distinct_from, citing the equivalence routes.

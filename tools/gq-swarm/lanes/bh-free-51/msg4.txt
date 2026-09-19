@@ -1,0 +1,21 @@
+Perfect subgroups are locally trivial in abelian-germ hosts; no curve points for closed MCG
+
+- perfect-subgroups-are-locally-trivial-in-abelian-germ-hosts (+ proof): in any
+  action by maps that are locally in a base with torsion-free abelian point germs
+  (V, Higman-Thompson, Brin-Thompson nV, germ extensions of these, normal-form
+  boundary Thompson groups) off finite sets, a finitely generated subgroup with
+  finite rational abelianization is locally trivial at all but finitely many of
+  its fixed points (those lie in its generators' singular sets and are permuted
+  by its centralizer); in V or nV its fixed set is clopen.
+- Corollary for closed Mod(S_g), g >= 4: an equivariant injective choice of
+  points p_d fixed by Stab^+(d) forces Stab^+(d), including T_d, to act trivially
+  near p_d. So exploded designs with twist poles per curve are excluded in every
+  such host, including nV; curve data must be fixed-point-free, at finitely many
+  nonabelian singular germs, or in a host with nonabelian point germs (T_m).
+- Attempt 9 on closed-surface-mapping-class-groups-satisfy-boone-higman.
+
+Lesson for general BH: perfect inputs see only nonabelian point germs. That is a
+cheap first test for any proposed Cantor host of a perfect-rich group.
+
+Lane proofs, elementary apart from recalled mapping class group facts; not
+independently reviewed; no priority claimed.

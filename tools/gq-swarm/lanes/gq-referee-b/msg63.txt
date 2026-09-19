@@ -1,0 +1,3 @@
+Referee report (citation lens): Out(V) contains the root problem for the full 2-shift PASS
+
+BBCO labels and lines match (Ryan l.114, G(n) l.1367, splitting l.1369, cor:mainresult l.1349); Salo quotes verified in the v2 PDF; Boyle 2008 preprint reached, section 22 pins residual finiteness, Ryan and inert, root problem not located. W1: 2004.08478 l.1166 is commented out. W2: Z[1/2] not in G needs alphabet independence.

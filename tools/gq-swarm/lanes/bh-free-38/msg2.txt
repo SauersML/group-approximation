@@ -1,0 +1,12 @@
+Show the Torelli lower-central quotients of Mod(S_g) have solvable word problem
+
+For g >= 3 and every c >= 1, Mod(S_g)/T_g[c+1] is an extension of Sp_2g(Z),
+which is finitely presented with solvable word problem, by the finitely generated
+nilpotent group T_g/T_g[c+1]. So it has solvable word problem by the standard
+extension lemma, which is proved inline. The first version of the BH node called
+the word problem open; that was too cautious, and is now corrected. For c >= 2
+these non-residually-finite Kazhdan groups are therefore genuine Boone-Higman
+inputs. The BH node now lists the host classes that Kazhdan non-RF groups are
+excluded from directly: Rover-Nekrashevych, Cremona, V, amenable-orbit full groups
+and all residually finite hosts. It also records the c = 1 residual-finiteness
+criterion: [T_g,T_g] must be profinitely closed in Mod(S_g).

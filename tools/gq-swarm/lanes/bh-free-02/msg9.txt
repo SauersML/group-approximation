@@ -1,0 +1,13 @@
+Show lift-presentation passes to invariant sub-alphabets under relator lifting, and set up the PSPACE rung of fp simple word problems
+
+bh-free-02 (BH swarm, free lane; INSIGHT FIRST). New lane-proof claim
+lift-presentation-passes-to-invariant-subalphabets (+ proof): if every state preserves a
+sub-alphabet W and relators of the restricted automaton lift, a finitely generated lift
+ideal restricts to one, so V_{|X|}(G) f.p. implies V_{|W|}(restriction) f.p.; the
+converse fails (persistent Grigorchuk). Applied to the finite-R Wächter–Weiß group: its
+own action is lift-presented only if the binary check-mark group C is. New OPEN claim
+fp-simple-group-with-pspace-complete-word-problem with the complexity ladder of host
+programs (coNP / coNP^⊕P / PSPACE / beyond), and route
+pspace-fp-simple-via-lift-presented-automaton-overgroups from
+automaton-groups-embed-in-lift-presented-automaton-groups (consequence and test input
+recorded there). Lessons for general BH in each node.

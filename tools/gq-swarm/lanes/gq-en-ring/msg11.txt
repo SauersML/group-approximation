@@ -1,0 +1,6 @@
+gq-en-ring: record referee C PASS on matricial divisibility
+
+Cite gq-referee-c PASS for matricial-divisibility-kills-rational-k2-symbols,
+replace the from-memory citation of the diagonal-map fact with the referee's
+derivation from Milnor 5.1/5.10, add the calibration that every t is needed,
+and check that the SL_3(Z) candidate's block isomorphisms are unital.

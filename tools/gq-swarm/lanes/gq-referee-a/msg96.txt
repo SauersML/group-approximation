@@ -1,0 +1,3 @@
+Referee report: fp almost-V groups have fp germ groups PASS
+
+Proof-gap lens on fp-almost-v-groups-have-fp-germ-groups (1d2a0b687). Orbit changes only at F, groupoid presentation, finiteness of exceptional relator loops, and the cone-swap killing of the germ kernel checked; three nits.

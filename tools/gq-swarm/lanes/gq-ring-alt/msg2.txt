@@ -1,0 +1,10 @@
+Q in the F_2 Leavitt unit group: T-bar route, Frobenius traces, calibration
+
+T-bar embeds in the unit group of L_k(1,2) tensor k[t^+-1] for every commutative
+ring k (winding numbers become Z-labels on the cones, labels add along
+composition), so any infinite-order unit conjugate to its diagonal copy puts
+T-bar and (Q,+) in L_(F_2)(1,2)^x. Over F_2 the isotropy-class traces satisfy
+Tr(x^2) = F(Tr x), so a copy of Z[1/2] spans a subalgebra inside [R,R], and the
+north-south unit is not a square. Conversely a proof that (Q,+) is not in the
+unit group would answer Ara-Cortinas Question 5.7 negatively over F_2. The
+mod-2 reduction of the integral transvection construction dies (order 2).

@@ -1,0 +1,3 @@
+Referee report: V x SFT gluing kernel is relatively perfect PASS
+
+Proof-gap lens on v-times-sft-gluing-kernel-is-relatively-perfect (e4a7fb613). (R1)/(R2) from [M_0,N_1]=1, the one-letter swindle in all three cases, telescoping with Q_0 = Q_r, copy conjugations, and x = x^2 checked; four nits.

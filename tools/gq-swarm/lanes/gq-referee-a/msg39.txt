@@ -1,0 +1,3 @@
+Referee report: Euler base annihilator over the lamplighter is not f.g. PASS
+
+Proof-gap lens on euler-base-annihilator-over-lamplighter-is-not-fg (d6e3c793f). Items 1-3 PASS; the eps-prime step checked. W1 required wording fix in the Reading paragraph; optional R1 (the induced semidirect product is not f.p., via Crowell); nits N1-N3; Baumslag instance checked citation-free.

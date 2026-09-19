@@ -1,0 +1,6 @@
+Referee transplant minimality: PASS for the transfer; the F_m x F_n corollary stands as conditional on the fibre
+
+Referee section on busemann-transplant-minimality-is-horospherical-minimality: the zero-lag
+criterion, the free-group density argument, the (GP)-implies-K-minimal argument (one recalled
+apartment fact) and the transfer of freeness from the fibre are correct. Minor: the 2-graph
+clause needs no zero columns too; (GP) itself is unchecked.

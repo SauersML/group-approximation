@@ -1,0 +1,8 @@
+Show zigzag Houghton-like envelopes are commensurable with Houghton groups
+
+For the zigzag enumeration of Z, H_n(E_nu(Z)) has finite index in H_n(E_4),
+which contains H_(4n) with finite index, because finite index passes through
+the Houghton-like construction for FSym-containing strongly shift-similar
+groups. So H_n(E_nu(Z)) is of type F_(4n-1) and not FP_(4n) for every n >= 1.
+This realizes the rigid case left open by the refutation of the generic route,
+and records why eventual periodicity cannot reach non-virtually-cyclic inputs.

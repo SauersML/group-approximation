@@ -1,0 +1,1 @@
+Scope fix: a2-lattices-embed-in-fp-simple-groups covers cocompact lattices of PGL_3(D), not non-uniform ones

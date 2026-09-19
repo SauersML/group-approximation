@@ -1,0 +1,6 @@
+OPEN: BS(1,m) in 3V for every odd m, with height-5 renormalization evidence
+
+New OPEN target bs1m-embeds-in-3v-for-every-odd-m via the machines M_m and
+the SMART pipeline. MSI: for M_5 a one-cell-deletion rule on radius-2 windows
+satisfies phi S^5 = S phi in all ~11,000 exact whole-tape validations per phase
+class, with no failures. The same learner recovers the proved SMART rule.

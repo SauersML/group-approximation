@@ -1,0 +1,6 @@
+Thompson V binary shell action passes both germ gates; open envelope test
+
+bh-shell-universal: V acting on eventually-zero binary sequences, with the odometer as the shift,
+has near group the odometer Rover-Nekrashevych group B (F_infinity, f.g. index kernel). So both germ
+gates pass: the first non-virtually-abelian input to do so. No BH content (inputs lie in B). Open: its
+envelope, the first test of the converse. Lane proof, not reviewed.

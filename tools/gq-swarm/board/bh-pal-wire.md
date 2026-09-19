@@ -40,3 +40,58 @@ told otherwise: one invocation with MSI_LOCAL_ROOT set to a fresh snapshot of th
 
 **Sparks.** The four grep-"closed" items should be re-graded only by a build: a Statement proof whose
 closure is red is not closed.
+
+## 09-18 ~14:55 relaunch (lane): repairing upstream reds myself
+- The old probe.sh is retired; I now build via gqprobe-lean.sh.
+- All 12 leaf reds are byte-identical to 10:40, so they are still red. Their first errors come from the old MSI log (repo builds with -DwarningAsError=true):
+  - mechanical: noncomputable defs, unused auto-included section variables (`omit ... in`), missing imports (Commute.map → Mathlib.Algebra.Group.Commute.Hom; Localization.Away; Subgroup.closure / map_closure; Algebra.fg_adjoin_finset);
+  - plus real proof errors in AffineFPModel, EnvelopeCantorAction, PureCharPrimeEBase, CharZeroCoordsDenominators, TorsionFree*, EnvelopeHigmanV*, ElemFPKMRoots, AbsorptionSuslinEuclidKill and PureCharPrimeEHighWittEBase.
+- I own the repair of the BooneHigman/Metabelian reds (LEAN-OWNERS). ms-green-sk owns the SK ones.
+- bh-pal-integrate: please do not also repair these. I will read your probe log for the fresh red set.
+
+## 09-18 ~16:40 (lane): route A + 25 repairs, probe queued
+- FrontierFour has been rewritten for route A, per bh-pal-integrate map v2 (ca4dc92fd). The binders are `S1 : Absorption.suslinZLocal_BadStatement`, `P1 : ∀ p, p.Prime → ElemFP.PolyK2NilGapStatementOver (ZMod p) 4`, `Z1 : ElemFPCharZero.CharZeroK2SplitGapStatement` and `H1 : Envelope.HigmanVCStepBCoreStatement`.
+- Exports, in namespace GroupApproximation.BooneHigmanLinear:
+  - `finitelyPresentedMetabelianStatement_routeA`, `finitelyGeneratedMetabelianStatement_routeA` and `finitelyGeneratedLinearStatement_routeA`;
+  - helpers `envelope_routeA` (H1 only), `linearHost_routeA` (S1, P1, Z1) and `coprimarySplitting_routeA` (no inputs).
+- Repairs are written in the work dir, one for each of the 27 BH reds in the 3c8b417428 build:
+  - noncomputable sections, `omit … in`, missing imports and renamed lemmas (MonoidHom.map_closure, `(Subgroup.closure_le _).mpr`, Subalgebra.fg_adjoin_finset, MulAut.mul_apply explicit type);
+  - `open scoped Matrix`, a struct-field alignment fix and a `smul_mem'` implicit binder;
+  - `.elim` on False;
+  - in AffineFPModel, typed `Commute.all` and a `Pi.single` ascription;
+  - in ArtinHasseAlg, sigma rebuilt through a restricted-conjugation `conjB` plus an explicit CommRing instance;
+  - Localization.Away RingHom unification fixed with explicit `(R := …) (S := …)` in CharZeroK2Split and with Set.range in CharZeroCoordsDenominators.
+- One gqprobe of FrontierFour is queued in the fleet lock, behind about 16 other probes. More reds will surface downstream of today's first-error set.
+- SK reds (5) are ms-green-sk's; FrontierFour stays red until they are green too.
+
+## 09-18 16:24 LANDED d2df12ed9 (red allowed): the 27 BH repairs + route-A FrontierFour
+IN-FLIGHT SET (bh-pal-wire owns; fix-bh-a/fix-bh-b please avoid). These are the modules of research/fix-bh-met-*.md that I am fixing:
+  M/AbsorptionSuslinEuclidKill.lean
+  M/AffineFPIdentities.lean
+  M/AffineFPModel.lean
+  M/CharPCoordsAssembly.lean
+  M/CharPCoordsFreeMul.lean
+  M/CharPHost/CarryRecursion.lean
+  M/CharPHost/TreeWord.lean
+  M/CharZeroCoordsDenominators.lean
+  M/CharZeroHost/Letters.lean
+  M/CoprimaryModule.lean
+  M/ElemFPCharZeroK2Split.lean
+  M/ElemFPK2LocalQuillenIdeal.lean
+  M/ElemFPK2StabDiagEndpoint.lean
+  M/EnvelopeCantorAction.lean
+  M/EnvelopeFiniteIndexAbel.lean
+  M/EnvelopeGenTorsionNakayama.lean
+  M/EnvelopeHigmanVGenFamily.lean
+  M/EnvelopeHigmanVSwapGenAll.lean
+  M/PureCharPrimeEBase.lean
+  M/PureCharPrimeEHighArtinHasseAlg.lean
+  M/PureCharPrimeEHighCoprimaryFp.lean
+  M/PureCharPrimeEHighWittEBase.lean
+  M/PureCharPrimeEHighWittECoeff.lean
+  M/PureCharZeroCocycle.lean
+  M/PureCharZeroMatrix.lean
+  M/TorsionFreeCoprimaryBlock.lean
+  M/TorsionFreeNoetherLocalize.lean
+  + BooneHigmanLinear/FrontierFour.lean
+- The probe (gqprobe-lean, target BooneHigmanLinear.FrontierFour) is queued. When it reports, I will flip the fix nodes of every module that went green to RESOLVED, and repair the next wave of reds downstream.

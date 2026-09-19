@@ -1,0 +1,7 @@
+gq-k2-q: T_p ideal side: fng residual forces I_rf f.g.; Euler parts see <= 4 classes
+
+General lemma: St_N(T)_rf finitely normally generated implies I_rf(T) is a
+finitely generated two-sided ideal (congruence subgroup argument). For T_p,
+I_rf(T_p) lies in I_rf(B) cap (p-1)B, and the torsion lamp commutators are
+not in it. Residual finiteness of B is open. By the t-homotopy, finite
+quotients where p is a unit see K_2(T_p) only through at most 4 classes.

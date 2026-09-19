@@ -1,0 +1,10 @@
+Validate SMART height-3 renormalization; retract gq-affq's refutation
+
+Validate the explicit brick-local height-3 renormalization of induced SMART
+(smart-induced-map-has-brick-local-height-3-renormalization): 55,000
+whole-tape checks of phi S^3 = S phi across four tape densities, exact tower
+period 3, and an explicit inverse on 8,069 samples, all passing (MSI).
+Retract gq-affq's earlier claim that a tape deletion cannot be brick-local:
+deleting the head's neighbour is a bounded prefix replacement in the
+moving-tape coding, and the radius-150 "collapse" was a harness bug.
+Simulation evidence, not a proof; referees review the inductive proof.

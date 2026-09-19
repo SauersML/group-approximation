@@ -1,0 +1,6 @@
+The finite-presentation spectrum of Houghton-like groups is multiplicative
+
+For every infinite shift-similar G, the set of n with H_n(G) finitely presented is closed under multiplication
+by positive integers. It is everything when G is finitely presented and strongly shift-similar. This combines
+Mallery-Zaremsky H_m(H_n(G)) = H_(mn)(G) with the fp theorem for strongly shift-similar groups. Calibrations:
+FSym gives n >= 3, H_2 and E_2 give n >= 2. Lane proof, not reviewed.

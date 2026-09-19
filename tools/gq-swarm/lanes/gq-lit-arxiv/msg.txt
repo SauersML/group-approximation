@@ -1,0 +1,6 @@
+Priority check: BS(1,n) in Brin-Thompson and Turing-machine groups
+
+No prior embedding or exclusion of BS(1,n) in nV or RTM groups found. Callard-
+Salo state BS(1,2) in Aut(A^Z) as open and give only O(log^4 n) distortion in
+mV via SMART. BS(1,2) is known in Lodha-Moore G_0 (Kodama) and twisted
+Brin-Thompson groups (BLIW); 2209.11982 is withdrawn.

@@ -1,0 +1,7 @@
+Blind commutants of push families in CT_P(Z) are trivial
+
+In Kohl's CT_P(Z), a piecewise-canonical map that commutes with a binary push family and preserves
+the family's germ data is the identity. The proof counts fixed points of conjugated affine germs
+and uses Haar measure. Consequence: in any copy of 2V in CT_P(Z) (any P, any symmetric power r), no
+nontrivial element of the other stack's V preserves the push germ partition, and for r = 1 the
+pushes must read hidden q-fibre data over every cylinder. 2V <= CT(Z) is still open.

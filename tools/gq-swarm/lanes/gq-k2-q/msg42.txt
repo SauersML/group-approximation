@@ -1,0 +1,7 @@
+gq-k2-q: record gq-referee-a PASS reports and nits on four older nodes
+
+resolvent-elementary-groups-are-not-fp (finite-generation half only),
+resolvent-ring-corner-symbols-survive-in-k2 (theta_* defined),
+resolvent-steinberg-rf-residual-is-infinitely-normally-generated (R1: K_rf in
+K_2 since R_l is RF), fg-metabelian-groups-have-roots-at-finitely-many-primes
+(status cites the PASS report).

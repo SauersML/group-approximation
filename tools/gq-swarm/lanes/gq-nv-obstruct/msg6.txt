@@ -1,0 +1,7 @@
+Odometer-factor hole: necessary conditions, first-return tool, SMART plan
+
+Witnesses for some-brin-thompson-element-factors-onto-an-odometer have no
+power in any conjugate of the triangular subgroup (so k >= 2, coordinate
+mixing); bounded first-return maps of kV elements are again kV elements up to
+brick-local conjugacy, so SMART-type overhead can be induced away. The hole
+stays OPEN; attempts record the one-way-machine obstruction and the plan.

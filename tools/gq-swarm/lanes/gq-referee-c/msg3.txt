@@ -1,0 +1,6 @@
+Referee C: PASS for three GL_n(Q) reductions, with wording fixes
+
+Independent re-derivations of gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups,
+sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially and bffhz-closures-cannot-create-gl-n-q
+(with its fixed-vertex lemma). Four wording fixes for the BFFHZ node; the H_m step of the
+SL_m(Q) criterion is superfluous and could leave its requires list.

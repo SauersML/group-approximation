@@ -1,0 +1,14 @@
+Transcendental-slope Thompson groups have arbitrarily hard word problems; their BH case implies the Birget root
+
+transcendental-slope-thompson-groups-have-hard-word-problems (lane proof, elementary,
+not reviewed): inside D(V_lambda) = D(V(Z[lambda^{+-1}], <lambda>, 1)), the commutator
+[u', rho^n w' rho^{-n}] is trivial iff floor((n+1)lambda) = floor(n lambda). Here rho is
+a rotation of [0, lambda^j) doubled with its inverse, and u', w' are doubled PL bumps; no
+dyadic F is needed. So the word problem computes the Sturmian word of lambda with
+length-linear words. A computable Liouville lambda whose digits encode a diagonal set
+then makes the 2-generated simple group D(V_lambda) beat any given recursive bound.
+
+The route arbitrarily-complex-fp-simple-via-transcendental-slope-thompson shows that
+transcendental-slope-thompson-groups-satisfy-boone-higman, for all computable lambda,
+implies fp-simple-groups-with-arbitrarily-complex-word-problem. Calibration sections are
+added to both nodes (Attempt 9 on the root).

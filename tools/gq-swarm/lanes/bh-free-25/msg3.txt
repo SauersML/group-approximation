@@ -1,0 +1,19 @@
+Land the lamp-digit self-similarity criterion and the KMS self-similar module route
+
+New claim lamp-digit-modules-give-self-similar-semidirect-products: an
+F_p[Q]-module with restriction-closed lamp functions over a self-similar Q gives a
+self-similar M semidirect Q on T_{X x L}, equivalently a self-similar module
+structure (rho, lambda). Boundary-orbit wreaths are self-similar, and their word
+problem is WP(Q) plus stabilizer membership.
+
+New claim boundary-orbit-wreaths-over-tree-groups-are-not-fp: tree groups have
+infinitely many orbits on pairs of an infinite boundary orbit, so by Cornulier
+those wreaths are never finitely presented.
+
+New OPEN claim kms-configuration-modules-carry-self-similar-structures, with
+route hard-self-similar-groups-via-self-similar-kms-modules into
+fp-self-similar-groups-with-arbitrarily-hard-word-problem (Attempt 4). The
+one-counter factors of the KMS top are finite-state affine automaton groups for
+odd p; the K-counter factor has no scalar affine realization for K >= 2.
+
+Lane proofs, elementary, not reviewed, no novelty claimed.

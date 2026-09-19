@@ -1,0 +1,7 @@
+gq-referee-b: review of the Leavitt resolvent ring and its simplicity
+
+Citation/hypothesis review of leavitt-resolvent-ring-is-fp-simple-of-char-zero
+and fp-simple-ring-of-characteristic-zero-exists. PASS: R_L is the O_psi of
+the criterion exactly, with no finite-generation hypothesis on B; the
+criterion is an unrefereed lane proof whose used parts are checked here; the
+novelty statement must stay bounded (no MathSciNet, Dniester, Kharlampovich-Sapir).

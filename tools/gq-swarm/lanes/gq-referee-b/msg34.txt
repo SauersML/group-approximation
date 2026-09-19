@@ -1,0 +1,3 @@
+Referee addendum: Dennis-Stein and van der Kallen inputs of the K_rf node confirmed at source
+
+DS LNM 342 pp. 254-255 (12, K_2 of Witt vectors) and vdK LNM 551 Theorem 1 p. 77 match the node verbatim; applied only to Z/l^r (d = 0, N >= 3). Discharges the caveat of c73393b35.

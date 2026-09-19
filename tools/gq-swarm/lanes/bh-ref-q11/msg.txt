@@ -1,0 +1,3 @@
+Referee PASS: closed surface groups are contracting RSGs (BBMZ Q1.1, cocompact Fuchsian case)
+
+Checked Bowen-Series 1979 Lemmas 2.2-2.4, Katok-Ugarcovici Prop. 2.2 and BBMZ Q1.1 and Defs 2.32/2.41 at source. Four repairs recorded in the route (Step 4 chain argument; Lemma E comparison time and common prefix; canonical shift in Lemma D); none changes the result.

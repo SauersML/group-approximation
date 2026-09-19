@@ -1,0 +1,6 @@
+K_2: k halves the antidiagonal; e in N iff a three-line fixer is in N (Attempt 3)
+
+A family n in N.diag(1/D,1) fixing both axes and scaling (1,-1) by 1/D; the
+S_3 of GL_2(Z) on {x-axis, y-axis, antidiagonal} reduces e in N to an element
+fixing three lines pointwise; no scalar formula on those lines can separate.
+Stalled per the stall rule; membership open.

@@ -1,0 +1,12 @@
+Show Deligne lattices and the Torelli quotients contain H_3(Z), and record weaker nV targets
+
+Deligne's lattice over Sp_4(Z) and every Torelli lower-central quotient
+Mod(S_g)/T_g[c+1] (g >= 3, c >= 2) contain the integer Heisenberg group. So the
+open statement that H_3(Z) embeds in no mV would exclude both from every
+Brin-Thompson host. A new open node asks whether Kazhdan subgroups of nV have
+finite center. That is weaker than finiteness of Kazhdan subgroups but already
+suffices for these test cases, and a drift-invariance lemma is recorded for it.
+The Kazhdan-finiteness node gets an attempt entry: a literature check finds no
+result on the Haagerup property or (T) for nV (n >= 2). The Hughes local-similarity
+route is dead there, since Hughes groups act properly on wall spaces and nV does
+not.

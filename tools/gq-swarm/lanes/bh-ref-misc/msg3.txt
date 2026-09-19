@@ -1,0 +1,17 @@
+Referee PASS for Step 3.2 of the Farrell-Jones K-vanishing route and for item 1 of W_(P,l) finite presentation
+
+- K-vanishing of L_p^(x d), used at d = 4:
+  - Step 3.2 (C[Z^m] regular coherent) is correct. It is central localization of the regular
+    coherent polynomial rings, a finite presentation descends, and the definition makes coherence
+    automatic.
+  - The open inheritance problem of Bartels-Lueck is not used.
+  - The rest of the chain was checked: strong grading, skew Laurent subrings, the colimit for K(C),
+    and the FJ inputs.
+- W_(P,l): a second pass on the l-ary substitutions.
+  - Directions are constant or split because l is prime.
+  - Finitely many orbits come from Z[1/P] -> F_l being onto.
+  - The Solomon-Tits nerve works over F_l, and the leaf and Morse bounds were checked.
+  - Trust surface: Brown's hypergraph connectivity and the stabilizer nodes' classical inputs.
+
+Lesson for general BH: the ring-side and group-side finite-presentation inputs to product closure now
+have internal referee passes. What remains is literature trust (Khanh; Brown recalled), not open steps.

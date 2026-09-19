@@ -1,0 +1,11 @@
+Automorphisms of hierarchical rows and their folds are virtually abelian
+
+New claim automorphisms-of-hierarchical-rows-are-virtually-abelian (lane proof, elementary):
+- one fibre over a proximal or attractor factor sees every automorphism of a minimal row;
+- minimal Z^d rows that are boundedly finite-to-one over a rotation on a dense set have virtually
+  finite-by-abelian automorphism groups, also for finite-index subgroups;
+- recognizable fixed-point tilings are at most |tau|-to-one over their odometer at deep points.
+
+Consequences: the crossing-wire rows, Labbe's shift, the ABHT fold over F_n x Z and Busemann
+transplants over A2-tilde lattices carry only virtually abelian time. The Lambda_1 x Z^r fibre problem
+has no hierarchical solution.

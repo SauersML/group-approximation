@@ -1,0 +1,15 @@
+Answer BBMZ-hyperbolic Question 1.1 for free products with a finite factor and for products with finite groups
+
+Question 1.1 of Belk-Bleak-Matucci-Zaremsky (arXiv:2309.06224) asks whether every non-elementary
+hyperbolic group is isomorphic to a contracting rational similarity group. Two new cases, both
+lane proofs, not reviewed:
+
+- free-products-with-a-finite-factor-are-contracting-rsgs: G * F with F finite (not Z/2 * Z/2),
+  the finite-factor analogue of the paper's G * Z theorem. It includes every free product of
+  finite groups, such as PSL_2(Z).
+- contracting-rsgs-closed-under-products-with-finite-groups: H x F for H a contracting RSG and F
+  finite. So finite normal subgroups are no obstruction to the class, for example F_2 x Z/2.
+
+The question itself is recorded as OPEN in non-elementary-hyperbolic-groups-are-contracting-rsgs,
+with the known cases and the remaining gap: one-ended groups, splittings over nontrivial finite
+groups, and non-split finite radicals.

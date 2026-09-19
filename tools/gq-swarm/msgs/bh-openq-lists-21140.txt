@@ -1,0 +1,9 @@
+Kourovka 21.140: groups without Thompson's F are closed under extensions; the Basilica HNN extension reduces the question to FP_infinity
+
+- New ESTABLISHED lemma (lane proof, CFP facts cited): groups with no copy of F are closed under subgroups,
+  extensions and directed unions and contain every residually finite group. So every ascending HNN extension of
+  a residually finite group omits F.
+- New route: the finitely presented Basilica HNN extension is torsion-free, has infinite cd and contains no F
+  unconditionally. So Kourovka 21.140 (Witzel-Zaremsky) and Zaremsky Problem 2.8 are answered, with answer no,
+  as soon as it is FP_infinity. The earlier route also needed F to be non-amenable.
+- Zaremsky 2.8 root: records the Kourovka 21.140 printing.

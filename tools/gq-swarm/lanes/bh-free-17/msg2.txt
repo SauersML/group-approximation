@@ -1,0 +1,18 @@
+Answer LISW Question 1.10 for groups of type FP_2 over no field, and show the rigid-ring method stops at Q-bar
+
+Question 1.10 asks for a simple overgroup of a finitely generated H <= GL_n(C)
+that quasi-retracts onto H and has the same finiteness properties. When H is
+of type FP_2 over no field, the twisted Brin-Thompson group of its regular
+action works. It is simple and finitely generated (Belk-Zaremsky), contains H,
+and quasi-retracts onto H, so by Alonso/LISW Theorem 4.1 it has exactly the
+finiteness properties of H. This covers Z wr Z in GL_2(C), which is not linear
+over Q-bar and so is outside LISW Theorem 1.4.
+
+Second, if R is a rigid subring of Z_p and R^n x| Q is finitely generated,
+then R is a finitely generated ring. The section-closed obstruction already on
+main then makes Q linear over a number field. So the section 6 host of LISW
+never exists beyond Q-bar. The Question 1.10 node now records the status by
+finiteness length.
+
+The minimal-dihedral node also gets a proof route.
+Lane proofs, not reviewed.

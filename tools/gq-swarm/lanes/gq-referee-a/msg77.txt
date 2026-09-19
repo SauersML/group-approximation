@@ -1,0 +1,3 @@
+Referee report: BS-class faithful member, arithmetic NSP members, CAT(0) tree factor PASS
+
+Proof-gap lens on bs-class-faithful-member-type-a-proof, arithmetic-nsp-faithful-bs-member-proof and cat0-tree-factor-type-a-proof (61db7e38a). Gluing kernel, normalizer lemma and both instances incl. Bader-Shalom hypotheses, fibre cocompactness and instance (a) with degenerate trees checked; nits N1-N3.

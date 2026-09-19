@@ -1,0 +1,13 @@
+/-- The proposition the mixed-identities development owes for BFFHZ Question 3.3. -/
+def MixedIdentitiesOwed : Prop :=
+  ∃ (G : Type) (_ : Group G), Group.IsFinitelyPresented G ∧ IsSimpleGroup G ∧
+    ∃ n : ℕ, ¬ (mixedIdentities G n).IsFinitelyNormallyGenerated
+
+/-- BFFHZ Question 3.3, answered negatively, from the proposition the development owes. -/
+theorem exists_fp_simple_with_mixed_identities_not_finitely_normally_generated_of
+    (h : MixedIdentitiesOwed) :
+    ∃ (G : Type) (_ : Group G), Group.IsFinitelyPresented G ∧ IsSimpleGroup G ∧
+      ∃ n : ℕ, ¬ (mixedIdentities G n).IsFinitelyNormallyGenerated :=
+  h
+
+end BooneHigman

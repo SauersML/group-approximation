@@ -1,0 +1,3 @@
+KMS metabelian layer: commensurations have finite order on the counter blocks
+
+kms-metabelian-layer-commensurations-have-finite-order. Over F_p[Q], the KMS metabelian layer is a sum of Baumslag-Remeslennikov blocks R = F_p[x, x^-1, (1-x)^-1]. The rank of R over a monomial subring is the hexagonal norm (|q1|+|q2|+|q1+q2|)/2. Fixed-point sets recover the blocks, so every commensuration permutes the counter blocks by hexagon symmetries. No homothety survives: Frobenius, Cartier and all BS-type scalings are excluded. The transfer to G(M) is conditional on T being preserved. The one shrinking shape left is division at fixed scale (the lamplighter-to-Baumslag mechanism). The next candidate is a Noetherian hard layer (abelian-by-polycyclic), probably complexity-bounded.

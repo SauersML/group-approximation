@@ -1,0 +1,15 @@
+Tree codings give the master-route object over BS(2,3) and Burger-Mozes groups, and locate its wall
+
+The end shift of a cocompact action on a locally finite tree with finitely generated vertex
+stabilizers is a quantum-rigid SFT over the group: consistency rules descend every idempotent to the
+vertex it names, and the free-group chain argument runs on the tree. It is topologically free exactly
+when the action is strongly faithful (Bux-Llosa Isenrich-Wu), and then every (FA) subgroup is
+residually finite. Coupled joins over lattices on products of trees are rigid too, and uncoupled joins
+are not (wall certificate).
+
+So (star-prime) holds over BS(m,n) with 2 <= |m| != |n|, over PSL_2(Z[1/p]) for p = 2, 3 or
+p = 11 mod 12, and over every torsion-free cocompact tree-product lattice, including Burger-Mozes
+simple groups. The report records why a Clapham envelope of a hard input never enters this class:
+centralizers of attracting elements fix the attractor, so the input sits in isotropy, and tree
+isotropy is residually finite. What is missing is one of three statements: infinite-emitter finite
+type, non-tree compression (exotic A2 buildings), or programmable determinism.

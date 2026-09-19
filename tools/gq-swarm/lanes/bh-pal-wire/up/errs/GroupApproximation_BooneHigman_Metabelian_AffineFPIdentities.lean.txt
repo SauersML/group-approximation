@@ -1,0 +1,7 @@
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:55:15: Invalid field `map`: The environment does not contain `Eq.map`, so it is not possible to project the field `map` from an expression
+  hY
+of type
+  s * (g * t * g⁻¹) = g * t * g⁻¹ * s
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:73:16: Invalid field `map`: The environment does not contain `Eq.map`, so it is not possible to project the field `map` from an expression
+  hbc
+of type `b * c = c * b`

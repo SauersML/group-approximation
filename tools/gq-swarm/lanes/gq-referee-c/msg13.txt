@@ -1,0 +1,6 @@
+Referee C: PASS for the twisted Brin-Thompson type F_n criterion
+
+Second independent proof-gap pass on twisted-brin-thompson-type-fn-criterion (329a4461c): the
+interval filtration, the grid-sphere lemma, grid-interval stabilizers, the extension lemma for
+n-finite complexes, and the faithful-only connectivity input, checked against the BZ TeX and
+FFWZ text on MSI. One overclaim in the Lesson paragraph flagged.

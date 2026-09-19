@@ -1,0 +1,13 @@
+General finiteness-transfer host theorem; apply referee-a nits to the RCWA node
+
+New claim pbh-via-degree-monoid-boundary-full-groups (lane proof, not reviewed). Take a
+countable cancellative monoid with a UFP* degree map to N^k, lcms, finite residues, an
+F_infinity unit group, and a Hausdorff effective boundary groupoid. Then the full group of
+(boundary groupoid x Cuntz groupoid) is F_infinity, simple and highly transitive, so everything
+acting by its boundary germs satisfies PBH. Lesson for general BH: BH reduces to a
+representation problem in which the unit group carries all the group-theoretic finiteness.
+Hecke branching of matrix monoids is the precise obstruction to lattice-coset hosts.
+
+Also applies gq-referee-a's three nits (N1 subgroup, N2 germ-unit phrasing, N3 c | am) to
+rcwa-groups-satisfy-boone-higman and its route, records the PASS, and adds a Lesson for
+general BH paragraph.

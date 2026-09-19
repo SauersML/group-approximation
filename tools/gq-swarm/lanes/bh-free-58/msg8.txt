@@ -1,0 +1,12 @@
+Kourovka 20.44 is Collatz-hard: orbit transversals of Kohl's 3x+1 group G_T have density zero
+
+For G_T = <t_{0(2),1(2)}, t_{1(2),2(4)}, t_{1(4),2(6)}> in CT_{3}(Z), Kohl's maps r and s carry
+3x+1 components onto orbits and back, so G_T has finitely many orbits iff the 3x+1 map has
+finitely many components on Z. A Terras-Everett parity-vector count gives o(N) orbits meeting
+[-N,N], so every transversal has density 0. Hence an affirmative answer to 20.44 would imply
+finiteness of 3x+1 cycles and divergent classes on Z, and infinitely many components would
+refute 20.44. Credit: Kohl (G_T, r, s, f), Terras and Everett (stopping times).
+
+Lesson for general BH: orbit-finiteness of subgroup restrictions in arithmetic hosts is
+Collatz-hard already for three class transpositions; type (A) finiteness must come from the
+host's own clopen action, never from orbit counts of an embedded subgroup.

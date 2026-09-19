@@ -1,0 +1,13 @@
+Mixed-degree units lift non-positive fixed classes; combined bracket of frame designs
+
+Lane gq-infinite-primes. Over a graded multi-type matricial frame ring with A
+invertible, the core is ultramatricial, a corner isometry makes R a corner
+skew Laurent ring, and every fixed class (positive or not) is the index of a
+unit of R built from pieces of degree 1, -1, 0. Under the corner skew Laurent
+sequence (CSL) its scalar symbols are infinitely generated, so the
+non-positive example A = [[2,1],[2,3]] fails the budget unless (CSL) fails.
+New bracket node lists every excluded frame design with its node and
+hypotheses, and the remaining room (a)-(f). Gate Attempt 14.
+
+Corner node: referee-a FAIL at item 1 repaired (w must lie in eRe; the
+frame case satisfies it), referee-b PASS, title says matricial.

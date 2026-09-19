@@ -1,0 +1,3 @@
+Amalgams of orbit-finite actions along a common subgroup are type A_2
+
+Landed by the coordinator after a restart stopped lane bh-invent-02 before it could land this draft. The text is the lane's own, unchanged.

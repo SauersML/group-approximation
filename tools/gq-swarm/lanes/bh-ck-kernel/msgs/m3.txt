@@ -1,0 +1,12 @@
+Ring gate: the K_1 clause is stable while the necessary condition is unstable; profinite translation hosts preserve levels
+
+bh-ck-kernel, free mode. Two lane proofs (elementary, unreviewed).
+1. ring-gate-k1-clause-is-unstable: exact comparison of ker(Q^x -> K_1(R)) with
+   Lambda_N(R) = {lambda : lambda I_N in E_N(R)}; stable => unstable always, converse exactly
+   under rank-N injectivity of GL_N/E_N -> K_1. Audit: the frame bracket's items are design
+   exclusions, not non-existence results, and its (a)-(h) omits the loophole (i): stable
+   failure with Lambda_N finitely generated. CK clause (c) is already the unstable form.
+2. profinite-translation-hosts-preserve-levels: kills the unpursued perfect-tiling spark S1
+   of the K-budget artifact in its profinite form. Translations preserve the level
+   filtration, so a finitely generated subring lives at one level and its unit class is
+   never divisible by every integer. A repair must reintroduce a frame.

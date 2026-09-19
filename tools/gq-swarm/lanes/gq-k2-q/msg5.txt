@@ -1,0 +1,9 @@
+gq-k2-q: K-theory of the capacity-chain ring; register-unit symbols
+
+Compute K_0 of R_cap over the sigma-closed coefficient ring: [1] = -V_0 of
+infinite order; divisible by every n without a_u, with 4-torsion when a_u is
+kept. Record the obstruction that invertible register units pair with Q^x:
+for R_cap the tail-unit transfer map has free cokernel of infinite rank
+(row ends of the capacity chain), so the symbols {lambda, N+c} are not
+finitely generated under the Pimsner hypothesis (P). OPEN node with the
+design criterion.

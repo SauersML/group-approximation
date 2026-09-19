@@ -1,0 +1,3 @@
+Crossing-wire host finite presentation reduces to 3-locality of V-Boolean powers
+
+After exact gluing and cone sliding, only same-support far conjunctions remain. The linear crossing-wire proof uses associativity of idempotent products. Conditioned V-subgroups combine by commutators, and Hall-Witt leaves the triple relations only in equivalent pairs. Conditional sketch: with triple crossings in the tile set and a Curtis-Tits-type 3-locality of Boolean powers of V, the Z^2 host is finitely presented. Condition (b) is needed only for finitely many finite algebras. OPEN.

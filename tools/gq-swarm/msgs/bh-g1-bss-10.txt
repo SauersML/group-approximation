@@ -1,0 +1,9 @@
+Aligned plane-lift conjecture: reduced to one defect profile; not supported for transplant lifts
+
+In aligned lifts, floating data at degenerate chains is locally a key function for every
+cross-plane coupling; it cannot be one global key function (invariant factor, input would be
+SFT) and cannot switch in far places (far modifications), so rigid minimal aligned lifts must
+realize exceptional-key defect freedom, clustered in Lambda_0 and unbounded in Z^2. In transplant
+lifts shared degeneracy makes freedom plane-global and rigidity follows from explicit hypotheses,
+so the conjecture there needs a refutation of the cocycle criterion or of skeleton rigidity.
+Conjecture left open; the Z^2 route is not closed. Lane proofs (Lemmas 1-3), sketch (assembly).

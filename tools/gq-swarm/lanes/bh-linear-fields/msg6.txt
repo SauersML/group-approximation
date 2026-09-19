@@ -1,0 +1,5 @@
+Record gq-referee-a PASS on the periodic-germ host and its two consumers; apply nits N1-N3
+
+N1: L in Z (w = u'v^L or u' = wv^-L); N2: breakpoint closure bp(gh) in bp(h) + h^-1 bp(g)
+in the rational route; N3: lift on small dyadic subintervals, since arcs may have
+non-dyadic endpoints. Report 135cfebbf. No change to the statements.

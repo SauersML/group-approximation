@@ -1,0 +1,4 @@
+Record which open Birget routes escape the definable-host collapse
+
+The live routes (twisted Brin-Thompson, infinite-state self-similar, HNN inputs) are exactly the
+non-definable ones; the dead ones are all definable. Adds this test to the claim.

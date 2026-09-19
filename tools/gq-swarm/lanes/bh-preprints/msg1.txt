@@ -1,0 +1,8 @@
+Add a recent-preprint review for the BH swarm (pass 1)
+
+Screened arXiv through 2026-09-17 in every area the swarm touches, read the relevant preprints at
+source, and grepped each id against the graph. No preprint settles an open node or pre-empts an
+established one, and the cited versions of all key imports are current. Records five new tools and
+test cases (an amenable FW self-similar group, nonlinear Kazhdan mapping class group quotients,
+near-full groups of bounded type, stabilized automorphism groups of odometers, Stein group
+classification) and bookkeeping for the Kourovka lane.

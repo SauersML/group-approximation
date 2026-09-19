@@ -1,0 +1,14 @@
+research/aff-q-does-not-embed-in-aut-thompson-f-proof.md
+research/bffhz-closures-cannot-create-gl-n-q-proof.md
+research/gl-n-q-fixes-a-vertex-in-free-splittings-proof.md
+research/gl-n-q-via-gl-infinity-q.md
+research/gl-n-qbar-via-countable-char-zero-linear-groups.md
+research/lifts-add-no-unipotent-divisibility-proof.md
+research/number-field-gl-n-via-gl-n-q.md
+research/number-field-linear-groups-embed-in-gl-n-q-proof.md
+research/prufer-groups-do-not-embed-in-gl-infinity-q-proof.md
+research/sl-n-q-lies-in-finite-residual-of-every-overgroup-proof.md
+research/extension-product-closures-cannot-create-sl-n-q-proof.md
+research/gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof.md
+research/integral-form-algebras-have-no-fg-subring-containing-q-proof.md
+research/q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof.md

@@ -1,0 +1,12 @@
+Prove lean-eval's higman_infinite_simple from Hyde-Lodha Q_2
+
+GroupApproximation.HydeLodha.higman_infinite_simple states the lean-eval
+problem higman_infinite_simple verbatim: some n and a finite relator set in
+FreeGroup (Fin n) whose presented group is simple and infinite.  The proof
+takes the closed theorem finitelyPresentedInfiniteSimple_closed (Q_2) and
+Mathlib's Group.IsFinitelyPresented.exists_mulEquiv_presentedGroup, and
+transfers simplicity and infinitude along the isomorphism.
+
+Trusted MSI build via scripts/remote-build.sh (fleet mutex): 4490/4490 jobs,
+no warnings; #audit_closed_axioms reports propext, Classical.choice,
+Quot.sound.  The root gains one import line in its import block.

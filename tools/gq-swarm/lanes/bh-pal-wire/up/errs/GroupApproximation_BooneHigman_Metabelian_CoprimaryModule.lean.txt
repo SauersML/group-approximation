@@ -1,0 +1,1 @@
+error: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:133:9: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'MonoidAlgebra.semiring', which is 'noncomputable'

@@ -1,0 +1,8 @@
+Leavitt tuples make the stable and unstable scalar clauses agree
+
+Lane gq-infinite-primes. Voronetsky refinement for a Leavitt (1,d)-tuple maps
+E_N onto E_(N+d-1) and lambda I_N to lambda I_(N+d-1), so every stably trivial
+rational scalar is elementary at every rank N >= 3. Hence ker(Q^x -> K_1) is
+f.g. iff Lambda_N is, and loophole (i) of the ring-gate bracket is empty for
+Leavitt-tuple designs (e.g. R_L, where Lambda_N = Q^x). The bracket now says so;
+(i) lives only in index-1 and fractional-index designs.

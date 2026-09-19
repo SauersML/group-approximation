@@ -1,0 +1,7 @@
+Recode Bishop–Schesler branch hosts over V: no regular-tree host exists, and finite presentation needs a finite recurrence on the residual chain
+
+The branch group of any infinite input contains Alt(|G/N_n|+5) for every n, so it acts on no
+regular rooted tree. Its binary recoding with fixed scaffold codewords is an annular germ host
+over V whose Alt(6) scaffold commutes with the zoom. A free zoom on the input side kills finite
+presentation; finite presentation forces a finite recurrence pinning the chain actions; one-step
+recurrences are exactly virtual endomorphisms. The multi-depth case is recorded as open.

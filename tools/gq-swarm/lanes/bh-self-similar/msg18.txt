@@ -1,0 +1,3 @@
+Record referee-a PASS on the germ criterion and apply its nits
+
+Index the free groupoid by letters of F with formal inverses, so involutive states fixing a ray keep it free; note that necessity and sufficiency are unconditional in lift-ideal form; and that eventual-state paths may be unreduced.

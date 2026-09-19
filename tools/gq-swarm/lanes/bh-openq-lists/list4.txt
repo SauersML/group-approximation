@@ -1,0 +1,489 @@
+ 2006-05-04 Trees, ultrametrics, and noncommutative geometry
+ 2001-10-31 Topology on the spaces of orderings of groups
+ 2006-07-19 The topology on the space of left orderings of a group
+ 2006-07-06 The simultaneous conjugacy problem in groups of piecewise linear functions
+ 2004-07-07 The group of parenthesized braids
+ 1995-07-21 The chameleon groups of Richard J. Thompson: automorphisms and dynamics
+ 2007-03-15 The Spectral Problem, Substitutions and Iterated Monodromy
+ 2000-12-18 Sous-groupes paraboliques et representations de groupes branches
+ 2006-03-01 Some solvable automaton groups
+ 2006-11-14 Some questions about the dimension of a group action
+ 2005-10-18 Solvability in Groups of Piecewise-linear Homeomorphisms of the Unit Interval
+ 2006-04-05 Rotation numbers in Thompson-Stein groups and applications
+ 2007-02-16 Reversible maps and composites of involutions in groups of piecewise linear homeomorphisms of the real line
+ 2006-06-28 Reidemeister numbers of saturated weakly branch groups
+arXiv Query: search_query=cat:math.GR AND abs:"piecewise linear"&amp;id_list=&amp;start=0&amp;max_results=120
+ 2000-10-13 Quasi-actions on trees I. Bounded valence
+ 2001-12-18 Permutation group algebras
+ 2004-05-24 On the growth of iterated monodromy groups
+ 1999-10-19 On the Spectrum of Hecke Type Operators related to some Fractal Groups
+ 2000-05-11 On subgroups of R.Thompson's group F and other diagram groups
+ 2005-10-03 On approximation of homeomorphisms of a Cantor set
+ 2002-10-01 On a universal mapping class group of genus zero
+ 2004-01-23 Modular circle quotients and PL limit sets
+ 2004-11-26 Metrics on diagram groups and uniform embeddings in a Hilbert space
+ 2000-02-01 Lie Methods in Growth of Groups and Groups of Finite Width
+ 2001-01-26 Lie Algebras and Growth in Branch Groups
+ 2000-07-14 Left ordered groups with no nonabelian free subgroups
+ 2000-07-10 L-presentations and branch groups
+ 2006-11-07 Iterated Monodromy Groups of Quadratic Polynomials, I
+ 2003-12-16 Iterated Monodromy Groups
+ 2004-06-02 Higher Dimensional Thompson Groups
+ 2006-08-19 Hausdorff dimension in a family of self-similar groups
+ 2003-06-25 Group laws and free subgroups in topological groups
+ 2001-02-03 Group actions on one-manifolds, II: Extensions of Hölder's Theorem
+ 2006-03-22 Generically there is but one self homeomorphism of the Cantor set
+ 2000-06-07 From symmetries of the modular tower of genus zero real stable curves to an Euler class for the dyadic circle
+ 2002-02-01 From fractal groups to fractal sets
+ 2005-01-06 Elementary amenable subgroups of R. Thompson's group F
+ 2006-12-18 Dilatation structures II. Linearity, self-similarity and the Cantor set
+ 2005-06-24 Diagram rigidity for geometric amalgamations of free groups
+ 2003-05-10 Diagram groups are totally orderable
+ 2003-01-21 Diagram groups and directed 2-complexes: homotopy and homology
+ 2002-12-31 Convergence groups from subgroups
+ 2005-07-05 Context-Freeness of Higman-Thompson group's co-word problem
+ 2005-10-14 Branch Groups
+ 1997-08-28 Automorphisms of generalized Thompson groups
+ 2005-07-27 Asymptotic dimension in Bedlewo
+ 2006-01-24 Asymptotic aspects of Schreier graphs and Hanoi Towers groups
+ 2006-02-02 An algebraic classification of some solvable groups of homeomorphisms
+ 2006-08-07 A Minimal Non-solvable Group of Homeomorphisms
+2609.20401 2026-09-17 Kernel--wreath constructions and infinite families of finite simple skew braces
+2609.17410 2026-09-15 Uncountably many local isomorphism types of compactly generated simple groups
+2609.16974 2026-09-15 Invariant random subgroups of $C^*$-simple groups
+2609.17879 2026-09-15 Entropy and Translation Length in the Ray Graph
+2609.17280 2026-09-15 Concise tensors with maximal symmetries
+2609.14929 2026-09-14 Solvable Supplements to Normalizers of Cyclic 2-Subgroups
+2609.16345 2026-09-14 Matroids and isomorphism problems for Bestvina-Brady groups
+2609.14702 2026-09-13 Finiteness properties of closed subgroups of Thompson's group $F$
+2609.14190 2026-09-12 Conjugator length in nilpotent groups
+2609.12385 2026-09-11 Cocenter of Hecke algebras of Kac-Moody groups
+2609.11880 2026-09-10 Conjugator length in finitely generated groups
+2609.10461 2026-09-09 Small undecidable groups and unrecognizable 4-manifolds
+2609.10281 2026-09-09 Finite presentations of metabelian groups: effective enumeration via Laurent relations
+2609.09391 2026-09-08 On the Hamiltonicity of generating graphs of almost simple groups
+2609.08428 2026-09-08 General linear and Steinberg groups over the Leavitt algebra $L_{\mathbb F_2}(1,2)$
+2609.07639 2026-09-07 Residual finiteness and cuspidal cohomology of Picard modular surfaces
+2609.07677 2026-09-07 On Natural Groups
+2609.07948 2026-09-07 Co-intersection graphs of nonabelian finite simple groups have diameter two
+2609.04702 2026-09-04 The Codegree Isomorphism Conjecture for Finite Simple Groups
+2609.04757 2026-09-04 Ordering, Artin--Tits group, Garside structure
+2609.05705 2026-09-04 Commensurability and quasi-isometry classification for one vertex one loop tubular groups
+2609.02508 2026-09-02 The binary actions of sporadic groups
+2609.01868 2026-09-01 On the Self-Similarity of Permutational Wreath Products and Their Embedding into Finitely Presented Simple Groups
+2609.01234 2026-09-01 On commensurations of pro-$\mathcal{C}$ groups
+2609.00557 2026-09-01 Accessible CAT$(-1)$ groups of critical exponent less than one
+2609.00382 2026-08-31 Two problems about bases and independent sets in free groups
+2609.00417 2026-08-31 Relative property (T) for uniformly bounded representations
+2608.31103 2026-08-31 Finitely generated positive cones in $F_n \times \mathbb{Z}$
+2608.30879 2026-08-31 Conjugator Lengths and Isoperimetric functions
+2608.28211 2026-08-28 Maximal subgroups of homeomorphism groups
+2608.26564 2026-08-27 Real ideal points, Conway spheres, and left-orderable Dehn fillings
+2608.25614 2026-08-26 Word length, Morse theory, and Vietoris-Rips complexes
+2608.25092 2026-08-25 Complete Mappings of Semigroups
+2608.23702 2026-08-24 Nilpotent groups with Dehn function $n^2 \log n$
+2608.23273 2026-08-24 Average Numbers of Homomorphisms to Random Modules over Free Group Algebras
+2608.20703 2026-08-21 Group-product rigidity and Higman-Thompson reassociation groups
+2608.20600 2026-08-20 A characterization of the reversibility of linear cellular automata
+2608.19105 2026-08-19 The structure and generation of the second maximal subgroups of the almost simple groups with alternating, classical or sporadic socle
+2608.19349 2026-08-19 Connective constants of Grigorchuk graphs
+2608.18594 2026-08-19 Characterization of Weak EKR Groups and Intersection Densities with Prescribed Point Stabilizers
+2608.18906 2026-08-19 Actions on CAT(-1) spaces with critical exponent less than 1
+2608.17891 2026-08-18 Thompson's Conjecture for Finite Simple Groups of Lie Type over Small Fields
+2608.17871 2026-08-18 On the $p$-rationality of Deligne--Lusztig characters
+2608.17193 2026-08-17 Every copy of Thompson's group $F$ in $F$ is undistorted
+2608.16530 2026-08-17 $\mathbb{Z}^2$-free subgroups of Thompson's $T$ are virtually free
+2608.15194 2026-08-15 Brauer-Fowler Bounds for Elements of Odd Prime Order
+2608.14897 2026-08-14 Topological perspectives on the vanishing of some Bogomolov multipliers
+2608.14524 2026-08-14 The inverse Galois problem of iterated Galois groups and their fixed-point proportion
+2608.14537 2026-08-14 Mixed identities for simple locally finite groups
+2608.12783 2026-08-13 Arithmetic invariants for finite simple and related groups
+2608.11926 2026-08-12 Lifting Functors and Relative Schur-Baer Theorems
+2608.12168 2026-08-12 Hyperbolicity and obstructions to PL actions of the circle
+2608.12432 2026-08-12 Generation of finite groups from subgroups of coprime index
+2608.10894 2026-08-11 FormaTheoria: Constructing Large-Scale Lean Theories from Mathematical Literature $-$ Toward the Formalization of the Classification of Finite Simple Groups
+2608.10150 2026-08-10 Quasirandomness and Uniform Twin-Width
+2608.08538 2026-08-09 The Mathieu group $M_{23}$ is a Galois group over $\mathbb{Q}$
+2608.07950 2026-08-08 Presentations of the cactus Thompson group
+2608.04650 2026-08-05 The word problem for two-generator one-relator inverse monoids
+2608.05362 2026-08-05 Centralizers of sofic approximations of Kazhdan groups
+2608.03935 2026-08-04 The structure of finite groups invariably generated by two elements of prime order
+2608.02970 2026-08-04 Finite groups that are the product of every pair of non-conjugate maximal subgroups are soluble
+2608.01754 2026-08-03 The problem of recognition of finite simple groups by element orders is solved
+2608.02111 2026-08-03 A graph-theoretical characterisation of subgroups of Thompson's group $V$
+2608.01161 2026-08-02 The Şiş Kebap Theorem: A Generic Identification Theorem for Groups of Finite Morley Rank
+2608.01513 2026-08-02 Periodic quasiflats in hierarchically hyperbolic spaces
+2608.01168 2026-08-02 On context-free subgroups and R. Thompson's group $V$
+2608.01339 2026-08-02 Non-finitely Presented Lie Algebras of Type $FP_2$
+2608.00755 2026-08-01 Uniform expansion in finite groups of Lie type
+2607.29449 2026-07-31 The Basilica group of the Grigorchuk-Erschler group
+2607.28316 2026-07-30 Mixed-identity-freeness and primitivity of group rings
+2607.28016 2026-07-30 Constructing linear codes from digraphs and groups
+2607.26794 2026-07-29 Vanishing elements of prime power order and their class size property
+2607.26572 2026-07-29 Near full groups of bounded type, \rom{2}
+2607.27500 2026-07-29 Components in characteristic $p$ and Quillen's conjecture
+2607.27256 2026-07-28 The Monster group is a completion of the Goldschmidt G3-amalgam
+2607.25729 2026-07-28 Near full groups of bounded type: full group completion
+2607.26241 2026-07-28 Learning the Word Problem: Geodesic Lengths and Cryptographic Applications
+2607.23076 2026-07-25 On the Frobenius Number of Quotients of Numerical Semigroups
+2609.20203 2026-07-25 Finite groups with a unique real $2$-block
+2607.23380 2026-07-25 Automorphisms of Bestvina-Brady Groups: IA Rigidity, Arithmetic Commensurability, and Finiteness
+2607.22369 2026-07-24 Clique complexes of groups and order sheaves
+2607.21754 2026-07-23 Generating simple vigorous groups
+2607.21727 2026-07-23 Finiteness properties and Higman's rope trick
+2607.20859 2026-07-23 Braid groups are not profinitely rigid
+2607.18853 2026-07-21 The isomorphism problem for random generalized Baumslag-Solitar groups with many edges
+2607.18079 2026-07-20 Virtual Surjection and the $n$-$(n+1)$-$(n+2)$ Theorem for Discrete Groups
+2607.17739 2026-07-20 Spinal Hanoi Towers Groups
+2607.17477 2026-07-20 On Some Problems from the Kourovka Notebook
+2607.18158 2026-07-20 Coarsely Proper Actions of Topological Groups
+2607.14715 2026-07-16 Several families of incommensurable noncompact hyperbolic Coxeter polytopes
+2607.14603 2026-07-16 Exceptional groups and the s-arc-transitivity of vertex-primitive digraphs, II
+2607.13951 2026-07-15 The Post Correspondence Problem for free groups is undecidable
+2607.13776 2026-07-15 Commensurating actions and self-similar groups
+2607.11543 2026-07-13 Fixed-point-free elements in two-orbit permutation groups
+2607.12192 2026-07-13 Characterized subgroups on the unit circle
+2607.08805 2026-07-09 Some additive properties of $\mathbb{Z}_n$ and $k$-index stability of finite groups
+2607.08900 2026-07-09 Finitely presented kernels of right-angled Artin groups with abelian quotients
+2607.07496 2026-07-08 Finite complete rewriting systems for graphs of free groups with applications to free-by-cyclic, one-relator, and three-manifold groups
+2607.06434 2026-07-07 Finite groups with simple or $p$-nilpotent maximal subgroups
+2607.04300 2026-07-05 Topological full groups and stable rank one
+2607.04038 2026-07-04 Higman--Thompson groups $F_n$ all the way down
+2607.01872 2026-07-02 Growth rates, stable subgroups, and regular languages
+2607.01411 2026-07-01 Homomorphisms from topological groups to inverse limits
+2606.31181 2026-06-30 Group Theoretic Constructions of Singular Set in a Long Range Segregation Model
+2606.31459 2026-06-30 Classification of Fuchsian groups with torsion
+2606.30434 2026-06-29 On homological finiteness properties and free inverse monoids
+2606.29866 2026-06-29 Characterization of the alternating and symmetric groups by the order and conjugacy class sizes
+2606.29958 2026-06-29 A Reversibility Characterization of Locally Finite Groups by Cellular Automata
+2606.27993 2026-06-26 On the Howe--Moore property for automorphism groups of buildings
+2606.27753 2026-06-26 Diagram groups and groups of piecewise linear homeomorphisms of the line with global fixed points
+2606.27056 2026-06-25 Free Skew Braces and Free Solutions of the Yang--Baxter Equation
+2606.27085 2026-06-25 Average Distortion of Commensurators of Hyperbolic Groups
+2606.24787 2026-06-23 Representations of finite skew braces
+2606.24741 2026-06-23 All mixed identities are singular in groups with no algebraicity
+2606.22740 2026-06-22 Closed Image Characterizations of Locally Finite Groups via Cellular Automata
+2606.21106 2026-06-19 The word problem for a family of one relation Adian inverse semigroups
+2606.18880 2026-06-17 Surjectivity of Engel Words on $\mathrm{SL}_2(\mathcal{O})$ and $\mathrm{PSL}_2(\mathcal{O}_2)$
+2606.19322 2026-06-17 Existential Inclusions of Bi-exact Groups are Conjugacy Representation Rigid
+2606.17605 2026-06-16 A coarse Menger theorem for hyperbolic graphs, finitely presented groups, and more
+2606.16259 2026-06-15 Super-Arrhenius relaxation of the triangular plaquette model in any dimension
+2606.14148 2026-06-12 Virtual inheritance properties of graph products
+2606.14333 2026-06-12 On degrees of minimal invariant characters
+2606.13296 2026-06-11 The dual Artin isomorphism for Artin groups of XXL type
+2606.12181 2026-06-10 Matrix Discrepancy for Representations of Finite Groups
+2606.07430 2026-06-05 Spectral properties of the Schreier graphs of the basilica group
+2606.04526 2026-06-03 The subnormaliser conjecture and unipotent characters
+2606.05077 2026-06-03 Polynomial maps on the monoid of words
+2606.05091 2026-06-03 Improved algebraic fibrations of high-dimensional hyperbolic groups
+2606.03791 2026-06-02 Half of finite abelian groups are unit groups
+2606.01290 2026-05-31 On Dehn functions for infinite group presentations
+2606.00863 2026-05-30 On the generation problem in Thompson's groups $F_n$
+2605.30535 2026-05-28 Undecidable Diophantine problems in generalisations of one-relator groups
+2605.30605 2026-05-28 Thue-Morse sequence and groups of intermediate growth
+2605.30138 2026-05-28 Residual properties of finitely generated groups in the Weihrauch lattice
+2605.30163 2026-05-28 Non-uniform exponential growth and the decay of growth rates in growing dimensions
+2605.30408 2026-05-28 Non-degeneracy of Killing forms on real conjugacy classes of finite groups
+2605.22430 2026-05-21 Stabilizer Subgroups and the Simplicity of Reduced Crossed Products
+2605.22969 2026-05-21 Real 2-blocks in quasi-simple groups
+2605.22466 2026-05-21 Arboreal Galois Groups of a PCF Map with Strictly Pre-periodic Critical Points
+2605.20976 2026-05-20 A compensation theorem for the Sylow-integral invariant and counterexamples to an \texorpdfstring{$A_5$}{A5}-characterization conjecture
+2605.19512 2026-05-19 Images of Lie Polynomials on simple Lie algebras
+2605.20564 2026-05-19 Action graphs, semiconjugacy, and non-embedding in Thompson's group $V$
+2605.18737 2026-05-18 The Classification of the 2-generated Primitive Axial Algebras of Monster Type
+2605.17814 2026-05-18 Geometric properties of the golden ration Thompson's group
+2605.17972 2026-05-18 Decay of weighted cusp counts for congruence subgroups of $SL_2$ over number fields
+2605.16450 2026-05-15 Simple groups with narrow prime spectrum: Extended list
+2605.16669 2026-05-15 On ultraproduct approximations and property (T) factors
+2605.15169 2026-05-14 Modal group theory: homomorphisms
+2605.14197 2026-05-13 Modal group theory
+2605.13454 2026-05-13 Almost Affine Invariance Over Prime Fields: Green Problem 90
+2605.12630 2026-05-12 Subperiodic groups and bounded automorphisms of periodic graphs
+2605.12737 2026-05-12 Selfless inclusions arising from commensurator groups of hyperbolic groups
+2605.11988 2026-05-12 Alperin's Main Problem of Block Theory
+2605.10402 2026-05-11 Every finite group admits a just finite presentation
+2605.08607 2026-05-09 On finite groups containing an element whose Engel sink is small
+2605.08596 2026-05-09 Length parameters of finite groups and their Hall subgroups
+2605.04513 2026-05-06 Zeros of characters and orders of elements in finite groups
+2605.04646 2026-05-06 The geometry of wreath and semi-direct products
+2605.03161 2026-05-04 Parabolic-preserving deformations of cusped hyperbolic lattices
+2605.02889 2026-05-04 Gluing diagrams part 1: A constructive solution for the Higman-Thompson group isomorphism problem
+2605.03107 2026-05-04 Congruence rigidity of algebraic groups
+2605.03040 2026-05-04 Almost planar finitely presented groups
+2605.01734 2026-05-03 Vertex-primitive $s$-arc-transitive Cayley digraphs
+2605.00041 2026-04-28 The Inverse Monoid of Partial Inner Automorphisms of a Semigroup
+2604.25789 2026-04-28 Mild Pro-$p$ Groups and Ordered Monoids
+2604.22375 2026-04-24 Visibly Pushdown Languages in Groups
+2604.23064 2026-04-24 Amalgamated Free Products of Circle Actions with a Bounded Number of Fixed Points
+2604.21720 2026-04-23 Representation growth of quasi-semisimple profinite groups
+2604.20415 2026-04-22 On generic and supertight automorphisms
+2604.20590 2026-04-22 Enumeration of skew morphisms of cyclic $2$-groups
+2604.19174 2026-04-21 On minimal non-sofic and $ω$-non-sofic groups
+2604.18822 2026-04-20 Weak order on groups generated by involutions
+2604.18104 2026-04-20 Counting automorphic orbits in finitely generated groups
+2604.14903 2026-04-16 Groups with arbitrarily poor permutation stability
+2604.15303 2026-04-16 Diameter bounds for arbitrary finite groups and applications
+2604.10903 2026-04-13 On the Sum of Squares of Irreducible Brauer Character Degrees in Blocks
+2604.10888 2026-04-13 Character values and conductors of low-rank groups of Lie type
+2604.10220 2026-04-11 Normality Of Quartic Cayley Graphs On Regular p-Groups: A CFSG-Free Approach
+2604.09014 2026-04-10 Spectral Dehn functions and a characterisation of word-hyperbolicity
+2604.08724 2026-04-09 Subindices and subfactors of infinite groups and numbers
+2604.05956 2026-04-07 Stably tangential strict hyperbolization
+2604.04524 2026-04-06 Settled Elements in Arboreal Galois Groups of Quadratic PCF Polynomials
+2604.05123 2026-04-06 Lattices determined by their commensurator
+2604.02885 2026-04-03 On recognition of simple classical groups with prime graph independence number $4$ by spectrum
+2604.01107 2026-04-01 On fixed points and equalizers of injective endomorphisms of the free group at infinity
+2603.29607 2026-03-31 Large subgroups of fusion systems and localities
+2603.28228 2026-03-30 Stationary boundaries on the space of amenable subgroups and C*-simplicity
+2603.27609 2026-03-29 Monodromy groups of polynomials of composition length 2
+2603.26158 2026-03-27 Torsion subgroups and fixed-point rigidity in CAT(0) geometry
+2603.23809 2026-03-25 Infinite sequences via Lie algebra actions for oligomorphic groups
+2603.24687 2026-03-25 Abstract twisted Brin--Thompson groups
+2603.24502 2026-03-25 A new source of purely finite matricial fields
+2603.17596 2026-03-18 Property (LR) and an embedding theorem for virtually free groups
+2603.17805 2026-03-18 A rigidity theorem for skew braces with multiplicative group \(S\times T\)
+2603.14359 2026-03-15 Strongly 1-bounded inner amenable groups
+2603.14556 2026-03-15 Self-similarity of the generalized Baumslag-Solitar groups
+2603.13564 2026-03-13 The MF property for amalgamated free products
+2603.13096 2026-03-13 Balanced groups and the virtually cyclic dimension of poly-surfaces groups
+2603.10759 2026-03-11 An antichain condition for infinite groups
+2603.11116 2026-03-11 $\mathbb{R}$--trees and accessibility over arc-stabilisers
+2603.09640 2026-03-10 On the Maximal Size of Irredundant Generating Sets in Lie Groups and Algebraic Groups
+2603.09369 2026-03-10 On Zappa's question in the case of alternating groups
+2603.08452 2026-03-09 Cubic maps from the group of order $3$
+2603.04612 2026-03-04 Combinatorial Characterizations of Virtually Torsion-Free and Virtually Free Groups
+2603.04197 2026-03-04 Co-Hopfianity is not a profinite property
+2602.23819 2026-02-27 Parabolic subgroups and word problem in virtual Artin groups
+2602.20098 2026-02-23 Counting surface subgroups in cusped hyperbolic 3-manifolds
+2602.18027 2026-02-20 Refined conjugate generation in sporadic groups
+2602.17411 2026-02-19 Cohomological and quasi-isometric diversity of groups with property $R_\infty$
+2602.16472 2026-02-18 Fit systolic groups, exactly
+2602.16885 2026-02-18 Characters and $II_1$-Factor Representations of Full Groups of Cantor Minimal Systems
+2602.15518 2026-02-17 The space of marked Dyer systems, monotonicity, and continuity of growth rates
+2602.15497 2026-02-17 Polynomial-time isomorphism test for $k$-generated extensions of abelian groups
+2602.14902 2026-02-16 Galois automorphisms and blocks covering unipotent blocks
+2602.13428 2026-02-13 Branch iterated Galois groups with positive fixed-point proportion and positive Hausdorff dimension
+2602.12191 2026-02-12 The higher connectivity at infinity of mapping class groups
+2602.10707 2026-02-11 Non-orientable surfaces have stably unbounded homeomorphism group
+2602.10433 2026-02-11 Depth of free-by-cyclic groups
+2602.08875 2026-02-09 On medial Latin quandles and affine modules
+2602.09135 2026-02-09 Modular Functions and the Monstrous Exponents
+2602.03830 2026-02-03 Generation of Iterated Wreath Products Constructed from Almost Simple Groups
+2602.02032 2026-02-02 The Gill-Guillot commuting graph for sporadic and related groups
+2602.02885 2026-02-02 Obstruction theory and the complexity of counting group homomorphisms
+2601.22907 2026-01-30 Examples of finitely presented groups with strong fixed point properties and property (T)
+2601.22668 2026-01-30 Classification of horospherical invariant measures in higher rank: The Full Story
+2601.21834 2026-01-29 Reduction theorems for a conjecture on basis in source algebras of blocks of finite groups
+2601.20508 2026-01-28 On the orbital diameter of classical groups in standard action
+2601.19443 2026-01-27 On the maximal subgroups of almost simple and primitive perfect groups
+2601.16869 2026-01-23 Virtual retracts in groups acting on rooted trees
+2601.16650 2026-01-23 The probability of generating finite and profinite groups
+2601.16173 2026-01-22 Fixed-point proportion of geometric iterated Galois groups
+2601.15185 2026-01-21 The Zariski Topology on Homeomorphism groups
+2601.10969 2026-01-16 A classification of regular maps with Euler characteristic $-p^4$ for a prime $p\geq 5$
+2601.08423 2026-01-13 On simple groups definable in some valued fields
+2601.08053 2026-01-12 Conjugator Length in Finitely Presented Groups
+2601.03952 2026-01-07 Rigidity of Generalized Furstenberg Boundaries and Applications to Intermediate Crossed Products
+2601.03947 2026-01-07 Aperiodicity properties of automorphism groups of free products
+2601.01377 2026-01-04 On finite presentability of some partial Torelli subgroups of Aut(F_n)
+2601.00053 2025-12-31 Probabilistic Hanna Neumann Conjectures
+2512.24266 2025-12-30 On the word problem for just infinite groups
+2512.23674 2025-12-29 Groups with fast-growing conjugator length functions
+2601.01913 2025-12-29 Elementary abelian subgroups of classical groups of type $A$
+2512.22841 2025-12-28 Undecidability of epimorphisms onto products of hyperbolic groups
+2512.22456 2025-12-27 The Burness-Giudici Conjecture on Some Primitive Groups with Socle PSU(3,q)
+2512.22459 2025-12-27 The Burness-Giudici Conjecture on Primitive Groups with Socle PSU(3,q)
+2512.22461 2025-12-27 The Burness-Giudici Conjecture on Primitive Groups with Socle $Ree(q)$ and $Sz(q)$
+2601.00835 2025-12-26 On the Diophantine problem related to power circuits
+2512.21611 2025-12-25 On automorphism groups of half-arc-transitive tetravalent graphs
+2512.20596 2025-12-23 Elementwise conservative actions and new constructions of boomerang subgroups
+2512.19645 2025-12-22 Subgroups of Cyclically Amalgamated Free Products
+2512.18943 2025-12-22 Finitely presented simple groups with no piecewise projective actions
+2512.18042 2025-12-19 Problems on the conductor of finite group characters
+2512.15364 2025-12-17 Uniform spectral gaps, non-abelian Littlewood-Offord and anti-concentration for random walks
+2512.15591 2025-12-17 On right units of special inverse monoids
+2512.15375 2025-12-17 On quasimorphisms and distortion in homeomorphism groups
+2512.15243 2025-12-17 A reduction theorem for the blockwise Navarro Alperin weight conjecture via H-triples
+2512.14324 2025-12-16 Boundary actions of outer automorphism groups of Thompson-like groups
+2512.12966 2025-12-15 Determining subgroups via stationary measures
+2512.12589 2025-12-14 Automorphism groups of non-Archimedean groups
+2512.12256 2025-12-13 Procountable groups are not classifiable by countable structures
+2512.09180 2025-12-09 Stability, approximable quotients, and higher property (T)
+2512.09135 2025-12-09 A non-Hopfian ascending HNN-extension of a finitely presented Hopfian group
+2512.07035 2025-12-07 A toolbox for left-orders of low complexity
+2511.22322 2025-11-27 Comparison of addition and multiplication in a skew brace
+2511.21175 2025-11-26 The Pseudocentre of a Group (with an appendix by Anthony Genevois)
+2511.20786 2025-11-25 Polish full groups preserving an infinite measure
+2511.16959 2025-11-21 Generating the symmetric group by three prefix reversals
+2511.16403 2025-11-20 Realizing Gruenberg-Kegel graphs of $T$-solvable groups with structurally simplified extensions of $T$
+2511.16809 2025-11-20 Groups acting on horocyclic products
+2511.16583 2025-11-20 Finite simple groups have many classes of prime order elements
+2511.15277 2025-11-19 Non-closed subgroups of weakly branch groups
+2511.13303 2025-11-17 On the deep commuting graph of a finite group
+2511.12683 2025-11-16 Minimal generation of finite simple groups of Lie type by regular unipotent elements
+2511.11544 2025-11-14 The Number of Solvabilizers in Finite Groups
+2511.08705 2025-11-11 On a generalisation of Cameron's base size conjecture
+2511.07917 2025-11-11 Diagonal-preserving Isomorphisms of Algebras from Infinite Graphs
+2511.07018 2025-11-10 The growth of residually soluble groups
+2511.06586 2025-11-10 Surjunctivity does not characterize cosoficity of invariant random subgroups
+2511.05164 2025-11-07 Unisingular representations of rank 1 finite simple groups of Lie type
+2511.04411 2025-11-06 The Difference Subgroup Graph of a Finite Group
+2511.02459 2025-11-04 The word problem for the mapping class group in quasi-linear time
+2511.02138 2025-11-04 Coexact 1-Laplacian spectral gap and exponential growth of a group
+2511.01809 2025-11-03 The N-prime graph and the Subgroup Isomorphism Problem
+2511.01557 2025-11-03 Subnormalisers of semisimple elements in finite groups of Lie type
+2511.00897 2025-11-02 Methods of constructing spaces with non-trivial self covers
+2511.00364 2025-11-01 Small Cancellation for Random Branched Covers of Groups
+2511.00566 2025-11-01 Free inverse monoids are co-context-free
+2511.00394 2025-11-01 Classification and lattice properties of pronormal subgroups in PSL(2,q), J1, and Sz(q) for the specified values of q
+2511.00541 2025-11-01 A Group with Exactly One Noncommutator
+2510.26073 2025-10-30 The Wiegold problem and free products of left-orderable groups
+2510.24581 2025-10-28 Rigidity and flexibility results for groups with a common cocompact envelope
+2510.21979 2025-10-24 Criteria for Classifying Prime Graphs of PSL(2, q)-Solvable Groups
+2510.18073 2025-10-20 Enhanced power graphs of finite groups with cograph structure
+2510.14571 2025-10-16 Linearity criteria for automorphism groups of malabelian groups
+2510.13309 2025-10-15 Non-strong ergodicity of canonical actions of the Thompson groups
+2510.11336 2025-10-13 Asymptotically rigid mapping class groups III: Presentations and isomorphisms
+2510.10673 2025-10-12 The isomorphism problem for finitely generated bi-orderable groups
+2510.08223 2025-10-09 Irreducible restrictions of spin representations of symmetric and alternating groups
+2510.07541 2025-10-08 Strongly bounded generation in transformation groups
+2510.04497 2025-10-06 Kronecker Coefficients and Simultaneous Conjugacy Classes
+2510.03801 2025-10-04 HNN extensions of free groups with equal associated subgroups of finite index: polynomial time word problem
+2510.01952 2025-10-02 Infinitely presented simple groups separated by homological finiteness properties
+2509.26359 2025-09-30 Cubic Fourfolds with an Order-$7$ Automorphism
+2509.25118 2025-09-29 The Herzog-Schönheim conjecture for simple and symmetric groups
+2509.24480 2025-09-29 Magnus submonoids and membership problems in one-relator, surface and hyperbolic groups
+2509.21781 2025-09-26 On primitivity and reduction for half-flag-transitive block designs
+2509.21139 2025-09-25 Rigid automorphisms of linking systems of finite groups of Lie type
+2509.20035 2025-09-24 Limit groups with respect to Thompson's group $F$ and other hereditarily separating groups
+2509.20121 2025-09-24 Ample generics in automorphism groups of Boolean powers of simple Mal'cev algebras
+2509.19237 2025-09-23 On the resolvent degree of PSU(3,q)
+2509.17841 2025-09-22 Quasi-isometric Higman embeddings and the Dehn function
+2509.15351 2025-09-18 Diameter bounds for finite simple Lie algebras
+2509.12161 2025-09-15 A branch group with unsolvable conjugacy problem
+2509.09939 2025-09-12 Isoperimetric behavior of generalized Stallings-Bieri groups
+2509.09646 2025-09-11 Rigidifying simplicial complexes and realizing group actions
+2509.09186 2025-09-11 Ordered groups of formal series, and a conjugacy problem
+2509.09856 2025-09-11 On some algebraic and analytic properties of the finitely generated simple left orderable groups $G_ρ$
+2509.09788 2025-09-11 Embeddings into highly transitive and mixed identity free groups
+2509.09280 2025-09-11 Branch groups with many maximal subgroups
+2509.08576 2025-09-10 Normal subgroups of non-torsion multi-EGS groups
+2509.05798 2025-09-06 Non self-similar metabelian groups
+2509.05242 2025-09-05 The anabelian restricted Burnside problem
+2509.05524 2025-09-05 Semigroups, groups, and algebras of dynamical origin
+2509.05054 2025-09-05 Non-residually finite $\tilde{C}_2$-lattices
+2509.04238 2025-09-04 On automorphisms, quasimorphisms, and coarse automorphisms of acylindrically hyperbolic groups
+2509.03927 2025-09-04 Groups of finite type: classification and structural properties
+2509.03483 2025-09-03 On recognition of simple groups with disconnected prime graph by spectrum
+2509.02854 2025-09-02 Characters and the Generation of Sylow 3-Subgroups For Almost Simple Groups
+2509.02117 2025-09-02 A substitution lemma for multiple context-free languages
+2509.01037 2025-09-01 Factorization in Finitely-Presented Monoids
+2508.21264 2025-08-28 Asymptotically rigid mapping class groups of infinite graphs
+2508.20005 2025-08-27 Stabilized automorphism groups and full groups of odometers
+2508.20296 2025-08-27 Finite dimensional amenable groups
+2508.17392 2025-08-24 On $L^1$-approximation of groups
+2508.16452 2025-08-22 Residual finiteness properties of some of Halls groups
+2508.13443 2025-08-19 Suitable sets for topological groups revisited
+2508.12652 2025-08-18 Elusive groups from non-split extensions
+2508.11973 2025-08-16 A robust family of residually finite groups; spectra of residual finiteness growth, computability properties, and other applications (with an appendix by Arman Darbinyan and Emmanuel Rauzy)
+2508.09961 2025-08-13 The Sylow $p$-subgroups of the finite simple groups
+2508.08823 2025-08-12 Hard Instances of Discrete Logarithm Problem and Cryptographic Applications
+2508.08070 2025-08-11 Lie type quotients of the maximal unipotent subgroup of Kac-Moody groups of type $\mathrm{HB}_{2}^{(2)}$
+2508.08480 2025-08-11 Isometry groups of Polish ultrametric spaces
+2508.08003 2025-08-11 Counting Salem numbers arising from arithmetic hyperbolic orbifolds
+2508.06367 2025-08-08 Cosets of normal subgroups and union of two conjugacy classes
+2508.03056 2025-08-05 The symmetric groups $S_n, n\geq 4$, and finite non-abelian simple groups are not embeddable in any Riordan group
+2508.03479 2025-08-05 On the intersections of nilpotent subgroups in simple groups
+2508.03648 2025-08-05 Finite groups in which every proper characteristic subgroup is cyclic
+2508.02582 2025-08-04 Topological Full Groups of Irreducible Edge Shifts have Solvable Conjugacy Problem
+2508.01037 2025-08-01 The Order of the Monster Finite Simple Group
+2507.22507 2025-07-30 Weakly branch actions: first-order theory, rigidity and Boston's conjecture
+2507.21650 2025-07-29 Inductive Feit and Galois-McKay conditions for some small-rank simple groups of Lie Type
+2507.19927 2025-07-26 Benoist-Hulin groups
+2507.18821 2025-07-24 On Similarity Structure Groups and their W$^*$ and C$^*$-Algebras
+2507.17902 2025-07-23 On reducible Killing forms for groups of Lie type
+2507.17598 2025-07-23 Conjugacy in fibre products, distortion, and the geometry of cyclic subgroups
+2507.16677 2025-07-22 Random quotients preserve acylindrical and hierarchical hyperbolicity
+2507.16770 2025-07-22 On the Isoperimetric functions of a class of Artin Groups
+2507.15405 2025-07-21 On oriented $m$-semiregular representations of finite groups about valency three
+2507.16017 2025-07-21 Moduli spaces of flat Riemannian metrics on orbifolds
+2507.14551 2025-07-19 Multi-virtual braid groups
+2507.13701 2025-07-18 Power quotients of surface groups and mapping class groups
+2507.13203 2025-07-17 On finite extensions of lamplighter groups
+2507.12676 2025-07-16 Spaces of left-preorders on free products
+2507.09784 2025-07-13 On bireversible automata and commensurators of groups in automorphisms of their Cayley graphs
+2507.07566 2025-07-10 Complete classification of the Dehn functions of Bestvina-Brady groups
+2507.06953 2025-07-09 On the Borel complexity of the space of left-orderings of nilpotent groups
+2507.05033 2025-07-07 Profinite geometric iterated monodromy groups of postcritically finite polynomials in degree 3
+2507.05087 2025-07-07 On the conjugacy problem for subdirect products of hyperbolic groups
+2507.04347 2025-07-06 An explicit algorithm for the Higman Embedding Theorem
+2507.04120 2025-07-05 On commensurators of free groups and free pro-p groups
+2507.03100 2025-07-03 On groups with square-free gcd of character degree and codegree
+2507.01839 2025-07-02 On the proofs of Leighton's Graph Covering Theorem, a notion dual to commensurability, and normal virtual retracts
+2507.00346 2025-07-01 The strong convergence phenomenon
+2506.24029 2025-06-30 The regular representation of Neretin groups is factorial
+2506.21163 2025-06-26 Finite groups with nearly half as many cyclic subgroups as elements
+2506.19758 2025-06-24 The nilpotent graph of a finite0-dimensional Lie algebra
+2506.19216 2025-06-24 Perturbation Effects on Word Lengths in Three-Reflection Symmetric Presentations of Dihedral Groups
+2506.19105 2025-06-23 Weakly $G$-slim complexes and the non-positive immersion property for generalized Wirtinger presentations
+2506.19195 2025-06-23 Stallings' Group is Simply Connected at Infinity
+2506.16789 2025-06-20 RAAGedy right-angled Coxeter groups
+2506.17401 2025-06-20 Notes on sum-free sets in abelian groups
+2506.14029 2025-06-16 Non-Realizability of the Poisson Boundary
+2506.12442 2025-06-14 Explicit construction of benign subgroup for Higman's reversing operation
+2506.10464 2025-06-12 Groups represented by incidence geometries
+2506.08755 2025-06-10 Infinite groups from the profinite point of view
+2506.01235 2025-06-02 The lengths of conjugators in the model filiform groups
+2506.02319 2025-06-02 Finiteness properties of stabilisers of oligomorphic actions
+2506.00948 2025-06-01 The average-case complexity of the Word Problem for groups of matrices over $\mathbb{Z}$ is linear
+2505.21299 2025-05-27 On Distinguishing Graphs and Cost Number using Automorphism Representations
+2505.20057 2025-05-26 On groups with EDT0L word problem
+2505.20462 2025-05-26 Bounded cohomology, quotient extensions, and hierarchical hyperbolicity
+2505.19649 2025-05-26 A just-infinite iterated monodromy group without the congruence subgroup property
+2505.14602 2025-05-20 The Lamplighter Group is Not Semistable at Infinity
+2505.13347 2025-05-19 Groups of $\mathrm{I}_G$-type
+2504.20455 2025-04-29 Bi-orderability and generalized torsion elements from the perspective of profinite properties
+2504.17513 2025-04-24 Uncountably many $2$-spherical groups of Kac-Moody type of rank $3$ over $\mathbb{F}_2$
+2504.12707 2025-04-17 On what finitely generated (left-orderable) simple groups can know about their subgroups
+2504.12002 2025-04-16 Property $R_{\infty}$ for groups with infinitely many ends
+2504.11948 2025-04-16 On finitely generated Hausdorff spectra of groups acting on rooted trees
+2504.12409 2025-04-16 Bogomolov multipliers of word labelled oriented graph groups
+2504.11048 2025-04-15 Freeness Obstructions for Self-Similar Groups Acting on Rooted Trees
+2504.08084 2025-04-10 Generalized torsion in amalgams
+2504.06447 2025-04-08 Poisson Manifolds of Compact Types with an Appendix by Joshua Mundinger
+2504.05547 2025-04-07 Group Order is in QCMA
+2504.03535 2025-04-04 On the commensurating full group
+2504.01494 2025-04-02 Zariski-Closures of Linear Reflection Groups
+2504.01363 2025-04-02 Embedding Higman-Thompson groups of unfolding trees into the Leavitt path algebras
+2503.23845 2025-03-31 On the depth of subgroups of simple groups
+2503.21882 2025-03-27 Boone-Higman embeddings of $\mathrm{Aut}(F_n)$ and mapping class groups of punctured surfaces
+2503.18274 2025-03-24 Problem list on Foliations and Diffeomorphism groups
+2503.15459 2025-03-19 Quasi-convex Splittings of Acylindrical Graphs of Locally Finite-Height Groups
+2503.12656 2025-03-16 Cocompact Fuchsian groups with a modular embedding
+2503.11594 2025-03-14 Orderable Thompson-like groups arising from Ore categories
+2503.13523 2025-03-14 Just infinite quotients of finitely generated subgroups of $PL^+[0,1]$
+2503.05572 2025-03-07 Word problems and embedding-obstructions in cellular automata groups on groups
+2502.21177 2025-02-28 Problems on handlebody groups
+2503.00185 2025-02-28 On the fixed-point proportion of self-similar groups
+2502.17917 2025-02-25 Flat braid groups, right-angled Artin groups, and commensurability
+2502.15571 2025-02-21 Coarse cops and robber in graphs and groups
+2502.14329 2025-02-20 On linguistic subsets of groups and monoids
+2502.14805 2025-02-20 New classes of IYB groups
+2502.13726 2025-02-19 Subgroup Conjugacy Separability in Residually Free Groups
+2502.11166 2025-02-16 Two generalisations of sharp k-transitivity
+2502.09113 2025-02-13 An algorithm to compute the Hausdorff dimension of regular branch groups
+2502.04865 2025-02-07 On the submonoid membership problem for HNN extensions of free groups
+2502.04590 2025-02-07 Central extensions and almost representations
+2502.02039 2025-02-04 Boundary actions of Bass-Serre Trees and the applications to $C^*$-algebras
+2501.18248 2025-01-30 Three articles on one-relator groups by Wilhelm Magnus
+2501.16270 2025-01-27 Combinatorics of affine cactus groups
+2501.13626 2025-01-23 Statistically characterized subgroups related to some non-arithmetic sequence of integers II (a quest for countable subgroups)
+2501.10259 2025-01-17 On epiC groups over language class C
+2501.07791 2025-01-14 Residually finite amenable groups that are not Hilbert-Schmidt stable
+2501.07646 2025-01-13 On zero-divisors and units in group rings of torsion-free CAT$(0)$ groups
+2501.05283 2025-01-09 On the complexity of epimorphism testing with virtually abelian targets
+2501.04469 2025-01-08 Finite non-parabolic subgroups of relatively hyperbolic groups
+2501.04112 2025-01-07 A Class of Non-Contracting Branch Groups with Non-Torsion Rigid Kernels
+2501.02591 2025-01-05 Reidemeister spectra of free nilpotent groups and plethysms of Schur functions
+2501.01688 2025-01-03 Explicit polynomial bounds on Dehn functions of subgroups of hyperbolic groups
+2501.00908 2025-01-01 Locally compact piecewise full groups of homeomorphisms

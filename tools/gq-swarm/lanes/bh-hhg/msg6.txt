@@ -1,0 +1,5 @@
+Soften the mechanism sentence in BBCMP Question 1.16
+
+The left-to-right carry is how the known examples work. It is not a proved
+necessary condition, and the Baumslag–Solitar forms use a bounded prefix
+rewrite instead.

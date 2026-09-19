@@ -1,0 +1,10 @@
+Core-marked gluing: subgroups with finite core and full core-edge stabilizers inherit rigid relative seeds
+
+Generalizes the vertex-marked gluing (a single sink vertex) to an S-invariant core subtree with finite
+quotient. Vertex pieces carry their relative seeds, core edges are read as right cosets (full edge
+stabilizers), and out vertices point to the core. Rigidity comes from directed implications only: pointers
+monotone toward the core, and core atoms shared across edges. Covers Kurosh subgroups of free products with
+finite core; Theorem K of d13f60e6f is the star case. The residual obstruction without full edges is the
+edge twist.
+
+Lane bh-invent-03 (seed-tower lead); lane proof, unreviewed. Credits: Bass-Serre, Kurosh, Stallings.

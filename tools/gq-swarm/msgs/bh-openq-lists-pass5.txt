@@ -1,0 +1,10 @@
+Kourovka 21.41 and the Grigorchuk RF-host question: status, priority and new open node
+
+- Grigorchuk group in an fp residually finite group: not a named problem (Kourovka v46, Grigorchuk's survey
+  and BGS were searched in full). Recorded as the first test case of Rauzy's printed sufficiency question
+  (arXiv:2002.02540).
+- New OPEN node for Kourovka 21.41 (Dantas-Sidki). Kochloukova-Luiz conjecture a negative answer. Baumslag's
+  group is excluded, and a lane lemma (Z wr Z is linear over no global field) excludes affine witnesses.
+- Priority: Kochloukova-Luiz arXiv:2509.05798 already prove that Baumslag's group is not self-similar. The
+  09-12 node now cites them.
+- Artifact section H: arXiv:2607.17477 claims eight Kourovka problems, none of them ours.

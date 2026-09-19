@@ -1,0 +1,8 @@
+P2 prime a: with exact gluing it implies E3 prime for every topologically free X; route consumes E3 prime; tree compression attempt and its gap
+
+Attempt 4 on rigid-sfts-give-fp-v-boolean-power-crossed-products:
+- With K = 1, N_X finitely presented gives F(T_X) finitely presented (E3 prime) for every topologically free X.
+- E3 prime, not P2 prime a, is what the group route consumes. It is proved for cocompact tree end-shift hosts, which corrects the synthesis claim that P2 prime a is supplied by the master-route object.
+- E3 prime does not formally give P2 prime a.
+- The tree compression chain reduces far-site relations to bounded site cylinders but stops at a conjugate-closure gap.
+- The work split with bh-one-relator is recorded.

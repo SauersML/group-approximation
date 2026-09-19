@@ -1,0 +1,7 @@
+Apply referee-b fixes to the Kazhdan almost-V nodes
+
+Record the referee-b PASS (f6b4126d9). W1: the finite-Kazhdan theorem is a
+pointwise variant of the Corollary 2.10 germ hypothesis, not a restriction of
+it; say "this regime". W2: pin the (T) sources for Aut(F_n) and note Out(F_n)
+inherits (T) as a quotient. W3: cite the periodic-point decomposition that
+identifies the combinatorial and topological attracting sets.

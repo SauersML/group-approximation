@@ -1,0 +1,3 @@
+Apply the remaining referee-a nit to the fp germ-group proof
+
+Step 3: the relator prefix acts as a permutation of C.

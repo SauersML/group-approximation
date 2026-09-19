@@ -1,0 +1,5 @@
+undef $/; $_ = <STDIN>;
+s/The K-theoretic model is `O_∞ ⊗ UHF_Q`:/The K-theoretic model, heuristically, is `O_∞ ⊗ UHF_Q`:/;
+s/- \*\*Not a finite graph algebra over a finite base\.\*\* For a finite graph `E` over\n  coefficients with finitely generated `K_0`, the group `coker\(1 − A\^t\)` is finitely\n  generated,/- **Not a finite graph algebra over a field.** For a finite graph `E` and coefficients `k`\n  regular supercoherent, for example a field, Ara--Brustenga--Cortiñas (Thm 7.6) give\n  `K_0(L_k(E)) = coker(1 − A^t)` on `K_0(k)^(E^0)`. That group is finitely generated when\n  `K_0(k)` is,/;
+s/  - Example: `A = \[\[3,1\],\[2,2\]\]` gives `K_0 ≅ Z` with `\[1\]` a generator\./  - Example: `A = [[3,1],[2,2]]`, with the convention `A_ij = #` edges `i -> j`, gives\n    `K_0 ≅ Z` with `[1]` a generator. The relators are `(−2,−1)` twice, the cokernel map is\n    `(a,b) ↦ a − 2b`, and `[1] ↦ −1`. With the transposed convention the image is\n    `Z(1,1)` and `[1] = 0` (referee b, W3). The convention matters here, even though it\n    does not affect determinants or Smith invariants./;
+print;

@@ -1,0 +1,10 @@
+Restore the non-faithful finite presentation claim and record kernel removal by enlarging the action
+
+Give abstract-btb-pairs-fp-and-relatively-simple a second derivation. Its
+finite-presentation item now comes from the colored-Stein-complex criterion,
+which avoids the gap in the published proof. Note that the simple-quotient
+gate is unaffected. On the MIF-envelope question add Attempt 11: by the new
+finiteness criterion, kernel removal by enlarging the action amounts to a
+finitely generated subgroup with finitely many double cosets whose core
+misses the kernel. The abstract group's invisible coordinates are the free
+orbit, which fails only that double-coset clause.

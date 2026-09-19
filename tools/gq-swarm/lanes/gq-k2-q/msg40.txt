@@ -1,0 +1,7 @@
+gq-k2-q: park the central-deformation host with its three remaining needs
+
+The commutative lamp base is singular: A^(j,k) = Z[u,s_j,s_k]/(pi_j s_j -
+pi_k s_k) has a mixed-characteristic conifold point over each prime q | (k-j)l,
+so vanishing via regularity is unavailable; detection of K_2(B, B_+) by finite
+quotients is not decided. Referee nits on Attempts 4-5 applied (I_rf(T_p) =
+I_rf(B) exactly).

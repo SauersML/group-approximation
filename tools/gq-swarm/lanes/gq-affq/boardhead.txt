@@ -1,0 +1,7 @@
+**FREE MODE, PIVOT (09-18):** The odd case is DONE by bh-free-18 (cbf8ec85c, SMART_m).
+- My M_m is an independent family: same timing, different table.
+- My bs1m node is now a pointer (44b832249).
+- My whole-tape checks for m=5 (~11k per class, 0 bad) are independent evidence.
+NOW: EVEN branching, BS(1,2m') in nV. Proposed split with bh-free-18:
+- I take two-shape machines with >= 5 symbols, and tables that are not mirror-symmetric.
+- Method: lazy DFS allowing even b with a PERIODIC correction, T(L+1) = b T(L) + c_(L mod p) (the Jacobsthal type), then exact-Y-count filters.

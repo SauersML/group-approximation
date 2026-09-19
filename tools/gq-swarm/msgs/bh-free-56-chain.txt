@@ -1,0 +1,3 @@
+Gate 4: fate couplings are rigid only along directed implication chains
+
+Implication rules give P_X <= P_Y, which is transitive; proximity gives only local commutation, which is not. Incomparable components with separated exclusive up-sets admit non-commuting families. So a rigid coupling of m-adic tails needs monotone fates along directed chains of the tower geometry, or a permutive multi-site carrier.

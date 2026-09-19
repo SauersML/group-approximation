@@ -1,0 +1,8 @@
+gq-k2-q: referee nits on the Euler lamplighter and ascending-HNN nodes
+
+Euler lamplighter tree action: record the gq-referee-a PASS, add item 5
+(level images are l-groups, via the stability group of the E-series), spell
+out faithfulness and the measure identification. Finite-state companion:
+automaton groups (H1), roots need q with no prime factor <= d and l not
+dividing q (H2), heuristic relocated to carries (H3). Ascending HNN of free
+groups: record both PASS reports, cite Kapovich-Myasnikov for (St), N1-N3.

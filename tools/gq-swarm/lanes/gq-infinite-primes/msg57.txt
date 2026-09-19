@@ -1,0 +1,8 @@
+Surjective K_2 stability implies injective for rings with a Leavitt pair
+
+Lane gq-infinite-primes. An explicit unitary u = eee* + fe*f* + eff*f* agrees
+with e on ee*R, so the isometric twist Sigma^(e) equals the automorphism
+Sigma^(u) on the e-corner subgroup H_(ee*); hence the stabilization kernel U_N
+meets H_(ee*) and H_(ff*) trivially. Surjective stability at N forces K_2(N)
+into H_(ee*), hence U_N = 1. For R_L: K_2(N) cap H_(ee*) = the symbol section,
+and (i), surjective stability and K_2(N) in H_(ee*) are equivalent.

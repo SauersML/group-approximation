@@ -1,0 +1,13 @@
+Free-shift Houghton-like envelopes are not finitely presented; the germ lifting is refuted
+
+New ESTABLISHED lane proof (free-shift-houghton-like-envelopes-are-not-fp):
+- If P*<s> -> R_nu is injective, every relation of H_n(E_nu(P)) survives every perturbation of nu that fixes a
+  finite prescription, while the conjugation relations of rho on transpositions do not. So H_n(E_nu(P)) is not
+  finitely presented, for every n >= 1.
+- In general, finite presentation forces finitely many relations to determine nu up to right translation.
+- P = Z, n = 3 refutes houghton-like-envelopes-lift-finite-presentation-from-germs: the germ group is finitely
+  presented, the group is not.
+
+Corrects the same-day overclaims on the germ node, the decidable-input gate, the root route and the two
+Mallery-Zaremsky cross-references. Marks the generic-enumeration route dead. Records referee a's PASS (items 1-4)
+with W1 (item 5 conditional) and applies N1.

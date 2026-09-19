@@ -1,0 +1,7 @@
+FP linear hosts of SL_X(Q) need quotients with infinitely generated H_3
+
+Lyndon-Hochschild-Serre: for perfect N normal in Gamma, H_2(N)_(Gamma/N) modulo a d_3
+image from H_3(Gamma/N) embeds in H_2(Gamma). With N = SL_X(Q), H_2(N) = K_2(Q) and
+weighted permutations acting trivially on it, a finitely presented Gamma between SL_X(Q)
+and SL_X(Q).Mon(X) has Gamma/SL_X(Q) with infinitely generated H_3 and is non-split.
+Lane proof, not independently reviewed; lane gq-deep-ring-2.

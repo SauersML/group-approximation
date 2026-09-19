@@ -1,0 +1,5 @@
+Kourovka 21.75: undo the crossed reconciliation and make this node the primary claim again
+
+bh-artin (bd6ea68dc) and this lane (1c14dd39b) each marked their own node as the second
+proof of the other's. bh-artin's node already names this one as primary, so this node goes
+back to kind: claim and records bh-artin's node as the independent second proof.

@@ -1,0 +1,3 @@
+Referee PASS for the negative answer to FFWZ Question 5.9
+
+Adversarial check of the three nodes landed at 25056ab91. The abstract Roever-Nekrashevych finite presentation is self-contained and never uses faithfulness. Bartholdi-Mitrofanov Theorem A'' was verified verbatim at source, and FFWZ Q5.9, Theorem A and Lemma 5.2 were quoted from the arXiv TeX. Part 2 stays conditional on finite presentation of SV_P (FFWZ Theorem B or the repo route). Prior and related work (Scott, Witzel-Zaremsky cloning systems, Skipper-Zaremsky) is credited.

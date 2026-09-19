@@ -1,0 +1,6 @@
+Twisted genuine shell actions pass both germ gates; automorphism twists force finitely many orbits
+
+bh-shell-universal (free mode). If the shift twists a genuine shell action by an injective
+endomorphism phi, the near group is P *_phi and the window gate holds with N = 0, so the
+germ group is f.p. for f.p. P. For automorphism twists, all but finitely many points lie in
+finitely many infinite orbits. Lane proofs, not reviewed; no priority claimed.

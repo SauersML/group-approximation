@@ -1,0 +1,10 @@
+Put every virtually torsion-free tree-product lattice in the type (A) class via boundary k-graphs
+
+A torsion-free lattice on a product of thick leafless trees acts on its product
+of boundaries through its cube k-graph. The k-graph's N-th power, with a phase
+coordinate absorbing the Busemann lag mod N, has two loops of every colour at
+every vertex. So the lattice embeds in an F_infinity topological full group, by
+Li's theorem. Stabilizing by the Cuntz groupoid kills H_0, and Matui's comparison
+theorem then makes the action on clopen sets of type (A). Hence every virtually
+torsion-free cocompact lattice on finitely many trees lies in B_A. Lane proofs,
+not reviewed (Attempt 7).

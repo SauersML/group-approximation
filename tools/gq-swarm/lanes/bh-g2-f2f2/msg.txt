@@ -1,0 +1,10 @@
+Coset shifts: quantum rigidity descends along double cosets; two regimes where freeness dies
+
+G2(c) lane (F_2 x F_2). For subshifts of right-Delta-invariant configurations,
+quantum families live on Lambda/Delta and commute on short pair types for free,
+and rigidity follows from any determinism descent over the double-coset space.
+Finite double-coset spaces make every coset shift rigid (algebra twin of
+Cornulier's wreath criterion), but set-transitive actions put constants in every
+orbit closure. Over F_2 x F_2 acting two-sidedly on F_2, conjugate-short pairs
+commute for free, yet any local cyclic-length descent forces a finite subshift.
+Record the open shortcut and the F_2 x F_2 target with this attempt.

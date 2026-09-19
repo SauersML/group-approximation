@@ -1,0 +1,8 @@
+LANDED 6bd9f1601 on origin/main (parent fd4cdebdd):
+ .../gq-bh-bh-free-02-check-mark-layers.md          | 96 ++++++++++++++++++++++
+ ...mple-group-with-pspace-complete-word-problem.md |  6 ++
+ ...deal-membership-is-decided-along-paths-proof.md | 27 ++++++
+ ...lift-ideal-membership-is-decided-along-paths.md | 47 +++++++++++
+ ...ion-check-mark-group-is-lift-presented-proof.md | 95 +++++++++++++++++++++
+ ...iguration-check-mark-group-is-lift-presented.md | 63 ++++++++++++++
+ 6 files changed, 334 insertions(+)

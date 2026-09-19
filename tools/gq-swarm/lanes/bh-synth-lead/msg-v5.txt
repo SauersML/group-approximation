@@ -1,0 +1,5 @@
+Synthesis v5: topological freeness merges E1 and E2; the crux is finiteness at infinite emitters
+
+v5 folds in every landing since v4. Freeness was never needed (topological freeness plus torsion-free isotropy), so existence and rigidity merge into one object. Compression and fp-certification make rigidity cheap over non-amenable groups. Kazhdan simple inputs cannot act through tree or building geometry, so hard inputs must scale or sit at an infinite emitter, which is where Track A (compression codings) and the new stabilizer-engine track meet. The ring route needs no P2-prime; on the group route P2-prime splits into rigidity plus dynamics-free exactness. The top gate is finite presentation of Reid's group (MathOverflow 339541).
+
+Lesson for general BH: rigidity is cheap and programmability is the crux; every hard input must sit at an infinite emitter or scale, so the first finiteness theorem at an infinite emitter decides the next step.

@@ -13,3 +13,47 @@ Also: Deligne node item 4 is now cited. Lavrenov 1405.4296v2 (Main Thm: central 
 **Landed 74ebc36f8:** `deterministic-extensions-of-rigid-sfts-are-rigid` (+ proof). Finite-fibre layers transported deterministically along a monoid-generating direction set inherit rigidity (constancy, copy, finite-group cocycle layers). So G2 lives only in the non-deterministic layers (hierarchical skeleton over H, input layer).
 **Note for G3g lanes (analysis, not a claim):** the ring-side rigidity proofs (determinism propagation) use bilinearity: "commutes with generators ⇒ commutes with the generated algebra". The group-side analogue of "E_a(z), E_b(z') commute" is a joint refinement of two V-valued conditioned families, not commutation of group elements. Pairwise joint refinability does not obviously give triple refinability in a group, so P2′ (rigid ⇒ A(T) fp) is not reachable by linearization; it likely needs the geometric (Brown) route, and linear quantum rigidity may be strictly weaker than what the group side needs.
 Status: finished (one-shot fork).
+**Resumed after the 14:15 restart (P2′a / transport assignment).** Recovery: nothing unlanded (all work files equal main; the stale deligne-lattice-satisfies-boone-higman copy is left alone, since main's version is newer).
+**Landed 4a734659e:** `extension-rigidity-is-base-centrality-plus-pointwise-rigidity` (+ `extension-rigidity-localization-proof`). For every SFT extension over every fg group, on W_0 of any dimension: rigid ⟺ (C) (base idempotents central in every family) ∧ relative rigidity at each base point. Consequences:
+- The Busemann transplant reduction holds on all W_0, not only finite-dimensional ones, so Y_Δ is rigid ⟺ (C), granting bh-invent-04's step-2 sketch.
+- The ABHT shift is rigid ⟺ (C) ∧ relative rigidity at the flow points.
+**Not reached:** group-side P2′ transport (fp of F(G_V × Λ⋉X) along products and deterministic extensions). Finite-to-one extensions need not be clopen reductions of skew products, so no direct transport. The group-side P2′a (Ñ → N_X injective) is also untouched.
+**Next:** attack (C) itself.
+- Test case: fibre products Y × Z of two rigid SFTs over the SAME group. Is rigidity closed under them? This is the cleanest (C) instance; the product rules F_Y ∪ F_Z only mix (w)- and (z)-steps.
+- For transplants: a mechanism making germ idempotents at v central against tiles at far u.
+Status: finished (one-shot fork).
+**Landed 34f57977b:** `quantum-rigidity-is-not-closed-under-fibre-products` (+ `fibre-product-rigidity-kill-and-transport-proof`).
+- Kill: Ledrappier × its mirror image over Z² is not rigid (antipodal walls), while each factor is rigid. So (C) fails although the fibre is rigid at every base point.
+- Positive side: a site transport closure (Z-steps and Y-steps) certifies (C) for fibre products over any group. In the example it is blocked along e_1.
+- Design rule: all layers need a common open determinism cone.
+**Next:** a cylinder-transport closure for general extensions (bh-invent-04's Step 4 abstracted, with base cylinders in place of sites). Then audit the master-route simulation layers (skeleton, data, computation on Λ₁×Λ₁) for opposite one-sided freedoms.
+Status: finished (one-shot fork).
+**Landed db6f1ea68:** three nodes.
+- `cross-layer-separable-modifications-kill-quantum-rigidity`. Any group, any SFT: a fibre product is non-rigid when some layer's modification sets are separable by translation. Over Z^d: antipodal half-space freedoms are fatal, non-antipodal ones never are.
+- `cylinder-transport-closure-certifies-centrality`. The abstract (T0)–(T2) closure. Instances: deterministic extensions, fibre products, bh-invent-04's Ã₂ and tree transplants.
+- Correction of 34f57977b: the "common open determinism cone" rule is withdrawn as false.
+**Audit:**
+- Relative seeds (5deee01840): no clash; exclusivity atoms give a third source of (C).
+- Square simulations: input layer safe (slabs cross). Risk: a skeleton with several infinite zones plus irreversible computation gives separable ambiguities. Fix: one infinite zone per point, or nested zones; align time arrows; check pairwise inseparability first.
+**Next:** apply the inseparability check to a concrete DRS/Labbé skeleton candidate (bh-g2-labbe) before any quantum-family work.
+Status: finished (one-shot fork).
+**Landed 514e2f77c:** `crossing-wire-shifts-pass-the-separability-test`.
+- Crossing Lemma (proved): two modifications that change a common macrotile's type have intersecting difference sets.
+- Audit: the crossing-wire tiles, the SW variant and its transplants pass. No clash found.
+- One open check on the minimal version: side components added for minimality must enter the crossing box. Noted on bh-g2-fixedpoint-a's board.
+Status: finished (one-shot fork).
+**Landed c4803daa3:** minimal DR version (49939b957a) checked. No component bypasses the crossing box, so it passes the separability test. Refinement: crossing is needed only among a determining set of sides.
+**Waiting on:** the coupled (★′) lift from bh-g1-simulation and bh-g1-bss. Audit its cross-plane transports for separable freedoms as soon as it lands.
+Status: finished (one-shot fork).
+**Landed f44f9e3be:** `tree-product-transplants-pass-the-separability-test`. The F₂×F₂ transplant passes: end changes give Busemann-surjective slabs, and fibre pairs reduce to Z². One check stays open for Ã₂ (Busemann image of chamber-change germ sets); noted on bh-invent-04's board.
+**Waiting on:** whichever new G1 design bh-g1-simulation builds, (a) freedom localized at an input defect or (b) a skeleton varying along Λ₀. Audit it when it lands. Warning for (a): a localized (bounded) defect freedom is a finite modification. In a minimal SFT, a single finite modification already kills rigidity (existing theorem, over every group). So (a) must keep the defect freedom unbounded, or confine it to a non-minimal part.
+Status: finished (one-shot fork).
+**Landed 4febaf392:** `building-transplants-pass-the-separability-test`. The Ã₂ check is closed: a chamber change moves the germ on a whole apartment, which is Busemann-surjective. Every transplant on main passes the separability test exactly when its fibre does.
+**Waiting on:** bh-g1-simulation's option (b), a skeleton varying along Λ₀. As of now it has not been posted on its board or on main; its draft `plane-local-floating-content-kills-quantum-rigidity` is unlanded. Audit the design when it lands.
+Status: finished (one-shot fork).
+**Landed fe9b06f50:** `rigid-seed-constructions-pass-the-separability-test`.
+- Proved: wall seeds pass (chain orientations switch once), and products preserve passing.
+- Audit: relative-seed and Kurosh gluings pass, and building seeds (Ã₂, C̃₂) show no separable freedom in apartments.
+- Flagged: wall strata with lines of opposite type, the only configuration left to settle.
+**Next:** settle that Ã₂/C̃₂ configuration (a wall-stratum field whose vertex at infinity changes to one whose wall line shares the opposite ray).
+Status: finished (one-shot fork).

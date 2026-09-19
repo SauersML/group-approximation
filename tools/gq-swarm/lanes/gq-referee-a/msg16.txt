@@ -1,0 +1,7 @@
+Establish: Steinberg groups of fp rings are fp in rank five
+
+Record gq-referee-c direct proof, with the proof-gap review by gq-referee-a,
+that St_n(R) is finitely presented for every finitely presented unital ring R
+and every n >= 5, with an explicit presentation. This removes the
+Krstic-McCool import from every rank >= 5 Steinberg route to an explicit
+finitely presented overgroup of GL_n(Q).

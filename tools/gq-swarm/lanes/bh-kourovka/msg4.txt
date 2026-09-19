@@ -1,0 +1,5 @@
+Kourovka 17.57: CT(Z) normalizers are 2- and 3-regular; Out(CT(Z)) = C_2 modulo Bell's theorem
+
+Every homeomorphism of the profinite integers normalizing CT(Z) and fixing N_0 restricts to a bijection Phi of N_0 with Phi(bk+e) = beta(k)Phi(k) + alpha(k), where beta and alpha are periodic, for b = 2 and 3. This comes from conjugating the dilation elements z -> bz+e, whose conjugates have finitely many canonical pieces. So Phi is 2- and 3-regular.
+
+Bell's Cobham-type theorem (recalled, not read at source; the SLC PDF is walled) makes Phi a quasi-polynomial. Bijectivity then forces an affine class, so phi is affine on a box and the reduction node gives Out(CT(Z)) = C_2. Lane proof, conditional on the cited theorem.

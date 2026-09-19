@@ -1,0 +1,11 @@
+GroupApproximation/BHPalomar/GraphProducts/Embedding.lean
+GroupApproximation/BHPalomar/GraphProducts/FreeProductMap.lean
+GroupApproximation/BHPalomar/GraphProducts/Insert.lean
+GroupApproximation/BHPalomar/GraphProducts/Main.lean
+GroupApproximation/BHPalomar/GraphProducts/ProductClosure.lean
+GroupApproximation/BHPalomar/GraphProducts/ProductInput.lean
+GroupApproximation/BHPalomar/GraphProducts/Reduction.lean
+GroupApproximation/BHPalomar/GraphProducts/Restrict.lean
+GroupApproximation/BHPalomar/GraphProducts/Semidirect.lean
+GroupApproximation/BHPalomar/GraphProducts/Statement.lean
+GroupApproximation/BHPalomar/GraphProducts/Twist.lean

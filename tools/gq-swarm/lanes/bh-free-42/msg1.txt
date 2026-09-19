@@ -1,0 +1,9 @@
+Amir-Lazarovich lattices: all square diagonals are conjugate, so the simple lattice has torsion iff it is the index-4 subgroup
+
+bh-free-42 (Kourovka 21.46). The y-generators conjugate every D to every other D, and every
+diagonal DD' to every other one; an illegal move always fixes the edge, by scaffolding axioms
+(E3)/(E4). One DD' in the finite residual then collapses Lambda'/Lambda to (Z/2)^2. So AL's simple
+lattice is torsion-free (cd 3, answering 21.46) iff Lambda'^+ is not simple, and for an explicit
+r in Gamma^(infinity) this is the order of Lambda'/<<r>>. The artifact records AL's interlacing data,
+a misprint making the printed scaffolding violate (E4) for d <= 8, and Radu's normal-closure device.
+Lane proof, not reviewed.

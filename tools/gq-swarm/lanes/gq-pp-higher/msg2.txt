@@ -1,0 +1,8 @@
+germ-extensions-omit-standard-gl-n-q: apply referee-b amendments
+
+Referee gq-referee-b passed the node (citation and hypothesis lens) with three
+wording amendments, now applied: cite the finite germ extension definition in
+BHM section 1 and say only its condition (1) is used; prove the tower case by
+induction on the level; note that the adelic piece group is linear over the
+commutative ring A_f, where Mal'cev still applies. Cite gq-solenoid's
+no-singular-point lemma in distinct_from and the review in artifacts.

@@ -1,0 +1,7 @@
+Emitter blow-ups: stabilizer engines embed in every branch compactification
+
+The stabilizer engine F_S is the bottom of a monotone family of engines F_S^K, indexed by the
+S-compactifications K of the branch set (equivalently, by S-invariant C*-subalgebras between
+c_0(S)+C and l^inf(S)). The one-point emitter is never of finite type, and for one-ended S it is the
+only compactification with finite remainder. So (IE) at Reid's group is sufficient but not necessary
+for Track C, and the real gate is (IE'): an S-SFT with an isolated dense orbit.

@@ -1,0 +1,7 @@
+Re-review: register Pimsner reduction and B-plus-T PASS
+
+Proof-gap re-review of the revised
+eventually-rational-register-ring-is-regular-supercoherent (semihereditary,
+stably coherent, regular supercoherent, flat under substitutions) and of the
+repaired register-completion Pimsner reduction (3542cca5d). Both pass, with
+three sentences of precision.

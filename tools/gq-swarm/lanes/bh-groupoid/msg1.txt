@@ -1,0 +1,13 @@
+Prove by sector geometry that vertex-free Ã2 groups embed in their Robertson–Steger 2-graph full groups, and bound the word problem of finite k-graph full groups
+
+- a2-group-embeds-in-rs-two-graph-geometric-proof (new route): each element acts on the
+  boundary by finitely many cylinder exchanges, using only Robertson–Steger's sector lemmas
+  (oalpha, c1, c2, c3, 9B, read at source) and (H1); faithfulness from thickness. No phi,
+  simplicity, (H2)/(H3), Kumjian–Pask or Renault, so exotic buildings are covered.
+- a2-group-embeds-in-full-group-of-its-rs-two-graph: OPEN -> ESTABLISHED (lane proof, unreviewed).
+- finite-k-graph-full-groups-have-exponential-word-problem (new claim): uniform
+  single-exponential word problem for finite aperiodic k-graph full groups of every rank, so no
+  such host class (nV, Li's F_infinity hosts) is a universal Boone–Higman container; the Kazhdan
+  obstruction of rank one fails in rank two.
+- research/artifacts/gq-bh-bh-groupoid-frontier.md: exact failing hypothesis, the coefficient-group
+  open form, and the remaining gates of the Ã2 route (finite primitivity test for CMSZ PG(2,2)).

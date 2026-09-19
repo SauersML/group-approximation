@@ -1,0 +1,6 @@
+Pose the nilpotent-tower form of virtual splitting of Aut(F_n) to Out(F_n)
+
+New OPEN node: every nilpotent quotient E_c of the extension splits over a
+finite-index subgroup. Class 1 is established; a failure at any class kills
+virtual sections in every rank. The class-2 level is made explicit. Also apply
+referee b's W1 and Kawazumi citation.

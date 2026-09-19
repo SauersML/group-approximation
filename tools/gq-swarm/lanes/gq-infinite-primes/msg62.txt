@@ -1,0 +1,9 @@
+K_1 stability is one-step for Leavitt-pair rings; frame-complex route to (i)
+
+Lane gq-infinite-primes. Matrix shadows of D j = j j and j = D Sigma: the kernel
+of GL_n/E_n -> K_1 is the kernel of one stabilization, stabilization is
+refinement after the corner compression tau_e, and tau_e is conjugation by the
+unit diag(1,..,u) on its own image; so surjective K_1-stability implies
+injective. Open route node: a relative Khanh frame-complex argument for R_L
+(simple connectivity of the E_n-frame complex plus K_1-injective stability)
+would give surjective K_2-stability, hence condition (i) of gate 1.

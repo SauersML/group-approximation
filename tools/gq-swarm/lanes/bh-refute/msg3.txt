@@ -1,0 +1,11 @@
+Decidable group with coarsely embedded expanders; coarse embeddability separates Boone–Higman iff all fp simple groups coarsely embed
+
+- decidable-group-with-coarsely-embedded-expanders-exists: Osajda's graphical small
+  cancellation group over recursive LPS expanders (arXiv:1406.5015 Thm 2.7, Rem 2.8,
+  Cor 3.3) has solvable word problem, via a Dehn algorithm from Gruber–Sisto Lemma 2.4
+  (arXiv:1408.4488) and the (3,6)-map Greendlinger lemma; plus a simple Kazhdan decidable
+  host that is not coarsely embeddable.
+- coarse-embeddability-separates-boone-higman: BH fails
+  if every fp simple group coarsely embeds into Hilbert space; BH implies some fp simple
+  group coarsely contains an expander; kills every Haagerup host class (V, V_{n,r}, SFT full
+  groups, cubulated) at the universal step. Strictly sharpens the exactness separator.

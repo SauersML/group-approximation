@@ -1,0 +1,9 @@
+Obstructions for tree hosts of GL_n(Q): ellipticity, Bruhat-Tits, products
+
+In any tree action an element with roots of infinitely many orders is
+elliptic, so (Q,+) fixes a vertex or exactly one end, and with residually
+finite stabilizers every root group of GL_n(Q) is parabolic. The case occurs:
+GL_n(Q) acts faithfully on p-adic Bruhat-Tits buildings (PGL_2(Q), Aff(Q) on
+the (p+1)-regular tree). With finite vertex stabilizers on a product of trees
+there is no (Q,+) at all, which excludes Burger-Mozes lattices. Summary
+artifact for family E.

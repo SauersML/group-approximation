@@ -1,0 +1,5 @@
+K_2: rational-shear search with blindness pre-check finds no hidden relation (Attempt 6)
+
+Generators sigma_2^j x(q) sigma_2^-j with q in {+-1,+-2,+-1/2[,+-3,+-1/3]},
+|j|<=2; pre-check: no known invariant separates r from the searched group;
+planted calibration inside the group recovered 39/39. Evidence, not proof.

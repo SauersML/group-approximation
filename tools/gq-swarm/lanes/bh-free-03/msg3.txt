@@ -1,0 +1,7 @@
+Z^d products of substitution full groups and quadratic box exchanges embed in fp simple groups
+
+bh-free-03: tensor-product SFT of stationary Bratteli-Vershik models. The singular
+germs of the coordinate Vershik maps do not stack, coordinatewise, so the nucleus is
+finite and the BBMZ host applies. Corollary: box exchange groups with quadratic
+coordinate data. Printed-question check noted on the earlier nodes (none found).
+Lane proofs, not reviewed; no priority claimed.

@@ -1,0 +1,9 @@
+Obstruction: f.g. subrings of integral-form algebras contain no Q
+
+A finitely generated subring of a characteristic-0 algebra whose structure
+constants lie in one finitely generated ring (Leavitt, Cohn, group, Weyl,
+enveloping and finite-dimensional algebras) has no nonzero element divisible by
+infinitely many primes, so it contains no copy of Q, even in a corner, and
+GL_n(Q) cannot be reached through ring-linear embeddings into it. Proof: an
+integral form over a f.g. domain plus a norm bound. Closes the Leavitt
+coefficient step for the GL_n(Q) root; the group-level question stays open.

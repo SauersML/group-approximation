@@ -1,0 +1,11 @@
+LANDED de6deaa2da on origin/main (parent e5b3fdf2ee):
+ .../gq-bh-free-54-edge-split-reversing-tests.md    | 745 +++++++++++++++++++++
+ ...it-descendant-dissections-are-tree-dominated.md |  98 +++
+ ...ections-respecting-an-atom-plane-split-there.md |  19 +-
+ .../edge-split-operad-has-common-refinements.md    |  23 +-
+ research/edge-split-operad-satisfies-ore.md        |  21 +
+ ...edge-split-order-is-not-geometric-refinement.md | 129 ++++
+ ...-ore-iff-synchronization-and-tree-domination.md | 142 ++++
+ .../edge-split-ore-via-atom-plane-restriction.md   |   7 +
+ ...-ore-via-synchronization-and-tree-domination.md |  25 +
+ 9 files changed, 1202 insertions(+), 7 deletions(-)

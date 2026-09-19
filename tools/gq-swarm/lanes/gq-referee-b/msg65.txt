@@ -1,0 +1,5 @@
+gq-referee-b: PASS on lift-presented-automaton-groups-satisfy-boone-higman (citation lens), C1-C2
+
+(R), (S), (Ab), (FP3) read at source (Zaremsky 2405.09722, Nekrashevych 1312.5654 Thm 4.7-4.8,
+Prop 4.6); VV and SVV confirmed. C1: consequence 3 is covered by FP1 + Zaremsky. C2: SWZ Ex 7.2
+shows the hypothesis is about the action, not the group.

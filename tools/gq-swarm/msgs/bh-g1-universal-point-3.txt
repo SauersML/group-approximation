@@ -1,0 +1,9 @@
+Bi-Lipschitz splittings add one exponential to the word problem; locally finite seed towers are elementary
+
+bi-lipschitz-splittings-add-one-exponential-to-the-word-problem: Britton reduction with explicit
+words bounds WP(pi_1 of a graph of groups) by n^2 K^n + n M(nK^n) + T(nK^n) when the edge maps are
+bi-Lipschitz, which covers finite-index edges and graphs of free or free abelian groups. So the
+locally finite closure of {finite, Z} in C has elementary word problems graded by splitting depth,
+and CAP holds there with ELEMENTARY. It answers the BS(1,2) rung's compression question: CWP(BS(1,2))
+is in coRP by modular hashing, deterministic P is not settled, and compression is not needed.
+Edge distortion is the currency: the Baumslag-Gersten side is where this bound fails.

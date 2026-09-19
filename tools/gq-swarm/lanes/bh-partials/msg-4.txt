@@ -1,0 +1,10 @@
+BBMZ Question 1.1, one-ended case: a Bowen–Series route for closed surface groups
+
+This adds the open claim that closed surface groups (hence cocompact Fuchsian groups) are contracting RSGs, with a route
+through the Bowen–Series map of the right-angled (8g−4)-gon (Katok–Ugarcovici, read at source). Proved: the explicit
+Markov SFT on 2(8g−4) arc states; canonical similarities are group elements; exactness makes the graph primitive, so the
+irreducible core, the obstacle in the horofunction coding, is automatic. Open: invariance of the cut set, and a finite
+nucleus through a bounded level defect. Attempt 6 in the Question 1.1 node points to it.
+
+Lesson for general BH: the irreducible core belongs to the coding, not to the group. With a dynamical Markov coding,
+Question 1.1 becomes a contraction question of the same shape as the Pisot level-defect lemma.

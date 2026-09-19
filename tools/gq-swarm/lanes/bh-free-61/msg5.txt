@@ -1,0 +1,8 @@
+Rank two: nested cells sharing a ray descend, so synchronization holds off totally irrational directions; bounded search wins all stuck 3x3 matrices up to entry sum 36
+
+- rank-two-synchronization-off-totally-irrational-rays: facet and vertex lemmas; local
+  synchronization at every point over a rational ray or rational plane for m = 2; the general-m
+  rational-ray case reduces to one dimension lower; Sync_2 is equivalent to a shared-vertex
+  condition at totally irrational rays.
+- unimodular-cells-synchronize-under-edge-splits: record the bounded exact search (10310 stuck
+  matrices, all won within split depth 24, calibrated and controlled).

@@ -1,0 +1,8 @@
+The Leavitt resolvent ring R_L has two-sided division
+
+For x != 0 in R_L, x s_beta is a nonzero element of L_Q(1,2) for a word beta
+ending in 2 (B-coefficients evaluate to rationals through s_2), so axb = 1 by
+two-sided division in L_Q(1,2). Hence PE_N(R_L) is simple (N >= 3), a finitely
+generated simple group with solvable WP containing GL_(N-2)(Q), and every f.p.
+simple quotient of St_N(R_L) is a quotient of the stabilization kernel U_N.
+Lane proof, not reviewed; no novelty claimed.

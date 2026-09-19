@@ -1,0 +1,4 @@
+gq-en-ring: record referee PASS on the elementary embedding lemma
+
+Cite gq-referee-b PASS (no amendments) on q-algebra-elementary-quotients-
+contain-gl-n-q in its status line and artifacts.

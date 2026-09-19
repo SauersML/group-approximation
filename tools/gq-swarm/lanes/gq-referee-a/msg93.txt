@@ -1,0 +1,3 @@
+Referee report: K_2-stability for R_L holds PASS (with frame complex, GE, K_1 one-step)
+
+Proof-gap lens on leavitt-resolvent-k2-stability-holds (eecdc0a2f) and its three unreviewed inputs: leavitt-resolvent-frame-complex-is-highly-connected, leavitt-ge-rings-have-stable-k1-at-rank-three, leavitt-k1-stability-is-one-step. Khanh read at source. All PASS; six nits.

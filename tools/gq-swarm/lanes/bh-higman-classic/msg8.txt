@@ -1,0 +1,4 @@
+Q1.4 Attempt 4: what Li's Garside degree-map criterion needs (UFP*), read at source
+
+Li 2110.04505 needs unique factorization up to units. The (σ, τ) branch category violates it
+with trivial units, and V cannot serve as units through a Zappa–Szép product. Lane analysis.

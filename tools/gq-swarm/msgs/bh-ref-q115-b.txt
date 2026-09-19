@@ -1,0 +1,7 @@
+Referee: Q1.15 cubulated claim fails as written (sink characters); repair proposed
+
+Independent adversarial review of 877d639852. The flagged pointed-cube category allows the full
+label adj(w), so every vertex gives an isolated maximal principal character in Li's boundary.
+The unit space is then not the Roller boundary, the Cuntz theorem's Omega_infinity hypothesis
+fails, and the host is neither minimal nor simple. Proposed repair: restrict to the closed
+invariant set dOmega cap Omega_infinity, i.e. forbid full labels. The claim node stays OPEN.

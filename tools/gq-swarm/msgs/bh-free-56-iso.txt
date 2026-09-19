@@ -1,0 +1,3 @@
+Record the corrected engine conjecture (isolated vertex groups) and the corrected stabilizer-engine route as nodes
+
+The isolation theorem on main makes "B isolated" necessary for a finitely presented engine; these nodes make the open sufficiency and the resulting reduction of Boone-Higman (CGP Question 4 plus isolated engines) targetable.

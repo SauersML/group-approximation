@@ -1,0 +1,10 @@
+Once-punctured mapping class groups are continuous asynchronous automatic
+
+Suffix uniqueness in Mosher's sense makes right multiplication a backward
+finite-state process, so the inverted normal forms are continuous for the left
+action and have deterministic rational multipliers. Applied to Mosher's normal
+forms on the mapping class groupoid, restricted to loops and renamed as group
+elements, this makes every Mod(S_{g,1}) continuous asynchronous automatic, so
+it embeds in the rational group (BBCMP Corollary 1.9). This covers S_{2,1} and
+every genus at least three for the asynchronous variant of BBCMP Question 1.16.
+The synchronous version and closed surfaces remain open.

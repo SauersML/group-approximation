@@ -1,0 +1,16 @@
+Answer the finitely generated version of the E(G) question negatively, and record more problem lists
+
+Γ = (N_2 ⋊ Z) *_C (C × Z) is a 3-generator group with a recursive presentation and a
+solvable word problem. In it, the one-variable mixed identities
+[c, x^{-1}[a_0, a_d] x] encode a co-r.e., non-r.e. set of rows. So J_1(Γ) is not r.e.,
+and E(Γ) = (Γ * Z)/J_1(Γ) is not recursively presented and embeds in no finitely
+presented group.
+
+The finitely presented question stays open, and its node records the exact gap: mixed
+identities do not pass to finitely presented overgroups unless those overgroups preserve
+the rows.
+
+The problem-list artifact gains a second pass: the St Andrews 2014 list (located, not
+obtained), Sapir's problem list, the Bridson-Vogtmann and Farb lists, the AIM 2010
+Out(F_n) list and the AimPL boundaries list. It also confirms the Caprace-Fujiwara
+correction to AimPL 3.1(c).

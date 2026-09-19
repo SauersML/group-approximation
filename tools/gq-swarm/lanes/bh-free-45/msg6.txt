@@ -1,0 +1,7 @@
+Add "Lesson for general BH" paragraphs to the undistortion and 2V nodes
+
+Per the INSIGHT FIRST order, each of the five claim nodes now states the general mechanism it shows.
+Geometry is free in the full-group route: locally faithful actions give undistorted embeddings, and the
+acting group is undistorted in its twisted Brin-Thompson envelope. Heaps of syllables linearize
+commutation for undistortion proofs. Undistortion in an F_infinity host propagates along the
+Boone-Higman closure operations. No mathematical content changes.

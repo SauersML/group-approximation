@@ -1,0 +1,7 @@
+Referee the closed-MCG finiteness route: splitting categories, Thumann without finite type, second Sync_m proof, single-cut reduction all PASS
+
+bh-ref-engines checked the four items line by line, checking Thumann's Lemma 15097 at source.
+The splitting-category theorem needs "not an atom" in place of "at least three pieces" (atoms of
+degree three have an empty splitting category); no application changes. The rank reduction to
+totally irrational shared rays (Lemmas A-D) and the half-tube route give Sync_m in every rank;
+the (SC) plus (I) reduction to tree domination is correct, with (SC), (I) and the cut bound still open.

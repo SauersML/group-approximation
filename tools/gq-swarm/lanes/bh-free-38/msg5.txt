@@ -1,0 +1,8 @@
+Record the structure of the aperiodic part of a central element of a Kazhdan subgroup of 2V
+
+Let z be an infinite-order central element of a Kazhdan subgroup K of 2V. Its
+periodic points form an open set, since they have slope zero. The aperiodic
+remainder Y is nonempty, closed and K-invariant. No closed invariant subset of Y
+carries a K-invariant measure, by the measure criterion. On Y, z never returns into
+its own reading bricks, and its exponent sums are K-quasi-invariant. The
+finite-center question is parked with the three possible closing mechanisms stated.

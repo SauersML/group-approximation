@@ -1,0 +1,6 @@
+Quantum rigidity clusters modifications under isotropy; Cuntz-stabilized stabilizer engines are never finitely presented
+
+- The far-modification lemma holds for every subshift. Consequences: the modifications of a point are pairwise 2D-close and carried along by its isotropy; a point with infinite isotropy and a homoclinic partner rules out rigidity at every scale and in every coding; coinduction from a subgroup with infinitely many double cosets is never rigid.
+- Via the topologically free necessity theorem, the V-stabilized stabilizer engines of Z/k * B, and B * Z compactified by its vertices, are never finitely presented, for every infinite finitely generated B. The V-less engine D(F_B) and Reid's group are not decided.
+- New open question (RA): are rigid minimal topologically free subshift actions topologically amenable? If so, (★′) fails over every non-exact group.
+- Adds a survey artifact of the obstructions examined, with calibrations.

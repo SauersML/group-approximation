@@ -1,0 +1,1 @@
+Rotation 5: adversarial PASS on limit groups over hyperbolic groups in B_A (centralizer-amalgam closure chain re-derived)

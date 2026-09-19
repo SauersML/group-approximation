@@ -1,0 +1,6 @@
+Q1.4 Attempt 4: homological branch closed; rank-two Deaconu–Renault picture for Lipschitz t
+
+[[V ⋊ <t>]] is integrally acyclic (fe8622a8b), so no homology obstructs finite presentation.
+For Lipschitz t, τ = σ^m F commutes with the shift and should generate the germ groupoid with
+σ (heuristic). In a hand-checked marker example the natural branches fail unique
+factorization, so Li's finite k-graph F∞ theorem does not apply as stated.

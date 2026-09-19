@@ -1,0 +1,11 @@
+Downhill centrality needs no data rigidity: a seeded transport coding is quantum rigid iff its input layer is
+
+New claim downhill-centrality-needs-no-data-rigidity. Lane proofs, elementary and algebraic, unreviewed.
+- A portable downhill lemma. Assume the flow marginals commute with each other and with the data marginals; the computation obeys a one-predecessor causal rule; and a downhill potential exists. Then the flow is central, with nothing assumed about the data. Instances: end flows, and tree flows in general.
+- For seeded transport over H x F_m whose seeds, time rules and space transports read an arbitrary input H-SFT Y:
+  - the flow is always central;
+  - the coding is D-rigid if Y is, and (given surjective anchored completion) D-rigid only if Y is (D+R)-rigid;
+  - it is minimal when Y is minimal and every spine completion is a limit of anchored ones (boundary completeness).
+- Note for the (star-prime) builders: check the one-predecessor rule and a downhill potential for the keyed-slot layer. E2 then reduces to the rigidity of what the slots read.
+
+Lesson for general BH: reading the input costs no rigidity in the seeding direction, but seeding cannot create rigidity for a complex input either. Rigidity of a seeded transport coding equals rigidity of its input layer. So the complex input must arrive already rigid, as v6's rigid seed over Lambda_0, and the end-flow layer is only a free device for minimality and freeness.

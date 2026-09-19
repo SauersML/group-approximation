@@ -1,0 +1,9 @@
+Put decidable inputs into subshift languages over a fixed group, and cap the method by separation profile
+
+Gate U mechanism (bh-invent-09): if Γ acts translation-like on a fixed group Λ, the move tables of the
+action form an effectively closed Λ-subshift. Times a free subshift, it gives Γ inside the topological full
+group and the crossed-product units, with WP(Γ) written into the language and no Farrell–Jones instance
+beyond Λ itself. Companion node: orbit maps are regular, so growth and separation profile cap the method.
+No fixed hyperbolic or low-separation Λ is universal, decidable monsters need non-free orbits or a
+finitely presented Farrell–Jones group containing expanders, and the exact target becomes the uniformly
+bounded wobbling group of Λ × N. Lane proofs, not reviewed.

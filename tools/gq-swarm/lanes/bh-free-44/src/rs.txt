@@ -1,0 +1,684 @@
+                                                       COVERS AND THE CURVE COMPLEX
+
+
+
+
+arXiv:math/0701719v2 [math.GT] 28 Jun 2007
+                                                                KASRA RAFI AND SAUL SCHLEIMER
+
+                                                    Abstract. We provide the first non-trivial examples of quasi-
+                                                    isometric embeddings between curve complexes. These are induced
+                                                    either by puncturing a closed surface or via orbifold coverings.
+                                                    As a corollary, we give new quasi-isometric embeddings between
+                                                    mapping class groups.
+
+
+
+
+                                                                         1. Introduction
+                                                The complex of curves [Har81] arises in the study of mapping class
+                                             groups, Teichmüller spaces, and three-manifolds. We follow Masur and
+                                             Minsky [MM99, MM00] in studying the coarse geometry of the curve
+                                             complex.
+                                                Since the curve complex is locally infinite many of the standard quasi-
+                                             isometry invariants are of questionable utility. Instead, we concentrate
+                                             on a different family of invariants: metrically natural subspaces. Note
+                                             that the well-known subspaces of the curve complex, such as the com-
+                                             plex of separating curves, the disk complex of a handlebody and so on,
+                                             are not quasi-isometrically embedded and so do not give invariants in
+                                             any obvious way. We therefore restrict our attention to:
+                                             Problem 1.1. Classify all quasi-isometric embeddings between curve
+                                             complexes.
+                                               A special case of this question, answered in our forthcoming pa-
+                                             per [RS07], is the computation the quasi-isometry group of the curve
+                                             complex. More generally, one may ask for a theory of quasi-isometric
+                                             embeddings between combinatorial moduli spaces.
+                                             Problem 1.2. Classify all quasi-isometric embeddings between map-
+                                             ping class groups (respectively pants complexes, Hatcher-Thurston com-
+                                             plexes, and so on).
+                                               Again, an important special case of Problem 1.2 is the computation of
+                                             the quasi-isometry group of the mapping class group; this has recently
+
+                                               Date: August 29, 2018.
+                                               This work is in the public domain.
+                                                                                    1
+2                  KASRA RAFI AND SAUL SCHLEIMER
+
+been claimed by Behrstock, Kleiner, Minsky, and Mosher as well as by
+Hamenstädt [Hamb].
+   This paper discusses the first non-trivial examples of one curve com-
+plex being quasi-isometrically embedded in another. These arise geo-
+metrically, either by puncturing a closed surface (Theorem 2.3) or from
+orbifold covering maps (Theorem 7.1).
+   The puncturing construction, discussed in Section 2, is inspired by
+Harer’s paper [Har86, Lemma 3.6]. This construction is straight-forward
+but, surprisingly, gives an uncountable number of isometric embeddings
+of between curve complexes. It seems unlikely that the puncturing map
+gives rise to a quasi-isometric embedding of mapping class groups.
+   The second construction, based on coverings, is more difficult and
+relies crucially on the fact that a covering induces an isometric embed-
+ding of Teichmüller spaces. As an application, we prove Theorem 8.1:
+any orbifold covering map induces a quasi-isometric embedding of the
+associated mapping class groups. We then have Corollary 8.8: there
+is a quasi-isometric embedding of the spherical braid group on 2g + 2
+strands into the mapping class group of genus g; this answers a question
+of Luis Paris.
+
+Acknowledgments. We thank Jason Behrstock, Jason Manning, Dan
+Margalit and Mahan Mj. for their comments on an early version of this
+paper.
+
+                            2. Statements
+   Suppose that Σ is a compact orientable orbifold of dimension two.
+For definitions and discussion of orbifolds we refer the reader to Scott’s
+excellent article [Sco83]. Note that we always assume that Σ admits an
+orbifold cover that is a surface. Let Σ◦ denote the surface obtained by
+removing an open neighborhood of the orbifold points from Σ. In most
+respects there is no difference between Σ and Σ◦ ; we will use whichever
+is convenient and remark on the few subtle points as they arise.
+   A simple closed curve α ⊂ Σ, avoiding the orbifold points, is inessen-
+tial if α bounds a disk in Σ containing one or zero orbifold points. The
+curve α is peripheral if α is isotopic to a boundary component. Note
+that isotopies of curves are not allowed to cross orbifold points.
+Definition 2.1. The complex of curves C(Σ) has isotopy classes of
+essential, non-peripheral curves as its vertices. A collection of k + 1
+distinct vertices spans a k–simplex if every pair of vertices has disjoint
+representatives.
+                  COVERS AND THE CURVE COMPLEX                         3
+
+Remark 2.2. Note that the inclusion Σ◦ ⊂ Σ induces an isomorphism
+between C(Σ) and C(Σ◦ ).
+
+   The definition of C(Σ) is slightly altered when Σ is an annulus and
+also when Σ◦ is a once-holed torus or a four-holed sphere. In the
+last two cases the curve complex of Σ is the well-known Farey graph;
+since all curves intersect, edges are instead placed between curves that
+intersect exactly once or exactly twice, respectively. The curve complex
+of an annulus is more delicate and is defined below.
+   To obtain a metric, give all edges of C(Σ) length one and denote
+distance between vertices by dΣ (·, ·). It will be enough to study only
+the one-skeleton of C(Σ), for which we use the same notation. This is
+because the one-skeleton and the entire complex are quasi-isometric.
+   We begin with a simple example.
+
+Puncturing. Let S be the closed surface of genus g ≥ 2 and Σ be the
+surface of genus g with one puncture.
+
+Theorem 2.3. C(S) embeds isometrically into C(Σ).
+
+  As we shall see, there are uncountably many such embeddings.
+
+Proof of Theorem 2.3. Pick a hyperbolic metric on S. By the Baire
+category theorem, the union of geodesic representatives of simple closed
+curves does not cover S. (In fact, this union has Hausdorff dimension
+one. See Birman and Series [BS85].) Let ∗ be a point in the complement
+and identify Σ with Sr{∗}. A vertex of C(S) is then taken to its
+geodesic representative, which gives an essential curve in Sr{∗}, which
+is identified with a curve in Σ, and which gives a vertex of C(Σ). This
+defines an embedding Π : C(S) → C(Σ) that depends on the choice
+of metric, point and identification. Let P : C(Σ) → C(S) be the map
+obtained by filling the point ∗. Note that P ◦ Π is the identity map.
+   We observe, for a, b ∈ C(S) and α = Π(a), β = Π(b) that
+
+                          dS (a, b) = dΣ (α, β).
+
+This is because P and Π send disjoint curves to disjoint curves. There-
+fore, if L ⊂ C(S) is a geodesic connecting a and b, then Π(L) is a path
+in C(Σ) of the same length connecting α to β. Conversely, if Λ ⊂ C(Σ)
+is a geodesic connecting α to β, then P (Λ) is a path in C(S) of the
+same length connecting a to b.                                       
+
+  We now turn to the main topic of the paper.
+4                  KASRA RAFI AND SAUL SCHLEIMER
+
+Coverings. Let Σ and S be compact connected orientable orbifolds
+with negative orbifold Euler characteristic. Let P : Σ → S be an orb-
+ifold covering map. At a first reading it is simplest to assume that Σ
+and S are both surfaces.
+   The covering P defines a relation Π : C(S) → C(Σ) as follows: Sup-
+pose that b ∈ C(S) and β ∈ C(Σ). Then b is related to β if and only if
+β is a component of P −1 (b), the preimage of b.
+Lemma 2.4. The covering relation Π is well-defined.
+Proof. We will show that if a is an essential non-peripheral curve then
+every component of P −1 (a) is essential and non-peripheral. Since S
+has negative orbifold Euler characteristic, choose a hyperbolic metric
+of finite area on Sr∂S. Replace a by its geodesic representative, a∗ .
+Then a∗ is still a simple closed curve, as long a does not bound a disk
+with exactly two orbifold points of order two. In the latter case, a
+collapses down to a geodesic arc connecting the points. Now, the lift
+of a geodesic remains geodesic in the lifted metric. The conclusion
+follows.                                                             
+  We now turn to convenient piece of notation: if A, B, c are non-
+negative real numbers with c > 0 and if A ≤ cB + c, then we write
+A ≺c B. If A ≺c B and B ≺c A, then we write A ≍c B. Suppose
+X and Y are metric spaces and f : X → Y is a relation. We say
+that f is a c–quasi-isometric embedding if for all x, x′ ∈ X and for all
+y ∈ f (x), y ′ ∈ f (x′ ) we have dX (x, x′ ) ≍c dY (y, y ′). Our goal is:
+Theorem 7.1. The covering relation Π : C(S) → C(Σ), corresponding
+to the covering map P : Σ → S, is a Q–quasi-isometric embedding.
+The constant Q depends only on the topology of S and the degree of the
+covering map P .
+Remark 2.5. Note that Q does not depend directly on the topology of
+Σ. When S is an annulus, the degree of covering is not determined by
+the topology of Σ. Conversely, when S is not an annulus, the topology
+of Σ can be bounded in terms of the topology of S and the degree of
+the covering.
+Remark 2.6. The constant Q may go to infinity with the degree of
+the covering. For example, any pair of distinct curves a, b in a surface
+S may be made disjoint in some cover. In fact a cover of degree at
+most 2d−1 , where d = dS (a, b), will suffice [Hem01, Lemma 2.3].
+Remark 2.7. When Σ is the orientation double cover of a nonori-
+entable surface S, Theorem 7.1 is due to Masur-Schleimer [MS07].
+                   COVERS AND THE CURVE COMPLEX                           5
+
+   The inequality dΣ (α, β) ≤ dS (a, b) can be easily obtained as follows.
+When S ◦ is not a once-holed torus or a four-holed sphere, two curves
+in S have distance one when they are disjoint. But disjoint curves in S
+have disjoint preimages in Σ. Therefore, a path connecting a to b lifts
+to a path of equal length connecting α to β . This implies the desired
+inequality in this case. If S ◦ is one of the special surfaces mentioned
+above then two curves are at distance one when they intersect once or
+twice respectively. In this case, their lifts intersect at most 2d times,
+where d is the degree of the covering. Thus, the distance between the
+lifts of these curves is at most 2 log2 (2d) + 2. (See [Sch, Lemma 1.21].)
+Therefore
+                   dΣ (α, β) ≤ (2 log2 (2d) + 2) · dS (a, b).
+   The opposite inequality is harder to obtain and occupies the bulk of
+the paper.
+
+                     3. Subsurface projection
+   Suppose that Σ is a compact connected orientable orbifold. A sub-
+orbifold Ψ is cleanly embedded if every component of ∂Ψ is either a
+boundary component of Σ or is an essential non-peripheral curve in Σ.
+All suborbifolds considered will be cleanly embedded.
+   From [MM99], recall the definition of the subsurface projection rela-
+tion
+                             πΨ : C(Σ) → C(Ψ),
+supposing that Ψ◦ is not an annulus or a thrice-holed sphere. Since
+Σ has negative orbifold Euler characteristic we may choose a complete
+finite volume hyperbolic metric on the interior of Σ. Let Σ′ be the Gro-
+mov compactification of the cover of Σ corresponding to the inclusion
+π1orb (Ψ) → π1orb (Σ) (defined up to conjugation). Thus Σ′ is homeomor-
+phic to Ψ; this gives a canonical identification of C(Ψ) with C(Σ′ ). For
+any α ∈ C(Σ) let α′ be the closure of the preimage of α in Σ′ . If every
+component of α′ is properly isotopic into the boundary then α is not
+related to any vertex of C(Ψ); in this case we write πΨ (α) = ∅. Other-
+wise, let α′′ be a component of α′ that is not properly isotopic into the
+boundary. Let N be a closed regular neighborhood of α′′ ∪ ∂Σ′ . Since
+Ψ◦ is not a thrice-holed sphere, there is a boundary component α′′′ of
+N which is essential and non-peripheral. We then write πΨ (α) = α′′′ .
+   If Ψ is an annulus, then the definition of C(Ψ) is altered. Vertices are
+proper isotopy classes of essential arcs in Ψ. Edges are placed between
+vertices with representatives having disjoint interiors. The projection
+map is defined as above, omitting the final steps involving the regular
+neighborhood N.
+6                  KASRA RAFI AND SAUL SCHLEIMER
+
+  The curve α ∈ C(Σ) cuts the suborbifold Ψ if πΨ (α) 6= ∅. Otherwise,
+α misses Ψ. Suppose now that α, β ∈ C(Σ) both cut Ψ. Define the
+projection distance to be
+                     dΨ (α, β) = dΨ (πΨ (α), πΨ (β)).
+The Bounded Geodesic Image Theorem states:
+Theorem 3.1 (Masur-Minsky [MM00]). Fix a surface Σ. There is a
+constant M = M(Σ) with the following property. Suppose that α, β ∈
+C(Σ) are vertices, Λ ⊂ C(Σ) is a geodesic connecting α to β and Ω ( Σ
+is a subsurface. If dΩ (α, β) ≥ M then there is a vertex of Λ which
+misses Ω.                                                           
+  By Remark 2.2 the Bounded Geodesic Image Theorem applies equally
+well when Σ is an orbifold.
+
+Antichains. Fix α and β in C(Σ) and thresholds T0 > 0 and T1 > 0.
+We say that a set J of suborbifolds Ω ( Σ, is a (T0 , T1)–antichain for
+(Σ, α, β) if J satisfies the following properties.
+     • If Ω, Ω′ ∈ J then Ω is not a strict suborbifold of Ω′ .
+     • If Ω ∈ J then dΩ (α, β) ≥ T0 .
+     • For any Ψ ( Σ, either Ψ is a suborbifold of some element of J
+       or dΨ (α, β) < T1 .
+Notice that there may be many different antichains for the given data
+(Σ, α, β, T0, T1 ). One particularly nice example is when T0 = T1 = T
+and J is defined to be the maxima of the set
+                        {Ω ( Σ | dΩ (α, β) ≥ T}
+as ordered by inclusion. We call this the T–antichain of maxima for
+(Σ, α, β). By |J | we mean the number of elements of J . We may now
+prove:
+Lemma 3.2. For every orbifold Σ and for every pair of sufficiently
+large thresholds T0 , T1 , there is an accumulation constant AΣ = A(Σ, T0 , T1)
+so that if J is an (T0 , T1)–antichain for (Σ, α, β) then
+                           dΣ (α, β) ≥ |J |/AΣ .
+Proof. We proceed via induction: when C(Σ◦ ) is the Farey graph, J is
+the set of annuli whose core curves γ have the property that dγ (α, β) ≥
+T0 . In this case, assuming T0 > 3, every such curve γ is a vertex
+of every geodesic connecting α to β (see [Min99, §4]). Therefore the
+lemma holds for Farey graphs with AΣ = 1.
+                  COVERS AND THE CURVE COMPLEX                        7
+
+   In the general case, let C be a constant so that: if Ω ⊂ Ψ ⊂ Σ and
+α′ , β ′ are the projections of α, β to Ψ then
+                      |dΩ (α, β) − dΩ (α′ , β ′ )| ≤ C.
+We take the thresholds large enough so that:
+     • the lemma still applies to any strict suborbifold Ψ with thresh-
+       olds T0 − C, T1 + C and
+     • T0 ≥ M(Σ); thus by Theorem 3.1 for any orbifold in Ω ∈ J and
+       for any geodesic Λ in C(Σ) connecting α and β there is a curve
+       γ in Λ so that γ misses Ω.
+For any Ψ ( Σ define AΨ = A(Ψ, T0 − C, T1 + C).
+Claim. Suppose that Λ ⊂ C(Σ) is a geodesic connecting α to β. Sup-
+pose that γ ∈ Λ is a vertex and let Ψ be a component of Σrγ. The
+number of elements of JΨ = {Ω ∈ J | Ω ( Ψ} is at most AΨ · (T1 + C).
+  By the claim it will suffice to take A(Σ, T0 , T1) equal to
+                 2 · max{AΨ | Ψ ( Σ} · (T1 + C) + 3.
+To see this, fix a vertex γ ∈ Λ and note that Σrγ has at most two
+components, say Ψ and Ψ′ . Any element of J not cut by γ is either
+a strict suborbifold of Ψ or Ψ′ , an annular neighborhood of γ, or Ψ or
+Ψ′ itself. Since every orbifold in J is disjoint from some vertex of Λ,
+the lemma follows from the pigeonhole principle.
+   All that remains is to prove the claim. If Ψ is a suborbifold of an
+element of J then JΨ is the empty set and the claim holds vacuously.
+Thus we may assume that
+                             dΨ (α, β) < T1 .
+     ′       ′
+Let α and β be the projections of α and β to Ψ. From the definition
+of C, JΨ is a (T0 − C, T1 + C)–antichain for Ψ, α′ and β ′ . Thus,
+           T1 > dΨ (α, β) ≥ dΨ (α′ , β ′ ) − C ≥ |JΨ |/AΨ − C,
+with the last inequality following by induction. Hence,
+                          T1 + C ≥ |JΨ |/AΨ .                        
+
+                       4. Teichmüller space
+  For this section, we take Σ to be a surface. Let T (Σ) denote the
+Teichmüller space of Σ: the space of complete hyperbolic metrics on
+the interior of Σ, up to isotopy. For background, see [Ber60, Gar87].
+  There is a uniform upper bound on the length of the shortest closed
+curve in any hyperbolic metric on Σ. For any metric σ on Σ, a curve
+γ has bounded length in σ if the length of γ in σ is less than this
+8                    KASRA RAFI AND SAUL SCHLEIMER
+
+constant. Let e0 > 0 be a constant such that, for curves γ and δ, if γ
+has bounded length in σ and δ has a length less than e0 then γ and δ
+have intersection number zero.
+   Suppose that α and β are vertices of C(Σ). Fix metrics σ and τ in
+T (Σ) so that α and β have bounded length at σ and τ respectively.
+Let Γ : [tσ , tτ ] → T (S) be a geodesic connecting σ to τ . For any curve
+γ let lt (γ) be the length of its geodesic representative in the hyperbolic
+metric Γ(t). The following theorems are consequences of Theorem 6.2
+and Lemma 7.3 in [Raf05].
+Theorem 4.1 ([Raf05]). For e0 as above there exists a threshold Tmin
+such that, for a strict subsurface Ω of Σ, if dΩ (α, β) ≥ Tmin then there
+is a time tΩ so that the length of each boundary component of Ω in
+Γ(tΩ ) is less than e0 .                                               
+Theorem 4.2 ([Raf05]). For every threshold T1 , there is a constant e1
+such that if lt (γ) ≤ e1 , for some curve γ and for some time t, then there
+exists a subsurface Ψ disjoint from γ such that dΨ (α, β) ≥ T1 .         
+   The shadow of the Teichmüller geodesic Γ inside of C(Σ) is the set of
+curves γ so that γ has bounded length in Γ(t) for some t ∈ [tσ , tτ ]. The
+following is a consequence of the fact that the shadow is an unparame-
+terized quasi-geodesic. (See Theorem 2.6 and then apply Theorem 2.3
+in [MM99].)
+Theorem 4.3 ([MM99]). The shadow of a Teichmüller geodesic inside
+of C(Σ) does not backtrack and so satisfies the reverse triangle inequal-
+ity. That is, there exists a backtracking constant B = B(Σ) such that if
+tσ ≤ t0 ≤ t1 ≤ t2 ≤ tτ and if γi has bounded length in Γ(ti ), i = 0, 1, 2
+then
+                dΣ (γ0 , γ2 ) ≥ dΣ (γ0 , γ1) + dΣ (γ1 , γ2 ) − B.
+  We say that Γ(t) is e–thick if the shortest closed geodesic γ in Γ(t)
+has a length of at least e.
+Lemma 4.4. For every e > 0 there is a progress constant P > 0 so
+that if tσ ≤ t0 ≤ t1 ≤ tτ , if Γ(t) is e–thick at every time t ∈ [t0 , t1 ], and
+if γi has bounded length in Γ(ti ) (i = 0, 1) then
+                            dΣ (γ0 , γ1 ) ≍P t1 − t0 .
+Proof. As above, using Theorem 6.2 and Lemma 7.3 in [Raf05] and
+the fact that Γ(t) is e–thick at every time t ∈ [t0 , t1 ], we can conclude
+that dΩ (γ0 , γ1) is uniformly bounded for any strict subsurface of Ω of
+Σ. The lemma is then a consequence of Theorem 1.1 and Remark 5.5
+                    COVERS AND THE CURVE COMPLEX                                9
+
+in [Raf06]. (Referring to the statement and notation of [Raf06, Theo-
+rem 1.1]: Extend γi to a short marking µi . Take k large enough such
+that the only non-zero term in the right hand side of [Raf06, Equation
+(1)] is dΣ (µ0 , µ1 ).)                                              
+   In general the geodesic Γ may stray into the thin part of T (S). We
+take Γ≥e to be the set of times in the domain of Γ which are e–thick.
+Notice that Γ≥e is a union of closed intervals. Let Γ(e, L) be the union
+of intervals of Γ≥e which have length at least L. We use |Γ(e, L)| to
+denote the sum of the lengths of the components of Γ(e, L).
+Lemma 4.5. For every e there exists L0 such that if L ≥ L0 , then
+                           dΣ (α, β) ≥ |Γ(e, L)|/2P.
+Proof. Pick L0 large enough so that, for L ≥ L0 ,
+                              (L/2P) ≥ P + 2B.
+   Let Γ(e, L) be the union of intervals [ti , si ], i = 1, . . . , m. Let γi be a
+curve of bounded length in Γ(ti ) and δi be a curve of bounded length
+in Γ(si ).
+   By Theorem 4.3 we have
+                                                 !
+                                X
+                   dΣ (α, β) ≥      dΣ (γi , δi ) − 2mB.
+                                     i
+
+From Lemma 4.4 we deduce
+                                           !
+                        X1
+           dΣ (α, β) ≥       (si − ti ) − P − 2mB.
+                         i
+                           P
+Rearranging, we find
+                                  1
+                    dΣ (α, β) ≥     |Γ(e, L)| − m(P + 2B).
+                                  P
+Thus, as desired:
+                                          1
+                           dΣ (α, β) ≥      |Γ(e, L)|.                         
+                                         2P
+                      5. An estimate of distance
+  Again, take Σ to be a surface. In this section we provide the main
+estimate for dΣ (α, β). Let e0 be as before. We choose thresholds T0 ≥
+Tmin (see Theorem 4.1) and T1 so that Lemma 3.2 holds. Let e1 be the
+constant provided in Lemma 4.4 and let e > 0 be any constant smaller
+than min{e0 , e1 }. Finally, we pick L0 such that Lemma 4.5 holds and
+that L0 /2P > 4. Let L be any length larger than L0 .
+10                    KASRA RAFI AND SAUL SCHLEIMER
+
+Theorem 5.1. Let T0 , T1 , e and L be constants chosen as above. There
+is a constant K = K(Σ, T0 , T1 , e, L) such that for any curves α and β,
+any (T0 , T1 )–antichain J and any Teichmüller geodesic Γ, chosen as
+above, we have:
+                       dΣ (α, β) ≍K |J | + |Γ(e, L)|.
+Proof. For K ≥ 2 · max(A, 2P), the inequality
+                         dΣ (α, β) ≻K |J | + |Γ(e, L)|
+follows from Lemmas 3.2 and 4.5. It remains to show that
+                         dΣ (α, β) ≺K |J | + |Γ(e, L)|.
+  For each Ω ∈ J fix a time tΩ ∈ [tσ , tτ ] so that all boundary com-
+ponents of Ω are e0 –short in Γ(tΩ ) (see Theorem 4.1). Let E be the
+union:
+   n                         o n                                o
+     tΩ Ω ∈ J , tΩ 6∈ Γ(e, L) ∪ ∂I I a component of Γ(e, L) .
+We write E = {t0 , . . . , tn }, indexed so that ti < ti+1 .
+Claim. The number of intervals in Γ(e, L) is at most |J | + 1. Hence,
+|E| ≤ 3|J | + 1.
+Proof. There is at least one moment between any two consecutive in-
+tervals I, J ⊂ Γ(e, L) when some curve γ becomes e–short (and hence
+e1 –short). Therefore, by Theorem 4.2, γ is disjoint from a subsurface
+Ψ where dΨ (α, β) ≥ T1 . Since J is an (T0 , T1)–antichain, Ψ is a sub-
+surface of some element Ω ∈ J . It follows that dΣ (γ, ∂Ω) ≤ 2. This
+defines a one-to-many relation from pairs of consecutive intervals to
+J . To see the injectivity consider another such pair of consecutive
+intervals I ′ and J ′ and a corresponding curve γ ′ and subsurface Ω′ .
+By Lemma 4.4, dΣ (γ, γ ′ ) ≥ L/2P > 4 and therefore Ω is not equal to
+Ω′ .                                                                 
+     Let γi be a curve of bounded length in Γ(ti ).
+Claim.
+                          (
+                           P(ti+1 − ti ) + P,      if [ti , ti+1 ] ⊂ Γ(e, L)
+         dΣ (γi , γi+1) ≤
+                           2B + PL + P + 2,        otherwise.
+Proof. The first case follows from Lemma 4.4. So suppose that the
+interior of [ti , ti+1 ] is disjoint from the interior of Γ(e, L).
+   We define sets I+ , I− ⊂ [ti , ti+1 ] as follows: A point t ∈ [ti , ti+1 ] lies
+in I− if
+      • there is a curve γ which is e–short in Γ(t) and
+      • for some Ω ∈ J , so that dΣ (∂Ω, γ) ≤ 2, we have tΩ ≤ ti .
+                    COVERS AND THE CURVE COMPLEX                             11
+
+If instead tΩ ≥ ti+1 then we place t in I+ . Finally, we place ti in I−
+and ti+1 in I+ .
+   Notice that if Ω ∈ J then tΩ does not lie in the open interval (ti , ti+1 ).
+It follows that every e–thin point of [ti , ti+1 ] lies in I− , I+ , or both. If
+t ∈ I− and γ is the corresponding e–short curve then dΣ (γi , γ) ≤ B + 2.
+This is because either t = ti and so γ and γi are in fact disjoint, or
+there is a surface Ω ∈ J as above with
+                      2 ≥ dΣ (∂Ω, γ) ≥ dΣ (γi , γ) − B,
+Similarly if t ∈ I+ then dΣ (γi+1 , γ) ≤ B + 2.
+  If I+ and I− have non-empty intersection then dΣ (γi , γi+1) ≤ 2B + 4
+by the triangle inequality.
+  Otherwise, there is an interval [s, s′] that is e–thick, has length less
+than L such that s ∈ I− and s′ ∈ I+ . Let γ and γ ′ be the corresponding
+short curves in Γ(s) and Γ(s′ ). Thus
+             dΣ (γi , γ) ≤ B + 2 and dΣ (γ ′ , γi+1 ) ≤ B + 2.
+We also know from Lemma 4.4 that
+                             dΣ (γ, γ ′ ) ≤ PL + P.
+This finishes the proof of our claim.                                        
+  It follows that
+          dΣ (α, β) ≤ dΣ (γ0 , γ1 ) + . . . + dΣ (γn−1 , γn )
+                    ≤ |E|(2B + PL + P + 2) + P|Γ(e, L)| + |E|P
+                    ≺K |J | + |Γ(e, L)|,
+for an appropriate choice of K. This proves the theorem.                     
+                6. Symmetric curves and surfaces
+  Let P : Σ → S be an orbifold covering map.
+Definition 6.1. A curve α ∈ C(Σ) is symmetric if there is a curve a ∈
+C(S) so that P (α) = a. We make the same definition for a suborbifold
+Ω ⊂ Σ lying over a suborbifold Z ⊂ S.
+   For the rest of this section, fix symmetric curves α and β. Pick
+x, y ∈ T (S ◦ ) so that a = P (α) has bounded length in x and b = P (β)
+is bounded in y. Let G : [tx , ty ] → T (S ◦ ) be the Teichmüller geodesic
+connecting x to y. For every t ∈ [tx , ty ] let qt be the terminal quadratic
+differential of the Teichmüller map from G(tx ) to G(t). We lift qt to
+the surface P −1 (S ◦ ), fill the punctures not corresponding to orbifold
+points and so obtain a parameterized family θt of quadratic differentials
+on Σ◦ . Notice that θt is indeed a quadratic differential: suppose that
+12                  KASRA RAFI AND SAUL SCHLEIMER
+
+p ∈ S is a orbifold point and qt has a once-pronged singularity at p.
+For every regular point π in the preimage of p the differential θt has at
+least a twice-pronged singularity at π.
+   Uniformize the associated flat structures to obtain hyperbolic metrics
+on Σ◦ . This gives a path Γ : [tx , ty ] → T (Σ◦ ). The path Γ is a geodesic
+in T (Σ◦ ). This is because, for t, s ∈ [tx , ty ], the Teichmüller map from
+G(t) to G(s) has Beltrami coefficient k |q|/q where q is an integrable
+holomorphic quadratic differential in G(t). This map lifts to a map
+from Γ(t) to Γ(s) with Beltrami coefficient k |θ|/θ, where the quadratic
+differential θ is the pullback of q to Γ(t). That is, the lift of the Te-
+ichmüller map from from G(t) to G(s) is the Teichmüller map from
+Γ(t) to Γ(s) with the same quasi-conformal constant. Therefore, as is
+well-known, the distance in T (S ◦ ) between G(t) and G(s) equals the
+distance in T (Σ◦ ) between Γ(t) and Γ(s).
+Proposition 6.2 (Proposition 3.7 [Raf06]). For any e, there is a con-
+stant N such that the following holds. Assume that, for all t ∈ [r, s],
+there is a component of ∂Ω whose length in Γ(t) is larger than e. Sup-
+pose γ has bounded length in Γ(r) and δ has bounded length in Γ(s).
+Then
+                            dΩ (γ, δ) ≤ N.
+Lemma 6.3. For e small enough, N as above and any suborbifold Ω ⊂
+Σ, if dΩ (α, β) ≥ 2N + 1, then Ω is symmetric.
+Proof. Consider the first time t− and last time t+ that the boundary
+of Ω is e–short. Since every component of ∂Ω is short in Γ(t± ), so is
+the image P (∂Ω) in G(t± ). Therefore, all components of the image
+are simple. (This is a version of the Collar Lemma. For example,
+see [Bus92, Theorem 4.2.2].) It follows that the boundary of Ω is
+symmetric. This is because choosing e small enough will ensure that
+curves in P −1 (P (Ω)) have bounded length at both t− and t+ . (The
+length of each is at most the degree of the covering map times e.) If
+any such curve γ intersects Ω we have dΩ (γ, α) ≤ N and dΩ (γ, β) ≤ N,
+contradicting the assumption dΩ (α, β) ≥ 2N + 1. Thus, the suborbifold
+Ω is symmetric.                                                     
+                7. The quasi-isometric embedding
+     We now prove the main theorem:
+Theorem 7.1. The covering relation Π : C(S) → C(Σ), corresponding
+to the covering map P : Σ → S, is a Q–quasi-isometric embedding.
+The constant Q depends only on the topology of S and the degree of the
+covering map P .
+                  COVERS AND THE CURVE COMPLEX                         13
+
+Proof. As mentioned before, we only need to show that
+                         dΣ (α, β) ≻Q dS (a, b).
+Suppose that d is the degree of the covering. We prove the theorem by
+induction on the complexity of S. In the case where S is an annulus
+without orbifold points, the cover Σ is also an annulus and the distances
+in C(Σ) and C(S) are equal to the intersection number plus one. But,
+in this case,
+                            i(α, β) ≥ i(a, b)/d.
+Therefore, the theorem is true with Q = d.
+   Now assume the theorem is true for all strict suborbifolds of S.
+Let Q′ be the largest constant of quasi-isometry necessary for such
+suborbifolds. Choose the threshold T, constant e and length L such
+that Theorem 5.1 holds for both the data (S, T, T, e, L) as well as
+(Σ, (T/Q′) − Q′ , T, e, L). We also assume that T ≥ 2N + 1. All of the
+constants depend only on the topology of S and the degree d, because
+these last two bound the topology of Σ.
+   Let JS be the T–antichain of maxima for S, a and b and let JΣ be
+the set of components of preimages of elements of JS .
+Claim. The set JΣ is a ((T/Q′) − Q′ , T)–antichain for (Σ, α, β).
+  We check the conditions for being an antichain. Since elements of
+JS are not subsets of each other, the same holds for their preimages.
+The condition dΩ (α, β) ≥ (T/Q′ )−Q′ is the induction hypothesis. Now
+suppose Ψ ⊂ Σ with dΨ (α, β) ≥ T. By Lemma 6.3, Ψ is symmetric.
+That is, it is a component of the preimage of an orbifold Y ⊂ S and
+                       dY (a, b) ≥ dΨ (α, β) ≥ T.
+This implies that Y ⊂ Z for some Z ∈ JS . Therefore, taking Ω to be
+the preimage of Z, we have Ψ ⊂ Ω ∈ JΣ . This proves the claim.
+  Hence, there are constants K and K′ such that
+                      dS (a, b) ≍K |JS | + |G(e, L)|,
+and
+                     dΣ (α, β) ≍K′ |JΣ | + |Γ(e, L)|.
+Note that |JS | ≤ d|JΣ | as a suborbifold of S has at most d preimages.
+Note also that |G(e, L)| ≤ |Γ(e, L)| because Γ(t) is at least as thick as
+G(t). Therefore
+                          dS (a, b) ≺Q dΣ (α, β),
+             ′
+for Q = d K K . This finishes the proof.                               
+14                 KASRA RAFI AND SAUL SCHLEIMER
+
+          8. An application to mapping class groups
+   Suppose that P : Σ → S is an orbifold covering map, and χorb (S) <
+0. Let MCG(Σ) be the orbifold mapping class group of Σ: isotopy
+classes of homeomorphisms of Σ restricting to the identity on ∂S and
+respecting the set of orbifold points and their orders. Here all iso-
+topies must fix all boundary components and all orbifold points. As an
+application of Theorem 7.1 we prove the following theorem:
+Theorem 8.1. The covering P induces a quasi-isometric embedding
+                       Π∗ : MCG(S) → MCG(Σ).
+Remark 8.2. Assume that P : Σ → S is a regular orbifold cover with
+finite deck group ∆ < MCG(Σ). Let N(∆) be the normalizer of ∆
+inside of MCG(Σ) and let M < MCG(S) be the finite index subgroup
+of mapping classes that lift. MacLachlan and Harvey [MH75, Theo-
+rem 10]: showed that there is a short exact sequence:
+                      1 → ∆ → N(∆) → M → 1.
+It is not difficult to show that any set-theoretic section of the MacLachlan-
+Harvey map is bounded distance from the quasi-isometric embedding
+constructed by the proof of Theorem 8.1.
+Remark 8.3. Theorem 8.1 can also be compared to the following
+statement: Suppose that a subsurface Z ⊂ S is cleanly embedded
+and SrZ has no annuli components. Then the inclusion Z → S
+induces a quasi-isometric embedding on mapping class groups. This
+follows directly from the summation formula of Masur and Minsky
+(See [MM00], Theorems 7.1, 6.10, and 6.12) and was independently
+obtained by Hamenstädt [Hama, Theorem B, Corollary 4.6].
+Proof of Theorem 8.1. Choose, for the remainder of the proof, a mark-
+ing of S: a collection, m, of curves which fill S. Let µ = Π(m) be
+the lift of m to Σ. Since disks and punctured disks lift to disks and
+punctured disks the curves of µ fill Σ. Hence µ is a marking on Σ.
+   We construct Π⋆ as follows: Let x be an element of MCG(S). De-
+fine ξ = Π⋆ (x) to be any element of MCG(Σ) so that ξ(µ) intersects
+Π(x(m)) an a priori bounded number of times. Such a map ξ always
+exists and, for a given bound on intersection, there are only finitely
+many possibilities for such a map (see [MM00]).
+   Let T be a generating set for MCG(S) and Θ be a generating set
+for MCG(Σ). Let ||x||T and ||ξ||Θ denote the word lengths of x and
+ξ with respect to T and Θ respectively. To prove the proposition it is
+                   COVERS AND THE CURVE COMPLEX                         15
+
+sufficient to show that, for ξ = Π⋆ (x),
+(8.4)                       ||x||T ≍W ||ξ||Θ,
+where W is a constant that does not depend on x.
+  By [MM00], Theorems 7.1, 6.10, and 6.12, we have
+                             Xh             i
+(8.5)             ||x||T ≍W1     dZ m, x(m)      .
+                                                   k1
+
+Here the sum ranges over all sub-orbifolds Z ⊂ S. The constant W1
+depends on k1 which in turn depends on our choice of the marking m
+and the generating set T . However, all of the choices are independent
+of the group element x. Finally, [r]k = r if r ≥ k and [r]k = 0 if r < k.
+   As above, after fixing a large enough constant k2 (see below) and an
+appropriate W2 , we have
+                                 Xh             i
+(8.6)                 ||ξ||Θ ≍W2     dΩ µ, ξ(µ)    .
+                                                  k2
+
+But ξ(µ) and Π(x(m)) have bounded intersection. Therefore, their
+projection distance in every subsurface Ω is a priori bounded. Hence
+we can write
+                             Xh                 i
+(8.7)             ||ξ||Θ ≍W3     dΩ µ, Π(x(m))      ,
+                                                       k2
+
+for a slightly larger constant W3 .
+   We prove equation (8.4) by comparing the terms of the the right
+hand side of (8.5) with those on the right hand side of (8.7). Note
+that µ = Π(m) is a union of symmetric orbits and the same holds
+for Π(x(m)). Therefore, we can choose k2 large enough such that if
+dΩ (µ, g(µ)) is larger than k2 then Ω is itself symmetric (see Lemma 6.3).
+Taking Z = P (Ω), it follows from Theorem 7.1 that
+                    dZ (m, x(m)) ≍ dΩ (µ, Π(x(µ))).
+On the other hand, Theorem 7.1 also tells us that large projection
+distance in any Z ⊂ S implies large projection distance in all the com-
+ponents of the pre-image of Z. Therefore, there is a finite-to-one cor-
+respondence between the surfaces that appear in (8.7) and in (8.5) and
+the corresponding projection distances are comparable. We conclude
+that ||x||T ≍W ||ξ||Θ for some W. This finishes the proof.           
+  As a further application, let Σ be the closed orientable surface of
+genus g and let φ : Σ → Σ be a hyperelliptic involution. Let S =
+Σ/φ and let P : Σ → S be the induced orbifold cover. Birman and
+Hilden [BH73] provide a short exact sequence:
+                  1 → hφi → N(φ) → MCG(S) → 1.
+16                    KASRA RAFI AND SAUL SCHLEIMER
+
+Notice that MCG(S) is the spherical braid group on 2g + 2 strands.
+As in Theorem 8.1 we immediately have:
+Corollary 8.8. A section of the Birman-Hilden map induces a quasi-
+isometric embedding of the spherical braid group on 2g + 2 strands into
+the mapping class group of the closed surface of genus g.            
+                                 References
+[Ber60] Lipman Bers. Quasiconformal mappings and Teichmüller’s theorem. In
+        Analytic functions, pages 89–119. Princeton Univ. Press, Princeton, N.J.,
+        1960.
+[BH73] Joan S. Birman and Hugh M. Hilden. On isotopies of homeomorphisms of
+        Riemann surfaces. Ann. of Math. (2), 97:424–439, 1973.
+[BS85] Joan S. Birman and Caroline Series. Geodesics with bounded intersec-
+        tion number on surfaces are sparsely distributed. Topology, 24(2):217–225,
+        1985.
+[Bus92] Peter Buser. Geometry and spectra of compact Riemann surfaces, volume
+        106 of Progress in Mathematics. Birkhäuser Boston Inc., Boston, MA,
+        1992.
+[Gar87] Frederick P. Gardiner. Teichmüller theory and quadratic differentials. Pure
+        and Applied Mathematics (New York). John Wiley & Sons Inc., New York,
+        1987. , A Wiley-Interscience Publication.
+[Hama] Ursula Hamenstaedt. Geometry of the mapping class groups II: (Quasi)-
+        geodesics. arXiv:math.GR/0511349.
+[Hamb] Ursula Hamenstaedt. Geometry of the mapping class groups III: Quasi-
+        isometric rigidity. arXiv:math.GT/0512429.
+[Har81] Willam J. Harvey. Boundary structure of the modular group. In Riemann
+        surfaces and related topics: Proceedings of the 1978 Stony Brook Confer-
+        ence (State Univ. New York, Stony Brook, N.Y., 1978), pages 245–251,
+        Princeton, N.J., 1981. Princeton Univ. Press.
+[Har86] John L. Harer. The virtual cohomological dimension of the mapping class
+        group of an orientable surface. Invent. Math., 84(1):157–176, 1986.
+[Hem01] John Hempel. 3-manifolds as viewed from the curve complex. Topology,
+        40(3):631–657, 2001. arXiv:math.GT/9712220.
+[MH75] C. Maclachlan and W. J. Harvey. On mapping-class groups and Te-
+        ichmüller spaces. Proc. London Math. Soc. (3), 30(part 4):496–512, 1975.
+[Min99] Yair N. Minsky. The classification of punctured-torus groups. Ann. of
+        Math. (2), 149(2):559–626, 1999. arXiv:math.GT/9807001.
+[MM99] Howard A. Masur and Yair N. Minsky. Geometry of the com-
+        plex of curves. I. Hyperbolicity. Invent. Math., 138(1):103–149, 1999.
+        arXiv:math.GT/9804098.
+[MM00] Howard A. Masur and Yair N. Minsky. Geometry of the complex of
+        curves. II. Hierarchical structure. Geom. Funct. Anal., 10(4):902–974,
+        2000. arXiv:math.GT/9807150.
+[MS07] Howard A. Masur and Saul Schleimer. The geometry of the disk complex.
+        2007.
+[Raf05] Kasra Rafi. A characterization of short curves of a Teichmüller geodesic.
+        Geom. Topol., 9:179–202 (electronic), 2005. arXiv:math.GT/0404227.
+                    COVERS AND THE CURVE COMPLEX                             17
+
+[Raf06] Kasra Rafi. A combinatorial model for the Teichmüller metric. To appear
+         in Geometric and Functional Analysis, 2006. arXiv:math.GT/0509584.
+[RS07] Kasra Rafi and Saul Schleimer. On quasi-isometric curve complexes, 2007.
+         Preprint.
+[Sch]    Saul      Schleimer.    Notes      on      the      curve      complex.
+         http://math.rutgers.edu/∼saulsch/Maths/notes.pdf.
+[Sco83] Peter Scott. The geometries of 3-manifolds. Bull. London Math. Soc.,
+         15(5):401–487, 1983.
+   E-mail address: rafi@math.uconn.edu
+   URL: http://www.math.uconn.edu/∼rafi
+
+  E-mail address: saulsch@math.rutgers.edu
+  URL: http://www.math.rutgers.edu/∼saulsch
+

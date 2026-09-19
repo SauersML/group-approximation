@@ -1,0 +1,9 @@
+Obstruction: Q-free normal towers omit Aff(Q) and B_2(Q), not U_3(Q)
+
+A group with a finite chain of normal subgroups whose factors contain no
+(Q,+) contains neither Aff(Q) nor B_2(Q), so no GL_n(Q), SL_n(Q), PGL_n(Q),
+PSL_n(Q) for n >= 2. The class is closed under subgroups, finite products,
+Q-free-kernel extensions and the continuous V-wreath LC(C,H) x| V, which
+carries the cocycle copies of Q in twisted Brin-Thompson groups. U_3(Q) and
+Q do have such chains, so the two-step lifts lemma does not extend to
+U_3(Q); the central product U(Z,Z,Q) embeds in SV_G.

@@ -1,0 +1,9 @@
+Relative seeds glue graphs of groups into class C; graphs of free and free abelian groups are in C
+
+A rigid relative seed for (A, C) is an SFT on A with an isolated point whose stabilizer is exactly C. They glue
+along any finite graph of groups (vertex-marked and transitive), are stable under finite-index induction, and
+exist for all fg subgroups of free and free abelian groups. So every graph of free or free abelian groups with
+fg edge groups, including HNN extensions of free groups such as modular-machine groups, is in C. The forced
+point is a membership oracle for C, so CAP reduces to rigid relative seeds for hard-membership subgroups.
+
+Lane bh-invent-03; elementary lane proof, unreviewed.

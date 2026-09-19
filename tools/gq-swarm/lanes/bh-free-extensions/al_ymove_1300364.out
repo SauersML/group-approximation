@@ -1,0 +1,149 @@
+node acn64 Fri Sep 18 10:16:31 CDT 2026 python Python 3.6.8
+ff4059af10239ecb9630a741181279df  al_ymove.py
+=== d = 9: l = 17, n = 8, |V(O_d)| = 24310, setup 0.6s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  OK
+  check (D4) y-part at every C_i                                   OK
+  check (D5) y-part at every vertex                                OK
+  check <upsilon_i> transitive on V(O_d)                           OK
+  closure from (A_1, A_2): classes = 1, passes = 4, 1.7s
+  closure from (A_1, A_3): classes = 1, passes = 4, 1.5s
+  closure from (A_1, A_4): classes = 1, passes = 4, 1.4s
+  closure from (A_1, A_5): classes = 1, passes = 3, 1.1s
+  closure from (A_1, A_6): classes = 1, passes = 3, 1.1s
+  closure from (A_1, A_7): classes = 1, passes = 3, 1.1s
+  closure from (A_1, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_2, A_3): classes = 1, passes = 4, 1.4s
+  closure from (A_2, A_4): classes = 1, passes = 4, 1.5s
+  closure from (A_2, A_5): classes = 1, passes = 3, 1.1s
+  closure from (A_2, A_6): classes = 1, passes = 3, 1.1s
+  closure from (A_2, A_7): classes = 1, passes = 3, 1.1s
+  closure from (A_2, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_3, A_4): classes = 1, passes = 4, 1.4s
+  closure from (A_3, A_5): classes = 1, passes = 3, 1.1s
+  closure from (A_3, A_6): classes = 1, passes = 3, 1.1s
+  closure from (A_3, A_7): classes = 1, passes = 3, 1.1s
+  closure from (A_3, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_4, A_5): classes = 1, passes = 3, 1.1s
+  closure from (A_4, A_6): classes = 1, passes = 3, 1.1s
+  closure from (A_4, A_7): classes = 1, passes = 3, 1.1s
+  closure from (A_4, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_5, A_6): classes = 1, passes = 4, 1.4s
+  closure from (A_5, A_7): classes = 1, passes = 4, 1.5s
+  closure from (A_5, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_6, A_7): classes = 1, passes = 4, 1.5s
+  closure from (A_6, A_8): classes = 1, passes = 4, 1.5s
+  closure from (A_7, A_8): classes = 1, passes = 4, 1.5s
+  RESULT d=9: max classes over 28 start pairs = 1  -> phi constant on V(O_d)
+=== calibration on d = 9 data
+  no moves: classes = 24309 (expect 24309) PASS
+  planted positive (no twisting): classes = 1 (expect 1) PASS
+  planted negative (generators fixing 1, start A_2 ~ A_3, both contain 1): classes = 12871, vertices without 1 in non-singleton classes = 0 (expect 0) PASS
+=== d = 7: l = 13, n = 6, |V(O_d)| = 1716, setup 0.0s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  FAIL
+  check (D4) y-part at every C_i                                   FAIL
+  check (D5) y-part at every vertex                                FAIL
+  check <upsilon_i> transitive on V(O_d)                           OK
+  (D4) failures (i, j, j'): [(1, 3, 4), (1, 4, 3), (2, 4, 5), (2, 5, 4), (3, 5, 6), (3, 6, 5), (4, 6, 7), (4, 7, 6), (5, 8, 7), (5, 7, 8), (6, 8, 9), (6, 9, 8)] ... total 26
+  (D5) failures: 28
+  closure from (A_1, A_2): classes = 1, passes = 3, 0.1s
+  RESULT d=7: max classes over 1 start pairs = 1  -> phi constant on V(O_d)
+=== d = 8: l = 15, n = 7, |V(O_d)| = 6435, setup 0.1s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  FAIL
+  check (D4) y-part at every C_i                                   FAIL
+  check (D5) y-part at every vertex                                FAIL
+  check <upsilon_i> transitive on V(O_d)                           OK
+  (D4) failures (i, j, j'): [(1, 3, 4), (1, 4, 3), (2, 4, 5), (2, 5, 4), (3, 5, 6), (3, 6, 5), (4, 6, 7), (4, 7, 6), (5, 8, 7), (5, 7, 8), (6, 8, 9), (6, 9, 8)] ... total 28
+  (D5) failures: 28
+  closure from (A_1, A_2): classes = 1, passes = 3, 0.2s
+  RESULT d=8: max classes over 1 start pairs = 1  -> phi constant on V(O_d)
+=== d = 10: l = 19, n = 9, |V(O_d)| = 92378, setup 2.2s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  OK
+  check (D4) y-part at every C_i                                   OK
+  check (D5) y-part at every vertex                                OK
+  check <upsilon_i> transitive on V(O_d)                           OK
+  closure from (A_1, A_2): classes = 1, passes = 4, 6.2s
+  closure from (A_1, A_3): classes = 1, passes = 4, 6.2s
+  closure from (A_1, A_4): classes = 1, passes = 4, 6.3s
+  closure from (A_1, A_5): classes = 1, passes = 4, 6.2s
+  closure from (A_1, A_6): classes = 1, passes = 4, 6.3s
+  closure from (A_1, A_7): classes = 1, passes = 4, 5.9s
+  closure from (A_1, A_8): classes = 1, passes = 4, 5.9s
+  closure from (A_1, A_9): classes = 1, passes = 4, 5.9s
+  RESULT d=10: max classes over 8 start pairs = 1  -> phi constant on V(O_d)
+=== d = 11: l = 21, n = 10, |V(O_d)| = 352716, setup 8.6s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  OK
+  check (D4) y-part at every C_i                                   OK
+  check (D5) y-part at every vertex                                OK
+  check <upsilon_i> transitive on V(O_d)                           OK
+  closure from (A_1, A_2): classes = 1, passes = 4, 28.1s
+  RESULT d=11: max classes over 1 start pairs = 1  -> phi constant on V(O_d)
+=== d = 12: l = 23, n = 11, |V(O_d)| = 1352078, setup 41.2s
+  check |A'| = d-1                                                 OK
+  check |K0| = d                                                   OK
+  check A_i, B are (d-1)-sets disjoint from A'                     OK
+  check A_1..A_n, B distinct                                       OK
+  check B = K0 - {8}                                               OK
+  check supp(upsilon_1) in B                                       OK
+  check |C_i| = d-1                                                OK
+  check C_i distinct                                               OK
+  check C_i not in A'-family                                       OK
+  check A'-family u C pairwise intersecting (independent in O_d)   OK
+  check (E4) U_{j=i}^{i+3} supp(upsilon_j) in C_i                  OK
+  check (D4) y-part at every C_i                                   OK
+  check (D5) y-part at every vertex                                OK
+  check <upsilon_i> transitive on V(O_d)                           OK
+  closure from (A_1, A_2): classes = 1, passes = 4, 115.2s
+  RESULT d=12: max classes over 1 start pairs = 1  -> phi constant on V(O_d)
+elapsed 284.7s
+AL_YMOVE_DONE
+exit 0

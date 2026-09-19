@@ -1,0 +1,17 @@
+A dense free subgroup of Homeo(Cantor) with no finitely generated clopen stabilizer
+
+Two lane proofs, elementary, not reviewed, no novelty claimed.
+
+free-groups-have-no-pair-finite-actions-with-fg-stabilizers: a finitely generated
+infinite-index subgroup of a free group has infinitely many double cosets (fold the
+double-coset graph of u a^n b a^-n u^-1 at a vertex of the Stallings graph missing the
+label a; the unfolded segment is a bridge of length 2n+1). So free groups have no
+actions with finitely many orbits on pairs and finitely generated stabilizers, in
+particular no type (A) actions on infinite sets.
+
+homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers: with sigma the two-sided
+shift (topologically mixing), for comeager t the group <sigma,t> is free of rank 2 and
+dense in Homeo(C); its clopen stabilizers are then infinitely generated. This is the
+correct witness that the stabilizer clause of
+permutational-boone-higman-iff-dense-cantor-actors cannot be dropped, replacing the
+refuted V * Z witness; that node's section is updated accordingly.

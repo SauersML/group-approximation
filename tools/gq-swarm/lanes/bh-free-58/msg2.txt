@@ -1,0 +1,1 @@
+bh-free-58: Lesson paragraph for ct-z-finite-cycle-problems-are-undecidable (two-involution reversibilization; element-level universality of CT_P(Z))

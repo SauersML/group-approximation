@@ -1,0 +1,7 @@
+Binary-timing scan: exact 2-adic counts with bounded gaps exist, but no local 2-adic phase
+
+Targeted mirror-symmetric scans (4+4/3, 8+8/2 slice, 6+6/3 partial) with a
+binary-timing filter; five 6+6 ternary machines have bounded per-type overhead
+and, induced on their zero-overhead types, exact doubling Y-counts with gaps
+<= 221, yet the induced index mod 8 is not a function of any window up to
+radius 15. Scripts and tables in the artifact; bs12 Attempts updated.

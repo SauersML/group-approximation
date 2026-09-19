@@ -1,0 +1,4 @@
+gq-referee-b: PASS on commensurator-rigid BS classes, symmetric space x tree, quotient-free kernels
+
+Mostow (Morris 15.1.2), Borel density (4.5.3), commensurator criterion, arithmeticity (5.2.1),
+Farb-Handel (n > 3) pinned. W1: Comm(G) is Comm_Isom(X)(G), index <= 2 over Comm_L(G).

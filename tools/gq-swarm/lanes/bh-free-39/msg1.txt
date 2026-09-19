@@ -1,0 +1,6 @@
+St_N(R_L) is quasisimple; GL_n(Q) embeds in St_10(R_L) off the centre
+
+With U_N = 1 (leavitt-resolvent-k2-stability-holds), root detection modulo the centre pulls back along the central
+Steinberg map: every proper normal subgroup of St_N(R_L) is central, the centre is H_2(PE_N(R_L)) and is not finitely
+generated, H_2(E_N(R_L)) = Q^x, and PE_N(R_L) is the only simple quotient. Every GL_n(Q) meets Z(St_10(R_L))
+trivially, so it embeds in PE_10(R_L). Lane bh-free-39.

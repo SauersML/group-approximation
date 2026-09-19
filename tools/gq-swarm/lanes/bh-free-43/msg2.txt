@@ -1,0 +1,8 @@
+Adversarial end-to-end check of the Kourovka 17.57 chain: PASS
+
+Re-derived the reduction to local rigidity, the flip normalization, the
+2- and 3-regularity of normalizers, Bell's Theorem 1.4 over Q, the
+Fatou-Kronecker step and the quasi-polynomial-to-affine step. Matui's
+spatial theorem and Proposition tfg=F were read at source. No gaps;
+two wording fixes are listed, and the remaining trust surface is the
+upstream CT(Z) = [[G]] lane proofs.

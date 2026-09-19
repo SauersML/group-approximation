@@ -1,0 +1,10 @@
+Record Cornulier-Guyot-Pitsch Questions 1-3 on limits of isolated groups, with the structure of that class
+
+Adds the three printed questions of arXiv:math/0511714v2 pp. 10-11 (every decidable group,
+every hyperbolic group, every finitely generated solvable group a limit of isolated groups) as
+OPEN nodes, read from the source. Two elementary lane lemmas: the limits of isolated groups
+contain all LEF and isolated groups, are closed under finite products, marking-independent,
+and characterized for finitely presented inputs by F-avoiding isolated quotients; and a relative
+Kuznetsov lemma showing that no finitely generated subgroup with unsolvable word problem survives
+in all nearby finitely presented quotients, which rules out the naive route to the negative
+answer of Question 3 that CGP suggest. Lane proofs, not reviewed, no priority claimed.

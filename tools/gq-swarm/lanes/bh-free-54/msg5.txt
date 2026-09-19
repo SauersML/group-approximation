@@ -1,0 +1,3 @@
+State the non-LCM finiteness theorem for dissection hosts as Thumann's operad-group theorem
+
+For any Thompson-like group of a dissection operad (tiles, a finite transformation groupoid, mono-and-epi subdivisions), Thumann's theorem gives type F-infinity from square filling and a finite spine of minimal common refinements. No least common multiples are required, so this is the "Li without lcms" top gate named in the master synthesis. Finite presentation for the dissection hosts (the closed-MCG host, 2V_Lambda, and any extension-move category that forms an operad with transformations) thereby reduces to two checkable combinatorial conditions.

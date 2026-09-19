@@ -1,0 +1,5 @@
+E3' in finite type: non-ascending HNN end shifts with F_n vertex groups, and complexity lives in the units
+
+- nonascending-hnn-end-shifts-satisfy-e3-prime (+ proof). For a non-ascending multiple HNN extension of a group H of type F_n with no element fixing a half-tree, the Bass-Serre end shift is a minimal, topologically free SFT, and V times its groupoid is Li's Zappa-Szep groupoid with the edge groups as units. So its full group is F_n, simple and of type (A), and the shift is quantum rigid. BS(m,k) with |m| != |k| is the calibration.
+- finite-type-e3-prime-hosts-carry-complexity-in-units. In finite Zappa-Szep k-graph codings the host's word problem is the unit groupoid's, up to an exponential, and the units are residually finite. This names gate (SS-hard)_k. In tree hosts, FA inputs without finite quotients must sit at an infinite emitter.
+- The E3' gate node lists the new instance and the primary-form reading.

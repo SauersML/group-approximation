@@ -1,0 +1,8 @@
+Algebra gate: the decisive question is whether algebra presentation forces a finitely presented germ group
+
+bh-ck-kernel. New OPEN node shell-germ-algebra-fp-forces-fp-germ-group. Its answer decides
+whether the germ-Steinberg-algebra route buys anything over the group gate. Lane-proved
+pieces: relators of the shell germ algebra are local on the Schreier graph of the near-shift
+group R_nu, not along N; and bounded shell displacement forces a virtually cyclic input, so
+the crossed-product homoclinic kills on main do not transfer along N. The expected
+truncation proof is stuck at building an R_M near action with the right local structure.

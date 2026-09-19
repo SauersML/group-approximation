@@ -1,0 +1,8 @@
+St_N(R_L) ⋊ V is St_N(R_L) × V; Leavitt extensions add nothing
+
+The Leavitt copy of V acts on St_N(R_L) by inner automorphisms and is acyclic, so it
+splits off as a direct factor. Record that every group containing St_N(R_L) normally has
+only PE_N(R_L) as a simple quotient, that ring symmetries leave K_2 virtually central (no
+type (A) action), and that FW shell obstructions pass to direct factors K with
+Hom(K,H) = 1. Also: every GL_n(Q) embeds in PE_3(R_L). Test note added to the
+corner-copy node.

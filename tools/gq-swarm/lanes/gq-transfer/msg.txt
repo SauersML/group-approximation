@@ -1,0 +1,9 @@
+gq-transfer: consequences of GL_n(Q) in fp simple, Kourovka 14.10 map
+
+Record what the root would give and which printed questions it answers.
+Restriction of scalars makes the root equivalent to its number-field form.
+A finitary-dimension argument shows no Prufer group embeds in GL_infinity
+over a number field, so GL_n(Qbar) and the universal countable char-0
+statement are separate OPEN targets. Add the uniform GL_infinity(Q) form,
+with the finitary Leavitt matrix-unit embedding. The artifact maps
+Kourovka 14.10(a)-(c) wording, from Mikaelian's quotations, and status.

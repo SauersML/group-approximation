@@ -1,0 +1,8 @@
+Scaled copies of Q in nV need aperiodic-core elements
+
+A copy of Q in nV normalized by an element acting as multiplication by a
+rational a != +-1 consists of elements with zero periodic exponents, open
+periodic sets and nonempty aperiodic cores (and logarithmic table length for
+integer a). The odometer copy of Q in 2V has a fixed point of exponent (1,0),
+so no element of any nV scales it: it cannot be the unipotent part of Aff(Q)
+or GL_n(Q) in nV.

@@ -1,0 +1,15 @@
+bh-bbmz-problems: named-problem status map, BFFHZ Q3.3 reformulation, Burnside attempt
+
+- New claim bffhz-q33-is-normal-finite-generation-of-mixed-identities (+ proof route):
+  BFFHZ Question 3.3 at rank k is normal finite generation of the k-variable mixed
+  identities J_k(G) in G*F_k. It descends to lower ranks (a retraction maps J_k onto J_j)
+  and forces a finite basis over overgroups. So one fp simple group with J_1 not finitely
+  based answers Q3.2 and Q3.3 negatively at every rank. Lane proof, elementary, not
+  reviewed.
+- free-burnside-groups-satisfy-boone-higman: Attempt 1. The actor must be a finitely
+  presented overgroup, since B(m,n) is not fp, so FWZ Theorem B rules it out as its own
+  [A_2] actor. The open gate is B(2,n) in B_A; no candidate was found.
+- Artifact gq-bh-bh-bbmz-problems-status.md: every named question from BBMZ (survey and
+  hyperbolic), Zaremsky, BFFHZ, FFKLZ and FWZ, with its node on main and its staffing in
+  the swarm. It resolves bh-lit flag F3: FWZ does not answer BBMZ-hyperbolic Q1.6, which
+  reduces to kernel removal, i.e. Zaremsky Q5.13(ii).

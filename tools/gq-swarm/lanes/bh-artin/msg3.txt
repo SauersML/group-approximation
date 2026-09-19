@@ -1,0 +1,10 @@
+Artin groups: permutational BH for all Artin groups reduces to free-of-infinity Artin groups (clone doubles)
+
+- artin-pbh-reduces-to-free-of-infinity-artin-groups (+ proof): give every vertex a
+  clone with the same labels (infinity replaced by a finite L among clones); then every
+  original non-edge u|w splits the clone double over a common retract (fold u to its
+  clone, w to its clone), so the clone double reduces to complete pieces. Class form:
+  every Artin group lies in B_A iff every Artin group with complete defining graph does.
+- artin-groups-satisfy-boone-higman: status bullet and Attempt 7.
+
+Lane proof, not independently reviewed; no priority claimed.

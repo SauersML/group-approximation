@@ -1,0 +1,10 @@
+The Basilica HNN extension has no finitely presented ascending base
+
+- New ESTABLISHED node (lane proof): if G is self-similar with a section-inverting injective endomorphism sigma
+  (sigma(G) fixes a vertex v and the section at v undoes sigma), and every finitely presented cover of G contains
+  F_2 while G does not, then no finitely generated subgroup of ker(chi) containing a conjugate of G is finitely
+  presented.
+- For Basilica (Erschler's theorem, Bartholdi-Virag amenability): the fp amenable HNN extension B~ is not an
+  ascending HNN extension of any finitely presented group. So the base-change route to F_3 for the Kourovka 21.140
+  candidate is closed.
+- The crux node records this and the literature check.

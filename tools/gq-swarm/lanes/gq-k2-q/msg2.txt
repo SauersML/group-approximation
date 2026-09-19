@@ -1,0 +1,7 @@
+gq-k2-q: establish chamber-colimit presentation of SL_n(Q) after review
+
+Apply gq-referee-b amendments A1-A3 (c1ce2c85d): Brown 1984 Thm 1-prime via
+the staircase triangulation of the product of buildings (polysimplicial for
+|S|>=2), Kramer 6.4(a) for CAT(0) plus the geodesic contraction, and the
+wording Gamma_F = SL_n(Q) cap prod_p P_{F_p}. Move the proof into the direct
+route sl-n-q-is-colimit-of-lattice-stabilizers-proof and flip to ESTABLISHED.

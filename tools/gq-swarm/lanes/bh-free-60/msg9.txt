@@ -1,0 +1,9 @@
+Partial-torus Abels hosts: finitely presented max-n overgroups for twisted Pruefer radicals
+
+A_n(Z[1/m]) is finitely presented for n >= 4 and every m (Abels at each prime plus Kneser's
+S-arithmetic criterion); extending by any finitely generated outer diagonal group and dividing by an
+invariant module-cyclic corner lattice keeps finite presentation and max-n. So soluble minimax
+groups whose Pruefer radical is twisted by rational S-units, e.g. G_2 with the radical scaled by 2,
+embed in isolated groups. Opens the gate node (every f.g. soluble minimax group in an fp max-n
+group) with literature, the reduction to finitely discriminable inputs and the next test case
+(radical twisted by an irrational p-adic unit, candidate number-field host).

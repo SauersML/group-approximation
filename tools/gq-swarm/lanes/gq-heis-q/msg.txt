@@ -1,0 +1,10 @@
+Add U_3(Q) stepping stone and abelian-lamp wreath obstruction (gq)
+
+New OPEN claim u3-q-embeds-in-fp-simple-group (the rational Heisenberg group
+into a finitely presented simple group), wired to the GL_n(Q) root by route
+u3-q-via-gl-3-q. It collects what cannot host U_3(Q) (RF groups, V, VA and its
+subgroups, lifts, BFFHZ closures, circle groups), the Brin-Thompson status, and
+a spark for a central extension over a distortion-free base. New lane-proved
+claim abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q: in A wr_X G with A
+abelian and finite point stabilizers, nonabelian torsion-free nilpotent
+subgroups and copies of Aff(Q) meet the base trivially, so they embed in G.

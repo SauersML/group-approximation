@@ -1,0 +1,17 @@
+Kill Leavitt-linear simple hosts for the C_=P-complete integral group Γ_Z
+
+The candidate (L_{Z[1/M]}(1,2)^{⊗2})^x mod centre is never simple. For each
+p ∤ M the congruence kernel contains T(c,1,d)^p = 1 + p a_c a_d^*, which is not
+central, so the quotient is not simple whatever the K-theory. Over Q, scalars
+lie in the perfect L_Q(1,2)^x, so no central quotient is finitely presented
+(leavitt-scalar-commutators-block-fp-central-quotients).
+
+A nontrivial f.g. simple subgroup of GL_N over a rational Leavitt tensor
+algebra reduces injectively mod some prime p. It therefore has no nontrivial
+square-zero unipotent, cannot hold Γ_Z in standard position, and has word
+problem in ∀·Mod_pP. An abstract embedding of Γ_Z would give
+C_=P ⊆ ∀·Mod_pP, which fails relative to an oracle. Affine actors over
+Z[1/M] keep v_p of differences, so they are not type (A).
+
+A C_=P-hard fp simple group must come from a non-linear construction, e.g. a
+uniform direct product of the P_p via the Chinese remainder theorem.

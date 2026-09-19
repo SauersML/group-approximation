@@ -1,0 +1,8 @@
+HNN conservation law: the non-injective case, and the other actor constructions
+
+Point evaluation in a one-permutation stage is primitive recursive relative
+to the edge orbit distortion whether or not the stage acts faithfully. So
+complexity enters such a stage only through edge distortion (injective case)
+or the kernel (non-injective case, paid for by finite presentation of the
+image). The other type (A) constructions on main compute their actions
+coordinatewise and are conservative for that reason.

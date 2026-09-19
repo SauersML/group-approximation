@@ -1,0 +1,6 @@
+Referee c: independent pass on the Conjecture H and FFWZ-conjecture proofs
+
+Both proofs pass. The FFWZ Lemma 4.9(i) gap is confirmed. A second error in
+Belk-Zaremsky lem:VE_conn (non-disjoint pairs have nonempty intersections, so the
+nerve is not the matching complex) is recorded with a repair via labelled matching
+complexes as complete joins; the lemma's conclusion holds.

@@ -1,0 +1,7 @@
+Referee B: referee A's Q1.15 repairs pass; Q1.15 marked ESTABLISHED (internally refereed)
+
+Independent checks of the three open items. (1) The direct Dickson-plus-doubling proof of Li's
+link lemma for the pure-hole Cuntz datum: pass, with an off-by-one in a bound. (2) Lemma E-prime: pass.
+(3) (St) and lcms of the pure-hole datum: pass, with two reading notes (set-level purity; bold
+Gamma as all pure one-layer elements). The Q1.15 claim is now ESTABLISHED, internally refereed,
+conditional on the published imports listed in its status line.

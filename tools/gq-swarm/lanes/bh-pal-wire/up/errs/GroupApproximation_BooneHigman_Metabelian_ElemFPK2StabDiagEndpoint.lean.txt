@@ -1,0 +1,13 @@
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:70:4: 'change
+  stabDiagLeftPerm n R (x i j hij a) * stabDiagLeftPerm n R (x i j hij b) =
+    stabDiagLeftPerm n R (x i j hij (a + b))' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:74:4: 'change ⁅stabDiagLeftPerm n R (x i j hij a), stabDiagLeftPerm n R (x k l hkl b)⁆ = 1' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:78:4: 'change
+  ⁅stabDiagLeftPerm n R (x i j hij a), stabDiagLeftPerm n R (x j k hjk b)⁆ =
+    stabDiagLeftPerm n R (x i k hik (a * b))' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

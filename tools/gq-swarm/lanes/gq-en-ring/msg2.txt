@@ -1,0 +1,6 @@
+gq-en-ring: record the Leavitt resolvent ring as a candidate host
+
+Add Attempt 3 to q-algebra-with-fp-simple-projective-elementary-group: R_L is
+finitely presented, simple, contains Q and satisfies R_L = M_2(R_L). The open
+test for it, and for the derived-unit target, is whether the elementary
+rational scalars form a finitely generated group.

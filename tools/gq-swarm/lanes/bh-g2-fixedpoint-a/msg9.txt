@@ -1,0 +1,5 @@
+Diagonal-time SW layout at tile level; widen the crossing box by one column
+
+New artifact: SW tile tables (wires, turns, fans, merge, combiners, ZT/ZR zone cells), macrotile geometry
+with private lines, the complete-crossing and causality checks, and poly(log N) checkability. The four-way
+layout artifact gets the END-column fix found by bh-free-35 (f757d5cbc). The SW node now cites the new artifact.

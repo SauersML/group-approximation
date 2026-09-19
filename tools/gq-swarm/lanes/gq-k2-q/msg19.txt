@@ -1,0 +1,10 @@
+gq-k2-q: K_2 of the Euler ring has infinite rank; triangular route refuted
+
+The symbols {u+1, u+1+ql} for primes q != l are independent in the
+sigma-coinvariants of K_2(A): the line-weighted tame residue I_p is
+shift-invariant by an elementary two-dimensional reciprocity lemma (UFD plus
+symmetric lengths, in place of the Kato complex), and I_p(c_q) = q or 0. By the
+ABC twisted Laurent sequence they are independent in K_2(D), hence in K_2(T_l)
+and K_2(R_l). So E_N(D), E_N(T_l), E_N(R_l) are not finitely presented and
+K_2(N, T_l) is not finitely generated, refuting
+euler-triangular-ring-has-fg-central-unstable-k2.

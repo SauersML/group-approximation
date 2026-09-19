@@ -1,0 +1,3 @@
+Mark the Ito transport argument as a sketch in the positive-cone node
+
+Lesson for general BH: a transport argument is a sketch until its reduction is written out; label it so.

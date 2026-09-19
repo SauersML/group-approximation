@@ -1,0 +1,8 @@
+A Brin-Thompson host for closed MCGs forces braid groups into nV
+
+New claim closed-mcg-in-nv-forces-braid-groups-in-nv (elementary lane proof,
+unreviewed): a finite-index subgroup of Mod(S_g) in any group D gives a
+finite-index subgroup of B_{2g-1} in D, via Birman-Hilden on a genus g-1 subsurface
+with one boundary curve and injectivity of extension by the identity. So a
+negative answer for braid groups in nV would kill the nV instance of the
+full-Cantor route for large genus; PB_3 already lies in 2V.

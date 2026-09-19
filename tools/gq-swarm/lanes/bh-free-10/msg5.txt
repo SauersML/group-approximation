@@ -1,0 +1,9 @@
+Coset lamplighters and identity-edge HNNs of free groups over f.g. subgroups lie in B_A
+
+New: free-group-coset-wreaths-satisfy-pbh (+ proof route). Criterion: if a finite-index
+normal N of G has N ∩ C a retract of N, then A wr_(G/C) G and G *_C (C × K) lie in B_A.
+By Marshall Hall and Kurosh this holds for every f.g. subgroup C of a f.g. free group.
+So all identity-edge HNN extensions <F, t | [t, c] = 1> and all coset lamplighters
+Z wr_(F/C) F embed in finitely presented simple groups. The first test case of
+pbh-closed-under-decidable-permutational-wreaths is marked settled. Lane proof, not
+reviewed.

@@ -1,0 +1,9 @@
+bh-free-58: finite subgroups of CT(Z) are classified by stabilizer sets (Kourovka 21.73, torsion case)
+
+Two embeddings of a finite group into CT(Z) are conjugate iff the same
+subgroups occur as point stabilizers on Z. So torsion elements are conjugate
+iff they have the same cycle lengths (every one is conjugate into V), and
+conjugacy is decidable whenever one element has finite order. Consequence:
+Salo-type reductions (finite-order yes-instances, as for 2V) cannot work in
+CT(Z); any undecidability proof for 21.73 needs infinite-order yes-instances.
+Includes a Salo source record. Lane proof, not reviewed.

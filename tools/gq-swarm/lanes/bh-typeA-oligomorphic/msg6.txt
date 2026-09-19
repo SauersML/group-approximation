@@ -1,0 +1,5 @@
+Q3.4 census update: Lodha, Stein T/V, golden-ratio T_tau, V_tau via own type (A) actions
+
+This artifact updates the q34-known-actors census. Rows are settled by the four
+lane nodes 1e64376ae, 33f9eaf07 and 32ee40ce8. It records the exact Rattaggi-lattice gap:
+boundary 2-transitivity of the closure of pr_1(Sigma_0) under finite index.

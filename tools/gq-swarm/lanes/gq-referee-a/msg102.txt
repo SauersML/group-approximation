@@ -1,0 +1,3 @@
+Referee report: fp germ extensions of locally moving bases have fp germ groups PASS, W1
+
+Proof-gap lens on fp-germ-extensions-of-locally-moving-bases-have-fp-germ-groups (e57b7ace1). Step 3 surjectivity via (B1), Step 5 word-independence, and the V_(d,r), nV, T examples checked. W1: F on [0,1] fails (B3) at its global fixed points 0 and 1.

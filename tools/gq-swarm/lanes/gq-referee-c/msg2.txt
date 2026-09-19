@@ -1,0 +1,6 @@
+Referee C: PASS for simplicity of the Leavitt resolvent ring R_L
+
+Independent proof without the O_psi criterion: isolate one nonzero coefficient, then compress
+along the aperiodic word 1^k 2 2^Z 1^T 2 to reach a nonzero rational. Calibration: dropping the
+vacuum, shift or resolvent relation gives a char-p quotient; dropping the Cuntz relation gives the
+Toeplitz vacuum ideal.

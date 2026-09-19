@@ -1,0 +1,5 @@
+Split finitary criterion: the covering obstruction is vacuous for fp groups; partial-torus Abels hosts tested
+
+For fp G acting on cosets of a fg subgroup, the scale-F nerve is simply connected, so only
+line-type or homological obstructions remain. The partial-torus Abels hosts pass the stabilizer
+law but keep unbounded fibre pair types, so gate (b) is unchanged; fallback is near actions or germ hosts.

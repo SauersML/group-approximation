@@ -1,0 +1,12 @@
+Two commuting edge splits have an exotic two-sided minimal common upper bound in rank four
+
+A coordinator-approved single-core search, together with a hand check, gives a 13-piece split
+tree above E_01 and E_23 that is not above their square. The square piece {x_1 >= x_0, x_2 >= x_3}
+is dissected by a pinwheel that is not a split tree, yet each atom reaches it inside a larger tree.
+It is a minimal common upper bound, and its only atoms are E_01 and E_23, so its splitting category
+is disconnected. In rank three nothing exotic was found in the searched range: 420,592 descendant
+cells, and 141,103 common upper bounds of two adjacent edge splits, all above a flop.
+
+Consequence: condition (G) for the closed-MCG edge-split host is now exactly bounded degree of
+pinwheel-type two-sided minimal pair bounds in each rank. Artifact with script, output,
+calibration and survival counts.

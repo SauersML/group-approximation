@@ -1,0 +1,9 @@
+Establish a finitely presented simple ring of characteristic zero
+
+R_L = Z<s1,s2,t1,t2,N,A | Leavitt(1,2), N s1 = s1(N+1), N s2 = 0,
+A(N+1) = 1 = (N+1)A> is the Leavitt-Nekrashevych completion of
+B = Q[N][(N+c)^-1] with psi(f) = diag(f(N+1), f(0)); B is psi-minimal and
+the pair is aperiodic, so R_L is simple; 1/m = t2 t1^(m-1) A s1^(m-1) s2.
+So GL_n(Q) lies in [R_L^x, R_L^x] for all n. Add the open group claim
+(derived units mod centre fp and simple) and its route to the GL_n(Q) root.
+Lane proof, not independently reviewed.

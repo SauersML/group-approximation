@@ -1,0 +1,13 @@
+Referee PASS for BG_n in class C, the derived-subshift rigidity theorem and the two seed full-group nodes, with scope notes
+
+- Derived-subshift theorem: the forcing lemma, the atoms and the finite-certificate argument are
+  correct. The seeded word-problem node was read through part 3.
+- BG_n in class C: the tree, the classification, the limits, the monotone chains and the gluing all
+  check. Two wording points: a two-site-pattern remark, and "maps onto" in the graph-of-groups corollary.
+- Seed full groups: items 1-3 and the Corollary are correct. Item 3 reduces the disjunctive set E_s,
+  not the full seed evaluation, so the title and Lesson overstate it.
+- Forcing radius: items 1-4 are correct. The rule-based local forcing used there is stronger than the
+  language-based notion, and exponential-growth seeds need windows B_(Cn+c).
+
+Lesson for general BH: seeds are the right object, but "orbit problem = seed evaluation" is still
+unproved; only a disjunctive two-cell set reduces.

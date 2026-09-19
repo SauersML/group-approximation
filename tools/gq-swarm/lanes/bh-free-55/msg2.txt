@@ -1,0 +1,6 @@
+Record the Lagrangian Brin-Thompson reduction on the Deligne BH node and on the V_Lambda^tau finiteness node
+
+Deligne's lattice (every n >= 2) sits in the f.g. simple group D(2V_Lambda(n));
+BH for it now needs only finite presentation of that group. For V_Lambda^tau, the
+same argument gives simplicity (modulo the O_tau groupoid properties) and
+containment of the lattice in the commutator subgroup.

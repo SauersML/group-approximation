@@ -1,0 +1,7 @@
+Credit Belk-Zaremsky for Gamma <= SV_Gamma undistortion and correct the F_infinity criterion
+
+Belk-Zaremsky (arXiv:2001.04579) Theorem 1.2 already shows every finitely generated G is undistorted in a
+finitely generated SV_G, so the twisted Brin-Thompson form of the label-length lemma is credited to them.
+Their Theorem 1.4 (oligomorphic action, G and finite-set stabilizers of type F_n imply SV_G of type F_n)
+is proved; the earlier text wrongly called it a conjecture. For the BBMZ host the F_infinity half is
+therefore exactly BBMZ quest:F_infty plus F_infinity of finite-set stabilizers.

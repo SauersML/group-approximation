@@ -1,0 +1,15 @@
+Kill every piecewise-translation enumeration of Z^2 at the near shift group
+
+If the successor map of an enumeration of Z^2 is a piecewise translation
+over finitely many polyhedral pieces, then R_nu has no free subgroups, and
+at a critical direction where the successor is not a single translation,
+the offset character chi_theta has zero flux (translations cannot move
+half-lines between directions). Line-germ windows then block an ascending
+splitting over ker(chi_theta) in both directions, so R_nu is not finitely
+presented. Hence E_nu(Z^2), every H_n(E_nu(Z^2)) and the shell germ group
+are not finitely presented. This generalizes the square-spiral kill without
+its machine check, and proves the diamond-spiral prediction.
+
+Also correct the zigzag node: the proposed near relations lambda s lambda^-1
+= s^k are impossible by conjugation invariance of the near index. Point to
+reflecting or rotating polyhedral enumerations as the surviving class.

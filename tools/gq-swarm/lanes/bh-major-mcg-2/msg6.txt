@@ -1,0 +1,3 @@
+Reduce the shared-ray gate at recurrent directions to one tracking lemma and one finite check
+
+At every direction whose diagonal-flow orbit returns to a fixed compact set, the shared-ray statement follows from a tracking lemma (the descent system of any cell contains cells of bounded distortion from the fat cell at recurrence times) plus finitely many synchronization instances. This covers almost every direction with one compact set; singular directions are left as the natural counterexample candidates.

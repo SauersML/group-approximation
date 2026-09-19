@@ -1,0 +1,3 @@
+P2 prime b: Cantor-alphabet gluing kernels are unions of finite-alphabet kernels; merged route of three lanes
+
+New node cantor-alphabet-gluing-kernel-is-the-union-of-finite-alphabet-kernels. For any infinite f.g. group, K over the Cantor-alphabet full shift is the increasing union of the finite-alphabet kernels, each of which is a retract of it. So EX(Z), needed over free groups with FPG, is equivalent to exactness for Z on each 2^n-letter full shift, which is commutation with one transposition. The node merges the universality, splitting, commutation-criterion and finite-shadow views, and names their common residue: consistency of lifts across non-symmetric partitions.

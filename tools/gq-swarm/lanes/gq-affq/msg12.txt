@@ -1,0 +1,10 @@
+Coprime renormalizations: eigenvalue roots, clock action, speed-up test
+
+Prove that a height-m renormalization forces the eigenvalue group to be
+closed under m-th roots, and that a height-q renormalization multiplies
+every p-adic clock (p not dividing q) by 1/q. So one base for every prime
+must factor onto Z-hat, and SMART's induced map (if its known Z/2 x Z_3 factor
+is maximal) serves powers of 3 only. MSI: a coprime speed-up psi U^q = U psi
+is refuted pointwise for q = 5, 7 in the one-cell edit class that carries the
+height-3 renormalization. Record a Cobham-Durand conjecture that one
+aperiodic machine-type base cannot carry heights 2 and 3.

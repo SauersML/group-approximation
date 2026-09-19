@@ -1,0 +1,5 @@
+P2 prime b: local transposition presentation as the route to exactness
+
+State the Quick-type presentation of the V x subshift full group (open;
+known for V_{2,n} and nV) and the lift route to K = 1, with order, split
+and representative disjoint-commutation relations verified in Gamma~.

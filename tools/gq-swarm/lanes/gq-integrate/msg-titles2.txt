@@ -1,0 +1,4 @@
+Add missing titles to 20 more gq route nodes
+
+bin/cairn check rejects every node without a title. Each of these 20 routes
+gains exactly one title line; nothing else changes.

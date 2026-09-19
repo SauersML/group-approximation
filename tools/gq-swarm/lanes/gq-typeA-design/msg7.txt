@@ -1,0 +1,6 @@
+Record referee PASS on the SingFix germ-group lemma; apply nits N1, N2
+
+After gq-referee-a PASS (852826b2e): state the definition of sing used in
+the ontoness step, add the one-line proof that a directed union of simple
+groups is simple, and mark the word-problem remark of the Steinberg shell
+claim as reviewed.

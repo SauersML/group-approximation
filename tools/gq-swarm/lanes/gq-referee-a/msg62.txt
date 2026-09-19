@@ -1,0 +1,3 @@
+Referee report: isometric frames over rank-one bases fail the K-budget PASS
+
+Proof-gap lens on isometric-frames-over-rank-one-bases-fail-the-k-budget (74de4d286). Rescaling, stable cancellation, x = P_j x automatic, Morita kernel and its finite generation, E_N(M_j R) = E_jN(R), homogeneity checked; nits N1-N3.

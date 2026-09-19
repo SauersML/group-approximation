@@ -1,0 +1,10 @@
+Independent referee check of the P_eff kill (linear-time lamp centralizers): PASS with one repair
+
+Checks linear-time-rauzy-sets-exist and nv-machines-realize-linear-time-lamp-centralizers(-proof)
+step by step. Repair: the completion in Lemma 1 must be done inside each copy-bit slice so that F
+is a bijection. Records an independent second construction in Kohl's groups CT_P(Z) (passenger
+codes, switching machine, and an input clock compared with the verifier output instead of a time
+dilation), which confirms the kill in an arithmetic host.
+
+Lesson for general BH: effective-residual separators fail in every full host with a reversible
+universal model; the live separators are the non-effective ones (P_Z, RT).

@@ -1,0 +1,5 @@
+Red-team frontier map for Boone–Higman
+
+Artifact gq-bh-bh-refute-frontier.md: table of separator families (dead / open, with the
+(S1)/(S2) status and nodes), the positive tests Boone–Higman must pass, the host-class kills,
+ideas that reduce (quantitative profiles, uniform BH diagonal), and the shape of any new separator.

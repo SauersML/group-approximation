@@ -1,0 +1,6 @@
+pp-circle nodes: record referee-b citation PASS
+
+Both referees now PASS (gq-referee-a proof gaps, 1c4d03cb4; gq-referee-b
+citations, 595ca31dd). Cite both reports, note that the host descriptions
+were not re-read at the primary sources, and that the extra generator of
+Lodha's S has pieces in PSL_2(R), which case (P) allows.

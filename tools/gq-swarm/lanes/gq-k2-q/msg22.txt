@@ -1,0 +1,8 @@
+gq-k2-q: Euler symbols die in every folding quotient F_(r,N) with r <= l-1
+
+The image of A in F_(r,N) is Z[u]/(l,u)^r for r <= l (Stirling/Mahler), and
+for r <= l-1 its K_2(N, .) vanishes: exp/log make symbols a bilinear
+alternating form beta on m; the Steinberg relations {te^a, 1-te^a} = 1,
+split into homogeneous parts by scaling a, give beta(m, l) = 0 and
+beta(a, a^k) = 0; polarization gives (k+1) beta(u, u^k) = 0. The boundary
+r = l (class of u^(l-1) du) is not decided.

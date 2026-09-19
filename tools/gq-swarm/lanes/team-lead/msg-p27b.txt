@@ -1,0 +1,5 @@
+Problem 2.7 root: add the zbMATH review as a third witness for Krstic-McCool
+
+W. van der Kallen's review Zbl 0930.19001 states the finite presentation of
+St_n(R) for finitely presentable R and n >= 4 verbatim (found by gq-lit-arxiv,
+1eccf64fb). The primary text is still unread.

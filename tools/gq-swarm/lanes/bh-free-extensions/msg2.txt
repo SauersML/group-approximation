@@ -1,0 +1,4 @@
+Faithful BS witnesses pass to direct products
+
+Lane bh-free-extensions (lane proof, elementary, not reviewed; no priority claimed).
+faithful-generalized-bs-witnesses-pass-to-direct-products: if BS_A and BS_B contain faithful witnesses, so does BS_{AxB} (glue the two product graphs along one edge; the two kernels intersect trivially). Consequence: every group in BS_G, and every extension of G by a virtually free group, embeds in a simple group of type F_infinity, for G any finite product of groups commensurable with Z^k, F_k or closed hyperbolic surface groups.

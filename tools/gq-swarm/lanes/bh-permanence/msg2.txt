@@ -1,0 +1,7 @@
+JE: holds for Kac-Moody lattice and V; FFWZ stops at the Q5.9 gate
+
+bh-permanence. Attempts on fp-simple-groups-have-the-joint-embedding-property:
+the Kazhdan Kac-Moody / V test pair holds (both in B_A); every source of fp
+simple groups that BFFHZ list, plus Lodha's group, is in B_A, so any
+counterexample to JE or to the closures reduced to it needs a new fp simple
+group; FFWZ gives JE only in f.g. simple groups, gated by Q5.9 part 2.

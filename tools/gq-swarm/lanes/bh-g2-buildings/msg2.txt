@@ -1,0 +1,10 @@
+The topologically free route needs no effectivity premise: free products with Z carry minimal topologically free effective subshifts
+
+free-products-with-z-carry-minimal-topfree-effective-subshifts: for every nontrivial decidable A, the
+tree gluing of one-point compactifications along A * Z (the Bowditch boundary) is a minimal,
+topologically free, effectively closed subshift with decidable language and no invariant measure. So
+premise (D) and the universal-point premises matter only for freeness, which the topologically free
+master routes do not consume. E1' follows from minimal simulation on squares (MSS') alone. (★𝒞) is
+exactly a rigid, almost one-to-one SFT cover of this subshift. The geometry of the strongly proximal
+disjointness node is the finite-vertex-group case of the same gluing. Also cross-links (★𝒞) to it.
+Lane proof, unreviewed.

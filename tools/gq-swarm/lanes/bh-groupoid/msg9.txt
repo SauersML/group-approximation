@@ -1,0 +1,11 @@
+General theorem: every cocompact lattice in a locally finite thick irreducible Euclidean building (any type, any dimension; exotic C̃2 and G̃2 included) lies in B_A
+
+- euclidean-building-lattices-lie-in-permutational-bh-class (new, lane proof): type-free box calculus
+  (tiles {0 <= α_i <= 1}, two-leg monotone-gallery composition lemma), cylinder exchanges by
+  compactness, complete reducibility from orbit–stabilizer counting (no irreducibility/primitivity
+  needed), effectiveness from Ciobotaru–Le Bars topological freeness (arXiv:2601.13092, read at source),
+  Li thm:deg + bh-lattices' stabilized type (A) comparison.
+- a2-lattices-lie-in-permutational-bh-class: marked duplicate of bh-lattices'
+  a2-lattices-satisfy-permutational-boone-higman (which has priority).
+- Pointers + "Lesson for general BH" on a2-lattices-embed-in-fp-simple-groups and
+  exotic-a2-lattices-satisfy-boone-higman; frontier §10.

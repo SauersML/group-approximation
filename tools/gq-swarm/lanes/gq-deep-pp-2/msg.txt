@@ -1,0 +1,10 @@
+Obstruction: one-manifold groups contain no GL_n(Q), n >= 3 (Witte)
+
+Import Witte (Proc. AMS 1994): finite-index subgroups of SL(n,Z), n >= 3, act on
+the circle only through finite groups. Deduce that no group acting faithfully on
+a one-manifold with finitely many components contains any copy of GL_n(Q),
+n >= 3, standard or not (F, T, T-bar, Stein, Lodha-Moore, Monod H(A), circle
+PL/projective groups), and that line and interval groups contain no SL_2(Q) or
+GL_2(Q) (torsion of order 3). Add a scoping artifact for piecewise-projective
+hosts, with a lemma that the p-adic odometer has no roots in clopen-piecewise
+PGL_2(Z[1/p]) groups.

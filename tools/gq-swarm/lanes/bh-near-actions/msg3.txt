@@ -1,0 +1,7 @@
+bh-near-actions: Stein V-groups act with type (A) on breakpoints
+
+Finitely presented Stein V-groups whose shorter-interval versions are f.g. act with type (A) on
+Gamma cap [0,l): point stabilizers = <shorter-interval V-group, one germ contraction>, pairs via
+interval exchanges. Quadratic unit slopes (Cleary F_infty via Matui): all subgroups BH; every Sturmian
+Juschenko-Monod group with real quadratic angle satisfies BH (all quadratic fields). Closes the
+V-version gap left in circle-pl-groups-act-with-type-a-on-breakpoint-orbits.

@@ -1,0 +1,12 @@
+BBMZ Question 1.1: right-angled reflection groups in H³ and their commensurability classes are contracting RSGs
+
+Covers the right-angled dodecahedral reflection group, every finite-index subgroup of it (among them closed hyperbolic
+3-manifold groups), and every group commensurable with it; likewise any compact right-angled polyhedron satisfying three
+face-graph conditions. The coding is the memoryless greedy map on the Roller boundary: reflect in the smallest-labelled
+separating face plane. States are cells of one tile's face-circle arrangement, refined by cosets for subgroups.
+Irreducibility is combinatorial, and contraction reuses the carrier-entry and fellow-travel lemmas of the surface case.
+Lane proof, not reviewed. Attempt 8 in the Question 1.1 node.
+
+Lesson for general BH: the Bowen–Series mechanism is a wall calculus plus a greedy rule read off one tile. Coset
+refinement carries it to every finite-index subgroup, hence to whole commensurability classes. Kazhdan groups (no walls)
+and generic 3-manifold groups (only quasiconvex walls) are what is left.

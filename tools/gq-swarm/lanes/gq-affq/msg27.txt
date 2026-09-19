@@ -1,0 +1,7 @@
+Ballistic machine runs give periodic points: a table-level renormalization filter
+
+If some state of a moving-head machine never turns over a constant background,
+its moving-tape map has a domain-wall periodic point, so no bounded-return
+inducing of it has a renormalization of any height. This excludes the M_m
+family outright and the clean quadrupling tables, while SMART and SMART_m pass.
+Includes a lesson for general BH.

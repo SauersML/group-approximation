@@ -1,0 +1,5 @@
+Self-similar obstructions: apply referee a and b fixes (both PASS)
+
+Pin the p-adic six exponentials theorem to Serre, DPP 1965/66 exp. 15, Thm 1;
+beta(q) = +-q^e with e integer; add the lemma that a f.g. subgroup of
+PGL_2(Q_p) contains d_q for finitely many q; Attempt 5 wording.

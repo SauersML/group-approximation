@@ -1,0 +1,8 @@
+T-check contains no copy of Q x|_2 Z: rational BS rigidity via boundary arithmetic
+
+A x|_2 Z (A a nonzero 2-divisible subgroup of Q) embeds in T-check = <T-bar, x -> 2x> only when
+A = Z[1/2]. Along the doubling semiconjugacy h, dyadic cells of positive h-mass have boundary
+values in the 2-power preimage of a finite set, and differences of such sets contain only
+bounded odd denominators. Cells of mass zero are never used, so the blown-up case left open
+by q-x2-z-in-t-check-blows-up-the-doubling-fixed-point is excluded too. Marks
+t-check-contains-q-rtimes-2-z REFUTED. Lane proof, unreviewed.

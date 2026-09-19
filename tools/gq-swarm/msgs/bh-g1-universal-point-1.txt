@@ -1,0 +1,10 @@
+E1: reduce the (M2) input premise to a decidable-language free subshift on the envelope
+
+free-products-with-z-inherit-m2-from-decidable-free-subshifts: if A carries a free subshift with
+decidable language, then A * Z carries an effectively closed minimal free subshift. The Bass-Serre
+tree glues library points placed at different vertices through a ruler schedule, so no universal
+point and no minimality in A are needed. An exposure lemma shows the library must be computable.
+decidable-groups-carry-free-subshifts-with-decidable-language records the open premise (D) with
+equivalent forms, known instances, necessity for E1, and a Pi01 Sturmian separation from mere
+effective closedness. The route minimal-free-sft-via-decidable-free-subshift-of-the-envelope
+replaces (M2) by (D) in the square route to E1.

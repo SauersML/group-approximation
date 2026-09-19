@@ -1,0 +1,4 @@
+LANDED 6941e6023 on origin/main (parent 81510be26):
+ ...mp-wreaths-are-rf-iff-stabilizers-are-closed.md | 70 ++++++++++++++++++++++
+ .../z-wr-psl2-z-half-is-not-residually-finite.md   | 10 ++++
+ 2 files changed, 80 insertions(+)

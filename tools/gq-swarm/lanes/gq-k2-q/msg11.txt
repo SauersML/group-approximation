@@ -1,0 +1,6 @@
+gq-k2-q: add the point-indicator condition to the scope of (P)
+
+Following the amendment db70a3dbb (referee b, 852a0771f): the three
+single-register no-go results are unconditional for spine designs whose
+coefficient ring contains every point indicator. Record how the dilation
+examples obtain them through up-transports s_x delta_j t_x.

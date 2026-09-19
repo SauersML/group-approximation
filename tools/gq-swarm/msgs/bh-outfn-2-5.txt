@@ -1,0 +1,8 @@
+Hatcher normal coordinates of spheres in M_2 and M_3: computation record and evidence for the PIP question
+
+One short Slurm job (1328498) computed normal coordinates of 3000 rank-2 and 8001 rank-3 spheres via
+boundary cuts (core subtree of crossed Sigma-edges). All matching, Euler and compatibility checks pass.
+Rank 2 calibrates: 15 support classes, stable from depth 5, each filling its matching cone (the Farey PL
+structure). Rank 3 does not close up by depth 9 (990 classes, growing about 1.7x per level), and one
+class spans 8 dimensions against 6 for Outer space, which supports obstacle O1. Polyhedrality is not
+decided; the next test (density via the tree condition) is recorded. Script embedded in the artifact.

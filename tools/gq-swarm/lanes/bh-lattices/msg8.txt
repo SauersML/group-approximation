@@ -1,0 +1,13 @@
+Record the priority check for tree-product lattices and reduce the finite-kernel case
+
+Priority check, from TeX at source and arXiv abstracts. Bux-Llosa Isenrich-Wu cover
+BS(F_k), so two trees and Burger-Mozes. Belk-Fournier-Facio-Hyde-Zaremsky cover
+the simple Burger-Mozes lattices. Mutter-Radu-Vdovina build cube k-graphs for
+simply transitive actions but prove nothing about full groups or Boone-Higman. No
+source found for three or more trees, for non-simple non-RF lattices beyond
+BS(F_2), or for torsion.
+
+Finite kernels (Attempt 9): the centralizer of the kernel has central kernel, and
+the lattice lies in B_A whenever that central kernel dies in some finite-index
+subgroup. What remains is finite central extensions whose class survives
+everywhere.

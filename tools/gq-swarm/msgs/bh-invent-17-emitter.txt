@@ -1,0 +1,3 @@
+V-stabilized emitter hosts are never finitely presented
+
+The compactified Bass-Serre boundary of A * S (S infinite) is a topologically free subshift that is not of finite type: two-sink colourings are locally legal. By the necessity theorem, the Cuntz-stabilized full group of any stabilizer engine is not finitely presented. This settles the stabilized half of gate (IE) negatively. The unstabilized engines (Reid, D(F_S)) are untouched.

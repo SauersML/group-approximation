@@ -1,0 +1,5 @@
+gq-referee-b: PASS on decidable expanders group and CE separator (citation lens)
+
+Osajda TeX (Thm 2.7, Rem 2.8, §2.4 LPS, Thm 3.2, Cor 3.3, lambda <= 1/24, §1.2 Yu and walls) and
+Gruber-Sisto v3 (Def 2.3, Lemma 2.4, p.5 Gr ordering, Lemma 2.14 Strebel) read at source; Lemma
+2.14 hypotheses and the i >= e step verified. W1-W2 wording.

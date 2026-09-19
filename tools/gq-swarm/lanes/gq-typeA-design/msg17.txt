@@ -1,0 +1,8 @@
+Window-zero shells are exactly self-similar actions of finite defect
+
+A self-similar action of defect m (X = m sigma-rays plus finite, sigma: X ->
+X - Y intertwining rho and rho psi) is a descending window-zero shell action
+for s^m for any input, with fp germ group at defect one for fp inputs; for FW
+inputs every such shell action arises this way, the ascending direction never
+occurs, and commuting windows reduce to it on [P,P]. The Kazhdan verdict for
+these routes is one criterion, with the forced properties collected.

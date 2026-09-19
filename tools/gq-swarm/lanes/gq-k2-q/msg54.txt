@@ -1,0 +1,6 @@
+gq-k2-q: boundary layer: method check; Dennis trace provably blind, Kolster not obtainable from MSI
+
+D({a, n}) is n times a degenerate Hochschild chain for an integer unit n, so the
+Dennis trace vanishes on K_2(O_K/p^3) = <{zeta, -2}>: the calibration fails a
+priori and no machine computation was run. Kolster (J. Algebra 95, 1985) and
+Russell (LSU) are behind bot walls from MSI. K_2(G_3) stays open.

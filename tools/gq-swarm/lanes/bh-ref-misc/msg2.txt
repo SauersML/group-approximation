@@ -1,0 +1,14 @@
+Referee PASS for the odd-prime Leavitt and twisted affine B_A nodes and for the operadic full-group nodes, with conditions made explicit
+
+- Projective Leavitt tensor units: the rho trick, the general-d assembly and the MMN coverage of dV
+  all check. Gap: the odd-p (L_p (x) L_p)^x/F_p^x case goes through L_p^(x4). So it needs the
+  unreviewed Farrell-Jones K-vanishing derivation, and not only the Ara-Cortinas audit.
+- Twisted S-integral affine groups on class-1 ordered partitions: PASS, given that W_(P,l) is
+  finitely presented, which is still unreviewed. The class invariance the proof uses is stated.
+- Symmetric operad groups: fullness, classes, clopen transitivity and the kernel all check. The
+  planar remark is imprecise. Q3.4 is covered only for one nonzero class.
+- Bounded refinement: PASS.
+
+Lesson for general BH: "product closure for every recorded fp simple group" now rests on three
+unreviewed ring-side and group-side finite-presentation inputs. Reviewing those is worth more than
+new hosts.

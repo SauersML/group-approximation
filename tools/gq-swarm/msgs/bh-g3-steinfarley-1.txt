@@ -1,0 +1,14 @@
+P2': SFT Boolean inverse monoids are always fp; quantum families exhausted at rigidity; Stein-Farley analysis
+
+- sft-groupoid-boolean-inverse-monoids-are-finitely-presented: the monoid level is always fp (Stone
+  duality plus finite type); the ring and group levels are exactly a commutation-transport problem;
+  golden-silver separates the monoid and group levels.
+- quantum-family-representations-are-exhausted-at-rigidity: for quantum-rigid X, every quantum-family
+  representation of the local presentation factors through F(T), so these representations cannot
+  decide P2'.
+- v-times-quantum-rigid-sft-full-groups-are-fp (OPEN, P2'): the splitting system has the cube
+  property, so this is not a non-LCM problem. Over amenable Lambda the obstruction is infinite type;
+  over non-amenable Lambda, translation-finitely-coded SFTs would restore finite type. Reduction to
+  the uniform simple connectivity (A_N) of bounded-domain partition complexes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

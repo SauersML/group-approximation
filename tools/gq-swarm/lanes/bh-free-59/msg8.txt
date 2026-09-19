@@ -1,0 +1,14 @@
+Schur multiplier obstruction: no thickening host over an FP_3 group is finitely presented
+
+LHS lemma: if Gamma is FP_2, N is a perfect normal subgroup, and H_3(Gamma/N) is finitely
+generated, then H_2(N)_Gamma is finitely generated. In every residually finite thickening
+host, each coordinate A_m is a retracting normal factor of the perfect fibre, so its Schur
+class Z/2 survives in the coinvariants, and there are infinitely many. This decides the
+projective candidate <SL_d(Z[1/2]), 3-cycle> as not finitely presented (S-arithmetic
+groups are FP_infinity), and it covers Neumann's group, the doubling host, the affine
+hosts, and any thickening over an FP_3 group. Corollary: an FP_2 group with a normal
+subgroup equal to an infinite direct sum of alternating groups has a quotient with
+infinitely generated H_3. The candidate node is marked refuted.
+
+Written inline, not independently reviewed; LHS, Hopf, Schur multipliers of A_n and
+Borel-Serre are cited as textbook inputs.

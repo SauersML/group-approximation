@@ -1,0 +1,9 @@
+Confine the simple subgroups of Houghton-like groups to their germ group
+
+Every finitely generated infinite simple subgroup of H_n(G) meets FSym trivially and embeds in
+G/FSym(N) through the germ on one ray. For Mallery-Zaremsky envelopes it embeds in the near shift
+group R_nu, and for free-shift enumerations every simple FA (for instance Kazhdan) subgroup
+embeds in the input P. Houghton groups contain no finitely generated infinite simple subgroup.
+
+Consequence for the Kazhdan reduction: the Houghton-like route keeps simple Kazhdan inputs, but
+gains nothing from property (T). Recorded as Attempt 2 on the Kazhdan equivalence node.

@@ -1,0 +1,8 @@
+GL_n(F_2(t)) stepping stone, Leavitt field question, countable-fields transfer
+
+Add the function-field analogue gl-n-f2t-embeds-in-fp-simple-group (OPEN; not a
+printed question) with the conditional route through a copy of F_2(t) inside
+the binary Leavitt algebra, whose finitely presented simple unit group then
+holds every GL_n(F_2(t)). Record that question as OPEN with a proved
+degree-sign lemma, the point-module test, and the characteristic-zero
+contrast. Land the transfer artifact and add attempt 9 to the root.

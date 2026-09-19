@@ -1,0 +1,5 @@
+Root gl-n-q: record non-Thompson hosts as a dead class (Attempt 4)
+
+Add Attempt 4 to gl-n-q-embeds-in-fp-simple-group: proper semisimple CAT(0)
+actions, hence Burger-Mozes and Caprace-Remy lattices, cannot host GL_n(Q)
+(proper-semisimple-cat0-groups-contain-no-gl-2-q).

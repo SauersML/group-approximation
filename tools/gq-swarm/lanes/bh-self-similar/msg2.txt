@@ -1,0 +1,3 @@
+Record referee-a PASS on the lift-presented automaton-group node and apply its N2 nit
+
+Add the (n-1)k cone count behind the prefix-replacement matching and the trivial case e = 1.

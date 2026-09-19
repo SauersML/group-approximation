@@ -1,0 +1,7 @@
+gq-referee-b: review of the Ihara amalgam and BLIW route to SL_2(Q)
+
+Citation/hypothesis review of sl-2-q-is-an-amalgam-of-sl-2-z-localized-at-ell-citation
+and sl-2-q-via-hecke-overgroup-and-bliw: both PASS. Hutchinson-Mirzaii-Mokari
+section 3.2 (no completeness) and BLIW Theorem C with the BS_G definition
+checked at source; the HNN extension lies in BS_Lambda. The hypotheses H1-H4
+node was not reviewed here.

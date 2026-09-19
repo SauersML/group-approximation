@@ -1,0 +1,10 @@
+Correct the surface-group wall-cell node: no atom of a surface group is a half-plane
+
+- Correction. The gate lemma for half-plane cells in surface-group-atoms-are-wall-arrangement-cells
+  is true but vacuous. Every wall of the arrangement W_n is crossed, at the corner of its nearest
+  tile, by another wall of W_n, so no cell is ever a half-plane. The node and its proof now prove
+  that instead, and the proposed half-plane route is withdrawn.
+- Lesson for general BH. One-endedness shows up concretely as the absence of single-wall gates.
+  This is why cut-vertex and finite-coset gate mechanisms do not transfer directly to one-ended
+  groups; atoms have to be handled as sector cells bounded by crossing walls.
+- The Q1.1 node and the lane artifact are updated to match.

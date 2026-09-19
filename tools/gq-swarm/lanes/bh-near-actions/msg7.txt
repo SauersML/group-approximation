@@ -1,0 +1,8 @@
+bh-near-actions: Pisot-slope Stein groups are contracting RSGs; IET groups over (F)-fields are BH
+
+- pisot-stein-groups-are-contracting-rsgs (+proof): for an algebraic unit beta with property (F),
+  V(Z[beta],<beta>,l) acts on the beta-shift SFT with finite nucleus (uniform slope-defect bound via a
+  conjugate-growth length lemma), hence all subgroups embed in fp simple groups (BBMZ via main node).
+- pisot-interval-exchange-groups-satisfy-boone-higman: IE(Gamma,l) for f.g. Gamma in Q(beta), any rank
+  <= deg beta; minimal IET full groups; Sturmian JM groups with cubic angles (tribonacci field), all
+  d-bonacci fields. Resolves bh-free-03 artifact section 6 open direction for (F)-fields.

@@ -1,0 +1,9 @@
+- **Which routes this serves.**
+  - It is the directedness input of the descent-poset (Stein–Farley) route of
+    `rational-projective-full-groups-are-finitely-presented`.
+  - Since `edge-split-ore-iff-synchronization-and-tree-domination` (landed after this
+    node), it is also the synchronization half of Ore's condition for the Thumann route
+    `closed-mcg-bh-via-edge-split-operad`: `(Sync_m) ⇒ (Sync′)`, and
+    `(Ore) ⟺ (Sync′) ∧ (TD)`.
+  - The other half, tree domination, is untouched here. LD_atom, the earlier
+    candidate for it, is refuted.

@@ -1,0 +1,6 @@
+Referee report: Leavitt pair centralizers embed E_N in St_(3N+1) PASS
+
+Proof-gap review of leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1
+(020c46bf5): the elementary factorization of W through an even signed
+permutation, the centralizing-coefficient version and the passage to
+St_10(S) through M_k(S) = S all check.

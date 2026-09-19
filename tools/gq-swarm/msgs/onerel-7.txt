@@ -1,0 +1,3 @@
+Baumslag-Gersten lies in B_A given one root-separated shift configuration in a B_A group
+
+The Britton argument of the Higman-group reduction uses nothing about H_4: any B_A group with a pair (a, tau) satisfying the BG relation, a of infinite order, and a realized subgroup containing a but none of its proper dyadic roots gives BG in B_A. Shift configurations cannot live in soluble, linear or tame hosts; the missing piece is one renormalizing conjugator.

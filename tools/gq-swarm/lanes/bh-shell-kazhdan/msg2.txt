@@ -1,0 +1,12 @@
+One-ended Schreier orbits force index zero, so free shell actions of simple inputs have no twisted normalization
+
+bh-shell-kazhdan (BH swarm, free mode). New claim one-ended-schreier-orbits-force-index-zero with
+proof route (lane proof, elementary, unreviewed). For the genuine-action shell: the ends of each
+ORBIT's Schreier graph, not of the input, govern the window-zero gate. One end makes the labelled
+germ unique; on a free orbit it extends to a bijection of orbits, so the index is 0. Infinite fg
+simple groups are one-ended with no proper finite-index subgroup, so free actions of them are dead
+for every automorphism twist of any order (settles the infinite-order-twist case in the free case).
+Also: fixed points are finite in number, and no orbit of a simple input has exactly two ends, so the
+surviving shape is a non-free orbit, expected to be one with infinitely many ends. Z^2's
+eventually-periodic witness escapes because its orbits are finite. Artifact updated with the
+non-free deficit gap and the (T)/structure-tree expectation.

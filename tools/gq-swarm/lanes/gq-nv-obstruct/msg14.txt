@@ -1,0 +1,1 @@
+SMART renormalization: record referee-a PASS (flip waits on priority check)

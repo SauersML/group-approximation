@@ -1,0 +1,15 @@
+Real-geometric hosts are complexity-capped: fp box-map groups specialize to algebraic data; lessons for general BH
+
+fp-simple-real-box-map-groups-are-not-universal-hosts (lane proof, not reviewed): let G
+be finitely presented and act faithfully on [0,1)^n by box-exchange maps (nV-type:
+scaling, translation, coordinate permutation on half-open boxes) with arbitrary real
+data. Then G specializes to algebraic data nontrivially on any finite set, and G has
+solvable word problem. Its finitely generated simple subgroups embed over a real number
+field and have word problem in time 2^{O(l)}. So the class of all finitely presented
+simple groups of such maps, over every n and together with the one-dimensional
+piecewise-projective ones, shares one recursive bound. By
+complexity-bounded-host-classes-are-not-universal, it is not a universal Boone-Higman
+host class.
+
+A "Lesson for general BH" paragraph is added to each bh-free-19 node (INSIGHT FIRST
+order, 09-18).

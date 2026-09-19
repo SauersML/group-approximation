@@ -1,0 +1,3 @@
+Gate 4 on the machine sheet: carving reduction and the zero-entropy constraint on fates
+
+A rigid relative seed for (K_M, T_M) is a rigid ambient SFT plus a carving (rigidity passes to subshifts). If the ambient is determined on each sheet by a half-plane rule, sheet windows have complexity |A|^{O(N)}, so the fate configuration of H_0(M) must have zero window entropy; sparse accepting sets meet this at every complexity, so entropy is not where CAP lives.

@@ -1,0 +1,14 @@
+Affine type (A): a linear analogue of Zaremsky's criterion, its sharp reach, and two all-primes design lessons
+
+bh-universal (BH swarm, INSIGHT FIRST). New (lane proofs, unreviewed; no priority claimed):
+- affine-type-a-structure-groups-give-fp-simple-hosts: for an l-saturated fp ring R in Z_l
+  (R^x, K_2 f.g., SK_1 = 0) and an oligomorphic fp G on D, the piecewise R[1/l]-affine group of
+  Z_l^D twisted by G is fp with finite abelianization and simple fp commutator subgroup
+  containing every GL_n(R). The finiteness sees only the F_l split geometry: linear type (A).
+- saturated-l-adic-subrings-are-arithmetic: f.g. l-saturated subrings of Z_l lie in number
+  fields, so this host class reaches exactly the S-arithmetic linear groups.
+- w-contains-heisenberg-with-divisible-centre: H_3(Z) x_Z Q in W (divisible, distorted centre);
+  the next U_3(Q) layer needs register addition (divisibility/shear dichotomy).
+- no-homeomorphism-shifts-odd-denominator-translations: elementary additive prime-separation
+  (three primes), complementing the six-exponentials node.
+Each node has a "Lesson for general BH" paragraph.

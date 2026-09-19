@@ -1,0 +1,14 @@
+bh-verify-artin: one-cone-point bundle for B̃_n; D̃_n open node with reduction and obstructions
+
+Lane proofs, not reviewed; no priority claimed.
+
+- b-tilde-artin-groups-via-one-cone-point-fibration (+ proof): Conf_2(C) × N_B fibres over
+  Conf_(n+1)(C) (strands plus the puncture), with fibre the (Z/2)^n-cover of the
+  cone-point line branched at the strands, of free rank 1 + n·2^(n−1). Together with
+  free-kernel permanence this gives a second, elementary proof that A(B̃_n) ∈ B_A, for
+  every n (Li–Roushon needs n ≥ 3 and Thom isotopy).
+- d-tilde-artin-groups-satisfy-permutational-boone-higman (OPEN): reduces to
+  π_1(N_D), and to the surface bundle 1 → π_1(F) → Z × π_1(N_D) → P_n → 1 with an
+  explicit branched-grid fibre F. Obstructions recorded: no toric fibration; no
+  inversion-invariant submersion; the folding-retraction kernel is not f.g. free
+  (Euler characteristic).

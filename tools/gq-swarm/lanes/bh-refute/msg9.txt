@@ -1,0 +1,5 @@
+Adversarial check: ascending HNN extensions of free groups satisfy Boone–Higman — PASS
+
+Artifact gq-bh-bh-refute-verify-ascending-hnn.md: independent red-team verification of
+bh-free-05's ascending-hnn-of-free-groups-bh-proof (Hall step, equal index, ranks, BLIW class
+membership, injectivity, degenerate cases); attacks tried; bounded priority search.

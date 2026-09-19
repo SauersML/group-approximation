@@ -1,0 +1,8 @@
+Crossing-wire fixed-point tile sets are quantum rigid: a free Z^2 SFT with fp crossed product
+
+A self-similar Wang tile set whose macrotiles have side-local margins, wires, crossing and fan-out gadgets
+bringing every pair of input bits into one tile, and a deterministic one-head computation zone has only
+commuting face-local edge families. Coordinates are central, crossings make raw inputs commute, deterministic
+rows put every macrotile edge in the inputs' commutative algebra, so macrotiles form a level-1 edge family of the
+same tile set; margins handle faults. Hence the shift is 1-rigid over every field, aperiodic, and its crossed
+product is finitely presented. Minimality is left open. Lane proof, not reviewed.

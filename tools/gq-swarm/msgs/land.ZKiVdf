@@ -1,0 +1,8 @@
+Symmetric operad groups act through full Cantor groups; bounded-refinement operads reduce to their carriers
+
+The boundary image of every symmetric operad group with transformations is a full Cantor group. This needs no finite type: elementary classes and transformation groups are arbitrary. The group is clopen transitive exactly when the color monoid has one nonzero class. So a finitely presented, boundary-faithful one is a type (A) actor, and a simple one is automatically boundary-faithful. Hence every finitely presented simple symmetric operad host satisfies PBH: the operadic case of BFFHZ Q3.4, and the operadic route certifies exactly B_A.
+
+A second node shows that bounded common refinements plus orbit finiteness give the transformation group finitely many orbits on pairs of moves. Then the carrier itself is a Zaremsky actor, and operadic hosts can only beat twisted Brin-Thompson through unbounded refinement depth (the non-LCM regime).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Cx1kxpcwHuuQ8mqh4hcKQy

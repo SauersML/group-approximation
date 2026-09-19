@@ -1,0 +1,10 @@
+Aut(F_n) quasi-isometrically embeds in a finitely presented simple group
+
+Aut(F_n) is a retract of the BFFHZ acting group Aut_V(V*F_n): killing the normal
+closure of V gives the retraction. The Belk-Zaremsky quasi-retraction of SV_G onto G
+then makes the BFFHZ embedding of Aut(F_n) quasi-isometric. So subgroups of Aut(F_n)
+are distorted in the host exactly as in Aut(F_n). For braid groups and punctured
+mapping class groups, Zaremsky's quasi-isometric question for this host is exactly
+undistortion in Aut(F_m). Also records the Belk-Zaremsky theorem as a citation node,
+and adds a note on the open Zaremsky node.
+

@@ -1,0 +1,9 @@
+E2 for varying-skeleton lifts: determination is allowed and reduces E2 to skeleton rigidity plus centrality
+
+If the point is determined by skeleton and letters, then skeleton rigidity, skeleton centrality
+and crossing table wires give quantum rigidity. Minimality with determination forces the skeleton
+to be non-disjoint from the input, so the skeleton must be transplanted along an input cocycle;
+the transport no-go then lifts and minimality forces the floating data to be a unique parallel
+section. The natural design transplants a crossing-wire skeleton along the Busemann height
+cocycle of the tree-glued input; open: the character criterion for that cocycle, transplant
+rigidity, and downhill centrality. Lane proof, unreviewed.

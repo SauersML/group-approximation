@@ -1,0 +1,6 @@
+LANDED 5864dcf68 on origin/main (parent 7a14a580f):
+ ...-fp-simple-via-transcendental-slope-thompson.md |  22 +++
+ ...groups-with-arbitrarily-complex-word-problem.md |   9 ++
+ ...lope-thompson-groups-have-hard-word-problems.md | 148 +++++++++++++++++++++
+ ...l-slope-thompson-groups-satisfy-boone-higman.md |  15 +++
+ 4 files changed, 194 insertions(+)

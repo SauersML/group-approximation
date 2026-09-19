@@ -1,0 +1,6 @@
+FW shell nodes: record referee PASS, apply nits, cross-reference overlap
+
+After gq-referee-a PASS (07944799c) on the twisted-normalization node: item 3
+no longer asks for an infinite subgroup and speaks of the restricted twist; note
+that 0 may lie in E. Cross-reference bh-kazhdan-inputs parallel node
+fw-inputs-admit-no-twisted-normalizing-genuine-shell-action from both FW nodes.

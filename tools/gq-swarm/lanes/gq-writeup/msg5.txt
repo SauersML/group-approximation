@@ -1,0 +1,7 @@
+Update 09-18 obstruction summary to the current node text
+
+Five nodes changed while the summary was compiled. Items 15 and 16 now record
+two referee PASSes, item 23 one (referee a), the T_p candidate gained the
+stable K_2 t-homotopy and the ideal-side necessary condition, and the K_2
+prime-shift node gained its stalled three-line-fixer reduction. Mark hygiene
+item 1 resolved and update the one-referee list.

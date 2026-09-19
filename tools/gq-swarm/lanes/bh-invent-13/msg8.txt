@@ -1,0 +1,7 @@
+C2-tilde building lattices carry finite-type seeds
+
+The link-local method of the A2-tilde node transfers to torsion-free type-preserving lattices in thick
+C2-tilde buildings (e.g. in Sp_4(Q_p): Kazhdan, Helly, not hyperbolic). Labels are inward sets (a pencil or
+a line at corners, the gate corner at centers). Outward labels are fixed by the generalized-quadrangle axiom,
+and complete bipartite center residues give one-step diamonds. Origins are restricted to one lattice orbit.
+C_n-tilde for n >= 3 is left open.

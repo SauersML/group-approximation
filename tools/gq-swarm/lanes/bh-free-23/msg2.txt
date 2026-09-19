@@ -1,0 +1,12 @@
+Every free product of nontrivial hyperbolic groups is a contracting rational similarity group
+
+This extends the Belk-Bleak-Matucci-Zaremsky G * Z theorem (arXiv:2309.06224,
+thrm:FreeProductBoundary) from a Z factor to an arbitrary nontrivial hyperbolic factor.
+- New claim free-products-of-hyperbolic-groups-are-contracting-rsgs, with proof route
+  hyperbolic-free-product-contracting-rsg-proof. Lane proof, not reviewed.
+- How it works: shadows of points just past a syllable change form one atom type, and
+  translating a factor branch into such a shadow copies every atom type. So the type graph
+  has an irreducible core.
+- What it settles: BBMZ-hyperbolic Question 1.1 for every freely decomposable non-elementary
+  hyperbolic group. The OPEN node for the question is updated, and the finite-factor node is
+  marked as a special case.

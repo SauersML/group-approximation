@@ -1,0 +1,13 @@
+Neumann's group: explicit finite windows, not finitely presented, host constraints
+
+For Neumann's group G = <(0 1 2), x->x+1> inside the product of A_m over odd m >= 5
+(MO 491978, Minasyan): the window subgroups <a_0..a_k> are exactly
+A_{k+3} x prod_{m<=k+2} A_m, G is (locally finite)-by-Z, G is not finitely presented
+(a finite presentation would make it an HNN extension of a finite group), and G is
+effectively residually finite with linear degree bound, so the McKinsey and Rauzy
+obstructions do not apply. Any host must have alternating sections of unbounded degree;
+in particular no group acting on a bounded-degree rooted tree (so no self-similar group)
+contains G. Minasyan's title question reduces to an fp RF group containing A_m for
+infinitely many m.
+
+Elementary, written inline, not independently reviewed, no priority claimed.

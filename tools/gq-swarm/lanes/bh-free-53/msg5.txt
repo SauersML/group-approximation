@@ -1,0 +1,8 @@
+Algebra BH lineage read at source; binary self-similar completions have KH = 0
+
+Bokut 1976 and the 1987 survey were read at source: the classical lineage gives simplicity with
+finite generation (Bokut) or finite presentation without simplicity (Belyaev), never both, so
+gate A1 stays open. Import Lescure's KH sequence for algebraic Cuntz-Pimsner rings. From it and
+Gersten, every binary completion O_psi(K<X>) has vanishing homotopy K-theory, so for those
+finitely presented hosts gate G3r is a nil-term question. Group algebras embed in the central
+simple shell quotients A_nu/J, which also contain a Leavitt pair.

@@ -1,0 +1,8 @@
+gq-referee-b: review of the register-completion Pimsner sequence
+
+Citation/hypothesis review. register-completion-pimsner-from-supercoherence:
+FAIL as written (ABC Prop 7.1 used outside its hypotheses; K_n of the core is
+a colimit, not K_n(B+); regrading by a cycle length breaks the Z-grading), all
+repairable. eventually-rational-register-ring-is-regular-supercoherent: part 1
+PASS with a wording fix; part 2 follows from stable coherence of commutative
+VNR rings (arXiv:2509.05109 Prop 4.36).

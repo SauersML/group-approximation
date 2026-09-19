@@ -1,0 +1,7 @@
+St_4 GL_n(Q) nodes: record priority and credit (classical existence, Mikaelian)
+
+Per the gq-lit-arxiv priority check: existence of a finitely presented group
+containing every GL_n(Q) is classical (Higman), GL_n(Q) <= S^x for a Leavitt pair is
+folklore, and Mikaelian announces explicit overgroups per n. The claim is narrowed to
+an explicit construction uniform in n, with naturality left to experts. The node
+still rests on the unreviewed divisible ring engine.

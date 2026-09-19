@@ -1,0 +1,14 @@
+Close a germ host class under cone-sectioned ascending HNN extensions
+
+Define C_d: full cone-closed groups of Cantor homeomorphisms containing V_d, with singular
+points in finitely many rational tail classes and F_infinity stabilizers of finite rational
+sets in every cone-supported subgroup. Every bounded Rover-Nekrashevych group is in C_d;
+every member embeds in a finitely presented simple group through a type (A) action; and C_d
+is closed under ascending HNN extensions K*_phi (K in a member) whose endomorphism acts on the
+last cone as the identity copy and whose tail group is F_infinity.
+
+The proof reuses the one-point germ extension argument with an arbitrary member as base,
+chooses a nonsingular primitive block ray (removing hypothesis H0), and returns from phi^m to
+phi by a Krasner-Kaloujnine wreath with Sym(m), which a cone-closed host contains. So
+iterated towers of such extensions over bounded automata groups satisfy BH and PBH. Lane
+proof, not reviewed.

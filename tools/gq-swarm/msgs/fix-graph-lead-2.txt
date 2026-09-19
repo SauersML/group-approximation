@@ -1,0 +1,3 @@
+Dedupe the Cairn fix graph: one fix node per red BooneHigman/Metabelian module
+
+The 27 fix-bh-met-* nodes (4160e3e2d) and the 27 fix-bhmet-* nodes (3b413a74c) were landed in parallel for the same modules. Keep fix-bhmet-*: merge in the target (fp-metabelian-groups-satisfy-boone-higman) and the mechanical/proof classification, and mark each fix-bh-met-* node SUPERSEDED with a pointer to its survivor.

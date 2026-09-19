@@ -1,0 +1,6 @@
+Finitely presented strongly shift-similar groups have finitely presented Houghton-like groups for every n
+
+Answers the first sentence of Mallery-Zaremsky Question 5.13 for strongly shift-similar G, and the
+finite-presentation part of its third sentence (all n, including n = 2): an explicit finite presentation of
+H_n(G) from n copies of one of G, translations, one transposition identification per ray, and finitely many
+mixing relations, checked by an FSym-by-germ five-lemma argument. Lane proof, not reviewed.

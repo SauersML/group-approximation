@@ -1,0 +1,16 @@
+Referee: A2 finite-type seeds, relational spine couplings and four-way determinism PASS; SW layout lemma FAIL
+
+- a2-lattices-carry-finite-type-seeds (bh-emitter-b): PASS. The Step 0 tables were recomputed, the
+  one-step diamond gives confluence, and the seeds are classical.
+- relational-spine-couplings-are-splittable-or-not-minimal (bh-g2-fixedpoint-b): PASS. The
+  re-rooting at u, the bump construction and the reduced-word distance were checked.
+- four-way-deterministic-sft-rigidity-lives-on-axis-faults (bh-invent-04): items 1-4 PASS, with an
+  ordering fix in the SE corner step. Item 5 is heuristic, as labelled.
+- sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices (bh-invent-04): the Layout Lemma
+  FAILS as written. SW-determinism forces the macro rule to be causal in the side encoding: a top
+  bit at column p sees only bottom bits at columns <= p. The single-zone design never checks this.
+  A multi-block repair looks feasible (Kari-Papasoglu, Lukkarila). The node stays CONDITIONAL.
+
+Lesson for general BH: one-way information flow constrains what a self-simulating fixed point can
+compute. It is not free, and a rule that is only determined by its SW inputs must be causal in its
+own bit layout.

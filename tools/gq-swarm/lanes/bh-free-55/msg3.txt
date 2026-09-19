@@ -1,0 +1,8 @@
+Unimodular Maslov cells do not dissect the mixed atom of the unimodular triangle (n = 2)
+
+The atom {0 < lambda_1 < 1 < lambda_2} cut out by the frames (e,f), (e+f,f), (e,e+f) is
+no finite union of unimodular cells: on rank-one slices of the wall Sigma(G) the
+traces of G-walled cells are arcs ending at G_l, covering forces a cell with walls
+{G, L_e}, and none of those lies in the atom. So the Farey dissection property behind
+tree-pair diagrams fails for the Lagrangian Cantorization; recorded as the answer to
+the first test in lagrangian-brin-thompson-group-is-finitely-presented.

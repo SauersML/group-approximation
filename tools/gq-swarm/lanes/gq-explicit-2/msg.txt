@@ -1,0 +1,9 @@
+Problem 2.7: automorphism-type and commensurator hosts omit GL_n(Q)
+
+Lane gq-explicit-2 tests the untested host row of the Problem 2.7 root.
+Aut of finitely generated residually finite groups, and finitely generated
+groups of automorphisms of finite-type schemes, are residually finite, so
+contain no (Q,+). In finitely generated subgroups of Bir(P^m_Q) the linear
+elements are S-arithmetic, so no linearizable (Q,+) fits. Comm(Z^n x B)
+splits as GL_n(Q) x Comm(B) for torsion B with trivial FC-centre, so the
+Röver thickening is never finitely generated. Record the row as Attempt 3.

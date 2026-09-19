@@ -1,0 +1,5 @@
+Scope the Pimsner result to coefficient rings with point indicators
+
+Referee b (852a0771f): part 4 flatness needs every point indicator in B+;
+for R_L the generated ring has none and the reset is not flat, so (P) for R_L
+stays open. State S H-prime-unital before invoking the ABC NK step; define K.

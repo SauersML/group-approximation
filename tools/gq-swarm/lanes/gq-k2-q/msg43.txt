@@ -1,0 +1,7 @@
+gq-k2-q: frame-unit symbols can vanish without a grading
+
+Doubling the ring lamplighter along the reflection gives M_2(U_n x| Z) with the
+index-one frame unit diag(u, u^-1) over a copy of U_n: its symbols {lambda, U}
+cancel, [1] has infinite order and Q^x is detected in K_1 with kernel {+-1}.
+So no obstruction comes from the frame unit alone; diag(u,1) still carries the
+infinitely generated symbols. Calibration, not a finitely presented host.
