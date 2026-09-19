@@ -1,0 +1,2 @@
+left {'p': 1, 'q': 1, 'n': 3, 'remark21': (True, True, True), 'comm1': 0, 'comm2': 0, 'euler': 1}
+right {'p': 1, 'q': 1, 'n': 3, 'remark21': (False, True, True), 'comm1': 0, 'comm2': 0, 'euler': 1}
