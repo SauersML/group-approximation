@@ -1,15 +1,16 @@
-import GroupApproximation.BooneHigman.Metabelian.VdKStabPID
-import GroupApproximation.BooneHigman.Metabelian.CharZeroHost.ZInv
-import GroupApproximation.BooneHigman.Metabelian.SuslinKillLift
+import GroupApproximation.StableRange.Instances
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Stable range of `ℤ[1/m]`
 
 `vdkStab_stableRangeLE_away`: Bass's stable range condition `sr(ℤ[1/m]) ≤ 2`, for every `m`.
-For `m ≠ 0`, `ℤ[1/m]` is a principal ideal domain (`Absorption.suslinKill_away_pid`,
-`CharZeroHost.isDomain_away`), so this is `vdkStab_stableRangeLE_two_of_pid`.  For `m = 0` the
-ring is zero (`CharZeroHost.away_zero_eq_one`), and every row is unimodular.
+
+Lane pal-q111 first proved this (ba8e283846) from the PID bound `vdkStab_stableRangeLE_two_of_pid`, using
+`Absorption.suslinKill_away_pid` and `CharZeroHost.isDomain_away`, with the zero ring at `m = 0` as a
+separate case.  It now derives from the general bound `sr ≤ dim + 1`
+(`StableRange.stableRangeLE_away`, lane fix-bh-a): `dim ℤ[1/m] ≤ 1` for every `m`.  This covers
+`m = 0` too, and drops the imports of `SuslinKillLift` and `CharZeroHost.ZInv`.
 
 This is the stable-range input at the base ring of the characteristic-zero `K₂` gap `Z1`:
 injective stability in the range `N ≥ sr + 3` (`vdkStab_InjStabStatement`) applies to
@@ -20,15 +21,8 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 /-- **`sr(ℤ[1/m]) ≤ 2`**, for every `m`. -/
 theorem vdkStab_stableRangeLE_away (m : ℕ) :
-    vdkStab_StableRangeLE (Localization.Away (m : ℤ)) 2 := by
-  by_cases hm : m = 0
-  · intro n _ v _
-    refine ⟨0, (vdkStab_isUnimodular_iff _).2 ?_⟩
-    rw [← CharZeroHost.away_zero_eq_one hm]
-    exact Ideal.zero_mem _
-  · haveI : IsDomain (Localization.Away (m : ℤ)) := CharZeroHost.isDomain_away hm
-    haveI : IsPrincipalIdealRing (Localization.Away (m : ℤ)) := Absorption.suslinKill_away_pid m
-    exact vdkStab_stableRangeLE_two_of_pid (Localization.Away (m : ℤ))
+    vdkStab_StableRangeLE (Localization.Away (m : ℤ)) 2 :=
+  GroupApproximation.StableRange.stableRangeLE_away m
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_stableRangeLE_away
 
