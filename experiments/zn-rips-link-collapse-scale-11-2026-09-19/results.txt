@@ -1,0 +1,121 @@
+# results, (8, 11) reduction and kzc1 (w10-103, 2026-09-19)
+
+## sha256 of staged files
+38353f62b7ce4ee423cbc56e0ab12e8908e14a3114f3717ed21347dc68a82f32  sets/O-8-11.txt.gz
+91629af43d24c4f460bf17301d6bf91ee415e9e03b47dedfd7fa15fb92b50047  sets/T-8-11.txt.gz
+8b5556fa7c3f0f7a1ba5947e037e91ef74bd371e87807ec0d1681d1f481e7863  certs/d-prefix-8-11.txt.gz
+9874f11bc005e00cb7cee9ea756a1b2d69db56ef3a19900903621106a67a982e  certs/d-tail-8-11.txt.gz
+8a91e53563dc8da0983783ad84952e5fee8e49b73818a0d5eb987c541fe4665e  certs/k-sample-8-11.txt.gz
+7cf802ee7aa9e27e4b9b192ad2b943ff5bbe9fd430de327155e258aae7cd9813  ilv5.cpp
+947709ede3072168d05ce6452c0432f7abc1561fbe2aadf3a12eadbdd591310b  kzc1.cpp
+499f2584d16dca7f0a3c04ed926ae8e00d18bdff10e3c0d7f4122b7a86eb6ab8  topshell11.py
+cc00eb7e7b24e7577882e630927265a00bfb2dcc16fb433fe7ffa0c4301419f3  certs/k-formula-chain-8-11.txt.gz
+4e9a700286291601457a3035f9dad441f15f3d8c350bd20930190ca8364a214a  certs/k-formula-single-8-11.txt.gz
+b3eb9b5ad8e8fb3bc693e80cf833e1c218096008a47ba3050ea5681667075e1e  kzc1-stages.sh
+
+## inputs not staged here
+run11/o6.txt (= O, unsorted order of the search): ed92a8e0222abc2297b47f36d0d53cfd6f890c84170bbc18f9f226cd2ac03d14
+run11/OmT.txt (= O minus T, same order): 7cfa1fcd423430bb9f850bf2182e92e30ab59335ed15b1891e0481eaf1a5fd65
+(8,10) O.txt = zcat sets/O-8-10.txt.gz (w8-103): 9c63b27a0446918b69352a1f5b783a878868aab340f30dea8045ade3c52d3626
+(8,10) km.txt = zcat complete/chains/k-middle-8-10.txt.gz (w9-103): fdc3f872e5668c0ff962b2f6708b92afc0a200504afaa8016f878980290fe142
+
+## 1. prefix search (ilv4 stages 1-3, ilv5 stages 4-6; each nice -n 10 timeout 1200, budget 1100 s)
+02:45:38 stage 1 exit 0 lines 371240 left 871672
+03:04:05 stage 2 exit 0 lines 10061 left 861611
+03:40:56 stage 4 exit 1 lines 202821 left 658232 state 1 852089
+03:59:16 stage 5 exit 1 lines 239795 left 418437 state 1 1210710
+04:17:37 stage 6 exit 1 lines 18735 left 399702 state 2 214640
+log1: k=8 r=11 |Lmax|=1242912 A=330520 D=40720 alive=871672 STUCK (time budget)
+log2: k=8 r=11 |Lmax|=1242912 A=0 D=10061 alive=861611 STUCK (time budget)
+log3: k=8 r=11 |Lmax|=1242912 A=0 D=558 alive=861053 STUCK (time budget)
+log4: k=8 r=11 |Lmax|=1242912 A=0 D=202821 alive=658232 STUCK (time budget)
+log5: k=8 r=11 |Lmax|=1242912 A=0 D=239795 alive=418437 STUCK (time budget)
+log6: k=8 r=11 |Lmax|=1242912 A=0 D=18735 alive=399702 STUCK (time budget)
+(stage 3: 558 lines; stages 1-3 ilv4, which restarts each pass at the start of its order)
+
+## 1. prefix replay: vchain.sh (vcert2 of zn-rips-lifted-domination-core-2026-09-18), 34 chunks
+ch000 OK exit 2 moves: A=25000 (K steps 0) left=1217912 dfs=1127529906 -> all moves valid; end set is not {e_k}
+ch001 OK exit 2 moves: A=25000 (K steps 0) left=1192912 dfs=533388129 -> all moves valid; end set is not {e_k}
+...
+ch033 OK exit 2 moves: D=18210 (K steps 0) left=399702 dfs=525838338 -> all moves valid; end set is not {e_k}
+PREFIX VERIFIED: end set = o6 (399702 points)
+chunks OK: 34 of 34, FAIL: 0
+
+## 2. topshell11.py sets/O-8-11.txt.gz sets/T-8-11.txt.gz
+(5,1^6) points of O with x_8 = 0 (deleted by the tail, not in T): 48
+|O| = 399702  |T| (from definition) = 53312  |{x in O: |x|=11, x_8=0, profile != (5,1^6)}| = 53312
+second file lists exactly T
+  last nonzero index 6, profile (3, 2, 2, 2, 1, 1), support 6: 1920
+  last nonzero index 6, profile (3, 3, 2, 1, 1, 1), support 6: 1920
+  last nonzero index 6, profile (4, 2, 2, 1, 1, 1), support 6: 1920
+  last nonzero index 7, profile (2, 2, 2, 2, 1, 1, 1), support 7: 2240
+  last nonzero index 7, profile (3, 2, 2, 1, 1, 1, 1), support 7: 6720
+  last nonzero index 7, profile (3, 2, 2, 2, 1, 1), support 6: 11520
+  last nonzero index 7, profile (3, 3, 1, 1, 1, 1, 1), support 7: 1344
+  last nonzero index 7, profile (3, 3, 2, 1, 1, 1), support 6: 11520
+  last nonzero index 7, profile (4, 2, 1, 1, 1, 1, 1), support 7: 2688
+  last nonzero index 7, profile (4, 2, 2, 1, 1, 1), support 6: 11520
+TOPSHELL VERIFIED
+
+## 3. tail search: tail.sh (KZ_DONLY=1 kzs2 8 11 from O minus T, the 48 (5,1^6) points of O are in O minus T)
+04:56:47 piece 1: n=8 r=11 |C|=346390 D=156265 K=0 left=190125 STUCK (time budget)
+05:02:07 piece 2: n=8 r=11 |C|=190125 D=190124 K=0 left=1 REACHES {e_n}
+
+## 3. tail replay: vtail.sh (vcert2 -i OmT.txt), 14 chunks
+ch000 OK exit 2 moves: D=25000 (K steps 0) left=321390 dfs=674038539 -> all moves valid; end set is not {e_k}
+...
+ch013 OK exit 0 moves: D=21389 (K steps 0) left=1 dfs=5044519611 -> VERIFIED: ends at {e_k}
+TAIL VERIFIED: ends at {e_8}
+chunks OK: 14 of 14, FAIL: 0
+
+## formula witnesses: K u | e_j + e_8, j = last nonzero index of u, checked by kzc1 against C = O (run11/o6.txt)
+### single lines, each alone from C = O (certs/k-formula-single-8-11.txt.gz: 12 random points of T with j = 7, 12 with j = 6, seed 1)
+j=7 1: K 1 -4 -1 2 1 -1 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=2816 end=399701 ACCEPT (7 s cpu, 7 s rows)
+j=7 2: K 2 -1 2 -1 0 3 2 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=5120 end=399701 ACCEPT (9 s cpu, 9 s rows)
+j=7 3: K 3 2 2 -1 0 -2 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=69120 end=399701 ACCEPT (7 s cpu, 6 s rows)
+j=7 4: K -2 2 1 -1 3 1 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=89344 end=399701 ACCEPT (13 s cpu, 11 s rows)
+j=7 5: K 0 4 2 2 -1 -1 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=58368 end=399701 ACCEPT (5 s cpu, 5 s rows)
+j=7 6: K 2 0 -3 -2 -1 1 2 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=4352 end=399701 ACCEPT (9 s cpu, 9 s rows)
+j=7 7: K -3 0 1 1 3 -1 2 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=1792 end=399701 ACCEPT (6 s cpu, 6 s rows)
+j=7 8: K 1 -4 -1 2 1 0 2 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=2816 end=399701 ACCEPT (6 s cpu, 5 s rows)
+j=7 9: K 1 -1 3 -1 -1 1 3 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=4096 end=399701 ACCEPT (11 s cpu, 10 s rows)
+j=7 10: K -1 4 -1 0 -1 -2 2 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=1024 end=399701 ACCEPT (5 s cpu, 5 s rows)
+j=7 11: K -2 1 -3 1 -2 1 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=88832 end=399701 ACCEPT (13 s cpu, 11 s rows)
+j=7 12: K -2 -1 1 -2 -3 -1 1 0 | 0 0 0 0 0 0 1 1 => D=0 K=1 collapse-steps=84224 end=399701 ACCEPT (11 s cpu, 9 s rows)
+j=6 1: K -1 -1 2 4 1 2 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=22528 end=399701 ACCEPT (5 s cpu, 4 s rows)
+j=6 2: K -1 -3 -2 1 -3 1 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=59392 end=399701 ACCEPT (5 s cpu, 5 s rows)
+j=6 3: K 1 -3 -3 -1 -1 2 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=23808 end=399701 ACCEPT (5 s cpu, 5 s rows)
+j=6 4: K 1 -1 -3 -3 1 2 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=24064 end=399701 ACCEPT (5 s cpu, 5 s rows)
+j=6 5: K -2 1 1 -3 1 3 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=24320 end=399701 ACCEPT (6 s cpu, 5 s rows)
+j=6 6: K 2 1 1 -2 -4 1 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=54528 end=399701 ACCEPT (5 s cpu, 4 s rows)
+j=6 7: K -1 -1 1 -2 2 4 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=23040 end=399701 ACCEPT (5 s cpu, 4 s rows)
+j=6 8: K -3 1 2 -2 1 2 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=26624 end=399701 ACCEPT (7 s cpu, 6 s rows)
+j=6 9: K 1 -1 3 3 2 1 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=59904 end=399701 ACCEPT (6 s cpu, 5 s rows)
+j=6 10: K -2 -1 -4 -1 2 1 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=55040 end=399701 ACCEPT (5 s cpu, 4 s rows)
+j=6 11: K -2 -2 -2 1 -1 3 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=26880 end=399701 ACCEPT (7 s cpu, 6 s rows)
+j=6 12: K 2 1 -2 -4 -1 1 0 0 | 0 0 0 0 0 1 0 1 => D=0 K=1 collapse-steps=54683 end=399701 ACCEPT (4 s cpu, 4 s rows)
+accepted: 24 of 24
+
+### one chain, lines applied in order from C = O (certs/k-formula-chain-8-11.txt.gz: the 40 points of T nearest to u0 = (2,-1,1,1,-3,1,2,0), all within distance 2 of u0, j = 7)
+replayed in 4 chunks; chunk i applies the earlier lines as deletions and checks its own
+1-12: kzc1 k=8 r=11 lines 1..12: D=0 K=12 collapse-steps=139776 end=399690 ACCEPT (129 s cpu, 125 s rows)
+13-24: kzc1 k=8 r=11 lines 13..24: D=0 K=12 collapse-steps=115968 end=399678 ACCEPT (98 s cpu, 95 s rows)
+25-36: kzc1 k=8 r=11 lines 25..36: D=0 K=12 collapse-steps=367829 end=399666 ACCEPT (130 s cpu, 123 s rows)
+37-40: kzc1 k=8 r=11 lines 37..40: D=0 K=4 collapse-steps=243456 end=399662 ACCEPT (37 s cpu, 33 s rows)
+accepted: 40 of 40, end set |O| - 40 = 399662
+
+## classtest.sh (is T minimal?): unfinished
+class (3,2,2,2,1,1): its 13,440 points put back, start |C| = 359,830 (O minus T plus the class)
+piece 1 (kzs2 KZ_DONLY, 1100 s): D=50339, left 309491, STUCK (time budget)
+piece 2 (1100 s): D=1098, left 308393, STUCK (time budget)
+stopped after 2 pieces at load ~20; no class tested to the end. Whether T is minimal is open.
+
+## kzc1-stages.sh: kzc1 replay of the kzs3 stages of (8,10) (chk10, O.txt and km.txt as above, 12-line chunks)
+chunks: 85, all ACCEPT, K lines checked: 987, D lines: 0
+E2 end set: 177628 points, sorted sha256 26dd9b7ac2ef3001, expected 26dd9b7ac2ef3001 MATCH
+E3 end set: 177483 points, sorted sha256 31c080a6c4b1d6a0, expected 31c080a6c4b1d6a0 MATCH
+E4 end set: 177298 points, sorted sha256 0dbba22f43d66f55, expected 0dbba22f43d66f55 MATCH
+F2 end set: 177121 points, sorted sha256 fab84b06277c00c8, expected fab84b06277c00c8 MATCH
+F3 end set: 176810 points, sorted sha256 e8dcefc523f3e94a, expected e8dcefc523f3e94a MATCH
+F4 end set: 176738 points, sorted sha256 ebb75b77af92f897, expected ebb75b77af92f897 MATCH
+ALL DONE: all 987 kzs3 (K) lines ACCEPT, all six end sets MATCH
