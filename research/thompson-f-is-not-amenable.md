@@ -199,6 +199,57 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
     maximum.
   - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
+- **Pivot orders: the tail splits off, and the staircase law (2026-09-18).** Two results on the
+  pivot-order class, which is the certificate of
+  `thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`.
+  - *Tail splitting* (`thompson-f-stubborn-sets-split-off-the-tail`, OPEN — demoted at landing on
+    2026-09-18, see below). Writing `z ∈ M` as `(u ; v)` with `u` the first `K(S)` roots,
+    `s z = (s̄ u ; v)` and **every** factorisation `w = s' z'` keeps the same tail `v`. So
+    stubbornness is a fibrewise property of the finite prefix worlds
+    `P_a = {forests with K roots and a carets}`, `|P_a| = f(K+a, K)`. Two consequences: a private
+    pivot order exists iff `core(P_a) = ∅` for every `a`, a sequence of finite computations with no
+    truncation parameter; and the published `letters <= L` windows were complete, so every "no core"
+    row is a statement about the whole layer `M_a` (this removes the "computed only, inside
+    `M_(D, m+D)`" caveat on the `X_m` layers below `D = m`). Two of three referee lenses refuted the
+    third advertised consequence — that an empty core in all layers `<= A` certifies
+    `|S Y| >= 2|Y|` "strictly stronger than `Λ_S(D) >= 2`". It is not stronger but *equivalent*:
+    `thompson-f-monomial-doubling-ratio-is-a-finite-computation` defines `Λ_S(D)` as an infimum over
+    every finite subset of the whole layer and proves the window lossless, so that corollary is a
+    re-derivation of an established finite criterion, and it reaches strictly fewer layers than the
+    exact `Λ` values do (`S_(3,5)`: `A = 6` versus `D <= 12`). The reduction itself (items 1, 2, 3,
+    5) was checked line by line and reproduced by all three lenses, in three independent
+    implementations; it is parked OPEN pending a referee pass on the corrected text.
+  - *The search order does not matter, only the depth* (`thompson-f-staircase-sets-have-stubborn-layers`,
+    OPEN). For the staircase sets `S(m,d) = X_m X_(m+1) ... X_(m+d-1)` the first stubborn layer obeys
+    `2 a_min + 1 = 3^(d-1) (2m+1)` on all fourteen computed cases, with no failure: `a_min = m` for
+    `d = 1`, `m = 1..6` (proved); 1, 4, 7, 10, **13** for `d = 2`, `m = 0..4`; 4 and **13** for
+    `d = 3`, `m = 0, 1`; **13** for `d = 4`, `m = 0`. The three bold entries were predictions made
+    before the layer was computed, and each required an empty core one layer below and a verified
+    stubborn core at the layer itself — at `(4,2)` that is an empty core on 31 865 925 points and a
+    7 470 184-point core on **121 580 760** points. *The invariant is the depth, not the order.*
+    Consequence: the survivor recorded in the bullet above,
+    `{x_a x_b x_c : a <= 2, b <= 3, c <= 4} = S(2,3)`, is predicted to have `a_min = 22`; the census
+    now reaches `a = 12` (17 298 645 points) and is ten layers short, so its "survival" is an
+    artefact of depth. Under the law no staircase set admits a private pivot order at all, and the
+    class is dead on the whole Guba family. Also proved: a common left factor is invisible
+    (`S = t S''` has the same cores as `S''`), so `a_min(S(0,d)) = a_min(S(1,d-1))`, checked at a
+    33-million-point layer.
+  - *And plausibly the class is dead outright* (`thompson-f-monomial-sets-all-have-stubborn-layers`,
+    OPEN). An exhaustive census of the degree-2 monomial sets with letters `<= 3` finds **no** set
+    with `|S| >= 2` and no stubborn layer. If that holds in general, the triangular doubling
+    certificate has no instance anywhere in `F`, and any doubling proof must be non-triangular (a
+    Hall 2-to-1 matching not induced by an order, or a flow). All 57 sets with letters `<= 2`, and
+    all 165 sets of size 2 or 3 with letters `<= 3`, are resolved with `a_min <= 10`. A congruence
+    shortcut is excluded: the divisibility in the staircase law fails for 26 of those 57 sets.
+  - *Dead here:* need 176cdb5a, an order making every deep `m ∈ R(S_(3,5))` a two-sided local
+    maximum, is vacuous as a route step: it is necessary for a pivot certificate of `P_(2,2)`,
+    whose sufficient condition `thompson-f-p22-monomials-admit-no-private-pivot-order` already
+    refutes. Also dead: bounded-size gadgets. The 24-point `S(1,2)` core is a *minimal* stubborn set
+    (no one-point deletion and no subset of size `<= 4` is stubborn), and inside each of its six
+    mirror-paired profile classes every point has five private successors out of `|S| = 5`. So a
+    proof of the law needs a gadget whose size grows with the core (2, 24, 1092, 81224 along
+    `d = 2`), not a fixed pattern.
+  (e2-w2-f-pivot-order, swarm-0917, compute-scout, census-computation.)
 - **Co-amenable non-amenable hosts (heretic, swarm-0917).** The routes above share three
   assumptions:
   1. the certificate lives on `F` itself;
@@ -222,6 +273,94 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     non-amenable, and that is a direct certificate for `F`.
   - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
   - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
+- **Numerical cogrowth, exhausted at the published length (compute-scout, swarm-0917;
+  refereed and demoted 2026-09-18).** The moment route on the 32 published Elvey
+  Price-Guttmann terms is closed from both sides at odd truncation:
+  `thompson-f-32-term-cogrowth-bound-is-the-moment-optimum`, which is **OPEN**, not
+  established — referee lenses 2 and 3 refuted it. The headline below (`N = 31`, odd) was
+  reproduced independently by all three lenses and is not in doubt; what is open is the
+  even-`N` half of the table, now
+  `even-degree-localizing-hankel-attains-truncated-moment-optimum`.
+  - *Invariant:* the largest eigenvalue of the 16×16 truncated multiplication operator `J` on
+    `R[x]_{≤15}` with `<p,q> = L(pq)`, `L(x^j) = c_j/16^j`. Its spectral measure at the
+    constant `1` is a 16-atom measure with **exactly** the 32 published moments, so every
+    certificate whose only input is "a positive measure with these moments" dies at it. The
+    certified value `||P|| > 0.910677539452` and the ceiling `0.910677539453` agree to 13
+    digits.
+  - `theta*(N)` is tabulated for all `N ≤ 31` — the exact optimum at odd `N`, a certified
+    lower bound at even `N` (optimality there is the open prerequisite). The deficit falls
+    like `N^{-0.61}`, fitted on the odd rows `N = 15, 23, 31`, so certifying `||P|| > 0.92`
+    needs about 42 exact terms, `> 0.95` about 263, against the 32 that exist. With
+    `thompson-f-moment-data-cannot-certify-nonamenability` (no finite data proves `||P|| < 1`)
+    the cogrowth route is now bracketed on both sides.
+  - *The competing class is priced.* A finite window `A` gives `lambda_max(A_A)/4 ≤ ||P||`,
+    which is the matrix-moment (NPA) relaxation. On the 4-regular tree the window at radius
+    `r` and the moments at word length `2r` agree to `10^-13` at `r = 4, 6, 8, 10, 12`
+    (measured; the offered reason — the Perron vector of a tree ball is radial and the
+    radial subspace is the Krylov space of `delta_e` — is proved only at odd truncation and
+    every checked radius is even, so this is a measurement, not a theorem).
+    In `F` the window wins by only `+0.00022` per unit radius (measured to `r = 12`,
+    `|B_12| = 676061`, bound `0.870273`), while `|B_r|` multiplies by `2.76`: extrapolating
+    both, matching the existing `0.9107` needs radius `≈ 27`, about `3×10^12` vertices —
+    an extrapolation, not a measurement.
+  - *Isoperimetric certificates die on direction.* Minimising `|dA|/|A|` over subsets of `B_11`
+    (max-density subgraph, exact counts) gives `|A| = 41136`, `|dA|/|A| = 1.40743`, hence
+    `h(F, {x_0,x_1}) ≤ 1.40743`; but Kesten-Dodziuk `h ≤ 4 sqrt(1-||P||^2)` converts a *lower*
+    bound on `h` into an upper bound on `||P||`, so an explicit set yields only
+    `||P|| ≥ 1 - |dA|/(4|A|) = 0.6481`, the indicator Rayleigh quotient.
+  - *What survives:* a certificate that reads the group beyond the numbers `c_n` — off-diagonal
+    counts `w_n(g)`, or a window in a graph that converges at the same rate per radius but is
+    exponentially smaller. The concrete candidate is a Schreier graph `Sch(F/H, S)` for an
+    **amenable** `H ≤ F` (say `H = <x_0, h> ≅ Z wr Z` for a one-bump `h` whose `x_0`-translates
+    are disjoint): the Cayley graph covers it, so `||P_{Sch}|| ≥ ||P||`, and for amenable `H`
+    the quasi-regular representation is weakly contained in the regular one, so
+    `||P_{Sch}|| = ||P||` and windows in `Sch` certify `||P||` itself. Measured here:
+    `|H ∩ B_r| = 1, 3, 5, 7, 9, 11, 15, 25, 43, 69, 105, 155` for `r ≤ 11`, growth `1.48`
+    against `2.774` for `|B_r|`. **The saving is unmeasured in both directions** (corrected
+    2026-09-18, referee lens 3; the earlier "about `1.85` per radius, about `10^7` vertices"
+    was wrong). `|Hg ∩ B_r| ≤ |H ∩ B_{2r}|` gives `|Sch_r| ≥ |B_r| / |H ∩ B_{2r}|`, a
+    *lower* bound on the Schreier ball, worth at best `2.76/1.48^2 = 1.26` per radius at the
+    measured rates; the computed coset count is an upper bound whose own ratios run `2.7-3.0`.
+    Honest bracket at radius `27`: `10^3` to `10^12` vertices. Blockers, both exact: a
+    canonical form for the cosets `Hg` — a decidable normal form for `Z wr Z` inside `F` — so
+    that one can BFS directly in `F/H`; and the growth rate of the Schreier ball itself,
+    which is what would decide whether this is an accelerator at all. Nobody has done either.
+- **Crossing the observation gate: the exact tail is inert above an idempotent prefix reading
+  (2026-09-17; refereed, and the first framing of it was refuted on scope).** Working inside the gate's
+  own definitions, `thompson-f-exact-tail-observations-have-zero-defect` computes the shadow defect of
+  an observation that is *not* coarse. Fix finite `S ⊆ M`, let `I` be its largest generator index,
+  `D = max deg s`, `K = I + D + 1` (so `K = m + 2d` for `S = S_(m+1,m+d+1)`), let `(Q, δ, ℓ)` be a tree
+  invariant whose reachable states carry an **idempotent** probability, and let
+  `Ξ(y) = ((q(t_0), ..., q(t_(K−1))), (t_K, t_(K+1), ...))`: the `Q`-states of the first `K` trees, and
+  the **exact shapes** of every later tree. Then `δ_1(Ξ) = 0`, and also with the germ datum at the
+  endpoint `0` (the leftmost-leaf depth of `t_0`) adjoined. *Where it dies:* the splits of `S` touch only
+  the first `I + 1` trees and create `I + d + 1`, so for a forest of i.i.d. idempotent towers the coupling
+  of `split_s Y` at `N = n` with `Y` at `N = n + d` is an **exact identity** on the tail and on the
+  prefix state vector, and the whole cost is the `d/(L − n_0 + 1)` of mixing over the tree count.
+  - *What it closes.* The part of the gate's Scope marked open ("observations reading unbounded data of
+    individual trees (sizes, depths, shapes)") for every tree outside a bounded window, **provided** the
+    bounded window is read through an idempotent-carrying invariant: sizes, depths, spines, exact subtree
+    structure and every unbounded invariant of all but `K` trees contribute nothing on top of such a
+    prefix reading.
+  - *What it does **not** close, and the referee's reason for refuting the node's first framing
+    (event `31e58aeb`).* It does **not** follow that a certificate must read the exact shapes of the
+    first `K` trees. Idempotency is load-bearing, and prefix **depth** and prefix **size** carry no
+    idempotent probability — for depth, `F(k) = P(depth <= k)` would satisfy `F(k) = F(k−1)^2`, forcing
+    `F ≡ 0` or `F ≡ 1`. So `Ψ(y) = ((depth t_0, ..., depth t_(K−1)), (t_K, t_(K+1), ...))` is a
+    coarsening of no such `Ξ`, reads no exact prefix shape, and is untouched. The residue is therefore
+    not `π_K` alone but the whole interval between idempotent-carrying prefix observations and `id_M` —
+    every (non-idempotent prefix invariant, exact tail) pair, of which `(Ξ, |y|)` is one member.
+  - *Sharpness:* blurring only the first `K − 1` trees leaves total variation `15/16` for `S_(2,3)`,
+    `s = x_1` (exact arithmetic) — a statement about this model family, not a lower bound on `δ`.
+  - *Residue, partly recorded as `thompson-f-prefix-observation-shadow-defect`:* (1) is `δ_λ(π_K) > 0`
+    for the prefix observation `π_K(y) = (t_0, ..., t_(K−1))`? — a yes proves this root; (2) does
+    `δ_1(π_K) = 0` transfer back to `δ_1(id_M) = 0`? — a yes with (1) no proves
+    `thompson-f-is-amenable`. Also open: `(Ξ, |y|)` and, more generally, every prefix invariant with no
+    idempotent state measure paired with the exact tail.
+  - Script and exact numbers (reproduced byte-identically by all three referees):
+    `experiments/thompson-f-shadow-defect-2026-09-17/exact_tail_shadow_defect.py`,
+    `experiments/thompson-f-shadow-defect-2026-09-17/output.txt`.
+  (swarm-0917, e2-w2-f-shadow-defect, inverter, probability-random.)
 - **Co-amenable hosts: every circle embedding, and line hosts with non-integral end germs
   (swarm-0917-w9-z-pull).** This extends the heretic's bullet to two whole classes of hosts.
   - *Circle hosts, any embedding.* Established as

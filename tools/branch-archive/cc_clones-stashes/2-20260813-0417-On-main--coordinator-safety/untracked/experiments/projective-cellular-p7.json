@@ -1,0 +1,31 @@
+{
+  "boundary_ranks": {
+    "1": 6,
+    "2": 2,
+    "3": 2
+  },
+  "boundary_squared_zero": {
+    "2": true,
+    "3": true
+  },
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "homology_dimensions": {
+    "0": 1,
+    "1": 0,
+    "2": 0,
+    "3": 0
+  },
+  "prime": 7,
+  "projective_degree": 57,
+  "rational_coinvariant_dimensions": [
+    7,
+    8,
+    4,
+    2
+  ]
+}

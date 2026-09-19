@@ -91,6 +91,21 @@ artifacts:
 
 ## Attempts
 
+- **2026-09-18 (e2-w2-nv-cnd-beyond-max): the "untouched `ℓ^1`-like" gap is now closed, by a different
+  mechanism.** `brin-thompson-nv-sum-type-size-functions-are-not-cnd` (ESTABLISHED) shows that the number of
+  disjoint-support baker pieces a word can carry grows exponentially in its length: with `β` the global baker map
+  and `τ = id × ρ` the first-two-letter swap in the second coordinate,
+  `B_d = (β^{-1}τ)^d β^{d+1}` is exactly the product of the `2^d` disjoint-support baker maps `b_w`, `|w| = d`, and
+  `L(B_d) = 2^{d+1}`. Since `√(ψ − ψ(e))` is subadditive for every cnd `ψ`, `ψ(B_d) = O(d²)`, so no cnd function
+  can be asymptotically `G(ℓ^p-aggregate)` with `G` of positive index, for any finite `p`. The fixed `Z^3` used
+  here cannot see this, because it has only three pieces. Together the two nodes close the family
+  `p ∈ [1, ∞]`. The `ℓ^p` certificates of the new node also show that on three pieces alone the exponents
+  `2 < p ≤ ∞` die (`p = 2.15, 2.25, 2.5, 3, 4, 6, 10` certified), while `p ≤ 2` cannot, since `ℓ_p^3` embeds
+  isometrically in `L^1`.
+- **Still open, same shape as this node's residual gap.** The certified `ℓ^p` grids grow as `p ↓ 2` (half-width
+  `2` at `p = 2.5`, `5` at `p = 2.15`), exactly like the `β ↓ 0` behaviour recorded above, so brute-force grid
+  search is not the route to either; a Misiewicz/Dor-type theorem is.
+
 ### 2026-09-18, adversarial referee audit (`e2-w2-audit-nv1`, calibration) — SURVIVES, with two amendments
 
 This claim landed ESTABLISHED in the previous wave with no referee stage. Full record:

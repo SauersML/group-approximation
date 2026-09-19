@@ -160,3 +160,21 @@ independently of Gottschalk's conjecture.
     - **Sharpest test.** Construct, or rule out, an injective `tau` on `(T^4)^H`, `H` Higman's
       group, with `D(tau)` the Fox witness. It would refute TS at `H`. The periodic tori give
       nothing there, since `H` has no finite quotients. C2 stays OPEN.
+- 2026-09-19 (swarm-0917-w14-w14-gs-pull): kernel descent
+  (`torus-degree-regularity-lifts-through-li-kernels`, ESTABLISHED; artifact
+  `research/artifacts/torus-degree-li-kernel-descent-2026-09-19.md`).
+  - **Mechanism.** For any normal `N` (infinite index allowed), `tau_N` on
+    `Fix(N) = (T^d)^(G/N)` is injective of degree `p_N(D)`.
+  - **Descent.** If `N` is locally indicable, regularity of `p_N(D)` lifts to `D`: apply
+    Strebel's `D(Z) = LI` to the coset-block maps. It also lifts through locally normal
+    `p` kernels (nilpotent lifting mod `p`, as in w10), through finite nilpotent kernels,
+    through f.g. residually finite-nilpotent kernels, and along finite series of these.
+  - **Consequences.**
+    - C2 is closed under LI-kernel extensions.
+    - It holds over every LI-by-(residually finite) group, e.g. `BS(2,3) × A_5` and
+      `F × A_5`, which no earlier node covers.
+    - A counterexample descends at the same `d` to a group with no nontrivial LI normal
+      subgroup.
+  - **Where kernel descent dies.** At kernels containing a finite subgroup of
+    non-prime-power order: the Bezout element has `p_N(D) = 1`. So `Alt_fin(N)`, simple
+    and containing `A_5`, is out of reach of every descent argument.

@@ -369,3 +369,110 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     conclusion, or the properness of the cnd function, which Delorme–Guichardet bounds on `Γ`.
     This also closes audit D1 of `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host`.
   - *What survives.* The product factorization of `G_2^n`, and `(S_1)`.
+  - *Cross-reference (added at the e2-w2-nv-separate landing, same day).* This is the
+    concrete instance of the risk that referee lens 3 flagged against (S_k) in the entry
+    below: the hypothesis list of `af-by-zk-full-groups-have-finite-kazhdan-subgroups`
+    carries no expansivity and no pure infiniteness, so it quantifies over far more than
+    `G_2^n`. That entry raised the worry abstractly; this one settles it for `k ≥ 2` with
+    an explicit host, so `nv-finite-kazhdan-subgroups-via-af-by-zn` must be restated with
+    the extra hypotheses `G_2^n` actually has, or abandoned for `n ≥ 2`. It also resolves
+    loose end 1 recorded on `nv-brick-groupoid-and-kazhdan-host-are-both-o2`: the
+    Robertson-Steger action **is** topologically free, so `𝒢_RS` is effective and the
+    effective form of the C\*-level class kill is available through Step 6 alone, without
+    the `𝒢_W1` gap.
+- **2026-09-18 (e2-w2-nv-separate, operator-algebras): the C\*-layer is killed for at least
+  one Kazhdan host, and the separation collapses onto the AF-by-`Z^n` cocycle. Posted with
+  two claims ESTABLISHED; **both returned to OPEN at landing**, 2 of 3 referees refuted.**
+  - **Named invariant tried:** the reduced C\*-algebra `C*_r(𝒢)` of the groupoid, together
+    with Matui's groupoid homology `H_*(𝒢)`. It **fails to separate**.
+  - **Mechanism.** For second countable Hausdorff étale groupoids
+    `C*_r(𝒢 × ℋ) ≅ C*_r(𝒢) ⊗_min C*_r(ℋ)` (proved from scratch in
+    `nv-brick-groupoid-and-kazhdan-host-are-both-o2-proof` Step 1:
+    `(𝒢 × ℋ)_{(x,y)} = 𝒢_x × ℋ_y`, so the reduced representation of the product is a
+    tensor of two faithful reduced representations, whose norm is the minimal tensor
+    norm). Hence `C*_r(G_2^n) ≅ O_2^{⊗n}` and `C*_r(𝒢 × G_2) ≅ C*_r(𝒢) ⊗ O_2`, and
+    Kirchberg's `O_2`-absorption theorem (`A ⊗ O_2 ≅ O_2` for unital separable simple
+    nuclear `A`; no UCT) collapses each side to `O_2`. Matui's Künneth formula with
+    `H_*(G_2) = 0` gives vanishing homology throughout.
+  - **What survived the referees (the class kill, in its weaker form).** For the
+    Robertson–Steger host `𝒢_RS = (Γ' ⋉ Ω) × G_2` the input is clean:
+    `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host` item 4 states simplicity,
+    nuclearity and pure infiniteness of `C(Ω) ⋊_r Γ'` directly. So
+    `C*_r(G_2^n) ≅ O_2 ≅ C*_r(𝒢_RS)` and `H_* = 0` for both, and:
+    - **Invariant:** property (T) of the Kazhdan lattice `Γ'`.
+    - **Step where every member dies:** the passage from an invariant of `C*_r(𝒢)`, or of
+      `H_*(𝒢)`, to a statement about `[[𝒢]]`. A groupoid whose full group contains an
+      infinite Kazhdan group has the *same algebra and the same homology* as `G_2^n`.
+    - **Scope:** K-theory and all classification data, traces and tracial states, the
+      ideal lattice, the Cuntz semigroup, nuclear dimension, decomposition rank,
+      `Z`-stability, strong self-absorption, quasidiagonality, the UCT, Matui's HK-type
+      invariants, and even the hypothesis "`𝒢` is amenable with `C*_r(𝒢) ≅ O_2`". **The
+      COLD operator-algebras family is closed on this goal unless a proof uses the
+      diagonal.**
+  - **What the referees took away.** `nv-brick-groupoid-and-kazhdan-host-are-both-o2` is
+    **OPEN**, demoted at landing. Lens 2 refuted Step 5 of its route: the
+    Rørdam–Sierakowski sentence quoted there is an *existence* statement about *some* free
+    amenable minimal action of `Γ`, and it was applied universally to the host's `M`,
+    which is a different, independently constructed action. Step 5's four needed
+    properties (unital, separable, simple, nuclear) are now the open prerequisite
+    `kazhdan-host-crossed-product-is-simple-and-nuclear`, closable by two standard imports
+    (amenable action ⇒ nuclear crossed product; topologically free + minimal ⇒ simple).
+    Until it closes, `C*_r(𝒢_W1) ≅ O_2` is not available, and with it go **the effective
+    form of the class kill** (`𝒢_W1` is the only host asserted effective;
+    `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host` explicitly does not assert
+    that `Γ'` acts topologically freely) **and the Cartan gate below**.
+    `brick-groupoid-has-zn-cocycle-with-af-kernel` is also **OPEN**, but only
+    procedurally: all three lenses checked its route and found every step correct, so it
+    waits on `brick-af-cocycle-referee-confirmation`, a per-claim vote.
+  - **Gate (Cartan), conditional on that gap closing.** `G_2^n` and `𝒢_W1` are ample,
+    Hausdorff, minimal and effective, so by Renault/Steinberg reconstruction the remaining
+    operator-algebraic question is whether `C(C^n)` and `C(M × C)` are conjugate Cartan
+    subalgebras of `O_2`. A surviving operator-algebraic proof must be
+    **diagonal-sensitive**: it must use the Cartan pair, never the algebra alone.
+  - **New necessary prerequisite (OPEN), which can fail on its own.**
+    `brick-groupoid-not-isomorphic-to-kazhdan-host`, via
+    `brick-host-nonisomorphism-from-nv-haagerup`: if `G_2^n ≅ 𝒢_W1` then
+    `nV = [[G_2^n]] ⊇ Γ` and this claim is refuted — by an explicit isomorphism, with no
+    cnd function anywhere. No invariant on the graph currently decides it. (The equality
+    `[[G_2^n]] = nV` used there is proved in that route and was checked by lens 1: boxes
+    form a semiring, so differences of bricks are finite disjoint unions of bricks.)
+  - **The candidate invariant that may still separate.**
+    `brick-groupoid-has-zn-cocycle-with-af-kernel`: `c^{(n)} : G_2^n → Z^n` is continuous
+    with kernel the tail equivalence relation `R_2^n`, which is AF. The recorded hosts are
+    **not known** to carry any such cocycle *and not known not to*, so this separates
+    nothing yet — it is the only property on which they have not already been shown to
+    match. Lemma B of `af-by-zk-full-groups-have-finite-kazhdan-subgroups` (established
+    there, and confirmed by all three lenses including the Minkowski step for
+    `Γ ≤ GL_4(Z)`) gives the first constraint: the full group of an AF groupoid is locally
+    finite, so any AF-kernel cocycle on a product must be almost faithful along a Kazhdan
+    subgroup of a factor. That kills the host's canonical cocycle and every cocycle that
+    ignores `Γ` — but not every cocycle.
+  - **One-hole route to a downstream node.** `nv-finite-kazhdan-subgroups-via-af-by-zn`
+    gives `kazhdan-subgroups-of-brin-thompson-groups-are-finite` from the single open
+    statement (S_k) = `af-by-zk-full-groups-have-finite-kazhdan-subgroups`. The route is at
+    groupoid level, so none of the cnd-function class kills above applies to it. **But
+    (S_k) is much stronger than it looks** (lens 3, recorded on that node): its hypothesis
+    list contains no expansivity and no pure infiniteness, so it quantifies over *every
+    free minimal Cantor `Z^k`-system* (`ker c` is then the unit space groupoid, which is
+    elementary, hence AF). In particular (S_1) is **not** established by
+    `input-encoded-sft-groupoid-hosts-are-not-universal`, whose item 2 is stated for
+    irreducible one-sided SFT groupoids only; and for `k ≥ 2` the class contains minimal
+    Cantor `Z^2`-systems with non-amenable full groups containing free subgroups
+    (Elek–Monod). A proof of (S_k) must survive those members, or (S_k) must be restated
+    with the extra hypotheses `G_2^n` actually has.
+  - **The gate, stated as required, with the correction the referees forced.** *Every
+    surviving proof of a-T-menability for `nV`, and every surviving proof that its Kazhdan
+    subgroups are finite, must use a property of `G_2^n` that the hosts provably lack.*
+    Individually dead as separators: compact generation, expansivity, pure infiniteness,
+    effectiveness, amenability, minimality, absence of an invariant measure, and anything
+    computed from `C*_r(𝒢)` or `H_*(𝒢)`. **The list is not closed under conjunction**
+    (lens 1): `𝒢_W1` is effective and amenable but is not known to be expansive, and
+    `𝒢_RS` is expansive and amenable but its action is not known to be topologically free,
+    so the *conjunction* "effective + amenable + expansive" is still an unkilled
+    groupoid-level alternative, as this node already records at the Robertson–Steger
+    entry. The candidates left are therefore that conjunction, the AF-by-`Z^n` cocycle,
+    and the Cartan pair — and these are three distinct things, not two: the cocycle is
+    strictly weaker data than the Cartan pair, which recovers the groupoid entirely.
+    Finally, the proof must be non-zipper: the only known proof of the `k = 1` SFT case is
+    Matui's zipper action, and `brin-thompson-2v-embeds-in-no-zipper-group` forbids a
+    zipper for `2V` because of the Callard–Salo distorted element.
