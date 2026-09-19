@@ -139,3 +139,10 @@ computations. Item 3 is an obstruction with a sharpness example. Nothing is new 
     rationally.
   - Its targets are residually 𝒮, so item 3 here excludes them for the 26. `G(1, k)` is not residually 𝒮 and
     lies in `𝓗`, so family C targets remain allowed.
+- **Global targets for the 26 (w13-059).** [[commutator-root-frontier-kills-pl-and-bi-ordered-targets]] rewrites
+  all 26 words as `y_1^K = [y_0^α, y_2^β]`, which gives at most six groups. Each is in `𝓗` iff one map to `𝓗` keeps `y`.
+  - PL groups of an interval kill `y` for all 26. This includes Thompson's `F`, which is in `𝓗` and not residually
+    solvable.
+  - Bi-orderable groups kill `y` for the 8 words with `(α, β) = (-1, 1)`.
+  - Baumslag–Solitar groups kill `y` for all 26.
+  - Open: `G(1, n)` targets and bi-orderings of `G(K; 1, ±1)`.

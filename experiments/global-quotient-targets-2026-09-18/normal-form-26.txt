@@ -1,0 +1,33 @@
+AAABBABabAbaaB a->T b->ty y0^-1 y1^-2 y2^1 y0^1 y2^-1 K,alpha,beta=(2, 1, 1)
+AABaBAAbaBABab a->T b->ty y0^-1 y2^-1 y0^1 y1^-2 y2^1 K,alpha,beta=(2, -1, 1)
+AAAbbAbaBABaab a->t b->ty y2^1 y1^2 y0^-1 y2^-1 y0^1 K,alpha,beta=(2, 1, 1)
+AAABaabAbaBABB a->T b->ty y0^-1 y2^1 y0^1 y1^-2 y2^-1 K,alpha,beta=(2, 1, 1)
+AAABaabbabbaaB a->t b->Ty y2^-1 y0^1 y1^2 y2^1 y0^-1 K,alpha,beta=(2, 1, -1)
+AABaabAAbaBBaB a->T b->y y0^-1 y2^1 y0^1 y1^-2 y2^-1 K,alpha,beta=(2, 1, 1)
+AABaabAbbAbaaB a->t b->y y2^-1 y0^1 y1^2 y2^1 y0^-1 K,alpha,beta=(2, 1, -1)
+AABaabABBAbaaB a->T b->y y0^-1 y2^1 y1^-2 y0^1 y2^-1 K,alpha,beta=(2, -1, 1)
+AABaaBAAbaBBab a->T b->y y0^-1 y2^-1 y0^1 y1^-2 y2^1 K,alpha,beta=(2, -1, 1)
+AABaaBAbbAbaab a->t b->y y2^-1 y0^-1 y1^2 y2^1 y0^1 K,alpha,beta=(2, 1, 1)
+AABaaBABBAbaab a->T b->y y0^-1 y2^-1 y1^-2 y0^1 y2^1 K,alpha,beta=(2, 1, 1)
+AABAbbaBBabbAB a->y b->t y1^-2 y2^-1 y0^1 y2^1 y0^-1 K,alpha,beta=(2, 1, -1)
+AABAbbABBabbaB a->y b->t y1^-2 y2^-1 y0^-1 y2^1 y0^1 K,alpha,beta=(2, 1, 1)
+AAAbaaBABabAbb a->t b->ty y2^1 y0^-1 y2^-1 y1^2 y0^1 K,alpha,beta=(2, 1, 1)
+AAAbaaBBaBBaab a->T b->Ty y0^1 y2^-1 y1^-2 y0^-1 y2^1 K,alpha,beta=(2, 1, -1)
+AABabAAbaBAAbb a->t b->tty y2^-1 y1^2 y0^-1 y2^1 y0^1 K,alpha,beta=(2, -1, 1)
+AABabAABBAAbaB a->T b->tty y1^-2 y2^1 y0^-1 y2^-1 y0^1 K,alpha,beta=(2, -1, 1)
+AABabAbaBAAbab a->t b->ty y2^-1 y1^2 y0^-1 y2^1 y0^1 K,alpha,beta=(2, -1, 1)
+AAAbaBBabbABBAb a->y b->t y1^-3 y0^1 y2^1 y0^-1 y2^-1 K,alpha,beta=(3, 1, 1)
+AAAbaBBAbbABBab a->y b->t y1^-3 y0^1 y2^-1 y0^-1 y2^1 K,alpha,beta=(3, -1, 1)
+AAAbABBabbaBBAb a->y b->t y1^-3 y0^-1 y2^1 y0^1 y2^-1 K,alpha,beta=(3, 1, -1)
+AAAbABBAbbaBBab a->y b->t y1^-3 y0^-1 y2^-1 y0^1 y2^1 K,alpha,beta=(3, 1, 1)
+AAABabbaBBAbbAB a->y b->t y1^-3 y2^1 y0^1 y2^-1 y0^-1 K,alpha,beta=(3, 1, 1)
+AAABabbABBAbbaB a->y b->t y1^-3 y2^1 y0^-1 y2^-1 y0^1 K,alpha,beta=(3, -1, 1)
+AAABAbbaBBabbAB a->y b->t y1^-3 y2^-1 y0^1 y2^1 y0^-1 K,alpha,beta=(3, 1, -1)
+AAABAbbABBabbaB a->y b->t y1^-3 y2^-1 y0^-1 y2^1 y0^1 K,alpha,beta=(3, 1, 1)
+
+pattern (2, -1, 1) 6 AABaBAAbaBABab AABaabABBAbaaB AABaaBAAbaBBab AABabAAbaBAAbb AABabAABBAAbaB AABabAbaBAAbab
+pattern (2, 1, -1) 4 AAABaabbabbaaB AABaabAbbAbaaB AABAbbaBBabbAB AAAbaaBBaBBaab
+pattern (2, 1, 1) 8 AAABBABabAbaaB AAAbbAbaBABaab AAABaabAbaBABB AABaabAAbaBBaB AABaaBAbbAbaab AABaaBABBAbaab AABAbbABBabbaB AAAbaaBABabAbb
+pattern (3, -1, 1) 2 AAAbaBBAbbABBab AAABabbABBAbbaB
+pattern (3, 1, -1) 2 AAAbABBabbaBBAb AAABAbbaBBabbAB
+pattern (3, 1, 1) 4 AAAbaBBabbABBAb AAAbABBAbbaBBab AAABabbaBBAbbAB AAABAbbABBabbaB
