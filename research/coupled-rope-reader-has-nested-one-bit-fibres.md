@@ -10,6 +10,9 @@ distinct_from:
 ---
 **ESTABLISHED** for parts 1–4 (lane proof, bh-invent-15, 2026-09-18; not reviewed). Part 5 is
 settled in `free-bit-components-are-central-iff-they-see-the-base` (09-19).
+- **Scope (09-19).** Parts 2–5 treat the positional layer M (the digits) as base. It is not base
+  data of the rigid seed, and over the true base the reader for Cohen's set is **not** quantum
+  rigid: `cohen-rope-reader-is-not-quantum-rigid`. The results here hold relative to a frozen M.
 - **Proof repair (09-19).** The first version of the linking step (part 2) had a gap: it passed
   the free choice through the common `l`-image of two neighbouring positions, which is forced to
   `bad` when a bad digit lies below the link. The theorem stands. The proof below routes the

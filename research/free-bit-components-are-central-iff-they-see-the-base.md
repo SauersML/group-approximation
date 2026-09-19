@@ -2,7 +2,7 @@
 rg: 2
 id: free-bit-components-are-central-iff-they-see-the-base
 kind: claim
-title: In an SFT extension over a rigid base, a fibre marginal is base-central whenever, in every base configuration, the sites it transfers to by local rules (thickened by 2D) determine the base point; a free switch whose thickened support does not determine the base gives a noncommuting family in dimension 2; so the coupled rope reader satisfies (C_D) and is quantum rigid
+title: In an SFT extension over a rigid base, a fibre marginal is base-central whenever, in every base configuration, the sites it transfers to by local rules (thickened by 2D) determine the base point; a free switch whose thickened support does not determine the base gives a noncommuting family in dimension 2
 requires:
   - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
   - coupled-rope-reader-has-nested-one-bit-fibres
@@ -15,8 +15,13 @@ distinct_from:
   coupled-rope-reader-has-nested-one-bit-fibres: that proves pointwise rigidity of the coupled reader and leaves (C_D) open; this proves (C_D) for it.
 ---
 **ESTABLISHED** for Theorems A and B (lane proof, bh-invent-15, 2026-09-19; not reviewed). Both
-hold in every dimension and over every field. Corollary C is established modulo the base
-hypothesis (H) below, and part (H2) of (H) is checked only by inspection.
+hold in every dimension and over every field.
+- **Corollary C is REFUTED** (09-19, by its author): see `cohen-rope-reader-is-not-quantum-rigid`.
+  - (H1) holds.
+  - (H2) is false as used. The digits the reader reads are data of the positional extension,
+    not of the rigid base.
+  - With Cohen's absorbing automaton the reader is not quantum rigid at any scale.
+  - The corollary's argument is valid only relative to a frozen positional layer.
 - **What this does to the tail route.** The route to (C_D) suggested by the coordinator (a free
   idempotent is "tail-measurable", so it commutes) has no operator meaning, because quantum
   families carry no measure. The notion that does the work is **visibility** (Theorem A).
