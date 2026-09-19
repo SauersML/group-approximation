@@ -9,6 +9,7 @@ distinct_from:
   unique-games-reduce-to-shifts-over-their-holonomy-group: that proves rung R1 (cyclic holonomy); this is the whole ladder, rungs R2 to R4 open.
   unique-games-hard-on-non-sse-grassmann-constraint-graphs: that asks for NP-hardness of UG at completeness 1 - eta on DKKMS-shaped Grassmann 2-to-1 hosts; this asks for an algorithm on the fixed Bafna--Minzer host families at every constant completeness, and it would refute that claim only on hosts where it applies.
   unique-games-gap-admits-polynomial-time-algorithm: that is the negation of UGC on all instances; this is an algorithm on specific globally hypercontractive hosts, compatible with UGC.
+  group-shift-games-easy-on-globally-hypercontractive-graphs: that is the equivalent group-shift form, for left shifts over finite groups; this is the statement for arbitrary permutation constraints, reached from it by the coset lift.
 ---
 
 **OPEN.**
@@ -83,3 +84,67 @@ abstract that "UG is easy on globally hypercontractive graphs".
   step is to check whether the Bafna--Minzer rounding for Theorem 1.7 uses the
   cyclic structure of `Z_q` anywhere beyond its characters. If it does not, R2
   follows by replacing `Z_q` with `A`.
+* **2026-09-18, swarm-0917-w10-w10-ugc-break (reframing).** The ladder
+  collapses. `unique-games-lift-to-group-shift-games-on-the-same-host`
+  (ESTABLISHED) lifts every non-regular (coset) orbit game to a left-shift game
+  over its transitive holonomy quotient `H_i`. The lift uses the same loopless
+  host and weights, loses a factor at most `k!` in completeness and nothing in
+  soundness, and is polynomial time. So R3 reduces to R2 over solvable groups,
+  and R4 to R2 over all transitive groups of degree `<= k`. The whole claim is
+  then equivalent, host by host, to its group-shift form
+  `group-shift-games-easy-on-globally-hypercontractive-graphs` (OPEN), through
+  the route `general-ug-on-bm-hosts-from-group-shift-games`. The R3 induction
+  obstacle above is bypassed, not solved.
+  - *First step of the audit.* I audited every use of the alphabet's algebra
+    in Bafna--Minzer and BBKSS: Fact 2.10, Definition 2.11, BBKSS Lemmas
+    3.5--3.9, eq. (23), the `Psi` invariance, Algorithm 3.4 (e) and Claim A.4.
+    Each transfers to left shifts over any finite group once differences are
+    read as right quotients `X_u^(-1) X'_u` and global shifts as right
+    translation. The characters in Appendix C belong to the host, not the
+    alphabet. The algebra is checked exactly over `S_3` and `Q_8`.
+  - *What remains.* A line-by-line referee of BM Sections 3.3--3.5 and
+    4.1--4.2. The falsifier is a use of commutativity there.
+* **2026-09-18, swarm-0917-w13-w13-ugc-break (calibration).** Result:
+  `completeness-dividing-host-transfers-never-beat-random-labeling`
+  (ESTABLISHED).
+  - *The literal claim is trivial.* Every unique game with alphabet `k` on a
+    loop-free host has value `>= 1/k`, found by conditional expectations. So
+    the Claim above, with `delta` allowed to depend on `k`, holds with
+    `delta = 1/k`, and so does every rung R1--R4. The intended open content is
+    the Bafna--Minzer quantification: `delta = delta(c, alpha)` independent of
+    `k` and `l`, with only the running time depending on them.
+  - *R1 is not proved under that reading.* Corollary BM certifies
+    `delta_BM(c/k)`. Planted `Z_k` shift games on `Grass(n, l)` (Hoeffding
+    plus a union bound, degree `-> infinity`) force every `k`-independent
+    guarantee to satisfy `delta(c') <= c'`, so the certificate is `<= c/k`. The
+    holonomy node's kill "no soundness below `delta(c/k)`" is void, since every
+    instance has value `>= 1/k`.
+  - *Dead: completeness-dividing transfers.* This covers the plain orbit split
+    (loss `k`) and the coset lift to `S_k`-shift games (loss `(k-1)!`, as in
+    swarm-0917-w10's route). Dead step: the final certificate, the target
+    guarantee at completeness `c/L(k)`, is at most `c/L(k) + 1/K` on planted
+    target instances. That is below `1/k` for the lift at every `k >= 4`.
+  - *Salvage.* The dominated orbit split
+    `val(U) <= sum_(j in D) val(U_j)` over a set `D` of orbits receiving
+    equivariant maps from every orbit. So R1 holds `k`-independently when the
+    dominating number `tau(U)` is bounded. For cyclic `H`, `tau` is the number
+    of divisibility-minimal orbit sizes. Open R1 core: cyclic holonomy with
+    many divisibility-incomparable orbit sizes, for example pairwise-coprime
+    sizes, where `tau` grows with `k`.
+  - *Evidence for R2 (not a proof).* A read-through of Bafna--Minzer
+    Algorithm 3.4 found every use of the alphabet in a form that makes sense
+    for left shifts over any finite group `A`:
+    - `Z_(u,s) = sum_a X_(u,a) X'_(u,as)`;
+    - Fact 2.10;
+    - symmetrization by right multiplication, since `phi_e(as) = phi_e(a) s`;
+    - `Psi` through `Pr[X_v X_u^(-1) = s]`;
+    - Condition&Round at `X_u = e`.
+
+    The group form of Lemma 3.29 holds by
+    `Pr[X_v X_u^(-1) = s, X_w X_u^(-1) = b s] <= min(q_v(s), q_w(b s))`. The
+    Appendix C Fourier analysis is on the host, not the alphabet. A full
+    line-by-line check remains.
+  - *Possible gap in Bafna--Minzer.* Claim A.5 passes from
+    `delta <= #sat(E_1)/|E| + 2/k` (with `k = |Sigma|`) to a bound of order
+    `delta/2`. This needs `delta >= 4/k`. A random-labeling fallback appears to
+    cover the remaining case, but this was not checked.

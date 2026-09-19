@@ -97,6 +97,26 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
    - *Still open:* scalings that move `H`; non-ascending extensions over two proper
      edges whose isomorphism is not the restriction of an automorphism.
    - Notes: `research/artifacts/gq-bh-bh-free-02-complexity-root-notes.md`.
+6. **Germ extensions of `V` whose hardness sits in one free tail parameter.**
+   *Dies at finite presentation, with no germ hypothesis* (2026-09-17,
+   `tail-uniform-germ-extensions-of-v-are-not-fp`).
+   - *The class.* `G = < V, g_1, ..., g_m >`, each `g_i` read off one point `x` by
+     a finite tail template: prefix replacements plus finitely many relative
+     shifts at singular points `a σ^j x`. The model is `h_x`, which shifts the
+     annuli `C(x|n ¬x_(n+1))` down by one around `x`. For computable `x` its word
+     problem computes `x`, so these groups beat every recursive bound.
+   - *Where every member dies.* If `x` is not eventually periodic and some
+     singular germ is not a `V`-germ (nonzero tail offset), `G` is not finitely
+     presented. Each relation is decided by a finite prefix of `x` (locality), and
+     flipping one deep bit gives a marked group satisfying every relator of a
+     candidate finite presentation but failing a conjugation relation. This is
+     the Grigorchuk `G_ω` mechanism. So every finitely presented member is
+     rational and falls under Attempt 3.
+   - *What it closes.* The single-tail case of Attempt 4's "singular transport
+     between different `V`-orbits", in which the singular points are shifted
+     copies of one aperiodic tail. What stays open is germs that apply
+     unboundedly many rules at one singular point, and germ groups given by
+     other finitely presented groups acting on the tail.
 6. **Piecewise prefix-and-automaton hosts are capped** (bh-free-02, 2026-09-18).
    `automaton-tail-full-groups-have-conp-relative-word-problem` covers every
    finitely generated group of homeomorphisms that act piecewise by prefix

@@ -47,3 +47,14 @@ Once both items are proved in the route file, drop this requirement from
    `chi_{Z^2}(1/5) >= 2.647` (referee scratch computation). **Where it stops:**
    no script or output for this bound is in the repository, and the `{b,t}`
    case is only asserted by symmetry.
+3. **2026-09-18, swarm-0917 w12 (reframing): closing this claim cannot close
+   the route that requires it.** `fpbs-surface-premises-only-one-step-certificate`
+   (ESTABLISHED) builds `Psi = max_i max(0, phi(a_i) - ||R(a_i, a_i v p)||)`.
+   It satisfies monotonicity, the sprinkling inequality, continuity, and every
+   anchor value. It vanishes at `e = p_c(S) 1_S` whenever no anchor passes the
+   one-step certificate. So this claim together with
+   `fpbs-one-edge-sprinkling-l2-lipschitz` yields critical l2 only where that
+   certificate holds, and `fpbs-dead-weighted-surface-continuity-l2` is now
+   invalidated. **Where it stops:** this claim remains a valid, and now safe,
+   calibration node. It no longer lies on any live path to
+   `fpbs-benjamini-schramm-universal`.

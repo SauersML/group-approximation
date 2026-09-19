@@ -1,0 +1,18 @@
+n=16 r=3 kap(n/2)=2 n(1-lam2)/4=0.000 lam2=1.000 OK
+n=16 r=3 kap(n/2)=2 n(1-lam2)/4=0.613 lam2=0.847 OK
+n=16 r=3 kap(n/2)=2 n(1-lam2)/4=0.000 lam2=1.000 OK
+n=16 r=3 kap(n/2)=3 n(1-lam2)/4=0.910 lam2=0.772 OK
+n=16 r=4 kap(n/2)=2 n(1-lam2)/4=0.000 lam2=1.000 OK
+n=16 r=3 kap(n/2)=3 n(1-lam2)/4=0.928 lam2=0.768 OK
+n=16 r=3 kap(n/2)=2 n(1-lam2)/4=0.632 lam2=0.842 OK
+n=16 r=3 kap(n/2)=2 n(1-lam2)/4=0.670 lam2=0.833 OK
+n=16 r=3 kap(n/2)=3 n(1-lam2)/4=0.975 lam2=0.756 OK
+n=16 r=2 kap(n/2)=1 n(1-lam2)/4=0.431 lam2=0.892 OK
+
+$ python3 spectral_check.py 16 10   (output above; n = 12 also run, 12/12 OK)
+Meaning: exhaustive finite test of Theorem S of
+research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md.  r = exact least
+seed with full 2-of-3 closure; kap(n/2) = least |I \ (a^-1 I ∩ b^-1 I)| over
+|I| = n/2; n(1-lam2)/4 = spectral bound.  The chain r >= kap >= n(1-lam2)/4 holds
+on every sample, and r = kap in 3 of 10 cases (the combinatorial step is tight).
+lam2 = 1 rows are disconnected graphs (no gap), where only r >= kap is tested.

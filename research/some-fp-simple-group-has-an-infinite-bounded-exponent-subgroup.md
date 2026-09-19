@@ -106,3 +106,18 @@ the first non-decision-problem candidate for a counterexample to Boone--Higman.
    `[[Σ^Z]]` together with Zelmanov. A witness inside `2V` must use writing
    machines, for example `RTM(Z,2,1)`. `RTM(Z,2,1)` is LEF (arXiv:1603.08715,
    Theorem 6), and Zelmanov does not apply directly to LEF groups.
+4. **The golden-mean group `F` is not a witness, and neither is any full or alternating
+   group of an infinite action (2026-09-18, lane `w13-bh-follow`).** *A kill of one
+   approach class; the claim stays OPEN.* w12-bh-break placed Nekrashevych's periodic
+   group `F` in a finitely presented simple host, and asked whether `F` has bounded
+   exponent. `bounded-exponent-groups-omit-alt-of-unbounded-orbits` answers no.
+   - `alt(H,X)` contains `Alt_n` as soon as `H` has an orbit of size `n`.
+   - `F = full(F,X)` (Nekrashevych, Theorem th:F, imported in
+     `nekrashevych-golden-mean-fragmentation-group-properties`).
+   - So `F` and `[F,F]` contain every finite group.
+   - More generally, an infinite finitely generated bounded-exponent group is never its
+     own topological full group, and contains no `alt(H,X)` of an infinite finitely
+     generated faithful `H`.
+
+   A witness inside `F` would be an infinite amenable bounded-exponent group of
+   subexponential growth. No such group is known.

@@ -1,0 +1,3 @@
+lemma checks with a predicted collision: 143 confirmed: 143
+witness checks: 59123 cyclic memory: 1529 collisions confirmed: 57594
+killed rules exercised by a confirmed collision: 89 of 89

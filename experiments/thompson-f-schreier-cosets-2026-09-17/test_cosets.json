@@ -1,0 +1,42 @@
+{
+ "1": {
+  "cayley": 5,
+  "H_cap_ball": 3,
+  "cosets_hit": 3
+ },
+ "2": {
+  "cayley": 17,
+  "H_cap_ball": 5,
+  "cosets_hit": 9
+ },
+ "3": {
+  "cayley": 53,
+  "H_cap_ball": 7,
+  "cosets_hit": 26
+ },
+ "4": {
+  "cayley": 161,
+  "H_cap_ball": 9,
+  "cosets_hit": 74
+ },
+ "5": {
+  "cayley": 475,
+  "H_cap_ball": 11,
+  "cosets_hit": 205
+ },
+ "6": {
+  "cayley": 1381,
+  "H_cap_ball": 15,
+  "cosets_hit": 562
+ },
+ "7": {
+  "cayley": 3957,
+  "H_cap_ball": 25,
+  "cosets_hit": 1523
+ },
+ "8": {
+  "cayley": 11237,
+  "H_cap_ball": 43,
+  "cosets_hit": 4109
+ }
+}

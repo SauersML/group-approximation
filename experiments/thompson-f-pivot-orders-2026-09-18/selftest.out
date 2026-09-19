@@ -1,0 +1,10 @@
+PASS  word <-> forest are mutually inverse on 2000 random normal forms
+PASS  x_j x_i = x_i x_{j+1} (i<j) holds in the forest model
+PASS  K(S) is exactly the number of leaves S touches (4 sets)
+PASS  max letter on P_a is exactly K + a - 2 = R_S(a), so P_a is inside M_(a,R_S(a))
+PASS  tail splitting: s z = (s.u ; v) and every factorisation of s z keeps the tail v
+PASS  python core == C++ prefix_core on 14 layers: X_3(a=1):0, X_3(a=2):0, X_3(a=3):40, S_(3,5)(a=1):0, S_(3,5)(a=2):0, S_(3,5)(a=3):0, S_(3,5)(a=4):0, S_(3,5)(a=5):0, S_(3,5)(a=6):0, S_(3,5)(a=7):1092, T(a=1):0, T(a=2):0, T(a=3):0, T(a=4):0
+PASS  published 1092-point S_(3,5) core (words, other implementation) lies in P_7 (K = 5 roots) and equals the core computed here
+PASS  common left factor: S(0,3) = x_0 . S(1,2) and their cores agree as sets for a <= 4 (|core(P_4)| = 24)
+
+ALL PASS

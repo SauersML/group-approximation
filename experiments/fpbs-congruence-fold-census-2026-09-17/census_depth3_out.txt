@@ -1,0 +1,6 @@
+== sl2d 125 0 (trials=1 prune=0)
+n=1875000 best_s=216059 ratio=0.11523 verified_closure=1875000
+== sl2d 125 5 (trials=1 prune=0)
+n=1875000 best_s=196224 ratio=0.10465 verified_closure=1875000
+== sl2d 125 3 (trials=1 prune=0)
+n=1875000 best_s=216137 ratio=0.11527 verified_closure=1875000

@@ -54,3 +54,17 @@ distinct_from:
   and `c(θ) ≥ |e(θ) − 1|/L` rules out the "net of multiples" argument.
 
 Derivation: route `lifted-thompson-t-relative-t-forces-dyadic-twist-gap-proof`.
+
+## Attempts
+
+- 2026-09-18 (swarm-0917-w11-w11-nv-last1, reframing): attacked the open non-dyadic ⇒ dyadic
+  reduction with self-similarity. It is not decided. The results are in
+  `lifted-thompson-t-twist-cost-is-superlinear`.
+  - `c(θ)/‖θ‖ → ∞` at `0`, unconditionally, because `T̄` is perfect.
+  - The net-of-multiples argument works exactly when `liminf c/‖θ‖ < ∞`, and that regime is
+    empty.
+  - The halving endomorphism `Φ(g) = D^{-1}gD` gives `min(c(θ/2), c((θ+1)/2)) ≤ √2 M c(θ)`. Like
+    doubling and subadditivity, it keeps an irrational twist inside `Z[1/2]θ + Z[1/2]`.
+  - **Where it dies.** Exact moves combined with lower semicontinuity transfer smallness only in
+    the linear regime, which is empty. Any reduction must use representation structure, not the
+    function `c`.

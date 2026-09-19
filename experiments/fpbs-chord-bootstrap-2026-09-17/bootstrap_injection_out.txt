@@ -1,0 +1,19 @@
+Part 1: |bab| = 2, |bbab| = 2
+  red(h2 * h1^-1) = b
+  so <K, h1, h2> contains b, and {h1|X, h2|X} generates R_L over R_K;
+  every label has b-length >= 2, so (C) needs one known edge and (T)
+  needs two: the bootstrap closure of the empty set is empty.
+Part 2: finite actions, N points, seed density q, chord density p
+  q=0.01 p=0.10 len=(12, 24) |A0|=  26 chords= 281 fired=   0 charged=   0 |boot|/N=0.009 |cl(A0+charged)|/N=0.009  (i)True (ii)True
+  q=0.01 p=0.02 len=(3, 6) |A0|=  33 chords=  62 fired=  17 charged=  13 |boot|/N=0.017 |cl(A0+charged)|/N=0.017  (i)True (ii)True
+  q=0.10 p=0.05 len=(12, 24) |A0|= 281 chords= 147 fired=   0 charged=   0 |boot|/N=0.136 |cl(A0+charged)|/N=0.136  (i)True (ii)True
+  q=0.10 p=0.10 len=(3, 6) |A0|= 289 chords= 320 fired= 159 charged= 139 |boot|/N=0.318 |cl(A0+charged)|/N=0.318  (i)True (ii)True
+  q=0.06 p=0.05 len=(6, 12) |A0|= 175 chords= 143 fired=   7 charged=   7 |boot|/N=0.075 |cl(A0+charged)|/N=0.075  (i)True (ii)True
+  q=0.10 p=0.02 len=(3, 6) |A0|= 306 chords=  67 fired=  21 charged=  18 |boot|/N=0.163 |cl(A0+charged)|/N=0.163  (i)True (ii)True
+  q=0.06 p=0.05 len=(3, 6) |A0|= 177 chords= 166 fired=  62 charged=  54 |boot|/N=0.101 |cl(A0+charged)|/N=0.101  (i)True (ii)True
+  q=0.01 p=0.10 len=(12, 24) |A0|=  26 chords= 304 fired=   0 charged=   0 |boot|/N=0.009 |cl(A0+charged)|/N=0.009  (i)True (ii)True
+  q=0.10 p=0.05 len=(6, 12) |A0|= 299 chords= 169 fired=  12 charged=  10 |boot|/N=0.161 |cl(A0+charged)|/N=0.161  (i)True (ii)True
+  q=0.06 p=0.05 len=(12, 24) |A0|= 165 chords= 145 fired=   0 charged=   0 |boot|/N=0.065 |cl(A0+charged)|/N=0.065  (i)True (ii)True
+  q=0.10 p=0.05 len=(6, 12) |A0|= 305 chords= 157 fired=   7 charged=   7 |boot|/N=0.149 |cl(A0+charged)|/N=0.149  (i)True (ii)True
+  q=0.10 p=0.10 len=(6, 12) |A0|= 318 chords= 284 fired=  20 charged=  19 |boot|/N=0.170 |cl(A0+charged)|/N=0.170  (i)True (ii)True
+  all checks passed; max |A0+charged| / (|A0|+#chords) = 0.869

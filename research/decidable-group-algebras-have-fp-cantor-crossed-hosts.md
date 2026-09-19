@@ -270,3 +270,28 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
         gap. It is not a new source of hardness.
       - No complexity kill follows. A pointer field (for example sign fields over `Z^2`) satisfies
         part 5.
+12. **Tree-end hosts over one-ended non-amenable `P` (2026-09-18, lane swarm-0917-w11-bh-last1).**
+    *Existence of single hosts in the Attempt 9 gap, plus two obstructions. The target stays OPEN.*
+    - `cocompact-tree-end-shifts-are-quantum-rigid` (ESTABLISHED, unreviewed). For any cocompact
+      action on a locally finite tree with finitely generated vertex stabilizers, the end SFT is
+      quantum rigid over every field. Infinite stabilizers are allowed: a relabeling identity
+      collapses each quantum family onto the vertices.
+    - **Valid single hosts.** Let `Γ` be a principal congruence subgroup of level `N >= 3` in
+      `PSL_2(Z[1/p])`, with `p ∤ N`. It is torsion-free, non-amenable and not virtually free (it
+      contains `m Z[1/p]`). It is one-ended, being quasi-isometric to `H^2 × T_{p+1}` (recalled). Its
+      Farrell–Jones property is recalled (Rüping). Then `LC(∂T_{p+1}, F_2) ⋊ Γ` is finitely presented,
+      simple, with centre `F_2`, and `K`-trivial after `⊗ L`.
+      - So the one-ended non-amenable case of Attempt 9 is not empty of hosts.
+      - None of these is the analogue killed in Attempt 11, since the tree is locally finite.
+    - **Why they do not close the target.**
+      - They are single hosts. A pattern on a ball is legal iff it is the coding of a subtree
+        configuration, which is checkable from `WP(Γ)`. So the family has a uniform language bound and
+        falls under the Attempt 6 kill (sketch).
+      - Each vertex stabilizer acts on `∂T` through a profinite closure. So the tree part adds no
+        hardness, and an FA non-RF subgroup of `P` cannot act topologically freely (claim item 4).
+      - Freeness cannot come from finite fibres over `X_T` (claim item 5). Target-irrelevant here,
+        since only topological freeness is needed, but it rules out free rigid extensions as a source
+        of hardness.
+    - **Next step.** A rigid, minimal, topologically free SFT over such a `Γ` whose ball languages
+      have no uniform recursive bound. Candidates would be tree-end SFTs decorated along the `H^2`
+      direction. Nothing was attempted there.

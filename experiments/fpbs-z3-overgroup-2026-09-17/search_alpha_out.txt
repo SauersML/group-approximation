@@ -1,0 +1,9 @@
+$ python3 search_alpha.py
+found 0
+
+Meaning: among the conjugates beta alpha0^{+-1} beta^{-1} of the order-3
+automorphism alpha0 (a -> a^-1 b, b -> a^-1, from a = t s^2, b = t^2 s in
+Z/3 * Z/3), with beta a product of at most 5 Nielsen moves, none maps
+K = <a, b a b^-2> to a conjugate of K.  So the triangle rotation of the
+(3,3)-hypertree does not preserve the K-coset colouring in this search range;
+the index-3 overgroup normalizer idea is not supported (see artifact section 1).

@@ -1,0 +1,58 @@
+{
+ "set": "S(1,2)=S_(2,4)",
+ "a": 4,
+ "core": 24,
+ "stubborn_subsets_of_size_at_most_4": 0,
+ "stubborn_subsets_missing_one_point": 0,
+ "profile_classes": {
+  "(1, 1, 1, 5)": 4,
+  "(1, 2, 1, 4)": 4,
+  "(2, 1, 1, 4)": 4,
+  "(4, 1, 1, 2)": 4,
+  "(4, 1, 2, 1)": 4,
+  "(5, 1, 1, 1)": 4
+ },
+ "profile_class_private_counts": {
+  "(1, 1, 1, 5)": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "(1, 2, 1, 4)": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "(2, 1, 1, 4)": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "(4, 1, 1, 2)": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "(4, 1, 2, 1)": [
+   5,
+   5,
+   5,
+   5
+  ],
+  "(5, 1, 1, 1)": [
+   5,
+   5,
+   5,
+   5
+  ]
+ },
+ "S(1,2)_is_mirror_symmetric": true,
+ "core_is_mirror_symmetric": true,
+ "S(2,2)_is_mirror_symmetric": true,
+ "S(2,2)_core_is_mirror_symmetric": true,
+ "S(2,2)_core": 1092
+}

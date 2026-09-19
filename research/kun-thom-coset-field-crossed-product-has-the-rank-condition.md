@@ -48,3 +48,46 @@ per coset and to every `G`-stable subfield.
   need `f489b4fe` of `some-field-crossed-product-fails-the-rank-condition`.
 
 ## Attempts
+
+- **2026-09-18, swarm-0917-w10-w10-gs-pull (linear-characteristic, obstruction). Result: a reduction plus a
+  class kill. The node stays OPEN.**
+  - **Reduction.** `coset-field-rank-condition-is-lamp-factorization` shows that the rank condition of `R_p` is
+    equivalent to: no `w I_d`, for nonzero `w in F_p[x_c^(+-1)]` and `r < d`, factors through `T^r`, where
+    `T = F_p[Z wr_(G/Gamma) G]`. So the question is about the lamp group ring. That ring is stably finite by
+    `rf-lamps-preserve-stable-finiteness-for-arbitrary-actions`, but stable finiteness does not control these
+    scalar matrices.
+  - **Kill.** `invariant-background-certificates-miss-difference-units` covers two further certificate types:
+    - the marked-site tensor maps `Phi_r`;
+    - augmentation-adic and Frobenius-lamp quotients.
+
+    Neither type can make the difference unit `w = x_c - x_c'` full. Under `Phi_r`, the image of `w I_d`
+    factors through `M^r` at every `d`, with rank 0. In the quotients the image is nilpotent.
+  - **Dying step.** Off a finite union of wandering site idempotents, these maps fall back to a `G`-invariant
+    background (`lambda = 1`), and there the background cancels `w`. This is the same invariant as the point-model
+    kill at `x_(g Gamma) - x_(gamma g Gamma)`. The kill also occurs for `G = Z`, where the rank condition holds, so
+    it limits these methods and carries no evidence about the answer.
+  - **What a proof now needs.** A rank function on `T` under which every nonzero lamp polynomial is full, with a
+    diffuse invariant background such as iid Haar on `F_p[[t]]^H`. One candidate source is a characteristic-`p` Sylvester
+    rank function on `L^0(Omega, F_p((t))) semidirect G`, which is a dimension theory for a nonsofic orbit relation.
+- **Lamp group ring and Ore localization (swarm-0917-w13-w13-gs-pull, stability-approximation, 2026-09-17).
+  Reduction established; the positive route dies at idempotent dilution; the node stays OPEN.**
+  See `coset-field-rank-certificates-need-base-faithful-lamp-ranks` (ESTABLISHED, unreviewed).
+  - **Reduction.** `R_p` is the Ore localization of `F_p[W]`, where `W = Z wr_H G`, at `S = F_p[⊕_H Z] \ {0}`.
+    - Clearing denominators shows that `R_p` fails the rank condition iff some `diag(s_1..s_d)` with `s_i ∈ S`
+      factors through `F_p[W]^r` with `r < d`.
+    - A rank-function proof is exactly a **base-faithful** Sylvester rank function on `F_p[W]`, meaning
+      `rk(s) = 1` on `S`.
+  - **Class kill (idempotent dilution).**
+    - **Invariant:** the rank of a site idempotent.
+    - **Dying step:** its `G`-conjugates are orthogonal and indexed by the infinite coset space, so its rank is 0.
+    - **Consequence:** every rank function on the marked-site targets `T_r` of the stable-finiteness proofs
+      (`diagonal-tensor-orbit-corner-induction-proof`) factors through the lamp augmentation to `F_p[G]`, and
+      so does every rank function on first-order jets `O/I^2`. So `rk(x_c - 1) = 0`.
+    - **Belief change:** the mechanism that proved `F_p[W]` stably finite cannot reach `R_p`.
+  - **Remaining suppliers.**
+    - A sofic rank function. It would need `Z wr_H G` to be sofic, and would then give the rank condition for
+      every `p`, by the Følner rank on the amenable lamp group (literature not in the graph). Nonsoficity is
+      recorded only for binary lamps. `lamp-charts-recover-set-action` suggests it also fails for integer
+      lamps, but this is not checked.
+    - A linear-sofic model that is base-faithful. Group-faithfulness does not suffice: on `F_p[Z^2]`, the rank
+      over the curve `x + y + 1 = 0` is group-faithful but kills `x + y + 1`.

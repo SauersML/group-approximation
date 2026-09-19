@@ -56,3 +56,36 @@ are honest `rho_n : M -> U(d_n)` with `||V_n(t_s) - rho_n(t_s)||_op -> 0`.
   a group containing `Z^2` with no splitting over finite groups. A direct attack
   must control Voiculescu-type pairs on commuting twists using the relations
   of `M` alone (lantern and chain relations), and that is not attempted here.
+- **2026-09-18, swarm-0917-w10-w10-deligne-break (stability-approximation): winding obstructions are provably
+  inert on `M`, including virtual ones.** See `mod-s2-quasirep-windings-vanish-on-fixed-window`, ESTABLISHED.
+  - *Mechanism.* The determinant cochain `beta_pi` of any model with defect below `1` is an exact local cocycle, by
+    Tr log applied to the defect identity. Since `H_2(M;R) = 0`, every 2-cycle `z` has a filling `u`, and so
+    `<beta_pi, z> = <delta beta_pi, u> = 0` on a fixed, dimension-free window `W(z)`.
+  - *Voiculescu pairs.* For commuting `a, b` (for example disjoint twists), every model with defect below `1` on
+    `W_(a,b)` has `Tr log [pi(a),pi(b)] = 0`. This answers the winding half of the concern above about `Z^2 < M`.
+  - *Virtual test dead.* `b_2(M[2]) = 26` (Birman--Hilden and Arnold; not pinned), so the node's suggested
+    refutation test is well posed. But any quasi-representation of a finite-index `H` with a nonzero winding stays at
+    distance at least `1/12` from every restriction of a `1/2`-model of `M` (W3). Inducing it to `M` cancels the total
+    winding (W4).
+  - *Where refutations must go.* Any refutation of this claim needs a torsion or non-cohomological invariant; winding
+    or Chern arguments in degree two, the only positive even rational degree, cannot work. The positive direction
+    stays open: the traceless part of the defects is untouched.
+- **2026-09-18, swarm-0917-w10-w10-deligne-last1 (cohomology-index): stability is reduced to one
+  statement about honest representations, and the obstruction classes are located.** See
+  `mod-s2-stability-forces-honest-torelli-windings` (ESTABLISHED).
+  - *Theorem.* If `M` is stable, then pulling back a Dadarlat asymptotic homomorphism `V_n` of `Sp_4(Z)`
+    gives honest `rho_n : M -> U(d_n)` with `||rho_n(t_s) - 1|| -> 0` and
+    `(1/2 pi i) Tr log rho_n(t_s) = -a kappa_n/(10k) != 0`. The invariant is Dadarlat's winding: it cannot
+    vanish on `M` because `H_2(M;Q) = 0`, so it lands on the Torelli generator through
+    `sigma(w) = -10k/a` (real untwisting).
+  - *New split of the negation.* `mod-s2-is-not-point-norm-matricially-stable` follows from the open
+    `mod-s2-near-identity-torelli-windings-vanish` (route
+    `mod-s2-instability-via-vanishing-torelli-windings`). So this node holds only if honest
+    `M`-representations are flexible near the identity (nonzero near-identity trace-logs), while the
+    companion prerequisite `mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap` needs them
+    rigid near `omega`.
+  - *Classes killed (remarks, using additivity of Dadarlat's pairing).* Bott-index tests on commuting
+    twists and windings induced from finite-index subgroups both factor through `H_2(M;Q) = 0`, so the
+    "natural test" suggested above cannot refute this node.
+  - *Not touched.* The weaker downstream form (maps with `V_n(t_s) -> omega I`) is not addressed; the
+    witnesses here send `t_s` to `1`.

@@ -1,0 +1,4 @@
+{"m": 1, "d": 3, "|S|": 14, "predicted_a_min": 13, "a": 13, "K": 5, "|P_a|": 33266625, "|B_a|": 129644790, "core": 134160, "|S.core|": 818220, "removed": 33132465, "verified_stubborn": true}
+{"m": 0, "d": 4, "|S|": 14, "predicted_a_min": 13, "a": 13, "K": 5, "|P_a|": 33266625, "|B_a|": 129644790, "core": 134160, "|S.core|": 818220, "removed": 33132465, "verified_stubborn": true}
+{"m": 4, "d": 2, "|S|": 20, "predicted_a_min": 13, "expected": "empty", "a": 12, "K": 7, "|P_a|": 31865925, "|B_a|": 124062000, "core": 0, "|S.core|": 0, "removed": 31865925, "verified_stubborn": true, "law_holds_here": true}
+{"m": 4, "d": 2, "|S|": 20, "predicted_a_min": 13, "expected": "nonempty", "a": 13, "K": 7, "|P_a|": 121580760, "|B_a|": 463991880, "core": 7470184, "|S.core|": 60260012, "removed": 114110576, "verified_stubborn": true, "law_holds_here": true}

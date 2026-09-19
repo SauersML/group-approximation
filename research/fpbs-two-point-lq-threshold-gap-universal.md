@@ -138,3 +138,105 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     compactness proof of [Q] needs a uniform `Z_q` bound on an open subset of
     every closed `Y ⊆ K_r`, which is exactly as hard as the l2 kernel
     problem.
+* **Stability-approximation transplant, then a certified test case
+  (swarm-0917-w11, 2026-09-18).**
+  - *Transplant.* Approximate `tau_p` in the Fell topology by positive
+    definite functions whose GNS representations are weakly contained in
+    `lambda` (sofic / finite-quotient approximants, or the thinned family
+    `tau_(p^g)`), and pass `l^q` bounds to the limit. **Where it dies:**
+    weak containment in `lambda` carries no `l^q` exponent. On
+    `F_2 x Z`, `phi(g,z) = 3^(-|g|/2)` is tempered, because
+    `lambda_(F_2) ⊗ 1_Z` is weakly contained in `lambda_(F_2 x Z)`, since `Z`
+    is amenable. Yet `phi` is constant along `Z`, so it lies in no `l^q`.
+    Temperedness is Fell-closed and `l^q` bounds are not. So the transplant proves at most
+    the weak-containment statement [W] (`[A] => [W] => [F]`), which is too weak
+    to give an exponent. This is the operator-algebra obstruction above,
+    reached from the approximation side.
+  - *Pivot, a computation on the canonical case.*
+    `fpbs-t4xz-certified-critical-l2-gap` (ESTABLISHED, exact certificates)
+    gives `p_c <= 0.236 < 0.241 <= p_{2->2}` on `T_4 x Z = Cay(F_2 x Z, std)`,
+    and `p_c < p_{2->2}` on every `T_{2k} x Z`, `k >= 2`. Hence [Q] holds there,
+    with `q_0 < 2`. This is the first unimodular product case of the tree-anchor
+    table (`fpbs-weighted-surface-continuity-reduces-to-uniform-floor`) that
+    was not already covered.
+    - Monte Carlo gives `p_c(T_4 x Z)` near `0.212`, so the tree anchor
+      `0.21085` really fails there.
+    - A 4-cycle-avoiding Busemann Schur test reaches `0.2412`. The mechanism is
+      short-cycle avoidance plus a Busemann tilt, and it has no universal
+      analogue yet.
+* **Calibration transplant (swarm-0917-w12, transplanter, calibration;
+  obstruction, dies on arrival).** The idea was to import the calibration
+  worlds of the goal and find the step at which each [Q] tool fails there.
+  - *Proved, on every transitive graph and at every root of a.e. realization
+    of a unimodular random graph:* if `Z_q(p) < infinity` for one `q`, then `p`
+    does not have a unique infinite cluster. Suppose `p` has a unique infinite
+    cluster. Then Harris gives
+    `tau_p(o,x) >= theta_p(o) theta_p(x)`, and `theta_p(x) >= p^(d(o,x)) theta_p(o)`
+    gives `theta_p(o) > 0`. On a transitive graph `theta_p` is constant. On an
+    infinite unimodular random graph, the
+    invariantly defined set `{x : theta_p(x) >= c}` is, for small `c > 0`,
+    a.s. empty or infinite. The standard mass-transport argument rules out a
+    finite nonempty invariant set. So `Z_q(p) = infinity` for every `q`. Hence
+    `q_0 = infinity` on every world with uniqueness throughout `(p_c, 1)`.
+    This is quenched, at every root of a.e. realization.
+  - *Consequence.* On the Angel--Hutchcroft graph `H~(M)`
+    (`fpbs-walk-rate-holes-fail-on-unimodular-random-graphs`, which quotes
+    arXiv:1710.03003v1, Proposition 4.2 and the proof of Lemma 4.3, verbatim)
+    there is a unique infinite cluster for every `p > p_c`. So [Q] and [Q_fin]
+    fail there, quenched and at every root. This avoids the root-averaging
+    objection that referees raised against the class-kill on that node,
+    because `Z_q(p)` is a per-root quantity. The following survive on each
+    realization, since they use no group structure:
+    - the thinning inequality `tau_(p^g) >= tau_p^g` of
+      `fpbs-lq-threshold-power-monotonicity`;
+    - the Russo--BK majorant;
+    - `p_c <= p_q <= p_u`.
+
+    So none of these proves [Q] without an input that `H~` lacks.
+  - *Where it dies: the vacuity step.* This is not a [Q]-specific
+    obstruction. By the first bullet, [Q] implies nonuniqueness on each such
+    graph. So every calibration world that refutes BS also refutes [Q]
+    automatically, whether it is transitive or a unimodular random graph.
+    Calibration by BS counterexamples (URGs, amenable
+    reservoirs) therefore carries no information that separates [Q] from BS.
+    The invariant is the `theta^2` floor: every calibration world with
+    `p_c = p_u` hits it at the first `p > p_c`, before any [Q] tool is used.
+  - *Where a real calibration would have to live.* It needs a world with a
+    nonuniqueness window `(p_c, p_u)` and `q_0 > 2`. Such a world would show
+    that the route `[Q] => (IS) => BS` loses information.
+    - Transitive graphs cannot supply one with current knowledge. Every
+      transitive class where `p_c < p_u` is proved has `p_c < p_{2->2}`, and
+      so `q_0 < 2`: trees, hyperbolic, nonunimodular, highly nonamenable.
+    - "Amenable reservoir" URGs cannot supply one either. These carry the
+      near-critical infinite cluster on infinite invariantly amenable pieces.
+      That is what makes `q_0` large, since `tau >= theta^2` inside a piece.
+      But the Lemma 4.3 gluing then forces uniqueness.
+    - Trees of finite fat blobs give `q_0 = 1` heuristically. Blob size
+      enters `Z_q` only linearly.
+
+    Any candidate must get `q_0 > 1` from heterogeneity at `p_c`: `chi = infinity`
+    is carried by few pairs with large `tau`, while `Z_q` is carried by many
+    pairs with small `tau`. This is recorded as a spark, not proved.
+* **Qualitative replica meet (swarm-0917-w13, transplanter, reframing).**
+  The idea replaces the mean `Z_k = E|K^1 ∩ ... ∩ K^k|` by a.s. finiteness of
+  the meet `M_k(o)`.
+  - *Proved* (`fpbs-replica-meet-threshold-sandwich`, established):
+    - `p_k <= p_cap^(k) <= min(p_u, p_c^(1/k))`, with `p_cap^(k)` increasing
+      in `k`;
+    - the bound `p_cap^(k) <= p_u` comes from an invariant-finite-set lemma
+      applied to the intersection of unique infinite clusters;
+    - on `T_d`, `p_cap^(k) = p_k = (d-1)^(-1/k)`, which tends to `p_u = 1`.
+  - *New hole:* [cap_fin], `fpbs-replica-meet-threshold-gap-universal`. It
+    is qualitative, and the chain is `[Q] => [Q_fin] => [cap_fin] => BS`
+    (routes `fpbs-replica-meet-gap-from-some-lq` and
+    `fpbs-bs-via-replica-meet-threshold`).
+  - *Where it dies for [Q]:*
+    - An a.s.-finite meet does not upgrade to a finite mean, and the mean is
+      exactly `Z_k`. [Q] allows `q_0 = 2`, so it gives `p_cap^(3) > p_c` but
+      not `p_cap^(2) > p_c`.
+    - The a.s.-finite set contains `[0, p_c]` (BLPS), and openness at `p_c` is
+      again the whole content.
+    - On trees the meet is exactly the Bernoulli(`p^k`) cluster. The non-tree
+      multi-path part `M_k \ K_(∧omega)` at `p_c + 0` is what any proof must
+      control.
+    - See Section 3 of `replica-meet-threshold-2026-09-18.md`.

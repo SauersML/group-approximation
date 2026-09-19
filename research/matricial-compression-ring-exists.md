@@ -170,3 +170,66 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
      `2^(-m) I` then lies in `K_V`, then `psi^m` on translations is inner.
      A different root (not a lamp) is the other exit.  Exact matriciality of
      `k[K]/(zeta+1)` was not checked, because the death at (R1) comes first.
+8. **Rings with a finite-dimensional representation (2026-09-18, reframing, dead class).**
+   `compression-rings-have-no-finite-dim-representations` (ESTABLISHED) shows the following.
+   - *No finite quotients.* `ψ` permutes the finitely many ideals of a given finite index. So a finite quotient
+     has a `ψ`-stable finite refinement. There the compression `ψ(R_0) ⊆ R_0` is an equality, and `I` dies.
+   - *No PI quotients, no finite-dimensional representations.* Kaplansky and Artin–Tate turn any nonzero PI
+     quotient of a finitely generated ring into a finite one. So (R5) forbids every nonzero PI quotient, and
+     every nonzero map `R → M_n(K)` over any field.
+   - *Unbounded models.* Under (R1), matrix sizes are unbounded along `ω`. The coordinate algebras of
+     `R_0 ⊋ ψ(R_0) ⊋ ψ^2(R_0) ⊋ …` strictly drop in dimension at each step.
+   - *Scope of the kill.* Every `ψ` fails on: matrix rings over commutative rings (monomial automorphisms of
+     Laurent rings included), quantum tori at roots of unity, the Weyl algebra in positive characteristic,
+     residually finite rings, and bounded-degree (R1) models. This contains Attempt 3.
+   - *What survives.* Rings without finite-dimensional representations, such as the infinite simple rings of
+     `simple-ring-with-centralizer-compressing-automorphism`. (R2)-(R5) pass to `ψ`-stable quotients, so a
+     `ψ`-stable maximal ideal would reduce any witness to a simple ring. (R1) may not survive that step.
+8. **Unit-centralizer chains (2026-09-18, swarm-0917-w11-w11-titz-break, group-rings, dead class).**
+   `compression-gates-need-strict-unit-centralizer-chains` (ESTABLISHED, elementary, no approximation
+   hypothesis) sharpens Attempt 2 into a chain condition.
+   - *Result.* Put `M = U(R) cap C_R(R_0)`.  Then `psi(R_0) <= R_0` gives `M <= psi(M)`.  (R4)+(R5)
+     need `M < psi(M)`, hence a strictly ascending `Z`-indexed chain `psi^n(M)` in `U(R)/Z(R)^x`.
+     The same holds for (G2) of `simple-ring-with-centralizer-compressing-automorphism`.
+   - *Class killed.* Every ring whose unit group is Noetherian modulo the centre, for every `psi`,
+     every `R_0` and every `z`.  This covers:
+     - rings with only central units (commutative rings, Weyl, free and enveloping algebras);
+     - twisted group rings with trivial units over polycyclic-by-finite groups, including every
+       quantum torus and every twisted ring of a torsion-free nilpotent group.
+     Also killed: every unit-generated `R_0` when `U(R)` has ACC on centralizers (linear or
+     torsion-free hyperbolic `U(R)`).
+   - *Why this is a new kill.* Integral quantum tori with `q^g - 1` inverted are finitely generated
+     and exactly matricial (clock and shift at `q -> e^(2 pi i/n)`), have no commutative quotient
+     (Attempt 3 is silent), and carry graded automorphisms of infinite order modulo inner ones.  So
+     the virtually-inner kill applies only if some matricially embeddable overring implements a
+     power of `psi`, which is unverified.  They die here at the step `M <= psi(M)` implies `M = psi(M)`.
+   - *Invariant.* The unit centralizer `M` in the subgroup lattice of `U(R)/Z(R)^x`.
+   - *Survivors.* Only rings with lamp-like unit groups: subshift crossed products, Leavitt algebras,
+     and the Attempt 7 lamp ring.  In a witness, `psibar^(-1)` must properly compress the subgroup
+     `psibar(Mbar)` of `U(R)/Z(R)^x`.
+8. **Bernoulli tensor lamps over Hilbert-hotel Schreier data (2026-09-18,
+   swarm-0917-w13-w13-titz-break, symbolic-dynamics; reduction established,
+   gate open).**  `schreier-hilbert-hotel-data-give-matricial-compression-rings`
+   (established) takes `R = M_2(F_p)^(tensor Gamma/H) x| Gamma`.  It proves
+   that (R1)-(R5) all hold whenever the purely combinatorial data (HH) of
+   `schreier-hilbert-hotel-compression-data-exist` exist.  This is recorded as
+   the route `matricial-compression-ring-via-schreier-hilbert-hotel`.
+   - *Why Attempt 7's death is repaired.*  The lamps are noncommutative simple
+     sites.  So the root `z` is a flip over one finite `Gamma_0`-orbit, and
+     (R5) holds inside a single site `M_2` with no Clifford sign.  `Gamma` is
+     transitive on the sites, so finite generation is automatic.
+   - *Why (R1) holds.*  `R` is simple.  The approximations of the
+     `Gamma`-action by the finite sets `Gamma/H_n` give exact covariant pairs
+     into `M_(2^|Gamma/H_n|)(F_p)`.
+   - *How the rigidity node is evaded.*  The route proves that
+     `Gamma x|_alpha Z` is residually finite, while its action on `X` is not
+     approximable.
+   - *Dead classes for (HH), all recorded in that node:*
+     - normal and finite-index images;
+     - Noetherian and free hosts;
+     - finite stabilizers;
+     - inner twists by base-point stabilizers.
+   - *The known local witness dies.*  The Grigorchuk group with the Lysenok
+     substitution realizes (HH) locally.  Every completion dies, because it
+     would put `G*_sigma` inside a residually finite group.
+   - *Next test.*  `Z wr_(Z[1/2]) BS(1,2)` with `Gamma_0 = Z wr Z`.

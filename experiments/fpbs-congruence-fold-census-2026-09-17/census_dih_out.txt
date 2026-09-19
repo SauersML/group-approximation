@@ -1,0 +1,18 @@
+== dih 100 0 (trials=6 prune=1)
+n=200 best_s=2 ratio=0.01000 verified_closure=200
+== dih 1000 0 (trials=6 prune=1)
+n=2000 best_s=2 ratio=0.00100 verified_closure=2000
+== dih 10000 0 (trials=6 prune=1)
+n=20000 best_s=2 ratio=0.00010 verified_closure=20000
+== dih 100 1 (trials=6 prune=1)
+n=200 best_s=2 ratio=0.01000 verified_closure=200
+== dih 1000 1 (trials=6 prune=1)
+n=2000 best_s=2 ratio=0.00100 verified_closure=2000
+== dih 10000 1 (trials=6 prune=1)
+n=20000 best_s=2 ratio=0.00010 verified_closure=20000
+== dih 100 2 (trials=6 prune=1)
+n=200 best_s=2 ratio=0.01000 verified_closure=200
+== dih 1000 2 (trials=6 prune=1)
+n=2000 best_s=2 ratio=0.00100 verified_closure=2000
+== dih 10000 2 (trials=6 prune=1)
+n=20000 best_s=2 ratio=0.00010 verified_closure=20000

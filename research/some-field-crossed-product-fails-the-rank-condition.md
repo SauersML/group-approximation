@@ -143,3 +143,23 @@ Every such argument fails at `G` where it would conclude domination for the prof
   - **where the class stops.** An informative witness (one that does not already refute INF) needs a
     nontrivial action. Either the orbit field is non-Bernoulli with no finitely generated stable subfield, or the
     field is Bernoulli with a cocycle. Equivariant residue maps are the (P2) point-model problem.
+- **Generic splitting field (swarm-0917-w12-w12-gs-pull, group-rings, 2026-09-17). Removes the cocycle from the
+  need: witness class "Bernoulli field with a cocycle" merges into "untwisted non-finitely-generated orbit field".**
+  `twisted-field-crossed-products-untwist-into-skew-rings` (ESTABLISHED, unreviewed):
+  - **the embedding.** For any field, action and normalized cocycle, `a u_g ↦ a t_g v_g` embeds `K*_α G` unitally
+    in `L ⋊ G`, with `L = K(t_h : h ≠ 1)` and `σ_g(t_h) = α(g,h) t_(gh) / t_g`. The skew group ring `L ⋊ G` is
+    untwisted, faithful and simple, and has the same group. Rank-condition failures pass up to it. So the need
+    can assume `α = 1` and a faithful action, and "rank condition" can be read as "stable finiteness";
+  - **invariant:** the `α`-twisted monomial field `L = K(I_G)_α` of the augmentation ideal, in which `α = ∂t`;
+  - **dying step (for the twisted class as a separate class):** unital subrings inherit the rank condition, so no
+    twisted witness is stronger than the untwisted witness over `L`. In
+    `bernoulli-field-rank-failure-gives-rokhlin-deficit`, gap (i) becomes gap (ii) for the field
+    `K_m(k)(I_G)_α`;
+  - **side result:** survival case (c) extends to cocycles of modulus 1 almost everywhere, via
+    `μ ⊗ Haar(T^(G∖1))` on `Emb(L, C)`;
+  - **where it stops.** For torsion-free `G`, `α` stays nontrivial in every Bernoulli extension, because
+    `M^x = K^x ⊕ Div` splits equivariantly. So `L` is genuinely non-Bernoulli. Point models for `L` need the
+    evaluated cocycle to be a finitary coboundary on the Bernoulli orbit relation. iid base points hit the zero and
+    pole loci of the `α(g,h)` almost surely. The coboundary property is expected on hyperfinite relations and is
+    open for nonamenable `G`. The one remaining witness class is untwisted faithful actions on fields with no
+    finitely generated stable subfield, and its test case is `K(I_G)_α` over a Bernoulli base.

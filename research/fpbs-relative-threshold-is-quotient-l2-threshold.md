@@ -171,3 +171,58 @@ graphs of type (ii) in C1, or through premise (beta).
   operator is bounded is part 5 of the sandwich. It preserves boundedness but
   cannot create it.
 
+**Tree products with product generators (probability-random, 2026-09-17,
+swarm-0917 w12).**
+
+* `fpbs-tree-product-fibre-operator-is-half-tilted-susceptibility`
+  (ESTABLISHED) covers `Gamma = Lambda x H_grp` with product generators,
+  where `Cay(Lambda)` is the `k`-regular tree (`k >= 3`), `H_grp` is
+  arbitrary and `N = H_grp`. It proves
+  `||sigma^N_p||_Q = chi_(p,1/2)`, Hutchcroft's half-tilted susceptibility
+  for the end-fixing group, so `p^Q_(2->2)(N;G) = p_t`. With Hutchcroft's
+  `p_c < p_t` (`fpbs-hutchcroft-nonunimodular-pc-below-pt`), every such pair
+  is of **type (i)**.
+* **Test case settled.** `F_2 x F_2` along either factor (standard product
+  generators) is type (i), not type (ii). `E'` holds on all these pairs, and
+  none of them is an escape from C1.
+* **Reduction of E there.** `E(G,N)` is equivalent to the fibre square-root
+  law: `sum_n n (k-1)^(n/2) f_p(n) < infinity` for all `p < p_c(N;G)`, where
+  `f_p(n)` is the mean cluster mass on one fibre at tree distance `n`. This
+  holds for amenable `H_grp`, and is open for nonamenable `H_grp`:
+  `fpbs-tree-product-fibre-square-root-law-below-relative-threshold`.
+  A counterexample to E of this form needs nonamenable `H_grp` and a window
+  `(p_t, p_c(N;G))`, strictly above `p_c`.
+* **Where the HP transfer stops.** Hutchcroft--Pan's point-to-point Lemma 2.8
+  uses Kesten's return bound for amenable `H`. The invariant is the gap
+  between the point rate and the fibre rate. Details are in the open node.
+* **Next test.** A type-(ii) pair, if one exists, must have a quotient whose
+  Cayley graph is not a tree, or a generating set that is not a product. The
+  open node's smallest case, `F_2 x F_2`, tests E only, not E'.
+* **C4 via Schreier Folner cuts (2026-09-18, dead; swarm-0917-w13-w13-bs-break).**
+  - *Idea.* Prove C4, `p_c(N;G) = p_c(M;G)` for `M/N` amenable, by running the
+    trifurcation count of `fpbs-co-amenable-subgroup-relative-threshold-is-pc-proof`
+    relative to `N` at a level `p in (p_c(M;G), p_c(N;G))`.
+  - *What survives.* The established node
+    `fpbs-relative-threshold-continuous-at-co-amenability` gives
+    `p_c(N;G) <= min{ p_tri(h(Gamma/M)), p_u(M;G) }`. Here `p_tri(h)` is the
+    infimum of the `p` with `delta(p) > p h`. It also proves that
+    `h(Gamma/N) = h(Gamma/M)`. Together with part 2 of the sandwich, this gives
+    a two-sided bound with both ends unchanged under amenable extension:
+
+    ```text
+    p^Q(M) <= p_c(M;G) <= p_c(N;G) <= min{ p_tri(h(Gamma/M)), p_u(M;G) } .
+    ```
+
+    So C4 holds whenever `p_c(M;G)` equals either end. A C4 counterexample
+    must have:
+    - `p_c(N;G) < p_u(M;G)`;
+    - `delta(p) <= p h(Gamma/M)` for every `p in (p_c(G), p_c(N;G))`.
+  - *Where it dies.* Step 4 of the trifurcation count needs an `N`-invariant
+    cut with finitely many `N`-orbits and expected open boundary below
+    `delta |W/N|`. The best ratio available is `p h(Gamma/N) = p h(Gamma/M)`,
+    so Step 4 yields only `delta <= p h`. Cutting inside one `M`-coset along a
+    Folner set of `M/N` pays `p |S \ M|` per vertex. Branches leaving `M`
+    re-enter at far `N`-cosets, so Step 5 (sprinkling onto one coset) has
+    nothing to act on. The invariant is `h(Gamma/M) > 0`. The method is as
+    blind to amenable extensions as `p^Q` is, so it cannot decide C4.
+

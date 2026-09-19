@@ -324,3 +324,113 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
   - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
     surviving cubical route to exactness, and it is not a route to amenability.
+- **Proof strength: elementary arithmetic (swarm-0917-w10-w10-f-pull, 2026-09-18, quantifier-shift, obstruction-miner).**
+  `thompson-f-amenability-unprovable-in-elementary-arithmetic` is ESTABLISHED (unrefereed). It is
+  unconditional: `IΔ0 + Exp + Th_Π1(N)` does not prove the Π2 Følner sentence `∀n ∃A (A is c^-n-Følner)`, nor any
+  sentence that elementarily implies it. The same holds for `EA`.
+  - *Class killed:* every argument whose Π2 content lives in elementary arithmetic. It may be non-constructive
+    (counting, pigeonhole, averaging, probabilistic existence, case splits) and may use arbitrary true Π1 facts.
+    This sharpens "Explicit Følner families" from families of bounded complexity to proofs of bounded strength.
+  - *Invariant:* the growth of the Følner search `g_Γ`, compared with the provably recursive functions
+    (`ea-provably-recursive-functions-are-kalmar-elementary`, Henk–Pakhomov verbatim).
+  - *Where every member dies:* witness extraction. The finitely many Π1 axioms are absorbed into the search.
+    Then `g_Γ` is Kalmár elementary, so `g_Γ <= exp_(k+1)`, against Moore's `|A| >= exp_n(0)`.
+  - *Calibration:* Brieussel–Zheng `Δ_U` with `U = exp_n(0)` is amenable, and its Følner sentence is equally
+    unprovable. So the kill measures Følner growth only, not amenability.
+  - *Gates:* the Ore form (Bartholdi elimination iterates `τ` factorially) and Moore's Ramsey form (Towsner's bound
+    iterates `R` `Θ(log 1/ε)` times). Both escape, since an elementary witness there gives only a tower Følner bound.
+    These are the graph's two recorded survivors: exponential Ore radius and elementary `R_F`.
+  - *Next rung (open):* `IΣ1`, `PRA` and `WKL0` prove every tower total. Killing them needs a
+    non-primitive-recursive lower bound on the Følner function of `F`.
+- **Hyperbolic-boundary routes (swarm-0917-w10-w10-f-break, 2026-09-18, belief-breaker, class kill).**
+  - *Established (unrefereed):* `thompson-f-hyperbolic-actions-have-a-finite-boundary-orbit`, modulo the quoted DSU
+    classification. Let `F` act isometrically, with unbounded orbits, on any Gromov-hyperbolic metric space, proper
+    or not.
+    - There is an orbit `F·ξ ⊆ ∂X` of size at most 2, fixed pointwise by some `F_0 ⊇ F'` of index at most 2. The
+      action is parabolic, focal or lineal; general type would give a free subgroup.
+    - The Busemann pseudocharacter at `ξ` is a homomorphism `ℓ: F_0 → R` with `ℓ(F') = 0`, proved by a swindle
+      pushed by `h^2`. It equals `−log` of the boundary derivative. So `k` is loxodromic iff `k ∈ F_0` and
+      `ℓ(k) ≠ 0`, and no element of `F'` is ever loxodromic.
+  - *Invariant:* the finite boundary orbit, forced by `thompson-f-has-no-free-subgroups` alone.
+  - *Class killed, and where it dies:* amenability or exactness of `F` via a topologically amenable action on any
+    compact `F`-space receiving an equivariant map from `∂X`, or via a Zimmer amenable action with an atom on
+    `F·ξ`, is root-equivalent. The step where every member dies is averaging the maps `m_n: Z → Prob(F)` over
+    `F·ξ`, which already gives a Reiter sequence. Quantitatively this is the same Moore-tower pin as the Roller
+    kill.
+  - *Calibration:* Adian's non-amenable Burnside groups have the same invariant. Hyperbolic loxodromy of `F`
+    factors through `Z^2`.
+  - *Survives:* actions with bounded orbits, and atomless measure classes. Poisson boundaries are always amenable
+    and carry no information.
+- **Property A of cubical hosts (swarm-0917-w11-w11-f-pull, 2026-09-18, host-geometry, obstruction-miner).**
+  This decides the survivor left undecided in the previous entry, and the answer is **no**.
+  - *Established:*
+    - `nowak-hamming-cubes-have-property-a-arbitrarily-badly`, a citation of Nowak through Willett.
+    - `cat0-cube-complexes-with-property-a-are-finite-dimensional`. Every cube of a CAT(0) cube complex is an
+      isometric Hamming cube with a 1-Lipschitz gate retraction, so infinite dimension kills property A.
+    - `cubical-hosts-of-thompson-f-never-have-property-a`.
+  - *Consequence:* `X_F` and `X_V` fail property A. More strongly, every CAT(0) cube complex on which a group
+    containing `F` acts with finite vertex stabilizers fails property A. A free cube-permuting action of `F` on
+    a finite-dimensional CAT(0) cube complex would give a free resolution of finite length, contradicting
+    `cd F = ∞`. Acyclicity comes from Leary's convex hulls.
+  - *Invariant:* `cd F = ∞`, together with Nowak's unbounded support radius on the cubes `Q_n`.
+  - *Class killed, and where it dies:* "`F` is exact via a metrically proper action on a CAT(0) cube complex
+    with property A" dies at "the host has property A", for every host.
+  - *Calibration:* the obstruction sees only `cd = ∞`, which the amenable group `⊕_N Z` shares. So it says
+    nothing about whether `F` is exact or amenable.
+  - *Not decided:* whether `F` is exact through actions with infinite stabilizers, or through non-cubical
+    geometry. Nothing about amenability changes.
+- **Calibrating Moore's derivative amplification (swarm-0917-w12-w12-f-pull, 2026-09-18, quantifier-shift, obstruction-miner).**
+  - *Established:* `marginal-derivative-amplification-is-sharp-at-log-height`.
+    - Abstract Moore's mechanism as a derivative datum: a map `∂` equivariant on a good set, with
+      a `c`-thin (for example marginal) bad set.
+    - Then `μ({h ≥ n}) ≥ μ(S) − bd(μ)(qⁿ−1)/(2|Γ|)` with `q = 1 + 2c|Γ|`. So `ε`-Følner forces
+      height `⌊log_q(1 + 2|Γ|/ε)⌋`.
+    - A partial `F`-set with Moore's generators and a 1-marginal bad set attains height
+      `≤ log_c(1/ε) + O(1)`. Bundling derivatives does not change the rate.
+  - *Invariant:* the Følner ratio `bd(μ_i)/μ_i(S)` of the successive pushed measures.
+  - *Where every member dies:* the restriction step (Moore's Lemma 3.11/5.13). It multiplies the
+    ratio by `≍ c`, and the datum shows it really does.
+  - *Class killed:* every Følner lower bound built from a derivative with a thin bad set gives
+    height `Θ(log 1/ε)`. So Moore's tower is the ceiling of the method, not an artifact of its
+    bookkeeping.
+  - *Decomposition:*
+    - `thompson-f-folner-function-dominates-every-ackermann-level` (non-primitive-recursive
+      `Føl_F`, Moore's Question 1.2 for `F`) follows by the route
+      `thompson-f-ackermann-folner-via-tree-derivative-hierarchy`.
+    - That route needs the OPEN `thompson-f-trees-carry-an-ackermann-derivative-hierarchy`:
+      derivatives on `𝒯` with `Ack_k` contraction and thin bad sets.
+    - Two natural candidates die at Moore's Lemmas 5.10 and 5.7, because leaf count is additive
+      under the regrouping moves.
+- **Germ-groupoid recurrence criterion, all hosts (swarm-0917-w13-w13-f-last1, 2026-09-18, reframing).**
+  - *Established (conditional on the unrefereed abelian-factor theorem):*
+    `thompson-f-recurrent-germ-criteria-return-f-as-an-input`.
+    - Let `G ⊇ F_0 ≅ F` be a finitely generated group of homeomorphisms of any space `X`, and `H` any groupoid of
+      germs, with every singular orbit recurrent (JNdlS condition (3)).
+    - Then `F_0′` fixes every singular orbit pointwise, because recurrent `F`-sets factor through `F/F′`.
+    - By simplicity of `F′`, either some germ group `𝒢_v` contains `F_0′ ⊇ F`, or `F_0′ ≤ G ∩ [[H]]`.
+  - *Class killed:* JNdlS Theorem 3.1, and hence Theorem 1.1, applied to any host containing `F`. This is the
+    "germ-groupoid variants" gap left by the recurrence kill above.
+  - *Invariant:* "contains a copy of `F`".
+  - *Dies at:* input (1) (`[[H]]` amenable) or input (4) (germ groups amenable). Each is at least as hard as
+    this root.
+  - *Corollary:* if neither `G ∩ [[H]]` nor any germ group contains `F`, then some singular orbit is
+    transient.
+  - *Calibration:* `F ↷ [0,1]` with `H` the locally affine germs satisfies (1), (2) and (4), and (3) fails as
+    predicted.
+  - *Survivor:* extensive amenability without recurrence (JMMS), which for `F ↷ D` is this root.
+- **Explicit spectral test vectors (swarm-0917-w13-w13-f-break, 2026-09-18, census-computation).**
+  Amenability is `||P|| = 1`, so the approach is to push certified Rayleigh quotients toward 1.
+  - *Established:* `thompson-f-norm-bound-from-forest-renewal-test-vector`, `||P|| > 0.9397`.
+    - The certificate is one nonnegative product-form vector on pointed-forest windows of `F`.
+    - It is evaluated exactly by a renewal recursion, with no moment data.
+    - It beats the moment-route optimum `0.9107`.
+    - It puts the reduced cogrowth above `2.6088`, outside ERJvR's published estimate `2.53±0.03`.
+  - *Belief change:* the numerical case for non-amenability rested on `||P|| ≈ 0.93`, and that support
+    is gone. The float optimum of the ansatz family still rises with the tree-size cutoff:
+    `0.8777, 0.9118, 0.9290, 0.9400` at `N = 9, 20, 40, 80`.
+  - *Invariant:* the bulk-tree size law of the optimiser, with mean `7.45` at `N = 40` and `12.57`
+    at `N = 80`.
+  - *Dies at:* every finitely supported certificate is strictly below 1. `Kf = 4f` forces `f` to be
+    constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
+  - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
+    that is, whether the optimal tree-size law escapes to infinity.

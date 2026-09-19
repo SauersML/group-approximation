@@ -1,0 +1,25 @@
+{"a": 1, "K": 6, "d": 3, "|S|": 28, "|P_a|": 6, "|B_a|": 90, "core": 0, "|S.core|": 0, "removed": 6, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 2, "K": 6, "d": 3, "|S|": 28, "|P_a|": 27, "|B_a|": 297, "core": 0, "|S.core|": 0, "removed": 27, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 3, "K": 6, "d": 3, "|S|": 28, "|P_a|": 110, "|B_a|": 1001, "core": 0, "|S.core|": 0, "removed": 110, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 4, "K": 6, "d": 3, "|S|": 28, "|P_a|": 429, "|B_a|": 3432, "core": 0, "|S.core|": 0, "removed": 429, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 5, "K": 6, "d": 3, "|S|": 28, "|P_a|": 1638, "|B_a|": 11934, "core": 0, "|S.core|": 0, "removed": 1638, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 6, "K": 6, "d": 3, "|S|": 28, "|P_a|": 6188, "|B_a|": 41990, "core": 0, "|S.core|": 0, "removed": 6188, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 7, "K": 6, "d": 3, "|S|": 28, "|P_a|": 23256, "|B_a|": 149226, "core": 0, "|S.core|": 0, "removed": 23256, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 8, "K": 6, "d": 3, "|S|": 28, "|P_a|": 87210, "|B_a|": 534888, "core": 0, "|S.core|": 0, "removed": 87210, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 9, "K": 6, "d": 3, "|S|": 28, "|P_a|": 326876, "|B_a|": 1931540, "core": 0, "|S.core|": 0, "removed": 326876, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 10, "K": 6, "d": 3, "|S|": 28, "|P_a|": 1225785, "|B_a|": 7020405, "core": 0, "|S.core|": 0, "removed": 1225785, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 11, "K": 6, "d": 3, "|S|": 28, "|P_a|": 4601610, "|B_a|": 25662825, "core": 0, "|S.core|": 0, "removed": 4601610, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"a": 12, "K": 6, "d": 3, "|S|": 28, "|P_a|": 17298645, "|B_a|": 94287120, "core": 0, "|S.core|": 0, "removed": 17298645, "verified_stubborn": true, "set": "T={abc: a<=2,b<=3,c<=4}"}
+{"set": "T={abc: a<=2,b<=3,c<=4}", "stopped_before_a": 13, "|P_a|": 65132550}
+{"a": 1, "K": 8, "d": 2, "|S|": 21, "|P_a|": 8, "|B_a|": 110, "core": 0, "|S.core|": 0, "removed": 8, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 2, "K": 8, "d": 2, "|S|": 21, "|P_a|": 44, "|B_a|": 429, "core": 0, "|S.core|": 0, "removed": 44, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 3, "K": 8, "d": 2, "|S|": 21, "|P_a|": 208, "|B_a|": 1638, "core": 0, "|S.core|": 0, "removed": 208, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 4, "K": 8, "d": 2, "|S|": 21, "|P_a|": 910, "|B_a|": 6188, "core": 0, "|S.core|": 0, "removed": 910, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 5, "K": 8, "d": 2, "|S|": 21, "|P_a|": 3808, "|B_a|": 23256, "core": 0, "|S.core|": 0, "removed": 3808, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 6, "K": 8, "d": 2, "|S|": 21, "|P_a|": 15504, "|B_a|": 87210, "core": 0, "|S.core|": 0, "removed": 15504, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 7, "K": 8, "d": 2, "|S|": 21, "|P_a|": 62016, "|B_a|": 326876, "core": 0, "|S.core|": 0, "removed": 62016, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 8, "K": 8, "d": 2, "|S|": 21, "|P_a|": 245157, "|B_a|": 1225785, "core": 0, "|S.core|": 0, "removed": 245157, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 9, "K": 8, "d": 2, "|S|": 21, "|P_a|": 961400, "|B_a|": 4601610, "core": 0, "|S.core|": 0, "removed": 961400, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 10, "K": 8, "d": 2, "|S|": 21, "|P_a|": 3749460, "|B_a|": 17298645, "core": 0, "|S.core|": 0, "removed": 3749460, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"a": 11, "K": 8, "d": 2, "|S|": 21, "|P_a|": 14567280, "|B_a|": 65132550, "core": 0, "|S.core|": 0, "removed": 14567280, "verified_stubborn": true, "set": "all degree-2 letters<=5"}
+{"set": "all degree-2 letters<=5", "stopped_before_a": 12, "|P_a|": 56448210}

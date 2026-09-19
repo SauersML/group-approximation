@@ -61,3 +61,68 @@ latter.
       every nontrivial countable group.  So any proof must use the exact twist
       in `U(C*(rho(M)))`.
   - The hole is not closed.
+- **Intrinsic seed without the internal router (2026-09-18, reframing).**
+  - `property-t-free-seed-via-intrinsic-seed` reads this seed off
+    `torsion-free-fp-ah-mf-radical-seed` by forgetting acylindricity.  With
+    `property-t-free-torsion-free-via-embedding-router`, whose other four
+    inputs are established, the torsion-free endpoint no longer needs the
+    open `internal-torsion-free-single-word-router`.
+  - The torsion-free leg now has two disjoint open cones.  One is
+    {Leavitt collapse, `full-mf-radical-abelianized-cover-is-not-mf`}.  The
+    other is the Higman cone, which reduces through
+    `higman-collapse-via-trivially-padded-bs-correction` to
+    {`bs12-trivially-padded-opnorm-correction`,
+    `higman-exact-packet-cycles-collapse-opnorm`}.  Each can fail on its own.
+  - A sharpening of the second hole, recorded here and not proved elsewhere
+    in this form: in any exact packet cycle with seams `eta < sqrt(2)-1`,
+    either every `Z_i=1`, and then `||C_i-1|| <= eta`, or every
+    `||C_i-1|| >= sqrt(2)`.
+    - Proof.  If `Z_(i+1) != 1`, it has an eigenvalue `mu != 1` of odd order.
+      `C_i` maps `E_mu(Z_(i+1))` onto `E_(sqrt mu)(Z_(i+1))`, the unique odd
+      square root.  So `C_i` cyclically permutes the eigenspaces along the
+      squaring orbit of `mu`, which has length `l >= 2`.
+    - On the sum of those eigenspaces, `C_i` is a block cyclic shift.  Its
+      spectrum is invariant under rotation by `e^(2 pi i/l)`, so it contains
+      a point at distance `>= sqrt(2)` from `1`.  Hence `||C_i-1|| >= sqrt(2)`.
+    - Then `||Z_i-1|| >= sqrt(2)-eta > 1-eta`, so `Z_i != 1`, and the argument
+      propagates around `Z/4`.
+  - So `(CGC)` is exactly the nonexistence of fully far exact cycles with
+    small seams.  This matches the `sqrt(2)` basin of
+    `one-small-higman-generator-collapses-the-four-cycle`.
+  - Neither hole is closed here.
+- **Second route and gate classification (2026-09-18, swarm-0917-w12-w12-ptm-last1).**
+  - `torsion-free-seeds-need-kernel-descent-or-trace-corner` (established)
+    builds two radical-like assignments, `Rad_MF intersect Phi` and
+    `Rad_MF intersect T`.
+    - `Phi` is the largest subgroup with no finite and no torsion-free
+      quotient; `T` is the kernel of the universal torsion-free quotient.
+    - Both satisfy functoriality, saturation, extension, colimit and amalgam
+      closure, radical-kernel descent, and the Leavitt input.
+    - The first also satisfies finite-index trace; the second also satisfies
+      every torsion-conclusion corner rule.
+    - Both vanish on torsion-free groups.
+  - So a torsion-free seed is reached only in two ways:
+    - (i) by descent across a kernel not known to lie in the radical, which is
+      the abelianized-cover hole;
+    - (ii) by a torsion corner followed by finite-index trace.
+  - The same node kills every cover of `St_20(L)` whose kernel `N` has `Out(N)`
+    residually finite, for example `Z^k`, `F_n` or surface groups.  Such a
+    cover contains `St_20(L)` by the universal coefficient theorem, because
+    `St_20(L)` is superperfect.
+  - Gate (ii) is now a route.
+    - `virtually-torsion-free-infinite-mf-radical-gives-seed` (established)
+      shows the seed is *equivalent* to a f.g. recursively presented,
+      virtually torsion-free `H` whose MF radical is not contained in its
+      finite radical `W(H)`.
+    - `property-t-free-seed-via-virtual-torsion-corner` reduces the seed to
+      one host-construction hole, `virtually-torsion-free-host-no-ce-augmentation-corner`.
+    - That route is independent of both the Leavitt collapse and the
+      abelianized-cover hole.
+    - A solution with `B = A(B_loop)` also closes
+      `nonhyperlinear-bloop-finite-augmentation-corner`.
+  - Hosts are constrained.
+    - `St_20(L)` is never usable, since it has no finite-index subgroups.
+    - Residually finite hosts are MF, so they are excluded.
+    - Candidates are finite extensions of non-residually-finite lattices in
+      products of trees.
+  - The seed stays OPEN.

@@ -1,0 +1,98 @@
+---
+rg: 2
+id: leavitt-st20-t-free-holes-hold-via-kazhdan-proof
+kind: route
+title: Transport full MF radical from GL_20 to St_20 through the Khanh comparison and read off the hole statements
+target: leavitt-st20-t-free-holes-hold-via-kazhdan
+requires:
+  - leavitt-steinberg-map-iso-from-rank-three
+  - binary-leavitt-all-ranks-full-mf-radical
+---
+
+**Step 1 (identification).**  By `leavitt-steinberg-map-iso-from-rank-three`
+(Khanh arXiv:2609.08428v1, Theorem 5.4, statement `(KH2)`), the Steinberg map
+`St_r(R) -> GL_r(R)` is an isomorphism for every `r>=3`, in particular at
+`r=20`.  By `binary-leavitt-all-ranks-full-mf-radical`, `GL_20(R)=EL_20(R)`,
+this group is isomorphic to `R^x`, and it is simple.  Hence `Delta` is simple,
+the Steinberg kernel at rank twenty is trivial, and the image of `z` is the elementary
+matrix `e_13(s_1t_1)`, which is a nonidentity involution because the
+coefficient field has characteristic two.
+
+**Step 2 (full radical).**  `Rad_MF` is an isomorphism invariant, and
+`binary-leavitt-all-ranks-full-mf-radical` gives `Rad_MF(GL_20(R))=GL_20(R)`.
+Thus `Rad_MF(Delta)=Delta`.
+
+**Step 3 (MF characters).**  Let `(V_k)` be an operator-norm asymptotic
+unitary representation of `Delta` in dimensions `d_k`, so that
+`||V_k(gh)-V_k(g)V_k(h)|| -> 0` and `||V_k(g)^*V_k(g)-1|| -> 0` for all `g,h`.
+Then `g -> [V_k(g)]` is a homomorphism into `U(Q)`,
+`Q=prod_k M_(d_k)/sum_k M_(d_k)`.  By Step 2 it is trivial, so
+`||V_k(g)-1|| -> 0` for every `g`.  Since `|tr(A)-1| <= ||A-1||` for the
+normalized trace, every trace limit equals `1`.  This is the formal
+forward direction of `torsion-normal-generator-mf-character-criterion`,
+reproved here so that no further input is needed.
+
+**Step 4 (presentation modulus).**  Fix a presentation `<S|Rel>` of `Delta`
+with `S` finite, a finite set `F`, and words `w_g`.  Suppose that for some
+`epsilon>0` no `delta_0` works.  Then there are dimensions `d_k` and unitary
+assignments `U_k` with `sup_r ||r(U_k)-1|| <= 1/k` and
+`max_(g in F) ||w_g(U_k)-1|| > epsilon`.  In
+`Q=prod_k M_(d_k)/sum_k M_(d_k)` the classes `[U_k(s)]` are unitaries that
+satisfy every relator exactly, because the defects are uniform over `Rel`.
+So `s -> [U_k(s)]` extends to a homomorphism `Theta: Delta -> U(Q)` with
+`Theta(g)=[w_g(U_k)]`.  By Step 2 `Theta` is trivial, so
+`||w_g(U_k)-1|| -> 0` for each of the finitely many `g in F`, which is a
+contradiction.  The same argument with the finite set of presentation
+relators in place of `Rel` covers any fixed finite presentation, such as
+the one in `binary-leavitt-atomic-morita-return`.
+
+**Step 5 (the three holes).**
+- `binary-leavitt-steinberg-mf-characters-are-trivial`: its displayed
+  sentence is exactly Step 3.
+- `binary-leavitt-haar-row-profile-is-not-mf-character-restriction`: a full
+  root module `N` is nontrivial.  By Step 3 every MF character satisfies
+  `chi(v)=1` for every `v in N`, so `(HRP1)` fails for every MF character,
+  which is what that claim asserts.
+- `binary-leavitt-atomic-morita-return`: take `F={z}` and `epsilon=1/2` in
+  Step 4, and let `delta<delta_0(1/2)`.  Then `||z(U)-1|| <= 1/2`, so the
+  spectrum of `z(U)` lies in the open right half-disc, and the rounded
+  involution (the unitary sign of the self-adjoint part, or the
+  holomorphic-calculus rounding of the hole) equals `1`.  Thus `p_U=0` and
+  the hypothesis `p_U != 0` never holds.  Define `eta(delta)=0` for
+  `delta<delta_0(1/2)` and `eta(delta)=1` otherwise.  In the second case
+  `s_i=t_i=0` gives three rows of norm `||p_U||=1`.  Hence `eta(delta) -> 0`
+  and `(BLAMR)` holds.  The prescribed-carrier clause of that claim ("the
+  zero-carrier shortcut is unavailable") does not help: the carrier is
+  forced to be zero, not chosen to be.
+
+**Why none of this is Kazhdan-free.**  The derivation of
+`binary-leavitt-all-ranks-full-mf-radical` goes through
+`rank-twelve-leavitt-simple-non-mf`, which requires
+`elementary-group-property-t-over-free-algebras` and
+`kazhdan-asymptotic-commutant-transport`.  Step 1 itself uses no (T):
+Khanh's comparison is proved by Steinberg-criterion and simple-connectivity
+arguments.  Only Steps 2 to 5 inherit (T).
+
+**Classification of the other goal-cone holes (recorded, not claimed).**
+- `opnorm-leavitt-coarse-fine-return-row`: vacuous in its accurate regime by
+  Step 4 for the same reason as `(BLAMR)`.  Its literal large-defect content
+  is not implied, so no statement about it is made in the claim.
+- `binary-leavitt-dimension-descent-operation`: it quantifies over accurate
+  models with `||z(U)-I|| >= 1`, which do not exist below
+  `delta_0(1/2)`.  So it is vacuous in the accurate regime whenever its
+  accuracy parameter is allowed to be small.
+- `corona-coefficient-module-decoder`: its hypothesis is a corona
+  representation in which the root survives, and there is none for `R=L_2`.
+  Let `R` be a general countable ring with a binary Leavitt family and let
+  `n>=16`.  The subring `S` generated by the family is finitely generated,
+  so `E_4(S)` and `E_n(S)` have (T) (Ershov--Jaikin-Zapirain).  Then
+  `generic-leavitt-self-compression-full-mf-radical` gives
+  `Rad_MF(E_n(S))=E_n(S)`.  The commutator identity
+  `e_ik(a)=[e_ij(a),e_jk(1)]` shows that the image of `E_n(S)` normally
+  generates `E_n(R)`.  Since `Rad_MF` is normal, `Rad_MF(E_n(R))=E_n(R)`
+  for all such `R`, through (T).  So coefficient-ring generalizations do
+  not escape (T), and rank changes do not either, since every `GL_n` of the
+  binary algebra is the same group.
+- The Jacobson-coefficient holes (`EL_5(J)`), the Heisenberg multiplicity
+  decoder, and the bounded-area chromatic code are not consequences of Step 2
+  in any evident way and are left untouched.

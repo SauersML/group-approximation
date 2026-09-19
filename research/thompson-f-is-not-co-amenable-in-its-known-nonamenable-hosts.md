@@ -8,8 +8,10 @@ distinct_from:
   thompson-t-orbits-carry-no-invariant-means: that is about invariant means on T-orbits of points; this is about the coset space of F in T and in three other hosts, and its main new case (the Lodha--Moore group) is measured, not topological.
   thompson-f-interval-orbit-relation-is-hyperfinite: that kills the Monod mechanism on F itself; this kills it on every overgroup acting on the line in which F would be co-amenable.
   thompson-f-is-a-subgroup-of-lodha-moore-group: that embeds F in the Lodha--Moore group; this shows the embedding is not co-amenable, so non-amenability of the host cannot descend to F.
+  thompson-f-co-amenable-hosts-have-no-free-or-kazhdan-subgroups: that names no host and kills every host whose non-amenability is certified by a free, torsion or Kazhdan subgroup, by restricting the coset mean to that subgroup; this kills four named hosts by dynamical witnesses on spaces where F is amenable.
 artifacts:
   - research/co-amenable-subgroups-transfer-hyperfinite-orbit-relations.md
+  - research/thompson-f-co-amenable-hosts-have-no-free-or-kazhdan-subgroups.md
 ---
 
 **ESTABLISHED.** If `H ≤ G` is co-amenable and `G` is non-amenable, then `H` is non-amenable
@@ -54,3 +56,23 @@ is already non-amenable, which is a direct certificate for `F`.
   Lodha–Moore l.136–138.
 
 Proof route: `thompson-f-not-co-amenable-in-known-hosts-proof`.
+
+## Attempts
+
+- 2026-09-18, lane `e2-w2-f-coamenable-host` (family `host-geometry`): the "Not covered" list above
+  is now smaller. `thompson-f-co-amenable-hosts-have-no-free-or-kazhdan-subgroups` kills every host
+  containing a non-abelian free subgroup, every host with a non-amenable torsion subgroup and every
+  host with an infinite Kazhdan subgroup, by a mechanism that uses no dynamics at all: an invariant
+  mean on `G/F` restricts to every subgroup `Λ ≤ G`, and the point stabilizers of `Λ` there are the
+  subgroups `Λ ∩ gFg^{-1}`, which are isomorphic to subgroups of `F`. That gives a new proof that
+  `V` (and hence every `nV`) and `T` are not hosts, independent of cases 1-2 here, and removes
+  `nV` from the "Not covered" list. It does not reach the Lodha-Moore group or `H(A)`, which have
+  no free subgroups; those remain the business of the hyperfinite transfer.
+- Recorded dead end, same lane: extending the hyperfinite transfer lemma to a class kill for all
+  one-dimensional hosts. It dies at the choice of witness. A free group of rank 2 acting on
+  `[0,1]` by extending a planar Cantor embedding of its Gromov boundary affinely across the gaps
+  fixes `0`, so `δ_0` is an invariant probability measure and case 1's mechanism is blind; and its
+  boundary action is topologically amenable, so every quasi-invariant orbit relation is
+  hyperfinite by Connes-Feldman-Weiss and cases 3-4's mechanism is blind too. Both dynamical
+  witnesses are therefore invisible to free subgroups, and no strengthening of them can kill the
+  free-subgroup certificate class.

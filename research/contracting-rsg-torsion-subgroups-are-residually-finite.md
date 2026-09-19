@@ -2,6 +2,8 @@
 rg: 2
 id: contracting-rsg-torsion-subgroups-are-residually-finite
 kind: claim
+refuted_by:
+  - golden-mean-periodic-group-lies-in-a-contracting-rsg
 title: Every finitely generated torsion subgroup of a contracting rational similarity group is residually finite, so the Belk–Bleak–Matucci–Zaremsky hyperbolic hosts contain no infinite group of finite exponent
 distinct_from:
   almost-automorphism-torsion-subgroups-are-rf: that proves the statement when every local action is a length-preserving isomorphism of path spaces (almost automorphisms of trees and of finite-graph path spaces, including Röver–Nekrashevych groups); this asks it for contracting RSGs, whose nucleus maps may be asynchronous and non-surjective.
@@ -59,6 +61,18 @@ exponent.
      `|u| + B`, contained in a cone of depth at least `|u| − B`. With that, the orbit of each deep cone is finite, `H`
      permutes finitely many clopen sets at each level, and it is residually finite. For asynchronous generators this
      is a nondeterministic pushdown-type pumping statement.
+2. **swarm-0917-w12-w12-bh-break, 2026-09-18: counterexample to the main clause (REFUTED, unreviewed).**
+   - **The group.** Nekrashevych's golden-mean fragmentation group `F` (arXiv:1601.01033, §7, Theorem `th:F`) is
+     periodic, and `[F,F]` is infinite, finitely generated and simple, so it is not residually finite.
+   - **Why it lies in a contracting RSG.** Its generators `b_i, c_i, d_i` are asynchronous. But every element of
+     `<V_2, F>` is a finite union of pieces `uw ↦ vκ(w)`, where `κ` lies in the Klein four group `{1, b_0, c_0, d_0}`.
+     So the nucleus lies in a 7-element set, and `F` lies in a full contracting RSG `G`.
+   - **What it realizes.** This is Obstacle A of attempt 1 with no failure of contraction. The uniform modulus
+     asked for in attempt 1 fails for `G`.
+   - Node: `golden-mean-periodic-group-lies-in-a-contracting-rsg`, with its route `-proof`.
+   - **Still open.** The bounded-exponent corollary: whether `G` or any contracting RSG contains an infinite
+     finitely generated group of finite exponent. This is not decided, because the exponent of `F` is not
+     determined.
 
 ## Lesson for general BH
 

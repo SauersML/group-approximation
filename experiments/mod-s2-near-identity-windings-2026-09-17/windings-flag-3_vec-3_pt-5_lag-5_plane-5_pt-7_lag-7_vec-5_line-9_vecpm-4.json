@@ -1,0 +1,323 @@
+[
+ {
+  "case": "flag-3",
+  "index": 160,
+  "b1": 2,
+  "torsion": [
+   2,
+   6
+  ],
+  "classes": 3,
+  "rank_W": 1,
+  "mult_set": [
+   32,
+   96
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "32",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    1,
+    1,
+    3
+   ]
+  ],
+  "seconds": 0.6
+ },
+ {
+  "case": "vec-3",
+  "index": 80,
+  "b1": 1,
+  "torsion": [
+   6
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   16,
+   64
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "16",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    1,
+    4
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "pt-5",
+  "index": 156,
+  "b1": 0,
+  "torsion": [
+   2,
+   20
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   156
+  ],
+  "q_order_of_mult_mod_W": 5,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "156/5",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.1
+ },
+ {
+  "case": "lag-5",
+  "index": 156,
+  "b1": 0,
+  "torsion": [
+   2,
+   20
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   156
+  ],
+  "q_order_of_mult_mod_W": 5,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "156/5",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.1
+ },
+ {
+  "case": "plane-5",
+  "index": 650,
+  "b1": 0,
+  "torsion": [
+   50
+  ],
+  "classes": 3,
+  "rank_W": 3,
+  "mult_set": [
+   120,
+   240,
+   290
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "130",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 6,
+  "e_lower": "1/6",
+  "cert_vectors": [
+   [
+    -1,
+    -1,
+    2
+   ],
+   [
+    1,
+    0,
+    4
+   ],
+   [
+    2,
+    -3,
+    1
+   ]
+  ],
+  "seconds": 0.6
+ },
+ {
+  "case": "pt-7",
+  "index": 400,
+  "b1": 0,
+  "torsion": [
+   2,
+   30
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   400
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "80",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.2
+ },
+ {
+  "case": "lag-7",
+  "index": 400,
+  "b1": 0,
+  "torsion": [
+   2,
+   30
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   400
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "80",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.3
+ },
+ {
+  "case": "vec-5",
+  "index": 624,
+  "b1": 0,
+  "torsion": [
+   5,
+   10
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   624
+  ],
+  "q_order_of_mult_mod_W": 5,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "624/5",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.3
+ },
+ {
+  "case": "line-9",
+  "index": 1080,
+  "b1": 1,
+  "torsion": [
+   6,
+   6
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   216,
+   864
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "216",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    1,
+    4
+   ]
+  ],
+  "seconds": 1.0
+ },
+ {
+  "case": "vecpm-4",
+  "index": 120,
+  "b1": 2,
+  "torsion": [
+   2,
+   2
+  ],
+  "classes": 3,
+  "rank_W": 1,
+  "mult_set": [
+   12,
+   36,
+   72
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/10",
+  "kappa_at_upper": "12",
+  "e_milp_float": 0.1,
+  "h_upper": [
+   "1/10",
+   "1/10",
+   "1/10"
+  ],
+  "cert_L": 10,
+  "e_lower": "1/10",
+  "cert_vectors": [
+   [
+    1,
+    6,
+    3
+   ]
+  ],
+  "seconds": 0.0
+ }
+]
