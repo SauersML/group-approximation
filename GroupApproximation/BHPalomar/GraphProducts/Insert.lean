@@ -3,6 +3,9 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import GroupApproximation.BHPalomar.GraphProducts.Restrict
+import Mathlib.Data.Finset.Insert
+import Mathlib.Data.Fintype.Defs
+import Mathlib.Data.Fintype.EquivFin
 import Mathlib.GroupTheory.NoncommCoprod
 
 /-!
@@ -83,7 +86,7 @@ theorem toAmalg_comm (s : Set V) (v : V) (u w : V) (hadj : Γ.Adj u w)
       toAmalgFam Γ G s v w b * toAmalgFam Γ G s v u a := by
   have hne : u ≠ w := hadj.ne
   by_cases huv : u = v
-  · subst huv
+  · cases huv
     have hwv : w ≠ u := hne.symm
     have hws : w ∈ s := (Set.mem_insert_iff.mp hw).resolve_left hwv
     have hwc : w ∈ linkIn Γ s u := ⟨hws, hadj⟩
@@ -91,7 +94,7 @@ theorem toAmalg_comm (s : Set V) (v : V) (u w : V) (hadj : Γ.Adj u w)
     exact link_comm Γ G s u hwc b a
   · have hus : u ∈ s := (Set.mem_insert_iff.mp hu).resolve_left huv
     by_cases hwv : w = v
-    · subst hwv
+    · cases hwv
       have huc : u ∈ linkIn Γ s w := ⟨hus, hadj.symm⟩
       rw [toAmalgFam_v, toAmalgFam_s Γ G s w huv hus]
       exact (link_comm Γ G s w huc a b).symm
@@ -112,17 +115,17 @@ def gpToAmalg (s : Set V) (v : V) : GP Γ G (insert v s) →* AmalgV Γ G s v :=
 theorem incl_link_comm (s : Set V) (v : V) (x : GP Γ G (linkIn Γ s v)) (a : G v) :
     Commute (gpIncl ((linkIn_subset Γ s v).trans (subset_insert' s v)) x)
       (gpOf Γ G (insert v s) v a) := by
-  refine gp_induction (p := fun x => Commute (gpIncl ((linkIn_subset Γ s v).trans
-    (subset_insert' s v)) x) (gpOf Γ G (insert v s) v a)) x ?_ ?_ ?_
-  · rw [map_one]
+  induction x using gp_induction with
+  | one =>
+    rw [map_one]
     exact Commute.one_left _
-  · intro u b
+  | of u b =>
     by_cases hu : u ∈ linkIn Γ s v
     · rw [gpIncl_of _ hu]
       exact gpOf_comm (insert v s) (show Γ.Adj v u from hu.2).symm b a
     · rw [gpIncl_of_not _ hu]
       exact Commute.one_left _
-  · intro x y hx hy
+  | mul x y hx hy =>
     rw [map_mul]
     exact hx.mul_left hy
 
@@ -145,7 +148,7 @@ theorem amalgToGp_amk (s : Set V) (v : V)
     (y : Coprod (GP Γ G s) (GP Γ G (linkIn Γ s v) × G v)) :
     amalgToGp Γ G s v (amk Γ G s v y) =
       Coprod.lift (gpIncl (subset_insert' s v)) (amalgRight Γ G s v) y :=
-  QuotientGroup.lift_mk' _ _
+  rfl
 
 theorem amalgToGp_gpToAmalg (s : Set V) (v : V) (x : GP Γ G (insert v s)) :
     amalgToGp Γ G s v (gpToAmalg Γ G s v x) = x := by
@@ -154,7 +157,7 @@ theorem amalgToGp_gpToAmalg (s : Set V) (v : V) (x : GP Γ G (insert v s)) :
     intro u a
     rw [MonoidHom.comp_apply, gpToAmalg, gpLift_of, MonoidHom.id_apply]
     by_cases huv : u = v
-    · subst huv
+    · cases huv
       simp only [toAmalgFam_v, amalgToGp_amk, Coprod.lift_apply_inr, amalgRight,
         MonoidHom.noncommCoprod_apply, map_one, one_mul]
     · by_cases hus : u ∈ s
@@ -189,10 +192,11 @@ theorem question31_of_retractAmalgamClosure (hR : RetractAmalgamClosure) : Quest
   intro V _ Γ G _ hG
   have key : ∀ s : Finset V, SatisfiesPBH (GP Γ G (s : Set V)) := by
     intro s
-    refine Finset.induction_on s ?_ ?_
-    · rw [Finset.coe_empty]
+    induction s using Finset.induction_on with
+    | empty =>
+      rw [Finset.coe_empty]
       exact gp_empty_pbh Γ G
-    · intro v s hv ih
+    | insert v s hv ih =>
       rw [Finset.coe_insert]
       exact gp_insert_pbh Γ G hR (s : Set V) v ih (hG v)
   haveI := Fintype.ofFinite V
