@@ -9,7 +9,7 @@ distinct_from:
   ct-z-residue-partition-certificates-live-on-s-adic-coordinates: that reduces certificates to the S-adic coordinates for any g in CT(Z); this solves the S-adic problem completely when S = {2}.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority claimed.
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-q11 2026-09-19 for the stated sub-case, with one precision). No priority claimed.
 - **Scope.** The *2-power form* of Kourovka 21.74(a)(S. Kohl) for elements of `CT_∅(Z) ≅ V`.
   Equivalently: does `g ∈ V` permute a partition of the Cantor set into at least two cones?
 - **Not covered.** Partitions using odd moduli, for the same `g` (see "What remains").
@@ -138,3 +138,28 @@ indecomposable pieces with computable cone hulls.**
 
 **For host design.** Box-level structure is decided by the coarse component structure. That is
 tame on one base, and in multi-base hosts it can hide Collatz-type or machine complexity.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for the stated sub-case; one precision
+
+**Against the source.** Kourovka Notebook, arXiv:1401.0300v46, 21st issue. Verbatim: "21.74. Is it algorithmically decidable whether a given element g ∈ CT(Z) (a) permutes a nontrivial partition of Z into residue classes? (b) has only finite cycles? (c) has no finite cycles? S. Kohl".
+- The printed (a) allows every `g ∈ CT(Z)` and residue classes of any modulus.
+- The node proves the sub-case with `g ∈ CT_∅(Z)` (17.60, `P = ∅`; `≅ V` by Kohl, J. Group Theory 20 (2017), Remark 1.4) and 2-power moduli.
+- Title and Scope say exactly this. So 21.74(a) itself stays open, even for `g ∈ CT_∅(Z)`, because odd moduli are not covered.
+
+**Checked.**
+- **Lemma A.** Basins are unions of preimages of contracting cones. Repelling cones contain no other periodic point, since `g^(−nk)p = p` forces `p = r`. So the `R_j` are open, finitely many, disjoint and cover `V`, hence clopen.
+- **Indecomposability.** `ω(x), α(x) ∈ W`, then whole basins lie in `W`, then connectivity.
+- **⇒.** Lemma A with `t = |𝒫|!` already gives "each `R_j` lies in one part"; the carving lemma is not needed. A cone containing `R_j` is `[w]` with `w` a prefix of `u_j`.
+- **⇐.** `Q ⊆ U` is `g`-invariant with `g|_Q` of finite order. The common refinement of the `g^i(depth-d cones of Q)` consists of cones and is permuted, and there are at least 2 parts by condition 3.
+- **Consistency.** The three calibration cases (ψ, `h`, `chc`) agree with the nodes they cite.
+
+**The finiteness bound.** Each member of `𝒞` contains some `R_j`, and each `R_j` lies in exactly one member. So `|𝒞| ≤ s`.
+- The candidates are the `≤ Σ_j (|u_j| + 1)` prefix cones, hence at most `2^(Σ_j(|u_j|+1))` families.
+- Conditions 1–3 are finite checks on explicit finite unions of cones, since images of cones under `g ∈ V` are computable.
+- The revealing-pair search terminates because a revealing pair exists (BBGGHMS §4.1, after Brin).
+- So the search is finite and effective.
+
+**Precision (computability paragraph).** Repellers never enter the attractor cones, so the unions `⋃_{k≤K} g^(−Mk)(attractor cones)` never cover `V`.
+- Cover `V` by those unions **together with the repelling cones**, which compactness allows for some `K`.
+- Assign each piece to the component of its attractor or repeller.
+- The `R_j`, and so the `u_j`, are then explicit.
