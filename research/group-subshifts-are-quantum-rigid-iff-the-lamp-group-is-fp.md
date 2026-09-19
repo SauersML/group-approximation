@@ -143,3 +143,29 @@ This is an internal lane review.
     check (Bieri–Strebel-type results for non-abelian quotients) and an external referee.
 - **Item 4.** Correct, given the slab tightness of the free-factor node, which was not reviewed here.
 - **Item 5.** Not re-checked. It relies on the Cornulier-regime node and Corollary 3 of the clustering node.
+
+### Referee addendum (bh-ref-hl, 2026-09-19): the item 3 corollary is known (Dunwoody), not new
+
+This withdraws my "looks new" recommendation above. The corollary follows in a few lines from Dunwoody's resolution, and it holds more
+generally.
+- **Claim.** Let `M` be an infinite locally finite group, e.g. of exponent `p`. Let `Q` be finitely generated and virtually free,
+  e.g. `F_n` with `n ≥ 1`, acting on `M`. Then `M ⋊ Q` is not finitely presented.
+- **Proof.**
+  1. `G = M ⋊ Q` acts on a Bass–Serre tree `T` of `Q`. Its vertex stabilizers are (conjugates of) `M ⋊ K` with `K` finite, so they
+     are locally finite.
+  2. Suppose `G` is finitely presented. By Dunwoody's resolution there is a `G`-tree `S` with finitely generated vertex and edge
+     stabilizers, and a morphism `S → T` (Dunwoody, Invent. Math. 81 (1985); stated as the "standard result" corollary of
+     Prop. "Dunwoody's accessibility" in Guirardel–Levitt, *JSJ decompositions of groups*, Astérisque 395 (2017),
+     arXiv:1602.05139, read at source).
+  3. Stabilizers in `S` lie in stabilizers of their images, and those images are locally finite. Being finitely generated, the
+     stabilizers are finite.
+  4. Pass to the minimal subtree, which is cocompact since `G` is finitely generated. Then `G` is the fundamental group of a finite
+     graph of finite groups, hence virtually free (Karrass–Pietrowski–Solitar).
+  5. The torsion subgroup `M` is therefore finite. `∎`
+- **Consequences for this node.**
+  - The group-theoretic half of item 3 recovers a known fact, and the Bieri–Strebel case `n = 1` in the calibration table is the
+    same argument.
+  - The dynamical half ("no infinite group subshift over `F_n` is rigid") also follows from item 2 (⇒) plus Dunwoody. So the
+    dynamical proof and the classical one cross-check each other.
+  - The node's new content is the dictionary in items 1–2 and its dynamical proof of item 3, not the group-theoretic corollary.
+  - Credit Dunwoody for the corollary.
