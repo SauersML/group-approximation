@@ -1,0 +1,2 @@
+nonaffine n=6 rho_meta  len= 20 period [341.0,405.0) pieces 187881 comps 1 moved 64 (113s)
+nonaffine n=6 tau_meta  len= 20 period [341.0,405.0) pieces 128030 comps 116 moved 2.17322 (92s)
