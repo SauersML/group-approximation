@@ -3,6 +3,9 @@ rg: 2
 id: artin-sigma1-is-connected-dominant-living-subgraph
 kind: claim
 title: "The Sigma^1-conjecture: for every Artin group, Sigma^1 consists of the characters whose living subgraph is connected and dominant"
+refuted_by:
+  - artin-sigma1-conjecture-fails-for-an-even-k4-artin-group
+  - artin-k4-odd-family-dead-characters-lie-in-sigma1
 distinct_from:
   artin-sigma1-conjecture-known-families: that records specific graph families where this formula is proved; this asserts the formula for every finite labelled simplicial graph
   artin-sigma1-living-subgraph-bounds: that records Meier's general inclusions, sufficiency and a weaker necessity with the full living subgraph; this is the exact equality, whose missing half is the dead-edge necessity
@@ -64,3 +67,17 @@ discrete characters `χ : A_Γ -> Z`.
   (`artin-k4-dead-cut-admits-no-nonzero-dead-edge-ring`). Deciding
   `artin-k4-mixed-dead-character-is-outside-sigma1` either finds the next obstruction
   (module witnesses, artifact §4 Remark ii) or refutes the conjecture.
+- **w17 z-follow (2026-09-17): refutation recorded; exact replacement criterion.**
+  - The conjecture is **false**. `artin-sigma1-conjecture-fails-for-an-even-k4-artin-group`
+    (the mixed `K`, labels `4,4,4,6`) and `artin-k4-odd-family-dead-characters-lie-in-sigma1`
+    (the family `K_q`, `q` odd) are both ESTABLISHED. Each gives a dominant `χ` with `Liv^χ`
+    disconnected and `[χ] ∈ Σ^1`. They are recorded under `refuted_by` above.
+  - **What replaces it.** `artin-sigma1-equals-dead-cut-laplacian-surjectivity` (ESTABLISHED,
+    unreviewed) gives an exact criterion for every discrete `χ`:
+    - `[χ] ∈ Σ^1` iff `χ` is dominant and a Novikov "dead-cut Laplacian"
+      `L_χ : N^E -> K_r(N)` on the components of `Liv^χ` is onto.
+    - Meier sufficiency is the case `r = 1`. Both refutations, and the ring obstruction as a
+      necessary condition, are special cases.
+  - **Salvage.** The corrected statement is `artin-sigma1-is-level-zero-laplacian-surjectivity`
+    (OPEN). It replaces "connected" by "the level-0 Laplacian over `Z[ker χ]` is onto".
+    Its sufficiency half is proved.
