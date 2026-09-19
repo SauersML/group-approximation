@@ -66,3 +66,17 @@ The statement does not depend on the presentation or on `a`.
    - So permutation witnesses are no easier than `thompson-v-is-sofic`.
    - The same amplification is not available for unitary rank or Hilbert--Schmidt ratio models, because eigenvalue products can cancel in
      tensor powers. Those formats are the ones not already reduced to an open approximation question.
+4. **Unitary rank, Hilbert--Schmidt and operator-norm ratio models** (2026-09-17, swarm-0917-w11). Dead as a route
+   independent of approximation. This corrects the last bullet of Attempt 3.
+   - `classical-unitary-ratio-witnesses-amplify-to-metric-models` (ESTABLISHED) amplifies every such witness to a
+     constant-separation metric model, with the relator defect growing by at most a factor `5`.
+   - The invariant is the eigenvalue measure of `a(U)`, which convolves under tensor powers.
+     - **Rank.** Cancellation returns mass to the eigenvalue `1` only in alternate steps (`p_j + p_(j+1) <= 1`), so
+       `U^(tensor ceil(pi/delta))` fixes at most `3/4`.
+     - **HS.** The trace either has modulus at most `1 - s/8`, and the balanced replica `U tensor conj U` crushes it, or it
+       has argument at least `sqrt(3s)/2`, and a power of order `1/sqrt s` rotates it into the left half-plane.
+     - **Operator norm.** One eigenvalue is rotated by a power of order `1/t`.
+   - For simple `V`: a ratio witness in `l_2` is equivalent to `thompson-v-hyperlinear`, one in `l_op` to `V` being MF, and
+     one in normalized rank to an embedding in a unitary rank ultraproduct, which makes `V` linear sofic over `C`.
+   - What survives: Schatten `p`-lengths with `p` not in `{2, infinity}`, which are not covered, model-dependent lengths, and
+     non-metric arguments.

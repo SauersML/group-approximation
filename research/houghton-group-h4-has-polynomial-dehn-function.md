@@ -38,3 +38,22 @@ There is an integer `d` with `δ_(H_4)(x) ≼ x^d`.
     force a superpolynomial `δ_(H_3)`.
   - The trick cannot be pushed down to `H_3`: two-ray stabilizers `FSym ⋊ Z` are
     not finitely presented.
+- 2026-09-18 (swarm-0917-w11-w11-z-follow, reframing). Closed without `H_3`,
+  via route `houghton-h4-polynomial-dehn-via-pour-doubling`. Proof in
+  `research/artifacts/zp-houghton-pour-doubling-2026-09-18.md`.
+  - Take the doubling endomorphism `Δ` of the three-ray note §B, with the **route
+    ray `c` as its special ray**. Then `Δ(λ_ac) = λ_ac^2` and `Δ(λ_cb) = λ_cb^2`
+    exactly, so `Δ̂` of the literal pour of size `m` is the literal pour of size `2m`.
+  - The two-ray letters have two-ray images (e.g. `Δ(λ_ab) = λ_ab^2 τ_b`), and
+    conjugation by `λ_ca` handles odd sizes.
+  - This gives explicit two-ray words `N_m` of length `<= m^5` with
+    `A_3(m) = Area(E^c(m) N_m^(-1)) <= 4(1 + log_2 m) m^(5 + log_2 K)`
+    (`houghton-three-ray-pours-have-polynomial-two-ray-normal-forms`). Here `K` is
+    the area-transfer constant of Lemma B.2.
+  - The same `N_m` serves both routes `c` and `d` in `H_4`. So the split of the
+    earlier attempt gives `W_4 ≼ m^β` unconditionally
+    (`houghton-four-ray-pour-route-change-is-polynomial`), and Theorem C with
+    `n = 4` gives `δ_(H_4) ≼ x^(6+β)`.
+  - The exponent is inexplicit. The same method reduces `H_3`'s reroute family to
+    `R_3(k) <= poly(k) + 2 Area((λ_ba^k λ_ac^k λ_cb^k)^2)` (artifact §5), which
+    stays open.

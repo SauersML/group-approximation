@@ -1,0 +1,4 @@
+trials 400 drops 0
+(2, 2, 2, 'mrk-forced=0', True) 194
+(2, 2, 3, 'mrk-forced=0', False) 89
+(2, 2, 3, 'mrk-forced=0', True) 117

@@ -38,5 +38,27 @@ equivariant fields of subgroups `S`, would all have to be non-CE. This is indepe
 - **Sufficient condition.** Q1 follows from the stronger open statement "every crossed product of a pmp action of a
   hyperlinear group is CE". Q1 is logically weaker, because a CE model with a trace other than the crossed-product
   trace suffices. No example is known here where only such a model is CE.
+- **Q1 equals the crossed-product statement; it decides the Kun--Thom wreath (swarm-0917, 2026-09-18).**
+  In any covariant model of an essentially free action, covariance alone kills `tau(e(f) pi(g))` for
+  `g != 1`, so the model contains `L^infinity(X) ⋊ Gamma`. Padding any action by the Bernoulli shift of
+  `Gamma` makes it free and keeps the old crossed product as a subalgebra. So Q1, group by group, is
+  equivalent to "every crossed product of `Gamma` is CE", by `free-action-covariant-models-contain-the-crossed-product`.
+  The "Sufficient condition" entry above is therefore an equivalence, and the "How it can fail" list
+  reduces to one condition: some crossed product is non-CE. At the residually finite Kun--Thom group `G`,
+  Q1 makes the binary coset wreath `W` hyperlinear, hence a hyperlinear nonsofic group
+  (`hyperlinear-nonsofic-via-ce-covariant-models`). Every route that proves `W` or the Kun--Thom double
+  nonhyperlinear refutes Q1. The sofic analogue fails at this `G` (`kun-thom-free-nonsofic-action`).
+  Q1 also implies `f2xf2-crossed-products-are-connes-embeddable`.
+- **Q1 forces closure under solvable and finite kernels, and so excludes whole NH lanes
+  (swarm-0917 w12, 2026-09-18).** See `ce-covariant-models-force-solvable-kernel-closure`.
+  - Kaloujnine--Krasner puts every abelian-by-`Lambda` group inside `C ⋊ Lambda` for a countable
+    abelian `C ≤ A^Lambda`, and `L(C ⋊ Lambda) = L^infinity(Ĉ) ⋊ Lambda`.
+  - So Q1 makes every solvable-by-hyperlinear group hyperlinear, and every finite-by-hyperlinear
+    group too. In particular every central extension of a hyperlinear group is hyperlinear.
+  - Hence each of the following refutes Q1: a non-hyperlinear Kun--Thom wreath or Mihailova coset
+    wreath, an `SL_3` module witness, an algebraic envelope with a hyperlinear actor, or a Schur/`Z/p`
+    central-extension witness.
+  - Q1 is at least as strong as the open problem of central-extension permanence for hyperlinearity.
+  - Q2's used consequence, a non-CE crossed product, is already equivalent to NH under Q1.
 - **Not attempted.** No mechanism is known that promotes microstates for `Gamma` to microstates for a covariant pair
   when the action is non-free and far from amenable. This is where a proof would have to start.

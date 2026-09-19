@@ -322,3 +322,18 @@ anywhere refutes it.
     - **Named invariant.** Theorem C, which says `L^∞(X)^Γ` is `G`-invariant.
     - **Dying step.** Hashed point labels tensored with a sofic approximation give a sofic invariant measure on `{0,1}^(G/Γ)`. Theorem C forces `ω(gΓ) = ω(γgΓ)` almost everywhere. But (P1) at the unit `(x_(gΓ) - x_(γgΓ))^(-1)` forces disagreement at every good site.
   - **Reading for the target.** The q-base Kun–Thom test is now at least as strong as a characteristic-`p` Kaplansky-type statement for a field whose only invariant point measures are nonsofic. Every ring certificate in the graph misses that statement. A proof needs a mechanism that uses neither points nor complex measures. A counterexample would be a free-action Rokhlin deficit over a residually finite group, which does not by itself refute the target.
+- **Exact finite models are finite-monoid embeddings of the Q-table (swarm-0917-w11-w11-gs-pull, finite-models, obstruction-miner, 2026-09-17).** This mines the dead finite-model attempts by asking what exactly an exact finite functional model can certify.
+  - **Established** (`finite-monoid-table-embeddings-forbid-bernoulli-deficit`, artifact `research/artifacts/finite-monoid-certificates-2026-09-17.md`).
+    - *Theorem M.* If `lambda : E ⊔ F -> M`, with `M` a finite monoid, makes `[fe] = lambda(f)lambda(e)` a well-defined injective map on `Q = {1} ∪ E ∪ FE`, then `Phi >= log q`. The model is colorings `[N]^M` with `S_e T_f c = c(lambda(f)lambda(e) ·)`; it is exact at every point, with bad fraction at most `C(|Q|,2)/N`.
+    - *Theorem M'.* Conversely, any finite functional model that is exact and has one good point is such an embedding, into the opposite of its transformation monoid.
+    - *Corollary A.* The finite-core height potential theorem (`finite-core-height-potential-forbids-bernoulli-deficit`) follows, via a sink transformation monoid.
+    - *Proposition R.* Read letters map to units.
+    - *Corollary R.* Every configuration over `G` is finite-monoid embeddable if and only if `G` is LEF.
+  - **Class killed.** Every exact finite model: exact permutation models, finite quotients, transformation monoids, and sink or germ models whose relations hold on an invariant set containing a good point.
+    - **Invariant.** Finite-monoid embeddability of the Q-table.
+    - **Dying step.** Theorem M'. On a pattern with no embedding, every exact model has no good point.
+    - **Group level.** Via Corollary R on ball configurations `E = F = S ∪ S^-1`, exact models certify all configurations over `G` only when `G` is LEF.
+  - **Filter for the target.** A deficit witness needs (D1) a Q-table with no finite-monoid embedding. Any finite-model certificate for such a pattern must be approximate. Examples are the sofic-type models of `sofic-radical-localizes-bernoulli-deficit-witnesses` and the Følner-type frames of the OPEN `amenable-core-height-potential-forbids-bernoulli-deficit`.
+  - **Open.**
+    - A pattern that is finite-monoid embeddable but neither finite-group embeddable nor finite-core graded.
+    - Which configurations of `EL_D(R)` (`openai-leavitt-unit-nonsofic`) embed.

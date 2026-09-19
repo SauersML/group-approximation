@@ -1,0 +1,18 @@
+core graph of phi(H): vertices [0, 1, 2]
+   0 a -> [0]
+   0 b -> [1]
+   1 a -> [2]
+   1 b -> [2]
+coset test c1 c2 h_j^-1 h_i = b in phi(H): False
+coset test c1 c3 h_j^-1 h_i = bbAB in phi(H): True
+coset test c2 c3 h_j^-1 h_i = bbABB in phi(H): False
+c3 = c1 b, hence c3 c2 = c1 c1: the child graph is a DAG with merges
+b^k not in phi(H) for 1<=|k|<12
+c_1 c_2^-1 = b
+c_1 c_3^-1 = bA
+c_2 c_1^-1 = B
+c_2 c_3^-1 = A
+c_3 c_1^-1 = aB
+c_3 c_2^-1 = a
+kappa = 0.535898  eta = 0.133975  delta_* = 0.033456
+numerical least delta reaching 0: 0.033494 (analytic lower bound 0.033456)

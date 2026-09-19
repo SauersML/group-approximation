@@ -1,0 +1,117 @@
+---
+rg: 2
+id: quasigroup-spacetime-sft-emptiness-is-undecidable
+kind: claim
+title: It is undecidable, given a finite quasigroup and a finite set of row words, whether the corresponding sub-SFT of the quasigroup spacetime is empty
+distinct_from:
+  undecidable-quasigroup-sft-emptiness-gives-free-rigid-sft: that proves this statement would yield a free quantum-rigid SFT; this is the undecidability statement itself.
+  free-minimal-triangle-permutive-sft-exists: that asks for a free minimal example; this asks for undecidability, which gives a free but not necessarily minimal example.
+  small-window-quasigroup-sub-sfts-have-periodic-points: that decides small windows; this says no algorithm decides all windows.
+---
+
+**OPEN.** Input: a Latin square `⋆` on a finite set `Q`, and `A ⊆ Q^L`. Question: is
+`Ω(⋆, A) = {x ∈ X_⋆ : every length-L row word of x lies in A}` empty? The claim is that no algorithm answers
+this for all inputs. Equivalently, by Theorem A(3) of `triangle-permutive-existence-iff-hex-cone-determinism`, the
+same holds for sub-SFTs of spacetimes of bipermutive automata of any radius. That transfer was not re-checked for
+the uniformity of the recoding, which is effective by construction.
+
+**Payoff.** By `undecidable-quasigroup-sft-emptiness-gives-free-rigid-sft`, this claim gives a nonempty free
+quantum-rigid `Z^2`-SFT with a finitely presented crossed product over every field. It also refutes the refutation
+form of `free-minimal-triangle-permutive-sft-exists`.
+
+**Refutation.** An algorithm for this problem. By that node's item 2, the statement "every nonempty `Ω(⋆, A)` has
+a periodic point" would give one.
+
+**Known neighbours (recalled with the quotations below, not imported as prerequisites).**
+- Kari: the tiling problem for NW-deterministic tile sets is undecidable. That is arbitrary automata spacetimes.
+- Lukkarila: the tiling problem for 4-way deterministic tile sets is undecidable. Here two lines are each
+  deterministic on both sides.
+- Guillon–Zinoviadis (Zinoviadis thesis, arXiv:1603.05464, page 2, Theorem 2): "The emptiness problem of extremely
+  expansive 2D SFTs is undecidable. More precisely, the emptiness problem is undecidable for 2D SFTs such that the
+  vertical direction is the only non-expansive direction."
+- Same source, page 2, citing the unpublished Guillon–Kari–Zinoviadis "On determinism in subshifts": "in [13] it is
+  also proved that every aperiodic SFT with bounded radii of expansiveness must have at least two non-expansive
+  directions."
+
+None of these covers the three one-sided cone determinisms of `X_⋆`.
+
+## Attempts
+
+- **Transfer from the known undecidable classes: blocked for the classical ones, open for Guillon–Zinoviadis**
+  (swarm-0917-w11-w11-bh-break, logic-computability, 2026-09-18).
+  - A direct recoding of the Kari–Papasoglu and Lukkarila tile sets fails on axial pairs. This is recorded in
+    `free-minimal-triangle-permutive-sft-exists`, Attempts. Their 4-way symmetry also suggests two-sided faults on
+    both axis lines, which the Corollary of `triangle-permutive-existence-iff-hex-cone-determinism` excludes. That
+    fault structure was not verified.
+  - The Guillon–Zinoviadis class has a single nonexpansive line, so that Corollary does not exclude it. Two
+    things were not checked:
+    - whether triangle-permutive SFTs have bounded radii of expansiveness in the sense of [13];
+    - how [13] normalizes those radii.
+
+    If they do, [13] forces at least two nonexpansive lines on any aperiodic example. Then no extremely expansive
+    SFT recodes into `X_⋆`, and this transfer is dead.
+- **Exact simulation with abelian garbage: dead (proved obstruction)** (same agent, 2026-09-18). The natural
+  reduction runs an arbitrary automaton `H` on a layer `u`. The dependence that `H` lacks on its extreme
+  variables is pushed into a garbage layer `e`, and a row constraint makes sure the garbage is never read back.
+  This fails, as the lemma below shows.
+
+  **Lemma.** Setup:
+  - `B` and `E` are finite abelian groups.
+  - `F` acts on `(B × E)^Z` by `F(u, e)_i = (h(u)_i + (Λe)_i, n(u)_i + (Ke)_i)`.
+  - `h` and `n` are arbitrary sliding block codes.
+  - `Λ = Σ_k λ_k σ^k` and `K = Σ_k κ_k σ^k`, with `λ_k ∈ Hom(E, B)`, `κ_k ∈ End(E)`, and all offsets in `[-R, R]`.
+  - Injected information is never read back: `Λ K^m (n(u) - n(u')) = 0` for all `u, u'` and `m >= 0`.
+
+  If `F` is permutive in its variable at offset `-R`, then `h` is permutive in its variable at offset `-R`. The
+  symmetric statement holds at `+R`.
+
+  *Proof.*
+  1. Let `u, u'` differ only at cell `c`. Then `d = n(u) - n(u')` is supported in `[c-R, c+R]`. Its rightmost
+     entry, at `c + R`, is `δ = ν(u_c, ρ) - ν(u'_c, ρ)`, where `ν(·, ρ)` is `n`'s dependence on its offset `-R`
+     variable with the other cells `ρ` fixed.
+  2. The rightmost entry of `Λ K^m d`, at `c + (m+2)R`, is `λ_(-R) κ_(-R)^m δ`, so this vanishes.
+  3. Let `V` be the subgroup generated by all `κ_(-R)^m δ`. Then `λ_(-R) V = 0`, `κ_(-R) V ⊆ V`, and
+     `ν(b, ρ) ∈ ν(b_0, ρ) + V` for all `b`.
+  4. Fix every cell except the one at offset `-R` from `i`, and let that cell carry `(b, e)`. The output at `i` is
+     `(h(b, ρ') + λ_(-R) e + c_1, ν(b, ρ) + κ_(-R) e + c_2)`. So `F` maps `B × V` injectively into the set
+     `B × (ν(b_0, ρ) + c_2 + V)`, which has the same size. The map is therefore a bijection.
+  5. The fibre over a first coordinate `y` has `|{b : h(b, ρ') + c_1 = y}| · |V|` elements, and it maps onto
+     `{y} × (coset of V)`. So `b ↦ h(b, ρ')` is a bijection. ∎
+
+  **Consequence.** On a sub-SFT where the read-back term vanishes, the `u`-layer evolves by an `h` that is already
+  bipermutive at radius `R`. So abelian garbage adds no expressive power, and the reduction is circular by
+  Theorem A(3). The lemma covers only linear garbage dynamics `K` and linear read-back `Λ`. Three variants are not
+  covered:
+  - nonlinear garbage;
+  - a read-back term that is nonzero but cancelled by memory tracks;
+  - simulations that are not exact (blocks, or the fixed-point method).
+- **Where a proof would have to come from.** It would need a self-simulating (fixed-point) construction in the
+  style of Guillon–Zinoviadis, rebuilt so that every macro-tile rule is triangle-permutive. Their construction
+  gains horizontal expansiveness from reversible partitioned automata. The obstruction above says reversibility of
+  that kind is not enough here: the extreme-variable permutivity has to hold in the simulating layer itself, not in
+  a garbage layer.
+
+- **2026-09-18, census-computation, swarm-0917-w12-w12-bh-follow: Frobenius obstruction in the linear class, and
+  more census (open).**
+  - **Bounded radii are already known.** The unchecked item "bounded radii in the sense of [13]" from attempt 1 is
+    settled by `triangle-permutive-sfts-have-one-sided-total-faults`, item 2: every non-side direction is expansive
+    with a width-2 staircase. The one item left for the GZ transfer is how [13] normalizes.
+  - **Proved.** `mersenne-stretch-forces-periodic-point-in-linear-spacetimes`: for
+    `x ⋆ y = αx + βy` over `F_q`, one row with an `m`-periodic stretch of length `2m + L - 1`, where
+    `m = q^k - 1`, forces a doubly periodic point.
+    - For Ledrappier, an `L`-word repeat at any distance `2^k` forces the zero point.
+    - So every row seed from a primitive 2-uniform substitution, such as Thue–Morse, whose Ledrappier point is
+      `D_2`-fixed, dies for every window.
+    - Consequence for this claim: a reduction that stays inside Ledrappier's shift cannot let a row repeat an
+      `L`-word at a dyadic distance. So 2-uniform hierarchies on rows are excluded. That points to other alphabets,
+      or to scale factors coprime to `q`. General self-similar hierarchies are not covered.
+  - **Census extension (partial, still zero candidates).** The search is
+    `experiments/quasigroup-window-extension-2026-09-17/search.py`, a copy of the tool from
+    `small-window-quasigroup-sub-sfts-have-periodic-points`. The runs were stopped before they finished, so this is
+    not a decision.
+
+    | Case | Log | Nodes explored | Leaves | Candidates |
+    |---|---|---|---|---|
+    | `k=2, L=7` | `run_k2_L7.log` | 4000+ | 0 | 0 |
+    | `k=3, L=4` | `run_k3_L4.log` | 12000+ | 0 | 0 |
+    | `k=4, L=3` | `run_k4_L3.log` | 28000+ | 0 | 0 |

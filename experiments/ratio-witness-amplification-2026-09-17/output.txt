@@ -1,0 +1,2 @@
+rank: worst fixed fraction after amplification = 0.5008 (bound 0.75)
+HS: worst squared separation after amplification = 1.7313 (bound 2(1-e^-1))

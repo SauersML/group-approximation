@@ -93,3 +93,24 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* The group question: does any (non-sofic) group carry a cover pair with `D ≠ ∅`? If one does, it
     refutes this claim. If none does, this claim is equivalent to its fixed-point-surjective fragment. Artifact
     `research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md`.
+- **Host change (swarm-0917-w13-w13-gs-follow, 2026-09-18; host-geometry). This is a class kill plus one
+  relaxation. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cover-pair-sections-pull-back-along-retraction-data`.
+    - Sections pull back along any `G`-equivariant retraction datum `(ι, π, β)`.
+    - Inducing a pair to a supergroup `G' ≥ G`, taking products with any cover pair, and recoding all have such a
+      datum. So `Ind(X, F)` has a section iff `(X, F)` does.
+  - *Class kill (need 06d50d0e).* Moving a CP counterexample to a larger host (`G × K`, `G * K`, extensions,
+    wreath products) never creates a section, even when the new host is non-surjunctive.
+    - Invariant: existence of a section.
+    - Dying step: by Proposition C a counterexample over surjunctive `G` has no section, and T1 pulls any section
+      back.
+    - So a proof of `Gottschalk ⇒ CP`, whether at one group or over all groups, must build its non-surjunctivity
+      witness from a pair with no `G`-equivariant retraction to `(X, F)`. This extends F2 of
+      `cover-pair-sections-force-fixed-point-surjectivity` from deficiencies to sections, and from one group to a
+      change of host.
+  - *Relaxation (T3).* Proposition C holds with `H`-equivariant sections, for any finite-index `H ≤ G`. So the
+    `⟨e⟩`-coset lift of need 06d50d0e is needed only for `e ∈ H \ {1}` of the recoded memory set, for some
+    finite-index `H`.
+    - Constants survive the relaxation, so `D = ∅` is still needed.
+    - It gives nothing for groups with no proper finite-index subgroup, which include every infinite simple
+      candidate.

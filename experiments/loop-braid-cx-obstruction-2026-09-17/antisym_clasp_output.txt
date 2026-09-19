@@ -1,0 +1,16 @@
+n=6 (A additivity): True
+n=6 (B vanishing on P_u, P_z, pair twists): True
+n=6 (C Phi(A_av) = 1): True
+n=6 (D vanishing on random products): True
+n=6 (E Phi = chi_zu - chi_uz): True
+n=7 (A additivity): True
+n=7 (B vanishing on P_u, P_z, pair twists): True
+n=7 (C Phi(A_av) = 1): True
+n=7 (D vanishing on random products): True
+n=7 (E Phi = chi_zu - chi_uz): True
+n=8 (A additivity): True
+n=8 (B vanishing on P_u, P_z, pair twists): True
+n=8 (C Phi(A_av) = 1): True
+n=8 (D vanishing on random products): True
+n=8 (E Phi = chi_zu - chi_uz): True
+ALL CHECKS PASSED

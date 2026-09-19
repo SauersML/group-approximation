@@ -1,0 +1,5 @@
+E1 m=2: Gram integral alternating det 1; 6 generators integral and symplectic
+E1 m=3: Gram integral alternating det 1; 6 generators integral and symplectic
+E1 m=5: Gram integral alternating det 1; 6 generators integral and symplectic
+E2 m=2: tr det = det(place 1) + det(place 2); windings (R,1),(1,R),(R,R) = [1, 1, 2]
+ALL PASS

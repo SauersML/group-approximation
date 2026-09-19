@@ -464,3 +464,282 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Affine sandwich for the Haar route (swarm-0917-w10-w10-nh-break, 2026-09-18, family entropy-measure, revive of
+the w4 transplant).** Landed as `jacobson-haar-character-restricts-to-orbit-relation-summand` (established,
+unreviewed).
+- *Statement.* `V_n x| EL_n(J)` sits in `EL_(n+1)(J)` as the matrices `[[g, v],[0, 1]]` with `v in (JQ)^n`. On it,
+  `e sigma_m^(n+1) = (1 - 2^-m) psi_m + 2^-m (e sigma_m^(n)) o pr`, where `psi_m(v,g) = e sigma_m(g) [v in Im(g-1)]`.
+  `psi_1` is the canonical trace of the Haar orbit-relation factor `L(R_n)` of `EL_n(J) ↷ F_2^(N x n)`.
+- *Consequence.* The chain `m in S_(n+1) => psi_m CE => m in S_n` holds. In particular, `phi_1` CE on `EL_21(J)`
+  implies `L(R_20)` CE, which implies `phi_1` CE on `EL_20(J)`. And `phi_1` is CE at every rank iff `L(R_n)` is
+  CE at every rank.
+- *What changes.* The relation-permanence step at which `swarm-0917-w4-pull-nh-1` died (an amenable tail
+  relation extended freely by the Kazhdan `EL_n(F_2[z^(±1)])`) is **forced, not merely sufficient**, for any
+  Haar-character proof carried out at rank `n+1`. It cannot be bypassed by working with `phi_1` directly. Only
+  the index `m = ∞`, hyperlinearity itself, escapes the sandwich.
+- *Where it stops (hole stays OPEN).* CE of `L(R_n) = R ⋊_(α,c) EL_n(F_2[z^(±1)])` is not decided. `1 in S_n` is
+  not shown to follow from hyperlinearity.
+- **Next falsifiable step.** Decide whether the free cocycle action of `EL_20(F_2[z^(±1)])` on the tail factor
+  `L(E_0)` lifts to the normalizer of `R` in `R^omega` (`finitary-extension-ce-iff-action-lifts-to-normalizer`).
+  The lift has to reproduce the tail relation's `L^∞` Cartan, which is extra structure that `phi_1` alone did not
+  carry.
+**Probability-random transplant: random Hecke packets and random cocycle periodization (swarm-0917-w10-w10-ptl-pull,
+2026-09-18, family probability-random). DEAD; hole stays OPEN.** Two probabilistic mechanisms were tested. Both die at a
+step that is already recorded, and neither adds any probabilistic content.
+- *(a) Random isotypic packets.* Take `A_x` as signed sums of central idempotents `e_a in C[H]` of finite subgroups
+  `H <= Delta` with `z in H`. Exact local lemma: for finite `H, K <= Delta` with `D = H cap K`, multiplication
+  `C[H] (x)_{C[D]} C[K] -> C[HK]` is a bijection. Since `e_a (x) e_b` generates the bimodule
+  `e_a C[H] (x)_D C[K] e_b`, we get `e_a e_b = 0` exactly when `Res_D a` and `Res_D b` share no constituent. So every
+  exact overlap relation between packets from two subgroups is decided on their intersection. A packet solution with one
+  finite subgroup per context is therefore a finite-readout decoder in the sense of
+  `finite-readout-bcs-decoders-are-phase-surviving-local-colimits`, with the noncentral `z` in place of the central phase.
+  That statement then applies verbatim: the solution needs a phase-surviving, non-acyclic local colimit. Randomizing
+  which isotypic idempotents are chosen changes nothing, because exact relations have probability 0 unless they are
+  forced by that colimit. *Dies at:* the recorded local-colimit gate.
+- *(b) Random periodization, aimed at the Toeplitz survivor (soficity of `E = EL_20(J)`).* By Kaloujnine-Krasner,
+  `E <= L Wr Q`, with `L = GL_fin(F_2)`, `Q = SL_20(F_2[z^{+-1}])` and cocycle `f_g(q) = s(q)^{-1} g s(g^{-1}q)`.
+  `L^Q` is locally residually finite, because projections of finitely generated subgroups are finite. The plan was to
+  periodize `f` along a random finite-index `N <| Q` and truncate `L`.
+  - *Exact periodization is impossible (proved here, not landed).* Suppose `f` is `N`-periodic for some section `s`, and
+    put `E_N = pi^{-1}(N)`. Then `E_N -> L^{Q/N}` is a homomorphism that is injective on `L`, so its kernel `K'` meets
+    `L` trivially. Both `K'` and `L` are normal, so `[K', L] = 1`. Moreover `C_E(L) = 1`: an element of `M_20(J)`
+    commuting with every `1 + (finite-support matrix)` on `F_2^(N) (x) F_2^20` is scalar, hence `1`. So `E_N` embeds in
+    `L^{[Q:N]}`, which is locally finite. But `E_N` is finitely generated and contains the infinite group `L`,
+    a contradiction.
+  - *Approximate periodization.* Every fundamental domain of the Kazhdan quotient `Q/N` has boundary mass at least the
+    uniform Cheeger constant `h(Q) > 0`. On a positive fraction of points the periodized relators therefore compare cocycle
+    values at distinct `N`-translates. The model is sofic exactly when those values are Hamming-close after truncation.
+    That is the soficity of `E` itself, and the probability gives no gain. The only permanence that would help is soficity
+    of the unrestricted wreath product `L Wr Q` with a non-locally-finite base. Hayes-Sale covers only restricted wreath
+    products, and this case is an instance of the open amenable-by-sofic permanence recorded by the entropy-measure attempt.
+  - *Dies at:* the Cheeger boundary of `Q/N` combined with `C_E(L) = 1`.
+- *Invariant.* In (a), the colimit of the finite subgroups carrying the packets. In (b), the centralizer `C_E(L) = 1`,
+  which turns any exactly periodic cocycle into an embedding of `E_N` into a locally finite group.
+### The inert class is weak*-closed; a finitary gap for hyperlinearity (swarm-0917-w10-w10-nh-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+Landed as `jacobson-inert-trace-class-is-weak-star-closed` (established, unreviewed). It closes the "pointwise
+limits" survivor of `jacobson-mirror-exact-trace-part-is-multiplicative` unconditionally, using the now-imported
+Skudlarek list (`gl-infinity-f2-extreme-characters-are-rank-powers`) through the Bauer simplex of
+`gl-infinity-f2-trace-simplex-is-extended-naturals`.
+- *Statement.*
+  - For every trace `tau` of `P` and every `g`: `|avg_(F_j) tau(y g) - tau^flat(g)| <= (12 * 2^(-nj))^(1/2)`,
+    uniformly in `tau`.
+  - `m(tau)` is the weight of the trivial character in `tau|_(L_-)`.
+  - Hence `tau -> tau^flat` is weak*-continuous and `N` is weak*-closed.
+  - The closed hull of `delta_P`, the traces with `m = 0`, finite-dimensional traces and finitary-site ambient
+    restrictions, under products, mixtures and limits, is head-blind.
+- *Death step.* Burnside: `avg_(GL_M(F_2)) 2^(-k rank(g-1)) <= 12 * 2^(-M)` for all `k >= 1`. No invariant mass can
+  hide at large `k` and reappear in the limit, because `0` is isolated in the extended naturals.
+- *New decomposition (finitary gap).* Let `h_1 = avg_(y in GL_20(F_2)) (y - (y w + w y^(-1))/2)`, where the average
+  runs over the mirror sites `{-1} x {1..20}`. Then `sup_(CE(P)) tau(h_1)` is `>= 1` if `EL_20(J)` is hyperlinear
+  (attained at `delta_E o q`) and `<= 0.0035` otherwise.
+  - Refutation side: bound `tau(h_1) <= 0.0035` over CE traces of the LEF group `P`. That is a quantitative estimate,
+    not an exact identity.
+  - Positive side: find matrix approximate representations of `P`, converging to a trace of `P`, in which the head
+    moves a macroscopic part of the vectors invariant under all of `L_-`.
+- *Where it stops (hole stays OPEN).* CE traces of `P` that are limits of genuinely approximate, non-exact matrix
+  models not built from the four generating families are untouched. No invariant here separates them from `N`.
+- **Next falsifiable step.** Decide whether every CE trace of `P` lies in the weak*-closed convex product-closed hull
+  of restrictions from `H_bi` and traces with `m = 0`.
+  - If it does, `EL_20(J)` is not hyperlinear and the hole closes negatively.
+  - A test case is the Haar character `phi_1` pulled back to `P`: whether it is CE decides the positive side
+    (`gl-infinity-f2-trace-simplex-is-extended-naturals`, Part 4).
+**Window models and bounded-depth alternating constituents (swarm-0917-w10-w10-nh-last1, 2026-09-18, family
+local-designs).** Landed as `jacobson-head-dies-on-bounded-depth-window-constituents` (established, unreviewed). It runs
+the `A_m`-configuration test above, and the test fails.
+- *Statement.* Let `π(q) ∈ Sym(F)` be `ε`-truncations of a genuine action of `EL_20(J)` on any countable set
+  `X ⊇ F`. Then every representation `ρ` of `Sym(F)`, or of `Alt(F)`, with constituents of depth `<= D` has
+  `‖ρ(π(w)) - 1‖_2 <= 2(ℓDε)^(1/2) + (4√2/κ)(Dε)^(1/4)` for every length-`ℓ` word `w` with value in `L`.
+- *Death step.* Each depth-`D` isotypic block of `ℓ²(F^(D))` has constant diagonal. So the truncation error is a
+  `2(Dε)^(1/2)` corner defect for the genuine action on `ℓ²(X^(D))`. `(KFM1)` of
+  `kazhdan-unitary-corners-require-finite-dimensional-mass` puts the block on finite-dimensional subrepresentations,
+  and those kill `L` by Mal'cev and simplicity.
+- *Kills.* Truncations of vectors, subspaces and flags of `J^20`, of coset spaces, and of `m`-point configurations of
+  any of these, including the Toeplitz truncation. It kills them together with all their Sym and Alt constituents of
+  depth `o(1/ε)`.
+- *Where it stops (hole stays OPEN).* A certificate that sees the head needs one of two things.
+  - Generator permutations that are not close to the restriction of any genuine `E`-action (non-window sofic
+    models).
+  - Head mass on constituents of depth `D >= c/ε`.
+- **Next falsifiable step.** Build a sofic model of `EL_20(J)` that is non-window on a set of density bounded below:
+  no genuine `E`-set agrees with it on density `1 - o(1)`. Or show none exists.
+  - A window model on density `1 - o(1)` fixes the head on almost every point, by `D = 1` above.
+  - Thom's LEF Kazhdan non-residually-finite group shows that property (T) alone does not force windowness. The
+    non-window part must be paid for by relations of `E` itself.
+  - The open `kazhdan-consistent-partial-models-round-to-finite-actions` is the corresponding rounding statement. It
+    needs its globalization step repaired.
+**MF-null corner criterion and stripping (swarm-0917-w10-w10-ptm-pull, 2026-09-18, family stability-approximation).**
+Landed as `mf-null-corner-criterion-needs-faithful-ce-trace` (established, unreviewed). It proves three things.
+- *The criterion needs less.* The TCN criterion needs only that the corner be MF-null, meaning it has no unital map into
+  any norm matrix corona. So `(LNC3)` factors through the weaker hole `leavitt-root-corner-algebra-is-mf-null`
+  (route `leavitt-bcs-corner-makes-root-corner-mf-null`). That hole closes the goal by
+  `leavitt-mf-null-root-corner-closes-full-radical`.
+- *Class death.* Any certificate that a unital no-CE algebra maps into a nonzero corner of the witness forces `Delta`
+  nonhyperlinear. This covers `B_loop`, every MIP*=RE gadget, and every augmentation-corner variant. It also forces
+  `sigma(p) = 0` for every tracial `R^U`-representation `sigma`.
+  - Invariant: `tau_e o Phi`.
+  - Death step: the normalized compression of a CE trace to a positive-trace corner is CE.
+- *Stripping.* An MF-null algebra with a CE trace has an MF-null quotient inside `R^U`, with a faithful trace and no
+  CE-null algebra in any nonzero corner.
+- *Where it stops (hole stays OPEN).* For hyperlinear `Delta`, the only surviving certificates are operator-norm-only
+  rigidities of `P_z C[Delta] P_z`, which are invisible to traces and to K-zero rank arithmetic. This hole is
+  unchanged, and it is flagship-hard.
+### Configuration models reduce to point models (swarm-0917-w11-w11-nh-pull, finite-models, 2026-09-18)
+
+Answers the next step above. Recorded in `configuration-product-models-reduce-to-point-models`.
+- *Approach.* Test the head in permutation models through `S_m wr S_l`, acting in product action on `l`-tuples of
+  `k`-subsets. These are the product-action alternating sections of branch (M).
+- *Invariant.* The head-to-defect ratio `h/δ` in the normalized Hamming metric.
+- *Death step.* The `k`-subset fixed fraction is squeezed between `1 - 2kb` and `1 - b/2` when `m >= 8k^2`
+  (route Step 1, checked exactly in `experiments/configuration-point-models-2026-09-17/`).
+  - Hence `h/δ` of a configuration model is at most `(e/(e-1)) max(1, 4k h_pt/δ_pt)` for the point action of the same
+    wreath elements, with `l` arbitrary.
+  - Nontrivial tops cost defect `>= 1 - 1/m`. Exact tops are homomorphisms of `St_4(J)` into `S_l`, which kill the head.
+- *Hamming dichotomy.* The head dies in every Hamming limit iff `h <= C δ_(R_j)` on some window, proved with `K`-tuple
+  powers.
+- *Kills.* The configuration test for `k <= sqrt(m/8)` and `k δ -> 0`, including bounded `k` with unbounded `l`. It is
+  equivalent to Hamming point models and adds nothing.
+- *Where it stops (hole stays OPEN).*
+  - Subset sizes `sqrt(m/8) < k = o(m)`.
+  - Branch (P), primitive irreducible representations.
+  - Non-permutation unitary models.
+- **Next falsifiable step.** Decide whether the Hamming ratio `h(x_13(Q))/δ_(R_j)` is unbounded on every window, over
+  all permutation models of the `St_4(J)` presentation. By Theorem HD this is exactly whether the head is visible in
+  sofic-type limits.
+### Popa untwisting test is CE-blind: a class kill for the vanishing-cohomology decision point (swarm-0917-w12-w12-nh-last1, calibration, 2026-09-18)
+
+*Approach tried.* Run the recorded Popa decision point on the corner cocycle action `(alpha, omega)` of
+`Q = EL_20(F_2[x,x^(-1)])` on `R = L(GL_fin(V))`, with `L(EL_20(J)) = R x|_(alpha,omega) Q`. The decision point
+appears three times above: at the Jacobson reduction ("vanishing cohomology in `R' ∩ R^omega`"), at the mirror-head
+swap ("the Popa test has to be run on the corner action itself"), and at the virtual-splitting index ("whether
+`omega` is a coboundary in `U(R)`"). Before computing anything, first check whether either outcome can move the goal.
+
+*Result* (`hyperfinite-cocycle-untwisting-is-ce-blind`, established; route
+`hyperfinite-cocycle-untwisting-is-ce-blind-proof`, with Popa imported verbatim as
+`popa-vanishing-cohomology-amplification-and-ce-imports`).
+- **(A1) Freeness.** `(alpha, omega)` is a free cocycle action on `R`, from (S2) and (S3) of the Jacobson proof.
+- **(K2) Amplification.** `p(N x|_sigma Gamma)p ≅ pNp x|_(sigma^p, v^p) Gamma`, and CE is amplification-invariant.
+- **(K3) Cocycle form of Popa's Theorem 6.3.** `R x|_(alpha,v) Gamma` is CE iff there are `V_g` in `N_(R^omega)(R)`
+  with `Ad V_g = alpha_g` and `V_g V_h = v_(g,h) V_(gh)`. No trace condition is needed.
+- **(K1) Counterexample on `Q` itself.** `Q` is residually finite, sofic and Kazhdan. The amplified Bernoulli
+  cocycle `v^t` (`t < 1`, base `L(S_inf)`) is not weak-vanishing in `U(R)` (Popa's Theorem 3.2), yet its crossed
+  product `p L(S_inf wr Q) p` is CE ([HaS16] via Popa's Remark 6.5.1°, and (K2)).
+
+*What this kills.* The Popa test is not a prerequisite of `non-hyperlinear-group` under any of the three readings.
+- *"`omega` is not a (weak) coboundary in `U(R)`."* This does not imply that `E` is non-hyperlinear, by (K1) on
+  the same `Q`. Any proof by this route has to rest on an extra property that separates `omega` from every
+  amplified Bernoulli cocycle.
+- *"`omega` weakly vanishes in `U(R)`."* This turns `L(E)` into a genuine crossed product with a scalar twist. Its
+  CE is still the (K3) lifting problem, and the outcome points away from the goal.
+- *"The induced cocycle vanishes in `R' ∩ R^omega`."* By (K3), this is equivalent to `E` being hyperlinear. It is
+  the hole restated.
+- **Invariant.** Amplification invariance. CE has it, `U(R)`-vanishing does not.
+- **Death step.** The change of coefficients `U(R) -> U(R_omega)`.
+
+*Where it stops (hole stays OPEN).* Only the wall-rigid-approximation decision point for `P` remains as recorded.
+- **New sufficient condition for the refutation side (open, not a node).** Suppose `(alpha, omega)` is cocycle
+  conjugate, up to an automorphism of `Q`, to an amplification `beta^t` of the genuine bilateral action `beta` of
+  `Q` on `L(GL_fin(W))`. Then (K2), Popa's Proposition 1.2 and the LEF property of `H_bi` make `E` hyperlinear.
+- **Next falsifiable step.**
+  - Decide whether some isomorphism `L(E) ≅ p L(H_bi) p` carries `L(L)` onto `p L(GL_fin(W)) p`. By Popa's
+    Proposition 1.2 this is the same as cocycle conjugacy to some `beta^t`.
+  - On the goal side, name a property of `(alpha, omega)` that amplified Bernoulli cocycles lack and that obstructs
+    `(K3)` lifts. Any such property must fail to be amplification-invariant in `U(R)` form, or it must be stated with
+    `U(R_omega)` coefficients.
+**Configuration models at every subset size (swarm-0917-w12-w12-ptl-pull, 2026-09-18, family census-computation).**
+Landed as `subset-models-are-point-models-at-every-size` (established, unreviewed). It closes the subset-size gap that
+Theorem CP (`configuration-product-models-reduce-to-point-models`, swarm-0917-w11) left open. That gap is the product-action
+half of the next step above.
+- *Statement.* Let `g ∈ S_m` move the fraction `b` of `[m]`. Then at every `1 <= k <= m-1`, `g` moves between
+  `min(1, k'b)/6` and `min(1, k'b)` of the `k`-subsets, with `k' = min(k, m-k)`. So a model through `S_m wr S_l`, in
+  product action on `l`-tuples of `k`-subsets, has `h/δ <= 7 max(1, h_pt/δ_pt)`, where `h_pt/δ_pt` is taken for its
+  point model.
+  - No condition such as `m >= 8k^2` is needed.
+  - Nothing is lost in `k`.
+  - The corollary no longer needs `k δ -> 0`.
+- *Death step.* A `g`-invariant subset cannot split any of `>= M/3` disjoint pairs `{x, gx}`. That costs a constant
+  fraction of the event that `X` meets their union properly, at every `k`. So head and defect rescale by the same factor
+  `k'l`. Theorem CP's remark that "the ratio can genuinely change" for `sqrt(m/8) < k = o(m)` is false: the exact census
+  (253908 cycle-type and subset-size tests) finds a worst ratio of `0.5008`.
+- *Kills.* Every head certificate routed through product-action alternating sections, at any subset size. These are the
+  recalled branch (M) of `fp-simple-finite-group-models-reduce-to-alternating-constituents`, and they give nothing beyond
+  Hamming point models. The step "test the head against `A_m` on `m`-point configurations" is therefore closed: it does
+  not test anything new.
+- *Where it stops (hole stays OPEN).* The Hamming point problem itself remains: is `h/δ` for `x_13(Q)` unbounded on
+  every `St_4(J)` window? That is soficity of `EL_4(J)` with the head retained. Also open:
+  - branch (P);
+  - non-permutation unitary models;
+  - bounded-exception primitive sections;
+  - the fact that the Liebeck–Saxl / Guralnick–Magaard identification is recalled but not imported.
+- **Next falsifiable step.** Import the Liebeck–Saxl / Guralnick–Magaard minimal-degree theorem verbatim. Together with
+  this claim, branch (M) then reduces entirely to point models, and a finite-group certificate of the head must put
+  definite template weight on branch (P) or on bounded-exception sections. The alternative is to exhibit a primitive
+  irreducible representation family in branch (P) whose `St_4(J)`-relators are nearly scalar and not scalar.
+**Rank-weighted head kill has no tracial form (swarm-0917-w12-w12-nh-pull, 2026-09-18, family
+stability-approximation).** Landed as `rank-weighted-head-kill-hypotheses-hold-in-a-sofic-group` (established by
+route, unreviewed). It is a class kill for the survivor input "hyperlinearity of `EL_20(J)` sees `x_13(q)`".
+- *Witness.* Take `G = GL_fin(F_2^(X)) x| V` with `V = Z[1/2]^3 x| (SL_3(Z) x Z)` and `X = V/L`, where
+  `L = Z^3 x| SL_3(Z)`. `G` satisfies every hypothesis that
+  `jacobson-head-collapses-by-rank-weighted-transport` uses:
+  - a Kazhdan compression subgroup `L`, with a compressor `v` of index `8`, a centralizing `c`, and `l`;
+  - a transvection `d = [vcv^-1, l]`;
+  - an infinite simple locally finite normal `K` with `C_G(K) = 1`;
+  - the uniform bound `C = 4` over `SL_m(F_2)` stages.
+  
+  Yet `G` is sofic, and in a permutation model `tau(p_d) = 1/2`.
+- *Death step.* Commutant transport.
+  - Cutoffs, the weighted null subgroup and the bound `tau(e) <= 4 tau(p_d)` all survive exactly in `R^omega`.
+  - The bounded `L`-central sequence `pi(c) e_N` is sent by `Ad pi(v)` to a sequence with `L`-commutator norm `sqrt 2`.
+  - Transport is equivalent to `d in N_e`. The norm proof gets it from stable finiteness of the `d_n^2` conjugation
+    corona, which `B(L^2(R^omega))` lacks.
+- *Kills.* Every tracial, Hilbert-Schmidt or sofic transcription of the MF head kill that uses only local
+  compression-cell data. Together with `jacobson-corner-compressor-hulls-carry-fredholm-index`, which kills corner
+  rigid-defect certificates, both local routes to a hyperlinear head kill are closed.
+- *Separating invariant.* The compressor index character, `[L : vLv^-1] = 8` here and a positive Fredholm index for
+  `EL_3(J)` corners, extends to `G -> Z` in the witness. The soficity proof consumes that extension. It cannot extend
+  in the perfect Kazhdan group `EL_n(J)`, `n >= 3`.
+- *Where it stops (hole stays OPEN).* A nonhyperlinearity proof for the head must use ambient property (T) or
+  perfectness of `EL_n(J)`, or some finer property that `G` lacks. The survivor input also remains undecided.
+- **Next falsifiable step.** Decide whether the equality `Ad pi(u) P_H Ad pi(u)* = P_H` holds on the vector
+  `pi(c) e` in every tracial representation `pi` of `EL_20(J)` that sees the head. Here `H = EL_3(J)` and `P_H` is its
+  Kazhdan projection on `L^2`.
+  - The inequality `>=` always holds.
+  - Equality is exactly the missing transport, and it would kill the head.
+  - In the witness `G` equality fails, and there the index character extends to `G -> Z`.
+  - A failure inside `EL_20(J)` would be a hyperlinear model that sees the head. It could not come from an extended
+    index character.
+### Uniform Heisenberg bound: head-seeing models need non-uniform root defect (swarm-0917-w13-w13-nh-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+*Approach tried.* Kill the survivor "unitary models that are not scalar multiples of finite-group images", left open
+by the gapped and template entries above, using only the root Heisenberg group `H(J) = <x_12(J), x_23(J)>`. This
+group is locally finite, so it is amenable.
+
+*Result* (`jacobson-heisenberg-root-group-uniformly-kills-the-head`, established; route `...-proof`; new import
+`dot-amenable-uniform-hs-stability`, De Chiffre--Ozawa--Thom Theorem 5.2, quoted verbatim).
+- **Exact case.** Every finite-dimensional unitary representation of `H(J)` kills `x_13(JQJ)`. On each central
+  isotypic block the image of `x_12(J)` is finite. So the pairing `chi(ab)` has a right radical `R` of finite index,
+  and `R` is a right ideal. Direct finiteness of `J` on the finite quotient `J/R` then puts `Q` in `R`.
+- **Uniform case.** For every `phi : H(J) -> U(n)`, in any dimension:
+  `||phi(z) - 1||_2 < 111 sup_(g,h) ||phi(gh) - phi(g)phi(h)||_2`.
+  - This kills every model of any group receiving `H(J)`, including `EL_20(J)` and `Delta = St_20(R)` with
+    `theta z = x_13(s_1t_1)`, whose root parametrization is uniformly almost-Heisenberg.
+  - No finite-group, gap or alternating structure is needed, so it covers non-group unitary models.
+- **Invariant.** `delta_H(pi) = sup_(H(J) x H(J))` defect, on every conjugate root Heisenberg copy.
+- **Death step.** DOT rounding to a *finite-rank* corner representation, followed by the exact case.
+
+*Where it stops (hole stays OPEN).*
+- **Sharpness.** Every finite window `<F,z>` has an exact regular model with `||pi(z) - 1||_2 = sqrt 2`, so `H(J)` is
+  **not HS-stable**. Local defect `-> 0` never controls the head through `H(J)` alone.
+- **What a refutation certificate must do.** A CE head-seeing approximation of `EL_20(J)` must keep
+  `liminf delta_(gHg^-1)(pi_k) >= ||pi_k(z)-1||_2/111` on every root copy at once. Its defect escapes to root
+  elements of unbounded Toeplitz degree.
+- **What the positive side needs.** The remaining content is the interchange of `lim_k` with `sup_(H(J))`.
+- **Next falsifiable step (positive side).** Show that the Kazhdan structure of `EL_20(J)` forces local-to-uniform
+  control on `H(J)`, up to a change of approximation that preserves `tau(z)`. Concretely: bound
+  `||pi(x_12(a)) - prod_m pi(x_12(m))||_2`, over the monomials `m` of `a`, uniformly in the degree of `a`, using the
+  corner compressor `u = [[S,Q],[0,T]]`, together with the matching bound for the Heisenberg commutators. Any
+  argument that makes `delta_H(pi_k) -> 0` along head-preserving approximations, combined with (HJ2), gives
+  non-hyperlinearity of `EL_20(J)`.
+- **Next falsifiable step (refutation side).** Exhibit approximations of `EL_20(J)` whose Heisenberg defect grows with
+  the Toeplitz degree while `tr pi_k(z)` stays `<= 1/2`.

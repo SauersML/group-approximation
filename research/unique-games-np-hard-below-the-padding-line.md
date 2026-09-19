@@ -75,3 +75,39 @@ unique-games point has deficit ratio `R(c, s) = (1-s)/(1-c) > 2`.
     - randomized maps;
     - a gadget applied after a tensor power;
     - direct reductions from 3LIN or label cover with non-split outputs.
+* **Hadamard gadget reductions into Max-2Lin(2) (2026-09-18,
+  swarm-0917-w11-w11-ugc-break).** These are the direct non-split survivor
+  above, and the family behind the records `11/8` and `1.48969`.
+  - *Status:* **dead for `k <= 5`**, and **dead for every relaxed-soundness
+    certificate**. For every `k` the ratio is capped at `5/2 - 2^(1-k)`. See
+    `hadamard-gadget-deletion-ratio-window`.
+  - *Invariant:* `delta_k`, the mean normalized distance of a random word to
+    `RM(1,k)`.
+  - *Step where it dies:* soundness against a decoded threshold adversary.
+    The adversary decodes the primaries to a signed dictator, and corrects
+    only inside the cap `m(x) > tK`, with `t` uniform on `[3/4, 1]`. It
+    prices every length-one edge at `K Pr[cut] = 1 + delta_k (3 - 4/K)`,
+    which is below `2` for `k <= 5`.
+  - *Decomposition:* the family now reduces to the independently failable
+    `hadamard-gadget-crosses-padding-line` through
+    `padding-line-hardness-from-hadamard-gadget`.
+  - *Survivors:*
+    - `k >= 6` with true soundness. At `k = 6` the decoder bound is about
+      `1.9889` by Monte Carlo, so it is likely dead but not proved.
+    - From `k = 7` the decoder adversary is inconclusive.
+* **Gadget reductions from 3Lin(G) into permutation 2-CSPs on the alphabet
+  `G`.** **Dead for groups `Γ` with few fixed points (2026-09-18).** See
+  `three-lin-gadgets-stay-below-padding-line`, swarm-0917-w12-w12-ugc-break.
+  - *Invariant:* pairwise uniformity of the source constraint set. It gives
+    unique anchors `γ ∘ x_j` above agreement `(1 + ρ)/2`, and exact decoding
+    from two of the three coordinates.
+  - *Step:* per-gadget soundness. An anchored threshold adversary that is
+    random on the primaries has expected deletion at most `λ c`, with
+    `λ = 1 + (2q^2 - q - 2)/(3q^2) < 5/3`. This covers Max-2Lin(Z_q), affine
+    2Lin over `F_q`, `UG_3` and `A_5`, and `UG_4` has the cap `89/48`.
+  - Survivors:
+    - all of `UG_q` for `q >= 5`, where the adversary gives only `2.21` at
+      `q = 5`;
+    - output alphabets larger than the source alphabet;
+    - source predicates with small information sets, such as Hadamard;
+    - global NO-side certificates that are not per gadget.

@@ -10,6 +10,11 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-promotion-cost-weak-containment-2026-09-18.md
+  - research/artifacts/fpbs-mal-mapping-torus-2026-09-18.md
+  - experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py
+  - research/artifacts/fpbs-congruence-fold-census-2026-09-18.md
+  - research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -206,5 +211,259 @@ quantifier-shift).** Artifact
 - **What survives.**
   - (D1) via a P1-type bundling inequality for crossings of deep edges.
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
+
+  The claim stays OPEN.
+
+**Weak containment: promotion costs are maximal at Bernoulli, so each
+depth needs only some free witness (September 18, 2026,
+swarm-0917-w10-w10-fp-last1, stability-approximation).** Artifact
+`research/artifacts/fpbs-promotion-cost-weak-containment-2026-09-18.md`.
+- **Result.** [[fpbs-mal-promotion-cost-monotone-under-weak-containment]] is
+  ESTABLISHED, through its route.
+  - *Theorem M.* Promotion cost `P(a; H', H)`, with labels anywhere in `Γ`
+    and `H` finitely generated over `H'`, is antitone along `a ≼ b` for
+    free `a`. The proof needs one conjugator, finitely many words, and a
+    fix-up piece.
+  - With Abért–Weiss, `Q_j(ρ) = max Q_j(c)` over free actions `c` of `F_2`,
+    and `Q_j(c) <= Q_0(ρ)`.
+  - So this claim holds iff there is `c > 0` such that each depth `j` has
+    **some** free `F_2`-action `a_j` with `Q_j(a_j) >= c`. The `a_j` may be
+    unrelated, profinite, and need not extend to `Gamma_mal`.
+- **What it changes.** Every earlier lower-bound attempt used iid seeds or
+  the Bernoulli weak class (w8 Theorem A, w9 Theorem B). Lower bounds may
+  now use any free action. Only a refutation is tied to actions `≼ ρ`.
+- **Profinite reduction** (artifact §3, Proposition F). For a free profinite
+  tower `G_n = L/N_n`, `Q_j = lim_n Q_j^{(n)}`. Here `Q_j^{(n)}` is a
+  finite-colouring covering problem on the tree of `L`: realise
+  `t_j = phi^j(b)` over `L_{j+1}` at every point of `G_n`.
+- **Where it stops.** No witness can beat `ρ`, so witnesses are proof
+  devices only. No depth-`j` bound was proved for any action.
+  - Rank counting at level `n` gives `e >= 0`, since
+    `rk L_j = rk L_{j+1}`. So a profinite bound must use the fold
+    structure. This is a heuristic, not a kill.
+  - The sofic route needs a relative Carderi–Gaboriau–de la Salle identity,
+    which is not in the graph.
+- **What survives.** Hole (W): uniform per-depth witnesses, split as
+  (W-prof) and (W-sof). (D1) via bundling is unchanged. The claim stays OPEN.
+**Ascending HNN overgroup (September 18, 2026, swarm-0917-w10-w10-fp-break,
+reframing).** Artifact `research/artifacts/fpbs-mal-mapping-torus-2026-09-18.md`,
+script `experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py`.
+- **Shape tested.** Decide the price of `Gamma_mal`, and so this claim through
+  [[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]], inside the mapping torus
+  `G = <a, b, t | [a, t], t^{-1} b t = b a b^{-2}> = Gamma_mal ⋊ Z`. This
+  group has two generators and one relator. It has `G^ab = Z^2`,
+  `relC(R_G; R_{<a,b>}) = 0` in every free action, and infimal cost 1.
+- **Lemma (proved).** `Z^2 = <a, t>` is malnormal in `G`.
+  - An infinite intersection `g Z^2 g^{-1} ∩ Z^2` with `g ∉ Z^2` forces
+    `phi^j(u) ∈ <a> u <a>` for some `u ∉ <a>` that begins and ends with
+    `b^{±1}`.
+  - But `|phi(u)|_b = |u|_b + 2s`, where `s` is the number of `b`-syllables.
+  - The search finds no solution for `|u| ≤ 10` and `j ≤ 4`.
+  - Consequently `G` has trivial centre.
+- **Where it dies.**
+  - *(K1) Chains stall.* The Gaboriau chain and wq-normal criteria started
+    from `<a>`, `<t>` or `<a, t>` stop at `Z^2`.
+  - *(K2) Twice-used letters are excluded.* The twice-used-letter theorem
+    fails in every basis: the relator lies in the commutator subgroup, so it
+    would have the form `s x^p s^{-1} x^{-p}`, and then `x^p` would be
+    central.
+  - *(K3) No transfer to this claim.* The price of `G` and this claim do not
+    constrain each other. Going from the failure of the floor to price one for
+    `G` needs a cost bound on every free `N`-action. That is the OPEN
+    [[fpbs-normal-subgroup-bounded-cost-fixed-price-one]] with `K = 2`, since
+    Gaboriau's normal-subgroup theorem gives only infimal cost.
+- **Invariant.** The strict growth of `b`-length under `phi`, and the one-way
+  character of cost transfer through normal subgroups.
+
+The claim stays OPEN.
+**Finite-piece bridges pay the length floor (September 18, 2026,
+swarm-0917-w10-w10-fp-follow, minimal-counterexample).** Artifact
+`research/artifacts/fpbs-finite-piece-bridges-length-floor-2026-09-18.md`.
+- **Result.** [[fpbs-mal-finite-piece-bridges-pay-length-floor]] is
+  ESTABLISHED, through its route. Let `E ⊆ R_L` be a bridge, meaning
+  `R_K ∨ E = R_L`, whose pieces `E ∩ R_K` are finite. Suppose `E` is
+  hyperfinite, or is treed by `G` with connected pieces. If `E` is generated
+  by labels of `b`-length `≤ r`, then `relC(E; E ∩ R_K) ≥ σ_b/r ≥ 1/80r`.
+- **Invariant, and the step where members die.** The invariant is the
+  `b`-length of a generating graphing of `E`.
+  - Projecting that graphing to a transversal of the pieces and running a
+    nested Kruskal extraction gives a treeing of `E|_Y`. Its labels are
+    `K`-double translates of the generators.
+  - By Gaboriau's treeing theorem, its cost is at most `relC(E; E ∩ R_K)`.
+  - Every such bridge dies at Theorem B, Step 3 (fold exactness).
+- **What it kills.** The approximate-bridge route left open by
+  [[fpbs-malnormal-cosets-admit-no-amenable-bridges]], namely amenable `E`
+  whose trace on `R_K` has large finite classes.
+  - Cayley-subgraph bridges (`a`, `c` and `b` edges) die outright, with
+    value `≥ σ_b`.
+  - The remaining approximate bridges produce witnesses of exactly the P2
+    shape. So they are not an independent route to the negation of this
+    claim.
+- **What survives.**
+  - P2 (long labels shared across seeds).
+  - Non-hyperfinite bridges whose `E|_Y` has no treeing with short labels.
+    Their cheap graphings are as uncontrolled as the target's witnesses.
+  - Mixed traces.
+  - P3 and D1 (deep labels).
+**Profinite witnesses: exact finite-level fold density and a congruence
+census (September 18, 2026, swarm-0917-w11-w11-fp-last1,
+census-computation).** Artifact
+`research/artifacts/fpbs-congruence-fold-census-2026-09-18.md`. Experiments
+`experiments/fpbs-congruence-fold-census-2026-09-17/`.
+- **Result.** [[fpbs-mal-profinite-fold-density-is-finite-percolation]] is
+  ESTABLISHED, through its route.
+  - For a profinite action `X = lim Q_n` of `L`,
+    `sigma_b(X) = inf_n r(Q_n)/|Q_n|`, where `r` is the least 2-of-3
+    percolating set of the finite triple hypergraph. No tree is needed, unlike
+    Proposition F of w10.
+  - `Q_j(X) <= sigma_b(X∘phi^j)` for every free `X`.
+  - Every nonzero character tower and every regular dihedral tower
+    (`a -> r`, `b -> s`) percolates with `O(1)` seeds, at every depth. So such
+    witnesses have `Q_j = 0` for all `j`.
+- **What it changes.**
+  - The single-label part of W-prof is now a finite, computable invariant.
+  - A class of floor witnesses is dead at every depth.
+- **Census.** The upper bounds are certified by re-closing each seed set.
+  - Sanov congruence towers, 3-, 5- and 7-adic and primes 5 to 29: plateau near
+    .11, for example `sigma_b(3-adic) <= 1910/17496`.
+  - Random Schreier graphs: .108 to .115.
+  - Odometer and dihedral towers: `O(1/N)`.
+  - Depths `j <= 8` at level 25: between .080 and .110, with no collapse
+    (`census_depth2_out.txt`).
+  - Mod `p`, the depth generators fall into the Borel subgroup for
+    `p = 3, 5, 7, 11, 29, ...` (`borel_absorption_out.txt`). The density does
+    not collapse there either (.096 to .167 on the levels computed).
+- **Where it stops.**
+  - The census gives only upper bounds on `sigma_b`, and `sigma_b` is itself
+    only an upper bound for `Q_j`.
+  - A lower bound on `Q_j(a_j)`, as w10 Corollary 2 needs, is untouched.
+  - Surviving conjecture: `sigma_b(X) > 0` iff the profinite `X` is strongly
+    ergodic.
+**Chord-cell bootstrap: local absorption of long chords pays the seed floor
+(September 18, 2026, swarm-0917-w12-w12-fp-last1, local-designs).** Script
+`experiments/fpbs-chord-bootstrap-2026-09-17/bootstrap_injection.py`.
+- **Result.** [[fpbs-mal-bootstrap-certified-chords-pay-seed-floor]]
+  is ESTABLISHED through its route. Extend the 2-of-3 rule by one rule per
+  chord instance: when all but one b-edge on its path is known, add the last
+  one. Charge each such firing to its chord instance. Then the charged edges
+  and the ignition seeds `A_0` have a plain 2-of-3 closure containing the
+  whole bootstrap closure. So a conull bootstrap closure forces
+  `μ(A_0) + mass(Φ) ≥ σ_b ≥ 1/80`. The bound is unweighted and uniform in
+  label lengths, paths, sharing and number of labels.
+- **Invariant, and the step where members die.** The injection from new
+  b-edges to chord instances. Each instance fires at most once, at its first
+  round with at most one unknown path edge. Every "sprinkle, then absorb long
+  chords one at a time" refutation of this claim dies at that step, including
+  heavily shared long chords (the shape of P2). This covers what the w7
+  sprinkle-then-absorb kill left open for bounded-crossing steps, now for all
+  lengths.
+- **Obstruction to P1 through local closures.** The chord-cell closure is not
+  exact. `Φ_0 = bab|_X ⊔ bbab|_X` generates (`bbab (bab)^{-1} = b`), both
+  labels have b-length 2, and the bootstrap closure of `∅` is `∅`. So no
+  finite-range bootstrap rule set can replace generation, as fold exactness
+  does for b-seeds. P1 must bound circuits of several chords, where b-edges
+  appear only as composites.
+- **What survives.** A counterexample of mass `ε < σ_b` must have a
+  non-conull bootstrap closure from every ignition set of measure
+  `< σ_b − ε`. So it derives a non-null set of b-edges only through circuits
+  of two or more chords, as in `Φ_0`. Next falsifiable step: a charging rule
+  for
+  two-chord circuits. Charge `h_2 h_1^{-1}` to the pair and bound how often
+  one chord instance is reused across circuits.
+**Full triples instead of slots: `σ_b ≥ 2/25` on `W_b` (September 18, 2026,
+swarm-0917-w13-w13-fp-break, probability-random).** Artifact
+`research/artifacts/fpbs-full-triple-fold-seed-floor-2026-09-17.md`.
+Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
+- **Result.** [[fpbs-bernoulli-fold-seeds-have-density-at-least-2-25]] is
+  ESTABLISHED through its route. For every action of `F(a, b)` weakly
+  contained in Bernoulli, `σ_b ≥ 2/25`. The optimum of the method is about
+  `0.0819`. So `σ_b(Bernoulli) ∈ [2/25, 5/32]`, which replaces
+  `[1/80, 5/32]`.
+- **Invariant.** The number `F(I)` of full triples of an `n/2`-set in a
+  random Schreier graph of `F_2`. An index `v` is a full triple of `I` when
+  `v`, `σ_a v` and `σ_b v` all lie in `I`.
+  - The sequential 2-of-3 closure from `S` passes through an `n/2`-set with
+    `F(I) ≥ n/2 − |S|`, one firing index per step.
+  - With high probability, no `n/2`-set has `21n/50` full triples. The
+    first moment is `C(n,m) C(m,f)^3 / C(n,f)^2`, with exponent
+    `J(1/2, 21/50) = −0.0079`.
+
+  The w8 slot count splits each firing index into two independent slots and
+  loses a factor of about 6.
+- **Effect.** Every `1/80` in this cone improves to `2/25` by the same
+  proofs:
+  - the stage floor;
+  - the single-double-coset `relC`;
+  - the `b`-length-weighted floor, now `Σ |h| μ(D_h) ≥ 2/25`;
+  - the finite-piece bridge floor and the bootstrap-certified chord floor,
+    both on the live bus.
+
+  Evidence: greedy contagious sets on random Schreier graphs with `n` up to
+  `4·10^4` have density `≈ 0.116`, and `F(I)/n ≈ 0.385 < 0.42` at the
+  crossing.
+- **Where the method dies.** The sharp first moment of the same statistic
+  caps at `≈ 0.0822`. The count sees only one double coset: a chord of
+  `b`-length `r` unfolds into `r` seeds, and the count is blind to how those
+  seeds are shared. So it says nothing about P2 (long, shared chords) or D1.
+  This is a sharpening of the single-coset obstruction, not a decision.
+**Spectral fold-seed floor; chord isoperimetry is what remains (September
+18, 2026, swarm-0917-w13-w13-fp-last1, host-geometry).** Artifact
+`research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md`. Scripts in
+`experiments/fpbs-z3-overgroup-2026-09-17/`.
+- **Result.** [[fpbs-strongly-ergodic-actions-have-fold-seed-floor]] is
+  ESTABLISHED. For every non-atomic p.m.p. action of `L`,
+  `sigma_b ≥ inf_{μ(I)=1/2} μ(I \ (a^{-1}I ∩ b^{-1}I)) ≥ (1 − rho_X)/4`.
+  - Stop the closure rounds at measure 1/2. Each derived point uses up its own
+    triple inside the crossing set, injectively, so the seeds pay for its
+    `a,b`-boundary.
+  - The Markov gap bounds that boundary from below.
+  - On the Bernoulli class this gives `(2 − √3)/8 ≈ 0.0335` at every depth
+    `X ∘ φ^j`, against the w8 constant `1/80`.
+  - Every strongly ergodic action has `sigma_b > 0`, which is the open half of
+    the w11 conjecture.
+  - Through Theorem B, `relC_{≤ r} ≥ (2 − √3)/(8r)`.
+- **Where it stops for this claim (artifact §4.4).** Lemma 1.1 needs a witness
+  for each derived point *inside* the crossing set, with no witness shared.
+  - A chord graphing derives `w ~ bw` through circuits of unbounded length.
+  - Adding chord mass `δ` can raise the derived mass by more than any multiple
+    of `δ` (the w12 example `bab ⊔ bbab`), so no such crossing set exists in
+    general.
+  - Theorem B's unfolding pays `|h|_{K,b}` seeds per chord to get around this,
+    and that factor is the whole loss.
+- **New decomposition.** On spectral-gap actions, the claim (D0, `r > 0`)
+  follows from a *chord isoperimetry*. For a generating `Φ`, build a derivation
+  in which each chord, counted once, is the unique witness for the points it
+  derives, and stop it at a crossing set `I` with `μ(I) ∈ [1/3, 2/3]`. Then
+  `μ(Φ) ≥ C^{-1} μ(I \ (a^{-1}I ∩ b^{-1}I)) ≥ (2/9)(1 − rho)/C`. The
+  isoperimetry can fail on its own, and a failure would have to exhibit
+  circuits whose derived mass per unit of chord mass is unbounded.
+- **Dead (artifact §4.5).** Z/3 * Z/3 overgroup normalizer.
+  `search_alpha.py` found no conjugate of the triangle rotation, over
+  conjugators with at most 5 Nielsen moves, mapping `K` to a conjugate of `K`.
+### swarm-0917-w13 (fp-follow): mod-p homological certificates for (D0) are Fox annihilators
+
+- **Result.** New node
+  `fpbs-mal-modp-promotion-certificates-are-fox-annihilators`, ESTABLISHED,
+  with proof in `...-proof.md`. It gives three things.
+  - An exact finite-level identity. For every field `F`, the `H_1(-;F)` lower
+    bound on extra generating edges for `R_K v Phi = R_L` on a level `V` is
+    `k_u(V) = dim {y : y u = 0}`, with `u = 1 - c - cb = dc/db`. This is
+    checked by brute force on 900 pairs with 0 mismatches.
+  - The witness floor `Q_0(X) >= limsup k_u(V_m)/|V_m|`.
+  - Vanishing in characteristic `p` on `p`-towers, since `u` has
+    augmentation `-1`.
+- **Where the class dies.**
+  - Any proof of (D0) by mod-`p` or rational first homology of the finite
+    levels of a profinite witness equals the Sylvester rank deficit of `u`.
+  - A positive such bound contradicts Jaikin-Zapirain's Conjecture 2.4 (1)–(2),
+    which is open for non-amenable groups, over `F_p` for `F_2` at
+    `u = 1 - x - y`.
+  - Characteristic 0 is dead unconditionally (Linnell).
+  - The census has random Schreier levels up to `n = 6400`, `SL_2(Z/3^k)`, and
+    `PSL_2(F_q)` for `q <= 23`. No nested tower has `k_u/n` bounded away
+    from 0.
+- **What survives.**
+  - Non-abelian certificates `d(N_m / <<K ∩ N_m>>^L)`.
+  - (D1) deep-label arguments.
 
   The claim stays OPEN.

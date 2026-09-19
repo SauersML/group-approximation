@@ -1,0 +1,60 @@
+python: /common/software/install/manual/anaconda/python3-2024.06-1-libmamba/bin/python3 Python 3.12.4; yaml: 6.0.1
+===== GATE
+palomar: NOTE -- Palomar/BooneHigmanChallenge.lean is 331 lines / 18634 bytes, over the registry's preferred 300-line review surface, so the mechanical report carries an advisory warning
+palomar: NOTE -- Palomar/comparator-lix.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-surjunctive-nonsofic.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-pestov91.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-type-a2.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-guba-thompson.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-gkp-commuting-actions.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-x1.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-xxii.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-blanchard-toeplitz.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-lix-strong.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-metabelian-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: 9 submittable configuration(s) (Palomar/comparator-lix.json, Palomar/comparator-surjunctive-nonsofic.json, Palomar/comparator-pestov91.json, Palomar/comparator-type-a2.json, Palomar/comparator-guba-thompson.json, Palomar/comparator-gkp-commuting-actions.json, Palomar/comparator-stw-x1.json, Palomar/comparator-stw-xxii.json, Palomar/comparator-blanchard-toeplitz.json) each resolve, with shared block and every compared signature identical and the challenge importing Mathlib only; tree and metadata meet the registry minimum, and the metadata describes Palomar/comparator-boone-higman.json
+palomar: 3 pending configuration(s) (Palomar/comparator-lix-strong.json, Palomar/comparator-metabelian-boone-higman.json, Palomar/comparator-boone-higman.json) resolve, with shared block identical and the challenge importing Mathlib only; their signatures are NOT compared and their theorems are NOT published in formalization.yaml, because their solutions still carry a hypothesis -- they are not submission surfaces
+===== GATE RC 0
+===== SELFTEST
+palomar: NOTE -- Palomar/comparator-type-a2.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-guba-thompson.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-gkp-commuting-actions.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-x1.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-xxii.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-blanchard-toeplitz.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-lix-strong.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-metabelian-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+::error::[palomar] formalization.yaml: the source list declares an original result (1 original-proof entries) AND 1 substantive relationship(s); the two alternatives are exclusive
+self-test: original result with a substantive source -> reported
+palomar: NOTE -- Palomar/BooneHigmanChallenge.lean is 331 lines / 18634 bytes, over the registry's preferred 300-line review surface, so the mechanical report carries an advisory warning
+palomar: NOTE -- Palomar/comparator-lix.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-surjunctive-nonsofic.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-pestov91.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-type-a2.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-guba-thompson.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-gkp-commuting-actions.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-x1.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-xxii.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-blanchard-toeplitz.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-lix-strong.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-metabelian-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+::error::[palomar] formalization.yaml: status.main_results publishes BooneHigman.kourovka_17_59 for the pending Palomar/comparator-boone-higman.json; a row asserts a proved result, and a pending solution still carries a hypothesis
+self-test: pending result published in the metadata -> reported
+palomar: NOTE -- Palomar/BooneHigmanChallenge.lean is 331 lines / 18634 bytes, over the registry's preferred 300-line review surface, so the mechanical report carries an advisory warning
+palomar: NOTE -- Palomar/comparator-lix.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-surjunctive-nonsofic.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+::error::[palomar] formalization.yaml: status.main_results publishes Pestov91.exists_infinite_simple_propertyT_sofic for Palomar/comparator-pestov91.json, but the metadata describes Palomar/comparator-boone-higman.json only
+palomar: NOTE -- Palomar/comparator-type-a2.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-guba-thompson.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-gkp-commuting-actions.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-x1.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-stw-xxii.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-blanchard-toeplitz.json is not the submission the metadata describes, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-lix-strong.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-metabelian-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+palomar: NOTE -- Palomar/comparator-boone-higman.json is pending, so its theorems are deliberately absent from status.main_results
+self-test: foreign result published in the metadata -> reported
+palomar self-test: clean tree has no findings, 55 planted defects each reported, 0 YAML-dependent calibration(s) skipped
+===== SELFTEST RC 0

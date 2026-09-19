@@ -67,3 +67,16 @@ non-LEF sofic models are compulsory.
   correction above).
 - **What remains.** Any proof of (EKL1) must use the exact-radical structure of the mapping torus,
   not only the absence of finite quotients of `K`.
+- **Torsion-free repair of (EKL2) (calibration, 2026-09-18, swarm-0917-w13-titz-last1).**
+  Summit-hard.
+  - The repair: "a torsion-free LEF Kazhdan group without nontrivial finite quotients is trivial"
+    (EKL2-tf).
+  - Why it is summit-hard: by `hyperbolic-rf-gives-torsion-free-lef-quotientless-kazhdan`, (EKL2-tf)
+    implies that every torsion-free cocompact `Sp(n,1)` lattice has a non-residually-finite
+    torsion-free hyperbolic quotient.
+  - The mechanism: the Olshanskii--Osin--Sapir torsion-free Tarski monster over the lattice agrees on
+    each finite ball with a hyperbolic stage. So if the stages are residually finite, the monster
+    is LEF, and it is also Kazhdan and quotientless.
+  - Which arguments die: every argument from intrinsic properties of `K` alone (torsion-free,
+    Kazhdan, quotientless, sofic). It would answer Gromov's residual finiteness question.
+  - What (EKL1) must use: `ψ`, finite presentation of `K ⋊_ψ Z`, or the exact radical.

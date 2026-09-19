@@ -1,0 +1,12 @@
+T_3 x T_10  [(Z/2)^{*3} x (Z/2)^{*10}]: gr=9, p0=1/12, block=287/20736, gr^2*block=287/256 = 1.121094, violates=True, pointwise exponent deficit eps=0.02601
+T_2 x T_6  [Z x F_3]: gr=5, p0=1/7, block=97/2401, gr^2*block=2425/2401 = 1.009996, violates=True, pointwise exponent deficit eps=0.00309
+T_4 x T_12  [F_2 x F_6]: gr=11, p0=1/15, block=449/50625, gr^2*block=54329/50625 = 1.073165, violates=True, pointwise exponent deficit eps=0.01472
+T_4 x T_4  [F_2 x F_2 (no violation from this block)]: gr=3, p0=1/7, block=97/2401, gr^2*block=873/2401 = 0.363599, violates=False, pointwise exponent deficit eps=0.00000
+T_2 x T_4  [Z x F_2 (no violation from this block)]: gr=3, p0=1/5, block=49/625, gr^2*block=441/625 = 0.705600, violates=False, pointwise exponent deficit eps=0.00000
+a=2: smallest b with violation = 6
+a=3: smallest b with violation = 9
+a=4: smallest b with violation = 11
+a=5: smallest b with violation = 14
+a=6: smallest b with violation = 16
+a=7: smallest b with violation = 18
+a=8: smallest b with violation = 21

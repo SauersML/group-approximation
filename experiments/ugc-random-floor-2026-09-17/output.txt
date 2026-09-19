@@ -1,0 +1,8 @@
+(A) 200 random instances: min over instances of k*val(cond-exp labeling) = 7/5 >= 1  OK
+(B) Grass(n,2), group order K=6, eps=0.01: Hoeffding condition holds for n >= 15 (degree 49146)
+(B) Grass(n,3), group order K=24, eps=0.01: Hoeffding condition holds for n >= 15 (degree 57330)
+(B) Grass(n,4), group order K=120, eps=0.001: Hoeffding condition holds for n >= 22 (degree 7864290)
+(B) Grass(n,5), group order K=40320, eps=0.001: Hoeffding condition holds for n >= 23 (degree 16252866)
+(E1) 30 instances, holonomy Z_4 with orbit sizes {2,4}: val(U) = val(U_2) >= val(U_4)  OK
+(E2) 30 instances, holonomy Z_6 with orbit sizes {2,3}: max <= val(U) <= v2 + v3  OK; val(U) > max in 0 of 30
+(L) 20 planted S_3 instances: val(U)/2 <= val(lift) <= val(U)  OK; val(lift)/val(U) ranges over [0.667, 0.889]

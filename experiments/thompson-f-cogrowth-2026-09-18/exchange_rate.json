@@ -1,0 +1,149 @@
+{
+ "free_group_calibration": [
+  {
+   "r": 4,
+   "tree_window": 0.7722281586887512,
+   "tree_moment_N_eq_r": 0.772228158688732
+  },
+  {
+   "r": 6,
+   "tree_window": 0.8113619196946872,
+   "tree_moment_N_eq_r": 0.8113619196946656
+  },
+  {
+   "r": 8,
+   "tree_window": 0.830014897578613,
+   "tree_moment_N_eq_r": 0.8300148975786013
+  },
+  {
+   "r": 10,
+   "tree_window": 0.8404454698082207,
+   "tree_moment_N_eq_r": 0.8404454698082154
+  },
+  {
+   "r": 12,
+   "tree_window": 0.8468939298187781,
+   "tree_moment_N_eq_r": 0.8468939298187732
+  }
+ ],
+ "free_group_routes_agree": true,
+ "F_window_vs_moment": [
+  {
+   "r": 2,
+   "ball": 17,
+   "window_bound": 0.6614378266843969,
+   "moment_bound_N_eq_r": 0.661437827766,
+   "excess": -1.081603140384857e-09
+  },
+  {
+   "r": 3,
+   "ball": 53,
+   "window_bound": 0.7333804927418661,
+   "moment_bound_N_eq_r": 0.733380497911,
+   "excess": -5.169133898696998e-09
+  },
+  {
+   "r": 4,
+   "ball": 161,
+   "window_bound": 0.772228154736006,
+   "moment_bound_N_eq_r": 0.772228158688,
+   "excess": -3.951993954309785e-09
+  },
+  {
+   "r": 5,
+   "ball": 475,
+   "window_bound": 0.7984347811552273,
+   "moment_bound_N_eq_r": 0.797958959628,
+   "excess": 0.00047582152722724924
+  },
+  {
+   "r": 6,
+   "ball": 1381,
+   "window_bound": 0.8168606634068525,
+   "moment_bound_N_eq_r": 0.816097591093,
+   "excess": 0.0007630723138525308
+  },
+  {
+   "r": 7,
+   "ball": 3957,
+   "window_bound": 0.830989573267265,
+   "moment_bound_N_eq_r": 0.829999575781,
+   "excess": 0.0009899974862649374
+  },
+  {
+   "r": 8,
+   "ball": 11237,
+   "window_bound": 0.8419306925709606,
+   "moment_bound_N_eq_r": 0.840689111596,
+   "excess": 0.0012415809749606321
+  },
+  {
+   "r": 9,
+   "ball": 31589,
+   "window_bound": 0.850988689666044,
+   "moment_bound_N_eq_r": 0.849474716977,
+   "excess": 0.001513972689043963
+  },
+  {
+   "r": 10,
+   "ball": 88253,
+   "window_bound": 0.8584220571394231,
+   "moment_bound_N_eq_r": 0.856704678565,
+   "excess": 0.0017173785744231118
+  },
+  {
+   "r": 11,
+   "ball": 244823,
+   "window_bound": 0.8648218971052956,
+   "moment_bound_N_eq_r": 0.862909434453,
+   "excess": 0.00191246265229561
+  },
+  {
+   "r": 12,
+   "ball": 676061,
+   "window_bound": 0.8702728739063591,
+   "moment_bound_N_eq_r": 0.868180963387,
+   "excess": 0.002091910519359086
+  }
+ ],
+ "excess_growth_per_radius": 0.00022147303425109252,
+ "ball_growth_factor": 2.761427643644592,
+ "moment_route_fit": {
+  "points": [
+   [
+    15,
+    0.880541566189
+   ],
+   [
+    23,
+    0.899878948046
+   ],
+   [
+    31,
+    0.910677539452
+   ]
+  ],
+  "limit": 0.9645681389501053,
+  "coefficient": 0.44058357717778096,
+  "exponent": 0.6118671906522808,
+  "terms_needed_for": {
+   "0.92": 42.284004039723264,
+   "0.93": 64.05060699662076,
+   "0.95": 262.9334042441224,
+   "0.9682": null
+  },
+  "comment": "0.9682 = sqrt(15/16) is the Elvey Price-Guttmann extrapolation mu = 15.0. The fitted limit of the certified sequence is below it, so the certified sequence is nowhere near saturating the believed value; the fit is a three-point power law and is not a proof of anything."
+ },
+ "window_route_projection": {
+  "radius_to_match_32_term_moment_bound": 27,
+  "ball_growth_factor_measured": 2.761427643644592,
+  "projected_vertices": 2798922703759.8545,
+  "comment": "extrapolated with the measured excess-per-radius and the moment fit; the exponent is what matters, not the exact radius."
+ },
+ "gap_to_amenability": {
+  "certified_rho": 0.910677539452,
+  "ceiling_from_32_terms": 0.9106775394526191,
+  "distance_to_1": 0.08932246054799997,
+  "note": "||P|| = 1 iff F is amenable.  No finite list of exact cogrowth terms can prove ||P|| < 1 (thompson-f-moment-data-cannot-certify-nonamenability), and the table above shows how slowly the complementary lower bound moves."
+ }
+}

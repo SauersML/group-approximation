@@ -1,0 +1,7 @@
+ga 2 len 14 sum_inv_min 4 area_lb 4 area_lb3 1.333  hand_formula_m2(m-1) 4
+ga 3 len 20 sum_inv_min 18 area_lb 18 area_lb3 6.0  hand_formula_m2(m-1) 18
+ga 4 len 26 sum_inv_min 48 area_lb 48 area_lb3 16.0  hand_formula_m2(m-1) 48
+ga 5 len 32 sum_inv_min 100 area_lb 100 area_lb3 33.333  hand_formula_m2(m-1) 100
+ga 6 len 38 sum_inv_min 180 area_lb 180 area_lb3 60.0  hand_formula_m2(m-1) 180
+ga 7 len 44 sum_inv_min 294 area_lb 294 area_lb3 98.0  hand_formula_m2(m-1) 294
+ga 8 len 50 sum_inv_min 448 area_lb 448 area_lb3 149.333  hand_formula_m2(m-1) 448

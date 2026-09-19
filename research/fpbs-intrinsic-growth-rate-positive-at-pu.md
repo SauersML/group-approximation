@@ -7,6 +7,8 @@ distinct_from:
   fpbs-benjamini-schramm-universal: that is p_c < p_u; this implies it through fpbs-universal-intrinsic-l2-rate-route. It would be equivalent to it if lambda_1 > 0 on (p_c,1], which is expected from anchored expansion of supercritical clusters but is neither imported nor proved in the graph
   fpbs-intrinsic-l2-rate-bounded-below-above-pu: that is the l2 rate Lambda(p_u) > 0, which sees uniqueness and is strictly stronger than this l1 statement
   fpbs-supercritical-finite-susceptibility: that bounds finite clusters from above for p > p_c; this is a lower bound on all clusters at p_u, and the finite-cluster part contributes at most chi^f to it
+  fpbs-intrinsic-growth-rate-positive-above-pc: that proves lambda_1 > 0 on all of (p_c,1] from anchored expansion; this asks for positivity at the single parameter p_u, which by that result is exactly p_u > p_c
+  fpbs-intrinsic-l1-rate-criterion-is-equivalent-to-goal: that proves this claim equivalent to p_c < p_u graph by graph; this is the open premise itself
 ---
 
 **OPEN.**
@@ -45,3 +47,16 @@ window.
 1. **Via the l2 rate and uniform chemical stretch (2026-09-17).** See
    `fpbs-intrinsic-growth-rate-via-l2-rate` and
    `fpbs-uniform-chemical-stretch-above-pu`, Attempts.
+2. **Anchored expansion (2026-09-18, swarm-0917-w11-w11-bs-follow,
+   probability-random).** Brought in Hermon--Hutchcroft Corollary 1.4
+   (`fpbs-hermon-hutchcroft-anchored-expansion`, verbatim citation) and proved
+   `fpbs-intrinsic-growth-rate-positive-above-pc`: `lambda_1(t) >=
+   log(1 + phi/D) > 0` for every `t in (p_c,1]`, so `p_lambda1 = p_c` and the
+   zero set of `lambda_1` is exactly `[0,p_c]`. Consequence,
+   `fpbs-intrinsic-l1-rate-criterion-is-equivalent-to-goal`: for `p_u < 1`,
+   this claim holds iff `p_c < p_u`. The hypothesis flagged above as "expected
+   but not imported" is now established, so the claim stays **OPEN** only
+   because it is the goal restated, and the route
+   `fpbs-universal-intrinsic-l2-rate-route` is a restatement, not a
+   decomposition. Do not attack this claim directly: any proof of it is a proof
+   of `fpbs-benjamini-schramm-universal`.

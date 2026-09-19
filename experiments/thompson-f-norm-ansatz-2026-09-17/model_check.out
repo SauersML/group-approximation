@@ -1,0 +1,10 @@
+relators of F hold, s0 s1 do not commute: True
+n=1 states=1 directed move edges=0: all edges are Cayley edges, elem injective
+n=2 states=3 directed move edges=4: all edges are Cayley edges, elem injective
+n=3 states=9 directed move edges=16: all edges are Cayley edges, elem injective
+n=4 states=28 directed move edges=56: all edges are Cayley edges, elem injective
+n=5 states=90 directed move edges=192: all edges are Cayley edges, elem injective
+n=6 states=297 directed move edges=660: all edges are Cayley edges, elem injective
+n=7 states=1001 directed move edges=2288: all edges are Cayley edges, elem injective
+n=8 states=3432 directed move edges=8008: all edges are Cayley edges, elem injective
+n=9 states=11934 directed move edges=28288: all edges are Cayley edges, elem injective

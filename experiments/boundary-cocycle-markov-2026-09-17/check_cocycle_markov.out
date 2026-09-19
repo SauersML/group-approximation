@@ -1,0 +1,29 @@
+Part 1: visual measure on T_d
+  d=3 n= 1: mean=1, max_M M*nu(D>=M)=0.6667 <= 1, |B_n|/(d-1)^n=2.0000
+  d=3 n= 4: mean=1, max_M M*nu(D>=M)=0.6667 <= 1, |B_n|/(d-1)^n=2.8750
+  d=3 n= 8: mean=1, max_M M*nu(D>=M)=0.6667 <= 1, |B_n|/(d-1)^n=2.9922
+  d=3 n=12: mean=1, max_M M*nu(D>=M)=0.6667 <= 1, |B_n|/(d-1)^n=2.9995
+  d=4 n= 1: mean=1, max_M M*nu(D>=M)=0.7500 <= 1, |B_n|/(d-1)^n=1.6667
+  d=4 n= 4: mean=1, max_M M*nu(D>=M)=0.7500 <= 1, |B_n|/(d-1)^n=1.9877
+  d=4 n= 8: mean=1, max_M M*nu(D>=M)=0.7500 <= 1, |B_n|/(d-1)^n=1.9998
+  d=4 n=12: mean=1, max_M M*nu(D>=M)=0.7500 <= 1, |B_n|/(d-1)^n=2.0000
+  d=5 n= 1: mean=1, max_M M*nu(D>=M)=0.8000 <= 1, |B_n|/(d-1)^n=1.5000
+  d=5 n= 4: mean=1, max_M M*nu(D>=M)=0.8000 <= 1, |B_n|/(d-1)^n=1.6641
+  d=5 n= 8: mean=1, max_M M*nu(D>=M)=0.8000 <= 1, |B_n|/(d-1)^n=1.6667
+  d=5 n=12: mean=1, max_M M*nu(D>=M)=0.8000 <= 1, |B_n|/(d-1)^n=1.6667
+  all exact checks passed
+Part 2: Cauchy law, affine maps x -> 2^n x - m
+  n= 1 m= 0: mean=1.00000  M=2: M*nu=0.0000  M=8: M*nu=0.0000  M=2: M*nu=0.0000
+  n= 1 m= 1: mean=1.00000  M=2: M*nu=0.2952  M=8: M*nu=0.0000  M=2: M*nu=0.2952
+  n= 3 m= 0: mean=1.00000  M=2: M*nu=0.2801  M=8: M*nu=0.0000  M=8: M*nu=0.0000
+  n= 3 m= 1: mean=1.00000  M=2: M*nu=0.2785  M=8: M*nu=0.0796  M=8: M*nu=0.0796
+  n= 3 m= 5: mean=1.00000  M=2: M*nu=0.2467  M=8: M*nu=0.2881  M=8: M*nu=0.2881
+  n= 6 m= 0: mean=1.00000  M=2: M*nu=0.1109  M=8: M*nu=0.2106  M=64: M*nu=0.0000
+  n= 6 m= 1: mean=1.00000  M=2: M*nu=0.1109  M=8: M*nu=0.2106  M=64: M*nu=0.0099
+  n= 6 m= 5: mean=1.00000  M=2: M*nu=0.1106  M=8: M*nu=0.2101  M=64: M*nu=0.0494
+  n= 6 m=37: mean=1.00000  M=2: M*nu=0.0964  M=8: M*nu=0.1856  M=64: M*nu=0.2758
+  n=10 m= 0: mean=1.00000  M=2: M*nu=0.0281  M=8: M*nu=0.0560  M=1024: M*nu=0.0000
+  n=10 m= 1: mean=1.00000  M=2: M*nu=0.0281  M=8: M*nu=0.0561  M=1024: M*nu=0.0000
+  n=10 m= 5: mean=1.00000  M=2: M*nu=0.0281  M=8: M*nu=0.0561  M=1024: M*nu=0.0026
+  n=10 m=37: mean=1.00000  M=2: M*nu=0.0281  M=8: M*nu=0.0560  M=1024: M*nu=0.0230
+  all numerical checks passed

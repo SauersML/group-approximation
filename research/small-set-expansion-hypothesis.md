@@ -236,3 +236,79 @@ density `1/k`, restricted to transversals.
     vacuous for sets of measure below `gamma`, so it does not exclude large
     norms coming from tiny localized sets. No two-sided equivalence follows at
     either end.
+* **Load rigidity on the YES side of lifts, and the base spectral gate
+  (reframing, 2026-09-18, swarm-0917).** Two new claims. The lemma is
+  **ESTABLISHED**; the gate was submitted as established and set back to
+  **OPEN** after refereeing refuted its headline step (see the end of this
+  entry).
+  - *Lemma* (`lift-yes-sets-are-labelings-unless-the-base-loses-a-cut`, exact
+    replay over 56,208 sets,
+    `experiments/sse-lift-base-gate-2026-09-18/check_load_rigidity.py`). For a
+    regular base and `S <= V x [q]` of measure exactly `1/q` with
+    `Phi_L(S) <= eta`, write `P = supp S`, `A_0 = V \ P`, `beta = mu(A_0)`.
+    Then `a_uv <= l_u 1(v in P)` gives `E[l_u 1(v not in P)] <= eta`, hence
+    `mu(A_0) Phi_H(A_0) <= eta`; integrality of the loads gives
+    `Pr[l_u != l_v] <= 2 eta`; and the canonical labeling on `{l = 1}` has value
+    `>= 1 - eta - 4 beta`. Spectral trichotomy: `val(U) >= 1 - 5 sqrt(eta)`, or
+    `lambda_2(H) <= 4 sqrt(eta)`, or `mu(P) < sqrt(eta)/2`. So the necessity
+    half of `lifts-over-multiscale-expanders-expand-unless-ug-value-large` is
+    matched by a converse: up to `4 mu(A_0)` the only non-expanding sets of a
+    lift at density `1/q` are labeling sets and base sets.
+  - *Gate* (`sseh-lift-routes-need-spectrally-defective-bases`, **OPEN**,
+    conditional on `P != NP`, attempted route
+    `sseh-lift-base-spectral-gate-proof`). The part that refereeing confirmed:
+    the lemma supplies the near-satisfying YES instance that the established UG
+    gate `spectral-gap-ratio-reductions-cannot-prove-ugc` (K1) needs, and the NO
+    side supplies soundness `eta` through the cylinder and labeling necessity;
+    hence for a **support-spread** lift reduction
+    `L n {lambda_2(H) >= 5 X(eta) sqrt(eta)}` is in `P`, so unless `P = NP` the
+    hard core has `lambda_2(H) < 5 X(eta) sqrt(eta)` on **both** sides. The part
+    that was refuted: the submission went on to conclude that the base's
+    sparsest cut lies at measure `> tau` or `<= nu delta/6`, never inside the
+    small-set window. That does not follow from `Phi_H(1/q) >= 1 - eta` and
+    Cheeger, which give only `mu(B) != 1/q`. Excluding the window needs the
+    multiscale profile `Phi_H(A) >= 1 - nu/24` on all of `[1/q, tau]`, and the
+    necessity half of
+    `lifts-over-multiscale-expanders-expand-unless-ug-value-large` forces N2
+    only **at scale `1/q`** — it is a hypothesis of that claim's sufficiency
+    half. So the profile jump is an added hypothesis on the NO bases, not
+    something the reduction is forced to supply. The missing propagation is
+    recorded as `single-density-expansion-forces-the-multiscale-profile`
+    (**OPEN**, with a counterexample sketch against it: weakly coupled clusters
+    of measure `rho` in `(1/q, tau]` expand at density `1/q` yet cut cheaply at
+    `rho`).
+  - *Galois form.* For `Gal(F_2^N, K, mu)` the gate says the almost-invariant
+    character of the output Cayley graph can be taken trivial on `K`: the
+    measure-`1/2` hyperplane of expansion `O(sqrt(eta))` contains the fibre
+    subgroup. (K4) of the UG gate gives only that some character is
+    almost-invariant.
+  - *Decomposition of SSEH along lifts.* (P1) Gap-UG(`1-eps`, `nu^3 tau^2/64`)
+    hardness on bases with the N2 profile, which implies SSEH. (P2) unless
+    `P = NP`, some YES output of such a family has `lambda_2 = O(eps)`, and by
+    the gate `lambda_2 = O(sqrt(eta))` on the hard core of both sides of a
+    support-spread lift reduction; so (P2) is a shape constraint that cannot be
+    discharged. (P3) no scale gain, so the `delta` quantifier of SSEH must be met
+    by the base family and not by lifting; this one is established. (P4) the
+    profile jump, which holds for families that carry N2 — since (P1)
+    hypothesizes N2 this is not a restriction inside the decomposition, but it is
+    also not forced on an arbitrary lift reduction, which is where the
+    submission overreached. Each of (P1), (P2), (P4) fails without the others:
+    identity permutations on a noisy cube satisfy (P2) and (P4) and fail (P1); a
+    random game on a Ramanujan base satisfies (P1)'s soundness and fails (P2);
+    `q` disjoint copies fail the profile at `1/q`.
+  - Where it stops: the gate needs regular loop-free bases and the
+    support-spread hypothesis; it is silent on reductions whose YES witness lies
+    over a base set of measure `< sqrt(eta)/2` (then the witness is an
+    approximate block system of size `> 2/sqrt(eta)`, and for `delta < 2 eta` —
+    the regime SSEH needs — that branch survives); it is silent on outputs that
+    are not label-extended graphs; and the rounding item is vacuous in the
+    weighted `[delta, 10 delta]` window, where an `m`-fold labeling set is a
+    genuine counterexample to it. Nothing here is evidence for or against the
+    hypothesis.
+  - *Referee outcome, 2026-09-18.* Three lenses replayed
+    `check_load_rigidity.py` (56,208 sets, 0 failures) and re-derived the lemma
+    step by step; all three accepted the lemma and the two-sided spectral gate.
+    Two refuted the submitted claim at the profile-jump step above, and the
+    third asked for the same wording fix. The gate claim was therefore set back
+    to OPEN with the refutation and the repair recorded in its `## Attempts`;
+    the lemma stands.

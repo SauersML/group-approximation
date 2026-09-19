@@ -96,3 +96,15 @@ gate (a), with no dependence on the open `wall-rigid-z2-sft-is-quantum-rigid`. B
   - **Constructive lead (not attempted):** run the fixed-point method inside an RPCA whose local rule is a composition
     of Latin controlled permutations. The obstruction to overcome is that every fault must be seedless, so signals may
     enter a region only from one side of each side line.
+- **Computability reduction: the refutation form is a decision procedure** (swarm-0917-w11-w11-bh-break,
+  logic-computability, 2026-09-18).
+  - Result: `undecidable-quasigroup-sft-emptiness-gives-free-rigid-sft` (ESTABLISHED, unreviewed).
+    - Any nonzero period in `X_⋆` forces a doubly periodic point, so aperiodic already means free.
+    - The refutation form above implies that emptiness of `Ω(⋆, A)` is decidable.
+    - If emptiness is undecidable (`quasigroup-spacetime-sft-emptiness-is-undecidable`, OPEN), a free quantum-rigid
+      SFT with finitely presented crossed product exists. Minimality is still missing.
+  - Where it stops: no undecidability proof.
+    - The exact-simulation reduction with abelian garbage is dead by the obstruction lemma in that node's Attempts:
+      it forces the simulated rule itself to be bipermutive.
+    - The Guillon–Zinoviadis extremely expansive class is not excluded by the Theorem B Corollary. It is blocked
+      only if triangle-permutive SFTs have bounded radii of expansiveness, which was not checked.

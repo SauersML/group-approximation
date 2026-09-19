@@ -1,0 +1,33 @@
+{
+   "sources" : [
+      {
+         "usage" : "toplevel",
+         "filename" : "main.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Background_section/figure_code.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Gromov_hyperbolicity_section/Figures_code.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Horofunction_section/Figures_code.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Irrational_slope_section/Figures_code.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "Monoid_M_section/Figures_code.tex"
+      }
+   ],
+   "spec_version" : 1,
+   "texlive_version" : "2025",
+   "process" : {
+      "compiler" : "pdflatex"
+   }
+}

@@ -1,0 +1,17 @@
+[S3] C5 crossing-edge fact: 216 satisfied (b, X_u, X'_u) triples, all agree  OK
+[S3] C6 randomized constraint prob 1/|A|: 36 (x_u, x_v) pairs  OK
+[S3] C7 control wrong-sided X'_u X_u^-1: crossing-edge fact FAILS on 108/216 triples
+[S3] item 5 identity on 1296 quadruples OK; wrong-sided version differs on 216
+[S3] C1 Psi(mu)=Psi(mu^sym), C3 Phi invariance, C4 expansion identity: 12 trials OK
+[S3] C2 Condition&Round - Psi(mu^sym) >= 0, min slack = 0.0915
+[S3] C4 main term <= (Psi1+Psi2)/(2 beta^2), min slack = 0.2177
+[S3] C4 lem:relating-ent-j bound holds, min slack = 0.9366; max Phi(D) = 0.1274
+[Q8] C5 crossing-edge fact: 512 satisfied (b, X_u, X'_u) triples, all agree  OK
+[Q8] C6 randomized constraint prob 1/|A|: 64 (x_u, x_v) pairs  OK
+[Q8] C7 control wrong-sided X'_u X_u^-1: crossing-edge fact FAILS on 192/512 triples
+[Q8] item 5 identity on 4096 quadruples OK; wrong-sided version differs on 384
+[Q8] C1 Psi(mu)=Psi(mu^sym), C3 Phi invariance, C4 expansion identity: 12 trials OK
+[Q8] C2 Condition&Round - Psi(mu^sym) >= 0, min slack = 0.0746
+[Q8] C4 main term <= (Psi1+Psi2)/(2 beta^2), min slack = 0.2044
+[Q8] C4 lem:relating-ent-j bound holds, min slack = 0.9874; max Phi(D) = 0.1032
+ALL CHECKS PASSED

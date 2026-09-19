@@ -71,3 +71,64 @@ arithmetic half of that split, and it involves no winding estimate.
     `kappa_r(V) = 0`.
   - *Class killed.* Arguments that pass through the untwisted cube (or `U (x) U-bar`) and use only its winding or
     congruence data. What survives is stability restricted to cubes, which is as hard as the flagship.
+- **2026-09-18, swarm-0917-w11-w11-deligne-last1 (group-rings): tensor induction from the full multiplier torus of
+  finite-index subgroups is killed, and the hole stays OPEN.** See
+  `deligne-parameter-tori-corestrict-only-through-maslov-line`, ESTABLISHED.
+  - *The idea.* Unlike additive induction (w8), tensor induction `TI` corestricts every multiplier class of a
+    finite-index `H`, including the non-Maslov (Mess) directions of `H^2(H,R)`. The norm-model set `P(H)` is a closed
+    subgroup of the torus `H^2(H,T)` and could contain subtori there. `TI` maps them into `P(Gamma)`.
+  - *Proved.* Tensor induction realizes the transfer: `TI o res = [Gamma:H]`, and for normal `H`,
+    `res o TI = sum_(G) g^*`. This is shown with exact twisted regular representations.
+    - Consequence: `P_op = R/Z` iff `res[b] in Lie P(H)^0` iff (for normal `H`) `(Lie P(H)^0)^G != 0`.
+    - On the finite branch, `TI` kills `P(H)^0`, `Lie P(H)^0` lies in the nontrivial `G`-isotypic part, and `TI`
+      factors through the finite group `P(H)/P(H)^0`.
+    - Exact (profinite) points corestrict into `{0, e(b/2)}` on the Maslov circle, by Mal'cev plus Deligne.
+  - *Where it dies.*
+    - Continuous families of norm models of `H` in any non-Maslov direction, moved by deformation, Hecke operators
+      or tensor induction, die at "apply `tau = d TI`". The invariant is `W(H)^G`, which is nonzero only when the
+      conclusion `P_op = R/Z` already holds.
+    - Exactly realizable torsion points die at (T4).
+  - *Survivor.* Tensor-inducing a `1/3` needs a class `y in P(H) \ (P(H)^0 + R(H))`. That is a class in a
+    non-identity component of `P(H)`, with norm models, not in `P(H)^0 + R(H)`, and with `TI(y) = e(b/3)`. Only its
+    component in the finite group `P(H)/P(H)^0` matters.
+- **2026-09-18, swarm-0917-w12-w12-deligne-last1 (operator-algebras): comparison with bounded-level targets is
+  killed as a class, and the w8 tensor-cube conditional is a tautology.** See
+  `deligne-maslov-tensor-functors-are-asymptotically-regular`, ESTABLISHED. This hole stays OPEN.
+  - *Invariant.* Push a `1/3`-model into the tracial ultraproduct. It becomes a trace on `A_omega`, and by
+    `deligne-maslov-sector-traces-are-central-regular` it is central-regular. So `tr U_n(g) -> 0` at every
+    non-central `g`, and the same holds for every tensor functor `U^(x a) (x) conj(U)^(x c) (x) R` with `a + c >= 1`
+    and arbitrary `R`.
+  - *Class killed.* Comparing any such functor with a trivial, scalar, finite-image or bounded-level target on a
+    finite-index subgroup, whether by stability, rigidity or averaging. Every such argument dies when evaluated at a
+    non-central element of the kernel: the functor has trace `0` there and the target has trace `1`, so the HS
+    distance is `sqrt 2`. HS-stability versions die too.
+  - *The w8 conditional.* "Every cube is `Q`-close to a finite-image hom" fails for every cube once one
+    `1/3`-model exists. So the conditional's hypothesis is equivalent to `1/3 not in P_op`, which is the flagship.
+  - *Survivor.* Only comparisons with unbounded-level targets whose characters are asymptotically regular remain.
+    This is Dadarlat-type matricial stability, which is exactly where w8 found instability.
+  - *Uniform side, conditional.* The route remark gives a level-free contradiction for uniform models. It needs a
+    verbatim citation of `H^2_b(Lambda, R) = R [b]` for finite-index `Lambda < Sp_4(Z)` (non-cocompact
+    Burger--Monod); only the cocompact JEMS 1999 abstract was verified. The remark does not reach point-norm
+    models.
+  - *Literature.* GLMR (arXiv:2301.00476) does not cover `Sp_4(Z)`. Its Prop 1.0.12 makes lattices in covers of
+    Hermitian groups not uniformly `U(1)`-stable. BLSW needs every non-compact factor to have rank at least `3`.
+- **2026-09-18, swarm-0917-w13-w13-deligne-last1 (host-geometry): most of the monomial survivor is closed
+  uniformly in the Gamma-set, the rest is isolated, and the hole stays OPEN.** See
+  `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`, ESTABLISHED.
+  - *Duality (L1).* Operator-norm monomial `1/3`-models over an exact `Gamma`-set `X` are exactly almost-flat
+    circle bundles on the Schreier complex `Y_X`. The optimal defect is `4/3` times
+    `min ||f||_cell` over `f in kappa + 3 H^2(Y_X; Z)`, where `||.||_cell` is the `l^inf` quotient norm.
+  - *Killed uniformly in `X`,* including changing stabilizers of unbounded index, which is the w8-last1
+    survivor:
+    - classes nonzero on spherical cycles (K1), with invariant `M_0`, the `pi_2` generation mass;
+    - classes real-proportional to `kappa` (K2). The invariant is `D(Lambda) in {1,2}`, the order of `z` in
+      `H_1(Lambda~)`, obtained from Deligne's `Res_fin = <z^2>`. This is the monomial analogue of the
+      divisibility set `{+-1,+-2}` of w8, now with a defect floor `||kappa||_(cell,Y) / 6`.
+  - *Block models.* Block-monomial models with block size prime to 3 reduce to monomial ones through `det` (K3).
+  - *Where it dies.* At non-Kahler integral group classes `u in Hom(H_2(Lambda), Z)` with `u ≡ kappa` mod 3,
+    such as Eisenstein and boundary classes of congruence subgroups, and at blocks of size divisible by 3. Neither
+    invariant sees them.
+  - *New prerequisite.* The residue is posed as
+    `deligne-schreier-complexes-have-a-uniform-third-cellular-floor` (OPEN). It is *necessary* for the flagship:
+    its failure gives `1/3 in P_op` through permutation-with-phase matrices. It is sufficient for the monomial
+    part of this hole.

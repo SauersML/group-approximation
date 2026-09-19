@@ -1,0 +1,12 @@
+{
+ "pure_group_order_on_classes": 512,
+ "H_group_order_on_classes": 61440,
+ "transversal": 1024,
+ "P_orbit_sizes": [
+  512,
+  512
+ ],
+ "H_orbit_sizes": [
+  1024
+ ]
+}

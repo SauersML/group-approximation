@@ -1,0 +1,11 @@
+{
+ "relators_trivial": true,
+ "pl_tree_agree_on_random_words": 20000,
+ "cogrowth_2_4_6_8": [
+  4,
+  28,
+  232,
+  2092
+ ],
+ "letters": 4
+}
