@@ -1,0 +1,15 @@
+# nice -n 10 timeout 1200 python3 check_twist_loops.py   (2026-09-19; exit 0)
+PASS (A) loop [[e_xy(b), c e_ab c^-1], c e_ba c^-1] = e_xy(b x^(s(m+m'))) for monomial twists
+   twist of the lift of tau: [0, x1/(x2**2*x3), 0, -1/(x2**3*x3**4), 0, 0, 0, 0, x2**5*x3**5/x1]
+PASS (B) SL_3(Z), twisted lifts: e_xy(1) = [[e_xy(x_2^2), c e_ab(x_1) c^-1], c e_ba(x_1) c^-1] for all six (x,y)
+   Borel loop closes into (x,y) = [(3, 1)]
+PASS (C) lower-triangular twist: loop closes only into the lowest root (3,1)
+PASS (D) z_ij(bc, r) = [e_ik(b) e_jk(rb), e_kj(c) e_ki(-rc)]
+PASS (E) -e_1 in cone(Gamma(2) O): LP feasible
+ALL PASS
+
+real	4m34.192s
+user	0m36.307s
+sys	0m0.137s
+
+[exited with code 0]

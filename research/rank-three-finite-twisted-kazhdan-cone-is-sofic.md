@@ -274,3 +274,19 @@ centreless invisible core, and `T_3` is the basic example.
     essential, bounded twists over a character-free `H_B`.  The next step is to show that such twists are
     coboundaries modulo `E_B`, starting with diagonal twists and `H^1(H_B, Q^d) = 0`.  Otherwise, the positive
     side.
+- **w21-111, 2026-09-19: monomial twists cancel around loops (class-killing obstruction).**
+  - *Result.*  [[monomial-twisted-level-subpairs-cannot-certify-rank-three]] kills every `B ⊇ U_k`
+    whose projection `H_B`, after conjugating `B` by some `γ ∈ Gamma`, is virtually lifted by monomially
+    twisted elements.  This covers diagonal twists `diag(x^δ(σ))` for arbitrary `δ`, signed-permutation
+    twists, twists in any finite `σ̂`-invariant group, and the untwisted case (Q4), all up to finite index.
+    No cohomology (`H^1(H_B, Q^d) = 0`), boundedness or coboundary step is needed.
+  - *Why.*  For a monomial `c = D π σ`, the double commutator
+    `[[e_xy(β), c e_ab(x^m) c^-1], c e_ba(x^m') c^-1] = e_xy(β x^(σ(m+m')))`: the twist `d_y / d_z` of the edge
+    `y → z` cancels around the loop.  A line in `K0(H_mon)` walks `e_xy(α x^(2k e_i))` down to `e_xy(α)`.
+    Finite index keeps the cone for nonnegatively generated groups (T2), and `Gamma`-conjugates keep the level
+    `U_(2k)` (T4).
+  - *What is left.*  A level certificate now needs essential non-monomial twists: for every `γ`, only an
+    infinite-index subgroup of `H_B` lifts monomially.  The loop calculus for lower-triangular (Borel) twists
+    reaches only the lowest root, giving `X_31(F_q) ≤ C` (T5).  The next step is to decide whether a Kazhdan
+    `B = < U_k, u_i σ_i >` with lower unitriangular Laurent `u_i` can have `psi(C) ≤ C_F(X_31)`.  Either
+    build it, as the first twisted candidate, or run the loop calculus for parabolic twists.
