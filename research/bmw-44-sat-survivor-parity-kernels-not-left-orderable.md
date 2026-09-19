@@ -254,3 +254,19 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     conjugation, find every Klein chain.
   - **Not attempted.** Irreducibility of #332 by a route other than self-replication. It does not affect
     orderability of the three classes, which the pure four-term chains already settle.
+- (w9-107, 2026-09-18) **`31_30` #26 and `31_31` #12: no Klein pair at any length, and a non-Klein
+  certificate (`bmw-klein-free-quaternionic-parity-kernels`).**
+  - **Representation.** Both groups embed faithfully in `D^*/K^*`, where `D = [t, t²+t+1)` is a
+    quaternion division algebra over `F_2(t)`. The two tree actions become the Bruhat–Tits trees at `t`
+    and `t+1`. The letters have coordinates of degree at most 2, and the proof of faithfulness is a
+    non-backtracking path argument.
+  - **Consequence.** In `PGL_2(F)`, over any field, `a b a^{-1} = b^{-1}` with `b ≠ 1` forces `a² = 1` or
+    `b² = 1`. So the torsion-free `Γ^+` has no Klein pair, pure or conjugate, at any length. It also
+    contains no `BS(p, q)` with `p ≠ q`.
+  - **What this closes.** No Klein-power chain (Corollary 3) exists for these two kernels. The empty
+    searches of w7-107 and w8-107 are explained, and the kbottle fallback is moot. A left order is
+    impossible too.
+  - **New certificate type.** A depth-3 cone-propagation tree with 6 leaves and 54 product steps, on the
+    radius-4 ball, refutes left orders on each kernel. `verify_cone.py` checks it without a solver.
+  - **Lesson for other classes.** A class whose torsion-free parity kernel has a Klein pair does not
+    embed in any `PGL_2(F)`. A class that does embed needs cone trees, not Klein chains.
