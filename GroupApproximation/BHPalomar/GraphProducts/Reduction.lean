@@ -17,7 +17,7 @@ assumed anywhere else.
   the group is finitely presented, hence finitely generated, so it embeds in a finitely
   presented simple MIF group `H`. Then Theorem E with `n = 2` gives an action of type (A) of
   `Aut_H(H ∗ F₂)`.
-* `ProductInput`: PBH is closed under direct products (Zaremsky, arXiv:2405.09722,
+* `ProductInput`: PBH is closed under direct products (Zaremsky, arXiv:2405.18354,
   Proposition 5.5, via the disjoint union action). This one is elementary.
 
 `retractAmalgamClosure_of_inputs` gives `RetractAmalgamClosure` from these two. It is a
