@@ -1,0 +1,64 @@
+C': letter A   ray 0^w: eventual state Z   (preperiod 1), eventual output 0
+C': letter A'  ray 0^w: eventual state Ap' (preperiod 1), eventual output 1
+C': letter Ap  ray 0^w: eventual state N   (preperiod 1), eventual output 0
+C': letter Ap' ray 0^w: eventual state Ap' (preperiod 0), eventual output 1
+C': letter Z   ray 0^w: eventual state Z   (preperiod 0), eventual output 0
+C': letter Z'  ray 0^w: eventual state Z'  (preperiod 0), eventual output 0
+C': letter N   ray 0^w: eventual state N   (preperiod 0), eventual output 0
+C': letter N'  ray 0^w: eventual state N'  (preperiod 0), eventual output 0
+C': letter K   ray 0^w: eventual state K   (preperiod 0), eventual output 0
+C': letter K'  ray 0^w: eventual state K'  (preperiod 0), eventual output 0
+C': letter A   ray 1^w: eventual state Ap  (preperiod 1), eventual output 0
+C': letter A'  ray 1^w: eventual state N'  (preperiod 2), eventual output 1
+C': letter Ap  ray 1^w: eventual state Ap  (preperiod 0), eventual output 0
+C': letter Ap' ray 1^w: eventual state N'  (preperiod 1), eventual output 1
+C': letter Z   ray 1^w: eventual state N   (preperiod 1), eventual output 1
+C': letter Z'  ray 1^w: eventual state N'  (preperiod 1), eventual output 1
+C': letter N   ray 1^w: eventual state N   (preperiod 0), eventual output 1
+C': letter N'  ray 1^w: eventual state N'  (preperiod 0), eventual output 1
+C': letter K   ray 1^w: eventual state 1   (preperiod 1), eventual output 1
+C': letter K'  ray 1^w: eventual state 1   (preperiod 1), eventual output 1
+C': family {0,1} closed: True
+C': arrows [e,y]: y -> e(y): [('Ap', '1', '0'), ('Z', '0', '0'), ('N', '0', '0'), ('N', '1', '1'), ('K', '0', '0')]
+C': [A',N]                                        trivial=True  in K_inf=False
+C': [Z,N]                                         trivial=False  in K_inf=False
+C': A'NA'^-1 N^-1                                 trivial=True  in K_inf=False
+C': [K,NKN^-1]                                    trivial=True  in K_inf=False
+C': [K,N^2KN^-2]                                  trivial=True  in K_inf=False
+C': [K,AKA^-1]                                    trivial=True  in K_inf=True
+C': [K,A^3KA^-3]                                  trivial=True  in K_inf=True
+C': [Z,K] (a relator: Z = K*c, c central)         trivial=True  in K_inf=False
+C': [K,N] (not a relator)                         trivial=False  in K_inf=False
+C': nontrivial lamp combinations sum c_n A^nKA^-n (n<4, c in -1..1) that are trivial: 0
+C': w(Z,N,K)=1 iff phi(w)=1 and e_Z(w)=0, random words: 300/300 agree
+C_enc L=1 (L mod 3 = 1): 25 states; lcm of eventual periods at level 3 = 1; at level 3m, m=1: stable=True closed=True
+   loop arrows [e,y] -> e(y): [('Ap_E', 'y1', 'y0'), ('Z_E', 'y0', 'y0'), ('N_E', 'y0', 'y0'), ('N_E', 'y1', 'y1'), ('K_E', 'y0', 'y0')]
+C_enc L=2 (L mod 3 = 2): 35 states; lcm of eventual periods at level 3 = 1; at level 3m, m=1: stable=True closed=True
+   loop arrows [e,y] -> e(y): [('Ap_E', 'y1', 'y0'), ('Z_E', 'y0', 'y0'), ('N_E', 'y0', 'y0'), ('N_E', 'y1', 'y1'), ('K_E', 'y0', 'y0'), ('K_0', 'y0', 'y0'), ('K_00', 'y0', 'y0'), ('K_01', 'y1', 'y1')]
+C_enc L=3 (L mod 3 = 0): 55 states; lcm of eventual periods at level 3 = 1; at level 3m, m=1: stable=True closed=True
+   loop arrows [e,y] -> e(y): [('Ap_E', 'y1', 'y0'), ('Z_E', 'y0', 'y0'), ('N_E', 'y0', 'y0'), ('N_E', 'y1', 'y1'), ('K_E', 'y0', 'y0')]
+C_enc L=4 (L mod 3 = 1): 95 states; lcm of eventual periods at level 3 = 1; at level 3m, m=1: stable=True closed=True
+   loop arrows [e,y] -> e(y): [('Ap_E', 'y1', 'y0'), ('Z_E', 'y0', 'y0'), ('N_E', 'y0', 'y0'), ('N_E', 'y1', 'y1'), ('K_E', 'y0', 'y0')]
+C_enc L=5 (L mod 3 = 2): 175 states; lcm of eventual periods at level 3 = 2; at level 3m, m=2: stable=True closed=True
+   loop arrows [e,y] -> e(y): [('Ap_E', 'y1', 'y0'), ('Z_E', 'y0', 'y0'), ('N_E', 'y0', 'y0'), ('N_E', 'y1', 'y1'), ('K_E', 'y0', 'y0'), ('K_0', 'y0', 'y0'), ('K_00', 'y0', 'y0'), ('K_00100', 'y0', 'y0'), ('K_01', 'y1', 'y1'), ('K_0100', 'y0', 'y0'), ('K_01101', 'y1', 'y1')]
+L=2 germ gens: [Z,N] trivial=False   Z=N: False
+L=2 germ gens: [Z,K] trivial=True   Z=K: False
+L=2 germ gens: [Z,K_00] trivial=False   Z=K_00: False
+L=2 germ gens: [Z,K_01] trivial=False   Z=K_01: False
+L=2 germ gens: [Z,K_0] trivial=False   Z=K_0: False
+L=2 germ gens: [Z,A'K_01A'^-1] trivial=False   Z=A'K_01A'^-1: False
+L=2 germ gens: [N,K] trivial=False   N=K: False
+L=2 germ gens: [N,K_00] trivial=False   N=K_00: False
+L=2 germ gens: [N,K_01] trivial=False   N=K_01: False
+L=2 germ gens: [N,K_0] trivial=False   N=K_0: False
+L=2 germ gens: [N,A'K_01A'^-1] trivial=False   N=A'K_01A'^-1: False
+L=2 germ gens: [K,K_00] trivial=False   K=K_00: False
+L=2 germ gens: [K,K_01] trivial=False   K=K_01: False
+L=2 germ gens: [K,K_0] trivial=False   K=K_0: False
+L=2 germ gens: [K,A'K_01A'^-1] trivial=False   K=A'K_01A'^-1: False
+L=2 germ gens: [K_00,K_01] trivial=True   K_00=K_01: True
+L=2 germ gens: [K_00,K_0] trivial=False   K_00=K_0: False
+L=2 germ gens: [K_00,A'K_01A'^-1] trivial=False   K_00=A'K_01A'^-1: False
+L=2 germ gens: [K_01,K_0] trivial=False   K_01=K_0: False
+L=2 germ gens: [K_01,A'K_01A'^-1] trivial=False   K_01=A'K_01A'^-1: False
+L=2 germ gens: [K_0,A'K_01A'^-1] trivial=False   K_0=A'K_01A'^-1: False
