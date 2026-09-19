@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.ClassTransposition.Out.Counting: Application type
 **OPEN.** Lean module `GroupApproximation/ClassTransposition/Out/Counting.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-kourovka57.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
 error: GroupApproximation/ClassTransposition/Out/Counting.lean:226:18: Application type mismatch: The argument

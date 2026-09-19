@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.CactusBuild
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketLakeFill
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus build: the petal walk in pocket order (lane gl-p06-15)
 
