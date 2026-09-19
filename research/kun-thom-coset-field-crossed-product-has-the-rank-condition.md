@@ -91,3 +91,30 @@ per coset and to every `G`-stable subfield.
       lamps, but this is not checked.
     - A linear-sofic model that is base-faithful. Group-faithfulness does not suffice: on `F_p[Z^2]`, the rank
       over the curve `x + y + 1 = 0` is group-faithful but kills `x + y + 1`.
+- **Rigid-defect rank length (swarm-0917-w14-w14-gs-follow, stability-approximation, 2026-09-19).
+  Both remaining suppliers settled as a class kill plus a transfer; the node stays OPEN.**
+  See `kun-thom-lamp-rank-certificates-force-linear-sofic-defects` (ESTABLISHED, unreviewed).
+  - **The sofic supplier does not exist.** With `t` a strict compressor and `γ ∈ Γ \ tΓt^-1`, the element
+    `κ = [x_(to), γ] = x_(to) x_(γto)^-1` is a nontrivial rigid compression defect in `W = Z wr_H G`. So `W` is
+    nonsofic by `sofic-groups-kill-rigid-compression-defects`. So is every quotient of `W` in which `κ` survives,
+    because quotients of Kazhdan groups are Kazhdan and infranormality passes to images.
+  - **Invariant.** The defect lamp difference `δ = x_(to) - x_(γto) = (κ - 1) x_(γto) ∈ S` has
+    `rk(δ) = ℓ_rk(κ)`, the rank length of the rigid defect. Base-faithfulness forces `ℓ_rk(κ) = 1`.
+  - **Dying step (unconditional).** `ℓ_rk(κ) = 0` in each of these cases:
+    - limits of convex combinations of ranks of finite-dimensional representations
+      (`compression-defect-dies-in-finite-dimensions`);
+    - rank functions pulled back from sofic quotients of `W`;
+    - any ring map sending `κ` to 1.
+  - **Transfer (the linear-sofic supplier).** Suppose `rk` is matrix-approximable over fields of characteristic `p`
+    and `rk(δ) > 0`.
+    - Then `W/ℓ_rk^-1(0)` embeds in `∏_ω GL_m(F_p)` with the rank metric and is nonsofic. The embedding uses three
+      steps: units of the ultraproduct lift to `GL`, Nullstellensatz specialization, and restriction of scalars.
+    - So a matrix-approximable rank function on `R_p` would refute `DD(F_p-linear sofic)`, which for `p = 2` is
+      `f2-linear-sofic-groups-kill-rigid-compression-defects`. It would also separate sofic from `F_p`-linear sofic.
+    - Conversely, if that row holds, no such rank function on `R_p` exists.
+  - **Calibration.** Over `C`, `L(W) = L^∞(T^H) ⋊ G` supplies a base-faithful rank function that does not come from
+    an approximation. So the kill limits approximation methods and is no evidence against the rank condition.
+  - **What a proof now needs.** One of the following:
+    - a non-approximable characteristic-`p` dimension theory, an analogue of `L(W)` for a nonsofic orbit relation;
+    - a proof of the rank condition for `R_p` that yields no rank function.
+    A matrix model would itself be a counterexample to the `F_p`-linear sofic defect row.
