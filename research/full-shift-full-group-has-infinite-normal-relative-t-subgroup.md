@@ -65,3 +65,17 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     known whether Salo's construction can produce one.
   - **Next falsifiable step:** decide whether `Γ_p` embeds in `W(Z)` at all. For example, test
     whether its Schreier graphs on some faithful action can have bounded bandwidth.
+- **2026-09-19 (swarm-0917-w18-w18-nv-pull): the bandwidth test, done in general.** See
+  `wobbling-tau-subgroups-need-coamenable-infinite-index-subgroup`.
+  - Items 1–3 are established by `wobbling-tau-coamenable-proof`.
+  - *Bounded crossing.* `H`-orbits cross every cut boundedly often, at every scale.
+  - *Finite orbits.* A (τ)-group in `W(Z)` has finite orbits of size at most `16r/κ²`: an expander
+    gap contradicts the bounded median cut of a finite orbit.
+  - *Infinite orbits.* Hence an infinite (τ)-subgroup of `W(Z)` has infinite-index co-amenable
+    point stabilisers.
+  - *For `Γ_p`.* The following is conditional on (τ) for `SL_2(F_p[t,t^{-1}])`, recalled from
+    Serre's CSP with `|S| = 2` and Drinfeld's congruence gap, and not checked verbatim. Under that
+    assumption, `Γ_p ↪ [[X]]` needs **(P)**: a non-amenable, infinite-index, co-amenable subgroup of
+    `SL_2(F_p[t,t^{-1}])` that stabilises a finite-codimension subspace of `F_p[t,t^{-1}]²`.
+  - *Consequence.* Bounded bandwidth for finite quotients is impossible. Any embedding must go
+    through amenable infinite Schreier graphs of `Λ`. If (P) fails, the candidate is dead.
