@@ -81,8 +81,6 @@ theorem rnNF_split_right (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) 
   · have h1 : rfConjL H N e k = (rfConjL H N e k⁻¹)⁻¹ := by rw [map_inv, inv_inv]
     rw [h1, heq, mul_inv_rev, rnNF_prod_inv, map_inv, List.map_map]
     congr 1
-    refine congrArg List.prod (List.map_congr_left fun a _ => ?_)
-    exact (map_inv (rfConjL H N a.1) a.2.2).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_split_right
 

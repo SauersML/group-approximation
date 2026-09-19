@@ -67,7 +67,9 @@ theorem suslinDilAn_conj_row (p q l : Fin N) (hpq : p ≠ q) (hql : q ≠ l) (hp
     Matrix.single_mul_single_of_ne (c := y) q l p hpl.symm c
   have hZB : Matrix.single p l (c * y) * Matrix.single q l y = 0 :=
     Matrix.single_mul_single_of_ne (c := c * y) p l q hql.symm y
-  noncomm_ring [hAA, hAB, hBA, hZB]
+  have hZA : Matrix.single p l (c * y) * Matrix.single p q c = 0 :=
+    Matrix.single_mul_single_of_ne (c := c * y) p l p hpl.symm c
+  noncomm_ring [hAA, hAB, hBA, hZB, hZA]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_conj_row
 
