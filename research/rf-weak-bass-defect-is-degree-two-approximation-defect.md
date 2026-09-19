@@ -240,3 +240,20 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
     open.
   - *Next step.* Use the splitting `P ⊕ P'' = Q[H]^{(∞)}` together with the `Λ`-freeness of
     `Λ ⊗ P`, or show that fibre descent ends in a type (I) counterexample.
+- **2026-09-19 (lane `w23-112`): fibre descent stops after one step; the finite-index step is the gap.**
+  See `zero-divisor-support-is-fibre-conserved` (proposed ESTABLISHED; obstruction).
+  - *Result.* For any `φ : H ↠ Z`, the minimal zero-divisor support satisfies
+    `μ(ker φ) = μ(H)`. Normalized minimal pairs lie in every fibre at once, hence in the
+    rational derived core, and generate a finitely generated `J` with `b_1(J) = 0`. In an
+    amenable cd-2 counterexample every finite-index `J' ≤ J` is again a counterexample, with
+    `μ(J') >= μ(J)`. If `b_2(J) < ∞`, then `χ(J') = [J:J'] χ(J) >= [J:J']`, and a fibred `J'` has
+    free Alexander `H_2` of rank `ρ_2 >= ρ_1 + [J:J']`.
+  - *Obstruction.* Along descent, `μ` and every zero-divisor infimum are non-decreasing. For
+    `i >= 1`, `cd = 2`, `b_1 = 0` and `χ >= 1` at every step. So termination in type (I) needs a
+    Hirsch-length-type invariant. Restricting a minimal pair to finite index gives only
+    coset-matrix zero divisors.
+  - *Calibrations.* `D_∞`: finite index can kill all element zero divisors. Hantzsche–Wendt: a
+    non-locally-indicable group with no type (I) subgroup, whose descent exits through a
+    locally indicable fibre; that exit is closed in cd 2.
+  - *Next step.* Exclude fibred finite-index subgroups of a minimal-pair group `J`, using the
+    linear growth of their Alexander `H_2`. Alternatively, build a strictly decreasing invariant.
