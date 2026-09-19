@@ -185,3 +185,62 @@ laws, and for boxes validity is the CRT restriction lemma.
 For BH hosts: an explicit host built as a group of piecewise-canonical maps over finitely many
 arities is finitely presented by a finite check of validity and windows. The routing and
 simplicity arguments can then be layered on top without any groupoid homology.
+
+## Referee (ref-k1761, 2026-09-19): PASS, with two precisions
+
+This is an independent adversarial check of 262cbb354f, covering the three items the author asked
+for. The verdict rests on the unreviewed input `piecewise-canonical-permutations-are-transposition-products`
+(`PC = CT_P(Z)`). Its Lemma 1 is the one used in Fact O, step O3, and reads correctly. The rest
+of that node was not refereed.
+
+- **§1, generators: correct.**
+  - `B_n` is the comb: `ℓ_n = c_n ⊔ ℓ_{n+1}` is the 2-split, in child order.
+  - `X_{i,p}`, `π_k`, `Y_{n,p}` and `ρ_n` are the stated maps. They follow from
+    `ê = [B_{n'} → B_n·e]`.
+  - The two stabilizations are exact (b)/(d) instances once the tree edges `x̂_{m,m,2}` are 1:
+    - `x_{n,i,p} x_{n+p−1,n+p−1,2} = x_{n,n,2} x_{n+1,i,p}` for `i < n`;
+    - the same with `s_k`, `k ≤ n−2`.
+  - Every `ê` is one of the stable generators or a tree edge.
+- **§2, classification: complete and correct.** I rechecked every relation type.
+  - (a) Coxeter relations `s_k^2`, `(s_k s_{k+1})^3` and `(s_k s_l)^2`: the first two are
+    windows `W(k)` or `E(n)`, according to whether `k+1 = n−1`. The third is
+    `FC(π_k; π_l)` or `FC(π_k; ρ_n)`.
+  - (b) with `i < j`: this is `FC(X_{i,p}; X_{j,q})`. If `j = n` it is `FC(X_{i,p}; Y_{n,q})`
+    for odd `q`, or the stabilization for `q = 2`.
+  - (c) at a cell `i < n`: every generator has position in `[i, i+pq]`, and no tail generator
+    occurs, because the tail sits at `n+pq−1 > i+pq−1`. So this is `W(i)`. At the tail it is
+    `E(n)`.
+  - (d) for `s_k` with a split of cell `i`:
+    - `i < k` gives `FC(X; π_k/ρ_n)`;
+    - `i > k+1` gives `FC(π_k; X/Y)`, or the stabilization when `i = n` and `p = 2`;
+    - `i ∈ {k, k+1}` gives `W(k)` if `k ≤ n−2`, else `E(n)`.
+
+  In each case the width condition `pos(h) ≥ pos(g)+w(g)` holds. `W(i+1)` and `E(n+1)` are the
+  index-raised `W(i)` and `E(n)`, because the local cell patterns do not depend on `n`.
+- **Lemma FC: correct.**
+  - Step A: when `i ≥ 3`, (D) turns `FC(τ,i;υ,j)` into `FC(τ,2;υ,j−i+2)` conjugated by
+    `s^{i−2}`. All positions involved are `≥ 2`, and `j−i+2 ≥ 3`.
+  - Step B: steps 1 and 5 use only the base relator `FC(X_{2,2}; ·, 3)` through Step A. Here
+    `j−2 ≥ 2` and `j−2+δ ≥ 2`, so there is no circularity.
+  - Step 2 uses the induction hypothesis at `j−2 ≥ i+w`, over all types, including `X_{·,2}`.
+  - Step 4 uses it at `j−1`.
+  - The base cases are exactly (F) at `pos(h) ∈ {i+w, i+w+1}`, for all types of `h`.
+- **Theorem: correct.**
+  - The relators hold in `PC`, and (D) holds in `PC` by `FC(s;·)`.
+  - `W(i)` for `i ≥ 3` is `s^{−(i−2)}W(2)s^{i−2}`, since all positions in `W(2)` are `≥ 2`.
+  - `E(n)` for `n ≥ 5` is `s^{−1}E(n−1)s`, since the positions in `E(n−1)` are `≥ n−3 ≥ 2`.
+    `E(1..4)` are included.
+  - The generator count `2(|P|+1) + 2 + 2|P| + 2 = 4|P| + 6` is right.
+- **Precision 1: composition convention.** Read `gh` as "apply `h` first". Under that reading
+  the FC form `g^{−1}hg = h^{+δ(g)}` is the true identity in `PC`. I checked
+  `X_{1,2}^{−1} π_j X_{1,2} = π_{j+1}` and `X_{i,p}^{−1} X_{j,q} X_{i,p} = X_{j+p−1,q}` directly.
+  Under the other convention every FC relator must be written `g h g^{−1}`. State the
+  convention in §1.
+- **Precision 2: credit, not inputs.** The proof consumes neither CFP, Brin, Hennig–Matucci §7 nor
+  Martínez-Pérez–Matucci–Nucinkis. It is self-contained, and Lemma FC was checked directly, so I
+  did not read those sources for correctness.
+
+**Status:** it is correct that CT_P(Z) is finitely presented, conditional only on
+`PC = CT_P(Z)`. Two items are still open, as the node says:
+- the truncation of (R1)–(R3);
+- an explicit relator count.
