@@ -1,0 +1,58 @@
+seed=['O3', 'E3', 'E3', 'O3', 'E3', 'E3'] tensor=[] load=None n=24 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-4.0), np.float64(4.0))
+  adam p=8 delta=0.198441
+  adam p=32 delta=0.188095
+  adam p=128 delta=0.186667
+  adam p=256 delta=0.177688
+  p=8 regressed (0.192); restored
+ restart 0: delta=0.177688 rel=2.4e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=108
+  adam p=8 delta=0.212403
+  adam p=32 delta=0.198632
+  adam p=128 delta=0.198811
+  adam p=256 delta=0.193931
+  p=8 regressed (0.212); restored
+ restart 1: delta=0.193931 rel=2.7e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=114
+  adam p=8 delta=1.414279
+  adam p=32 delta=1.414214
+  adam p=128 delta=1.414214
+  adam p=256 delta=1.414214
+  p=8 regressed (1.41); restored
+ restart 2: delta=1.414214 rel=2.5e-14 w=(np.float64(-4.0), np.float64(-2.0)) secs=83
+  adam p=8 delta=0.198905
+  adam p=32 delta=0.182696
+  adam p=128 delta=0.175716
+  adam p=256 delta=0.160011
+  p=8 regressed (0.17); restored
+ restart 3: delta=0.160011 rel=2.4e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=58
+  adam p=8 delta=0.212886
+  adam p=32 delta=0.200491
+  adam p=128 delta=0.193182
+  adam p=256 delta=0.170411
+  p=8 regressed (0.182); restored
+ restart 4: delta=0.170411 rel=3.3e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=74
+  adam p=8 delta=0.215060
+  adam p=32 delta=0.195647
+  adam p=128 delta=0.201378
+  adam p=256 delta=0.187393
+  p=8 delta=0.174312 rel=4.1e-14
+  p=32 delta=0.174312 rel=4.1e-14
+  p=128 delta=0.174311 rel=4.9e-14
+  p=512 delta=0.174311 rel=5.5e-14
+  p=2048 delta=0.174311 rel=7.0e-14
+ restart 5: delta=0.174311 rel=7.0e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=119
+  adam p=8 delta=0.231935
+  adam p=32 delta=0.210810
+  adam p=128 delta=0.210733
+  adam p=256 delta=0.203687
+  p=8 delta=0.176422 rel=3.5e-14
+  p=32 delta=0.174312 rel=2.8e-14
+  p=128 delta=0.174311 rel=2.5e-14
+  p=512 delta=0.174311 rel=2.4e-14
+  p=2048 delta=0.174311 rel=3.3e-14
+ restart 6: delta=0.174311 rel=3.3e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=90
+  adam p=8 delta=0.219857
+  adam p=32 delta=0.198741
+  adam p=128 delta=0.205597
+  adam p=256 delta=0.186602
+  p=8 regressed (0.208); restored
+ restart 7: delta=0.186602 rel=3.7e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=96
+BEST n=24 delta=0.160011 profile 2sin(pi/36)=0.174311
