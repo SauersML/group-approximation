@@ -1,0 +1,5 @@
+import NonsoficGroupsExist.Steinberg.RootKernelRigidity
+#print axioms NonsoficGroupsExist.SteinbergGroup.map_x_eq_one_of_map_x_eq_one
+#print axioms NonsoficGroupsExist.SteinbergGroup.hom_eq_one_of_map_x_eq_one
+#print axioms NonsoficGroupsExist.SteinbergGroup.map_x_injective_of_ne_one
+#print axioms NonsoficGroupsExist.SteinbergGroup.fin_exists_spare_four

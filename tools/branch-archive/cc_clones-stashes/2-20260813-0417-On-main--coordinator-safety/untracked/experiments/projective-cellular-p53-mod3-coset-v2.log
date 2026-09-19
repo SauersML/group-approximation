@@ -1,0 +1,4 @@
+usage: sl3_projective_cellular_modular_coset.py [-h] --modulus MODULUS
+                                                [--exact-lift-output EXACT_LIFT_OUTPUT]
+                                                input lift output
+sl3_projective_cellular_modular_coset.py: error: the following arguments are required: output

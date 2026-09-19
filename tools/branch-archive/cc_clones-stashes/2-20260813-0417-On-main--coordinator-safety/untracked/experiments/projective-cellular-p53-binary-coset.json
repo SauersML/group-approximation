@@ -1,0 +1,19 @@
+{
+  "ambient_dimension": 328,
+  "binary_coset_leader_support": [
+    240,
+    287,
+    302,
+    304
+  ],
+  "binary_coset_leader_weight": 4,
+  "candidate_mod2_weight": 13,
+  "parity_check_rank": 104,
+  "prime": 53,
+  "range_rank": 224,
+  "solver": "GLPK branch-and-bound",
+  "syndrome_support": [
+    103
+  ],
+  "verification": "parity_check_times_solution_equals_syndrome"
+}
