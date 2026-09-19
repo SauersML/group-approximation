@@ -64,3 +64,15 @@ Finiteness of germ extensions is governed by the separation topology of the boun
 cut points, which are Bowditch splittings over two-ended groups, are what make singular sets finite. Property (T)
 removes all splittings, so it removes local cut points and with them the bounded theory. On the germ side, (T) acts
 exactly as it does on the cube side: both routes need walls, or finitely many of them.
+
+## Referee note (bh-ref-q12, 2026-09-19)
+
+- **Now refereed.** `vector-level-set-complexes-need-a-bounded-family`, items 1 and 2: PASS.
+  `countable-sets-never-separate-continua-without-local-cut-points`: the Lemma and the Kazhdan application PASS.
+  Random groups hold "with overwhelming probability".
+- **Still unreviewed.** `busemann-frontiers-separate-the-boundary` Theorem 1, the pentagon three-checks artifact, and
+  the higher-dimensional sketch.
+- **"Only when the boundary has local cut points" (given persistence)** is correct. It is the contrapositive of the
+  Lemma: a bounded host plus persistence would make `F` a countable closed separating set.
+- **"Vertex groups without local cut points … still give unbounded hosts"** is a heuristic. The splitting case was
+  not proved.

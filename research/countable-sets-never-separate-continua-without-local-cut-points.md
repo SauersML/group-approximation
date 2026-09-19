@@ -9,7 +9,7 @@ distinct_from:
   busemann-frontiers-separate-the-boundary: that proves the shear frontier separates the boundary and needs the topological input (T0), recalled only for spheres; this proves (T0) for all Peano continua without local cut points and applies it to Kazhdan and random groups.
 ---
 
-**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary point-set topology; not reviewed). The statement is
+**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary point-set topology; Referee bh-ref-q12 2026-09-19: Lemma PASS, and the application to Kazhdan and random groups PASS with two wording repairs). The statement is
 probably classical (in the style of Whyburn's *Analytic Topology*). No priority is claimed, and the literature was
 not searched beyond two web queries.
 
@@ -58,3 +58,49 @@ The separation topology that decides whether germ-extension finiteness can work 
 local-cut-point topology. Groups whose boundaries have no local cut points, which include every Kazhdan hyperbolic
 group, have uncountable shear frontiers. For them the bounded theory is expected to be unavailable, and no
 dimension count is needed to see it.
+
+## Referee (bh-ref-q12, 2026-09-19): Lemma PASS; application PASS with two wording repairs
+
+**The Lemma: correct, step by step.**
+- **The definition.** "Some connected open `W ∋ p` with `W ∖ {p}` disconnected" is equivalent, in a Peano continuum,
+  to Bowditch's "`X ∖ {p}` has at least two ends at `p`".
+  - If `W ∖ {p} = A ⊔ B`, both pieces accumulate at `p`; otherwise one would be clopen in `W`.
+  - So every smaller connected neighbourhood of `p` is also cut by `p`.
+- **`X = cl U ∪ cl V`.** A nonempty open subset of a nondegenerate Peano continuum contains a nondegenerate connected
+  open set, so it has cardinality at least the continuum.
+- **`K = cl U ∩ cl V`.** It is nonempty, since `X` is connected. It lies in `C`, since `U, V` are open and
+  disjoint.
+- **An isolated point.** A nonempty countable compact Hausdorff space has one (Baire).
+- **The contradiction.** Local connectedness gives a connected open `W` with `W ∩ K = {p}`.
+  - `A` and `B` are relatively closed, disjoint and cover `W ∖ {p}`.
+  - They are nonempty because `p ∈ cl U ∩ cl V` and `p ∉ U ∪ V`.
+- **Classical source.** None pinned down: two searches (09-19) and my own recollection of Whyburn's *Analytic
+  Topology* and Kuratowski's *Topology II* on local separating points. The argument is short and self-contained, so
+  the Lemma stands on its proof. Record it as "folklore, proof given". No priority is claimed, and none should be.
+- **Scope.** The countability hypothesis is sharp in the Menger case. The Menger curve is a 1-dimensional Cantor
+  manifold, and compact 0-dimensional (e.g. Cantor) subsets can separate it. So "no countable closed set" cannot be
+  improved to "no 0-dimensional closed set" there. On `S^m`, `m ≥ 2`, it can.
+
+**The application.**
+- **Local connectivity: correct as recalled.** A one-ended hyperbolic group has a locally connected boundary. That
+  is Bestvina–Mess (locally connected iff no global cut point), with Bowditch and Swarup (no global cut points).
+- **Local cut points: correct as recalled.** For one-ended `Γ` with `∂Γ` not a circle, `∂Γ` has a local cut point
+  iff `Γ` splits over a two-ended subgroup (Bowditch, *Cut points and canonical splittings of hyperbolic groups*,
+  Acta Math. 180 (1998)). A circle boundary means virtually Fuchsian (Tukia, Gabai, Casson–Jungreis).
+- **Kazhdan groups: correct.**
+  - (T) ⇒ (FA) (Watatani). So `Γ` has no splitting over finite groups, and is one-ended by Stallings.
+  - An infinite hyperbolic Kazhdan group is non-elementary, since virtually cyclic infinite groups lack (T).
+  - Virtually Fuchsian groups have finite-index subgroups with infinite abelianization, so they are not Kazhdan.
+  - No splitting over two-ended subgroups follows from (FA).
+- **Random groups.** Dahmani–Guirardel–Przytycki (*Random groups do not split*, Math. Ann. 2011): at density
+  `< 1/2`, with overwhelming probability, a random group is hyperbolic, one-ended, has (FA), and has Menger-curve
+  boundary.
+  - **Repair 1.** Say "with overwhelming probability", not "every random group", in the title and the text.
+- **The frontier `F` is closed.** It is a finite union of intersections of the closed sets `R_σ`, which are images
+  of clopen sets under the closed map `φ`. So the Lemma applies to it. Theorem 1 of
+  `busemann-frontiers-separate-the-boundary` was not re-reviewed here.
+- **Repair 2.** "Conjecture U now rests only on persistence" is right for the topological input. Conjecture U is
+  "unbounded", i.e. `sing(g)` is infinite, and that also needs Theorem 1 of the frontier node, which is unreviewed.
+
+**Verdict: PASS**, with the two wording repairs. The Lemma is a folklore-level fact with a correct proof; no
+classical citation was found.
