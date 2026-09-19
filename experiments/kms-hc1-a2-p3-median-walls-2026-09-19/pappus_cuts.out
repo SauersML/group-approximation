@@ -1,0 +1,8 @@
+vertices 18 edges 27
+bipartitions with (C1)+(C2) [two local sides]: 10125
+bipartitions with (C1)+(C3) [locally geodesic]: 0
+bipartitions with (C1)+(C2)+(C3): 0
+two-sided cuts by smallest angle (units of pi/3): {1: 10080, 2: 45}
+fewest bent pairs: 3 (|S|=3, P=[0])
+distribution of #bent pairs (first 8): [(3, 36), (6, 99), (7, 216), (8, 162), (9, 108), (10, 540), (11, 216), (12, 342)]
+convex local shapes (edges allowed): 1293 candidate S, 0 admissible

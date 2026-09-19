@@ -434,6 +434,22 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    - Next: the centralizer pairing `delta_a` on `diag(u,u,u^-2)`.
    See `kms-hc1-p-power-value-vanishes-on-affine-root-groups`.
 
+14. **Cubulating `Gamma_3`, or proving (T): (T) is false, and convex walls do not exist (w28-057).**
+   - **Not (T).** `P_3` has index `3^6` and is torsion-free, with
+     `P_3^ab = Z^24 + Z/3` (GAP). So `Gamma_3` is not Kazhdan, and no Ozawa
+     certificate exists at any radius.
+   - **For (T3).** `ker phi^` is infinite. It lies in `bar P_3` and surjects
+     onto a finite-index subgroup of `Z_3^24 + Z/3`, because every open
+     subgroup of `I_1` has finite abelianization (`sl_3(F_3)` is perfect).
+   - **No convex walls.** `X_3` has no convex wall. At a vertex, a wall would
+     give a far-apart set of Pappus-link vertices and midpoints with an
+     admissible side colouring. There are 1293 far-apart sets, and exhaustive
+     search finds that none admits one.
+   - So cubulation needs relatively quasiconvex codimension-1 subgroups whose
+     tracks bend by at least `pi/3`, or another CAT(0) model.
+   - Next: test the quasiconvexity of bent tracks in `Y = X_3/P_3` dual to
+     `H^1(P_3;F_2) = F_2^24`, including how they meet the flats.
+   See `kms-hc1-a2-p3-no-convex-walls-and-not-kazhdan`.
 14. **Cartan relator: the torus kills the centralizer pairings, and `R_n`
    carries exactly `C_nA` (obstruction, all p >= 5). `V_n` is one of four
    `S_3`-submodules.**
