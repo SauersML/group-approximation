@@ -155,3 +155,19 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
   - Over `F_q(t)` the translation core is locally finite, hence AF, which is why the models exist there.
   - Next: finiteness of `V_3(BS(1,2))` must come from a Stein–Farley complex decorated by the 2-adic Bruhat–Tits tree,
     not from `k`-graphs.
+- **2026-09-19 (w15-101).**
+  - **`V_3(BS(1,2))` is of type `F_∞`, by citation, with no new complex**
+    (`rational-affine-rn-groups-over-type-f-hosts-are-f-infinity`).
+    - `BS(1,2)` is of type `F` and self-similar on `T_3`.
+    - Skipper–Witzel–Zaremsky (arXiv:1712.05361, Thm 4.15) transfer `F_n` from a self-similar `G` to `V_d(G)`.
+  - More generally, `V_p(Z[1/m] ⋊ U_0)` is `F_∞` whenever `U_0` has finite index in `Z[1/m]^×` and `p ∤ m`.
+    - The host acts cocompactly on `∏_{ℓ|m} BT_ℓ` with cyclic stabilisers.
+    - This corrects the "Open" note of the `k`-graph node and the "length 2" remark on `Aff(Z[1/6])` in the
+      function-field Stein node.
+  - A decorated Stein–Farley complex is needed only for hosts of deficient unit rank, which are not `FP_2`.
+  - The first such case is `H_* = Z[1/6] ⋊ ⟨2/3⟩` on `Z_5`. It is finite-state, not contracting, not persistent, and
+    has `N ≠ K_∞`, so every known criterion is silent.
+    - Its persistent re-embedding on `T_6` has `V_6(H_*)` not finitely presented.
+    - `V_5(H_*)` is the Cantor analogue of the open Bieri–Strebel compact-interval case.
+  - Next: decide whether `V_5(Z[1/6] ⋊ ⟨2/3⟩)` is finitely presented. The candidate complex is a Stein–Farley complex
+    decorated by `DL(2,3) ⊂ BT_2 × BT_3`.
