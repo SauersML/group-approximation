@@ -464,3 +464,28 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Bounded-depth symmetric models are sofic approximations (swarm-0917-w14-w14-nh-pull, 2026-09-18, family
+stability-approximation, obstruction-miner).** Landed as `bounded-depth-symmetric-models-are-sofic-approximations`
+(established, unreviewed, route `-proof`). It settles the `A_m`-on-configurations step above for bounded
+configuration size. It reduces that step to a soficity question; it does not kill it.
+- *Statement.* Let `π = c·ρ∘φ` be an asymptotic model of any group through `φ: G -> Sym(m)`, with `ρ` having all
+  constituents one-dimensional or of depth or conjugate depth in `[1, D]`. Then `φ` is a Hamming sofic approximation:
+  `d_Ham(φ(g)φ(h), φ(gh)) <= def^2/w + C_D/m`. Also `||π([a,b]) - 1||_2 <= 3 def + (2w(D(1-f(κ)) + C_D/m))^{1/2}`,
+  where `κ = [φ(a), φ(b)]`.
+- *Invariant.* The fixed-point fraction `f`. The character ratio on `(m-j, μ)` is `f^j + O_j(1/m)` (Young's rule,
+  Kostka inversion and hook bound; checked by Murnaghan-Nakayama in the artifact).
+- *Death step.* A Hilbert-Schmidt relator defect is at least `w(1 - f) - O(1/m)`, which is a Hamming defect. So the
+  model is a sofic certificate in disguise, and it sees the head only if the sofic trace moves the head.
+- *Consequence.* The finitary kernel `L = GL_fin(V^n, F_2) ⊂ EL_n(J)` is simple, contains `z_Q`, and has trivial
+  centralizer. So a bounded-depth symmetric model of `Δ` sees `z` iff `EL_5(J)` is sofic. The "iff" uses the pullback
+  along `EL_5(J) ≅ St_5(J) -> St_20(R)` and, for the converse, the standard representation. Soficity of `EL_5(J)`
+  implies `binary-jacobson-el3-is-sofic`. So these certificates cannot separate hyperlinear from sofic for `EL_20(J)`,
+  and cannot refute the hole on that route.
+- *Survivors (hole stays OPEN).*
+  - Symmetric constituents of depth growing faster than a universal `h(m) -> ∞`.
+  - Growing depth `D_k <= h(m_k)` where the head is invisible to the sofic trace but moves at least `c/D_k` of the points.
+  - Product actions of `A_m^ℓ` with `ℓ -> ∞`.
+  - The primitive non-alternating branch of `fp-simple-finite-group-models-reduce-to-alternating-constituents`.
+- **Next falsifiable step.** Either extend Lemma CA to depth `j ~ m^α` using Roichman or Larsen-Shalev character
+  bounds, which would close the first two survivors, or decide soficity of `EL_5(J)` directly.
