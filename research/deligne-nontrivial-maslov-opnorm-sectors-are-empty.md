@@ -286,3 +286,39 @@ operator-norm asymptotic representations.
     norm-level invariant that is not a restatement of the gate, and none is
     known. The gate stays OPEN. Live routes are unchanged: (A) with (B_op),
     the Schreier cellular floor, and the HS gap.
+
+- **2026-09-19, swarm-0917-w19-w19-deligne-pull (reframing, transplanter): superrigidity plus Deligne's
+  finite-quotient order cannot see (R-a); the approach is DEAD, the gate stays OPEN.**
+  - *Setting.* Take an honest `rho : M -> U(d)` with `eps = ||rho(t_s) - omega I||` small. This is the
+    input to (B_op) `mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap`. Put `G = cl rho(M)`
+    and `H = cl rho(I_2)`, as in `mod-s2-near-scalar-torelli-closure-dichotomy`.
+  - *What the transplant gives.* Neither item is in the graph as a claim.
+    - (S1) `[G : H] < infinity`, so `G^0 = H^0`. Proof: `H` is closed and normal in `G`, so `G/H` is a
+      compact Lie group. It embeds in some `U(N)` by Peter-Weyl, and `Sp_4(Z) = M/I_2` maps densely into
+      it. Margulis superrigidity with the congruence subgroup property (for `Sp_4`, real rank 2; not
+      pinned in the graph) forces finite image. Hence `G/H` is finite.
+    - (S2) In every finite quotient `Q` of `Gamma~_count = M/ker(count)`, the order of `t_s` is prime
+      to 3. Proof: `t_s` is central there. If `3` divides its order `n`, then `Q/<t_s^3>` is a finite
+      quotient of `E_3` in which `t_s` has order exactly 3. That contradicts
+      `Res_fin(E_3) = C_3` (`deligne-triple-cover-finite-residual-is-center`).
+  - *Where it dies: the step "exclude `omega I in cl[H,H]`", i.e. residue (R-a).*
+    - (S1) says `rho` is controlled by `G^0 = H^0` up to a finite component group. (S2) and the Frobenius
+      result (`mod-s2-finite-image-near-scalar-reps-are-torelli-abelian`) settle only the finite-image
+      part, which is already done. Determinants see only `dim mod 3` (PC6/CD4).
+    - Every certificate in this family reads only these invariants:
+      - the finite group `G/G^0` and the image of `t_s` in it;
+      - orders of `t_s` in finite quotients;
+      - `det` and `Tr log` data;
+      - the Zassenhaus smallness of the generators `g_x = omega^-1 rho(t_x)`.
+    - All of these are compatible with the model configuration `G^0 = H^0 >= SU(3)`, with `omega I` in the
+      semisimple part `[H^0, H^0]`. Examples: two `eps`-near-identity elements of `SU(3)` topologically
+      generate `SU(3)`, `det = 1 in mu_5`, `3 | d`, and `G/G^0` is trivial.
+    - The invariant this family never touches is *whether the central scalar `omega` lies in the connected
+      semisimple part of the Torelli closure*. To decide it, one must use the `M`-relations (lantern,
+      chain) on the `g_x` inside `H^0`, not on quotients of it.
+  - *Consequence.* Compact-closure, superrigidity and finite-quotient reframings of (B_op) all reduce to
+    (R-a) together with (R-b) of `mod-s2-near-scalar-torelli-closure-dichotomy`, and add nothing past
+    (S1). A refutation of (B_op) through infinite-image `rho` must realize (R-a). Candidates are
+    TQFT-type representations whose Torelli closure contains a copy of `SU(3k)`. The graph has no
+    computation of separating-twist spectra for these beyond the Jones `(3,3)` family, and that
+    computation is the natural next test.
