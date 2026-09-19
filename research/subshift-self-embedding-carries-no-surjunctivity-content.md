@@ -3,7 +3,8 @@ rg: 2
 id: subshift-self-embedding-carries-no-surjunctivity-content
 kind: claim
 title: A strictly embedded proper subshift says nothing about surjunctivity
-invalidates: [nonsurjunctive-by-extending-the-subshift-automaton]
+invalidates:
+  - nonsurjunctive-by-extending-the-subshift-automaton
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
   - GroupApproximation/Leavitt/UnitAdditiveSpan.lean

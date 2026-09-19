@@ -3,8 +3,6 @@ rg: 2
 id: amir-lazarovich-plus-subgroup-is-perfect
 kind: claim
 title: Abelian quotients of the colour-preserving subgroup of a one-vertex lattice in T × X_L are transducer cocycles; for every Amir–Lazarovich lattice Λ'^+ is perfect, whatever the BMW seed
-requires:
-  - amir-lazarovich-simple-lattice-has-torsion-iff-index-four
 distinct_from:
   amir-lazarovich-simple-lattices-have-torsion: that proves Λ'^+ simple (so Λ = Λ'^+ has torsion) for seeds with a collapsed pair a_j a_k in FR(Γ), hypothesis (H), and AL's explicit scaffolding; this proves only perfectness, but for every seed and every scaffolding with (P3), so it bounds what a seed violating (H) could still do.
 artifacts:

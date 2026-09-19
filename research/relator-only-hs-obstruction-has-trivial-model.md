@@ -3,7 +3,8 @@ rg: 2
 id: relator-only-hs-obstruction-has-trivial-model
 kind: claim
 title: Relator-only normalized-HS obstructions cannot rule out microstates
-invalidates: [nonhyperlinear-from-extensive-index-defect]
+invalidates:
+  - nonhyperlinear-from-extensive-index-defect
 distinct_from:
   additive-index-instability: That is an amplification no-go for raw additive indices; this is the more elementary logical gate that a finite presentation always has the trivial exact unitary tuple, so relator defect alone cannot obstruct existence of approximate representations.
   index-density-is-amplification-stable: That says index per dimension survives amplification; this says amplification-stability is irrelevant until a separation condition ties the index to a nontrivial group element.

@@ -3,7 +3,8 @@ rg: 2
 id: block-monomial-coordinate-collapse
 kind: claim
 title: Block-monomial fiber models collapse to permutation models
-invalidates: [block-monomial-fiber-models]
+invalidates:
+  - block-monomial-fiber-models
 distinct_from:
   coordinate-action-not-sofic: that says the coset action is not sofic, imported by citation; this is a proved reduction sending a strictly larger class of models — block-monomial, not permutation — into that citation's reach
   diagonal-normalizer-rigidity: that concerns approximate normalizers of the FULL diagonal masa and is sharp there; this concerns exact block-monomiality over a COARSE decomposition, which that result explicitly does not cover

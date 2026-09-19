@@ -3,10 +3,6 @@ rg: 2
 id: pinned-passengers-collapse-when-the-shifted-system-is-solvable
 kind: claim
 title: In a pinned HNN-recursive annular germ group, if the pinning system with shifted driver data has any solution in the base, the passenger already lies in the driver; so a genuinely non-ascending pinned host needs the passenger's depth transport to be definable over the driver but unrealized in the base
-requires:
-  - fp-annular-germ-groups-are-hnn-recursive
-  - fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups
-  - pinned-annular-passengers-are-class-functions-of-the-driver
 distinct_from:
   pinned-annular-passengers-are-class-functions-of-the-driver: that constrains the driver at a single depth; this constrains how the pinned passenger interacts with the HNN stable letter.
 ---

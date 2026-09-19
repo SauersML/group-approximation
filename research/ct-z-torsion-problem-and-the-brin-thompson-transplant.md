@@ -3,11 +3,9 @@ rg: 2
 id: ct-z-torsion-problem-and-the-brin-thompson-transplant
 kind: claim
 title: "The torsion problem of CT(Z) is open: Belk–Bleak's proof for 2V (read at source) needs independent prefix replacements on two coordinates, which CT(Z) cannot supply since one slope acts on every p-adic coordinate; the rational transfer maps that do exist have alphabets of coprime sizes; in CT(Z) finite order equals tameness, and torsion is undecidable as soon as some finitely generated subgroup (for instance 2V, if it embeds) has unsolvable torsion problem; and the analog of Belk–Bleak Theorem 6.6 (reaching a residue class) is undecidable in CT_{3,5,7,11,13}(Z)"
-requires:
-  - ct-z-residue-partition-certificates-live-on-s-adic-coordinates
-  - ct-z-finite-cycle-problems-are-undecidable
-  - ct-z-conjugacy-problem-is-undecidable
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `ct-z-residue-partition-certificates-live-on-s-adic-coordinates`, `ct-z-finite-cycle-problems-are-undecidable`, `ct-z-conjugacy-problem-is-undecidable`.
 
 **Status.**
 - **Theorems 1–4:** lane proof, not reviewed. Theorem 4 is due to lane bh-free-58. Theorem 3 is conditional on input (H) of

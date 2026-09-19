@@ -3,7 +3,8 @@ rg: 2
 id: xor-lift-of-bernoulli-has-positive-fiber-entropy
 kind: claim
 title: The XOR automaton over the integers lifts uniform Bernoulli with conditional entropy log 2
-invalidates: [gottschalk-via-flip-lift-and-zero-fiber-entropy]
+invalidates:
+  - gottschalk-via-flip-lift-and-zero-fiber-entropy
 distinct_from:
   ca-bernoulli-lifts-have-zero-fiber-entropy: that is the universal zero-entropy statement; this is the counterexample refuting it.
   strict-split-pairs-carry-positive-entropy-flip-lifts: that derives positive fiber entropy from a strict split pair; this exhibits positive fiber entropy over a surjunctive group, where no strict pair exists.

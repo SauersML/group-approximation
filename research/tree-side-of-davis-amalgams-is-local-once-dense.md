@@ -3,9 +3,6 @@ rg: 2
 id: tree-side-of-davis-amalgams-is-local-once-dense
 kind: claim
 title: For an amalgam Λ = W_1 *_A W_2 of Davis lattices whose X-projection has closure containing U^+, the tree projection is automatically non-discrete and faithful, so boundary-2-transitivity of the tree closure reduces to the two finite permutation groups W_i ↷ W_i/A (containing Alt(c_i)); with the all-vertex density certificate, Kourovka 21.46 on this route is a finite verification for one explicit twist
-requires:
-  - al-local-to-global-holds-without-vertex-transitivity
-  - bm-lattices-have-color-preserving-edge-groups
 ---
 
 **ESTABLISHED** (lane proof, not reviewed) for items 1–2. Item 3 rests on Burger–Mozes Props. 3.3.1–3.3.2

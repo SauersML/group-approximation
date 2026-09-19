@@ -3,14 +3,12 @@ rg: 2
 id: branching-squares-are-the-only-operadic-escape-from-the-cap
 kind: claim
 title: A finite-spine operad with finite transformations is capped whenever its split-refinement function is uniformly recursive; unary squares make both Ore and the cap local, so a machine-simulating operad must have branching squares, where reconciliation is not well founded and Ore is a global statement, the halting theorem in a machine operad
-requires:
-  - bounded-propagation-operads-have-capped-word-problems
-  - complexity-bounded-host-classes-are-not-universal
-  - symmetric-ore-operads-containing-their-carrier-are-full-groups
 distinct_from:
   bounded-propagation-operads-have-capped-word-problems: that caps operads with a finite propagation alphabet; this caps every class whose split-refinement functions are uniformly recursive, and shows that unary squares already give a finite alphabet and imply Ore, so the only uncapped candidates have branching squares.
   edge-split-ore-iff-synchronization-and-tree-domination: that reduces Ore for one branching-square operad to two global statements; this explains why Ore is global exactly when squares branch, and that the same feature is the only room for machine simulation.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `bounded-propagation-operads-have-capped-word-problems`, `complexity-bounded-host-classes-are-not-universal`, `symmetric-ore-operads-containing-their-carrier-are-full-groups`.
 
 **Parts 1–3 ESTABLISHED** (lane bh-typeA-universal, 2026-09-18). They are elementary lane proofs,
 given below, not independently reviewed. **Part 4 is an OPEN candidate** (the operadic ¬CAP

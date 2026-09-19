@@ -3,9 +3,6 @@ rg: 2
 id: translation-like-inputs-embed-in-full-groups-over-a-fixed-group
 kind: claim
 title: If a decidable group acts translation-like on a fixed group Λ, it embeds in the topological full group, hence the crossed-product units, of an effectively closed free Λ-subshift whose language encodes its word problem
-requires:
-  - farrell-jones-groups-acting-freely-have-k-trivial-leavitt-hosts
-  - quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products
 distinct_from:
   decidable-groups-embed-in-cantor-crossed-leavitt-tensor-units: that is the open gate asking for SOME Farrell–Jones P, X and an embedding into the units; this gives an explicit mechanism putting the input into the units over ONE FIXED acting group, with the input in the language of X, whenever the input acts translation-like on that group.
   free-crossed-leavitt-k-gate-is-a-farrell-jones-instance: that shows putting the input into the acting group costs a new Farrell–Jones case; this is the constructive answer, keeping the acting group fixed and moving the input into the subshift.

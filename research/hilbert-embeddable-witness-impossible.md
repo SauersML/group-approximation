@@ -3,7 +3,9 @@ rg: 2
 id: hilbert-embeddable-witness-impossible
 kind: claim
 title: The Kun--Thom wreath has no Hilbert embeddable weak-soficity witness
-invalidates: [clifford-cover-hilbert-embeddable-route, hilbert-embeddable-witness-route]
+invalidates:
+  - clifford-cover-hilbert-embeddable-route
+  - hilbert-embeddable-witness-route
 distinct_from:
   hilbert-embeddable-witness-for-kun-thom-wreath: that asked whether the witness exists; this is its negation, established, and per kernel doctrine exactly one of the pair can ever be established — the question is now decided, negatively.
   two-point-approximation-fails: that is the set-level statement about the coset action; this is its consequence for the weak-soficity witness question, via the recorded necessary-condition route.

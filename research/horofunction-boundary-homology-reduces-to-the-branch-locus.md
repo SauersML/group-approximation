@@ -3,8 +3,6 @@ rg: 2
 id: horofunction-boundary-homology-reduces-to-the-branch-locus
 kind: claim
 title: For a torsion-free hyperbolic group, the cohomology of G with coefficients in C(∂_h G, Q) is the leftmost column of a descent spectral sequence over the branch locus of ∂_h G → ∂G that converges to the cohomology of the Gromov-boundary suspension; for sphere boundaries of dimension m >= 2 that branch locus has dimension >= m-1
-requires:
-  - bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid
 distinct_from:
   bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid: that turns F_n of the BBMZ host into finite-dimensionality of H_k(G; C(∂_h G, Q)); this reduces that finite-dimensionality to the branch locus of ∂_h G → ∂G, and shows that for Kazhdan Sp(n,1) lattices it is a (4n−2)-dimensional tiling-cohomology problem.
 ---

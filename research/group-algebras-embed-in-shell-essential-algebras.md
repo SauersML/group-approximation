@@ -3,7 +3,6 @@ rg: 2
 id: group-algebras-embed-in-shell-essential-algebras
 kind: claim
 title: The group algebra K[P] of every countable group embeds in the central simple algebra A_nu/J of any of its shell envelopes, which also contains a unital Leavitt pair; algebra BH for group algebras reduces to finite presentation of one such A_nu/J
-requires: [shell-germ-essential-algebras-are-central-simple, shell-germ-steinberg-algebras-are-never-simple, algebra-boone-higman-conjecture]
 distinct_from:
   shell-germ-steinberg-algebras-are-never-simple: that embeds the group E_nu in the units of A_nu/J; this embeds the whole group algebra K[P], linearly independently, and adds the Leavitt pair.
   field-representable-algebras-have-fp-simple-envelopes: that gives finitely presented simple envelopes for representable inputs; this gives finitely generated central simple envelopes, not known to be finitely presented, for every group algebra.

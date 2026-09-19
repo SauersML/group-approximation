@@ -3,9 +3,6 @@ rg: 2
 id: depth-disjoint-spinal-hosts-have-wreath-germ-groups
 kind: claim
 title: With depth-disjoint binary codes, the annular host of a Bishop–Schesler branch group has germ group (G × Alt(6)) ≀ Z, so it is never finitely presented
-requires:
-  - bishop-schesler-branch-groups-are-annular-hosts-over-v
-  - fp-germ-extensions-of-locally-moving-bases-have-fp-germ-groups
 distinct_from:
   annular-hosts-with-free-zoom-germs-are-not-finitely-presented: that kills hosts whose germ group is (input) * ⟨t⟩, via the window lemma; here different depths commute, the germ group is the restricted wreath product H ≀ Z, and the kill is Baumslag's wreath-product theorem plus germ localization.
   rf-groups-have-free-product-germs-over-v: that places finite quotients in ping-pong position (germ group G * Z); this places them depth-disjointly (germ group H ≀ Z), the opposite extreme.

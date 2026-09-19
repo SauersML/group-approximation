@@ -3,10 +3,6 @@ rg: 2
 id: two-v-in-ct-p-z-needs-degree-rank-two-r
 kind: claim
 title: Any copy of Brin's 2V in CT_P(Z) has germ degrees of rank at least 2r (r = Matte Bon's symmetric power); so odometer-fibre designs (all slopes powers of 2), 3-adic and 6-adic designs cannot realize 2V in CT_{3}(Z)
-requires:
-  - brin-thompson-nv-needs-n-minus-one-primes-in-ct-z
-  - blind-commutants-of-push-families-in-ct-p-z-are-trivial
-  - conway-amusical-permutation-is-the-full-three-shift
 distinct_from:
   brin-thompson-nv-needs-n-minus-one-primes-in-ct-z: that bounds the dimension of whole leaves (at most |P|+1); this bounds the dimension of the part of a leaf that an embedding can use, by the rank of its degrees, which kills the rank-one designs.
   blind-commutants-of-push-families-in-ct-p-z-are-trivial: that forces the pushes to read hidden data; this forbids the hidden data from being an isometric (odometer) fibre.

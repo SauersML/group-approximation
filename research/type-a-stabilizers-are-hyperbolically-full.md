@@ -3,11 +3,6 @@ rg: 2
 id: type-a-stabilizers-are-hyperbolically-full
 kind: claim
 title: In any action with finitely many orbits on pairs, a point stabilizer with infinite orbit is never elliptic, and never has a quasiconvex orbit with non-full limit set, in any non-elementary action on a hyperbolic space; so locally quasiconvex hyperbolic groups have no type (A) actions, Higman envelopes have none induced from their vertex groups, and the permutational route for a non-exact input needs a hyperbolically full stabilizer
-requires:
-  - type-a-action-gives-boone-higman-for-subgroups
-  - amalgams-of-orbit-finite-actions-are-type-a2
-  - ra-counterexamples-are-minimal-sets-of-rigid-ambients
-  - fp-simple-nonexact-group
 distinct_from:
   ra-counterexamples-are-minimal-sets-of-rigid-ambients: that shows (RA) says nothing against the permutational route; this finds the geometric constraint that route does face, which comes from double cosets, not from exactness.
   amalgams-of-orbit-finite-actions-are-type-a2: that builds type [A_2] actions of amalgams, whose point stabilizers are fundamental groups of finite graphs of groups; this shows such stabilizers are forced to be non-elliptic, so the gluing lemma is consistent with, and in a sense the only shape allowed by, hyperbolic geometry.

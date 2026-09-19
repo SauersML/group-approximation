@@ -3,8 +3,6 @@ rg: 2
 id: limit-set-escaping-forces-infinitely-many-double-cosets
 kind: claim
 title: If some loxodromic element of G has both fixed points outside the limit set of H in a hyperbolic G-space, then H has infinitely many double cosets in G
-requires:
-  - escaping-invariant-sets-force-infinitely-many-double-cosets
 distinct_from:
   escaping-invariant-sets-force-infinitely-many-double-cosets: that needs a coarsely invariant set whose translates escape; this produces the escaping translates from a boundary condition alone, for arbitrary subgroups, with no quasiconvexity or finite generation.
   bounded-orbit-subgroups-have-infinitely-many-double-cosets: that is the case of empty limit set.

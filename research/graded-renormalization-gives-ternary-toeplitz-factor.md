@@ -5,7 +5,6 @@ kind: claim
 title: A homeomorphism with a height-3 self-renormalization that cycles a clopen 3-colouring factors onto the ternary valuation Toeplitz subshift; in nV this would give an infinite finitely generated periodic subgroup
 distinct_from:
   smart-induced-map-has-brick-local-height-3-renormalization: that proves SMART's induced map has a height-3 renormalization; this says what extra structure (a colouring cycled by the renormalization) turns such a renormalization into a Toeplitz factor, and `smart-renormalization-admits-no-graded-basins` shows SMART's renormalization lacks it.
-  nv-periodic-groups-via-schreier-subshift-factors: that reduces periodic subgroups of nV to a factor onto a Grigorchuk-type subshift; this gives a checkable sufficient condition for such a factor, stated purely in terms of the dynamics of one element.
   renormalizable-thompson-elements-give-baumslag-solitar: that turns a brick-local renormalization into a Baumslag–Solitar subgroup; this turns a graded renormalization into a Toeplitz factor, and needs no brick-locality of the renormalizing map.
 ---
 

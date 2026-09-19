@@ -3,7 +3,8 @@ rg: 2
 id: compilers-cannot-drop-the-decidability-hypothesis
 kind: claim
 title: Both 2026-08-24 Boone-Higman compilers force their input to have solvable word problem, so neither can be proved from a finite presentation alone
-invalidates: [boone-higman-via-hypothesis-free-shift-compiler]
+invalidates:
+  - boone-higman-via-hypothesis-free-shift-compiler
 distinct_from:
   simple-envelope-forces-solvable-word-problem: that is the converse half of Boone-Higman and derives decidability from an embedding into a finitely presented SIMPLE group; this derives decidability from finite presentability of a shift-similar envelope, and from a normal-subgroup finiteness package, neither of which mentions a simple group. It is the same phenomenon applied one construction earlier, and it is what makes those constructions impossible rather than merely unproved.
   novikov-boone-fp-group-undecidable-word-problem: that exhibits one finitely presented group with unsolvable word problem; this uses that group to show two proposed universal constructions must consume a decidability algorithm, and is a statement about proofs rather than about a group.

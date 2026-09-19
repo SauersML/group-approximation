@@ -3,10 +3,6 @@ rg: 2
 id: seeds-record-every-bass-serre-pointer
 kind: claim
 title: For any splitting of a group, the pattern of a seed's translates on each thickened edge coset determines the side of the seed; if this pointer is readable in a bounded window on every edge orbit, the seed boundary maps onto the Bass–Serre boundary, so a scattered seed over a non-elementary splitting must hide some edge pointer at edge-group infinity
-requires:
-  - seed-compactifications-dominate-the-end-compactification
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   seed-compactifications-dominate-the-end-compactification: that is the case of finite cuts (splittings over finite groups, i.e. ends); this treats arbitrary splittings, where the cut is an infinite edge coset and readability becomes a hypothesis instead of automatic.
   relative-seeds-glue-graphs-of-groups-into-class-c: that builds seeds over graphs of groups by gluing, which reads every edge pointer locally; this shows any seed must carry those pointers, and that local reading forces an uncountable boundary.

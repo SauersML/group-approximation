@@ -3,10 +3,6 @@ rg: 2
 id: kurosh-relative-seeds-and-the-b1-digit-splitting
 kind: claim
 title: Relative seeds pass to free products of factor subgroups by re-splitting (a corollary of the gluing theorem), so B_1 of the reordered Higman tower is seeded modulo the input; the pair (B_1, <t, a_i>) reduces through new splittings of B_1 to relative seeds for stable-letter subgroups of the digit group
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
-  - quantum-rigidity-is-product-stable
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues relative seeds for subgroups inside ONE vertex group; this derives, as a corollary, relative seeds for free products of subgroups of SEVERAL free factors, and applies it to the Higman tower.
   relative-seeds-over-free-products-have-finite-ropes: that is bh-invent-15's constraint that seeded subgroups of P * Q meet conjugates of Q in finitely many (C ∩ P)-cosets; the Kurosh-standard subgroups here satisfy it with one coset.

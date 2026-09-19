@@ -3,8 +3,6 @@ rg: 2
 id: jeandel-rao-minimal-subshift-is-morphic-image-of-labbe-shift
 kind: claim
 title: The Jeandel-Rao minimal subshift X_0 (ABHT's horizontally expansive fibre) is joined to Labbé's 19-tile shift by a chain of recognizable 2-dimensional morphisms onto up to a shift, one embedding and one shear conjugacy
-requires:
-  - minimal-aperiodic-wang-shift-exists
 distinct_from:
   labbe-substitution-is-primitive-and-recognizable: that imports the self-similarity ω of Ω_U itself; this imports the chain of different morphisms that connects Ω_U to the Jeandel-Rao minimal subshift X_0.
   labbe-shift-is-a-toral-rotation-coding: that imports the rotation coding of Ω_U on R^2/Z^2; this records that X_0 is the coding of a different toral rotation (on R^2/Γ_0) and is linked to Ω_U only through morphisms.

@@ -3,10 +3,6 @@ rg: 2
 id: labbe-scale-two-commutation-crosses-faults-at-distance-five
 kind: claim
 title: In the scale-2 presentation of Labbé's shift, context splits certify commutation at 26 of the 40 offsets at sup-distance 5, including both axis fault normals, where determinism certifies none; at the resonant offset (6,0) explicit window representations exclude every certificate supported in windows of height up to 11
-requires:
-  - contextual-closure-certifies-quantum-rigidity
-  - labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two
-  - determinism-closure-certifies-quantum-rigidity
 distinct_from:
   labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two: that fixes the scale (J_2 = 0 decides rigidity); this measures how far J_2-certificates actually reach, and where they are provably non-local.
   labbe-wang-shift-crossed-product-is-finitely-presented: that is the open rigidity question; this is partial, exact progress on it in both directions.

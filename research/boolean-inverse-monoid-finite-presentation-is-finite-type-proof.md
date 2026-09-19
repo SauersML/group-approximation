@@ -4,6 +4,7 @@ id: boolean-inverse-monoid-finite-presentation-is-finite-type-proof
 kind: route
 title: Build the additive map out of the bisection monoid from the canonical λ-decomposition and Stone duality; for the converse, map into the finite-type approximations and read off the dual map
 target: boolean-inverse-monoid-finite-presentation-is-finite-type
+requires: []
 ---
 
 Notation is that of the target. For `λ ∈ Λ` let `δ_λ = {(λ, x) : x ∈ X}` (the unit `x -> λ.x`), and for a

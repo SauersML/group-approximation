@@ -3,7 +3,8 @@ rg: 2
 id: exact-models-cannot-separate-marked-pair
 kind: claim
 title: No exact finite model gives two-point data at the marked pair
-invalidates: [two-point-via-congruence-cuts]
+invalidates:
+  - two-point-via-congruence-cuts
 distinct_from:
   marked-pair-cut-problem: that asked for the deleted set on the exact congruence models; this is its refutation, in the stronger form that covers every exact model — arbitrary finite G-sets, arbitrary stabilizers — not only the regular congruence ones.
   two-point-orbit-approximation: that quantifies over all approximately multiplicative models and remains open; this closes exactly the exact-model subclass, so whatever witnesses that claim must carry genuine multiplicativity defect.

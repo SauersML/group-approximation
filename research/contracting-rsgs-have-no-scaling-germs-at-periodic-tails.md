@@ -3,8 +3,6 @@ rg: 2
 id: contracting-rsgs-have-no-scaling-germs-at-periodic-tails
 kind: claim
 title: In a contracting RSG no element maps an eventually periodic point into its own tail class with depth scaling different from one, so nucleus cycles whose output tail returns to the input tail have zero lag; lag between different tail classes is not controlled, which is exactly what blocks the asynchronous extension of the conservativity lemma
-requires:
-  - fixed-point-free-rover-nekrashevych-elements-are-conservative
 distinct_from:
   fixed-point-free-rover-nekrashevych-elements-are-conservative: that proves conservativity of fixed-point-free elements for synchronous (tree-automorphism) nuclei, and asks for a lower bound on the output lag of asynchronous nucleus maps; this proves the part of that bound forced by contraction (tail balance) and isolates the uncontrolled part.
 ---

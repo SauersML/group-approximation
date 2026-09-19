@@ -3,9 +3,6 @@ rg: 2
 id: group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp
 kind: claim
 title: Over any finitely presented group, a group SFT is quantum rigid iff its lamp group is finitely presented; over F_n every infinite group subshift is non-rigid, so M ⋊ F_n is never finitely presented for an infinite finitely generated F_p[F_n]-module M, and over Λ_0 × F_n rigid group subshifts are uniformly tight spacetimes
-requires:
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
 distinct_from:
   group-shift-crossed-product-fp-from-lamp-group-fp: that proves one direction over Z^2, through the crossed-product theorem; this proves both directions over every finitely presented group, directly from the quantum-family relations, and reads off the free-group consequences.
   cornulier-regime-coset-sfts-are-quantum-rigid: that proves rigidity of coset shifts over finite double-coset spaces; with this node and Corollary 3 of the clustering node, a full coset shift is quantum rigid iff its double-coset space is finite, the analogue of Cornulier's criterion for permutational wreath products.

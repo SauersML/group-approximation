@@ -3,8 +3,6 @@ rg: 2
 id: fixed-point-free-rover-nekrashevych-elements-are-conservative
 kind: claim
 title: An element of a Röver–Nekrashevych group V_d(K) without periodic points compresses no clopen set, and on every orbit its depth drift tends neither to +∞ nor to −∞; so a free group acting freely in V_d(K) admits no clopen ping-pong and must consist of conservative, twisted-drift elements
-requires:
-  - free-actions-in-rover-nekrashevych-hosts-have-zero-drift
 distinct_from:
   free-actions-in-rover-nekrashevych-hosts-have-zero-drift: that shows nonzero mean drift for an invariant measure forces a periodic point, and that coboundary drift collapses to S_n ≀ K; this shows that drift escaping to ±∞ along a single orbit, or compressing a single clopen set, already forces a periodic point, which excludes ping-pong.
 ---

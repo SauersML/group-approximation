@@ -3,7 +3,8 @@ rg: 2
 id: leavitt-evaluation-does-not-split-as-module-map
 kind: claim
 title: The Leavitt evaluation does not split as a module map and the Leavitt algebra is not projective over the group algebra
-invalidates: [leavitt-direct-finiteness-failure-from-module-splitting]
+invalidates:
+  - leavitt-direct-finiteness-failure-from-module-splitting
 distinct_from:
   leavitt-evaluation-splits-as-module-map: that open claim asks for a left `A`-linear section of the same evaluation; this one is its negation, established from primality of the group algebra, and it is why that node should be read as refuted rather than unattempted.
   augmentation-blocks-unital-leavitt-family: that no-go forbids a *ring* section, by an augmentation count that never sees the module structure; this forbids the strictly weaker *module* section, and it needs a global argument because no local count can see it.

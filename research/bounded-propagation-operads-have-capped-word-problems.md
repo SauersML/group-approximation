@@ -3,10 +3,6 @@ rg: 2
 id: bounded-propagation-operads-have-capped-word-problems
 kind: claim
 title: Operad groups with finite transformations, a finite spine and bounded propagation of moves have word problems in uniformly doubly exponential time, so no family of such hosts is universal; a finite-spine host with finite transformations escapes the complexity cap only through an unbounded propagation alphabet
-requires:
-  - complexity-bounded-host-classes-are-not-universal
-  - symmetric-ore-operads-containing-their-carrier-are-full-groups
-  - thumann-operad-groups-need-only-f-infinity-transformations
 distinct_from:
   rational-homeomorphism-subgroups-have-exponential-wp: that bounds the word problem of groups of finite transducers on a full shift; this bounds the word problem of abstract operad groups from their finite operad data, with no coding of the boundary as a shift.
   complexity-bounded-host-classes-are-not-universal: that turns any uniform word-problem bound into non-universality; this supplies the bound for one host class, the finite-state operads.

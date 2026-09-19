@@ -3,14 +3,12 @@ rg: 2
 id: plane-local-freedom-kills-rigidity-of-plane-lifts
 kind: claim
 title: A lift over Λ_0 x H whose undetermined data is plane-local is quantum rigid only if all its free planes cluster; minimal lifts of non-SFT inputs must have free planes, so the keyed-slot E1 lift needs its floating data coupled across planes before gate E2 can hold
-requires:
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
 distinct_from:
   cross-layer-separable-modifications-kill-quantum-rigidity: that kills fibre products whose layers' modification sets separate; this is the plane-indexed case, where a single layer is split into independent planes by the absence of cross-plane rules, and it applies to the minimal E1 lift.
-  keyed-diversification-slots-give-plane-constant-minimal-lifts: that builds the minimal lift, deliberately comparing only table carriers across planes; this shows that this very feature is what gate E2 must undo.
   extension-rigidity-is-base-centrality-plus-pointwise-rigidity: that decomposes E2 for layered SFTs; Part 3 here applies it to the repaired lift, and names the three residual checks.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `minimal-sfts-with-a-finite-modification-are-not-quantum-rigid`, `strongly-proximal-geometries-are-disjoint-from-measured-inputs`.
 
 **Status.** Parts 1 and 2 are ESTABLISHED (lane proofs, elementary, unreviewed). Part 3 is
 design-level. Part 4 is OPEN.

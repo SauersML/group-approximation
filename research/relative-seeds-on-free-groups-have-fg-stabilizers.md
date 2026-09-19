@@ -3,9 +3,6 @@ rg: 2
 id: relative-seeds-on-free-groups-have-fg-stabilizers
 kind: claim
 title: Seed-forced points over a free group are finite-state and forced at linear radius, so a relative seed on a free vertex group has a finitely generated stabilizer with regular membership; the Higman-Clapham rope can never be relative-seeded on its free vertex group, and a machine-simulating seed tower must carry its machine on a distorted edge of a vertex group that is not free
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - bi-lipschitz-splittings-add-one-exponential-to-the-word-problem
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues relative seeds, and supplies them for finitely generated edge groups of free and free abelian vertex groups; this proves that over a free vertex group no other relative seeds exist.
   higman-clapham-towers-leave-the-seed-form-at-three-steps: that locates the three steps where the tower leaves the seed form and asks whether gluing allows infinitely generated edge groups (the rope, step 3); this answers no for free vertex groups.

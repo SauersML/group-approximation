@@ -3,9 +3,6 @@ rg: 2
 id: fp-annular-germ-groups-are-hnn-recursive
 kind: claim
 title: If an annular host over V is finitely presented, its germ group at the singular point is an HNN extension over a finitely generated group of depth-sequences, with associated isomorphism the depth transport; so every input there lies in a finite tree of copies of one fg group of V-sequences
-requires:
-  - fp-germ-extensions-of-locally-moving-bases-have-fp-germ-groups
-  - annular-hosts-with-free-zoom-germs-are-not-finitely-presented
 distinct_from:
   annular-hosts-with-free-zoom-germs-are-not-finitely-presented: that proves the window lemma and kills the free-zoom extreme; this gives the general shape of every fp annular germ group (Bieri–Strebel), of which free zoom (trivial associated subgroups), normal zoom and ascending zoom are special cases.
   dynamically-v-separated-groups-satisfy-boone-higman: that is the ascending case L_1 = L, where the host is fp; this shows every fp annular host is of HNN type, ascending or not.

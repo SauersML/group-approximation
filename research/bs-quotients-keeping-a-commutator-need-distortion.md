@@ -3,10 +3,6 @@ rg: 2
 id: bs-quotients-keeping-a-commutator-need-distortion
 kind: claim
 title: In a quotient of BS(m,n) (gcd(m,n) = 1, 2 ≤ |m| < |n|) that keeps [tat^-1, a], the image of a is a distorted element of infinite order; so no such quotient is torsion-by-(a group with undistorted cyclic subgroups) or torsion-by-PL, which excludes every Thompson-, Stein-, Houghton- and hyperbolic-type isolated host
-requires:
-  - bs-quotients-keeping-a-commutator-have-a-commensurated-core
-  - coprime-baumslag-solitar-images-in-va-are-metabelian
-  - char-p-linear-groups-have-no-distorted-cyclic-subgroups
 distinct_from:
   coprime-baumslag-solitar-images-in-va-are-metabelian: that is the special case of a quotient inside VA; this allows a torsion normal subgroup below and any host whose cyclic subgroups are undistorted, and adds piecewise linear hosts by a derivative argument that uses no distortion theorem.
   bs-quotients-keeping-a-commutator-have-a-commensurated-core: that is the structure theorem for such quotients; this is the host exclusion it yields.

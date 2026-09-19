@@ -7,8 +7,6 @@ distinct_from:
   computable-tree-groups-embed-in-decidable-fg-self-similar-groups: that asks for a self-similar host on a regular tree; this imports a branch host on a spherically homogeneous tree with growing alphabets, which is not self-similar.
   fp-residually-finite-boone-higman: that is BBMZ Problem 5.3(12), Boone–Higman for finitely presented residually finite groups; this reduces it to the branch-group case and does not settle it.
   effectively-rf-groups-have-computable-chains: that produces the computable separating chain used as input here; this is the embedding theorem built on such a chain.
-requires:
-  - effectively-rf-groups-have-computable-chains
 artifacts:
   - research/artifacts/gq-bh-openq-lists.md
 ---

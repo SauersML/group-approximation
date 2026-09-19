@@ -3,9 +3,6 @@ rg: 2
 id: nonrecursive-a2-kernel-makes-e-of-wreath-not-rec-presented
 kind: claim
 title: If some type [A_2] action G on S has a nonrecursive kernel, then the finitely presented wreath product (Z/2) wr_S G has E not recursively presented, answering MathOverflow 412219 negatively
-requires:
-  - mixed-identities-encode-normal-closure-commutation
-  - e-of-finitely-presented-group-is-recursively-presented
 distinct_from:
   some-a2-action-has-a-nonrecursive-kernel: that is the open existence claim (FFWZ Question 5.9, first part, negative direction); this shows it implies a negative answer to MO 412219 in the finitely presented case.
   mixed-identities-encode-normal-closure-commutation: that is the general encoding of normal-closure commutation as one-variable mixed identities; this applies it to lamp elements of a permutational wreath product, where commutation becomes membership in an action kernel.

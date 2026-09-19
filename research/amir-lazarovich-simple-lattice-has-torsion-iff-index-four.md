@@ -3,8 +3,6 @@ rg: 2
 id: amir-lazarovich-simple-lattice-has-torsion-iff-index-four
 kind: claim
 title: In every Amir–Lazarovich lattice Λ' all square diagonals DD' are conjugate, so the simple lattice Λ is torsion-free (hence of cd 3) iff Λ ≠ Λ'^+, iff Λ'^+ is not simple
-requires:
-  - amir-lazarovich-lattice-torsion-is-square-diagonals
 artifacts:
   - research/artifacts/gq-bh-bh-free-42-al-scaffolding-reading.md
   - research/artifacts/gq-bh-bh-free-extensions-cd3-sources.md

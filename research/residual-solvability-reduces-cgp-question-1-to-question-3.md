@@ -3,9 +3,6 @@ rg: 2
 id: residual-solvability-reduces-cgp-question-1-to-question-3
 kind: claim
 title: If Cornulier--Guyot--Pitsch Question 3 has a positive answer then every finitely generated residually solvable group, in particular every Baumslag--Solitar group, is a limit of isolated groups; so a single Baumslag--Solitar group that is not such a limit answers Questions 1 and 3 negatively at once
-requires:
-  - limits-of-isolated-groups-basic-closure
-  - baumslag-solitar-groups-are-free-by-metabelian
 distinct_from:
   every-fg-solvable-group-is-a-limit-of-isolated-groups: that is Question 3 itself; this shows it already implies Question 1 on all residually solvable groups, and names the pivot test groups.
   every-decidable-group-is-a-limit-of-isolated-groups: that is Question 1; this reduces its residually solvable case to Question 3.

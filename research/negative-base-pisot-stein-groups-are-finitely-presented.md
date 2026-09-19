@@ -3,11 +3,6 @@ rg: 2
 id: negative-base-pisot-stein-groups-are-finitely-presented
 kind: claim
 title: If β > 2 is a Pisot unit whose map y ↦ {−βy} reaches 0 from every point of Z[β] ∩ [0,1), then V(Z[β],⟨β⟩,ℓ) is finitely presented, through the orientation-preserving square of that coding; in degree ≥ 3 its derived subgroup is a finite-index finitely presented simple group, and every real field of degree ≥ 3 has such slopes
-requires:
-  - negative-base-pisot-stein-groups-are-contracting-rsgs
-  - algebraic-interval-exchange-groups-satisfy-boone-higman
-  - pisot-unit-slope-stein-groups-are-finitely-presented
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   negative-base-pisot-stein-groups-are-contracting-rsgs: that makes the flip group G^±_β a full contracting RSG; the Stein group V itself is not an RSG in that coding, because canonical similarities there have slopes (−β)^n. Here the coding is replaced by its square, whose canonical similarities have positive slopes β^{2n}.
   stein-v-groups-act-with-type-a-on-breakpoints: that listed finite presentation for norm +1 quadratic slopes as open; this settles it.

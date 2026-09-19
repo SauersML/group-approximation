@@ -4,6 +4,7 @@ id: rf-free-product-germ-realization-proof
 kind: route
 title: Put the finite quotients of G in ping-pong position inside V and read the germs on deep annuli
 target: rf-groups-have-free-product-germs-over-v
+requires: []
 ---
 
 Notation as on the claim.

@@ -3,10 +3,6 @@ rg: 2
 id: type-a-actors-closed-under-inner-twisted-lamp-wreaths
 kind: claim
 title: A lamp wreath over a type (A) actor, twisted at one point by a homomorphism from the point stabilizer into the lamp actor, is again a type (A) actor on the induced set; so the twisted lamplighter M_1, and with it the chain group G_1, lies in B_A once BS(1,2) sits in a type (A) actor whose base generator lies in a point stabilizer and maps to a free letter under a stabilizer homomorphism
-requires:
-  - type-a-actors-closed-under-type-a-lamp-wreaths
-  - higman-chain-group-pbh-iff-chain-configuration
-  - tame-power-conjugators-have-more-hyperbolic-points
 distinct_from:
   type-a-actors-closed-under-type-a-lamp-wreaths: that is the untwisted case, where the stabilizer of s_0 acts trivially on the lamp at s_0; this allows it to act through a homomorphism h into the lamp actor, which is what twisted coset lamplighters need.
   higman-chain-group-lies-in-b-a: that tried to untwist M_1 by a Kaloujnine--Krasner cocycle and was failed by the referee, because the cocycle has infinite support; this builds the twist into the actor, so no cocycle is needed, and leaves one explicit host condition.

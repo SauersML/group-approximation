@@ -3,7 +3,8 @@ rg: 2
 id: leavitt-corner-kernel-not-jacobson-radical
 kind: claim
 title: The corner evaluation kernel is nonzero, contains an idempotent of augmentation zero, and is not inside the radical
-invalidates: [leavitt-unit-algebra-not-directly-finite-by-radical-kernel]
+invalidates:
+  - leavitt-unit-algebra-not-directly-finite-by-radical-kernel
 distinct_from:
   leavitt-corner-kernel-is-jacobson-radical: that open claim asserts `ker(pi_e) = J(eAe)`; this one refutes it, and in the strong form that `ker(pi_e)` is not even contained in the radical, so that node should be read as false rather than unattempted.
   leavitt-evaluation-kernel-hits-augmentation-one: that says the whole-algebra kernel is nonzero and meets augmentation one, with the three-term witness `[u]+[v]+[w]`; this says the *corner* kernel is nonzero and meets augmentation *zero*, and the two witnesses are disjoint — the three-term one is annihilated by `e` on both sides.

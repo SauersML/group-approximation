@@ -5,9 +5,8 @@ kind: route
 title: Full Garside verification for the flagged pointed-cube category, via Dehornoy's mcm criterion, with the normal form written out (Niblo-Reeves cubes with maximal compatible labels) and the norm computed as the height of the hyperplane poset
 target: flagged-pointed-cube-category-resynchronizes-cubulated-actions
 requires:
-  - flagged-pointed-cube-category-proof
-  - pointed-cube-categories-li-garside-proof
-  - pointed-cube-bisection-locus-proof
+  - pointed-cube-categories-are-li-garside-categories
+  - pointed-cube-bisection-locus-is-the-regular-boundary
 ---
 
 **Lane proof, written for referees (requested in re-review d6778b5f5f); not independently

@@ -3,9 +3,6 @@ rg: 2
 id: fp-simple-real-box-map-groups-are-not-universal-hosts
 kind: claim
 title: Finitely presented groups of box-exchange maps of [0,1)^n (as nV) with arbitrary real data specialize to algebraic data, so their finitely generated simple subgroups have exponential-time word problems and no class of such finitely presented simple groups, over all n and all real data, is a universal Boone--Higman host
-requires:
-  - fp-piecewise-projective-groups-specialize-to-algebraic-data
-  - complexity-bounded-host-classes-are-not-universal
 distinct_from:
   fp-piecewise-projective-groups-specialize-to-algebraic-data: that is the one-dimensional piecewise-projective case, with a polynomial bound; this adds box maps in every finite dimension (Brin--Thompson nV and its real-parameter relatives), with an exponential bound, and draws the non-universality consequence for the whole class.
   complexity-bounded-host-classes-are-not-universal: that is the general principle that a host class with one recursive bound is not universal; this proves that the class of all finitely presented simple groups of finite-dimensional real box maps or one-dimensional piecewise-projective maps has such a bound, whatever the real parameters.

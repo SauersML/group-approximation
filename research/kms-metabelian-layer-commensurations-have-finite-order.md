@@ -3,9 +3,6 @@ rg: 2
 id: kms-metabelian-layer-commensurations-have-finite-order
 kind: claim
 title: Every commensuration of the metabelian layer of a KMS group permutes the counter blocks and acts on each by a symmetry of a hexagon, because the rank of a Baumslag–Remeslennikov block over a monomial subring is a hexagonal norm; no homothety survives, so KMS counter renormalization is dead and only division-type commensurations of the configuration layer remain
-requires:
-  - faithful-finite-index-hnn-upgrades-to-half-tree-free
-  - kms-arbitrarily-hard-fp-rf-groups
 distinct_from:
   faithful-finite-index-hnn-upgrades-to-half-tree-free: that reduces (SS-hard)_1 for KMS groups to a commensuration with no invariant normal subgroup; this determines all commensurations of their metabelian quotient, and shows the counter lattice admits no scaling.
   equivariant-scaling-hnn-vertex-groups-are-linear: that kills scalings that fix the metabelian part; this kills every scaling of the counter blocks, equivariant or not, at the level of the metabelian quotient.

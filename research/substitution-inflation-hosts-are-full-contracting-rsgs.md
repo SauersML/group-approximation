@@ -3,13 +3,6 @@ rg: 2
 id: substitution-inflation-hosts-are-full-contracting-rsgs
 kind: claim
 title: Adjoining the inflation germs of a recognizable primitive aperiodic box substitution to its free Z^d-action gives a full contracting RSG on the collared hierarchy shift, so the host is finitely presented with no rigidity or finite-type hypothesis; this covers Labbé's Wang shift
-requires:
-  - labbe-substitution-is-primitive-and-recognizable
-  - labelled-hosts-of-free-actions-have-no-contracting-loops
-  - free-sft-hosts-admit-no-finite-type-coding
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - contracting-rsgs-embed-in-fp-simple-groups
-  - hyperbolic-groups-lie-in-the-permutational-class
 distinct_from:
   finite-seed-telescope-hosts-are-full-contracting-rsgs: that settles the one-chain telescope host over V (test T1 of Conjecture SS, no acting group); this is test T2 in its substitutive form, with a free Z^d-action, the inflation as the self-similarity, and the translations' carries across fault lines as the nucleus.
   v-times-quantum-rigid-sft-full-groups-are-fp: that is P2′, finite presentation of the labelled host F(G_V × (Λ ⋉ X)), which needs quantum rigidity and, for free X, an infinite-type engine; this changes the host by adjoining unlabelled inflation germs, and then finite presentation needs neither.

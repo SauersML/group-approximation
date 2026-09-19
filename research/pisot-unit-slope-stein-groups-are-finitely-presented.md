@@ -3,9 +3,6 @@ rg: 2
 id: pisot-unit-slope-stein-groups-are-finitely-presented
 kind: claim
 title: For every algebraic unit β > 1 with property (F), in every degree, the irrational-slope Stein group V(Z[β],⟨β⟩,ℓ) is finitely presented and its derived subgroup is a finite-index finitely presented simple group; a positive answer to Tanner's question for these slopes
-requires:
-  - pisot-stein-groups-are-contracting-rsgs
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   stein-derived-groups-need-computable-modules: that is the necessary condition (computable module) for Tanner's question; this is a sufficient condition in every degree.
   norm-minus-one-sturmian-jm-groups-satisfy-boone-higman: that gets finite index of D(V) for quadratic metallic slopes and takes finite presentation from Cleary; this proves finite presentation directly, for all (F) units of any degree, with the same homology argument for finite index.

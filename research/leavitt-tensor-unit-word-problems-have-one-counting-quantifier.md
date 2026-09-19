@@ -7,9 +7,6 @@ distinct_from:
   leavitt-square-units-mod-p-complete-word-problem: that is completeness for the square over a prime field; this is the matching upper bound for every tensor power, every L(1,n) factor and every matrix size, the characteristic-zero case, and the barrier for PSPACE.
   leavitt-tensor-unit-word-problem-reduces-to-base: that is an exponential-time bound for units of B ⊗ L over an arbitrary base B; this is a counting-class bound for Leavitt tensor products over finite fields and Z[1/M].
   automaton-tail-full-groups-have-conp-relative-word-problem: that caps piecewise prefix-and-automaton homeomorphism groups at coNP relative to the automaton groups; this caps finite-depth linear hosts at one counting quantifier.
-requires:
-  - leavitt-square-units-wp-complexity-proof
-  - prime-field-leavitt-square-units-mod-p-proof
 ---
 
 **ESTABLISHED** (route `leavitt-tensor-unit-counting-cap-proof`; lane proof by bh-free-26,

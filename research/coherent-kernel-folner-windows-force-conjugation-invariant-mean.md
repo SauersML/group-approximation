@@ -3,7 +3,8 @@ rg: 2
 id: coherent-kernel-folner-windows-force-conjugation-invariant-mean
 kind: claim
 title: Følner windows in a normal kernel chosen coherently along the ambient action force a translation- and conjugation-invariant mean on the kernel
-invalidates: [amenable-kernel-ascent-via-coherent-kernel-windows]
+invalidates:
+  - amenable-kernel-ascent-via-coherent-kernel-windows
 distinct_from:
   free-presentation-kernel-has-no-conjugation-folner-exhaustion: that excludes conjugation Følner exhaustions of a free presentation kernel through inner amenability of free groups; this is about translation-Følner windows in a normal subgroup that are equivariant under the ambient group, and names the mean they produce.
   kun-thom-wreath-actor-subgroups-are-not-co-amenable: that proves non-co-amenability of actor-containing subgroups in lamp wreaths; this shows every coherent window scheme along a normal kernel yields a mean of that kind, so that theorem is the instance that kills the scheme on the Kun–Thom wreath.

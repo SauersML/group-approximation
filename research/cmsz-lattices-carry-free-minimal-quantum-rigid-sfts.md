@@ -3,12 +3,6 @@ rg: 2
 id: cmsz-lattices-carry-free-minimal-quantum-rigid-sfts
 kind: claim
 title: Every torsion-free CMSZ group, a Kazhdan one-ended lattice acting simply transitively on the vertices of a thick Ã2 building, carries a free minimal quantum-rigid SFT, namely the Busemann transplant of the causal SW minimal crossing-wire shift
-requires:
-  - busemann-transplant-minimality-is-horospherical-minimality
-  - a2-busemann-transplants-preserve-quantum-rigidity
-  - sw-minimal-crossing-wire-shift-is-rigid
-  - minimal-crossing-wire-shift-finite-factors-are-3-groups
-  - a2-rs-matrices-irreducible-and-primitive-iff-type-transitive
 artifacts:
   - research/artifacts/gq-bh-invent-04-germ-primitivity-check.md
 distinct_from:
@@ -16,6 +10,8 @@ distinct_from:
   a2-lattice-boundary-skew-shifts-are-quantum-rigid: that gives rigid, minimal, only topologically free SFTs over these lattices; this gives free ones, still minimal.
   sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices: that gives free rigid SFTs without minimality; this adds minimality.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `busemann-transplant-minimality-is-horospherical-minimality`, `a2-busemann-transplants-preserve-quantum-rigidity`, `sw-minimal-crossing-wire-shift-is-rigid`, `minimal-crossing-wire-shift-finite-factors-are-3-groups`, `a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`.
 
 **CONDITIONAL** (lane bh-invent-04, 2026-09-18; not reviewed; no priority claimed). It is conditional
 only on the lane proofs in `requires`. The rigidity step of the fibre is with referee bh-ref-engines. The

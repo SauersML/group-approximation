@@ -3,9 +3,6 @@ rg: 2
 id: abht-path-folds-accept-exactly-expansive-rational-half-planes
 kind: claim
 title: The ABHT path-fold over F_n x Z (n >= 2) is faithful exactly when the fibre has a determining rational half-plane; one side suffices, horizontal expansivity is not needed, corner determinism is enough, and then the fold is free and minimal when the fibre is, and quantum rigid exactly when the fibre is
-requires:
-  - path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
 distinct_from:
   path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid: that proves the rigidity transfer under ABHT's two-sided hypothesis (one row determines everything); this shows that only one side is used, and that one side is also necessary for the fold to be the fold.
   sfts-without-two-sided-faults-are-quantum-rigid: that asks for a determining side on every line and gets rigidity; this needs one determining rational side and gets foldability, which says nothing about rigidity.

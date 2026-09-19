@@ -3,7 +3,8 @@ rg: 2
 id: kt-canonical-hs-normalization-fails
 kind: claim
 title: Some Connes-embeddable model of the Kun--Thom actor, with any trace, has a non-normalized Gamma-commutant
-invalidates: [kt-pair-non-hyperlinear-commutant]
+invalidates:
+  - kt-pair-non-hyperlinear-commutant
 distinct_from:
   kt-centralizer-normalization-hs: that is the universal normalization statement over all trace-preserving representations; this is the negation of its Connes-embeddable instance, with no trace condition, and any such counterexample answers Question 3.4.
 artifacts:

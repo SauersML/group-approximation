@@ -6,9 +6,7 @@ title: Claimed proof that free cocompact cubulated groups embed in F_infinity si
 target: torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups
 requires:
   - flagged-pointed-cube-category-resynchronizes-cubulated-actions
-  - flagged-pointed-cube-category-proof
   - cuntz-stabilized-garside-full-groups-are-f-infinity
-  - cuntz-stabilized-garside-full-groups-f-infinity-proof
   - cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple
   - matui-purely-infinite-minimal-full-groups-have-simple-d
   - matui-groupoid-homology-kunneth-and-full-shift-vanishing

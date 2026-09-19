@@ -3,7 +3,8 @@ rg: 2
 id: cantor-odometer-has-no-homeomorphism-square-root
 kind: claim
 title: The dyadic odometer is not the square of any homeomorphism of the Cantor set
-invalidates: [kl-via-internal-closure-of-a-universal-group]
+invalidates:
+  - kl-via-internal-closure-of-a-universal-group
 distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that asks for roots in overgroups; this exhibits a degree-two equation with coefficients in Homeo of the Cantor set that has no root inside that group, while its coefficient group Z solves it in an overgroup.
   infinite-symmetric-groups-miss-a-unimodular-root: that is the internal failure for Sym(Omega), already at degree one; this is the internal failure for Homeo of the Cantor set, at degree two.

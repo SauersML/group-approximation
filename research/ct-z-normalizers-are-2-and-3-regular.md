@@ -3,9 +3,6 @@ rg: 2
 id: ct-z-normalizers-are-2-and-3-regular
 kind: claim
 title: Every homeomorphism of the profinite integers normalizing CT(Z) restricts to a bijection of N_0 (after the flip) that is both 2-regular and 3-regular with polynomial growth; with Bell's generalized Cobham theorem this gives Out(CT(Z)) = C_2, answering Kourovka 17.57
-requires:
-  - out-ct-z-is-c2-iff-normalizers-are-somewhere-affine
-  - bell-generalized-cobham-theorem
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---

@@ -3,8 +3,6 @@ rg: 2
 id: free-products-with-z-inherit-m2-from-decidable-free-subshifts
 kind: claim
 title: If A carries a nonempty free subshift with decidable language, then A * Z carries an effectively closed minimal free subshift; no universal point and no minimality in A are needed
-requires:
-  - free-products-with-z-inherit-m2-from-universal-points
 distinct_from:
   free-products-with-z-inherit-m2-from-universal-points: that assumes ONE computable hyperaperiodic point of A that is universal at the origin, so all patterns must be glued into a single point; this assumes only a free subshift of A with decidable language, and the Bass-Serre tree does the gluing, with different library points at different vertices.
   decidable-fp-groups-have-effective-minimal-free-subshifts: that is (M2) for a given group; this derives (M2) for A * Z from the weaker, minimality-free premise (D) for A.

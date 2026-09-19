@@ -3,9 +3,6 @@ rg: 2
 id: adder-hosts-linearize-odd-odometer-roots
 kind: claim
 title: Adjoining the 2-adic adder to any self-similar Gamma gives a self-similar group M x| Gamma whose translations are the constants in the Z-span M of the Gamma-orbit of the identity function, so odd roots of the odometer become an additive span condition; every such host of Q x| <2> is an (SL) witness at l = 2
-requires:
-  - natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots
-  - fg-metabelian-groups-have-roots-at-finitely-many-primes
 distinct_from:
   natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots: that asks for the odd roots of T_1 as ELEMENTS of the coefficient group; this builds coefficient groups whose translations are the constants in an additive span of orbit functions, so the roots need not be words of the original group.
   odometer-root-hosts-are-non-affine-and-non-contracting: that (lane bh-gln-tracka, landed the same hour, on m-ary trees) proves the necessary conditions non-affine, non-contracting, non-polynomial-activity, which overlap item 3 of the criterion node; this adds the adder construction and the reduction to (SL).

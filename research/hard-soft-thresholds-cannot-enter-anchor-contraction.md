@@ -4,7 +4,8 @@ id: hard-soft-thresholds-cannot-enter-anchor-contraction
 kind: claim
 title: Hard-tail replacement and quadratic soft anchoring demand incompatible thresholds for contraction
 refuted_by: hard-soft-exponent-conflict-is-a-norm-mismatch
-invalidates: [hard-tail-soft-anchor-multiscale-centralization]
+invalidates:
+  - hard-tail-soft-anchor-multiscale-centralization
 distinct_from:
   operator-tail-contraction-misses-uniform-diffuse-matching: that shows the scalar tail recurrence is vacuous on a uniform profile; this proves the quantitative exponent conflict after adding hard replacement and the optimistic quadratic anchor estimate.
   sparse-anchor-odd-fourth-moment-is-the-renormalization-gate: that asks for an operator-valued fourth-moment estimate; this shows that a scalar q-tail cutoff cannot supply the relative smallness needed by that estimate.

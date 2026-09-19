@@ -3,8 +3,6 @@ rg: 2
 id: surface-word-stabilizers-have-infinitely-many-double-cosets
 kind: claim
 title: The stabilizer in Out(F_2g), g at least two, of the conjugacy class of a one-cusp surface word has infinitely many double cosets, so no subgroup virtually contained in it is a point stabilizer of a type (A) action
-requires:
-  - out-free-pair-finite-stabilizers-contain-fully-irreducibles
 distinct_from:
   out-free-pair-finite-stabilizers-contain-fully-irreducibles: that excludes stabilizers of free factors, free splittings, non-filling classes and points of Outer space as type (A) stabilizers, and names the stabilizer of a filling surface word as the surviving test case; this settles that test case negatively.
   bounded-orbit-subgroups-have-infinitely-many-double-cosets: that uses a bounded orbit in an isometric action; the surface-word stabilizer has unbounded orbits on every standard Out(F_n) complex (it contains geometric fully irreducibles), so this uses a growth count instead.

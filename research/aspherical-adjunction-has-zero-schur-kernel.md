@@ -3,7 +3,8 @@ rg: 2
 id: aspherical-adjunction-has-zero-schur-kernel
 kind: claim
 title: An aspherical relative 2-complex kills no Schur multiplier class
-invalidates: [schur-kernel-search-over-aspherical-adjunctions]
+invalidates:
+  - schur-kernel-search-over-aspherical-adjunctions
 artifacts:
   - research/artifacts/kl-schur-kernel-central-extensions-2026-09-11.md
 ---

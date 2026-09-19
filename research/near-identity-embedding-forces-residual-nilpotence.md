@@ -3,7 +3,8 @@ rg: 2
 id: near-identity-embedding-forces-residual-nilpotence
 kind: claim
 title: Faithful near-identity representations force residual nilpotence
-invalidates: [kl-via-magnus-near-identity-fixed-point]
+invalidates:
+  - kl-via-magnus-near-identity-fixed-point
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
 ---

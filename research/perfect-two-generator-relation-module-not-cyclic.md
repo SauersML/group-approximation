@@ -3,7 +3,8 @@ rg: 2
 id: perfect-two-generator-relation-module-not-cyclic
 kind: claim
 title: The relation module of a two-generator perfect group is never cyclic, so no such presentation is one-relator
-invalidates: [nonsofic-one-relator-via-perfect-quotient-compression]
+invalidates:
+  - nonsofic-one-relator-via-perfect-quotient-compression
 distinct_from:
   linton-radical-abelianization-is-truncated-group-ring: that computes a relation-module quotient inside a group that already has a one-relator presentation; this is the obstruction to a group *having* one, and its input is perfectness rather than Lyndon's identity theorem.
   leavitt-degree-kernel-normally-generated-by-one-word: that asks whether a specific degree kernel over the Leavitt unit group is the normal closure of one word, in a free product with an infinite cyclic group; this is a homological no-go for kernels of maps from a free group of rank two onto a perfect group, and neither supplies nor excludes the other.

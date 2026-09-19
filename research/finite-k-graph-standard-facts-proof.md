@@ -4,6 +4,7 @@ id: finite-k-graph-standard-facts-proof
 kind: route
 title: Proof of the k-graph standard facts from Li's own definitions (read at source) - maximal characters are the infinite paths, germs of cd^{-1} are Kumjian–Pask arrows, and products, topology and effectiveness are elementary
 target: finite-k-graph-boundary-groupoid-standard-facts
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-groupoid-frontier.md
 ---

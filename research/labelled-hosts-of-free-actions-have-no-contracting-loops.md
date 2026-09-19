@@ -3,8 +3,6 @@ rg: 2
 id: labelled-hosts-of-free-actions-have-no-contracting-loops
 kind: claim
 title: In any ample groupoid whose arrows carry a continuous Λ-label compatible with an open map to a Λ-space X, every contracting loop is shadowed by an element of Λ with an attracting fixed point on X; so over free, measure-preserving or distal X no labelled host has a finite coding
-requires:
-  - free-sft-hosts-admit-no-finite-type-coding
 distinct_from:
   free-sft-hosts-admit-no-finite-type-coding: that proves the shadowing for the product G_V × (Λ ⋉ X) and for ℋ × 𝒫; this proves it for every groupoid carrying a Λ-valued cocycle over an open (or semi-open) equivariant map, which covers skew products, fibre extensions, Boolean powers and every passive enlargement of the master-route host, and adds the invariant-measure and distal corollaries.
   substitution-inflation-hosts-are-full-contracting-rsgs: that exhibits unlabelled germs (inflations) that do create contracting loops over a free Z^d-action; this shows that only unlabelled germs can.

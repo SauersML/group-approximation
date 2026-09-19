@@ -3,12 +3,6 @@ rg: 2
 id: time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows
 kind: claim
 title: A finitely generated group of automorphisms of a minimal free quantum-rigid Z^d-SFT, meeting the shifts trivially, times Z^d carries a minimal free rigid SFT; so (RA′) implies that such automorphism groups are exact, a non-exact one refutes (RA′), and an fp one is a carrier, and the non-exactness needs infinite fibres over the equicontinuous factor (a profinite distal layer, possible for residually finite inputs, or a relatively weakly mixing one), while homology of the V-full groups is blind to amenability
-requires:
-  - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
-  - deterministic-time-lifts-inherit-quantum-rigidity
-  - minimal-system-automorphisms-fix-every-proximal-factor
-  - automorphisms-of-hierarchical-rows-are-virtually-abelian
-  - v-times-full-groups-are-acyclic-over-stratified-minimal-systems
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that poses (RA) and (RA′) for arbitrary acting groups; this shows the time-lift face of (RA′) is exactly a statement about automorphism groups of rigid Z^d-rows, and gives the carrier criterion that follows.
   automorphisms-of-hierarchical-rows-are-virtually-abelian: that bounds automorphism groups of hierarchical rows; this shows why the bound matters for (RA′), and where a non-exact automorphism group would have to live in any rigid row.

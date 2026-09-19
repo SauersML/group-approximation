@@ -3,14 +3,14 @@ rg: 2
 id: fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers
 kind: claim
 title: A generic free product V * Z inside Homeo(Cantor) is a finitely presented dense subgroup none of whose clopen stabilizers is finitely generated
-requires:
-  - permutational-boone-higman-iff-dense-cantor-actors
 refuted_by:
   - v-and-a-homeomorphism-never-generate-a-free-product
 distinct_from:
   permutational-boone-higman-iff-dense-cantor-actors: that proves PBH is equivalent to embedding in a finitely presented dense subgroup of Homeo(C) with finitely generated clopen stabilizers; this shows the stabilizer clause cannot be dropped, since finite presentation plus density does not give type (A) on clopens.
   fp-full-binary-cantor-groups-have-type-a-actions: that gives finitely generated clopen stabilizers for finitely presented FULL groups containing standard V; the group here contains standard V and is not full.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `permutational-boone-higman-iff-dense-cantor-actors`.
 
 **REFUTED** (09-18, bh-free-19) by `v-and-a-homeomorphism-never-generate-a-free-product`:
 for every `t ≠ 1` the relation `[[t,a],b] = [a^{-1},b]` (with `a, b ∈ V` supported in a

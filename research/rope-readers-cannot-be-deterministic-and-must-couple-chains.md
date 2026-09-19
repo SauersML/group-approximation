@@ -3,9 +3,6 @@ rg: 2
 id: rope-readers-cannot-be-deterministic-and-must-couple-chains
 kind: claim
 title: No deterministic extension of the scaling seed marks a rope set that is not residue-periodic, co-deterministic readers maximize the freedom at infinity instead of removing it, and the uncoupled numeral reader is not quantum rigid; a rigid rope reader must couple its descent chains
-requires:
-  - modular-machine-scaling-seed-reads-regular-numerals
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
 distinct_from:
   modular-machine-scaling-seed-reads-regular-numerals: that builds the reader and leaves gate (RR) open with two proposed fixes; this refutes fix (b), shows the reader as built is not rigid, and replaces (RR) by the coupling gate (RR′).
   extension-rigidity-is-base-centrality-plus-pointwise-rigidity: that is the general extension criterion; this applies its necessity half to one reader.

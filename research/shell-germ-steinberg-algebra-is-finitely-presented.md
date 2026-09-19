@@ -3,12 +3,13 @@ rg: 2
 id: shell-germ-steinberg-algebra-is-finitely-presented
 kind: claim
 title: The germ-groupoid Steinberg algebra of a shell envelope is finitely presented as an F_2-algebra
-requires: [germ-steinberg-algebras-over-v-are-fg-central-simple, shell-cantor-embeddings-are-finite-germ-extensions]
 distinct_from:
   perfect-decidable-inputs-have-fp-shell-envelopes: that asks for finite presentation of the shell envelope as a GROUP; this asks for finite presentation of an algebra built from the same action, which is a different gate on the same construction.
   steinberg-resolvent-shell-envelope-is-finitely-presented: that is the group gate for one explicit input, the Steinberg group of the Leavitt resolvent ring; this is the algebra gate, for shell envelopes in general.
   algebra-boone-higman-conjecture: that asks for finitely presented simple algebra envelopes of arbitrary decidable algebras; this asks it for the specific Steinberg algebras of shell germ groupoids, whose finite generation is already proved.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `germ-steinberg-algebras-over-v-are-fg-central-simple`, `shell-cantor-embeddings-are-finite-germ-extensions`.
 
 **OPEN.**
 

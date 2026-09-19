@@ -6,7 +6,7 @@ title: Proof that descending window-zero shell endomorphisms have centralizers o
 target: descending-shell-endomorphisms-have-finite-exponent-centralizers
 requires:
   - fw-shell-inputs-at-window-zero-are-highly-transitive
-  - fw-window-zero-descending-sign-proof
+  - fw-window-zero-descending-sign-forces-trivial-core
 ---
 
 **Setup.** By `fw-window-zero-descending-sign-proof` Steps 1--2 (with `θ = ψ`) there are a

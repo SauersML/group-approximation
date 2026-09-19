@@ -3,9 +3,6 @@ rg: 2
 id: telescopic-germ-bases-in-v-germ-extensions-are-v-separated
 kind: claim
 title: Telescopes (a group acting on every annulus around a point through the orbit of one endomorphism) have germ group (P/K_∞)*σ; inside a finite germ extension of V a faithful telescopic germ base is exactly a dynamically V-separated group, and a self-simulating finite germ extension of V simulates only subgroups of V
-requires:
-  - dynamically-v-separated-groups-satisfy-boone-higman
-  - normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups
 distinct_from:
   dynamically-v-separated-groups-satisfy-boone-higman: that is the sufficiency direction (a finitely presented dynamically V-separated group gives a finitely presented host); this is the converse (every faithful telescope inside ANY finite germ extension of V has a dynamically V-separated base), the germ calculus for general seeds and non-injective data, and the self-simulation corollary.
   f-infinity-tail-ascending-hnns-satisfy-boone-higman: that realizes last-section ascending HNN extensions; here the telescope operator is defined for an arbitrary seed action, and the result is a characterization and an obstruction, not a construction.

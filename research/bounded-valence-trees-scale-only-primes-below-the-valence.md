@@ -3,8 +3,6 @@ rg: 2
 id: bounded-valence-trees-scale-only-primes-below-the-valence
 kind: claim
 title: In a tree of valence at most d, a root of prime order l > d of g fixes exactly Fix(g); so groups acting on bounded-valence trees with prime-root-bounded vertex stabilizers are prime-root bounded and contain no (Q,+), GL_n(Q) or Z_(p)
-requires:
-  - divisible-elements-act-elliptically-on-trees
 distinct_from:
   divisible-elements-act-elliptically-on-trees: that shows, for any tree, that an element with roots of infinitely many orders is elliptic and that (Q,+) fixes a vertex or exactly one end; this adds the prime budget of a bounded-valence tree, so primes above the valence cannot be scaled at an end at all and their roots lie in one vertex stabilizer.
   gl-n-q-fixes-a-vertex-in-free-splittings: that is the trivial-edge-stabilizer case, where the valence is infinite and all divisibility sits at a vertex; this is the finite-valence case with arbitrary edge stabilizers, where all but finitely many primes' worth of divisibility sits at a vertex.

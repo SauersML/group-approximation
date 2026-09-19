@@ -3,8 +3,6 @@ rg: 2
 id: causal-depth-localizes-quantum-noncommutativity
 kind: claim
 title: If a computation layer is causally determined by a base whose projections commute, every commutator of a quantum family is supported at infinite causal depth; finite-dimensional families commute off the base points with an infinite-depth site
-requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   bounded-determination-simulations-only-realize-sft-shadows: that treats computation determined by the base within one fixed radius, and shows it only simulates SFTs; this allows base-dependent, unbounded causal depth (seeded computations on grids), which is what simulation of non-SFT inputs uses, and localizes all non-commutativity at infinite depth.
   deterministic-extensions-of-rigid-sfts-are-rigid: that transports a fibre letter unconditionally along a monoid-generating set of directions; here the predecessors of a site depend on the base, may be several, and chains may terminate at seeds, so the fibre is not transported from one site.

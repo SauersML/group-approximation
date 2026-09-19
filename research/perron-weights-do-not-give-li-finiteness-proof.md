@@ -5,7 +5,6 @@ kind: route
 title: The F_2 reduced-word coding has Perron weights but non-simply-connected Witzel complexes at x_N = (a, a^-1, N b, N b^-1); Li's link lemma needs the packing number, and a hitting set plus a thin cycle bounds it
 target: perron-weights-do-not-give-li-finiteness
 requires:
-  - perron-substitution-finiteness-for-garside-full-groups
   - pointed-cube-categories-are-li-garside-categories
 ---
 

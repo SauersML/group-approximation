@@ -3,9 +3,6 @@ rg: 2
 id: circle-pl-groups-act-with-type-a-on-breakpoint-orbits
 kind: claim
 title: A finitely presented circle PL group T(l;A,P) with finitely generated interval stabilizer and A/(IP·A) finite acts with type (A) on A/lZ, so all its subgroups satisfy permutational Boone–Higman
-requires:
-  - type-a-action-gives-boone-higman-for-subgroups
-  - irrational-slope-f-tau-f-infinity-citation
 distinct_from:
   lodha-simple-circle-group-has-a-type-a-action: that treats Lodha's piecewise projective group S, whose stabilizer is identified via Lodha's standard forms; this is the piecewise linear family of Bieri–Strebel type, identified via the Bieri–Strebel orbit theorem.
   fp-simple-groups-embed-in-fp-simple-mif-groups: that is BFFHZ Question 3.4 in general (OPEN); this settles it for every simple subgroup of these circle groups, which covers the "Stein groups, irrational-slope T_τ" row of the Q3.4 census.

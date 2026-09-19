@@ -3,10 +3,6 @@ rg: 2
 id: finitary-perturbations-give-isolated-quotients
 kind: claim
 title: Finitary perturbations of a faithful action of a torsion-free group never produce a new quotient, but finitary perturbations of a highly transitive finitely presented quotient produce isolated quotients as close to the group as that quotient
-requires:
-  - finitary-symmetric-extensions-of-oligomorphic-actions-are-fp
-  - fp-groups-with-a-locally-moving-simple-subgroup-are-isolated
-  - limits-of-isolated-groups-basic-closure
 distinct_from:
   finitary-symmetric-extensions-of-oligomorphic-actions-are-fp: that proves FSym(S) semidirect P is finitely presented; this uses it to manufacture isolated QUOTIENTS of a given group, as needed for Cornulier--Guyot--Pitsch Question 1.
   fp-groups-with-a-locally-moving-simple-subgroup-are-isolated: that is the isolatedness criterion; this is a construction of groups meeting it that are quotients of a prescribed input.

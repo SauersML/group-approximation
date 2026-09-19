@@ -4,6 +4,7 @@ id: train-track-split-cones-least-common-descendants-proof
 kind: route
 title: Proof that split descendants of a complete train track have least common descendants
 target: train-track-split-cones-have-least-common-descendants
+requires: []
 ---
 
 Lane bh-major-mcg, 2026-09-18. Lane proof, not independently reviewed. Notation is that

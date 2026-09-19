@@ -3,16 +3,11 @@ rg: 2
 id: end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups
 kind: claim
 title: The end shift of a cocompact locally finite tree with finitely generated vertex stabilizers is an SFT over the acting group; if that group is finitely presented, contains (Q,+) and acts topologically freely on the ends, some vertex stabilizer is a finitely presented residually finite group containing a semilocalization Z_(S) of Z
-requires:
-  - bounded-valence-trees-scale-only-primes-below-the-valence
-  - decidable-fp-groups-have-effective-minimal-free-subshifts
-  - steinberg-groups-of-r-l-are-quasisimple
 distinct_from:
   free-group-boundary-shifts-are-quantum-rigid: that codes the end shift over a group whose Cayley graph is the tree (finite stabilizers); this codes it over any finitely generated group acting cocompactly on a locally finite tree with finitely generated vertex stabilizers, which is what an input containing (Q,+) needs, since its vertex stabilizers are necessarily infinite.
   z-localized-embeds-in-fp-rf-group: that is the OPEN question whether some Z_(l) lies in a finitely presented residually finite group, needed by three gq host routes; this shows the boundary route to (★′) for every input containing (Q,+) needs the weaker semilocal form, so a refutation of the semilocal form kills four routes.
   locally-finite-tree-end-shifts-are-quantum-rigid-sfts: that node (bh-star-a, f2bfa4b84, landed the same hour) proves part 1 here and also quantum rigidity; this adds the vertex-group consequences for inputs containing (Q,+), parts 2 and 5.
   baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman: that imports Bux–Llosa Isenrich–Wu, whose Theorem A embeds every faithful cocompact locally-finite-tree group with finitely presented edge stabilizers in a finitely presented simple group; part 5 here shows every such host of an input containing (Q,+) needs (SL).
-  gl-n-q-bh-via-track-a-over-st-10-times-free-group: that route gets minimality from (M2) for St_10(R_L) plus minimal product simulation; this is the boundary alternative, where the end shift is minimal and topologically free at once, and it shows St_10(R_L) can never be the acting group there.
 ---
 
 **ESTABLISHED** (lane bh-gln-tracka, 2026-09-18; elementary Bass–Serre theory and symbolic dynamics, lane proof, not

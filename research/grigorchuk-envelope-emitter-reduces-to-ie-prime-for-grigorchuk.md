@@ -3,10 +3,6 @@ rg: 2
 id: grigorchuk-envelope-emitter-reduces-to-ie-prime-for-grigorchuk
 kind: claim
 title: The branch set at the emitter of Grigorchuk's finitely presented envelope is, up to finite index and a trivially acting kernel, finitely many free orbits of the Grigorchuk group; so a finite-type (IE′) blow-up of that emitter exists only if the Grigorchuk group itself, up to commensurability, has an SFT compactification, and the branch envelope hands the emitter problem back to its input
-requires:
-  - grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter
-  - stabilizer-engines-embed-in-every-branch-compactification
-  - finite-type-branch-blow-ups-are-sft-compactifications
 distinct_from:
   stabilizer-engines-embed-in-every-branch-compactification: that treats the free-product emitter of Z/2 * S, whose branch set is the free S-orbit S; this treats the ascending-HNN emitter of Grigorchuk's envelope, with a fixed end and a homogeneous branch set G/φ(G), and identifies that set with free orbits of G through level-one sections.
   finite-type-branch-blow-ups-are-sft-compactifications: that gets SFT compactifications from metric seeds (Cannon cones) for hyperbolic S; this shows that the Grigorchuk envelope needs the same object for the Grigorchuk group, where no seed mechanism is known.

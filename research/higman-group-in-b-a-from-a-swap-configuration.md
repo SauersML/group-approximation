@@ -3,10 +3,6 @@ rg: 2
 id: higman-group-in-b-a-from-a-swap-configuration
 kind: claim
 title: H4 ⋊ C_2 is the amalgam of the chain group G_1 with F(a,c) ⋊ C_2 along F(a,c), the involution swapping the top letter a with the bottom base c; so H4 ∈ B_A as soon as a B_A overgroup of G_1 contains such a swap involution and a realized subgroup cutting G_1 and F(a,c) ⋊ C_2 exactly in F(a,c)
-requires:
-  - higman-group-splits-as-amalgams-over-free-subgroups
-  - pbh-amalgams-over-centralizer-separated-edges
-  - tame-power-conjugators-have-more-hyperbolic-points
 distinct_from:
   higman-group-satisfies-boone-higman: that is the open question; this reduces it to a single involution in a B_A overgroup of the chain group G_1, plus a separator.
   baumslag-gersten-in-b-a-from-a-root-separated-shift: that reduces BG to a shift of infinite order; this reduces H4 to a swap of order two, which is the periodic version of the same renormalization.

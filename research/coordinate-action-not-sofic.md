@@ -3,7 +3,8 @@ rg: 2
 id: coordinate-action-not-sofic
 kind: claim
 title: The coordinate action G ↷ G/Γ is not a sofic action
-invalidates: [sofic-action-permanence]
+invalidates:
+  - sofic-action-permanence
 distinct_from:
   wreath-not-sofic: that is nonsoficity of the group W; this is nonsoficity of the coset ACTION on the index set, which is what every permanence theorem takes as its hypothesis
   sofic-radical-linear-action-criterion: that is a general displacement-inequality criterion for sofic-radical membership in a finitely presented group; this is a specific negative fact about one coset action of one group

@@ -3,8 +3,6 @@ rg: 2
 id: chain-configurations-need-unboundedly-many-dilation-eigenvalues
 kind: claim
 title: In a Baumslag-Solitar chain configuration the middle element dilates the conjugates a^n c a^-n by 2^(2^n), so no group that is abelian over a directed union of finitely generated metabelian groups with boundedly many associated primes contains one; this covers ascending HNN extensions of finitely generated metabelian groups and ascending towers of height three over Z
-requires:
-  - higman-chain-group-pbh-iff-chain-configuration
 distinct_from:
   higman-chain-group-pbh-iff-chain-configuration: that reduces BH for the chain group to finding a chain configuration and excludes metabelian and linear groups by direct arguments; this gives the spectral reason behind the metabelian exclusion and extends it to a class of groups of derived length three.
   zoom-tower-germ-groups-give-f-infinity-germ-extensions: that certifies germ extensions whose germ groups are ascending towers; this shows such towers cannot hold a chain configuration below height four.

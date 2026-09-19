@@ -3,7 +3,8 @@ rg: 2
 id: non-nesting-transporters-cannot-install-chart-comparison
 kind: claim
 title: A single Thompson transporter whose pulled-back chart leaves never nest with the chart leaves cannot install the half-corner comparison
-invalidates: [half-corner-comparison-via-non-nesting-transporter]
+invalidates:
+  - half-corner-comparison-via-non-nesting-transporter
 distinct_from:
   chart-comparison-must-fuse-torus-classes: that constrains finite images of an arbitrary actor group of one chart; this compares two different charts K and h^-1 K h joined by one transporter and uses a finite block module, including cases where the transporter changes depth.
   split-comparisons-balance-induced-brauer-characters: that is the one-chart balance theorem; this is a two-chart rank count on an honest finite-dimensional block module.

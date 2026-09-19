@@ -3,10 +3,6 @@ rg: 2
 id: baumslag-gersten-in-b-a-from-a-root-separated-shift
 kind: claim
 title: The Baumslag--Gersten group lies in B_A as soon as some B_A group contains a shift configuration (a, τ), with (τaτ^-1) a (τaτ^-1)^-1 = a^2 and a of infinite order, together with a realized subgroup that contains a but none of its proper roots in the base of <a, τaτ^-1>; no Higman group is needed
-requires:
-  - baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - bs12-base-generator-centralizer-proof
 distinct_from:
   baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath: that asks for a B_A overgroup of H_4 ⋊ C_4 in which <a_0> itself is realized; this asks only for some shift configuration in some B_A group, and for a realized subgroup that separates a from its roots, observing that the Britton argument there uses nothing about H_4.
   higman-chain-group-lies-in-b-a: that settles the base K of the HNN splitting of BG; this isolates what the HNN step needs, a single conjugator.

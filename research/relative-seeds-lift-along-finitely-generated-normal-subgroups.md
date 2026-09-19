@@ -3,10 +3,6 @@ rg: 2
 id: relative-seeds-lift-along-finitely-generated-normal-subgroups
 kind: claim
 title: Relative seeds lift along finitely generated normal subgroups, so every Mihailova pair with abelian quotient has a rigid relative seed forced across both factors; but inside a Mihailova subgroup such kernels exist only when Q is finite or virtually central, so this lift cannot carry a hard word problem
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - relative-seeds-descend-to-quotients-and-consume-membership
-  - mihailova-relative-seeds-must-force-across-both-factors
 distinct_from:
   relative-seeds-descend-to-quotients-and-consume-membership: that pushes a relative seed down to Λ/N for any normal N ≤ C; this is the converse, lifting from Λ/K to Λ, and it needs K finitely generated.
   mihailova-relative-seeds-must-force-across-both-factors: that proves that no row of a Mihailova seed is forced inside its own factor; this shows that forcing across both factors does occur (abelian Q), and that its only local mechanism, right invariance, stops at virtually central Q.

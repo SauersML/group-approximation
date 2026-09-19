@@ -3,15 +3,16 @@ rg: 2
 id: simple-inputs-have-finitely-presented-stabilizer-engines
 kind: claim
 title: For every infinite finitely generated simple group S with solvable word problem, the derived full group of Z/2 * S on its compactified Bass–Serre tree is finitely presented
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that is the proved necessary condition (decidable vertex group); this is the open sufficiency statement for simple inputs.
   stabilizer-engines-force-fp-vertex-groups: that proves a finitely presented engine forces a finitely presented vertex group; this asserted finite presentation of the engine for all decidable simple inputs, which that result refutes.
 refuted_by:
   - regular-cyclic-twisted-core-has-non-fp-stabilizer-engine
   - stabilizer-engines-of-non-fp-simple-groups-are-not-fp
+  - stabilizer-engines-are-fp-only-over-isolated-groups
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `free-product-boundary-groupoids-carry-the-vertex-group-homology`.
 
 **REFUTED (2026-09-18)** by `stabilizer-engines-of-non-fp-simple-groups-are-not-fp`: a finitely
 presented `D(F_S)` forces `S` to be finitely presented (`fp-stabilizer-engines-need-fp-vertex-groups`,

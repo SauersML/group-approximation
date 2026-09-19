@@ -3,11 +3,6 @@ rg: 2
 id: cocompact-tree-end-shift-hosts-are-f-infinity
 kind: claim
 title: For a strongly faithful cocompact action on a locally finite leafless tree whose edge stabilizers are of type F_infinity-plus, the V-stabilized full group of the end shift is of type F_infinity; the end-shift SFT therefore satisfies the horizontal filling condition (A_N) in every degree, and E3′ holds for every graph of groups of this kind
-requires:
-  - non-lcm-dissection-operad-groups-are-f-infinity
-  - locally-finite-tree-end-shifts-are-quantum-rigid-sfts
-  - v-times-subshift-full-group-finiteness-is-horizontal
-  - fp-v-times-minimal-action-full-groups-have-type-a-actions
 distinct_from:
   nonascending-hnn-end-shifts-satisfy-e3-prime: that proves F_n for non-ascending multiple HNN extensions, one vertex group, through Li's Zappa–Szép theorem; this covers every cocompact graph of groups with locally finite tree, any number of vertex and edge orbits, through Thumann's theorem with infinite transformation groups.
   locally-finite-tree-end-shifts-are-quantum-rigid-sfts: that proves the end shift is a quantum-rigid, minimal, topologically free SFT; this proves the finiteness gate for the same class, so the class realizes (★′) and E3′ at once.

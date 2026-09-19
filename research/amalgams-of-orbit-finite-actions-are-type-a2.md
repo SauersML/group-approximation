@@ -3,10 +3,6 @@ rg: 2
 id: amalgams-of-orbit-finite-actions-are-type-a2
 kind: claim
 title: Two actions of finitely presented groups on one set, glued along a common orbit-finite subgroup, give a type [A_2] action of the amalgam; regular subgroups of type (A) actors export their holomorphs into relative PBH, with a free kernel as the only gap to PBH
-requires:
-  - normalizer-extension-of-type-a-actor-is-a2-cover
-  - outer-extensions-of-fp-simple-mif-groups-satisfy-pbh
-  - relative-automorphism-of-fp-simple-mif-group-has-type-a-action
 distinct_from:
   normalizer-extension-of-type-a-actor-is-a2-cover: that extends a type (A) actor Γ by permutations normalizing Γ itself; this glues Γ to a group D that only has to agree with Γ on a small subgroup C, and borrows Γ's pair-orbit finiteness through the amalgam Γ *_C D.
   outer-extensions-of-fp-simple-mif-groups-satisfy-pbh: that is the case where the automorphisms normalize the whole BFFHZ actor, so the kernel is finitely normally generated and PBH follows; here the automorphisms need only normalize a regular subgroup, and the result is relative PBH with an explicit free kernel.

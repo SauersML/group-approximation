@@ -3,7 +3,8 @@ rg: 2
 id: one-sided-sandwich-leaves-an-ideal-missing-the-core
 kind: claim
 title: A one-relation sandwich makes the chosen element full and still admits a proper ideal disjoint from the coefficients
-invalidates: [boone-higman-via-sandwich-ring-simplicity]
+invalidates:
+  - boone-higman-via-sandwich-ring-simplicity
 distinct_from:
   universal-sandwich-ring-is-finitely-presented-and-injective: that is the positive half -- adjoining the sandwich relation universally preserves the embedding and finite presentability; this is the negative half, that the same relation does not make the extension simple, and the two are stated separately because only the first is used constructively.
   division-ring-hosts-no-binary-leavitt-family: that forbids a binary Leavitt family inside a division ring, a nonembedding statement about a fixed class of hosts; this exhibits a proper ideal in a specific one-relation ring and says nothing about division rings.

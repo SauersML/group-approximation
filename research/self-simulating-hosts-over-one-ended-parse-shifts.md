@@ -3,13 +3,9 @@ rg: 2
 id: self-simulating-hosts-over-one-ended-parse-shifts
 kind: claim
 title: (OPEN) Self-simulating hosts over one-ended parse shifts, where telescope fixed points indexed by a locally uniquely parsable hierarchy over a one-ended decidable group generate a finitely presented full group carrying the seed at every infinite-level point
-requires:
-  - telescope-fixed-points-are-singular-on-a-parse-shift
-  - boone-higman-via-v-times-aperiodic-sft-full-groups
-  - quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products
-distinct_from:
-  boone-higman-via-v-times-aperiodic-sft-full-groups: that route asks for finite presentation of the V-stabilized full group of Λ ⋉ X for a quantum-rigid SFT X; this adds the telescope fixed points θ_s, which carry a seed group in the isotropy of every infinite-level point, and asks for finite presentation of the enlarged host. It is the group-side mechanism in which the cross-depth relations ARE the parse rule.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `telescope-fixed-points-are-singular-on-a-parse-shift`, `boone-higman-via-v-times-aperiodic-sft-full-groups`, `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products`.
 
 **OPEN.** Nothing below is proved beyond the one-chain facts of
 `telescope-fixed-points-are-singular-on-a-parse-shift`.

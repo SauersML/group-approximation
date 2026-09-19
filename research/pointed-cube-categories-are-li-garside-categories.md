@@ -3,10 +3,6 @@ rg: 2
 id: pointed-cube-categories-are-li-garside-categories
 kind: claim
 title: The pointed-cube category of every free cocompact cubulation, special or not, is a Garside category in Li's sense with solvable word problem for its full groups; the naive power without a grading (hyperplane count mod M) destroys disjoint mcms
-requires:
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
-  - commutative-cube-degree-maps-force-tree-products
-  - raag-cube-codings-fail-li-multiplicity-at-every-power
 distinct_from:
   raag-cube-codings-fail-li-multiplicity-at-every-power: that shows Li's (t<d) fails for RAAG (special) codings at every power; this proves the Garside layer for all cubulations including non-special ones, and kills the grading-free power.
   commutative-cube-degree-maps-force-tree-products: that shows commutative (UFP*) gradings force tree products; this covers the remaining naive power, the non-(UFP*) count subcategory.

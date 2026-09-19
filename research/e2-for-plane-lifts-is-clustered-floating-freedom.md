@@ -3,16 +3,12 @@ rg: 2
 id: e2-for-plane-lifts-is-clustered-floating-freedom
 kind: claim
 title: In crossing-wire plane lifts the letters and coordinates are automatically central, so gate E2 is exactly clustered, relatively rigid floating freedom; transport-coupled floating data would be rigid but can never be minimal for a non-SFT input
-requires:
-  - plane-local-freedom-kills-rigidity-of-plane-lifts
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
 distinct_from:
   plane-local-freedom-kills-rigidity-of-plane-lifts: that proves far free planes kill rigidity and proposed bijective transports as the fix; this proves the letter layer is classical in every crossing-wire table lift, characterizes E2 by clustering, and WITHDRAWS the transport fix (Theorem C).
   copy-constraints-make-simulation-skeleton-and-data-commute: that gets skeleton–data commutation from exact copy rules in aligned simulations; this adds the crossing of copied table wires, which makes the letters of all planes commute and central.
-  keyed-diversification-slots-give-plane-constant-minimal-lifts: that is the E1 construction; Theorem C shows its slot mechanism is incompatible with any transport of floating data, and Section 4 names the one shape of freedom E2 still allows there.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `plane-local-freedom-kills-rigidity-of-plane-lifts`, `extension-rigidity-is-base-centrality-plus-pointwise-rigidity`, `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`, `strongly-proximal-geometries-are-disjoint-from-measured-inputs`.
 
 **Status.**
 - Theorem A is ESTABLISHED, conditional on the layout hypotheses (P) below; they are design

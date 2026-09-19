@@ -3,7 +3,8 @@ rg: 2
 id: thompson-v-coset-stabilizers-contain-copies-of-v
 kind: claim
 title: The separating stabilizer families of Thompson's V all contain copies of V, so Cantor-set coset peeling is circular
-invalidates: [thompson-v-surjunctive-via-coset-peeling]
+invalidates:
+  - thompson-v-surjunctive-via-coset-peeling
 distinct_from:
   gottschalk-counterexamples-lie-outside-the-permanence-closure: that shows no permanence operation built from sofic groups reaches a finitely presented simple nonsofic group; this shows the coset-transplant method itself, applied through the Cantor action of V, only ever offers stabilizer groups containing V.
   full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant: that forbids encoding the full shift into coset shifts with infinite stabilizers; this concerns transplanting an automaton over V to coset spaces of V and the groups its coset-region step would need.

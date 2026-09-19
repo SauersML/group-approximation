@@ -7,10 +7,6 @@ distinct_from:
   leavitt-tensor-hosts-acyclic-steinberg-and-fp: that states the transferred Khanh criteria for B ⊗ L conditionally; this checks, against the source texts, that each hypothesis they need holds for B = L_p, and records which trust remains.
   ara-cortinas-leavitt-tensor-k-theory-vanishes: that is the literature import of K_*(L ⊗ L) = 0; this re-reads it at source for every prime field and places it in the full chain.
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that is the prime-field host theorem; this is the hypothesis audit for its instance B = L_p, including the odd-p modifications.
-requires:
-  - leavitt-tensor-hosts-acyclic-steinberg-and-fp
-  - ara-cortinas-leavitt-tensor-k-theory-vanishes
-  - prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre
 ---
 
 **ESTABLISHED as a source audit** (bh-free-26, 2026-09-18, by hand; not independently

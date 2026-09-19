@@ -3,9 +3,6 @@ rg: 2
 id: hnn-stages-add-no-complexity-beyond-edge-distortion
 kind: claim
 title: A faithful one-permutation HNN stage over a type (A) actor adds no complexity beyond the distortion of its orbit-finite edge groups, and an identity edge must be closed under the permutation bicommutant, which fiber-product edges never are
-requires:
-  - stable-permutation-hnn-of-type-a-actor-is-type-a
-  - twisted-brin-thompson-wp-equals-actor-orbit-problem
 distinct_from:
   stable-permutation-hnn-of-type-a-actor-is-type-a: that proves the stage is of type (A) when rho is injective; this bounds the orbit problem of the stage and gives necessary conditions for injectivity.
   permutation-hnn-realization-of-type-a-actor-is-a2: that treats the non-injective case and asks when the kernel is recursive; this is the injective case, measured in complexity.

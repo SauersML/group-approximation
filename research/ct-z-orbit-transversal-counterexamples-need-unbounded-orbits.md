@@ -3,8 +3,6 @@ rg: 2
 id: ct-z-orbit-transversal-counterexamples-need-unbounded-orbits
 kind: claim
 title: "Kourovka 20.44, constraint on counterexamples: if a finitely generated subgroup of CT(Z) has infinitely many orbits of size at most s for some s, then it has an orbit transversal of positive lower density; so a counterexample must have, for every s, only finitely many orbits of size at most s"
-requires:
-  - ct-z-orbit-transversal-dichotomy-is-collatz-hard
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary, no priority claimed. Kourovka 20.44

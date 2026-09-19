@@ -3,7 +3,8 @@ rg: 2
 id: atlas-fixed-packet-hall-cannot-prove-six-row-singular-counting
 kind: claim
 title: A fixed packet-type Hall selection cannot prove the six-row singular-counting inequality
-invalidates: [atlas-six-row-singular-counting-via-fixed-packet-hall-selection]
+invalidates:
+  - atlas-six-row-singular-counting-via-fixed-packet-hall-selection
 distinct_from:
   atlas-six-row-singular-counting-dominates-nontrivial-s3: that permits spectral projections moving with the full matrix coordinate and threshold; this rules out only replacing those moving incidences by one fixed finite packet-type graph with linear capacities.
   universal-atlas-ideal-cannot-force-hall-deficit: that rules out universal star-ideal identities for forbidden Fourier blocks; this also rules out arbitrary fixed finite packet restriction diagrams and capacitated Hall inequalities, even when the named vertices include spectral atoms.

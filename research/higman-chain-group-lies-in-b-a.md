@@ -3,18 +3,14 @@ rg: 2
 id: higman-chain-group-lies-in-b-a
 kind: claim
 title: The chain BS(1,2) *_Z BS(1,2), the common vertex group of Higman's group and the base of the Baumslag--Gersten group, lies in B_A and embeds in a finitely presented simple group, because a Kaloujnine--Krasner twist puts its chain configuration in the coset lamplighter BS(1,2) wr over BS(1,2)/<b>
-requires:
-  - higman-chain-group-pbh-iff-chain-configuration
-  - bs12-base-generator-is-a-centralizer-in-b-a
-  - pbh-amalgams-over-centralizer-separated-edges
-  - char-zero-linear-groups-satisfy-permutational-boone-higman
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   higman-chain-group-pbh-iff-chain-configuration: that reduces the question to finding a chain configuration in some B_A group, and names the twisted lamplighter M_1 as the canonical candidate without placing it; this places M_1, and so decides the question.
   bs12-base-generator-is-a-centralizer-in-b-a: that puts the untwisted coset lamplighters Λ wr_(A/<b>) A in B_A; this observes that the twisted one embeds in the untwisted one with the larger lamp group BS(1,2).
   higman-group-satisfies-boone-higman: that is the open question for Higman's group; this settles its vertex group, and leaves the cyclic closing-up of four chains as the whole remaining difficulty.
   baumslag-gersten-group-satisfies-boone-higman: that is the open question for BG; this settles its base K, and leaves the shift HNN step.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `higman-chain-group-pbh-iff-chain-configuration`, `bs12-base-generator-is-a-centralizer-in-b-a`, `pbh-amalgams-over-centralizer-separated-edges`, `char-zero-linear-groups-satisfy-permutational-boone-higman`, `type-a-action-gives-boone-higman-for-subgroups`.
 
 **OPEN**: referee FAIL of the proof, 2026-09-18, bh-ref-bs12; see the Referee section. The lane proof was marked established and not reviewed; no priority claimed.
 

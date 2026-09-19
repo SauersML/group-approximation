@@ -3,9 +3,6 @@ rg: 2
 id: grigorchuk-tip-subshift-is-not-of-finite-type
 kind: claim
 title: The Schreier-tip subshift of the Grigorchuk group is not of finite type, and no SFT containing it keeps the tip isolated, because the finite-level Schreier graphs give periodic two-tip configurations locally indistinguishable from the tip; residual finiteness of the tree action is the obstruction to finite-type branch seeds
-requires:
-  - grigorchuk-schreier-tip-seeds-a-non-free-orbit
-  - grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter
 distinct_from:
   grigorchuk-schreier-tip-seeds-a-non-free-orbit: that builds the tip seed and leaves its finite type open; this proves it is not of finite type, and that no SFT containing the tip subshift keeps the tip isolated.
   grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter: that finds that Grigorchuk's finitely presented envelope sits at an infinite emitter; this finds that the natural seed which could blow up a parabolic emitter is not of finite type. Both come from the level structure of the tree action.

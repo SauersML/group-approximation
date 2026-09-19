@@ -3,10 +3,6 @@ rg: 2
 id: v-stabilized-emitter-hosts-are-never-finitely-presented
 kind: claim
 title: For A nontrivial and S infinite, the compactified Bass–Serre boundary of A * S is a topologically free subshift that is not of finite type, so the V-stabilized (Cuntz-stabilized) full group of any emitter host is never finitely presented
-requires:
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - stabilizer-engines-embed-in-every-branch-compactification
 distinct_from:
   stabilizer-engines-embed-in-every-branch-compactification: that proves the branch compactification S⁺ is not an SFT over S (part 3a) and proposes finite-type blow-ups; this proves the whole compactified tree is not an SFT over A * S, and draws the group consequence that no V-stabilized emitter host is finitely presented.
   fp-stabilizer-engines-need-decidable-vertex-groups: that is a necessary condition for the unstabilized engine D(F_B); this is an outright non-finite-presentation theorem for the stabilized engine, for every infinite vertex group.

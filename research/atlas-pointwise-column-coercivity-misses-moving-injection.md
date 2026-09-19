@@ -3,7 +3,8 @@ rg: 2
 id: atlas-pointwise-column-coercivity-misses-moving-injection
 kind: claim
 title: Tracially functorial residual-column coercivity cannot prove the moving Atlas singular injection
-invalidates: [atlas-moving-singular-injection-via-residual-column-coercivity]
+invalidates:
+  - atlas-moving-singular-injection-via-residual-column-coercivity
 distinct_from:
   atlas-fixed-packet-hall-cannot-prove-six-row-singular-counting: that freezes a finite type graph and uses rational multiplicity density; this allows the spectral subspaces to move arbitrarily with the matrix and threshold, but rules out proving their transversality from one pointwise residual-column inequality.
   atlas-radius-nine-packet-gram-sos-is-tracial: that rules out fixed block Gram and sum-of-squares proofs of the quadratic Hilbert--Schmidt charge; this isolates the apparently stronger singular-vector argument and shows that its standard injectivity step is the same forbidden operator domination.

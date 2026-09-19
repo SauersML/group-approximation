@@ -3,16 +3,12 @@ rg: 2
 id: t-check-contains-no-q-rtimes-2-z
 kind: claim
 title: T-check contains no copy of Q x|_2 Z; a doubled rank-one rational group A x|_2 Z lies in T-check only when A is Z[1/2], because the doubling semiconjugacy pulls dyadic boundary data back to bounded odd denominators
-invalidates:
-  - t-check-contains-q-rtimes-2-z
 distinct_from:
   t-check-contains-q-rtimes-2-z: that is the open existence question; this answers it negatively, in the minimal and in the blown-up case at once.
   q-x2-z-in-t-check-has-a-doubling-semiconjugacy: that constructs the semiconjugacy h and constrains every copy; this uses h to show that no copy exists.
   q-x2-z-in-t-check-blows-up-the-doubling-fixed-point: that excludes the copies whose fibre h^-1(0) is a point, by one-dimensional dynamics; this excludes all copies by boundary arithmetic, with no minimality, entropy or measure theory.
   rational-rotations-and-doubling-have-no-common-tree-coding: that needs a coding in which the rotations are exact (the collapse map is injective off the rationals); this drops injectivity, since only cells of positive h-mass are used, so Denjoy blow-ups do not escape it.
   fg-pl-quasi-similarity-groups-contain-no-gl-2-q: that excludes Aff(Q), B_2(Q), SL_n(Q), GL_n(Q) from periodic PL quasi-similarity groups through the scaling lemma; this excludes the smaller stepping stone Q x|_2 Z, which the scaling lemma allows.
-requires:
-  - q-x2-z-in-t-check-has-a-doubling-semiconjugacy
 ---
 
 **ESTABLISHED** by `t-check-contains-no-q-rtimes-2-z-proof` (lane bh-free-16, 2026-09-18; elementary;

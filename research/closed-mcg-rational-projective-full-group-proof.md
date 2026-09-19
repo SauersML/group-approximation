@@ -4,6 +4,7 @@ id: closed-mcg-rational-projective-full-group-proof
 kind: route
 title: Proof that the closed-surface mapping class group embeds in the full clopen-transitive group of integral projective germs on the rational Cantorization
 target: closed-mcg-embeds-in-rational-projective-full-group
+requires: []
 ---
 
 Notation as in `closed-mcg-embeds-in-rational-projective-full-group`. Elementary,

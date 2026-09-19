@@ -3,8 +3,6 @@ rg: 2
 id: annular-free-product-germ-hosts-are-not-finitely-presented
 kind: claim
 title: The free-product germ hosts <V, Ĝ> of residually finite groups are never finitely presented, because finite presentation forces the annular actions to be determined by finitely many relations
-requires:
-  - rf-groups-have-free-product-germs-over-v
 distinct_from:
   annular-free-factor-germ-extensions-fail-bhm-singfix: that shows the Belk--Hyde--Matucci certificate SingFix({p},{p}) is not finitely presented for these hosts, which leaves the host itself undecided; this decides the host: it is not finitely presented, by a direct argument with no Morse theory.
   rf-groups-have-free-product-germs-over-v: that builds the hosts and computes their germ groups G * Z; this shows those hosts cannot serve Boone--Higman as they stand.

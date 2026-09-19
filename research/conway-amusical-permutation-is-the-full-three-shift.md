@@ -3,10 +3,6 @@ rg: 2
 id: conway-amusical-permutation-is-the-full-three-shift
 kind: claim
 title: Conway's amusical permutation lies in CT_{3}(Z) and is conjugate on Z_2 x Z_3 to the two-sided full 3-shift, so CT(Z) contains the full-shift topological full group and every right-angled Artin group; but CT_P(Z) is diagonally rigid and has no one-stack writes in these coordinates
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - every-raag-embeds-in-full-shift-topological-full-group
-  - full-shift-topological-full-groups-are-torsion-locally-finite
 distinct_from:
   full-shift-topological-full-group-embeds-in-2v: that puts the full-shift full group into Brin's 2V, whose two stacks are independent; this puts it into Kohl's arithmetic group CT(Z), whose two stacks are two coprime moduli and cannot be written separately.
   periodic-k-graph-subgroups-with-ray-cocycle-are-finite: that bounds periodic subgroups of CT(Z) whose slopes stay on one ray; this exhibits the rank-two slope regime (slopes 3/2 and 3/4) as the full shift, where that pumping does not apply.

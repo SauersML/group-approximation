@@ -3,8 +3,6 @@ rg: 2
 id: n-adic-lodha-moore-groups-have-no-analytic-tree-coding
 kind: claim
 title: For n ≥ 3, no real-analytic tree coding of the n-ary Cantor space makes the generator y_((n−1)0) of Kodama's n-adic Lodha–Moore group G_0(n) piecewise analytic; so no digit recoding puts G_0(n) into Monod's group H through Lodha–Moore's coding
-requires:
-  - analytic-codings-make-contracting-recursions-analytic
 distinct_from:
   n-adic-lodha-moore-groups-embed-in-piecewise-projective-group: that is Kodama's open question about abstract embeddings of G_0(n) into piecewise projective homeomorphisms of the line; this excludes every embedding induced by an analytic coding of the natural action, and leaves the abstract question open.
   higman-group-embeds-in-no-lodha-moore-or-monod-group: that excludes Higman's group from Lodha–Moore and Monod groups; this shows the natural route to extending it to G_0(n), through a coding of G_0(n) into H, does not exist.

@@ -3,9 +3,7 @@ rg: 2
 id: binary-self-similar-completions-over-free-bases-have-zero-kh
 kind: claim
 title: Every binary Leavitt–Nekrashevych or self-similar completion of a free algebra has vanishing homotopy K-theory, so for those finitely presented hosts the K-gate G3r is purely a nil-term question
-requires: [lescure-kh-exact-sequence-for-algebraic-cuntz-pimsner-rings, noninjective-ln-completions-have-self-similar-bases]
 distinct_from:
-  abc-leavitt-kh-vanishing-and-nil-splitting-citation: that gives KH = 0 for L_2 ⊗ A with any A, where the host is a Leavitt tensor; this gives KH = 0 for the completions O_ψ(K<X>) themselves, which are the finitely presented hosts of the self-similar algebra route and are not Leavitt tensors.
   noninjective-ln-completions-have-self-similar-bases: that proves finite presentation and identifies the base B/J; this computes the homotopy K-theory of the same rings.
 ---
 

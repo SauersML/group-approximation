@@ -3,7 +3,8 @@ rg: 2
 id: fpbs-finite-subgroup-classes-escape-q-lambda-orbits
 kind: claim
 title: For a finite nontrivial subgroup the infinite-intersection set is empty while subgroup classes have at least two points, so class-graph components escape the Q(Lambda)-orbits
-invalidates: [fpbs-malnormal-subgroup-relations-finite-contacts-proof]
+invalidates:
+  - fpbs-malnormal-subgroup-relations-finite-contacts-proof
 distinct_from:
   fpbs-malnormal-subgroup-relations-finite-contacts: that is the finite-contact obstruction whose item 3 places components of the infinite-contact class graph in <Q(Lambda)>-orbits; this is the counterexample to that sentence for finite nontrivial Lambda, which kills its proof route as written.
 artifacts:

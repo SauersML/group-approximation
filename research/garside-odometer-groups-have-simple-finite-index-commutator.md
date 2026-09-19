@@ -3,8 +3,6 @@ rg: 2
 id: garside-odometer-groups-have-simple-finite-index-commutator
 kind: claim
 title: For a finite-type Artin monoid, the decorated Garside odometer full group has finite abelianization and simple commutator subgroup
-requires:
-  - decorated-garside-odometer-full-groups-are-type-f-infinity
 refuted_by:
   - garside-decorated-groupoids-hide-artin-groups-in-isotropy
 distinct_from:
@@ -12,6 +10,8 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-bh-bh-free-15-2026-preprints.md
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `decorated-garside-odometer-full-groups-are-type-f-infinity`.
 
 **REFUTED** (2026-09-18, by the same lane) by
 `garside-decorated-groupoids-hide-artin-groups-in-isotropy`, item 4.

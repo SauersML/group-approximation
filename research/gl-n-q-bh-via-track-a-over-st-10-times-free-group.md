@@ -5,17 +5,13 @@ kind: route
 title: GL_n(Q) into a finitely presented simple group by the group-side master route over the acting group St_10(R_L) x F_2, which needs no Clapham envelope and no squaring; what remains is M2 for St_10(R_L), minimal product simulation, rigidity and E3'
 target: gl-n-q-embeds-in-fp-simple-group
 requires:
-  - gl-n-q-all-n-in-st-10-of-resolvent-ring
+  - gl-n-q-explicit-natural-fp-overgroup
   - steinberg-groups-of-r-l-are-quasisimple
   - master-route-needs-only-topological-freeness
   - decidable-fp-groups-have-effective-minimal-free-subshifts
   - nonamenable-products-have-minimal-sft-extensions-of-free-inputs
   - v-times-rigid-topologically-free-sft-full-groups-are-fp
   - bounded-valence-trees-scale-only-primes-below-the-valence
-distinct_from:
-  gl-n-q-bh-via-leavitt-resolvent-units: that route puts GL_n(Q) in units of a Leavitt-resolvent ring and is dead; this puts St_10(R_L) in the ACTING group of a groupoid host, where the divisible part rides on the acting group.
-  gl-n-q-bh-via-steinberg-shell-envelope: that asks for a finitely presented shell envelope of St_N(R_L); this uses St_10(R_L) x F_2 as the acting group of the master route and needs no envelope.
-  boone-higman-via-leavitt-units-of-rigid-topologically-free-sfts: that is the ring-side master route for all inputs; this instance avoids its K-gate, which is out of reach for every overgroup of GL_n(Q) (see "Why the group route").
 ---
 
 **Route** (lane bh-gln-tracka, 2026-09-18). **OPEN.** It is an instance of Track A of the master route

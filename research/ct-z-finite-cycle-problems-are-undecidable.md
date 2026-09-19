@@ -3,8 +3,6 @@ rg: 2
 id: ct-z-finite-cycle-problems-are-undecidable
 kind: claim
 title: In Kohl's class transposition group CT(Z) it is undecidable whether a given element has only finite cycles, and whether it has no finite cycles; this answers Kourovka Problem 21.74(b) and (c) negatively
-requires:
-  - ct-z-north-south-element-has-no-finite-cycles
 artifacts:
   - research/artifacts/gq-bh-bh-free-58-kari-ollinger-source.md
 ---

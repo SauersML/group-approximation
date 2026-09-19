@@ -6,7 +6,7 @@ title: Send each stable letter t_e to s_e w_e in an identity-edge multiple HNN o
 target: pbh-graphs-of-groups-over-realized-good-edges
 requires:
   - pbh-coset-wreaths-iff-identity-edge-hnns
-  - cusp-extensions-rel-hyperbolic-pbh-proof
+  - cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh
 ---
 
 Standard facts used, not re-read: Serre, *Trees*, §5.1--5.2 (the path group `π(𝔾)`;

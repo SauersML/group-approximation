@@ -3,8 +3,6 @@ rg: 2
 id: cyclic-centralizer-subgroups-of-v-touch-attractors
 kind: claim
 title: In a torsion-free subgroup of Thompson's V with cyclic centralizers, every nontrivial support meets the attractors, repellers or identity region of every other nontrivial element's flow power
-requires:
-  - cyclic-centralizer-subgroups-of-nv-have-meeting-supports
 distinct_from:
   cyclic-centralizer-subgroups-of-nv-have-meeting-supports: that holds in every nV and uses only centralizers; this adds V's one-dimensional source-sink dynamics and fails for nV, n >= 2 (baker-type elements have no attractors).
   closed-hyperbolic-surface-groups-embed-in-thompson-v: that is the open survey Question 4.7; this is a V-specific necessary condition on any positive answer and does not decide it.

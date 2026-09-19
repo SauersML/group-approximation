@@ -3,7 +3,6 @@ rg: 2
 id: generic-shells-have-infinitely-generated-singular-ideals
 kind: claim
 title: Every infinite finitely generated group has generic shell enumerations; for them the germ group is a bipartite parity wreath and the singular ideal is not finitely generated
-requires: [shell-germ-singular-ideal-is-the-boundary-annihilator, shell-germ-singular-ideal-is-generated-at-the-singular-point, shell-cantor-embeddings-are-finite-germ-extensions]
 distinct_from:
   zigzag-shell-singular-ideal-is-finitely-generated: that is a virtually cyclic input with Noetherian germ group ring, where J is finitely generated; this is every infinite input with a generic enumeration, where J is not.
   shell-germ-algebra-fp-forces-bounded-germ-presentation: that finds the unbounded shift exponent as the gap between algebra and group presentations of the germ group; this finds the same exponent as the obstruction to finite generation of the singular ideal.

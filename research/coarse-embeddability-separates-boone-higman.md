@@ -3,14 +3,8 @@ rg: 2
 id: coarse-embeddability-separates-boone-higman
 kind: claim
 title: Boone–Higman fails if every finitely presented simple group coarsely embeds into Hilbert space, and if it holds some finitely presented simple group coarsely contains an expander
-requires:
-  - decidable-group-with-coarsely-embedded-expanders-exists
-  - hereditary-approximation-disproofs-of-boone-higman
-  - exactness-separates-boone-higman-iff-fp-simple-groups-exact
-  - haagerup-hosts-carry-no-weak-expander
 distinct_from:
   exactness-separates-boone-higman-iff-fp-simple-groups-exact: that separator is property A; this is coarse embeddability into Hilbert space, which is implied by property A, so this refutation criterion has a strictly weaker hypothesis and its necessary consequence under Boone–Higman is strictly stronger.
-  fp-simple-nonexact-group-via-boone-higman: that derives a non-exact finitely presented simple group from Boone–Higman; this derives one that coarsely contains an expander, hence is not coarsely embeddable and a fortiori not exact.
 ---
 
 **ESTABLISHED** (lane proof, short; inputs cited). gq-referee-a PASS (proof gaps,

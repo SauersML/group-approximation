@@ -3,8 +3,6 @@ rg: 2
 id: negative-base-pisot-stein-groups-are-contracting-rsgs
 kind: claim
 title: If β > 2 is a Pisot unit whose negative-base map y ↦ {−βy} sends every point of Z[β] ∩ [0,1) to 0, the group of piecewise maps y ↦ ±β^k y + c (c ∈ Z[β]) is a full contracting RSG; so it is finitely presented and it, with all its subgroups, embeds in a finitely presented simple group
-requires:
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   pisot-stein-groups-are-contracting-rsgs: that codes by the positive β-shift and needs (F), which forces an isolated-sign unit; this codes by the negative-base map T'(y) = {−βy} and needs its finiteness (F−₀), which by `algebraic-interval-exchange-groups-satisfy-boone-higman` holds for suitable units in every real field.
   flip-codings-remove-the-sign-obstruction-for-iet-groups: that isolated the open step (a negative-base RSG theorem on the right coset); this is that theorem, with the normalization y ↦ {−βy} on [0,1), whose boundary set is exactly Z[β].

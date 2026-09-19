@@ -3,9 +3,6 @@ rg: 2
 id: piecewise-representative-lifts-are-rigid-under-cheap-moves
 kind: claim
 title: Piecewise-representative lifts of Out(F_n) are commensurability invariant, glue along graphs of groups exactly when edge restrictions are conjugate by the boundary full group, and are not made easier by profinite blow-ups, which make any lift free but only exist when a finite-index lift does
-requires:
-  - out-free-extension-pushed-into-the-boundary-full-group
-  - aut-f4-has-property-t
 distinct_from:
   boundary-pushout-of-aut-out-free-splits-mod-every-quotient: that shows every quotient-level obstruction to (PR) vanishes and constrains point stabilizers; this shows three cheap constructive moves (induction, profinite blow-up, splitting) change nothing, so a solution must be a genuine dynamical splitting on an expansive model.
   out-free-acts-on-boundary-by-piecewise-representatives: that is the open statement (PR); this records which reformulations of it are equivalent and which constructions reduce to it.

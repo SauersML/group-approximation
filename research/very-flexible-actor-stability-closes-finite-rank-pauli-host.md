@@ -38,10 +38,12 @@ and
  quad(C,D_0in{A,B}, 1leellle s).
 ]
 For any genuine finite-dimensional representation
-(ho:G	o U(D)), (Dge d), and any isometry
+(
+ho:G	o U(D)), (Dge d), and any isometry
 (V:mathbb C^d	omathbb C^D), set
 [
- alpha=max_{tin T}|V^*ho(t)V-u_t|_{2,d}.
+ alpha=max_{tin T}|V^*
+ho(t)V-u_t|_{2,d}.
 ]
 Then
 [
@@ -69,7 +71,8 @@ same factor carried by the embedded Pauli sign.
 Consequently, if the full group (C^*)-algebra (C^*(G)) has LLP and is
 RFD, then the shared-center Pauli semidirect product
 [
- Pi(X)=E(X)times G
+ Pi(X)=E(X)
+times G
 ]
 is **not hyperlinear**.  Indeed the Fournier-Facio--Willett finite-corner
 theorem (arXiv:2603.18456v2, Theorems 1.1 and 7.11) compresses genuine

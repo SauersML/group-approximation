@@ -3,8 +3,6 @@ rg: 2
 id: hard-cusps-are-canonical-and-flux-free
 kind: claim
 title: A free cocompact cusp of a Cantor action is canonically (P × Cantor)^+, and when P is one-ended (every infinite f.g. simple P is) each germ at the cusp that commutes with P is the germ of a P-equivariant homeomorphism; for P = Z the two ends carry independent germs (Houghton flux)
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   free-product-boundary-groupoids-carry-the-vertex-group-homology: that computes dynamics and homology of one family of boundary actions (Z/k * B); this classifies the local structure at ANY free cocompact cusp of a Cantor action and computes the commutant of the cusp group in germs.
   lampshuffler-groups-are-not-fp2-over-q: that is about the branch-permutation subgroup FSym(P) ⋊ P, which is never FP_2; this is about germs at the cusp point itself.

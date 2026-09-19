@@ -3,7 +3,6 @@ rg: 2
 id: topologically-free-subshift-full-groups-force-quantum-rigidity
 kind: claim
 title: The necessity theorem holds for topologically free actions, so a finitely presented V-stabilized full group forces quantum rigidity and finite type of any topologically free subshift
-requires: [fp-v-times-subshift-full-groups-force-quantum-rigidity]
 distinct_from:
   fp-v-times-subshift-full-groups-force-quantum-rigidity: that assumes the acting group acts freely on the subshift; this weakens freeness to topological freeness, which is the form in which boundary actions of lattices (periodic flats, loxodromic fixed points) satisfy it.
   v-times-quantum-rigid-sft-full-groups-are-fp: that is the open converse (rigidity implies finite presentation); this is the necessity direction for a larger class of actions.

@@ -3,13 +3,12 @@ rg: 2
 id: free-actions-in-rover-nekrashevych-hosts-have-zero-drift
 kind: claim
 title: In a Röver–Nekrashevych group V_d(K), an element with nonzero mean depth drift for some invariant measure has an attracting periodic point, and a finitely generated subgroup whose drift cocycle is a continuous coboundary embeds in S_n ≀ K; so for contracting K a free group acting freely needs a non-coboundary drift cocycle with zero drift for every element
-requires:
-  - exponential-growth-groups-admit-no-contracting-block-hierarchies
-  - v-times-inflation-host-full-groups-are-finitely-presented
 distinct_from:
   exponential-growth-groups-admit-no-contracting-block-hierarchies: that excludes geometric (group-metric) hierarchies over exponential-growth groups; this addresses the remaining fibre-type option, namely finite-state free actions inside contracting hosts, and reduces it for Röver–Nekrashevych hosts to one cocycle condition.
   contracting-rover-nekrashevych-groups-are-f-infinity: that concerns finiteness properties of V_d(G) for contracting G; this concerns which subgroups of V_d(K) can act freely.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `exponential-growth-groups-admit-no-contracting-block-hierarchies`, `v-times-inflation-host-full-groups-are-finitely-presented`.
 
 **Partial answer** (lane bh-invent-06b, 2026-09-18) to the question "can a contracting RSG contain a free group
 acting freely?", for the synchronous class `V_d(K)`. Elementary lane proof, not reviewed. It uses Birkhoff and

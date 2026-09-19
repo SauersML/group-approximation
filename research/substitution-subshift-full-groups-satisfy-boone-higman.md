@@ -4,7 +4,6 @@ id: substitution-subshift-full-groups-satisfy-boone-higman
 kind: claim
 title: The topological full group of every primitive aperiodic substitution subshift embeds in a finitely presented simple group
 distinct_from:
-  boone-higman-via-v-times-aperiodic-sft-full-groups: that route puts an arbitrary input into the acting group of a subshift over the input's overgroup and needs two OPEN premises; this is an unconditional result for one explicit family, the full groups of substitution Z-subshifts.
   stationary-vershik-maps-generate-contracting-rsgs: that is the RSG verification for the Vershik map; this is the resulting embedding statement for the topological full group of the subshift.
   amenable-full-group-forces-invariant-measure: that constrains amenable full groups; nothing here is about amenability of the host, which is a twisted Brin--Thompson group.
 artifacts:

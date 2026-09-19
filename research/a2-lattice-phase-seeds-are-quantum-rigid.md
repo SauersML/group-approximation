@@ -3,13 +3,13 @@ rg: 2
 id: a2-lattice-phase-seeds-are-quantum-rigid
 kind: claim
 title: For a lattice acting simply transitively on the vertices of a thick Ã2 building, the phase seed Y_Γ^(N) is D-quantum rigid over every field for all large D, for suitable N
-requires:
-  - a2-lattices-carry-finite-type-seeds
 distinct_from:
   a2-lattices-carry-finite-type-seeds: that proves the seed axioms and that seed idempotents are classical; this is the open rigidity statement for the seed.
   euclidean-building-boundary-shifts-are-quantum-rigid: that asks rigidity of X_Ω; rigidity of the phase-free seed would imply it, which is why this claim uses the phase seed, whose chamber stratum contains the rigid skew product P instead.
   a2-lattice-boundary-skew-shifts-are-quantum-rigid: that is rigidity of the chamber stratum P, obtained from a finitely presented host; this asks for the whole seed, including the wall strata and the seed orbit.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `a2-lattices-carry-finite-type-seeds`.
 
 **OPEN** (stated by bh-emitter-b, 2026-09-18). This is rung 1d of the SYNTHESIS v6 gate (SEED).
 Notation is that of `a2-lattices-carry-finite-type-seeds`.

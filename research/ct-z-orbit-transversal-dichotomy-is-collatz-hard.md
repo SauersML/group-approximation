@@ -3,8 +3,6 @@ rg: 2
 id: ct-z-orbit-transversal-dichotomy-is-collatz-hard
 kind: claim
 title: "Kourovka 20.44 is at least as hard as finiteness for the 3x+1 map: every orbit transversal of Kohl's three-generator Collatz group G_T in CT(Z) has density zero, and G_T has finitely many orbits iff the 3x+1 map has finitely many components on Z, so an affirmative answer to 20.44 would imply that the 3x+1 map has only finitely many cycles and divergent classes"
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 distinct_from:
   ct-z-finite-cycle-problems-are-undecidable: that is about cycles of one element (Kourovka 21.74); this is about orbits of a finitely generated subgroup and their transversal density (20.44).
   periodic-k-graph-subgroups-with-ray-cocycle-are-finite: that bounds periodic subgroups by one-stack pumping; this counts orbits through the stopping-time law of the 3x+1 cocycle.

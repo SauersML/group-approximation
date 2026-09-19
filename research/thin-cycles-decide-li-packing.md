@@ -3,8 +3,6 @@ rg: 2
 id: thin-cycles-decide-li-packing
 kind: claim
 title: Li's merge-packing condition fails exactly when some hitting set of types carries a thin growth cycle, so packing is decidable from finite type data; power Garside families inherit one-layer thin cycles through (2_Γ), so no power of the tree coding has packing
-requires:
-  - perron-weights-do-not-give-li-finiteness
 distinct_from:
   perron-weights-do-not-give-li-finiteness: that proves one direction (a thin cycle kills packing) and the repair theorem; this proves the converse, making packing a finite decidable test, and shows changing the Garside family cannot remove thin cycles.
   raag-cube-codings-fail-li-multiplicity-at-every-power: that shows (t<d) fails at every power for RAAG cube codings; this shows the weaker, sufficient condition (Pack) also fails at every power, already for trees, through the same (2_Γ) generators.

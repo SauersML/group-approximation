@@ -3,11 +3,6 @@ rg: 2
 id: arithmetic-frames-are-capped-machines-live-in-orbits-not-words
 kind: claim
 title: Piece identifications from any class with exponentially bounded description growth under composition and a polynomial identity test (rational transducers, residue-class-affine Conway maps, piecewise-affine or projective maps with integer data) give operad groups with single-exponential word problem, so machine-universal piecewise maps cannot supply the non-finite-state frames; their universality lives in orbits, and residue-class operads even have unary squares
-requires:
-  - rational-frame-operads-are-capped-whatever-their-spine
-  - complexity-bounded-host-classes-are-not-universal
-  - symmetric-ore-operads-containing-their-carrier-are-full-groups
-  - ct-p-z-has-the-ore-tree-presentation
 distinct_from:
   rational-frame-operads-are-capped-whatever-their-spine: that caps finite-transducer frames; this caps every frame class whose composites grow at most exponentially in description size and admit a polynomial identity test, which covers the Conway, RCWA and piecewise-affine candidates proposed for the machine operad.
   ct-z-rational-base-machines-carry-a-potential: that closes one exact coding of rational-base machines inside CT(Z) by a conservation law; this shows that no residue-class or piecewise-affine frame system, exact or not, can make an operad host uncapped.

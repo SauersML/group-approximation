@@ -3,12 +3,6 @@ rg: 2
 id: stabilizer-engines-need-finitely-discriminable-vertex-groups
 kind: claim
 title: If a finitely generated group B is not finitely discriminable (for example, B infinite and residually finite), then the stabilizer engine F_B of Z/k * B and its derived subgroup are not finitely presented; in particular Reid's d = 0 Higman–Thompson variant is not finitely presented
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - fp-stabilizer-engines-need-decidable-vertex-groups
-  - fp-stabilizer-engines-need-fp-vertex-groups
-invalidates:
-  - fp-decidable-vertex-groups-have-fp-stabilizer-engines
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that shows a finitely presented engine forces a solvable word problem for B; this shows it forces B to be finitely discriminable. Neither condition implies the other (Z is decidable and not finitely discriminable).
   simple-inputs-have-finitely-presented-stabilizer-engines: that is the sufficiency claim for simple B, already refuted by stabilizer-engines-of-non-fp-simple-groups-are-not-fp; simple groups are finitely discriminable, so this obstruction is not what refutes it.

@@ -3,10 +3,6 @@ rg: 2
 id: finite-seed-telescope-hosts-are-full-contracting-rsgs
 kind: claim
 title: The one-chain self-simulating host ⟨V, θ_S⟩ lies in a finitely presented full contracting RSG exactly when the seed group ⟨S⟩ is finite; for infinite seeds it lies in no contracting RSG at all
-requires:
-  - telescope-fixed-points-are-singular-on-a-parse-shift
-  - contracting-rsgs-embed-in-fp-simple-groups
-  - hyperbolic-groups-lie-in-the-permutational-class
 distinct_from:
   telescope-fixed-points-are-singular-on-a-parse-shift: that constructs θ_s and identifies its singular set, the golden-mean parse shift Y; this decides the finiteness test T1 of Conjecture SS, by computing the nucleus of ⟨V, θ_S⟩.
   contracting-rsgs-have-fp-full-closures: that shows full closures of contracting RSGs stay contracting; this exhibits a new family of contracting RSGs whose elements are singular (relative to V) on an uncountable SFT, and shows the family stops exactly at finite seeds.

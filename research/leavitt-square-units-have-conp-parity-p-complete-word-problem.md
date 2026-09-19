@@ -7,8 +7,6 @@ distinct_from:
   fp-simple-groups-with-arbitrarily-complex-word-problem: that asks for finitely presented simple groups beyond every recursive time bound; this pins one finitely presented simple group at the class coNP^⊕P, strictly above the coNP-complete Brin--Thompson groups unless the polynomial hierarchy collapses, and it does not give unbounded complexity.
   leavitt-tensor-unit-word-problem-reduces-to-base: that is an exponential-time upper bound for word problems of units of B ⊗ L; this is a matching lower and upper bound, coNP^⊕P-completeness, for (L ⊗ L)^x.
   leavitt-square-unit-group-is-fp-simple-and-acyclic: that supplies finite presentation and simplicity of the host; this is the complexity of its word problem.
-requires:
-  - leavitt-square-unit-group-is-fp-simple-and-acyclic
 ---
 
 **ESTABLISHED for items 1 and 2** (unconditional: an explicit finitely generated group of units of

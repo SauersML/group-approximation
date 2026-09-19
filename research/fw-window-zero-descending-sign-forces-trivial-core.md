@@ -7,9 +7,6 @@ distinct_from:
   fw-inputs-admit-no-twisted-shell-normalization: that rules out window zero for the ascending sign, where the shift conjugates the input into itself by an endomorphism twist, and treats the descending sign only when the inclusion is an equality; this treats the descending sign with a strict inclusion, which that node leaves open, and reduces it to triviality of the iterated image of the endomorphism.
   one-ended-shell-inputs-admit-no-shift-normalizing-enumeration: that is a regular-enumeration statement proved by an end count; this is a genuine-action statement proved from property FW, with no hypothesis on ends.
   eventually-periodic-genuine-shell-actions-give-fp-envelopes: that is the positive mechanism, where a finite-order twist forces a virtually abelian input; this is an obstruction for infinite-order descending twists.
-requires:
-  - fw-inputs-admit-no-twisted-shell-normalization
-  - genuine-action-shell-envelopes-generalize-the-regular-shell
 ---
 
 **ESTABLISHED** by `fw-window-zero-descending-sign-proof` (lane proof, elementary, not

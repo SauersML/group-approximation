@@ -3,11 +3,6 @@ rg: 2
 id: fp-strongly-shift-similar-groups-have-fp-houghton-like-groups
 kind: claim
 title: If a strongly shift-similar group G is finitely presented then every Houghton-like group H_n(G) is finitely presented, for every n >= 1 (the finitely presented case of Mallery-Zaremsky Question 5.13, first and third sentences)
-requires:
-  - houghton-like-groups-are-strongly-shift-similar
-  - houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group
-  - strongly-shift-similar-point-stabilizers-are-copies-of-the-group
-  - finitary-mixing-of-fp-highly-transitive-groups-is-fp
 distinct_from:
   houghton-like-envelopes-lift-finite-presentation-from-germs: that (refuted by free-shift-houghton-like-envelopes-are-not-fp) assumed only a finitely presented germ group; this assumes G itself finitely presented, and proves H_n(G) finitely presented for all n, including n = 1, 2.
   free-shift-houghton-like-envelopes-are-not-fp: that kills H_n(E_nu(P)) for free-shift nu, where E_nu(P) is not finitely presented; this is the positive statement when G is finitely presented.

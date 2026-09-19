@@ -3,7 +3,8 @@ rg: 2
 id: weak-kervaire-transfers-only-at-unimodular-degree
 kind: claim
 title: The weak Kervaire conjecture transfers only at unimodular degree
-invalidates: [kl-via-weak-conjecture-import]
+invalidates:
+  - kl-via-weak-conjecture-import
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
 ---

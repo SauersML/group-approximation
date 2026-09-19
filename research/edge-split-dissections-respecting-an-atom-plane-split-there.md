@@ -3,6 +3,8 @@ rg: 2
 id: edge-split-dissections-respecting-an-atom-plane-split-there
 kind: claim
 title: An edge-split dissection of the standard triangle cone that no piece of which crosses a first-split plane is an edge-split refinement of that first split
+refuted_by:
+  - edge-split-order-is-not-geometric-refinement
 distinct_from:
   edge-splits-resolve-every-rational-plane: that shows edge-split dissections can be made to respect any rational plane; this says that once one respects a first-split plane, it can be rearranged to split there first, which is the operad-order statement.
   edge-split-operad-satisfies-ore: that is Ore's condition plus finite type; this local rearrangement statement is the one input that, with the plane lemma, would give Ore's condition.

@@ -3,9 +3,6 @@ rg: 2
 id: ball-helly-graphs-do-not-give-the-horofunction-lemma
 kind: claim
 title: The Helly property for balls never gives the exact realization the horofunction lemma (HL) needs, and coarsely gains at most a factor 2; the median and surface proofs used Helly for exact-distance cells (halfspaces), which Helly graphs lack, so Helly-ness of hyperbolic groups and C̃_n lattices does not give HL
-requires:
-  - roller-compactifications-of-cube-complexes-are-sfts
-  - horofunction-lemma-holds-for-free-and-surface-groups
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed). This answers, in the negative, the

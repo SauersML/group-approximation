@@ -3,10 +3,6 @@ rg: 2
 id: modular-machine-scaling-seed-reads-regular-numerals
 kind: claim
 title: The scaling part of the Aanderaa–Cohen group K_M is a multiple HNN extension of Z^2 with finite-index edges, so it has a rigid seed; a locally forced reader layer on that seed marks, at linear forcing radius, every position of any regular set of base-m numerals, but the reader has one free bit on every unanchored descent chain, so the rigidity of the read seed is open
-requires:
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - relative-seeds-over-free-products-have-finite-ropes
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 distinct_from:
   relative-seeds-over-free-products-have-finite-ropes: that shows the rope cannot be seeded over Z^2 * Z and must use K_M's scaling letters; this builds the scaling seed and the numeral reader those letters allow.
   bs12-rigid-seed-is-its-normal-form: that is the BS(1,2) template, a unique-parent tree with a cyclic sink line; here the vertex group is Z^2, the tree has no unique parent, and a reader layer is added.

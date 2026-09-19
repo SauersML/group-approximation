@@ -3,7 +3,8 @@ rg: 2
 id: diagonal-normalizer-rigidity
 kind: claim
 title: Approximate normalizers of a full diagonal masa are monomial
-invalidates: [masa-normalizing-tracial-action]
+invalidates:
+  - masa-normalizing-tracial-action
 distinct_from:
   coordinate-action-not-sofic: that is a fact about the Kun–Thom coset action, imported by citation; this is a metric rigidity theorem about single unitaries, proved here, and it is what makes the citation bite against normalizers rather than only against permutations
   finite-quotient-blindness: that says exact finite quotients normalize Γ's image; this says approximate unitary normalizers of a full masa are close to monomials, a statement about ‖·‖₂ geometry with no group homomorphism in it

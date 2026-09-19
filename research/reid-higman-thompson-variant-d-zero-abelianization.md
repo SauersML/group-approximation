@@ -3,8 +3,6 @@ rg: 2
 id: reid-higman-thompson-variant-d-zero-abelianization
 kind: claim
 title: Colin Reid's d = 0 member of the Higman–Thompson family (the topological full group of Z/2 * Z on its compactified Bass–Serre tree, MathOverflow 339541) has abelianization Z ⊕ Z/2, groupoid homology Z, Z, 0, 0, ..., and a finitely generated simple commutator subgroup that is rationally acyclic
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 artifacts:
   - research/artifacts/gq-bh-openq-lists.md
 ---

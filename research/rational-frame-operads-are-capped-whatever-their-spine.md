@@ -3,16 +3,13 @@ rg: 2
 id: rational-frame-operads-are-capped-whatever-their-spine
 kind: claim
 title: Dissection operads whose pieces are identified by rational homeomorphisms have groups of rational homeomorphisms, so they are capped at single-exponential word problems whatever their spine, refinement growth or Ore difficulty; a machine operad must have non-rational frames, and its Ore condition encodes mortality rather than totality
-requires:
-  - rational-homeomorphism-subgroups-have-exponential-wp
-  - complexity-bounded-host-classes-are-not-universal
-  - branching-squares-are-the-only-operadic-escape-from-the-cap
-  - every-decidable-set-has-a-mortal-decider
 distinct_from:
   branching-squares-are-the-only-operadic-escape-from-the-cap: that caps operads with unary squares or uniformly recursive split-refinement growth; this caps every operad realized with rational frames, including branching-square operads with huge refinement growth and a hard Ore condition, so refinement growth is not the cap invariant.
   bounded-propagation-operads-have-capped-word-problems: that bounds the word problem through common multiples; this bounds it without computing any common multiple, by composing transducers.
   every-decidable-set-has-a-mortal-decider: that supplies machines that halt from every configuration, for seeds; this records that an operad whose reconciliation runs a machine needs exactly such machines, since Ore quantifies over every pair of operations.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `rational-homeomorphism-subgroups-have-exponential-wp`, `complexity-bounded-host-classes-are-not-universal`, `branching-squares-are-the-only-operadic-escape-from-the-cap`, `every-decidable-set-has-a-mortal-decider`.
 
 **Part 1 ESTABLISHED** (lane bh-typeA-universal, 2026-09-18). It is a short proof from
 `rational-homeomorphism-subgroups-have-exponential-wp`, and presumably folklore for the classical

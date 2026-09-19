@@ -3,7 +3,8 @@ rg: 2
 id: torsion-breaks-l2-normal-rank-bound
 kind: claim
 title: Torsion destroys the first l2-Betti normal-rank bound
-invalidates: [simple-kl-via-l2-betti-normal-rank]
+invalidates:
+  - simple-kl-via-l2-betti-normal-rank
 artifacts:
   - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
 ---

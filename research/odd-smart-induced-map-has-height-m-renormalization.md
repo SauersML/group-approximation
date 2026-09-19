@@ -3,9 +3,6 @@ rg: 2
 id: odd-smart-induced-map-has-height-m-renormalization
 kind: claim
 title: For every odd m >= 3, SMART_m induced on its level-zero moves is an element of 2V with a brick-local height-m renormalization
-requires:
-  - odd-smart-machines-have-exact-m-fold-moves
-  - brin-thompson-first-return-maps-lie-in-kv
 distinct_from:
   smart-induced-map-has-brick-local-height-3-renormalization: that is the case m = 3 for SMART; this is the same construction for the machine SMART_m of every odd m, with the extra cell taking r = (m-1)/2 values of each kind.
   smart-induced-on-genuine-moves-has-exact-tripling: that proves the bounded return and the exact count 3^k for SMART; this proves bounded return and the exact count m^k for SMART_m.

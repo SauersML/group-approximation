@@ -3,11 +3,8 @@ rg: 2
 id: finitary-steinberg-extensions-by-oligomorphic-actions-are-fp
 kind: claim
 title: The finitary Steinberg (or elementary) group over Z indexed by the dyadic rationals, extended by Thompson's F, is finitely presented and contains every GL_n(Z)
-requires:
-  - steinberg-groups-of-fp-rings-are-fp-in-rank-five
 distinct_from:
   elementary-shift-group-contains-every-integral-linear-group: that is the three-generated group E(Z) x| Z, which contains every GL_n(Z) but is not shown finitely presented; this is a finitely presented group containing it.
-  gl-n-q-all-n-in-st-10-of-resolvent-ring: that is one finitely presented group St_10(R_L) containing every GL_n(Q), built on the Leavitt resolvent ring; this is an elementary finitely presented group over Z itself, with a Thompson-group symmetry instead of a ring.
   steinberg-groups-of-fp-rings-are-fp-in-rank-five: that is finite presentation of St_N(R) at a fixed rank N >= 5; this is the infinite-rank finitary Steinberg group, made finitely presented by a group acting on the index set.
 ---
 

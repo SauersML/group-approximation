@@ -3,7 +3,8 @@ rg: 2
 id: rank-one-lift-perturbation-gap-no-go
 kind: claim
 title: Exact algebraic centralizer capture does not control finite-level adjoint gaps
-invalidates: [kazhdan-centralizer-capture-forces-most-block-gaps-proof]
+invalidates:
+  - kazhdan-centralizer-capture-forces-most-block-gaps-proof
 ---
 
 There is a Kazhdan group `Gamma`, a finite generating set `S`, an ultraproduct

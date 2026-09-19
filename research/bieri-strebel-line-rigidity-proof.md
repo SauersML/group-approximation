@@ -4,6 +4,7 @@ id: bieri-strebel-line-rigidity-proof
 kind: route
 title: Finitely many of Bieri--Strebel's order-dependent conjugation relations survive every nearby deformation, while the rest detect the sign of every breakpoint, so nearby deformations are homotheties
 target: fp-bieri-strebel-line-groups-are-deformation-rigid
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

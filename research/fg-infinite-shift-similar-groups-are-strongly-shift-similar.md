@@ -3,12 +3,11 @@ rg: 2
 id: fg-infinite-shift-similar-groups-are-strongly-shift-similar
 kind: claim
 title: Every finitely generated infinite shift-similar group is strongly shift-similar (the finitely generated form of Mallery-Zaremsky Question 3.18); if true, Mallery-Zaremsky Question 5.13 is fully answered
-requires:
-  - infinite-shift-similar-groups-need-not-be-strongly-shift-similar
-  - strongly-shift-similar-type-f-m-passes-to-houghton-like-groups
 distinct_from:
   infinite-shift-similar-groups-need-not-be-strongly-shift-similar: that answers Question 3.18 as printed, with a group that is not finitely generated; this is the finitely generated version, which is what Observation 5.12 and Question 5.13 of the source need.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `infinite-shift-similar-groups-need-not-be-strongly-shift-similar`, `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups`.
 
 **OPEN.** A yes or no answer both count as progress.
 

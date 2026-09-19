@@ -3,14 +3,11 @@ rg: 2
 id: fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups
 kind: claim
 title: Every finitely presented residually finite group is a passenger in a finitely presented HNN-recursive annular germ group over V, driven by an ascending machine and pinned by single-depth relations
-requires:
-  - fp-annular-germ-groups-are-hnn-recursive
-  - bishop-schesler-branch-groups-are-annular-hosts-over-v
-  - dynamically-v-separated-groups-satisfy-boone-higman
 distinct_from:
   dynamically-v-separated-groups-satisfy-boone-higman: that needs the input itself inside an fp group with an ascending endomorphism whose V-orbit separates it; here only a driving machine M is ascending, and the input's depth data is pinned by single-depth relations to M's data without being a word in it.
-  fp-rf-boone-higman-via-fp-self-similar-overgroups: that asks for self-similar (virtual-endomorphism) overgroups on a regular tree; this allows a non-ascending transport, defined on the machine part only.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `fp-annular-germ-groups-are-hnn-recursive`, `bishop-schesler-branch-groups-are-annular-hosts-over-v`, `dynamically-v-separated-groups-satisfy-boone-higman`.
 
 **OPEN** (target; the design and the reduction are lane work, not reviewed).
 

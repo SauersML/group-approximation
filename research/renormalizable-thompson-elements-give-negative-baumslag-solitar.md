@@ -3,8 +3,6 @@ rg: 2
 id: renormalizable-thompson-elements-give-negative-baumslag-solitar
 kind: claim
 title: An element of kV with a height-m renormalization also gives BS(1,-m) inside (k+1)V
-requires:
-  - renormalizable-thompson-elements-give-baumslag-solitar
 distinct_from:
   renormalizable-thompson-elements-give-baumslag-solitar: that gives u with u s u^-1 = s^m; this symmetrizes the element so that it is also conjugate to its inverse, and gets u s u^-1 = s^-m.
   bs-1-m-embeds-in-brin-thompson-3v-for-odd-m: that is BS(1,m) for odd m; the corollary here is BS(1,-m) for the same m.

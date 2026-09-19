@@ -3,9 +3,6 @@ rg: 2
 id: higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness
 kind: claim
 title: Abelian-cofinite hosts without faithfulness are closed under amalgams and HNN extensions along the port and contain every free product of hosted groups; the only missing clause for Higman closure is faithfulness, and cofinite ports have virtually abelian centralizers, so no generic gluing supplies it
-requires:
-  - cofinite-abelian-subgroups-give-relative-pbh
-  - amalgams-of-orbit-finite-actions-are-type-a2
 distinct_from:
   cofinite-abelian-subgroups-give-relative-pbh: that turns one host into relative PBH; this asks which Higman operations preserve hosts, and isolates faithfulness as the only clause that fails.
   decidable-groups-embed-in-abelian-cofinite-hosts: that is the open embedding problem; this reduces its closure under Higman's operations to faithfulness of port amalgams on one explicit set.

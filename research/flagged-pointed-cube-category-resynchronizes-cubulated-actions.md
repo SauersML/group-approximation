@@ -3,10 +3,6 @@ rg: 2
 id: flagged-pointed-cube-category-resynchronizes-cubulated-actions
 kind: claim
 title: Allowing pointed-cube states to forbid extra adjacent walls gives a Li-Garside category with trivial units whose infinite boundary (boundary minus sink points) is the Roller boundary and on which every element of a free cocompact cubulated group acts by a global bisection
-requires:
-  - pointed-cube-bisection-locus-is-the-regular-boundary
-  - pointed-cube-categories-are-li-garside-categories
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
 distinct_from:
   cubulated-groups-act-by-bisections-of-a-pointed-cube-category: that coding records only crossed adjacent walls and resynchronizes only at regular points; this adds voluntary wall labels, and every point resynchronizes.
   pointed-cube-bisection-locus-is-the-regular-boundary: that proves the old coding fails off R; this is the repair, with the flag that coding lacked built into the states.

@@ -3,11 +3,6 @@ rg: 2
 id: piecewise-translation-z2-enumerations-are-not-fp
 kind: claim
 title: If the successor map of an enumeration of Z^2 is a piecewise translation over finitely many polyhedral pieces, then the near shift group is not finitely presented, so no Mallery-Zaremsky or Houghton-like envelope of that enumeration is
-requires:
-  - fp-groups-without-free-subgroups-split-ascendingly-over-kernels
-  - houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group
-  - mz-envelope-germ-group-is-an-antitwisted-fiber-product
-  - shell-germ-fp-is-an-ascending-hnn-gate
 distinct_from:
   square-spiral-z2-near-shift-group-is-not-finitely-presented: that is one enumeration, proved through a metabelian structure and a machine check of the line-shift pattern; this covers every piecewise-translation enumeration, with no metabelian or computational input.
   free-shift-houghton-like-envelopes-are-not-fp: that kills the generic enumerations (R_nu = P * Z finitely presented, but not pinned); this kills the opposite, locally rigid class at the germ level (R_nu not finitely presented).

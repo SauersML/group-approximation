@@ -3,8 +3,6 @@ rg: 2
 id: fp-groups-with-max-n-are-limits-of-isolated-groups
 kind: claim
 title: A finitely presented group in which every normal subgroup is finitely normally generated (max-n) is a limit of isolated groups; more generally it suffices that for each finite set some maximal normal subgroup avoiding it is finitely normally generated
-requires:
-  - limits-of-isolated-groups-basic-closure
 distinct_from:
   limits-of-isolated-groups-basic-closure: that gives LEF and isolated groups and products; this adds a class defined by the ascending chain condition on normal subgroups, which contains groups that are neither LEF nor isolated.
   every-decidable-group-is-a-limit-of-isolated-groups: that is the open question; this is a sufficient condition.

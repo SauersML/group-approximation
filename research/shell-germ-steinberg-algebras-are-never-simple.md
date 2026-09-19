@@ -3,7 +3,6 @@ rg: 2
 id: shell-germ-steinberg-algebras-are-never-simple
 kind: claim
 title: The germ Steinberg algebra of every shell envelope has a nonzero proper singular ideal, so it is never simple, and the envelope survives in the units of the quotient
-requires: [shell-cantor-embeddings-are-finite-germ-extensions, germ-steinberg-algebras-over-v-are-fg-central-simple, cepss-nonhausdorff-steinberg-simplicity]
 distinct_from:
   germ-steinberg-algebras-over-v-are-fg-central-simple: that proves simplicity under Hausdorffness or the CEPSS singular-support condition; this shows that for shell envelopes both conditions fail, for every input group, every enumeration and every coefficient field.
   cepss-nonhausdorff-steinberg-simplicity: that imports the criterion and the Grigorchuk examples, where non-simplicity needs characteristic 2; here the singular element is a four-term combination with coefficients plus or minus 1 and is nonzero in every characteristic.

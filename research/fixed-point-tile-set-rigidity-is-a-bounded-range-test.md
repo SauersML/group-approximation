@@ -3,8 +3,6 @@ rg: 2
 id: fixed-point-tile-set-rigidity-is-a-bounded-range-test
 kind: claim
 title: A self-simulating Wang tile set is quantum rigid iff, for some D, every local D-family commutes up to distance N(2D+2)-2; decimation carries this bounded-range commutation to every level, so rigidity is semi-decidable
-requires:
-  - sft-crossed-product-fp-iff-quantum-rigid
 distinct_from:
   self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale: that pushes non-rigidity UP the scales by substituting families (macro family to micro family), so the family scale D can be taken small; this pulls families DOWN by decimation (micro family to macro family, using local coordinates and exact macrotiles), so the commutation RANGE that must be checked is bounded. With both, rigidity and its failure are one-scale statements for fixed-point tile sets.
   determinism-closure-certifies-quantum-rigidity: that certifies commutation at all distances from determinism rules, and its closure stays inside a slab of width about 2D around every fault normal; this asks for commutation only up to the range N(2D+2)-2, by any argument, and gives the propagation to all distances for free from the hierarchy.

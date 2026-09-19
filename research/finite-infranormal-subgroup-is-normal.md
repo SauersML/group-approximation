@@ -3,7 +3,8 @@ rg: 2
 id: finite-infranormal-subgroup-is-normal
 kind: claim
 title: A finite infranormal subgroup is normal
-invalidates: [finite-pauli-kun-thom-splice]
+invalidates:
+  - finite-pauli-kun-thom-splice
 distinct_from:
   finite-normal-compression-obstruction: This is an elementary algebraic normalizer lemma for finite infranormal subgroups; the other claim is an operator-norm matrix-corona vanishing theorem for finite normal compression defects.
 artifacts:

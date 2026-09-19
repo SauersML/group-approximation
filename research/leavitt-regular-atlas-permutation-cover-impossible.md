@@ -3,7 +3,8 @@ rg: 2
 id: leavitt-regular-atlas-permutation-cover-impossible
 kind: claim
 title: A regular-A8 Leavitt atlas cannot asymptotically close in permutations
-invalidates: [leavitt-permutation-cover-proves-hyperlinear]
+invalidates:
+  - leavitt-permutation-cover-proves-hyperlinear
 distinct_from:
   atlas-a8-mixed-block-transport-has-permutation-models: that realizes arbitrary rational one-step block marginals; this says no sequence of common permutation couplings can also close the fixed multi-step Leavitt relators.
   openai-leavitt-unit-nonsofic: nonsoficity of the quotient alone would not rule out a sofic central extension; the stronger all-central-cover theorem is essential.

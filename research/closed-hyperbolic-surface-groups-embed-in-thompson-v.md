@@ -8,12 +8,11 @@ distinct_from:
   every-raag-embeds-in-brin-thompson-group-2v: that puts every right-angled Artin group in 2V; V contains only the products of free groups among them (`raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group`).
   hyperbolic-groups-satisfy-boone-higman: that embeds every hyperbolic group in some finitely presented simple group (BBMZ); this asks for the specific finitely presented simple group V.
   closed-mcg-finite-index-subgroups-do-not-embed-in-v: that excludes finite-index subgroups of closed mapping class groups from V through Z^2 * Z; surface groups contain no Z^2, so that obstruction does not apply here.
-requires:
-  - cocompact-fuchsian-groups-embed-in-v-all-or-none
-  - raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group
 artifacts:
   - research/artifacts/gq-bh-bh-bbmz-problems-status.md
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `cocompact-fuchsian-groups-embed-in-v-all-or-none`, `raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group`.
 
 **OPEN.** For some (equivalently, by
 `cocompact-fuchsian-groups-embed-in-v-all-or-none`, every) closed hyperbolic

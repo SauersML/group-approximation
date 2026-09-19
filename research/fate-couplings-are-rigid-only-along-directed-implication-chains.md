@@ -3,9 +3,6 @@ rg: 2
 id: fate-couplings-are-rigid-only-along-directed-implication-chains
 kind: claim
 title: For fate layers coupled by exact transport and implication rules, directed implication chains force quantum families to commute across arbitrary distances, and proximity chains do not; two components are forced to commute only when they are comparable, or when their exclusive up-sets come within 2D, so rigid fate couplings need fates monotone along directed chains of the tower geometry
-requires:
-  - machine-subgroup-is-core-free-and-draws-the-machine
-  - modular-machine-mortality-at-infinity-is-uniform
 distinct_from:
   machine-subgroup-is-core-free-and-draws-the-machine: that refutes the uncoupled fate bit; this classifies what coupling by rules between components can and cannot do.
   relative-seeds-glue-graphs-of-groups-into-class-c: its §2 atom and chain lemmas get commutation across cosets from domination (≤), which is transitive; this shows that for fate components the only transitive mechanism of that kind is a directed implication chain.

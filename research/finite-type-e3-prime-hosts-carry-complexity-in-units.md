@@ -3,10 +3,6 @@ rg: 2
 id: finite-type-e3-prime-hosts-carry-complexity-in-units
 kind: claim
 title: In a finite Zappa–Szép k-graph coding, the full group's word problem is that of the unit groupoid up to an exponential change of variables, and the units act residually finitely; so finite-type E3′ hosts carry exactly residually finite self-similar complexity, and in a tree host an FA input without finite quotients must sit at an infinite emitter
-requires:
-  - finitely-coded-unit-groups-act-residually-finitely
-  - rank-one-cone-hosts-put-fw-groups-in-local-map-groups
-  - nonascending-hnn-end-shifts-satisfy-e3-prime
 distinct_from:
   finite-k-graph-full-groups-have-exponential-word-problem: that is the case of trivial units, where the bound is single exponential; this allows an infinite self-similar unit groupoid and shows the bound becomes that of the units, composed with an exponential.
   free-sft-hosts-admit-no-finite-type-coding: that says finite type needs isotropy (contracting loops); this says what the isotropy can carry, namely only the complexity of residually finite unit groups.

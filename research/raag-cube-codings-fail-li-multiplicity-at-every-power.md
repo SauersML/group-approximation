@@ -3,9 +3,6 @@ rg: 2
 id: raag-cube-codings-fail-li-multiplicity-at-every-power
 kind: claim
 title: For every right-angled Artin group, Li's multiplicity condition (t<d) fails for the pointed-cube coding of its Salvetti complex with the height-at-most-N Garside family, for every N; the only return of a maximal-clique state is itself
-requires:
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
-  - commutative-cube-degree-maps-force-tree-products
 distinct_from:
   cubulated-groups-act-by-bisections-of-a-pointed-cube-category: that reduces Q1.15 to Li's gates for C_X and leaves (t<d) open; this shows (t<d) fails there for every RAAG, at every power of the clique family.
 ---

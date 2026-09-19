@@ -3,8 +3,6 @@ rg: 2
 id: boundary-geometry-needs-a-measure-only-on-its-own-factor
 kind: claim
 title: On Λ x W_3 x W_3 the boundary geometry is disjoint from Y_1 ⊠ Ô for every minimal Y_1 and the free profinite odometer Ô of W_3^2, so no invariant measure is needed on the envelope; the floating data must then be a plane-varying phase field, which coboundaries and homomorphisms cannot supply
-requires:
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
 distinct_from:
   strongly-proximal-geometries-are-disjoint-from-measured-inputs: that proves disjointness for inputs with an invariant measure on the whole group; this shows the measure is needed only on the factor carrying the geometry, where a profinite odometer supplies it, and derives the forced shape of the floating locus.
   decidable-groups-carry-free-subshifts-with-decidable-language: that is premise (D) for the envelope; this shows (D) needs no measure added. The tree-glued inputs built from (D) have no invariant measure, and none is needed.

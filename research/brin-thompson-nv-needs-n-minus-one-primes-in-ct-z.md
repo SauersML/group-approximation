@@ -3,9 +3,6 @@ rg: 2
 id: brin-thompson-nv-needs-n-minus-one-primes-in-ct-z
 kind: claim
 title: The leaves of Kohl's groupoid for CT_P(Z) have asymptotic dimension at most |P|+1, so Brin's nV has no nontrivial homomorphism to CT_P(Z) when n > |P|+1; a copy of nV in CT(Z) needs n-1 odd primes, and any copy of 2V in CT_{3}(Z) is spatial with commuting Cuntz families
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - ct-p-z-is-not-a-product-shift-full-group
 distinct_from:
   ct-p-z-is-not-a-product-shift-full-group: that excludes isomorphisms between CT_P(Z) and product-shift full groups; this excludes homomorphisms from nV for n > |P|+1, and pins the form of any embedding of 2V.
   brin-thompson-mv-contains-a-distortion-element: that is a dynamical property of mV; this is a coarse-geometric count of dimensions that any embedding must respect.

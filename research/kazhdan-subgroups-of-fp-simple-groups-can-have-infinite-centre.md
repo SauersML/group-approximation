@@ -3,10 +3,6 @@ rg: 2
 id: kazhdan-subgroups-of-fp-simple-groups-can-have-infinite-centre
 kind: claim
 title: The integral Jacobi group Sp_2n(Z) ⋉ H(Z), n ≥ 2, is an integral linear Kazhdan group with infinite cyclic centre, so "Kazhdan subgroups have finite centre" does not separate Boone–Higman
-requires:
-  - one-fp-simple-group-contains-every-integral-linear-group
-  - finitely-generated-linear-groups-satisfy-boone-higman
-  - hereditary-approximation-disproofs-of-boone-higman
 distinct_from:
   central-kazhdan-residual-separator-for-boone-higman: that is the live separator, about central elements that die in every finite quotient; this kills only the naive form "finite centre", whose witness here is residually finite.
   deligne-universal-cover-lattice-is-non-rf-kazhdan: that is a Kazhdan group with infinite centre that is not residually finite and not linear; this is an integral linear one, so it sits in a known finitely presented simple group.

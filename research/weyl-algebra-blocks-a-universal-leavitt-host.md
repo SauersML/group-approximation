@@ -3,7 +3,8 @@ rg: 2
 id: weyl-algebra-blocks-a-universal-leavitt-host
 kind: claim
 title: Over a field of characteristic zero the first Weyl algebra does not embed in the binary Leavitt algebra
-invalidates: [boone-higman-via-universal-leavitt-host]
+invalidates:
+  - boone-higman-via-universal-leavitt-host
 distinct_from:
   augmentation-blocks-unital-leavitt-family: that shows an augmentation obstructs a unital binary Leavitt FAMILY inside a group algebra, so the Leavitt relations are the guest and the obstruction is an augmentation; this shows the first Weyl algebra is not a guest of L_K(1,2), the obstruction is the Heisenberg relation in Steinberg algebras, and the Leavitt algebra is the host.
   division-ring-hosts-no-binary-leavitt-family: that says a division ring cannot CONTAIN a binary Leavitt family -- the Leavitt algebra is the guest; this says the binary Leavitt algebra cannot contain the first Weyl algebra -- the Leavitt algebra is the host. The directions are opposite and neither implies the other.

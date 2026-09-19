@@ -3,11 +3,6 @@ rg: 2
 id: nonascending-hnn-end-shifts-satisfy-e3-prime
 kind: claim
 title: For a non-ascending multiple HNN extension Γ of a group H of type F_n in which no nontrivial element fixes a half-tree, the Bass–Serre end shift is a minimal, topologically free, quantum-rigid SFT over Γ, and F(G_V × (Γ ⋉ X_T)) is of type F_n; so E3′ holds with unit groups as complex as H
-requires:
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
-  - v-times-ample-full-groups-are-generated-by-transpositions
-  - nekrashevych-symmetric-and-alternating-full-groups
-  - fp-v-times-minimal-action-full-groups-have-type-a-actions
 distinct_from:
   v-times-rigid-topologically-free-sft-full-groups-are-fp: that is the open gate E3′ for all rigid minimal topologically free SFTs over finitely presented groups; this proves its conclusion for the end shifts of non-ascending HNN extensions, the first family of instances whose unit groups are infinite.
   v-times-tree-boundary-full-groups-are-f-infinity: that is the case of Cayley trees (trivial vertex groups), where the Li coding has no units and the word problem is finite-state; here the vertex group H enters Li's theorem as the unit groups, so the host's word problem is that of H.

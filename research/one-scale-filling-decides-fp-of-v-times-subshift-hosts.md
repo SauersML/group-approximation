@@ -3,14 +3,13 @@ rg: 2
 id: one-scale-filling-decides-fp-of-v-times-subshift-hosts
 kind: claim
 title: A V-times-subshift host is finitely presented iff loops of one cocompact domain level die at a larger level (a retract of a finitely presented orbifold group); a finite shadow basis supplies this, and self-similarity propagates a filling across scales but cannot create one; the tree hosts settle no new Boone–Higman case
-requires:
-  - v-times-subshift-full-group-finiteness-is-horizontal
-  - cocompact-tree-end-shift-hosts-are-f-infinity
 distinct_from:
   v-times-subshift-full-group-finiteness-is-horizontal: that shows finiteness is essential connectivity of the whole domain filtration; this shows that for finite presentation one level suffices, and says what self-similarity adds.
   cocompact-tree-end-shift-hosts-are-f-infinity: that proves F_infinity for tree end shifts; this states the general finite-shadow-basis mechanism behind it, records which Boone–Higman cases it does and does not settle, and corrects a priority remark.
   crossing-wire-fixed-point-tile-sets-are-quantum-rigid: that proves the linear shadow (quantum rigidity) of the filling for a free Z^2 SFT; this isolates the nonlinear one-level filling as the open step for that host.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `v-times-subshift-full-group-finiteness-is-horizontal`, `cocompact-tree-end-shift-hosts-are-f-infinity`.
 
 **Parts 1 and 3: ESTABLISHED** (lane proof, bh-invent-17, 2026-09-18, elementary; not reviewed).
 **Parts 2 and 4:** criterion and literature record. **Part 5:** analysis. Its propagation step is

@@ -19,7 +19,8 @@ Let (q) be a prime power and (r,dge3).  Put
 ]
 [
  Gamma=operatorname{EL}_r(R_+),qquad
- G=operatorname{EL}_r(R)timesoperatorname{SL}_d(mathbb Z),      	ag{KTA1}
+ G=operatorname{EL}_r(R)
+timesoperatorname{SL}_d(mathbb Z),      	ag{KTA1}
 ]
 with the monomial-substitution action.  For the actor (G), the four
 relevant statuses are
@@ -78,10 +79,13 @@ the restriction of its induced representation, so the full group
 (C^*)-norm is preserved.  Choose
 (0
 e ain I_{mathrm{fd}}(Lambda)).  For every finite-dimensional
-representation (ho) of (G),
+representation (
+ho) of (G),
 [
- widetildeho(j(a))
- =widetilde{ho|_Lambda}(a)=0.                                  	ag{KTA8}
+ widetilde
+ho(j(a))
+ =widetilde{
+ho|_Lambda}(a)=0.                                  	ag{KTA8}
 ]
 Hence
 [
@@ -126,14 +130,17 @@ corners do not give a weaker escape than flexible stability.  If
  phi_n:G	o U(k_n)
 ]
 is an asymptotic representation and there are exact
-(ho_n:G	o U(D_n)) and isometries
+(
+ho_n:G	o U(D_n)) and isometries
 (V_n:mathbb C^{k_n}	omathbb C^{D_n}) with
 [
- |V_n^*ho_n(s)V_n-phi_n(s)|_{2,k_n}	o0
+ |V_n^*
+ho_n(s)V_n-phi_n(s)|_{2,k_n}	o0
 ]
 on a finite Kazhdan generating set, the compression projection has
 (o(k_n)) total leakage.  Kazhdan projection-rounding inside the
-finite-dimensional commutant produces a (ho_n(G))-invariant projection
+finite-dimensional commutant produces a (
+ho_n(G))-invariant projection
 of rank (k_n+o(k_n)).  Restriction to that projection gives a flexible
 exact correction.  This is the argument of
 (	extit{tfd-low-leakage-compressions-flexibly-reduce}), and full property

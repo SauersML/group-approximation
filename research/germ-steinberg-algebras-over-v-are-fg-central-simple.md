@@ -3,7 +3,6 @@ rg: 2
 id: germ-steinberg-algebras-over-v-are-fg-central-simple
 kind: claim
 title: The germ-groupoid Steinberg algebra of a finitely generated Cantor host containing Thompson's V is a finitely generated central simple F_2-algebra whose units contain the host
-requires: [full-group-units-embed-in-steinberg-algebras, cepss-nonhausdorff-steinberg-simplicity]
 distinct_from:
   full-group-units-embed-in-steinberg-algebras: that embeds the topological full group of a given ample groupoid in its Steinberg algebra's units; this constructs the groupoid from a group action, and proves finite generation as a ring, simplicity and triviality of the centre for hosts containing V.
   algebraic-cartan-pairs-are-effective-groupoid-steinberg-algebras: that characterizes which algebras arise from effective groupoids; this computes ring-theoretic finiteness for one explicit family of them.

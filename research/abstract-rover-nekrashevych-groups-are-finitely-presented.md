@@ -3,8 +3,6 @@ rg: 2
 id: abstract-rover-nekrashevych-groups-are-finitely-presented
 kind: claim
 title: For every finitely presented group G and every homomorphism G → S_d ≀ G, faithful on the tree or not, the abstract Röver–Nekrashevych group V_d(G, ψ) is finitely presented
-requires:
-  - abstract-rover-nekrashevych-finite-presentation-proof
 distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that imports Scott's theorem (a finitely presented self-similar G ≤ Aut(T_d) has finitely presented V_d(G)) and Nekrashevych's (contracting G); both concern faithful tree actions; this drops faithfulness and builds the group from the recursion alone, so the tree action may have any kernel.
   fp-self-similar-groups-embed-in-fp-simple-groups: that is Zaremsky's embedding of finitely presented self-similar groups in finitely presented simple groups; this is only the finite-presentation step, for recursions whose tree action is not faithful, and gives no simple group.

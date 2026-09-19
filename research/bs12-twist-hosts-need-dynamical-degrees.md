@@ -3,9 +3,6 @@ rg: 2
 id: bs12-twist-hosts-need-dynamical-degrees
 kind: claim
 title: The host condition (H) for the twisted chain lamplighter cannot come from finitely supported data (in lamp wreaths an evaluation twist only moves a chain configuration into the lamp), and in a germ host the base generator b has, for every m, a 2^m-th root whose orbit through the regular fixed point has exactly 2^m points, so the natural annulus-tower model with V-pieces is impossible
-requires:
-  - type-a-actors-closed-under-inner-twisted-lamp-wreaths
-  - type-a-actors-closed-under-type-a-lamp-wreaths
 distinct_from:
   type-a-actors-closed-under-inner-twisted-lamp-wreaths: that reduces G_1 ∈ B_A to the host condition (H); this rules out the two cheapest ways of meeting (H) and records the counting law any germ host must satisfy.
   higman-chain-group-lies-in-b-a: that (failed) tried a Kaloujnine--Krasner cocycle; item 1 here is the same obstruction for every lamp-wreath evaluation, not just for that cocycle.

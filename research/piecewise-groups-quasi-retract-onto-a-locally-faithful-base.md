@@ -3,8 +3,6 @@ rg: 2
 id: piecewise-groups-quasi-retract-onto-a-locally-faithful-base
 kind: claim
 title: A finitely generated group of H-piecewise homeomorphisms containing H quasi-retracts onto H as soon as H is locally faithful at one point, so type F_n, type FP_n and Dehn function bounds pass down to H
-requires:
-  - quasi-retracts-have-smaller-dehn-functions
 distinct_from:
   full-group-label-length-bounds-distortion: that bounds label length and so gives undistortion of H; this gives a coarse Lipschitz RETRACTION onto H (the label at one point), which carries finiteness properties, not only distances.
   twisted-brin-thompson-groups-quasi-retract-onto-acting-group: that is the Belk--Zaremsky retraction SV_G -> G for twisted Brin--Thompson groups; this is the same germinal idea for groups whose labels lie in a subgroup H, with H locally faithful at one point.

@@ -3,12 +3,6 @@ rg: 2
 id: hyperbolic-seed-rigidity-is-a-horofunction-boundary-question
 kind: claim
 title: The distance-gradient seed of a hyperbolic group is locally forced, so its SFT compactification is quantum rigid iff the horofunction boundary SFT is; this holds for trees of finite groups, and one-ended boundaries admit no finite-modification wall certificates
-requires:
-  - hyperbolic-groups-have-sft-horofunction-compactifications
-  - quantum-rigidity-is-decided-on-the-derived-subshift
-  - finite-type-branch-blow-ups-are-sft-compactifications
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - k-local-distance-functions-on-hyperbolic-groups-are-global
 distinct_from:
   hyperbolic-groups-have-sft-horofunction-compactifications: that proves (C1) and (C2) for the distance-gradient SFT Y_k; this addresses the third condition for the class 𝒞, quantum rigidity, and reduces it to the boundary.
   quantum-rigidity-is-decided-on-the-derived-subshift: that is the general reduction for locally forced isolated points; this verifies its hypothesis for Y_k and records what is and is not known about the boundary.

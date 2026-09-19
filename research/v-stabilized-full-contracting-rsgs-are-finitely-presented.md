@@ -3,12 +3,6 @@ rg: 2
 id: v-stabilized-full-contracting-rsgs-are-finitely-presented
 kind: claim
 title: If L is a full contracting RSG with germ groupoid G_L, the V-stabilized full group F(G_V × G_L) is finitely presented; so E3′ holds for hyperbolic seeds whenever the horofunction full group is a full contracting RSG (e.g. every Γ with a proper Z free factor), and Brin's theorem that 2V is finitely presented is the calibration
-requires:
-  - v-times-gluing-presentations-are-exact
-  - contracting-rsgs-have-fp-full-closures
-  - contracting-rsgs-embed-in-fp-simple-groups-citation
-  - cantor-integer-maps-by-v-are-of-type-fp2
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   v-stabilized-horofunction-hosts-need-upstream-certification: that shows the topological (finite-shadow) route fails for horofunction hosts and names the vertical-gluing route with two gaps; this closes both gaps (the X-local label relations and finite presentation of the Boolean power over the full group) for every full contracting RSG.
   contracting-rsgs-have-fp-full-closures: that is finite presentation of the unstabilized full group L (BBMZ); this is finite presentation of its V-stabilization F(G_V × G_L), which is not an RSG.

@@ -3,8 +3,6 @@ rg: 2
 id: translation-like-hosts-are-capped-by-separation-profiles
 kind: claim
 title: Translation-like realizations over a fixed group are capped by growth and separation profile, so no fixed hyperbolic or amenable-growth host is universal, and decidable monsters need non-free orbits or a finitely presented Farrell–Jones group containing expanders
-requires:
-  - translation-like-inputs-embed-in-full-groups-over-a-fixed-group
 distinct_from:
   decidable-host-classes-reduce-to-canonical-kazhdan-groups: that filters host classes by subgroup-closed algebraic properties such as amenability and residual finiteness; this filters the fixed acting group of a translation-like realization by coarse geometry (growth and separation), which is not subgroup-closed information about the host.
   heisenberg-not-in-wobbling-groups-of-quadratic-growth-graphs: that is one growth kill for one input in low-growth wobbling groups; this is the general growth-plus-separation cap for free realizations over any fixed group, and names the escape.

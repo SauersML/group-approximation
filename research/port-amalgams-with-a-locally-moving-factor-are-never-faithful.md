@@ -3,8 +3,6 @@ rg: 2
 id: port-amalgams-with-a-locally-moving-factor-are-never-faithful
 kind: claim
 title: An amalgam or HNN extension of homeomorphism groups along a common subgroup never acts faithfully when one factor has nontrivial elements of arbitrarily small support that avoid the port; so two odometer hosts cannot be glued faithfully along the odometer under any twist, and cyclic Houghton ports never glue faithfully to anything
-requires:
-  - higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness
 distinct_from:
   higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness: that isolates faithfulness as the one clause Higman's operations fail to preserve, and shows generic gluing is unavailable; this proves faithfulness fails outright for every factor with small supports, the source of all known finitely presented hosts.
   amalgams-of-orbit-finite-actions-are-type-a2: that gives one explicit kernel element for a specific configuration; this is the general criterion, for amalgams and HNN extensions, in any Hausdorff topology.

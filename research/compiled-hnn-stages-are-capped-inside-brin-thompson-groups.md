@@ -3,9 +3,6 @@ rg: 2
 id: compiled-hnn-stages-are-capped-inside-brin-thompson-groups
 kind: claim
 title: Identity-edge HNN stages compiled inside Brin-Thompson groups cannot beat coNP however they are iterated there, and in V such a stage need not embed back into V
-requires:
-  - machine-labelled-lamp-products-are-nv-centralizers
-  - pbh-coset-wreaths-iff-identity-edge-hnns
 distinct_from:
   machine-labelled-lamp-products-are-nv-centralizers: that realizes machine-coded subgroups as centralizers in one Brin-Thompson host and puts the identity-edge HNN in B_A; this asks whether that HNN returns to a Brin-Thompson group so that the compiler can iterate, and shows that iteration there is capped either way.
   type-a-actors-with-arbitrarily-hard-word-problem: that is the open hard-actor claim; this identifies it as the only recorded way for an iterated compiler to beat a fixed complexity class.

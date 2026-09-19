@@ -4,6 +4,7 @@ id: centralizer-amalgams-free-wreath-proof
 kind: route
 title: Write down the two homomorphisms between the amalgam and the free wreath and check they are inverse on generators
 target: centralizer-amalgams-are-free-permutational-wreaths
+requires: []
 ---
 
 Standard facts used, not re-read: universal properties of free products, amalgams

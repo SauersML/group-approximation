@@ -3,9 +3,6 @@ rg: 2
 id: seed-full-groups-act-oligomorphically-on-the-seed-orbit
 kind: claim
 title: The topological full group of a seed SFT acts faithfully and highly transitively on the seed orbit, and its orbit problem, restricted to the finitely generated subgroup of Γ and cylinder swaps, computes the disjunctive two-cell sets E_t and, by decoding from the seed, the seed configuration along words
-requires:
-  - twisted-brin-thompson-wp-equals-actor-orbit-problem
-  - twisted-brin-thompson-finite-presentation-criterion
 distinct_from:
   type-a-actors-with-arbitrarily-hard-word-problem: that asks for hard type (A) actors; this shows seed SFTs supply faithful oligomorphic actors whose hardness is that of the seed configuration, leaving only finite presentation and one finitely generated stabilizer.
   fp-clopen-transitive-full-cantor-groups-have-type-a-actions: that gets oligomorphy from the action on clopen sets of a Cantor space; here the space has isolated points, and oligomorphy comes from the finitary permutations of the dense isolated orbit, which is a Houghton-type mechanism, not a clopen one.

@@ -6,8 +6,6 @@ title: A multiple ascending HNN extension is an amalgam of single-letter extensi
 distinct_from:
   germ-host-class-closed-under-sectioned-ascending-hnns: that closes 𝓒_d under one ascending letter at a time (one new singular point); this records what changes for k ≥ 2 simultaneous letters, and why that closure does not follow.
   bartholdi-multi-substitution-hnn-surjects-onto-free-group: that shows the k-letter fp overgroup maps onto F_k; this gives its structure (an amalgam over the base) and the BH reduction.
-requires:
-  - germ-host-class-closed-under-sectioned-ascending-hnns
 ---
 
 **Status.** Parts 1 and 2 are **ESTABLISHED** (elementary, proofs below). Part 3 is a

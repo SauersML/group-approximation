@@ -3,9 +3,6 @@ rg: 2
 id: baumslag-gersten-group-is-highly-transitive-and-mif
 kind: claim
 title: The Baumslag--Gersten group is acylindrically hyperbolic, highly transitive and mixed-identity-free, yet every faithful action of it with finitely many orbits of two-element subsets has an infinitely generated point stabilizer
-requires:
-  - fpbs-minasyan-osin-weakly-malnormal-splittings
-  - type-a-actors-split-only-over-orbit-finite-edges
 distinct_from:
   type-a-actors-have-no-proper-power-cyclic-edge-splittings: that proves BG has no action of type (A); this shows that of the clauses of type (A), only finite generation of point stabilizers fails, since BG does have faithful highly transitive actions.
   baumslag-gersten-group-satisfies-boone-higman: that is the open embedding question for BG; this is a structural fact about BG itself, used there to locate the obstruction.

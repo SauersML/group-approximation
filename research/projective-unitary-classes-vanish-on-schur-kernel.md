@@ -3,7 +3,8 @@ rg: 2
 id: projective-unitary-classes-vanish-on-schur-kernel
 kind: claim
 title: Projective unitary classes of the coefficients vanish on the Schur kernel of a nonsingular adjunction
-invalidates: [schur-kernel-search-over-finite-coefficient-groups]
+invalidates:
+  - schur-kernel-search-over-finite-coefficient-groups
 distinct_from:
   cdi-torsionization-needs-schur-multiplier-separation: that asks whether a given multiplier of a projective quotient annihilates the finite residual of its Schur multiplier; this proves that every projective unitary multiplier extends across a nonsingular one-variable adjunction and so vanishes on its Schur kernel.
 artifacts:

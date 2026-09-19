@@ -8,8 +8,6 @@ requires:
   - every-decidable-group-embeds-in-an-isolated-group
   - isolated-vertex-groups-have-fp-stabilizer-engines
   - free-product-boundary-groupoids-carry-the-vertex-group-homology
-distinct_from:
-  boone-higman-via-fp-stabilizer-engines: that used vertex groups that are only finitely presented and decidable (Clapham), and its engine claim is refuted (free-product-emitter-full-groups-need-isolated-vertex-groups); this is the corrected route sketched in that node's status, as its own node, with isolated vertex groups as finite presentation of the engine requires.
 ---
 
 Let `G` be finitely generated with solvable word problem. We may take `G` infinite.

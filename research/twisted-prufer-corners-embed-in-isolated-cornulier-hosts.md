@@ -3,11 +3,6 @@ rg: 2
 id: twisted-prufer-corners-embed-in-isolated-cornulier-hosts
 kind: claim
 title: Every Prüfer radical twisted by S-integral matrices (scalar S-units, units of number fields at split or non-split primes via Weil restriction, Jordan blocks) is the corner of an isolated Cornulier–Abels block group; for finitely generated soluble minimax groups, CGP Question 4 reduces to one corner-realizability condition per prime, with the finite part of the radical absorbed by residual finiteness
-requires:
-  - isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts
-  - linear-and-metabelian-groups-embed-in-isolated-groups
-  - ascending-hnn-of-isolated-groups-embed-in-isolated-groups
-  - partial-torus-abels-quotients-are-isolated
 distinct_from:
   partial-torus-abels-quotients-are-isolated: that uses 1×1 corners (A_n-type cores) and number fields at completely split primes; this uses Cornulier's block cores with an r×1 corner, so any twist by S-integral r×r matrices is allowed, non-split primes are handled by Weil restriction to Q, and there is one universal host per (r, p, m').
   isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts: that reduces Question 4 to injectivity on a finite set in the periodic radical; this sharpens it to the divisible part, prime by prime, and supplies the hosts.

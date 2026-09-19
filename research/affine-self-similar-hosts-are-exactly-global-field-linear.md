@@ -3,8 +3,6 @@ rg: 2
 id: affine-self-similar-hosts-are-exactly-global-field-linear
 kind: claim
 title: A finitely generated group embeds in a finitely generated affine self-similar group over Z_p or F_q[[π]] if and only if it is linear over a global field
-requires:
-  - affine-self-similar-groups-are-function-field-linear
 distinct_from:
   affine-self-similar-groups-are-function-field-linear: that is the forward direction in characteristic p only; this adds the characteristic-zero forward direction and the converse embedding, so the class is characterized exactly.
   positive-char-polynomial-affine-groups-are-self-similar: that realizes affine groups over F_p[s_1..s_k] by FIBERED maps (v,a) -> (g<a>v + b<a>, a), whose linear part depends on parameter digits; those are not affine maps of O^m, which is how they reach transcendence degree k. This node says affine maps alone stop at transcendence degree 1.

@@ -3,7 +3,8 @@ rg: 2
 id: fp-quotient-iff-kernel-finitely-normally-generated
 kind: claim
 title: A quotient of a finitely presented group is finitely presented exactly when the kernel is finitely normally generated
-invalidates: [boone-higman-via-maximal-quotient-of-the-envelope]
+invalidates:
+  - boone-higman-via-maximal-quotient-of-the-envelope
 distinct_from:
   twisted-brin-thompson-finite-presentation-criterion: that characterizes finite presentability of a twisted Brin-Thompson group in terms of an ACTION -- orbits of pairs and point stabilizers; this characterizes finite presentability of a QUOTIENT in terms of its kernel's normal generating data, and no action appears in it.
   boone-final-group-finitely-presented: that establishes that one particular group is finitely presented; this is a general equivalence relating finite presentability of any quotient of a finitely presented group to finite normal generation of its kernel.

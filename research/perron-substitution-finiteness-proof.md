@@ -4,8 +4,7 @@ id: perron-substitution-finiteness-proof
 kind: route
 title: Proof that the Perron substitution condition yields Li F_n finiteness, by substituting a Perron-weighted height function for Li's diagonal condition (t<d)
 target: perron-substitution-finiteness-for-garside-full-groups
-requires:
-  - perron-substitution-finiteness-for-garside-full-groups
+requires: []
 ---
 
 **INVALID (2026-09-18).** This route is invalidated by

@@ -3,10 +3,6 @@ rg: 2
 id: cantor-gluing-kernel-is-the-union-of-finite-alphabet-kernels
 kind: claim
 title: The gluing kernel of V times the Cantor-alphabet full shift over any group is the increasing union of the finite-alphabet kernels, each a retract of it; so the Cantor-alphabet exactness EX needed over free groups is exactness over every finite alphabet, and with FPG all of P2'b exactness reduces to Z acting on the 2^n-letter full shifts
-requires:
-  - gluing-kernels-descend-from-the-free-group-full-shift
-  - v-times-free-product-gluing-kernels-split-over-the-factors
-  - v-times-gluing-exactness-is-commutation-with-one-transposition
 distinct_from:
   gluing-kernels-descend-from-the-full-shift: that maps an ambient kernel ONTO the kernel of a closed invariant subset; this shows the Cantor-alphabet kernel is the directed UNION of the finite-alphabet kernels, a colimit statement in the other direction.
   v-times-free-product-gluing-kernels-split-over-the-factors: that reduces exactness over F_n to FPG plus EX(Z), the Cantor-alphabet cyclic case; this shows EX(Z) is equivalent to exactness over each finite alphabet 2^n, so the cyclic input is a sequence of finite-alphabet statements.

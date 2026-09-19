@@ -3,9 +3,6 @@ rg: 2
 id: rcwa-z-generated-by-class-shifts-reflections-transpositions
 kind: claim
 title: Kohl's factorization conjecture holds - every residue-class-wise affine permutation of Z is a product of class shifts, class reflections and class transpositions, in the normal form (commuting class shifts)(element of CT(Z))(commuting class reflections)
-requires:
-  - ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 distinct_from:
   ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers: that identifies the subgroup CT(Z) with the RCWA permutations fixing N_0 setwise (Kourovka 17.59); this factors every RCWA permutation of Z, including orientation-reversing pieces and pieces with nonzero shift, through that subgroup, and so settles the factorization conjecture stated in Kohl's RCWA manual.
   rcwa-groups-satisfy-boone-higman: that embeds finitely generated RCWA groups in finitely presented simple hosts; this is a generation theorem for RCWA(Z) itself and needs no host.

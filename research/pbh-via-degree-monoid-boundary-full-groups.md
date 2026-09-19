@@ -3,12 +3,8 @@ rg: 2
 id: pbh-via-degree-monoid-boundary-full-groups
 kind: claim
 title: Finiteness transfer - for a countable cancellative monoid with a unique-factorization degree map to N^k, lcms, finite residues and an F_infinity unit group, whose boundary groupoid is Hausdorff and effective, the full group of that groupoid times the Cuntz groupoid is F_infinity, simple and highly transitive, so every group acting by its boundary germs satisfies the permutational Boone-Higman conjecture
-requires:
-  - fp-simple-highly-transitive-groups-satisfy-pbh
-  - rcwa-groups-over-pids-satisfy-boone-higman
 distinct_from:
   rcwa-groups-over-pids-satisfy-boone-higman: that proves the host properties for the ax+b monoids of specific rings; this isolates the five monoid axioms those proofs used, as a general host theorem with the unit group as the only group-theoretic input.
-  permutational-boone-higman-via-v-times-aperiodic-sft-full-groups: that builds hosts from full groups of SFTs over V; this builds them from boundary groupoids of monoids with nontrivial F_infinity unit groups, where the unit group supplies the infinite local symmetry.
   fp-self-similar-subgroups-satisfy-permutational-boone-higman: that uses rank-one Röver-Nekrashevych envelopes of finitely presented self-similar groups; this is a higher-rank monoid form, where the units need not act self-similarly on a tree.
 ---
 

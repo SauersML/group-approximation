@@ -3,9 +3,6 @@ rg: 2
 id: quantum-rigid-subshifts-cluster-the-modifications-of-each-point
 kind: claim
 title: In a quantum-rigid subshift over any group, all modifications of a point meet within 2D and are carried along by its isotropy, so a point with infinite isotropy and a homoclinic partner rules out rigidity at every scale, and coinduction from a subgroup with infinitely many double cosets is never rigid
-requires:
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   minimal-sfts-with-a-finite-modification-are-not-quantum-rigid: that states the far-modification lemma for SFTs and kills minimal SFTs with a finite modification; this proves the lemma for every subshift (finite type is never used) and adds the isotropy form, which needs no minimality and fires exactly at points with infinite stabilizer.
   quantum-rigid-sfts-over-products-have-a-single-free-branch: that confines modifications across the slabs of a product with a multi-ended factor; this confines the modifications of one point under its own stabilizer, over any group.

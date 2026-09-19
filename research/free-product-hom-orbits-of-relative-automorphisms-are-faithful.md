@@ -7,8 +7,6 @@ distinct_from:
   relative-automorphism-action-is-highly-transitive: that is the BFFHZ action on Hom_S(S * F_n, S), whose kernel is the mixed-identity kernel K and which is highly transitive; this is an action on homomorphisms into the free product S * <t>, which is faithful for every S but has infinitely many orbits on pairs.
   precomposition-type-a-target-is-finitely-presented: that proves the stabilizer and pair clauses for precomposition on any target (finitely presented target, finitely many normal subgroups); this proves that the remaining clause, faithfulness, can always be met, and shows which target meets it.
   fp-simple-groups-embed-in-fp-simple-mif-groups: that is BFFHZ Question 3.4; this shows the mixed-identity kernel is never the obstruction to it along relative-automorphism routes, only the double-coset clause is.
-requires:
-  - free-product-hom-orbit-faithfulness-proof
 ---
 
 **ESTABLISHED** through `free-product-hom-orbit-faithfulness-proof`. Elementary lane

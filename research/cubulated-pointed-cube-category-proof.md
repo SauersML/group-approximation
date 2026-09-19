@@ -4,6 +4,7 @@ id: cubulated-pointed-cube-category-proof
 kind: route
 title: Last-edge hyperplanes pairwise cross, a hyperplane crossed twice forces a last-edge hyperplane crossed twice, and the median of o, go and gω cuts a common tail off the two rays
 target: cubulated-groups-act-by-bisections-of-a-pointed-cube-category
+requires: []
 ---
 
 Standard facts used, not re-read at source: hyperplanes of a CAT(0) cube complex

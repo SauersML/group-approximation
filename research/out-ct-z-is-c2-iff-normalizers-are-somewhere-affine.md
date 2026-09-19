@@ -3,9 +3,6 @@ rg: 2
 id: out-ct-z-is-c2-iff-normalizers-are-somewhere-affine
 kind: claim
 title: Kourovka 17.57 reduces to local rigidity — Out(CT(Z)) = C_2 iff every homeomorphism of the profinite integers normalizing CT(Z) and fixing N_0 is affine on some box; every normalizer already preserves Z, preserves or swaps N_0 and Z_<0, and fixes every integer's germ group pointwise
-requires:
-  - ct-p-z-groups-are-pairwise-nonisomorphic
-  - ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---

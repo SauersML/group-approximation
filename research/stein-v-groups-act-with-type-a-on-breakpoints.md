@@ -3,8 +3,6 @@ rg: 2
 id: stein-v-groups-act-with-type-a-on-breakpoints
 kind: claim
 title: A finitely presented Stein V-group whose shorter-interval versions are finitely generated acts with type (A) on its breakpoint set, so all its subgroups satisfy Boone--Higman; its quadratic (norm −1) instance is subsumed by the Pisot RSG route; norm +1 slopes are open (corrected 09-18)
-requires:
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier on 09-18) already embeds IET(Z+αZ), α quadratic, in a finitely presented simple group, via the substitutive Sturmian coding and contracting rational similarity groups; the Sturmian corollary here is an independent route. What is new here is the type (A) action of the Stein V-group itself, which gives Boone--Higman for ALL subgroups of V(Z[λ],⟨λ⟩,ℓ), for example D(V_λ), F_λ, T_λ when λ has norm +1.
   circle-pl-groups-act-with-type-a-on-breakpoint-orbits: that treats the circle T-versions and needs A/(IP·A) finite for finitely many pair orbits; it leaves the V-versions open because V-point stabilizers are not interval groups. This proves finite generation of those stabilizers (an ascending union of shorter-interval V-groups, closed off by one germ contraction) and gets one pair orbit from interval exchanges, with no finiteness of A/(IP·A).

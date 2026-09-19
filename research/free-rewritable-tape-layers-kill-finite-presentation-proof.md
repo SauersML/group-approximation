@@ -5,7 +5,7 @@ kind: route
 title: Run the necessity theorem's orbit representation with matrix units in place of idempotents, then feed it a slot family from a proper colouring of the neighbourhood graph
 target: free-rewritable-tape-layers-kill-finite-presentation
 requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity-proof
+  - fp-v-times-subshift-full-groups-force-quantum-rigidity
   - v-times-ample-full-groups-are-generated-by-transpositions
   - nekrashevych-symmetric-and-alternating-full-groups
   - ample-groupoid-products-expansive-iff-factors-are

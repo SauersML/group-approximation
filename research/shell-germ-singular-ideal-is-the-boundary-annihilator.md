@@ -3,7 +3,6 @@ rg: 2
 id: shell-germ-singular-ideal-is-the-boundary-annihilator
 kind: claim
 title: The local singular ideal of a shell germ algebra is the annihilator of the permutation module on the Schreier boundary of the germ group's near action
-requires: [shell-germ-singular-ideal-is-generated-at-the-singular-point]
 distinct_from:
   shell-germ-singular-ideal-is-generated-at-the-singular-point: that defines J_p as the annihilator of the shell module K^N/K^(N) and reduces finite generation of J to it; this rewrites that annihilator as an intersection of induced-module annihilators indexed by the limit stabilizers at infinity.
 ---

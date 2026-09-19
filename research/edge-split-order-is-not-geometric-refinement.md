@@ -4,11 +4,7 @@ id: edge-split-order-is-not-geometric-refinement
 kind: claim
 title: An edge-split dissection can respect a first-split plane without splitting there first, because descent is not inherited by children; so edge-split order is strictly finer than geometric refinement
 invalidates:
-  - edge-split-dissections-respecting-an-atom-plane-split-there
   - edge-split-ore-via-atom-plane-restriction
-requires:
-  - edge-split-descendants-are-not-factor-closed
-  - edge-splits-cut-every-rational-hyperplane
 artifacts:
   - research/artifacts/gq-bh-free-54-edge-split-reversing-tests.md
 distinct_from:

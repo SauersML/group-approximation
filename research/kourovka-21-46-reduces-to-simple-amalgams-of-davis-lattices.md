@@ -3,8 +3,6 @@ rg: 2
 id: kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices
 kind: claim
 title: Torsion-free lattices in Aut(T) × Aut(X_{O_d}) with edge-transitive tree action are amalgams W_1 *_A W_2 of torsion-free Davis-complex lattices; a simple such amalgam is a finitely presented simple group of cohomological dimension 3, and non-residual finiteness can be imported from a free amalgam on one hyperplane
-requires:
-  - commensurated-subgroups-of-virtually-simple-groups-are-rf
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). This is a reduction, not an answer: it recasts

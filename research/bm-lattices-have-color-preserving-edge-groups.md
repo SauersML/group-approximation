@@ -3,8 +3,6 @@ rg: 2
 id: bm-lattices-have-color-preserving-edge-groups
 kind: claim
 title: Every torsion-free, edge-transitive, non-residually-finite lattice F_a *_{F_e} F_b on T' × T_d has a subgroup of index at most 2 of the same kind whose edge group, after conjugation in Aut(T_d), is color-preserving (lies in the right-angled Coxeter group W_{lk(D)}), so the wall-twist hypothesis of twisted-davis-amalgams-keep-hyperplane-data can be met
-requires:
-  - twisted-davis-amalgams-keep-hyperplane-data
 ---
 
 **ESTABLISHED** (lane proof, elementary, not reviewed). This answers the existence question left open in

@@ -3,7 +3,8 @@ rg: 2
 id: lamp-charts-recover-set-action
 kind: claim
 title: Lamp charts recover the set action, for Clifford lamps as well as commuting ones
-invalidates: [halo-chart-clifford-model]
+invalidates:
+  - halo-chart-clifford-model
 distinct_from:
   coordinate-action-not-sofic: That claim is the refutation of soficity of the Kun--Thom coset action itself; this one is the transfer statement that any Definition-4.23 chart system on a lamp group over that set would prove the set action sofic, whatever the lamp group and whatever the target class.
   single-lamps-recover-set-action: That claim states the transfer for the commuting lamp group `directSum_X C_2` and quantifies over the target class; this one keeps that quantifier and generalizes the lamp group, to the Clifford lamp `C(X)` and to every invariant-graph lamp — the groups the Clifford lane actually uses, which the commuting statement does not cover.

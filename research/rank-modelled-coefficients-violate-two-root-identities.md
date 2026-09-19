@@ -3,7 +3,8 @@ rg: 2
 id: rank-modelled-coefficients-violate-two-root-identities
 kind: claim
 title: Every coefficient ring with a unital rank model has a rank model of EL_3 violating the two-root identity
-invalidates: [two-root-identity-by-restriction-to-dyadic-constants]
+invalidates:
+  - two-root-identity-by-restriction-to-dyadic-constants
 distinct_from:
   fd-represented-coefficients-violate-two-root-identities: that needs a unital homomorphism into some M_n(F_p) and uses the regular representation of a finite image; this needs only a unital homomorphism into a rank ultraproduct and uses the natural tensor square, so it covers coefficient rings with no finite-dimensional representation, such as the dyadic constants of the Leavitt algebra.
 artifacts:

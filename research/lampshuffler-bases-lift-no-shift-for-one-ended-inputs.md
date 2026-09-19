@@ -3,8 +3,6 @@ rg: 2
 id: lampshuffler-bases-lift-no-shift-for-one-ended-inputs
 kind: claim
 title: For a one-ended input, a near map of nonzero index never conjugates the regular copy of a finite-index subgroup into the regular copy, so over the lampshuffler base of H_n(E_nu(P)) the lifting criterion certifies no letter that shifts a strand
-requires:
-  - fsym-extensions-lift-fp-via-pair-transitive-stable-subgroups
 distinct_from:
   one-ended-shell-inputs-admit-no-shift-normalizing-enumeration: that is the case A = P and mu = s^m of the lemma here; this allows any finite-index A <= P and any injective near map mu of nonzero index, and applies it to lifting certificates.
   strand-map-bases-lift-only-bounded-displacement-letters: that treats the base of eventual strand maps, which reaches only virtually cyclic inputs; this treats the base made of the regular actions themselves, which fails in the opposite way for one-ended inputs.

@@ -4,6 +4,7 @@ id: definable-parameter-hosts-specialization-proof
 kind: route
 title: The relator locus of a finitely presented definable action is a parameter-free definable set, so it has tame points avoiding any finite set of nontrivial elements, and nonidentity in a tame member is an existential condition decidable in PSPACE
 target: definable-parameter-hosts-cap-simple-subgroups-at-pspace
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

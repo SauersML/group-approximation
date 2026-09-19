@@ -3,10 +3,6 @@ rg: 2
 id: busemann-transplant-minimality-is-horospherical-minimality
 kind: claim
 title: A Busemann transplant of a minimal fibre is minimal once the skeleton's zero-lag (horospherical) relation is minimal; this holds for F_m x F_n outright, and for Ã2 lattices it follows from germ primitivity; the phase skeleton also needs the fibre's finite factors prime to its modulus; so F_2 x F_2 carries a free minimal quantum-rigid SFT
-requires:
-  - tree-product-busemann-transplants-preserve-quantum-rigidity
-  - a2-busemann-transplants-preserve-quantum-rigidity
-  - minimal-crossing-wire-fixed-point-shift-is-quantum-rigid
 distinct_from:
   busemann-transplants-give-free-sfts-on-building-lattices: that proves finite type and freeness of transplants and leaves minimality open; this decides minimality.
   tree-product-busemann-transplants-preserve-quantum-rigidity: that transfers rigidity and freeness; this transfers minimality, under a horospherical condition on the skeleton.

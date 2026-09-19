@@ -3,13 +3,12 @@ rg: 2
 id: hard-evaluation-seeds-with-finitely-presented-full-groups
 kind: claim
 title: For every recursive bound there is a seed SFT whose seed configuration is harder to evaluate along words, whose topological full group is finitely presented, and whose seed stabilizer in it is finitely generated
-requires:
-  - seed-full-groups-act-oligomorphically-on-the-seed-orbit
-  - seed-evaluation-is-bounded-by-the-forcing-radius
 distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that proves the action on the seed orbit is faithful, highly transitive and reads the seed; this is the existence statement for hard seeds with the two finiteness properties that turn that action into a type (A) action.
   type-a-actors-with-arbitrarily-hard-word-problem: that asks for hard type (A) actors of any kind; this asks for them in one concrete shape, and implies that claim.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `seed-full-groups-act-oligomorphically-on-the-seed-orbit`, `seed-evaluation-is-bounded-by-the-forcing-radius`.
 
 **OPEN.** For every recursive `T: N → N` there are:
 - a finitely presented `Γ`;
