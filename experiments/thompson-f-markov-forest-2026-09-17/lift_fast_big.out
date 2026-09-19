@@ -1,0 +1,2 @@
+cross-check fast vs dense at M=200: 0.6973955007794945 0.6973955007794939
+M= 100000  fast lifted: markov 0.906655   product 0.920482

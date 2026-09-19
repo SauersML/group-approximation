@@ -434,3 +434,17 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
   - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
     that is, whether the optimal tree-size law escapes to infinity.
+- **Size-correlated (Markov) test vectors in the log-scale limit (swarm-0917-w14-w14-f-follow, 2026-09-19, census-computation).**
+  This follows up the survivor "size-correlated neighbour vectors" of swarm-0917-w14-w14-f-break. The work
+  is in `thompson-f-markov-size-chain-vectors-saturate-in-the-scale-limit` (OPEN).
+  - *Established:* an exact infinite-volume formula for the Rayleigh quotient of stationary Markov size
+    chains with recursive shapes. In the formal log-scale limit, merge acts as `max`, so every product
+    law gives `2√2/3` exactly. There are necessary conditions for `B → 1`: rows must agree along up- and
+    down-steps, and `U + D → 1`.
+  - *Belief change (numerical):* order-1 and order-2 chains saturate at `B ≈ 0.954–0.955`, that is
+    `R ≈ 0.977`. Bin refinement converges geometrically and memory adds about `0.001`. At computable
+    sizes (lifted kernels up to `M = 10⁵`) they stay below the lifted product and far below `0.9743`.
+  - *Dies at:* a rigorous ceiling. That needs quantitative rigidity: near-agreement of rows forces a
+    near-product chain.
+  - *Survivor:* hierarchical or hidden-state laws that encode several log-scales at once. These are the
+    Følner-type candidates suggested by Moore's tower bound.
