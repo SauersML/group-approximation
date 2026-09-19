@@ -64,9 +64,9 @@ This proves 1. For 2, the axis of `t` has trivial vertex stabilizers in `⟨t⟩
 
 ## Scope
 
-- **Not ruled out.** Other constructions of `(BS(1,2), ⟨b⟩)` remain possible, for instance from the affine
-  `Z[1/2] ⋊ Z` geometry rather than the Bass–Serre splitting. So do vertex groups larger than `Z`, whose induced
-  edge compactifications carry no tail-period invariant.
+- **Realized otherwise.** `(BS(1,2), ⟨b⟩)` does have a rigid relative seed, built from the affine order on `Z[1/2]`
+  rather than the Bass–Serre splitting (`ordered-orbits-give-rigid-relative-seeds`). With it, Baumslag–Gersten lies
+  in `𝒞`. The obstruction here is to tree gluing only.
 - **Unimodular edges.** When `|m| = |n|` (for example `BS(2,2)` and unimodular GBS groups), the counting obstruction
   vanishes. Choosing tail periods divisible by `m` meets (DM), and (M) becomes a finite check on the tail orbits. This
   positive case is not claimed here.
