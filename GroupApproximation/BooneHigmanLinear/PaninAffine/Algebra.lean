@@ -90,8 +90,11 @@ theorem map_dvd_of_forall_dvd_coeffMap {g : MvPolynomial σ K} {u : MvPolynomial
     · exact Finset.mem_biUnion.mpr ⟨α, hα, hj⟩
     · rw [notMem_support_iff.mp hα, map_zero] at hj
       simp at hj
-  conv_lhs => rw [← b.linearCombination_repr (u.coeff α), Finsupp.linearCombination_apply,
-    Finsupp.sum]
+  have hrepr : u.coeff α =
+      ∑ j ∈ (b.repr (u.coeff α)).support, (b.repr (u.coeff α)) j • b j := by
+    conv_lhs => rw [← b.linearCombination_repr (u.coeff α)]
+    rw [Finsupp.linearCombination_apply, Finsupp.sum]
+  conv_lhs => rw [hrepr]
   rw [Finset.sum_subset hsub]
   · refine Finset.sum_congr rfl fun j _ => ?_
     rw [Algebra.smul_def, mul_comm]
@@ -192,11 +195,14 @@ def chartExp (n : ℕ) : (Fin (n + 1) →₀ ℕ) →+ (Fin (n + 1) →₀ ℕ) 
 
 theorem chartExp_apply_succ (α : Fin (n + 1) →₀ ℕ) (j : Fin n) :
     chartExp n α j.succ = α j.succ := by
-  simp [chartExp, Finsupp.single_apply, (Fin.succ_ne_zero j).symm]
+  show (α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1) j.succ = α j.succ
+  rw [Finsupp.add_apply, Finsupp.smul_apply, Finsupp.single_eq_of_ne (Fin.succ_ne_zero j),
+    smul_zero, add_zero]
 
 theorem chartExp_apply_zero (α : Fin (n + 1) →₀ ℕ) :
     chartExp n α 0 = α 0 + ∑ j : Fin n, α j.succ := by
-  simp [chartExp]
+  show (α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1) 0 = _
+  rw [Finsupp.add_apply, Finsupp.smul_apply, Finsupp.single_eq_same, smul_eq_mul, mul_one]
 
 theorem chartExp_injective : Function.Injective (chartExp n) := by
   intro α β h
@@ -215,18 +221,19 @@ theorem chartExp_injective : Function.Injective (chartExp n) := by
 theorem chartExp_single_zero : chartExp n (Finsupp.single 0 1) = Finsupp.single 0 1 := by
   ext i
   refine Fin.cases ?_ (fun j => ?_) i
-  · rw [chartExp_apply_zero]
-    simp [Finsupp.single_apply, (Fin.succ_ne_zero _).symm]
+  · rw [chartExp_apply_zero,
+      Finset.sum_eq_zero fun j _ => Finsupp.single_eq_of_ne (Fin.succ_ne_zero j), add_zero]
   · rw [chartExp_apply_succ]
 
 theorem chartExp_single_succ (j : Fin n) :
     chartExp n (Finsupp.single j.succ 1) = Finsupp.single j.succ 1 + Finsupp.single 0 1 := by
   ext i
   refine Fin.cases ?_ (fun k => ?_) i
-  · rw [chartExp_apply_zero]
-    simp [Finsupp.single_apply, Fin.succ_ne_zero]
-  · rw [chartExp_apply_succ]
-    simp [Finsupp.single_apply, (Fin.succ_ne_zero k).symm]
+  · rw [chartExp_apply_zero, Finsupp.add_apply, Finsupp.single_eq_of_ne (Fin.succ_ne_zero j).symm,
+      Finsupp.single_eq_same]
+    simp [Finsupp.single_apply, Fin.succ_inj]
+  · rw [chartExp_apply_succ, Finsupp.add_apply, Finsupp.single_eq_of_ne (Fin.succ_ne_zero k),
+      add_zero]
 
 /-- The blow-up chart on exponents, as a ring map `κ[s] → κ[s]` (`s₀ ↦ s₀`, `sⱼ₊₁ ↦ s₀ sⱼ₊₁`). -/
 noncomputable def chartMono (n : ℕ) : MvPolynomial (Fin (n + 1)) κ →+* MvPolynomial (Fin (n + 1)) κ :=
@@ -234,8 +241,8 @@ noncomputable def chartMono (n : ℕ) : MvPolynomial (Fin (n + 1)) κ →+* MvPo
 
 theorem chartMono_monomial (α : Fin (n + 1) →₀ ℕ) (c : κ) :
     chartMono n (monomial α c) = monomial (chartExp n α) c := by
-  rw [← single_eq_monomial, ← single_eq_monomial]
-  exact AddMonoidAlgebra.mapDomain_single
+  rw [chartMono, AddMonoidAlgebra.mapDomainRingHom_apply, ← single_eq_monomial,
+    ← single_eq_monomial, AddMonoidAlgebra.mapDomain_single]
 
 theorem chartMono_injective : Function.Injective (chartMono (κ := κ) n) := by
   intro p q h
@@ -313,6 +320,7 @@ theorem chart_coeff_zero (q : MvPolynomial (Fin (n + 1)) κ) :
     simp only [map_add, Polynomial.coeff_add, hp, hq]
   · intro p i hp
     simp only [map_mul, Polynomial.mul_coeff_zero, hp, hX, mul_zero, constantCoeff_X, map_zero]
+
 /-- Every element of `κ[A][X]` times a power of `X` lies in the image of the chart. -/
 theorem exists_X_pow_mul_eq_chart (r : Polynomial (MvPolynomial (Fin n) κ)) :
     ∃ (m : ℕ) (D : MvPolynomial (Fin (n + 1)) κ), Polynomial.X ^ m * r = chart κ n D := by

@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurnCut
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus petal: cutting a walk at a repeated vertex (lane gl-p06-18)
 
