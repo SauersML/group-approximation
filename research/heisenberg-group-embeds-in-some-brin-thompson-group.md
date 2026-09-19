@@ -150,3 +150,30 @@ A no here gives a no to Zaremsky 2.19(c), through
   - *What remains.* A YES must use coordinate-mixing elements that lie in no fibred subgroup, for
     example RTM or SMART-type elements. This agrees with the product-coloured and `X_ι`
     realization framing above. The node stays OPEN.
+- 2026-09-19 (swarm-0917-w19-w19-z-break, minimal-counterexample, unreviewed): **counter-machine
+  hosts are distortion-free in every dimension.**
+  - Delivered `counter-machine-hosts-have-no-distorted-elements` (ESTABLISHED, lane proof,
+    elementary).
+    - Let `CM(N, E)` be the group of bijections of `Z^N × E` that move `(z, e)` by an amount read
+      from `e` and from eventually periodic colourings of the coordinates `z_i`. These are reversible
+      multi-counter machines with zero, sign and residue tests.
+    - Its finitely generated subgroups have no distorted elements, for every `N`.
+    - So `CM(N, E)` contains no `H_3(Z)`, no `BS(1,m)`, no `GL_3(Z)` and no `mV`.
+    - Every CM-action of `H_3` has some `c^J` acting trivially.
+  - *Class killed.* This covers every counter-machine realization, whatever the orbit geometry, the
+    number of counters or the finite control. It generalizes the 2026-09-13 remark "counter
+    encodings fail" from one affine encoding to all of them.
+    - In the framing of `heisenberg-in-mv-reduces-to-zn-subshift-realization` (C), no
+      product-coloured realization exists with all `κ_i` eventually periodic, in any rank `N`. Growth
+      alone only reaches `N ≤ 4`.
+  - *Mechanism.*
+    - Induct on `N`.
+    - Deep in the periodic tails of a set `B` of coordinates, the action is a model that commutes
+      with the lattice `pZ^B`. The quotient is a CM-action of rank `N − |B|`.
+    - A sublinear element that is trivial on the quotient translates by a lattice vector that
+      depends only on the coset. Sublinearity forces that vector to be `0`.
+    - What remains is a finite box.
+  - *What remains for a YES.* Some coordinate colouring must carry unbounded tail information, as
+    Toeplitz, Sturmian or full-shift tapes do. Unary counters with finitely many tests never
+    suffice. Open extensions are semilinear (non-coordinate) pieces and tapes whose tails are not
+    periodic. The node stays OPEN.
