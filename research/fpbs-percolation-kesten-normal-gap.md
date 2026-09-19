@@ -166,3 +166,38 @@ direction is used here.
   same node records a second point: submultiplicative weight tilts pulled back
   from `Q` have infinite tilted susceptibility at `p_c` on unimodular graphs,
   so Hutchcroft-type tilting needs a cocycle.
+* **Operator-algebras transplant (transplanter, 2026-09-19, swarm-0917 w18,
+  `research/artifacts/fpbs-cluster-gram-fibre-operator-2026-09-17.md`).**
+  **Dictionary:** the fibre operator `A_p = lambda_Q(sigma_p)` is a positive
+  operator affiliated with `L(Q)`.
+  - `chi^N_p = tr A_p`.
+  - The gap asks for `A_p ∈ L^1` for some `p > p_c`.
+  - Critical fibre l2 is `A_(p_c) ∈ L(Q)`.
+  - Trichotomy type (ii) is `L^1` without `L^infinity`.
+
+  **What survives (ESTABLISHED,
+  `fpbs-normal-fibre-mass-cluster-gram-representation`).** Mass transport gives
+  the Gram form `A_p = E[|K_o|^{-1} lambda_Q(a)^* lambda_Q(a)]` for the cluster
+  profile `a(u) = |K_o ∩ u~N|`, for every normal `N`. From it:
+  - `sigma_p` is positive definite for every normal `N`, for `p <= p_c`;
+  - `sigma_p(u) <= chi^N_p` for every `p` and every normal `N`, which settles
+    open point 1 of the 2026-09-16 amenable artifact;
+  - `||sigma_(p_c)||_Q <= liminf_{p ↑ p_c} E_p[|K_o| r(a)^2]`, where `r` is the
+    Kesten ratio of the profile.
+
+  This is a new sufficient decomposition, recorded as the route
+  `fpbs-kesten-gap-via-profile-kesten-ratio` with the OPEN premise
+  `fpbs-critical-profile-kesten-ratio-integrable`. Numerical lower bounds on
+  critical `T_3` clusters grow slowly and show no forbidden `|K|^(1/2)` growth.
+
+  **Where the dictionary breaks.** An invariant finite-cluster partition of
+  `F_2 x Z` into renewal blocks along `<a>`, with `N = Z`, has `tr A = 1` and
+  `||A|| = infinity`, and it satisfies the Gram form. **Invariant:** the
+  size-biased squared Kesten ratio `E[|K| r(a)^2]`, which equals `E|K| = infinity`
+  on that partition. **Failing step:** the upgrade `L^1 -> L^infinity`. It cannot
+  follow from invariance and partition structure, so a proof must use Bernoulli
+  input that keeps critical shadows off amenable pieces of `Q`.
+
+  Calibration: positive definiteness of `tau` alone does not give fibre
+  maximality for nonamenable `N`. There is an example on `F_2 x Z/2` with
+  `sigma(1) = 1.08 > sigma(0) = 1`.
