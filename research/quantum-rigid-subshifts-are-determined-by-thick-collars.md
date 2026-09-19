@@ -181,3 +181,48 @@ Anantharaman-Delaroche and Renault. Structure of equicontinuous minimal systems 
 (recalled). The two-piece certificate, the clustering theorem and the ends gluing are bh-star-b's
 (ca15e5298, f676c07d2, 6a95ce886). The fibre bookkeeping over `Z^d` rows is bh-invent-16's (c930a62ab).
 The permutational scope correction is bh-ra-counter's (4ed22df890).
+
+## Referee (bh-ref-hl, 2026-09-19): PASS for items 1–6, with two precisions to item 5(c)
+
+This is an internal lane review, line by line. Lemma 1′ and items 1(a), 1(c) and 4 of
+`rigid-subshift-amenability-from-coherent-variation-caps` are used as stated. I checked that 1(a) is Lemma 1′ applied to `x, y ∈ X`,
+and that 1(c) uses only non-isolatedness.
+- **Item 1 (the key step).**
+  - A `D`-ball has diameter `≤ 2D < d(P,N)`, so it lies in `P ∪ M` or in `M ∪ N`, where `z` reads `y_1` or `y_2`. So every
+    `B_D`-pattern of `z` occurs.
+  - `Δ(y,z) ⊆ P ∪ N` meets both sides. Lemma 1′ needs only colourings with occurring `B_D`-patterns, so `z ∉ X` is allowed.
+    Correct.
+- **Item 2.**
+  - `d(F, Λ∖F·B_w) ≥ w+1 > 2D`.
+  - In the second case, two distinct extensions would differ only inside `F`. Directly: take `M′ = F·B_R ∖ F` for large `R`. A point
+    `y ≠ x` agreeing with `x` on `F·B_R` exists because `x` is not isolated. Then item 1 applies to `x′` (varying on `F`) and `y`
+    (varying outside `F·B_R`).
+  - Restriction `L_(F∪∂F) → L_(∂F)` is injective, which gives the count. Correct.
+- **Item 3.**
+  - Windows. With `(g.x)(h) = x(g⁻¹h)`, the join over a left Følner set `F_n` reads `x` on `F_n⁻¹`, which is right Følner. So
+    `|E_nB_w ∖ E_n| ≤ Σ_(b∈B_w)|E_nb ∖ E_n| = o(|E_n|)`.
+  - An isolated point of `supp μ` has positive mass, so its orbit is finite. Ergodicity then puts `μ` on that orbit, and `h_μ = 0`.
+  - Rigidity passes to `S` because an `S`-family is an `X`-family.
+  - The variational principle and the ergodic decomposition of entropy for amenable groups are recalled. Correct.
+- **Item 4.**
+  - `|∂_w F_r| ≤ 2kL` holds because `c_i b = t^e c_(i′)` with `|e| ≤ L`, for finitely many pairs.
+  - If there were more than `|A|^(2kL)` points, finitely many pairs of them would be separated on one `F_r`.
+  - Then a perfect finite set is empty, and scattered compact metrizable spaces are countable. Correct.
+- **Item 5.**
+  - (a) Correct: Haar on `K/H`. The fibre map is upper semicontinuous, and on each stratum `{|F| = n}` the uniform measure is
+    continuous.
+  - (b) Correct: `‖g_*λ_R − λ_R‖ ≤ ∫‖g_*m_R(x) − m_R(gx)‖dμ`, which is Reiter's condition.
+  - (c) Two precisions:
+    - **P1.** (CC′) quantifies over *topologically free* `X`. As stated, (RA_fin) omits topological freeness. So (RA_fin) ⇒ (CC′) in
+      finite fibres, and the converse gives only (RA_fin) for topologically free `X`. The fix is to add "topologically free" to
+      (RA_fin), or to state only the implication.
+    - **P2.** The commit subject's "finite-fibre case of (RA′) is non-existence" should read "(CC′) / (RA) in finite fibres". (RA′),
+      exactness of `Λ`, concerns only non-exact groups. It is implied by (RA_fin) in finite fibres, not equivalent to it. The body's
+      item 5(c) and "What this says about (RA′)" are phrased correctly: the cap-coherence route cannot work there.
+- **Item 6.**
+  - (a) `γ.x ∈ K_Γ` because `Per_Γ` is left `Γ`-invariant. Differences are `2D`-connected, and item 1 applies with
+    `M = Per_Γ` across two distinct `2D`-components.
+  - (b) `γΔ(x,γ′x) = Δ(γx, γγ′x)`, and `γ` permutes the components, so `γC_Γ = C_Γ`. The action on the `2D`-graph of `C_Γ` is free
+    and cocompact, and Švarc–Milnor applies.
+  - (c) Nesting uses a `γ ∈ Γ′ ⊆ Γ` with `γ.x ≠ x`. Correct.
+- **Credit suggestion.** The amenable variational principle is also due to Stepin–Tagi-Zade and Moulin Ollagnier–Pinchon (recalled).
