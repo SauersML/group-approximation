@@ -112,6 +112,21 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
     (arXiv:1206.2072) and Hartung (arXiv:1106.1098) state nothing on `FP_n` of `B~` for `n ≥ 3`. Hartung computes
     the Dwyer quotients `M_c(B)` for `c ≤ 103` and only conjectures their pattern: `Z^2` plus 2-primary cyclic
     groups of unbounded order, which would make `H_2(B; Z)` infinitely generated.
+- **Σ-invariants cannot prove `FP_3` here** (bh-free-58, 2026-09-19; consequence of the
+  bullet above).
+  - `H^1(B~; R) = R`, so the character sphere is `{±χ}`.
+  - Bieri–Renz, homotopical form, for discrete characters: `±χ ∈ Σ^2(B~)` iff `B~` is an
+    ascending HNN extension over a finitely presented base with stable letter of `χ`-value `±1`.
+    Every such base lies in `ker χ` and contains a conjugate of `B`. The bullet above excludes it,
+    so `Σ^2(B~) = ∅`, hence also `Σ^n(B~) = ∅` for `n ≥ 2`.
+  - Homological form: `±χ ∈ Σ^n(B~; Z)` iff there is an ascending base of type `FP_n`. It would be
+    an amenable, torsion-free group containing `B` that is `FP_n` but not finitely presented. None
+    is known.
+  - So a positive answer cannot come from Σ-theory (Bieri–Geoghegan–Kochloukova-type arguments),
+    barring such an exotic base. It needs a direct construction: a Brown-criterion filtration of a
+    complex built from the Grigorchuk–Żuk L-presentation, or a finite complete rewriting system.
+  - Equivalently, since `B~` is finitely presented, `FP_3` holds iff `π_2` of its presentation
+    complex is finitely generated as a `Z B~`-module.
 - **Constraints on a 2-dimensional certificate (2026-09-18, bh-openq-lists; necessary conditions only).**
   Consider a Brown-type certificate for `FP_3`: an action of `B~` on a 2-acyclic complex `X` with cocompact
   3-skeleton, where the stabilizer of each `p`-cell is of type `FP_(3−p)`.
