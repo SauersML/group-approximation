@@ -70,3 +70,22 @@ would survive, since it is already a theorem through property (T).
   dyadic permutation groups `W_N`. **Survivors:** arguments using
   infinite-order elements of `V`, or the relative position of the
   eigenspaces of non-commuting finite subgroups.
+
+- **swarm-0917-w19-w19-ptl-pull (2026-09-19), symbolic-dynamics transplant, dead; target stays OPEN.**
+  Every construction that reads an MF model of `V` off the Cantor dynamics is dead at a named step:
+  - covariant or cylinder-indexed projections in the model: `c = 2c`
+    (`thompson-v-cantor-system-has-no-covariant-rank-model`, and its operator-norm form, since
+    projections within distance `< 1` have equal rank);
+  - compressions of covariant representations: Bekka non-amenability
+    (`thompson-v-covariant-cantor-representations-are-not-amenable`);
+  - models whose norm profile is dominated by a spatial representation (strong convergence to Koopman,
+    orbit `l^2`, or Cuntz/Jones representations): new, `thompson-v-germ-local-representations-contain-unital-o2`.
+    `V_B` has spectral gap on `rho(1_B)H`, because there is no invariant measure. So `rho(1_A)` lies in `C*_pi(V)`, and
+    `v_i = pi(g_i)rho(1_[0]) + pi(h_i)rho(1_[1])` is a Cuntz pair inside `C*_pi(V)`. The model's quotient would put a
+    proper isometry in the finite algebra `Q`.
+
+  **Invariant:** proper infiniteness of `C*(V)` in its germ-local completions.
+  **Death step:** `q(v_0)` is an isometry in `Q`.
+  **Survivors:** witnesses `psi` with `lambda ≺ psi` whose norm profile is not dominated by any `O_2`-representation
+  of `V` (non-spatial, non-covariant). This is consistent with the dense-projective-image regime of bus need
+  9a535093 and with `thompson-v-gap-witnesses-need-unbounded-lie-closure`.
