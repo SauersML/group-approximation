@@ -3,6 +3,7 @@ import GroupApproximation.BooneHigman.SteinbergBasic.Naturality
 import GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinTransport
 import GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidStep
 import GroupApproximation.BooneHigman.Metabelian.ElemFPBhNagaoWireUncondBase
+import GroupApproximation.BooneHigmanLinear.K2Poly.Statements
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import GroupApproximation.Meta.AxiomGuard
 
@@ -110,10 +111,63 @@ private theorem projMat_ringMap {R S : Type} [CommRing R] [CommRing S] {N : ℕ}
   simp only [projMat, projection_ringMap, elementaryGroupMap_apply, elementaryMatrixUnitMap,
     Units.coe_map, RingHom.toMonoidHom_eq_coe, MonoidHom.coe_coe, RingHom.mapMatrix_apply]
 
-/-- **The field case of Horrocks for `St_N`.**  If `K₂(N, k[X]) = 1`, then `St_N(k[X]) →
-St_N(k[X,X⁻¹]) ← St_N(k[X⁻¹])` are injective and their images meet in `St_N(k)`. -/
-theorem stHorrocksAt_of_K2_eq_bot (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
-    (hK : K2 (Fin N) k[X] = ⊥) : StHorrocksAt k N := by
+theorem toLaurentPos_comp_C : (toLaurentPos A).comp Polynomial.C = LaurentPolynomial.C := by
+  ext a
+  simp [toLaurentPos]
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.toLaurentPos_comp_C
+
+theorem toLaurentNeg_comp_C : (toLaurentNeg A).comp Polynomial.C = LaurentPolynomial.C := by
+  ext a
+  simp [toLaurentNeg]
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.toLaurentNeg_comp_C
+
+/-- `St_N(A) → St_N(A[X,X⁻¹])` is injective: evaluation at `T = 1` splits the constants. -/
+theorem ringMap_laurentC_injective (N : ℕ) :
+    Function.Injective (ringMap (I := Fin N) (LaurentPolynomial.C : A →+* LaurentPolynomial A)) :=
+  ringMap_injective_of_leftInverse _ (LaurentPolynomial.eval₂ (RingHom.id A) 1) fun a => by
+    rw [LaurentPolynomial.eval₂_C, RingHom.id_apply]
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.ringMap_laurentC_injective
+
+/-- **The field case of Horrocks for `St_N`**, from unstable `NK₂` vanishing.  If every element of
+`K₂(N, k[X])` is constant (`ElemFP.k2PolyField_ConstStatement k N`, i.e. `K₂(N, k[X]) = C(…)`),
+then `St_N(k[X]) → St_N(k[X,X⁻¹]) ← St_N(k[X⁻¹])` are injective and their images meet in
+`St_N(k)`.  This is the input of Tulenbaev's Cor 4.2 / Prop 4.3(a) at a residue field. -/
+theorem stHorrocksAt_of_const (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
+    (hC : BooneHigman.Metabelian.ElemFP.k2PolyField_ConstStatement k N) : StHorrocksAt k N := by
+  -- Step 1: every `δ` whose matrix is constant is constant.
+  have lift : ∀ (M : Matrix (Fin N) (Fin N) k) (δ : SteinbergGroup (Fin N) k[X]),
+      projMat δ = M.map Polynomial.C →
+        ∃ γ : SteinbergGroup (Fin N) k, ringMap (Polynomial.C : k →+* k[X]) γ = δ := by
+    intro M δ hδ
+    have hdetP : (projMat δ).det = 1 :=
+      BooneHigman.Metabelian.Absorption.suslin_det_eq_one_of_mem_elementaryGroup
+        (projection δ).2
+    have hdetM : M.det = 1 := by
+      have hC1 : Polynomial.C M.det = Polynomial.C 1 := by
+        rw [RingHom.map_det, RingHom.mapMatrix_apply, ← hδ, hdetP, Polynomial.C_1]
+      exact Polynomial.C_injective hC1
+    let u : (Matrix (Fin N) (Fin N) k)ˣ :=
+      Matrix.nonsingInvUnit M (by rw [hdetM]; exact isUnit_one)
+    have hu : u ∈ elementaryGroup (Fin N) k :=
+      BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_field k hN u
+        (by change M.det = 1; exact hdetM)
+    obtain ⟨γ, hγ⟩ := projection_surjective (I := Fin N) (R := k) ⟨u, hu⟩
+    have hγM : projMat γ = M := by
+      unfold projMat
+      rw [hγ]
+      rfl
+    have hmem : δ * (ringMap (Polynomial.C : k →+* k[X]) γ)⁻¹ ∈ K2 (Fin N) k[X] := by
+      rw [mem_K2_iff, map_mul, map_inv, mul_inv_eq_one]
+      apply Subtype.ext
+      apply Units.ext
+      change projMat δ = projMat (ringMap (Polynomial.C : k →+* k[X]) γ)
+      rw [hδ, projMat_ringMap, hγM]
+    obtain ⟨w, hw⟩ := MonoidHom.mem_range.mp (hC _ hmem)
+    refine ⟨w * γ, ?_⟩
+    rw [map_mul, hw, inv_mul_cancel_right]
   have key : ∀ α β : SteinbergGroup (Fin N) k[X],
       ringMap (toLaurentPos k) α = ringMap (toLaurentNeg k) β →
         ∃ γ : SteinbergGroup (Fin N) k,
@@ -133,35 +187,13 @@ theorem stHorrocksAt_of_K2_eq_bot (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
       ext i j
       rw [polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg' (hentry i j), hPM, Matrix.map_apply,
         Polynomial.coeff_C_zero, Matrix.map_apply]
-    have hdetP : (projMat α).det = 1 :=
-      BooneHigman.Metabelian.Absorption.suslin_det_eq_one_of_mem_elementaryGroup
-        (projection α).2
-    have hdetM : M.det = 1 := by
-      have hC : Polynomial.C M.det = Polynomial.C 1 := by
-        rw [RingHom.map_det, RingHom.mapMatrix_apply, ← hPM, hdetP, Polynomial.C_1]
-      exact Polynomial.C_injective hC
-    let u : (Matrix (Fin N) (Fin N) k)ˣ :=
-      Matrix.nonsingInvUnit M (by rw [hdetM]; exact isUnit_one)
-    have hu : u ∈ elementaryGroup (Fin N) k :=
-      BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_field k hN u
-        (by change M.det = 1; exact hdetM)
-    obtain ⟨γ, hγ⟩ := projection_surjective (I := Fin N) (R := k) ⟨u, hu⟩
-    have hγM : projMat γ = M := by
-      unfold projMat
-      rw [hγ]
-      rfl
-    have lift : ∀ δ : SteinbergGroup (Fin N) k[X], projMat δ = M.map Polynomial.C →
-        ringMap (Polynomial.C : k →+* k[X]) γ = δ := by
-      intro δ hδ
-      have hmem : δ * (ringMap (Polynomial.C : k →+* k[X]) γ)⁻¹ ∈ K2 (Fin N) k[X] := by
-        rw [mem_K2_iff, map_mul, map_inv, mul_inv_eq_one]
-        apply Subtype.ext
-        apply Units.ext
-        change projMat δ = projMat (ringMap (Polynomial.C : k →+* k[X]) γ)
-        rw [hδ, projMat_ringMap, hγM]
-      rw [hK] at hmem
-      exact (mul_inv_eq_one.mp (Subgroup.mem_bot.mp hmem)).symm
-    exact ⟨γ, lift α hPM, lift β hQM⟩
+    obtain ⟨γ₁, hγ₁⟩ := lift M α hPM
+    obtain ⟨γ₂, hγ₂⟩ := lift M β hQM
+    have h12 : γ₁ = γ₂ := by
+      apply ringMap_laurentC_injective N
+      rw [← toLaurentPos_comp_C, ← ringMap_ringMap, hγ₁, h, ← hγ₂, ringMap_ringMap,
+        toLaurentNeg_comp_C]
+    exact ⟨γ₁, hγ₁, h12 ▸ hγ₂⟩
   refine ⟨?_, ?_, key⟩
   · refine (injective_iff_map_eq_one _).mpr fun α hα => ?_
     obtain ⟨γ, hγα, hγ1⟩ := key α 1 (by rw [hα, map_one])
@@ -170,7 +202,25 @@ theorem stHorrocksAt_of_K2_eq_bot (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
     obtain ⟨γ, hγ1, hγβ⟩ := key 1 β (by rw [hβ, map_one])
     rw [← hγβ, hγ1]
 
+#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_of_const
+
+/-- **The field case from `K₂(N, k[X]) = 1`**, a special case of `stHorrocksAt_of_const`. -/
+theorem stHorrocksAt_of_K2_eq_bot (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
+    (hK : K2 (Fin N) k[X] = ⊥) : StHorrocksAt k N := by
+  refine stHorrocksAt_of_const k hN fun g hg => ?_
+  change g ∈ K2 (Fin N) k[X] at hg
+  rw [hK, Subgroup.mem_bot] at hg
+  rw [hg]
+  exact one_mem _
+
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_of_K2_eq_bot
+
+/-- **The field case over every field, `N ≥ 5`**, from `FieldNKStatement` (board piece A5). -/
+theorem stHorrocksAt_of_fieldNK (h : FieldNKStatement) (k : Type) [Field k] {N : ℕ}
+    (hN : 5 ≤ N) : StHorrocksAt k N :=
+  stHorrocksAt_of_const k (by omega) (h k N hN)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_of_fieldNK
 
 /-- **Horrocks for `St_N` over `F_p`, `N ≥ 5`, unconditionally** (Nagao's `K₂(N, F_p[X]) = 1`). -/
 theorem stHorrocksAt_zmod {p : ℕ} (hp : p.Prime) {N : ℕ} (hN : 5 ≤ N) :
