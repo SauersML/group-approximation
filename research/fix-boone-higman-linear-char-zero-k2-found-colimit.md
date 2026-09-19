@@ -5,11 +5,10 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigmanLinear.CharZero.K2Found.Colimit: Type mismatch"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharZero/K2Found/Colimit.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/BooneHigmanLinear/CharZero/K2Found/Colimit.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-linear-char0.
 
 
-**Repair landed, unprobed.** ea88f0ab03: Z1-base, K2Found: fix Develop, Action and Colimit from probe b1789846523. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim; from probe job direct-b1789839564 on main 9add2d485e).**
 
