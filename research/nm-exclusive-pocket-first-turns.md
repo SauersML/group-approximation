@@ -85,8 +85,8 @@ Osin's argument survives the exclusion of x and y:
    has `cells_avoid`: at least area, no relator cell has its face in a region. The family's diagram is
    O-equivalent to the least-area `Δ`, so it is least area. Hence the kept cell and `m₁` are unchanged by removing
    `x ∪ y`.
-4. **x ≠ y.** `a ≠ b` in a pairwise-compatible family, so the face sets are disjoint, and each is nonempty
-   (`faces_nonempty`).
+4. **x ≠ y.** This is the input `a ≠ b` of `SectionPocketFaceSetFirstTurnInput` (x, y are a, b in some order).
+   Pairwise compatibility then makes their face sets disjoint, and each is nonempty (`faces_nonempty`).
 5. **Proper source arc.** The gap arc misses the nonempty source arc of `x`, so its length is less than `|∂Π|`,
    as `SectionPocketFaceSetFirstTurnInput` requires.
 6. **Edge conditions for the inner sides: settled by the landed copy.** The walk must have distinct darts and use
