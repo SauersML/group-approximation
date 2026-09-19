@@ -10,6 +10,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 Source changed on main since that build: yes.
 
 
+**Repair landed, unprobed.** 1ed9483b19: SK Diagonal and PaddedCentral.MatrixId: static fixes for union build b1789837230 (unprobed. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```

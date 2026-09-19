@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.MatWordR
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/MatWordReduction.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
 
+**Repair landed, unprobed.** 80eda8f961: SKTFG: fix probe reds in AltConsecutive and MatWordReduction (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

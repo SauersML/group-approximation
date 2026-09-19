@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBloc
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlockCurve
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-32: step 2 of the nondegenerate four-block residual
 
