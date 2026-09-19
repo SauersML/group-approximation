@@ -122,8 +122,7 @@ theorem cylInd_cylShift_zpow (cB : Cyl A) (l s : ℤ) (x : S.carrier) :
       ((SimpleKazhdanSofic.subshiftHomeo S ^ (s - l)) x).1 := by
     funext i
     rw [subshiftHomeo_zpow_val, subshiftHomeo_zpow_val]
-    congr 1
-    ring
+    exact congrArg x.1 (by ring)
   rw [e]
 
 omit [DiscreteTopology A] [DecidableEq A] in

@@ -51,8 +51,14 @@ theorem isTypeA_sum (h₁ : IsTypeA Γ₁ S₁) (h₂ : IsTypeA Γ₂ S₂) : Is
   obtain ⟨f₁, p₁, s₁, o₁⟩ := h₁
   obtain ⟨f₂, p₂, s₂, o₂⟩ := h₂
   refine ⟨⟨fun {g h} hgh => Prod.ext ?_ ?_⟩, isFinitelyPresented_prod Γ₁ Γ₂, ?_, ?_⟩
-  · exact FaithfulSMul.eq_of_smul_eq_smul fun s => Sum.inl_injective (hgh (Sum.inl s))
-  · exact FaithfulSMul.eq_of_smul_eq_smul fun t => Sum.inr_injective (hgh (Sum.inr t))
+  · refine FaithfulSMul.eq_of_smul_eq_smul fun s => ?_
+    have h1 := hgh (Sum.inl s)
+    rw [sum_smul_inl, sum_smul_inl] at h1
+    exact Sum.inl_injective h1
+  · refine FaithfulSMul.eq_of_smul_eq_smul fun t => ?_
+    have h1 := hgh (Sum.inr t)
+    rw [sum_smul_inr, sum_smul_inr] at h1
+    exact Sum.inr_injective h1
   · intro x
     cases x with
     | inl s =>
