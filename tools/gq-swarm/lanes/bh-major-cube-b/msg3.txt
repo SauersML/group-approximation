@@ -1,0 +1,7 @@
+Cuntz stabilization makes every Li-Garside full group F_infinity; Q1.15 loses its finiteness gate
+
+For a Li-Garside category with trivial units and no open set trapped beyond a loop ray (Acyc), the full
+group of (boundary groupoid x Cuntz groupoid) is F_infinity: the pure-hole datum on C x O_2 satisfies
+Li (St) and (LCM), Cuntz doubling gives packing >= piece count, and (Acyc) gives a height. No loops, degree
+maps or (t<d). Records the Gamma(*) reading of Li link lemma, datum dependence of packing, and the reduction
+of BBCMP Q1.15 to three dynamical gates (closed bisection set, Acyc, comparison/minimality).

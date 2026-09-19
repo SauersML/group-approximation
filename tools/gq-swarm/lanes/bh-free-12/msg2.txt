@@ -1,0 +1,7 @@
+Almost-automorphism torsion theorem: transfer of torsion local finiteness, Röver-group torsion, graph version
+
+almost-automorphism-torsion-subgroups-are-rf (lane proof): add item 4 (V_d(G) is torsion locally
+finite iff G is), item 5 (f.g. torsion subgroups of Röver's group are virtually in finite powers
+of the Grigorchuk group), item 6 (graph version: path spaces of finite graphs, covering V_{d,r},
+Matui's one-sided SFT full groups, Exel-Pardo 1-graph Nekrashevych groups; not higher-rank graphs,
+not general RSGs). Proof steps 6-7 added.

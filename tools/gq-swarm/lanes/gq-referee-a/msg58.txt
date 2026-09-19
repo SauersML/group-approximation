@@ -1,0 +1,3 @@
+Referee report: isometric shift frames over UHF bases fail the K-budget PASS
+
+Proof-gap lens on isometric-shift-frames-over-uhf-bases-fail-the-k-budget (9c3ed53c2). Equivalence of 1 and p, cancellation at a single stage, unit and intertwining computation, grading checked; nits N1-N2.

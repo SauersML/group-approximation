@@ -1,0 +1,4 @@
+Record that edge shrinking to pair stabilizers fails
+
+The embedding u -> w x w x^-1 of Gamma *_(P cap xPx^-1)(. x Z) into
+Gamma *_P (P x Z) collapses u g1 u^-1 g2 u g1^-1 u^-1 into Gamma.

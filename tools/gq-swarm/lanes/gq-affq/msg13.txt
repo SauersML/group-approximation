@@ -1,0 +1,5 @@
+SMART exact-tripling node: record referee-c PASS
+
+Record gq-referee-c PASS (282b018d4) on
+smart-induced-on-genuine-moves-has-exact-tripling: recursions, step count,
+leaves in Y, and the bounded return all checked; no changes needed.

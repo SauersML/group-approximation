@@ -1,0 +1,7 @@
+Centralizer-realizable subgroups are pullback-closed: normal subgroups with B_A quotients give identity-edge HNN and coset-lamplighter permanence
+
+Add a point-stabilizer characterization of centralizer realization in B_A overgroups,
+closure under pullback along homomorphisms to B_A groups and under finite-index
+enlargement, and consequences: every normal subgroup with a B_A quotient, every subgroup
+containing the commutator subgroup, and the Mihailova fiber products over B_A quotients
+are realized. Lane proof, not reviewed.

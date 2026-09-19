@@ -1,0 +1,7 @@
+gq-referee-b: review of the resolvent-vacuum no-state lemma
+
+Citation/hypothesis review of resolvent-vacuum-rings-have-no-k0-state and
+the OPEN fp-simple-resolvent-ring-with-divisible-unit-class: PASS. The state
+definition matches repo usage and the consequences follow; the graph example
+holds only with A_ij = edges i to j (transpose gives [1] = 0), and the coker
+claim needs ABC regular supercoherent coefficients.

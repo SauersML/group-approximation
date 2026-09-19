@@ -1,0 +1,6 @@
+gq-referee-b: review of the SMART level-0 odometer factor
+
+Citation/hypothesis review of smart-level-zero-return-map-factors-onto-3-adic-odometer
+and its route: PASS. Transition table, prop:smart-moves, recursions and the
+bottom-up figure match the Callard-Salo source; the Z-tape use is licensed by
+its l. 50; the first-return lemma applies. Minimality is a named trust surface.

@@ -1,0 +1,194 @@
+?            brin-thompson-nv-cnd-proper-modulo-triangular-subgroup
+?            gl-n-q-explicit-natural-fp-overgroup
+?            proper-semisimple-cat0-groups-contain-no-gl-2-q
+?            steinberg-finite-presentation-and-kazhdan-theorem
+ESTABLISHED  abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q
+ESTABLISHED  aff-n-over-z-localized-at-ell-is-rf-and-self-similar
+ESTABLISHED  aff-q-does-not-embed-in-aut-thompson-f
+ESTABLISHED  aff-q-forces-distortion-in-abelian-kernels
+ESTABLISHED  aff-q-in-integral-unit-hosts-reduces-to-finite-fields
+ESTABLISHED  almost-v-fw-subgroups-act-through-finitely-many-germs
+ESTABLISHED  aperiodic-tree-almost-automorphism-fg-subgroups-are-rf
+ESTABLISHED  ascending-unions-embed-along-coherent-chains
+ESTABLISHED  bffhz-closures-cannot-create-gl-n-q
+ESTABLISHED  borel-two-q-is-units-times-aff-q
+ESTABLISHED  char-p-linear-groups-have-no-distorted-cyclic-subgroups
+ESTABLISHED  char-p-transcendental-gl-n-avoids-v-and-va-for-n-ge-3
+ESTABLISHED  char-zero-representable-rings-embed-in-fp-simple-rings
+ESTABLISHED  circle-groups-with-divisible-free-germs-omit-gl-n-q
+ESTABLISHED  comm-of-z-n-times-torsion-group-splits
+ESTABLISHED  commensurating-end-germ-groups-omit-aff-q
+ESTABLISHED  cone-sl2-and-v-put-central-scalars-in-derived-subgroup
+ESTABLISHED  countable-virtually-abelian-groups-embed-in-2v
+ESTABLISHED  divisible-elements-act-elliptically-on-trees
+ESTABLISHED  extension-product-closures-cannot-create-sl-n-q
+ESTABLISHED  fg-automorphism-hosts-contain-no-divisible-subgroup
+ESTABLISHED  fg-cremona-subgroups-have-arithmetic-linear-part
+ESTABLISHED  fg-groups-have-fg-derivative-images
+ESTABLISHED  fg-linear-groups-have-roots-at-finitely-many-primes
+ESTABLISHED  fg-metabelian-groups-have-roots-at-finitely-many-primes
+ESTABLISHED  fg-piecewise-linear-hosts-omit-natural-gl-n-q
+ESTABLISHED  fg-pl-quasi-similarity-groups-contain-no-gl-2-q
+ESTABLISHED  fg-subrings-of-integral-form-algebras-omit-q
+ESTABLISHED  field-envelopes-pass-to-algebraic-closures
+ESTABLISHED  finitely-presented-harmonic-cuntz-ring-contains-q
+ESTABLISHED  fp-alt-fin-hosts-have-fp-near-images
+ESTABLISHED  fp-linear-hosts-of-sl-q-have-wild-h3-quotients
+ESTABLISHED  fp-simple-q-algebras-embed-in-fp-simple-rings
+ESTABLISHED  fp-simple-ring-of-characteristic-zero-exists
+ESTABLISHED  germ-extensions-omit-standard-gl-n-q
+ESTABLISHED  gl-n-over-algebraic-extensions-of-f-p-embed-in-v
+ESTABLISHED  gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings
+ESTABLISHED  gl-n-q-almost-v-hosts-need-lattice-germs
+ESTABLISHED  gl-n-q-embeddings-are-branches-of-homomorphism-trees
+ESTABLISHED  gl-n-q-embeddings-detected-by-nontrivial-homomorphisms
+ESTABLISHED  gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring
+ESTABLISHED  gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups
+ESTABLISHED  gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups
+ESTABLISHED  gl-n-q-fixes-a-vertex-in-free-splittings
+ESTABLISHED  gl-n-q-hosts-cannot-act-on-one-manifolds
+ESTABLISHED  gl-n-q-root-needs-only-nontrivial-psl-maps
+ESTABLISHED  gl-n-q-targets-are-cofinal-in-n
+ESTABLISHED  gl2-q-fa-subgroups-are-finite
+ESTABLISHED  harmonic-cuntz-el3-is-fg-simple-over-all-gl-n-q
+ESTABLISHED  harmonic-cuntz-ring-is-purely-infinite-simple
+ESTABLISHED  harmonic-cuntz-simple-group-is-not-finitely-presented
+ESTABLISHED  ibn-failure-makes-rational-scalars-elementary
+ESTABLISHED  infinite-field-leavitt-units-are-not-finitely-generated
+ESTABLISHED  infinite-prime-localizations-embed-in-no-fg-linear-group
+ESTABLISHED  infinitely-generated-symbols-block-fp-elementary-groups
+ESTABLISHED  infinitely-q-divisible-dvr-matrices-are-torsion
+ESTABLISHED  integral-form-algebras-have-no-fg-subring-containing-q
+ESTABLISHED  integral-leavitt-unit-group-contains-q
+ESTABLISHED  integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields
+ESTABLISHED  iwahori-overgroups-not-automaton-linear-or-metabelian
+ESTABLISHED  laurent-rational-symbols-block-fp-elementary-groups
+ESTABLISHED  leavitt-germ-traces-satisfy-frobenius
+ESTABLISHED  leavitt-resolvent-derived-units-mod-centre-not-fp
+ESTABLISHED  leavitt-resolvent-ring-is-fp-simple-of-char-zero
+ESTABLISHED  leavitt-scalar-commutators-block-fp-central-quotients
+ESTABLISHED  leavitt-unit-groups-over-every-field-are-simple-mod-scalars
+ESTABLISHED  lifts-add-no-unipotent-divisibility
+ESTABLISHED  matricial-divisibility-kills-rational-k2-symbols
+ESTABLISHED  no-q-in-tree-product-actions-with-finite-stabilizers
+ESTABLISHED  number-field-linear-groups-embed-in-gl-n-q
+ESTABLISHED  nv-rational-subgroups-with-power-conjugacy-are-flat
+ESTABLISHED  periodic-point-germ-groups-omit-aff-q
+ESTABLISHED  permutational-host-forms-agree-for-countable-inputs
+ESTABLISHED  pgl-n-q-acts-on-rational-polyhedral-cantor-set
+ESTABLISHED  pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori
+ESTABLISHED  piecewise-commutative-linear-hosts-miss-linear-gl-n-q
+ESTABLISHED  pl-line-hosts-bound-dilation-rank
+ESTABLISHED  pl-quasi-similarity-groups-scale-rational-lines-by-ratio
+ESTABLISHED  pp-circle-and-lift-hosts-miss-gl-n-q
+ESTABLISHED  pp-circle-divisible-subgroups-act-freely
+ESTABLISHED  prufer-groups-do-not-embed-in-gl-infinity-q
+ESTABLISHED  q-algebra-elementary-quotients-contain-gl-n-q
+ESTABLISHED  q-embeds-in-a-corner-of-a-fp-toeplitz-ring
+ESTABLISHED  q-free-lifts-reach-only-lattice-affine-q-groups
+ESTABLISHED  q-free-normal-towers-omit-aff-q
+ESTABLISHED  q-x2-z-in-t-check-blows-up-the-doubling-fixed-point
+ESTABLISHED  q-x2-z-in-t-check-has-a-doubling-semiconjugacy
+ESTABLISHED  rational-bs12-hull-embeds-in-a-fg-solvable-group
+ESTABLISHED  rational-function-fields-embed-in-fp-simple-rings
+ESTABLISHED  rational-iwahori-group-is-union-of-fp-self-similar-groups
+ESTABLISHED  rational-k1-detection-forces-infinite-order-unit-class
+ESTABLISHED  rational-leavitt-path-k1-k2-scalar-dichotomy
+ESTABLISHED  rational-scalars-obstruct-fp-elementary-hosts
+ESTABLISHED  rational-slope-germ-groups-have-bs-but-no-heisenberg
+ESTABLISHED  rational-stepping-stones-in-nv-need-bs12-or-heisenberg
+ESTABLISHED  regular-germ-extension-attractors-are-undistorted
+ESTABLISHED  renormalizable-thompson-elements-are-odometer-codes
+ESTABLISHED  renormalizable-thompson-elements-give-baumslag-solitar
+ESTABLISHED  rf-near-image-permutation-groups-omit-rationals
+ESTABLISHED  rf-resolvent-ring-has-z-localized-corner
+ESTABLISHED  rsg-equicontinuity-program-cannot-exclude-gl-n-q
+ESTABLISHED  scaled-rationals-in-nv-need-aperiodic-core-elements
+ESTABLISHED  simple-group-in-fp-simple-iff-fp-just-infinite-host
+ESTABLISHED  sl-m-q-passes-to-finite-index-and-commutator-cores
+ESTABLISHED  sl-n-of-infinite-fields-lie-in-no-residually-finite-group
+ESTABLISHED  sl-n-q-lacks-property-fw
+ESTABLISHED  sl-n-q-lies-in-finite-residual-of-every-overgroup
+ESTABLISHED  sl-n-q-lies-in-one-factor-of-every-normal-series
+ESTABLISHED  sl-n-z-localized-embeds-in-fg-rf-elementary-group
+ESTABLISHED  sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially
+ESTABLISHED  sl-odd-q-simple-inputs-for-gl-n-q-root
+ESTABLISHED  sl-q-local-amalgam-gluing-is-the-whole-problem
+ESTABLISHED  split-finitary-sl-q-extensions-are-not-fp
+ESTABLISHED  steinberg-groups-of-fp-rings-are-fp-in-rank-five
+ESTABLISHED  tbar-embeds-in-laurent-leavitt-unit-group
+ESTABLISHED  thompson-units-have-few-roots-in-leavitt-unit-group
+ESTABLISHED  three-v-contains-aperiodic-rationals
+ESTABLISHED  tracial-harmonic-ring-keeps-rational-scalars
+ESTABLISHED  twisted-bt-point-fixing-actor-elements-are-divisible
+ESTABLISHED  type-a-orbit-accumulation-forces-fg-nontrivial-germs
+ESTABLISHED  u3-q-not-in-q-free-cantor-wreaths
+ESTABLISHED  unit-roots-divide-centralizer-rank
+ESTABLISHED  va-singular-point-germ-groups-are-t-bar
+ESTABLISHED  weighted-monomial-hosts-of-sl-q-need-wild-stabilizers
+ESTABLISHED  z-localizations-embed-in-gl-n-only-along-inclusion
+ESTABLISHED (2026-09-12) char-two-linear-groups-satisfy-boone-higman
+ESTABLISHED (2026-09-17) adelic-deck-lifts-exclude-affine-q-n-and-fp-bases
+ESTABLISHED (2026-09-17) brin-thompson-first-return-maps-lie-in-kv
+ESTABLISHED (2026-09-17) fg-groups-with-normal-q-n-have-non-fp-quotients
+ESTABLISHED (2026-09-17) fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups
+ESTABLISHED (2026-09-17) gl-n-q-generated-by-gl-n-z-and-prime-dilations
+ESTABLISHED (2026-09-17) leavitt-centralizer-units-are-elementary-in-rank-three
+ESTABLISHED (2026-09-17) leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1
+ESTABLISHED (2026-09-17) leavitt-pairs-embed-sl-n-q-in-steinberg-groups
+ESTABLISHED (2026-09-17) leavitt-resolvent-ring-is-fp-and-contains-q
+ESTABLISHED (2026-09-17) normal-germ-extensions-of-thompson-v-contain-no-sl3z
+ESTABLISHED (2026-09-17) odometer-factor-witnesses-mix-coordinates
+ESTABLISHED (2026-09-17) one-steinberg-group-contains-every-gl-n-q
+ESTABLISHED (2026-09-17) sl-n-q-is-colimit-of-lattice-stabilizers
+ESTABLISHED (2026-09-17) st-n-of-ring-quotient-adds-one-relator-per-ideal-generator
+ESTABLISHED (2026-09-18) gl-n-q-lies-in-prime-shift-permutation-group
+ESTABLISHED (2026-09-18) prime-shift-dilation-normalizers-are-nowhere-continuous
+ESTABLISHED (2026-09-18) prime-shift-hnn-groups-are-not-finitely-presented
+ESTABLISHED (literature import) sl-2-q-is-an-amalgam-of-sl-2-z-localized-at-ell
+ESTABLISHED (literature import). rational-linear-groups-satisfy-boone-higman
+ESTABLISHED by citation sl-n-z-circle-actions-factor-through-finite-groups
+OPEN         countable-decidable-groups-embed-in-fp-simple-groups
+OPEN.        aff-n-z-localized-lies-in-fp-self-similar-group
+OPEN.        aff-q-embeds-in-fp-simple-group
+OPEN.        bs12-embeds-in-brin-thompson-2v
+OPEN.        char-zero-ring-boone-higman
+OPEN.        countable-char-zero-fields-embed-in-fp-simple-rings
+OPEN.        countable-char-zero-linear-groups-embed-in-fp-simple-groups
+OPEN.        fp-central-simple-q-ring-with-trivial-leavitt-k-theory
+OPEN.        gl-infinity-q-embeds-in-fp-simple-group
+OPEN.        gl-n-f2t-embeds-in-fp-simple-group
+OPEN.        gl-n-q-embeds-in-binary-leavitt-unit-group
+OPEN.        gl-n-q-embeds-in-fp-simple-group
+OPEN.        gl-n-q-in-permutational-boone-higman-class
+OPEN.        gl-n-qbar-embeds-in-fp-simple-group
+OPEN.        gl-n-z-localized-at-ell-embeds-in-fp-simple-group
+OPEN.        gl2-q-embeds-in-fp-simple-group
+OPEN.        harmonic-cuntz-simple-group-is-finitely-presented
+OPEN.        infinite-order-leavitt-unit-conjugate-to-its-diagonal-copy
+OPEN.        leavitt-units-over-s-integers-are-finitely-presented
+OPEN.        number-field-gl-n-embeds-in-fp-simple-group
+OPEN.        pgl-q-projective-type-a-extension
+OPEN.        psl-n-q-maps-nontrivially-to-fp-simple-groups
+OPEN.        psl2-q-embeds-in-fp-simple-group
+OPEN.        q-algebra-with-fp-simple-projective-elementary-group
+OPEN.        q-coefficient-leavitt-tensor-unit-groups-are-fp
+OPEN.        rational-bs12-hall-overgroup-in-permutational-bh-class
+OPEN.        rational-bs12-hull-in-permutational-bh-class
+OPEN.        rational-function-field-embeds-in-binary-leavitt-algebra
+OPEN.        rational-iwahori-group-lies-in-fp-self-similar-group
+OPEN.        rational-leavitt-simple-group-embeds-in-fp-simple-group
+OPEN.        rational-slope-germ-group-contains-aff-plus-q
+OPEN.        rationals-do-not-embed-in-binary-leavitt-unit-group
+OPEN.        rationals-embed-in-binary-leavitt-unit-group
+OPEN.        regular-germ-extensions-have-no-bs-relations
+OPEN.        rf-resolvent-elementary-group-is-fp
+OPEN.        sl-2-q-embeds-in-fp-simple-group
+OPEN.        sl-2-z-localized-has-fp-hecke-overgroup
+OPEN.        sl-odd-q-has-fp-just-infinite-host
+OPEN.        sl2-q-embeds-in-fp-simple-group
+OPEN.        some-brin-thompson-element-factors-onto-an-odometer
+OPEN.        t-check-contains-q-rtimes-2-z
+OPEN.        u3-q-embeds-in-fp-simple-group
+OPEN.        z-localized-embeds-in-fp-rf-group
+REFUTED (2026-09-17) leavitt-resolvent-derived-units-mod-centre-fp-simple

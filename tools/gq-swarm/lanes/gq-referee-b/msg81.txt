@@ -1,0 +1,5 @@
+gq-referee-b: PASS on run compression, cycling relators, odometer automaton, level regrouping
+
+Run compression persistent case is the inverse of SWZ Lemma 5.3; general case not in SWZ §5;
+(P1) equals Sidki polynomial condition; odometer automaton group amenable (AAV), unnamed;
+Grigorchuk <b,c,d> Klein four verified. W1-W3.

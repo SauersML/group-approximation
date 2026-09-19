@@ -1,0 +1,9 @@
+Katsura one-vertex odometers carry only the metabelian shadow of BS(m,n)
+
+For coprime m, n the Exel-Pardo/Katsura action with A = (m), B = (n) is
+level-transitive, hence the m-adic odometer in disguise; it satisfies
+sigma^m(j xi) = j sigma^n(xi), so the baker map gives the BS(m,n) relation,
+but by the strengthened odometer rigidity lemma (new item 4: <a,t> is
+abelian-by-cyclic for every t when n or m is a unit on K) no twist makes it
+faithful for m, n >= 2. Lane proofs (bh-cool), unreviewed. Artifact records
+the root-amalgam attempt for BS(m,mk) in plain nV and its obstruction.

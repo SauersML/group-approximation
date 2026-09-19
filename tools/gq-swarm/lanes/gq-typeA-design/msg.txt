@@ -1,0 +1,6 @@
+Add permutational (type (A)) target for GL_n(Q) and its host equivalences
+
+The type (A), finitary-alternating and simple-host forms of permutational
+Boone-Higman agree for arbitrary (countable) inputs; kernel removal adds
+nothing. GL_n(Q), SL_n(Q), PGL_n(Q) are cofinal in n. Record the OPEN claim
+GL_n(Q) in B_A and its route to gl-n-q-embeds-in-fp-simple-group.

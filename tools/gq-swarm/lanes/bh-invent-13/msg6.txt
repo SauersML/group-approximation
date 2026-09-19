@@ -1,0 +1,1 @@
+Roller SFT node: correct the description of the ladder hyperplanes

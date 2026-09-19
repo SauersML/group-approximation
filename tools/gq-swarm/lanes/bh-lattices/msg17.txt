@@ -1,0 +1,1 @@
+Correct the step citation for complete reducibility and record the finite-kernel check

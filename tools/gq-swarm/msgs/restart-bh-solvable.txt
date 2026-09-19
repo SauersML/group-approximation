@@ -1,0 +1,3 @@
+Hall's quotient B/C embeds neither in V nor in circle homeomorphism groups
+
+Landed by the coordinator after a restart stopped lane bh-solvable before it could land this draft. The text is the lane's own, unchanged.

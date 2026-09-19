@@ -1,0 +1,14 @@
+CHANGED GroupApproximation.BooneHigman.Metabelian.ElemFPKMRoots
+CHANGED GroupApproximation.GroupTheory.HydeLodha.HigmanInfiniteSimple
+CHANGED GroupApproximation.SteinbergFP.Challenge
+CHANGED GroupApproximation.SteinbergFP.Diagonal
+CHANGED GroupApproximation.SteinbergFP.Doubling
+CHANGED GroupApproximation.SteinbergFP.Embedding
+CHANGED GroupApproximation.SteinbergFP.Intertwine
+CHANGED GroupApproximation.SteinbergFP.Model
+CHANGED GroupApproximation.SteinbergFP.Morita
+CHANGED GroupApproximation.SteinbergFP.ResolventRing
+CHANGED GroupApproximation.SteinbergFP.Room
+CHANGED GroupApproximation.SteinbergFP.Swap
+CHANGED GroupApproximation.SteinbergFP.Swindle
+CHANGED Palomar.BooneHigmanSolution

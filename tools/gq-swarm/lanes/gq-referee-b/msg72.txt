@@ -1,0 +1,5 @@
+gq-referee-b: PASS on arithmetic-lie-lattices faithful BS members and H^2 x T (citation lens)
+
+Borel density, Comm density and criterion, arithmeticity, f.p., quaternion (2,3) Fuchsian pinned
+in Witte Morris; irreducible-lattice finiteness derived from Def 4.3.1; Godement S-arithmetic
+criterion resolves 613ac7fec W3. W1 title needs "irreducible"; K-M and Scott unpinned.

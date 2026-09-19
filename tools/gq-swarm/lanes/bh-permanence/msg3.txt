@@ -1,0 +1,6 @@
+Kernels of [A_2] actions: bi-translation center kernels are recursive
+
+bh-permanence. Attempt 6 on a2-action-kernels-are-recursive: the actor
+Gamma x Gamma on Gamma by (a,b)x = a x b^-1 would read the word problem of
+Gamma in its kernel, but type [A_2] forces finitely many conjugacy classes,
+which forces solvable word problem. So the kernel is recursive.

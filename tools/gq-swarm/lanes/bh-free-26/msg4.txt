@@ -1,0 +1,15 @@
+Mark the fp-simple hosts of the Leavitt word-problem results conditional, and add BH lessons
+
+This applies bh-free-02's cross-check (e0faf3f03). S1: the titles, status lines and
+root Attempt 7 now say that hardness for an explicit f.g. subgroup and the
+counting upper bounds are unconditional. Finite presentation and simplicity of
+(L ⊗ L)^x and of P_p stay conditional on the Khanh and Ara-Cortiñas imports,
+as their host nodes are. N1: faithfulness now cites the classical simplicity of
+L ⊗ L (central simple tensor simple). N2: §6 names the d-factor extension and
+points to the general cap.
+
+Each of the four claims gains a "Lesson for general BH" paragraph. Superposition
+beats homeomorphism hosts. Universality needs mixed characteristic or
+non-linear hosts. Depth is the complexity resource, so finite-depth Leavitt
+hosts cannot be universal. Characteristic-zero linear hosts face the dichotomy
+of injective mod-p reduction, congruence quotients, and scalar commutators.

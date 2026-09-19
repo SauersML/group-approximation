@@ -1,0 +1,11 @@
+Aff(Q) in integral Leavitt unit hosts reduces to finite fields
+
+One translation detects Aff(Q), so some residual finite-field reduction of a
+finitely generated subgroup of GL_m(A (x) K) (A an integral form, any field K)
+is injective on any copy of Aff(Q): the characteristic-0 Leavitt route to
+Aff(Q), SL_2(Q) and GL_n(Q) needs (Q,+) in some L_(F_p)(1,2)^x, the open
+rationals-do-not-embed-in-binary-leavitt-unit-group and its F_p analogues. For
+t = 1 + x_01 y_00, conjugation d t d^-1 = t^p forces p to be a unit of the
+coefficient ring, so no finitely generated host has dilations of the root tower
+for infinitely many primes (sharp for finitely many). Also <V, t>' has
+congruence kernels, so it is not simple.

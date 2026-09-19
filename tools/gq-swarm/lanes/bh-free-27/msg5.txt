@@ -1,0 +1,13 @@
+Structure of quotients of BS(m,n) keeping [tat^-1,a]: commensurated cyclic core, forced distortion, host exclusions
+
+Every quotient of BS(m,n) (coprime, |m|,|n| >= 2) keeping c = [tat^-1,a] has free kernel acting
+freely on the Bass-Serre tree, and the image of <a> is an infinite cyclic commensurated core-free
+subgroup whose normal closure is the kernel of a modular character onto Z. Isolated such
+quotients have their minimal normal subgroups inside that kernel, at most one meeting <a> (the
+second derived subgroup for BS(2,3), perfect, with metacyclic quotient), and a finitary monolith
+forces a locally periodic a and a finitely presented proper quotient in which a has infinite order.
+The image of a is distorted, which excludes torsion-by-(hyperbolic, CAT(0), VA, char-p linear)
+hosts, and a derivative argument excludes torsion-by-PL hosts (Stein-Thompson, Houghton, FSym x| V).
+Records the constant-exponent rigid permutation group RP^Delta as the host with every forced
+feature. Updates the CGP Question 1 node (BS(2,3) is not finitely discriminable; Attempt 4).
+Lane proofs, not reviewed, no priority claimed.

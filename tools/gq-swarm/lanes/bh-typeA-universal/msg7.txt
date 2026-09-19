@@ -1,0 +1,12 @@
+Record a gap in the non-faithful finiteness proofs of Fournier-Facio-Wu-Zaremsky
+
+When the action has a kernel K, SV_G acts on the Stein complex of SV_(G/K)
+through the quotient, so every stabilizer contains the canonical kernel SK_G.
+The element [x_s, id, (k,1), x_s] with k in K lies in SK_G but not in the
+image of G, because its germinal twist is not constant. So FFWZ Lemma 4.9(i)
+fails for n = 1, and the non-faithful "if" directions of their Theorem B(ii),
+(iii) and Corollary 4.14 are unproven, not refuted. The node lists the main
+nodes that use them, for their owners to re-grade. It also caveats this lane's
+BBMZ-questions node and states on the type F_n criterion node what Belk-
+Zaremsky proved (oligomorphic, all finite-set stabilizers F_n) versus what they
+conjectured (the graded characterization).

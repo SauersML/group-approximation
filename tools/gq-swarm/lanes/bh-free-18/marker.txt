@@ -1,0 +1,22 @@
+## 7. A fourth letter as a marker (SLURM job 1327358): undecided
+
+**The machine.** The fixed rules stay, and a fourth letter `c` counts as nonzero. Every rule that reads `c`, or whose
+neighbour is `c`, is free (`bh4_sat.py`). Each neighbour value now has 10 free inputs mapping bijectively onto 10
+free outputs, 5 of which write `c`, giving `(10!)^4 ≈ 1.7·10^26` fills. This is the most general marker the rule
+format allows. For example, "write `c` on a `b`-run" is one fill.
+
+**Seeding.** Every 3-letter nogood transfers unchanged: its failing tape contains no `c`, and it consults the same
+rules. So the search starts from the 376 clauses of §6, which job 1327358 recomputed and matched exactly.
+Consequence: a working marker must be written by one of the old free inputs, on the old junk.
+
+**Calibrations (same job).**
+- planted: UNSAT at once;
+- zero-tape orbits: SAT on the first leaf;
+- soundness: random completions of 6 transferred and 8 learned nogoods all fail again.
+
+**Result: TIMEOUT after 1,150 s, so undecided.**
+- 3,464 fills were evaluated and 8,499 nogoods learned; no fill passed.
+- The learned nogoods are large: most have 8–11 facts, out of 40 variables. So in this search the failures on
+  marker junk are spread over many rules, not concentrated in a few.
+- Deciding this space needs a stronger solver (a real CDCL encoding of the local certificate) or a hand-designed
+  marker, not more of this loop.

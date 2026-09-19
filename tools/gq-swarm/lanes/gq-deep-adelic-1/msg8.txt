@@ -1,0 +1,6 @@
+SL_3(Z) remnant nodes: record gq-referee-a PASS and apply its nits
+
+Cite the proof-gap reviews 6701f023e on harmonic elimination, the transfer
+lemma and the Toeplitz ring. State that theta_d is onto sl_n(Z/d); make psi
+trivial on E_N for every N (unipotents have determinant 1); note that the
+level-d^2 entries are conjugates of h_s, which keeps the transfer zero.

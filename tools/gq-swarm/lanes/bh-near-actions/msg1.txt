@@ -1,0 +1,6 @@
+bh-near-actions: calibration node, near-action neatness is no BH obstruction
+
+Lamplighters F wr Z lie in V yet are not profinitely finitely presented and have
+non-neat near actions (Cornulier 1901.05065, read at source). So Cornulier's theorem on
+near actions of finitely presented groups yields no necessary condition on BH inputs.
+Reading artifact records the labels, the shell-route note and a spark.

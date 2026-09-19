@@ -1,7 +1,23 @@
-# bh-invent-10 — universal type (A) mechanism (BH ⇔ PBH)
-- Landed 37da692b8:
-  - free-product-hom-orbits-of-relative-automorphisms-are-faithful, plus its proof;
-  - Attempt 12 on the Q3.4 node.
-- Result: faithfulness is free (target S*<t>). On relative-automorphism routes the only residue is the double-coset clause, which needs an fp image with finitely many normal subgroups.
-- Verdict: relative-automorphism / Hom-orbit constructions cannot produce universal type (A). Oligomorphy must be imported (Cantor full groups, master route G1∧G2 with Λ = S×H).
-- Open lead (not attempted): prove Stab_A(t,1,…,1) is finitely generated, by peak reduction.
+# bh-invent-10 — inventor lane (restarted 09-18)
+- 7ac816a5c free-rewritable-tape-layers-kill-finite-presentation (+proof).
+  - NO FREE LAYER: minimality bought from an unconstrained, locally rewritable layer always costs finite presentation.
+- f06cf5b6f, aligned with the v6 seed gate:
+  - seeded-recursively-presented-groups-have-solvable-word-problem (+proof).
+    - Over a recursively presented group, a seed is a Π^0_1 singleton, so fp + seed ⇒ solvable WP and decidable language, with one uniform algorithm.
+    - Answers the open question in seeds-never-survive-marked-approximation.
+    - CAP is exactly about the refutation depth of that search.
+  - quantum-rigidity-is-decided-on-the-derived-subshift (+proof).
+    - If every isolated point of Y is locally forced, Y is rigid iff Y' is.
+    - So a locally forced seed is rigid iff ∂Y is.
+    - Locally forced countable subshifts of finite CB rank are rigid for free (C_Z recovered).
+    - Every isolated point of a Z-SFT is locally forced.
+- Lesson: the origin is classical. The WP is paid in the forcing from the origin, rigidity on the perfect kernel.
+- Next (not attempted):
+  - (a) Does a locally forced SCATTERED SFT compactification exist over a machine-simulating fp group (CAP rung 1c)? For it, rigidity is automatic.
+  - (b) Is local forcing automatic for isolated points of SFTs over groups with infinitely many ends (gluing across cut sets, as over Z)?
+- Status: pass done.
+- Pass 3 (SEED TOWER team), landed d15e53b53: baumslag-gersten-groups-lie-in-class-c (+proof).
+  - The line-sink relative seed for (BS(1,n),<b>) is rigid, so BG_n ∈ 𝒞. This closes the open item of bh-emitter-a's BG node.
+  - Rung 1c (a hard-WP group with a countable seed) was NOT reached.
+  - Observation: splittings with locally infinite or branching trees give uncountable seedless boundaries. So "countable ⇒ rigid for free" helps only on vertex pieces. Along trees the recipe is "collapse the sink data to global parameters".
+- Next: apply the recipe to a relative seed for a hard-membership subgroup, e.g. Mikhailova's M_G ≤ F×F, whose coset space is G with its two-sided action. Question: can the boundary residue of a G-coding collapse?

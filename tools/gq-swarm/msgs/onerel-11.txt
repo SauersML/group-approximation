@@ -1,0 +1,1 @@
+Fix a typo in bs12-twist-hosts-need-dynamical-degrees

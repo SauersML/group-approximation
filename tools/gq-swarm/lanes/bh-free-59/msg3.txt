@@ -1,0 +1,12 @@
+A residually finite doubling host for Neumann's group; fp reduced to one window question
+
+Adding s = (x -> 2x) coordinatewise to Neumann's group G gives a 3-generated residually
+finite group Gamma containing G. Gamma is the ascending HNN extension of G by conjugation
+by s, is (locally finite) x| BS(1,2), and is an extension of the direct sum of the A_m
+by Alt_fin(Z[1/2]) x| BS(1,2), which is not finitely presented. Gamma is finitely
+presented iff the explicit finite presentations Gamma_K (BS relation, one scaling
+relation, relations of the window <a_0..a_K>) stabilize. That stays open. The same
+construction over a co-infinite set of degrees is provably not finitely presented;
+the proof uses the missing coordinates, and they do not exist for Neumann's own set.
+
+Elementary, written inline, not independently reviewed, no priority claimed.

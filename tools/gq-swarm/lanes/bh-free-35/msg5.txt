@@ -1,0 +1,18 @@
+Fixed-point tile sets: quantum rigidity is a bounded-range test, and one thin wall refutes it
+
+Two lane results on gate E2 in its Z^2 form, for self-simulating (fixed-point) SFTs.
+
+- fixed-point-tile-set-rigidity-is-a-bounded-range-test (+ decimation proof). For a Wang tile set with a
+  constant-zoom self-simulation (local coordinates, injective, exact macrotiles, faithful macro edges), the
+  phase projections of any local family are central, and on each phase the block products form a local family
+  for the same tile set at the same scale. So commutation up to distance N(2D+2)-2 climbs every level: the SFT is
+  quantum rigid iff this bounded-range commutation holds for some D, and rigidity is semi-decidable, witnessed by
+  a finite ideal-membership derivation.
+- self-similar-sft-thin-walls-refute-quantum-rigidity (+ substitution proof). Substituting two configurations
+  that agree on ONE column and differ on both sides gives walls of every width, so rigidity fails at every scale.
+  Hence rigid self-similar SFTs have one-sided determining columns and rows, and no information-free macrotile
+  column; Ledrappier's shift (self-similar with N = 2) calibrates.
+
+Lesson for general BH: a programmable fixed point makes E2 one finite design problem. Rigidity is verified by a
+bounded-range commutation certificate in a window of about (2D+2)^2 macrotiles and refuted by one thin wall or
+one non-commuting D_0-family.

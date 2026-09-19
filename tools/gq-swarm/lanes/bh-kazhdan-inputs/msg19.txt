@@ -1,0 +1,7 @@
+Apply referee-a fixes to the base-independent germ localization theorem
+
+Record the referee-a PASS (0d5da4a8c). W1: Thompson's F satisfies the
+point-moving hypothesis only on the open interval, so endpoint germ groups
+are not covered; the general example needs (B3), not "locally moving". N1:
+note (B3) is strictly stronger than Belk--Hyde--Matucci's locally moving and
+fix the title.

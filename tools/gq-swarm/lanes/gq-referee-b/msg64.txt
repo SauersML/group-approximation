@@ -1,0 +1,5 @@
+gq-referee-b: PASS on leavitt-resolvent-k-theory-is-shifted-rational-k-theory (citation lens)
+
+R_L meets every hypothesis of the register Pimsner node over B+; Quillen localization,
+pushforward vanishing, homotopy invariance, product = Steinberg symbol and excision pinned
+in Weibel K-book III, IV, V; colimit route replaces excision. W1-W4 wording only.

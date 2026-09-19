@@ -1,0 +1,8 @@
+Shift-similar germ groups are ascending HNN extensions; Sigma^1 form of MZ Question 3.18
+
+For any infinite shift-similar G, the extended germ group is Germs(G)*_c with the shift as stable
+letter, and H_n(G)/FSym is its index-zero n-fold power. That power has type F_min(m,n-1) when
+Germs(G) has type F_m, by the refereed Meinert node and Renz. So the n >= m+1 threshold of MZ 5.13
+is a Meinert count for a one-sided index character. The finitely generated form of Question 3.18 is
+equivalent to one-sidedness of the index character in Sigma^1 for finitely generated subgroups of
+the near symmetric group containing the shift. Thompson F is the prototype.

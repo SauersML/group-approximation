@@ -1,0 +1,8 @@
+Finite-type codings force contracting isotropy, so free-form P2' needs an infinite-type theorem
+
+Every finite graph-directed (Garside) coding of an ample groupoid yields a contracting loop. In
+G_V x (Lambda on X) the germ of such a loop has a nontrivial Lambda-label with an attracting fixed
+point. So V times a free transformation groupoid admits no finite coding, and no Stein-Farley, Li,
+Witzel or SWZ argument can prove P2' for a free SFT. Finitely many translation cone types also rule
+out every infinite invariant-measure factor. Record this as Attempt 2 on the P2' node; the
+finite-type version of the gate is E3' (topologically free).

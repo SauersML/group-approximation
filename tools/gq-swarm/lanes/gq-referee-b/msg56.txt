@@ -1,0 +1,3 @@
+Referee report (citation lens): unit symmetries of a core are graded or inessential PASS
+
+Items 1-4 correct. Jordan Theorem O (via Baeck-Richter 2207.07994 Thm 3) needs sigma^n inner by a sigma-fixed unit, which item 1 produces. W1: item 4 proves finite generation, not presentation. W2: non-sigma-simple cores remain open.

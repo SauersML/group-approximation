@@ -1,0 +1,3 @@
+Surface groups and closed hyperbolic 3-manifold groups have no type (A) action
+
+In a non-elementary hyperbolic group every subgroup with finitely many double cosets has full limit set (limit-set lemma plus double density), so infinite locally quasiconvex hyperbolic groups, including surface groups, carry no type (A) action; via tameness and the covering theorem, virtual-fiber stabilizers have cores containing a commutator subgroup, so closed hyperbolic 3-manifold groups carry none either. A conditional reduction covers all hyperbolic groups, and the node checks consistency with BBMZ rational-point stabilizers (host, not G).

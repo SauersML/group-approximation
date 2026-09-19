@@ -1,0 +1,3 @@
+Referee PASS for wall-chamber quantum rigidity (surface groups, median Cayley graphs)
+
+Line-by-line internal review of the one-projection-per-wall reduction, the nested wall chain with no separating wall between neighbours, the locally forbidden pointing-away pattern, the monotone idempotent chain and transitivity. All wall projections commute. Instances (A) median and (B) surface check. Precisions: state Gamma-invariance of the walls. Corollaries rest on tree-gluing (not reviewed here).

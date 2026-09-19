@@ -1,0 +1,8 @@
+Bound the reach of germ hosts: no free finite-state tree groups inside them
+
+A finite-state tree automorphism in a member of the cone-closed germ host class has countable
+singular set, hence polynomial activity, so by Sidki no free group acts by such automorphisms
+there. Cone-sectioned tree realizations of F_n*_phi exist (M. Hall), but for n >= 2 they
+cannot live in the class. So free-group mapping tori can enter only through asynchronous
+realizations (open). The rank-1 case BS(1,m) enters through the odometer seed (calibration).
+Lane proof; Sidki's theorem cited.

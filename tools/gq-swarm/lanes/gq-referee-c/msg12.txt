@@ -1,0 +1,5 @@
+Referee C: PASS for residual finiteness of the resolvent ring R_l
+
+Independent re-derivation of the path normal form (including the corner map theta and the torsion
+of e x^k e), the twisted-shift finite modules, the density lemma in F_l[Z * C_m] (C_3 for l = 2),
+and the separation argument in both the D-part and ideal-part cases.

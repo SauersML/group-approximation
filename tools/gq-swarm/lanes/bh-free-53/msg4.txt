@@ -1,0 +1,9 @@
+Generic shells have infinitely generated singular ideals; J_p is the boundary annihilator
+
+The local singular ideal J_p of a shell germ algebra is the annihilator of the permutation
+modules on the Schreier boundary (limit stabilizers at infinity) of the germ group. Every
+infinite finitely generated group has generic enumerations. For them the germ group is the
+parity wreath <P, tau | [P, tau^D P tau^-D], D odd> and J_p = w(F_e) w(F_o) K[Q], which is not
+finitely generated: the singular elements (1-u_g) s_0^D (1-u_h) t_0^D at odd distance D are
+independent. So for generic shells, A f.p. forces A/J not f.p.; the Bieri-Strebel shift
+exponent reappears inside the singular ideal.

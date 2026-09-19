@@ -1,0 +1,6 @@
+Record referee-a PASS on the Steinberg retract and the corrected SL_n(Z_(l)) map
+
+Lane gq-infinite-primes. Retract node: referee-a PASS (06a8c773a) and its note
+N1 in proof item 4 (T_l-symbols of the units (u,1) equal St(iota) of D-symbols
+via St_N(D x Z) = St_N(D) x St_N(Z)). SL_n(Z_(l)) node: re-review PASS
+(39f7d3280), and both independent reports of the diag(g,g^-1) error cited.

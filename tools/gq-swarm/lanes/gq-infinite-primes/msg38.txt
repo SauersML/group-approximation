@@ -1,0 +1,4 @@
+Gate Attempt 12: gq-k2-q confirms the multi-type shift/reset reading
+
+Lane gq-infinite-primes. The never-top gap is open exactly for multi-type
+designs that are not top-determined and have dilation letters.

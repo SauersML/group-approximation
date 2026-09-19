@@ -1,0 +1,8 @@
+Crossing-wire shifts pass the separable-modifications test
+
+Crossing Lemma: in a crossing-wire fixed-point tiling, two modifications that change the type of a
+common macrotile have intersecting difference sets. The changed input wires cross, so the crossing
+tile differs in both, and the argument recurses down to single tiles. With blank corners and
+side-local margins, faults leave no one-sided freedom. So the crossing-wire tiles, their one-way
+variant and its transplants pass the test. The minimal version passes if every side component added
+for minimality enters the crossing box.

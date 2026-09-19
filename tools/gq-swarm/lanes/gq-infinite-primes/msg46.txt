@@ -1,0 +1,3 @@
+Out(V) root node proof: add the N1 step (image in L_2 has infinite order)
+
+Lane gq-infinite-primes.

@@ -1,0 +1,8 @@
+Higman group: record the entropy dichotomy and an infinite-entropy host lead
+
+Lane bh-testcases. Adds an Attempts entry to higman-group-satisfies-boone-higman:
+generator entropy is 0 or infinity; in finite-entropy hosts the new
+equicontinuous-bs-bases-force-conjugator-entropy node kills odometer-type
+generators; and a design lead (marked heuristic) for infinite-entropy hosts
+in twisted Brin–Thompson groups, with the far-permutation obstruction for
+coordinate shifts with finitely many infinite orbits.

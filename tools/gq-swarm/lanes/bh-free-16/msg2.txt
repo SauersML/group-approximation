@@ -1,0 +1,8 @@
+Prove that rational rotations and the covering map have no common tree coding
+
+The circle Cantorized at Q/Z has no locally finite tree coding in which the d-fold covering branches and the
+rotations by 1/p for infinitely many primes p are all almost-automorphisms. Vertex boundaries are pulled back
+by the covering map, so their denominators have bounded odd part. Consequence: no register copy of Q in nV,
+any twisted Brin-Thompson group or the free colour of the KEP hosts is normalized as x -> d x by a skew product
+over the register coordinate. Also corrects the earlier attempt record of this lane, whose stated gap was wrong.
+Lane bh-free-16; lane proof, not reviewed.

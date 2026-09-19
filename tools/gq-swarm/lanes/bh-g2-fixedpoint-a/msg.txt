@@ -1,0 +1,7 @@
+Fixed-point Wang tile rigidity is scale-zero: 1-rigid iff face-local edge families commute
+
+For a self-similar Wang tile set with a side-local simulation (the DRS layout), quantum rigidity is equivalent to
+1-rigidity and to commutation of every face-local edge family (commutation only inside single tiles). Families
+give edge families by colour marginals; side-locality substitutes edge families up to D-families at level k.
+Edge walls (difference sets disconnected along differing edges) kill such tile sets at every scale. This improves
+the scale-collapse bound D_0 = 3 to 1 and turns gate E2 for fixed-point tiles into a contextuality question.

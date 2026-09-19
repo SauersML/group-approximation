@@ -1,0 +1,10 @@
+Add evening 09-18 obstruction summary (gq-writeup)
+
+Compile the evening results from their current node text at b0247e8f5: the
+widened ring gate and its frame-design bracket with remaining cases (a)-(h),
+the torsion-K_1 criterion, the Pascal partial-gauge near miss, and the open
+stably finite target with its truncation principle; the Steinberg shell
+envelope with its gates; the Katsura odometer and affine 2V hosts; the K_2
+prime-shift attempts 3-6 with the retracted blind search; the parked T_p
+route and the r = l boundary layer; and the Out(V) root-problem calibration.
+Update the morning summary's return-time item to its two referee PASSes.

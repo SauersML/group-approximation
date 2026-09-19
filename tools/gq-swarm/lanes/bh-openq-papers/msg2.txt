@@ -1,0 +1,23 @@
+Prove BH for wreaths over clopen-stabilizer cosets, covering both test cases of the decidable wreath question
+
+A new lemma handles permutational wreath products L wr_(G/H) G whose point stabilizer H
+contains, with finite index, the stabilizer of a clopen set for some embedding of G in a
+finitely presented full clopen-transitive Cantor host. For every L in B_A, the wreath
+product lies in B_A. Each lamp is pushed onto the finite, pairwise disjoint orbit gH.U of
+clopen sets, and the type (A) wreath closure for the clopen action finishes the proof.
+
+Applications, all lane proofs and not reviewed:
+- For m odd, L wr PSL_2(Z[1/2m]) over the cosets of PSL_2(Z[1/m]), which are the vertices of
+  one type of the 2-adic tree. The host is V_2 of the Iwahori group, where the ball Z_2 has
+  stabilizer of index 3 in PSL_2(Z[1/m]). This covers Z wr_X PSL_2(Z[1/2]) of
+  arXiv:2609.01868, whose authors left it outside all known Boone-Higman methods.
+- Z wr_(F_2/<a>) F_2. The proof is a ping-pong copy of F_2 in V in which <a> is the exact
+  stabilizer of a clopen set.
+- With bh-free-10's criterion for free permutational products, the double
+  PSL_2(Z[1/2]) *_{PSL_2(Z)} PSL_2(Z[1/2]) and the centralizing HNN extensions over
+  PSL_2(Z) lie in B_A. The double is finitely presented and not residually finite.
+
+The first two are the test cases listed in pbh-closed-under-decidable-permutational-wreaths.
+This lane's two earlier nodes gain the matching links: the BH form of the 2609.01868
+question is now settled, and the Matui Z^N node now points to the finite-type reduction and
+the Labbe test case.

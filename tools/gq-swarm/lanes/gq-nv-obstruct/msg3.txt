@@ -1,0 +1,10 @@
+Transversal cnd function for nV already forces Kazhdan finiteness
+
+Applying the transversal function after the coordinate-permutation
+automorphisms of nV puts every Kazhdan subgroup virtually in V^n, the
+intersection of the triangular subgroups over the orders; Farley then makes it
+finite. So brin-thompson-nv-cnd-proper-modulo-triangular-subgroup alone gives
+kazhdan-subgroups-of-brin-thompson-groups-are-finite (Zaremsky 2.19(a),(c),(d)
+no), is equivalent to a cnd function proper modulo V^n, and is refuted by any
+relative-(T) subset off finitely many cosets of V^n. Attempt recorded on the
+transversal node.

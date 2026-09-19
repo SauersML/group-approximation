@@ -1,0 +1,7 @@
+Faithful BS witness for BS(1,m); Hall-host attempt on decidable-edge HNN
+
+New: solvable-bs-groups-have-faithful-generalized-bs-witnesses (+ proof): the HNN extension of
+BS(1,m) along a^p -> a^q, s -> s is faithful on its tree (q/p not a unit of Z[1/m]), so by
+BLIW Thm 11.1 every group in BS_{BS(1,m)} embeds in a simple F_infinity group. Attempts note on
+bh-embeddability-survives-decidable-edge-hnn records the necessary condition for Hall-type
+BS_{F_2} hosts. Lane bh-free-05, lane proofs, not reviewed.

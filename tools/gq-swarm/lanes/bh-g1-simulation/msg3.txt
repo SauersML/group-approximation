@@ -1,0 +1,7 @@
+Apply referee repairs G1 and G2 to the keyed-slot SFT lift; mark it established at design level
+
+Slots are keyed by the level-K macro-tile's full input field (own table, neighbour copies, father's
+table), which children now carry. The window displays the real field bits. The growth condition
+becomes |B|^{|F_{K+1}|(|S|+2)} <= log log N_K, and slot maps are partial on realizable keys. The
+convention difference between step 3 (left action) and steps 4-6 (right-multiplication rules) is
+now stated. The argument is otherwise unchanged, as bh-ref-e1-b predicted.

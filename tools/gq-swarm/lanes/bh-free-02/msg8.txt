@@ -1,0 +1,8 @@
+Show the finite-commutator Wächter–Weiß automaton group splits over its kernel, so it is finitely presented only if the check-mark automaton group is
+
+bh-free-02 follow-up to b71a260de. The check-mark states with continuation id generate
+a subgroup C_id of G_R that restriction to the encoding subtree maps isomorphically
+onto C, so G_R = K ⋊ C_id and C is a retract of G_R. Hence finite presentation of G_R
+(for any finite R off the encoding letters) implies finite presentation of the single
+explicit binary automaton group C; showing C is not finitely presented would settle
+the question for every finite R at once.

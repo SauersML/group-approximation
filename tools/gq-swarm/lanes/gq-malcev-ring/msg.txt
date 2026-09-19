@@ -1,0 +1,7 @@
+Refute finite presentation of the harmonic Cuntz simple group
+
+EL_3(C_h) is perfect and its centre Q^x I is not finitely generated, so by the
+five-term sequence no central quotient of it, in particular Lambda_h, is
+finitely presented. This falsifies harmonic-cuntz-simple-group-is-finitely-presented,
+so the harmonic Cuntz routes to the GL_n(Q) root and to the rational Leavitt
+node do not reach their targets.

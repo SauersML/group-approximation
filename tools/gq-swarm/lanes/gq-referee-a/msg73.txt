@@ -1,0 +1,3 @@
+Referee report: abelianized Aut/Out(F_n) extension virtually splits PASS
+
+Proof-gap lens on aut-out-free-abelianized-extension-virtually-splits (518dae5bd). Finite-index homomorphism Phi, crossed homomorphism k, K_n cap Inn and K_n Inn = A_n, the complement checked. W1: "virtual section exists exactly when K_n virtually splits" is proved in one direction only.

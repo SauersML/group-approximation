@@ -1,0 +1,3 @@
+P2 prime b: the full shift is the universal case, and P2 prime b is relative finite presentation over the Boolean power
+
+Items 5 and 6 of gluing-kernels-descend-from-the-full-shift. For infinite Lambda the full shift is topologically free, so P2 prime b for all topologically free subshifts over A is equivalent to P2 prime b for A^Lambda. K_X is finitely normally generated iff F(T_X) is finitely presented relative to N_X, so P2 prime b is necessary for finite presentation of F(T_X). Adds the finite-Lambda calibration.

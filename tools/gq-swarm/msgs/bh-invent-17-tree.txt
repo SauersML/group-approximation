@@ -1,0 +1,3 @@
+Cocompact tree end-shift hosts are F_infinity, so these rigid SFTs satisfy (A_N)
+
+For a strongly faithful cocompact action on a locally finite leafless tree with F_infinity-plus edge stabilizers, the V-stabilized full group of the end shift is a Thumann dissection operad group whose transformations are the edge stabilizers, so it is F_infinity. Its simple type (A) host covers BS(2,3), generalized Baumslag-Solitar groups and graphs of virtually polycyclic groups. With the horizontal-finiteness exactness theorem, the end-shift SFT satisfies (A_N) in every degree and E3′ holds for the whole class.

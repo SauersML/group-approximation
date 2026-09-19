@@ -1,0 +1,8 @@
+Add fixed-vertex lemma and BFFHZ-closure obstruction for GL_n(Q)
+
+GL_n(Q), SL_n(Q), Aff(Q), U_3(Q) and (Q,+) fix a vertex in every tree action
+with trivial edge stabilizers. Consequently the BFFHZ free-product closure and
+the mapping-torus/ascending-HNN closure over M * F_m contain these groups only
+if the finitely presented simple MIF base M already contains their derived
+subgroups, and inside Aut_M(M * F_m) the group SL_n(Q) lies in the kernel of the
+map to Aut(F_m). Lane-proved, not independently reviewed.

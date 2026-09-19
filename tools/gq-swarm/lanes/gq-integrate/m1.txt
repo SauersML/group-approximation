@@ -1,0 +1,6 @@
+Capacity-chain non-simplicity proof: drop the notation-only requirement
+
+The proof route listed capacity-chain-resolvent-ring-has-rational-k0, the
+candidate its target refutes, as a prerequisite, though it only borrows that
+node's presentation. Set requires: [] and say so in a note, so that the
+graph can establish the refutation and the nodes built on it.

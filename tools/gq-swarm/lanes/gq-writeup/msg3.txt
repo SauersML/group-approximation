@@ -1,0 +1,9 @@
+Add write-up skeletons: BS(1,3) in 3V; fp simple rings of char 0
+
+Two skeletons compiled from the Cairn nodes at 89063a2ee, with no claims
+beyond them. The first covers BS(1,3) <= 3V: the renormalization criterion,
+SMART's exact tripling, the 3-adic odometer factor, the head-adjacent
+height-3 renormalization, the odd-branching lemma for BS(1,2), trust record,
+wording caveats and an expert checklist. The second covers R_L and the
+characteristic-0 envelope theorems, framed as finite presentation over Z
+rather than over a field, with the resolvent-vacuum no-go.

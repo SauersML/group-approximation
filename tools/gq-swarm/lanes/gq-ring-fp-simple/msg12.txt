@@ -1,0 +1,8 @@
+Resolvent vacua force stateless K_0; record the host design target
+
+A resolvent vacuum (idempotent E, number operator N, E-isometries x_m into
+distinct N-eigenspaces) gives infinitely many orthogonal copies of E. If E
+is full (R simple), R is not stably finite and (K_0, V, [1]) has no state:
+no UHF, Bratteli or traced model can host the mechanism. Record the open
+design target (fp simple, resolvent Q, [1] of infinite order and divisible,
+fg rational K_2 symbols) with its necessary shape.

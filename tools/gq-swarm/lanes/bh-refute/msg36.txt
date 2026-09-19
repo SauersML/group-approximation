@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on bh-free-06 wreath-recursion F_n transfer (dying kernel), one clarification nit

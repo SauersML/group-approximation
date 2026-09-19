@@ -1,0 +1,3 @@
+Necessary condition for a direct type (A) actor built from Out(F_n)
+
+In any action of Out(F_n), n >= 3, with finitely many orbits of pairs, a point stabilizer with infinite orbit has unbounded orbits on the free factor complex, contains fully irreducible elements, virtually fixes no proper free factor class and is not commensurated. The general lemma: a subgroup with a bounded orbit in an isometric action with an unbounded orbit has infinitely many double cosets. This excludes every geometric stabilizer and shows commensurator rigidity does not block the type (A) route. Recorded as Attempt 4 on the Out(F_n) root.

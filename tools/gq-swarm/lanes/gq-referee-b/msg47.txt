@@ -1,0 +1,3 @@
+Referee report (hypothesis lens): one-sided inverses cannot repair the Steinberg residual PASS
+
+Only input steinberg-rf-forces-ring-rf, used for N >= 3; Dedekind-finiteness and finite normal generation transfer correct. Structural note: claim carries requires and inline proof.

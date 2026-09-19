@@ -1,0 +1,3 @@
+Prove that some median is single-cut at the centroid of every rank-three descendant dissection
+
+The centroid is created only as the midpoint of a whole median segment, so every corner there is a Stern-Brocot descendant of a creation cone bounded by a median line; in the hexagonal root system of the link, a corner with one interior root is automatically good, three are impossible, and a corner with two forces the third median to be good by a disjointness count. This settles the centroid case of the single-cut conjecture.

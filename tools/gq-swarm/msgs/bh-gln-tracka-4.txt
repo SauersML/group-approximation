@@ -1,0 +1,7 @@
+State the semilocal form (SL) of the fp residually finite Z_(l) question
+
+z-semilocalized-embeds-in-fp-rf-group (OPEN): some finitely presented residually finite group contains Z_(S) for a
+finite set S of primes. It is implied by z-localized-embeds-in-fp-rf-group and needed by every BLIW host of an input
+containing (Q,+). The node records what excludes witnesses (linear, metabelian, KMS, locally finite splittings over
+non-witnesses). Attempt 1: K_2(Z_(S)) still surjects onto the direct sum of F_q^x over q outside S, so the ring
+routes meet the same tame-symbol obstruction.

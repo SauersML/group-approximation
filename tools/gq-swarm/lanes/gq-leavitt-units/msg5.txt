@@ -1,0 +1,10 @@
+Refute fp simplicity of Leavitt resolvent units mod centre, unconditionally
+
+In any nonzero ring with a binary Leavitt family, every central unit lies in
+[P,P] for each normal subgroup P of the unit group containing V: the cone
+scalars are V-conjugate and the codes {1,2}, {1,21,22} give c^2 = c^3 modulo
+[P,P]. With the Schur multiplier bound, P modulo a central subgroup containing
+infinitely generated central units is never a finitely presented perfect
+group. For R_L this refutes leavitt-resolvent-derived-units-mod-centre-fp-simple
+without the K_1, AGP, exact-sequence or perfectness inputs of its Attempt 3.
+Agent-verified only.

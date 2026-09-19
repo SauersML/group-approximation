@@ -1,0 +1,6 @@
+Record what a lean-eval higman_infinite_simple submission needs
+
+The problem is archived (lean-eval v1 freeze, 2026-08-20), so it cannot be
+submitted now.  The workspace is on Lean v4.34.0 with Mathlib 5ed29652, and
+a submission needs a self-contained port of 67 repository modules (about
+10k lines of declarations), measured from the kernel constant closure.

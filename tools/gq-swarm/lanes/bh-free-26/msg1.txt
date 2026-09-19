@@ -1,0 +1,11 @@
+Prove the word problem of the finitely presented simple group (L ⊗ L)^x is coNP^⊕P-complete
+
+Slot units conjugate transvections by the superposition letters τ = s_0 + s_1 and
+σ = t_0 + t_1, and one commutator yields 1 + a_c (L R) a_d^* with linear word
+length. Baker scrolling between the two tensor factors gives polynomial-length
+reversible circuits, and the pops keep accepting branches mod 2. So for a
+circuit R the word W_R is trivial iff every x has an even number of y with
+R(x,y), which is coNP^⊕P-hard. A witness lemma with a non-overlapping padding
+word gives the matching ∀·⊕P upper bound. Unless the polynomial hierarchy
+collapses, this finitely presented simple group is beyond the coNP-complete
+Brin-Thompson groups. Recorded as Attempt 7 on the complexity root.

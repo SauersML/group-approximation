@@ -1,0 +1,10 @@
+Prove the two-register squeeze: comparison presentations are never simple
+
+In a register presentation (commutative registers, polynomial substitutions,
+zero-indicator availability, CK and covariance), every base-closure element acts
+as a constructible piecewise-rational function of the registers. Hence any
+finitely many extra commutative relations true on a Zariski-dense integral model
+also hold on a generic translation chain at all but finitely many levels, while
+X_k = [L=k](1 - sum [Delta=i]) separates: the presented ring is not simple.
+Covers the capacity chain with any added relations; dilation fibres,
+noncommutative relations, non-register hosts and sparse models are outside.

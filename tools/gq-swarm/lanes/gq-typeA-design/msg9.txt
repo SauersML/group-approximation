@@ -1,0 +1,7 @@
+Steinberg shell route: allow St_10(R_L), mark the rank-4 import
+
+The St_4(R_L) shell claim now also admits St_N(R_L), N >= 5, containing every
+GL_n(Q), e.g. St_10(R_L), which is finitely presented by the refereed
+rank-five node. The route needs only perfectness and containment, so it never
+uses finite presentation of P; the Krstic-McCool rank-4 dependency is marked
+where it enters. The gate analysis is recorded as independent of N = 4.

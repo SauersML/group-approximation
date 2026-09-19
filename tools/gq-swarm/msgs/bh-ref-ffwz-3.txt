@@ -1,0 +1,3 @@
+Referee PASS for the seed-tower foundations: Higman envelope splitting, (D) along graphs of groups, (D) gives M2 on A*Z
+
+Adversarial check of 41501ac60, b0fac81d0 and 876c511de. Credits Higman (1961) and Lyndon-Schupp IV.7, Clapham (1967), Serre and Watatani, Burger-Mozes, and related aperiodicity work (Gao-Jackson-Seward, Aubrun-Barbieri-Thomasse, Aubrun-Kari, Esnay-Moutot, Cohen). Repairable nits: coset consistency in the language check, and the B-top Sturmian window recurrence together with ordering the enumeration by radius.

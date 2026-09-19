@@ -1,0 +1,20 @@
+iterations 2, undefined 0, gq claims 233, gq established (computed) 176
+MISMATCH capacity-chain-presentation-is-not-simple body=E computed=O
+MISMATCH capacity-chain-resolvent-ring-has-rational-k0 body=R computed=O
+MISMATCH leavitt-resolvent-derived-units-mod-centre-fp-simple body=R computed=O
+MISMATCH one-steinberg-group-contains-every-gl-n-q body=E computed=O
+MISMATCH register-comparison-presentations-are-not-simple body=E computed=O
+MISMATCH sl2-casimir-cannot-separate-verma-from-finite-dimensional body=E computed=O
+MISMATCH sl3-toeplitz-harmonic-elementary-groups-are-fp body=R computed=O
+MISMATCH steinberg-finite-presentation-and-kazhdan-theorem body=O computed=E
+root computed: OPEN
+ROOTROUTE gl-n-q-bh-via-binary-leavitt-unit-group | open: gl-n-q-embeds-in-binary-leavitt-unit-group
+ROOTROUTE gl-n-q-bh-via-leavitt-resolvent-units | open: leavitt-resolvent-derived-units-mod-centre-fp-simple
+ROOTROUTE gl-n-q-bh-via-permutational-class | open: gl-n-q-in-permutational-boone-higman-class
+ROOTROUTE gl-n-q-bh-via-rational-leavitt-simple-group | open: rational-leavitt-simple-group-embeds-in-fp-simple-group
+ROOTROUTE gl-n-q-root-from-countable-decidable-bh | open: countable-decidable-groups-embed-in-fp-simple-groups
+ROOTROUTE gl-n-q-root-via-just-infinite-hosts | open: sl-odd-q-has-fp-just-infinite-host
+ROOTROUTE gl-n-q-root-via-nontrivial-psl-maps | open: psl-n-q-maps-nontrivially-to-fp-simple-groups
+ROOTROUTE gl-n-q-via-gl-infinity-q | open: gl-infinity-q-embeds-in-fp-simple-group
+ROOTROUTE gl-n-q-via-harmonic-cuntz-host | open: harmonic-cuntz-simple-group-is-finitely-presented
+ROOTROUTE gl-n-q-via-projective-elementary-hosts | open: q-algebra-with-fp-simple-projective-elementary-group

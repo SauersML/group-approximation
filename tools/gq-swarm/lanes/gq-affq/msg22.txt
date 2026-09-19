@@ -1,0 +1,6 @@
+Point BS(1,m) odd-m node to bh-free-18; mark M_m an independent family
+
+bh-free-18 proved BS(1,m) <= 3V for odd m with SMART_m (cbf8ec85c). Make
+bs1m-embeds-in-3v-for-every-odd-m a pointer to it (route via their node),
+keeping M_m and the whole-tape checks as independent evidence, and record on
+the M_m node how its table differs from SMART_m at equal timing.

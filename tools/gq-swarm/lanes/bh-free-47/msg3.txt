@@ -1,0 +1,7 @@
+Record the lifting-criterion attempts on the Houghton-like envelope target
+
+Attempts entry on decidable-inputs-have-fp-houghton-like-shift-envelopes (bh-free-47): the lifting criterion
+(97511bec8), and why its strand-map base and its lampshuffler base (for one-ended inputs) both fail (303ae8c25).
+It also lists what a witness would still need.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

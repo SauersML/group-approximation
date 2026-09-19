@@ -1,0 +1,10 @@
+Replace the cited Matui comparison with a direct cylinder-refinement argument
+
+The first version of the stabilized k-graph node cited a general comparison
+theorem of Matui for purely infinite minimal groupoids. Read at source, Matui's
+comparison (arXiv:1210.5800, Theorem Hopf) covers only shifts of finite type. The
+comparison is now proved directly: refining cylinder decompositions spreads any
+clopen set over its strongly connected piece, and the Cuntz colour then
+equalizes counts. The virtually torsion-free lattice route correspondingly splits
+the powered cube k-graph into strongly connected pieces, instead of using minimal
+components.

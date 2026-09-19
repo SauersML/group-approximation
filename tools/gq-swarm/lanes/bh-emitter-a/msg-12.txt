@@ -1,0 +1,13 @@
+Finitely generated positive cones give rigid seeds: braid groups and Ito's amalgams lie in class C
+
+finitely-generated-positive-cones-give-rigid-seeds (ESTABLISHED, lane proof): every finitely generated
+group with a left order whose positive cone is a finitely generated semigroup lies in class C, dense or
+discrete. In the discrete case the least positive element is a cone generator, so every gap is crossed
+by one step. Instances, crediting Dubrovina-Dubrovin, Navas and Ito (Theorem 1.1, arXiv:1107.0545,
+read): all braid groups B_n, torus-knot groups, and all iterated partially central cyclic amalgams.
+Question (O) is restated without density. Ito's construction computes the new order from the old ones,
+so it transports complexity and cannot create it; (O) needs a primary construction and stays open.
+
+Lesson for general BH: every finitely generated positive cone is a rigid seed, so CAP now predicts that
+finitely presented groups with finitely generated positive cones have tame word problems. Refuting it
+needs a new way to make an isolated order carry a computation.

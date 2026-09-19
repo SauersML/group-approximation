@@ -1,0 +1,18 @@
+Artin Deligne boundaries: faithful and topologically free; B_3 nonsingular, rank >= 3 singular; Li (t<d) fails on Omega_infinity
+
+- claim artin-deligne-boundary-actions-are-topologically-free (lane proof): the
+  pointwise stabilizer of {a^inf, b^inf} is trivial (gcd distributes, chains have gcd 1),
+  so a finite-type Artin group acts faithfully on its BBCMP boundary. This fills a gap:
+  the printed proof of BBCMP Thm 2.4 shows only that generators act nontrivially.
+  Irreducible gives topological freeness, and A/<Delta^c> acts faithfully and
+  topologically freely on the compact quotient boundary.
+- claim b3-deligne-boundary-is-nonsingular-rank-three-is-not (lane proof): the
+  transducer table shows PSL_2(Z) = B_3/Z acts by local prefix replacements (empty
+  singular set); commuting atoms s,t give a persistent state and a singular point
+  (st)^inf in every rank >= 3 type.
+- claim li-garside-criterion-fails-on-artin-monoid-omega-infinity: I_l(A^+) on
+  Omega_infinity is the partial action on the positive Deligne boundary (standard for
+  quasi-lattice orders); Li's (t<d) fails for B_3 even with decorations.
+- pointers to the faithfulness node from artin-normal-form-boundary-full-groups-fix-a-point
+  and the preprint artifact.
+Each new node carries a "Lesson for general BH" section.

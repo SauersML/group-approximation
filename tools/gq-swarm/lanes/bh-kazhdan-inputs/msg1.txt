@@ -1,0 +1,8 @@
+Simple Kazhdan inputs of germ extensions of V sit in one singular germ group
+
+An infinite simple Kazhdan subgroup of a finite germ extension of V embeds
+injectively in the isotropy germ group at a single singular point. When
+Belk--Hyde--Matucci Theorem 2.1 certifies finite presentation, that germ group
+is finitely presented. With the simple-Kazhdan reduction of Boone--Higman this
+states what the germ engine must deliver. Lane proof, elementary from landed
+nodes; not independently reviewed.

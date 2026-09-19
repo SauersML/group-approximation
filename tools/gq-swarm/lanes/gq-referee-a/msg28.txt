@@ -1,0 +1,7 @@
+Referee report: register-comparison presentations are not simple PASS
+
+Proof-gap review of register-comparison-presentations-are-not-simple
+(663115bfb): the constructible piecewise-rational value functions under
+transport, uniqueness of the dense cell, density after removing a
+hypersurface, the coverage of all values of the generic-chain modules, and the
+capacity instance all check, with two points of precision.

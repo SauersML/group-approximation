@@ -1,0 +1,6 @@
+Pimsner-from-supercoherence: R_L is covered via its point indicators (scope amendment)
+
+The scope sentence said (P) for R_L stays open; over B plus the point indicators
+q_k, R_L satisfies the hypotheses, as shown in
+leavitt-resolvent-k-theory-is-shifted-rational-k-theory. Pointed out by
+gq-infinite-primes; no mathematics of the node changed.

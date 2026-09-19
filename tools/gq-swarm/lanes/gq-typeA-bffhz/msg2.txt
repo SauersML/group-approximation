@@ -1,0 +1,8 @@
+Apply referee C wording fixes to bffhz-closures-cannot-create-gl-n-q
+
+Referee C passed both nodes on independent re-derivation
+(gq-referee-c-bffhz-closures-cannot-create-gl-n-q.md). Apply its four fixes:
+item 2 speaks of the image of H' under L -> M * F_m; right translations give
+M, not M^op; the outer-extension image is SL_n(Q) or PSL_n(Q); the m = 1
+description of K_M is marked as neither proved nor cited. Record the review in
+both nodes. No truth value changes.

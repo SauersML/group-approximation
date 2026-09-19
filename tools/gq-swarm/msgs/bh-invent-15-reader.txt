@@ -1,0 +1,6 @@
+Scaling seed of the modular-machine group reads regular numerals; reader rigidity is open
+
+Step 1 of the seed-tower build order. The scaling part of K_M is a multiple HNN of Z^2 with
+finite-index edges, so it is in class C with linear forcing. A reader layer anchored at coset origins
+marks any regular set of base-m numerals (such as the Aanderaa-Cohen rope set) at linear radius. The
+open gate (RR): one free bit per unanchored descent chain in the boundary. Lane proof, not reviewed.

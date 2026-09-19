@@ -1,0 +1,7 @@
+Even-branching search: b=4 tables exist; recurrence, not timing, is the gate
+
+Randomized non-mirror 2x4 and 2x5 runs: 71 even tables, including 45 with
+exact quadrupling. All b=2 ones have periodic points or are partial; 21 b=4
+tables are clean but rely on unbounded sweeps, and the exact-quadrupling
+inducing-set search was inconclusive (type cap). Adds a lesson: exact timings
+are cheap, while aperiodicity and bounded glue decide renormalization.

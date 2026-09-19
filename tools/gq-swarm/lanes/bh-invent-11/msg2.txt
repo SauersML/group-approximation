@@ -1,0 +1,13 @@
+Brin-Thompson machines realize linear-time lamp centralizers; a fp simple group contains a non-EFRF residually finite group
+
+In nV, a clocked reversible stack machine a and a spare-bit detector g give C_L(g) = U_A for the
+lamplighter L = <a^C, eps> and every non-periodic lamp set A whose complement is nondeterministic
+linear time in unary. The detector reads clopen sets, whose orbits run every branch of the unread
+tail at once, so commutation with g is an existential computation. Since nV lies in B_A, the
+coset lamplighter, the identity-edge HNN and the Dyson group L(A) over U_A lie in B_A.
+
+A new symmetric Rauzy-type set (2-adic sectors, halting time stored in one period) is closed, not
+effectively closed, and linear-time. So L(A) is residually finite, decidable, not effectively
+residually finite, and embeds in a finitely presented simple group. This settles
+fp-simple-group-containing-a-non-efrf-residually-finite-group, and the separator P_eff does not
+separate Boone-Higman.

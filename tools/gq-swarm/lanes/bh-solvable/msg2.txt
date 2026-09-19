@@ -1,0 +1,7 @@
+Hall's quotient: the Heisenberg part has a finite-piece bundle realization
+
+Attempt 2 on fg-soluble-minimax-groups-satisfy-boone-higman. Hall's B/C is the
+minimal non-RF test case (it embeds in Abels' A_p/C). An inductive gauge gives a
+locally constant cocycle, so H(Z[1/p])/Z acts faithfully by finite-piece circle-bundle
+maps over solenoid Cantor bases. Hall's scaling element t leaves a
+one-term-per-weight defect, recorded as the open point.

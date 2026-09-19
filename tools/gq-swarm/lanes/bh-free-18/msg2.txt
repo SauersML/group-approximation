@@ -1,0 +1,7 @@
+Certify the SMART_m renormalization for m = 3..11 by exhaustive local search
+
+The first-return map, the tower, phi and the identity phi U^m = U phi all read only finitely many
+cells near the head. A lazy search branches on every cell that is read and keeps the other cells
+symbolic, so it decides them on all configurations: PASS for m = 3, 5, 7, 9, 11, with planted
+negatives failing. The move proposition is also checked for small k. Record bh-refute's
+independent PASS, and derive Z[1/m] <= 3V from BS(1,m) rather than from Kojima-Sheng.

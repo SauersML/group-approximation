@@ -1,0 +1,6 @@
+gq-k2-q: record the uniform-kill attempt on the Euler RF-residual node
+
+Attempt 4: reduction of every finite quotient of D to a crossed product
+A-bar x| Z/m; the image of c_q factors through K_2(A-bar)_sigma; Galois
+descent does not apply because the action is wild (local A-bar, sigma fixes
+the closed point). Node stays open.

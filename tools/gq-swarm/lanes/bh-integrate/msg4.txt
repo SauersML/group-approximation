@@ -1,0 +1,14 @@
+Graph hygiene pass 4: wire the Ã₂ and Titz Mite–Witzel consequences, fix stale OPEN lines
+
+Wiring (routes that record stated special cases or case splits; no new mathematics):
+- vertex-free-type-rotating-a2-bh-by-type-rotation-character: the owner's θ ≠ 0 / θ = 0 split. The node was ESTABLISHED, but its only route needed the refuted Robertson–Steger primitivity premise.
+- exotic-a2-lattices-bh-as-cocompact-a2-lattices: the node was ESTABLISHED with no route; it is the stated special case of a2-lattices-embed-in-fp-simple-groups.
+- titz-witzel-lattices-pbh-via-euclidean-building-lattices: euclidean-building-lattices-lie-in-permutational-bh-class lists the Titz Mite–Witzel C̃₂ lattices as a new case. titz-witzel-lattices-satisfy-permutational-boone-higman goes from OPEN to ESTABLISHED (lane proof, unreviewed).
+
+Stale lines, on nodes whose owners have finished:
+- vertex-free-type-rotating-a2-groups-satisfy-boone-higman: its reduction still listed two premises as OPEN.
+- cat0-groups-satisfy-boone-higman: the "frontier node" (exotic Ã₂) is now established.
+- a2-lattices-satisfy-permutational-boone-higman: distinct_from called exotic Ã₂ open.
+- decidable-houghton-envelopes-via-generic-nu-and-lifting: said "(OPEN)" for a refuted premise.
+- ck-envelope-simple-core-has-finite-bi-index: the ACC side question is answered by 2a42fc561.
+- Status markers added, with no status change: mz-germ-finite-presentation-lifts-to-the-envelope and infinite-shift-higman-compiler (OPEN); pbh-class-closed-under-common-retract-amalgams (ESTABLISHED, which its text already said).

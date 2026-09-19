@@ -1,0 +1,22 @@
+Prove that piecewise-canonical permutations of Z are products of class transpositions
+
+The proof is elementary: the Chinese remainder theorem and the cocycle identity
+for canonical maps, with no Matui or Li input. Natural (tree) partitions carry a
+type: the root prime and the multiset of the other node primes.
+
+- Two trees of the same type are related by swapping disjoint subtrees, which are
+  class transpositions.
+- The p-split and the 2-split commute.
+- Equivalence cancels a common refinement: if u^x ~ v^x, then u ~ v. Leaves are
+  permuted inside each x, and canonical maps are unique.
+
+With x = b(a, b), where a is the p-split and b the 2-split, one root commutation
+and two inner commutations take the p-split refined by x to the type of a binary
+p-leaf tree refined by x. So the p-split is equivalent to a binary tree. Every
+g in PC maps a natural partition onto a natural one, and the result follows.
+Only the moduli 2 and p occur, so the same argument works in CT_P(Z).
+
+This replaces the failed piece-count induction of the first version. It also
+corrects that version's remark: generation does not settle the
+transposition-presentation node, which is about relations. A remark on the
+Kourovka 17.59 node records the elementary route.

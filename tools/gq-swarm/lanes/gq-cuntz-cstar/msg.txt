@@ -1,0 +1,12 @@
+gq-cuntz-cstar: harmonic Cuntz ring and a f.g. simple group over all GL_n(Q)
+
+Transplant from the Cuntz algebra: adding one continuous, not locally
+constant diagonal function eta = 1/(1 + #leading 1s) to the Cuntz operators
+gives a finitely generated ring C_h that contains Q, has two-sided division
+(Cuntz's pure-infiniteness criterion) and centre Q. The repository's
+ring-general root detection then makes EL_3(C_h)/Q^x a finitely generated
+simple group with solvable word problem containing every GL_n(Q) and
+L_Q(1,2)^x/Q^x. Also an explicit six-generator finitely presented *-ring
+R_Q containing Q, onto C_h and densely into O_2. Finite presentation of the
+simple group stays OPEN and is wired to the root and to the rational Leavitt
+node; EL_3(C_h) and its scalar quotient cannot both be finitely presented.

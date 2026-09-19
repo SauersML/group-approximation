@@ -1,0 +1,5 @@
+Record referee a pass on the resolvent-vacuum lemma; rename R_Toep
+
+The Toeplitz instance is renamed R_Toep to avoid the clash with the SL_3
+Toeplitz harmonic ring R_T, which is tracial and gets Q by harmonic
+elimination, not from a vacuum.

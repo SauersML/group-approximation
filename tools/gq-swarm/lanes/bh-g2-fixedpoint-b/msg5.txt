@@ -1,0 +1,12 @@
+Relational spine couplings over the end flow split or kill minimality; the functional clock is minimal and rigid
+
+New claim relational-spine-couplings-are-splittable-or-not-minimal. Lane proofs, elementary, unreviewed. It tests relational (non-graph) space couplings of seeded phases over the end flow, with seeds and time rule that ignore space.
+- Minimality dichotomy: the coding is minimal iff every spine phase field is constant with values in the time cycle of the seed. So any coupling that admits a non-constant spine field kills minimality.
+- The functional clock (Z/q, +1, seed 0) is minimal, topologically free for F_m and quantum rigid. Minimality comes from boundary completeness: every unseeded spine completion is a limit of seeded configurations.
+- Three relational tests:
+  - a clock with a nonzero increment has finite wrap-around bumps, so it splits and is not rigid;
+  - the one-way step on Z is unsplittable (a two-point compactification of Z, as in C_Z) but not minimal;
+  - the one-way coupling on F_2 splits along diverging cones.
+Also corrects the Lesson on seeded-transport-codings-over-end-flows-are-quantum-rigid. It had expected graph couplings to kill minimality; over the end flow they do not.
+
+Lesson for general BH: relational freedom in seeded phases is fatal. It either splits (finite phases wrap around, trees separate cones) or creates spine configurations that seeds never approach. Functional seeded clocks get rigidity from downhill centrality and minimality from boundary completeness, both free. So relational coupling is not the E1-and-E2 crux in this architecture. What is missing is input complexity: can seeds or transports that read the input keep the downhill theorem? That is v6's CAP question.

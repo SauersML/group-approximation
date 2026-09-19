@@ -1,0 +1,9 @@
+gq-k2-q: corner tame symbols survive in R_l; E_N(R_l) is not fp
+
+Killing the paths with a middle letter maps R_l onto D split-extended by
+finite matrices over Z_(l), so K_2(Z_(l)) injects into K_2(R_l) through the
+corner. The corner symbols are then infinitely generated in K_2(N,R_l), and
+the symbol lemma refutes resolvent-elementary-group-is-fp for every l and
+N >= 3. The same symbols die in every finite quotient (they are seen through
+Z/l^r), so the finite residual of St_N(R_l) is not finitely normally
+generated: recorded as an open refutation pending two classical K_2 citations.

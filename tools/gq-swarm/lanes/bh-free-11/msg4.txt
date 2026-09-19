@@ -1,0 +1,13 @@
+Every finitely generated RCWA group embeds in a finitely presented simple group
+
+New claim rcwa-groups-satisfy-boone-higman with route
+rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof (lane proof, not reviewed).
+- Sign doubling embeds RCWA(Z) into its class-wise increasing part.
+- Such maps extend to the P-adic box space Ẑ_P as canonical box maps followed by tail
+  translations.
+- They then lie in H_P, the full group of the mixed-radix odometer on the class-transposition
+  k-graph times a binary rose.
+- H_P is F_infinity (Li, Example ZS (III)) and simple (perfect, then Matui simple2), by the
+  same proof as 2V_tau, which is the case P = ∅.
+- So every finitely generated subgroup of RCWA(Z), and for each finite P the whole group
+  RCWA_P(Z), embeds in a finitely presented simple group.

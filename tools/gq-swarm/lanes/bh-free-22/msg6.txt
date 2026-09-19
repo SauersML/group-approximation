@@ -1,0 +1,9 @@
+KMS groups: faithful self-similarity must make central configurations transient
+
+The fully marked configuration elements span an infinite central subspace, so
+any faithful virtual endomorphism must push each of them out of the domain or
+the center. This kills full-domain T-stable maps, including counter halving:
+the coin shift is multiplication by P(a)=(a^3-2a^2+a+1)/(a(a-1)), so halving is
+Frobenius-compatible and zero tests do not obstruct it, but it fixes T. It also
+kills lamplighter-style division by a group-ring element, since central
+configurations see only its augmentation. Lane proof, not reviewed.

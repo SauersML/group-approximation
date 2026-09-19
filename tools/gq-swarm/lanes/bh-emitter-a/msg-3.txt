@@ -1,0 +1,9 @@
+Cross-link the parallel emitter obstruction proofs from the finite-discrimination node
+
+The node was swept to main as work in progress while two independent proofs of the stronger
+isolation statement landed. It now says so in a banner and frontmatter, and keeps what they
+lack: the explicit transfer lemma along quotient maps and the abstract schema (hypotheses (a),
+(b)) that tests any host construction; lampshuffler credit is corrected.
+
+Lesson for general BH: the continuity schema is the reusable test. Any host that sees its input
+only through bounded local configurations at an emitter must be fed isolated groups.

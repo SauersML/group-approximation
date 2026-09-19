@@ -1,0 +1,12 @@
+Reduce the horofunction-boundary homology test to the branch locus of the map to the Gromov boundary
+
+New node horofunction-boundary-homology-reduces-to-the-branch-locus (lane proof, not reviewed).
+For torsion-free hyperbolic G there is a descent spectral sequence whose leftmost column is
+H^q(G; C(horofunction boundary, Q)) and which converges to the cohomology of the Gromov-boundary
+suspension (the unit tangent bundle, for closed hyperbolic manifolds). The other columns live over
+the branch locus. So finite-dimensionality reduces to the branch fiber products.
+
+The branch locus has totally disconnected complement, so for sphere boundaries of dimension m >= 2
+it has dimension >= m-1. For Kazhdan Sp(n,1) lattices the test is a (4n-2)-dimensional
+tiling-cohomology problem. No bounded computation can decide it, and none was run. The expected
+outcome, from the finite atom types, is that the test passes.

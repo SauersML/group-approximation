@@ -1,0 +1,8 @@
+Every residually finite group has free-product germs over Thompson's V
+
+Put the finite quotients G/N_n in ping-pong position inside V, and let G act
+on the n-th annulus of p = 0^infinity through G/N_n. The full closure of
+<V, G> is a one-orbit finite germ extension of V whose germ group at p is
+G * Z. So for finitely presented residually finite inputs, the fp germ group
+condition of Belk-Hyde-Matucci Theorem 2.1 always holds. Lane proof, not
+reviewed.

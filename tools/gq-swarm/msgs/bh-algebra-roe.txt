@@ -1,0 +1,19 @@
+Linear gate U: the oracle is free, and the gate becomes an algebraic uniform Roe embedding of R_Gamma
+
+New claim node linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings:
+- (A) Effective linear Roe principle. A simple recursively presented algebra embeds unitally in a diagonal
+  corner of M_n(LC(W) x| P), with W effectively closed and free, faithfully on every subsystem, iff it has ANY
+  (possibly noncomputable) faithful module of bounded geometry over P. The subshift forbids local violations
+  of the relations, and simplicity replaces (T3).
+- (B) Linear gate U over P reduces to embedding every canonical R_Gamma in M_n(C_u[P; F_2]).
+- (C) The C*-analogue holds over any non-amenable P for every exact Gamma (Kirchberg: O_2 inside C*_u(F_2)),
+  and fails for non-exact Gamma over exact P.
+- (D) Dichotomy: gate U is geometric iff crossed products over exact scaffolds are algebraically exact; the
+  latter over F_2 would make L^x exact.
+
+New OPEN node canonical-algebras-embed-in-algebraic-uniform-roe-algebras (the coefficient-free gate over F_2,
+with test cases). Also adds an Ara-Li-Lledo-Wu priority note to non-amenable-scaffolds-absorb-the-leavitt-factor.
+
+Lesson for general BH: once the input is simple, linear gate U has no computability content, and exactness is
+its only geometric shadow. Kirchberg solves the C*-version for all exact inputs, so the invention needed is an
+algebraic finite-field Kirchberg embedding, and non-exact inputs decide whether Track B escapes geometry.

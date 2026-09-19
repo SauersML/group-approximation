@@ -1,0 +1,8 @@
+Referee report: Z_(l) tree, mapping-torus and metabelian obstructions PASS
+
+Proof-gap review of z-localized-fixes-a-vertex-or-end-of-every-tree,
+free-group-mapping-tori-contain-no-z-localized (21ed703eb) and
+fg-metabelian-groups-have-roots-at-finitely-many-primes: the end construction,
+the up-neighbour structure of ascending HNN trees, the lower central series
+root count with the Fitting lattice, naturality of the free Lie algebra, and
+the generic-freeness argument for metabelian groups all check.

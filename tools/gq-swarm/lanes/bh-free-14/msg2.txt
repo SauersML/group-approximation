@@ -1,0 +1,9 @@
+Deligne lift: extension dies on Lagrangian Cantor covers; measure obstruction
+
+Two lane-proof nodes. (1) Any odometer-type lift of a central Z-extension over a
+compact Q-space with an invariant probability measure forces the real class to
+vanish; so equicontinuous (profinite) models never lift Deligne's class, and the
+Heisenberg group never lifts over Z^2. (2) Deligne's class dies on every faithful
+Cantor Sp_2n(Z)-space covering the real Lagrangian Grassmannian, giving a faithful
+action of Deligne's lattice on Z_2 x Y by odometer-cocycle maps (centre = +2);
+finite presentation of a host (Lagrangian Thompson group) stays open.

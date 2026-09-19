@@ -1,0 +1,3 @@
+Referee report: abstract twisted Brin-Thompson colored subgroup and F_n criterion PASS
+
+Proof-gap lens on abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one and abstract-twisted-bt-type-fn-criterion (55f205b7f). Injectivity via free C^G coordinates, the BZ 5-7 transfer (VE_conn via a join decomposition), the pi_1 filtration and Brown presentation checked; four nits; second pass recommended.

@@ -1,0 +1,4 @@
+Frame-complex route: input (S1) supplied by the GE node
+
+Lane gq-infinite-primes. Only (F), simple connectivity of the E_n-frame complex,
+and the characteristic-0 sign bookkeeping remain; take n >= 5.

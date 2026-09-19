@@ -1,0 +1,19 @@
+Refute my KMS self-similar module premise; prove affine self-similar groups are linear over function fields
+
+kms-configuration-modules-have-trivial-coinvariants: in every KMS group with a
+counter, G5a and G5b put each x_u in I_Q T. So the invariant functional of a
+self-similar module structure is zero, and
+kms-configuration-modules-carry-self-similar-structures (landed by this lane in
+2e62f4186) is REFUTED. Its route is marked dead, and the lamp-digit criterion
+gains the necessary condition M != I_Q M.
+
+affine-self-similar-groups-over-power-series-are-linear-over-function-fields: a
+finitely generated self-similar group of affine maps of F_p[[X]]^d (scalar,
+2x2, any block size) has all entries in a finite separable extension of
+F_p(X). Sections give Z = Z(0) + X P(Z), whose Jacobian is invertible, so
+Omega vanishes. Consequences: polynomial-time word problem, so no hard group
+embeds in one; no realization of R x| U with Krull dim R >= 2 and lamps as
+translations (KMS top factor B_0 with K >= 2). Attempt 5 on the hard
+self-similar node now records both shapes as dead.
+
+Lane proofs, elementary, not reviewed.

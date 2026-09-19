@@ -1,0 +1,5 @@
+The Baumslag-Gersten group lies in class C: a rigid line-sink relative seed for the stable letter of BS(1,n)
+
+Adds three local rules to the relative seed y_b for (BS(1,n), <b>): a single up-pointer letter, a line rule for the axis, and sign transport along b. It then proves (RS1)-(RS3). The points are the seed orbit, signed lines from the up-end to any down-end, and the constant point. The derived-subshift theorem reduces rigidity to the signed lines, which are rigid by up-monotone axis chains plus downward sign propagation. By relative-seed gluing, BG_n = <BS(1,n), t | t a t^-1 = b> is in C for every n >= 2, including the Baumslag-Gersten group. This closes the open item of baumslag-gersten-seed-forcing-length-is-non-elementary.
+
+Lesson for general BH: a tower rung's rigidity is paid on the boundary, where the sink data must collapse to finitely many global parameters. The halving-coupled counters of the line sink live only on the classical seed orbit and cost nothing.

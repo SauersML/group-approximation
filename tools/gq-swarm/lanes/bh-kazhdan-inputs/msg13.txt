@@ -1,0 +1,7 @@
+Apply referee-a fixes to the FW window-zero obstruction
+
+Restrict to finitely generated P (W1: the last step used countable FW =>
+f.g.; nothing downstream is lost), record the uncountable residual case,
+prove that the twist is a homomorphism before using it (N1), and state that
+only the orbit-size inequality is used in Step 2.3 (N2). Record the PASS
+(3ece2ec22).

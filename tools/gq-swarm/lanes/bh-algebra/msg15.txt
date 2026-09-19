@@ -1,0 +1,3 @@
+G3r calibrated: the Leavitt crossed-product K-gate is exactly a Farrell-Jones instance
+
+New claim free-crossed-leavitt-k-gate-is-a-farrell-jones-instance: for any Λ with free finite subgroups, the source of the FJ assembly with coefficients LC(X,L) vanishes (orbit steps of the FJ route use no FJ), so K(B ⊗ L) = 0 iff that assembly map is an equivalence. Consequence for the master route: the ring side with G <= Λ needs a new FJ case for groups containing arbitrary decidable groups; fixed-FJ acting groups with G in the unit group get G3r for free. Lesson for general BH included. Lane proof, not reviewed.

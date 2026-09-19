@@ -1,0 +1,3 @@
+Referee report (citation lens): renormalization return times tend to zero adically PASS
+
+Items 1-3 correct. W1: binary-timing calibration is certified only to radius 18 and stays OPEN per its own artifact.

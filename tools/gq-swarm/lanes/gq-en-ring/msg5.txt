@@ -1,0 +1,6 @@
+gq-en-ring: K-budget ring conditions (unit class, matricial divisibility)
+
+Establish that K_1-detection of the rational scalars forces the unit class to
+have infinite order in K_0, and that unital isomorphisms R = M_n(R_n) for n
+divisible by every integer kill the image of K_2(Q). Record that no skew Laurent
+ring containing Q meets both halves of the budget, and the precise open shape.

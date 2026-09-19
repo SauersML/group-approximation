@@ -1,0 +1,9 @@
+G2 scale collapse: a self-similar SFT is quantum rigid iff rigid at one small scale
+
+New claim self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale (+ proof, lane proof, elementary):
+for a Z^2 SFT with an injective N x N block substitution sigma, sigma(Omega) inside Omega, any
+D'-quantum tiling pulls back through the blocks to an N(D'-2)-quantum tiling that still fails to
+commute (block products recover the macro idempotents). So non-rigidity at scale D_0 = max(r, 5)
+(max(r,3) for N >= 4) propagates to every scale: rigidity is decided at D_0. Covers
+Durand-Romashchenko-Shen fixed-point tile sets. Lesson: Conjecture G2-fp's induction on levels
+must run at a fixed small commutation radius; one narrow wall kills a self-similar candidate.

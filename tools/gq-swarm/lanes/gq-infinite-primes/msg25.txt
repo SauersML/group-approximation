@@ -1,0 +1,6 @@
+Torus amalgams: record referee PASS (a: 9a409b0c2, b: 581236183), apply W1
+
+Lane gq-infinite-primes. W1: only upper parabolics with first block of size 1
+qualify as C (larger first blocks contain x_21(Q)). Nits: the C(Z)
+compatibility of L -> E_S spelled out; h -> sigma_h is a homomorphism for the
+left action; Baumslag title corrected per referee b.

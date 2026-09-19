@@ -1,0 +1,7 @@
+K_infinity: finitely presented Baumslag tape with simple localization; crossed products are never the host
+
+k-infinity-lies-in-a-simple-localization-of-an-fp-ring: Z[t_v] x| Z^2 with
+y t y^-1 = t + x t x^-1 is finitely presented; K_inf x| Z^2 and the shift
+skew Laurent ring are simple; no f.g. subring of Frac(P) x| G (G degree-
+preserving) contains Frac(P). Attempt 4 on the open node records the register
+design analysis over the tape.

@@ -1,0 +1,9 @@
+State the finitely coded Cantor host machine in its general form
+
+For Li boundary groupoids of finite degree categories with strongly connected
+pieces, arbitrary unit groups allowed, the comparison lemma after Cuntz
+stabilization needs nothing beyond UFP*, local finiteness modulo units, and the two
+Cuntz loops. So whenever the stabilized full group is finitely presented, it is a
+type (A) host, and all subgroups of the full group lie in B_A. The node lists the
+instances on main and the limits: exponential word problem for finite unit groups,
+and the central-extension obstruction. It includes a lesson for general BH.

@@ -1,0 +1,29 @@
+Test thinness and the germ condition on mapping-class-group automatic structures
+
+Runs the thinness (E1') and germ (E4') tests of the automatic-groups germ-extension
+route on the automatic structures available for mapping class groups.
+
+- deligne-forms-are-singular-on-commuting-parabolic-diagonals (+ proof): Garside
+  structures process commuting parabolics in lockstep, so for B_n, n >= 5 (and every
+  finite-type Artin group with an edge plus a node commuting with it) every power of
+  a generator is singular on a Cantor set, over the automaton base and over V after
+  any recoding. This kills (E1') for BBCMP's Deligne structure and for the Garside
+  structures used on Mod(S_{0,n}), n >= 6, and Mod(S_2).
+- b3-center-first-normal-form-passes-the-germ-condition (+ proof): for
+  B_3 = Mod(S_1^1) the Deligne structure is thin, but (E4) fails in both branches,
+  since <Delta> is non-normal of infinite index in the germ group B_3. Writing
+  Delta^2 first repairs it: germ group B_3 over its center, quotient PSL_2(Z).
+  This calibrates bhm-corollary-hosts-over-v-are-cover-centralizer-groups (b):
+  that condition holds here with a = 2, yet (3) fails, so (b) is necessary but
+  not sufficient.
+- Artifact: sources read (BBCMP p. 11; Mosher arXiv:math/9409209, whose
+  introduction says the closed-surface structure is non-constructive, so it cannot
+  be tested) and the precise open test for Mosher's once-punctured structure.
+- Attempts section on automatic-groups-embed-in-corner-germ-extensions.
+
+Lesson for general BH: rank-one hosts absorb only virtually central cyclic
+commuting directions. Non-central commuting pairs, as in F_2 x F_2 <= Mod(S_g),
+produce Cantor sets of phase singularities under lockstep or sequential normal
+forms, so those inputs need higher-rank hosts.
+
+Lane proofs, elementary, not independently reviewed; no priority claimed.

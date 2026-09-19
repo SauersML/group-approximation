@@ -1,0 +1,8 @@
+Leavitt Steinberg hosts must live in the stabilization kernel
+
+Removes the central-unit hypothesis of the Lean root-detection theorem:
+over a ring with two-sided division and a binary Leavitt family, PE_N is
+simple for N >= 3 even when Q is central. Hence every nonabelian simple
+quotient S = St_N(R)/M is PE_N(R) or satisfies St_N(R) = U_N M; with Q in R
+every finitely presented one is a quotient of the stabilization kernel U_N.
+Lane proof reusing the Lean off-diagonal branch; not reviewed; no novelty.

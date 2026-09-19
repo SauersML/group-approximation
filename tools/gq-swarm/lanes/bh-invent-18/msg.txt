@@ -1,0 +1,8 @@
+Collapse transfer: fp stabilizer engines need torsion vertex groups; F_V, F_T, F_F are not fp
+
+Collapsing a deep subgroup K of B into the base edge stabilizer (B *_K (K x Z/k)) changes no
+bounded pattern of the engine, so a finite presentation of F_B makes every deep subgroup normal.
+With isolation, B has no deep subgroups: it is an fp torsion group with finitely many elements of
+prime order. Refutes isolated-vertex-groups-have-fp-stabilizer-engines (B = V) and closes the
+stabilizer-engine routes; artifact explains why BH must consume decidability through a non-local
+extension problem (Track A). Lane proof, not reviewed.

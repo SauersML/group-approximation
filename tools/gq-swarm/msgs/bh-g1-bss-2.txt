@@ -1,0 +1,9 @@
+Gate E1: the invariant measure is needed only on the boundary factor; floating data must be a y-dependent phase cocycle
+
+On Lambda x W_3 x W_3 the boundary geometry is disjoint from Y_1 x O for every minimal Y_1 and
+the free profinite odometer O of W_3^2, so premise (M2 with measure) is withdrawn: the envelope
+needs only (D). Any design whose non-letter data is determined by Lambda-invariant data and the
+input dies; corner-aligned hierarchies and letter-tied floating data are instances. The floating
+data must be a plane-varying phase field coupled by an integer cocycle; coboundaries and
+homomorphisms die, and on Lambda_1 * Z cocycles are free on the Z factor. Open: (PF).
+Lane proof, unreviewed.

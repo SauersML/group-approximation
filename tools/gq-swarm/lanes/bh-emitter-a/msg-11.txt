@@ -1,0 +1,4 @@
+Order-seed transfer node: state the stabilizer condition precisely
+
+Lesson for general BH: the transfer needs only one free orbit point, so the surviving relative order
+seeds are exactly those where the input has nontrivial stabilizers at every point of the seeded orbit.

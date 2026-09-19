@@ -1,0 +1,16 @@
+M2 Attempt 7: the Alvarez Lopez limit needs no subsequence, so decidable groups get computable free strongly repetitive points
+
+Lane reading of arXiv:1807.09256.
+- The top-down colourings phi^N agree near the base point p for all N >= n. The top value
+  at p is (chi_N(p), 0) = (0,0) because p lies in every set of type X-fraktur_N, and the
+  strongly adapted colourings send those points to 0.
+- The central clusters exhaust the group, so phi = lim phi^N is computable once each finite
+  step is. Choosing translations for the disk maps gives strong repetitivity.
+- Unread: the companion paper's construction (arXiv:2002.08662, Props 4.1-4.3).
+- Modulo that, every f.g. group with decidable word problem has a computable strongly
+  aperiodic, strongly repetitive point, with computable freeness radii and a computable
+  central modulus.
+- (M2) still needs the global modulus.
+
+Lesson for general BH: for gate M2, freeness and computability are free for every decidable
+group. The whole difficulty is the seam (global recurrence) condition.

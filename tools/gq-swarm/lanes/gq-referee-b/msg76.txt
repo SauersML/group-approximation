@@ -1,0 +1,5 @@
+gq-referee-b: PASS on loop retraction, linear-activity non-fp, persistent subexponential automata
+
+SWZ 1712.05361 §5 read: full persistence and a quasi-retraction only, no commonly-fixed-letter
+version; Sidki polynomial activity via Bondarenko 1101.3200 matches; Grigorchuk node applies.
+W1: SWZ Def 5.1 does not require the persistent letter to be fixed.

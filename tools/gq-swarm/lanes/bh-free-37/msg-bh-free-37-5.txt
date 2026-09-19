@@ -1,0 +1,10 @@
+G1/(M2): the uniform-measure local lemma cannot certify recurrence at infinitely many scales
+
+- New claim local-lemma-cannot-certify-multiscale-recurrence (a method-kill; (M2) stays OPEN).
+  - Over the uniform product measure, no asymmetric-LLL certificate exists for recurrence
+    events of vanishing density at infinitely many scales together with any
+    translation-invariant positive-probability family.
+  - This covers the tower subshifts. So LLL plus compactness reaches neither (N) nor (M2),
+    and minimality has to come from a deterministic computable hierarchy.
+- Adds Attempt 6 (machine-certified labellings plus randomness) to
+  decidable-fp-groups-have-effective-minimal-free-subshifts.

@@ -1,0 +1,5 @@
+Record the squeeze on register designs for the host target
+
+The capacity chain is refuted; single-register designs divide [1] at finitely
+many primes (gq-k2-q); two-register designs need a comparison that creates
+hidden positivity identities. List the untested loopholes.

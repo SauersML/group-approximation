@@ -1,0 +1,6 @@
+LANDED 050adbcb9 on origin/main (parent 13e6f8134):
+ ...type-a-structure-groups-give-fp-simple-hosts.md | 89 ++++++++++++++++++++++
+ ...morphism-shifts-odd-denominator-translations.md | 46 +++++++++++
+ .../saturated-l-adic-subrings-are-arithmetic.md    | 43 +++++++++++
+ .../w-contains-heisenberg-with-divisible-centre.md | 55 +++++++++++++
+ 4 files changed, 233 insertions(+)

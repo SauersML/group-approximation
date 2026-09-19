@@ -1,0 +1,6 @@
+KMS nodes: apply gq-referee-b wording fixes W1-W7; link citation review
+
+Unquote a paraphrase; S_3(X) x S_3(X); sym-universal halting in 1.1.6 and
+2.2; product of varieties in the second paragraph of section 4; G2 is block
+commutation; say the groups it constructs in section 4; caution on the
+ZN_3 conjunct of Theorem 4.19. Citation review PASS linked.

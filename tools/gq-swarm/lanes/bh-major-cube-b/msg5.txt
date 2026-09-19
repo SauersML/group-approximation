@@ -1,0 +1,7 @@
+Cubulated groups act by pointed-cube germs exactly at regular Roller points
+
+Under topological freeness, g has a germ of the pointed-cube groupoid at omega iff omega is regular: along
+a tail beside a hyperplane H, any g moving H across the base point changes the last-cube state forever.
+So a closed bisection carrier lies inside R; for Z^2 * Z every closed invariant set contains a flat point
+(+inf,0), so gate G1 fails. Records Attempt 8 on the Q1.15 node: the pointed-cube + Cuntz route reaches
+exactly cubulations with a closed regular carrier; the next coding must stratify by hyperplanes.

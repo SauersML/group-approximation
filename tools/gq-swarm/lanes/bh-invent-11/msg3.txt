@@ -1,0 +1,10 @@
+Machine-labelled lamp products: an in-host compiler for identity-edge permanence over K wr Z
+
+For any subgroup K of a Brin-Thompson group n'V, finitely many centralizer subgroups D_j = C_K(S_j),
+and a labelling of Z whose fibres are nondeterministic linear time in unary, the product of the
+D(t) chosen position by position is the centralizer of one element m in an embedding of K wr Z
+into (n'+O(1))V. The lamp group rides on coordinates the machine never touches; branches choose
+a label and emit it at time C*s; the detector applies the label's centralizing set there. So the
+coset lamplighter, the identity-edge HNN and the double of K wr Z over these subgroups lie in B_A.
+The earlier lamplighter theorem is the case K = Z/2. The node records the CAP side: an in-host
+compiler is capped, since time per lamp index is linear.

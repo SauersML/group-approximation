@@ -1,0 +1,16 @@
+bh-logic: index-set form of Boone-Higman; circulant test family
+
+New claim boone-higman-is-equality-of-two-sigma-3-index-sets, with its proof
+route. Boone-Higman says two Sigma_3 index sets coincide: presentations with
+solvable word problem, and presentations embeddable in a finitely presented simple
+group. The first is Sigma_3-complete, via a new cofinite/noncomputable splitting
+lemma and the circulant graph wreath products G_U = A(Gamma_U) x| Z, whose word
+problem is uniformly Turing-equivalent to U. So under Boone-Higman the second set
+is Sigma_3-complete too.
+
+New OPEN claim circulant-graph-wreath-products-satisfy-boone-higman: G_U with U
+cofinite. It would make the embeddable set Sigma_3-complete with no hypothesis.
+Recorded facts: G_U is not in F or V, and is not linear over Z. A proved lemma
+shows that realizations where each lamp acts inside a bounded window are never
+faithful.
+Lane proofs, not reviewed.

@@ -1,0 +1,6 @@
+gq-referee-b: review of the resolvent corner symbols and the K_rf node
+
+Citation/hypothesis review: resolvent-ring-corner-symbols-survive-in-k2 PASS
+(odd q wording fix); resolvent-steinberg-rf-residual-is-infinitely-normally-
+generated is correct given Dennis-Stein and van der Kallen, which could not be
+confirmed at a source; recommendation on the status flip recorded.

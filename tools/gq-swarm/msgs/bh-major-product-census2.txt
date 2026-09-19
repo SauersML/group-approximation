@@ -1,0 +1,12 @@
+Census of known finitely presented simple groups in B_A; Hyde-Lodha groups; duplicate correction
+
+fp-simple-group-census-lies-in-the-permutational-class: every family in the BBMZ survey and
+later sources, with its covering node and conditions. The weakest links are Titz Mite-Witzel,
+Kac-Moody and Stein-type coverage.
+
+hyde-lodha-simple-line-groups-lie-in-the-permutational-class: Q_n lies in Stein's circle group
+T(1; Z[1/n(n+1)], <n, n+1>), which acts 2-transitively with type (A).
+
+Correction: the odd-prime Leavitt hosts in degree <= 2 have been in B_A since 09-13 (Chen-module
+line actions). The doubling route is new only for d >= 3. The twisted affine node now states
+class invariance, following the referee.

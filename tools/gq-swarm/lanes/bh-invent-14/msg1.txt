@@ -1,0 +1,10 @@
+Decidable free subshifts pass to graphs of groups; trees are transparent to effectivity
+
+A Busemann height read through the Thue-Morse word kills every hyperbolic element of a tree action
+with a finite hull check for extension, so premise (D) of E1 is preserved by amalgams and HNN
+extensions with decidable word and membership problems. Instances: free products, all GBS groups
+(non-RF BS(m,n) included), Burger-Mozes simple groups. For (FA) inputs (D) localizes to the vertex
+group containing the input.
+
+Lesson for general BH: the effectivity core of existence is emitter-blind; infinite emitters obstruct
+only finite type, and what remains of (D) is the (FA) case.

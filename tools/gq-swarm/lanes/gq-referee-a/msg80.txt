@@ -1,0 +1,3 @@
+Referee report: decidable group with coarsely embedded expanders; CE separates Boone-Higman PASS
+
+Proof-gap lens on decidable-group-with-coarsely-embedded-expanders-exists and coarse-embeddability-separates-boone-higman (8093ecc84). Gr prime (1/24) from Osajda Thm 2.7, Greendlinger step (N1 on singular diagrams), Dehn algorithm, CE subgroup-closure, uniform control and the class kill checked.

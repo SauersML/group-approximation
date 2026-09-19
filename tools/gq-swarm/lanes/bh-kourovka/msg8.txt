@@ -1,0 +1,9 @@
+Periodic subgroups of k-graph full groups with degree cocycle on a ray are finite (nV, CT(Z); Kourovka 19.46/17.58 partial)
+
+In the topological full group of a finite aperiodic k-graph (at least 2 edges of each colour), a finitely generated periodic subgroup whose degree cocycle takes values in Zv, with v in N^k, is finite. It embeds in the symmetric group of a finite set of cylinders. The proof is the one-stack pumping and contraction run along the ray.
+
+Consequences:
+- For nV: periodic subgroups whose level cocycle lies on a ray are finite (this recovers Roever for V).
+- For Kohl's CT(Z): periodic subgroups with slopes in gamma^Z (integer gamma >= 2) are finite. So Kourovka 19.46 and 17.58 candidates need rank-2 slopes or a non-integral ratio such as 3/2.
+
+Includes a "Lesson for general BH" paragraph. Lane proof, not reviewed.

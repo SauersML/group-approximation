@@ -1,0 +1,9 @@
+Local distance patterns on hyperbolic Cayley graphs: unique sink, one centre, CP horofunctions
+
+k-local-distance-functions-on-hyperbolic-groups-are-global: for k >= 2 delta + 4, a function that is
+k-locally a distance function has fellow-travelling descending paths and a single target. With a sink
+it is globally a distance function (explicit k, no cone types). Without one it is distance-like and
+4 delta-convex, i.e. an integral Coornaert-Papadopoulos horofunction. So the horofunction lemma (HL)
+for the distance-gradient SFT reduces to: every integral CP horofunction is a limit of distance
+functions. Merging of descents is a sufficient condition; a counterexample would live in a bounded
+tube around one ray. HL itself stays open. Lane proof, unreviewed.

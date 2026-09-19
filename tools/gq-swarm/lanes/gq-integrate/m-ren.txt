@@ -1,0 +1,8 @@
+Rename the fp Toeplitz corner ring from R_T to R_Toep
+
+Two different rings were both written R_T: the finitely presented Toeplitz
+ring with number operator and resolvent, whose corner contains Q, and the
+SL_3(Z) Toeplitz harmonic ring. Rename the corner ring to R_Toep in its six
+nodes, add a symbol note pointing at the older name in the referee reports,
+and untangle the sentence in resolvent-vacuum-rings-have-no-k0-state that set
+the two side by side. Text only.

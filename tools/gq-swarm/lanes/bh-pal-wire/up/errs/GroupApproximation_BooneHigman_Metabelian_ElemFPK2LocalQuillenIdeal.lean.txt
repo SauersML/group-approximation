@@ -1,0 +1,8 @@
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:120:63: Application type mismatch: The argument
+  ha
+has type
+  B
+of sort `Type u_1` but is expected to have type
+  K2DiesAfterPadding (quillenDiff u ?m.35)
+of sort `Prop` in the application
+  diesAfterPadding_quillenDiff_mul u c ha

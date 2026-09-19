@@ -33,3 +33,25 @@ LANDED 7c6468c08 (09-18), 21.74(a) obstruction: `ct-z-residue-partitions-cannot-
 - Components lie in single classes, so a special invariant set W is visible to (a) only if it contains a co-class.
 - Invariant sets inside pZ (p odd) never contain one, which kills machine-plus-single-mixer reductions.
 - (a) stays OPEN. Next steps: thick (prefix-coded) special structure, or decidability on V via revealing pairs.
+**09-18 ~17:00 (relaunched after the restart).**
+- **Recovery.** All 7 work files were already on main, and nothing was unlanded.
+- **21.74(a).** It now has a dedicated lane (bh-kourovka-2174a, 4267a301f). I sent them lemmas L1 and L2:
+  - L1: in CT(Z), tame is the same as finite order;
+  - L2: a partition whose parts lie inside single pieces exists iff g has finite order, so an infinite-order YES instance needs a coarse part.
+  - I also sent the garbage obstruction: valuation-coded machines always carry garbage configurations, and no invariant set built from one run can contain a co-class.
+- **Separator P_eff.** I independently derived the kill in CT_P(Z): parallel runs, an input clock compared with the verifier output, and a passenger-level detector, giving C_L(σ) = U_A. bh-invent-11 had already landed it in nV (c0dfc4ce5), so I did not land a duplicate node.
+- **LANDED 49984b668:** research/artifacts/gq-bh-bh-free-58-referee-lamp-centralizers.md. It is a referee PASS of linear-time-rauzy-sets-exist and nv-machines-realize-linear-time-lamp-centralizers(-proof), with one repair R1: Lemma 1's completion must be done per copy-bit slice for F to be a bijection. It also records the CT_P(Z) second host.
+- **Free for others.** Kourovka 20.44 is unowned. Heuristic: passenger cofactors give positive-density transversals for every valuation-coded group, and a counterexample would need additive passenger mixing on infinitely many runs.
+- **Status:** idle.
+**09-18 ~17:10: claimed Kourovka 20.44 (coordinator).**
+LANDED 7b84a747f (09-18): Kourovka 20.44, `ct-z-orbit-transversal-dichotomy-is-collatz-hard`.
+- Kohl's G_T = <τ_{0(2),1(2)}, τ_{1(2),2(4)}, τ_{1(4),2(6)}> ≤ CT_{3}(Z) has orbits in bijection-up-to-counting with 3x+1 components (Kohl's r, s, re-verified on all of Z).
+- By a Terras–Everett parity-vector count, o(N) orbits meet [−N,N], so every transversal has density 0.
+- Consequence: 20.44 YES ⟹ the 3x+1 map has finitely many cycles and divergent classes on Z (open); infinitely many components ⟹ 20.44 NO. 20.44 itself is still OPEN.
+- Next: find a provable counterexample, i.e. a map with density-one stopping times and provably infinitely many components, realized by a f.g. subgroup.
+LANDED 1c4a8a43c (09-18): `ct-z-orbit-transversal-counterexamples-need-unbounded-orbits`.
+- If G has infinitely many orbits of size ≤ s, it has a positive-density transversal: small-orbit sets are residue classes up to a finite set (affine rigidity).
+- So a 20.44 counterexample needs infinitely many orbits of unbounded or infinite size, glued by translations, with no local invariant at a rational point.
+- Tried and failed: valuation strata; dilation copies g(3n) = 3g(n), which force zero translation parts; isolated fixed points; single V-elements. None gives a provable counterexample.
+- 20.44 is OPEN. Status: idle.
+LANDED (09-18) research/artifacts/gq-bh-bh-free-58-kourovka-20-44-status.md: best-known form of 20.44 and the failed routes (Conway maps are periodicity-conjecture-hard; two primes always mix digits). Conjecture: the dichotomy holds for f.g. subgroups of CT_0(Z) = V. Status: idle.

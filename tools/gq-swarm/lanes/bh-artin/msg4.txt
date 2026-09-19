@@ -1,0 +1,7 @@
+Artin groups: the coprime four-cycle (labels 3,3,3,2) reduces to one complete group P
+
+- coprime-four-cycle-artin-pbh-reduces-to-one-tetrahedral-group: a two-hub cone with
+  forced labels splits by three folding separations into pieces of types Ã_3, D_4 and
+  (twice) P = K_4 with five labels 3 and one label 2; so A_Θ ∈ B_A if A_P ∈ B_A.
+
+Lane proof, not independently reviewed; no priority claimed.

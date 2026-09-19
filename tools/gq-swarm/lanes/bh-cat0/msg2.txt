@@ -1,0 +1,13 @@
+Arithmetic lattices have faithful Hecke members; CAT(0) groups on H^2 x T lie in B_A
+
+A multi-letter Hecke HNN extension of a lattice G in a connected semisimple Lie
+group is faithful on its tree once the commensurator letters generate a
+non-discrete group with G: the kernel is discrete and normalized by that group,
+so its identity component centralizes it and, by Borel density, contains a simple
+factor. With Kazhdan-Margulis this works for every arithmetic lattice, with no
+normal subgroup theorem, so BS_G lies in B_A for closed surface groups, free
+groups (recovering BLIW), arithmetic hyperbolic and higher-rank lattices. Hence
+every group acting geometrically on H^2 x T, and every group on (symmetric space)
+x T with residually finite irreducible arithmetic fibres, satisfies permutational
+Boone-Higman. Also applies referee a's nits N1-N3 (PASS, b1c60898f) to the
+61db7e38a nodes. Lane proofs; no priority claimed.

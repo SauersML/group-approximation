@@ -1,0 +1,10 @@
+Add simplicity exits for GL_n(Q) hosts and the rational Cantor model
+
+SL_m(Q) has no finite quotients and is perfect, so it lies in every
+finite-index subgroup and every commutator subgroup of a host. A
+finitely presented host therefore needs only one exit: a finite-index
+simple monolith, a finitely presented simple G' (BHM Thm 1.3), or a
+type (A) action. PGL_n(Q) acts faithfully on the Cantor set of rational
+polyhedral regions of RP^(n-1); for n = 2 this carries standard V, but
+non-integral elements are singular everywhere, so the germ-extension
+theorems do not apply there. Artifact maps exits to swarm families.

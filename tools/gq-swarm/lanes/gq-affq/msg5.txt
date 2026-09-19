@@ -1,0 +1,10 @@
+SMART induced on genuine level-0 moves: exact tripling in 2V
+
+Induce SMART's moving-tape map on the clopen set of genuine level-0 moves
+(the leaves of the Callard-Salo move recursion). Every orbit meets the set
+within 5 steps, so the first-return map is in 2V up to brick-local
+conjugacy, and every level-k sweep now takes exactly 3^k steps: the +4
+overhead of f(k+1) = 3f(k) + 4 is exactly the non-leaf steps. Record two
+checkpoints of a candidate height-3 renormalization (a zero deleted next to
+the head), which holds at the first and needs a state change at the second.
+Lane proof, not independently reviewed.

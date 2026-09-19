@@ -1,0 +1,8 @@
+Horofunction lemma HL for free groups and closed surface groups
+
+For free groups (free basis) and closed surface groups (standard generators), every R-locally
+distance-like gradient field is a limit of distance functions. So the distance-gradient SFT is an SFT
+compactification with a dense seed orbit, and (IE') holds; surface groups are the first one-ended
+examples beyond products. The surface proof is by wall orientations, Helly in H2 (there are no wall
+triangles) and a descent lemma that bounds minimal pointing-away wall pairs. Part 4(c) of the parent
+is closed in these cases.

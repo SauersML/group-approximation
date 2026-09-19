@@ -1,0 +1,6 @@
+Show that cyclic-centralizer subgroups of Brin-Thompson groups have meeting supports
+
+Supports of elements of nV are clopen. In a torsion-free subgroup with cyclic
+centralizers, such as a closed hyperbolic surface group, any two nontrivial
+supports meet, and each support meets all its translates. This is a structural
+constraint on any answer to survey Question 4.7; it does not decide it.

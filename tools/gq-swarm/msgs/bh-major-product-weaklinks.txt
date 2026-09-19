@@ -1,0 +1,13 @@
+Shore up the census weak links: Titz Mite-Witzel kernels are MIF (Le Bars-Leibtag-Vigdorovich)
+
+Read at source:
+- arXiv:2609.17129 (Le Bars-Leibtag-Vigdorovich): type-preserving free cocompact lattices on C2-tilde
+  buildings are MIF, and hyperbolic elements have open dense opposite geometry. This closes
+  titz-witzel-kernels-are-mif and the nowhere-domestic premise (all credit theirs), and gives the
+  Euclidean route its topological freeness without the Ciobotaru-Le Bars barycenter chain.
+- Rybak's Kac-Moody MIF chain: the ping-pong and micro-support lemmas check; recorded on the import node.
+- Stein 1992 is not needed. Hyde-Lodha Q_n and Stein's T-groups lie in the integral V-groups, which
+  are F_infinity by Li's k-graph theorem.
+
+Lesson: MIF (a nowhere-domestic boundary) and the host machines are two independent PBH
+certificates. Every known finitely presented simple group has one, and the Titz Mite-Witzel kernels have both.

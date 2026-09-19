@@ -1,0 +1,6 @@
+Apply referee b amendments to the resolvent-vacuum lemma and target
+
+Record the pass; traces must be nonnegative on idempotents of matrix rings;
+label O_inf (x) UHF_Q as heuristic; state the edge convention for the
+example A = [[3,1],[2,2]] and the regular supercoherent hypothesis for the
+ABC cokernel formula.

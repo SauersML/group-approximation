@@ -1,0 +1,9 @@
+gq-k2-q: no ascending HNN extension of a free group contains Z_(l)
+
+If phi(r) = s^f with r, s not proper powers, then f is at most the number of
+vertices of the Stallings graph of phi(F), because <s> meets phi(F) with index
+bounded by that number and phi is injective. So root exponents along phi-orbits
+have bounded prime factors, and F*_phi contains no Z[1/P] with P infinite, for
+every injective phi; this settles the case left open in
+free-group-mapping-tori-contain-no-z-localized. Apply referee b W1-W3 and record
+both referee passes on the tree and mapping-tori nodes.

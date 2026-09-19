@@ -1,0 +1,5 @@
+integral-leavitt-unit-group-contains-q: record two referee PASSes
+
+Both gq referees passed the claim (proof gaps; citations and hypotheses).
+Apply the one amendment: cite the Z-basis of L_Z(1,2) (Tomforde 2011, or the
+diamond-lemma argument already in the graph) and the simplicity of L_Q(1,2).

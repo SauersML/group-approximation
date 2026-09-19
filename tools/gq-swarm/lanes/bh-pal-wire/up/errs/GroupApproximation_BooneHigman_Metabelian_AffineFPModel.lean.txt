@@ -1,0 +1,41 @@
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:132:62: Type mismatch
+  Pi.single k ?m.62 j
+has type
+  ?m.59 j
+but is expected to have type
+  R
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:135:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.AffineFP.model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:140:12: Unknown identifier `model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:139:86: unsolved goals
+I : Type u_1
+R : Type u_2
+inst✝² : Fintype I
+inst✝¹ : DecidableEq I
+inst✝ : CommRing R
+i j : I
+h : i ≠ j
+ε : R
+k : I
+hk : k ≠ j
+⊢ Commute (SemidirectProduct.inr (elementaryRoot i j h ε))
+    (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k 1)))
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:152:6: Unknown identifier `model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:151:84: unsolved goals
+I : Type u_1
+R : Type u_2
+inst✝² : Fintype I
+inst✝¹ : DecidableEq I
+inst✝ : CommRing R
+i j : I
+h : i ≠ j
+⊢ SemidirectProduct.inr (elementaryRoot i j h 1) * SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single j 1)) *
+      (SemidirectProduct.inr (elementaryRoot i j h 1))⁻¹ =
+    SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single j 1)) *
+      SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i 1))
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:172:4: typeclass instance problem is stuck
+  Group ?m.20
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Group` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:180:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.AffineFP.model_commutator`

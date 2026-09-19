@@ -1,0 +1,7 @@
+Record referee a's PASS on the free-shift kill and on regular enumerations; apply nits
+
+- regular-enumerations-can-make-near-shift-free-product gets its first status line: ESTABLISHED by the
+  fresh-trajectory route, refereed PASS (afbbd1818). It also says a prescription fixes both nu and nu^-1 (N3).
+- free-shift-houghton-like-envelopes-are-not-fp and its route: record the PASS, name the generating set
+  explicitly (N1), and state the nu-independence of E and the contents of S (N2).
+- Germ node: W1 discharged.

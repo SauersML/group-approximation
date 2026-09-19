@@ -1,0 +1,5 @@
+Root: record Attempt 14 (almost-V hosts need lattice germs, n >= 3)
+
+Point the root at gl-n-q-almost-v-hosts-need-lattice-germs (landed 2a7706851):
+any finitely generated almost-V host of GL_n(Q), n >= 3, has one singular germ
+group containing a finite-index subgroup of every SL_3(Z[1/m]).

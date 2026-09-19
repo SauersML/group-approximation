@@ -1,0 +1,7 @@
+R_T K-budget node: off the host route after 1111ca113; referee-b fixes
+
+bounded-harmonic-rings-are-not-finitely-presented shows E_N(R_T) is not
+finitely presented, so the letter-cylinder and general-unit questions no
+longer bear on the root through R_T; record that, plus the coefficient-ring
+K-theory reduction left as an attempt. Apply gq-referee-b W1 (fixed coset
+representatives for the matrix units) and cite its second review.

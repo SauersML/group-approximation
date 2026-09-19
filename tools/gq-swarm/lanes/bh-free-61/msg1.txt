@@ -1,0 +1,11 @@
+Rational projective full groups: edge splits are cofinal, descent is not inherited, synchronization isolated
+
+- edge-splits-cut-every-rational-hyperplane: a Euclid-type potential shows that iterated
+  edge splits of a unimodular cell cut out every rational hyperplane, so edge-split cells
+  are a basis of the rational Cantorization, with no toric resolution needed.
+- edge-split-descendants-are-not-factor-closed: for m = 2, an explicit depth-five
+  descendant of the simplex lies in a child without descending from it, so greedy row
+  reduction is not confluent. Any two children still meet in common descendants.
+- unimodular-cells-synchronize-under-edge-splits (OPEN): the synchronization input of the
+  Stein-Farley route, stated as a matrix game, a local form, and directedness, with a
+  proposed split-lemma induction.

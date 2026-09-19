@@ -1,0 +1,8 @@
+Obstruction: lifts of Q-free groups contain no GL_n(Q), Aff(Q), U_3(Q)
+
+Add lifts-add-no-unipotent-divisibility with a direct proof: a group that
+is Q-free-by-central-by-Q-free (e.g. the lifts to R of a circle group
+without (Q,+), such as T-bar, or a covering lift with Q-free deck group)
+contains none of GL_n(Q), SL_n(Q), PGL_n(Q), PSL_n(Q) (n >= 2), Aff(Q),
+B_2(Q), U_3(Q), because their unipotent (Q,+) meets the centre of every
+Q-free quotient trivially. Record the dead T-bar lift route on the root.

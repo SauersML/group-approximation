@@ -1,0 +1,11 @@
+Strengthen FW shell window zero to the descending sign: trivial endomorphism core, and no window zero for co-Hopfian FW inputs
+
+The FW node closes the ascending sign and the descending sign only at equality.
+Exchanging the two coordinates of the commensurated graph and running the
+induction along the endomorphism core shows that a descending window-zero
+action of an FW input makes every element of the iterated image finitary. With
+infinite supports the core is trivial, so a co-Hopfian FW input admits no
+window zero at either sign. Since Boone-Higman reduces to Kazhdan inputs and
+Kazhdan implies FW, the genuine-action shell route must supply a window of size
+at least one, or a non-co-Hopfian input with trivial core; its known positive
+family is virtually abelian, hence never Kazhdan.

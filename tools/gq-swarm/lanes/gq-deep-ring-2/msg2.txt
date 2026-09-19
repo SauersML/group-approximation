@@ -1,0 +1,7 @@
+Monomial-times-finitary hosts of SL_X(Q) need wild point stabilizers
+
+Rebasing each orbit of the monomial part puts all weights into the images of the
+point-stabilizer characters. So a finitely generated host containing SL_X(Q) has
+finitely many orbits and a stabilizer whose weight character has non-finitely-generated
+image. Tame monomial parts (f.g. stabilizers) keep all entries in Z[1/N] and contain no
+linear GL_n(Q). Lane proof, not independently reviewed; lane gq-deep-ring-2.

@@ -1,0 +1,5 @@
+CK kernel: correct the Leavitt-instance framing (Attempt 11), add attempts to the two open nodes
+
+The positive binary Leavitt instance is Boone--Higman for S again (existential reading, by
+Attempt 11 of the kernel claim); the specific Clapham marking is untouched. Attempts 12 and
+5 record the instance and the stable-K_2 transfer lemma for clause (b).

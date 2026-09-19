@@ -1,0 +1,6 @@
+Referee report: resolvent-vacuum rings have no K_0 state PASS
+
+Proof-gap review of resolvent-vacuum-rings-have-no-k0-state (b936655b4): the
+orthogonal equivalent idempotents, the fullness bound, the absence of a state,
+the failure of stable finiteness through a corner, and the three instances
+all check.

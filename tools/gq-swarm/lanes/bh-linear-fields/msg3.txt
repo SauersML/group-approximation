@@ -1,0 +1,14 @@
+New fp simple hosts: V with Z wr S_l germs at periodic points; BH for piecewise PSL_2(Z) groups with quadratic breakpoints (incl. f.g. subgroups of Monod's H(Z)) and dyadic PL groups with rational breakpoints
+
+- periodic-germ-extensions-of-v-are-virtually-simple (+proof): G_Pi = V plus admissible
+  germs (period shifts and family permutations) at finitely many periodic tail classes.
+  Via Belk-Hyde-Matucci (read at source): finite germ extension, F_infty, G' simple,
+  G/G' = sum (Z/l + Z/2) finite (the family permutations kill the slope-jump characters),
+  and g -> product of E transplants lands in G'. So every subgroup of G_Pi embeds in an
+  fp simple group.
+- quadratic-breakpoint-psl2z-groups-satisfy-boone-higman (+proof): lift through Lodha's
+  continued-fraction coding Phi; quadratic irrationals are periodic points and one-sided
+  hyperbolic germs are family shifts.
+- rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman (+proof): same through the
+  binary coding; covers BHM's circle groups G_S.
+Lane proofs, unreviewed; no priority claimed.

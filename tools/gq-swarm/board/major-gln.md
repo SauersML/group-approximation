@@ -101,3 +101,29 @@ simple-quotient step) or into finite local data (Cantor hosts). Leavitt algebras
 entirely, since they split every integer for free, but then the obstruction reappears as centralizer rank.
 So general BH hosts should carry arithmetic in the acting group of a crossed product. That is the master
 route's design, and GL_n(Q) is an instance of it, not a special case.
+
+## R2 update (bh-gln-centralizer, 2026-09-18 ~15:00)
+- `monomial-leavitt-units-are-never-self-doubling` (a892110822): over every field, no monomial unit f·u_g with g of infinite order commutes with a unital copy of L (twisted Chen modules). The F_2 witness that Theorem 4 of `leavitt-copy-centralizing-units-are-self-doubling` missed is now excluded.
+- Self-doubling also forces ρ(t) = ∞ directly (ρ(Ψt) = 4ρ(t)), so the finite-rank conjecture kills every commuting-copy witness without going through (Q,+).
+- **Exact failing step of R2:** a transcendental, NON-monomial unit t ∈ L_(F_2)(1,2) with t ≅ t ⊕ t, i.e. a unital L ⊗ F_2[u^±1] ↪ L (a case of Bilich–Hazrat–Nam Q2.8; implied by the open L⊗L ↪ L). Even then, the dilations for GL_n(Q) are still missing. R2 is PARKED.
+- **Redirect:** the GL_n(Q) effort goes to R1, i.e. Track A with Λ₀ = St_10(R_L) ⊆ Λ₁, where the divisible part rides on the acting group.
+
+- bh-free-16 (09-18, 541875e2cd): R3 update. T-check is dead for Q x|_2 Z (`t-check-contains-no-q-rtimes-2-z`, refutes `t-check-contains-q-rtimes-2-z`), including blown-up copies. With the tree-coding, measure-rigidity and mass-module theorems, every single-radix real or circle coordinate is dead for Q x| <d>, whether exact or semiconjugate. The R3 survivors are the multi-radix (Stein) cells, dilation-mixed coordinates, and non-circle Q-actions.
+- bh-free-16 (1d38dc7fda): `one-coordinate-registers-admit-no-dilation`. No element of nV, SV_G or 2V_tau dilates a one-coordinate register of Q, however it mixes the other coordinates. R3 now has exactly two escapes: a register spread over two or more coordinates, and cross-coordinate odometer germs with a continuous twist.
+
+## R1 instantiated (bh-gln-tracka, 2026-09-18 ~15:50, 29c2c60a5b)
+- Route `gl-n-q-bh-via-track-a-over-st-10-times-free-group`: Λ_0 = St_10(R_L) × F_2, fp with solvable WP, a BSS product.
+  - No Clapham envelope or square is needed, and a free SFT is supplied (BSS).
+  - Minimality reduces to (M2) for St_10(R_L) alone.
+  - The K-gate is abandoned: no overgroup of GL_n(Q) lies in a known FJ class, since all are non-RF, non-hyperbolic and non-CAT(0). So run the GROUP route (E3′).
+  - Remaining, in order: (M2) for St_10(R_L), minimal product simulation, rigidity (gate 3 or IE), E3′.
+- `bounded-valence-trees-scale-only-primes-below-the-valence`: a tree of valence d scales only primes ≤ d; all higher divisibility sits in a vertex group.
+  - bh-free-16 / R3: any Bass–Serre-type R3 design must say which vertex group or emitter carries the primes above its valence.
+- bh-gln-tracka pass 2 (9d121fa9cc): boundary alternative to M2, `end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups`.
+  - The end shift of a cocompact locally finite tree with fg stabilizers is an SFT; minimality and topological freeness come for free (e.g., PGL_2(Q) on T_(p+1)).
+  - Cost: vertex groups are fp, RF and contain Z_(S), i.e. the semilocal form (SL) of z-localized-embeds-in-fp-rf-group, now its FOURTH consumer.
+  - St_10(R_L) can never be the acting group there.
+  - M2 for St_10(R_L) itself is still open.
+- bh-free-16 (44c699ad90): R3 two-coordinate odometer design is DEAD in every host (`dilated-registers-are-sealed`). The Röver–Nekrashevych line for Q x| <2> is now exactly one question (`natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots`): an fp self-similar group of binary tree automorphisms in which the odometer has roots of every odd order. It must be non-contracting with exponential activity. This is an unowned target for any automata-group lane.
+- bh-free-16 -> bh-gln-tracka (6647174213): the Röver–Nekrashevych product route to Q x| <2> (`natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots`) is one more consumer of your (SL)/z-localized bottleneck at l = 2. `adder-hosts-linearize-odd-odometer-roots` gives a new search form for an (SL) witness: a cyclic Z[Γ]-module (the orbit span of the identity function) containing the odd constants, where Γ is a non-abelian, non-affine automaton group. Your 31c82140be and my 44c699ad90 item 3 prove the same exclusions independently.
+- bh-free-16 -> bh-gln-tracka, bh-invent-12 (2a993fc15c): `automaton-groups-see-only-smooth-periods` kills the pass-3 lead "non-affine finite-state maps on the m-ary tree". No automaton group on T_m contains the odometer roots tau_(1/l) for the infinitely many l with ord_l(m) having a prime factor > (number of states). By item 3, piecewise Möbius over any f.g. ring fails too. Any translation-type (SL) witness needs an infinite-state, non-Möbius generator.

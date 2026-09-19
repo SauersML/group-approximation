@@ -1,0 +1,8 @@
+Record that Bartholdi's multi-substitution fp overgroups surject onto free groups
+
+The group built in the proof of Bartholdi's Theorem thm:hnn from a finite ascending
+L-presentation with k substitutions maps onto F_k: generators of G go to 1, stable letters to
+a free basis. So its amenability clause holds only for k = 1. The printed Fabrykowski-Gupta
+presentation (three substitutions) gives a non-amenable fp group. The one-substitution uses
+(Grigorchuk, supergroup, BSV, Basilica) are unaffected. arXiv v3 read at source; published
+version not checked.

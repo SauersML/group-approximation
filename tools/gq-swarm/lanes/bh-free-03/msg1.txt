@@ -1,0 +1,8 @@
+Topological full groups of substitution subshifts embed in fp simple groups
+
+bh-free-03 (free lane, Cantor dynamics). A stationary Bratteli-Vershik map is a
+rational homeomorphism of an irreducible SFT that is singular at one point. Its
+singular germs never stack in products with the Thompson group, so the generated
+group has a finite nucleus and is a contracting RSG. BBMZ then embed its full
+closure, which contains [[S]], in a finitely presented simple twisted
+Brin-Thompson group. Lane proof, not reviewed; no priority claimed.

@@ -1,0 +1,9 @@
+gq graph health pass 2: stale status wording in seven nodes
+
+BS(1,3) in 3V: drop the conditional "would give" wording, cite the priority
+check, and state that the claim is about the untwisted nV (Bux-Llosa
+Isenrich-Wu already have Baumslag-Solitar groups in twisted SV_G). SMART
+tripling node: the height-3 renormalization it listed as not established is
+now its own ESTABLISHED node. The char-0 fp simple ring claim and four proof
+routes: replace "not independently reviewed" with the referee PASS reports.
+Text only; no mathematics changed.

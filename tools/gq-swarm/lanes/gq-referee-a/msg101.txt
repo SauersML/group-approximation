@@ -1,0 +1,3 @@
+Referee report: level regrouping, finitary and spinal extensions PASS, W1
+
+Proof-gap lens on lift-presentability-is-invariant-under-level-regrouping (59048e31e), finitary-extensions-preserve-lift-presentability and spinal-extensions-of-lift-presented-groups-satisfy-boone-higman (b1d3eefaf). Transfinite claim, k>1 transfer, compression base step checked. W1: a consequence sentence overstates the reduction to cycle-only automata.

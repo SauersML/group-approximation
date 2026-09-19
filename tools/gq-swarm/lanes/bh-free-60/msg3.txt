@@ -1,0 +1,8 @@
+Kourovka 17.57 hygiene: the reduction node no longer says OPEN; Bell 1.5 applies as stated
+
+out-ct-z-is-c2-iff-normalizers-are-somewhere-affine still said "Kourovka 17.57 itself
+stays OPEN" after d31728b76 answered it; point it at out-ct-z-is-c2. In
+ct-z-normalizers-are-2-and-3-regular, add the check that the kernel Z-module is finitely
+generated (integer-valued sequences in a finite-dimensional Q-space), so that Bell's
+Theorem 1.5, stated for (Z,k)-regular sequences, applies verbatim. Bell SLC 54A B54Ap
+was also read in full by bh-free-60 (EMIS PDF, sha256 d17dbbb8...8cf005).

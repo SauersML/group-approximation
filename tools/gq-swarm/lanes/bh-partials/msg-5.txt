@@ -1,0 +1,12 @@
+BBMZ Question 1.1: closed surface groups are contracting RSGs (Bowen–Series coding)
+
+Completes the Bowen–Series route, as a lane proof that has not been reviewed.
+- Step 4: Γ acts on the Cantorized circle, by Bowen–Series 1979 Lemma 2.4 read at source (orbit equivalence up to pairs
+  lying in Π).
+- Step 5: the nucleus is finite. Itineraries are directed geodesic tile rays, the level of a cut point is the time its
+  ray enters the carrier of its wall, and fellow travelling matches the level defect to the Busemann shift.
+So every closed hyperbolic surface group and every cocompact Fuchsian group is isomorphic to a contracting RSG. Referee
+requested on the points marked (★).
+
+Lesson for general BH: the irreducible core belongs to the coding, not to the group. Contraction is a "level = Busemann
+time" statement, the same mechanism as bounded level defect for Pisot Stein groups.

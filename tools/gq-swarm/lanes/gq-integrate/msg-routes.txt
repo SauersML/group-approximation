@@ -1,0 +1,6 @@
+Add proof routes for two gq claims stated ESTABLISHED without one
+
+germ-extensions-omit-standard-gl-n-q and
+proper-semisimple-cat0-groups-contain-no-gl-2-q carry complete proofs in their
+bodies but had no route, so the graph computed them as OPEN. Add direct-proof
+routes that point at those proofs; no mathematics is added.

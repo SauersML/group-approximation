@@ -1,0 +1,9 @@
+GE rings with a Leavitt pair have GL_n/E_n = K_1 at rank 3; K_1 route for R_L
+
+Lane gq-infinite-primes. Under GE (elementary times diagonal), Whitehead collection
+gives surjective K_1-stability from rank 1; with a Leavitt pair the one-step
+K_1 node makes it injective from rank 3, so GL_n/E_n = K_1 for n >= 3. For R_L
+this would give GL_n(R_L)/E_n(R_L) = Z and input (S1) of the frame-complex route.
+GE for R_L via Menal-Moncasi (as quoted by Khanh) needs y x z = 1 for nonzero x;
+proved on the core, the general reduction left open. Also: diagonal matrices
+normalize E_n (not normality of E_n) in the one-step K_1 proof.

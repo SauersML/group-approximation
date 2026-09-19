@@ -1,0 +1,8 @@
+Rank-one frame node: record referee-b PASS (5d2294421), restrict item 3 to ranks divisible by j
+
+Lane gq-infinite-primes. W2: item 3 excludes finitely presented E_(jN)(R)
+only; new item 3a gives every rank when K_0(B) = Z[1] and unit-class
+projectives are free (PIDs, local rings), which covers localizations of Q[N].
+W3: Weyl-type K_0 via Weibel V.6.4 hypotheses, Ore localizations via the
+G-theory localization surjection and rank. Bass cancellation pinned to
+Weibel I Ex. 1.5. Gate Attempt 12 case 3 wording restricted accordingly.

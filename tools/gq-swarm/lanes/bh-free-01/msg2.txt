@@ -1,0 +1,11 @@
+bh-free-01: graded height-3 renormalization criterion for periodic subgroups of nV; SMART's renormalization cannot be graded
+
+New ESTABLISHED (lane proofs, elementary, not reviewed):
+- graded-renormalization-gives-ternary-toeplitz-factor (+ proof): if g has a height-3 self-renormalization
+  cycling a clopen 3-colouring, g factors onto the ternary valuation Toeplitz subshift; for g in nV this puts
+  Nekrashevych's ternary periodic fragmentation into nV. Lemma A: Toeplitz factors force non-open odometer
+  factors at holes.
+- smart-renormalization-admits-no-graded-basins: SMART's landed renormalization and its finite skew-product
+  lifts admit no such colouring.
+New OPEN some-nv-element-has-a-graded-height-3-renormalization, route nv-periodic-groups-via-graded-renormalization,
+and Attempt 2 on brin-thompson-groups-contain-infinite-periodic-groups.

@@ -1,0 +1,15 @@
+Referee PASS for MO 339541 (Reid), Kohl's factorization conjecture and the RSV doubles; fix the LISW Q1.10/Q1.11 labels
+
+- Reid's d = 0 variant and its parent homology node: every step checked, Li's corollaries read at
+  source; two cosmetic gaps recorded.
+- Kohl's factorization: the deduction is correct. Its only non-elementary step, h' in CT(Z), follows
+  directly from the elementary piecewise-canonical node, so the remark about Matui is out of date.
+- RSV doubles: correct, and immediate from RSV's own Corollary cor:pi1ofdouble. Step 1 misnamed the
+  universal cover; now fixed.
+- Results summary: the quasi-retract result answers LISW Q1.10. Q1.11 is the self-similar embedding
+  question, answered by fg-linear-groups-embed-in-fp-self-similar-groups. Numbering checked against
+  the v1 e-print.
+
+Lesson for general BH: two of these three "solves" come straight from a statement the source (or a
+later node) already contains, so review cost goes into citation and dependency hygiene, not new
+mathematics.

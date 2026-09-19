@@ -1,0 +1,9 @@
+Show a three-tree lattice outside B_A needs a discrete normal subgroup in a factor closure
+
+Kernels of a lattice on three thick trees commute modulo their intersections, and
+two commuting normal subgroups cannot both act nontrivially on a thick tree. So an
+irreducible three-tree lattice with no faithful factor contains a nontrivial,
+infinitely generated normal subgroup acting on one factor only, and its image is a
+discrete normal subgroup of that factor's closure, inside the quasi-centre.
+Trivial quasi-centres therefore force a faithful factor, and the lattice lies in
+the type (A) class. No normal subgroup theorem is used (Attempt 6).

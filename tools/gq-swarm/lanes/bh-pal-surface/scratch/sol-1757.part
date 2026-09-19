@@ -1,0 +1,23 @@
+/-- The proposition the class-transposition development owes for Kourovka 17.57. -/
+def Kourovka1757Owed : Prop :=
+  (∀ g ∈ classTranspositionGroup,
+    integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
+  (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
+    (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
+    ∀ x : classTranspositionGroup,
+      ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
+  ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
+    integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹
+
+/-- Kourovka 17.57, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_57_of (h : Kourovka1757Owed) :
+    (∀ g ∈ classTranspositionGroup,
+      integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
+    (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
+      (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
+      ∀ x : classTranspositionGroup,
+        ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
+    ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
+      integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹ :=
+  h
+

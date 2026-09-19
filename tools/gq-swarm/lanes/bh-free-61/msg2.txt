@@ -1,0 +1,1 @@
+Rational projective full-group gate: record cofinality, non-inherited descent and the synchronization game (edge-split suboperad)

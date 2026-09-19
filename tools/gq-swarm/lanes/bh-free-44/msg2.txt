@@ -1,0 +1,13 @@
+Braid groups quasi-isometrically embed in finitely presented simple groups
+
+Cap every hole of the n-holed disk with a one-holed torus. The framed braid group then
+sits in the mapping class group of the once-punctured genus-n surface, undistorted by the
+subsurface theorem. That group is a Lipschitz retract of Out(F_2n) (Hamenstadt-Hensel).
+Lifting along the boundary gives an undistorted B_n in Aut(F_2n), and so in the BFFHZ
+host. The same route handles mapping class groups of surfaces with boundary.
+
+By contrast, Handel-Mosher's coindex >= 2 theorem makes the symmetric automorphism groups,
+and so the loop braid groups, distorted in Aut(F_n) and in that host.
+
+Adds citation nodes for Hamenstadt-Hensel Theorem 4.3, the Rafi-Schleimer subsurface
+remark and Handel-Mosher Theorem 8, and notes on the open Zaremsky node and the Aut(F_n) node.

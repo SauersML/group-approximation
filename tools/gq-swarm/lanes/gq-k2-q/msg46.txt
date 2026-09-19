@@ -1,0 +1,6 @@
+gq-k2-q: Pimsner reading of the scalar-symbol criterion (conditional)
+
+Under (P) with K_*(Q-bar)-linear boundaries over ultramatricial B: the criterion
+holds iff 1 - [X] is injective on K_0(B) with cokernel rationally spanned by
+[1_B]; index-one frames and finite-rank K_0(B) are excluded; the room left is
+an infinite-rank K_0(B) with index != 1.

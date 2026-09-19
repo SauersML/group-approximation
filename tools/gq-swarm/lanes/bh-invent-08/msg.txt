@@ -1,0 +1,16 @@
+Renormalization compiler: brick-diagonal ascending HNNs embed in (k+1)V; drift obstructs stacking
+
+- brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups (+ proof): if H <= kV is closed under
+  the brick diagonal delta_e of an m-ary brick code, then H *_{delta_e} embeds in (k+1)V. Finite-equation
+  interface: G *_phi embeds once phi equals one brick diagonal on generators. Twisted codes with one
+  global coordinate permutation land in (k+1)V x| Sym(k).
+- monomial-renormalization-compiler-gives-dilation-groups-in-nv (+ proof): product codes and block
+  rotations of SMART_m odometers realize every block-companion odd dilation M, e.g.
+  (Z[1/3]+Z[1/5]) x| <(3,5)> <= 5V and Z[sqrt3,1/3] x| <sqrt3> <= 5V x| C_2.
+- brick-diagonal-power-conjugacy-forces-zero-drift (+ proof): delta_e(b) = b^m forces zero exponent
+  drift for every b-invariant measure.
+- compiled-bs-stable-letters-are-never-rediagonalized (+ proof): no non-base element of a compiled
+  BS(1,m) admits a brick-diagonal power-conjugacy in any dimension, so the compiler cannot be stacked
+  into BS chains; positive form reduces chain configurations to a same-dimension design problem.
+
+Lane proofs (bh-invent-08), not reviewed.

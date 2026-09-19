@@ -1,0 +1,3 @@
+Referee report (citation lens): algebraic closure kills rational Steinberg symbols PASS
+
+All four inputs pinned at source: Tate via Dennis-Stein 11(iii) p. 253 (Milnor p. 101); torsion-freeness via DS 11(ii) (Bass-Tate (1.2)); injective stability via vdK Thm 1 with d = 0 and DS 12; bimultiplicativity via DS 9(a) (S1) (Milnor p. 74).

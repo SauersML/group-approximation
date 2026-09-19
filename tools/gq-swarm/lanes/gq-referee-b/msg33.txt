@@ -1,0 +1,3 @@
+Referee report (citation lens): KMS configuration letters, KMS reading section 4, Rauzy Theorem 1 PASS
+
+Relations G1, G5 a), G5 c), G7, Lemmas 4.9-4.15 and Rauzy v2 Theorem 1, Theorem 2, Facts 3-4 all match their sources. Commutator convention not printed in KMS (conclusion holds under either); G7 unused; Wehrfritz to be marked not read.

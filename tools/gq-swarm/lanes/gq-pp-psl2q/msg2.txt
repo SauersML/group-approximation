@@ -1,0 +1,5 @@
+Root gl-n-q: record the 1-dim piecewise-projective obstruction
+
+Attempts item for pp-circle-and-lift-hosts-miss-gl-n-q (landed d65ff92ff):
+finitely generated piecewise PSL_2(R) and PL circle groups, and their lifts
+to R, contain none of GL_n(Q), SL_n(Q), PSL_n(Q), Aff(Q), B_2(Q), U_3(Q).

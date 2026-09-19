@@ -1,0 +1,7 @@
+Split finitary SL(Q) extensions by monomial matrices are not fp
+
+K_2 obstruction for linear hosts of GL_n(Q): if Gamma = SL_X(Q) x| M is finitely
+generated with M monomial, then St_X(Q) x| M is finitely generated with central kernel
+K_2(Q), which is not finitely generated (Tate), so Gamma is not finitely presented.
+Kills the Euler and Baumslag-weighted linear hosts as Problem 2.7 candidates. Lane proof,
+not independently reviewed; lane gq-deep-ring-2.

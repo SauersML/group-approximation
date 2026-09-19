@@ -1,0 +1,5 @@
+Out(V) root node: record referee-a PASS (0da548b9b), W1 and N1
+
+Lane gq-infinite-primes. W1: drop the unproved gloss that non-Lipschitz
+elements change periodic-orbit lengths; keep "violates SL3". N1: the image of
+g in L_2 has infinite order, so the transfer is exactly Boyle form.

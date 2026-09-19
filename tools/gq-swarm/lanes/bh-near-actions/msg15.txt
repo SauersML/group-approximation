@@ -1,0 +1,7 @@
+bh-near-actions: refute every-real-number-field-lies-in-an-f-unit-field (Q(sqrt3)); (F)-unit fields = isolated-sign units (totally real); Cleary read at source => correct norm +1 claims
+
+- f-unit-fields-are-characterized-by-isolated-sign-units: necessary condition (all real fields), iff for
+  totally real, sufficient with dense unit arguments (all complex cubic fields).
+- Cleary 1995/2000 read at source: only norm -1 F-versions. Withdrew norm +1 quadratic claims in
+  stein-v-groups-act-with-type-a-on-breakpoints and quadratic-interval-exchange-full-groups...;
+  metallic node input (C) now from the Pisot fp node.

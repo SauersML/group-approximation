@@ -1,0 +1,9 @@
+Cone SL_2 and V already force central scalars into [H,H]
+
+In a ring with a Leavitt family and an infinite central subfield K, any unit
+subgroup containing V and one cone copy of SL_2(K) has K^x in [H,H] and Z(H):
+V moves diag(lambda, lambda^-1) between cone pairs, two moves telescope to one
+cone scalar, and two cone scalars give lambda. With the group lemma of
+leavitt-scalar-commutators-block-fp-central-quotients, no central quotient of
+such H is finitely presented. This covers every overgroup of V and the root
+copy of GL_n(Q), so avoiding a full L_Q(1,d)^x is not an escape.

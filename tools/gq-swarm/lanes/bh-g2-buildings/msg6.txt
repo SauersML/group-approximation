@@ -1,0 +1,10 @@
+Wall chains prove quantum rigidity: surface groups and median Cayley graphs lie in the class C
+
+wall-chamber-distance-sfts-are-quantum-rigid: on a chamber graph whose distance counts separating
+walls, every quantum family of the distance-gradient SFT collapses to one projection per wall. A
+chain of pairwise non-separated nested walls between any two walls is a local monotone chain, so
+all wall projections commute. With the axioms checked for closed surface groups (standard
+generators) and for groups acting simply transitively on vertices of CAT(0) cube complexes (RAAGs,
+RACGs, Z^n, F_n), these groups lie in C, the first one-ended members beyond products of trees. Wall
+members of C contain no infinite FW group, so no canonical Kazhdan input: (star-C) needs rigidity
+without walls. Lane proof, unreviewed.

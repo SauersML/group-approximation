@@ -1,0 +1,7 @@
+Non-fibered graph manifold groups meet normal free or surface subgroups of hosts trivially or in infinitely generated subgroups
+
+New claim nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups (lane proof from
+Hempel--Jaco via AFW (K.9)): the groups left open in the 3-manifold Boone--Higman case
+analysis have no finitely generated normal subgroup of infinite index. Consequences for
+Birman point-pushing kernels and Inn(F_m), recorded as Attempt 7 on
+nonfibered-closed-graph-manifold-groups-satisfy-pbh.

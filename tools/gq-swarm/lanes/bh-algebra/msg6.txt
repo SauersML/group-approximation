@@ -1,0 +1,3 @@
+Scalar descendants make Leavitt-Nekrashevych completions simple, for non-diagonal recursions
+
+New claim scalar-descendants-make-completions-simple (+ proof): for an injective recursion psi on A (any shape, not necessarily diagonal), if every nonzero element has a nonzero scalar entry in some iterate psi_j, then A is psi-minimal and (A, psi) is aperiodic, so O_psi(A) is simple. Aperiodicity uses the persistence of scalar entries along diagonal continuations and d >= 2. Refinement: a peel state turns "nonzero constant term" into a scalar descendant. Lane proof, not reviewed.

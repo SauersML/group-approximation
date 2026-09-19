@@ -1,0 +1,23 @@
+theorem transFun_pos (N : Box) (g : Perm ℤ) {n : ℤ} (hn : N.Mem n) :
+    transFun N g n = N.r + g (n / N.m) * N.m := by
+  rw [transFun, if_pos hn]
+
+theorem transFun_neg (N : Box) (g : Perm ℤ) {n : ℤ} (hn : ¬ N.Mem n) : transFun N g n = n := by
+  rw [transFun, if_neg hn]
+
+theorem transFun_left (N : Box) (g : Perm ℤ) :
+    Function.LeftInverse (transFun N g⁻¹) (transFun N g) := by
+  intro n
+  by_cases hn : N.Mem n
+  · rw [transFun_pos N g hn, transFun_pos N _ (N.elt_mem _), N.elt_div]
+    simp only [Perm.coe_inv, Equiv.symm_apply_apply]
+    exact N.eq_of_mem hn
+  · rw [transFun_neg N g hn, transFun_neg N _ hn]
+
+theorem transFun_mul (N : Box) (g h : Perm ℤ) (n : ℤ) :
+    transFun N (g * h) n = transFun N g (transFun N h n) := by
+  by_cases hn : N.Mem n
+  · rw [transFun_pos N _ hn, transFun_pos N h hn, transFun_pos N g (N.elt_mem _), N.elt_div,
+      Perm.mul_apply]
+  · rw [transFun_neg N _ hn, transFun_neg N h hn, transFun_neg N g hn]
+

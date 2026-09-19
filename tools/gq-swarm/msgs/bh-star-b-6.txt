@@ -1,0 +1,6 @@
+Roller compactifications of cube complexes are quantum rigid SFTs; walls through long relators break rigidity
+
+- For free cocompact actions on locally finite CAT(0) cube complexes, the Roller compactification SFT is quantum rigid at every scale over every field, and so are all its closed invariant subsets.
+- The proof gives one projection per hyperplane. Crossing hyperplanes commute because they meet in a square. Nested pairs commute by induction on the number of separating hyperplanes, a monotone chain.
+- The proof isolates three wall axioms. When a wall's edges are not uniformly coarsely connected (the expected case for small-cancellation walls through unbounded relators), the full compactification is neither rigid nor of finite type.
+- The wall-orientation node gets a progress section.

@@ -1,0 +1,15 @@
+bh-logic: common decidable hosts exist iff the word problem is uniform; uniform BH open
+
+New claim common-decidable-hosts-iff-uniform-word-problem, with its proof route.
+A class of finite presentations has a common finitely generated decidable host iff
+its word problem is uniformly solvable; for c.e. classes the host can be finitely
+presented. Under Boone-Higman, every c.e. class with uniformly solvable word problem
+has ONE finitely presented simple host, with computable embeddings. So universal
+and uniform forms of the conjecture on such classes add nothing to it. Corollaries:
+no finitely presented simple group contains all finitely presented groups with
+Dehn function at most n^18; and there are unconditional finitely presented
+decidable hosts for all hyperbolic groups and for all one-relator groups.
+
+New OPEN claim boone-higman-uniform-in-word-problem-algorithms, with what is known,
+and artifact gq-bh-bh-logic-logical-form (Boone-Higman is a Pi_4 sentence).
+Lane proofs, not reviewed.

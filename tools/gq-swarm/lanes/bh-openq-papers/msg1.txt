@@ -1,0 +1,19 @@
+Record printed open questions near Boone-Higman from 2015-2026 papers, one answered by main
+
+A new artifact lists the questions, problems and conjectures printed in papers on
+finitely presented simple groups and their neighbours. It covers only those not
+already on main's lists, each quoted from the TeX with its source line.
+
+One is answered by composing nodes already on main. Llosa Isenrich-Schesler-Wu
+(arXiv:2510.01952) Question 1.11 asks whether every finitely generated linear group
+embeds in a finitely generated self-similar group. It does, and the host is even
+finitely presented: the affine hosts over Z[1/m][s] and F_p[s] are finitely
+presented and self-similar. No priority is claimed.
+
+Six tractable questions get OPEN claim nodes:
+- LISW Question 1.10: complex linear groups as quasi-retracts of simple groups;
+- Z wr_X PSL_2(Z[1/2]) into a finitely presented self-similar group (arXiv:2609.01868);
+- type F_infinity for contracting Rover-Nekrashevych groups (Skipper-Zaremsky);
+- a finitely presented infinite simple group that is not two-generated (Lodha);
+- derived full groups of free minimal Z^N actions (Matui);
+- undistorted, type F_infinity hosts for hyperbolic groups (Zaremsky).

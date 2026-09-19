@@ -1,0 +1,10 @@
+RCWA groups satisfy the permutational Boone-Higman conjecture
+
+New claim rcwa-groups-satisfy-permutational-boone-higman (lane proof, not reviewed).
+- Any two nonempty clopen sets are equivalent: split rectangles until the counts match.
+- So the RCWA hosts (the odometer H_P over Z and the ax+b hosts H_P(R), H_pi(A)) and
+  CT_P(Z) act highly transitively on every groupoid orbit.
+- They are finitely presented and simple, so BFFHZ Theorem C (iii) => (i) puts every
+  subgroup in B_A.
+- Hence every finitely generated RCWA group over Z, number rings of class number one,
+  F_q[t] or Z_(pi), and every RCWA_P(R) and CT_P(Z), satisfies PBH.

@@ -1,0 +1,8 @@
+Every finitely generated linear group over any field embeds in a finitely presented simple group
+
+Records the union of the two reviewed polynomial-host theorems as one claim, with a
+hypothesis check of the characteristic-p chain. Updates the stale "not independently
+reviewed" lines on the char-p permutational and self-similarity nodes (both PASS in
+review-metabelian-bh-2026-09-13), and adds trust notes showing that both
+elementary-group nodes are consumed only at n >= 5, where the refereed rank-five node
+replaces the unread Krstic-McCool import. No mathematics changed; no novelty claimed.

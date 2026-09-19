@@ -1,0 +1,3 @@
+Referee report: BH separators must omit nested decidable hosts PASS
+
+Proof-gap lens on bh-separators-must-omit-nested-decidable-hosts (507f9fabf). Host transfer, subgroup-closure and (S1) failures, the P_T equivalence and the Kuznetsov halting bound checked; nits N1-N3.

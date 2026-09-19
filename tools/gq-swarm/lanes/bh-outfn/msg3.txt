@@ -1,0 +1,5 @@
+Record priority context for the abelianized Aut/Out virtual splitting
+
+The node is the integral finite-index form of the finite-coefficient splitting
+used by Bogopolski--Puga. The Bridson--Vogtmann survey does not decide virtual
+splitting of Aut(F_n) to Out(F_n).

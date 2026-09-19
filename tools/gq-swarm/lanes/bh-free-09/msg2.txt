@@ -1,0 +1,11 @@
+Prove that tame power conjugators have strictly more hyperbolic points
+
+For tame homeomorphisms of a perfect compact metric space (a clopen
+finite-order part, finitely many other non-wandering points, and a
+proper cocompact wandering action), b a b^-1 = a^k with |k| >= 2 and
+a of infinite order forces F_a to be a proper subset of F_b. So in any
+action of a Baumslag--Gersten group BG_k or a Higman group H_n in
+which the relevant generators act tamely, they act with finite order;
+no group of tame homeomorphisms contains BG_k or H_n (n >= 4). This
+extends the finite Morse--Smale case to maps with periodic clopen
+parts. Lane proof, elementary, unreviewed; not new for V itself.

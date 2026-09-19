@@ -1,0 +1,6 @@
+Referee C: finite presentation of St_n(R) proved directly for n >= 5
+
+Self-contained proof that St_n of a finitely generated free ring is presented by generators
+x_ij(1), x_ij(g_a) with two finite families of relations, for n >= 5; with the quotient step
+(also checked) this gives an explicit presentation of St_n(R) for every finitely presented ring.
+Rank 4 stays a Krstic-McCool import. St_5(D) contains every GL_n(Q) with no Krstic-McCool input.

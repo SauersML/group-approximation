@@ -1,0 +1,5 @@
+Apply gq-referee-b W1, W2 to bg-in-isometric-brick-hosts node
+
+Record the referee-b PASS (a8dffeea3); replace the cited Lipschitz entropy
+bound by a direct spanning-set proof; cite power and conjugacy invariance
+of entropy to Walters.

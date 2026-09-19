@@ -1,0 +1,9 @@
+* `integerReflection`: it sends `0` to `-1`, and it exchanges the nonnegative and the negative
+  integers.
+* `IsSmoothModulus`: `1` is smooth over every `P`; `3` is not smooth over `∅`.
+* `IsClassTranspositionOver`: the identity is not one, and every one is a class transposition,
+  so `CT_P(ℤ) ≤ CT(ℤ)`.
+* `HasTypeAAction` and `EmbedsInTypeAGroup`: the trivial group acts on a point with type (A);
+  `ℝ` embeds in no group with an action of type (A), since such a group is countable.
+* `graphProductRelators` and `GraphProduct`: over the edgeless graph there are no relators,
+  and at an edge the two vertex groups commute in the graph product.

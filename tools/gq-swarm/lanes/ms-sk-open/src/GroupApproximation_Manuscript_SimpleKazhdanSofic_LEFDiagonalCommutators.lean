@@ -1,0 +1,221 @@
+import GroupApproximation.KOne.BlockWhitehead
+import GroupApproximation.Leavitt.ElementaryGroup
+import Mathlib.LinearAlgebra.Matrix.Notation
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The derived subgroup of `Λ` inside `EL_3`
+
+`simple_kazhdan_sofic_group.tex` at origin/main c8b6021ca, "LEF groups", the end of the proof of
+`cor:lef` (tex 395–402):
+
+> Finally, `ξ ↦ diag(u_ξ,1,1)` is an injective homomorphism `Λ → GL_3(R_Δ)`.  It maps `[Λ,Λ]` into
+> `G_Δ`, since over `F_2` every unit `v` satisfies
+> `diag(v,v^{-1},1) = e_12(v)e_21(v^{-1})e_12(v) e_12(1)e_21(1)e_12(1)`, and the product of these
+> matrices for `v = c`, `c'` and `(c'c)^{-1}` is `diag(cc'c^{-1}c'^{-1},1,1)`.  So `G_Δ` contains
+> `Γ ≤ [Δ,Δ] ≤ [Λ,Λ]`.
+
+The same identities give tex 412–417 for `g ↦ diag(w_g,1,1)` on the topological full group.
+
+Everything is stated over a unital ring `R` with a group homomorphism `u : Λ →* Rˣ`, so the crossed
+product of the lamplighter action and its unit map `ξ ↦ u_ξ` plug in; `G = EL_3(R)` is
+`elementaryGroup (Fin 3) R` and `e_ij(r)` is `elementaryUnit i j _ r`.
+
+* `whitehead_charTwo`: the printed identity for `diag(v,v^{-1},1)`, over a ring with `2 = 0`.
+  `whitehead_charTwo_needed` shows that it fails over `ℤ` for `v = 1`.
+* `diagPairAt_commutator_product`: the product for `v = c`, `c'`, `(c'c)^{-1}`.
+* `lefDiagonalHom`, `lefDiagonalHom_val`, `lefDiagonalHom_injective`, `lefDiagonalHom_commutator_le`,
+  `le_commutator_and_map_le`.
+* `PrintedLEFDiagonalIdentities`, `PrintedLEFDiagonalEmbedding`: the printed statements, proved.
+-/
+
+namespace GroupApproximation
+
+namespace SimpleKazhdanSofic
+
+open RankNElimination
+open scoped commutatorElement
+
+universe v₁ v₂
+
+section Identities
+
+variable {R : Type*} [Ring R]
+
+theorem elementaryUnit_zero_one_val (a : R) :
+    ((elementaryUnit (0 : Fin 3) 1 (by decide) a : (Matrix (Fin 3) (Fin 3) R)ˣ) :
+      Matrix (Fin 3) (Fin 3) R) = !![1, a, 0; 0, 1, 0; 0, 0, 1] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.single]
+
+theorem elementaryUnit_one_zero_val (a : R) :
+    ((elementaryUnit (1 : Fin 3) 0 (by decide) a : (Matrix (Fin 3) (Fin 3) R)ˣ) :
+      Matrix (Fin 3) (Fin 3) R) = !![1, 0, 0; a, 1, 0; 0, 0, 1] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.single]
+
+theorem diagPairAt_zero_one_val (u v : Rˣ) :
+    ((diagPairAt (0 : Fin 3) 1 u v : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) =
+      !![(u : R), 0, 0; 0, (v : R), 0; 0, 0, 1] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [diagPairAt_val]
+
+/-- `diagPairAt 0 1 u v` is `diag(u, v, 1)`. -/
+theorem diagPairAt_zero_one_diagonal (u v : Rˣ) :
+    ((diagPairAt (0 : Fin 3) 1 u v : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) =
+      Matrix.diagonal ![(u : R), (v : R), 1] := by
+  rw [diagPairAt_val]
+  congr 1
+  funext i
+  fin_cases i <;> simp
+
+/-- `diagAt 0 u` is `diag(u, 1, 1)`. -/
+theorem diagAt_zero_diagonal (u : Rˣ) :
+    ((diagAt (0 : Fin 3) u : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) =
+      Matrix.diagonal ![(u : R), 1, 1] := by
+  rw [diagAt_val]
+  congr 1
+  funext i
+  fin_cases i <;> simp
+
+/-- **Over a ring with `2 = 0`, `diag(v,v^{-1},1) = e_12(v)e_21(v^{-1})e_12(v) e_12(1)e_21(1)e_12(1)`.** -/
+theorem whitehead_charTwo (h2 : (2 : R) = 0) (v : Rˣ) :
+    (diagPairAt (0 : Fin 3) 1 v v⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) =
+      elementaryUnit 0 1 (by decide) (v : R) * elementaryUnit 1 0 (by decide) ((v⁻¹ : Rˣ) : R) *
+          elementaryUnit 0 1 (by decide) (v : R) *
+        (elementaryUnit 0 1 (by decide) 1 * elementaryUnit 1 0 (by decide) 1 *
+          elementaryUnit 0 1 (by decide) 1) := by
+  have h11 : (1 : R) + 1 = 0 := by
+    rw [one_add_one_eq_two]
+    exact h2
+  have hvw : (v : R) * ((v⁻¹ : Rˣ) : R) = 1 := v.mul_inv
+  have hwv : ((v⁻¹ : Rˣ) : R) * (v : R) = 1 := v.inv_mul
+  apply Units.ext
+  simp only [Units.val_mul, elementaryUnit_zero_one_val, elementaryUnit_one_zero_val,
+    diagPairAt_zero_one_val, Matrix.mul_fin_three, mul_one, one_mul, mul_zero, zero_mul, add_zero,
+    zero_add, hvw, hwv, h11]
+
+/-- **The product for `v = c`, `c'` and `(c'c)^{-1}` is `diag(cc'c^{-1}c'^{-1},1,1)`**, over every
+ring. -/
+theorem diagPairAt_commutator_product (c c' : Rˣ) :
+    (diagPairAt (0 : Fin 3) 1 c c⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) * diagPairAt 0 1 c' c'⁻¹ *
+        diagPairAt 0 1 (c' * c)⁻¹ ((c' * c)⁻¹)⁻¹ =
+      diagAt 0 ⁅c, c'⁆ := by
+  have h1 : c * c' * (c' * c)⁻¹ = ⁅c, c'⁆ := by
+    rw [commutatorElement_def]
+    group
+  have h2 : c⁻¹ * c'⁻¹ * ((c' * c)⁻¹)⁻¹ = 1 := by group
+  rw [diagPairAt_mul, diagPairAt_mul, h1, h2, diagAt_eq_diagPairAt 0 1]
+
+end Identities
+
+/-- **Calibration: the printed identity needs `2 = 0`.**  Over `ℤ`, for `v = 1`, the right-hand side
+has the entry `12` in position `(0,1)`. -/
+theorem whitehead_charTwo_needed :
+    (diagPairAt (0 : Fin 3) 1 (1 : ℤˣ) 1⁻¹ : (Matrix (Fin 3) (Fin 3) ℤ)ˣ) ≠
+      elementaryUnit 0 1 (by decide) ((1 : ℤˣ) : ℤ) *
+          elementaryUnit 1 0 (by decide) (((1 : ℤˣ)⁻¹ : ℤˣ) : ℤ) *
+          elementaryUnit 0 1 (by decide) ((1 : ℤˣ) : ℤ) *
+        (elementaryUnit 0 1 (by decide) 1 * elementaryUnit 1 0 (by decide) 1 *
+          elementaryUnit 0 1 (by decide) 1) := by
+  intro h
+  have h' := congrArg (fun z : (Matrix (Fin 3) (Fin 3) ℤ)ˣ => (z : Matrix (Fin 3) (Fin 3) ℤ) 0 1) h
+  simp only [Units.val_mul, elementaryUnit_zero_one_val, elementaryUnit_one_zero_val,
+    diagPairAt_zero_one_val, Matrix.mul_fin_three, inv_one, Units.val_one] at h'
+  norm_num at h'
+
+section Embedding
+
+variable {R : Type*} [Ring R] {Λ : Type*} [Group Λ]
+
+/-- `ξ ↦ diag(u_ξ,1,1)`. -/
+def lefDiagonalHom (u : Λ →* Rˣ) : Λ →* (Matrix (Fin 3) (Fin 3) R)ˣ :=
+  (diagAtHom (0 : Fin 3)).comp u
+
+theorem lefDiagonalHom_val (u : Λ →* Rˣ) (ξ : Λ) :
+    ((lefDiagonalHom u ξ : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) =
+      Matrix.diagonal ![(u ξ : R), 1, 1] := by
+  rw [lefDiagonalHom, MonoidHom.comp_apply, diagAtHom_apply]
+  exact diagAt_zero_diagonal (u ξ)
+
+/-- **`ξ ↦ diag(u_ξ,1,1)` is injective** when `ξ ↦ u_ξ` is. -/
+theorem lefDiagonalHom_injective {u : Λ →* Rˣ} (hu : Function.Injective u) :
+    Function.Injective (lefDiagonalHom u) := by
+  intro a b hab
+  have h := congrArg (fun z : (Matrix (Fin 3) (Fin 3) R)ˣ => (z : Matrix (Fin 3) (Fin 3) R) 0 0) hab
+  simp only [lefDiagonalHom_val, Matrix.diagonal_apply_eq, Matrix.cons_val_zero] at h
+  exact hu (Units.ext h)
+
+/-- **`ξ ↦ diag(u_ξ,1,1)` maps `[Λ,Λ]` into `EL_3(R)`**, over every ring. -/
+theorem lefDiagonalHom_commutator_le (u : Λ →* Rˣ) :
+    (commutator Λ).map (lefDiagonalHom u) ≤ elementaryGroup (Fin 3) R := by
+  rw [Subgroup.map_le_iff_le_comap, commutator_def, Subgroup.commutator_le]
+  intro a _ b _
+  rw [Subgroup.mem_comap, lefDiagonalHom, MonoidHom.comp_apply, map_commutatorElement,
+    diagAtHom_apply]
+  exact diagAt_commutatorElement_mem 0 1 (by decide) (u a) (u b)
+
+/-- **`Γ ≤ [Δ,Δ] ≤ [Λ,Λ]`**, and so `ξ ↦ diag(u_ξ,1,1)` maps `Γ` into `EL_3(R)`. -/
+theorem le_commutator_and_map_le (u : Λ →* Rˣ) {Γ Δ : Subgroup Λ} (hΓ : Γ ≤ ⁅Δ, Δ⁆) :
+    Γ ≤ commutator Λ ∧ Γ.map (lefDiagonalHom u) ≤ elementaryGroup (Fin 3) R := by
+  have hle : Γ ≤ commutator Λ := by
+    rw [commutator_def]
+    exact hΓ.trans (Subgroup.commutator_mono le_top le_top)
+  exact ⟨hle, (Subgroup.map_mono hle).trans (lefDiagonalHom_commutator_le u)⟩
+
+end Embedding
+
+/-! ## The printed statements -/
+
+/-- **The identities of tex 397–401.**  Over a ring with `2 = 0`, every unit `v` satisfies
+`diag(v,v^{-1},1) = e_12(v)e_21(v^{-1})e_12(v) e_12(1)e_21(1)e_12(1)`, and the product of these
+matrices for `v = c`, `c'` and `(c'c)^{-1}` is `diag(cc'c^{-1}c'^{-1},1,1)`. -/
+def PrintedLEFDiagonalIdentities : Prop :=
+  ∀ (R : Type v₁) [Ring R], (2 : R) = 0 → ∀ c c' : Rˣ,
+    (∀ v : Rˣ,
+      ((diagPairAt (0 : Fin 3) 1 v v⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) :
+          Matrix (Fin 3) (Fin 3) R) = Matrix.diagonal ![(v : R), ((v⁻¹ : Rˣ) : R), 1] ∧
+        (diagPairAt (0 : Fin 3) 1 v v⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) =
+          elementaryUnit 0 1 (by decide) (v : R) *
+              elementaryUnit 1 0 (by decide) ((v⁻¹ : Rˣ) : R) *
+              elementaryUnit 0 1 (by decide) (v : R) *
+            (elementaryUnit 0 1 (by decide) 1 * elementaryUnit 1 0 (by decide) 1 *
+              elementaryUnit 0 1 (by decide) 1)) ∧
+      (((diagPairAt (0 : Fin 3) 1 c c⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) * diagPairAt 0 1 c' c'⁻¹ *
+          diagPairAt 0 1 (c' * c)⁻¹ ((c' * c)⁻¹)⁻¹ : (Matrix (Fin 3) (Fin 3) R)ˣ) :
+          Matrix (Fin 3) (Fin 3) R) =
+        Matrix.diagonal ![((c * c' * c⁻¹ * c'⁻¹ : Rˣ) : R), 1, 1]
+
+theorem printedLEFDiagonalIdentities : PrintedLEFDiagonalIdentities.{v₁} := by
+  intro R _ h2 c c'
+  refine ⟨fun v => ⟨diagPairAt_zero_one_diagonal v v⁻¹, whitehead_charTwo h2 v⟩, ?_⟩
+  rw [diagPairAt_commutator_product, diagAt_zero_diagonal, commutatorElement_def]
+
+/-- **tex 395–402.**  For an injective homomorphism `u : Λ →* Rˣ` into the units of a unital ring,
+`ξ ↦ diag(u_ξ,1,1)` is an injective homomorphism `Λ → GL_3(R)` that maps `[Λ,Λ]` into
+`EL_3(R)`, and every `Γ ≤ [Δ,Δ]` for a subgroup `Δ` of `Λ` lies in `[Λ,Λ]` and maps into
+`EL_3(R)`. -/
+def PrintedLEFDiagonalEmbedding : Prop :=
+  ∀ (R : Type v₁) [Ring R] (Λ : Type v₂) [Group Λ] (u : Λ →* Rˣ), Function.Injective u →
+    ∃ φ : Λ →* (Matrix (Fin 3) (Fin 3) R)ˣ,
+      Function.Injective φ ∧
+        (∀ ξ, (φ ξ : Matrix (Fin 3) (Fin 3) R) = Matrix.diagonal ![(u ξ : R), 1, 1]) ∧
+          (commutator Λ).map φ ≤ elementaryGroup (Fin 3) R ∧
+            ∀ Γ Δ : Subgroup Λ, Γ ≤ ⁅Δ, Δ⁆ →
+              Γ ≤ commutator Λ ∧ Γ.map φ ≤ elementaryGroup (Fin 3) R
+
+theorem printedLEFDiagonalEmbedding : PrintedLEFDiagonalEmbedding.{v₁, v₂} := by
+  intro R _ Λ _ u hu
+  exact ⟨lefDiagonalHom u, lefDiagonalHom_injective hu, lefDiagonalHom_val u,
+    lefDiagonalHom_commutator_le u, fun _ _ hΓ => le_commutator_and_map_le u hΓ⟩
+
+end SimpleKazhdanSofic
+
+end GroupApproximation
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.whitehead_charTwo
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.diagPairAt_commutator_product
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.whitehead_charTwo_needed
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.lefDiagonalHom_commutator_le
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedLEFDiagonalIdentities
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedLEFDiagonalEmbedding

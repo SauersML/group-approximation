@@ -1,0 +1,5 @@
+Record gq-referee-a PASS on the two adelic tree-product lemmas
+
+Cite research/artifacts/gq-referee-a-adelic-tree-product-lemmas.md (proof-gap
+lens) in cocompact-fg-stabilizer-actions-force-finite-generation and
+adelic-median-graph-automorphisms-are-restricted-products.

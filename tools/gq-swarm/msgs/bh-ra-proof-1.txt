@@ -1,0 +1,3 @@
+Rigid subshift amenability from coherent variation caps (finite-window form of (RA))
+
+A quantum-rigid subshift without isolated points has coarsely connected, pairwise-close modification clouds and continuous, finitely supported variation caps. Scale-averaged cap coherence implies a topologically amenable action, hence exactness of the group. Also a flippable-wall necessary condition for the wall-orientation test, and the consequences of (RA) for every route on main. (RA) and (RA-prime) themselves stay open.

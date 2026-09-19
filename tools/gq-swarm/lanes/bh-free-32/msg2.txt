@@ -1,0 +1,10 @@
+Definable-parameter hosts collapse to tame members; piecewise projective rigidity criterion
+
+If a finitely presented group acts faithfully by semialgebraic bijections (any dimension, arbitrary
+real constants) or by omega-automatic bijections of Cantor space (arbitrary addresses), then it
+specializes to algebraic, resp. ultimately periodic, parameters on every finite set (Tarski
+transfer, Buchi lasso). So its finitely generated simple subgroups have word problem in PSPACE,
+and these host families share one bound for the Birget root. Also a non-finite-presentation test
+for piecewise projective groups: support endpoints where an algebraic subgroup sees order are
+algebraic, so <F, F^lambda> is not finitely presented for transcendental lambda. Prior-art check
+of the Bieri-Strebel example recorded in the artifact.

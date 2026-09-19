@@ -1,0 +1,7 @@
+U_3(Q) node: add germ and nilmanifold obstructions, two-lift tower gap
+
+Record in u3-q-embeds-in-fp-simple-group the rational-slope germ obstruction
+(1f62982ad), the nilmanifold covering-lift exclusion (calibration test T5),
+and part (C) of q-free-lifts-reach-only-lattice-affine-q-groups: towers of two
+lifts over Q-free groups are not excluded for U_3(Q), unlike Aff(Q), B_2(Q)
+and GL_n(Q).

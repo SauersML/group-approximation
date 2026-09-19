@@ -1,0 +1,9 @@
+Close adelic Q^n-deck lift hosts for GL_n(Q) (normal-Q^n lemma)
+
+A finitely generated group with a normal subgroup isomorphic to Q^n acts on it
+through some GL_n(Z[1/m]), and its quotient by it is not finitely presented.
+Applied to the adelic covering A^n -> (A/Q)^n (deck group Q^n, the adelic
+analogue of R -> S^1 behind Q <= T-bar): a finitely presented group of solenoid
+homeomorphisms never has a finitely generated lift group, and no finitely
+generated lift group carries Aff_n(Q) with the deck group as translations.
+Obstruction for gl-n-q-embeds-in-fp-simple-group; not independently reviewed.

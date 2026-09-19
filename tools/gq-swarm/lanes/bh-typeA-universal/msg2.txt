@@ -1,0 +1,10 @@
+Put hyperbolic and contracting self-similar groups in the permutational class
+
+Belk--Bleak--Matucci--Zaremsky verify, for a full contracting rational
+similarity group acting on the orbit of a rational point, exactly the four
+conditions of a type (A) action. So these groups are type (A) actors, and
+hyperbolic groups and contracting self-similar groups lie in B_A, not only in
+the Boone--Higman class. With the landed closures of B_A, finite direct
+products and graph products of hyperbolic groups satisfy Boone--Higman, which
+the open product closure of the Boone--Higman class did not give. No priority
+claimed.

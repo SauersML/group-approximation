@@ -1,0 +1,6 @@
+gq-referee-b: review of the bounded-harmonic refutation and Leavitt scalars
+
+Hypothesis/proof review of bounded-harmonic-rings-are-not-finitely-presented
+(PASS: R_T fits, the truncation lemma and both parts are correct, so
+E_N(R_T) and PE_N(R_T) are not finitely presented) and
+leavitt-tuples-make-rational-scalar-powers-elementary (PASS, for m >= d+1).

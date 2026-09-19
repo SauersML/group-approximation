@@ -1,0 +1,5 @@
+LANDED ca6fb8b62 on origin/main (parent afc332c1e):
+ ...ng-non-domesticity-is-vertex-non-domesticity.md | 131 +++++++++++++++++++++
+ ...el-elements-are-nowhere-domestic-at-infinity.md |   8 ++
+ 2 files changed, 139 insertions(+)
+rc=0

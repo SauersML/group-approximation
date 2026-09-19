@@ -1,0 +1,8 @@
+One group St_4(S) contains every GL_n(Q) (proof claimed, under review)
+
+For any ring S containing Q and a binary Leavitt pair, the block isomorphism
+St_4(M_k(Q)) = St_(4k)(Q) and the fact that scalar blocks a -> a (x) I_N multiply K_2
+by N show that every torsion K_2 class of M_m(Q) dies in St_4(S). So SL_(4m)(Q), and
+hence every GL_n(Q), embeds in the single group St_4(S). With S = D of the divisible
+ring engine this gives one finitely presented group for Problem 2.7. OPEN pending
+referee review; route into gl-n-q-explicit-natural-fp-overgroup.

@@ -1,0 +1,9 @@
+Lagrangian Thompson group: Deligne's lattice inside; finiteness engines excluded
+
+(1) Maslov Cantorization Y_Λ of the real Lagrangian Grassmannian is a Cantor
+set with an equivariant surjection to Λ_n(R); the odometer Lagrangian Thompson
+group V_Λ^τ (full group of O_τ × PSp_2n(Z) ⋉ Y_Λ) contains Deligne's lattice
+for odd n ≥ 3, centre acting as the odometer. (2) The Lagrangian actions of
+Sp_2n(Z) and of Deligne's lattice are never almost-V, so BHM Theorem 2.1 over
+V cannot certify such hosts. (3) OPEN: V_Λ^τ finitely presented with simple
+commutator subgroup containing Deligne's lattice; attempts recorded.

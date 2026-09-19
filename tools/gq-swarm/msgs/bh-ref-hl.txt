@@ -1,0 +1,3 @@
+Referee PASS for the horofunction lemma nodes (hyperbolic HL, k-local parent, free/surface, Roller)
+
+Adversarial line-by-line check. The key squeeze step (every geodesic from upstream to the local target passes through the window) holds as written. It is tested against the Webster-Winchester non-Busemann examples, read at source (arXiv math/0309291). Minor remarks: state the integrability condition on k, and the recalled constants are harmless. Credits Coornaert-Papadopoulos and Webster-Winchester.

@@ -1,0 +1,3 @@
+Referee report (citation lens): prime-shift K_n reduction to a metabelian quotient PASS
+
+Items 1-6 correct. Bieri-Strebel confirmed via Cooper-Tillmann 1506.01793 section 3.1 (f.p. hypothesis, CMH 53 pp. 258-278); Baumslag dispensable. Wording: item 6 title overclaims, A_1-analogue line needs GL_n(Z)-invariant qualifier, "cyclic metabelian", distinct_from normal closure mislabelled; sign bridge for "sharpens" supplied.

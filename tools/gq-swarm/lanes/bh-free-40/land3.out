@@ -1,0 +1,6 @@
+LANDED 789549719 on origin/main (parent b5a8d7b64):
+ ...ant-sets-force-infinitely-many-double-cosets.md | 30 +++++++++
+ ...face-word-stabilizers-infinite-double-cosets.md | 78 ++++++++++++++++++++++
+ research/out-free-groups-satisfy-boone-higman.md   | 15 +++++
+ ...t-free-subgroups-have-infinite-double-cosets.md | 71 ++++++++++++++++++++
+ 4 files changed, 194 insertions(+)

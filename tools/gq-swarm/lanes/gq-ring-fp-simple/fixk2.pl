@@ -1,0 +1,2 @@
+s/No determinant, or Bruhat--Tits\n    vertex type, of pairs is invariant under the normal closure\./No determinant of pairs is invariant under the normal closure. With the\n    example indexing `p_1 = 3` the factor is `2`, so the `2`-adic Bruhat--Tits\n    type of pairs is not invariant either./;
+s/In the coordinate `x\/y`, it\n    acts on every line `y = c != 0` the same way\./In the coordinate `x\/y`, it\n    acts the same way on every line `y = c != 0`, with `σ_2` carrying `y = c` to\n    `y = σ(c)`./;

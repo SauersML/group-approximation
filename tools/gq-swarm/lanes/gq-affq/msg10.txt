@@ -1,0 +1,6 @@
+BS(1,m) criterion: record referee-c PASS; infinite order is automatic
+
+Record gq-referee-c PASS (894d10d19) on the renormalization criterion, and
+its remark that the infinite-order hypothesis is redundant: the tower forces
+m | N for a finite order N, while T^m on A has order at most N/m but is
+conjugate to T.

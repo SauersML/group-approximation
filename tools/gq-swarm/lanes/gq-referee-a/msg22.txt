@@ -1,0 +1,8 @@
+Referee report: SMART height-3 renormalization PASS (proof gaps)
+
+Proof-gap review of smart-induced-map-has-brick-local-height-3-renormalization
+(9fadf5ac6) and the chain to BS(1,3) in 3V: the first-point table, the level
+induction, the identity on finite-level moves, the density argument for
+all-p and all-q chains, brick-locality, the direct bounded-return proof and
+the Baumslag-Solitar criterion all check. Priority is left to the literature
+lane.

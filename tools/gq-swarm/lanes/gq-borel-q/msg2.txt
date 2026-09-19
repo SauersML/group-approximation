@@ -1,0 +1,8 @@
+gq-borel-q: amalgam routes do not reduce the root; B_2(Q) = Q^x x Aff(Q)
+
+SL_m(Q) is the colimit of its four-index subgroups (every Steinberg relation
+over a field involves at most four indices), so gluing hosts of the pieces of
+the local Steinberg, Curtis-Tits or rank-2 parabolic amalgam is equivalent to
+embedding SL_m(Q); every vertex angle is pi/2 in any host, so no curvature
+argument applies. Also records B_2(Q) = Q^x x Aff(Q) and the iterated affine
+structure of B_n(Q), with an artifact comparing the permanence nodes.

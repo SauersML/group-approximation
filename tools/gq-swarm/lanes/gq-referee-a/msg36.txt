@@ -1,0 +1,6 @@
+Referee report: KMS Minsky groups contain no Z_(l) PASS
+
+Proof-gap review of kms-minsky-groups-contain-no-z-localized (a1c262c67): a
+finitely generated finite-exponent-by-abelian group has only finitely
+generated free abelian torsion-free subgroups, so the KMS groups contain no
+Z[1/q], Z_(l) or Euler lamplighter.

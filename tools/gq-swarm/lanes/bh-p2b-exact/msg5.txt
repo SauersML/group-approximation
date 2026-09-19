@@ -1,0 +1,7 @@
+P2 prime b: incomparable-cone lifts are equivariant except under self-swaps; exactness reduces to comparable-cone coherence
+
+New node incomparable-transposition-lifts-are-equivariant-off-self-swaps. It proves in the gluing group, for every group and space:
+- disjoint commutation of lifts in every configuration, by a spare cone with (R1) and (R2);
+- equivariance under all of M, and under conditioned cone swaps except in self-swap configurations;
+- the part of the exact self-swap that is settled.
+So K = 1 iff comparable-cone transpositions have coherent lifts (CL), whose key clause is independence of the self-swap formula from the auxiliary cone. This is the general half of the shared consistency statement.

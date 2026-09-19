@@ -1,0 +1,3 @@
+Referee report: Kazhdan almost-V central elements, Deligne corollary, normal germ extensions PASS
+
+Proof-gap lens on kazhdan-subgroups-of-almost-v-have-no-central-v-elements (933586f43), deligne-lattice-in-almost-v-sits-in-one-germ-group, and normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups (e8f4766f4). Basin decomposition, psi into V, sing w-invariance, translation numbers, NST dichotomy, one coordinate, and the finite-Kazhdan germ argument checked; one nit.

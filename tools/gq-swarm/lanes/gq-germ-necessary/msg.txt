@@ -1,0 +1,9 @@
+Obstruction: almost-V hosts of GL_n(Q), n>=3, need lattice germs
+
+FW subgroups of the group H of Cantor homeomorphisms that are locally in V
+off finite sets transfix the commensurated set of V-germ classes, so after
+one conjugation in H they act through germs at finitely many fixed points,
+with kernel in a conjugate of V. For n >= 3 every SL_3(Z[1/m]) <= GL_n(Q)
+is Kazhdan with trivial centre, so a finitely generated almost-V host of
+GL_n(Q) has ONE singular germ group containing a finite-index subgroup of
+every SL_3(Z[1/m]). Lane-proved, not independently reviewed.

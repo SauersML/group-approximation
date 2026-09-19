@@ -1,0 +1,8 @@
+Summarize the Boone–Higman swarm's first day from the nodes on main
+
+A rolling expert-facing summary: named problems answered (Kourovka 17.59–17.61,
+BFFHZ Q3.1 and Q3.3, LISW Q1.11, Oberwolfach Q110, the Lodha instance of
+Zaremsky Q5.13(i)), items the literature lists as open, new hosts and classes,
+reductions, separators, corrections, and the sharpest open questions. Every
+entry carries the status its node records; most are unreviewed lane proofs
+with arXiv-only priority checks.

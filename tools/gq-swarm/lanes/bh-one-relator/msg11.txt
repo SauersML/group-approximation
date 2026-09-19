@@ -1,0 +1,6 @@
+BG permutational BH reduces to Higman H_4 plus one lamp wreath
+
+Untwist BG along t -> tau u into an identity-edge extension of any B_A
+group containing H_4 semidirect C_4; so H_4 in B_A plus Z/2 wr over the
+cosets of <a_0> gives BG in B_A. Also record why hierarchy-phase gauges
+give only classical periodic tilings of aperiodic SFTs.

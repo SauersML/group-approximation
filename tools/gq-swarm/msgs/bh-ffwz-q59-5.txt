@@ -1,0 +1,6 @@
+The one-word basis candidate E of Thompson T fails on every multipoint permutation module
+
+Z wr_X T violates E whenever a stabilizer of X preserves a finite set of at least two circle points. This
+covers tuples, finite sets, arcs and the regular T-set. The proof uses a rotation in T that swaps two arcs
+and parks the third in a gap, then reads the surviving nested commutator off a two-point lamp by Fox
+calculus. With 56b422d20 this makes permutation modules all-or-nothing at T. Lane proof, not reviewed.

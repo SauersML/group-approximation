@@ -1,0 +1,7 @@
+Breakpoint conditions are automatic: all f.g. piecewise PSL_2(Z) and piecewise dyadic-affine circle groups satisfy BH
+
+A breakpoint of a piecewise PSL_2(Z) (resp. dyadic-affine) circle homeomorphism is a fixed
+point of a nontrivial element gamma_-^{-1}gamma_+, hence rational or quadratic irrational
+(resp. rational). So the two consumer claims of periodic-germ-extensions-of-v-are-virtually-simple
+cover every finitely generated piecewise PSL_2(Z) group and every finitely generated piecewise
+dyadic-affine group of the circle or interval. Statement strengthening only; proofs unchanged.

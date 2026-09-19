@@ -1,0 +1,6 @@
+Referee C: PASS for four trust surfaces of the BS(1,3) and simple-ring write-ups
+
+Independent re-derivations of the bounded first-return lemma for kV, the prefix-code encoding
+of SMART into 2V (with reversibility of the transcribed table), SMART exact tripling and bounded
+return, and the Leavitt-Nekrashevych completion simplicity criterion with its embedding input and
+its application to R_k.

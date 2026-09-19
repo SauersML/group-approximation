@@ -1,0 +1,9 @@
+Port amalgams with a locally moving factor are never faithful
+
+If one factor of an amalgam or HNN extension of homeomorphism groups has nontrivial rigid
+stabilizers of small open sets avoiding the common subgroup, the commutator [d a d^-1, b] of
+two disjointly supported conjugates is a reduced word acting trivially. This settles the test of
+gluing two odometer hosts V_(2,1)(<a>) along the odometer: the only same-action copies are B and
+cBc, a Thompson twist is an HNN extension, and every case has a kernel. Cyclic Houghton ports
+(containing FSym of a ray) glue faithfully to nothing. So Higman operations on known hosts always
+need kernel removal by disjoint-support relations.

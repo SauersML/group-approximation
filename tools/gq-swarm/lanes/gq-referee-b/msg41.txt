@@ -1,0 +1,3 @@
+Referee report (citation lens): p-adic dilation normalizers act by power maps PASS
+
+p-adic six exponentials pinned: Serre, Dependance d exponentielles p-adiques, Sem. Delange-Pisot-Poitou 1965/66 exp. 15, Theoreme 1 (a = 3, b = 2), read at source; hypotheses match Step 4. Chain case is Serre a = b = 2, open (Waldschmidt 2022).

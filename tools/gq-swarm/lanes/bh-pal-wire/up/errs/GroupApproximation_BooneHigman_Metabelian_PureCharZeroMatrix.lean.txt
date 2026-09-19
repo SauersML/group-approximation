@@ -1,0 +1,1 @@
+error: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:76:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'GroupRing.affineAction', which is 'noncomputable'

@@ -1,0 +1,13 @@
+Propose a train-track trace groupoid as a Cantor host for closed MCGs
+
+New OPEN claim train-track-trace-groupoid-hosts-closed-mcg, with route
+closed-mcg-cantor-host-via-train-track-traces into the full-Cantor premise. The
+candidate host is the full group of the groupoid of infinite train-track
+splitting sequences taken modulo commuting splits (traces), with tail
+equivalence and the mapping class action. Gates: G1 (a Serret-type
+finite identification; Agol's eventual agreement of maximal splittings is the
+known analogue), G2 (Cantor regularization), G3 (clopen transitivity) and G4
+(finite presentation via a split-forest complex). The genus-one calibration is
+Serret's theorem and PSL_2(Z) <= T <= V. The partially commutative quotient is
+what lets commuting twists act on independent coordinates, consistent with
+Z^2*Z in 2V and not in V.

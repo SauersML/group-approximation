@@ -1,0 +1,9 @@
+Torsion in finite germ extensions of V localizes: infinite singular orbits, or locally-finite-by-(germs at finitely many fixed points)
+
+New claim torsion-subgroups-of-almost-v-groups-localize-at-singular-germs (+ proof, lane proof,
+elementary): the torsion analogue of the FW germ reduction. For f.g. torsion T in the group of
+Cantor homeomorphisms locally in V off finite sets: either T has an infinite orbit on its singular
+support, or its pointwise fixer of the (finite) singular orbit maps to finitely many germ groups with
+locally finite kernel inside V; infinite simple torsion groups then embed in one singular germ group.
+Lesson: shell/VA hosts carry Burnside inputs only via fp singular germ groups or infinite singular
+orbits (the dynamical form of Osajda's infinite-dimensional cubical freedom). Linked from (RT).

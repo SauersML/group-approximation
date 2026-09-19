@@ -1,0 +1,1 @@
+Rotation 8: adversarial PASS on B(e,e,n) in B_A (bundle, Euler characteristic, free-kernel closure re-derived)

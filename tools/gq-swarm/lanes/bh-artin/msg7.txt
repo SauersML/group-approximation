@@ -1,0 +1,8 @@
+Admissible Artin reduction: literature status of large triangles, and two host attempts
+
+- admissible-artin-pbh-reduces-to-free-partial-mapping-tori: only (3,3,3) is already
+  known (Ã_2); HJP Theorem 1.1 rules out virtual cocompact cubulation for every other
+  large-type triangle; RF, virtual poly-freeness and CAT(0) are known but give no
+  simple envelope. Attempts: boundary-of-A host (the partial-conjugation homeomorphism
+  realizing α is singular on all of Λ(C), so recoding into germ extensions of V fails;
+  it is rational); holomorph of B (A does not live there).

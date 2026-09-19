@@ -1,0 +1,7 @@
+Bound roots of minimal rational PL circle maps with exponential or affine charts
+
+If a rational PL circle homeomorphism has irrational rotation number and its Denjoy conjugacy is piecewise
+exponential or affine, then every chart has one base k. For k = 1 it is impossible (such maps are never
+PL-conjugate to rotations). For k different from 1 the rotation numbers of its PL centralizer lie in a
+free-abelian-plus-finite group, so it has roots of only boundedly many orders. This closes the linearizable
+shapes for an infinitely divisible minimal element of a Stein group.

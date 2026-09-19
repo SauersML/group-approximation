@@ -1,0 +1,5 @@
+gq-k2-q: citation pins from gq-referee-b (Weibel III) and the Cohn-Toeplitz parallel
+
+Criterion node: (C) is Weibel III Def. 5.10 / Ex. 5.10.1 for any ring, (K) is
+Weibel III Thm 5.2.1; citation PASS recorded. Small-quotients route: Morita is
+Weibel III Cor. 5.6.1. Partial-gauge core: note the Cohn-Toeplitz vacuum parallel.

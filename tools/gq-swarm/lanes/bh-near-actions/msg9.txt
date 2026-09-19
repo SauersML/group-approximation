@@ -1,0 +1,5 @@
+bh-near-actions: Stein groups with (F)-unit slopes are fp; D(V) fp simple (Tanner question)
+
+Full + contracting RSG => fp by BBMZ Thm A; V^ab finite by AH + H_2(Z^d x_A Z) (no conjugate pair
+product 1 for Pisot units of degree >=3; norm -1 in degree 2) => D(V) fp simple of finite index.
+Positive answer to Tanner 2312.07375 Question for Gamma=Z[beta], Lambda=<beta>, beta any (F) unit.

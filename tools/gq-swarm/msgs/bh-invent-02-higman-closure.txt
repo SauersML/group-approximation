@@ -1,0 +1,8 @@
+Higman closure of abelian-cofinite hosts reduces to faithful port gluing
+
+The odometer group V_(2,1)(<a>) on the integers is a host (finitely generated point stabilizers via
+the germ at 0^infinity), which also settles FSym(Z) x| V_(2,1)(<a>). Without faithfulness, hosts are
+closed under amalgams and HNN extensions along the port and contain free products of hosted groups
+(port disjunction plus the normal form); sharpness is exactly faithfulness of the glued action.
+Cofinite ports have virtually abelian centralizers, so no generic gluing can supply it: the
+one-dimensional Higman problem and FFWZ Question 5.9 meet at one gate.

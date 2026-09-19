@@ -1,0 +1,7 @@
+Referee report: piecewise circle host obstructions PASS (proof gaps)
+
+Proof-gap review of pp-circle-divisible-subgroups-act-freely and
+pp-circle-and-lift-hosts-miss-gl-n-q (landed d65ff92ff). Both proofs check
+step by step, including the germ homomorphism at gap endpoints in the lifted
+case and injectivity of the translation number on divisible subgroups of the
+lift group. Citation fidelity is left to the second referee.

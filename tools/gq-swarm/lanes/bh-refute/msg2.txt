@@ -1,0 +1,6 @@
+Record referee-a PASS on bh-separators node and apply nits N1–N3
+
+- status line: referee-a PASS for §§1–3 (90752e2d8); referee-b pending;
+- N3: subgroup-closure is definitional (§2, §3);
+- N1: generating-set change only alters the constant;
+- N2: Φ monotone; explicit Kuznetsov halting bound with the diagram-diameter bound.

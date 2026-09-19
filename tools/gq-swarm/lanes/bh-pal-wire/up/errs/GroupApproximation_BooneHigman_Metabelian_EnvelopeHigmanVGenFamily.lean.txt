@@ -1,0 +1,6 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:79:6: Unknown constant `Subgroup.closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:80:26: Unknown constant `Subgroup.closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:84:10: Unknown constant `Subgroup.mem_map.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:87:25: Unknown constant `Subgroup.mem_map.mp`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:87:9: Tactic `rcases` failed: `x✝ : ?m.15 h1 h2` is not an inductive datatype
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:92:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_closure`

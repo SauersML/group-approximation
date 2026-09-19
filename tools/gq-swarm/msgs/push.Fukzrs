@@ -1,0 +1,3 @@
+To https://github.com/SauersML/group-approximation.git
+ ! [remote rejected]     dac03dbacd3116f9f5bf52df0a2e6785bedacfda -> main (cannot lock ref 'refs/heads/main': is at 7887a68babd92ab58df0ff904ca4a0a3cc15293a but expected a7fbefeea4da492ab3561dd1807882732016c4f6)
+error: failed to push some refs to 'https://github.com/SauersML/group-approximation.git'

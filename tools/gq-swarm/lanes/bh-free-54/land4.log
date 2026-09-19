@@ -1,0 +1,5 @@
+LANDED 0b16dec6e on origin/main (parent f13c0975b):
+ .../gq-bh-free-54-edge-split-operad-tests.md       | 335 +++++++++++++++++++++
+ research/edge-split-operad-satisfies-ore.md        | 115 +++++++
+ ...s-are-single-carets-of-the-edge-split-operad.md | 106 +++++++
+ 3 files changed, 556 insertions(+)

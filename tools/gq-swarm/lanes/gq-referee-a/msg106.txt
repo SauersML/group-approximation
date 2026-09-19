@@ -1,0 +1,3 @@
+Referee report: separated automata reduce BH to fp overgroups of the base PASS
+
+Proof-gap lens on separated-automata-reduce-bh-to-fp-overgroups-of-the-base (7ade83fcb). Beta-descent, germ saturation, germ transplant and the P wr Sym(Y) host identity checked; four nits.

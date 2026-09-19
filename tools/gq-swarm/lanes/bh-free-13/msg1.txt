@@ -1,0 +1,5 @@
+Land the residual finiteness of the full-shift topological full group
+
+Every element of [[σ]] permutes each finite shift orbit and periodic points are dense, so [[σ]] is
+residually finite; with Zelmanov, its bounded-exponent subgroups are finite. So the copy of [[σ]] in
+2V can refute the 2V torsion question only with unbounded exponent.

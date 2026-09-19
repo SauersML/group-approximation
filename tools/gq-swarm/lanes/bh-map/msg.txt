@@ -1,0 +1,6 @@
+BH swarm map: status of the Boone–Higman subgraph on main
+
+Artifact only. It covers the classes known and open for BH/PBH on main, every
+equivalence of BH with its statement, the 34 routes to the root with their open
+gates, BBMZ Problem 5.3 and the other named problems at 3903888ab, and a ranked
+top-10 of open questions. No new claims.

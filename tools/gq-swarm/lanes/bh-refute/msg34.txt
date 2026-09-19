@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on GL_n(Q) in fg simple and fp decidable groups (assembly checked)

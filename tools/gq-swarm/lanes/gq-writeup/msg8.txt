@@ -1,0 +1,5 @@
+Evening obstruction summary: Out(V) node now double-refereed
+
+Bring section 6 to the node text at 0e4673070: gq-referee-b PASS (97242cc3b),
+Boyle 2008 read with the root problem cited in Salo's wording, and the
+calibration restricted to the 2-shift form.

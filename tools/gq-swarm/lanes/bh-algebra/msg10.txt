@@ -1,0 +1,3 @@
+RFD wall for scalar-descendant completions; lesson for general BH
+
+New claim scalar-descendant-hosts-see-only-rfd-inputs: a self-similar algebra with a character and scalar descendants is residually finite-dimensional (rho_j = epsilon o psi_j separate points). Lossless monomial bases carry the augmentation character, so they host only RFD inputs: A_X is allowed, K(t) is not. Lesson for general BH: envelope simplicity is contraction to constants, and the constant object (scalars / field F_p(t) / simple algebra B in B ⊗ L) bounds the inputs, which is the algebra face of the RF wall for self-similar groups. Lane proof, not reviewed.

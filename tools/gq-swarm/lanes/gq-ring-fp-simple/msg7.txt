@@ -1,0 +1,4 @@
+Record the exact form of Evans-Mandelberg-Neff on the char-0 ring node
+
+Their theorem is the weak form (a simple envelope with solvable word problem,
+not finitely presented), for varieties including rings of characteristic p.

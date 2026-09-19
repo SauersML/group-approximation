@@ -1,0 +1,6 @@
+Calibration worlds: record the nV gates for rational stepping stones
+
+T3 now cites dc7ed0ea3 (Aff(Q), SL_2(Q), GL_n(Q) in nV force BS(1,2); n >= 3
+also forces H_3(Z) and SL_3(Z)) and 2d0a728bd (a scaled copy of Q in nV consists
+of aperiodic-core elements, so the odometer copy of Kojima-Sheng Q cannot be
+scaled).

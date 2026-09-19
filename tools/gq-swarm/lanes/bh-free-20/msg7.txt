@@ -1,0 +1,9 @@
+Several ascending letters: amalgam over the base, centralizer extensions, Cantor locus
+
+A k-letter ascending HNN extension is the amalgam of its single-letter extensions over the
+base. A letter acting by an inner automorphism of a host (conjugation normalizing the base)
+is isomorphic to a centralizer extension P *_K (K x Z). The natural common-hat host for k >= 2
+letters is singular along a Cantor set (the free monoid boundary), outside finite germ
+extension theory, so closure of the germ host class under simultaneous letters stays open.
+Test case: the Fabrykowski-Gupta automorphism a -> a^-1, r -> r is not induced by any tree
+automorphism (hand check), so Bartholdi's three-letter group stays open.

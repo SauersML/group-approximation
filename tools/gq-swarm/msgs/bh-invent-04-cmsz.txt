@@ -1,0 +1,10 @@
+CMSZ lattices carry free minimal quantum-rigid SFTs (conditional); germ-primitivity check; causal fibre replaces the SW Layout Lemma
+
+One Slurm job (msismall, 6 s) checked germ primitivity for two cyclic Fano triangle presentations. The
+tile model gives 42 tiles, row sums q^2, commuting 0/1 transition matrices, and M1 M2^3, M1^2 M2^2 > 0,
+calibrated on F_2 x F_2. It agrees with the general theorem for type-rotating groups. So the transplant of
+the causal diagonal-time minimal crossing-wire shift is a free, minimal, quantum-rigid SFT over torsion-free
+CMSZ groups (Kazhdan, one-ended), conditional on unreviewed lane proofs. The withdrawn SW Layout Lemma is
+replaced by the diagonal-time layout, which meets the transplant cone condition since every tile is fixed by
+its left and bottom colours. The minimality corollary and the F_2 x F_2 note now cite that fibre (a generic
+one-way zone fails causality). The SE-corner ordering in the four-way node is fixed as the referee asked.

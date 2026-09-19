@@ -1,0 +1,7 @@
+Independent second proof that CT_P(Z) are pairwise non-isomorphic (finite P)
+
+Cross-check of ct-p-z-groups-are-pairwise-nonisomorphic (Kourovka 17.60). It uses a different,
+one-germ invariant: for each locally stable isotropy germ, the primes l such that some minimal
+subsystem of the germ's stable core has all l-power roots of unity as continuous eigenvalues.
+For the groupoid of CT_P(Z) the union of these primes is P ∪ {2}. The claim node links the
+artifact.

@@ -1,0 +1,12 @@
+Attractors fix commuting actions: boundary scaffolds carry only finite time
+
+New claim attracting-boundary-factors-fix-commuting-actions (lane proof, elementary). If a minimal
+system has an element with a dense-basin attracting point, every factor map onto it from a minimal
+system is unique. So its automorphism group is trivial, finite-to-one extensions have automorphism
+groups bounded by fibre size, and in any product Lambda_1 x Lambda_2 the factor commuting with a
+boundary-type action fixes that boundary pointwise.
+
+Consequences: time lifts over every compression-rigid row built so far (F_d boundary shifts, boundary
+products, the A2-tilde skew shifts) carry only finite groups. In a product design the input acts only
+inside fibres over the other factor's boundary, whose stabilizers embed in Z^r for building lattices,
+so geometric scaffolds return the input's problem in Lambda_1 x Z^r form.

@@ -1,0 +1,7 @@
+BH results summary: record that the BS(1,2) chain claims failed review and are open; add the restricted-wreath scope note
+
+- higman-chain-group-lies-in-b-a (G_1 = BS(1,2) *_Z BS(1,2) in B_A) and baumslag-solitar-chains-of-every-length-lie-in-b-a failed review at 4b2fdd3d9. The Kaloujnine-Krasner map lands in the unrestricted wreath product, while the cited B_A results cover only restricted coset lamplighters. Both are OPEN and listed under "failed review". The summary had never listed them as results.
+- Coset-wreath closure is scoped to restricted wreath products.
+- Records that 21.74(b,c), 21.75, 17.60, 17.61, BFFHZ Q3.1, MO 339541 and FFWZ Q5.9 remain referee PASS. Counts are unchanged: 22 full (12/10/0) and 10 partial.
+
+Lesson for general BH: permanence through coset wreaths works only for finitely supported lamps. Any Higman-style HNN step whose edge map needs infinitely many twisted coordinates must supply a new closure theorem, not reuse the restricted one.

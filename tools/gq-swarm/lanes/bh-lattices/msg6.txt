@@ -1,0 +1,8 @@
+Cross-link the tree-lattice k-graph nodes with the parallel 2-graph machinery
+
+bh-groupoid found the same rescaling, skew-product and full-shift steps
+independently, for 2-graphs with primitive colour matrices. Record that as
+distinct_from on the tree-lattice embedding and on the stabilized full-group
+nodes, and cite the imported Li node in the routes. Also correct Attempt 7 on the
+multi-tree claim, which still named Matui's comparison theorem; the comparison is
+now proved directly.

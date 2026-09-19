@@ -1,0 +1,7 @@
+Adversarially re-check PBH graph-product and common-retract closure (BFFHZ Q3.1)
+
+Step-by-step check of pbh-class-closed-under-graph-products and
+pbh-class-closed-under-common-retract-amalgams against BFFHZ Theorems C and E and
+Zaremsky Proposition 5.5, re-read at arXiv HTML 2503.21882v2. No gap found. The
+bounded priority search found no published answer to BFFHZ Question 3.1. Status lines
+now say the nodes were re-checked, not externally reviewed.

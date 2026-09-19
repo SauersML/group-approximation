@@ -1,0 +1,5 @@
+gq-referee-b: PASS on kazhdan-almost-v-central proof and normal germ extensions finite Kazhdan
+
+BBGGHMS 1107.0672 inputs at the cited lines; Per(alpha) decomposition gives combinatorial =
+topological attracting set; KNO/KKN (T) pinned; BHM Cor 2.10 number right. W1: node regime is a
+pointwise variant of BHM Cor 2.10(3), not a restriction.

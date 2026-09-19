@@ -1,0 +1,8 @@
+Decide the free rules of the binary hierarchy machine: UNSAT; a free fourth letter stays undecided
+
+A lazy SAT encoding of the local renormalization certificate, with clauses taken from the rule facts each failing
+computation consulted, was calibrated first: a planted negative gives UNSAT, the zero-tape orbits give SAT and
+consult no free rule, and learned nogoods are sound. It shows that none of the 1,728,000 completions of the
+3-letter table passes (376 nogoods, some of them single rule facts). With a free marker letter, seeded by the
+transferred clauses, the search timed out undecided (3,464 fills, 8,499 nogoods). Corrects the earlier claim
+that no small set of free rules is contradictory.

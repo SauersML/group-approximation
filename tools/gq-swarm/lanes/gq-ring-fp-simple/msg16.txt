@@ -1,0 +1,8 @@
+Capacity-chain candidate for a fp simple ring with K_0 containing Q[1]
+
+A capacity register lets a level-k state start exactly k+1 prefixes d c^j st
+ending at level k+1, with finitely many letters; availability depends on the
+registers, so the correspondence has index 1 on [1] and there is no Leavitt
+tuple. Heuristic K_0 bookkeeping gives [1] = -V_0 with V_0 infinitely
+divisible. Recorded OPEN, with the three remaining lemmas (presentation,
+simplicity for non-unital psi, K_0 via the ABC sequence).

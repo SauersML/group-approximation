@@ -1,0 +1,5 @@
+Referee report: projective type (A) extension reformulations PASS
+
+Proof-gap review of the reformulations and Attempts 2-3 of
+pgl-q-projective-type-a-extension: the strong and subgroup forms and the
+near-action obstruction check; one wording fix for the auxiliary set S_1.

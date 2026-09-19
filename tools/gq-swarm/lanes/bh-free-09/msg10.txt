@@ -1,0 +1,10 @@
+Cross-layer separable modifications kill rigidity; cylinder transport closure; design rule corrected
+
+The far-modification lemma kills every fibre product of SFTs over any group whose layers have
+modification sets that translation can pull apart. Over Z^d, antipodal half-space freedoms are fatal
+and non-antipodal ones are never separable. The rule "common open determinism cone" is withdrawn as
+false: Ledrappier and its mirror share one. An abstract transport closure (locality, Boolean
+operations, fibre-rule steps) certifies centrality (C) for any extension over any group, and has
+deterministic extensions, fibre products and the A~2/tree transplants as instances. The audit finds
+no clash in relative-seed gluing (exclusivity atoms). For square simulations it flags multiple
+infinite zones with irreversible computation, and gives a fix.

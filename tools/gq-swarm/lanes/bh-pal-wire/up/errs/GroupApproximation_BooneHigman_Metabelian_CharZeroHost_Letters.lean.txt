@@ -1,0 +1,4 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:60:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.commSemiring', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:115:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'sigma', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:123:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.nonAssocSemiring', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:141:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputable'

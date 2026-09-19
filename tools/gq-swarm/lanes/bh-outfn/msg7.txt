@@ -1,0 +1,6 @@
+The Fox rational section of Aut/Out does not lift to class two virtually
+
+For n >= 4 the commutator of sigma-lifts of K_12 and K_34 is a nonzero
+multiple of e_2 wedge e_4, so the canonical class o_Q is nonzero, and a
+virtual section of Aut(F_n) to Out(F_n) over Gamma' forces H^1(Gamma'; H_Q)
+to be nonzero. Recorded as Attempt 3 on the nilpotent tower node.

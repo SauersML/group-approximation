@@ -1,0 +1,14 @@
+G2 second angle: deterministic-time lifts inherit quantum rigidity
+
+An SFT over Lambda_1 x Lambda_2 that is deterministic in the Lambda_1 factor
+(rows in an SFT Y, moved by invertible cellular automata) is quantum rigid
+whenever Y is: each row algebra commutes by rigidity of Y, and the local rules
+make neighbouring row algebras equal. The lift is free or minimal exactly when
+the joint action on Y is, so it is never free over a free space factor
+(Piantadosi, cited), and invertible linear time evolutions over trees are
+shifts (trivial units in F_p[F_n]).
+
+Lesson for general BH: deterministic (automaton, self-similar, space-time)
+codings are rigid for free in the time direction and add nothing across space
+walls. G2 over a product then needs a rigid Lambda_2-free row SFT with a large
+automorphism group, or a genuinely coupled rule. Lane proof, not reviewed.

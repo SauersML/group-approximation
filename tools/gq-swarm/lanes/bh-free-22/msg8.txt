@@ -1,0 +1,8 @@
+Free-factor germ extensions of V fail the Belk-Hyde-Matucci SingFix gate
+
+If the germ group at 0^infinity is <t> * H, with H preserving every cone
+0^nC, then SingFix({p},{p}) is the strictly increasing colimit of the
+finitely presented amalgams V_p *_(B_n) B_n H, so it is not finitely
+presented. Finite annular actions also exclude germs that t normalizes or
+ascends. The one-point germ route for fp RF groups thus comes back to virtual
+endomorphisms. Lane proof, not reviewed.

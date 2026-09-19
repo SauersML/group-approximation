@@ -1,0 +1,3 @@
+Referee report (citation lens): Euler ring rational symbols are infinitely generated PASS
+
+Imports in range: ABC 3.6/7.2 for A regular noetherian, DS 10(a)(i) p. 252 read at source, symbol lemma. Reciprocity lemma, invariant I_p and independence checked; refutes the fg central unstable K_2 claim for every l, N >= 3. Withdraws the SK_1(A)=0 remark of 76fc7667e.

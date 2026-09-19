@@ -1,0 +1,5 @@
+Replace the unread Lyndon–Schupp appeal by a Strebel-formula proof of the Greendlinger step
+
+decidable-group-with-coarsely-embedded-expanders-exists: the face with one exterior arc
+and at most three interior arcs (two-face form) now follows from Gruber–Sisto Lemma 2.14
+(Strebel's curvature formula, read at source) and Gr'(1/24) ⇒ Gr(25). No unread input remains.

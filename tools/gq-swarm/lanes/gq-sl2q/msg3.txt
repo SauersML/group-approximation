@@ -1,0 +1,11 @@
+Adelic complex of groups for SL_2(Q): not cocompact, no envelope on X
+
+The SL_2(Q) action on the restricted product of Bruhat--Tits trees has one
+vertex orbit per squarefree integer, and PGL_2(Q) has one edge orbit per
+prime. A group acting on a connected graph with finitely many vertex and edge
+orbits and finitely generated stabilizers is finitely generated, so no
+cocompact model exists for any gq target. Every automorphism of the adelic
+median graph acts prime by prime and moves finitely many base vertices, so no
+finitely generated group of its automorphisms contains the standard SL_2(Q);
+an envelope must mix primes. Record SL_2(Q) in B_A as the OPEN permanence
+instance, with routes to the n = 2 claim and from the GL_n(Q) class.

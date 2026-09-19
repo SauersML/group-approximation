@@ -1,0 +1,19 @@
+bh-logic: embedding in finitely presented simple groups is Sigma_3-complete
+
+New route circulant-graph-wreath-products-embed-in-dv-f-proof. Every circulant
+graph wreath product G_U = A(Gamma_U) x| Z with cofinite connection set embeds
+in the one finitely presented simple group DV_F (Belk-Zaremsky). Lamps are
+placed on edge coordinates of C^D, each acts by a north-south element of kV, and
+a ping-pong lemma for right-angled Artin groups (proved for arbitrary graphs)
+gives faithfulness; the shift acts through F on the coordinates. The general form:
+every right-angled Artin group whose defining graph has locally finite complement
+embeds in DV_F. The claim circulant-graph-wreath-products-satisfy-boone-higman is
+now ESTABLISHED.
+
+New claim embedding-in-fp-simple-groups-is-sigma-3-complete, with its proof
+route. Unconditionally, for recursively presented groups, embeddability in some
+finitely presented simple group is Sigma_3-complete, and so is embeddability in
+DV_F. One computable family witnesses both: cofinite members lie in DV_F, and the
+other members have undecidable word problem. Item 5 of
+boone-higman-is-equality-of-two-sigma-3-index-sets is updated.
+The finitely presented version is left open. Lane proofs, not reviewed.

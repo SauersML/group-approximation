@@ -1,0 +1,3 @@
+Referee report: BHM SingFix condition forces fp germ groups PASS
+
+Proof-gap lens on bhm-singfix-condition-forces-fp-germ-groups (fcc524ea0): onto via condition (3) only, kernel via (2), V[U] = V_(2,r), directed union checked; also the Kuznetsov-type word-problem remark of steinberg-resolvent-shell-envelope-is-finitely-presented gate 1 is correct.

@@ -1,0 +1,7 @@
+Repair the Q1.15 flagged-host claim after referee: work on the infinite boundary, not the sinks
+
+Referee bh-ref-q115-b (866b27097a) found that full labels are sink objects, adding an isolated point per
+vertex to Li boundary, so the host as written was not minimal or simple. Repair: use X_inf = dOmega cap
+Omega_inf, closed and invariant with base cone the Roller boundary; item 2 of the flagged node corrected,
+proof section 2 corrected, host rebuilt on X_inf. Resynchronization, TF, Acyc, faithfulness, minimality and
+the Cuntz hypothesis re-checked. Claim stays OPEN, marked REPAIRED pending re-review.

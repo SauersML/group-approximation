@@ -1,0 +1,4 @@
+LANDED d2c050eea on origin/main (parent ca835f19e):
+ ...ups-have-fg-subgroups-with-two-double-cosets.md | 80 ++++++++++++++++++++++
+ research/out-free-groups-satisfy-boone-higman.md   | 13 ++++
+ 2 files changed, 93 insertions(+)

@@ -1,0 +1,8 @@
+Root gl-n-q: record the commutative-linear piecewise-host obstruction
+
+Add Attempts entry 3 to gl-n-q-embeds-in-fp-simple-group: adelic Cantor models
+and every finitely generated host with finitely many commutative-linear pieces
+per generator (topologically free) miss the linear copy of GL_n(Q), by
+piecewise-commutative-linear-hosts-miss-linear-gl-n-q. Record in that node's
+distinct_from the neighbouring lemmas fg-piecewise-linear-hosts-omit-natural-
+gl-n-q and germ-extensions-omit-standard-gl-n-q.

@@ -1,0 +1,6 @@
+Cross-reference the gq-deep-ring-1 Q nodes with earlier landings
+
+Credit integral-form-algebras-have-no-fg-subring-containing-q (landed first)
+and the Leavitt case in infinite-field-leavitt-units-are-not-finitely-generated
+in the ring-level obstruction, and relate the (Q,+) copy in U(L_Z(1,2)) to the
+finite-field reduction of integral unit hosts: its reductions mod p are torsion.

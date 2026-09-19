@@ -1,0 +1,13 @@
+    log('PART D: contextual closure (window case-split certificates)')
+    mt = 40
+    r1 = contextual_closure('full2', FU3, 3, 6, cap, mt, 6)[0]
+    r2 = contextual_closure('checker', CH3, 3, 6, cap, mt, 8)[0]
+    rs = 5 if SMOKE else 7
+    r3 = contextual_closure('ledrappier', LE3, 3, rs, cap, mt, 8)[0]
+    r4 = contextual_closure('ledrappier', LE5, 5, rs, cap, mt, 8)[0]
+    dc = r1 == 2 and r2 == 6 and r3 == rs and r4 == rs
+    log('CTX CALIBRATION %s (full2 blocked at 2; checker, Ledrappier reach the stop radius)' % ('PASS' if dc else 'FAIL'))
+    if not dc: log('ABORT: contextual calibration failed'); return
+    contextual_closure('labbe', LAB3, 3, 6 if SMOKE else 10, cap, mt, 8 if SMOKE else 12)
+    contextual_closure('labbe', LAB5, 5, 7 if SMOKE else 20, cap, mt, 9 if SMOKE else 14)
+    log('DONE')

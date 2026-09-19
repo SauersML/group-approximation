@@ -1,0 +1,12 @@
+V-stabilized full contracting RSGs are finitely presented; E3 prime for hyperbolic seeds
+
+New node v-stabilized-full-contracting-rsgs-are-finitely-presented, a lane proof with referee requested.
+- Lemma 1: the Boolean power LC(E,V) x| L over a full contracting RSG L is finitely presented. Mapping cones supply room, and the finite nucleus bounds how L distorts cones.
+- Lemma 2: the trivially acting labels are finitely normally generated.
+- With exact gluing, F(G_V x G_L) is therefore finitely presented.
+Corollaries:
+- Brin: 2V is finitely presented (calibration);
+- Matui-Matsumoto V-stabilizations are finitely presented;
+- E3 prime holds for hyperbolic seeds whenever the horofunction full group is a full contracting RSG (BBMZ: every group with a proper Z free factor);
+- quantum rigidity of those horofunction SFTs, via the necessity theorem.
+The upstream-certification node is marked established for that class.

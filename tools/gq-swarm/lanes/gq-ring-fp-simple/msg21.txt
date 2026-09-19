@@ -1,0 +1,4 @@
+Record the referee a pass on the register no-go; two precision fixes
+
+Choose P_f from an equation-free DNF term so the containment holds over
+Q(delta); apply the lemmas type by type to f_j p_rho.

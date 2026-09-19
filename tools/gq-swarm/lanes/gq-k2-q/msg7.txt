@@ -1,0 +1,9 @@
+gq-k2-q: the sl_2 loophole reduces to the two-register comparison; Casimir fails
+
+Established: no central element or resolvent of sl_2 separates L(k) from the
+Verma submodule M(-k-2) of M(k), since they share the Casimir scalar; the only
+cut is the growing-length singular vector f^(k+1) v_k. Open reduction: a
+finitely presented sl_2 vacuum host realizing every L(k) admits a Verma-type
+module (local nilpotence of f is Pi_2, not finitely presentable), so it is not
+simple, unless it bounds weights below by comparing the weight to the top
+weight -- the capacity-chain two-register regime.

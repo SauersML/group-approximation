@@ -1,0 +1,15 @@
+Finite-subgroup conjugacy in full Cantor groups; finite-edge graphs of subgroups of T lie in B_A
+
+- New: finite-subgroups-of-full-cantor-groups-conjugacy-criterion (+ proof). In a full
+  clopen-transitive D, finite subgroups with clopen fixed sets are conjugate along θ iff
+  their stabilizer-type sets correspond. Free finite subgroups are always conjugate and
+  extend to every finite overgroup.
+- New: finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a (+ proof). A finite graph of
+  groups with finite edges whose vertex groups sit in one full host D ∈ B_A, with matching
+  edge strata, lies in B_A. So every finite-edge graph of subgroups of Thompson's T does,
+  e.g. <T, t | t r t^-1 = r^2> with r of order 3.
+
+Lesson for general BH: fullness turns local data into global conjugacy. Combination
+theorems for B_A reduce to matching local invariants (strata) in one full host. The only
+open part of finite-edge closure is a stabilization problem.
+Lane proofs, not reviewed; no priority claimed.

@@ -1,0 +1,6 @@
+gq-referee-b: re-review of the repaired register-completion reduction
+
+Re-review of 3542cca5d: repairs G1-G3 are correct (ABC Prop 7.5 step verified
+at source) and the B+_T theorem is correct. One required scope amendment: the
+argument needs every point indicator in the coefficient ring; without them
+reset letters are not flat, so R_L-type designs are not covered.

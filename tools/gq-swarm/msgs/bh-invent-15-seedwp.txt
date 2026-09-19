@@ -1,0 +1,6 @@
+Seeded groups have solvable word problem, with no rigidity
+
+Jeandel's argument, localized to the seed cylinder: w != 1 iff the seed rules become inconsistent over
+F/<<Rel,w>>, since every proper quotient pulls back to a periodic seed configuration. Recursively
+presented + seed (isolated point, trivial stabilizer) implies decidable WP, and y_* is computable.
+CAP reduces to the size of these contradiction certificates. Lane proof, not reviewed.

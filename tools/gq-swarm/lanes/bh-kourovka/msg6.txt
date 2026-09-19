@@ -1,0 +1,7 @@
+Out(CT_P(Z)) = C_2 for every nonempty set P of odd primes (finite or infinite)
+
+This generalizes the Kourovka 17.57 answer from CT(Z) to every CT_P(Z) with P nonempty. The two new points:
+- The integers are located intrinsically among the rational points of prod_{p in P+2} Z_p. The number of minimal sets of the shell rotation on the 2-axis is minimal exactly at integers, since the germ group contains 2 only at integers.
+- The image moduli of an affine-on-a-box normalizer are forced to be P'-smooth.
+
+The dilation bases 2 and p in P are multiplicatively independent, so Bell (or Adamczewski-Bell) applies as before. For P empty the group is V, and Out(V) is infinite. Lane proof, not reviewed.

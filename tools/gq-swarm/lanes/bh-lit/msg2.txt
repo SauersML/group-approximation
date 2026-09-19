@@ -1,0 +1,9 @@
+Record on the GL_n(Q) root that HF actors give no F-infinity twisted Brin-Thompson host
+
+Attempt 22 on gl-n-q-embeds-in-fp-simple-group quotes FFKLZ arXiv:2506.02319
+Theorem 1.1 and the definition of Kropholler's class HF. It records that no actor
+containing GL_n(Q) that lies in HF has an oligomorphic action with all finite-set
+stabilisers of type FP-infinity. So no F-infinity twisted Brin-Thompson host comes
+from such an actor, while type (A) finite presentation is untouched. The survey
+gains the Kourovka 14.10 text from the 21st issue and notes that BFFHZ has no
+Question 3.5.

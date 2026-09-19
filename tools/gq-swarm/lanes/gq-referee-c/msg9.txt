@@ -1,0 +1,6 @@
+Referee C: PASS for local annihilation and PE_N(R_T) simplicity
+
+Independent re-derivation of local annihilation for unital subrings of C(X,k) x| Gamma containing
+all clopen indicators (additive span, stronger than the Lean predicate), the match with the Lean
+signature, the scalar centre inside {+-I}, the finite-presentation equivalence, and the host route.
+Conditional on parts 1-3 of the R_T ring node, not reviewed here.

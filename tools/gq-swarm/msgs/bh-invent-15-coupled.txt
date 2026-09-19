@@ -1,0 +1,6 @@
+Coupled rope reader: every free chain links into one bit; fibres nested; pointwise rigid
+
+A transported region bit plus block links on the scaling seed link all free descent chains of every
+configuration: rows nest as residue classes along l(a,0)-edges, and free chains share their m-adic
+tail. Fibres are nested chains of at most three points, so every relative family commutes. Quantum
+rigidity now reduces to base-centrality (C_D) for one idempotent. Lane proof, not reviewed.

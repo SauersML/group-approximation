@@ -1,0 +1,9 @@
+Survey Mathlib and the repo's Lean for a Boone-Higman formalization
+
+Records, for the Palomar planning lane, what the pinned Mathlib has
+(PresentedGroup, Group.IsFinitelyPresented, IsSimpleGroup, HNN, amalgams,
+Coxeter groups, general computability) and lacks (Thompson, Artin,
+Baumslag-Solitar groups, word problems), the one external Lean problem found
+(lean-eval higman_infinite_simple, unsolved on its page), and the repo's own BH,
+Higman-Thompson and Hyde-Lodha Lean, including the closed finitely presented
+infinite simple group and the metabelian Palomar skeleton.

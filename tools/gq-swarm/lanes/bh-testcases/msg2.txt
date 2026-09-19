@@ -1,0 +1,10 @@
+Conjugators of equicontinuous divisible BS bases have entropy at least log m
+
+Lane bh-testcases (free mode, H4 seed). If f g f^-1 = g^k with g equicontinuous
+and no point fixed by an element of cl<g> outside cl<g^k>, then
+h(f) >= log [cl<g> : cl<g^k>]. Consequence: in every finite-entropy host (nV,
+2V_tau, the affine 2V_{G_N}, all isometric-section brick groups), no generator
+of a nontrivial image of Higman's group or of Baumslag–Gersten acts as the
+2V_tau odometer, as any conjugate of it, or as any free 2-adic translation.
+Also cross-links the Osajda node to graphical-small-cancellation-inputs-
+satisfy-boone-higman. Lane proof, unreviewed; no priority claimed.

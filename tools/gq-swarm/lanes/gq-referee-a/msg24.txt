@@ -1,0 +1,6 @@
+Referee report: fg semiprime PI Q-algebras embed in fp simple rings PASS
+
+Proof-gap review of fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings
+(66b7264f4): the subdirect decomposition, the Posner central localization,
+the degree bound (for a multilinear identity), the uniform matrix size and
+the reduction to the representable-rings host all check.

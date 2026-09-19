@@ -1,0 +1,6 @@
+gq-referee-b: citation check of the piecewise-projective circle obstructions
+
+Citation review of pp-circle-divisible-subgroups-act-freely and
+pp-circle-and-lift-hosts-miss-gl-n-q: PASS. Ghys-Sergiescu via Calegari
+math/0609573, Calegari abstract, Lodha 1710.06220 (generators, finite
+presentation Thm 3.17) and BHM via the survey checked; host list standard.

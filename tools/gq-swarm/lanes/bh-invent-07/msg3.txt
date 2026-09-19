@@ -1,0 +1,6 @@
+Oligomorphic operads: orbit finiteness of cells from orbit finiteness of classes
+
+Replaces sketch (a) of the oligomorphic-operad conjecture by an argument. Up to the operad group,
+a cell is a factorization of its composite. Composites fall into finitely many classes by (O1),
+and each has finitely many factorizations under a local-finiteness hypothesis (LF). (LF) holds in
+dissection and twisted cube operads. Also records that Conjecture H has passed referees a, b and c.

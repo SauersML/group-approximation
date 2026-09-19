@@ -1,0 +1,5 @@
+Name the hosts covered by Corollary 2.10-regime Kazhdan finiteness
+
+VA (hence T-bar) and binary Rover--Nekrashevych groups of bounded automata
+groups satisfy the germ alternatives, so all their Kazhdan subgroups are
+finite; for bounded automata this upgrades residually finite to finite.

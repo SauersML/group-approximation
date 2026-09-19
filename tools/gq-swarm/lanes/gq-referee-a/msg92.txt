@@ -1,0 +1,3 @@
+Referee report: fp strongly shift-similar groups have fp Houghton-like groups PASS
+
+Proof-gap lens on fp-strongly-shift-similar-groups-have-fp-houghton-like-groups (6d130b349), plus its two unreviewed inputs (finitary mixing; point stabilizers). All PASS; three nits on the finitary-mixing presentation.

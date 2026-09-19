@@ -1,0 +1,1 @@
+Gate node: correct the operad-group consequence of the synchronization game (one split-tree refinement step is still needed)

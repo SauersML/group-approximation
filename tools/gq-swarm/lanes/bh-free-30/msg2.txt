@@ -1,0 +1,7 @@
+Pure baker ansatz for odd odometer roots has no solution; reformulate with conjugated doubling
+
+Attempt 1 on lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map: with u the baker map
+and r = (tau^{k(y)}x, rho y), rho in V, the conditions force rho synchronous, hence finitary,
+and a propagation argument then forces rho = id (proved). The q = 3 step is reformulated for
+u' = u c with c centralizing s: a V-conjugacy g rho g^{-1} = Psi_f(rho^{-1}) plus a cocycle
+equation, where the obstruction no longer applies.

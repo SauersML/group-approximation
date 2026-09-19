@@ -1,0 +1,5 @@
+Attempt 3 on fp-simple-nonexact-group (expander-strength conditional witness); frontier map adds the isolation row
+
+- fp-simple-nonexact-group: Attempt 3 links the decidable expander group and the CE/BCC
+  separators; under BH some fp simple group coarsely contains an expander.
+- gq-bh-bh-refute-frontier: isolation noted as the reverse-type live separator.

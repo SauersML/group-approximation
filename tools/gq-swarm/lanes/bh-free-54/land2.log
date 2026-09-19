@@ -1,0 +1,4 @@
+LANDED d3db2ca36 on origin/main (parent 625352151):
+ ...one-rational-projective-full-group-is-flip-v.md | 83 ++++++++++++++++++++++
+ ...rojective-full-groups-are-finitely-presented.md | 50 ++++++++++++-
+ 2 files changed, 130 insertions(+), 3 deletions(-)

@@ -1,0 +1,5 @@
+gq-referee-b: PASS on aut-out-free-abelianized-extension-virtually-splits (citation lens)
+
+Conventions match the imported Fox cocycle node; no-novelty is right, with a printed source for
+the cocycle (Kawazumi math/0505497 (2.5), (2.11): contracted first Johnson map is (1-n) on Inn);
+scope holds. W1: Attempt-4 wording should say the K_n route is sufficient, not equivalent.

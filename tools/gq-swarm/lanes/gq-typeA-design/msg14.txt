@@ -1,0 +1,8 @@
+St_N(R_L): K_2 centrality settles the type (A) verdict and window zero
+
+With leavitt-resolvent-k2-stability-holds (K_2(N,R_L) = Q^x central), flip
+k2-central-in-steinberg-groups-of-leavitt-resolvent-ring to established via a
+route, and with it steinberg-leavitt-resolvent-groups-have-no-type-a-action.
+On the Steinberg shell claim: window zero dead both ways for every admissible
+P; record windows N >= 1 (commuting windows dead, collar level designs dead,
+general case open) as Attempt 3.

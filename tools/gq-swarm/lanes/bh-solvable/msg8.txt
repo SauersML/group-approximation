@@ -1,0 +1,8 @@
+Compact skew products cannot carry divisible fiber subgroups
+
+For a finitely generated group acting by skew products over a compact base with locally
+constant cocycles, all cocycle values lie in one finitely generated subgroup of the fiber
+group. So the fiberwise subgroup contains no Z[1/p] and no quasi-cyclic group. This turns
+the Hall-group "t defect" of Attempt 2 into a theorem. It records the two realizations that
+do work: unbounded cocycles over Q_p, and a solenoid times circle with a shear. Lesson
+paragraphs are added to the soluble nodes, and the status artifact gains the general picture.

@@ -1,0 +1,6 @@
+Wall-orientation subshifts as the decisive test for (RA′)
+
+- New OPEN node: the subshift of consistent wall orientations (the Roller boundary coded over the group) is quantum rigid. Proved for trees and Z^2 (products of step shifts).
+- If it holds for a non-exact group with walls (Arzhantseva–Osajda Haagerup non-exact groups), minimal subsets refute (RA′).
+- Modification clouds give only Lipschitz depth (Haagerup-type) data, so property A cannot be read off them in that case.
+- The (RA) node's progress section is updated.

@@ -1,0 +1,6 @@
+Root gl-n-q: add obstruction pointers O5 and O6
+
+O5 points to gl-n-q-hosts-cannot-act-on-one-manifolds (5a140f21e): no group
+acting faithfully on a one-manifold contains GL_n(Q) for n >= 3. O6 points to the
+scaled-rational-line invariant of PL quasi-similarity groups (c8e0b926e). The
+Attempts section is a single section with items 1-13; no item changed.

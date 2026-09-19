@@ -1,0 +1,7 @@
+Second, independent proof that fp strongly shift-similar G give fp Houghton-like groups H_n(G)
+
+An explicit finite presentation of H_n(G): n copies of a finite presentation of G, translations acting by the
+shifting isomorphism, one transposition identification per ray, and finitely many mixing relations, with an
+FSym-by-germ five-lemma check. The case n = 2 needs no Houghton-group input; n >= 3 uses Brown's finite
+presentation of H_n. It cross-checks bh-houghton-presentation's proof of the same claim (6d130b349), which uses
+finitary mixing and P. Hall's extension lemma. Lane proof, not reviewed.

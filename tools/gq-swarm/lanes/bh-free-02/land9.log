@@ -1,0 +1,8 @@
+LANDED 4d02c6b3f on origin/main (parent ad1cfc4d3):
+ ...ups-embed-in-lift-presented-automaton-groups.md | 17 +++++
+ ...e-commutator-wachter-weiss-groups-are-not-fp.md |  6 ++
+ ...mple-group-with-pspace-complete-word-problem.md | 57 +++++++++++++++++
+ ...ation-passes-to-invariant-subalphabets-proof.md | 55 +++++++++++++++++
+ ...resentation-passes-to-invariant-subalphabets.md | 72 ++++++++++++++++++++++
+ ...mple-via-lift-presented-automaton-overgroups.md | 36 +++++++++++
+ 6 files changed, 243 insertions(+)

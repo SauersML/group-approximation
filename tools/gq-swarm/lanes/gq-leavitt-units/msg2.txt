@@ -1,0 +1,7 @@
+Leavitt route to GL_n(Q): Lambda = L_Q(1,2)^x/Q^x target, S-integer fp gap
+
+Record the open claim that the countable simple group L_Q(1,2)^x/Q^x (which
+contains GL_infinity(Q), V and SL_3(Z)) embeds in a finitely presented simple
+group, with a route from it to gl-n-q-embeds-in-fp-simple-group for all n at
+once, and the open claim that L_Z[1/m](1,2)^x is finitely presented, with the
+exact missing inputs (GE over a non-simple ring, frame complex, K_2 map).

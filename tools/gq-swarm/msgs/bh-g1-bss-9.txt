@@ -1,0 +1,3 @@
+Correct the unique-section claim in the varying-skeleton E2 node
+
+The section field s_k(z) depends on position, so it is not a global invariant and minimality does not force uniqueness. It is plane-global and is absorbed into an enlarged skeleton, so Theorem D still applies. Theorem C of the constant-skeleton node is unaffected.

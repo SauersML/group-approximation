@@ -1,0 +1,5 @@
+Tighten the FW twisted-normalization proof: residue classes instead of chains
+
+Replace the chain step by a residue-class argument that handles the finitely
+many orbits outside the straightened bijection's domain, and bound orbit
+sizes through finitely many base orbits. Statement unchanged.

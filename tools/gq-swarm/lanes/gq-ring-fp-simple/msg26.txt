@@ -1,0 +1,10 @@
+Repair the Pimsner reduction and prove B+ regular supercoherent
+
+Per referees a and b: t_+ is the sum of the spine letters (no Morita step);
+K(core) is the telescope colimit of the sum over types of K(B+), giving
+coker(1-[X]) directly; NK vanishes via the Q-unitization of the colimit,
+whose stages are regular supercoherent and whose transitions are flat. The
+generated coefficient ring B+ (finitary plus tails in a localization T of
+Q[t]) is proved semihereditary, stably coherent (generic freeness), regular,
+and flat under shift, dilation and reset substitutions. So (P) holds for
+single-register completions with a spine.

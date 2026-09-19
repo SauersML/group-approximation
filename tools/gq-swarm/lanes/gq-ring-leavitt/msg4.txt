@@ -1,0 +1,5 @@
+Add perfectness step to the finite-field reduction; record referee PASS
+
+gq-referee-a passed integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields
+(597b02ae2) and asked for one step: in case (b), P = P'Z_P with Z_P central, so
+[P,P] = [P',P'] and P' is perfect. Added, with the review provenance.

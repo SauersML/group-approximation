@@ -1,0 +1,5 @@
+Evening obstruction summary: affine 2V host now refereed
+
+Bring item 3.2 to the node text at b0724bfaa: gq-referee-a PASS (7dac5c057),
+and the reach statement names the generators of the copy of Z[1/2N] x| <2>
+without claiming generation of the host itself.

@@ -1,0 +1,6 @@
+Referee report: faithful pair-finite Steinberg actions need noncentral K_2 PASS
+
+Proof-gap review of faithful-pair-finite-steinberg-actions-need-noncentral-k2
+and its input type-a-actors-have-no-infinite-virtually-central-subgroup
+(05eb02b9f). Both pass; Step 1 can cite the reviewed Leavitt-tuple node
+instead of an unreviewed one.

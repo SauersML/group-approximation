@@ -1,0 +1,6 @@
+Re-review of the repaired Q1.15 host: sink gap closed, conditional PASS
+
+After eef9cb4f68: X_inf = dOmega cap Omega_inf is closed and invariant, and the Cuntz hypothesis,
+resynchronization, TF, Acyc, faithfulness, minimality and simplicity hold on it. One small Lemma E
+wording gap (a c-edge first step) has an explicit fix. Still conditional on the Li lemma read over
+Gamma(*) and on the Garside head/normal-form verification.

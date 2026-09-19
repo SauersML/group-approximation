@@ -1,0 +1,11 @@
+LANDED ef7fa0a1e on origin/main (parent 492041530):
+ .../gq-bh-free-54-edge-split-ore-tests.md          | 147 +++++++++++++++++++++
+ research/closed-mcg-bh-via-edge-split-operad.md    |  37 ++++++
+ ...ections-respecting-an-atom-plane-split-there.md |  90 +++++++++++++
+ .../edge-split-operad-has-common-refinements.md    |  41 ++++++
+ research/edge-split-operad-satisfies-ore.md        |  25 ++++
+ .../edge-split-ore-via-atom-plane-restriction.md   |  26 ++++
+ .../edge-splits-resolve-every-rational-plane.md    |  90 +++++++++++++
+ ...operad-groups-contain-the-derived-full-group.md | 109 +++++++++++++++
+ ...ore-operad-groups-have-type-a-clopen-actions.md |  73 ++++++++++
+ 9 files changed, 638 insertions(+)

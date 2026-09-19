@@ -1,0 +1,3 @@
+Record the closure principle as an attempt on the non-recursive mixed identities question
+
+Cantor-dense and dense tame one-dimensional groups are excluded as witnesses.

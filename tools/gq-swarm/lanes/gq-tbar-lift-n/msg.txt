@@ -1,0 +1,10 @@
+Q-free lift ceiling: dilated Q escapes no Q-free/central tower
+
+Part (A): a copy of (Q,+) scaled by a nontrivial group of rationals with no
+proper invariant subgroup survives no finite normal series whose factors are
+Q-free or central; so no such group contains Aff(Q), B_2(Q), GL_n(Q), SL_n(Q),
+PGL_n(Q) or PSL_n(Q) (n >= 2). Part (B): Q^n x| Gamma is Q-free-by-Q-free iff
+Gamma preserves a full-rank subgroup of Q^n containing no rational line (a
+lattice when the deck group is finitely generated). Part (C): U_3(Q) and
+Q^n x| GL_n(Z) do have normal series with all factors Q-free. Records the
+torus-lift route (lane gq-tbar-lift-n) as closed for the root.

@@ -1,0 +1,5 @@
+Add gq graph-health status artifact, pass 1
+
+Lint, status-consistency and root-wiring results for the GL_n(Q) swarm nodes,
+the fixes landed in this pass, the ten routes into the root with their one open
+prerequisite each, and the open gq claims that sit on no path to a root.

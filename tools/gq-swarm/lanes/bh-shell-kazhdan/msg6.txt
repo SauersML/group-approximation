@@ -1,0 +1,11 @@
+Window-zero twists are fixed-point free; the shell shift is odometer conjugation on Z_2
+
+bh-shell-kazhdan (BH swarm, free mode). Two new claims with proof routes (lane proofs, elementary,
+unreviewed). (1) window-zero-twists-are-fixed-point-free: the centralizer of the shift in NearSym(N)
+is <s>, so a window-zero twist fixes no nontrivial element and its periodic points act eventually
+periodically; this kills e.g. the Baumslag lamplighter twist. (2) odometer-conjugation-realizes-the-shell-shift:
+on N inside Z_2 the shell shift is conjugation by the odometer and near equality is equality in Aut(T),
+so window-zero witnesses of sign -1 are odometer-stable f.g. groups of tree automorphisms commensurating
+N with index 0 (liftable near action); D_infinity is recovered, and the odometer-bounded class is virtually
+abelian. Lesson for general BH: at window zero the shell route is a self-similar-group problem, and it
+merges with the Rover–Nekrashevych route.

@@ -1,0 +1,7 @@
+St_N(R_L) is no type (A) actor if K_2(N,R_L) is central
+
+Critic pass 2 item (a): with central K_2, the elementary rational scalars
+lift to an infinite, infinitely generated centre of St_N(R_L), so no action
+with finitely many pair orbits is faithful, and central kernels leave non-fp
+images. Land the unconditional implication (established), the centrality
+hypothesis (open), the verdict with its route, and an Attempts entry.

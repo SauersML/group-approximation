@@ -1,0 +1,7 @@
+Referee report: prime-shift affine group A_1 is not fp PASS
+
+Proof-gap review of prime-shift-affine-group-a1-is-not-finitely-presented
+(72ea4a580): translations preserve negative valuations at every prime, the
+margin bookkeeping along a word, well-definedness of the deep-denominator
+germ, the germ group Z wr Z and the kernel bound through Pi_1 all check; one
+bound in section 2 has the wrong sign but section 3 uses the right one.

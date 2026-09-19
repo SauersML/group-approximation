@@ -1,0 +1,7 @@
+Record referee c's independent PASS on the non-faithful criterion and the interval Brown criterion
+
+Referee c re-derived the colored-subgroup embedding, the non-faithful
+finiteness criterion and the general interval-spherical Brown criterion, and
+passed all three. The nit on the finite-presentation hypothesis is applied:
+only intervals of length at least two are counted there, since covers have
+empty open interval.

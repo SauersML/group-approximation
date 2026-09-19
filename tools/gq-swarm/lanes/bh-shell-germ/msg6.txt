@@ -1,0 +1,4 @@
+Record the twisted C_2*C_3 enumeration attempt
+
+nu = x_1 o nu_normalform escapes the tree obstruction; finite index iff the group contains
+V. Bounded MSI search: no V generator found up to length 10; recorded as OPEN with outputs.

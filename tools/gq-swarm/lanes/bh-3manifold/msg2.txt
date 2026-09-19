@@ -1,0 +1,11 @@
+Free-by-B_A and surface-by-B_A groups lie in B_A; common-retract amalgams miss graph manifolds
+
+New claim free-by-pbh-and-surface-by-pbh-groups-lie-in-type-a-class (lane proof): an
+extension with centerless kernel Γ embeds in Aut(Γ) x Q, so extensions of groups in the
+permutational Boone--Higman class by free groups of rank >= 2 or closed surface groups of
+genus >= 2 stay in the class. Covers surface bundles over surfaces, free- and
+surface-by-Z^m and normal series of such factors.
+
+Attempt 8 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: the common-retract
+amalgam closure cannot reach closed graph manifolds (cycles need HNN; leaf edge groups
+are retracts of no overgroup).

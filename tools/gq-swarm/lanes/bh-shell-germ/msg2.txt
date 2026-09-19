@@ -1,0 +1,5 @@
+Record two attempts on the window-group criterion
+
+Attempt 1: the window-zero direct product is dead for accessible inputs by the landed
+index count. Attempt 2: commuting copies at window one force the same affine shape, so a
+finitely presented window group needs non-abelian junction corrections.

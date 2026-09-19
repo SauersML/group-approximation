@@ -1,0 +1,8 @@
+Quantum rigidity over Kazhdan lattices: transfer finite presentation of building boundary hosts
+
+The necessity theorem (fp V-stabilized full group forces quantum rigidity) holds for
+topologically free actions, since freeness is used only to pick one free point per cylinder.
+Read backwards, bh-groupoid's finitely presented host for a cocompact Ã2 lattice is the full
+group of G_V x (lattice acting on a finite phase skew product of its chamber boundary), so that
+skew product is a minimal, topologically free, quantum-rigid SFT over a one-ended Kazhdan group.
+Also prove directly that the free-group boundary shift is 1-quantum rigid.

@@ -1,0 +1,9 @@
+Germ groupoid of V ⋊ <t>: semidirect product, with the lag grading exactly in the Lipschitz case
+
+- v-normalizer-groupoids-carry-lag-cocycle-iff-lipschitz (+proof): for t of infinite order in
+  Out(V), [[V ⋊ <t>]] is the topological full group of O_2 ⋊_t Z, and the lag cocycle extends
+  continuously iff t is Lipschitz (in L_2 = Inert(σ_2)).
+- Attempt 1 on fp-rsgs-have-fp-full-closures: the reduction, why Li's k-graph F∞ theorem does
+  not apply as stated, and the two sub-questions.
+
+Lane proof, not reviewed.

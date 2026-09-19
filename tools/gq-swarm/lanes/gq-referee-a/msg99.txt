@@ -1,0 +1,3 @@
+Referee report: equicontinuous square conjugators are trivial in brick hosts PASS
+
+Proof-gap lens on equicontinuous-square-conjugators-are-trivial-in-brick-hosts (010df8cad). Record-time argument, pigeonhole pro-2 power, odd return times and the parity example checked; three nits.

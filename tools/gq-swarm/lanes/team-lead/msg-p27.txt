@@ -1,0 +1,10 @@
+Problem 2.7 / Kourovka 14.10(c): mark ESTABLISHED as an explicit construction
+
+Every input of the Steinberg routes is now refereed: the embedding lemmas
+(referees a, b, c; a and b), R_L finitely presented with Q and a Leavitt pair
+(referee b), and finite presentation of St_m for m >= 5 (Krstic-McCool Thm 3 as
+quoted by two sources, plus referee c's direct proof). St_10(R_L) contains every
+GL_n(Q). Record the trust surfaces and the priority framing (Higman and
+Chatterji-Kassabov give existence; Mikaelian announced an explicit non-natural
+Gamma_n), leave "natural" to experts, and fix the Kourovka attribution
+(P. de la Harpe; open in the 21st issue).

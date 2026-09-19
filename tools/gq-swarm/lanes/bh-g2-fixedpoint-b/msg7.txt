@@ -1,0 +1,9 @@
+Minimality of a coding is density of its determined points; product time flows cannot be sheared; design (b) needs central letters for downhill
+
+New claim minimality-of-codings-is-density-of-determined-points. Lane proofs, elementary, unreviewed.
+- Theorem 1: an extension of a minimal base with some one-point fibres is minimal iff the points over one-point fibres are dense (compactness).
+- Theorem 2: in Lambda_0 x F_m, translation shears cannot couple the end flows of adjacent planes. Left shears are not local. Right shears commute with F_m, so by minimality and boundary rigidity of the free-group boundary they would be the identity, which fails for w != 1.
+- Theorem 3: for design (b), with the tree inside Lambda_0, the downhill lemma applies. Flow-data commutation is no longer free: it needs central input letters (from table crossing), or input rigidity under bounded reading.
+- Exact minimality conditions for (b), given a determined pair: (M1) the skeleton-input joining is minimal; (M3) boundary completeness, meaning every rule-allowed completion at infinite depth is a limit of seeded ones.
+
+Lesson for general BH: minimality of a simulating SFT is exactly the density of determined configurations over a minimal skeleton-input joining. The E1 obligation is therefore boundary completeness (no junk at infinite depth). The E2 obligation, via downhill plus central letters, is unsplittability of the same infinite-depth locus.

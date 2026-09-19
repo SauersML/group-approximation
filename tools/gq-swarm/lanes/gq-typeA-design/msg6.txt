@@ -1,0 +1,10 @@
+Germ implant U2: BHM Theorem 2.1 forces fp germ groups; Steinberg shell input
+
+Read Belk-Hyde-Matucci Theorem 2.1 at source (arXiv LaTeX, hash matches the
+repo citation). In any finite germ extension of V, SingFix({p},{p}) maps onto
+the germ group with simple kernel RStab_V(p), so the Theorem 2.1 hypothesis
+forces every singular germ group to be finitely presented: K_2 or scalar
+relations cannot hide in the locally trivial part. The surviving form is the
+shell envelope of St_4(R_L), simple and containing every GL_n(Q) for every
+enumeration; its finite presentation is landed OPEN with its gates, plus a
+route to the root and root Attempt 21.

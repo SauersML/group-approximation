@@ -1,0 +1,15 @@
+Add the Boone-Higman Palomar megasubmission surface as a pending configuration
+
+One Mathlib-only challenge now states the printed questions answered here: Kourovka 14.10(c)
+and BBMZ Problem 2.7 (the explicit finitely presented group St_10(R_L) containing every
+GL_n(Q)), BBMZ Problem 5.3(7) and its finitely generated form, finitely generated linear
+groups over any field, Llosa Isenrich-Schesler-Wu Question 1.11, Kourovka 17.59, BFFHZ
+Question 3.3, and a finitely presented infinite simple group. The solution proves the last
+outright through higman_infinite_simple (Hyde-Lodha's Q_2) and the rest only in `_of` form
+from explicit hypotheses, so the configuration is pending, and so is the older metabelian
+pair, which the gate now sees.
+
+formalization.yaml is switched to this configuration and marked work in progress; it
+publishes no main_results rows, and the gate now rejects a row for any pending configuration.
+The gate's metadata calibrations move to the new record, and four calibrations cover the new
+surface. The lakefile gains the three libraries, outside defaultTargets.

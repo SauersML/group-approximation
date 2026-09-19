@@ -1,0 +1,3 @@
+Referee report: unit symmetries of a core are graded or inessential PASS
+
+Proof-gap lens on unit-symmetries-of-a-core-are-graded-or-inessential (69c0569db). Width argument for I_0, commutation, unit top coefficient, division at both ends, A-dprime stability, Q in A, K_0 restriction and induction checked; nits N1-N2.

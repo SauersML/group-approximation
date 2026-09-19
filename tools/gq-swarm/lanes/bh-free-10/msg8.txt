@@ -1,0 +1,19 @@
+Finite-edge closure of B_A: five equivalent forms, the open node, and the stabilization gate
+
+- New: pbh-finite-edge-closure-equivalences (+ proof). The following are equivalent:
+  finite amalgams; finite HNN extensions; finite-edge graphs of groups; conjugacy
+  realization of finite subgroups; the involutive swap H *_(A×A) (A wr Z/2). The
+  finite-quotient case is proved.
+- New OPEN: pbh-closed-under-finite-edge-graphs-of-groups, with first test case
+  <V, t | t c_1 t^-1 = c_2> (free involution vs involution with a fixed cone).
+- New OPEN gate b-a-groups-embed-in-full-hosts-with-free-torsion, with route
+  finite-edge-closure-via-free-torsion-full-hosts. Twisted Brin–Thompson actors never act
+  freely. Every nontrivial finite-order element acts freely on the tautological section
+  space ∏_U U, so the missing piece is a finite-presentation criterion for twisted
+  Brin–Thompson groups over nontrivial Cantor bundles.
+
+Lesson for general BH: combination closure of B_A reduces to realization moves in one
+overgroup (centralizers for identity edges, conjugacy for twisted finite edges, one swap
+of A × A). The finite-edge part of a Higman tower is a single stabilization problem in
+full hosts.
+Lane proofs, not reviewed; no priority claimed.

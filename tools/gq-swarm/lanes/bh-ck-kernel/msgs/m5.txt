@@ -1,0 +1,8 @@
+Algebra gate: wreath recursions cover the finite-state case and leave a kernel condition of the same shape
+
+bh-ck-kernel. Attempt 1 on shell-germ-steinberg-algebra-is-finitely-presented: for
+finite-state germs the automaton gives finitely many relations u_q s_x = s_(q(x)) u_(q|_x),
+so a finitely presented algebra B surjects onto A and the gate reduces to finite generation
+of that kernel. V gives B = A = L_2; the near-shift test case is finite-state, implemented
+by conjugation by s_0. Finite-state germs are not universal, so the general case needs a
+computation-encoding device, which does not preserve simplicity.

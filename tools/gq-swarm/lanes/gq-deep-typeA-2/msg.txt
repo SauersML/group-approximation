@@ -1,0 +1,11 @@
+Prime-shift permutation overgroups of GL_n(Q) and Aff(Q); register dead ends
+
+One multiplicative permutation of Q shifting the primes makes every prime
+dilation conjugate to x -> 2x, so GL_n(Q) lies in the finitely generated group
+K_n = <GL_n(Z), diag(2,1,...,1), sigma_n>, 2-transitive on P^(n-1)(Q), and
+Aff(Q) in A_1 = <x+1, 2x, -x, sigma>, 2-transitive on Q. Type (A) for these
+actions reduces to finite presentation plus one finitely generated stabilizer;
+both are open, and the stabilizer of 0 in A_1 is strictly larger than
+Q^x x| <sigma>. The artifact closes three register forms of the "bounded
+dilation" spark (slot formats, shifted formats, per-prime registers).
+Lane gq-deep-typeA-2; not independently reviewed.

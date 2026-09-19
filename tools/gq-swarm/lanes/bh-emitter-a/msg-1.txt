@@ -1,0 +1,19 @@
+Stabilizer engines need finitely discriminable vertex groups; Reid's group is not finitely presented
+
+- stabilizer-engines-need-finitely-discriminable-vertex-groups (ESTABLISHED, lane proof): for f.g. B
+  that is not finitely discriminable (e.g. any infinite residually finite B), neither F_B nor D(F_B)
+  is finitely presented. Proof: F_B is a local limit of the engines over B/N (transfer lemma); a
+  finite presentation turns the approximations into homomorphisms killing N, and a double
+  commutator at the emitter pulls the kernel into a fixed ball. Corollary: Reid's d = 0 group
+  (MO 339541) and its derived group are not finitely presented. It also refutes
+  fp-decidable-vertex-groups-have-fp-stabilizer-engines (B = Z).
+- With fp-stabilizer-engines-need-fp-vertex-groups: an fp engine needs an isolated vertex group.
+  New OPEN isolated-vertex-groups-have-fp-stabilizer-engines (a characterization if true),
+  OPEN decidable-groups-embed-in-centerless-isolated-groups, and the route
+  boone-higman-via-isolated-stabilizer-engines (BH <=> centerless CGP Question 4, given the engine).
+- reid-higman-thompson-variant-d-zero-abelianization: item 5 settled.
+
+Lesson for general BH: finite presentation is open in the space of marked groups, so a host
+construction that sees its input only locally can be finitely presented only at inputs isolated
+from their proper quotients. Uniform one-emitter engines need isolated vertex groups, and
+calibrations on residually finite inputs such as Z are uninformative.

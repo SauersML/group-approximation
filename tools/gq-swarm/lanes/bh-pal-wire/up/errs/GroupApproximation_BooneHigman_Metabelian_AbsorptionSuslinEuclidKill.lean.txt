@@ -1,0 +1,12 @@
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:108:12: Type mismatch
+  hct (Eq.trans hcj h)
+has type
+  False
+but is expected to have type
+  ↑M t c = 0
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:109:12: Type mismatch
+  hcS (Eq.symm hcj ▸ h)
+has type
+  False
+but is expected to have type
+  ↑M t c = 0

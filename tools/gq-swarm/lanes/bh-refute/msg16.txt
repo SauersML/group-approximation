@@ -1,0 +1,1 @@
+Rotation (c): adversarial PASS on z-wr-psl2-z-half-is-not-residually-finite (2609.01868 Theorem B(3) false); source typo in h^f found, harmless

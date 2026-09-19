@@ -1,0 +1,7 @@
+Ring-gate bracket: re-scope the K_1 clause and add loophole (i)
+
+Lane gq-infinite-primes, from bh-ck-kernel 2768a5be1. The bracket K_1 branches
+use the stable clause; the necessary condition is the unstable Lambda_N(R).
+The E_N-not-f.p. branches exclude hosts outright; the K_1 branches exclude
+designs declaring the stable clause, and hosts only under rank-N K_1
+injectivity on scalars. New loophole (i): stable failure with Lambda_N f.g.

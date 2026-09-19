@@ -1,0 +1,19 @@
+BH T3 char 0: wire the proved leaves; the char-0 half needs no char-p input
+
+New modules under GroupApproximation/BooneHigmanLinear/CharZero/ (namespace
+BooneHigmanLinear.CharZeroHalf). They add no new mathematics; they compose endpoints of the
+metabelian chain.
+
+- Leaves: bundles the three proved char-0 leaves (polynomial S-integer coordinates, the
+  self-similar affine host, affine extension f.p.), and reduces the char-0 linear host to
+  absorption plus E_N f.p. over Z[1/m][t].
+- Frontier: CharZeroLinearStatement (T3 over fields of characteristic zero) from four gaps:
+  local Horrocks, base generation and the cube gap for K2 over Z[1/m], and Higman V swap section.
+- FrontierRankFour: the same with the base gap replaced by finite normal generation of
+  K2(4, Z[1/m]).
+- SIntSuslin: only the Z[1/m][t] half of local Horrocks is needed. It gives Suslin
+  SL_N = E_N over Z[1/m][t] by induction from the Euclidean base case, so the char-0 half of T3
+  is stated from characteristic-zero inputs only.
+
+Trusted MSI build GREEN (gqprobe-lean.sh) on origin/main plus these four files; they are not
+imported by the root.

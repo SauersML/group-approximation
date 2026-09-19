@@ -1,0 +1,14 @@
+Certify primitivity of seven CMSZ Robertson–Steger 2-graphs, derive aperiodicity from (H3), and refute the general primitivity claim for type-preserving groups
+
+- cmsz-rs-two-graphs-of-orders-two-and-three-are-primitive (new): M_1, M_2 primitive for the five
+  PG(2,2) and two PG(2,3) CMSZ presentations on main (calibrated MSI computation, edge rule matched
+  to Robertson–Steger §7 and rebuilt independently); hence these Γ_T embed in fp simple groups modulo
+  finite-k-graph-boundary-groupoid-standard-facts.
+- rs-two-graph-aperiodicity-from-h3-and-irreducibility (new): (H3) + irreducible colours give
+  Kumjian–Pask aperiodicity (Robertson–Sims criterion read at source).
+- rs-strip-tail-transitivity-forces-primitive-transition-matrices (new): type-preserving groups have
+  period-3 matrices; primitivity iff the type character is onto under typed tail-class ergodicity;
+  PGL_3(K) char 0 case via Howe–Moore; exotic case reduced to phase-sensitive singular-flow ergodicity.
+- robertson-steger-a2-two-graphs-are-primitive-and-aperiodic: REFUTED as stated (torsion-free SL_3(Q_p)
+  lattices), corrected form recorded.
+- Artifacts: gq-bh-bh-groupoid-cmsz-primitivity-certificate.md (script + log), frontier §5.

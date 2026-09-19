@@ -1,0 +1,10 @@
+Basilica: every FP_2 cover contains F_2, so no FP_2 ascending base for its HNN extension; Bieri-Renz remark corrected
+
+- New ESTABLISHED node: de Cornulier's perfect-kernel argument (Benli-Grigorchuk-de la Harpe, Prop. 5.11,
+  printed for the Grigorchuk group) transfers to the Basilica group through BGdlH's contracting approximants,
+  which are residually soluble because the standard cover is F_2. Every FP_2 cover of the Basilica group
+  contains F_2, so the Basilica group is not of type FP_2.
+- Ascending-base node: item 3 (no ascending base of type FP_2). The Sigma remark is corrected after reading
+  Bieri-Renz (CMH 63, 1988) at source: it has Theorem B, not an ascending-HNN characterization for m >= 2.
+- Crux node: the FP_2 route is closed, plus necessary conditions on a 2-dimensional FP_3 certificate (a
+  vertex stabilizer containing B regresses to the same problem, so B must act without a fixed vertex).

@@ -1,0 +1,5 @@
+gq-referee-b: PASS on leavitt-tuples-make-the-scalar-clauses-agree (citation lens), C1-C2
+
+Voronetsky Prop 1 merges two idempotents; the d-merge is its (d-1)-fold iterate (valid for
+N >= 3). Scalar stabilization argument correct; lambda -> lambda^N is not injective for even N,
+conclusion unaffected.

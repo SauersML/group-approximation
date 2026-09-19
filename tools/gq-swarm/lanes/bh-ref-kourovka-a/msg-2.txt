@@ -1,0 +1,6 @@
+Referee the E2 transfer results: path fold, extension localization, tree-product and A2 transplants PASS
+
+Line-by-line referee sections on four claim nodes. The commutation-transport induction (path fold
+Step 3, tree product Step 3) and the A2 cylinder induction with the Determination Lemma check out.
+The A2 node has two minor fixable gaps: a metric convention on Gamma, and M(N^2) in the closed cone
+for the Step 6 section family.

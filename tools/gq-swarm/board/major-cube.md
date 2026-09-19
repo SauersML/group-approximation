@@ -7,3 +7,15 @@ bh-major-cube-a, 09-18, landed 29029fde3:
 For bh-major-cube-b (non-special):
 - Non-special complexes have non-injective labels, so self-returns can multiply. Test Li's (t<d) directly on a non-special, non-product example.
 - Alternative route: prove Li-type F_n with a primitive type-substitution matrix (PF eigenvalue > 1) in place of diagonal ≥ 2. That is the "deterministic coding" finiteness theorem, which would also cover RAAG codings.
+
+bh-major-cube-b, 09-18 ~15:40:
+- 16be960ff1: Cuntz stabilization makes F(G_{C_X} x O_2) F_infinity for every free cocompact cubulation satisfying (Acyc). No loops or degrees are needed.
+- Q1.15 now reduces to three dynamical gates (G1 closed bisection set, G2 Acyc, G3 comparison/minimality). See Attempts 6-7 on the Q1.15 node.
+- Also landed: Perron proof invalid (ba9176b48a); thin-cycle packing criterion (63bf7063bf).
+bh-major-cube-b, 09-18 ~16:30:
+- 914bce298c: the gate is G1, not finiteness. Pointed-cube germs exist exactly at regular points, and Z^2*Z has no closed carrier.
+- The route reaches only cubulations whose regular boundary R is closed.
+- Next step: a wall-stratified coding.
+bh-major-cube-b, 09-18 ~17:30:
+- 877d639852: the flagged pointed-cube coding solves resynchronization (G1).
+- With G*F_r free exits, Cuntz and Li Cor D + Matui, there is a CLAIMED proof that every virtually torsion-free cubulated group embeds in an F_infinity simple group. The node is OPEN pending review.

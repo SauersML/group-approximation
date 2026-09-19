@@ -1,0 +1,10 @@
+Kojima-Sheng Q <= 2V: abelian extensions, twisted roots, nV gate
+
+Record the mechanism of the rationals in 2V (a fractional-part register whose
+overflow applies one fixed element) and what it reaches: every countable
+virtually abelian group embeds in 2V; in every twisted Brin-Thompson group an
+infinite-order element ignoring a coordinate (e.g. an actor element fixing a
+point) lies in a copy of Q, and type (A) survives adding fixed points; and
+Aff(Q), SL_2(Q), GL_n(Q) embed in some nV only if BS(1,2) does (U_3(Q) and
+GL_n(Q), n >= 3, need H_3(Z)). The artifact explains why dilations and
+non-abelian relations defeat register roots.

@@ -1,0 +1,14 @@
+RCWA groups over number rings of class number one, F_q[t] and Z_(pi) satisfy Boone-Higman
+
+New claim rcwa-groups-over-pids-satisfy-boone-higman with route
+rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof (lane proof, not reviewed).
+- The host is the full group of the boundary groupoid of the ax+b monoid R ⋊ S_P (the digit
+  submonoid over F_q[t]) times the Cuntz groupoid.
+- F_infinity: Li 2110.04505 Theorem thm:deg. (UFP*) and lcms come from the PID, and the unit
+  group R ⋊ R^* is F_infinity.
+- Perfect: Matui's Künneth theorem plus Li 2209.08087 introcor:Vanish.
+- Simple: Matui simple2.
+- RCWA_P(R) embeds by extension to the P-adic completion.
+- Semilocalizations reduce to Z[1/N], whose unit group is an iterated ascending HNN
+  extension.
+This covers Kohl's rings other than Z^2 and gives a second host for Z.

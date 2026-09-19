@@ -1,0 +1,29 @@
+Homogeneous conjugation invariants vanish on Baumslag-Solitar bases, excluding proper cocompact CAT(0) hosts for Higman's group
+
+Lane bh-free-49, designing hosts for Higman's four-generator group H4.
+
+One lemma with four instances: a conjugation-invariant homogeneous quantity is
+zero or infinite on any element conjugate to a proper power of itself. The
+instances are asymptotic translation length, stable commutator length,
+topological entropy and orbit counts; the first two are new to the graph, and
+the last two recover existing nodes.
+
+Two consequences. No group acting properly and cocompactly by isometries on a
+complete CAT(0) space contains BS(1,n) for |n| >= 2, hence none contains H4 or
+the Baumslag-Gersten group. That excludes the Burger-Mozes groups, Wise's
+lattices and every finitely presented simple group acting properly
+cocompactly on a CAT(0) cube complex as hosts for either test case; the
+families already excluded on main were residually finite, linear, self-similar,
+almost-automorphism, piecewise-analytic circle and finite-entropy brick hosts.
+Martin's cocompact action of H4 on a CAT(0) square complex is consistent,
+because it is not proper.
+
+Separately, a retract inherits every proper-power conjugacy of its own
+elements. So the edge group of each amalgam splitting of H4 on main, and of the
+index-two twisted double, is a retract of neither side, and H4 is perfect, hence
+not an HNN extension. The common-retract amalgam, graph-product and
+relative-holomorph closure theorems therefore cannot be applied to H4 through
+its own decompositions. This is a method-kill, not an obstruction: the
+permutational class is closed under subgroups.
+
+Lane proofs, elementary, not reviewed; no priority claimed.

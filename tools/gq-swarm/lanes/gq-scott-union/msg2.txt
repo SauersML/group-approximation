@@ -1,0 +1,5 @@
+Record the natural-gluing obstruction on the GL_n(Q) root
+
+Add Attempt 2 to gl-n-q-embeds-in-fp-simple-group: gluing Scott, Zaremsky or
+adelic affine hosts along GL_n(Z[1/m!]) with the natural action is never
+finitely generated (fg-piecewise-linear-hosts-omit-natural-gl-n-q).

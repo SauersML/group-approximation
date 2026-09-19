@@ -1,0 +1,4 @@
+Record referee a re-review pass on the (P) and B+ nodes; three nits
+
+The localized module is a localization of T'; the tail summand is projective,
+not free; the unitized spine transition is flat on the (1-e) part.

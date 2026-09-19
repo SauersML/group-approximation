@@ -1,0 +1,6 @@
+Profinite translation hosts: correct the scope line (Toeplitz and LEF cases are on main)
+
+bh-ck-kernel. The scope line said no node on main decides non-profinite actions. Correct it:
+Toeplitz subshifts escape item 2, but over Z their crossed products are LEF
+(minimal-subshift-algebra-is-simple-lef-ring), hence never finitely presented simple
+(lef-simple-rings-are-not-finitely-presented). What remains open is the non-LEF case.

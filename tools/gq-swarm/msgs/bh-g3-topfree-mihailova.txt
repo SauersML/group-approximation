@@ -1,0 +1,17 @@
+Mihailova relative seeds must force across both factors; diagonals are seeded row by row
+
+- mihailova-relative-seeds-must-force-across-both-factors (ESTABLISHED, lane proof): for any
+  configuration on F x F with stabilizer M(Q), rows are translates of one row whose stabilizer has
+  normal core exactly N = ker(F -> Q). For Q infinite and not free this stabilizer is infinitely
+  generated, so no row or column is an isolated point of any SFT over F: the normal closure must be
+  forced across both factors. Conversely the diagonal of Q x Q has a rigid relative seed forced row by
+  row whenever right multiplication acts on a rigid seed of Q by cellular automata; instances Q = F
+  (sink-moving automaton, so (F x F, Delta_F) is a rigid relative seed) and Q = Z^n.
+- sft-isolated-points-are-finite-state-across-finite-edge-groups: credit the independent free-group
+  and free-product cases (bh-g1-universal-point, bh-invent-15) landed shortly before.
+- sft-isolated-points-finite-edge-groups-proof: referee wording note in (UE) (amalgam outside
+  neighbours lie in the parent piece).
+
+Lesson for general BH: a free factor forces only finitely generated stabilizers, so Mihailova is a
+shortcut past CAP only through genuinely two-dimensional forcing on F x F; every row-forced diagonal
+design downstairs already seeds Q.

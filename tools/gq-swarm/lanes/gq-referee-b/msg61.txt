@@ -1,0 +1,3 @@
+Referee report (scope lens): frame designs for the ring gate are bracketed FAIL (repairable)
+
+Items 1-6 and 8 match their nodes. W1: item 7 inhomogeneous branch is a reduction, not a budget failure. W5: What remains omits multi-type matricial designs with a positive fixed vector not spanning [1_B] (A singular, no corner isometry or CSL failing). W6: rank-one bases with infinite stable range. W2-W4 bookkeeping.

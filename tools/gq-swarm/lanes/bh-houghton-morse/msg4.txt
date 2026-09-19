@@ -1,0 +1,18 @@
+Isolate the zero-flux strand-stack obstruction and extend it to isometric enumerations
+
+Lemma: a group without F_2 that maps to stack germs Z^S ⋊ Sym(S) with equal
+offset speed at both ends of a Z-indexed stack, containing a uniform stack
+shift and a non-uniform kernel element, is not finitely presented. This is
+the Bieri-Strebel tameness argument in permutational form, and it tolerates
+strands migrating out of the stack.
+
+Corollary: a polyhedral piecewise-isometric enumeration of Z^2 with an
+active slice whose flux character vanishes on R_0 has non-fp R_nu. So all
+its MZ, Houghton-like and shell envelopes are non-fp. For coherent
+successors the flux is a holonomy of the transverse jumps. The rotating
+quadrant enumeration has zero holonomy and dies.
+
+Lesson: stacks of strands are H_2-type objects inside the near group. An
+amenable germ group needs every active stack to transport lines (nonzero
+flux), like the n >= 3 rays of H_n. When R_nu contains F_2, Sigma-invariants
+give nothing, and that is where Boone-Higman is open.

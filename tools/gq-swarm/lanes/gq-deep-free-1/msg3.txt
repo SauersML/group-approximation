@@ -1,0 +1,10 @@
+Establish one-steinberg-group-contains-every-gl-n-q (three referee PASS)
+
+Referees a, b and c passed the claim that St_4(S) contains every SL_m(Q) and
+GL_n(Q) for any ring S with Q and a Leavitt pair. Their review artifacts are on
+main, and the verdicts are conditional on classical K_2 inputs, which the node now
+cites precisely: Voronetsky/Dennis centrality checked at source, Bass for stable
+rank, and Milnor for Matsumoto and Tate. Step (b) uses referee c's block-swap
+argument in place of symbol calculus. Add the route
+gl-n-q-explicit-via-st-4-of-resolvent-ring through the refereed ring R_L, as
+referee b asked.

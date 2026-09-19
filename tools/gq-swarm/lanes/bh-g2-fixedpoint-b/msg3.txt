@@ -1,0 +1,9 @@
+E2 transport for self-simulation: BSS geometry is never rigid, causal depth localizes non-commutativity, end-shift path covers have one spine
+
+Three results on gate E2 of the Track A self-simulation route, all lane proofs, elementary and unreviewed.
+
+- paradoxical-subshifts-are-never-quantum-rigid: the Barbieri-Sablik-Salo paradoxical subshift has a finite recolouring modification at a dense set of vertices, so neither it nor its trivial extension to a product is quantum rigid at any scale over any field. Its geometry cannot be the rigid base of a transport argument.
+- causal-depth-localizes-quantum-noncommutativity (+ causal-depth-localization-proof): if a computation layer is causally determined by a base whose marginals commute, then every finite-depth computation projection lies in the commutative base algebra, from both sides, with no centrality argument. Every commutator is supported at infinite causal depth. Bounded depth gives rigidity, and finite-dimensional families split off a commuting summand.
+- end-shift-path-covers-are-rigid-with-one-spine: the end shift of F_n codes a paradoxical path cover by descending geodesic rays with a radius-zero block map, and that cover is rigid. Backward-infinite paths occur only for ends in finitely many orbits, and then there is exactly one, the axis of a conjugate of a cycle word of the spine map. Seeded time-graded codings over it are rigid off one sheet.
+
+Lesson for general BH: in any seeded coding, E2 is exactly the question at infinite causal depth. Paradoxical geometry must be dictated by a rigid flow, not chosen, and then the infinite-depth locus is one spine per end, over countably many ends. The remaining E2 work for such designs is making that one sheet unsplittable, in tension with minimality, which needs infinite depth on a rich set.

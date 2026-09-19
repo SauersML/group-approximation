@@ -1,0 +1,1 @@
+Rotation 3: adversarial PASS on type-preserving vertex-free Ã2 groups in fp simple groups (period-3 compression checked)

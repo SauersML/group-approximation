@@ -1,0 +1,11 @@
+Record that the St_10(R_L) route for Kourovka 14.10(c) is kernel-checked in Lean
+
+Adds a Lean paragraph to gl-n-q-all-n-in-st-10-of-resolvent-ring. The paragraph names the
+hypothesis-free theorem GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q
+(Challenge.lean, 2539180c0), which uses only the three standard axioms and is stated over the
+Palomar challenge's own definitions. It maps the four proof parts to their modules.
+
+Lesson for general BH: the Leavitt swindle in Lean needs no field, only an injective ring map
+into a ring with a Leavitt pair commuting with its image and a perfect St_V(F). The embedding
+half of every Leavitt ring host is therefore closed; what remains is the K-gate (a simple
+quotient keeping the input).

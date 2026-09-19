@@ -1,0 +1,7 @@
+Verify that the RSG of p(01w)=0p(w) is contracting: nucleus lag is unbounded in contracting RSGs
+
+Hand computation of the nucleus N = {id, p, r, p^-1, s} and check of the six nucleus-of-injections
+conditions, including all 16 pairwise products. By BBMZ thrm:RSGCharacterization the full RSG
+{f : Nuc_f in N} is contracting and contains V and p, whose nucleus cycle along (01)^inf has weight -1.
+So tail balance does not extend to cross-class cycles, and the uniform output-lag bound fails:
+the lag route to asynchronous conservativity is closed negatively.

@@ -1,0 +1,8 @@
+Kac-Moody lattices with hyperbolic Weyl group are torsion locally finite (any building dimension)
+
+New claim hyperbolic-kac-moody-lattices-are-torsion-locally-finite (+ proof, lane proof): if W has
+no Z^2, the Davis realizations of both buildings have no 2-flats (Caprace-Haglund Thm E, read at
+source), hence are Gromov hyperbolic (flat plane theorem); by Haettel-Osajda Cor B(2) a f.g. torsion
+subgroup has bounded orbits on both, so lies in a finite chamber-pair stabilizer. Covers the fp simple
+Kazhdan Caprace-Remy lattices with hyperbolic W, including rank >= 4 with 3-dim buildings. Open:
+Z^2 <= W with a spherical triple. Links added to the 2-dim node and the Burnside node Attempt 2.

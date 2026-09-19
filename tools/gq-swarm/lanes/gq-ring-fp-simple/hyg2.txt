@@ -1,0 +1,9 @@
+**OPEN.** Every route into this claim is conditional on an open claim:
+- `some-gl-n-z-in-no-nv-via-kazhdan-finiteness` needs `kazhdan-subgroups-of-brin-thompson-groups-are-finite`,
+  which is open for `n ≥ 2`;
+- `some-gl-n-z-in-no-nv-via-heisenberg` needs `heisenberg-group-embeds-in-no-brin-thompson-group`, of which
+  only `m = 1` is established;
+- `gl-3-z-in-no-nv-via-cnd-transversal` needs `brin-thompson-nv-cnd-proper-modulo-triangular-subgroup`, which is
+  open.
+
+The negation `every-gl-n-z-embeds-in-some-brin-thompson-group` is also open.

@@ -1,0 +1,3 @@
+Record referee-a PASS on run compression and the spine-Grigorchuk repair; make its Boone-Higman step unconditional
+
+The spine group embeds in (Gamma wr C_2) x Gamma inside Roever's finitely presented simple group; the lift-ideal route is kept as the conditional alternative (it uses the unreviewed necessity half of Theorem A). Choose p and q by sigma^p = sigma^(p+q) on S.

@@ -1,0 +1,3 @@
+Referee report: Kojima-Sheng two-generator criterion fails in V PASS
+
+Proof-gap lens on kojima-sheng-two-generator-torsion-criterion-fails-in-v (a22c90a4a). Delta(3,3,3) <= V relations verified; checked against the source TeX (md5 match) that Cor:TwoGenerator and Prop:Identity are contradicted as printed.

@@ -1,0 +1,12 @@
+Twisted Brin-Thompson functoriality; one 3-generated group contains every integral linear group
+
+bh-universal (BH swarm, free mode). New claims (lane proofs, unreviewed; no priority claimed):
+- twisted-brin-thompson-groups-embed-along-equivariant-inclusions: SV_G embeds in S'V_G' for
+  G <= G' acting faithfully on a G-invariant S in S'; so the fp simple host DV_F contains SV_G
+  for every G <= F, e.g. the simple, non-fp group ZV_Z.
+- elementary-shift-group-contains-every-integral-linear-group: Sigma = <shift, e_01,
+  e_10> = E(Z) x| Z contains every GL_n(Z) (so every polycyclic, f.g. nilpotent, finite and
+  virtually special group), is neither linear nor residually finite, and embeds in E_4 of the
+  one-relator Toeplitz ring Z<s,s*|s*s=1>.
+- OPEN one-fp-simple-group-contains-every-integral-linear-group, with routes from BH(Sigma) and
+  from Zaremsky Problem 2.19(c) via DV_F.

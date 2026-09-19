@@ -1,0 +1,10 @@
+Synthesis v4: the carrier principle and the non-amenable square route
+
+The input's complexity and coarse geometry must be carried by the acting group. Finite-state codings
+are capped, coding isotropy is residually finite, and move-table units are capped by separation
+profiles, so a fixed Farrell-Jones host cannot carry expander-like inputs. v4 makes Track A over a
+non-amenable square Lambda_1 x Lambda_1 the master route, with three gates: minimal free SFT
+existence (M2 plus BSS Q:minimal), rigidity, and a combinatorial P2'. The Z^2 rigidity work becomes
+a building block: scale collapse makes rigidity a finite check, and transplants carry it to F_n x Z
+and CMSZ lattices. The first decisive test is whether ABH's minimal free SFT on F_n x Z is quantum
+rigid. Also records that every recorded fp simple group now lies in B_A.

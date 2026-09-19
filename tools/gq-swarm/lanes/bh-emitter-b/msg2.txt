@@ -1,0 +1,4 @@
+Correct the Thompson T example of the germ quasi-retraction node
+
+T has breakpoints, so it is not inside the full group of PSL_2(Z); the proof only reads labels
+along one orbit, so state that variant and derive the T example from it. Tighten the lesson.

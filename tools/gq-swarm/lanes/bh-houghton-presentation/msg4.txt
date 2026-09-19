@@ -1,0 +1,4 @@
+Record a failed window-rotation attempt on the finitely generated form of MZ Question 3.18
+
+Adding a window rotation to the sparse example makes the group contain every shift of x.
+But the shift of the rotation leaves the window structure, so c(Gamma) is not in Gamma.

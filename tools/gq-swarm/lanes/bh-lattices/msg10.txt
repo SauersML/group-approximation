@@ -1,0 +1,10 @@
+Put every cocompact Ã2 lattice in the type (A) class, via a comparison lemma for degree categories
+
+The stabilized comparison lemma generalizes to Li's degree categories with finite
+unit groups. Units do not change cylinders. Duplicating a cylinder with the Cuntz
+colour before refining it removes the need for loops in the other colours. Strong
+connectivity then spreads any clopen set over its piece. So whenever the
+Cuntz-stabilized full group is finitely presented, its clopen action is of type
+(A). Applied to bh-groupoid's host for Ã2 lattices, after splitting the rescaled
+orbit category into strongly connected pieces, this puts every cocompact lattice of
+a thick Ã2 building, exotic or with torsion, in B_A.

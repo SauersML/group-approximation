@@ -1,0 +1,9 @@
+Answer FFWZ Question 5.9 (both parts) negatively: a type [A_2] action with non-recursive kernel
+
+Scott's finite presentation theorem for Rover-Nekrashevych groups needs no faithfulness: the abstract
+group V_d(G, psi) of any finitely presented G with any wreath recursion psi is finitely presented.
+With G free and a Bartholdi-Mitrofanov recursion table (arXiv:1710.10109, Theorem A''), its action on
+proper clopen sets is of type [A_2] and its kernel is not recursive. So that kernel cannot be removed
+(first part of Q5.9), and the abstract twisted Brin-Thompson group of this action is a finitely
+presented relatively simple group whose simple quotient has unsolvable word problem (second part).
+Status lines updated on the five nodes these settle. Lane proofs, not reviewed.

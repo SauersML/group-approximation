@@ -1,0 +1,5 @@
+Cross-link the commensurator-rigidity obstruction with the torsion-free version
+
+This statement needs no torsion-freeness and excludes every member of BS_G,
+so it is strictly stronger than commensurator-rigid-groups-lack-faithful-bs-members
+and closes the torsion-vertex case that node leaves open.

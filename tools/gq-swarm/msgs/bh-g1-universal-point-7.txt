@@ -1,0 +1,8 @@
+Halting pair (B_2, A_pm): graph lemma for the input, non-density of seeds, two-sided core mark
+
+halting-pair-seeds-need-a-two-sided-core-mark: the diagonal trick extends to graphs of arbitrary
+homomorphisms, so both input pieces of the halting pair (1 x F(b) and the presentation graph
+<b_j c_j> in C x F(b)) need only one seed of C. By Britton, a_1^k lies at distance >= k from P_pm
+although its coset E is core, so the core mark on digit-letter edge cosets cannot be forced by
+seed proximity; its value 0 needs a terminating certificate (a mortal decider run along digit
+paths). This is the same free bit as gate RR.

@@ -1,0 +1,4 @@
+SteinbergFP: correct two module docstrings
+
+Diagonal named a lemma that does not exist (now stMatrix_diagMap); ResolventRing now says that
+Q maps into the center (ratHomCenter). Documentation only; green MSI rebuild of the directory.

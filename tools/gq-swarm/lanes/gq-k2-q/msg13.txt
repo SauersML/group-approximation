@@ -1,0 +1,6 @@
+gq-k2-q: apply referee b W1 to the corner-symbol node
+
+Record gq-referee-b PASS (c73393b35) on resolvent-ring-corner-symbols-survive-in-k2
+and restrict the tame-symbol argument to odd primes q != l. The finite-residual
+refutation stays OPEN: its steps are checked, but Dennis-Stein and van der Kallen
+have not been read at the source.

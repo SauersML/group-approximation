@@ -1,0 +1,18 @@
+Correct aaf40d700: Garside-graded full groups hide the Artin group in isotropy
+
+The decorated Garside odometer route to BH for finite-type Artin groups is dead.
+Li's monoid boundary of a Garside monoid is a single point (all principal right
+ideals meet), so the unit space is ({0,1}^N)^3 and the Artin group enters the
+groupoid only through isotropy containing ker(l).
+
+- new claim garside-decorated-groupoids-hide-artin-groups-in-isotropy (lane
+  proof): groupoid = A x_l R_2 (non-effective); A embeds in F_P trivially via
+  constant-label bisections; the action kernel N meets D(F_P) nontrivially, so
+  D(F_P) is not simple and no simple subgroup of F_P contains A.
+- garside-odometer-groups-have-simple-finite-index-commutator: REFUTED (refuted_by).
+- artin-groups-embed-in-decorated-garside-odometer-groups: statement kept (true),
+  wrong proof withdrawn and replaced.
+- spherical-artin-bh-via-decorated-garside-odometer-groups: marked DEAD.
+- decorated-garside-odometer-full-groups-are-type-f-infinity: F_infinity stands;
+  unit-space remark corrected.
+- artifact gq-bh-bh-free-15-2026-preprints.md: warning added.

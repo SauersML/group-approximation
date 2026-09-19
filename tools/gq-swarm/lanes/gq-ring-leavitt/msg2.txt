@@ -1,0 +1,10 @@
+Refute the Leavitt resolvent host: scalar commutators block fp quotients
+
+Group lemma: if a non-finitely-generated central subgroup C_0 lies in [H,H],
+no quotient of H by a central subgroup containing C_0 is finitely presented.
+A ring with an infinite central field K and a Leavitt (1,d) family contains
+L_K(1,d)^x, whose commutators contain the central (d-1)-th powers of K^x. So
+R^x, [R^x,R^x] (d = 2) and E_N(R) are never finitely presented modulo their
+centres. For the Leavitt resolvent ring R_L this refutes
+leavitt-resolvent-derived-units-mod-centre-fp-simple unconditionally, closing
+the route gl-n-q-bh-via-leavitt-resolvent-units.

@@ -1,0 +1,14 @@
+Affine self-similar hosts reach exactly the global-field-linear groups
+
+A finitely generated group embeds in a finitely generated affine
+self-similar group over Z_p or F_q[[pi]] iff it is linear over a global
+field. The forward direction is the Jacobian/etale argument, now also in
+characteristic 0 (the carries are digit constants). The converse uses a
+degree-one place, S-integers closed under the digit shift, and one S-unit to
+make the translation module finitely generated.
+
+Lesson for general BH: self-similar hosts split into affine
+(global-field-linear, easy WP), fibered/parameter
+(positive-char-polynomial-affine-groups-are-self-similar: all char-p linear)
+and non-algebraic. Hard or non-linear inputs need section equations that fail
+to be etale. Lane proof, not reviewed, no novelty claimed.

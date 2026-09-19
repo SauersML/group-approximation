@@ -1,0 +1,10 @@
+UHF-type groupoid models: AF rings omit Q; virtual Laurent trap
+
+A finitely generated ring containing Q has no unital map to matrices over a
+commutative ring, so no finitely generated ring of compactly supported
+functions on an AF groupoid (the UHF tail groupoid of a Bratteli diagram)
+contains Q, for any coefficients. A matrix ring over a Z-graded ring with a
+degree-one unit and commutative or tracial degree-zero part has no finitely
+presented E_N; so crossed products over an odometer factor fail whenever the
+chain contains an indicable finite-index subgroup, perfect groups included.
+Record the class verdict and the FAb remnant (e.g. SL_3(Z)).

@@ -1,0 +1,8 @@
+FW inputs admit no twisted-normalizing genuine shell action
+
+An infinite FW group (e.g. any Kazhdan group) has no action on N with infinite
+supports that a nonzero power of the shift normalizes up to an automorphism.
+FW straightens the shift into a genuine equivariant bijection of index m; the
+index lives on finite orbits, which then fill the tail by density, bounding
+every orbit and forcing P finite. Closes the automorphism-twist case of the
+window-zero genuine-shell gate for FW inputs. Lane proof.

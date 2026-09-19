@@ -1,0 +1,12 @@
+Order seeds transfer computable orders: absolute order seeds cannot seed every decidable left-orderable group
+
+order-seeds-transfer-computable-orders (ESTABLISHED, lane proof, crediting Darbinyan, Bludov-Glass and
+Harrison-Trainor): an absolute order seed, or a finitely generated positive cone, makes the order
+computable. A relative order seed passes a computable left order to every subgroup acting freely on some
+orbit point. By Darbinyan's Corollary 2 (JSL 2020; a finitely presentable left-orderable group with
+decidable word problem and no computable left order, via Bludov-Glass) and Harrison-Trainor's group,
+absolute order seeds are not a universal SEED mechanism. Question (O) reduces to isolated left orders on
+finitely presented groups with hard word problems, which remains open.
+
+Lesson for general BH: an order seed is a computable order, so the computability theory of orders bounds
+what order seeds reach; only stabilizer-rich relative order seeds survive as a route to not-CAP or SEED.

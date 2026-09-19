@@ -1,0 +1,10 @@
+Show minimal dihedral actions by elements of nV are free, and record SMART's time reversal
+
+Finite-order elements of any Brin-Thompson group nV have clopen fixed sets, via
+germ length changes at a fixed point. So in a minimal dihedral action realized by
+elements of nV, every reflection is fixed-point free. Nekrashevych's periodic
+fragmentations need a non-free minimal dihedral action, so they can never be built
+from a dihedral action inside nV. For SMART, the cellwise swap 1<->2 composed with an
+explicit state involution conjugates the moving-tape map to its inverse. That
+reversal normalizes 2V_3 but is not in it, and all resulting reflections are free.
+Lane proof, not reviewed.

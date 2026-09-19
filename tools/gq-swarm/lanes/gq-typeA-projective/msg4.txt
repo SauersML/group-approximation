@@ -1,0 +1,6 @@
+gq: fix S_1 wording in the projective type (A) subgroup form
+
+Referee gq-referee-a (PASS, report c6ca7f182) on the reformulations and
+Attempts 2-3 of pgl-q-projective-type-a-extension: S_1 needs only finitely
+generated stabilizers and finitely many 2-subset orbits, with faithfulness
+required on S_1 plus Gamma/Lambda. Apply that and cite the review.

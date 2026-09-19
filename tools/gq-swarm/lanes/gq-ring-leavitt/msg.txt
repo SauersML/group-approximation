@@ -1,0 +1,10 @@
+Leavitt and integral-form unit hosts for GL_n(Q) reduce to finite fields
+
+Every finitely generated subgroup of GL_m(A ⊗ K), for A with free abelian
+additive group and K any field, embeds in a product of finite-field groups
+GL_m(A ⊗ F). So a copy of SL_n(Q), PSL_n(Q) or GL_n(Q) in such a host, or of
+PSL_n(Q) in its scalar quotient, already embeds over one finite field, together
+with (Q,+). Over a finite field (Q,+) in R^x is the same as F[Q] in R, which
+sits in M_(infinity!)(F) ⊗ F[t^(±1)] and is never a corner of a Leavitt algebra
+(finite K_1). Characteristic-zero Leavitt hosts therefore add nothing beyond
+the finite-field question.

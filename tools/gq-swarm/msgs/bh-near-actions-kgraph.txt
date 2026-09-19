@@ -1,0 +1,15 @@
+Stein groups: integral slopes are k-graph full groups (V_{2,3} simple, F_infinity, type A); Pisot slopes need no unit
+
+- integral-slope-stein-v-groups-are-k-graph-full-groups: for multiplicatively independent n_1..n_k >= 2,
+  V(Z[1/n_1...n_k], <n_j>) is the full group of an explicit one-vertex k-graph (aligned subintervals), so
+  it is F_infinity by Li, with finite-index simple derived subgroup; V_{2,3} is simple. It acts with type (A)
+  on breakpoints. Its k-graph is the opposite of the CT_P(Z) k-graph.
+- stein-group-v23-pbh-via-k-graph-finiteness: new route; stein-group-v23-subgroups-satisfy-pbh is now
+  ESTABLISHED. The T_{2,3} half of stein-groups-t23-and-v23-are-finitely-presented stays open (note added).
+- pisot-number-slope-stein-groups-are-contracting-rsgs (+ -proof): the contracting-RSG theorem without the
+  unit hypothesis. The coding exists iff (F); for non-units D(V) is fp simple of finite index in every degree,
+  and every real quadratic field has such slopes (1+sqrt3 for Q(sqrt3)). Affine codings carry only one slope.
+- Artifact addendum: sources (SRS survey, Molyneux/Winstone tree pairs = (F), Li, FKPS).
+
+Lesson: several independent scalings fit a Thompson-like host only as commuting renormalizations (k-graph
+colours); one contracting coding carries one Pisot S-arithmetic slope.

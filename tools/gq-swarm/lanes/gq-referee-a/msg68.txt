@@ -1,0 +1,3 @@
+Referee report: affine 2V hosts reach Z[1/2N] by doubling but not Q PASS
+
+Proof-gap lens on affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q (b0247e8f5). Self-similarity and pseudo-freeness, natural-action reach and non-finite-generation, fixed sets and Hausdorffness, perfectness, and the denominator limit checked; nits N1-N3.

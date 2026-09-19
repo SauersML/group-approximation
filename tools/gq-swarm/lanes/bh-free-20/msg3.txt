@@ -1,0 +1,13 @@
+Basilica HNN (Bartholdi-Virag) satisfies Boone-Higman via one-point germ extensions
+
+General theorem: a last-section ascending HNN extension G*_sigma, with G inside a bounded
+automata group S, embeds in an F_infinity finite germ extension W of V_d S with one singular
+orbit whenever its tail group E(G) is F_infinity. W is oligomorphic with F_infinity stabilizers
+on a second rational orbit, so SV_W is a finitely presented simple host (BH and PBH).
+
+The germ group at the new point is an ascending HNN extension of E(G). This falls outside
+the normal/finite-index hypothesis of Belk-Hyde-Matucci's corollary, but their Appendix A
+induction still works: each SingFix group is an iterated ascending HNN extension of
+(Fix of V_{d,m}S) x E(G)^m. Instance: the Basilica extension along a -> b^2, b -> a (tail Z^2,
+germ group Z[1/2]^2 x| Z), i.e. the Bartholdi-Virag finitely presented amenable group
+outside SG. Subsumes the finite-tail criterion. Lane proofs, not reviewed; no priority claimed.

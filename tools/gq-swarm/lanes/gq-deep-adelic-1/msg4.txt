@@ -1,0 +1,6 @@
+Tracial harmonic ring: record gq-referee-a PASS, state the used facts
+
+Cite the proof-gap review c3b5eab28 for parts 1-3. Following it, state that an
+infinite minimal system has no isolated points and no periodic points, and
+drop the redundant condition that W avoids F in the simplicity step. Part 5
+still rests on an unreviewed elementary node.

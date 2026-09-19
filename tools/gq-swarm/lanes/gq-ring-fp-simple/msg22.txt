@@ -1,0 +1,1 @@
+Note referee c pass on the LN completion criterion in the R_L and R_k nodes

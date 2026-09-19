@@ -1,0 +1,13 @@
+Record where the product-region obstruction comes from
+
+Adds a short section to the bh-free-51 artifact: F_2 x F_2 acts on the
+disjoint union of the two free-group boundaries by prefix replacements with no
+singular points, the boundary of a length-comparison normal form that is
+neither regular nor continuous. So the phase singularities come from BBCMP
+continuity (compactifications), not from the groups.
+
+Lesson for general BH: for inputs with product regions, look for exploded
+Cantor actions that keep commuting boundaries disjoint, for example curve-graph
+boundaries of subsurfaces for closed Mod(S_g), subject to the germ constraint
+of bhm-corollary-hosts-over-v-are-cover-centralizer-groups. A direction, not a
+result.

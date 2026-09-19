@@ -1,0 +1,9 @@
+Piecewise-representative lifts of Out(F_n) are rigid under induction, profinite blow-ups and splittings
+
+(PR) is commensurability invariant (induction over finite Out-sets). Profinite blow-ups make any
+lift free, which satisfies every germ constraint, but a lift over a profinite Gamma-space descends to
+a finite level, so it exists only if a finite-index lift does. Lifts glue along graphs of groups
+when edge restrictions are M-conjugate (a nonabelian H^1). Kazhdan finite-index subgroups (n >= 4)
+have FA, and for n = 3 the available splittings give vertex groups as hard as the whole.
+Comparison with the closed-MCG route: Mod(S_g) escapes its band through PML's integral train-track
+coordinates, while Smillie-Vogtmann rule out the analogous finite length coordinates on Outer space.

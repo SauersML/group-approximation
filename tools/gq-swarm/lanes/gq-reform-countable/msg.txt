@@ -1,0 +1,10 @@
+Root gl-n-q: simple inputs SL_m(Q), m odd, and just-infinite hosts
+
+For odd m, SL_m(Q) is an infinite simple group containing GL_n(Q) for n < m,
+so the root has simple inputs and any nontrivial homomorphism of them is an
+embedding. Per input, an infinite simple group (finitely generated or not)
+embeds in a finitely presented simple group iff it maps nontrivially to a
+finitely presented group that is just-infinite above its image, a corollary of
+the structure lemma. This gives the open target sl-odd-q-has-fp-just-infinite-host,
+wired to the root by two routes (equivalence), with host calibration: residually
+finite and cocompact CAT(0) hosts, including Burger-Mozes lattices, are excluded.

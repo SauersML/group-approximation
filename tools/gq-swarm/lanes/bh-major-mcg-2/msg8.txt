@@ -1,0 +1,3 @@
+Close the totally irrational shared-ray gate by the half-tube lemma; retire the tracking programme
+
+The half-tube lemma (re-checked here step by step) and Dirichlet give shared rays at every totally irrational direction in every rank, so the shared-ray statement is established and, with the rank induction, gives a second proof of edge-split synchronization. The Legendre capture node and the tracking/residue attempts are marked superseded.

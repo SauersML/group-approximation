@@ -1,0 +1,8 @@
+Obstruction: PL quasi-similarity lifts scale rational lines only by ratio
+
+In a periodic PL quasi-similarity group of the line (T-bar, <T-bar, x->2x>,
+Stein-type analogues, x->-x adjoined), an element normalizing a copy of (Q,+)
+acts on it by its similarity ratio. Hence no finitely generated such group
+contains Aff(Q), B_2(Q), SL_n(Q) or GL_n(Q), and no orientation-preserving one
+contains Aff(Q) or GL_n(Q). Artifact: the scaled-rational-line invariant that
+the dead gq approaches share, and the gate a surviving host must pass.

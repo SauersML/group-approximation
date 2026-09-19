@@ -1,0 +1,9 @@
+**REFUTED (2026-09-18).**
+`edge-split-dissections-respecting-a-first-split-need-not-split-there` gives a ten-piece
+`D ∈ 𝒪_E(Δ)` that respects `x_0 = x_1` and has `D|_{\{x_1 ≤ x_0\}} ∉ 𝒪_E`. It is
+checked exactly.
+- The failure is in the far-edge sub-case left open below.
+- Consequences 1–3 fail as stated.
+- LD_gen fails too.
+- The status line below records the state before the counterexample.
+

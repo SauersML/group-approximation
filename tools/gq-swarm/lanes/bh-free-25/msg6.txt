@@ -1,0 +1,12 @@
+The two-counter KMS top has no self-similar affine action, whatever the corners
+
+For K >= 2, R_K x| U_K (the KMS top factor B_0) has no faithful self-similar
+action on a p^d-ary tree with lamps as translations and U acting by causal
+linear maps, Toeplitz or not, finite-state or not. The corners give an
+injective ring endomorphism psi; the unit lemma (u, 1-u in U forces u into a
+single F_p(s_i)) makes it quasi-finite; normality gives g in R; and a
+sigma-stable nonzero ideal then has all digits zero. K = 1 escapes through a
+pole of g, which is the power-series shift D. Consequence recorded on the hard
+self-similar node: KMS realizations must be nonlinear on digits.
+
+Lane proof, elementary, not reviewed.

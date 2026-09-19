@@ -1,0 +1,6 @@
+Aligned plane lifts share infinite-level degeneracy: conjectured no-go for minimal rigid Z^2 lifts
+
+Cross-plane table transport by bounded rules forces the Z^2 hierarchies of adjacent planes to agree
+up to bounded shift at every level, so data-less infinite blocks, which carry undetermined content,
+occur in every plane. Uncoupled, that content kills rigidity; transport-coupled, it kills minimality.
+OPEN with sketch; the gap is step 2 for arbitrary verification layers.

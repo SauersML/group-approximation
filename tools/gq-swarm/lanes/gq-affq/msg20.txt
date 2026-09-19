@@ -1,0 +1,6 @@
+Odd-branching machines: SMART inducing set and eigenvalues for M_5
+
+SMART's genuine-move set Y gives exactly 5^L induced steps per level-L
+crossing of M_5, and the induced map has locally readable eigenvalues -1,
+e^(2 pi i/5) and e^(2 pi i/25) at radii 0, 1, 2, exactly SMART's pattern with 3
+replaced by 5 (MSI, calibrated on SMART).

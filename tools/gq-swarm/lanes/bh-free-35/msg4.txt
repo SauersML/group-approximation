@@ -1,0 +1,10 @@
+Time-lift actors carry no complexity beyond the row language
+
+A finitely generated group of automorphisms of a subshift has word problem
+primitive recursive relative to the subshift's language: triviality is
+checked on admissible patterns of radius nR. So in the master route's rule-8
+design (Λ_0 acting by automorphisms on a rigid Z^2-SFT Y), WP(Λ_0) and the
+input's word problem are bounded by L(Y). Y must be programmed with the
+input's complexity, and no language-bounded family of space SFTs serves all
+inputs. Track A via time lifts meets Track B's programmable-language
+requirement.

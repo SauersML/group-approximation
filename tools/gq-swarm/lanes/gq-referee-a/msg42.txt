@@ -1,0 +1,3 @@
+Referee reports: Euler triangular ring PASS; Euler base in St_N(T_l) FAIL at the G_l embedding, repaired
+
+Proof-gap lens on euler-triangular-ring-is-fp-rf and euler-base-embeds-in-fp-steinberg-group (8e1c23ab3). Ring: Peirce decomposition and RF check, N1 faithfulness of D on M. Steinberg: items 1-2 and fg/RF PASS; g -> diag(g, g^-1) is not a homomorphism on nonabelian G_l; replacement diag(g, c(pi g)) with c(x)=x^-1, c(1+u)=B lands in E_2.

@@ -1,0 +1,38 @@
+## 8. Hand design: the design over-constrains, and the unfrozen machine (SLURM job 1329218)
+
+**Where the single-fact nogoods come from (hand trace).** Every size-1 nogood of §6 lives on one free input: `S→`
+reading `b` with a nonzero right neighbour. That input is reached by exactly one chain of fixed rules. Cells are
+numbered from the `a` being reset, with `x ≠ 0` to its right.
+
+| step | where | rule | effect |
+|---|---|---|---|
+| 1 | `S→` on `a` at 0 | `(0, A→)` | reset the `a`, move right |
+| 2 | `A→` on `x` at 1 | `(x, S←)` | back left |
+| 3 | `S←` on `0` at 0 | `(b, A←)` | write `b` |
+| 4 | `A←` on `y ≠ 0` at −1 | `(y, S→)` | back right |
+| 5 | `S→` on `b` at 0, neighbour `x ≠ 0` | free | |
+
+In the hierarchy, step 1 is the junction J2a: an `R_R` ends at its home in an E-parent, and the cell to its right is
+that parent's fresh end cell, always `0`. So the design **fixes a rule in a neighbour context the hierarchy never
+visits**. The same holds for `X←` reading `0`, whose right neighbour in the hierarchy is always the peek cell, `0`.
+
+**Principle.** With radius-1 reads, every rule may branch on its neighbour. A hierarchy constrains only the
+(neighbour, input) contexts it visits; every other context is junk handling and should be free. Completing the rest
+by hand means following every junk chain, which is what the solver does, so the hand design stops here.
+
+**The unfrozen machine.**
+- The contexts are those consulted by 200,000-step zero-tape orbits from the 8 non-`T` states. Those rules are fixed.
+- Neighbour `0`: 10 fixed, 5 free (exactly the old free set).
+- Neighbours `a` and `b`: only **4** fixed, 11 free each. So about `1.9·10^17` fills.
+- Each neighbour value keeps a bijection onto the outputs the design gave its free inputs.
+
+**Solver.** `bh_unfreeze.py`, with a z3 master (standard CDCL): exactly-one constraints both ways, nogood clauses from
+consulted facts as in §6.
+
+**Calibrations (same job).**
+1. Planted: UNSAT with an empty nogood, 1 s.
+2. Pinned: all newly freed contexts pinned to the design. Must reproduce §6. UNSAT, 256 fills, 1,704 clauses, 22 s.
+   This also cross-checks the z3 master against the DFS master of job 1327013.
+3. Soundness: random completions of 8 learned nogoods all fail again.
+
+**Result.** @@RESULT@@

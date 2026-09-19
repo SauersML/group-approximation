@@ -1,0 +1,9 @@
+gq-k2-q: faithful l-adic tree action of the Euler lamplighter; finite-state test open
+
+G_l acts faithfully by affine maps on the Iwasawa algebra Z_l[[T]] of l-adic
+measures, the Euler element acting as multiplication by 1 + l x, preserving an
+l-step refinement of the (l,T)-adic filtration: an explicit faithful action on
+the l-ary tree. Whether some faithful action is finite-state (equivalently,
+whether G_l lies in a finitely generated self-similar group) is recorded as
+open, with the natural coordinatizations failing. Also note referee-b source
+confirmation and centrality attribution on the finite-residual node.

@@ -1,0 +1,8 @@
+Reduce factorial-odometer radix-changing Aff(Q) hosts to Stein interval-exchange groups
+
+Every rational has a finite factorial expansion, so the factorial odometer is the doubled-rationals
+Cantor space. Its radix-changing value-affine homeomorphisms form the rational Stein-Thompson group,
+and each finitely generated subgroup lies in a Stein group V(1; Z[1/M], <p|M>), which has a type (A)
+breakpoint action. So this host embeds Aff(Q) exactly when a Stein group does (open, with a route to BH).
+In a Stein group, an element with a hyperbolic periodic point has roots of only boundedly many orders,
+so copies of Q or BS(1,m) need infinite-order elements without hyperbolic periodic points.

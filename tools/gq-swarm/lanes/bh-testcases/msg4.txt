@@ -1,0 +1,11 @@
+2V_tau on an orbit: finitely many pair orbits, infinite-entropy BS(1,2) base
+
+Lane bh-testcases. OPEN node odometer-2v-orbit-action-is-type-a. Proved (lane
+proof): 2V_tau acts faithfully on S = orbit of (0^∞,0^∞) with at most three
+orbits on 2-subsets (2V is highly transitive on each tail type), and in the
+coordinate-permutation action on C^S the BS(1,2) base s has infinite entropy
+with u s u^-1 = s^2. Open gate: the point stabilizer is finitely generated;
+if so, SV over 2V_tau is a finitely presented simple group containing
+BS(1,2) with an infinite-entropy base, outside every finite-entropy
+obstruction for Higman's group. Records that an SV_P host for H4 is
+equivalent to PBH for H4 (BFFHZ Theorem C).

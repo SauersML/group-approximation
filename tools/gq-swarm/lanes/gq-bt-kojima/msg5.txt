@@ -1,0 +1,10 @@
+Renormalizable kV elements are odometer codes; BS(1,2) route status
+
+Prove that an element of kV has a height-m renormalization iff it is a bounded
+odometer of an m-ary brick code; such an element factors onto the m-adic
+odometer, has no periodic points and zero drift for every invariant measure,
+and the single-insertion code only gives tau x id. Record the resulting
+necessary hole some-brin-thompson-element-factors-onto-an-odometer (OPEN) and
+add attempt 5 to bs12-embeds-in-brin-thompson-2v: the landed constraints, the
+reversible-Turing-machine calibration (Barbieri-Kari-Salo Prop. 2.3) and the
+SMART timing lead f(k+1) = 3f(k) + 4. The question stays open.

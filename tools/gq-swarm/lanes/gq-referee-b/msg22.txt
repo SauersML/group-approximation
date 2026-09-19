@@ -1,0 +1,6 @@
+gq-referee-b: second proof review of the SL_3 Toeplitz harmonic ring
+
+Proof review (second referee) of sl3-toeplitz-harmonic-ring-is-simple-and-k1-
+rational parts 1-5 and harmonic-elimination-puts-q-in-odometer-crossed-
+products: PASS. Finite generation, Q in R_T, simplicity, centre Q and
+rational scalars in E_N within +-1 are now double-refereed.

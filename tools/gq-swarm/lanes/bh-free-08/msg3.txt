@@ -1,0 +1,8 @@
+Answer MathOverflow 412219 negatively: a finitely presented decidable group whose E(G) is not recursively presented
+
+A Mihailova subgroup of a mapping torus of F x F, amalgamated with a central Z,
+turns "w(a^n) = 1 for all n" in a Clapham envelope into a one-variable mixed
+identity. With a recursive pattern of commutations along one cyclic subgroup,
+this gives a finitely presented group with solvable word problem whose mixed
+identities are co-r.e. but not r.e., so E(G) is not recursively presented.
+A variant makes the mixed identities Pi_2-complete. Mark the question node refuted.

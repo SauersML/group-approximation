@@ -1,0 +1,8 @@
+Finite-seed telescope hosts are full contracting RSGs (Conjecture SS test T1)
+
+The one-chain self-simulating host <V, theta_S> over the golden-mean parse shift lies in a
+finitely presented full contracting RSG exactly when the seed group <S> is finite (BBMZ
+nucleus-of-injections characterization + thrm:fin_pres); infinite seeds force an infinite
+nucleus. Attempt 1 on Conjecture SS records the consequence: seeds are free, the input
+cannot sit in locally uniquely parsed directions, and item 2 reduces to P2-prime for the
+input factor.

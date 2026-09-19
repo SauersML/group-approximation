@@ -1,0 +1,42 @@
+
+## 3e. Correction to §3d, and the return-time test (2026-09-18)
+
+**Correction.** The phase-conflict counts in §3d are wrong.
+- The cause: `rtm_induce` hashed the state and the first window cell into the same FNV byte, so
+  `(state 3, cell 0)` and `(state 2, cell 1)` collided.
+- `rtm_certcheck`, an independent re-simulation, printed the two "conflicting" windows and they differed.
+- The hash has been fixed (state multiplied in separately, plus a second 64-bit hash). With the fix, for
+  all three exact-doubling machines:
+  - `mod 2` and `mod 4` show **0 conflicts** at radius 6 and 9;
+  - the remaining `mod 8` conflicts all involve one early configuration of the orbit.
+- So the §3d sentences "mod 4: hundreds of conflicts at radius 12" and "mod 8: about 10^6 conflicts at
+  radius 12–15" are withdrawn.
+
+**Return-time test** (`renormalization-return-times-tend-to-zero-adically`, item 3). `rtm_recur` fixes
+the first `Y`-configuration `y` at or after `t_1`. It lists later `Y`-times whose state and window of
+radius `r` equal those of `y`, with the induced index difference `n`.
+
+| machine (`Y`) | radius | returns found | `n mod 2^j` (or `3^j`) |
+|---|---|---|---|
+| SMART, genuine level-0 moves (calibration, `m = 3`) | 6 | 2 in `4·10^7` steps | `n ≡ 0 mod 729` (3-adically small, as required) |
+| `M°`, mask 21, β = 3,4,11,0,1,8,16,2,10,13,5,7,6,17,12,9,14,15, start 2, 52 zero-overhead types | 10 | `n` = 14852, 29700, 44548, 59396 | **`n ≡ 4 mod 64`** each |
+| same | 14 | `n` = 237572, 475140, 712708, 950276 | **`n ≡ 4 mod 64`** each |
+| same (`rtm_cert` certificates, checked by `rtm_certcheck`) | 12 / 15 / 16 / 18 | `n = 29·2^m + 4` for `m = 11, 14, 15, 17` | `n ≡ 4 mod 8` |
+
+The other two exact-doubling machines of §3d show the same pattern: their first `mod 8` conflicts have
+phase difference 4.
+
+**Reading.**
+- Every return of `y` found so far, up to radius 18, has `n ≡ 4 mod 8`, and the matching radius grows
+  with `m`. If `U°^{n_m} y → y` along `n_m = 29·2^m + 4` (all radii), then item 3 shows that `U°` has no
+  height-2 renormalization, indeed no `mod 8` phase. That convergence is certified only up to radius 18,
+  so this remains OPEN.
+- **Why 3 passes and 2 fails here.** In SMART induced on genuine moves, every level-`k` move starts at an
+  induced time `≡ 0 mod 3^k`: sub-moves are consecutive blocks, and the specials are exactly the
+  non-`Y` steps. So returns are 3-adically small.
+- In `M°` the zero-overhead `Y` gives exact doubling of counts, with blocks of `29·2^m`. But the
+  configuration `y` recurs at induced offset `+4`, at every level: two points at different `mod 8`
+  phases agree on ever larger windows. That is a recognizability failure, not a counting failure.
+- Consistent with that, the parity lemma (`crossing-move-hierarchies-have-odd-branching`) forces binary
+  hierarchies to use returns, and SMART's recognizability comes from a boundary-cell parent table that
+  crossing-only hierarchies have. **Not proved for a class.**

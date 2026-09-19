@@ -1,0 +1,7 @@
+Kourovka 21.46: commensurated subgroups of virtually simple groups are residually finite; torsion-free Amir-Lazarovich route is a Neumann problem for Davis lattices
+
+New node commensurated-subgroups-of-virtually-simple-groups-are-rf: the finite residual of a commensurated subgroup is normal, so in a virtually simple group every infinite-index commensurated subgroup (vertex stabilizers of locally finite actions, slices of lattices in products) is residually finite. Consequences: a virtually simple lattice in three trees can never contain a non-residually-finite 2-dimensional witness in a slice or hyperplane stabilizer, and linear factors are excluded.
+
+New node kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices: torsion-free lattices in Aut(T) x Aut(X_{O_d}) with edge-transitive tree action are amalgams W_1 *_A W_2 of torsion-free Davis-complex lattices; each is finitely presented of cd 3, and its hyperplane sub-amalgams are free amalgams, so non-residual finiteness can be imported from a Burger-Mozes amalgam on one hyperplane. The open gate is a relative Leighton extension (EXT) plus the local conditions of Amir-Lazarovich and Radu.
+
+The 21.46 node records both, and sharpens the one-vertex parity constraint to 4 | |E(O_d)| (d = 12, 14, 15, 20, ...).

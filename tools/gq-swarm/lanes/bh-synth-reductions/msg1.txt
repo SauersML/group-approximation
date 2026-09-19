@@ -1,0 +1,8 @@
+Reduce every universal host class for decidable groups to the canonical Kazhdan groups EL_3 of Cantor crossed products
+
+A class of groups hosts every group with solvable word problem iff it hosts
+H_Gamma = EL_3(LC(2^{C(Gamma)},F_2) x| Z/2 wr C(Gamma)) for every decidable Gamma.
+This gives new equivalent forms of Boone-Higman, permutational Boone-Higman,
+just-infinite and isolated hosts, and the dynamical premise of the Leavitt route.
+Kazhdan filter: amenable, Haagerup, residually finite and finite-Kazhdan host
+classes are never universal. Synthesis artifact ranks the remaining gates.

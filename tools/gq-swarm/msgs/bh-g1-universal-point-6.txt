@@ -1,0 +1,8 @@
+Mikhailova edges transfer word-problem hardness into C but never create it
+
+mikhailova-relative-seeds-push-down-to-bi-seeds: a relative seed for a fibre product M_Q in F x F
+pushes down, condition by condition (isolation and stabilizer, orbit closure, quantum rigidity), to
+a relative seed for the diagonal of Q x Q, i.e. a two-sided seed of Q whose forced point computes
+WP(Q). Conversely the diagonal trick (rows forced by seeds propagated along the diagonal) turns any
+seed of Q into a relative seed for the diagonal. So the Mikhailova CAP place reduces to rigid
+two-sided seeds of a hard group.

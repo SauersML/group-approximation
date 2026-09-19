@@ -1,0 +1,9 @@
+SK LVPolyK2: stable K2 of F_p[X] and of polynomial rings over ultramatricial F2-rings; NK2(F2) = 0; Gersten for one generator
+
+New module Full/LVPolyK2/Basic.lean (lane ms-sk-uncond-a). It carries the Boone-Higman theorem K2(N, F_p[X]) = bot (N >= 5, bh-met-94e) into the stable-K2 API of the simple Kazhdan chain:
+- stable K2(F_p[X]) = 0;
+- NK2(F2) = 0, the conclusion of LVFreeAlgGersten.skGer_polyNilZModTwo_of_polyNil, now with no hypothesis;
+- stable K2 of M_m(F_p)[X] and of (prod_j M_{d_j}(F2))[X];
+- stable K2(S[X]) = 0 and untwisted NK2(S) = 0 for every ultramatricial F2-ring S (the phi = id case of LVSkewLaurentK2.NilK2Trivial), and for the Cohn degree-zero part C0;
+- Gersten's theorem for one generator: stable K2(F_p<x>) = 0 and the Gersten nil part of K2(F2<x>).
+Still open: the two-generator Gersten nil part (skGer_PolyNilStatement), twisted NilK2Trivial, and YaoFactorization. The module is not wired into the root.

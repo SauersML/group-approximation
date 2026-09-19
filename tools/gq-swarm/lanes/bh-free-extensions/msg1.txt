@@ -1,0 +1,8 @@
+BH for surface-by-(virtually free) and free-by-(virtually free) groups
+
+Lane bh-free-extensions (lane proofs, not reviewed; no priority claimed).
+- virtually-free-extensions-lie-in-generalized-bs-classes: N-by-(virtually free) extensions lie in BS_N (pull back the quotient's Bass-Serre tree).
+- surface-groups-have-faithful-generalized-bs-witnesses: for G a closed hyperbolic surface group, the norm-one group of Z[1/5]-units in the discriminant-6 quaternion algebra, mod +-1, is a faithful member of BS_G.
+- surface-generalized-bs-groups-satisfy-boone-higman: with BLIW Theorem 11.1, every group in BS_{pi_1 Sigma} embeds in a simple group of type F_infinity; includes every surface-by-free group.
+- free-by-virtually-free-groups-satisfy-boone-higman: free-by-free and free-by-(virtually free) groups, from BLIW Theorems 12.2 and 12.5.
+- artifact gq-bh-bh-free-extensions-bliw-section-11-12.md: reading record of BLIW sections 10-12.

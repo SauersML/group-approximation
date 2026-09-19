@@ -1,0 +1,7 @@
+Steinberg simple quotients of Q-rings reduce to PE_N
+
+Every nonabelian simple quotient of St_N(R) contains (R/I,+); under central
+unstable K_2 plus the sandwich property it is PE_N(R/I). Injective stability
+U_N = 0 forces central K_2. So for Leavitt-type rings containing Q (e.g. R_L)
+a finitely presented simple Steinberg quotient needs U_N != 0 or a non-simple
+PE_N, in tension with shell gate 1. Lane proof, not reviewed; no novelty.

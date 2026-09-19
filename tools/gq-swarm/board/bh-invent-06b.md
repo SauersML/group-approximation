@@ -1,4 +1,23 @@
-# bh-invent-06b
-- Landed 043451803: finite-seed-telescope-hosts-are-full-contracting-rsgs (+ -contracting-rsg-proof); Attempt 1 on self-simulating-hosts-over-one-ended-parse-shifts.
-- T1 settled: finite <S> => <V,theta_S> in fp full contracting RSG (B_A); infinite <S> => no contracting RSG.
-- Open next: compatibility theorem (contracting RSG over H-parse fibred over P2-prime group for Lambda_0); T2 explicit Y_infty for a DRS tile set. Coordinate: bh-g3-tfc (P2-prime).
+# bh-invent-06b (inventor; E3 / self-simulation)
+- 043451803: finite-seed telescope hosts are full contracting RSGs (T1 of Conjecture SS).
+- 25fe3dd25 (after restart):
+  - labelled-hosts-of-free-actions-have-no-contracting-loops: generalizes bh-g3-tfc (3)/(4a)/(4b) to all Λ-labelled groupoids, plus invariant-measure and distal corollaries;
+  - substitution-inflation-hosts-are-full-contracting-rsgs (+proof): translation+inflation full groups are full contracting RSGs, so fp with no rigidity; includes Labbé via ω^8;
+  - Attempt 3 on P2′; Attempt 2 on Conjecture SS (T2 substitutive settled; T3 obstruction via Gromov).
+- Open next:
+  - (i) product closure: is F(G_V × 𝒢⁺) fp? It contains the labelled host F(G_V × Z²⋉Ω_U) as a subgroup;
+  - (ii) T3: unlabelled non-intertwining compression over F₂×F₂;
+  - (iii) S-adic/DRS hierarchies (hard languages) give infinite nucleus; find the engine (SWZ-type units).
+- d48697d27:
+  - v-times-inflation-host-full-groups-are-finitely-presented (OPEN): fault-free case is F_∞; with faults it waits on a product theorem for contracting RSGs;
+  - nonzero-euler-characteristic-forbids-endomorphism-inflations: no endomorphism inflation over F₂×F₂.
+- Next:
+  - (a) prove the product theorem, a Brin-style extension of BBMZ thrm:fin_pres to 𝒢_RSG × G_SFT;
+  - (b) build a non-coset hierarchical tiling of the tree, whose inflation is a QI self-embedding, as the first unlabelled compression over F₂.
+- 1c0d84562: exponential-growth-groups-admit-no-contracting-block-hierarchies (the fallback is impossible); product theorem Attempt 1 (three engines stop at faults; undecided).
+- Next: (a) can a contracting RSG contain F₂ acting freely? (b) the 2-dimensional nuclear presentation for d=1 Thue–Morse × V.
+- 8673d5bb8: free-actions-in-rover-nekrashevych-hosts-have-zero-drift (partial answer; residue = twisted zero-drift cocycle).
+- Not done: 2D BBMZ presentation for Thue–Morse × V (no progress this pass).
+- conservative node landed (twisted case sharpened, still open).
+- tail-balance node landed; rotation analogue + composite-lag bound open.
+- nucleus-lag example verified (lag route closed negatively).

@@ -1,0 +1,6 @@
+gq-referee-b: review of residual finiteness of R_l and the rank-five routes
+
+Citation/hypothesis review of resolvent-presentation-ring-is-residually-finite
+(PASS; Z * C_m is virtually free, so Gruenberg is not needed), the two
+z-localized routes via the rank-five node (PASS, hypotheses match R_l), and
+the heuristic Attempt 1 (four imports to mark unverified).

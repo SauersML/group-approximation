@@ -1,0 +1,8 @@
+Add gq critic pass 1: surviving mechanisms, gaps, duplicates
+
+Completeness-critic pass over the 59 gq boards and 26 landings: which
+construction mechanisms survive every landed obstruction (nV/SV_Gamma with
+prime dilations, graphs of groups over nontrivial RF edges, carry-operator
+ring hosts, ample groupoids, RSGs), the missing abstract obstruction (FW for
+SL_n(Q)), unused lemmas, untried families, duplicated nodes, and proposed
+reassignments.

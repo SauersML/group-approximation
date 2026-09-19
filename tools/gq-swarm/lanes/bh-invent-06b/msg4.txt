@@ -1,0 +1,10 @@
+No contracting block hierarchy exists over exponential-growth groups; product theorem attempt for inflation hosts
+
+- exponential-growth-groups-admit-no-contracting-block-hierarchies: a bounded-supertile hierarchy
+  whose inflation is a quasi-isometric self-embedding with expansion > 1 forces polynomial growth
+  (Franks count, then Gromov); for the regular tree, connected blocks with tree quotient are single
+  vertices. So no such tiling of the tree, of F_2 x F_2 or of any exponential-growth group exists,
+  and unlabelled compression over Track A groups must be fibre-type or by the group with isotropy.
+- Attempt 1 on v-times-inflation-host-full-groups-are-finitely-presented: the Cuntz-stabilized
+  Li-Garside theorem, the horizontal (A_N) reduction and condition (G) each stop at fault moves;
+  the natural category has minimal common multiples of growing degree. Undecided.

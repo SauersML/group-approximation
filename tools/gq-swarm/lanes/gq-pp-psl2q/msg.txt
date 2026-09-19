@@ -1,0 +1,12 @@
+Obstruction: 1-dim piecewise-projective/PL hosts and lifts omit GL_n(Q)
+
+pp-circle-divisible-subgroups-act-freely: in a circle group whose pieces lie
+in a projective or affine group without divisible abelian subgroups (every
+finitely generated piecewise PSL_2(R) or PL circle group with finitely many
+breakpoints), divisible abelian subgroups have trivial germs at common fixed
+points, so they act freely; rot is injective on them, normalizers centralize
+them, and they meet [A,A] trivially for amenable A. pp-circle-and-lift-hosts-
+miss-gl-n-q: hence these groups (T, T-bar, Lodha's S, Lodha-Moore, Monod
+H(A) subgroups, Stein and irrational-slope PL groups) and their lifts to R
+contain none of GL_n(Q), SL_n(Q), PSL_n(Q), Aff(Q), B_2(Q), U_3(Q).
+Lane proofs, not independently reviewed.

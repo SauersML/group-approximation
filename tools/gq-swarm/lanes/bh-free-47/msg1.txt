@@ -1,0 +1,14 @@
+Repaired lifting criterion for FSym-extensions; over strand-map bases it reaches only virtually cyclic inputs
+
+New ESTABLISHED lane proofs (bh-free-47):
+- fsym-extensions-lift-fp-via-pair-transitive-stable-subgroups: let FSym(X) <= K <= Gamma with K finitely
+  presented, Gamma/FSym finitely presented, and Gamma = <K, y_1..y_m>. Suppose each y_i conjugates into
+  <K, y_<i> a finitely generated subgroup with finitely many orbits on pairs. Then Gamma is finitely presented.
+  This is the correct replacement for the refuted germ-lifting claim; it recovers the H_n(G) case for finitely
+  presented strongly shift-similar G.
+- strand-map-bases-lift-only-bounded-displacement-letters: over a base of eventual strand maps (e.g. H_n(E_2)),
+  a certificate for rho_g forces lambda_g s^a = s^a lambda_g near infinity for some a != 0, i.e. eventually
+  periodic displacement. So over that base only virtually cyclic inputs are reached, and a non-virtually-abelian
+  witness needs an iterated certificate or a base with unbounded displacement.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

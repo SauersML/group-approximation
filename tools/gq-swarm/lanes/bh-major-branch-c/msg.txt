@@ -1,0 +1,10 @@
+Pinned annular passengers are Aut(V)-class functions of the driver; shifted-system collapse lemma
+
+Two constraints on the Bishop-Schesler one-point pinning step (gate 2 of
+fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups):
+- a pinned passenger is fixed by every automorphism of V fixing the
+  driver datum, so its quotient depends only on the Aut(V)-class of rho mu^n.
+  This kills Aut(V)-induced, cone-copy and faithful diagonal drivers.
+- if the shifted pinning system is solvable in the base L, the passenger
+  lies in the driver (the ascending case).
+Adds Attempt 1 to the open node.

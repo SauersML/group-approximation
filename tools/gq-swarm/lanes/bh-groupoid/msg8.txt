@@ -1,0 +1,9 @@
+Put every cocompact Ã2 lattice into the permutational Boone–Higman class B_A, and record the arXiv priority check
+
+- a2-lattices-lie-in-permutational-bh-class (new, lane proof): bh-lattices' stabilized comparison argument
+  run on the orbit category with finite units (cylinders mod units, refinement moves, O_2 count raising),
+  type (A) action of the stabilized full group on clopen sets; Γ embeds by explicit skew-product/compression
+  bisections (no Matui comparison). Consequences via B_A closure: finite products and finite-index
+  overgroups of Ã2 lattices satisfy BH.
+- a2-lattices-embed-in-fp-simple-groups: bounded arXiv priority check (2023–2026) recorded; no BH/fp-simple
+  result for Ã2 or 2-dim building lattices found.

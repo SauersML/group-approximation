@@ -1,0 +1,3 @@
+Mark the transport design rule for plane lifts as withdrawn
+
+Theorem C of e2-for-plane-lifts-is-clustered-floating-freedom shows transport-coupled lifts cannot be minimal for a non-SFT input.

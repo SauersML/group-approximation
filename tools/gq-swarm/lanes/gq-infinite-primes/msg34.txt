@@ -1,0 +1,5 @@
+Isometric-frame node: record referee-b PASS (a141e77ba), W1 title fix
+
+Lane gq-infinite-primes. The title now says the budget fails for every design
+of index other than 1 and every graded one of index 1; ungraded index-one
+frames stay open. The id is unchanged.

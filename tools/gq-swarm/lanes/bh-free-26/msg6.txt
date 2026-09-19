@@ -1,0 +1,16 @@
+Leavitt tensor K-theory is carried by Nil groups, and the G3r host corollary
+
+For every algebra C over any commutative ring, K_n(C ⊗ L(1,2)) is the image
+of NK_n(C ⊗ L) under evaluation at 1. The doubling endomorphism δ acts as 2 on
+K-theory. It equals ρ_u for the digit-swap unit u, which in depth-3 leaf
+coordinates is an even permutation matrix in E_8(Z), so an elementary
+polynomial path joins the identity to δ.
+
+Consequences: K-regularity of C ⊗ L forces K_n(C ⊗ L) = 0, KH(C ⊗ L) = 0,
+K(C) → K(C ⊗ L) is zero, and K(C ⊗ L^{⊗∞}) = 0.
+
+The audit node gains the master-route form (gate G3r). For B a finitely
+presented simple F_p-algebra with centre F_p, (B ⊗ L_p)^x / F_p^x is fp simple
+once K_1 = K_2 = 0; only these two degrees enter, by Hurewicz and Khanh's
+induction to degree 2. By the Nil lemma this follows from K_1- and
+K_2-regularity of B ⊗ L_p, so the ring gate is a Nil-vanishing question.

@@ -1,0 +1,3 @@
+Referee report: Out(V) contains the root problem for the full 2-shift PASS
+
+Proof-gap lens on out-v-contains-the-root-problem-for-the-full-2-shift (4b7e6b9e2). Splitting, RF, SL3 reading, root transfer, Z[1/2] cap <sigma> = 0 and the periodic-orbit remark checked. W1: the gloss "changes the length of periodic orbits" is not shown (prime roots); N1: pi(g) has infinite order.

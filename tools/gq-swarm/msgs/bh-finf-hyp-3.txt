@@ -1,0 +1,12 @@
+Prove finitely many atom-configuration types for hyperbolic groups, and the block version of the finite germ theorem
+
+horofunction-atom-configurations-have-finitely-many-types (lane proof): tuples of distinct same-level
+atoms whose boundary images meet have finitely many types under simultaneous morphisms. So every
+fiber product of the horofunction boundary over the Gromov boundary has a finite-type tree coding.
+
+finite-germ-extensions-with-singular-blocks-are-f-n (lane proof): the Belk-Hyde-Matucci finiteness
+theorem holds with singular points replaced by permuted closed blocks. A full group containing a
+Thompson group has no nontrivial blocks, and for the coset blocks of G*Z the transport base is not
+finitely generated (letter support). So germ-local methods over coset loci cannot give F_infinity for
+hyperbolic inputs. What remains is the shadow operad under the connectivity condition (G) of
+thumann-finiteness-without-finite-type.

@@ -1,0 +1,5 @@
+Root gl-n-q: index the established obstructions not yet cited
+
+Add Attempts item 15, a one-line-per-claim index of the established gq
+obstruction claims the root did not reference, grouped by host family. No
+existing item changed.

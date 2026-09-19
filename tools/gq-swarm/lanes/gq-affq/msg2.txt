@@ -1,0 +1,8 @@
+Criterion: renormalizable kV elements give BS(1,m) in (k+1)V
+
+Suppose an infinite-order T in kV has a brick-local height-m tower
+renormalization: X = A u TA u ... u T^(m-1)A, T^m A = A, and a
+prefix-replacement conjugacy phi from (A, T^m) to (X, T). Then T x id is
+conjugate in (k+1)V to its m-th power, giving BS(1,m). This generalizes the
+odometer and baker-map computation of the bs12 node. Link it from the Aff(Q)
+stepping stone. Elementary lane proof, not independently reviewed.

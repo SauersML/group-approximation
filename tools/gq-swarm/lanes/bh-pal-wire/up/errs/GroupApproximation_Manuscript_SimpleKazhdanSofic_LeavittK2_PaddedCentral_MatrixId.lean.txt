@@ -1,0 +1,12 @@
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean:39:65: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Pi.single p ?m.63 j
+in the target expression
+  Pi.single p a + Pi.single i (b * Pi.single p a j) = Pi.single p a
+
+R : Type u_1
+inst✝ : Ring R
+n : ℕ
+i j p : Fin n
+hp : p ≠ j
+b a : R
+⊢ Pi.single p a + Pi.single i (b * Pi.single p a j) = Pi.single p a

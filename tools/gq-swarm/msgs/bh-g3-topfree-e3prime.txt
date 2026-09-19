@@ -1,0 +1,17 @@
+Run Track A in topologically free form: E3' has proved instances; tree-boundary hosts are Li product-SFT groups
+
+- v-times-tree-boundary-full-groups-are-f-infinity (ESTABLISHED): for groups with tree Cayley
+  graphs, the end-shift transformation groupoid is Matui's non-backtracking SFT groupoid (Busemann
+  cocycle as lag), so G_V x (Lambda ⋉ X) for the rigid scaffold over products of tree groups is a
+  product of one-sided SFT groupoids; its full group is F_infinity (Li, cor:ProdGraphs), simple,
+  and of type (A). Independent cross-check of the scaffold's quantum rigidity via the relaxed
+  necessity theorem.
+- v-times-rigid-topologically-free-sft-full-groups-are-fp (OPEN, gate E3'): P2' for topologically
+  free SFTs; audit shows the Stein-Farley set-up uses freeness only as uniqueness of local
+  translation labels; proved instances are the tree scaffold and the A2 lattices.
+- decidable-groups-lie-in-fp-groups-with-rigid-topfree-sfts (OPEN, E1' + E2) and the route
+  boone-higman-via-v-times-rigid-topfree-sft-full-groups (group side of Track A).
+
+Lesson for general BH: the group side of Track A never uses freeness. Boundary codings satisfy E2
+and E3' outright, but they are finite-state and so carry only exponential-WP inputs; the open core
+is a rigid compression coding that is not finite-state.

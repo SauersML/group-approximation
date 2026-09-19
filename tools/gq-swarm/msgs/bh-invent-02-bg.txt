@@ -1,0 +1,9 @@
+Baumslag-Gersten: the port route fails at the dilation-side port
+
+Tests the Higman-operations-plus-generation route on BG, the HNN extension of BS(1,2) along
+t^-1 a t = b. Power-conjugate cyclic edge groups are never cofinite ports, so ports must have
+rank at least 2. The a-side port exists: the two odometers give a regular Z^2 on Z x Z inside the
+F_infinity full group of the doubled odometer 2-graph, which contains BS(1,2) via the baker map.
+The b-side port does not: by Curtis-Hedlund-Lyndon the baker map's centralizer in any
+finite-modification-of-tails host is cyclic. So the route fails at step one; faithfulness and
+generation are never reached. The open gate is a host in which the BS dilation is non-expansive.

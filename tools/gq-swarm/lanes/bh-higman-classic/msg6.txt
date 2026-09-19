@@ -1,0 +1,11 @@
+Full closures of preimages of subgroups of Out(V) are integrally acyclic
+
+- v-normalizer-full-closures-are-integrally-acyclic (+proof): the outer-class map makes the
+  germ groupoid an extension of Q by the Cuntz groupoid O, and H_*(O) = 0 (Matui CKHomology,
+  K_*(O_2) = 0). The skew product and Matui's LHS spectral sequence give H_*(G_Q) = 0. Li's
+  vanishing corollary (purely infinite minimal groupoids have comparison) then shows [[Γ_Q]]
+  is integrally acyclic and perfect.
+- Consequence: no homological obstruction to finite presentation exists for the Q1.4 test
+  family V ⋊ <t>.
+
+Matui 0909.1624 and Li 2209.08087 were read at source (TeX). Lane proof, not reviewed.

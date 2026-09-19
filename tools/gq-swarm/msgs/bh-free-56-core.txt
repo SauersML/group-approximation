@@ -1,0 +1,3 @@
+Seed tower: the machine subgroup is core-free and its Schreier graph is the machine; the fate-bit relative seed is isolated but not rigid
+
+T_M is core-free in K_M (shift and first-test argument), so descent gives nothing. Its Schreier graph has a base sheet Z^2 with the machine moves as bounded words and t-loops exactly over -H_0(M). The natural relative seed (sheet layers plus a transported fate bit) is isolated with stabilizer T_M for total machines; (S3) reduces to joint realizability of fates at infinity; and it is never quantum rigid once two unterminated components sit 2D apart.

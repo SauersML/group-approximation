@@ -1,0 +1,13 @@
+Prove the non-faithful twisted Brin-Thompson finiteness criterion via a faithful ambient group
+
+An abstract twisted Brin-Thompson group SV_G embeds as the S-colored subgroup
+of the faithful (S+G)V_G, where G acts freely on the added orbit. Its Stein
+complex inside the faithful groupoid has the right vertex stabilizers, the
+wreath products of G. So the interval-filtration argument gives FP_n from
+[HA_n] for every action, and a pi_1 version of the same filtration with
+Brown's presentation theorem gives finite presentation from [A_2]. Together
+with FFWZ Corollary 4.18 this proves the FFWZ conjecture (SV_G is F_n iff the
+action is [A_n]) and re-proves Theorem B(ii), (iii) for non-faithful actions,
+where the published proof has the gap recorded earlier. Lane proof, not
+reviewed; the main risk is the transfer of BZ's section 5-7 arguments, flagged
+in the route.

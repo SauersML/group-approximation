@@ -1,0 +1,3 @@
+Referee report: graded rings with degree-one units fail the K-budget PASS
+
+Proof-gap lens on graded-rings-with-degree-one-units-fail-the-k-budget (06896bab6). Homogeneous inverses, skew Laurent injectivity, dichotomy, homogeneous-relation remark checked. W1: "whatever relations are added" overstates; N2 corrects the lamplighter K_1 kernel (parity of n).

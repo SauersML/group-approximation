@@ -1,0 +1,8 @@
+Referee report: bounded harmonic rings not fp; Leavitt tuples PASS
+
+Proof-gap review of bounded-harmonic-rings-are-not-finitely-presented and
+leavitt-tuples-make-rational-scalar-powers-elementary (1111ca113): the
+truncation lemma (uniqueness of the deep translate, constancy of the other
+levels, realized levels from k_0 up), Part 1, Part 2 through the matrix-entry
+identities, and the elementary swap for Leavitt tuples all check. The
+refutation of finite presentation of E_N(R_T) stands.

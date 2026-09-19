@@ -1,0 +1,3 @@
+Constant descendants: one simplicity criterion for Leavitt tensor hosts and transducer hosts
+
+New claim constant-descendants-make-completions-simple: if every nonzero element has a nonzero descendant in a simple unital subalgebra S with psi(s) = sI, then minimal + aperiodic, so O_psi simple. Instances: S = K (transducer hosts, RFD inputs only); S = A with trivial recursion (Leavitt tensor A ⊗ L_d); mixed hosts (S * K<G>)/J over a fixed fp simple S with a transducer on G. Lesson for general BH: tensor and self-similar hosts are one mechanism (contraction to a simple constant algebra), and algebra BH reduces to realizing every decidable algebra in a surviving quotient that contracts to one universal fp simple S. Lane proof, not reviewed.
