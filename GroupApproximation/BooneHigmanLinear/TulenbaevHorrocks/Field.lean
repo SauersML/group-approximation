@@ -2,8 +2,6 @@ import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements
 import GroupApproximation.BooneHigman.SteinbergBasic.Naturality
 import GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinTransport
 import GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidStep
-import GroupApproximation.BooneHigman.Metabelian.ElemFPBhNagaoWireUncondBase
-import GroupApproximation.BooneHigmanLinear.K2Poly.Statements
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import GroupApproximation.Meta.AxiomGuard
 
@@ -20,9 +18,12 @@ and `K₂` stabilization.  Over a field it follows from `K₂(N, k[X]) = 1` alon
     `LaurentPolynomial.trunc`).
   - That matrix lies in `SL_N(k) = E_N(k)`, so it lifts to `γ ∈ St_N(k)`, and `α = γ = β` because
     `K₂(N, k[X]) = 1`.
-* `stHorrocksAt_zmod`: the Horrocks property of `St_N` over `F_p`, `N ≥ 5`, unconditionally, from
-  Nagao (`ElemFP.bhNagaoUncond_wire_K2_bot_nagao`).
+* `stHorrocksAt_of_const`: the same from unstable `NK₂` vanishing over `k` (every element of
+  `K₂(N, k[X])` is constant), over any field.
 * `stHorrocksAt_finiteField_of`: over any finite field, from `FiniteFieldPolyK2Statement`.
+
+The corollaries that need the heavy `K₂` chain (Nagao over `F_p`, `FieldNKStatement`) are in
+`TulenbaevHorrocks.FieldCorollaries`, so that this file builds on light imports only.
 -/
 
 namespace GroupApproximation
@@ -35,7 +36,8 @@ open GroupApproximation.BooneHigmanLinear.Tulenbaev
 variable {A : Type} [CommRing A]
 
 /-- `X ↦ T` is `Polynomial.toLaurent`. -/
-theorem toLaurentPos_eq : toLaurentPos A = (Polynomial.toLaurent : A[X] →+* LaurentPolynomial A) := by
+theorem toLaurentPos_eq :
+    toLaurentPos A = (Polynomial.toLaurent : A[X] →+* LaurentPolynomial A) := by
   apply Polynomial.ringHom_ext
   · intro a
     simp [toLaurentPos, Polynomial.toLaurent_C]
@@ -73,7 +75,8 @@ theorem trunc_invert_toLaurent (q : A[X]) :
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.trunc_invert_toLaurent
 
-/-- **`A[X] ∩ A[X⁻¹] = A` inside `A[X,X⁻¹]`**: if `p(T) = q(T⁻¹)`, then `p` is the constant `q(0)`. -/
+/-- **`A[X] ∩ A[X⁻¹] = A` inside `A[X,X⁻¹]`**: if `p(T) = q(T⁻¹)`, then `p` is the constant
+`q(0)`. -/
 theorem polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg {p q : A[X]}
     (h : toLaurentPos A p = toLaurentNeg A q) : p = Polynomial.C (q.coeff 0) := by
   rw [toLaurentPos_eq, toLaurentNeg_eq] at h
@@ -136,7 +139,8 @@ theorem ringMap_laurentC_injective (N : ℕ) :
 then `St_N(k[X]) → St_N(k[X,X⁻¹]) ← St_N(k[X⁻¹])` are injective and their images meet in
 `St_N(k)`.  This is the input of Tulenbaev's Cor 4.2 / Prop 4.3(a) at a residue field. -/
 theorem stHorrocksAt_of_const (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
-    (hC : BooneHigman.Metabelian.ElemFP.k2PolyField_ConstStatement k N) : StHorrocksAt k N := by
+    (hC : ∀ g ∈ K2 (Fin N) k[X], g ∈ (ringMap (I := Fin N) (Polynomial.C : k →+* k[X])).range) :
+    StHorrocksAt k N := by
   -- Step 1: every `δ` whose matrix is constant is constant.
   have lift : ∀ (M : Matrix (Fin N) (Fin N) k) (δ : SteinbergGroup (Fin N) k[X]),
       projMat δ = M.map Polynomial.C →
@@ -214,22 +218,6 @@ theorem stHorrocksAt_of_K2_eq_bot (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
   exact one_mem _
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_of_K2_eq_bot
-
-/-- **The field case over every field, `N ≥ 5`**, from `FieldNKStatement` (board piece A5). -/
-theorem stHorrocksAt_of_fieldNK (h : FieldNKStatement) (k : Type) [Field k] {N : ℕ}
-    (hN : 5 ≤ N) : StHorrocksAt k N :=
-  stHorrocksAt_of_const k (by omega) (h k N hN)
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_of_fieldNK
-
-/-- **Horrocks for `St_N` over `F_p`, `N ≥ 5`, unconditionally** (Nagao's `K₂(N, F_p[X]) = 1`). -/
-theorem stHorrocksAt_zmod {p : ℕ} (hp : p.Prime) {N : ℕ} (hN : 5 ≤ N) :
-    StHorrocksAt (ZMod p) N := by
-  haveI : Fact p.Prime := ⟨hp⟩
-  exact stHorrocksAt_of_K2_eq_bot (ZMod p) (by omega)
-    (BooneHigman.Metabelian.ElemFP.bhNagaoUncond_wire_K2_bot_nagao hp N hN)
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stHorrocksAt_zmod
 
 /-- **Horrocks for `St_N` over a finite field**, from `FiniteFieldPolyK2Statement`. -/
 theorem stHorrocksAt_finiteField_of {n₀ : ℕ} (h : FiniteFieldPolyK2Statement n₀)
