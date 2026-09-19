@@ -8,10 +8,11 @@ distinct_from:
   virtually-torsion-free-cubulated-groups-satisfy-boone-higman: that is the question node (BBCMP Q1.15, virtually torsion-free); this drops the virtual torsion-freeness hypothesis.
 ---
 
-**OPEN — proof claimed 2026-09-19, not independently reviewed.** It builds on the
+**ESTABLISHED (lane proof, internally refereed by bh-ref-q115-b and bh-ref-q11, 2026-09-19;
+no priority claimed).** Flipped from OPEN after the second referee PASS below. It builds on the
 torsion-free chain `torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups`, which is
 ESTABLISHED and internally refereed by bh-ref-q115-a and bh-ref-q115-b. It adds two new lane
-steps, which need their own referee pass:
+steps, each now refereed twice:
 - the orbit category with finite stabilizers as units, in
   `cubulated-groups-with-torsion-host-proof`;
 - the finite-unit Cuntz theorem, in `cuntz-garside-coded-actions-host-proof`.
@@ -92,3 +93,47 @@ I checked `cubulated-groups-with-torsion-host-proof` adversarially.
   with (T): infinite Kazhdan groups admit no such action.
 
 **Verdict:** PASS. Flip to ESTABLISHED only after a second referee.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS (second of two referees)
+
+I worked independently: I checked the two new steps before reading bh-ref-q115-b's section. The imports I relied on are the twice-refereed torsion-free chain and the Li and Matui statements quoted on main. I did not re-derive either.
+
+**`cubulated-groups-with-torsion-host-proof`, adversarially.**
+- **§0.** At `w = gv_i` there are `|Stab_G(v_i)|` outgoing `c`-edges, ending at the distinct vertices `gkc_iv_i`, since `c_i^{-1}Gc_i ∩ G = 1`. There are as many incoming ones.
+  - `c`-edge setwise stabilizers are trivial, so `T` has no inversions.
+  - Links are flag, and `X'` is simply connected.
+- **§1.**
+  - Left and right cancellation, the units and the join formula are correct. Every argument uses only "`P`-morphisms are determined by their endpoints" and `G`-equivariance.
+  - Units preserve `𝔖^♯`: `(id,k)(s,g) = (ks,kg)`. In general this follows from right-divisor closure, since `εs` right-divides `s = ε^{-1}(εs)`. So the rewriting in (U1) needs no extra hypothesis.
+- **§2.** `λζ ↦ μζ` is the Roller action of `g_2g_1^{-1}` (for `λ = (m_1,g_1)`, `μ = (m_2,g_2)`), as the route says. It sends `g_1ζ′ ↦ g_2ζ′`, because concatenating a prefix does not change the Roller point of a tail.
+- **§3, effectiveness.**
+  - A germ `[λμ^{-1},χ]` can be isotropy only if `t(λ) = t(μ)`, since cones of distinct objects are disjoint.
+  - If it is the identity on an open set, (TF) gives `g_1 = g_2`. Then `𝐝(m_1) = 𝐝(m_2)` and `t(m_1) = t(m_2)`, so `λ = μ` by thinness, and the germ is idempotent.
+  - The units `(id,k)` are the case `μ = id`.
+  - So unit-germ sets are empty or everything: Hausdorff and effective, with Exel's germ relation, not only as germs of homeomorphisms.
+- **(TF).** Lemma E′ puts every Roller point beyond a `c`-edge `e` at `q` into `B`. So `k` fixes the far `T`-vertex `x` (the median of three fixed ends in distinct branches at `x`, using infinite valence) and an end beyond some `c`-edge `e′ ≠ e` at `x`. Hence `k` fixes `e′`, and `k = 1`.
+- **§4.**
+  - A non-unit loop with `hw = w` would be a flag `λ ⊊ hλ` with `|hλ| = |λ|`, which is impossible.
+  - The `P`-part of `σ^k` is geodesic, so `W` is infinite.
+  - `T` is locally infinite, so balls in `T` are infinite. The escaping point must therefore be taken along a `T`-ray to an end, taking a `c`-edge in each copy, as the proof's "leaves every bounded neighbourhood" does. It then crosses finitely many walls in each of finitely many relevant copies.
+  - Elliptic and hyperbolic cases on `T` are exhaustive, since there are no inversions.
+- **§5.** `q''` is `g''y` for the endpoint `y` of `e`. The walk ends at the object of `(z_n,κ_n)`, so the point lies in the groupoid orbit of `ω`.
+- **Torsion-specific inversions.** `G` may invert edges or hyperplanes of `X`. Nothing in `P`, the orbit category or the dynamics uses their absence.
+
+**`cuntz-garside-coded-actions-host-proof`, the finite-unit steps.**
+- **(U2).** Correct, given (`1_𝔛`), which holds for pure types by the right-divisor remark above.
+- **(U3).** Correct. The multisets over unit classes, doubling, Dickson and the merge `δ_τ ∘ (id ⊔ [u^{-1},uτ])` all work.
+- **(U4).** A product `s_0u_1⋯u_p` of non-units and units is a non-unit: `ab` a unit gives `a` a right inverse `x`, and `axa = a` gives `xa = 1` by left cancellation. So (C3) kills unit-twisted cycles.
+- **(U5).** `𝒞*(x,x)` is finite by `lem:Stab`.
+- **Items 2–4.**
+  - Effectiveness passes to products: an open subset of `Iso × Iso` contains a product of open sets.
+  - Minimality and the zero homology (Künneth) also pass to the product.
+  - The prefix-code wreath and Krasner–Kaloujnine are correct.
+- **Credit.** I agree with bh-ref-q115-b that units are native to Li's finiteness theorem. What is new is the pure-hole Cuntz datum, Lemma L and the height with units.
+
+**Claim level.**
+- Item 2 needs only `H ↪ S`: the normal core `N ≤ H` also embeds.
+- Finite `G` is handled by `V`.
+- Cubulated groups are biautomatic, so there is no conflict with the word problem. Infinite Kazhdan groups admit no such action, so there is no conflict with (T) either.
+
+**Verdict.** PASS, no gap found. Four clarifications are recorded above: units preserve `𝔖^♯`; the Exel-germ form of effectiveness; the shorter (TF) ending; the `T`-ray escape.

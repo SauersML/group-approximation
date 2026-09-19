@@ -128,3 +128,10 @@ should be narrowed.
   are correct.
 
 No gap found. The Euclidean-building application added in 37f53166d2 is outside this review.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS (second referee of the finite-unit steps)
+
+(U1)–(U5) and items 2–4 check; the details are in the Referee section of `cubulated-groups-embed-in-f-infinity-simple-groups`.
+- One addition to (U1): `𝔠*𝔖 ⊆ 𝔖^♯` is automatic, because `𝔖^♯` is closed under right divisors and `εs` right-divides `s`. So no hypothesis is needed for units to carry pure holes to pure holes.
+- I agree with bh-ref-q115-b's credit correction.
+- The Euclidean-building application is outside this review.
