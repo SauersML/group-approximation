@@ -136,3 +136,12 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Search.** `c_H = 2[rP] + 2[QsRq] + [SpSrs]`. No primitive representative was found among products of `N`-conjugates of these loops or in hill-climbs in `q_0[N,N]` (evidence only).
 
   Next: decide `(P_1)–(P_4)` for `N`. For example, run Whitehead's algorithm relative to the Stallings graphs of the windows `T_M`, using that an `F_4`-primitive `q ∈ T_M` is primitive in `T_M`. Then run the canonical-cycle test on slide complexes, which is the non-fibred remainder.
+
+- **w16-048, 2026-09-19: `(P_free)` holds for (C2), and the canonical-cycle test is not sharp.** Landed `c2-split-rose-passes-cycle-test-fails-gluing-rank`.
+  - **`(P_3)` holds.** `c_H = [s⁻¹(pSr)s] + 2[rP] + 2[q⁻¹(sR)q]`, checked exactly in `H_1(T_8)`, and `pSr, rP, sR` span a free factor of `F_4`. So the program "`¬(P_free)` excludes every fibred K(G,1)" is dead. The rose in the basis `(pSr, rP, sR, q)` passes (T0), and no finite cover can exclude it through (T0).
+  - **New test (gluing rank).** A 2-cell-injective `K(H,1) → X` with `F` cells has `rank K^1 = 1 − χ(H) + F`. The support cells must be glued along zero-sum edge blocks, and the least forced rank of such a gluing is a lower bound.
+    - For the split rose this least rank is 7 = 3 + 4. It is attained by one gluing only, and the `d`-cell's boundary does not close in it.
+    - So this passing rose is excluded anyway. 42 of 49 neighbouring bases `(a,b,c,w_1 q w_2)` are excluded the same way; 7 are left on an undecided coset pair.
+  - **Gap.** The coefficient filter `|coef| ≠ 1` of the rose node's (T4) is not implied by (T0).
+
+  Next: an intrinsic gluing-rank bound for every rose and marked graph that passes (T0). The passing ones come from free-factor systems carrying `c_H`. Then run the same test on slide complexes.
