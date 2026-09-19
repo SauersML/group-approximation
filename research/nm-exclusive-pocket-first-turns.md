@@ -21,7 +21,8 @@ Section 9 is the Appendix, "The proof of Lemma 4.4". Lemma 9.7 is on p. 34, and 
 The existence of Γ¹ is asserted without argument. Osin works under the convention of p. 8: 0-refinement
 "enables us to assume that all diagrams [are] homeomorphic to a disc", citing Olshanskii's book, Ch. 4.
 DGO (arXiv:1111.7048, §3) states the same convention and cites Olshanskii's book, §11. Osin also writes, p. 29:
-"Lemma 9.7 is, in fact, proved in [23]… all results of this section should be credited to Olshanskii"
+"Lemma 4.4 (as well as Lemma 9.7) is, in fact, proved in [23]" and "all results of this section should be credited
+to Olshanskii"
 ([23] = Olshanskii, IJAC 3 (1993), Lemma 6.6; p. 14 also cites an addendum in J. Algebra 226 (2000) 807-817).
 That addendum has not been read yet.
 
@@ -71,14 +72,34 @@ Osin's argument survives the exclusion of x and y:
 - if m₁ = 0, Γ¹⁻ ∪ x ∪ y is the merged contiguity subdiagram;
 - the inner sides are side arcs of length at most ε.
 
-## To check before building
+## Review items, settled on paper (2026-09-19, after bh-ref-t0 81a9ea634c)
 
-1. (R1) is automatic, checked 2026-09-19. `ContiguityGeometry.boundary` is a `FaceSetBoundary` whose `BoundaryStep`
-   is `facePerm` followed by internal moves. With `facePerm = sigma ∘ alpha`, a step `d_r → e_r` gives
-   `e_r = sigma^k (alpha d_r)` past darts on region-internal edges, which is exactly `FirstTurn` for the
-   reversed dart pair of the pocket. The inner sides are y.rightSide and x.leftSide (the producer's outer sides
-   are y.leftSide and x.rightSide).
-2. Do they satisfy (R2)? Check `CyclicArc` lengths on exterior regions.
-3. Is F \ (x ∪ y) a valid `PocketFaceSet` with the kept cell (a relator cell, hence in neither region), and are
-   the side bounds kept?
-4. What does the J. Algebra 2000 addendum change in Olshanskii's Lemma 6.6?
+1. **(R1)** holds automatically. `ContiguityGeometry.boundary` is a `FaceSetBoundary`. Its `BoundaryStep` is
+   `facePerm` followed by internal moves, i.e. `BoundaryWalk`. Reversed, that is a first turn past
+   region-internal darts (`ExclusiveTurns.firstTurn_of_boundaryWalk`). The inner sides are `y.rightSide` and
+   `x.leftSide`; the landed inclusive producer uses the outer sides `y.leftSide`, `x.rightSide`.
+2. **(R2), both arcs.** This is a field of the family: `RealizedSectionFamily.nondegenerate` says
+   `0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length` for every selected region, and
+   `exteriorAt S.family i ⊆ S.family`. So target arcs are nonempty as well as source arcs.
+3. **Regions carry no R-cell.** `ContiguityGeometry.innerGRegion hlea` (landed, `Estimating/OsinAppendixO52Prep`)
+   has `cells_avoid`: at least area, no relator cell has its face in a region. The family's diagram is
+   O-equivalent to the least-area `Δ`, so it is least area. Hence the kept cell and `m₁` are unchanged by removing
+   `x ∪ y`.
+4. **x ≠ y.** `a ≠ b` in a pairwise-compatible family, so the face sets are disjoint, and each is nonempty
+   (`faces_nonempty`).
+5. **Proper source arc.** The gap arc misses the nonempty source arc of `x`, so its length is less than `|∂Π|`,
+   as `SectionPocketFaceSetFirstTurnInput` requires.
+6. **Still to check: the edge conditions for the inner sides.** The walk must have distinct darts and use no edge
+   in both directions (`FirstTurnWalk.isNoncrossingClosedWalk`). The landed `PocketWalk.CopyClean` has `regions`
+   (no `x`–`y` edge). Its `side_cell` and `side_outer` are stated for the OUTER sides `y.leftSide ++ x.rightSide`.
+   The exclusive walk needs them for the inner sides `y.rightSide ++ x.leftSide`. Check whether the landed copy
+   (`RegionPairThickening`, `sectionPocketRegionsCopy`) gives them on both sides.
+
+## Formal target
+
+This route bypasses `p10LS_SelectionArcStatement` and `p10LS_SelectionStatement`; it does not prove them. It
+proves `OsinSectionPocketFaceSetFirstTurnSectionStatement` (`Estimating/OsinPocketPinchFirstTurnAssembly`). Then
+`osinSectionPocketCutSection_of_residualsFirstTurnSection` with the proved binder 7
+(`pocketPinchLabelledFirstTurnSection`) and the collar gives `OsinSectionPocketCutSectionStatement`. The wiring
+into the torsion-free endpoints is done by ms-nm-uncond-b and nm-gl03d. The turn lemmas are
+`Estimating/OsinPocketExclusiveTurns.lean` (lane nm-switch-core).
