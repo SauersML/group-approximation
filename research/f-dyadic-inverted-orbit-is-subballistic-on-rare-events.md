@@ -181,3 +181,32 @@ itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
     `pl-ea-calibrators-are-nonamenable-interval-groups`.
   - Any proof of this hole must use that `F` acts by homeomorphisms, or finer data. The Liouville
     property is not a bi-Lipschitz invariant and is untouched.
+
+- 2026-09-19, swarm-0917-w19-w19-f-last1 (family reframing, role survivor audit): the order gate collapses to
+  the hole, and the named survivors are re-audited. The hole stays OPEN. Result:
+  `f-dyadic-order-preserving-wobbles-are-locally-f`.
+  - **Order gate.** `W^+(Γ_D) ≤ Q_2`, the group of homeomorphisms that are piecewise `x ↦ 2^k x + d`
+    (`d ∈ Z[1/2]`) with rational breakpoints.
+    - `Q_2` is a directed union of subgroups `Q_2^M`, whose breakpoints lie in `(1/M)Z[1/2]`, `M` odd.
+    - `θ_M = τ_M ∘ (x ↦ Mx)` conjugates `Q_2^M` into `F`, with `θ_M(D) ⊆ D`.
+    - EA passes through subgroups, invariant subsets, conjugacy and directed unions. So
+      `F ↷ D` EA ⇔ `W^+(Γ_D) ↷ D` EA ⇔ `Q_2 ↷ D` EA ⇔ `F` amenable.
+    - An order-preserving calibrator on the `Γ_D` geometry, or any `H ≤ Q_2` acting amenably but not EA
+      on an invariant subset of `D`, exists iff `F` is nonamenable.
+    - This replaces the w17 gate "a nonamenable subgroup of `PL_+([0,1])`" with "F is nonamenable".
+      "Order preservation plus orbit geometry" is therefore not an independent survivor. With arbitrary
+      wobbles it is killed by the w17 calibrator; with order it is the root.
+  - **Status of the other survivors named above.**
+    - `PSL_2(Z)` integrality is circular: `integral-piecewise-projective-groups-are-locally-subgroups-of-f`.
+    - `C^1` regularity is killed through `G_{1/2}` in `f-overgroups-with-a-non-integral-rational-piece-are-nonamenable`,
+      item 2. This answers the w13 NEED items.
+    - The "Liouville property" survivor of the w17 entry is not a positive ingredient:
+      - finitely supported, finite-entropy and finite-breakpoint-moment walks on `F` are non-Liouville
+        (`thompson-f-random-walks-are-not-liouville`, `thompson-f-finite-entropy-walks-are-not-liouville`,
+        `thompson-f-finite-breakpoint-moment-walks-are-not-liouville`);
+      - Liouville action criteria are recorded as unable to decide the question
+        (`liouville-action-criteria-cannot-decide-thompson-f-amenability`).
+  - **What is left.** Any proof must use data that a mean on `P_f(D)` cannot see after conjugation into `F`.
+    Every order-preserving host tried so far (PL, integral projective, `W^+`) has turned out to be locally
+    `F` or nonamenable. So the remaining content is `F`'s own relations: the large-deviation question
+    itself, with no enlargement shortcut.
