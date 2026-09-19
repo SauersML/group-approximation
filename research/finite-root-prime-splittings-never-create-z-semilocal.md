@@ -6,7 +6,7 @@ title: In a group acting on a tree whose edge-in-vertex inclusions have finitely
 distinct_from:
   end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups: its part 6 needs finite-index edge inclusions and residual finiteness; this needs only finitely many relative root primes, which also covers edge groups of infinite index (ascending HNN extensions of free groups), and uses no residual finiteness.
   bounded-valence-trees-scale-only-primes-below-the-valence: that bounds the primes that bounded valence can scale; this bounds the primes any splitting can add by an algebraic invariant of each edge inclusion, independent of valence.
-  z-localized-fixes-a-vertex-or-end-of-every-tree: that allows Z_(S) to fix only an end, as an ascending union along a ray; this shows the ray case needs an edge inclusion with infinitely many relative root primes.
+  z-localized-fixes-a-vertex-or-end-of-every-tree: that allows Z_(S) to fix only an end, as an ascending union along a ray; this shows that with finitely many relative root primes P the ray carries only P-primary roots, while Z_(S ∪ P) fixes a vertex.
 ---
 
 **ESTABLISHED** (lane proof; bh-invent-12, 2026-09-18; elementary Bass–Serre theory; one referee PASS with a wording fix to item 4, bh-ref-engines 2026-09-19). No priority is claimed. The statement may be folklore, but a quick literature search found it
@@ -35,7 +35,9 @@ Let `Λ` act on a simplicial tree `T` without inversions, and put `P = ρ(Λ, T)
    of `R_(Stab v)(g)`. If `g` fixes no vertex, `R_Λ(g) ⊆ {1, …, ℓ(g)}`, where `ℓ(g)` is the translation length.
 3. **Closure.** If `P` is finite and every vertex stabilizer is in `𝒩`, then `Λ ∈ 𝒩`.
 4. **Z_(S).** If `P` is finite and `Z_(S) ≤ Λ` for a finite set `S` of primes, then `Z_(S ∪ P) ≤ Stab(v)` for
-   some vertex `v`. So a copy of `Z_(S)` is never an ascending union along a ray. A finite splitting with finite
+   some vertex `v`. `Z_(S)` itself may still fix only an end, climbing a ray by roots at primes of `P`.
+   Example: the ascending HNN extension of `Z_({2})` by `x ↦ 2x` contains `Q`, which fixes only an end.
+   A finite splitting with finite
    `P` contains some `Z_(S)` only if one of its vertex groups contains some `Z_(S')`.
 
 ## Proof
@@ -125,8 +127,8 @@ would `g`.
 **Divisibility is splitting-rigid.**
 - Roots travel along a tree only through edge inclusions. Each inclusion lets through only the primes of its
   relative root indices.
-- So a tree construction with finitely many such primes neither creates roots at new primes nor spreads a
-  divisible subgroup along a ray.
+- So a tree construction with finitely many such primes creates no roots at new primes. Divisibility climbs a
+  ray only at those finitely many primes, and `Z_(S ∪ P)` always sits in a vertex group.
 - This makes (SL), and with it `GL_n(Q)` via every tree-type host, a question about one irreducible piece:
   - a finitely presented residually finite group that is not linear, metabelian or CAT(0)-like, and admits no
     finite-root-prime splitting;
@@ -162,6 +164,8 @@ ray. The correct reading:
 The `distinct_from` gloss on `z-localized-fixes-a-vertex-or-end-of-every-tree` should be read the same way.
 Nothing downstream changes: the (SL) alternative uses only "some vertex group contains some `Z_(S')`",
 which is what is proved.
+- **Corrected** (bh-invent-12, 2026-09-19): item 4, the `distinct_from` gloss and the Lesson now state the
+  P-primary ray reading, with this example.
 
 **Finite-`ρ` cases: correct.**
 - Finite index: pigeonhole on `v^iH`.

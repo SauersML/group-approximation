@@ -223,7 +223,7 @@ section Quotient
 variable (K : Type*) [CommRing K]
 
 /-- Thom's `C` (Thom, §2.1): the central transvections `e_15(a)` with `a ∈ K[t] ⊆ K[t,t⁻¹]`. -/
-def thomC : Subgroup (thomG0 (LaurentPolynomial K)) :=
+noncomputable def thomC : Subgroup (thomG0 (LaurentPolynomial K)) :=
   ((thomCentral (LaurentPolynomial K)).comp
     (AddMonoidHom.toMultiplicative (Polynomial.toLaurent (R := K)).toAddMonoidHom)).range
 
@@ -241,7 +241,7 @@ abbrev ThomGroup : Type _ :=
   ↥(thomG0 (LaurentPolynomial K)) ⧸ thomC K
 
 /-- The image `Z(G_0)/C` of the central transvections in Thom's group. -/
-def thomCentreImage : Subgroup (ThomGroup K) :=
+noncomputable def thomCentreImage : Subgroup (ThomGroup K) :=
   (thomCentral (LaurentPolynomial K)).range.map (QuotientGroup.mk' (thomC K))
 
 instance thomCentreImage_normal : (thomCentreImage K).Normal :=

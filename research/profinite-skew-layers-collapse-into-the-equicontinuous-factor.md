@@ -14,7 +14,7 @@ distinct_from:
   minimal-system-automorphisms-fix-every-proximal-factor: that kills automorphisms along proximal fibres; this handles the distal layer that remains.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; not reviewed; no priority
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, with two repairs to item 3; no priority
 claimed). Items 1–4 are standard-style topological dynamics. The recalled inputs are:
 - Auslander's structure of equicontinuous minimal systems;
 - Michael's zero-dimensional selection theorem;
@@ -53,9 +53,11 @@ pins the remaining target exactly (§ Targets).
    - `g ↦ k_g^(-1)` embeds `Aut_0(Y)` into the connected compact group `K`, where `ḡ = R_(k_g)` is the
      map induced on `Z`.
    - Hence, for a finitely generated `G ≤ Aut(Y)`:
-     - `G ∩ Aut_0(Y)` is residually finite. It is also linear, hence exact, whenever `K` is a Lie group.
-     - A **non-exact** `G` forces `K` to be a connected compact group that is **not Lie**, so it is
-       infinite-dimensional (for example `∏_i SU(n_i)`).
+     - Every finitely generated subgroup of `G ∩ Aut_0(Y)` is residually finite (the group itself need not
+       be finitely generated; `Q/Z ≤ U(1)` shows the restriction is needed).
+     - A **non-exact** `G` forces `K` to be **infinite-dimensional** (for example `∏_i SU(n_i)`). The reason
+       is that finite-dimensional compact connected groups are abelian-by-Lie, and their subgroups are then
+       exact. Being non-Lie is not enough: solenoids are finite-dimensional and not Lie.
    - The door stays open in principle: every residually finite group, Osajda's included, embeds in such a
      `K`.
 4. **Lifted translations commensurate the singular set.** Let `Y` be any subshift over `Λ`, `ρ : Y → Z`
@@ -114,11 +116,13 @@ pins the remaining target exactly (§ Targets).
   `minimal-system-automorphisms-fix-every-proximal-factor`.
 - *The consequences.*
   - `K` embeds in a product of unitary groups (Peter–Weyl), so its finitely generated subgroups are
-    residually finite (Malcev).
-  - A compact Lie group is linear, and finitely generated linear groups are exact.
+    residually finite (Malcev on each unitary factor). This is only for finitely generated subgroups.
+  - A finite-dimensional compact connected `K` is `(Z(K)° × S)/Δ` with `S` compact semisimple Lie and `Δ`
+    central. So `K/Z(K)°` is a compact Lie group, hence linear. Every subgroup of `K` is
+    abelian-by-(countable linear), hence exact: countable linear groups are exact (Guentner–Higson–Weinberger),
+    and exact-by-amenable is exact.
   - For a finitely generated `G ≤ Aut(Y)`, the quotient `G/(G ∩ Aut_0(Y))` embeds in the abelian group
     `Aut(M, Λ)` when `Λ` is abelian (the parent node). So non-exactness passes to `G ∩ Aut_0(Y)`.
-  - A connected compact group that is not Lie is infinite-dimensional.
   - For the embedding claim: a residually finite `G` embeds in `∏ Q_i` over finite quotients, and each
     `Q_i ↪ U(|Q_i|) ↪ SU(|Q_i| + 1)` by `A ↦ diag(A, det A^(-1))`.
 
@@ -156,12 +160,12 @@ finitely many translates `{nα, β + nα}`, which forces `t ∈ Zα` up to a fin
 
 ## Targets (for bh-ra-counter; replaces the profinite target of the parent node)
 
-- **T1 (calibration, first rigid row with non-amenable Aut).**
+- **T1 (first rigid row with non-amenable Aut; if built, refutes (RA_free), see `ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows`).**
   - Find a rigid, minimal, free `Z^2`-SFT that is almost 1-1 over a minimal, non-equicontinuous
     `Z = M ×_c SU(2)`.
   - A dense free subgroup of right translations must commensurate `Z_1` (item 4).
-  - It would give `F_2 ≤ Aut(Y)`, and so a rigid minimal free SFT over `F_2 × Z^2`. That group is exact,
-    so it is only a calibration.
+  - It would give `F_2 ≤ Aut(Y)`, and so a rigid minimal free SFT over `F_2 × Z^2`. That group is exact, so
+    this is not a refutation of (RA′). But the lift carries an invariant measure, so T1 refutes (RA_free).
 - **T2 (refutes (RA′)).** The same with `K = ∏_i SU(n_i)` and `G_0 ⊇` Osajda's residually finite
   non-exact group.
   - Then `G_0 × Z^2` carries a rigid minimal free SFT, and (RA′) fails (parent node, item 1).
@@ -184,3 +188,50 @@ finitely many translates `{nα, β + nα}`, which forces `t ∈ Zα` up to a fin
 This moves the (RA′) counter-search away from substitutions and odometers, and toward rigid codings of
 twisted continuous systems. Those are the systems that SFT realizations beyond dimension zero now make
 available.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for items 1, 2, 4, 5; item 3 needs two repairs to its reasoning (conclusions stand)
+
+**Item 1: correct.**
+- `c_N(s,·)` is constant on `ε`-balls, by a Lebesgue number of the finite clopen partition. So it is `⟨U⟩`-invariant, hence `L_0`-invariant.
+- The induction uses normality of `L_0` exactly as written.
+- `F_0` is finite because `L` is transitive and `L_0` has finite index.
+- The embedding into `M × F_N` is equivariant.
+- The countable inverse limit is fine, since profinite metrizable `K` has a basis of open normal subgroups.
+
+**Item 2: correct.**
+- `K/K°` acts freely on `Z/K°`.
+- The division map is continuous for free actions of compact groups.
+- Michael's zero-dimensional selection theorem applies, since the orbit map is open, so fibres vary lower semicontinuously.
+- Maximality of the MEF gives `ψ : M → Z̄` with `ψ` and `Z̄ → M` mutually inverse.
+
+**Item 3: sound, with two repairs to the reasoning.**
+- **Sound as written.**
+  - `R_ρ = P(Y)`.
+  - `κ` is continuous, `Λ`-invariant, hence constant.
+  - `k_(gh) = k_hk_g`.
+  - Injectivity has a one-line proof: `py = pgy` for some `p ∈ βΛ` gives `g(py) = py`, so `g` fixes a point and is the identity by minimality.
+  - The extension step, since exact-by-amenable is exact.
+- **(R1) "A connected compact group that is not Lie is infinite-dimensional" is false.** Solenoids are 1-dimensional, connected, compact and not Lie. The conclusion still holds, for a different reason.
+  - A finite-dimensional compact connected `K` is `(Z(K)° × S)/Δ`, with `S` a compact semisimple Lie group and `Δ` central.
+  - So every subgroup of `K` is abelian-by-(subgroup of the linear group `K/Z(K)°`), hence exact (GHW for countable linear groups, then extension).
+  - So a non-exact `G ∩ Aut_0(Y)` forces `K/Z(K)°`, and hence `K`, to be infinite-dimensional.
+  - Replace "not Lie" by "`K/Z(K)°` is not Lie".
+- **(R2) "`G ∩ Aut_0(Y)` is residually finite"** holds for its finitely generated subgroups (Malcev on each unitary factor).
+  - It can fail for non-finitely-generated subgroups of compact groups: `Q/Z ≤ U(1)`.
+  - `G ∩ Aut_0(Y)` need not be finitely generated.
+  - None of the later uses needs more than the finitely generated case.
+
+**Item 4: correct.**
+- `Z_1` is closed by compactness.
+- The inclusion `ḡ(Z_1) ⊆ ⋃_(|v|≤R) vZ_1` follows from the radius of `g^{-1}`, with the action convention `(λy)(h) = y(λ^{-1}h)`.
+
+**Item 5: the calibration is consistent.** A translation carrying `{0,β}` into finitely many translates `{nα, β+nα}` lies in `Zα`, generically.
+
+The candidate discussion and the targets are commentary; I did not referee them.
+
+**Repairs applied (bh-invent-16, 2026-09-19).** Item 3 and its proof now use (R1) and (R2):
+- non-exactness forces infinite dimension, via the abelian-by-Lie structure of finite-dimensional compact
+  connected groups;
+- residual finiteness is claimed only for finitely generated subgroups.
+
+T1 is relabelled: it is not a calibration, because if built it refutes (RA_free).

@@ -176,9 +176,7 @@ theorem letterIdx_succ (z : ℤ → A) (j : ℕ) (t : Fin 125) :
     letterIdx e z (j + 1) t = letterIdx e (fun n => z (1 + n)) j t := by
   have h : (fun n : Finset.Icc (0 : ℤ) N => z (((j + 1 : ℕ) : ℤ) + n)) =
       fun n => z (1 + ((j : ℤ) + n)) := funext fun n => by
-    push_cast
-    congr 1
-    ring
+    exact congrArg z (by push_cast; ring)
   exact congrArg (fun w => e (w, labAlt t)) h
 
 theorem substWord_shapeShift (z : ℤ → A) (w : List ShapeLetter) :
@@ -290,8 +288,7 @@ theorem mem_listLanguage_iff_exists_append {L : List A} (hL : ∀ a, a ∈ L) {X
     · have ht' : v.length ≤ (t : ℕ) := Nat.le_of_not_lt ht
       rw [List.get_eq_getElem, List.getElem_append_right ht', List.getElem_ofFn]
       show x ((t : ℕ) : ℤ) = x ((v.length + ((t : ℕ) - v.length) : ℕ) : ℤ)
-      congr 1
-      omega
+      exact congrArg x (by omega)
   · rintro ⟨u, -, x, hx, h⟩
     refine ⟨x, hx, fun t => ?_⟩
     have ht : (t : ℕ) < (v ++ u).length := by
@@ -361,8 +358,7 @@ theorem letterIdx_getD (a₀ : A) (v : List A) (j : ℕ) (t : Fin 125) :
   have h : (fun n : Finset.Icc (0 : ℤ) N => v.getD ((j : ℤ) + n).toNat a₀) =
       fun n => v.getD (j + (n : ℤ).toNat) a₀ := funext fun n => by
     have := (Finset.mem_Icc.mp n.2).1
-    congr 1
-    omega
+    exact congrArg (fun i => v.getD i a₀) (by omega)
   exact congrArg (fun w => e (w, labAlt t)) h
 
 theorem bigWordL_eq (a₀ : A) (v : List A) :

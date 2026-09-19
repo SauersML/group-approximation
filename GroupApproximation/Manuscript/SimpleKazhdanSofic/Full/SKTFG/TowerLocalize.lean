@@ -57,6 +57,9 @@ theorem towerDisj_of_sepK {f₀ : Equiv.Perm X} {B : Set X} {K : ℕ} (h : SepK 
   rw [e]
   exact hi
 
+theorem perm_apply_inv_self' (f₀ : Equiv.Perm X) (x : X) : f₀ (f₀⁻¹ x) = x :=
+  Equiv.apply_symm_apply f₀ x
+
 theorem perm_zpow_congr (f₀ : Equiv.Perm X) {a b : ℤ} (h : a = b) (x : X) :
     (f₀ ^ a) x = (f₀ ^ b) x := by
   rw [h]
@@ -175,13 +178,13 @@ theorem commutator_towerPerm_localize
       a⁻¹ ((f₀ ^ ((k : ℕ) : ℤ)) w) = (f₀ ^ (((α'⁻¹ k : Fin 6) : ℕ) : ℤ)) w := by
     intro w hw k
     have h := ha_tow w hw (α'⁻¹ k)
-    rw [Equiv.Perm.apply_inv_self] at h
+    rw [perm_apply_inv_self'] at h
     rw [← h, perm_inv_apply_self]
   have hb_inv : ∀ w ∈ W, ∀ k : Fin 6,
       b⁻¹ ((f₀ ^ ((k : ℕ) : ℤ)) w) = (f₀ ^ (((β'⁻¹ k : Fin 6) : ℕ) : ℤ)) w := by
     intro w hw k
     have h := hb_tow w hw (β'⁻¹ k)
-    rw [Equiv.Perm.apply_inv_self] at h
+    rw [perm_apply_inv_self'] at h
     rw [← h, perm_inv_apply_self]
   -- the commutator on the `W`-tower
   have hcomm_tow : ∀ w ∈ W, ∀ k : Fin 6,
@@ -230,7 +233,7 @@ theorem commutator_towerPerm_localize
           sub_add_cancel]
       have hbfix : b ((f₀ ^ towerLevels 4 (α⁻¹ i)) u) = (f₀ ^ towerLevels 4 (α⁻¹ i)) u := by
         rw [hb, towerPerm_apply, towerFun_of_not (hB1 (α⁻¹ i))]
-      rw [hbinv, hainv, hbfix, ← hainv, Equiv.Perm.apply_inv_self]
+      rw [hbinv, hainv, hbfix, ← hainv, perm_apply_inv_self']
     · by_cases hxV : ∃ i : Fin 5, (f₀ ^ (-towerLevels 4 i)) x ∈ V
       · obtain ⟨i, hi⟩ := hxV
         have hax : a x = x := by rw [ha, towerPerm_apply, towerFun_of_not hxU]
@@ -247,7 +250,7 @@ theorem commutator_towerPerm_localize
           · rw [perm_zpow_apply_zpow_apply, towerLevels_val, towerLevels_val, Fin.val_succ,
               show -((((i : ℕ) + 1 : ℕ)) : ℤ) + ((i : ℕ) : ℤ) = -1 by push_cast; ring]
             have e : f₀ ((f₀ ^ (-1 : ℤ)) v) = v := by
-              rw [zpow_neg_one, Equiv.Perm.apply_inv_self]
+              rw [zpow_neg_one, perm_apply_inv_self']
             rw [e]
             exact hv
         have hB2 : ∀ j : Fin 5, ¬∃ l : Fin 5,
@@ -276,7 +279,7 @@ theorem commutator_towerPerm_localize
             sub_add_cancel]
         have hafix : a⁻¹ ((f₀ ^ towerLevels 4 (β⁻¹ i)) v) = (f₀ ^ towerLevels 4 (β⁻¹ i)) v := by
           rw [ha_inv_def, towerPerm_apply, towerFun_of_not (hB2 (β⁻¹ i))]
-        rw [hbinv, hafix, ← hbinv, Equiv.Perm.apply_inv_self, hax]
+        rw [hbinv, hafix, ← hbinv, perm_apply_inv_self', hax]
       · have hax : ∀ σ : Equiv.Perm (Fin 5), towerPerm f₀ U (towerLevels 4) hU σ x = x :=
           fun σ => by rw [towerPerm_apply, towerFun_of_not hxU]
         have hbx : ∀ σ : Equiv.Perm (Fin 5), towerPerm f₀ V (towerLevels 4) hV σ x = x :=

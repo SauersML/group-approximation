@@ -5,10 +5,10 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigman.Metabelian.ElemFPK2SurjStabVec: fails through red imports"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/ElemFPK2SurjStabVec.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/BooneHigman/Metabelian/ElemFPK2SurjStabVec.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
-**Repair landed, unprobed.** ed7f648b07: BH chain wave 5: static fixes for bh-pal-wires reds in union build b1789839564 (unprobed). Stays OPEN until a trusted probe builds it green.
+
 
 **First errors (verbatim).**
 
