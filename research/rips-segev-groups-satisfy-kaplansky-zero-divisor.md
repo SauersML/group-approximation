@@ -366,3 +366,27 @@ the Kaplansky zero-divisor conjecture."
      the space `Rep_T` is small, and each coset fixes an exit/entry ratio.
      Show that the product of these ratios around a directed port cycle
      cannot be `±1`.
+
+22. **Port holonomy is tautological and blind over `F_2` (obstruction; `rips-segev-port-holonomy-is-tautological-and-f2-blind`).**
+   - Kills the holonomy form of the previous item: impose the escape support
+     condition, get `dim Rep_T <= 1`, and show the ratio product around a
+     directed port cycle is not `±1`.
+   - (A) The edge equation `X(z b) = - Y(z)` telescopes.  For every solution
+     and every directed cycle of length `L`, `prod rho_T = (-1)^L`.
+   - (B) The support condition is relative to a covering.  One copy per
+     active edge always satisfies it.  Adding copies whose line starts at
+     chosen points (position `0` is a port of both kinds) makes `Rep_T`
+     arbitrarily large.  So `dim Rep_T <= 1` is false in general.
+   - (C) Over `F_2` every ratio is `1`.  The `F_2` case is exactly the
+     non-existence of a finite `(u, w)`-harmonic family, a support statement.
+   - Also: `Lambda` (active cosets, active `b`-edges) is simple and oriented,
+     by the short-relation lemma.  A support-minimal counterexample is
+     globally rigid (`V = k alpha`), but that does not make any single coset
+     rigid.  On the `(x_4 x_1)^21` face, the intrinsic `R_T` is
+     2-dimensional with a free ratio on most cosets, and on all 42 over
+     `F_10007` (`port_holonomy.py`).
+   - Next step: (i) in characteristic `!= 2`, find a directed cycle of
+     locally rigid cosets (`dim R_T = 1`) in a copy-minimal covering and show
+     that the pattern-forced product is not `(-1)^L`; (ii) over `F_2`,
+     exclude harmonic families by support matching, using only simplicity of
+     `Lambda` and the rank-one lemma.
