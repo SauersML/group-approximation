@@ -160,7 +160,6 @@ theorem exists_hTab_eq (s : ι → Δ) (hs : Subgroup.closure (Set.range s) = �
   rw [hTabEval_flatMap, ← Finset.sum_map_toList]
   congr 1
   refine List.map_congr_left fun ξ _ => ?_
-  dsimp only
   rw [hTabEval_map_pair, ha, hL, ClopenGroupCrossedProduct.single_eq_coeff_mul_unit]
 
 theorem exists_hMat_eq (s : ι → Δ) (hs : Subgroup.closure (Set.range s) = ⊤)
