@@ -123,3 +123,24 @@ swarm-0917-w17-w17-ptm-last1).**
   - templates that are not conjugate.
 
   The status stays **OPEN**.
+- **2026-09-19 (swarm-0917-w19-w19-ptm-last1, quantifier-shift): a second route that avoids
+  the eigencorner hole, and the rate at which it can fail.**
+  - *Established.* `central-power-quotient-gaps-converge-to-the-extension-gap`, for any finitely
+    presented `G` and generator `z`. Rounding `U_z` to exact `m`-th roots of unity costs
+    `Lπ/m` in relator defect. Hence `δ_∞(c) ≤ δ_m(c) ≤ δ_∞(c + π/m) + Lπ/m`, and
+    `z ∈ Rad(G)` if and only if the gaps of the quotients `G/⟨⟨z^m⟩⟩` beat `Lπ/m` at one
+    `m ≥ π/c` for each `c`. There are no intermediate rates.
+  - *New route.* `lifted-thompson-t-not-mf-via-uniform-rotation-centralizer-gaps`, with the one
+    open prerequisite `rotation-centralizer-rotation-gaps-are-uniform` (UG). UG is about the
+    rotation centralizers `C_T(r_k)` only. It is equivalent to this claim, so the route is a
+    lossless reformulation. It bypasses `lifted-thompson-t-centre-has-commutant-eigencorners`
+    and its arc-spectrum failure, because no spectral projection of `ρ(z)` is ever taken.
+  - *What the equivalence rules out.* Fullness of `T` gives `δ_{2^k}(c) > 0` at each level
+    (item 4 of `central-eigencorners-die-over-full-radical-quotients`). That is not enough:
+    this claim needs `2^k δ_{2^k}(c) → ∞`.
+  - *Where the level-by-level method dies (heuristic).* Deriving level-`k` gaps from a gap of
+    `T` by cutting `U_z` into its `2^k` eigenclusters loses a factor of order `2^k`, through
+    Fejér polynomials. The resulting bound `≳ κ/(C L 2^k)` sits at the same scale as the
+    threshold. Details are under `## Attempts` of `rotation-centralizer-rotation-gaps-are-uniform`.
+    Self-similarity through `λ`, and determinant phases, did not help.
+  - *Status.* This claim stays OPEN.
