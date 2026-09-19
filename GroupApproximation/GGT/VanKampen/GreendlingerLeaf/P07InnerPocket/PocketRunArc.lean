@@ -104,7 +104,7 @@ theorem exists_cyclicArc_of_isChain (B : FaceBoundary M f) (u : List M.Dart) (hn
   · have hpos : 0 < u.length := List.length_pos_iff.mpr hu
     obtain ⟨s, hs, hsa⟩ := List.getElem_of_mem (hsub _ (List.getElem_mem hpos))
     have hle : u.length ≤ B.darts.length :=
-      (List.subperm_of_subset hnd (fun hx => hsub _ hx)).length_le
+      (List.subperm_of_subset hnd (fun x hx => hsub x hx)).length_le
     have hs1 : s < B.darts.length + 1 := by omega
     refine ⟨CyclicArc.mk ⟨s, hs1⟩ u.length hle, ?_⟩
     rw [darts_mk]

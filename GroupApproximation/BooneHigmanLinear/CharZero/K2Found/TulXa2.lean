@@ -61,7 +61,7 @@ theorem prod_pc (h4 : 4 ≤ Fintype.card I) {v x : I → A} (u : I → A) (hxv :
     (hx2 : TwoZ x) :
     ∏ pq : I × I, txc hX (pc_dot v x u pq.1 pq.2) (pc_twoZ h4 v x u pq.1 pq.2) =
       txc hX (smul_dot (u ⬝ᵥ v) hxv) (hx2.smul (u ⬝ᵥ v)) := by
-  rw [Fintype.prod_prod_type_right',
+  rw [Fintype.prod_prod_type_right,
     Finset.prod_congr rfl fun q _ => prod_pc_left hX h4 u hxv hx2 q]
   obtain ⟨r, -, -, hr, -⟩ := id hx2
   apply Subtype.ext
@@ -138,10 +138,9 @@ theorem Xa_lemma13a (h4 : 4 ≤ Fintype.card I) (v w w' u : I → A) (b : A) :
 
 #audit_axioms Xa_lemma13a
 
-omit [Fact (IsLocal hX)] in
 theorem pc_sum_all {v w : I → A} (u : I → A) (hw : w ⬝ᵥ v = 0) :
     ∑ pq : I × I, pc v w u pq.1 pq.2 = (u ⬝ᵥ v) • w := by
-  rw [Fintype.sum_prod_type_right', Finset.sum_congr rfl fun q _ => pc_sum_left u hw q,
+  rw [Fintype.sum_prod_type_right, Finset.sum_congr rfl fun q _ => pc_sum_left u hw q,
     ← Finset.sum_smul]
   rfl
 

@@ -72,6 +72,20 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
     Geom. Dyn. 6 (2012), DOI 10.4171/GGD/169, Theorem 4.7 and Corollary 4.10; used there for the
     first Grigorchuk group in Theorem 4.11) needs jump rational cohomology of finite height. `B`
     does not have it, because it contains `Z^n` of cohomological dimension `n` for every `n`.
+  - **Reductions of the membership question** (bh-free-58, 2026-09-19; elementary; no decision).
+    - For countable groups `H𝔉 = LH𝔉`: a countable directed union `⋃ G_i` acts on a tree with
+      vertex stabilizers conjugate to the `G_i`.
+    - `B ∈ H𝔉 ⟺ B′ ∈ H𝔉 ⟺ B~ ∈ H𝔉`.
+      - ⇐ from `B′`: `B` acts cellularly on the square tiling of `R^2` through `B/B′ ≅ Z^2`, with
+        stabilizers `B′`.
+      - ⇒ from `B` to `B~`: the Bass–Serre tree.
+      - The other directions: `H𝔉` is closed under subgroups.
+    - Self-similarity cannot start an induction. `B` is weakly regular branch over `B′`, so
+      `ψ(B′)` contains `B′ × B′`, and each geometric reduction (restriction to level stabilizers,
+      or to `ψ(B′)` modulo `B′ × B′`) returns to `B′` itself.
+    - Deciding `B ∈ H𝔉` in either direction therefore needs a tool other than jump cohomology,
+      commensurability, `F`-subgroups or fixed-point properties. The literature leaves this open:
+      Gandini (loc. cit., §1) lists "which branch groups belong to `H𝔉`" as an important question.
 - **Euler characteristic and `L^2` (no obstruction).** The presentation complex has Euler
   characteristic `1 − 2 + 2 = 1`. `B~` is infinite amenable, so its first `L^2`-Betti number is
   `0`. So the second `L^2`-Betti number of the universal cover of the presentation complex is `1`,
@@ -98,6 +112,21 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
     (arXiv:1206.2072) and Hartung (arXiv:1106.1098) state nothing on `FP_n` of `B~` for `n ≥ 3`. Hartung computes
     the Dwyer quotients `M_c(B)` for `c ≤ 103` and only conjectures their pattern: `Z^2` plus 2-primary cyclic
     groups of unbounded order, which would make `H_2(B; Z)` infinitely generated.
+- **Σ-invariants cannot prove `FP_3` here** (bh-free-58, 2026-09-19; consequence of the
+  bullet above).
+  - `H^1(B~; R) = R`, so the character sphere is `{±χ}`.
+  - Bieri–Renz, homotopical form, for discrete characters: `±χ ∈ Σ^2(B~)` iff `B~` is an
+    ascending HNN extension over a finitely presented base with stable letter of `χ`-value `±1`.
+    Every such base lies in `ker χ` and contains a conjugate of `B`. The bullet above excludes it,
+    so `Σ^2(B~) = ∅`, hence also `Σ^n(B~) = ∅` for `n ≥ 2`.
+  - Homological form: `±χ ∈ Σ^n(B~; Z)` iff there is an ascending base of type `FP_n`. It would be
+    an amenable, torsion-free group containing `B` that is `FP_n` but not finitely presented. None
+    is known.
+  - So a positive answer cannot come from Σ-theory (Bieri–Geoghegan–Kochloukova-type arguments),
+    barring such an exotic base. It needs a direct construction: a Brown-criterion filtration of a
+    complex built from the Grigorchuk–Żuk L-presentation, or a finite complete rewriting system.
+  - Equivalently, since `B~` is finitely presented, `FP_3` holds iff `π_2` of its presentation
+    complex is finitely generated as a `Z B~`-module.
 - **Constraints on a 2-dimensional certificate (2026-09-18, bh-openq-lists; necessary conditions only).**
   Consider a Brown-type certificate for `FP_3`: an action of `B~` on a 2-acyclic complex `X` with cocompact
   3-skeleton, where the stabilizer of each `p`-cell is of type `FP_(3−p)`.

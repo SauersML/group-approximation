@@ -85,7 +85,7 @@ theorem witnessStepBridge_mirror_permCongr (M : CombMap.{u}) :
   apply Equiv.ext
   intro x
   symm
-  rw [Equiv.Perm.inv_eq_iff_eq]
+  refine Equiv.Perm.inv_eq_iff_eq.mpr ?_
   change x = M.sigma.symm (M.alpha (M.alpha (M.sigma (M.alpha (M.alpha.symm x)))))
   rw [Equiv.apply_symm_apply, M.alpha_involutive, Equiv.symm_apply_apply]
 

@@ -51,13 +51,11 @@ theorem subshiftHomeo_zpow_val (k : ℤ) (x : S.carrier) (n : ℤ) :
   | succ i ih =>
     rw [zpow_add_one, Homeomorph.mul_apply, ih]
     show x.1 (1 + ((i : ℤ) + n)) = x.1 ((i : ℤ) + 1 + n)
-    congr 1
-    ring
+    exact congrArg x.1 (by ring)
   | pred i ih =>
     rw [zpow_sub_one, Homeomorph.mul_apply, ih, Homeomorph.inv_apply]
     show x.1 (-1 + (-(i : ℤ) + n)) = x.1 (-(i : ℤ) - 1 + n)
-    congr 1
-    ring
+    exact congrArg x.1 (by ring)
 
 theorem toEquiv_zpow_val (k : ℤ) (x : S.carrier) (n : ℤ) :
     (((SimpleKazhdanSofic.subshiftHomeo S).toEquiv ^ k) x).1 n = x.1 (k + n) := by
@@ -205,6 +203,7 @@ theorem cyl_cross {p R : ℕ} (hR : SepRadius S p R) (hp : 5 ≤ p) {z : ℤ →
   obtain ⟨m, hm1, hm2, hm3⟩ := hR x (d - 1) (by omega) (by omega) (by omega) (a + 1 + R)
   apply hm3
   have e1 := hmem (m - 1) (by omega) (by omega)
+  beta_reduce at e1
   rw [toEquiv_zpow_val] at e1
   have e2 := hx m (by omega) (by omega)
   rw [show d - 1 + m = d + (m - 1) by ring, e1, show 1 + (m - 1) = m by ring, e2]
@@ -292,6 +291,7 @@ theorem threeCycle_mem_of_cyl [Finite A] {G : Subgroup (Equiv.Perm S.carrier)}
             rw [h n h1 h2, ← hxQ' n h1 h2, hx n h1 h2]
           · intro h n h1 h2
             rw [h n h1 h2, ← hx n h1 h2, hxQ' n h1 h2]
+        show cyl S y.1.1 (-(r : ℤ)) r ∈ s
         rw [← hcyl]
         exact hQ's
       rw [threeCycle_union hdat hQU hsU hdisj]
