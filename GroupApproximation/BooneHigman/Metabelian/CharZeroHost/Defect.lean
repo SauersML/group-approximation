@@ -50,10 +50,10 @@ theorem natVec_single (j0 : Fin n) :
   funext j
   by_cases h : j = j0
   · subst h
-    show ((Pi.single j 1 j : ℕ) : MvPolynomial (Fin k) A) =
+    show (((Pi.single j 1 : Fin n → ℕ) j : ℕ) : MvPolynomial (Fin k) A) =
       (Pi.single j 1 : Fin n → MvPolynomial (Fin k) A) j
     rw [Pi.single_eq_same, Pi.single_eq_same, Nat.cast_one]
-  · show ((Pi.single j0 1 j : ℕ) : MvPolynomial (Fin k) A) =
+  · show (((Pi.single j0 1 : Fin n → ℕ) j : ℕ) : MvPolynomial (Fin k) A) =
       (Pi.single j0 1 : Fin n → MvPolynomial (Fin k) A) j
     rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, Nat.cast_zero]
 
