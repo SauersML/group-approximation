@@ -98,3 +98,29 @@ separate points.  Two remarks limit the search.
     step is PW. A refutation of PW is a sequence of low-defect pairs with
     `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
     must use `r_2`.
+
+- **2026-09-19 (swarm-0917-w17-w17-ptm-break, belief breaker, census plus
+  locus gap): target still open; `delta_2` computed exactly; a
+  dimension-free gap near the SL(2,Z) locus.**  Recorded in
+  `thompson-t-defect-gap-central-square-locus`.
+  - *`delta_2`.* `delta_2 = 0.3491491...`, a root of
+    `d^10 - 5d^8 + 5d^6 + 6d^4 - 9d^2 + 1`. It is strictly below
+    `delta_1 = 0.5176` and below the amenable-locus constant `1/2`. It is
+    attained by an `SU(2)`-dense pair with `A^2 = -1`, where `r_1 = 1` and
+    `eps_2 = eps_P`.
+  - *Locus gap.* Every exact pair satisfies
+    `||BA^2 - 1|| <= 5 eps_2 + 2 eps_P + 45 ||[A^2, B]||`. Hence:
+    - `7D + 45 gamma >= 2/3`, with `gamma = ||[A^2,B]||`;
+    - `D >= 1/7` on the SL(2,Z) locus `gamma = 0`.
+
+    So MF witnesses must keep `A^2` uniformly non-central:
+    `gamma >= 2/135 - o(1)`.
+  - *Where it dies.* It dies at the two steps that move `J = A^2` past
+    `B`. The next step would be to bound `gamma` by the defect through
+    `r_1` and `r_2`. The dimension-2 minimiser (`r_1 = 1`) shows that `r_1`
+    alone cannot do this.
+  - *Census caveat.* A planted control (`delta_2 (+) delta_2` in `U(4)`)
+    was never recovered by fixed-profile L-BFGS, relator homotopy or the
+    `A^2 = -1` locus search, whose best value was 0.5176 over 1507 runs.
+    Negative random-census results at `n >= 4` are therefore uninformative,
+    and nothing here supports or refutes `inf delta_n = delta_2`.
