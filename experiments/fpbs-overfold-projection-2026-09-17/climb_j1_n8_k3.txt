@@ -1,0 +1,13 @@
+level 0 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 1 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 2 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 3 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 4 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 5 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 6 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 7 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 8 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 9 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 10 best greedy seeds>=1 for k=3 level-0 seeds: 2
+level 11 best greedy seeds>=1 for k=3 level-0 seeds: 2
+max over levels 2 k 3 violations 0

@@ -9,6 +9,12 @@ distinct_from:
   fpbs-mal-bernoulli-single-stage-floor: that is the Bernoulli floor; this is one of the two finite inputs of the route fpbs-mal-depth-floor-from-overfold-domination to it.
   fpbs-mal-twisted-level-seed-density-uniform-witness: that is the other input, a uniform lower bound on r(Q_m^(j))/|Q_m|; this is the exchange statement that turns lawful seeds into all seeds.
 artifacts:
+  - research/artifacts/fpbs-overfold-level0-projection-2026-09-19.md
+  - experiments/fpbs-overfold-projection-2026-09-17/oprime.py
+  - experiments/fpbs-overfold-projection-2026-09-17/oprime_climb.py
+  - experiments/fpbs-overfold-projection-2026-09-17/single_seed.py
+  - experiments/fpbs-overfold-projection-2026-09-17/climb_j2_n7_k6.txt
+  - experiments/fpbs-overfold-projection-2026-09-17/single_j2.txt
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_search.py
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_n4_j1.txt
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_n5_j1.txt
@@ -576,3 +582,29 @@ such as rank 2 and the single lawful component above.
     rank-2 counterexample to (RI) would kill this route, but not (O). In
     that case a proof would need `φ`-specific input, for example (T_j) of
     fp-break.
+- **One-level projection (w18-fp-last1, 2026-09-19). Status: open.**
+  Details are in
+  `research/artifacts/fpbs-overfold-level0-projection-2026-09-19.md`.
+  Code and data are in `experiments/fpbs-overfold-projection-2026-09-17/`.
+  - **Reduction (proved).** Let `ℓ_1(P)` be the least number of level ≥ 1
+    seeds whose closure contains `cl(P) ∩ ker p_1`. Define:
+    - (O'-rel): `ℓ_1(P) ≤ |P|` for every seed set `P`;
+    - (Z1): `ℓ_1(P) ≤ |P| − 1` whenever `P` contains a level-0 seed.
+
+    Then (Z1) ⇒ (O'-rel), and (O'-rel) ⇒ (O'_j), since `ker m ⊆ ker p_1`.
+    With Corollary R of the depth-shift reduction, (O'-rel) at every
+    depth `≤ j` gives (O) on `L_{j+1}`-transitive `Q` for `j ≤ 4`.
+    At `j = 1`, (O'-rel) is exactly (O-rel). For `j ≥ 2` the two are not
+    comparable a priori.
+  - **Computations (0 violations).**
+    - Exact runs at `j = 2` and hill-climbs at `j = 1, 2, 3`: no
+      violation of (Z1) or (O'-rel).
+    - Single level-0 seeds (145k tested): never fold a level ≥ 1 pair
+      unless `Q` has a common fixed point of `a` and `b`. This is data
+      only; the proof is not written.
+    - (S_law) is (O-rel) restated. The runs confirm it but add nothing.
+  - **Obstruction.** Hill-climbs attain `ℓ_1 = |P| − 1` exactly (`k = 4`
+    and `k = 6`). This refutes `ℓ_1 ≤ ⌈|P|/2⌉`. It also rules out, for
+    these `k`, any argument that charges each level-0 seed a weight
+    `c < 1`. What remains is an exact one-for-one exchange, (O-step)
+    projected to one level.
