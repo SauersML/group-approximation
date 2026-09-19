@@ -12,11 +12,14 @@ Lemma 9.7).  Step 4 of lane nm-gl06e's construction, and the interface for steps
 `GL06h4.gl06h4Nearest_Pocket` bundles the cut of `Δ` along a minimal path with two window
 bounds on the slit sides.  This module separates them.
 
-* `SlitPocketCore`: every field of the slit pocket except the two windows.  It adds the minimality
-  of both slit sides against every walk from `∂Δ` to a relator cell.  This is what steps 2 (the
-  ribbon copy) and 3 (the pocket region) deliver.  `GL06p.slit_minimal_of_geodesic` gives the
-  minimality fields for geodesic spellings of the minimal path.
-* `slitPocketCoreStatement`: steps 2 and 3, a core for every diagram with a nearest path.
+* `SlitPocketCore`: every field of the slit pocket except the two windows.  It adds the metric
+  class-minimality of both slit sides (`GL06p.MetricClassMinimal`).  Neither slit side is longer
+  than the word norm of any walk from the boundary to a relator cell, in any diagram
+  `O`-equivalent to `Δ`.  This is what steps 2 (the ribbon copy) and 3 (the pocket region)
+  deliver.  `GL06p.metricClassMinimal_of_geodesic` gives the minimality fields for geodesic
+  spellings of a metrically nearest walk.
+* `slitPocketCoreStatement`: steps 2 and 3, a core for every diagram with a metrically nearest
+  walk (`GL06p.exists_metricNearestWalk`).
 * `longSlitWindowsStatement`: step 4, the window bound on a slit side longer than `ε + ε`.
 * `nearOrShort_of_le`: a slit side of length at most `ε + ε` needs no window bound.  This covers
   Osin's degenerate cases, including the empty slit of a nearest cell touching `∂Δ`.
@@ -24,15 +27,17 @@ bounds on the slit sides.  This module separates them.
 * `allCellsShort_of_core`: and so GL06e's residual
   `AllCellsShortEnclosedRefutedBelowSectionStatement`.
 
-## Truth of `longSlitWindowsStatement`
+## Why metric class-minimality
 
-It is Osin's gluing argument, recorded in GL06h4's module docstring.  Take a region of an
-`O`-equivalent copy of the pocket to the slit side `s₁`, with target arc at offset `k`, of length
-`L`, and right side `e ≤ ε`.  Gluing it back gives a walk from `∂Δ` to another relator cell of
-length `k + e`.  So `|s₁| ≤ k + e` by `slitIn_minimal`, and `L ≤ ε + ε`.  Lane gl-p07-86's
-Python models found no counterexample (GL06h4's docstring); this lane did not re-check them.
-The gluing step is the transport of such a region along the pocket (`pocketCellTransport`,
-`OsinPocketGlueCarriers`).
+`GL06h4.NearWindow` quantifies over every `O`-equivalent copy `Ξ` of the pocket, and
+`GL06h3.NearestCellCut.false_of_below` applies it to the arbitrary copy produced by clause (b).
+Osin glues the region back: `PocketRegion.glueDiagram` of `Ξ` is `O`-equivalent to the copy.  In
+it, the slit prefix of offset `k` followed by the reversed right side is a walk from the boundary
+to a relator cell.  Its value has word norm at most `k + ε`: the slit letters are letters, and
+`rightSide_norm_le` bounds the rest.  So `|s₁| ≤ k + ε` by `slitIn_minimal`, and a target arc
+`[k, k + L]` inside the slit has `L ≤ ε`.  Minimality in dart counts inside `Δ` would not survive:
+the glued diagram is a different diagram, and a copy may join the boundary to a cell by a single
+dart with an arbitrary label.
 
 ## Manuscript status
 
@@ -80,12 +85,11 @@ structure SlitPocketCore (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v}
   slitOut_geodesic : GGT.OsinComponents.IsGeodesicWord D 1
     (RelLetter.listVal (dartWord copy slitOut)) (dartWord copy slitOut)
   outer_length_le : outerPart.length ≤ Delta.boundaryWord.length
-  /-- The slit side `s₁` is no longer than any walk from `∂Δ` to a relator cell. -/
-  slitIn_minimal : ∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-    IsBoundaryToCellWalk Delta j q → slitIn.length ≤ q.length
-  /-- The slit side `s₂` is no longer than any walk from `∂Δ` to a relator cell. -/
-  slitOut_minimal : ∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-    IsBoundaryToCellWalk Delta j q → slitOut.length ≤ q.length
+  /-- The slit side `s₁` is metrically class-minimal: no longer than the word norm of the value of
+  any walk from the boundary to a relator cell, in any diagram `O`-equivalent to `Δ`. -/
+  slitIn_minimal : MetricClassMinimal D Delta slitIn.length
+  /-- The slit side `s₂` is metrically class-minimal. -/
+  slitOut_minimal : MetricClassMinimal D Delta slitOut.length
 
 namespace SlitPocketCore
 
@@ -133,14 +137,14 @@ theorem nearOrShort_of_le (D : RelGenSet G Lambda) (eps : ℕ) {X : DiscDiagram.
 
 end Core
 
-/-- **Steps 2 and 3: a slit pocket core for every diagram with a nearest path** (Osin, proof of
+/-- **Steps 2 and 3: a slit pocket core for every diagram with a metrically nearest walk** (Osin, proof of
 Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121). -/
 def slitPocketCoreStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda)
     (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W),
     Delta.LeastArea → (∀ d, (symmetricLabelAlphabet D).IsLetter (Delta.label d)) →
       (∀ word ∈ W, 1 < word.length) → 2 ≤ Delta.rCellCount →
-        NearestCellPath Delta → Nonempty (SlitPocketCore D Delta)
+        MetricNearestWalk D Delta → Nonempty (SlitPocketCore D Delta)
 
 #audit_axioms GroupApproximation.Full.GL06p.slitPocketCoreStatement
 
@@ -169,8 +173,9 @@ Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121): a short slit side need
 theorem slitPocketOfNearestPath_of_core (hcore : slitPocketCoreStatement.{u, w, v})
     (hwin : longSlitWindowsStatement.{u, w, v}) :
     slitPocketOfNearestPathStatement.{u, w, v} := by
-  intro _G _ _Lambda D eps W Delta hlea hletters hW hcells hboundary N
-  obtain ⟨C⟩ := hcore D W Delta hlea hletters hW hcells N
+  intro _G _ _Lambda D eps W Delta hlea hletters hW hcells hboundary _N
+  obtain ⟨M⟩ := exists_metricNearestWalk D Delta (by omega)
+  obtain ⟨C⟩ := hcore D W Delta hlea hletters hW hcells M
   obtain ⟨hin, hout⟩ := hwin D eps W Delta hlea hletters hW hcells hboundary C
   refine ⟨C.toPocket ?_ ?_⟩
   · by_cases h : C.slitIn.length ≤ eps + eps
