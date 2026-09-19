@@ -22,3 +22,15 @@ multiplication (item 2) multiplies `b` and never lowers its 2-adic valuation, so
 - **Tag multiplication** (audit, 2026-09-17). Item 2 of `donor-covering-phase-transport-proof` turns type `(z, b)`
   into `(z, bt)`. It dies at once: the 2-adic valuation of `bt` is at least that of `b`, and `z` is unchanged. Any
   reduction must either merge active symbols or change the number of rest symbols, and (D2) must survive that.
+- **Zero-rest reading of the hypothesis** (swarm-0917-w19-w19-gs-last1, 2026-09-19). This is a scope obstruction, not
+  a proof. By `few-rest-type-reduction-is-per-group-binary-descent`, every strict automaton `β` on `A^G` is
+  donor-covering of type `(0, |A|)`, with `Z = ∅`, `B = A` and `d ≡ 1`, and this node lists `(0, b)` as in scope. So,
+  as stated, the node is equivalent to `(P)`: every group with `NS(G) ≠ ∅` carries an admissible type.
+  - Given items 3 and 4 of `donor-covering-strict-automata-descend-to-two-symbols`, `(P)` implies universal binary
+    descent on its own. Restricted to existentially closed groups, `(P)` is equivalent to it.
+  - `(P)` also forces `NS(G)` to contain sizes prime to any finite set of odd primes, with `4 ∤ n`.
+  - So this node is not the last-mile 2-adic step it was read as. The route `donor-covering-phase-transport-proof`
+    reformulates its target and does not reduce it.
+  - The genuine 2-adic content is the case `z ∈ {1, 2}`: types `(1, b)` with `b` even and `(2, b)` with `4 | b`,
+    whose births relay to donors other than themselves (the self-relaying case is established). Future attempts
+    should state which case they attack.
