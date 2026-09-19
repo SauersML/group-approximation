@@ -1,0 +1,482 @@
+0 pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 21 relators, max length 1108, all trivial in G)
+1 pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+2 pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 21 relators, max length 1616, all trivial in G)
+3 pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 7 relators, max length 222, all trivial in G)
+4 pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 14 relators, max length 682, all trivial in G)
+5 pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+6 pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 23 relators, max length 1764, all trivial in G)
+7 pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+8 pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+9 pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+10 pi_s=a pi_t=a e s|0=A s t|0=E t A s|3=t | OPEN-inf | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+11 pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+12 pi_s=a pi_t=a e s|0=E s t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+13 pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 222, all trivial in G)
+14 pi_s=a pi_t=a e s|0=E s t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+15 pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+16 pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 220, all trivial in G)
+17 pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 22 relators, max length 704, all trivial in G)
+18 pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 372, all trivial in G)
+19 pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+20 pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | KILL-b | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | FINITE |H| = 212960 (presentation of H_3: 5 relators, max length 236, all trivial in G)
+21 pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 372, all trivial in G)
+22 pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 23 relators, max length 450, all trivial in G)
+23 pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 7 relators, max length 936, all trivial in G)
+24 pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 16 relators, max length 924, all trivial in G)
+25 pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 20 relators, max length 642, all trivial in G)
+26 pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+27 pi_s=a pi_t=e a s|0=A s t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+28 pi_s=a pi_t=e a s|0=A s t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+29 pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+30 pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+31 pi_s=a pi_t=e a s|0=E s t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+32 pi_s=a pi_t=e a s|0=E s t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+33 pi_s=a pi_t=e a s|0=E s t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+34 pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 20 relators, max length 876, all trivial in G)
+35 pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 14 relators, max length 682, all trivial in G)
+36 pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+37 pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+38 pi_s=a pi_t=e e s|0=E s t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+39 pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 23 relators, max length 1764, all trivial in G)
+40 pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+41 pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+42 pi_s=e pi_t=a s|0=s A t|0=t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+43 pi_s=e pi_t=a s|0=s A t|0=t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+44 pi_s=e pi_t=a s|0=s E t|0=t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+45 pi_s=e pi_t=a s|0=s E t|0=t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+46 pi_s=e pi_t=a s|0=A s t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+47 pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+48 pi_s=e pi_t=a s|0=E s t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+49 pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+50 pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+51 pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 7 relators, max length 222, all trivial in G)
+52 pi_s=e pi_t=a e s|0=A s t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+53 pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 19 relators, max length 3756, all trivial in G)
+54 pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+55 pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+56 pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+57 pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 16 relators, max length 1034, all trivial in G)
+58 pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 20 relators, max length 440, all trivial in G)
+59 pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 220, all trivial in G)
+60 pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 17 relators, max length 574, all trivial in G)
+61 pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 6 relators, max length 882, all trivial in G)
+62 pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 17 relators, max length 896, all trivial in G)
+63 pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 22 relators, max length 658, all trivial in G)
+64 pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 264, all trivial in G)
+65 pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+66 pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | KILL-b | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | FINITE |H| = 212960 (presentation of H_3: 5 relators, max length 236, all trivial in G)
+67 pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 264, all trivial in G)
+68 pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+69 pi_s=e pi_t=e a s|0=A s t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+70 pi_s=e pi_t=e a s|0=A s t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+71 pi_s=e pi_t=e a s|0=A s t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+72 pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+73 pi_s=e pi_t=e a s|0=E s t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+74 pi_s=e pi_t=e a s|0=E s t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+75 pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+76 pi_s=e pi_t=a a s|0=A s t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+77 pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+78 pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+79 pi_s=e pi_t=a a s|0=A s t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+80 pi_s=e pi_t=a a s|0=E s t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+81 pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+82 pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+83 pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | OPEN-und | commute False | ord S 19360 | ord T 44 | sigma=tau=1 False | 
+84 pi_s=a e pi_t=a s|0=A s A t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+85 pi_s=a e pi_t=a s|0=A s A t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+86 pi_s=a e pi_t=a s|0=A s E t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+87 pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+88 pi_s=a e pi_t=a s|0=E s A t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+89 pi_s=a e pi_t=a s|0=E s A t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+90 pi_s=a e pi_t=a s|0=E s E t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+91 pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+92 pi_s=a e pi_t=e s|0=A s A t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTSt)=inf ('A t t', 8, 'A t a t')
+93 pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+94 pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 14 relators, max length 682, all trivial in G)
+95 pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+96 pi_s=a e pi_t=e s|0=E s A t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStst)=inf ('A t t', 8, 'A t a t')
+97 pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+98 pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 23 relators, max length 1764, all trivial in G)
+99 pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+100 pi_s=a e pi_t=a E s|0=A s A t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a t', 6, 'a t')
+101 pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+102 pi_s=a e pi_t=a E s|0=A s A t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+103 pi_s=a e pi_t=a E s|0=A s A t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('a E t t e', 8, 'a E t t e')
+104 pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 372, all trivial in G)
+105 pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+106 pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | KILL-b | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | FINITE |H| = 212960 (presentation of H_3: 5 relators, max length 236, all trivial in G)
+107 pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_3: 8 relators, max length 372, all trivial in G)
+108 pi_s=a e pi_t=a E s|0=E s A t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a t', 6, 'a t')
+109 pi_s=a e pi_t=a E s|0=E s A t|0=A t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('e t', 11, 'e t')
+110 pi_s=a e pi_t=a E s|0=E s A t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+111 pi_s=a e pi_t=a E s|0=E s A t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+112 pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 23 relators, max length 450, all trivial in G)
+113 pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 7 relators, max length 936, all trivial in G)
+114 pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 16 relators, max length 924, all trivial in G)
+115 pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 20 relators, max length 642, all trivial in G)
+116 pi_s=a e pi_t=e a s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+117 pi_s=a e pi_t=e a s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+118 pi_s=a e pi_t=e a s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+119 pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | 
+120 pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+121 pi_s=a e pi_t=e a s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+122 pi_s=a e pi_t=e a s|0=A s E t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+123 pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+124 pi_s=a e pi_t=e a s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+125 pi_s=a e pi_t=e a s|0=E s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+126 pi_s=a e pi_t=e a s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+127 pi_s=a e pi_t=e a s|0=E s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E E t E', 5, 'a E t E E t E E t E')
+128 pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+129 pi_s=a e pi_t=e a s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+130 pi_s=a e pi_t=e a s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+131 pi_s=a e pi_t=e a s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+132 pi_s=a e pi_t=a a s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+133 pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+134 pi_s=a e pi_t=a a s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSTSt)=inf ('A E t A E t E t', 5, 'A E t A E t E t')
+135 pi_s=a e pi_t=a a s|0=A s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(STTSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+136 pi_s=a e pi_t=a a s|0=A s E t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+137 pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+138 pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+139 pi_s=a e pi_t=a a s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 19360 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a a a E t E E t E E t E', 5, 'a a a E t E E t E E t E')
+140 pi_s=a e pi_t=a a s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+141 pi_s=a e pi_t=a a s|0=E s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A t E t E', 8, 'A t E t E')
+142 pi_s=a e pi_t=a a s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A E t A E t E t', 5, 'A E t A E t E t')
+143 pi_s=a e pi_t=a a s|0=E s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(STStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+144 pi_s=a e pi_t=a a s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+145 pi_s=a e pi_t=a a s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SStt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+146 pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+147 pi_s=a e pi_t=a a s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+148 pi_s=a e pi_t=e e s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A t', 8, 'A t')
+149 pi_s=a e pi_t=e e s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTsT)=inf ('A t E a t E', 8, 'A t E t E')
+150 pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+151 pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+152 pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 20 relators, max length 876, all trivial in G)
+153 pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 14 relators, max length 682, all trivial in G)
+154 pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+155 pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+156 pi_s=a e pi_t=e e s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+157 pi_s=a e pi_t=e e s|0=E s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('A t E A t E t E', 6, 'A t E A t E t E')
+158 pi_s=a e pi_t=e e s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+159 pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+160 pi_s=a e pi_t=e e s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+161 pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 23 relators, max length 1764, all trivial in G)
+162 pi_s=a e pi_t=e e s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+163 pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+164 pi_s=a E pi_t=a s|0=s t|0=t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+165 pi_s=a E pi_t=a s|0=s t|0=t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+166 pi_s=a E pi_t=a s|0=A s a t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+167 pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+168 pi_s=a E pi_t=a s|0=A s e t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+169 pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+170 pi_s=a E pi_t=a s|0=E s a t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+171 pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | OPEN-und | commute False | ord S 29040 | ord T 44 | sigma=tau=1 False | 
+172 pi_s=a E pi_t=a s|0=E s e t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+173 pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+174 pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 21 relators, max length 1616, all trivial in G)
+175 pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 7 relators, max length 222, all trivial in G)
+176 pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 20 relators, max length 2602, all trivial in G)
+177 pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+178 pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | KILL-b | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 14 relators, max length 682, all trivial in G)
+179 pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+180 pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | KILL-b | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 20 relators, max length 1324, all trivial in G)
+181 pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | KILL-b | commute False | ord S 110 | ord T 11 | sigma=tau=1 False | FINITE |H| = 13310 (presentation of H_2: 4 relators, max length 110, all trivial in G)
+182 pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 23 relators, max length 1764, all trivial in G)
+183 pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+184 pi_s=a E pi_t=a e s|0=A s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+185 pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 222, all trivial in G)
+186 pi_s=a E pi_t=a e s|0=A s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(STst) = inf, certificate ('e T', 11, 'e T')
+187 pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 103072640000 (presentation of H_3: 24 relators, max length 7434, all trivial in G)
+188 pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+189 pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+190 pi_s=a E pi_t=a e s|0=A s e t|0=E t A s|3=t | OPEN-inf | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+191 pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+192 pi_s=a E pi_t=a e s|0=E s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+193 pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | KILL-b | commute False | ord S 110 | ord T 11 | sigma=tau=1 False | FINITE |H| = 13310 (presentation of H_2: 4 relators, max length 110, all trivial in G)
+194 pi_s=a E pi_t=a e s|0=E s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+195 pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | OPEN-und | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | 
+196 pi_s=a E pi_t=a e s|0=E s e t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+197 pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 222, all trivial in G)
+198 pi_s=a E pi_t=a e s|0=E s e t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+199 pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+200 pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+201 pi_s=a E pi_t=e a s|0=A s a t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+202 pi_s=a E pi_t=e a s|0=A s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+203 pi_s=a E pi_t=e a s|0=A s a t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSTSt)=inf ('a E t E E t E', 8, 'a E t E E t E')
+204 pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+205 pi_s=a E pi_t=e a s|0=A s e t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+206 pi_s=a E pi_t=e a s|0=A s e t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+207 pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+208 pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | OPEN-und | commute False | ord S 2200 | ord T 44 | sigma=tau=1 False | 
+209 pi_s=a E pi_t=e a s|0=E s a t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+210 pi_s=a E pi_t=e a s|0=E s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+211 pi_s=a E pi_t=e a s|0=E s a t|0=E t E s|3=t | OPEN-inf | commute False | ord S 2640 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+212 pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+213 pi_s=a E pi_t=e a s|0=E s e t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+214 pi_s=a E pi_t=e a s|0=E s e t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+215 pi_s=a E pi_t=e a s|0=E s e t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+216 pi_s=a E pi_t=a a s|0=A s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+217 pi_s=a E pi_t=a a s|0=A s a t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SStST)=inf ('A t E A t E t E', 5, 'A t E A t E t E')
+218 pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+219 pi_s=a E pi_t=a a s|0=A s a t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSSSSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+220 pi_s=a E pi_t=a a s|0=A s e t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+221 pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+222 pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+223 pi_s=a E pi_t=a a s|0=A s e t|0=E t E s|3=t | OPEN-inf | commute False | ord S 19360 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a a a E t E E t E E t E', 5, 'a a a E t E E t E E t E')
+224 pi_s=a E pi_t=a a s|0=E s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+225 pi_s=a E pi_t=a a s|0=E s a t|0=A t E s|3=t | OPEN-inf | commute False | ord S 29040 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+226 pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | OPEN-und | commute False | ord S 29040 | ord T 44 | sigma=tau=1 False | 
+227 pi_s=a E pi_t=a a s|0=E s a t|0=E t E s|3=t | OPEN-inf | commute False | ord S 38720 | ord T 44 | sigma=tau=1 False | infinite ord(STSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+228 pi_s=a E pi_t=a a s|0=E s e t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+229 pi_s=a E pi_t=a a s|0=E s e t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SStt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+230 pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+231 pi_s=a E pi_t=a a s|0=E s e t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+232 pi_s=a E pi_t=e e s|0=A s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+233 pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+234 pi_s=a E pi_t=e e s|0=A s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStST)=inf ('A E t E t', 8, 'A E t E t')
+235 pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+236 pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+237 pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+238 pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+239 pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+240 pi_s=a E pi_t=e e s|0=E s a t|0=A t A s|3=t | OPEN-inf | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('A t', 8, 'A t')
+241 pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | OPEN-und | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | 
+242 pi_s=a E pi_t=e e s|0=E s a t|0=E t A s|3=t | OPEN-inf | commute False | ord S 440 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A E t E t', 8, 'A E t E t')
+243 pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | KILL-b | commute False | ord S 110 | ord T 11 | sigma=tau=1 False | FINITE |H| = 13310 (presentation of H_2: 4 relators, max length 110, all trivial in G)
+244 pi_s=a E pi_t=e e s|0=E s e t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+245 pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+246 pi_s=a E pi_t=e e s|0=E s e t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+247 pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+248 pi_s=e a pi_t=a s|0=A s A t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+249 pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+250 pi_s=e a pi_t=a s|0=A s E t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+251 pi_s=e a pi_t=a s|0=A s E t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+252 pi_s=e a pi_t=a s|0=E s A t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+253 pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+254 pi_s=e a pi_t=a s|0=E s E t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+255 pi_s=e a pi_t=a s|0=E s E t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+256 pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+257 pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 250, all trivial in G)
+258 pi_s=e a pi_t=e s|0=A s E t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('A t t', 8, 'A t a t')
+259 pi_s=e a pi_t=e s|0=A s E t|0=E t s|3=t | OPEN-inf | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a E t', 11, 'a E t')
+260 pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+261 pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+262 pi_s=e a pi_t=e s|0=E s E t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStt) = inf, certificate ('A t t', 8, 'A t a t')
+263 pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+264 pi_s=e a pi_t=a e s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+265 pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 7 relators, max length 222, all trivial in G)
+266 pi_s=e a pi_t=a e s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+267 pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+268 pi_s=e a pi_t=a e s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+269 pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+270 pi_s=e a pi_t=a e s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(STT) = inf, certificate ('E t', 11, 'E t')
+271 pi_s=e a pi_t=a e s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTSt)=inf ('a E t E E t E', 8, 'a E t E E t E')
+272 pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+273 pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+274 pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+275 pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+276 pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+277 pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+278 pi_s=e a pi_t=a e s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('E t', 11, 'E t')
+279 pi_s=e a pi_t=a e s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+280 pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 17 relators, max length 574, all trivial in G)
+281 pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 6 relators, max length 882, all trivial in G)
+282 pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 17 relators, max length 896, all trivial in G)
+283 pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 22 relators, max length 658, all trivial in G)
+284 pi_s=e a pi_t=a E s|0=A s E t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('a t', 6, 'a t')
+285 pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+286 pi_s=e a pi_t=a E s|0=A s E t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+287 pi_s=e a pi_t=a E s|0=A s E t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+288 pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+289 pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+290 pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | 
+291 pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+292 pi_s=e a pi_t=a E s|0=E s E t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a t', 6, 'a t')
+293 pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+294 pi_s=e a pi_t=a E s|0=E s E t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+295 pi_s=e a pi_t=a E s|0=E s E t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t t e', 8, 'a E t t e')
+296 pi_s=e a pi_t=a a s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+297 pi_s=e a pi_t=a a s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+298 pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+299 pi_s=e a pi_t=a a s|0=A s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+300 pi_s=e a pi_t=a a s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+301 pi_s=e a pi_t=a a s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A t E t E', 8, 'A t E t E')
+302 pi_s=e a pi_t=a a s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SStt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+303 pi_s=e a pi_t=a a s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+304 pi_s=e a pi_t=a a s|0=E s A t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+305 pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+306 pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+307 pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 19360 | ord T 44 | sigma=tau=1 False | 
+308 pi_s=e a pi_t=a a s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+309 pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+310 pi_s=e a pi_t=a a s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSSSST)=inf ('A E t A E t A E t a a a E t', 11, 'A E t A E t A E t a a a E t')
+311 pi_s=e a pi_t=a a s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(STStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+312 pi_s=e a pi_t=e e s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A t', 8, 'A t')
+313 pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+314 pi_s=e a pi_t=e e s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStSt)=inf ('A E t E t', 8, 'A E t E t')
+315 pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 250, all trivial in G)
+316 pi_s=e a pi_t=e e s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+317 pi_s=e a pi_t=e e s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A t E A t E t E', 6, 'A t E A t E t E')
+318 pi_s=e a pi_t=e e s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+319 pi_s=e a pi_t=e e s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a E t E', 11, 'a E t E')
+320 pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+321 pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+322 pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+323 pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+324 pi_s=e a pi_t=e e s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('A t', 8, 'A t')
+325 pi_s=e a pi_t=e e s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E t E')
+326 pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+327 pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+328 pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+329 pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+330 pi_s=a a pi_t=e s|0=A s E t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('A t t', 8, 'A t a t')
+331 pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+332 pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+333 pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+334 pi_s=a a pi_t=e s|0=E s E t|0=A t s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A t t', 8, 'A t a t')
+335 pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 False | |H| divides 2420
+336 pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+337 pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+338 pi_s=a a pi_t=a e s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+339 pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+340 pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+341 pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+342 pi_s=a a pi_t=a e s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(STT) = inf, certificate ('E t', 11, 'E t')
+343 pi_s=a a pi_t=a e s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+344 pi_s=a a pi_t=a e s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+345 pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 5 relators, max length 222, all trivial in G)
+346 pi_s=a a pi_t=a e s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+347 pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+348 pi_s=a a pi_t=a e s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+349 pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+350 pi_s=a a pi_t=a e s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+351 pi_s=a a pi_t=a e s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+352 pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+353 pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+354 pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | 
+355 pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+356 pi_s=a a pi_t=a E s|0=A s E t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(St) = inf, certificate ('a t', 6, 'a t')
+357 pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+358 pi_s=a a pi_t=a E s|0=A s E t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+359 pi_s=a a pi_t=a E s|0=A s E t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+360 pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 23 relators, max length 450, all trivial in G)
+361 pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 7 relators, max length 936, all trivial in G)
+362 pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 16 relators, max length 924, all trivial in G)
+363 pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 20 relators, max length 642, all trivial in G)
+364 pi_s=a a pi_t=a E s|0=E s E t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(STT) = inf, certificate ('a t', 6, 'a t')
+365 pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+366 pi_s=a a pi_t=a E s|0=E s E t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+367 pi_s=a a pi_t=a E s|0=E s E t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+368 pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+369 pi_s=a a pi_t=e a s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+370 pi_s=a a pi_t=e a s|0=A s A t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+371 pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+372 pi_s=a a pi_t=e a s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+373 pi_s=a a pi_t=e a s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+374 pi_s=a a pi_t=e a s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+375 pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | 
+376 pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+377 pi_s=a a pi_t=e a s|0=E s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+378 pi_s=a a pi_t=e a s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+379 pi_s=a a pi_t=e a s|0=E s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+380 pi_s=a a pi_t=e a s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A A t A t', 8, 'A A t t')
+381 pi_s=a a pi_t=e a s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+382 pi_s=a a pi_t=e a s|0=E s E t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 False | H = Z x C_k
+383 pi_s=a a pi_t=e a s|0=E s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+384 pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+385 pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+386 pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+387 pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+388 pi_s=a a pi_t=e e s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+389 pi_s=a a pi_t=e e s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('A t E a t E', 8, 'A t E t E')
+390 pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+391 pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+392 pi_s=a a pi_t=e e s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+393 pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+394 pi_s=a a pi_t=e e s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+395 pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 6 relators, max length 250, all trivial in G)
+396 pi_s=a a pi_t=e e s|0=E s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A A t t', 11, 'A A t t')
+397 pi_s=a a pi_t=e e s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('A t E a t E', 8, 'A t E t E')
+398 pi_s=a a pi_t=e e s|0=E s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+399 pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 False | |H| divides 2420
+400 pi_s=e e pi_t=a s|0=A s A t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 False | H = Z x C_k
+401 pi_s=e e pi_t=a s|0=A s A t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+402 pi_s=e e pi_t=a s|0=A s E t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+403 pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+404 pi_s=e e pi_t=a s|0=E s A t|0=A t s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('t', 11, 't')
+405 pi_s=e e pi_t=a s|0=E s A t|0=E t s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+406 pi_s=e e pi_t=a s|0=E s E t|0=A t s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+407 pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+408 pi_s=e e pi_t=a e s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+409 pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 False | |H| divides 2420
+410 pi_s=e e pi_t=a e s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('E t', 11, 'E t')
+411 pi_s=e e pi_t=a e s|0=A s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+412 pi_s=e e pi_t=a e s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+413 pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | KILL-b | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | FINITE |H| = 3221020 (presentation of H_2: 7 relators, max length 222, all trivial in G)
+414 pi_s=e e pi_t=a e s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+415 pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+416 pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | OPEN-und | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | 
+417 pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 11 | sigma=tau=1 False | 
+418 pi_s=e e pi_t=a e s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('E t', 11, 'E t')
+419 pi_s=e e pi_t=a e s|0=E s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+420 pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+421 pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | KILL-a | commute True | ord S 55 | ord T 11 | sigma=tau=1 True | |H| divides 605
+422 pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+423 pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+424 pi_s=e e pi_t=a E s|0=A s A t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(St) = inf, certificate ('a t', 6, 'a t')
+425 pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | KILL-a | commute True | ord S 880 | ord T 11 | sigma=tau=1 False | |H| divides 9680
+426 pi_s=e e pi_t=a E s|0=A s A t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+427 pi_s=e e pi_t=a E s|0=A s A t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+428 pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 17 relators, max length 574, all trivial in G)
+429 pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | KILL-b | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | FINITE |H| = 12884080 (presentation of H_2: 6 relators, max length 882, all trivial in G)
+430 pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | KILL-b | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | FINITE |H| = 206145280 (presentation of H_2: 17 relators, max length 896, all trivial in G)
+431 pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | KILL-b | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | FINITE |H| = 824581120 (presentation of H_2: 22 relators, max length 658, all trivial in G)
+432 pi_s=e e pi_t=a E s|0=E s A t|0=A t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SST) = inf, certificate ('a a t t', 8, 'a a t t')
+433 pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | OPEN-und | commute False | ord S 880 | ord T 11 | sigma=tau=1 False | 
+434 pi_s=e e pi_t=a E s|0=E s A t|0=E t a s|3=t | OPEN-inf | commute False | ord S 880 | ord T 22 | sigma=tau=1 False | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+435 pi_s=e e pi_t=a E s|0=E s A t|0=E t e s|3=t | OPEN-inf | commute False | ord S 880 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+436 pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+437 pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | KILL-a | commute True | ord S 220 | ord T 11 | sigma=tau=1 True | |H| divides 2420
+438 pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | OPEN-und | commute False | ord S 220 | ord T 22 | sigma=tau=1 False | 
+439 pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | OPEN-und | commute False | ord S 220 | ord T 44 | sigma=tau=1 False | 
+440 pi_s=e e pi_t=e a s|0=A s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+441 pi_s=e e pi_t=e a s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+442 pi_s=e e pi_t=e a s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+443 pi_s=e e pi_t=e a s|0=A s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+444 pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | 
+445 pi_s=e e pi_t=e a s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+446 pi_s=e e pi_t=e a s|0=A s E t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+447 pi_s=e e pi_t=e a s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+448 pi_s=e e pi_t=e a s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S 4400 | ord T 44 | sigma=tau=1 False | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+449 pi_s=e e pi_t=e a s|0=E s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+450 pi_s=e e pi_t=e a s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+451 pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | OPEN-und | commute False | ord S 5280 | ord T 44 | sigma=tau=1 False | 
+452 pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | OPEN-und | commute False | ord S 1100 | ord T 44 | sigma=tau=1 False | 
+453 pi_s=e e pi_t=e a s|0=E s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S inf | ord T 44 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+454 pi_s=e e pi_t=e a s|0=E s E t|0=E t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+455 pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 1320 | ord T 44 | sigma=tau=1 False | 
+456 pi_s=e e pi_t=a a s|0=A s A t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 False | H = Z x C_k
+457 pi_s=e e pi_t=a a s|0=A s A t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+458 pi_s=e e pi_t=a a s|0=A s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(STStt)=inf ('A E t E t', 8, 'A E t E t')
+459 pi_s=e e pi_t=a a s|0=A s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+460 pi_s=e e pi_t=a a s|0=A s E t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+461 pi_s=e e pi_t=a a s|0=A s E t|0=A t E s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+462 pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+463 pi_s=e e pi_t=a a s|0=A s E t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+464 pi_s=e e pi_t=a a s|0=E s A t|0=A t A s|3=t | OPEN-inf | commute False | ord S inf | ord T 11 | sigma=tau=1 False | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+465 pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | OPEN-und | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | 
+466 pi_s=e e pi_t=a a s|0=E s A t|0=E t A s|3=t | OPEN-inf | commute False | ord S 58080 | ord T 44 | sigma=tau=1 False | infinite ord(SStSt)=inf ('A E t E t', 8, 'A E t E t')
+467 pi_s=e e pi_t=a a s|0=E s A t|0=E t E s|3=t | OPEN-inf | commute False | ord S 77440 | ord T 44 | sigma=tau=1 False | infinite ord(STTSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+468 pi_s=e e pi_t=a a s|0=E s E t|0=A t A s|3=t | SURVIVE | commute True | ord S inf | ord T 11 | sigma=tau=1 True | H = Z x C_11
+469 pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+470 pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | OPEN-und | commute False | ord S 14520 | ord T 44 | sigma=tau=1 False | 
+471 pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | OPEN-und | commute False | ord S 19360 | ord T 44 | sigma=tau=1 False | 
+
+class, commute, sigma = tau = 1 : count
+  ('KILL-a', True, False) : 4
+  ('KILL-a', True, True) : 23
+  ('KILL-b', False, False) : 81
+  ('OPEN-inf', False, False) : 212
+  ('OPEN-und', False, False) : 132
+  ('SURVIVE', True, False) : 3
+  ('SURVIVE', True, True) : 17
+totals: {'KILL-b': 81, 'KILL-a': 27, 'OPEN-und': 132, 'OPEN-inf': 212, 'SURVIVE': 20}

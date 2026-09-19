@@ -670,6 +670,21 @@ Tits route is at least as hard as that question.
 In the bouquet case the rooted Nielsen move `s ↦ A s B` puts both root permutations in
 `Stab(z)`. What remains there is the ray-loop subgroup at `z^∞`.
 
+**September 19: the 472 linear bouquet recursions by their ray-loop group.** See
+`linear-bouquet-recursions-ray-loop-and-contraction`.
+
+- The ray-loop hypotheses hold, and the only loop group is `H = ⟨S, T⟩` at `z^∞`, embedded in
+  `B ≀_{X∖z} F` with `B = ⟨α, β, t⟩` contracting.
+- Lemma C: `G` is contracting iff `H` is finite. Finite `H` therefore kills `G` (contracting and
+  regular branch over itself). This kills 108 recursions: 27 commuting ones with finite
+  orders and 81 by an exact presentation certificate of `H`.
+- Lemma G (germ character): `b_1(G) = b_1(H) ≤ 1`. The 20 commuting recursions with `S` of
+  infinite order have `H ≅ Z × C_k` (fp), `b_1(G) = 1`, and are not `FP_10`. They are amenable
+  and not contracting, and no current obstruction decides their finite presentability.
+
+*Open*: 364 recursions (20 commuting survivors, 212 non-commuting with `H` infinite,
+132 undecided). No finitely presented member, so no Boone–Higman certificate from this family yet.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

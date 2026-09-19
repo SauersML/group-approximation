@@ -1,0 +1,477 @@
+pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=a e s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a e s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=a e s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e a s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e a s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a pi_t=e e s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a s|0=s A t|0=t A s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a s|0=s A t|0=t E s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a s|0=s E t|0=t A s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a s|0=s E t|0=t E s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a s|0=A s t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a s|0=E s t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a e s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=e a s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=e a s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=A s t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=A s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=E s t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a e pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a e pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a e pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=s t|0=t A s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=s t|0=t E s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a s|0=A s a t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a s|0=A s e t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a s|0=E s a t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a s|0=E s e t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | z = 0 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | z = 0 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a e s|0=A s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a e s|0=A s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a e s|0=A s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a e s|0=E s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a e s|0=E s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s a t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e a s|0=A s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=A s e t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s a t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e a s|0=E s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e a s|0=E s e t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e a s|0=E s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s a t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a a s|0=A s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s e t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=A s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s a t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a a s|0=E s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s a t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s e t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=a a s|0=E s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=a a s|0=E s e t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e e s|0=E s a t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s a t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a E pi_t=e e s|0=E s e t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s e t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e a pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e a pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e a pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a a pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=a a pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=a a pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e e pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e e pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | {'NB': 32, 'L': 22, 'L_is_T': True, 'ordT': 22} 
+pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | {'NB': 21, 'L': 11, 'L_is_T': True, 'ordT': 11} 
+pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | {'NB': 54, 'L': 44, 'L_is_T': True, 'ordT': 44} 
+
+|N_B|, |L|, L = <T>, ord T : count
+  (54, 44, True, 44) : 314
+  (21, 11, True, 11) : 138
+  (32, 22, True, 22) : 20

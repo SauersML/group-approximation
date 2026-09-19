@@ -1,0 +1,476 @@
+pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: True
+pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a pi_t=a e s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e a s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a pi_t=e e s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=s A t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=s A t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=s E t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: True
+pi_s=e pi_t=a s|0=s E t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=A s t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a s|0=E s t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=e a s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: True
+pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=A s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=A s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=E s t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a e pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a e pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=s t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=s t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=A s a t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=A s e t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=E s a t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=E s e t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | z = 0 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [1, 2, 3] supp T [4] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a E pi_t=a e s|0=A s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=A s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e a s|0=E s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=A s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=a a s|0=E s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a E pi_t=e e s|0=E s a t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s a t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s e t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s e t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: True
+pi_s=e a pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: True
+pi_s=e a pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a a pi_t=e s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a a pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: True
+pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: True
+pi_s=a a pi_t=e e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=A s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=A s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=A s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=E s A t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=E s A t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a s|0=E s E t|0=A t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s A t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s A t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s A t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=e a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: True
+pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=A s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 4] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s A t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s A t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s A t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s E t|0=A t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: True
+pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [5] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | z = 1 | (Omega),(E) at z: True | C_z = {S,T}^{+-1}: True | other c with loops: [] | supp S [2, 3, 7] supp T [9] | sigma = tau = 1: False
+
+(C_z = {S,T}^{+-1} with (Omega),(E); no loop at c != z; disjoint off-ray supports; sigma = tau = 1) : count
+  (True, True, True, False) : 432
+  (True, True, True, True) : 40

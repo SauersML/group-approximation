@@ -1,0 +1,286 @@
+0 pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | undecided
+1 pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | undecided
+2 pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | undecided
+3 pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | undecided
+4 pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | undecided
+5 pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | undecided
+6 pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | undecided
+7 pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | undecided
+8 pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | undecided
+9 pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | undecided
+11 pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | undecided
+13 pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | undecided
+15 pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | undecided
+16 pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | undecided
+17 pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | undecided
+18 pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | undecided
+19 pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | undecided
+20 pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | undecided
+21 pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | undecided
+22 pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | undecided
+23 pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | undecided
+24 pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | undecided
+25 pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | undecided
+26 pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | undecided
+29 pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | undecided
+30 pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | undecided
+34 pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | undecided
+35 pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | undecided
+36 pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | undecided
+37 pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | undecided
+39 pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | undecided
+40 pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+41 pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | undecided
+47 pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | undecided
+49 pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | undecided
+50 pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+51 pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | undecided
+53 pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | undecided
+54 pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | undecided
+55 pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | undecided
+56 pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | undecided
+57 pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | undecided
+58 pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | undecided
+59 pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | undecided
+60 pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | undecided
+61 pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | undecided
+62 pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | undecided
+63 pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | undecided
+64 pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | undecided
+65 pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | undecided
+66 pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | undecided
+67 pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | undecided
+68 pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | undecided
+72 pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | undecided
+75 pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | undecided
+77 pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+78 pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | undecided
+79 pi_s=e pi_t=a a s|0=A s t|0=E t E s|3=t | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+81 pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | undecided
+82 pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | undecided
+83 pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | undecided
+87 pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | undecided
+91 pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | undecided
+92 pi_s=a e pi_t=e s|0=A s A t|0=A t s|3=t | infinite ord(SSTSt)=inf ('A t t', 8, 'A t a t')
+93 pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | undecided
+94 pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | undecided
+95 pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | undecided
+96 pi_s=a e pi_t=e s|0=E s A t|0=A t s|3=t | infinite ord(SStst)=inf ('A t t', 8, 'A t a t')
+97 pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | undecided
+98 pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | undecided
+99 pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | undecided
+101 pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided
+104 pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | undecided
+105 pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided
+106 pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | undecided
+107 pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | undecided
+112 pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | undecided
+113 pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided
+114 pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | undecided
+115 pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | undecided
+119 pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | undecided
+120 pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | undecided
+123 pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | undecided
+128 pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | undecided
+133 pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | undecided
+134 pi_s=a e pi_t=a a s|0=A s A t|0=E t A s|3=t | infinite ord(SSTSt)=inf ('A E t A E t E t', 5, 'A E t A E t E t')
+135 pi_s=a e pi_t=a a s|0=A s A t|0=E t E s|3=t | infinite ord(STTSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+137 pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | undecided
+138 pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | undecided
+143 pi_s=a e pi_t=a a s|0=E s A t|0=E t E s|3=t | infinite ord(STStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+146 pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | undecided
+147 pi_s=a e pi_t=a a s|0=E s E t|0=E t E s|3=t | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+149 pi_s=a e pi_t=e e s|0=A s A t|0=A t E s|3=t | infinite ord(SSTsT)=inf ('A t E a t E', 8, 'A t E t E')
+150 pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | undecided
+151 pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided
+152 pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | undecided
+153 pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | undecided
+154 pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | undecided
+155 pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | undecided
+159 pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided
+161 pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | undecided
+162 pi_s=a e pi_t=e e s|0=E s E t|0=E t A s|3=t | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+163 pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided
+167 pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | undecided
+169 pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | undecided
+171 pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | undecided
+173 pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | undecided
+174 pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | undecided
+175 pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | undecided
+176 pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | undecided
+177 pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | undecided
+178 pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | undecided
+179 pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | undecided
+180 pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | undecided
+181 pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | undecided
+182 pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | undecided
+183 pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | undecided
+184 pi_s=a E pi_t=a e s|0=A s a t|0=A t A s|3=t | infinite ord(SSTST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+185 pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | undecided
+187 pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | undecided
+188 pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | undecided
+189 pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | undecided
+191 pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | undecided
+193 pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | undecided
+195 pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | undecided
+197 pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | undecided
+199 pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | undecided
+200 pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | undecided
+203 pi_s=a E pi_t=e a s|0=A s a t|0=E t E s|3=t | infinite ord(SSTSt)=inf ('a E t E E t E', 8, 'a E t E E t E')
+204 pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | undecided
+207 pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | undecided
+208 pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | undecided
+212 pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | undecided
+217 pi_s=a E pi_t=a a s|0=A s a t|0=A t E s|3=t | infinite ord(SStST)=inf ('A t E A t E t E', 5, 'A t E A t E t E')
+218 pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | undecided
+219 pi_s=a E pi_t=a a s|0=A s a t|0=E t E s|3=t | infinite ord(SSSSSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+221 pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | undecided
+222 pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | undecided
+226 pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | undecided
+230 pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | undecided
+231 pi_s=a E pi_t=a a s|0=E s e t|0=E t E s|3=t | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+233 pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | undecided
+234 pi_s=a E pi_t=e e s|0=A s a t|0=E t A s|3=t | infinite ord(SStST)=inf ('A E t E t', 8, 'A E t E t')
+235 pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | undecided
+236 pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | undecided
+237 pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | undecided
+238 pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | undecided
+239 pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | undecided
+241 pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | undecided
+242 pi_s=a E pi_t=e e s|0=E s a t|0=E t A s|3=t | infinite ord(SSSST)=inf ('A E t E t', 8, 'A E t E t')
+243 pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | undecided
+245 pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | undecided
+246 pi_s=a E pi_t=e e s|0=E s e t|0=E t A s|3=t | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+247 pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | undecided
+249 pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | undecided
+253 pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | undecided
+256 pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | undecided
+257 pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | undecided
+260 pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | undecided
+261 pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | undecided
+263 pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | undecided
+264 pi_s=e a pi_t=a e s|0=A s A t|0=A t A s|3=t | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+265 pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided
+267 pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | undecided
+269 pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided
+271 pi_s=e a pi_t=a e s|0=A s E t|0=E t E s|3=t | infinite ord(SSTSt)=inf ('a E t E E t E', 8, 'a E t E E t E')
+272 pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | undecided
+273 pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided
+274 pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | undecided
+275 pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | undecided
+276 pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | undecided
+277 pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided
+279 pi_s=e a pi_t=a e s|0=E s E t|0=E t E s|3=t | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+280 pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | undecided
+281 pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided
+282 pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | undecided
+283 pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | undecided
+285 pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided
+288 pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | undecided
+289 pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided
+290 pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | undecided
+291 pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | undecided
+293 pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided
+297 pi_s=e a pi_t=a a s|0=A s A t|0=A t E s|3=t | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+298 pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | undecided
+299 pi_s=e a pi_t=a a s|0=A s A t|0=E t E s|3=t | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+301 pi_s=e a pi_t=a a s|0=A s E t|0=A t E s|3=t | infinite ord(SSTST)=inf ('A t E t E', 8, 'A t E t E')
+305 pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | undecided
+306 pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | undecided
+307 pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | undecided
+309 pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | undecided
+310 pi_s=e a pi_t=a a s|0=E s E t|0=E t A s|3=t | infinite ord(SSSSST)=inf ('A E t A E t A E t a a a E t', 11, 'A E t A E t A E t a a a E t')
+311 pi_s=e a pi_t=a a s|0=E s E t|0=E t E s|3=t | infinite ord(STStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+313 pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | undecided
+314 pi_s=e a pi_t=e e s|0=A s A t|0=E t A s|3=t | infinite ord(SStSt)=inf ('A E t E t', 8, 'A E t E t')
+315 pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided
+317 pi_s=e a pi_t=e e s|0=A s E t|0=A t E s|3=t | infinite ord(SSSST)=inf ('A t E A t E t E', 6, 'A t E A t E t E')
+320 pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | undecided
+321 pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | undecided
+322 pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | undecided
+323 pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided
+325 pi_s=e a pi_t=e e s|0=E s E t|0=A t E s|3=t | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E t E')
+326 pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | undecided
+327 pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided
+328 pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | undecided
+329 pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | undecided
+330 pi_s=a a pi_t=e s|0=A s E t|0=A t s|3=t | infinite ord(SSStt)=inf ('A t t', 8, 'A t a t')
+331 pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | undecided
+332 pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | undecided
+333 pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | undecided
+335 pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | undecided
+336 pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | undecided
+337 pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided
+339 pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | undecided
+340 pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | undecided
+341 pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided
+345 pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided
+347 pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | undecided
+348 pi_s=a a pi_t=a e s|0=E s E t|0=A t A s|3=t | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+349 pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided
+352 pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | undecided
+353 pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided
+354 pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | undecided
+355 pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | undecided
+357 pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided
+360 pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | undecided
+361 pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided
+362 pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | undecided
+363 pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | undecided
+365 pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided
+368 pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | undecided
+371 pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | undecided
+372 pi_s=a a pi_t=e a s|0=A s E t|0=A t A s|3=t | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+375 pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | undecided
+376 pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | undecided
+384 pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | undecided
+385 pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | undecided
+386 pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | undecided
+387 pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided
+390 pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | undecided
+391 pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | undecided
+393 pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | undecided
+394 pi_s=a a pi_t=e e s|0=E s A t|0=E t A s|3=t | infinite ord(SSTST)=inf ('A E t E t', 8, 'A E t E t')
+395 pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided
+399 pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided
+403 pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | undecided
+407 pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | undecided
+408 pi_s=e e pi_t=a e s|0=A s A t|0=A t A s|3=t | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+409 pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided
+411 pi_s=e e pi_t=a e s|0=A s A t|0=E t E s|3=t | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+412 pi_s=e e pi_t=a e s|0=A s E t|0=A t A s|3=t | infinite ord(SStSt)=inf ('A A t t', 8, 'A A t t')
+413 pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided
+415 pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | undecided
+416 pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | undecided
+417 pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided
+419 pi_s=e e pi_t=a e s|0=E s A t|0=E t E s|3=t | infinite ord(SSSST)=inf ('a a a E t E E t E E t E', 11, 'a a a E t E E t E E t E')
+420 pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | undecided
+421 pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided
+422 pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | undecided
+423 pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | undecided
+425 pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided
+428 pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | undecided
+429 pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided
+430 pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | undecided
+431 pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | undecided
+433 pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided
+436 pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | undecided
+437 pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided
+438 pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | undecided
+439 pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | undecided
+440 pi_s=e e pi_t=e a s|0=A s A t|0=A t A s|3=t | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+444 pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | undecided
+448 pi_s=e e pi_t=e a s|0=E s A t|0=A t A s|3=t | infinite ord(SSSST)=inf ('A A t A A t A t', 6, 'A A t A A t A t')
+451 pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | undecided
+452 pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | undecided
+455 pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | undecided
+458 pi_s=e e pi_t=a a s|0=A s A t|0=E t A s|3=t | infinite ord(STStt)=inf ('A E t E t', 8, 'A E t E t')
+461 pi_s=e e pi_t=a a s|0=A s E t|0=A t E s|3=t | infinite ord(SSStt)=inf ('A t E a t E', 8, 'A t E a t E')
+462 pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | undecided
+463 pi_s=e e pi_t=a a s|0=A s E t|0=E t E s|3=t | infinite ord(SSStt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+465 pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | undecided
+466 pi_s=e e pi_t=a a s|0=E s A t|0=E t A s|3=t | infinite ord(SStSt)=inf ('A E t E t', 8, 'A E t E t')
+467 pi_s=e e pi_t=a a s|0=E s A t|0=E t E s|3=t | infinite ord(STTSt)=inf ('a a E t E E t E', 11, 'a a E t E E t E')
+469 pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | undecided
+470 pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | undecided
+471 pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | undecided
