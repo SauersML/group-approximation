@@ -68,7 +68,7 @@ theorem children {K : ℕ} (hK : KUstmt P K) (qs : List ℕ) (hqs : ∀ q ∈ qs
       · obtain ⟨h1, h2, -⟩ := hS; omega
       · exact (show False from hS).elim
     subst hS0
-    refine ⟨rfl, [], by simp, ?_⟩
+    refine ⟨by simp [growth], [], by simp, ?_⟩
     rw [Ch_zero]
     exact Eqv.refl _ _
   | c + 1, b, o, S, hb, hc, hS, hpS, hm, hU => by
@@ -94,7 +94,8 @@ theorem children {K : ℕ} (hK : KUstmt P K) (qs : List ℕ) (hqs : ∀ q ∈ qs
       intro F hF j hj1 hj2 G hG
       rw [hm o le_rfl (by omega) F hF]
       refine hU j hj1 (by omega) G ?_
-      rw [hr, real_get_left hpos B (real b A) (o + c + 1 + growth A) hB' hpB (by omega) j hj2]
+      rw [hr, real_get_left hpos B (real b A) (o + c + 1 + growth A) (locB_of_locS hB') hpB
+        (by omega) j hj2]
       exact hG
     obtain ⟨hgA, ρA, hρA, eA⟩ := hK qs hqs hqK b o A hb (by omega) hA hpA hUA
     -- the other cells
@@ -127,7 +128,8 @@ theorem children {K : ℕ} (hK : KUstmt P K) (qs : List ℕ) (hqs : ∀ q ∈ qs
       · have := hρB k hk; omega
       · have := hρA k hk; omega
     · refine e1.trans ((Eqv.of_eq (List.append_assoc _ _ _)).trans (e2.trans (Eqv.of_eq ?_)))
-      rw [Ch_succ_left, hqK, swaps_append, List.append_assoc, List.append_assoc]
+      rw [Ch_succ_left, hqK, swaps_append]
+      simp only [List.append_assoc]
 
 end Children
 
