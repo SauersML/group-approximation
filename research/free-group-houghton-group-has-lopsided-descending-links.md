@@ -8,6 +8,8 @@ distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that gives FSym(O) ≤ F and the type (A) consequences; this concerns finite presentation of F for one tree seed.
 ---
 
+**Update (2026-09-19): T0 is settled** in `free-group-houghton-group-is-of-type-f-infinity`, via a V-shaped height.
+
 **Status.** Items 1–3 are **ESTABLISHED** (lane bh-invent-03, 2026-09-19; elementary; not reviewed). **T0
 (finite presentation of `F`) remains OPEN.** Sources read:
 - Farley–Hughes, *Finiteness properties of locally defined groups* (arXiv:2010.08035): §7.3–7.4 and §8, including
@@ -193,6 +195,47 @@ bounded rank.
      - To prove: those descending links are simply connected. Here the descending link is the full subcomplex of
        `lk(v)` on descending vertices, and `𝓔`-chains couple its lower and upper parts.
    - **Status.** T0 remains OPEN, now leaning **FP_2 true**.
+
+## Addendum 3 (2026-09-19): which Morse function
+
+A move changes `(n_a, n_b)` as follows:
+- expanding a `b/B`-cone: `n_a + 1`;
+- expanding an `a/A`-cone: `n_b + 1`;
+- a `c_a/c_A` contraction: `n_b − 1`;
+- a `c_b/c_B` contraction: `n_a − 1`.
+
+Every move changes the rank by `±3` per element.
+
+1. **`rank − λ·min(n_a, n_b)` fails for every `λ`.**
+   - **`λ > 3`.** At a balanced vertex, `n_a = n_b = m`, every single contraction lowers `min` and so has
+     `Δh = −3 + λ > 0`. A single expansion has `Δh = 3`, and a pair of expansions that raises `min` has
+     `Δh = 6 − λ > 0`. So balanced vertices are **local minima**, with empty descending links, at heights
+     `(6−λ)m − 1 -> ∞`.
+   - **`λ < 3`.** The `b/B`-expansions at a lopsided vertex are ascending, and the lopsided links of Addendum 2
+     return.
+2. **The replacement: a V-shaped height.** Put `h = ε(|n_a − N| + |n_b − N|) + δ·rank`, where `N` is fixed and large,
+   `0 < δ ≪ ε`, and `δ/ε` is irrational.
+   - **Tie-free.** Adjacent vertices differ in rank, so they get different heights.
+   - **Proper, hence cocompact.** Sublevel sets contain finitely many `(n_a, n_b)`.
+   - **Descending moves.** They move `(n_a, n_b)` toward `(N, N)` in `ℓ^1`, rank breaking ties. At a lopsided
+     vertex these are the `b/B`-expansions and the `c_a/c_A` contractions, and the sink-producing `c_b/c_B`
+     contractions ascend. At a balanced vertex with `n_a, n_b > N`, all contractions that stay above `N` descend.
+3. **The shape of a descending link.**
+   - `lk(v, Δ)` is homeomorphic to the complex `L(v)` whose simplices are pairs `(P, E)`: `P` a set of pairwise
+     disjoint contracting 4-sets, and `E` a set of cones avoiding `∪P`. An `𝓔`-chain through `v` must consist of
+     `𝓔`-expansions of its bottom `v/P`, which is exactly this coupling.
+   - `DL(v)` is the part of the subdivision spanned by the descending `v/P'` and `v⊕E'`.
+4. **One case proved: sinks.** For a sink (`n_a = 0`, `n_b > N`), the descending expansions `E` with
+   `#b/B(E) ≤ N` form a poset that is contractible by Quillen's cone. Adding one fixed `b`-cone `e_0` gives an
+   order-preserving `f` with `f(E) ≥ E` and `f(E) ≥ {e_0}`.
+5. **Still to prove for `F_2`: simple connectivity of `DL(v)` in general.** Two difficulties remain.
+   - (i) **Overshoot.** A large `E` can push `n_a` past `N`, where adding `b/B`-cones ascends again, and the Quillen
+     cone breaks there.
+   - (ii) **Coupling.** Mixed faces `(P, E)` are coupled. A `c_a/c_A` contraction uses a `b`- and a `B`-cone, so it
+     blocks those cones from `E`.
+
+   The likely tool is a Stein–Farley style nerve argument over the abundant `b/B`-cones, as in FH Prop. 7.16. That
+   is **not done**. T0 remains OPEN.
 
 ## Lesson for general BH
 

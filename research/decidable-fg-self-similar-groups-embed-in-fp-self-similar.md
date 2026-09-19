@@ -116,3 +116,43 @@ whatever happens to the first half.
     get its finite presentation that way.
   - **Constraint.** Any finitely presented automaton overgroup has finitely presented germ groups at every closed
     stable family of rays (`nekrashevych-fp-iff-cycle-germ-groups-fp`).
+
+## What it gives for Boone–Higman, and the attack (bh-invent-03, 2026-09-19)
+
+**The exact Boone–Higman payoff.**
+- **The chain.** This claim, followed by Zaremsky's embedding (`fp-self-similar-groups-embed-in-fp-simple-groups`),
+  puts every subgroup of a finitely generated self-similar group with solvable word problem into a finitely
+  presented simple group.
+- **The class reached.** Such groups are residually finite and residually `W_d` for some `d` (condition (N1) of
+  `every-fp-rf-group-embeds-in-fp-self-similar-group`). No non-residually-finite input, and no input with
+  unbounded composition factors, is reachable this way.
+- **To cover all decidable residually-`W_d` groups,** one also needs the other half,
+  `computable-tree-groups-embed-in-decidable-fg-self-similar-groups`.
+- **Hosts must be infinite-state for hard inputs.**
+  - A seed or point position cannot carry the hardness
+    (`rover-nekrashevych-engines-cap-orbit-evaluation-exponentially`).
+  - Only the word problem of the host can
+    (`rational-homeomorphism-subgroups-have-exponential-wp` caps the finite-state hosts).
+
+**The model case, and what breaks without contraction.** The model is
+`rover-nekrashevych-fp-iff-finite-lift-presentation` (Theorem A): for finite-state `G`, `V_d(G)` is finitely presented
+iff the relator kernel `N` is a finitely generated lift ideal.
+- **Contracting `G`.** The lift generators are the nucleus relators, a finite set.
+- **Non-contracting but finite-state `G`.** Theorem A still applies. The lamplighter automaton is an example.
+- **Infinite-state `G`.** Step (1c) of that proof breaks: word-level sections no longer have length at most `|w|`.
+  So the section closure of a finite set of relators can be infinite, and the finite presentation of `V̂` would then
+  need infinitely many relators `L(r)`.
+  - Finiteness survives if `N = ⟨⟨R⟩⟩_lift` for a finite `R`. The splitting relations `(S)` remain finite, since each
+    generator has finitely many word-level sections.
+  - **Correction (same lane).** Section closure is **not** needed for sufficiency, and Theorem A's sufficiency does
+    extend. Both are shown in `lift-ideal-criterion-sufficiency-holds-for-infinite-state`.
+
+**A weaker, sufficient target.** It is enough to embed `S` in a self-similar `H`, possibly infinite-state, whose
+relator kernel is `⟨⟨R⟩⟩_lift` for a finite `R`. Then:
+1. `V_{md}(H)` is finitely presented, by the extension above;
+2. the regrouping `(R)` of `rover-nekrashevych-finite-presentation-criteria` makes the abelianization finite;
+3. so `S` lies in a finitely presented simple commutator subgroup. This follows Zaremsky's steps. Only step 1 goes beyond FP1,
+   and it is now proved.
+
+A finite presentation of `H` is not needed. Membership in a lift ideal is `Σ_1` with no complexity bound. So such
+hosts are compatible with arbitrarily hard, solvable word problems, which is where the hardness must go.

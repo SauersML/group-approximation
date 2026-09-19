@@ -84,7 +84,7 @@ theorem piHom_jW : (piHom.comp tj).comp (W D) = SemidirectProduct.inl.comp
       (Monoid.CoprodI.of (M := fun _ : Bool => H) (i := b)).comp (uT D b)) := by
   apply Monoid.CoprodI.ext_hom
   intro b
-  ext t
+  ext t : 1
   simp only [MonoidHom.comp_apply, W_of, Monoid.CoprodI.lift_of]
   cases b
   · rw [wT_false_apply, tj_inl, piHom_inl, uT_false_apply]
