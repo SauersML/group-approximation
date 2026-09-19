@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurnCo
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalInvWalk
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus petal: the search invariant and its helpers (lane gl-p06-18)
 

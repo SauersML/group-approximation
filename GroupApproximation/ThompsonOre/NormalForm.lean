@@ -149,11 +149,14 @@ theorem chi_shift (g : G) : M.chi (M.shift g) = 1 := by
   exact DFunLike.congr_fun h g
 
 /-- The `x_0`-exponent of a form is `a_0 - b_0`. -/
+theorem chi_val_eq (l : List (ℕ × ℕ)) :
+    M.chi (M.val l) = M.chi (M.x 0) ^ (lead l).1 * (M.chi (M.x 0) ^ (lead l).2)⁻¹ := by
+  rw [M.val_eq_lead l, map_mul, map_mul, map_inv, map_pow, map_pow, M.chi_shift, mul_one]
+
 theorem toAdd_chi_val (l : List (ℕ × ℕ)) :
     Multiplicative.toAdd (M.chi (M.val l)) = ((lead l).1 : ℤ) - (lead l).2 := by
-  rw [M.val_eq_lead l, map_mul, map_mul, map_inv, map_pow, map_pow, M.chi_x_zero, M.chi_shift,
-    toAdd_mul, toAdd_mul, toAdd_inv, toAdd_pow, toAdd_pow, toAdd_ofAdd, toAdd_one]
-  simp only [nsmul_eq_mul, mul_one, add_zero, sub_eq_add_neg]
+  rw [M.chi_val_eq, M.chi_x_zero, toAdd_mul, toAdd_inv, toAdd_pow, toAdd_pow, toAdd_ofAdd]
+  simp only [nsmul_eq_mul, mul_one, sub_eq_add_neg]
 
 /-! ### Uniqueness -/
 
