@@ -1,0 +1,1 @@
+mode rand j 3 n 8 levels 100 seed 3 hist [('law1', 4), ('law>=2 deep>=2', 96)] secs 343

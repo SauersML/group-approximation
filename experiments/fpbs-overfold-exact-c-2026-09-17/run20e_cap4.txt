@@ -1,0 +1,6 @@
+V 160 n 20 seeds 240 auts 20 ALL SEEDS
+level 1: no goal; 240 extensions tested; 12 new states stored
+level 2: no goal; 2880 extensions tested; 1392 new states stored
+level 3: no goal; 334080 extensions tested; 96158 new states stored
+level 4: no goal; 23077920 extensions tested; 0 new states stored
+no goal within 4 seeds

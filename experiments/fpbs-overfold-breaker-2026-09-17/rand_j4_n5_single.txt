@@ -1,0 +1,1 @@
+mode rand j 4 n 5 levels 40 seed 4 hist [('law1', 10), ('law>=2 deep>=2', 30)] secs 590

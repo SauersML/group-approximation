@@ -1,0 +1,1 @@
+mode rand j 2 n 9 levels 100 seed 2 hist [('law2', 73), ('law>=3 deep>=3', 27)] secs 1327

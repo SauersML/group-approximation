@@ -105,6 +105,36 @@ inside `V` is finite with trivial defect, in every ambient group.
      - the case of irreducibles whose restriction to `S4` has bounded multiplicity pattern type;
      - a spectral-gap argument on the representation variety.
 
+3. **swarm-0917 (w17 nh-break, host-geometry): class kill by the Lie closure; the hole stays OPEN.**
+   - **Result (ESTABLISHED, written proof, unreviewed).** Claim:
+     `thompson-v-gap-witnesses-need-unbounded-lie-closure`, via
+     `thompson-v-gap-witnesses-need-unbounded-lie-closure-proof`. For a nontrivial irreducible
+     `sigma` of `G0`, let `K` be the closure of `sigma(G0)` and `N_sigma = dim [Lie K, Lie K]`.
+     - A nontrivial permutation of an orthogonal block decomposition forces `D >= sqrt 2`. So monomial
+       models (torus regauges with arbitrary phases) and all induced models die.
+     - If `K^0` is abelian (for example, finite or virtually abelian image), then `D >= 1/2`.
+     - **Adjoint transfer:** `D(sigma) >= min(1/2, delta_(N_sigma)/2)`, uniformly in `dim sigma`.
+     - If `D < 1/4`, then `sigma` restricted to `K^0` is irreducible.
+   - **Invariant:** `N_sigma`, the dimension of the derived algebra of the closure.
+   - **Death step (for every class with `N_sigma` bounded by `N`):** the adjoint action of `G0` on
+     `[Lie K, Lie K]_C` is a nontrivial representation of dimension at most `N`, with defect at most
+     `2 D(sigma)` (Hilbert--Schmidt contraction `||Ad(u) - 1|| <= 2||u - 1||`). It is gapped by
+     `delta_N > 0`. If it is trivial, `K^0` is central and a Frobenius commutator descent inside the
+     finite group `K/K^0` forces `D >= 1/2`.
+   - **Dead model classes:**
+     - tensor powers, Schur functors and `Sym^m` towers of a fixed representation;
+     - more generally, `pi o phi` for any fixed compact Lie group `M`, which has
+       `D >= c_(dim M) > 0`;
+     - finite-image, virtually abelian, monomial and induced models;
+     - `tau (x) pi` with a nontrivial finite projective factor `pi`.
+   - **Survivors.** Any MF witness sequence `sigma_j` must eventually be primitive and
+     Lie-irreducible, with `N_(sigma_j) -> infinity`. Examples are closures equal to `SU(n_j)` or to
+     simple groups of growing dimension. The adjoint representations of such a sequence form a second
+     witness sequence.
+   - **Next hole.** The uniform gap on Lie-irreducible `sigma` whose closure is large. A natural next
+     step is to show that witnesses can be taken with Zariski-dense image in `SU(n)`, and then to look
+     for a quantitative obstruction there, for example a Weyl-equidistribution or Kazhdan-type
+     spectral gap for the two finite subgroups `S4` and `S3` inside `SU(n)`.
 3. **swarm-0917 w17 (ptl-break), the amenable-image locus is gapped at 1/2: a class kill.** The hole stays **OPEN**.
    - **Result (ESTABLISHED, written proof).** Claim: `thompson-gap-witnesses-need-nonamenable-image`, via
      `thompson-gap-witnesses-need-nonamenable-image-proof`.
