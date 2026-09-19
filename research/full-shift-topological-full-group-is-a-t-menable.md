@@ -95,3 +95,28 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
     The permutation representation on them therefore has almost invariant vectors and no
     base-invariant vector. So that module fails relative (T) directly.
+- **2026-09-19 (swarm-0917-w17-w17-nv-follow): the overgroup `M_2` is `RTM(2,1)`; where the
+  cubical kill switches on (calibration plus new prerequisite).**
+  - **Result.** `lebesgue-preserving-subgroup-of-2v-is-the-turing-machine-group` (ESTABLISHED).
+    - Under `Φ`, the Lebesgue-preserving subgroup `M_2 ⊇ [[X]]` of `2V` is exactly the
+      moving-tape group `RTM_fix(2, 1)`: a Jacobian-zero brick table on `(r, r)`-bricks is a
+      Turing-machine local rule, and conversely.
+    - So Callard–Salo's Theorem D places an element with `|f^N| = O(log^4 N)` in `M_2`. That
+      answers the question left open in `nv-cocycle-kernel-is-jacobian-kernel-meet-diagonal`.
+    - It follows that `M_n` has no proper commensurating action, and the "proper on `M_n`" half
+      of the Jacobian split has no cubical witness.
+  - **Calibration for this claim.** `[[X]]` embeds in `W(Z)` by a dense orbit, so by item 3 of
+    `heisenberg-not-in-wobbling-groups-of-quadratic-growth-graphs` (`d = 1`) it has no distorted
+    element.
+    - So the Callard–Salo/Haglund cubical kill does not reach this claim. Cubical and
+      commensurating proofs of it remain open.
+    - It does reach the intermediate group `RTM(2, 1)`. The kill switches on exactly when tape
+      overwriting (homoclinic moves) is added to the shift.
+  - **New prerequisite.** `reversible-turing-machine-groups-are-a-t-menable` (OPEN).
+    - It is necessary for the goal via `turing-machine-group-a-t-menable-from-nv`.
+    - It is sufficient for this claim via `full-shift-full-group-a-t-menable-from-turing-machines`.
+  - **Not done.**
+    - No cnd function on `[[X]]` was constructed.
+    - Whether the Callard–Salo element (or any distorted element of `M_2`) has a power in
+      `[[X]]` is not decided. If one had, the relative capture lemma would make every cubical
+      function on `M_2` that is proper modulo `[[X]]` impossible to rule out by this route.
