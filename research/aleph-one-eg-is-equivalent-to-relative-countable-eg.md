@@ -114,3 +114,15 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Screen.** Randomized slide groups are screened in `experiments/c2-slide-screen-2026-09-18/RESULTS.md`. The base group has 31 subgroups of index at most 5, against 24 for `G`. All 480 variants map onto `A_5`, `PSL(2,7)`, `A_6`, `PSL(2,8)` or `PSL(2,11)` with `t ≠ 1`, so `Λ ≠ 1` for every one of them.
 
   Next: no tested slide group survives, since each has a small perfect quotient with `t ≠ 1`. Either search slide data outside the certificate family (other `m` with `c·m = ±h`, or `f(z)` with `t`-letters interleaved in `φ_0(z)`) for one with no such quotient, then prove `Λ = 1` by Tietze/Knuth–Bendix. Or turn the pattern into a proof of `ρ = 1`: a relation-gap detector for `(x,y,t)`-presentations of `G`, for example an equivariant (profinite or `PSL(2,q)`-family) obstruction applied to every lift of `(u_0, u_1)`.
+
+- **w14-048, 2026-09-18: the rose mapping torus of (C2) has no one-lift core.** Landed `c2-rose-mapping-torus-has-no-one-lift-core`.
+  - **Canonical-cycle test.** For an aspherical 2-complex `X` with `π_1 X = G`, `Z_2(X_H) = H_2(H) ≅ Z`.
+    - A 2-cell-injective map from a `K(H,1)`, or a subcomplex `C ⊂ X_H` with `π_1 C ≅ H`, forces the support of the generator to inject into the 2-cells of `X`.
+    - Pushing forward to a finite cover `X_L`, `L ⊇ H`, gives finite certificates against a given `X`.
+  - **Fibred complexes.** For a mapping torus `M_f` of a graph map representing `φ`, `Z_2((M_f)_H) = H_1(N)^φ`.
+    - For the rose, the generator is an explicit `φ`-invariant 1-cycle with 7 nonzero cells. Invariance is checked with exact window memberships only.
+    - An index-9 representation `G → S_9` (`π(H) = S_8`) certifies that the cycle has two lifts of the `P`-cell, so `M_f` cannot realize `RP(H,G)`.
+  - **Nielsen ball.** All 57,725 fibre bases within three elementary Nielsen moves fail the same index-9 test (tier: computation).
+  - **Brief's step.** The uniform relation-gap detector for the slide route is not proved. The obvious central-quotient `H_2` detectors do not separate. This attempt instead closes realizations inside the natural fibred `K(G,1)`.
+
+  Next: make the index-9 test `Aut(F_4)`-invariant, for example with a norm on `H_1(L ∩ F_4)` that is `≥ 2` on the pushed class in every basis. That would exclude all marked roses, and then non-rose marked graphs and the other fibrations in the BNS cone. What would remain as realizations of `RP(H,G)` is non-fibred 2-dimensional `K(G,1)`s, such as slide complexes. Alternatively, apply the canonical-cycle test to those slide complexes directly.
