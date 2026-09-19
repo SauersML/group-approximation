@@ -98,3 +98,28 @@ swarm-0917-w17-w17-ptm-last1).**
     `(4|m-n| - 2(|c0| + |h0|)) / P`, by a bridge count in van Kampen diagrams.
   - Bounded area needs non-literal words, presumably using the rotation and
     cone relators of `T̄`.
+- **w18 ptm-last1 (cohomology-index): annular localization kills
+  clique-rich conjugate templates.**  Two new nodes were established by
+  written proof:
+  - `bounded-area-commuting-conjugator-localization`, for any torsion-free
+    finitely presented group.  If `Area([y,h]) <= A`, then `y = h^n g` with
+    `g ∈ C(h)` and `|g| <= A M + 2|h|`.
+  - `lifted-thompson-t-conjugate-template-codes-have-bounded-cliques`.
+
+  For the chromatic-code route
+  (`infinite-chromatic-commutator-code-kills-mf-mark`) in `T̄`, a conjugate
+  template `c_v = u_v c u_v^(-1)`, `h_v = u_v h u_v^(-1)` with bounded-area
+  cross commutators forces `C_w ∈ u_v F u_v^(-1)` with `F` finite.  The
+  invariants are the translation number and the slope spectrum at fixed
+  points.  As a result:
+  - the clique number is at most `2|F| + 1`;
+  - every neighbourhood is finitely colourable;
+  - wandering tables die for every choice of words, not only for the literal
+    words `x0^n`.
+
+  Survivors:
+  - conjugate templates on clique-poor, shift-graph-like (line-digraph)
+    graphs;
+  - templates that are not conjugate.
+
+  The status stays **OPEN**.
