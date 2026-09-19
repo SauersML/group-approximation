@@ -56,7 +56,7 @@ theorem conjT_xg_m (k : ℕ) : conjT (xg m k) = xg m (k + 1) := by
   ext t
   simp only [conjT_apply, xg_apply, xfun]
   push_cast
-  split_ifs <;> first | ring | (exfalso; linarith)
+  split_ifs <;> first | (exfalso; linarith) | ring1
 
 theorem conjT_brownEval_mem (g : BrownGroup m) : conjT (brownEval m g) ∈ (brownEval m).range := by
   have hle : (⊤ : Subgroup (BrownGroup m)) ≤

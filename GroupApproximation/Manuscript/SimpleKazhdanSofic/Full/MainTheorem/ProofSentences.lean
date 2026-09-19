@@ -3,6 +3,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.MinimalDenseOrbits
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.FiniteModelsForwardOrbit
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Topology.Perfect
+import Mathlib.Topology.Connected.TotallyDisconnected
 
 /-!
 # Proof of `thm:main`: the dynamical and ring-theoretic opening sentences

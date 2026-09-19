@@ -49,25 +49,25 @@ section Defs
 variable {I : Type} [Fintype I] [DecidableEq I] (F : Type) [Field F]
 
 /-- `S_K = ⟨x_ij(f) : i, j ∈ K⟩ ≤ St_I(F[X])`. -/
-def fnS (K : Finset I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnS (K : Finset I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
   rootSpan (R := Polynomial F) fun i j => i ∈ K ∧ j ∈ K
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.fnS
 
 /-- `V = ⟨x_Lj(f) : j ∈ K⟩ ≤ St_I(F[X])`. -/
-def fnV (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnV (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
   rootSpan (R := Polynomial F) fun i j => i = L ∧ j ∈ K
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.fnV
 
 /-- The constants `C(St_I(F)) ≤ St_I(F[X])`. -/
-def fnC : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnC : Subgroup (SteinbergGroup I (Polynomial F)) :=
   (ringMap (I := I) (Polynomial.C : F →+* Polynomial F)).range
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.fnC
 
 /-- The constant `K₂`: `Z = C(K₂(I, F)) ≤ St_I(F[X])`. -/
-def fnZ : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnZ : Subgroup (SteinbergGroup I (Polynomial F)) :=
   (K2 I F).map (ringMap (I := I) (Polynomial.C : F →+* Polynomial F))
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.fnZ

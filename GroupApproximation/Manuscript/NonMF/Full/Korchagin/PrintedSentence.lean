@@ -90,9 +90,9 @@ noncomputable def unionEquiv (hcov : ∀ g : G, ∃ n, g ∈ K n) :
   MulEquiv.ofBijective (unionToGroup K hmono)
     ⟨unionToGroup_injective K hmono, unionToGroup_surjective K hmono hcov⟩
 
+include hmono in
 /-- An increasing union of residually finite subgroups is a direct limit of
 residually finite groups. -/
-include hmono in
 theorem isDirectLimitOfResiduallyFinite_of_union (hcov : ∀ g : G, ∃ n, g ∈ K n)
     (hRF : ∀ n, Group.ResiduallyFinite (K n)) : IsDirectLimitOfResiduallyFinite G :=
   ⟨ℕ, inferInstance, inferInstance, inferInstance, fun n => ↥(K n), fun _ => inferInstance,

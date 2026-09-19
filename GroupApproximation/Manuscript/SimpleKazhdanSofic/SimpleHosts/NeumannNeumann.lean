@@ -148,7 +148,7 @@ theorem levelZeroMulZ_mul (x y : G) :
     levelZeroMulZ G (x * y) = levelZeroMulZ G x * levelZeroMulZ G y := by
   refine Equiv.ext fun z => ?_
   by_cases hi : z.2 = 0
-  · simp [levelZeroMulZ, hi, Equiv.coe_mulLeft, mul_assoc]
+  · simp [levelZeroMulZ, hi, Equiv.coe_mulLeft]
   · simp [levelZeroMulZ, hi]
 
 theorem eq_one_of_levelZeroMulZ_eq_one {x : G} (h : levelZeroMulZ G x = 1) : x = 1 := by

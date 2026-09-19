@@ -27,6 +27,8 @@ attribute [local instance] Classical.propDecidable
 
 namespace GroupApproximation.BHPalomar.GraphProducts
 
+noncomputable section
+
 open Monoid
 
 variable {V : Type} (Γ : SimpleGraph V) (G : V → Type) [∀ v, Group (G v)]
@@ -203,5 +205,7 @@ theorem question31_of_retractAmalgamClosure (hR : RetractAmalgamClosure) : Quest
   have hU := key Finset.univ
   rw [Finset.coe_univ] at hU
   exact hU.of_injective (gpUnivEquiv Γ G).toMonoidHom (gpUnivEquiv Γ G).injective
+
+end
 
 end GroupApproximation.BHPalomar.GraphProducts

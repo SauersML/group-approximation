@@ -133,6 +133,10 @@ So E3′ for this host asks for the finite presentation of the V-stabilized full
 
 1. **E3′ for Roller-boundary hosts of RAAGs whose graph has an edge.** This is the only open gate between this node and a rigid-SFT
    proof of (P)BH for compact special groups.
+   - *Update (bh-one-relator, 2026-09-19):* `clique-union-raag-roller-hosts-are-f-infinity`
+     proves `F_∞` (so E3′) when `Γ` is a disjoint union of cliques, including the one-edge case `Z^2 * Z`. It uses a
+     Thumann operad of orthant tiles with one peel per coordinate. It sketches the induction to all cographs
+     (disjoint unions and joins) and names `P_4` as the first open graph. Lane proof, unreviewed.
 2. **Finite-index overgroups.** Is "lies in a finitely presented member of 𝒞" closed under finite-index overgroups?
    - For a virtually compact special `G`, Kaloujnine–Krasner gives `G ↪ A_Γ ≀ Sym(k)`.
    - That group is not known to lie in 𝒞. Item 1 cannot supply it, since `Sym(k)` for `k ≥ 3` embeds in no RACG.

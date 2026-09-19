@@ -28,6 +28,8 @@ attribute [local instance] Classical.propDecidable
 
 namespace GroupApproximation.BHPalomar.GraphProducts
 
+noncomputable section
+
 open Monoid
 
 variable {V : Type} (Γ : SimpleGraph V) (G : V → Type) [∀ v, Group (G v)]
@@ -170,5 +172,7 @@ def gpUnivEquiv : GraphProduct Γ G ≃* GP Γ G Set.univ :=
       ext w
       simp [killRels]
     rw [this, Set.union_empty])
+
+end
 
 end GroupApproximation.BHPalomar.GraphProducts
