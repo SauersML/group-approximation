@@ -654,6 +654,22 @@ that mix letters of different root image in every free basis. It would also be a
 presented branch group, which is the open Bartholdi–Grigorchuk–Šunić question. So the
 Tits route is at least as hard as that question.
 
+**September 18: same-point loops reduce to loop-graph words.** See
+`same-point-loop-recursions-reduce-to-loop-graph-words`.
+
+- Assume (U), and that every weight-preserving section cycle is a self-loop. Then every
+  stable relator is a section of a cycle word of a finite loop graph `Γ_1` on `X`.
+- So finite presentation is decided by finitely many explicit power relators `Q_E`:
+  - a forest, or infinite-order cycle words, gives "not fp";
+  - otherwise a Kurosh splitting of `Q_E` into blocks of proper image gives "not fp".
+- In a 62,500-member `M_11` family, with two letters looping at the same point and
+  generating root permutations, everything is killed except the 472 linear bouquet
+  recursions (`R''`-type).
+
+*Dead* for the expectation that such same-point designs break (A') and (C'') in every basis.
+In the bouquet case the rooted Nielsen move `s ↦ A s B` puts both root permutations in
+`Stab(z)`. What remains there is the ray-loop subgroup at `z^∞`.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively
