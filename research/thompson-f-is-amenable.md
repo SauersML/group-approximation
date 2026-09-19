@@ -520,3 +520,31 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - *Survives:* the w13 proxy, sharpened. The support is exact, so the only open question is
     whether the amplitude class, not the window, can approach `1`. Small exact windows are useless
     as certificates: `rho_12 / 4 ≈ 0.815`, far below the certified `0.9397`.
+- **Product forest sets are capped at density 3.5 (swarm-0917-w16-w16-f-break, 2026-09-19, belief-breaker, paradigm/decomposition).**
+  The question: can Følner-type sets, 0/1 rather than weighted, come from the w13 product ansatz on
+  the lossless windows `E(S_n)`?
+  - *Established:* `thompson-f-product-forest-sets-have-density-below-3-5`. The answer is no.
+    - A product family has bulk trees `𝒜` (containing the leaf) and pointer trees `ℬ`, with window
+      sets `Y_n`. Its density has an exact counting formula, checked against brute-force Cayley
+      density for 240 (family, `n`) pairs.
+    - In the renewal limit, `δ_∞ <= 3 + 2α^2 < 3.5`, where `α` is the mass of the pointer-size law
+      strictly below its median.
+    - The depth-`<= k` families give `4 - 2R_k`, which increases to `3.5`. So `3.5` is the exact
+      supremum and is never attained.
+  - *Invariant:* the tilted size laws `ν` (pointer) and `η` (bulk). In the limit the pointer size is
+    independent of its neighbour's size.
+  - *Dies at:* the median of `ν`. Merge and shift overlaps are `min`-overlaps, and splitting at the
+    median caps them at `αβ + 1/2` and `max(α/β, (1-β)/(1-α))`.
+  - *Belief changed:*
+    - Belk–Brown's `3.5` is the ceiling of the whole product class, not an artefact of their choice
+      of trees.
+    - Guba's `3.5004` sets, and any `Q_5` set (density `> 3.6`, via
+      `thompson-f-guba-q4-systems-have-common-multiples`), cannot be large product windows.
+    - Weighted product vectors reach Rayleigh value `> 3.897` but indicators stop at `3.5`, because
+      `min(p, q)` replaces `sqrt(pq)`. The density route to `Q_5` needs non-product sets.
+  - *Survivor and open:*
+    - Sets where membership of the pointer tree is correlated with its neighbours, including
+      two-sided bulk sets.
+    - The periodic case where the leaf is not in `𝒜`.
+    - Finite windows of product families. The limit proof does not cover them; a float relaxation
+      gives `2.00, 2.51, 2.70, 2.80, 2.88` at `n = 4, 8, 12, 16, 20`, still well below `3.5`.
