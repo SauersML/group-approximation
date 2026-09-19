@@ -2,7 +2,7 @@
 rg: 2
 id: fg-soluble-minimax-groups-satisfy-boone-higman
 kind: claim
-title: Every finitely generated soluble minimax group (equivalently, of finite Prüfer rank) embeds in a finitely presented simple group
+title: Every finitely generated soluble minimax group (equivalently, of finite Prüfer rank) with solvable word problem embeds in a finitely presented simple group
 distinct_from:
   rf-soluble-minimax-groups-satisfy-permutational-bh: that is the residually finite part, which is ESTABLISHED through linearity; this includes the groups with infinite radicable torsion radical, which are not residually finite and not linear.
   abels-prufer-quotient-is-fp-sofic-with-fd-invisible-center: that is a soficity calibration for a quotient of Abels' group by a finite central subgroup; this is Boone--Higman for the whole finite-rank soluble class, whose hard cases are quotients by infinite central subgroups.
@@ -12,7 +12,11 @@ artifacts:
 
 **OPEN.** Let `G` be a finitely generated soluble group of finite Prüfer rank
 (equivalently minimax, by the facts recalled in Pyber--Segal, arXiv:0711.0687, §3).
-Then `G` embeds in a finitely presented simple group.
+If `G` has solvable word problem, then `G` embeds in a finitely presented simple group.
+
+*Corrected 2026-09-19.* The earlier text omitted the word-problem hypothesis. Without it the
+statement is false: some finitely generated soluble minimax groups have unsolvable word problem
+(`fg-soluble-minimax-groups-can-have-unsolvable-word-problem`).
 
 ## What is known
 
@@ -20,12 +24,13 @@ Then `G` embeds in a finitely presented simple group.
   `rf-soluble-minimax-groups-satisfy-permutational-bh`
   puts every such `G` with `τ(G)` finite in `B_A`. Here `τ(G)` is the maximal
   periodic normal subgroup.
-- **Word problem.** Cannonito and Robinson, "The word problem for finitely generated
-  soluble groups of finite rank", Bull. London Math. Soc. 16 (1984), is the expected
-  source that every such `G` has solvable word problem. Only the title and journal
-  were checked (Crossref, doi:10.1112/blms/16.1.43); the paper was not read. So this
-  node is stated as an embedding claim, and it is a Boone--Higman instance only once
-  that input is confirmed.
+- **Word problem.** By Kropholler–Lorensen (arXiv:1510.07583v3, p. 3, citing Cannonito–Robinson,
+  Bull. London Math. Soc. 16 (1984)), the word problem is solvable for every finitely generated
+  virtually torsion-free soluble minimax group, and there are uncountably many finitely generated
+  ones with unsolvable word problem. `fg-soluble-minimax-groups-can-have-unsolvable-word-problem`
+  gives an explicit family `G_u`, `u ∈ Z_p`, with solvable word problem iff `u` is computable.
+- **Twist of the radical.** The eigenvalues of every element on the Prüfer radical are algebraic
+  `S`-units (`soluble-minimax-radicals-are-twisted-by-s-units`).
 
 - **Isolated embedding (CGP Question 4) for the calibration example: ESTABLISHED**
   (2026-09-18). Hall's `A_3/Z` and every finitely generated subgroup of `A_{n,p}/C`

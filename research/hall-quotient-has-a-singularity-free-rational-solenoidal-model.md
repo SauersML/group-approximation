@@ -66,7 +66,7 @@ is claimed.
    - **The specific cocycle.** On the leaf, `x_1 ↦ x_1 + α` is the real translation by `−α`, since
      `[(0, x_1+α)] = [(−α, x_1)]`. Continuity of `F` in the real direction would force
      `{α x_2} → 0` as `α = p^{-k} → 0` in `R`.
-   - For `x_2 = Σ_(i ≥ 0) p^(2i)`, the fractional part `{p^{-k}x_2}` tends to `p/(p^2 − 1) ≠ 0`
+   - For `x_2 = Σ_(i ≥ 0) p^(2i)`, the fractional part `{p^{-k}x_2}` tends to `1/(p^2 − 1) ≠ 0`
      mod 1 along even `k`. This value lies in `(0, 1/2)` for every prime `p`. ∎
 
 ## Consequences
