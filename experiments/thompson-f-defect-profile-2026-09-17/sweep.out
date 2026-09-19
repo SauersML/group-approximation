@@ -1,0 +1,15 @@
+{"group": "BG", "n": 2, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.26813110282889197, "sep_at_best": 1.000629437856047, "secs": 109.1}
+{"group": "F", "n": 2, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.5858656788477044, "sep_at_best": 3.413995989787418, "secs": 117.2}
+{"group": "F", "n": 4, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.21488106472665214, "sep_at_best": 1.0005092136071327, "secs": 133.5}
+{"group": "H4", "n": 2, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.8989617652381132, "sep_at_best": 2.926361798510939, "secs": 158.7}
+{"group": "BG", "n": 4, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.12125862083552863, "sep_at_best": 1.4811292608363975, "secs": 121.2}
+{"group": "F", "n": 8, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.14090187136510313, "sep_at_best": 1.0109155814094801, "secs": 141.9}
+{"group": "BG", "n": 8, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.006758117736765046, "sep_at_best": 1.3075742843132483, "secs": 135.7}
+{"group": "H4", "n": 4, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.1331708019006581, "sep_at_best": 1.9408173817646879, "secs": 185.1}
+{"group": "H4", "n": 8, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.06875532516741245, "sep_at_best": 1.4981811409520116, "secs": 224.7}
+{"group": "F", "n": 16, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.11616437938372215, "sep_at_best": 1.0004278636395298, "secs": 205.9}
+{"group": "BG", "n": 16, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.0032159295202700555, "sep_at_best": 2.081946247119028, "secs": 185.0}
+{"group": "H4", "n": 16, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.06337035024582094, "sep_at_best": 1.9936031033749442, "secs": 329.3}
+{"group": "BG", "n": 32, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.004543343255923427, "sep_at_best": 1.9625609886577646, "secs": 262.0}
+{"group": "F", "n": 32, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.1213750026098741, "sep_at_best": 1.0050587878786297, "secs": 288.3}
+{"group": "H4", "n": 32, "tau": 1.0, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.066411069475103, "sep_at_best": 2.2413134897686953, "secs": 311.1}

@@ -132,3 +132,29 @@ of the two relators of `F` almost commute, uniformly in the dimension.
   - **Where it stops.** This is the same place as the entropy transplant: sites. Symbolic and QCA tools need
     a tensor-site structure, and exactness inside a hyperfinite site algebra is amenability. What remains
     is quantitative: the propagation constant of the site-peeling step as `L` grows.
+- **Census computation: large-dimension defect profile with calibration** (lane swarm-0917-w19-w19-nh-pull,
+  2026-09-19). Recorded as `thompson-f-fixed-dimension-constants-exceed-four`. The claim stays OPEN. Its only
+  numerical support, apparent saturation of `C_n`, is gone.
+  - **Certified growth.** Exact `Q`-arithmetic certificates give `C_16 >= 3.536`, `C_32 >= 3.98`,
+    `C_64 >= 4.23` and `C_128 >= 4.45`. The previous record was `3.2286`. This claim is exactly `sup_n C_n < infinity`, and the reading
+    of "saturation near 3.23" (the `n = 6` search was worse than `n = 4`) was a search artifact.
+  - **Why earlier searches stalled.** Direct-sum mixing with trivial blocks gives
+    `tau/C_n^2 <= D_n(tau) <= tau rho/sigma` along multiples of the witness dimension. So a floor
+    `e(c) >= tau` below the witness separation only rescales the best ratio. The growth appeared only at floor
+    `tau = 1.8`, with dimension doubling seeded by block copies. Along the doubling ladder, `C^2` is roughly
+    `2 + 2.6 log_2 n` for `n <= 128`.
+  - **Calibration.** At `tau = 1.8` and `n = 16`, the best defects are:
+    - `F`: `0.144`;
+    - Baumslag--Gersten, sofic via permanence: `0.0033`, with an explicit `O(1/m^2)` spectral-matching family at
+      separation `2 - 2/(m-1)`;
+    - Higman's `H_4`, open: `0.06`.
+
+    So `F`'s profile does not look like that of a permanence-closure group, and that is consistent with
+    `thompson-f-in-permanence-closure-only-via-base-copy`.
+  - **Where it dies.** Finite search only produces lower bounds on a monotone sequence. No amount of it proves
+    boundedness, which is this claim, or even unboundedness. The lane cannot close this claim. What would matter is
+    a structural reason for the `log n` growth of the doubling ladder: an explicit doubling map `m -> 2m` with
+    `C_(2m)^2 >= C_m^2 + kappa`, which would prove `thompson-f-is-hyperlinear`. No mechanism for that is known.
+    The certified witnesses keep `c ~ I` on about a third of the space. They are not perturbed block copies of
+    their seeds: about `0.67` of their normalized mass lies off the seed's block diagonal at `n = 64` and `n = 128`.
+    So a doubling map would have to couple the two copies, and a block-diagonal gluing will not do.
