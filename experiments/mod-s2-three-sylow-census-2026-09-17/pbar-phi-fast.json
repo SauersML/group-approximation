@@ -1,0 +1,54 @@
+{
+ "label": "pbar-phi",
+ "cosets": 2880,
+ "schreier_gens": 25921,
+ "gens_after_unit_elim": 38,
+ "h1_rank": 30,
+ "h1_torsion": [
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3
+ ],
+ "classes": 180,
+ "class_coset_counts": [
+  96,
+  288
+ ],
+ "W_rank": 150,
+ "gcd_aug_W": 10,
+ "d": "1/30",
+ "theta_values": [
+  "3/10"
+ ],
+ "cert_l1": 12,
+ "cert_aug": 10,
+ "A_plus": 20,
+ "A_plus_support": 17,
+ "A_plus_multiplicities": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2
+ ],
+ "seconds": 1179,
+ "mode": "fast (Markowitz pivots, centralizer-orbit twist reps)",
+ "V_order": 9
+}
