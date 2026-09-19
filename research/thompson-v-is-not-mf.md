@@ -42,4 +42,18 @@ inside `V` is finite with trivial defect, in every ambient group.
 
 ## Attempts
 
-None yet.
+1. **K-theory, trace and rational-cohomology lanes are dead** (swarm-0917 w16,
+   2026-09-19). See `thompson-v-k-shadow-cannot-detect-mf`.
+   - By simplicity, MF for `V` is the nonvanishing of the single rank class
+     `r(Ψ(p_s))` of `p_s = (1-s)/2`.
+   - Traces on `K_0(C*V)` are rational, by Higson--Kasparov and Lück Theorem
+     0.3. So the positive integer shadow `a_n ε_* + b_n τ_*` satisfies every
+     ordered-`K_0`, unit, character-simplex and finite-subgroup-packet
+     constraint, and gives that class the value `b_n/2 ≠ 0`.
+   - `H^(2k)(·; Q)`, `k ≥ 1`, vanishes for `V` and for every torsion
+     centralizer (`thompson-v-torsion-centralizers-are-rationally-acyclic`).
+     So Dadarlat-type and delocalized cohomological obstructions have no input.
+
+   Death step: any such argument must conclude `r(Ψ(p_s)) = 0`. A proof must
+   use data that is not homotopy invariant, namely operator-norm defects of
+   the infinite-order relators and how local models glue.
