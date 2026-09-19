@@ -197,3 +197,16 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   finite-index subgroup of `Σ`. Open: find a Schottky pair in a
   non-arithmetic irreducible cocompact lattice, or show its flat fixators
   are trivial. This is a finite-state question for cube-complex lattices.
+- 2026-09-19 (w20-117, obstruction): proposed-established
+  `lamplighter-flat-fixators-have-product-centralizers`.
+  - For torsion-free cocompact three-tree hosts, the flat fixator `Λ_F` of
+    the shift is never trivial. This follows from the centralizer theorem
+    and integral translation lengths. So the "certify `Λ_F = 1`" kill of
+    Corollary B′ is empty for every cocompact host.
+  - Replacement: every `n ∈ N∖1` has `C_Λ(n) ≈ C_0 × ⟨n⟩`, where `C_0`
+    (containing `F_2`) acts geometrically on `Fix_b(n) × Fix_c(n)`, two
+    infinitely-ended trees. So hosts with amenable centralizers are killed,
+    including all arithmetic ones. For one-vertex cube lattices this becomes
+    an exact finite-state test for doubly branching `a`-words.
+  - Open: do irreducible non-arithmetic hosts have such product
+    centralizers?
