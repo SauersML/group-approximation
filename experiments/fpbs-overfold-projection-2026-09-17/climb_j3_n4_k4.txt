@@ -1,0 +1,7 @@
+level 0 best greedy seeds>=1 for k=4 level-0 seeds: 3 exact at that P: 3
+level 1 best greedy seeds>=1 for k=4 level-0 seeds: 3 exact at that P: 3
+level 2 best greedy seeds>=1 for k=4 level-0 seeds: 3 exact at that P: 3
+level 3 best greedy seeds>=1 for k=4 level-0 seeds: 2 exact at that P: 2
+level 4 best greedy seeds>=1 for k=4 level-0 seeds: 2 exact at that P: 2
+level 5 best greedy seeds>=1 for k=4 level-0 seeds: 3 exact at that P: 3
+max over levels 3 k 4 violations 0
