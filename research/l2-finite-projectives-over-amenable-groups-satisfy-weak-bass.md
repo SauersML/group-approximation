@@ -120,3 +120,28 @@ column-finite matrices that restricts to the Hattori–Stallings trace on finite
     without type `FP_2`. Show `b_2(N_i)/[K:N_i] → 0`, or build a residually finite amenable
     `K` with `b_1 = 0` whose `b_2` grows linearly with slope `1 + b_2(K)`. Non-residually-finite
     counterexamples remain outside this reduction.
+- **2026-09-18 (lane `w15-112`): pro-p completions and Golod–Shafarevich. `D(P) >= 0` holds
+  without residual finiteness, and a counterexample has `b_1 = O(√index)` on every finite cover.**
+  See `amenable-cd-two-pro-p-completions-not-golod-shafarevich` (proposed ESTABLISHED).
+  - *Exact mod-p Euler characteristics.* Finite-quotient Swan passes to `Z_p[F]`-lattices,
+    because projectives over `Z_p[F]` are determined by their `Q_p`-character. So
+    `1 − b_1(N; F_p) + b_2(N; F_p) = [K:N] χ_Q(K)` for every finite-index `N` and every `p`, and
+    `H_2(N; Z)` is free.
+  - *Golod–Shafarevich bound.* The pro-p completion of `N` has at most `d − 1 + [K:N]χ`
+    relations. It is not GS, by Ershov–Jaikin-Zapirain (a GS group has an infinite (T)
+    quotient). So `(b_1(N; F_p) − 2)² <= 4 [K:N] χ` unless `b_1(N; F_p) <= 1`. Consequences:
+    - `χ >= 0`, i.e. `D(P) >= 0` for the relation module, for every finitely generated
+      amenable cd-2 group, not only residually finite ones;
+    - `b_1(N; Q) <= 2 + 2√([K:N]χ)` uniformly over all finite-index `N`;
+    - if `χ = 0`, every pro-p completion of every finite-index subgroup is p-adic analytic of
+      dimension `<= 2`, with `b_1(N; F_p) <= 2`.
+  - *Where it stops.* GS turns few relations into non-amenability. A counterexample has many
+    relations (`b_2 ~ (1 + b_2(K))·index`) and few generators, so the bound constrains a
+    counterexample and does not refute one. The information lost is the injection
+    `H^2(N_p̂) → H^2(N)`. Under p-goodness, the open question becomes pro-p: does an infinite
+    finitely generated pro-p group of cd 2 with `χ > 0` have a GS open subgroup? Perfect-cover
+    counterexamples, whose pro-p completions are all finite, are invisible to this route.
+  - *Next step.* Either settle that pro-p question, or combine the `O(√index)` bound on `b_1`
+    with the `(1 + b_2(K))·index` growth of `b_2` in a single finite cover, for example through
+    the cup-product map `Λ² H^1(N; F_p) → H^2(N; F_p)`, whose image has dimension
+    `O(index)`.
