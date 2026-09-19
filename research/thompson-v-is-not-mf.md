@@ -163,3 +163,28 @@ inside `V` is finite with trivial defect, in every ambient group.
        solutions have finite image, which is impossible for V below 1/2.
    - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
      identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.
+4. **swarm-0917 w18 (ptm-break, operator-algebras): the Cuntz/Fock Calkin lane to "V is MF" is dead, a class kill.**
+   The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proofs).**
+     - `thompson-v-unitaries-generate-cuntz-algebra`: the prefix-replacement unitaries of V generate all of
+       `O_2`. The proof is self-contained, with no simplicity input.
+       - A transposition of the cones `00`, `1` gives the projection `E = (1-u_t)/2`.
+       - `E B E` is shown to equal `E O_2 E` using the other cone transpositions, through
+         `(s_00 - s_1)^*(s_{00g} - s_{1d}) = s_g + s_d`.
+       - Four V-translates of the corner give `h = sum v_i v_i^*` with `h >= 1/400`.
+     - `cuntz-calkin-lifts-of-thompson-v-have-no-compression`: take any unital `theta : O_2 -> Q(H)`
+       and any lift of the Calkin model `theta o u`. Then no lift admits isometries `W_n` with `W_n W_n^* -> 0`
+       strongly that asymptotically commute with it.
+   - **Where every member dies.** The asymptotically commuting compression descends to a unital
+     *-homomorphism `theta(O_2) -> prod M_k / sum M_k`. The corona has no infinite unit, so the Cuntz
+     relations force `T_1 = 0`.
+   - **Kills.**
+     - Quasidiagonal and far-block compressions of the tree (Fock) near-permutation model of V, for every
+       completion of the undefined vertices and every compact perturbation.
+     - The same compressions of the quasi-regular representation of any Cantor orbit, and of the
+       Bernoulli Koopman representation. The C*-algebra of each is a copy of `O_2`, so each is not QD, not MF
+       and not stably finite.
+   - **What survives.** An infinite-dimensional source of MF models for V must be a Calkin, or modulo-ideal,
+     representation that is **not** a quotient of `O_2` along the prefix-replacement embedding. So no Cuntz
+     family can implement it modulo the compressed-away ideal. Entries 2--3 remain the constraints on
+     finite-dimensional witnesses.
