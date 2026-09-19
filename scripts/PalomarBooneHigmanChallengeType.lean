@@ -30,8 +30,12 @@ open Lean Meta in
      (true,  `BooneHigman.IsResidueClassWiseAffine),
      (true,  `BooneHigman.IsClassShift),
      (true,  `BooneHigman.IsClassReflection),
+     (true,  `BooneHigman.IsSmoothModulus),
+     (true,  `BooneHigman.IsClassTranspositionOver),
+     (true,  `BooneHigman.classTranspositionGroupOver),
      (false, `BooneHigman.explicit_fp_overgroup_of_all_gl_n_q),
      (false, `BooneHigman.kourovka_17_59),
+     (false, `BooneHigman.kourovka_21_75),
      (false, `BooneHigman.kohl_factorization_conjecture)]
   let env ← getEnv
   for (isShared, target) in targets do

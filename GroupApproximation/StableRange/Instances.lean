@@ -16,8 +16,9 @@ and Mathlib's dimension formula `MvPolynomial.ringKrullDim_of_isNoetherianRing`.
 * `stableRangeLE_mvPolynomial_of_isNoetherianRing`: `sr(A[s₁, …, s_k]) ≤ e + k + 1` for noetherian
   `A` with `dim A ≤ e`.
 * `stableRangeLE_mvPolynomial_away`: `sr(ℤ[1/m][s₁, …, s_k]) ≤ k + 2` for every `m`.  These are the
-  rings of Z1 (`Localization.Away (m : ℤ)`, as in `ElemFPCharZeroK2NilEndpoint`).  The case `k = 0`
-  is `sr(ℤ[1/m]) ≤ 2`.
+  rings of Z1 (`Localization.Away (m : ℤ)`, as in `ElemFPCharZeroK2NilEndpoint`).
+* `stableRangeLE_away`: `sr(ℤ[1/m]) ≤ 2`, the base ring of Z1.  pal-q111's
+  `vdkStab_stableRangeLE_away` (`VdKStabAway`, ba8e283846) now derives from it.
 
 For `F_p[s₁, …, s_k]` the sharper `sr ≤ k + 1` is already on main (`vdkSR_polyStableRange`,
 lane `bh-met-90m`), and is also the case `e = 0` of the noetherian bound.
@@ -65,6 +66,14 @@ theorem ringKrullDim_away_le_one (m : ℕ) : ringKrullDim (Localization.Away (m 
   (ringKrullDim_le_of_isLocalization (Submonoid.powers (m : ℤ))).trans ringKrullDim_int_le_one
 
 #audit_axioms GroupApproximation.StableRange.ringKrullDim_away_le_one
+
+/-- **`sr(ℤ[1/m]) ≤ 2`** for every `m` (including the zero ring at `m = 0`), from `dim ℤ[1/m] ≤ 1`.
+The same statement as pal-q111's `vdkStab_stableRangeLE_away`, which is now derived from it. -/
+theorem stableRangeLE_away (m : ℕ) :
+    vdkStab_StableRangeLE (Localization.Away (m : ℤ)) 2 :=
+  stableRangeLE_of_ringKrullDim_le (d := 1) (by exact_mod_cast ringKrullDim_away_le_one m)
+
+#audit_axioms GroupApproximation.StableRange.stableRangeLE_away
 
 /-- **`sr(ℤ[1/m][s₁, …, s_k]) ≤ k + 2`** for every `m` and `k`. -/
 theorem stableRangeLE_mvPolynomial_away (m k : ℕ) :
