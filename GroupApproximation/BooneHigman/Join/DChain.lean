@@ -160,7 +160,7 @@ theorem K0_maps (i : ℕ) : MapsCone (jperm (n + 2) (K0 n)) [fc n i] [fc n (i + 
 
 theorem K0_pow_maps : ∀ (m i : ℕ), MapsCone (jperm (n + 2) (K0 n ^ m)) [fc n i] [fc n (i + m)]
   | 0, i => by
-    rw [pow_zero, Nat.add_zero]
+    rw [pow_zero]
     exact dmc_one _
   | m + 1, i => by
     rw [pow_succ, show i + (m + 1) = i + 1 + m by omega]

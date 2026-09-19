@@ -5,12 +5,11 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigman.Metabelian.SuslinR2IndDilate: (deterministic) timeout at whnf, maximum number of heartbeats (200000)"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
 
 
-**Repair landed, unprobed.** da5b910bed: BH chain wave 6: remaining bh-pal-wire reds of probe b1789846523 (unprobed). Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 

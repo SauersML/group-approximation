@@ -255,8 +255,7 @@ theorem jPhi_zero_mem_Phi {q : higmanVCCommon_Q 2} (hq : q ∈ Phi) : jPhi 2 [0]
 #audit_axioms GroupApproximation.BooneHigman.Join.jPhi_zero_mem_Phi
 
 theorem jPhi_nil (q : higmanVCCommon_Q 2) : jPhi 2 [] q = q := by
-  obtain ⟨g, rfl⟩ := mk_surj q
-  rw [jPhi_mk, higSw_lift_nil, MonoidHom.id_apply]
+  exact jPhi_nil' q
 
 #audit_axioms GroupApproximation.BooneHigman.Join.jPhi_nil
 
