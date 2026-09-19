@@ -96,8 +96,8 @@ mathematics except the Remark, which is not used in the proof. No priority is cl
 
 This remark is not used in items 1–6 above. It is used by `clique-union-raag-roller-hosts-are-f-infinity`, item 2.
 
-*Status.* The proof below is complete, but only its author (bh-ref-hl, 2026-09-19) has checked it. An independent check is still
-wanted.
+*Status.* The proof below is complete (author bh-ref-hl, 2026-09-19). **Referee PASS** (bh-ref-q11, 2026-09-19, independent);
+see the Referee note after the proof.
 
 Glue `Y_0 = Y_2(A_Γ)` and `Y_1 = C_Z`. Then the variant `X^+` over `Λ = A_Γ * Z` is topologically conjugate, as a `Λ`-space, to the
 Roller compactification of `X̃ = X̃_(A_(Γ⊔{v}))`. And `X` is conjugate to its Roller boundary `∂_R`. That suffices for E3′, which
@@ -121,6 +121,25 @@ depends only on the `Λ`-space.
   part 1). So the map is onto.
 - **The boundary.** Suppose `x` has an element sink `v`. Then every piece points toward `v` and is principal at its exit, so `o_x` is
   principal at `v`. Conversely, a principal ultrafilter is `v.x_*`. R3 removes exactly the element sinks, so `X ≅ ∂_R`.
+
+*Referee note (bh-ref-q11, 2026-09-19): PASS, no gap.* I checked every step against `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`
+(Step A) and `roller-compactifications-of-cube-complexes-are-sfts` (parts 1–2).
+- **Hyperplanes.**
+  - Squares of `X̃` lie in A-pieces, and `t`-edges lie in no square, so hyperplane classes stay in one piece.
+  - Removing `H ⊆ P` separates `X̃` into two parts. Each part is the `H`-side of `P` together with the subtrees hanging at its vertices.
+- **"Only if".** If `e_1 ∈ o(H)`, then `o(H)` contains everything beyond `e_1`, in particular all of `P′`, so it meets `o(K)`.
+- **The valley argument, made explicit.**
+  - A backward edge followed by a forward edge would give their common node two out-edges. So the path's edges are forward, then
+    backward, and point at one node.
+  - At least one endpoint piece is not that node, and its end edge points inward. That piece is seeded at its junction element,
+    so its configuration is `e.y_*` (seeds are principal, Roller part 2).
+  - Out-degree `≤ 1` at element nodes is exactly R3+.
+- **Onto.** Density of principal ultrafilters holds in any Roller compactification (the Helly argument of Roller part 1). Here `Λ`
+  acts freely and vertex-transitively on `X̃`.
+- **The boundary.**
+  - With a sink `v`, the path from any node to `v` is forced toward `v`, since the edge at `v` points in. So every out-path ends at `v`.
+  - A point of `X` cannot map to a principal ultrafilter, because injectivity would make it `v.x_*`, which has a sink.
+  - So `X` maps onto the non-principal ultrafilters, `Λ`-equivariantly.
 
 So E3′ for this host asks for the finite presentation of the V-stabilized full group of the Roller boundary action of the RAAG
 `A_(Γ⊔{v})`.

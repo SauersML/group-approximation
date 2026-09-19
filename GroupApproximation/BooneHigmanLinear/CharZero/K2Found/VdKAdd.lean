@@ -20,6 +20,13 @@ W. van der Kallen, *Another presentation for Steinberg groups*, Indag. Math. **3
   `j` has two zeros. The case `j_p = j_q = 0` is `conj_xvw_x_of_zeros`.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

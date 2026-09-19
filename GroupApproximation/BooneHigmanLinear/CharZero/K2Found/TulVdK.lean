@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.TulXInst
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdKUnique
+import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdKNatural
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -11,8 +12,9 @@ k2-vdk constructs `VdK.elements I A h4 : VdK.Elements I A` (vdK 3.7–3.22, for
 `xvw v w r = x_r(v_r w) ⁅x(v)_r, x_r(w)⁆` is vdK's elementary element 3.10.
 * `ex_elements_eq_xvw`: `TulElem.ex` for these elements is `xvw`.
 * `isLocal_elements`: the elements satisfy `TulElem.IsLocal`.
-* `tulX_of_vdk`: `PaninAffine.TulX r` for `r ≥ 5` from k2-vdk's elements. The only remaining
-  hypothesis is naturality in ring maps (`EltNatural`), which k2-vdk will export next.
+* `tulX_of_vdk`: `PaninAffine.TulX r` for `r ≥ 5` from k2-vdk's elements and their naturality.
+* `eltNatural_elements`: that naturality, from `VdK.elements_natural`.
+* **`tulX r h5 : PaninAffine.TulX r`**, with no hypotheses beyond `r ≥ 5`.
 -/
 
 namespace GroupApproximation
@@ -66,6 +68,24 @@ noncomputable def tulX_of_vdk {r : ℕ} (h5 : 5 ≤ r)
       Fact (IsLocal (VdK.elements (Fin r) B (by rw [Fintype.card_fin]; omega))) :=
     fun _ _ => ⟨isLocal_elements _⟩
   tulX_of_elements (fun B _ => VdK.elements (Fin r) B (by rw [Fintype.card_fin]; omega)) hnat h5
+
+/-- **k2-vdk's elements are natural** (`VdK.elements_natural`), in the form `EltNatural`. -/
+theorem eltNatural_elements (h4 : 4 ≤ Fintype.card I) {B C : Type*} [CommRing B] [CommRing C]
+    (f : B →+* C) : EltNatural (VdK.elements I B h4) (VdK.elements I C h4) f := by
+  intro v w h
+  obtain ⟨⟨k, hk⟩, hw⟩ := VdK.mem_U.1 h
+  have h' : (f ∘ v, f ∘ w) ∈ U I C :=
+    memU ⟨f ∘ k, by rw [← RingHom.map_dotProduct, hk, map_one]⟩
+      (by rw [← RingHom.map_dotProduct, hw, map_zero])
+  rw [E_of_mem (VdK.elements I B h4) h, E_of_mem (VdK.elements I C h4) h']
+  exact VdK.elements_natural h4 f h h'
+
+#audit_axioms eltNatural_elements
+
+/-- **Tulenbaev's elements `X_{v,w}(t)` with T 1.1–1.3, unconditionally** (`r ≥ 5`): the input
+`PaninAffine.TulX r` of F.4, built on k2-vdk's `VdK.elements`. -/
+noncomputable def tulX (r : ℕ) (h5 : 5 ≤ r) : PaninAffine.TulX r :=
+  tulX_of_vdk h5 fun _ _ _ _ f => eltNatural_elements _ f
 
 end TulElem
 end K2Found
