@@ -1067,3 +1067,29 @@ is MF with a regular trace and hence hyperlinear.  In particular,
 non-hyperlinearity of `EL_5(J)` would already prove the goal.
 
 The hole itself is not closed here.
+
+- **2026-09-19 (swarm-0917-w14-w14-ptl-break, finite-models). The coherent
+  Jacobson gap is true, via (T), and it is stronger than the head collapse.**
+  See `jacobson-coherent-group-is-not-mf-via-kazhdan-transport` (ESTABLISHED,
+  uses (T)).
+  - **The mechanism.** `c=t^(-1)x_12(Q)t` centralizes `EL_3(J)` inside the
+    ascending HNN group `Gamma_triangle`, because `x_12(Q)` commutes with
+    `Q I+SAT`. Rank-weighted transport with `A=union t^(-j)G_(2j+1)t^j` and
+    `C=4` then kills `w=x_13(Q)`. So `Rad_MF(Gamma_triangle)=L` and
+    `gamma_triangle>0`.
+  - **Belief change.** The `jacobson-coherent-matrix-gap` lane is now
+    methodological, exactly like this goal.
+  - **Direction.** `psi:Gamma_triangle->EL_4(J)`, `t->u`, preserves the head.
+    So a (T)-free coherent gap implies a (T)-free
+    `property-t-free-jacobson-head-collapse`, which reaches this goal through
+    `property-t-free-leavitt-via-jacobson-head-root`. This is a stronger
+    sufficient condition, not a decomposition.
+  - **New test.** At least one of these holds:
+    - `EL_3(J)` is not MF;
+    - ascending HNN extensions do not preserve MF, although they do preserve
+      hyperlinearity.
+
+    Hence an MF-permanence theorem for ascending HNN extensions would prove
+    `EL_3(J)` not MF. Its (T)-free status would still need checking.
+
+  The hole is not closed.
