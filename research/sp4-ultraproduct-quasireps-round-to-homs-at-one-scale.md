@@ -95,3 +95,18 @@ Neither step is proved here.
   not have. The next step is the non-winding check of "How it can fail", item 2: can a Burger–Ozawa–Thom-type
   construction, induced from a free subgroup of `Sp_4(Z)`, be realized inside `U(Q)` at a fixed scale? If yes, (UQ)
   is false and only (SSD_Q) survives.
+- **2026-09-19, swarm-0917-w18-w18-deligne-follow (stability-approximation): the BOT check is run, and the literal
+  construction dies.** See `sp4-uq-free-subgroup-induced-quasireps-round`, ESTABLISHED and unreviewed.
+  - *Literal induction rounds.* Exact induction through finite `Gamma`-sets from a free (or torsion-free Haagerup)
+    group `L`, with any uniform `eps`-quasi-representation of `L` as coefficient, is `eps`-close to an honest
+    representation on **all** of `Gamma`. So it satisfies (UQ) with `M = Q` and `delta = eps`.
+  - *Where it dies.* The invariant is the cocycle class in `prod Hom(Lambda_j, L)`. Property (T) of the
+    finite-index `Lambda_j` makes it trivial.
+  - *Other block-monomial models.* With defect small on all of `Gamma`, such a model is `2 eps`-close to
+    `Ind_Lambda sigma`, so the free subgroup drops out.
+  - *Free patterns are trace-null.* Local stabilizer patterns of an infinite-index noncentral `H` have `omega`-density
+    tending to `0` (Stuck–Zimmer), and they die under the admissible `theta : Q -> ` tracial ultraproduct.
+  - *Remark.* Letter-only rounding already makes quasimorphism-type BOT witnesses, which are detected on powers,
+    irrelevant to (UQ).
+  - *Still open.* Non-monomial maps, and windowed block-monomial models, i.e. almost-flat local systems on finite
+    covers. Item 2 of "How it can fail" is not refuted, but its only named mechanism is gone.
