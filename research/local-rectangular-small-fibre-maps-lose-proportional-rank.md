@@ -64,3 +64,26 @@ fact `l^2`-injective) degree, hence is surjective.
     - `K = 2`, `d = 1`: chains and cycles of sites;
     - the rectangular maps that Følner sets produce for amenable groups that are
       not LEF.
+- 2026-09-19 (swarm-0917-w19-w19-gs-break, minimal-counterexample).
+  - **The first test case is closed.** At `d = 1` with `|C_i| <= 2`, the linear form
+    holds with the sharp constant `C = 1` and **without (L)**:
+    `rank g^* >= 2|I| - |J|`. See
+    `two-output-control-circle-maps-lose-rank-at-most-surplus` and
+    `research/artifacts/two-output-control-rank-2026-09-19.md`.
+  - The proof has three steps:
+    - glue the coarse inverse into `psi_i` on a neighbourhood `U_i` of the image in
+      `T^(C_i)`;
+    - use `H^2(U_i) = 0` when `U_i` is not all of `T^2`, so the input is in the span of
+      its control rows or both control rows are zero;
+    - show that two such inputs cannot share a zero row, because the level strips of
+      that row's real lift kill both classes, a two-set Lusternik–Schnirelmann cover.
+  - **Correction to "Locality is necessary".** The cited [LEF] Theorem 3 map needs
+    `|C_i| = N`, so it violates (C) for every fixed `K`. Whether (L) is needed once
+    `|C_i| <= K` is open for `K >= 3`, and it is not needed at `K = 2`.
+  - **General `K`, `d = 1` (Lemma D_K).** Either `pi_i` is in the span of its control
+    rows, or those rows have rank `<= |C_i| - 2`. The linear form, with
+    `C = c_K / (1 - c_K)`, follows from the counting inequality
+    `(E_K): |B| <= c_K defect(∪_(i in B) C_i)` for some `c_K < 1`.
+    - Proposition S forces `c_K >= (K-1)/K`.
+    - (E_K) is open for `K >= 3`. Lemma L uses one shared real function, and it dies
+      when a slice of `U_i` is 2-dimensional (tori of revolution).
