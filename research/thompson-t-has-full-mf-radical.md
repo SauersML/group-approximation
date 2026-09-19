@@ -98,3 +98,25 @@ separate points.  Two remarks limit the search.
     step is PW. A refutation of PW is a sequence of low-defect pairs with
     `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
     must use `r_2`.
+
+- **2026-09-19 (swarm-0917-w17-w17-ptl-follow, reframing): split through the
+  triangle cover, target still open.**
+  - *Decomposition*
+    (`thompson-t-not-mf-iff-triangle-gap-and-rounding`, ESTABLISHED). `T` is
+    not MF iff (R_Delta) and (S_T) both hold.
+    - (R_Delta) is a gap `inf gamma_n > 0` for `r_1, r_2` on honest
+      representations of `Delta(4,3,5)`.
+    - (S_T) is a uniform rounding of `phi (+) phi-bar (+) 1_k` onto honest
+      `Delta`-representations.
+    - Each condition is necessary on its own. `gamma_2 = (sqrt 5 - 1)/2`,
+      which is larger than `delta_1`.
+    - The undoubled form of (S_T) implies PW, by a conjugation-path lemma
+      for `kappa_P`.
+    - Route: `thompson-t-not-mf-via-triangle-cover-rounding`.
+  - *Kill* (`thompson-t-padded-cover-stability-is-inert`, ESTABLISHED).
+    Padded stability with a nontrivial auxiliary block (Willett `R`/`R_q`,
+    including the K(3,4) theorem) transfers nothing. The corrected
+    representation's defect is the defect of `theta`, up to `L eps`.
+  - *What is left.* The next step is (R_Delta), a question about honest
+    representations of a Fuchsian group, together with trivially padded
+    (S_Delta).
