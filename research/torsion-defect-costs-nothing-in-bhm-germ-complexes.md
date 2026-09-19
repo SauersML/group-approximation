@@ -9,8 +9,10 @@ distinct_from:
   bounded-defect-free-full-contracting-rsgs-are-f-infinity: that needs zero defect for BHM's localization axiom; this drops the axiom, shows BHM's complex still works when defects are torsion, and so generalizes that theorem.
 ---
 
-**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; not reviewed; credit to Belk–Hyde–Matucci, whose
-complex is used unchanged).
+**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS with repairs.
+Step 3 of the proof is wrong as written and is replaced, and the Example's `τ` is not a homeomorphism of the
+3-shift and is replaced; the pentagon computations PASS. See the Referee section. Credit to Belk–Hyde–Matucci,
+whose complex is used unchanged).
 - Inputs: those of the parent node, i.e. BHM's germ complex, Matui's bisections, and the twisted-BT stabilizer
   reduction.
 - Section 3 is analysis. No computation was run.
@@ -136,3 +138,118 @@ criterion needs.
 - So the torsion criterion fails at the level of elements. The pentagon RSG is in the open non-torsion case: a
   Houghton-type integer flux across each wall.
 - Whether this obstructs `F_∞`, or only this complex, is **open**.
+
+## Referee (bh-ref-q12, 2026-09-19): Theorem PASS with repairs; Step 3 wrong as written and replaced; Step 2 reworded; Example replaced
+
+**Checked against BHM** (arXiv:2407.03149, PDF read 09-19).
+- **Definitions.** Portraits `p ↦ (Bg)_p`, and the action `g·(Bh)_p = (Bhg^(-1))_(g(p))`. The complex
+  `K = ∏'_p T_p` has star trees `T_p`, and the Morse function counts hidden points.
+- **Proposition 2.7.** The descending link of every vertex is the join of the discrete sets `Bgerm(G,p)` over
+  its hidden points. This uses only the product-of-stars structure, not the action or localization. **Step 4 is
+  correct.**
+
+**Step 1: correct.** It needs `G_Σ|_E` purely infinite and minimal (the Matui bisection), and cones small enough
+that both complements are nonempty.
+
+**Step 2: correct after rewording.**
+- Total defect is `L`-invariant for full portraits.
+- It is **not** invariant for partial portraits. If `M` is the hidden set, then
+  `total(g·γ) = total(γ) − Σ_(p ∈ g(M)) d_(g^(-1))(p)`, because hidden points absorb germs.
+- The orbit count does not need invariance. The normal-form reduction works verbatim for partial portraits:
+  - add `Q_c` at fresh non-hidden points;
+  - realize the result by an `h` that is non-singular on `M` (cones chosen away from `M`);
+  - apply `h`.
+- This leaves finitely many orbits of vertices and cubes of `K_(≤n)` for each `c`, and `c` ranges over the finite
+  group `⟨Δ⟩`.
+
+**Step 3 is wrong as stated.**
+- The stabilizer of a portrait with nontrivial labels need not preserve `P`, and it need not contain
+  `Fix_B(P ∪ M')` with finite index.
+- Already for a zero-sum full portrait `γ = portrait(h)`, `Stab(γ) = h^(-1)Bh`, which moves `sing(h)`.
+- BHM's description `{g : sing(g) ⊆ M, g(M) = M}` holds only for non-singular portraits.
+
+**Repair of Step 3.**
+- **The data.** Let `γ` have labels `λ_i = (Bg_i)_(p_i)` outside its hidden set `M`, with total `c`.
+- **Build `τ`.**
+  - Choose small disjoint cones `U_i ∋ p_i` avoiding `M`, with disjoint images `g_i(U_i)`.
+  - Choose a clopen `E_c ⊆ E` with `[E_c] = [E] + c` that contains the images. In a purely infinite minimal
+    groupoid every class is realized inside any nonempty clopen (Matui).
+  - The classes of `E ∖ ⋃U_i` and `E_c ∖ ⋃g_i(U_i)` agree (by the total-`c` computation), so a Matui bisection
+    maps one onto the other.
+  - This gives a rational homeomorphism `τ: E → E_c` with `(Bτ)_(p_i) = λ_i`, canonical everywhere else.
+- **The stabilizer.**
+  - `g·γ = γ` exactly when `g(M) = M` and `τ g τ^(-1)` has canonical germs off `τ(M)`.
+  - So `Stab(γ) = τ^(-1) {k ∈ L_c : sing(k) ⊆ τ(M), k(τM) = τM} τ`, where `L_c` is the full RSG on `E_c` with
+    the nucleus of `L`, a member of `𝓕(L)`.
+  - Here `τ`-conjugation preserves `L`-germs, and fullness puts the conjugates in `L`.
+- **Finiteness.** BHM Propositions 2.5 and 2.8 do not use localization. They make this group commensurable with
+  `Fix_(V_(Σ,E_c))(τM)`, which is `F_∞` (parent node, item (2)). Cubes are handled the same way, with `M ⊆ M'`.
+- **With this repair Step 3 holds.**
+
+**Step 5: correct** (Brown's criterion via Geoghegan 7.3.1, as in BHM Theorem 2.1).
+- The finite-set-stabilizer and `SV_L` clauses inherit the unreviewed twisted-BT node, as in the parent.
+
+**Torsion criteria: correct.**
+- **Fixed point.** By finite index, some power `g^k` has canonical germ at `p`, and the cocycle gives
+  `k·d_g(p) = 0`.
+- **One tail class.** Move the target back by `B` to get a germ that fixes a point, with the same defect.
+- **`det(I − A) ≠ 0`.** Then `coker(I − A^T)` is finite.
+
+**The Example as written is not a homeomorphism.**
+- `τ` sends each branch along `1^∞` to the next one, so `C_0` is never hit and `τ(E) = E ∖ C_0`. So
+  `⟨V_3, τ⟩ ≤ Homeo(E)` is undefined.
+- This is forced: a germ of defect `1 ∈ Z/2` cannot be the only singular germ of a homeomorphism (parent,
+  Proposition 2.2).
+- **Replacement.** Use the two-point element `g` from the parent's referee section. It is singular at `0^∞` and
+  `10^∞`, both germs of the half-shift `n` with `n² = (x ↦ 0x)`, and both have defect 1.
+- Its singular points form one tail class. So the Theorem, with the repaired Step 3, gives
+  **`L = [[⟨V_(3,1), g⟩]]` is `F_∞`**, while no element of `L` has exactly one singular point.
+
+**Credit.**
+- This Theorem proves BHM Remark 2.13 for bounded full contracting RSGs with finite defect group, using BHM's
+  complex unchanged. Credit the statement and the complex to Belk–Hyde–Matucci. The lane's contribution is the
+  orbit count that replaces localization.
+- No prior source found for the torsion case (searches 09-19, as in the parent).
+- The non-torsion case is correctly stated as open. The pentagon addenda (7e5910d5a1, 4c2b83e595; reviewed
+  below) place that example in it.
+
+**Verdict: PASS with repairs** (Step 2 wording, Step 3 replaced, Example replaced).
+
+### Pentagon computations (7e5910d5a1, 4c2b83e595): PASS as computation, with three repairs to the readings
+
+The scripts (in the two artifacts) were read, and the printed data were rechecked by hand.
+- **Coarse type graph.** `A = [[0,5,5,0],[0,2,0,1],[0,1,2,0],[0,0,1,0]]`.
+  - It reproduces the atom counts `1, 10, 30, 80, …` level by level.
+  - Its core has characteristic polynomial exactly `x(x−2)² − 1 = (x−1)(x²−3x+1)`. So `det(I − A_core) = 0`,
+    with Perron value `φ²`.
+  - The "consistent with" of 7e5910d5a1 is therefore exact.
+- **Coarse `H_0 ≅ Z`.** Relations `e_3 = e_2`, `e_1 = −e_2`, `e_0 = 5(e_1+e_2) = 0`. Each eliminates a generator
+  with coefficient `±1`, so the quotient is free of rank 1 on `x = [e_2]`, with no torsion.
+- **Defect vectors.** `(0,0,1,0) ↦ x` and `(0,1,−1,1) ↦ −x`. Both have infinite order, and the four chains cancel
+  in pairs. That is Proposition 2.2 of the parent; for the involution `k`, it also follows from `d_(k²) = 0`.
+- **What `defectclass.py` computes.** It computes `[kD] − [D]` in coarse `H_0` for chain atoms `D` at levels
+  `2–4`.
+  - Exactness of `kD = ⊔A'_i` is checked forward on the sphere points of `D`, and backward through the involution
+    `k` on independent sample points (levels `R0 ± 1`). So it computes what the node claims, on the sampled data.
+- **Transfer to the true types.** This is correct. Shapes are determined by true types, and the partition is
+  equitable, so `AP = PQ` for the type-to-shape incidence `P`.
+  - Transposing gives `P^T(I − A^T) = (I − Q^T)P^T`. So `P^T` induces a surjection
+    `H_0(true) → H_0(coarse)` that sends cone classes to cone classes.
+  - A true defect whose image is `±x` has infinite order.
+  - The same identity gives the spectral inclusion used in 7e5910d5a1. So the true `H_0` is infinite, and the
+    reflection germs have infinite-order defect.
+- **Evidence, not proof.** Three inputs are finite-depth data:
+  - that the shape partition is stable and equitable ("stabilized at `D = 2`", `inconsistent = 0` on levels
+    `≤ 7`);
+  - exactness of atoms to level 7;
+  - boundedness, from 4 non-branching chains at levels `2–5`.
+- **Repairs to the readings in the defect-class artifact.**
+  1. "`SingFix(M,M)` are extensions of `Fix_B(M)` by finite-index subgroups of `Z^(|M|−1)`" is wrong.
+     - An element fixing `M` has torsion defect at each point of `M` (fixed-point lemma), so its defect is 0 in
+       the free part.
+     - The correct statement is BHM Proposition 2.8: `Fix_B(M)` has finite index in `SingFix(M,M)`.
+     - The conclusion `F_∞` is unchanged.
+  2. "Cannot be recoded away (Bowen–Franks invariance)" holds only for recodings that induce an isomorphism of the
+     groupoid `G_Σ`. A different coding SFT, with a different base group, is not covered.
+  3. Scope: this is `P` on `∂_h P`, not the BBMZ host over `P ∗ Z`, as the artifacts say. The Houghton
+     comparison is heuristic.
