@@ -27772,14 +27772,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-19 · monotone-injective-automata-on-connected-posets-are-surjective [OPEN] Over every group, a monotone injective automaton on a connected finite poset alphabet is surjective
-- 2026-09-19 · monotone-automata-with-a-pinned-bracketing-star-are-onto-proof [COMPLETE] Bound the automaton above by a configuration in a rigid up-set to preserve one letter, then apply unit-charge noncreation
-- 2026-09-19 · monotone-automata-with-a-pinned-bracketing-star-are-onto [ESTABLISHED] A monotone injective automaton is onto when some minimal letter has a rigid up-set that bounds every letter from above
+- 2026-09-19 · fpbs-boundary-tilted-susceptibility-kernel [ESTABLISHED] Every quasi-invariant boundary of a Cayley graph carries Hutchcroft's tilted mass transport and lambda to 1-lambda duality, a finite half-tilted susceptibility above p_c forces the worst-pair rate, trees reach p_2, and the whole package holds on an amenable group where the threshold sticks at p_c
 - 2026-09-19 · fpbs-stationary-set-relative-gap-universal [OPEN] On every nonamenable Cayley graph some slightly supercritical cluster of the origin is met only finitely often by some independent walk range or aperiodic subrelation class
 - 2026-09-19 · fpbs-stationary-set-recurrence-separates-proof [COMPLETE] Poincaré recurrence of the environment seen from the walker, and the zero-or-infinite lemma for aperiodic pmp relations
 - 2026-09-19 · fpbs-stationary-set-recurrence-separates [ESTABLISHED] A unique infinite cluster meets every independent walk range and every independent aperiodic subrelation class infinitely often, so almost surely finite visits above p_c separate the thresholds
 - 2026-09-19 · fpbs-stationary-set-gap-from-green-visit [OPEN] Finite expected simple-random-walk visits are almost surely finite visits along a walk range
 - 2026-09-19 · fpbs-soft-collapse-kills-stationary-set-gap-proofs-proof [COMPLETE] Uniqueness in the collapse family plus recurrence along the independent set
+- 2026-09-19 · fpbs-soft-collapse-kills-stationary-set-gap-proofs [ESTABLISHED] Over invariant sparse spines the soft collapse family meets every independent walk range and every independent aperiodic subrelation class infinitely just above p_c, so no soft argument certifies finite visits along any stationary set
+- 2026-09-19 · fpbs-connectivity-decay-gives-heavy-walk-green-visits-proof [COMPLETE] Mix uniform measures on fast-growing balls, so the largest step taken so far flattens the walk law
 
 ## Active claims
 
