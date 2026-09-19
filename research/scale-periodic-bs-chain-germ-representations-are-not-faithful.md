@@ -94,3 +94,17 @@ independent pieces. Here the pieces are the bends, and the extra relations are t
   - *Dead ends.* Marked-group locality (`tail-uniform-germ-extensions-of-v-are-not-fp`) and a
     Bieri–Strebel splitting over the character `Q -> Z` were both tried. Both were inconclusive:
     `Q^ab = Z`, and every generator lies in a copy of `BS(1,2)`.
+- **2026-09-19, swarm-0917-w16-w16-bh-follow: scope of the Lesson.** The Statement and proof here are
+  correct for `δ = 2x`. The Lesson's general sentence ("a PL germ host never realizes a tower of height
+  two faithfully") is **not** proved. It holds only on the PL-conjugacy class of affine doubling. See
+  `non-affine-doubling-lifts-evade-the-sparse-defect-kill`.
+  - *The class where the kill holds.* The proof uses only that `s` is PL with `s(2x) = 4s(x)`; dyadic
+    slopes are never used. So conjugating by a PL lift `h` extends the kill to every doubling lift `δ`
+    that is PL-conjugate to `2x`. (A doubling lift is any PL `δ` with `δ(x+1) = δ(x) + 2`.)
+  - *A lift outside that class.* A multiplier invariant shows that the dyadic PL lift with slopes
+    `1, 2, 4` on `[0,1/2)`, `[1/2,3/4)` and `[3/4,1)` is not PL-conjugate to `2x`. For that lift:
+    - with `s` built from a fundamental-domain map, the bends of `s` multiply by about 4 per window,
+      with largest gap `≤ 1/4`;
+    - every `w_k` tested stays nontrivial at δ-scales 5–8, by exact computation.
+  - *What this changes.* The sparse-defect mechanism does not apply off the affine class. So whether a
+    PL germ host can realize the chain faithfully is OPEN again. It is prerequisite P1 there.

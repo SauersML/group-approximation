@@ -1,0 +1,20 @@
+== affine control
+n= 0 W=[4,8) len 4: 1 slope-breaks, max gap None, max gap/len None
+n= 1 W=[8,16) len 8: 1 slope-breaks, max gap None, max gap/len None
+n= 2 W=[16,32) len 16: 1 slope-breaks, max gap None, max gap/len None
+n= 3 W=[32,64) len 32: 1 slope-breaks, max gap None, max gap/len None
+n= 4 W=[64,128) len 64: 1 slope-breaks, max gap None, max gap/len None
+n= 5 W=[128,256) len 128: 1 slope-breaks, max gap None, max gap/len None
+n= 6 W=[256,512) len 256: 1 slope-breaks, max gap None, max gap/len None
+n= 7 W=[512,1024) len 512: 1 slope-breaks, max gap None, max gap/len None
+n= 8 W=[1024,2048) len 1024: 1 slope-breaks, max gap None, max gap/len None
+n= 9 W=[2048,4096) len 2048: 1 slope-breaks, max gap None, max gap/len None
+== non-affine
+n= 0 W=[4,8.5) len 4.5: 2 slope-breaks, max gap 0.25, max gap/len 0.05555555555555555
+n= 1 W=[8.5,17) len 8.5: 292 slope-breaks, max gap 0.125, max gap/len 0.014705882352941176
+n= 2 W=[17,34.5) len 17.5: 1073 slope-breaks, max gap 0.25, max gap/len 0.014285714285714285
+n= 3 W=[34.5,69) len 34.5: 4259 slope-breaks, max gap 0.25, max gap/len 0.007246376811594203
+n= 4 W=[69,138.5) len 69.5: 17058 slope-breaks, max gap 0.1875, max gap/len 0.002697841726618705
+n= 5 W=[138.5,277) len 138.5: 68218 slope-breaks, max gap 0.125, max gap/len 0.0009025270758122744
+n= 6 W=[277,554.5) len 277.5: 272815 slope-breaks, max gap 0.09375, max gap/len 0.00033783783783783786
+n= 7 W=[554.5,1109) len 554.5: 1091315 slope-breaks, max gap 0.0625, max gap/len 0.0001127141568981064
