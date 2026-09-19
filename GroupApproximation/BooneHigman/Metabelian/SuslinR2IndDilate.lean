@@ -57,6 +57,7 @@ theorem suslinR2Ind_comp_dilate {b c : S} (hbc : b * c = 1) (p : S[X]) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_comp_dilate
 
+set_option maxHeartbeats 800000 in
 /-- **Undoing a dilation.**  If `b c = 1` and the dilate `σ(b X)` is elementary, then so is
 `σ`. -/
 theorem suslinR2Ind_mem_of_dilate {ι : Type*} [Fintype ι] [DecidableEq ι] {b c : S}
@@ -70,8 +71,11 @@ theorem suslinR2Ind_mem_of_dilate {ι : Type*} [Fintype ι] [DecidableEq ι] {b 
     change (((σ : Matrix ι ι S[X]) i j).comp (C b * X)).comp (C c * X) =
       (σ : Matrix ι ι S[X]) i j
     exact suslinR2Ind_comp_dilate hbc _
-  rw [← he]
-  exact elementaryGroup_map_le (compRingHom (C c * X)) (Subgroup.mem_map_of_mem _ h)
+  have hm : elementaryMatrixUnitMap (compRingHom (C c * X))
+      (elementaryMatrixUnitMap (compRingHom (C b * X)) σ) ∈ elementaryGroup ι S[X] :=
+    elementaryGroup_map_le (compRingHom (C c * X))
+      (Subgroup.mem_map_of_mem (elementaryMatrixUnitMap (compRingHom (C c * X))) h)
+  rwa [he] at hm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mem_of_dilate
 

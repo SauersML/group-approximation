@@ -10,7 +10,7 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 Source changed on main since that build: yes.
 
 
-**First errors (verbatim; from probe job direct-b1789834028 on main a39af618f3).**
+**First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
 error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean:83:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl.diagonal_weyl_eq`:

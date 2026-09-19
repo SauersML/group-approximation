@@ -1,0 +1,20 @@
+---
+rg: 2
+id: fix-bhmet-envelope-higman-vc-tau-hop-f2-cand
+kind: claim
+title: "Fix GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCTauHopF2Cand: Invalid field trans: The environment does not contain Exists.trans, so"
+---
+
+**OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCTauHopF2Cand.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
+
+**First errors (verbatim).**
+
+```
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCTauHopF2Cand.lean:76:75: Invalid field `trans`: The environment does not contain `Exists.trans`, so it is not possible to project the field `trans` from an expression
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCTauHopF2Cand.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauHop_incW' depends on axioms outside the classical allowlist: [sorryAx]
+```
+
+**What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCTauHopF2Cand` compile under the repository settings without changing any statement.
+
+**Resolution.** When a trusted probe builds it green, change the status line above to `**RESOLVED (<green commit>).**`.

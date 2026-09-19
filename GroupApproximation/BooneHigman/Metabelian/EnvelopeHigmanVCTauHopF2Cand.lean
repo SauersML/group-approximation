@@ -73,7 +73,7 @@ sibling `[a, b, c']`. -/
 theorem higmanVCTauHop_incW {d : ℕ} {a b c c' : Fin d} {z W : List (Fin d)}
     (hab : ¬ [a, b] <+: W) (hW : ¬ W <+: a :: b :: c :: z) :
     higmanVCTauUnif_Inc W [a, b, c'] := by
-  refine ⟨fun h => ?_, fun h => hab ((⟨[c'], rfl⟩ : [a, b] <+: [a, b, c']).trans h)⟩
+  refine ⟨fun h => ?_, fun h => hab (List.IsPrefix.trans (⟨[c'], rfl⟩ : [a, b] <+: [a, b, c']) h)⟩
   rcases W with _ | ⟨s, _ | ⟨t, r⟩⟩
   · exact hW List.nil_prefix
   · have h' : s :: [] <+: a :: [b, c'] := h

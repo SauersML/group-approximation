@@ -98,7 +98,8 @@ theorem higmanVCTauD2_len_right {d : ℕ} (hd : 1 < d) {p q z z' : List (Fin d)}
 theorem higmanVCTauD2_pre1 {d : ℕ} {e : Fin d} {v r : List (Fin d)} (h : v <+: e :: r)
     (hl : 1 ≤ v.length) : ∃ v', v = e :: v' ∧ v' <+: r := by
   rcases v with _ | ⟨v0, v'⟩
-  · simp only [List.length_nil] at hl <;> omega
+  · simp only [List.length_nil] at hl
+    omega
   · obtain ⟨h1, h2⟩ := List.cons_prefix_cons.mp h
     exact ⟨v', by rw [h1], h2⟩
 
@@ -121,11 +122,13 @@ theorem higmanVCTauD2_pre3 {d : ℕ} {a b c : Fin d} {v r : List (Fin d)}
     (h : v <+: a :: b :: c :: r) (hl : v.length = 3) : v = [a, b, c] := by
   obtain ⟨v2, rfl, h2⟩ := higmanVCTauD2_pre2 h (by omega)
   rcases v2 with _ | ⟨v3, v4⟩
-  · simp only [List.length_cons, List.length_nil] at hl <;> omega
+  · simp only [List.length_cons, List.length_nil] at hl
+    omega
   · obtain ⟨h3, -⟩ := List.cons_prefix_cons.mp h2
     rcases v4 with _ | ⟨v5, v6⟩
     · rw [h3]
-    · simp only [List.length_cons] at hl <;> omega
+    · simp only [List.length_cons] at hl
+      omega
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_pre3
 

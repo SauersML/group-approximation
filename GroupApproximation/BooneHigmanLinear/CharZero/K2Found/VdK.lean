@@ -438,25 +438,39 @@ structure Elements where
   proj : ∀ (p : (I → A) × (I → A)) (hp : p ∈ U I A),
     ((projection (elt p hp) : elementaryGroup I A) : (Matrix I I A)ˣ) = eUnit p.1 p.2 (mem_U.1 hp).2
 
+/-- Under Theorem 1, `φ` as an isomorphism. -/
+noncomputable def phiEquiv (h : Theorem1At I A) : SteinbergGroup I A ≃* StStar I A :=
+  MulEquiv.ofBijective (phi I A) h
+
+@[simp] theorem phiEquiv_apply (h : Theorem1At I A) (g : SteinbergGroup I A) :
+    phiEquiv h g = phi I A g :=
+  rfl
+
+theorem phi_phiEquiv_symm (h : Theorem1At I A) (y : StStar I A) :
+    phi I A ((phiEquiv h).symm y) = y := by
+  rw [← phiEquiv_apply h, MulEquiv.apply_symm_apply]
+
 /-- vdK's Theorem 1 gives the elements `X(v, w) ∈ St(n, A)`: transport `X` along `φ⁻¹`. -/
-noncomputable def elementsOfTheorem1 (h : Theorem1At I A) : Elements I A :=
-  let e : SteinbergGroup I A ≃* StStar I A := MulEquiv.ofBijective (phi I A) h
-  { elt := fun p hp => e.symm (X p hp)
-    mul := fun i j k h₁ h₂ h₃ => by
-      rw [← map_mul, X_mul i j k h₁ h₂ h₃]
-    conj := fun p q hp hq => by
-      rw [← map_inv, ← map_mul, ← map_mul, X_conj]
-    std := fun p q hpq a => by
-      rw [MulEquiv.symm_apply_eq]
-      exact (phi_x p q hpq a).symm
-    proj := fun p hp => by
-      have hc : piStar I A (phi I A (e.symm (X p hp))) =
-          ((projection (e.symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) :=
-        DFunLike.congr_fun (piStar_comp_phi (I := I) (A := A)) (e.symm (X p hp))
-      have he : phi I A (e.symm (X p hp)) = X p hp := e.apply_symm_apply (X p hp)
-      show ((projection (e.symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) =
-        eUnit p.1 p.2 (mem_U.1 hp).2
-      rw [← hc, he, piStar_X] }
+noncomputable def elementsOfTheorem1 (h : Theorem1At I A) : Elements I A where
+  elt p hp := (phiEquiv h).symm (X p hp)
+  mul i j k h₁ h₂ h₃ := by
+    show (phiEquiv h).symm (X (i, j) h₁) * (phiEquiv h).symm (X (i, k) h₂) =
+      (phiEquiv h).symm (X (i, j + k) h₃)
+    rw [← map_mul, X_mul i j k h₁ h₂ h₃]
+  conj p q hp hq := by
+    show (phiEquiv h).symm (X p hp) * (phiEquiv h).symm (X q hq) * ((phiEquiv h).symm (X p hp))⁻¹ =
+      (phiEquiv h).symm (X (conjPair p q) (conjPair_mem hp hq))
+    rw [← map_inv, ← map_mul, ← map_mul, X_conj]
+  std p q hpq a := by
+    show (phiEquiv h).symm (X (stdPair p q a) (stdPair_mem hpq a)) = x p q hpq a
+    rw [MulEquiv.symm_apply_eq, phiEquiv_apply, phi_x]
+  proj p hp := by
+    show ((projection ((phiEquiv h).symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) =
+      eUnit p.1 p.2 (mem_U.1 hp).2
+    have hc : piStar I A (phi I A ((phiEquiv h).symm (X p hp))) =
+        ((projection ((phiEquiv h).symm (X p hp)) : elementaryGroup I A) : (Matrix I I A)ˣ) :=
+      DFunLike.congr_fun (piStar_comp_phi (I := I) (A := A)) ((phiEquiv h).symm (X p hp))
+    rw [← hc, phi_phiEquiv_symm, piStar_X]
 
 end Presentation
 
