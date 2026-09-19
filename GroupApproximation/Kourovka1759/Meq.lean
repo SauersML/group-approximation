@@ -14,7 +14,8 @@ namespace GroupApproximation.Kourovka1759
 
 open Equiv Box
 
-instance : DecidableEq Box := fun A B => decidable_of_iff _ Box.ext_iff.symm
+instance : DecidableEq Box := fun A B =>
+  decidable_of_iff (A.r = B.r ∧ A.m = B.m) Box.ext_iff.symm
 
 namespace Box
 
