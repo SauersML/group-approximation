@@ -131,6 +131,31 @@ So **the cost of Osajda's odometers is open**. It lies between `1 + β₁⁽²�
 **The next decisive computation is `β₁⁽²⁾(G)`.** If it is positive, Line F needs thick rigid hole-filling
 at every level. If it is zero, Line F reduces to finding one chain of cost 1.
 
+### Bounding `β₁⁽²⁾(G)` (bh-ra-proof, 2026-09-19; recalled facts, not computed)
+
+**Infinite presentation is not the obstacle.**
+- For a finitely generated infinite group, `β₁⁽²⁾` is the von Neumann dimension of the space of harmonic
+  functions with finite Dirichlet energy on a Cayley graph, modulo constants (Bekka–Valette; recalled).
+- The relators enter only through the Cayley graph. So `β₁⁽²⁾(G)` is a question about the Cayley graph
+  of `G`, with the relator graphs `Θ_i` embedded in it.
+
+**What each tool gives.**
+
+| Tool | What it gives at `G` |
+|---|---|
+| generators | `β₁⁽²⁾(G) ≤ d(G) − 1` |
+| Gaboriau | `β₁⁽²⁾(G) ≤ cost − 1` along every free chain; this is the direction used above |
+| Peterson–Thom defect bound `β₁⁽²⁾ ≥ \|S\| − 1 − Σ_r 1/ord(w_r)`, for relators `r = w_r^(n_r)` | **vacuous**: the graphical relators are not proper powers, so each costs 1, and there are infinitely many |
+| Lück–Osin (recalled): `β₁⁽²⁾(G) ≥ lim sup_k b₁(Γ_k)/[G:Γ_k]` for a normal chain with trivial intersection | **the live lower bound**. It needs the first-Betti growth of Osajda's own finite quotients (his conditions (C), (D)), which is not recorded |
+| Euler characteristic of the finitely presented stages `G_n` (aspherical coned-off complex, `χ(G_n) = 1 − \|S\| + Σ_(i≤n) b₁(Θ_i)`) | fixes only `β₂⁽²⁾ − β₁⁽²⁾ = χ(G_n)`, and `χ(G_n)` grows. So it says nothing about `β₁⁽²⁾(G_n)` |
+| semicontinuity in the space of marked groups (Pichot 2006; direction recalled as `β₁⁽²⁾(lim G_n) ≥ lim sup β₁⁽²⁾(G_n)`, not re-read) | would pass lower bounds from the `G_n` to `G`, but `β₁⁽²⁾(G_n)` is itself unknown |
+
+**Status.** `0 ≤ β₁⁽²⁾(G) ≤ min(d(G) − 1, cost − 1)`. No nonzero lower bound and no vanishing proof is
+available.
+- The decisive inputs are the first-Betti gradient of the residual quotients of `G`, which would give a
+  lower bound, and harmonic Dirichlet functions on the Cayley graph, which would settle vanishing.
+- Neither is recorded on main.
+
 ## Lesson for general BH
 
 **A rigid Toeplitz shift pays for the rank of its periods.**
