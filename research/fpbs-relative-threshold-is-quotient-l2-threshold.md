@@ -254,3 +254,32 @@ swarm-0917 w12).**
     - normal subgroups of `A * H` not containing `[A,H]`, where the fibre sum
       is an alternating word sum in two non-commuting kernels.
 
+* **Every tree Cayley graph, every infinite normal N (2026-09-19,
+  swarm-0917-w20-w20-bs-break, census-computation).** E holds on the whole
+  class: `fpbs-tree-cayley-graphs-satisfy-identity-e` (ESTABLISHED).
+  - *Class.* Every `(Gamma,S)` whose Cayley graph is the `(q+1)`-regular tree:
+    `F_d` on a free basis, `(Z/2)^{*b}`, and the mixed products
+    `Z^{*a} * (Z/2)^{*b}`. `N` is any infinite normal subgroup, in particular
+    one not containing `[A,H]`. This is the w17 "next test" for factors `Z`
+    and `Z/2`, and it turns item 2 of the Evidence into a proof.
+  - *Result.* The pointwise identity `s^|x| = phi(s) G_(w(s))(e,x)` on the
+    tree pushes forward to
+    `sigma_p = phi(p) (1 - w(p) lambda_Q(mu_Q))^(-1) delta_e`, so
+    `||sigma_p||_Q = phi(p)/(1 - w(p) rho_Q)` for `p < s_N`, and
+    `p_c(N;T) = p^Q_(2->2)(N;T) = s_N`. The pair is type (i) iff `Q` is
+    nonamenable, and type (iii) otherwise. No tree pair is type (ii).
+  - *Census outcome.* No normal subgroup of a tree group escapes the
+    resolvent form. The alternating word sums in two non-commuting kernels,
+    which the renewal method of w17 could not handle, are resolvents here,
+    because `tau_p` is already a Green function on `Gamma` before the
+    quotient is taken.
+  - *Invariant for a disproof.* Green representability of `tau_p` on `Gamma`
+    by a single symmetric walk. Where it holds up to `p^Q_(2->2)`, every
+    quotient inherits a resolvent, and E follows. So a type-(ii) pair must
+    live on a graph whose two-point function in the window
+    `(p_c, p_c(N;G))` is not a Green function of any one walk on `Gamma`.
+    Among the tested classes this rules out trees, free products along
+    commuting quotients (w17) and, per the w17 follow-up on the live bus,
+    complete-block free products. What remains are one-ended graphs
+    (`F_2 x F_2` along the diagonal-free normal subgroups, `T x H`) and
+    amalgams over infinite amenable `C`.
