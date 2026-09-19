@@ -221,3 +221,31 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+
+**Mechanism (i): an exact commutant scout in `L_(F_2)(1,2)` (swarm-0917, lane w15-bh-pull; the claim stays OPEN).**
+- **Isometries are dead as generators (proved).**
+  - `leavitt-isometry-centralizers-are-monogenic` (ESTABLISHED, unreviewed) holds over any field and for any
+    `L(1,n)`: `C_L(s_w) = k[s_u]` and `C_L(t_w) = k[t_u]`, where `u` is the primitive root of `w`.
+  - So in a (i)-embedding, and in any `L_2 ⊗ L_2 -> L_2` map (the YES case above), neither commuting generator
+    can be a monomial isometry or co-isometry, even after conjugating by a unit. In particular the images of
+    `s_0 ⊗ 1` and `1 ⊗ s_0` must be non-monomial isometries.
+- **Census of small elements (evidence).** `experiments/leavitt-commutant-scout-2026-09-17/`
+  (`l2.py`, `commutant.py`, `scan_exhaustive.py`, `census_V12_output.txt`) has exact `F_2` arithmetic on
+  depth-`N` tables.
+  - It covers every `A` in the box `V_(1,2)` (depth 1, outputs of length at most 2; `2^14` elements).
+  - It computes the exact commutant of `A` in `V_(2,4)` and tests the joint growth of `{A^i B^j}`.
+  - Results: 15256 of the 16216 transcendental `A` have box commutant `F[A] ∩ box`. The other 960 all have
+    linear joint growth, at most 22 at `k = 7` against 28 for an independent pair.
+  - The larger commutants come from a matrix mechanism. They are finite modules over `F[x]` or `M_2(F[x])`, for
+    example with `x` = "insert `1` after the first letter", and they are always algebraically dependent.
+  - A random scan of `V_(1,3)` (`scan_random.py`) gave the same picture.
+- **What this changes.** Small, shallow elements give no independent commuting pair, so a counterexample to
+  `leavitt-commuting-units-are-algebraically-dependent`, if one exists, is not found by short search. This
+  matches the Ara–Cortiñas firewall: an embedding `L_2 ⊗ L_2 -> L_2` would need deep, non-monomial isometries.
+- **Mechanism (iii): counting dies on IBN.** Rank and dimension counts over `L` cannot separate entangled
+  embeddings, because `L ≅ L^2` as modules, so `L` has no IBN, and every column count collapses.
+  - What survives, by an argument sketched in the lane and not written up, is the faithful `L`-valued
+    point-column lemma for minimal `Ω`: one orbit point suffices, by Ore localization plus compactness.
+  - So a single `L`-valued column detects an entangled embedding. It gives no rank bound.
+- **Where it stops.** Everything left in (i) is Ara–Cortiñas-hard. No embedding and no obstruction beyond
+  isometries is known.
