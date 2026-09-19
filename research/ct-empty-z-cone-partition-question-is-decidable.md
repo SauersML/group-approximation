@@ -71,9 +71,14 @@ every `t ≥ 1` its only `g^(Mt)`-invariant clopen subsets are `∅` and `R_j`.
 **Computability.** `U`, `V`, `Per` and `M` come from the revealing pair. For each repeller `r`,
 take the clopen fundamental domain `D_r = (cone of r) ∖ g^(−M)(cone of r)`. Iterate until
 `g^(Mk)(D_r)` lies in the union of the attractor cones; (V) guarantees this happens. The cones that
-the image meets are `r`'s neighbours. Growing the finite unions `⋃_{k ≤ K} g^(−Mk)(attractor cones)`
-until they cover `V` gives each `R_j` as an explicit finite union of cones. Let `u_j` be the
-longest common prefix of `R_j`, so that `[u_j]` is the smallest cone containing `R_j`.
+the image meets are `r`'s neighbours.
+- **Covering `V`** (precision by bh-ref-q11). Repellers never enter the attractor cones. So cover
+  `V` by the finite unions `⋃_{k ≤ K} g^(−Mk)(attractor cones)` *together with the repelling
+  cones*. Compactness makes this happen for some `K`.
+- **The components.** Assign each piece to the component of its attractor or repeller. This gives
+  each `R_j` as an explicit finite union of cones.
+- **Hulls.** Let `u_j` be the longest common prefix of `R_j`, so that `[u_j]` is the smallest cone
+  containing `R_j`.
 
 ## Theorem
 
@@ -82,6 +87,12 @@ prefix of some `u_j`, such that:
 1. every `R_j` lies in a member of `𝒞`, and every member contains some `R_j`;
 2. `g` maps every member of `𝒞` onto a member of `𝒞`;
 3. `Q = Z_2 ∖ ⋃𝒞` is nonempty, or `|𝒞| ≥ 2`.
+
+**Search bound** (bh-ref-q11).
+- Each member of `𝒞` contains some `R_j`, and each `R_j` lies in exactly one member, so
+  `|𝒞| ≤ s`.
+- There are at most `Σ_j (|u_j| + 1)` candidate cones, hence at most `2^(Σ_j (|u_j| + 1))` families.
+- Conditions 1–3 are finite checks on explicit finite unions of cones.
 
 The candidate cones are finitely many, and images of cones under `g` are computable. **So YES₂ is
 decidable for every `g ∈ CT_∅(Z)`.** If `V = ∅`, then `g` has finite order and is YES₂ (Theorem 2
