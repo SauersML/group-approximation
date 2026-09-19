@@ -312,6 +312,26 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     - a conceptual proof of any wall; `5 + 2J` stays a guess.
   - Next: find a GAP-checkable tree model or explicit finite 2-group with `ord(a) = 128`, which needs
     `ord(c) >= 8`. Then look for a self-similar pattern in the doubling classes that can be proved.
+- **w22-053 (question (a): single-cycle walls of the twisted groups).** Landed
+  `higman-single-cycle-walls-reach-the-b-trivial-cap` (claim and proof route).
+  - Proved, with explicit models checked by `captower.py`:
+    - the b-trivial wall is exact. A single-cycle model of `H(n_1, 3^(m_b), 3^(m_c), 3^(m_d))` with
+      `b = 1` exists if and only if `k <= cap(m) = v2(3^(m_b) - 1) + v2(m_c) + v2(m_d) + 4`. The
+      models are `a = x + 1`, `d = 3^(m_d) x`, and `c` a log-coordinate isometry on each valuation
+      layer. So `w_0 >= cap(m)` for every tuple;
+    - block lemma: in every single-cycle model the `<b>`-orbits are the cones below one level
+      `j <= cap(m)`, and `ord(b) = 2^(k-j)`;
+    - rigidity: two level-transitive elements with `y x y^-1 = x^q`, `q ≡ 3 mod 4`, live only on
+      level `<= 1`.
+  - Consequences:
+    - `cap(1,1,1) = 5`, `cap(1,1,2) = cap(1,2,1) = 6`: every exactly known wall equals the cap;
+    - 15 of the 17 probe depths with `m_b >= 2` in w19-053's table are below the cap, so they are
+      search limits and not walls. For example `(4,4,4)` has a level-12 model, not just level 9;
+    - the subtree reduction alone can never bound a `J`-model below `J + cap(m)`.
+  - Open (conjecture): `w_0 = cap(m)`, equivalently `ord(b) <= 2^(cap(m) - j)` in every single-cycle
+    model. If true, every `J`-model dies by level `4J + 6`.
+  - Next: prove the conjecture by showing that `b` is affine in the coordinates where `a = x + 1`,
+    as `d` is. The rigidity lemma is the case `j = 0`.
 - **w20-053 (question (a): is `ord(a)` bounded in the 2-quotients?).** Landed
   `higman-2-quotient-order-cap-is-attained-for-small-ord-b` (claim and proof route).
   - Proved or certified:
