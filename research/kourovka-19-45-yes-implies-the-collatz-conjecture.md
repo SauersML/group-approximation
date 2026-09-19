@@ -60,6 +60,18 @@ So every `x ∈ [0, 42]` is `r(k)` or `a(r(k))` with `k = ⌊x/2⌋ + 1 ∈ [1, 
   a second orbit on `N_0`. `G_T` is not provably one, since it would then refute Collatz.
 - **Same mechanism as 20.44.** Kohl's semiconjugacy `r` pushes 3x+1 components into orbits.
 
+## Credit
+
+- **Kohl's.** The group `G_T`, its equivalence with Collatz, and the Collatz barrier itself.
+  - Kohl already flagged the barrier for transitivity of three class transpositions in
+    **Kourovka 18.47(b)**: `G_C = ⟨τ_{1(2),4(6)}, τ_{1(3),2(6)}, τ_{2(3),4(6)}⟩` acts transitively
+    on `N ∖ 0(6)` iff the Collatz conjecture holds.
+  - `G_C` fixes `0(6)`, so it fails the mixing hypothesis of 19.45. This is why `G_T` is the
+    witness here.
+- **New here.** Only the check that `G_T` meets both hypotheses of 19.45.
+- **Priority.** The referee (bh-ref-q11) found no earlier statement of the implication. It is in
+  neither the 19.45 entry nor Kohl's 2017 paper, which predates 19.45.
+
 ## Lesson for general BH
 
 **Orbit questions for three class transpositions already carry full Collatz strength.**
