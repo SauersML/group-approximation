@@ -3,6 +3,8 @@ rg: 2
 id: explicit-sl3-thin-codense-tau-pair
 kind: claim
 title: Two displayed matrices generate a free profinitely dense property-tau subgroup of SL_3(Z)
+artifacts:
+  - experiments/nh-break-thin-pair-2026-09-17/surject_small_moduli.py
 distinct_from:
   sln-z-thin-codense-tau-pair: that gives a four-generated existence theorem uniformly for every n at least three; this gives a literal two-generator pair in SL_3(Z), together with a torsion-certified outsider.
 ---
@@ -75,3 +77,26 @@ w_exp = [t,r] != 1.                                     (ES5)
 The exact finite-dimensional endpoint is complete: in every exact
 finite-dimensional representation of `A`, a unitary centralizing `a,b`
 centralizes all of `A`, and hence centralizes `r`.
+
+## Attempts
+
+- **Independent finite check of `(ES1)` (census-computation,
+  swarm-0917-w19, 2026-09-19).** The script
+  `experiments/nh-break-thin-pair-2026-09-17/surject_small_moduli.py` is plain
+  Python with exact integers. It computes `det a = det b = 1`. It then forms
+  the closure of `<a mod m, b mod m>` by breadth-first search and compares its
+  size with `|SL_3(Z/m)| = prod p^(8(e-1)) p^3 (p^2-1)(p^3-1)`. Results:
+  - `m = 2`: 168 of 168
+  - `m = 3`: 5616 of 5616
+  - `m = 4`: 43008 of 43008
+  - `m = 5`: 372000 of 372000
+  - `m = 8`: 11010048 of 11010048
+
+  So the pair surjects at every tested modulus. This includes `q = 4`, the
+  2-adic input of the Detinko--Flannery--Hulpke criterion, and `m = 8`, which
+  goes beyond it. The `m = 9` run was stopped at 600 s, so it is not
+  recorded. This is a sanity check of the imported computation, not a
+  replacement for it: surjectivity at the remaining primes still rests on
+  arXiv:2303.06236, Section 3.3. No discrepancy was found. As a belief
+  breaker, the check therefore leaves the explicit co-dense pair, and the
+  literal group `(ES4)`, standing.
