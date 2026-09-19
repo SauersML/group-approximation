@@ -144,3 +144,23 @@ swarm-0917-w17-w17-ptm-last1).**
     threshold. Details are under `## Attempts` of `rotation-centralizer-rotation-gaps-are-uniform`.
     Self-similarity through `λ`, and determinant phases, did not help.
   - *Status.* This claim stays OPEN.
+- **2026-09-19, swarm-0917-w19-w19-ptm-follow (symbolic-dynamics):
+  element-level envelope of conjugate-template codes.**  Established
+  `lifted-thompson-t-template-envelope-contains-shift-graphs`.
+  - The element-level envelope of conjugate-template codes (the output
+    (N) of annular localization) is a union of line digraphs `L(Z_i)`.
+    Each `Z_i` is a conjugation orbital digraph of a commuting pair.
+    Templates with commensurated centralizer intersections all die.
+  - An explicit template in `F ⊂ T̄` lives on the triple shift graph
+    `Sh_3(N)` (`chi = infinity`, triangle-free).  It uses affinely
+    transported copies of `x_0` on disjoint dyadic intervals, and it has:
+    - exact commutation on every edge;
+    - CCC1 with area 0;
+    - (N) with one-point `F`, `F_1`.
+  - So no element-level invariant can kill conjugate templates.
+  - The approach dies (or succeeds) only at relator area: the growth of
+    `Area([kck^(-1),h])` for the free words `k = u_a^(-1)u_b`.  This is an
+    open Dehn-function question.  A bounded answer would kill `x` in every
+    MF model of `T̄` and make `T̄` non-hyperlinear.  The expected answer
+    is unbounded, by a thin-diagram bridge count.
+  - Target stays OPEN.
