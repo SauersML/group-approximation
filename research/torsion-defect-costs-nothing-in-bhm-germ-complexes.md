@@ -127,3 +127,12 @@ criterion needs.
 - **Consequence.** For this surface-type example, the Theorem is conditional on torsion of those transfer
   defects. This is exactly the open non-torsion case above.
 - This concerns `P` itself. The BBMZ host over `P ∗ Z` was not computed.
+
+## Defect class of the pentagon reflection germs (09-19; artifact `gq-bh-finf-hyp-pentagon-defect-class.md`)
+
+- On the coarse type graph `H_0 ≅ Z = ⟨x⟩`.
+- Each reflection's 4 singular chains carry defect `+x, +x, −x, −x`, which cancel in pairs, at every tested level.
+- By the surjection `H_0(true) → H_0(coarse)`, these defects have **infinite order** for the true types too.
+- So the torsion criterion fails at the level of elements. The pentagon RSG is in the open non-torsion case: a
+  Houghton-type integer flux across each wall.
+- Whether this obstructs `F_∞`, or only this complex, is **open**.
