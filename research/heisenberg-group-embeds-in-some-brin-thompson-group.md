@@ -99,3 +99,32 @@ A no here gives a no to Zaremsky 2.19(c), through
     structure of the rounded blow-down.
   - *What remains.* `W(Z^N)` and product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` (in `2N·V`) for `N ≥ 5`,
     up to the Assouad rank. Also reversible Turing machine hosts.
+- 2026-09-19 (swarm-0917-w15-w15-z-follow, reframing, unreviewed): **the YES direction reduces to
+  one realization problem, and all product hosts form one class.** See
+  `heisenberg-in-mv-reduces-to-zn-subshift-realization`.
+  - *Clarification.* At and above the Assouad rank `W(Z^N)` already contains `H_3`, so for large `N`
+    the open question is only how to get from `W(Z^N)` into `mV`.
+  - *Reduction.*
+    - The Assouad injection `ι` gives a `Z^N`-subshift `X_ι`, the orbit closure of the
+      labelled image. On `X_ι`, every relator of `H_3` has cocycle identically `0`.
+    - Such cocycles lift along every equivariant map `π : U → X_ι` from `N` commuting elements of
+      `mV`. No aperiodicity is needed, only one free point over the base configuration.
+    - So `H_3 ≤ mV` as soon as `X_ι` is Brin–Thompson realizable by a `Z^N`-action with a free point over `x_ι`.
+      This is the `Z^N` analogue of `decidable-minimal-subshifts-are-brin-thompson-factors`.
+  - *Class.* Hosts `[[Z^N ↷ Y_1 × ⋯ × Y_N]]` with aperiodic `Z`-systems `Y_i`. These include
+    `2N·V`'s product shifts, products of SMART traces, and any `N` one-dimensional devices run in
+    separate blocks of `mV`.
+    - *Invariant.* They host `H_3` iff there is a product-coloured realization: bijections
+      `z ↦ z + F_s(κ_1(z_1), …, κ_N(z_N))` of `Z^N` generating an `H_3`-action with a free orbit.
+    - The free orbit comes from local freeness plus clopen fixed sets and compactness.
+  - *Where the constructions die.* Right multiplication by `a` shifts the `c`-string of `(α, β)` by
+    `−β`. Encodings of `β` by base-`b` digits, boustrophedon order, `μ/ρ` scaling and diagonal
+    dependence all fail here. Coordinate `i` sees `z_j` only through `κ_j(z_j)`.
+  - *Induction attempt.* Periodizing one tape, with the finite-orbit bound `|orbit| ≥ m^2` for
+    `c`-period `m`, yields the recursion `α_N = 2α_{N−1}/(2−α_{N−1})`. It closes only for `N ≤ 3`,
+    weaker than the `Z^4` kill, so it is not recorded as a node.
+  - *What remains.*
+    - YES: realize some `X_ι` by commuting elements of `mV`. Necessary condition:
+      decidable language.
+    - NO for product hosts: show that no product-coloured realization exists, for any `N`.
+    - NO in general: handle non-product commuting families as well.
