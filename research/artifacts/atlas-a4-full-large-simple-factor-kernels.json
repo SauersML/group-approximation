@@ -1,0 +1,14 @@
+{
+  "C144_compatible_kernel_orders": [1, 4, 4],
+  "C144_compatible_quotients": ["A4 x A4", "C3 x A4", "C3 x A4"],
+  "C144_order": 144,
+  "C144_order4_kernel_normal_generators": [
+    "(r*z^-1*b^-1)^3",
+    "(r*z^-1*b^-1)^4*z*r^-1"
+  ],
+  "Fprime_compatible_kernel_orders": [1],
+  "Fprime_order": 36,
+  "J_compatible_kernel_orders": [1],
+  "J_order": 24,
+  "simple_factor_order_divisible_by": 360
+}

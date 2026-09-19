@@ -1,0 +1,15 @@
+{
+  "degree_cutoff": 12,
+  "marked_Q168_classes": 6,
+  "record_fields": [
+    "coset_degree",
+    "local_order",
+    ["fp_relators", "colimit_order", "Q_image", "F_image", "J_image", "z_order", "c_order"]
+  ],
+  "record_histogram": [
+    {"record": [7, 168, [10, 168, 168, 6, 6, 1, 1]], "multiplicity": 2},
+    {"record": [7, 168, [11, 168, 168, 6, 6, 1, 1]], "multiplicity": 2},
+    {"record": [8, 168, [9, 168, 168, 6, 6, 1, 1]], "multiplicity": 2}
+  ],
+  "conclusion": "every marked Q168 colimit preserves Q168 and kills z and c"
+}

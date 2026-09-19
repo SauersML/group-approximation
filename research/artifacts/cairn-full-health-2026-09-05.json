@@ -1,0 +1,29 @@
+{
+  "scope": "Full authoritative source snapshot: every research node parsed by Cairn load_nodes, all native lint and graph checks, and unfiltered duplicate scan. Artifact existence checked against the local workspace path manifest; historical pins checked in remote Git. No mathematical proof-kernel claim.",
+  "node_count": 14102,
+  "claims": 6983,
+  "routes": 7119,
+  "elapsed_seconds": 8.328,
+  "findings": [],
+  "statuses": {
+    "COMPLETE": 5976,
+    "ESTABLISHED": 5910,
+    "OPEN": 1695,
+    "INVALIDATED": 379,
+    "REFUTED": 142
+  },
+  "root_status": "OPEN",
+  "historical_dead_work_count": 21,
+  "historical_detached_lane_count": 97,
+  "cairn_version": "2.13.1",
+  "source_archive_sha256": "2f2d20eb1149aca4fe3f9a11d9fb7f56e07f7b5d7ac4b73014eae61df189c78b",
+  "checker_regressions": {
+    "initial_suite_passed": 11,
+    "initial_elapsed_seconds": 26.92,
+    "final_guard_tests_passed": 2,
+    "final_guard_elapsed_seconds": 3.081,
+    "total_distinct_regressions_passed": 12,
+    "command": "/usr/bin/python3.12 tools/test_cairn.py",
+    "scope": "Original 11-test suite passed; after the final reuse guard, its new regression and existing source-reuse test passed on the final checker. Full source audit used the final checker."
+  }
+}

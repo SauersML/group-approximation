@@ -1,0 +1,27 @@
+# Display assignments for the recognition manuscript
+# (mf_recognition_complexity.tex).
+#
+# key<TAB>status<TAB>decls<TAB>note.  Generated companion:
+# metadata/MF_RECOGNITION_DISPLAY_CENSUS.tsv, which must not be edited.  The
+# key is printed by scripts/display_census.py: for a display block it is the
+# first twelve hex digits of the sha256 of the normalized block body, and for a
+# line the prose \eqref's individually it is the sha256 of the LABEL, so that
+# rewording such a line does not move its row.
+#
+# Statuses:
+#   carrier               the named declarations state this displayed identity
+#   notation-only         the display introduces a symbol the prose names; it
+#                         asserts nothing, and decls name the defined object
+#   derivation-of:<key>   an intermediate step of a proof whose conclusion is
+#                         graded at that SENTENCE key.  Such a row names NO
+#                         declarations, and the target must resolve in the
+#                         recognition sentence census and must not itself be
+#                         unassigned.
+# A key with no row here reads `unassigned`, the state --check rejects.
+#
+# Opened 2026-08-29 by census-lane for issue #51's display subtask, empty on
+# purpose: the recognition displays are untriaged, and the external audit
+# singles out the compiler section's seed table as the one that most needs a
+# grade.  The workflow runs regeneration, --verify-links and --verify-decls,
+# and not --check, so the count of what is ungraded is reported rather than
+# turned into a permanent red.

@@ -1,0 +1,366 @@
+# LVIII: a canonical natural splitting selected by arbitrarily small supports
+
+Date: 5 September 2026. Complete argument, internally reviewed.
+The root review checked the exact hereditary matrix block, the nonunital
+stable range, the common-class argument for arbitrarily small supports,
+and quasitrace restriction for both unital and corner maps.
+No external review, formal verification, or novelty priority is claimed.
+This strengthens the existing compatible group splittings by identifying
+an intrinsic subgroup and a natural choice of section. It does not prove
+that the unstable kernels vanish.
+
+## 1. Statement
+
+Let \(\mathcal C\) consist of the nonzero simple unital finite pure
+C*-algebras \(B\) with \(QT_1(B)\ne\varnothing\). Fix \(k\ge1\), and write
+\[
+ G_k(B)=\pi_k(U(B),1),\qquad
+ \sigma_B:G_k(B)\longrightarrow K_{k+1}(B).
+ \tag{1}
+\]
+All sphere representatives below are norm-continuous and based at the
+identity. For \(u:S^k\to U(B)\), put
+\[
+ \delta_B(u)=
+ \sup_{x\in S^k,\ \tau\in QT_1(B)}
+ d_\tau(|u(x)-1|).
+ \tag{2}
+\]
+
+Define an intrinsic subset
+\[
+ I_k(B)=\left\{\xi\in G_k(B):
+   \text{for every }\varepsilon>0\text{ there is a representative }u
+   \text{ of }\xi\text{ with }\delta_B(u)<\varepsilon\right\}.
+ \tag{3}
+\]
+
+**Theorem 1.** The set \(I_k(B)\) is a subgroup, and the restriction
+\[
+ \sigma_B|_{I_k(B)}:I_k(B)\xrightarrow{\ \cong\ }K_{k+1}(B)
+ \tag{4}
+\]
+is an isomorphism. Its inverse defines a canonical group section
+\[
+ s_B:K_{k+1}(B)\longrightarrow G_k(B).
+ \tag{5}
+\]
+It is independent of dimension-drop maps, hereditary subalgebras, matrix
+sizes, and particular representatives. For every unital *-homomorphism
+\(\varphi:B\to C\) with \(B,C\in\mathcal C\),
+\[
+ \pi_kU(\varphi)\,s_B=s_C\,K_{k+1}(\varphi).
+ \tag{6}
+\]
+
+Consequently
+\[
+ G_k(B)=I_k(B)\oplus\ker\sigma_B
+ \cong K_{k+1}(B)\oplus\ker\sigma_B
+ \tag{7}
+\]
+canonically and naturally for these maps. Here all groups are abelian,
+including \(k=1\), since the fundamental group of a topological group
+is abelian.
+
+The same sections applied to \(M_m(B)\), with the usual Morita
+identification of their stable K-groups, commute with corner
+stabilization:
+\[
+ \pi_k(u\mapsto\operatorname{diag}(u,1_B))\,s_{M_m(B)}
+ =s_{M_{m+1}(B)}.
+ \tag{8}
+\]
+Thus the compatible splittings can be chosen canonically, not just
+coherently after fixing one hereditary matrix piece.
+
+The word “canonical” refers to these group homomorphisms, characterized
+by (3). No continuous section between unitary spaces or uniform
+representative-selection procedure is asserted.
+
+## 2. A fixed arbitrarily small hereditary support carries every stable class
+
+We use two previously internally reviewed results:
+
+- [Matrix-piece stable range](stw58-compatible-split-stable-surjectivity-2026-09-05.md),
+  Lemma 2: if \(D\) has stable rank one and \(N\ge k+2\), then
+  \(\pi_k U_N(D)\to K_{k+1}(D)\) is an isomorphism, including
+  nonunital \(D\) with supported unitaries.
+- [Small-support contraction](stw58-small-quasitrace-support-kernel-contraction-2026-09-05.md),
+  Theorem 1: a stably zero unitary family supported in
+  \(\operatorname{Her}(h)\) contracts if
+  \(\sup_{x,\tau}d_\tau(h(x))<1/(k+1)\).
+
+The conservative bound \(N=k+2\) suffices throughout. No improved
+matrix stable range is needed.
+
+**Lemma 2.** For every \(\varepsilon>0\), there is a fixed positive
+element \(h\in B\) such that
+\[
+ \sup_{\tau\in QT_1(B)}d_\tau(h)<\varepsilon
+ \tag{9}
+\]
+and \(R=\operatorname{Her}_B(h)\) is full hereditary in \(B\), with
+\[
+ \pi_k U_B(R)\xrightarrow{\ \cong\ }K_{k+1}(B)
+ \tag{10}
+\]
+under supported inclusion followed by stabilization. Thus the same
+fixed support carries representatives of every stable class.
+
+Here \(U_B(R)=\{u\in U(B):u-1\in R\}\). If \(R\) is unital with
+unit \(p\), this is the usual supported copy \(U(R)+(1-p)\);
+if it is nonunital, it is the scalar-one unitary group of its
+unitization.
+
+**Proof.** Fix \(N=k+2\), and choose an integer \(L\ge N\) so large
+that \(N/L<\varepsilon\). As in the reviewed dimension-drop
+construction, Lin's stable-rank-one theorem, almost divisibility,
+compactness of the unit class, and Rørdam--Winter Proposition 5.1
+give a unital homomorphism \(Z_{L,L+1}\to B\). Choose a nonzero
+canonical order-zero endpoint map
+\[
+ \phi:M_\ell\to B,\qquad \ell\in\{L,L+1\}.
+\]
+Write \(h_j=\phi(e_{jj})\) and \(h_{\rm all}=\phi(1)\).
+The \(h_j\) are nonzero, mutually orthogonal, Cuntz equivalent,
+and sum to a positive contraction. Thus
+\[
+ d_\tau(h_j)\le1/\ell\qquad(\tau\in QT_1(B)).
+ \tag{11}
+\]
+
+The supporting homomorphism of \(\phi\) gives multiplier matrix
+units for \(\operatorname{Her}(h_{\rm all})\). Explicitly, its
+matrix units \(\pi(e_{ij})\) satisfy
+\(\pi(e_{ij})h_{\rm all}^{1/2}\in B\); multiplication on both
+sides preserves the hereditary algebra. Consequently
+\[
+ \operatorname{Her}(h_{\rm all})\cong M_\ell(D)
+\]
+for a hereditary \(D\subset B\), and the hereditary subalgebra
+generated by
+\[
+ h=\sum_{j=1}^N h_j
+\]
+is exactly the corresponding upper-left block
+\[
+ R=\operatorname{Her}(h)\cong M_N(D).
+ \tag{12}
+\]
+This is an actual hereditary subalgebra of \(B\), not merely an
+equality of Cuntz classes. Stable rank one passes to \(D\).
+Since \(R\ne0\), simplicity makes \(R\) full in \(B\).
+
+Orthogonal additivity and (11) give
+\[
+ d_\tau(h)\le N/\ell\le N/L<\varepsilon.
+\]
+The matrix-piece lemma identifies \(\pi_kU_B(R)\) with
+\(K_{k+1}(R)\). Full hereditary K-theory invariance identifies
+the latter with \(K_{k+1}(B)\), and both maps are the canonical
+ones. This proves (10).
+
+In particular, for each \(a\in K_{k+1}(B)\), (10) supplies a
+based representative \(u:S^k\to U_B(R)\) of \(a\). Since \(h\)
+is strictly positive in \(R\), every positive element of \(R\)
+is Cuntz below \(h\). Therefore
+\[
+ \delta_B(u)\le\sup_\tau d_\tau(h)<\varepsilon.
+ \tag{13}
+\]
+No dependence of \(h\) on \(a\) is necessary. \(\square\)
+
+The published dimension-drop input is
+[Rørdam--Winter, Proposition 5.1](https://web.math.ku.dk/~rordam/manus/jiang-su-revisited.pdf),
+*The Jiang--Su algebra revisited*. The linked reviewed
+matrix-piece proof supplies the finite-\(W(B)\) bridge, the exact
+multiplier-matrix construction, the Rieffel stable-range proof,
+and the scalar-quotient correction for nonunital \(D\).
+This argument does not invoke the disputed inference from the
+all-torus hypothesis of Rieffel's Theorem 3.3 to arbitrary
+stable-rank-one degree-one injectivity.
+
+## 3. Uniqueness for sufficiently small representatives
+
+**Lemma 3.** Let \(u,v:S^k\to U(B)\) be based families with the
+same stable class. If
+\[
+ \delta_B(u)+\delta_B(v)<1/(k+1),
+ \tag{14}
+\]
+then they are based homotopic.
+
+**Proof.** Let
+\[
+ h_1=|u-1|,\quad h_2=|v-1|,\quad H=h_1+h_2
+ \quad\text{in }C(S^k,B).
+\]
+Normality gives \(u-1\in\operatorname{Her}(h_1)\) and
+\(v-1\in\operatorname{Her}(h_2)\). Both hereditary algebras lie
+in \(\operatorname{Her}(H)\), so
+\[
+ uv^*-1=(u-1)+(v^*-1)+(u-1)(v^*-1)
+ \in\operatorname{Her}(H).
+ \tag{15}
+\]
+The Cuntz inequality \([h_1+h_2]\le[h_1]+[h_2]\) gives
+\[
+ \sup_{x,\tau}d_\tau(H(x))
+ \le\delta_B(u)+\delta_B(v)<1/(k+1).
+\]
+The stable class of \(uv^*\) is zero. The reviewed small-support
+theorem therefore gives a based contraction of \(uv^*\).
+Multiplication by \(v\) gives a based homotopy from \(u\) to \(v\).
+\(\square\)
+
+This is the step which removes choices. No local word
+factorization or gluing assertion is used.
+
+## 4. Construction of the intrinsic subgroup and its inverse
+
+The identity class belongs to \(I_k(B)\). If \(\xi,\zeta\) belong
+to \(I_k(B)\), then for any prescribed \(\varepsilon>0\) choose
+representatives \(u,v\) with
+\(\delta_B(u),\delta_B(v)<\varepsilon/2\). Formula (15), with
+\(v^*\) replaced by \(v\), shows that \(uv-1\) belongs to the
+hereditary algebra generated by \(|u-1|+|v-1|\). Hence
+\[
+ \delta_B(uv)\le\delta_B(u)+\delta_B(v)<\varepsilon.
+\]
+Thus \(\xi+\zeta\in I_k(B)\). Also
+\(|u^*-1|=|u-1|\), because \(u\) is unitary, so inverses belong
+to \(I_k(B)\). This proves the subgroup assertion.
+
+If \(\xi\in I_k(B)\) and \(\sigma_B(\xi)=0\), choose a
+representative \(u\) with \(\delta_B(u)<1/(k+1)\). The small-support
+theorem contracts it, so \(\xi=0\). Thus (4) is injective.
+
+For surjectivity, fix \(a\in K_{k+1}(B)\). Lemma 2 provides a
+based representative \(u_\varepsilon\) with stable class \(a\)
+and \(\delta_B(u_\varepsilon)<\varepsilon\), for every
+\(\varepsilon>0\). Choose a fixed
+\[
+ 0<\varepsilon_0<1/(2(k+1)).
+\]
+All representatives constructed with
+\(0<\varepsilon\le\varepsilon_0\) are based homotopic by
+Lemma 3. Their common class \(\xi\) therefore has representatives
+of arbitrarily small support, so \(\xi\in I_k(B)\) and
+\(\sigma_B(\xi)=a\). This proves (4).
+
+Its inverse (5) is a group homomorphism because (4) is an
+isomorphism of groups. The intrinsic definition (3) makes
+choice independence precise. Formula (7) follows from the
+explicit maps
+\[
+ \xi\longmapsto
+   \bigl(\sigma_B(\xi),\,\xi-s_B(\sigma_B(\xi))\bigr),
+ \qquad
+ (a,\nu)\longmapsto s_B(a)+\nu.
+ \tag{16}
+\]
+
+## 5. Naturality and matrix compatibility
+
+Let \(\varphi:B\to C\) be unital, and let
+\(\rho\in QT_1(C)\). Then \(\rho\circ\varphi\in QT_1(B)\).
+Functional calculus and the definition of \(d_\tau\) give
+\[
+ d_\rho(|\varphi(u(x))-1|)
+ =d_{\rho\circ\varphi}(|u(x)-1|).
+\]
+Consequently
+\[
+ \delta_C(\varphi\circ u)\le\delta_B(u).
+ \tag{17}
+\]
+It follows that \(\pi_kU(\varphi)\) carries \(I_k(B)\) into
+\(I_k(C)\). Canonical stabilization is natural, and (4) gives a
+unique element of \(I_k(C)\) over each stable class. This proves
+(6) and naturality of (7).
+
+For completeness, the same support argument applies to a
+nonunital *-homomorphism \(\varphi:B\to C\) by using the supported
+unitary map
+\[
+ u\longmapsto 1_C-\varphi(1_B)+\varphi(u).
+ \tag{18}
+\]
+Indeed, for \(\rho\in QT_1(C)\), put
+\(\lambda=\rho(\varphi(1_B))\in[0,1]\). If \(\lambda>0\),
+\(\lambda^{-1}\rho\circ\varphi\) is a normalized quasitrace on
+\(B\), so
+\[
+ d_\rho(\varphi(h))\le\lambda\sup_\tau d_\tau(h)
+ \le\sup_\tau d_\tau(h).
+\]
+If \(\lambda=0\), the positive restriction \(\rho\circ\varphi\)
+vanishes: for \(h\ge0\), monotonicity bounds it by
+\(\|h\|\rho(\varphi(1_B))=0\). Its dimension function vanishes
+as well. Thus (17) remains valid for (18).
+
+Apply this to the corner homomorphism
+\(M_m(B)\to M_{m+1}(B)\). Matrix algebras over \(B\) remain simple
+unital finite pure and have normalized quasitraces, so the
+theorem applies to every size. The corner map induces the
+canonical stable K-theory identification and sends \(I_k(M_mB)\)
+into \(I_k(M_{m+1}B)\). Uniqueness in (4) proves (8).
+
+Under the resulting canonical direct sums, consecutive matrix
+maps have the form
+\[
+ (a,\nu)\longmapsto(a,t_m\nu).
+\]
+The direct limit of the kernel groups is zero, by the usual
+finite-matrix detection of a compact stabilized nullhomotopy.
+Neither consecutive surjectivity nor vanishing of any individual
+kernel follows.
+
+## 6. A gap in the support size of homotopy classes
+
+For a homotopy class \(\xi\in G_k(B)\), define
+\[
+ w_B(\xi)=\inf\{\delta_B(u):[u]=\xi\}.
+ \tag{19}
+\]
+This is an infimum over based representatives, not a claim that a
+minimizing representative exists. The support lower bound strengthens to
+\[
+ \xi\in I_k(B)
+ \quad\Longleftrightarrow\quad w_B(\xi)=0
+ \quad\Longleftrightarrow\quad w_B(\xi)<\frac1{k+1}.
+ \tag{20}
+\]
+The first equivalence is the definition. For the remaining implication,
+choose a representative \(u\) of \(\xi\) with
+\(\delta_B(u)<1/(k+1)\). Lemma 2 gives a representative \(v\) of
+the same stable class with
+\(\delta_B(v)<1/(k+1)-\delta_B(u)\), small enough also to represent
+the canonical lift constructed in Section 4. Lemma 3 gives \([u]=[v]\),
+so \(\xi\in I_k(B)\).
+
+Every class outside \(I_k(B)\) therefore has
+\(w_B(\xi)\ge1/(k+1)\). No optimality of the threshold or existence
+of such a class is asserted. A finite product of based families each
+satisfying \(\delta_B(u_j)<1/(k+1)\) represents a class in \(I_k(B)\),
+since each factor does and \(I_k(B)\) is a subgroup. If that product
+is stably null, it contracts. This is a sufficient global fragmentation
+criterion; no claim is made that every family satisfies it.
+
+## 7. Exact remaining gap
+
+The stable classes now have a canonical lift characterized by
+arbitrarily small support. This is stronger than choosing a large
+endpoint piece once and obtaining a compatible splitting.
+
+What remains for K-stability is the assertion
+\[
+ I_k(B)=G_k(B).
+\]
+Equivalently, every homotopy class would need representatives with
+arbitrarily small support. The theorem establishes this property
+for the canonical stable summand, and proves that a nonzero kernel
+cannot have it. It does not construct the requisite localization
+for an arbitrary class, and does not replace global transition
+control by a pointwise factorization.

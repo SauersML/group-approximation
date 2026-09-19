@@ -1,0 +1,274 @@
+import GroupApproximation.Sofic.SmallCancellationRouter
+import GroupApproximation.Sofic.PeriodicOverlap
+
+/-!
+# The free-group gate, and the router consequences that no longer mention it
+
+`Sofic.SmallCancellationRouter` carries the word-level engine of the router as
+far as it goes without the classical metric small-cancellation theorem, and
+freezes that theorem as `GreendlingerGate α` — consumed as an explicit
+hypothesis, never as an axiom.  Two of the router's obligations are already
+theorems of the gate: `norm_bound_of_greendlinger` and, through it,
+`protected_injOn_of_gate`.
+
+This file states the gate once, as a theorem with an open body, and re-derives
+those two consequences from it, so that a downstream caller names
+`protected_injOn_of_metric` and carries no gate hypothesis.  When the gate is
+proved, exactly one body in this file changes and no signature anywhere moves.
+
+`greendlingerGate` is the free-group half of the same combinatorial statement
+whose free-product half is `Sofic.GreendlingerRelativeTransfer.
+greendlingerConclusion_of_metric`.  The two are independent: the relative one
+is not a corollary of the free one, because a syllable is not a letter and the
+free-product diagram has its own vertex condition.
+
+**This module has two open leaves and must not be root-imported until they are
+discharged.**  The derived theorems here are honest derivations, but every one
+of them calls a leaf, and an incomplete proof propagates through a call with no
+warning at the call site: importing this file silently taints whatever consumes
+it.  Elaboration is therefore not the check that matters — `scripts/Audit.lean`
+and its axiom probe are, and `scripts/check.py` rejects the file outright while
+a leaf is open.  Treat green elaboration here as "the statements typecheck and
+compose", never as "the results hold".
+-/
+
+namespace GroupApproximation
+namespace GreendlingerFreeGate
+
+open SmallCancellationRouter
+
+section Words
+
+variable {α : Type*}
+
+/-! `GreendlingerConclusionSharp` is **not defined here.**  It lives beside the
+half-form it generalizes, in `SmallCancellationRouter`, and reaches this file
+through the `open` above.  Two lanes consume it — this gate half proves it, the
+torsion descent spends it — so neither may own it.
+
+Do not reintroduce a local copy.  A definition duplicated between a file's own
+namespace and an opened one does not error: the local one silently wins at
+every call site in this file, the two constants stay definitionally equal and
+compose by unfolding, and nothing breaks until someone edits one body. -/
+
+/-- **OPEN — the one leaf of this file's gate half.**  Classical metric small
+cancellation at its sharp constant: a `C'(λ)` family of cyclically reduced
+relators, for `λ` at most a sixth, satisfies the Greendlinger conclusion with
+arc bound `(1 - 3λ)·|r|`.
+
+`hlam` is not decoration.  Greendlinger's lemma is a theorem about `λ ≤ 1/6`
+and is false above it — the curvature count needs every interior face of a
+reduced diagram to meet at least seven others, which is exactly what a sixth
+buys and a fifth does not.  For `λ ≥ 1/3` the conclusion degenerates (the
+coefficient turns non-positive) and says nothing; the interesting and
+genuinely open range is `λ ≤ 1/6`, which is also the only range any consumer
+needs, the router family being designed at `1/8`.
+
+Note where the symmetrization sits: `MetricSmallCancellation R lam` measures
+pieces inside `symmetrization R`, and the conclusion quantifies over
+`symmetrization R` as well, so no closure hypothesis on `R` is needed here —
+unlike the free-product form, where pieces are compared inside the given
+family and symmetrization has to be assumed.
+
+The proof to write is either of the two classical routes, and the repository
+has both partly walked: the reduced-diagram curvature count
+(`Sofic/Greendlinger*`, residual `CascadeLanding`, whose `i_c = 0` branch is
+discharged in `Sofic/GreendlingerDeepestMatch`) and Dehn's algorithm as a
+rewriting system (`Sofic/GreendlingerDehn*`, residual `PieceOverlapRight`).
+Both end at the same crossing, and it is a van Kampen argument.  Either route
+produces the sharp constant directly: `(1 - 3λ)` is what the boundary-layer
+count gives, and rounding it to a half is a step taken only for convenience. -/
+theorem greendlingerConclusionSharp_of_metric {R : Set (List (α × Bool))}
+    {lam : ℚ} (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hlam : lam ≤ 1 / 6) (hmetric : MetricSmallCancellation R lam) :
+    GreendlingerConclusionSharp R lam := by
+  sorry
+
+/-- **The half-form, derived.**  At `λ = 1/6` the sharp coefficient is exactly
+`1/2`, so this is the sharp leaf read at one value and cast back to `ℕ` — not a
+second open statement. -/
+theorem greendlingerConclusion_of_metric {R : Set (List (α × Bool))}
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R (1 / 6)) :
+    GreendlingerConclusion R := by
+  intro w hred hne hmem
+  obtain ⟨r, hr, u, huw, hur, hlt⟩ :=
+    greendlingerConclusionSharp_of_metric hcyc le_rfl hmetric w hred hne hmem
+  refine ⟨r, hr, u, huw, hur, ?_⟩
+  have h2 : (r.length : ℚ) < 2 * (u.length : ℚ) := by
+    norm_num at hlt
+    linarith
+  exact_mod_cast h2
+
+/-- The gate itself, in the form the router's own statements consume.  This is
+the previous theorem with its quantifier restored, and nothing else. -/
+theorem greendlingerGate (α : Type*) : GreendlingerGate α :=
+  fun _ hcyc hmetric => greendlingerConclusion_of_metric hcyc hmetric
+
+/-- **Nontrivial elements of the relator subgroup are longer than half of some
+symmetrized relator**, from the metric condition alone.  The gate-free form of
+`SmallCancellationRouter.norm_bound_of_greendlinger`. -/
+theorem norm_bound_of_metric [DecidableEq α] {R : Set (List (α × Bool))}
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    {g : FreeGroup α} (hg : g ≠ 1)
+    (hmem : g ∈ Subgroup.normalClosure (FreeGroup.mk '' R)) :
+    ∃ r ∈ symmetrization R, r.length < 2 * FreeGroup.norm g :=
+  norm_bound_of_greendlinger (greendlingerConclusion_of_metric hcyc hmetric)
+    hg hmem
+
+/-- **The router's protected-set obligation, with no gate hypothesis.**  A
+`C'(1/6)` presentation is injective on every protected set whose pairwise
+differences are short against all symmetrized relators — which is the field
+`RoutingLemmaData.protected_injOn` asks for, and from which nontriviality of
+the routed protected element is derived rather than stored. -/
+theorem protected_injOn_of_metric [DecidableEq α] {R : Set (List (α × Bool))}
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    (P : Set (FreeGroup α))
+    (hshort : ∀ r ∈ symmetrization R, ∀ x ∈ P, ∀ y ∈ P,
+      2 * FreeGroup.norm (x / y) ≤ r.length) :
+    Set.InjOn
+      (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)))
+      P :=
+  protected_injOn_of_gate (greendlingerGate α) hcyc hmetric P hshort
+
+/-! ## The torsion companion
+
+The gate settles the router's protected-set field; the router also needs
+`RoutingLemmaData.torsionFree`, and that is a second combinatorial statement,
+not a corollary of the first. -/
+
+/-- **No relator is a proper power**, at the level of *words*: no relator is
+some shorter word written down `m ≥ 2` times.
+
+Without this the torsion theorem below is false, and its failure is standard:
+the `C'(1/6)` family generated by `(ab)^7` has no pieces at all — distinct
+rotations of `(ab)^7` begin with different letters, and so do the inverses, so
+the metric condition holds vacuously — while the image of `ab` in the quotient
+has order seven.
+
+The predicate itself is `PeriodicOverlap.IsProperPower`, taken from the
+periodicity lane rather than restated here, so that its closure lemmas apply to
+this hypothesis with no adapter.  Two choices are recorded, because each could
+have gone the other way.
+
+* **Words, not group elements.**  The alternative, `FreeGroup.mk r ≠ s ^ k` for
+  every `s` and every `k ≥ 2`, is a *stronger* hypothesis —
+  `PeriodicOverlap.exists_pow_of_isProperPower` turns a word-level power into a
+  group-level one, and `noProperPower_of_forall_ne_pow` is that implication
+  packaged for callers who happen to have the group-level form.  For cyclically
+  reduced relators the two agree, since conjugate cyclically reduced words are
+  cyclic rotations of one another and a rotation of `uᵐ` is `(rotation of u)ᵐ`.
+  The word-level form is primary because it is what the periodicity step
+  *produces*: a `List.replicate`/`flatten` decomposition, not a group equation.
+  The converse fails — cancellation can make a reduced word that is no block
+  power spell a group power — so the two readings are genuinely different
+  hypotheses and only one of them is checkable by inspection.
+* **On the base family `R`, not on `symmetrization R`.**  This makes the
+  theorem stronger and the hypothesis checkable against the finitely many
+  relators a router construction actually writes down.  It costs the discharge
+  nothing: `NoProperPower.mem_symmetrization` below carries the hypothesis to every
+  member of `symmetrization R` in one step.  Neither rotation nor formal
+  inversion can create or destroy a block power — both are invertible on words,
+  and `FreeGroup.invRev` reverses the block order of a power whose blocks are
+  all equal, so the exponent is untouched. -/
+def NoProperPower (R : Set (List (α × Bool))) : Prop :=
+  ∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r
+
+/-- The group-level reading of the hypothesis implies the word-level one, so a
+caller who knows that no relator is a proper power *in the free group* has the
+hypothesis this file asks for. -/
+theorem noProperPower_of_forall_ne_pow {R : Set (List (α × Bool))}
+    (h : ∀ r ∈ R, ∀ (s : FreeGroup α) (k : ℕ), 2 ≤ k → FreeGroup.mk r ≠ s ^ k) :
+    NoProperPower R := by
+  intro r hr hpp
+  obtain ⟨g, m, hm, hmk⟩ := PeriodicOverlap.exists_pow_of_isProperPower hpp
+  exact h r hr g m hm hmk
+
+/-- **The hypothesis transfers to the symmetrization**, which is where the
+Greendlinger arc's relator actually lives: the arc is more than half of a
+*symmetrized* relator, while `NoProperPower` is stated on the base family.
+Written for dot notation, so a discharge reads `hnpp.mem_symmetrization hw`.
+
+Nothing is proved here — `PeriodicOverlap.not_isProperPower_of_mem_symmetrization`
+is the content, and `symmetrization R` is *definitionally* the existential it
+asks for, so the two compose with no conversion.  The theorem exists to check
+that composition against this file's `NoProperPower` and this file's
+`symmetrization`, rather than leaving the discharge to discover whether the
+interfaces meet. -/
+theorem NoProperPower.mem_symmetrization {R : Set (List (α × Bool))}
+    (hnpp : NoProperPower R) {w : List (α × Bool)}
+    (hw : w ∈ symmetrization R) : ¬ PeriodicOverlap.IsProperPower w :=
+  PeriodicOverlap.not_isProperPower_of_mem_symmetrization hnpp hw
+
+/-- **OPEN.**  The classical `C'(1/6)` torsion theorem: a metric
+small-cancellation presentation by cyclically reduced relators, none of them a
+proper power, presents a torsion-free group.
+
+The proof to write, after the gate.  A nontrivial `g` of finite order has a
+cyclically reduced conjugate representative `w`, and torsion-freeness is a
+conjugacy-invariant statement, so `w ^ k` lies in the relator subgroup for some
+`k ≥ 1` with `w ∉` it.  The Greendlinger conclusion applied to the reduced word
+spelling `w ^ k` returns an arc that is more than half of some symmetrized
+relator sitting inside a word of period `|w|`, and the periodicity gives a
+second occurrence of that arc, shifted.  So one word `p` prefixes two rotations
+`r.rotate a` and `r.rotate b` of one relator, and the argument is a **two-
+occurrence dichotomy**, not a length count:
+
+* the two rotations are **equal**, and then
+  `PeriodicOverlap.isProperPower_of_rotate_eq_rotate` makes `r` a proper power
+  with **no hypothesis on the overlap length whatever**, contradicting `hnpp`.
+  This branch is settled and is what `hnpp` is for.
+* the two rotations are **distinct**, and then the overlap is a piece, so the
+  metric condition bounds *the overlap*.  **That bound does not by itself
+  contradict the arc being long** — the overlap and the arc are different
+  words, and the resulting length system is satisfiable, so there is no
+  contradiction to extract here.  (An earlier version of this sketch claimed
+  otherwise; it was checked and refuted.)  The distinct branch is closed by
+  the descent on `|w|` in `Sofic/TorsionDescent`, not by a length count in
+  place, and this leaf discharges through that descent's composition rather
+  than through anything stated here.
+
+Do not route this through Fine--Wilf.  The natural-looking sub-lemma "a word
+sharing more than half of itself with its own nontrivial rotation is a proper
+power" is FALSE — `PeriodicOverlap.not_isProperPower_of_two_mul_length_le`
+refutes it with `0 1 0 0 1 0 0 1` overlapping itself in three quarters of its
+length — and the sharp true hypothesis, `w.length ≤ p.length + gcd k w.length`,
+is one a Greendlinger arc never supplies.  Fine--Wilf is available
+(`PeriodicOverlap.rotate_gcd_eq_self_of_prefix_rotate`) and is the wrong tool
+here.
+
+One smaller obligation comes with it: the arc-inside-one-period case, which
+descends on `|w|`.  The transfer of `NoProperPower` from `R` to
+`symmetrization R` is already discharged — see the note on
+`NoProperPower`. -/
+theorem isPowerTorsionFree_of_metricSmallCancellation
+    {R : Set (List (α × Bool))}
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R (1 / 6)) (hnpp : NoProperPower R) :
+    IsPowerTorsionFree
+      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) := by
+  sorry
+
+/-- **The free-group consumption point.**  Both word-combinatorial fields of
+`RoutingLemmaData` — injectivity on the protected set and torsion-freeness of
+the quotient — from one hypothesis list on the relator family. -/
+theorem router_conclusions_of_metric [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R (1 / 6)) (hnpp : NoProperPower R)
+    (P : Set (FreeGroup α))
+    (hshort : ∀ r ∈ symmetrization R, ∀ x ∈ P, ∀ y ∈ P,
+      2 * FreeGroup.norm (x / y) ≤ r.length) :
+    Set.InjOn
+        (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))) P ∧
+      IsPowerTorsionFree
+        (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) :=
+  ⟨protected_injOn_of_metric hcyc hmetric P hshort,
+    isPowerTorsionFree_of_metricSmallCancellation hcyc hmetric hnpp⟩
+
+end Words
+
+end GreendlingerFreeGate
+end GroupApproximation

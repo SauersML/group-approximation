@@ -1,0 +1,47 @@
+[
+ {
+  "tag": "congruence-sanity",
+  "p": 5,
+  "d": 6,
+  "defect1": 0.0,
+  "defect2": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cong_ind": 0.0,
+  "cong_m": 5
+ },
+ {
+  "tag": "congruence-sanity",
+  "p": 7,
+  "d": 8,
+  "defect1": 0.0,
+  "defect2": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cong_ind": 0.0,
+  "cong_m": 7
+ },
+ {
+  "tag": "congruence-sanity",
+  "p": 11,
+  "d": 12,
+  "defect1": 0.0,
+  "defect2": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cong_ind": 0.0,
+  "cong_m": 11
+ }
+]

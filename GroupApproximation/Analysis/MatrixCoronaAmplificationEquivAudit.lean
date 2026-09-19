@@ -1,0 +1,11 @@
+import GroupApproximation.Analysis.MatrixCoronaAmplificationEquiv
+import GroupApproximation.Manuscript.OneSidedMFRadical.StableFinitenessSentences
+import GroupApproximation.Meta.AxiomGuard
+
+open GroupApproximation
+open GroupApproximation.MatrixCoronaAmplificationEmbedding
+open GroupApproximation.Manuscript.OneSidedMFRadical
+
+#audit_axioms matrixCoronaAmplification_surjective
+#audit_axioms matrixCoronaAmplificationEquiv
+#audit_closed_axioms sentence_36cd63cf2803_isomorphism

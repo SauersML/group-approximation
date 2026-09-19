@@ -1,0 +1,27 @@
+{
+  "all_depth_two_adic_harmonic_lifts": [
+    true,
+    true
+  ],
+  "augmented_ranks": [
+    18458,
+    18458
+  ],
+  "binary_rank": 18457,
+  "certified_modulus": 64,
+  "correction_variable_count": 50690,
+  "depth_certificate_sha256": "d65547f5ab4c76636740e8c31fff81e1d4b1b4f6ebf1e4df1c76d48f409767ef",
+  "equation_count": 25284,
+  "free_cokernel_rank": 6826,
+  "prime": 79,
+  "projective_degree": 6321,
+  "rational_rank": 18458,
+  "rationally_compatible_harmonic_demands": [
+    true,
+    true
+  ],
+  "selected_section_basis_profiles": [],
+  "two_primary_elementary_divisors": {
+    "2": 1
+  }
+}

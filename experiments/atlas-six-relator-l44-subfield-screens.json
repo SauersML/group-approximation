@@ -1,0 +1,51 @@
+{
+  "overgroup": "L4(4)",
+  "overgroup_order": 987033600,
+  "projective_subfield_chart_centralizer_order": 1,
+  "relative_markings": 2,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "screened_chart": "standard subfield GL4(2)",
+  "screens": [
+    {
+      "first_survivor": null,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 9,
+        "s_11": 5528592,
+        "s_30": 864,
+        "s_44": 108,
+        "s_55": 27
+      },
+      "projective_seed_centralizer_size": 184320,
+      "relative_marking": "inner",
+      "s_0_conjugacy_class_hits": 30,
+      "s_0_conjugacy_class_size": 5355,
+      "s_0_projective_conjugator_candidates": 5529600,
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 5529600,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "projective_seed_centralizer_size": 184320,
+      "relative_marking": "graph",
+      "s_0_conjugacy_class_hits": 30,
+      "s_0_conjugacy_class_size": 5355,
+      "s_0_projective_conjugator_candidates": 5529600,
+      "survivor_count": 0
+    }
+  ],
+  "subfield_chart_order": 20160,
+  "total_survivors": 0
+}

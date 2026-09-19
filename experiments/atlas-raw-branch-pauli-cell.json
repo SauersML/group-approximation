@@ -1,0 +1,58 @@
+{
+  "compressed_heisenberg": {
+    "order": 8,
+    "order_histogram": {
+      "1": 1,
+      "2": 5,
+      "4": 2
+    },
+    "central_commutator_is_z0": true
+  },
+  "complementary_raw_pauli": {
+    "order": 8,
+    "order_histogram": {
+      "1": 1,
+      "2": 5,
+      "4": 2
+    },
+    "central_commutator_order": 2
+  },
+  "two_pauli_cell": {
+    "order": 64,
+    "order_histogram": {
+      "1": 1,
+      "2": 35,
+      "4": 28
+    },
+    "is_D8_times_D8_by_order_and_commuting_factors": true
+  },
+  "hard_projection_cell": {
+    "generators": [
+      "raw",
+      "x_13(p_11)",
+      "x_13(p_001)"
+    ],
+    "order": 16,
+    "order_histogram": {
+      "1": 1,
+      "2": 11,
+      "4": 4
+    },
+    "raw_commutes_z001": true,
+    "raw_commutes_z11": false,
+    "raw_z11_commutator_order": 2,
+    "structure": "D8 times C2",
+    "regular_trace_c11_minus_z001_minus": "1/4",
+    "regular_trace_add_z11_minus": "1/8",
+    "raw_flips_z11_sign_on_c11_minus": true,
+    "two_raw_arrows_fill_trace_quarter_carrier": true,
+    "no_parent_trace_contradiction": "2*(1/8)=1/4"
+  },
+  "first_hard_escape": {
+    "q_order": 4,
+    "ell_order": 2,
+    "cell_intersection_q_cell_q_inverse": 1,
+    "cell_intersection_ell_cell_ell_inverse": 2
+  },
+  "remaining_gate": "convert ring child-under-parent multiplication into spectral support containment"
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Complete source snapshot checked remotely on MSI acn116 with native Cairn load_nodes, lint_nodes, Graph, and unfiltered duplicate_findings. Artifact paths checked against the workspace manifest; historical pins checked against remote Git. Checker bytes matched the source snapshot. Structural validation is not proof-kernel verification.",
+  "source_archive_sha256": "bff0536c3ad257ae6115bfea6146e93a18ff871deea7160afae261e35f48c1cb",
+  "node_count": 14108,
+  "claims": 6986,
+  "routes": 7122,
+  "elapsed_seconds": 8.755,
+  "findings": [],
+  "duplicate_candidates": 0,
+  "root_status": "OPEN",
+  "new_node_statuses": {
+    "two-kazhdan-correction-has-quadratic-rank-curvature": "ESTABLISHED",
+    "small-angle-cohomology-and-hard-curvature-proof": "COMPLETE",
+    "two-kazhdan-correction-concentrates-normalized-hs-curvature": "ESTABLISHED",
+    "regular-component-cohomology-concentration-proof": "COMPLETE"
+  },
+  "mathematical_review": "Two independent agents audited the small-angle proof; an additional audit verified uniform fixed-epsilon constants. These are mathematical reviews, not formal kernel checks.",
+  "remaining_gap": "No unconditional non-hyperlinear group has been proved. Universal same-dimension support repair for SL5 is ruled out by Becker-Lubotzky; the live correction route needs dimension enlargement or a separately justified narrower input class."
+}

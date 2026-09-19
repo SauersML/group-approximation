@@ -1,0 +1,59 @@
+GBNP 1.1.0 decisive transcript (warnings and ambient census elided)
+
+=== marking 1 ===
+TWIST_INVENTORY Type-A A_centralizer_dimension=12
+ L_centralizer_dimension=8 L_indecomposable_dimensions=[4,4]
+TWIST_INVENTORY Type-B A_centralizer_dimension=20
+ L_centralizer_dimension=8 L_indecomposable_dimensions=[4,4]
+MIXED_TWIST_INVENTORY combined_A_centralizer_dimension=56
+ combined_L_centralizer_dimension=26 sum_individual_L_dimensions=16
+ L_cross_hom_dimension=10 combined_Q_centralizer_dimension=18
+MIXED_V4_BASE label=[ "O8+", 1, "mixed" ] module_dimension=16
+ L_centralizer_dimension=26 relation_count=156
+MIXED_V4_RESULT label=[ "O8+", 1, "mixed" ] gb_count=26
+ identity_coordinates=[0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1]
+ identity_forced=true
+full_groebner_basis=
+ x0
+ x1
+ x2
+ x3
+ x4
+ x5 + 1
+ x6
+ x7
+ x8
+ x9 + 1
+ x10
+ x11
+ x12 + 1
+ x13
+ x14
+ x15
+ x16
+ x17
+ x18
+ x19
+ x20 + 1
+ x21
+ x22
+ x23
+ x24
+ x25 + 1
+identity_normal_forms=twenty-six zero entries
+
+=== marking 2 ===
+TWIST_INVENTORY Type-A A_centralizer_dimension=12
+ L_centralizer_dimension=8 L_indecomposable_dimensions=[4,4]
+TWIST_INVENTORY Type-B A_centralizer_dimension=20
+ L_centralizer_dimension=8 L_indecomposable_dimensions=[4,4]
+MIXED_TWIST_INVENTORY combined_A_centralizer_dimension=56
+ combined_L_centralizer_dimension=26 sum_individual_L_dimensions=16
+ L_cross_hom_dimension=10 combined_Q_centralizer_dimension=18
+MIXED_V4_BASE label=[ "O8+", 2, "mixed" ] module_dimension=16
+ L_centralizer_dimension=26 relation_count=154
+MIXED_V4_RESULT label=[ "O8+", 2, "mixed" ] gb_count=26
+ identity_coordinates=[0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1]
+ identity_forced=true
+full_groebner_basis=the same twenty-six linear coordinate relations
+identity_normal_forms=twenty-six zero entries

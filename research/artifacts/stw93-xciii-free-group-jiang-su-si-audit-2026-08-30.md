@@ -1,0 +1,204 @@
+# STW XCIII: free-group--Jiang--Su property (SI) audit (2026-08-30)
+
+Put
+
+```text
+B = C*_r(F₂),   A = B ⊗ 𝒵,   D = A_ω ∩ A',
+I = J_τ ∩ D,
+```
+
+where `τ` is the unique trace and `J_τ` is the trace-kernel ideal.
+
+## Primary-source status
+
+The April 2026 version of Schafhauser--Tikuisis--White,
+[Problem XCIII](https://arxiv.org/abs/2506.10902), records that `A` has property
+(SI) exactly when `D` has a unique quasitrace.  Searches of arXiv title,
+abstract, and exact-phrase records through 2026-08-30 located no later paper
+settling this question.
+
+Perera--Thiel--Vilalta, [Theorem
+3.6](https://arxiv.org/abs/2512.17261), now proves for every separable
+C*-algebra `E` that `E` is 𝒵-stable exactly when its uncorrected central
+sequence algebra is pure.  It therefore supplies a direct current source for
+pureness of `D`, without nuclearity.  Pureness gives strict comparison by all
+quasitraces; it does not prove that there is only one quasitrace.
+
+Kirchberg--Rørdam, [Theorem
+3.3](https://arxiv.org/abs/1209.5311), prove central surjectivity for every
+separable unital C*-algebra with a faithful trace, with no nuclearity
+assumption.  Applied here it gives
+
+```text
+0 → I → D → M^ω ∩ M' → 0,
+M = π_τ(A)'' = L(F₂) ̅⊗ R.
+```
+
+Dixmier--Lance Proposition 19 (and Fang--Ge--Li, Theorem 4.7) show that `M`
+is super McDuff, so `M^ω ∩ M'` is a II₁ factor.  A II₁ factor has a
+unique normalized quasitrace.  None of these results controls quasitraces which
+put mass on `I`.
+
+## Exact trace-kernel reduction
+
+Every normalized quasitrace on `D` which vanishes on `I` descends to the II₁
+factor quotient and is therefore the limit trace.  Consequently
+
+```text
+A has property (SI)
+  ⇔ D has a unique quasitrace
+  ⇔ every normalized quasitrace on D vanishes on I.
+```
+
+If the answer is negative, there are a normalized quasitrace `q` and a positive
+contraction `h∈I` with
+
+```text
+τ_ω(h)=0  but  q(h)>0.
+```
+
+In particular `q` cannot be bounded above by any constant multiple of the
+limit trace on positive elements.  This turns the open problem into a singular
+quasitrace problem entirely inside the trace-kernel ideal.
+
+## The canonical Jiang--Su slice exhausts the quotient
+
+The abstract II₁-factor quotient has a canonical concrete source.  Put
+`N=L(F₂)` and `M=N tensor_bar R`.  Non-inner amenability of the free group
+supplies finitely many group unitaries whose adjoint action has spectral gap
+on `L²(N) minus C1`; this is the standard spectral gap underlying fullness
+of `N`.
+Tensoring that Hilbert-space inequality with `L²(R)` shows that, for the
+trace-preserving expectation `E_R:M->1 tensor R`,
+
+```text
+norm(x-E_R(x))_2^2
+  <= C sum_j norm([x,u_j tensor 1])_2^2.
+```
+
+Every bounded central sequence `(x_n)` in `M` is therefore equal in the
+tracial ultrapower to `(E_R(x_n))`.  Bimodularity of `E_R` makes the latter a
+central sequence in `R`.  Hence
+
+```text
+R^omega intersect R' -> M^omega intersect M'
+```
+
+is onto.  Kirchberg--Rørdam central surjectivity for `Z` makes
+`F(Z)->R^omega intersect R'` onto as well.  Combining these maps with the
+tracial quotient gives the canonical isomorphism
+
+```text
+F(Z)/(J_(tau_Z) intersect F(Z)) ~= D/I.
+```
+
+Equivalently, `D=I+iota(F(Z))`, and the intersection of the two summands is
+exactly the trace-kernel part of the slice.  This is stronger than merely
+knowing that quasitraces restrict canonically to `F(Z)`: the single canonical
+slice represents every element of the tracial central quotient.  It does not
+split the extension or annihilate `I`; a singular quasitrace can still detect
+how the norm central sequence algebra is glued to that quotient.
+
+## The two tensor sources
+
+There are canonical unital embeddings
+
+```text
+F(B) → D,  [(b_n)] ↦ [(b_n⊗1)],
+F(𝒵) → D,  [(z_n)] ↦ [(1⊗z_n)].
+```
+
+Since `L(F₂)` is full, central surjectivity for `B` has scalar target:
+
+```text
+F(B)/(J_τ∩F(B)) ≅ ℂ.
+```
+
+Thus every non-scalar free-factor central sequence is trace-kernel modulo its
+limit-trace scalar.  This locates a concrete source of elements in the open
+ideal but does not construct a quasitrace charging them.
+
+On the other hand, `𝒵` has property (SI), and the standard trace-kernel
+argument gives uniqueness of the quasitrace on `F(𝒵)`.  Hence every
+normalized quasitrace on `D` restricts to the canonical one on the tensor-factor
+copy.  Moreover, any property-(SI) pair lying wholly in this copy has a witness
+within the same copy.  Tensor-factor central sequences alone therefore cannot
+witness failure.
+
+## The Jiang--Su-generated null ideal
+
+The preceding slice rigidity propagates from the slice to the ambient ideal
+it generates.  Set
+
+```text
+E = J_τ ∩ F(𝒵),
+K_𝒵 = Ideal_D(ι(E)).
+```
+
+Then `K_𝒵⊆I`, and every normalized quasitrace `q` on `D` annihilates
+`K_𝒵`.  Indeed, `q∘ι` is the canonical quasitrace on `F(𝒵)`, so
+`ι(E)` lies in the closed two-sided null ideal
+`N_q={x:q(x*x)=0}`.  It follows that the ideal generated by `ι(E)` lies in
+`N_q`, hence is killed by `q` on positive elements.
+
+Therefore the quotient map gives an exact bijection
+
+```text
+QT₁(D/K_𝒵) ≅ QT₁(D),
+```
+
+and the open ideal-annihilation statement becomes
+
+```text
+every q in QT₁(D) kills I
+  ⇔ every q-bar in QT₁(D/K_𝒵) kills I/K_𝒵.
+```
+
+This is stronger than knowing only that quasitraces are canonical on the
+embedded copy of `F(𝒵)`: a counterexample cannot charge any element of the
+ambient ideal generated by its trace-zero slice.  It must survive in the
+residual trace-kernel ideal `I/K_𝒵`.  The two directions are recorded in
+the graph as `stw93-residual-null-implies-full-null` and
+`stw93-full-null-implies-residual-null`; hence this is an exact reduction on
+the XCIII root path, not merely a necessary condition.  No assertion that
+`K_𝒵=I` is made.
+
+## Saturation over all Jiang--Su central slices
+
+The preceding argument does not depend on using the canonical tensor-factor
+embedding.  Let `Theta` be all unital homomorphisms
+`theta:F(𝒵)->D`, with no trace condition, and let `K_𝒵^sat` be the ideal generated by every
+`theta(E)`, where `E=J_τ intersect F(𝒵)`.  The canonical embedding belongs
+to `Theta`.  For arbitrary `theta`, the pullback `τ_ω o theta` is a
+normalized quasitrace on `F(𝒵)`, hence equals its unique limit quasitrace.
+Thus trace preservation is automatic and puts every generator in `I`, so
+
+```text
+K_𝒵 subset K_𝒵^sat subset I.
+```
+
+Likewise, for every normalized quasitrace `q` on `D`, the pullback `q o theta` is the
+unique limit quasitrace on `F(𝒵)`.  Thus every `theta(E)` lies in the closed
+two-sided square-null ideal of `q`; taking all embeddings at once shows that
+every quasitrace annihilates `K_𝒵^sat`.  Hence
+
+```text
+QT_1(D/K_𝒵^sat) ~= QT_1(D),
+```
+
+and the exact residual obstruction may be sharpened to `I/K_𝒵^sat`.  This is
+an assumption-free enlargement of the removable slice-generated ideal.  It
+does not assert that additional embeddings exist beyond the canonical one,
+that the inclusion `K_𝒵 subset K_𝒵^sat` is strict, or that
+`K_𝒵^sat=I`.
+
+## Trust boundary
+
+The remaining claim is that all quasitraces on `D/K_𝒵` annihilate
+`I/K_𝒵`.  Central pureness does not settle it because strict comparison is
+evaluated against all quasitraces, including a hypothetical singular one.
+Exactness of `A` also cannot be transferred automatically to the product
+quotient defining `D`.  No unique-quasitrace or property-(SI) conclusion for
+`A` is claimed here.  Exhaustion of `D/I` by the canonical Jiang--Su slice is
+only a quotient statement and supplies neither a *-homomorphic splitting nor
+quasitracial control on `I`.

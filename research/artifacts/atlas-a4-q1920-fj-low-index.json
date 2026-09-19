@@ -1,0 +1,44 @@
+{
+  "method": "For each of the two faithful order-1920 local large-K2,2 markings in the complete coset-action census through degree 12, freeze the exact marked multiplication table, adjoin the F=S3xS3 and collision-J=S4 seam relations, and enumerate every subgroup of index at most 12 in the resulting finitely presented colimit.",
+  "command": "ONLY_ORDER:=1920;; LOW_INDEX:=12;; Read(\"atlas_a4_non_a5_fj_colimits.g\");",
+  "fields": [
+    "action_degree",
+    "Q_image_order",
+    "F_image_order",
+    "J_image_order",
+    "z_order",
+    "c_order"
+  ],
+  "markings": [
+    {
+      "local_order": 1920,
+      "local_coset_degree": 12,
+      "fp_relator_count": 14,
+      "histogram": [
+        [[1, 1, 1, 1, 1, 1], 1],
+        [[5, 60, 6, 6, 1, 1], 1],
+        [[6, 60, 6, 6, 1, 1], 1],
+        [[10, 60, 6, 6, 1, 1], 1],
+        [[10, 60, 12, 24, 1, 2], 1],
+        [[12, 60, 6, 6, 1, 1], 1],
+        [[12, 1920, 6, 6, 1, 1], 2]
+      ]
+    },
+    {
+      "local_order": 1920,
+      "local_coset_degree": 12,
+      "fp_relator_count": 16,
+      "histogram": [
+        [[1, 1, 1, 1, 1, 1], 1],
+        [[5, 60, 6, 6, 1, 1], 1],
+        [[6, 60, 6, 6, 1, 1], 1],
+        [[10, 60, 6, 6, 1, 1], 1],
+        [[10, 60, 12, 24, 1, 2], 1],
+        [[12, 60, 6, 6, 1, 1], 1],
+        [[12, 1920, 6, 6, 1, 1], 2]
+      ]
+    }
+  ],
+  "conclusion": "No transitive permutation action of either exact colimit through degree 12 preserves all three required vertex orders Q=1920, F=36, J=24. The degree-10 action preserving J=24 collapses Q to 60 and F to 12; every degree-12 action preserving Q=1920 collapses F and J to order 6.",
+  "scope": "This is an exact exhaustive bound for transitive actions of degree at most 12, not a universal colimit computation and not a proof that no faithful finite completion exists."
+}

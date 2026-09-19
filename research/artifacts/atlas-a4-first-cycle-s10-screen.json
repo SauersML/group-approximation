@@ -1,0 +1,17 @@
+{
+  "A10": {
+    "candidate_count": 0,
+    "elements_tested": 1814400
+  },
+  "S10": {
+    "candidate_count": 0,
+    "elements_tested": 3628800
+  },
+  "constraints": [
+    "u^2=1",
+    "[u,z]=1",
+    "[u,c]=1",
+    "u r u=r^-1",
+    "(u t)^3=1 or (u t^-1)^3=1"
+  ]
+}

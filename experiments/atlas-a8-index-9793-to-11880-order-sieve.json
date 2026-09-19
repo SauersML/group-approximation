@@ -1,0 +1,85 @@
+{
+  "A12_A8_natural_orbit_decomposition": [
+    8,
+    1,
+    1,
+    1,
+    1
+  ],
+  "A8_divisible_orders": [
+    "A12"
+  ],
+  "first_remaining_A8_overgroup": "A12",
+  "lower_endpoint": {
+    "group": "O8-(2)",
+    "index": 9792,
+    "order": 197406720
+  },
+  "simple_groups_strictly_after_O8-(2)_through_A12": [
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 180,
+      "group": "L2(739)",
+      "order": 201791340
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 168,
+      "group": "L2(743)",
+      "order": 205085832
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 4032,
+      "group": "3D4(2)",
+      "order": 211341312
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 240,
+      "group": "L2(751)",
+      "order": 211782000
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 1680,
+      "group": "L3(11)",
+      "order": 212427600
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 252,
+      "group": "L2(757)",
+      "order": 216898668
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 120,
+      "group": "L2(761)",
+      "order": 220355160
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 6720,
+      "group": "L2(769)",
+      "order": 227377920
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 36,
+      "group": "L2(773)",
+      "order": 230944572
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "A12",
+      "order": 239500800
+    }
+  ],
+  "upper_endpoint": {
+    "group": "A12",
+    "index": 11880,
+    "order": 239500800
+  }
+}

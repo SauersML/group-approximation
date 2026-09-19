@@ -1,0 +1,29 @@
+{
+  "field": "GF(2)",
+  "frame": "401004080301c030",
+  "inverse": "8280414010200c04",
+  "distinct_directed_packet_contexts_verified": 24,
+  "collision_19243": {"value": "8040201008040201", "identity": true},
+  "raw_s3": {
+    "t21": {"opcode": "8040281409070201", "order": 4, "rank_minus_identity": 4},
+    "t12": {"opcode": "8040201028143e29", "order": 4, "rank_minus_identity": 4},
+    "regular_squared_energy": 4
+  },
+  "exact_regular_moments": {
+    "packet_words": 30,
+    "packet_value": 1,
+    "collision_weight": 6,
+    "collision_value": 1,
+    "functional": 36,
+    "classical_mixture_ceiling": 30
+  },
+  "packet_energy_lower_bound": "5040/28363 > 0",
+  "directly_refuted": [
+    "atlas-a4-alignment-moment-simplex-rounding",
+    "atlas-centralizer-products-19243-classicalize",
+    "atlas-a4-relative-packet-commutator-collapse",
+    "atlas-a4-full-packet-normal-generator-holonomy-compiler",
+    "atlas-a4-full-packet-normal-generator-table-compiler"
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,19 @@
+{
+  "finite_vertex_orders": {
+    "C144=<r,z,b>": 144,
+    "Fprime=<r,z,c,u>": 36,
+    "J=<t,s,c>": 24,
+    "Q96=<c,u,t>": 96
+  },
+  "full_group_order_attempt": {
+    "result": "timeout before order",
+    "seconds": 180
+  },
+  "low_index_attempt": {
+    "max_index": 16,
+    "result": "timeout before subgroup list",
+    "seconds": 120
+  },
+  "presentation_generators": 6,
+  "presentation_relators": 18
+}

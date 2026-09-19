@@ -1,0 +1,41 @@
+{
+  "policy_comparison": {
+    "baseline_commit": "027c44cb7bc59d699273153feff5871f628720ff",
+    "baseline_nodes": 14128,
+    "baseline_parse_graph_findings": [],
+    "new_open": [],
+    "newly_dead": [],
+    "newly_detached": [],
+    "parked": []
+  },
+  "source_archive_sha256": "9cd4df878bf306860a56b7d0e9f02c5b22b3c0d4bb524099381ef2e2207d0873",
+  "reviewed_node_statuses": {
+    "moving-subgroup-schreier-correction-has-no-index-loss": "ESTABLISHED",
+    "degree-zero-leavitt-core-characters-are-dirac-haar-mixtures": "ESTABLISHED",
+    "weighted-leavitt-opposite-root-packets-have-finite-models": "ESTABLISHED",
+    "tracial-to-uniform-lifting-for-sl-n-z": "OPEN",
+    "hs-stability-from-ulam-stability-and-lifting": "OPEN",
+    "two-kazhdan-correction-has-quadratic-rank-curvature": "ESTABLISHED",
+    "sln-z-flexibly-hs-stable": "OPEN",
+    "sequential-exact-corner-extraction-has-quadratic-error-ledger": "ESTABLISHED",
+    "swap-involution-enemy-is-never-abelian-carried": "ESTABLISHED",
+    "kazhdan-approximate-coefficients-have-curved-hodge-control": "ESTABLISHED",
+    "kazhdan-irreducible-compressions-have-quadratic-defect": "ESTABLISHED",
+    "compressed-irreducibles-require-all-deleted-dimensions": "ESTABLISHED",
+    "sl3-outliers-carry-no-balanced-free-involution": "OPEN"
+  },
+  "scope": "Full authoritative source snapshot: every research node parsed by Cairn load_nodes, all native lint and graph checks, and unfiltered duplicate scan. Artifact existence checked against the local workspace path manifest; historical pins checked in remote Git. No mathematical proof-kernel claim.",
+  "node_count": 14168,
+  "claims": 7016,
+  "routes": 7152,
+  "elapsed_seconds": 9.409,
+  "findings": [],
+  "statuses": {
+    "COMPLETE": 6009,
+    "ESTABLISHED": 5943,
+    "OPEN": 1695,
+    "INVALIDATED": 379,
+    "REFUTED": 142
+  },
+  "root_status": "OPEN"
+}

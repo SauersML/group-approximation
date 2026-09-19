@@ -1,0 +1,1471 @@
+{
+  "ambient": "O8+(2)",
+  "ambient_order": 174182400,
+  "factor_oriented_packet_edges": 16,
+  "marked_screens": 10,
+  "method": "character-table class multiplication, no ambient conjugator scan",
+  "screens": [
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 0,
+      "relative_graph_parity": 0,
+      "screen": "N1-N2",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 1,
+      "relative_graph_parity": 1,
+      "screen": "N1-N2",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 8957952,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": "(  2, 19)(  3,118)(  4,120)(  5,132)(  6, 14)( 11, 53)( 12,107)( 13,127)( 15, 81)( 16,105)( 17,109)( 20,121)( 21,112)( 22, 55)( 23, 48)( 25, 61)( 28, 30)( 31,106)( 32, 60)( 35, 91)( 38, 39)( 43,124)( 45,117)( 47, 49)( 50,130)( 51, 93)( 52, 98)( 58,122)( 59, 89)( 63, 85)( 64, 69)( 65, 72)( 66, 86)( 67, 75)( 71, 90)( 73, 87)( 74, 99)( 77,113)( 78,135)( 80,114)( 84,110)( 88,104)( 94,128)( 95,116)( 96,103)( 97,134)(100,131)(119,129)",
+        "first_packet_conjugator": "(  1, 40, 56,  9, 79,101)(  2, 87, 69, 86, 51,120)(  3,111,123, 58, 17, 59)(  4, 93)(  5, 77, 12)(  6, 78, 85,132,113,110)(  7, 74, 88,102, 35, 53)(  8, 13, 20, 43,100, 44)( 10, 92,127,109, 50, 49)( 11, 24,117)( 14,135,103)( 15, 21)( 16, 95)( 18, 27)( 19, 73, 81,112, 64, 66)( 22,126, 91)( 23, 41, 45, 55, 37, 94)( 25, 97,107)( 26, 54, 68)( 28,125, 83, 65, 67,130)( 29,128,104)( 30, 57,133,122,121, 71)( 31, 63, 61,134, 84, 39)( 32, 75, 89,131,115, 62)( 34, 82, 60,114, 90, 47)( 36, 99, 48)( 38,106, 96)( 42, 70,108)( 46, 76, 72, 80,124,118)( 52, 98,116,119,129,105)",
+        "nonidentity_19243_order_histogram": {
+          "2": 2256,
+          "4": 520
+        },
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 2776,
+        "seed_candidates_explicitly_replayed": 8957952
+      },
+      "marked_screen_index": 2,
+      "relative_graph_parity": 0,
+      "screen": "O1-O2",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 2,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 3,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 4,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 6,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 7,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 8,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 10,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 12,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 2,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 3,
+      "relative_graph_parity": 0,
+      "screen": "N1-O1",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 2,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 4,
+      "relative_graph_parity": 1,
+      "screen": "N1-O1",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 2,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 5,
+      "relative_graph_parity": 0,
+      "screen": "N1-O2",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 2,
+      "full_screen": {
+        "first_nonidentity_19243_value": null,
+        "first_packet_conjugator": null,
+        "nonidentity_19243_order_histogram": {},
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 0,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 6,
+      "relative_graph_parity": 1,
+      "screen": "N1-O2",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": "(  1,122)(  2, 91)(  4, 12)(  5, 21)(  6, 58)(  7, 89)(  8, 61)(  9, 41)( 10, 60)( 11,116)( 13, 47)( 14, 40)( 15, 85)( 16,101)( 17,100)( 18, 77)( 19,133)( 22,102)( 23, 68)( 24, 65)( 25,128)( 26, 94)( 27, 83)( 28, 44)( 30, 97)( 32, 64)( 33,112)( 34,124)( 35, 57)( 36,132)( 37, 86)( 38,111)( 39,113)( 42, 90)( 43, 96)( 45, 73)( 46, 70)( 48, 72)( 49,108)( 50,105)( 51,104)( 52, 99)( 53,131)( 54,103)( 55, 66)( 56, 69)( 59, 67)( 62,115)( 63,106)( 75, 79)( 76,127)( 78, 80)( 82,134)( 84,123)( 87, 95)( 88,107)( 92,130)( 93,114)( 98,118)(109,117)(110,129)(119,125)(120,135)(121,126)",
+        "first_packet_conjugator": "(  1,101)(  2,107,126, 21)(  3, 30, 49,100)(  4, 81,110, 41)(  5, 91, 76, 90)(  6,117,123, 71)(  7, 87, 93, 12)(  8, 89, 38, 94)(  9, 26, 56, 42)( 10, 88,125, 55)( 11,111)( 13,105)( 14, 35,133,130)( 15,103, 24, 86)( 16, 32, 98, 65)( 17, 75)( 18, 79)( 19, 63,102, 73)( 22, 44,104, 46)( 23, 34)( 25,128, 82,124)( 27, 33, 40, 54)( 28,118,131, 47)( 29, 66, 69, 84)( 31, 97, 78, 77)( 36,112, 51, 85)( 37,120, 64, 96)( 39, 99, 92, 43)( 45, 83, 50,132)( 48,115)( 52,122)( 53, 57)( 58,116,127,119)( 59, 61, 74, 62)( 60, 95)( 67,114,109,121)( 72,129)(106,135)",
+        "nonidentity_19243_order_histogram": {
+          "2": 176,
+          "4": 32
+        },
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 208,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 7,
+      "relative_graph_parity": 0,
+      "screen": "N1-N1-outside-A9",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 1492992,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": "(  1,120)(  2, 75)(  3, 31)(  4,100)(  5, 21)(  6, 59)(  7, 30)(  8, 18)(  9, 55)( 10, 49)( 11, 80)( 12, 17)( 13, 57)( 14, 53)( 15,105)( 16, 65)( 19, 39)( 22, 73)( 23,124)( 24,101)( 25, 82)( 26, 93)( 27, 98)( 28, 32)( 29, 71)( 33,130)( 34, 68)( 35, 47)( 36,103)( 37,104)( 38, 95)( 40,131)( 41, 66)( 42,110)( 43, 99)( 44, 64)( 45,102)( 46, 63)( 50, 85)( 51, 86)( 52, 96)( 54,132)( 56,109)( 58, 67)( 60,108)( 61, 77)( 62,121)( 69,117)( 70,106)( 76,107)( 78,116)( 79, 91)( 83,118)( 87,111)( 88,127)( 89, 97)( 90,129)( 92,112)( 94,114)(113,133)(115,126)(119,125)(122,135)(128,134)",
+        "first_packet_conjugator": "(  1, 98)(  2, 91)(  3, 61)(  4, 31)(  5, 21)(  6, 29)(  7,116)(  9, 72)( 10, 89)( 11, 60)( 13,102)( 14, 85)( 15,105)( 16,104)( 17,123)( 18, 84)( 19,132)( 22,106)( 23, 57)( 24, 82)( 25,122)( 26, 81)( 27, 86)( 28, 33)( 30,129)( 32,112)( 34, 54)( 35,113)( 36, 70)( 37, 99)( 38,119)( 39, 68)( 40, 50)( 41, 59)( 42, 76)( 43, 65)( 44, 64)( 45,124)( 46,133)( 47, 63)( 48, 67)( 49,126)( 51,120)( 52, 83)( 53,131)( 56,109)( 62,110)( 66, 71)( 69, 75)( 73,103)( 74,114)( 77,100)( 78, 90)( 79,117)( 80,127)( 87,125)( 88,108)( 92,130)( 95,111)( 96,134)( 97,115)(101,135)(107,121)(118,128)",
+        "nonidentity_19243_order_histogram": {
+          "2": 176,
+          "4": 32
+        },
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 208,
+        "seed_candidates_explicitly_replayed": 1492992
+      },
+      "marked_screen_index": 8,
+      "relative_graph_parity": 1,
+      "screen": "N1-N1-outside-A9",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 2,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 3,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 4,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 6,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 7,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 8,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 10,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 2304,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 12,
+          "first_ambient_class": 14,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        },
+        {
+          "compatible_second_conjugates": 486,
+          "conjugator_fiber_candidates": 1492992,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 14,
+          "second_centralizer_order": 3072
+        }
+      ]
+    },
+    {
+      "best_seed_conjugator_fiber_candidates": 8957952,
+      "best_seed_edge": 1,
+      "full_screen": {
+        "first_nonidentity_19243_value": "(  2,  7)(  6,  9)( 10, 11)( 14, 33)( 19, 36)( 22, 24)( 26, 38)( 27, 39)( 28, 68)( 30, 79)( 32, 50)( 34, 51)( 35, 52)( 40, 82)( 41, 55)( 42, 62)( 46, 53)( 47,101)( 49,108)( 54, 83)( 56, 76)( 57,102)( 58, 59)( 60,116)( 63,134)( 64,104)( 65, 99)( 66, 67)( 69, 88)( 73, 96)( 75, 97)( 78, 80)( 85, 86)( 87,114)( 89, 91)( 90,129)( 93,111)( 94, 95)( 98,122)(103,135)(105,124)(106,112)(107,109)(110,121)(113,120)(115,126)(117,127)(128,130)",
+        "first_packet_conjugator": "(  1, 83, 64, 10,  6, 23, 49)(  2,106, 50, 53, 28, 54, 35)(  3, 18,133, 63, 57, 43, 17)(  4, 97,118, 82, 88,124, 19)(  5, 75,131, 42,128, 12, 78)(  7,113, 95,117, 55, 90, 51)(  8, 96,135, 59, 22, 16, 79)(  9,122, 68, 40, 58, 65, 72)( 11, 38, 81,120,115,129, 99)( 13,108, 70, 56, 60, 27, 32)( 14, 69, 24, 46, 47, 76, 48)( 15, 31, 25,114, 98,101, 62)( 20,132,103,126,111,105, 45)( 21, 86, 66, 29,112,102, 36)( 26, 91,110,125, 39,104,119)( 30,123, 80, 61, 85, 87, 44)( 33, 94, 93, 34, 71,121,116)( 37, 77,100, 92, 67, 89,107)( 52, 74,109,130, 84, 73,134)",
+        "nonidentity_19243_order_histogram": {
+          "2": 2256,
+          "4": 520
+        },
+        "packet_and_19243_survivors": 0,
+        "packet_survivors": 2776,
+        "seed_candidates_explicitly_replayed": 8957952
+      },
+      "marked_screen_index": 9,
+      "relative_graph_parity": 0,
+      "screen": "O1-O1-outside-S6",
+      "seed_edge_records": [
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 1,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 2,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 3,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 4,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 5,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 6,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 7,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 8,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 9,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 10,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 11,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 13824,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 12,
+          "first_ambient_class": 7,
+          "second_ambient_class": 13,
+          "second_centralizer_order": 648
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 13,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 14,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 15,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        },
+        {
+          "compatible_second_conjugates": 81,
+          "conjugator_fiber_candidates": 8957952,
+          "edge": 16,
+          "first_ambient_class": 13,
+          "second_ambient_class": 7,
+          "second_centralizer_order": 110592
+        }
+      ]
+    }
+  ]
+}

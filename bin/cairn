@@ -1,0 +1,17 @@
+#!/bin/sh
+# The Cairn 2.13.0 CLI (github.com/SauersML/Cairn), pinned from upstream
+# commit 2e4ab2b143d1ccac0f6c82f88636f26b033b9f58 —
+# one dependency-free implementation, committed at tools/cairn.py rather than
+# pulled in as a submodule. This launcher contains no Cairn logic.
+# A submodule is empty in every copy of this repo that is not a git clone
+# (a Download ZIP, a tarball, an uploaded sandbox) and needs a network to
+# fill; committing the file means every copy arrives able to read the
+# research graph, with no setup step.
+#
+# To upgrade it, replace tools/cairn.py with upstream cairn.py byte-for-byte
+# and update the version and commit above. Never patch the vendored copy alone.
+root="$(cd "$(dirname "$0")/.." && pwd)"
+# Pin the root to this repo so behavior stays cwd-independent, and name the
+# site after the project the graph is about rather than after the tool.
+CAIRN_ROOT="$root" CAIRN_SITE_TITLE="${CAIRN_SITE_TITLE:-Group Approximation}" \
+  exec python3 "$root/tools/cairn.py" "$@"

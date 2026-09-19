@@ -1,0 +1,276 @@
+import GroupApproximation.GGT.VanKampen.Estimating.PieceBridge
+
+/-!
+# The value of the reversed target carrier
+
+`Contiguity.targetInverseCarrier` is a *rotation* of `RelWord.revInv` of the
+target arc's rotated cell word, and a rotation changes `GGT.RelLetter.listVal`
+by conjugation (`HullSC.RelWord.listVal_rotate`).  So an alignment identity for
+the arc word does not by itself identify the carrier's value, which is the one
+piece of bookkeeping between the O52 certificate and
+`Embedded.ReducedCellPieceBridge.of_cellContiguity`.
+
+This module does that bookkeeping once.  Writing the target cell's boundary,
+rotated to the arc's base, as `arc ++ rest`, the carrier reads the cell
+backwards starting where the arc ends, so its value is `(rest * arc)⁻¹`.  That
+is `listVal_targetInverseCarrier`.
+-/
+
+set_option linter.unusedVariables false
+
+namespace GroupApproximation
+namespace GGT
+namespace VanKampen
+namespace Embedded
+
+open GroupApproximation.HullSC
+
+universe u w v
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {D : GGT.RelGenSet G Lambda}
+  {W : Set (List (GGT.RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v} W} {eps : ℕ}
+  {faces : Finset Delta.toCombMap.Face}
+
+/-! ## Dart words commute with the list operations -/
+
+theorem dartWord_length (darts : List Delta.toCombMap.Dart) :
+    (dartWord Delta darts).length = darts.length := by
+  simp only [dartWord, List.length_map]
+
+theorem dartWord_take (darts : List Delta.toCombMap.Dart) (n : ℕ) :
+    dartWord Delta (darts.take n) = (dartWord Delta darts).take n := by
+  simp only [dartWord, List.map_take]
+
+theorem dartWord_drop (darts : List Delta.toCombMap.Dart) (n : ℕ) :
+    dartWord Delta (darts.drop n) = (dartWord Delta darts).drop n := by
+  simp only [dartWord, List.map_drop]
+
+/-! ## The carrier value -/
+
+/-- **The reversed target carrier reads the cell backwards from the end of the
+arc.**  With the target cell's boundary rotated to the arc's base and split as
+`arc ++ rest`, the carrier's value is `(rest * arc)⁻¹`. -/
+theorem listVal_targetInverseCarrier
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) =
+      (GGT.RelLetter.listVal (dartWord Delta
+          ((Gamma.targetArcAtSome target htarget).rotated.drop
+            (Gamma.targetArcAtSome target htarget).length)) *
+        GGT.RelLetter.listVal (dartWord Delta
+          (Gamma.targetArcAtSome target htarget).darts))⁻¹ := by
+  classical
+  have harc : (Gamma.targetArcAtSome target htarget).darts =
+      (Gamma.targetArcAtSome target htarget).rotated.take
+        (Gamma.targetArcAtSome target htarget).length := rfl
+  have hle : (Gamma.targetArcAtSome target htarget).length ≤
+      (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated).length := by
+    rw [dartWord_length, CyclicArc.rotated_length]
+    exact (Gamma.targetArcAtSome target htarget).length_le
+  -- abbreviations
+  set A := Gamma.targetArcAtSome target htarget with hA
+  set w := dartWord Delta A.rotated with hw
+  set L := A.length with hL
+  have hdroplen : (dartWord Delta (A.rotated.drop L)).length = w.length - L := by
+    rw [dartWord_drop, List.length_drop]
+  have hsplit : GGT.RelLetter.listVal w =
+      GGT.RelLetter.listVal (w.take L) * GGT.RelLetter.listVal (w.drop L) := by
+    conv_lhs => rw [← List.take_append_drop L w]
+    rw [RelWord.listVal_append]
+  have hrevlen : (RelWord.revInv w).length = w.length := by
+    simp [RelWord.revInv]
+  have hrotk : (w.length - L) ≤ (RelWord.revInv w).length := by
+    rw [hrevlen]
+    omega
+  have hcarrier : Gamma.targetInverseCarrier target htarget =
+      (RelWord.revInv w).rotate (w.length - L) := by
+    rw [Contiguity.targetInverseCarrier, ← hw, ← hA, ← hL, hdroplen]
+  rw [hcarrier, RelWord.listVal_rotate _ hrotk, RelWord.listVal_revInv]
+  have hsub : w.length - (w.length - L) = L := Nat.sub_sub_self hle
+  have htake : (RelWord.revInv w).take (w.length - L) =
+      RelWord.revInv (w.drop L) := by
+    simp only [RelWord.revInv, List.take_reverse, List.length_map, hsub,
+      ← List.map_drop]
+  have hdw : dartWord Delta (A.rotated.drop L) = w.drop L := by
+    rw [dartWord_drop, ← hw]
+  have hta : dartWord Delta A.darts = w.take L := by
+    rw [harc, dartWord_take, ← hw]
+  rw [htake, RelWord.listVal_revInv, hdw, hta, hsplit]
+  group
+
+/-! ## Reducedness, without the region baggage
+
+`VanKampen.CellContiguity.whole_relators_ne` proves this, but only from four of
+its input's fields.  Stating it over those four directly means a producer need
+not build a `ContiguityRegion` or the word decompositions to use it. -/
+
+/-- **Reducedness excludes the transported cancellation.**  For two cells in the
+stored order, with both read forwards, the target relator's inverse is not the
+source relator conjugated by the transport across the intervening cells. -/
+theorem whole_relators_ne_of_split
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    {source target : RelatorCell Delta.toCombMap Delta.outerFace W}
+    (hred : Delta.Reduced)
+    (hsplit : Delta.relatorCells = pre ++ source :: (between ++ target :: suf))
+    (hsf : source.reversed = false) (htf : target.reversed = false) :
+    GGT.RelLetter.listVal (RelWord.revInv target.word) ≠
+      (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator)⁻¹ *
+        GGT.RelLetter.listVal source.word *
+        (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator) := by
+  rw [RelWord.listVal_revInv]
+  intro hwhole
+  have hnocancel := hred pre between suf source target hsplit
+  apply hnocancel
+  simp only [RelatorCell.value, hsf, htf, Bool.false_eq_true, if_false]
+  have htarget : GGT.RelLetter.listVal target.word =
+      ((source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator)⁻¹ * GGT.RelLetter.listVal source.word *
+        (source.conjugator⁻¹ * (between.map RelatorCell.value).prod *
+          target.conjugator))⁻¹ := by
+    have hinv := congrArg (fun g : G => g⁻¹) hwhole
+    simpa only [inv_inv] using hinv
+  rw [htarget]
+  group
+
+/-! ## The stored target arc is the arc at a cell target -/
+
+/-- Casting a cyclic arc along an equality of its carrier cycle does not change
+the rotated dart list.  Stated over the carrier rather than over `Contiguity`,
+so that adding fields to `Contiguity` cannot break it. -/
+theorem cyclicArc_cast_rotated {Dart : Type v} {c₁ c₂ : List Dart}
+    (h : c₁ = c₂) (arc : CyclicArc c₁) :
+    (cast (congrArg CyclicArc h) arc).rotated = arc.rotated := by
+  cases h
+  rfl
+
+/-- The same for the arc's own darts. -/
+theorem cyclicArc_cast_darts {Dart : Type v} {c₁ c₂ : List Dart}
+    (h : c₁ = c₂) (arc : CyclicArc c₁) :
+    (cast (congrArg CyclicArc h) arc).darts = arc.darts := by
+  cases h
+  rfl
+
+theorem targetArcAtSome_rotated (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (Gamma.targetArcAtSome target htarget).rotated =
+      Gamma.targetArc.rotated := by
+  have h : targetDarts Delta Gamma.target = targetDarts Delta (some target) := by
+    rw [htarget]
+  exact cyclicArc_cast_rotated h Gamma.targetArc
+
+theorem targetArcAtSome_darts (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target) :
+    (Gamma.targetArcAtSome target htarget).darts = Gamma.targetArc.darts := by
+  have h : targetDarts Delta Gamma.target = targetDarts Delta (some target) := by
+    rw [htarget]
+  exact cyclicArc_cast_darts h Gamma.targetArc
+
+/-! ## The O52 inequality from the certificate -/
+
+/-- **The non-cancellation inequality from the algebraic certificate.**  Given
+the stored-order split at the two cells, both read forwards, the two arc
+alignments, and the connector identity, reducedness rules out the cancellation
+that `CellPieceEquations.whole_ne` excludes.
+
+The connector identity is stated as "along the target arc, then back along the
+right side", which is where the rotation of `targetInverseCarrier` lands; see
+`listVal_targetInverseCarrier`. -/
+theorem whole_ne_of_certificate
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    (hred : Delta.Reduced)
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    (hsplit : Delta.relatorCells =
+      pre ++ cell Delta Gamma.source :: (between ++ cell Delta target :: suf))
+    (hsf : (cell Delta Gamma.source).reversed = false)
+    (htf : (cell Delta target).reversed = false)
+    (hsource : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (cell Delta Gamma.source).word)
+    (htargetword : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (cell Delta target).word)
+    (hconn : GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.targetArcAtSome target htarget).darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ =
+      ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator)⁻¹) :
+    GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) := by
+  intro hbad
+  rw [listVal_targetInverseCarrier Gamma target htarget] at hbad
+  have ht : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (dartWord Delta
+          (Gamma.targetArcAtSome target htarget).darts) *
+        GGT.RelLetter.listVal (dartWord Delta
+          ((Gamma.targetArcAtSome target htarget).rotated.drop
+            (Gamma.targetArcAtSome target htarget).length)) := by
+    have harc : (Gamma.targetArcAtSome target htarget).darts =
+        (Gamma.targetArcAtSome target htarget).rotated.take
+          (Gamma.targetArcAtSome target htarget).length := rfl
+    rw [harc, ← RelWord.listVal_append, ← dartWord_append,
+      List.take_append_drop]
+  have hX : ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator) =
+      (GGT.RelLetter.listVal (dartWord Delta
+            (Gamma.targetArcAtSome target htarget).darts) *
+          (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹)⁻¹ := by
+    rw [hconn, inv_inv]
+  have hs : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide) *
+        (GGT.RelLetter.listVal (dartWord Delta
+            ((Gamma.targetArcAtSome target htarget).rotated.drop
+              (Gamma.targetArcAtSome target htarget).length)) *
+          GGT.RelLetter.listVal (dartWord Delta
+            (Gamma.targetArcAtSome target htarget).darts))⁻¹ *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ := by
+    rw [hbad]
+    group
+  apply whole_relators_ne_of_split hred hsplit hsf htf
+  rw [RelWord.listVal_revInv, ← htargetword, ← hsource, hX, ht, hs]
+  group
+
+/-- **The two-cell mirror pair is exactly what reducedness excludes.**  If the
+non-cancellation inequality fails for a region carrying the certificate, the
+diagram is not reduced.  This is the contrapositive of
+`whole_ne_of_certificate` and is the model test at the mirror pair: there the
+inequality fails, and so does `DiscDiagram.Reduced`. -/
+theorem not_reduced_of_certificate_of_whole_eq
+    (Gamma : Contiguity D eps Delta faces)
+    (target : Fin Delta.rCellCount) (htarget : Gamma.target = some target)
+    {pre between suf : List (RelatorCell Delta.toCombMap Delta.outerFace W)}
+    (hsplit : Delta.relatorCells =
+      pre ++ cell Delta Gamma.source :: (between ++ cell Delta target :: suf))
+    (hsf : (cell Delta Gamma.source).reversed = false)
+    (htf : (cell Delta target).reversed = false)
+    (hsource : GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) =
+      GGT.RelLetter.listVal (cell Delta Gamma.source).word)
+    (htargetword : GGT.RelLetter.listVal
+        (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated) =
+      GGT.RelLetter.listVal (cell Delta target).word)
+    (hconn : GGT.RelLetter.listVal
+          (dartWord Delta (Gamma.targetArcAtSome target htarget).darts) *
+        (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ =
+      ((cell Delta Gamma.source).conjugator⁻¹ *
+        (between.map RelatorCell.value).prod *
+        (cell Delta target).conjugator)⁻¹)
+    (hbad : GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) =
+      (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *
+        GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide)) :
+    ¬ Delta.Reduced := fun hred =>
+  whole_ne_of_certificate Gamma target htarget hred hsplit hsf htf hsource
+    htargetword hconn hbad
+
+end Embedded
+end VanKampen
+end GGT
+end GroupApproximation

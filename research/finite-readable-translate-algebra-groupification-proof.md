@@ -1,0 +1,169 @@
+---
+rg: 2
+id: finite-readable-translate-algebra-groupification-proof
+kind: route
+title: Quotient one atom stabilizer and induce a hypothetical hyperlinear model over its finite left-coset orbit
+target: finite-readable-translate-algebra-groupifies-zpc-gap
+requires: []
+---
+
+Work in the stabilizer-character GNS algebra from the claim.  If `ell` is a
+local readable label and `E_ell` its spectral selector in the negative
+sector, then for every affine row `c` active at `ell` the losing projection is
+
+```text
+E_ell (1-pi(c))/2.                                      (FRP1)
+```
+
+Here `E_ell<=q_-` belongs to the normalized negative corner
+`(q_-Mq_-,tau_-)`,
+which is the trace used to read the IRS game correlation.  The unreadable
+factors of `c` commute with one another and with `E_ell`:
+these are exactly the same-question and supported-edge commutators in the ZPC
+strategy.  Thus `c` is an involution and `(FRP1)` is a projection.  Perfect
+acceptance makes its `tau_-`-trace zero; faithfulness makes `(FRP1)` the zero
+operator, and therefore
+
+```text
+E_ell pi(c)=E_ell.                                      (FRP2)
+```
+
+An atom `p_t` of `D_infinity` refines the relevant atom of `D_0`, so
+`p_t<=E_ell`.  Equation `(FRP2)` gives
+
+```text
+p_t pi(c)=p_t.                                          (FRP3)
+```
+
+No commutation between the remote-refined projection `p_t` and `pi(c)` was
+assumed.  Since `pi(c)` is unitary, `(FRP3)` forces equality in the projection
+compression and hence `pi(c)p_t=p_t` as well.  Thus `pi(c)` is the identity
+on the range of `p_t`; in particular `c` fixes the atom `t` under conjugation.
+
+Now fix an atom orbit `T`, a base atom `p_0`, and the left-coset convention
+from the claim.  Centrality of `J` makes it act trivially on the atom algebra,
+so `J in H`.  Since `H` stabilizes `p_0`, every `pi(h)`, `h in H`,
+normalizes and hence commutes with `p_0`.  Thus
+
+```text
+sigma_0(h)=p_0 pi(h) p_0
+```
+
+is a unitary representation of `H` in the finite tracial corner `p_0 M p_0`.
+For an active row at `t`, conjugating `(FRP3)` by `x_t^(-1)` shows
+
+```text
+sigma_0(h_(t,a))=p_0.
+```
+
+Consequently `sigma_0` factors through `K_T`.  Since `p_0<=q_-`, it sends
+`J` to `-p_0`.  The corner is nonzero and its normalized trace is faithful,
+so the central involution `bar J` is nontrivial in `K_T`.
+
+Suppose for contradiction that `K_T` is hyperlinear.  Equivalently, its
+group von Neumann algebra `L(K_T)` has a trace-preserving embedding into a
+tracial matrix ultraproduct, or into `R^mathcal U`.  In the regular
+representation of `K_T`, put
+
+```text
+e_-=(1-lambda(bar J))/2.
+```
+
+Because `bar J` is a nonidentity central involution, `e_-` is a central
+projection of `L(K_T)` with trace exactly `1/2`.  The normalized corner
+
+```text
+A=e_- L(K_T) e_-
+```
+
+is Connes embeddable, and
+
+```text
+sigma(h)=e_- lambda(bar h),       h in H,                (FRP4)
+```
+
+is a unital representation in `A` which kills every `h_(t,a)` and sends
+`J` to `-e_-`.  The image of `e_-` need not be central in the ambient
+ultraproduct.  Only its centrality relative to `lambda(K_T)` is used, and it
+is the unit after passing to the corner.
+
+Induce `(FRP4)` from `H` to `Q_G` using the finite set of **left** cosets
+`x_t H`.  For `g in Q_G` and `t in T`, define
+
+```text
+kappa(g,t)=x_(g t)^(-1) g x_t in H,
+V_g(e_t tensor xi)=e_(g t) tensor sigma(kappa(g,t)) xi.  (FRP5)
+```
+
+The identity
+
+```text
+kappa(g_1 g_2,t)=kappa(g_1,g_2 t) kappa(g_2,t)
+```
+
+shows that `g |-> V_g` is a representation of `Q_G` in `M_|T|(A)`.  If
+`c=c_(t,a)` is active at `t`, then `(FRP3)` gives `c t=t`, while
+
+```text
+kappa(c,t)=x_t^(-1) c x_t=h_(t,a).
+```
+
+Therefore `V_c` is the identity on the `t` block.
+
+It remains to check that induction has not lost any game relation.  Define
+the readable involution `R_i` diagonally by
+
+```text
+R_i |_(t block) = (-1)^(r_i(t)).                         (FRP6)
+```
+
+Readable involutions commute with one another.  All unreadable involution,
+central-`J`, same-question, and supported-edge relations hold because `V`
+is a representation of `Q_G`.  For a mixed pair `(r_(x,i),u_(y,j))`, the
+game requires commutation exactly when `x=y` or when `(x,y)` or `(y,x)` is
+in the support of its question distribution.  The corresponding source
+commutator says that conjugation by `u_(y,j)` preserves the spectral sign of
+`r_(x,i)` and hence
+
+```text
+r_i(u_(y,j) t)=r_i(t).
+```
+
+By `(FRP5)`--`(FRP6)`, this is exactly `R_i V_(u_(y,j)) =
+V_(u_(y,j)) R_i`.  Finally every controlled affine row holds blockwise,
+because the row selected at block `t` is `c_(t,a)` and `V_(c_(t,a))` is the
+identity there.  Thus the induced tuple satisfies every legal answer-PVM
+relation, every ZPC commutator needed by the game, and every verifier row;
+`V_J=-1` on all blocks.
+
+The normalized trace on `M_|T|(A)` therefore gives a perfect
+Connes-embeddable tracial strategy for `G`.  Here is the precise matricial
+passage.  Embed the von Neumann algebra generated by its finitely many
+question PVMs trace-preservingly in a tracial matrix ultraproduct.  For each
+question `x`, its finite PVM `(P_a^x)_a` lifts to exact matrix PVMs
+`(P_(a,n)^x)_a`: lift the projection classes and use the standard
+finite-dimensional stability of the relations of `C^(Answers(x))` to make
+the representatives orthogonal with sum one without changing their
+ultraproduct classes.  If bit observables are desired, set
+
+```text
+U_(x,i,n)=sum_a (-1)^(a_i) P_(a,n)^x.
+```
+
+For every fixed pair of questions and answers,
+
+```text
+tr_(d_n)(P_(a,n)^x P_(b,n)^y)
+  -> tau(P_a^x P_b^y)                                  (FRP7)
+```
+
+along the ultrafilter.  Using the matrix PVMs and their transposes on a
+maximally entangled state gives legal finite-dimensional quantum
+correlations with exactly the moments on the left of `(FRP7)`.  The game has
+only finitely many payoff coefficients, so their losses tend to the exact
+loss zero of the induced strategy.  Hence `omega*(G)=1`, contradicting
+`(FRT1)`, and `K_T` is nonhyperlinear.
+
+Finally, `Q_G` is finitely presented and `[Q_G:H]=|T|<infinity`.
+Reidemeister--Schreier makes `H` finitely presented, and `(FRT3)` adds only
+finitely many normal relators.  Therefore `K_T` is finitely presented.

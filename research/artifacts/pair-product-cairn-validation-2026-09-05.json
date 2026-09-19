@@ -1,0 +1,35 @@
+{
+  "policy_comparison": {
+    "baseline_commit": "027c44cb7bc59d699273153feff5871f628720ff",
+    "baseline_nodes": 14128,
+    "baseline_parse_graph_findings": [],
+    "new_open": [],
+    "newly_dead": [],
+    "newly_detached": [],
+    "parked": []
+  },
+  "source_archive_sha256": "f047f9c78280fb44105320f2462e6238d9ae3098759edf752b1ed1b4e50dba29",
+  "reviewed_node_statuses": {
+    "moving-subgroup-schreier-correction-has-no-index-loss": "ESTABLISHED",
+    "degree-zero-leavitt-core-characters-are-dirac-haar-mixtures": "ESTABLISHED",
+    "weighted-leavitt-opposite-root-packets-have-finite-models": "ESTABLISHED",
+    "tracial-to-uniform-lifting-for-sl-n-z": "OPEN",
+    "hs-stability-from-ulam-stability-and-lifting": "OPEN",
+    "two-kazhdan-correction-has-quadratic-rank-curvature": "ESTABLISHED",
+    "sln-z-flexibly-hs-stable": "OPEN"
+  },
+  "scope": "Full authoritative source snapshot: every research node parsed by Cairn load_nodes, all native lint and graph checks, and unfiltered duplicate scan. Artifact existence checked against the local workspace path manifest; historical pins checked in remote Git. Baseline comparison additionally checks newly dead work, newly detached tops, and new open claims missing Attempts. Checker source matches the snapshot byte for byte. No mathematical proof-kernel claim.",
+  "node_count": 14144,
+  "claims": 7004,
+  "routes": 7140,
+  "elapsed_seconds": 9.597,
+  "findings": [],
+  "statuses": {
+    "COMPLETE": 5997,
+    "ESTABLISHED": 5931,
+    "OPEN": 1695,
+    "INVALIDATED": 379,
+    "REFUTED": 142
+  },
+  "root_status": "OPEN"
+}

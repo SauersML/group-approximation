@@ -1,0 +1,29 @@
+{
+  "dual_left": {
+    "a": "1",
+    "b": "0"
+  },
+  "dual_right": {
+    "x": "-1",
+    "y": "0"
+  },
+  "primal": [
+    {
+      "left": "a",
+      "mass": "1/4",
+      "right": "x"
+    },
+    {
+      "left": "a",
+      "mass": "1/2",
+      "right": "y"
+    },
+    {
+      "left": "b",
+      "mass": "1/4",
+      "right": "y"
+    }
+  ],
+  "value": "1/2",
+  "weight_denominator": 4
+}

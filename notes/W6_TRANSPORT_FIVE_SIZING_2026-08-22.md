@@ -1,0 +1,201 @@
+# `TransportSectionFive`: what Higman's Section 5 costs
+
+Written 2026-08-22, against `GroupApproximation/Higman/TheoremFour.lean:97`.
+Companion file: `GroupApproximation/Higman/TransportFive.lean`, which
+formalizes the part of the decomposition below that is tractable today.
+
+> **Source caveat, stated once and meant.**  This repository holds no copy of
+> Higman 1961 and no transcription of its Section 5; `notes/HIGMAN_BENIGN_LANE.md`
+> and `notes/HIGMAN_EMBEDDING_FORMALIZATION_PLAN.md` describe Sections 1--4 only,
+> and `research/mikaelian-explicit-higman-embedding.md` records Mikaelian
+> arXiv:1908.10153 as the shortest published route without reproducing it.  The
+> decomposition below is therefore **reconstructed**, not transcribed.  Where the
+> reconstruction is complete I say so; the one place where it is not is §4, and
+> that is also the only place where the cost is unknown.  Read Higman 1961 §5 (or
+> Mikaelian §4) before starting on §4 of this memo.
+
+## 1.  The statement, and who consumes it
+
+```lean
+structure TransportSectionFive where
+  transport : (∀ B : Set Seq.E, REset B → BenignTF (Seq.ASub B)) → REBenignTF
+```
+
+Consumers, all in this repository:
+
+* `Higman.reBenignTF_of_inputs` (`TheoremFour.lean:114`) --- with
+  `OperationClosures` and `HigmanTheoremThree` it gives `Higman.REBenignTF`;
+* `Higman.nonempty_universalTorsionFreeHost_of_five` (`TheoremFour.lean:120`);
+* `Higman.statement_of_four` and `nonempty_host_of_four`
+  (`FinalReduction.lean:49`, `:57`) --- the sharpest form of the whole lane.
+
+Unfolded, the hypothesis is: for every `B ⊆ ℤ →₀ ℤ` whose set of codes is
+recursively enumerable, the subgroup
+
+    ASub B = ⟨ a^{b_f} : f ∈ B ⟩ ≤ F₃ = FreeGroup (Fin 3),
+    b_f = rowHom (elt f) = ∏_{i ∈ supp f, increasing} (c^{-i} b c^{i})^{f i}
+
+is benign with a torsion-free witness (`Seq.ASub`, `SequenceSpace.lean:190`;
+`BenignTF`, `BenignTorsionFree.lean:34`).  The conclusion is `REBenignTF`
+(`RopeTorsion.lean:79`): every normal `N ≤ FreeGroup (Fin (n+1))` whose raw-word
+set is `REPred` has a torsion-free benign witness.
+
+So the transport has to move from **`a`-conjugates indexed by coded sequences,
+in a fixed rank-three free group** to **an arbitrary recursively enumerable
+normal subgroup of an arbitrary finite-rank free group**.
+
+## 2.  The reconstruction, in four steps
+
+Write `m = n+1`, `F_m = FreeGroup (Fin m)`, `K = ⟨b,c⟩ ≤ F₃`.
+
+**Choice of coding (this is the design decision that makes the rest work).**
+Code the raw word `v = (i₁,ε₁)…(i_k,ε_k)` by the sequence
+
+    codeSeq v : position (j-1)·m + (i_j mod m)  ↦  ε_j            (j = 1…k)
+
+--- one block of `m` positions per letter, the residue inside the block naming
+the letter, the value carrying the sign.  Two things follow at once, and both
+are proved in `TransportFive.lean`:
+
+* the occupied positions strictly increase with `j`, so `Seq.elt (codeSeq v)`
+  is the *sorted* product `∏_j of(p_j)^{ε_j}` --- no sorting argument is ever
+  needed (`Seq.elt_add_of_lt` of `OperationClosureTau.lean:70` and
+  `Split.elt_single` of `SeqFilter.lean:244` do all the work);
+* **decoding is a homomorphism.**  `decodeHom : FreeGroup ℤ →* F_m`,
+  `of p ↦ of (p mod m)`, satisfies `decodeHom (elt (codeSeq v)) = rawToFree n v`.
+
+That is the whole point of the block coding: under the obvious coding (position
+= index, value = letter) decoding is *not* induced by any homomorphism, because
+the letters sit in the exponents.  Under the block coding the letters sit in the
+*positions*, `decodeHom` is a lift of a map of free bases, and `sectionHom`
+(`of i ↦ of (i : ℤ)`) is a homomorphic section of it.
+
+**Step 1 (coding, algebra).**  `decodeHom ∘ elt ∘ codeSeq = rawToFree` as above.
+**Proved** in `TransportFive.lean` (`decodeHom_elt_codeSeq`).
+
+**Step 2 (coding, computability).**  With `B_N := {codeSeq v | rawToFree n v ∈ N}`,
+`REset B_N` follows from `REPred (fun v => rawToFree n v ∈ N)`.  Not proved;
+carried as the hypothesis `CodeRE` in `TransportFive.lean`.
+
+**Step 3 (rank and ambient plumbing).**  Given that `R_B := ⟨elt f : f ∈ B_N⟩`
+has `rowHom (R_B)` benign in `F₃`, the target follows by **one** `comap` along
+`rowHom ∘ sectionHom : F_m ↪ F₃`, because `decodeHom ∘ sectionHom = id` makes
+the preimage exactly `N` --- provided `sectionHom (N) ⊆ R_B` (§3 below).
+`BenignTF.comap` (`BenignTorsionFree.lean:110`) is proved, free groups are
+finitely presented and torsion-free, so this step is a dozen lines.  Its
+ingredients are in `TransportFive.lean` (`sectionHom`, `decodeHom_comp_sectionHom`,
+`rowHom_sectionHom_injective`).
+
+**Step 4 (un-conjugation) --- the content.**  What Theorem 4 hands over is
+`⟨a^{b_f} : f ∈ B⟩`; what Step 3 wants is `⟨b_f : f ∈ B⟩`.  Nothing in the
+proved calculus turns one into the other.  This is Higman's Section 5, and §4
+below is what is known about it.
+
+## 3.  The completion lemma (Step 3's side condition), and its status
+
+Step 3 needs `sectionHom w ∈ R_B` for every `w ∈ N`, where `R_B` is generated by
+the *sorted* preimages of elements of `N`.  The reverse inclusion is free:
+`decodeHom (R_B) = N` gives `(rowHom ∘ sectionHom)⁻¹ (rowHom R_B) ⊆ N` outright.
+
+Equivalently (using `1 ∈ N`): **`ker decodeHom ≤ R_B`**, i.e. the kernel of
+`decodeHom` is generated by its sorted elements.  Two data points, both checked
+by hand:
+
+* `of(p) of(q)^{-1}` with `p ≡ q (mod m)`, `p < q`, is itself sorted, so all of
+  `C = ⟨of(p)^a of(q)^{-a}⟩` lies in `R_B`;
+* the Schreier-type generator `of(p₀)^{r} of(p) of(p₀)^{-(r+1)}` factors as
+  `[of(p₀)^r of(p) of(q)^{-(r+1)}] · [of(q)^{r+1} of(p₀)^{-(r+1)}]`, both factors
+  sorted (choose `q ≡ p₀` above everything), both with trivial `decodeHom`-image.
+
+`C` alone is a proper free factor of `ker decodeHom` (Reidemeister--Schreier:
+`C` is the `r = 0` part of the basis), so the second bullet is doing real work,
+and the general case --- an arbitrary element of `ker decodeHom`, split into
+maximal increasing runs and each run completed to trivial image by fresh
+higher positions --- is an induction on the number of descents that I have
+**not** written out.  Price it as elementary free-group combinatorics,
+150--250 lines, no machine content, moderate risk of a missing case.  It is
+carried as `CompletionLemma` in `TransportFive.lean` so that the assembly can be
+stated and checked without it.
+
+## 4.  Step 4: routes tried, and what is left
+
+`(★)`  *From `⟨a^{h} : h ∈ S⟩` benign to `⟨h : h ∈ S⟩` benign, for `S = bElt '' B`
+with `B` recursively enumerable.*
+
+Tried and **refuted**, recorded so they are not re-tried:
+
+1. *Image along the decode map, via `BenignWitness.mapEmb`.*  `mapEmb`
+   (`BenignAmbient.lean:82`) needs the map to be **injective**; the map
+   `a^{b_f} ↦ b_f` is not, and is not the restriction of any endomorphism of
+   `F₃`: an endomorphism fixing `b, c` sends `a^{b_f}` to `(b_f)^{-1} φ(a) b_f`,
+   and no single `φ(a)` gives `b_f` for all `f`.
+2. *A single `comap` along some `Ψ : F_m → F₃` with `Ψ⁻¹(ASub B) = N`.*
+   Elements of `ASub B` are words in the free basis `{a^h : h ∈ K}`
+   (`Conj.cbHom_injective`), and a reduced word lies in `⟨a^h : h ∈ S⟩` exactly
+   when every letter's index is in `S`.  The letter-index set of `Ψ(w)` is
+   contained in the union of those of the images of the generators occurring in
+   `w`, so the preimage is essentially determined by *which generators occur* in
+   `w`, not by `w`.  No `N` with unsolvable membership is of that shape.
+3. *An HNN identification `a^h ↦ h`.*  Not an isomorphism of subgroups:
+   `⟨⟨a⟩⟩` is free of infinite rank on `{a^h : h ∈ K}` and `K` is free of rank
+   two, and the basis-to-element map is onto but not injective, so there is no
+   stable letter realizing it.
+4. *Join with `⟨a⟩` and intersect with `K`.*  `⟨a⟩ ⊔ ASub B` lies inside the
+   normal closure `⟨⟨a⟩⟩`, which meets `K` trivially.  Nothing survives.
+
+Still open, and the two candidates worth spending time on:
+
+* **the graph subgroup.**  `a^h · h^{-1} = h^{-1} a`, so the graph of the
+  un-conjugation is `G_S = ⟨h^{-1} a : h ∈ S⟩ ≤ F₃`, and
+  `(h^{-1}a)(h'^{-1}a)^{-1} = h^{-1}h'`, so `G_S ⊓ K` contains the difference
+  subgroup of `S`, which is `⟨S⟩` as soon as `1 ∈ S` --- and `1 ∈ S` always,
+  because `1 ∈ N`.  Two obligations: `G_S ⊓ K = ⟨S⟩` exactly (a free-product
+  normal-form argument in `⟨a⟩ ∗ K`, of the kind `Higman/Pinch.lean` already
+  does for HNN extensions), and `G_S` benign.  The second is not an instance of
+  Theorem 4 --- `G_S` is not an `ASub` --- so it needs its own construction.
+* **re-running the row calculus.**  `Higman/RowSubgroup.lean` (Higman's Example
+  3.5, 377 lines) proves the row subgroup benign by an explicit HNN witness.
+  `(★)` for a *coded* `S` may be provable by the same device applied to the
+  coded family rather than the full row; this is the route I would try first,
+  because it reuses `RowBasis`, `ConjugateBasis` and `RowKernel`.
+
+`(★)` is where Section 5's cost is.  It is **not** plumbing.
+
+## 5.  Costs, itemized and honest
+
+| step | content | infrastructure it leans on | cost |
+|---|---|---|---|
+| 1 | block coding, decode homomorphism | `Seq.elt_add_of_lt`, `Split.elt_single`, `FreeGroup.lift` | **done**, ~180 lines (`TransportFive.lean`) |
+| 2 | `REset B_N` from the raw-word `REPred` | `REPredNormalForm.exists_primrec_of_rePred`, `WordProblemRE.rePred_exists_eq_true`, `Primrec.list_map` | 150--250 lines, fiddly (`Primrec` over `List (ℤ × ℤ)`; the normalization of a code list is the risk) |
+| 3 | completion lemma + the single `comap` | `BenignTF.comap`, `Subgroup.comap`, free-group combinatorics | comap: ~40 lines, **done modulo the lemma**; completion lemma: 150--250 lines |
+| 4 | `(★)`, un-conjugation | unknown; probably `RowSubgroup`/`Pinch`/`AmalgamPushout` | **unknown**; comparable to one operation closure, i.e. 350--700 lines *after* the mathematics is settled |
+| 5 | torsion clause | `BenignTF.*` | **free** |
+
+Step 5 deserves its own line only to record that it is free: every construction
+in `BenignTorsionFree.lean` (`inf`, `sup`, `comap`, `congr`, `ofFG`) already
+carries the torsion-free witness, so if `(★)` is proved with a witness built
+from direct products and HNN extensions --- as `RowSubgroup`'s is --- the
+`BenignTF` form comes with it.  See `BenignTorsionFree.lean:158`.
+
+Total, excluding `(★)`: **350--500 lines**, of which the coding half is written.
+Including `(★)`: not estimable until the mathematics of `(★)` is settled, and I
+would not commit to a number before reading Higman 1961 §5.
+
+## 6.  What `TransportFive.lean` contains
+
+The tractable prefix, plus the two open leaves as named hypothesis structures
+matching this memo:
+
+* `Transport.decodeHom`, `Transport.sectionHom`, `decodeHom_comp_sectionHom`,
+  `rowHom_sectionHom_injective` --- the coding maps and that the section is
+  one;
+* `Transport.codeSeq`, `codeSeq_support_lower`, `elt_codeSeq`,
+  `decodeHom_elt_codeSeq` --- the block coding and Step 1;
+* `Transport.codeSet`, `decodeHom_mem_of_mem_codeSet`,
+  `exists_mem_codeSet` --- soundness and completeness of the code set;
+* `CodeRE` --- Step 2, one hypothesis;
+* `CompletionLemma` --- §3, one hypothesis;
+* `UnConjugation` --- `(★)`, one hypothesis;
+* `transportSectionFive_of_parts` --- the assembly, proved.
+
+Nothing else in the repository imports it yet; it is a leaf.

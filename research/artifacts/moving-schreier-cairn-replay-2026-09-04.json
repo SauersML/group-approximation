@@ -1,0 +1,64 @@
+{
+  "scope": "Edited-source lint and cached-source graph replay with the listed source overlays; not a full source rebuild or a proof-kernel check.",
+  "overlays": [
+    "steinberg-flag-fox-map-is-injective-at-five-and-seven",
+    "steinberg-five-seven-full-minor-proof",
+    "steinberg-flag-fox-map-is-injective",
+    "non-hyperlinear-group",
+    "uniform-relative-clifford-tape-cell",
+    "all-representation-expander-swap-proof",
+    "all-representation-expansion-keeps-macroscopic-multiplicity-swap",
+    "two-pauli-anchors-localize-arbitrary-normalizer-twists",
+    "two-pauli-anchor-norm-profile-proof",
+    "toeplitz-transitive-pauli-actor-repairs-relative-cell",
+    "anchored-pauli-extension-splits-off-its-payload",
+    "anchored-pauli-payload-direct-product-proof",
+    "constant-depth-schur-lift-of-doubling-tape",
+    "nonhyperlinear-from-constant-depth-schur-lift",
+    "moving-subgroup-schreier-correction-has-no-index-loss",
+    "moving-schreier-induction-original-rank-proof",
+    "finite-index-exact-kazhdan-induction-proof",
+    "subgroup-exact-outliers-do-not-exist",
+    "sl3-z-weakly-ucp-stable"
+  ],
+  "node_count": 13739,
+  "elapsed_seconds": 0.828,
+  "diagnostics": [
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: mikhailova-left-right-soficity-is-one-color-code -> mikhailova-left-right-action-current-frontier -> mikhailova-left-right-soficity-is-one-color-code"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: mikhailova-color-code-must-escape-finite-palettes -> mikhailova-left-right-soficity-is-one-color-code -> mikhailova-left-right-action-current-frontier -> mikhailova-color-code-must-escape-finite-palettes"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: mikhailova-left-right-soficity-is-one-color-code -> mikhailova-left-right-action-current-frontier -> mikhailova-color-code-schreier-irs-firewall -> mikhailova-left-right-soficity-is-one-color-code"
+    ]
+  ],
+  "statuses": {
+    "steinberg-flag-fox-map-is-injective-at-five-and-seven": "ESTABLISHED",
+    "steinberg-five-seven-full-minor-proof": "COMPLETE",
+    "steinberg-flag-fox-map-is-injective": "OPEN",
+    "non-hyperlinear-group": "OPEN",
+    "uniform-relative-clifford-tape-cell": "OPEN",
+    "all-representation-expander-swap-proof": "COMPLETE",
+    "all-representation-expansion-keeps-macroscopic-multiplicity-swap": "ESTABLISHED",
+    "two-pauli-anchors-localize-arbitrary-normalizer-twists": "ESTABLISHED",
+    "two-pauli-anchor-norm-profile-proof": "COMPLETE",
+    "toeplitz-transitive-pauli-actor-repairs-relative-cell": "ESTABLISHED",
+    "anchored-pauli-extension-splits-off-its-payload": "ESTABLISHED",
+    "anchored-pauli-payload-direct-product-proof": "COMPLETE",
+    "constant-depth-schur-lift-of-doubling-tape": "OPEN",
+    "nonhyperlinear-from-constant-depth-schur-lift": "OPEN",
+    "moving-subgroup-schreier-correction-has-no-index-loss": "ESTABLISHED",
+    "moving-schreier-induction-original-rank-proof": "COMPLETE",
+    "finite-index-exact-kazhdan-induction-proof": "COMPLETE",
+    "subgroup-exact-outliers-do-not-exist": "ESTABLISHED",
+    "sl3-z-weakly-ucp-stable": "OPEN"
+  }
+}
