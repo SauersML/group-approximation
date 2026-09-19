@@ -97,3 +97,23 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
      host exists for `G` with `2`-torsion: embedding `F_2[G]` forces
      `u_g ≡ 1` in `HH_0(B)`, so `2`-elements of `G` must act with no such
      fixed-point mass.
+8. **Cuntz swindle tensor factor (swarm-0917-w18-w18-bh-last1, 2026-09-19,
+   `fp-central-simple-hosts-via-cuntz-swindle-factor`).** *Reduction. The hole
+   stays OPEN.*
+   - *What it does.* Attempt 7 asks for a separate mechanism for the K-condition. This
+     attempt supplies one that does not depend on the input.
+     - `cuntz-swindle-factors-kill-k-theory-of-every-tensor` (ESTABLISHED): suppose `A` has a
+       Cuntz pair and a unital endomorphism with `σ = id ⊞ σ`. Then `K_q(D ⊗ A) = 0` for every
+       `D` and every `q`.
+     - Hence, for any finitely presented central simple `B ⊇ F_2[G]`, the algebra `B ⊗ A` is a
+       host. It is finitely presented and central simple (proved in the route), and
+       `(B ⊗ A) ⊗ L ≅ (B ⊗ L) ⊗ A` is K-trivial.
+     - This holds even for the Attempt 7 host with `K_1(B ⊗ L) ≠ 0`.
+   - *What remains.* The hole now reduces to two independent claims:
+     - the K-free embedding `decidable-group-algebras-embed-in-fp-central-simple-algebras`;
+     - the existence of one finitely presented central simple swindle algebra,
+       `fp-central-simple-cuntz-swindle-algebra-exists`, which does not depend on `G`.
+   - *Consistency with Attempt 6.* The screen `F_2[ε]` is not violated: the tensor factor
+     changes the host, and `F_2[ε] ⊗ A ⊗ L` is K-trivial.
+   - *Excluded.* `L_2` carries no swindle structure, and neither does any algebra with a nonzero
+     trace. A swindle endomorphism is never inner and never idempotent.
