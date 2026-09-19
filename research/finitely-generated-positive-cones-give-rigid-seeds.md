@@ -2,9 +2,9 @@
 rg: 2
 id: finitely-generated-positive-cones-give-rigid-seeds
 kind: claim
-title: Every finitely generated group with a left order whose positive cone is a finitely generated semigroup lies in 𝒞, whether the order is dense or discrete; so all braid groups, all torus-knot groups and all of Ito's partially central cyclic amalgams lie in 𝒞, and CAP predicts that no such finitely presented group has a hard word problem
+title: Every finitely generated group with a left order whose positive cone is a finitely generated semigroup lies in 𝒞 (such an order is always discrete); so all braid groups, all torus-knot groups and all of Ito's partially central cyclic amalgams lie in 𝒞, and CAP predicts that no such finitely presented group has a hard word problem
 distinct_from:
-  order-seeds-are-rigid-relative-seeds: that proves the dense case and states the discrete case only where each gap is crossed by one step; this checks that condition for every finitely generated positive cone, removing density.
+  order-seeds-are-rigid-relative-seeds: that proves the dense case and states the discrete case only where each gap is crossed by one step; this checks that condition for every finitely generated positive cone, which is always the discrete case.
   order-seeds-transfer-computable-orders: that bounds what order seeds can reach; this lists what they do reach, and restates question (O) without density.
 ---
 
@@ -17,8 +17,9 @@ finite set `S⁺`. Then `A ∈ 𝒞`. The seed is the sign function `y(g) = cmp(
 `S = S⁺ ∪ (S⁺)^{-1}`.
 
 *Proof.* Apply `order-seeds-are-rigid-relative-seeds` with `Ω = A`, `p = 1` and `C = 1`. Hypothesis (M) holds:
-`g ≺ g′` gives `g^{-1}g′ = s_1 ⋯ s_m` with `s_i ∈ S⁺`, and each partial product increases. A left order is either
-dense (no least positive element, so (D) holds) or discrete.
+`g ≺ g′` gives `g^{-1}g′ = s_1 ⋯ s_m` with `s_i ∈ S⁺`, and each partial product increases. The order is discrete:
+the least generator is the least positive element (`finitely-generated-positive-cones-are-discrete`). (The first
+landing also treated a dense case, which never occurs.)
 - **The discrete case.** Let `s_min` be the least positive element.
   - `s_min ∈ S⁺`, since a product of two or more positive elements exceeds each factor.
   - The gaps of `A` are exactly the pairs `g ≺ g s_min`, since `g s_min` is the successor of `g`.

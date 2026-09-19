@@ -2,7 +2,7 @@
 rg: 2
 id: order-seeds-are-rigid-relative-seeds
 kind: claim
-title: If a finitely generated group acts order-preservingly on a linear order with a densely ordered orbit, a point whose stabilizer is finitely generated, and monotone paths between orbit points, then the cut at that point is a rigid relative seed; so groups with a dense left order whose positive cone is finitely generated lie in 𝒞, and their seeds evaluate as the positivity oracle
+title: If a finitely generated group acts order-preservingly on a linear order with a densely ordered orbit, a point whose stabilizer is finitely generated, and monotone paths between orbit points, then the cut at that point is a rigid relative seed; and it is the tool behind the finitely generated positive cone seeds (whose orders are always discrete; see finitely-generated-positive-cones-are-discrete)
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that builds relative seeds from tree splittings (pointers, Stallings cores, finite shifts); this builds them from an order on an orbit, with rigidity from monotone chains and no tree.
   baumslag-gersten-groups-lie-in-class-c: that seeds the stable letter of BS(1,n) by a line sink in the tree; this seeds it by the real cut of the affine action, as one instance of a general order construction.
@@ -74,12 +74,16 @@ case `A = Z`.
    uses `b`-moves to a level `j` with `2^j | (r′ − r)` followed by `a`-steps. This is the real-cut seed `y_R` of
    `baumslag-gersten-seed-forcing-length-is-non-elementary`.
 2. **Finitely generated positive cones.** Suppose `A` has a left order `≺` whose positive cone `P` is generated
-   as a semigroup by `S⁺ = {s ∈ S : s ≻ 1}`, and `≺` is dense.
+   as a semigroup by `S⁺ = {s ∈ S : s ≻ 1}`.
+   - **Correction (bh-emitter-a, 2026-09-19).** This instance was first stated for dense `≺`, which is vacuous: a
+     finitely generated cone always makes `≺` discrete (`finitely-generated-positive-cones-are-discrete`). The
+     real statement uses the "Discrete orbits" variant and is proved in
+     `finitely-generated-positive-cones-give-rigid-seeds`. The referee's caveat below anticipated this.
    - Take `Ω = A`, `p = 1` and `C = 1`. Then (M) holds, because `g ≺ g′` means `g^{-1}g′ = s_1 ⋯ s_m` with
      `s_i ∈ S⁺`, and each step `g s_1 ⋯ s_i` increases.
    - So `A ∈ 𝒞`, and its forced point is the sign function of the order.
-   - Examples, recalled and not re-checked for density: the Dubrovina–Dubrovin orders on braid groups have
-     finitely generated positive cones.
+   - Examples: the Dubrovina–Dubrovin orders on braid groups have finitely generated positive cones, and they
+     are discrete.
 3. **Point stabilizers generally.** Any (M)-action with a finitely generated point stabilizer supplies a rigid
    relative seed for that stabilizer. So order actions are a source of relative seeds for subgroups that fix no
    tree vertex, which is the tool the seed tower asked for.
@@ -90,8 +94,8 @@ case `A = Z`.
   problem of `P`, which is decidable given `WP(A)`: positivity and negativity are both c.e.
 - **The CAP relation.**
   - `WP(A) ≤ positivity ≤ Eval(y_*)`, so order seeds refute CAP only through groups with a hard word problem.
-  - **Question (O).** Is there a finitely presented group with a dense left order whose positive cone is
-    finitely generated, and whose word problem lies outside a given class, such as EXP?
+  - **Question (O).** Is there a finitely presented group with a left order whose positive cone is finitely
+    generated (necessarily a discrete order), and whose word problem lies outside a given class, such as EXP?
   - A yes refutes CAP. Relatively, a monotone-connected order action with a hard point stabilizer would do the
     same along a Higman tower.
 
