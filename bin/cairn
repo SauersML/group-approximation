@@ -1,0 +1,13 @@
+#!/bin/sh
+# The cairn CLI lives in the tools/cairn submodule
+# (https://github.com/SauersML/Cairn), pinned like any dependency.
+root="$(cd "$(dirname "$0")/.." && pwd)"
+tool="$root/tools/cairn/cairn.py"
+if [ ! -f "$tool" ]; then
+  echo "cairn submodule missing — run: git submodule update --init tools/cairn" >&2
+  exit 1
+fi
+# Pin the cairn root to this repo so behavior stays cwd-independent.
+# The graph is about this project, so the site carries this project's name.
+CAIRN_ROOT="$root" CAIRN_SITE_TITLE="${CAIRN_SITE_TITLE:-Group Approximation}" \
+  exec python3 "$tool" "$@"
