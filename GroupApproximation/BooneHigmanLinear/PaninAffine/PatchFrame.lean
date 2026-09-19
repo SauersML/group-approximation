@@ -520,7 +520,7 @@ theorem exists_valid (hz : ZData a b) (α : SteinbergGroup (Fin r) (Localization
       Valid a b α i j c t.1 t.2.1 t.2.2 := by
   obtain ⟨Φ, hΦ⟩ := exists_frame hz α hij
   obtain ⟨q, hq⟩ := zariski_split hz.hab c
-  obtain ⟨c', s, κ, hc, -⟩ := hq Φ.N
+  obtain ⟨c', s, -, hc, -⟩ := hq Φ.N
   exact ⟨(Φ, c', s), hΦ, hc⟩
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.exists_valid

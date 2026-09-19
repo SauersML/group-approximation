@@ -48,6 +48,8 @@ open GroupApproximation.GGT GroupApproximation.GGT.VanKampen
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFill
   GroupApproximation.GGT.VanKampen.Embedded
 
+open scoped List
+
 /-- **A sublist of four blocks keeping two whole blocks.**  If `l` is a sublist of the
 duplicate-free list `a ++ b ++ c ++ d` and contains every element of `b` and of `d`, then
 `l = s₁ ++ b ++ s₂ ++ d` with `s₁ <+ a` and `s₂ <+ c`.  (Osin, proof of Lemma 9.7(b); `thm:hull`.) -/

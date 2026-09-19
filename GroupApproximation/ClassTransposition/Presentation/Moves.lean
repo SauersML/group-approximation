@@ -29,8 +29,8 @@ def splitAt : List Box → ℕ → ℕ → List Box
 
 /-- Swap the entries at `k` and `k + 1`. -/
 def swapAt {α : Type*} : List α → ℕ → List α
-  | E :: F :: b, 0 => F :: E :: b
   | E :: b, k + 1 => E :: swapAt b k
+  | E :: F :: b, 0 => F :: E :: b
   | b, _ => b
 
 @[simp] theorem swapAt_zero {α : Type*} (E F : α) (b : List α) :
@@ -113,6 +113,7 @@ theorem splitAt_pairwise : ∀ (b : List Box) (i p : ℕ), b.Pairwise Box.Disj �
     refine List.pairwise_append.2 ⟨kids_pairwise E p, h.2, fun X hX Y hY n hx hy => ?_⟩
     exact h.1 Y hY n (kids_sub X hX n hx) hy
   | E :: b, i + 1, p, h => by
+    show List.Pairwise Box.Disj (E :: splitAt b i p)
     rw [List.pairwise_cons] at h ⊢
     refine ⟨fun X hX n he hx => ?_, splitAt_pairwise b i p h.2⟩
     obtain ⟨Y, hY, hXY⟩ := splitAt_sub b i p X hX

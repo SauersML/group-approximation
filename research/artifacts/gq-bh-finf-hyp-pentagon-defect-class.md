@@ -42,14 +42,17 @@ the open non-torsion case.
     to BBMZ Question 1.2.
   - Or it may be a failure of the complex only.
   - **Open.**
-- **What can be computed.** Finite-set stabilizers, `SingFix(M,M)`, are extensions of `Fix_B(M)` by
-  finite-index subgroups of `Z^{|M|−1}`, hence `F_∞`. Any obstruction must therefore be global: orbit
+- **What can be computed** (corrected per referee bh-ref-q12; the earlier claim that `SingFix(M,M)` is an extension
+  of `Fix_B(M)` by a finite-index subgroup of `Z^{|M|−1}` was wrong). An element fixing `M` has torsion defect at
+  each point of `M`, so no free-part flux. By BHM Proposition 2.8, `Fix_B(M)` has finite index in `SingFix(M,M)`,
+  which is therefore `F_∞`. Any obstruction must therefore be global: orbit
   non-finiteness, a Houghton-type Σ-invariant, not local.
 
 ## Lesson for general BH
 
 - **Two different fluxes.** On hyperbolic hosts, a reflection's singular germs carry an integer flux across its
-  wall, in `H_0` of the atom SFT, and it cannot be recoded away (Bowen–Franks invariance). Surface-type hosts
+  wall, in `H_0` of the atom SFT, and no recoding that induces an isomorphism of `G_Σ` removes it (Bowen–Franks invariance; a coding with a
+  different groupoid and base group is not covered). Surface-type hosts
   therefore sit in the Houghton-like regime of germ extensions, not in the Röver–Nekrashevych regime.
 - **What decides Q1.2 for them.** Whether a flux with infinitely many possible carriers kills higher finiteness
   (as a fixed finite set of rays does for Houghton groups), or can be absorbed by a flux-aware germ complex.
