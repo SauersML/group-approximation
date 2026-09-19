@@ -141,7 +141,7 @@ theorem exists_sepRadius [DiscreteTopology A] [Finite A] (hinf : Infinite S.carr
     have hfree : ∀ x : S.carrier, ∃ m : ℤ, x.1 (e + m) ≠ x.1 m := by
       intro x
       by_contra hc
-      push_neg at hc
+      push Not at hc
       apply SK05.subshiftHomeo_zpow_apply_ne_self S hinf hmin he x
       apply Subtype.ext
       funext m
