@@ -1,0 +1,59 @@
+RANK 3 CAP 26 NPERM 48 NWA 90
+depth 1 states 222
+depth 2 states 7452
+depth 3 states 36743
+depth 4 states 104631
+depth 5 states 229073
+depth 6 states 443453
+depth 7 states 672620
+SLOT END states 772438 head 496640 depth 7
+resumed r3c26.ck: states 772438 head 496640 depth 7
+depth 8 states 913893
+depth 9 states 1111869
+SLOT END states 1158158 head 936960 depth 9
+resumed r3c26.ck: states 1158158 head 936960 depth 9
+depth 10 states 1278129
+depth 11 states 1410618
+SLOT END states 1504757 head 1383424 depth 11
+resumed r3c26.ck: states 1504757 head 1383424 depth 11
+depth 12 states 1515964
+depth 13 states 1595494
+depth 14 states 1658830
+depth 15 states 1705357
+depth 16 states 1742773
+depth 17 states 1770431
+depth 18 states 1791954
+depth 19 states 1809526
+SLOT END states 1816250 head 1799168 depth 19
+resumed r3c26.ck: states 1816250 head 1799168 depth 19
+depth 20 states 1824036
+depth 21 states 1838811
+depth 22 states 1852606
+depth 23 states 1866677
+depth 24 states 1877322
+depth 25 states 1886360
+depth 26 states 1893485
+depth 27 states 1899158
+depth 28 states 1903400
+depth 29 states 1906413
+depth 30 states 1908525
+depth 31 states 1909898
+depth 32 states 1911073
+depth 33 states 1912023
+depth 34 states 1912737
+depth 35 states 1913099
+depth 36 states 1913307
+depth 37 states 1913432
+depth 38 states 1913537
+depth 39 states 1913629
+depth 40 states 1913727
+depth 41 states 1913810
+depth 42 states 1913867
+depth 43 states 1913943
+depth 44 states 1914010
+depth 45 states 1914052
+depth 46 states 1914058
+EXHAUSTED depth 46 states 1914058 processed 1914058; PRIM tests 1914057, goals PRIM 0
+lengths: 13:2 14:5 15:72 16:83 17:476 18:541 19:2913 20:3174 21:17530 22:19409 23:109617 24:130427 25:721401 26:908408
+dumped 1914058 states to r3c26.ck.txt
+FINAL exit 0

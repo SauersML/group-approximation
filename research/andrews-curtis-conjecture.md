@@ -179,3 +179,33 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
      tunnels, which may collapse by roughly 14 to 1 into classes. Also the rank-3 seeded
      run, and chains of three or more AC products inside the band (`band.sh`), which keep
      landing new states.
+
+9. **Heretic lane, fourth pass: the capped component at cap 26 (w8-082, 2026-09-18).** See
+   `ak3-rank2-capped-component-at-total-length-26`.
+   - **Rank 2.** S_26 is finite: 1690039 states, exhausted after 46 levels.
+     - No state has a primitive entry, and none is thickenable. The 1428319 states outside
+       S_24 took the same number of Neuwirth tests, with 0 undecided.
+     - The minimum length is 13, attained only by AK(3) and one other state.
+     - So a rank-2 path from AK(3) to a goal must pass through total length at least 27.
+     - S_28 is finite, with 11535176 states and no primitive entry. So a rank-2 path to a
+       primitive pair must pass through length at least 29. THICK was not run at cap 28.
+   - **The cap moves the short part.** S_26 has 4036 states of length ≤ 24 that are not in
+     S_24, the shortest of length 19. Each is joined to AK(3) only through length 25 or 26.
+     S_28 adds 2261 more such states, again with the shortest of length 19.
+   - **Rank 3.** S³_26 is finite: 1914058 states, with no primitive entry.
+     - Its z-free part is exactly S_26, and the z-free part of S³_24 is exactly S_24. So,
+       at these caps, detours through the third generator reach no new pair in F_2.
+     - Every state that uses z and lies outside S³_24 has length 25 or 26. There are
+       205526 of them, and they were tested for PRIM only.
+   - **Dead end.** The Alexander polynomials of the two one-relator quotients take the value
+     (1, 1) of the basis pair on 17 states of S_24. So no move-invariant function of
+     {Δ_1, Δ_2} obstructs.
+   - **Next.**
+     - THICK and PROJ on the 205526 new rank-3 states with z. This costs about 145 s of CPU
+       per 1000 states on S³_24 states, almost all in the projected Neuwirth tests. On the
+       new states, chunks of 1000 did not finish in 1200 s under load.
+     - In rank 3, the 2-tunnels that start inside S³_24.
+     - THICK on S_28 minus S_26: 9.8M Neuwirth tests, about 3 CPU-days at the measured
+       rate.
+     - A proof that the part of length ≤ 24 stabilizes, or that it does not, as the cap
+       grows. It changed at both 26 and 28.

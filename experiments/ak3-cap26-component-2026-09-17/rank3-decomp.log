@@ -1,0 +1,10 @@
+sizes: rank2 S24 261720  rank2 S26 1690039  rank3 S24 280213  rank3 S26 1914058
+rank2 S24 in rank2 S26: True   rank3 S24 in rank3 S26: True
+rank2 S24 in rank3 S24: True   rank2 S26 in rank3 S26: True
+rank3 S24: z-free 261720, equal to rank2 dump: True; with z 18493
+   states with z using only two of x, y, z: 0
+rank3 S26: z-free 1690039, equal to rank2 dump: True; with z 224019
+   states with z using only two of x, y, z: 0
+rank3 S26 minus rank3 S24: 1633845; z-free 1428319, equal to rank2 S26 minus rank2 S24: True
+  z-states by length: [(25, 83519), (26, 122007)]
+  z-free by length:   [(19, 5), (20, 10), (21, 79), (22, 117), (23, 1041), (24, 2784), (25, 637882), (26, 786401)]
