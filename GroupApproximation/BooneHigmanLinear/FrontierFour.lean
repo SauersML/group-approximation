@@ -25,8 +25,8 @@ From them this file states:
 
 T1 is `bhNagaoUncond_fpMetabelian_routeA` itself.  T2 and T3 use the linear host and the
 self-similar envelope, built from the same inputs by the same reductions as that theorem's body
-(`linearHost_routeA`, `envelope_routeA`).  The envelope needs only `H1`.  The linear host needs `S1`,
-`P1` and `Z1`.
+(`linearHost_routeA`, `envelope_routeA`).  The envelope needs only `H1`.  The linear host needs
+`S1`, `P1` and `Z1`.
 
 This module is deliberately not imported by the root.  The Palomar Solution imports it directly.
 -/
@@ -54,15 +54,12 @@ theorem envelope_routeA (hH1 : Metabelian.Envelope.HigmanVCStepBCoreStatement) :
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.envelope_routeA
 
-/-- The linear host from `S1`, `P1` and `Z1`. -/
-theorem linearHost_routeA (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
-    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+/-- The linear host from `S1`, `Z1` and the char-`p` elementary target: `E_N(F_p[s_1..s_k])` is
+finitely presented for `N ≥ k + 4`. -/
+theorem linearHost_of_polyFpEFP (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hfp : Metabelian.ElemFP.PolynomialFpElementaryFPStatement)
     (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement) :
     Products.LinearHostStatement := by
-  have hfp : Metabelian.ElemFP.PolynomialFpElementaryFPStatement :=
-    Metabelian.ElemFP.polynomialFpElementaryFP_of_polynomialFpK2Vanishing
-      (Metabelian.ElemFP.polynomialFpK2Vanishing_of_gapOver hP1
-        Metabelian.ElemFP.vdkRowExt_fieldK2Vanishing)
   have habs := Metabelian.Absorption.elementaryAbsorption_of_localGlobalQuillen
     (Metabelian.Absorption.suslinLocalGlobalQuillen_of_localHorrocks
       (Metabelian.Absorption.suslinBase3_localHorrocks Metabelian.Absorption.suslinKill_intCoord
@@ -80,6 +77,19 @@ theorem linearHost_routeA (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement
       Metabelian.Chain.affineExtensionFPStatement_holds
       Metabelian.CharZeroHost.charZeroAffineSelfSimilarStatement
   exact Metabelian.Chain.linearHostStatement_of_charP_charZero hcP hc0
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.linearHost_of_polyFpEFP
+
+/-- The linear host from `S1`, `P1` and `Z1`. -/
+theorem linearHost_routeA (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+    (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement) :
+    Products.LinearHostStatement :=
+  linearHost_of_polyFpEFP hS1
+    (Metabelian.ElemFP.polynomialFpElementaryFP_of_polynomialFpK2Vanishing
+      (Metabelian.ElemFP.polynomialFpK2Vanishing_of_gapOver hP1
+        Metabelian.ElemFP.vdkRowExt_fieldK2Vanishing))
+    hZ1
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.linearHost_routeA
 
