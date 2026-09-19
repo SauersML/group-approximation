@@ -246,7 +246,7 @@ theorem threeCycle_mem_of_cyl [Finite A] {G : Subgroup (Equiv.Perm S.carrier)}
     (hsub : ∀ y ∈ U, cyl S y.1 (-(r : ℤ)) r ⊆ U)
     (hmem : ∀ y ∈ U, threeCycle f (cyl S y.1 (-(r : ℤ)) r) ∈ G) : threeCycle f U ∈ G := by
   classical
-  set P : Set (Set S.carrier) := (fun y : U => cyl S y.1.1 (-(r : ℤ)) r) '' Set.univ with hPdef
+  set P : Set (Set S.carrier) := (fun y : U => cyl S y.1.1 (-(r : ℤ)) r) '' Set.univ
   have hfin : P.Finite := by
     refine Set.Finite.subset (Set.finite_range fun w : (Finset.Icc (-(r : ℤ)) r → A) =>
       {x : S.carrier | ∀ n (hn : n ∈ Finset.Icc (-(r : ℤ)) r), x.1 n = w ⟨n, hn⟩}) ?_
