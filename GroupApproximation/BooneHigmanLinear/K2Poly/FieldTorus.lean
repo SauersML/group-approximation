@@ -32,7 +32,7 @@ open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (rootSp
 variable {I : Type} [Fintype I] [DecidableEq I] (F : Type) [Field F]
 
 /-- The field torus `c ↦ C(h_mL(c)) ∈ St_I(F[X])`. Over `F_p` this is `k2PolyDeg_torus p`. -/
-def fieldTorus (m L : I) (hmL : m ≠ L) (c : Fˣ) : SteinbergGroup I (Polynomial F) :=
+noncomputable def fieldTorus (m L : I) (hmL : m ≠ L) (c : Fˣ) : SteinbergGroup I (Polynomial F) :=
   ringMap (I := I) (Polynomial.C : F →+* Polynomial F) (h m L hmL c)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.fieldTorus
