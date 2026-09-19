@@ -116,3 +116,20 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
     (Izeki–Karlsson). `Z/2 ≀ Z` is a cut-out in `T_3 × T_3` and passes every
     completion test, so only the finiteness type of the host can exclude it.
   - See `haagerup-cut-out-completions-force-haagerup-quotients`.
+- **Every host with a coarse tameness property is dead for `N_U`; only hosts
+  coarsely as wild as `U` survive** (proposed-established, w13-117,
+  2026-09-18).
+  - For a commensurated witness, `fN ↦ fΣ` is an injective, `F`-equivariant,
+    1-Lipschitz coarse embedding of `F/N` into the Hecke graph of
+    `(⟨F, Σ⟩, Σ)`. That graph is a Cayley–Abels graph of the Schlichting
+    completion. Amenability at infinity also descends through `F̂/M`.
+  - `U` contains every `Z^n`, Osajda's non-exact group and Sapir's expander
+    group. So no host that is exact, has finite asymptotic dimension, or
+    coarsely embeds in Hilbert space witnesses `N_U`, whatever the
+    finiteness type or torsion. This includes `SL_3(Q_p) × Neretin`, which
+    the Haagerup kill misses.
+  - Almost-automorphism groups of higher-rank buildings reduce to one open
+    coarse question: are they coarsely embeddable in Hilbert space?
+  - Non-discrete type F pairs with non-A Hecke graphs exist, so this is a
+    gate, not a kill.
+  - See `commensurated-quotients-coarsely-embed-in-hecke-graphs`.
