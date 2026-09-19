@@ -5,8 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerCoords: Application type mismatch: The argument"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/StepanovMatui/MatuiTowerCoords.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It IS in the root closure: the root build is red until it is fixed (top priority).
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/StepanovMatui/MatuiTowerCoords.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It IS in the root closure: the root build is red until it is fixed (top priority).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
+
 
 **First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 

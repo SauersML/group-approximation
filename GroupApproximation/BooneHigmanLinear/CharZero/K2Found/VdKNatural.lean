@@ -28,7 +28,6 @@ open GroupApproximation.SteinbergGroup
 
 variable {I A B : Type*} [Fintype I] [DecidableEq I] [CommRing A] [CommRing B]
 
-omit [Fintype I] in
 theorem comp_single (f : A →+* B) (s : I) (b : A) :
     (f ∘ Pi.single s b : I → B) = Pi.single s (f b) := by
   funext t
@@ -36,11 +35,9 @@ theorem comp_single (f : A →+* B) (s : I) (b : A) :
   · rw [h, Function.comp_apply, Pi.single_eq_same, Pi.single_eq_same]
   · rw [Function.comp_apply, Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, map_zero]
 
-omit [Fintype I] in
 theorem comp_add (f : A →+* B) (u v : I → A) : (f ∘ (u + v) : I → B) = f ∘ u + f ∘ v :=
   funext fun t => map_add f (u t) (v t)
 
-omit [Fintype I] [DecidableEq I] in
 theorem comp_smul (f : A →+* B) (c : A) (u : I → A) : (f ∘ (c • u) : I → B) = f c • (f ∘ u) :=
   funext fun t => map_mul f c (u t)
 
@@ -83,13 +80,11 @@ theorem ringMap_xz (f : A →+* B) {i w : I → A} {t : I} (hwi : w ⬝ᵥ i = 0
   have ht' : (f ∘ w) t = 0 := by rw [Function.comp_apply, ht, map_zero]
   rw [xz_eq hwi ht, xz_eq hwi' ht', ringMap_xvw]
 
-omit [Fintype I] in
 theorem map_single_one (f : A →+* B) (p t : I) : f (Pi.single p (1 : A) t) = Pi.single p (1 : B) t := by
   by_cases h : t = p
   · rw [h, Pi.single_eq_same, Pi.single_eq_same, map_one]
   · rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, map_zero]
 
-omit [Fintype I] in
 theorem comp_vdkPiece (f : A →+* B) (i j k : I → A) (p q : I) :
     (f ∘ vdkPiece i j k p q : I → B) = vdkPiece (f ∘ i) (f ∘ j) (f ∘ k) p q := by
   funext t
