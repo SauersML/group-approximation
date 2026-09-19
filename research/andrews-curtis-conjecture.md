@@ -209,3 +209,25 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
        rate.
      - A proof that the part of length ≤ 24 stabilizes, or that it does not, as the cap
        grows. It changed at both 26 and 28.
+
+10. **Heretic lane, fifth pass: does the short part of S_C stabilise? (w9-082, 2026-09-19).**
+    See `ak3-capped-stabilisation-bound-refutes-rank2-ac`.
+    - **It always stabilises.** For each L, the part of S_C of length ≤ L grows with C inside
+      a finite set. So it is constant from some cap σ(L) on, and σ is non-decreasing. There
+      is no infinite family of states of one length whose connection caps grow.
+    - **But certifying it is the whole problem.** Fix one cap C at which the basis pair is
+      absent (C = 26, L = 24 works). Then a proof that the length-≤L part has stabilised at
+      C is a proof that AK(3) is not trivial under (M1) and (M2). The counts 4036 (cap 26)
+      and 2261 (cap 28) are no evidence either way.
+    - **No tower bound on σ unless AC fails in rank 2.**
+      - One move multiplies the area of the generators by at most 3. A shortest path inside
+        S_C has fewer than 9^C moves.
+      - So joining states of areas A and A′ needs cap at least log_9 (log_3 A − log_3 A′).
+      - Lishak's presentations (arXiv:1504.00418, Thm 2.3) give two-generator states P_n of
+        length at most 5 + 200·2ⁿ, with area above a tower of height n − 1 divided by
+        1 + 100·2ⁿ. So joining P_n to the basis pair, or to AK(3), needs cap at least E_{n−3}/4.
+      - Hence if σ(L) ≤ E_k(L) for all large L, then AK(3) or some P_n is not trivial. The
+        same argument for AC moves on words gives a rank-2 counterexample to AC.
+    - **Dead end.** Proving that the short part of S_C stops growing, and bounding the cap
+      needed to join a short state to AK(3) by any fixed tower of its length. Both would
+      settle a case of AC.
