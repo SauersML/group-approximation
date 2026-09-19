@@ -204,3 +204,25 @@ a cycle of equations through the window.
 
   Any rerun that needs one reference of honest mass above `1/2` also fails
   here: the heaviest reference has mass `0.289`.
+* **List-decoding rerun of Theorem C, part (b) of need `4a85435f`
+  (2026-09-19, swarm-0917-w14-w14-ugc-pull).** **Established; the claim stays
+  OPEN.** See `list-reference-constant-bias-decoding-loses-t-squared`
+  (Lemma F_t, Theorem C_t).
+  - *What is proved.* With a per-seed list of `t` good outer labellings, where
+    the index may depend on the seed only, the unchanged seed-guessing decoder
+    puts the source in RP at a cost of `t^(-2)` in the outer value. That cost
+    enters only through the soundness bound (S_t): `s < c_t0/2` with
+    `c_t0 = p^2/(t^2 K^2) - 2 eps`. So `t = 2^(O(l))` is affordable, and part
+    (b) is settled.
+  - *Seed form.* Lemma F_t gives `D <= beta + t r + kappa_t`. On Grassmann
+    tests the collision term is `kappa_t = min(t, 2^l - 1)/(2^l - 1)`, and this
+    is exactly sharp: `t` partner references `sigma + psi_j` make `sigma`
+    satisfied and ev-dishonest on the `t` hyperplanes `ker psi_j`. So
+    (List-Seed_t) implies the kill only for `t < (gamma - gamma')(2^l - 1)`,
+    with reference defect below `gamma/t`. For `t >= 2^l - 1` it is vacuous.
+  - *Corrected prerequisite (a).* Either (List-Str_t) in ev-form with
+    `t = 2^(O(l))`, where A-label honesty is measured against the reference
+    chosen at the seed, or (List-Seed_t) with `2^(l-6) <= t < gamma 2^l`.
+    The lower end comes from Theorem LS. The full cover of Theorem LS's
+    family uses `2^l` references, which is the vacuous end of the seed form.
+    Its partial covers need `t ~ 0.026 * 2^l`, which lies inside the window.
