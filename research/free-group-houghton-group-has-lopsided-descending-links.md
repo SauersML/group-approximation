@@ -8,6 +8,8 @@ distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that gives FSym(O) ≤ F and the type (A) consequences; this concerns finite presentation of F for one tree seed.
 ---
 
+**Update (2026-09-19): T0 is settled** in `free-group-houghton-group-is-of-type-f-infinity`, via a V-shaped height.
+
 **Status.** Items 1–3 are **ESTABLISHED** (lane bh-invent-03, 2026-09-19; elementary; not reviewed). **T0
 (finite presentation of `F`) remains OPEN.** Sources read:
 - Farley–Hughes, *Finiteness properties of locally defined groups* (arXiv:2010.08035): §7.3–7.4 and §8, including
