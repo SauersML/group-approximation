@@ -9,7 +9,7 @@ distinct_from:
   twisted-btb-clopen-action-is-type-a: that acts on clopens, where orbit problems are as easy as the word problem; the orbit problem here reads an arbitrary computable configuration.
 ---
 
-**ESTABLISHED** (lane proof, bh-invent-11, 2026-09-18; elementary; not reviewed; no priority
+**ESTABLISHED** (lane proof, bh-invent-11, 2026-09-18; elementary; referee PASS by bh-ref-misc (items 1–3) and bh-ref-engines 2026-09-19 (items 1–4, Corollary); no priority
 claimed).
 
 ## Setting
@@ -137,3 +137,45 @@ Internal referee lane, not an external review.
 **Author response (bh-invent-11, 2026-09-18).**
 - **Gap 1** is closed by the new item 4, decoding from the seed: `y_*(gt)` is read off from `E_t` at `g t^(-1)` once `y_*(g)` is known. The title and Lesson now say this.
 - **Gap 2** is handled by reading the reduction in the finitely generated `F_0 = ⟨S, ρ_(t,a,b)⟩`.
+
+## Referee (bh-ref-engines, 2026-09-19): PASS for items 1–4 and the Corollary; one caution on how SYNTHESIS v8 cites it
+
+This was an adversarial re-check of 2efad1a6f, requested because SYNTHESIS v8 fact 4 rests on it.
+
+**Items 1–2 (highly transitive): correct, and elementary.**
+- Transpositions of two isolated points are homeomorphisms with locally constant cocycles.
+- A homeomorphism fixing the dense set `O` pointwise is trivial.
+- `F` preserves `O`, because `f(y) = c(y)·y`.
+- One hypothesis should be stated: `Γ` is infinite, so that `O` is infinite. If `Γ` is finite, `Y = O` is
+  finite and `F = Sym(O)`.
+
+**Item 3: correct.**
+- `P ∩ sP = ∅` for `a ≠ b`, for every generator `s`, including one of order 2.
+- `gρg^(-1)` fixes `y_*` iff `g^(-1)y_* ∉ P ∪ sP`.
+- With `(g.x)(h) = x(g^(-1)h)`, the set `E_s` is
+  `[y_*(g) = a ∧ y_*(gs) = b] ∨ [y_*(gs) = a ∧ y_*(gs²) = b]`.
+
+**Item 4 (decoding): correct.**
+- Put `w = gt^(-1)`. Then `(w, a_0, b) ∈ E_t` iff `[y_*(gt^(-1)) = a_0 ∧ y_*(g) = b] ∨ [y_*(g) = a_0 ∧ y_*(gt) = b]`.
+  When `y_*(g) = a_0 ≠ b`, the first disjunct is false, so the query answers `y_*(gt) = b`.
+- The start value `y_*(1)` is part of `π`.
+- The queries are stabilizer-membership questions for `y_*` in `F_0 = ⟨S, ρ_(t,a,b)⟩`, of length at most
+  `2|g| + O(1)`.
+- They transfer to `OP(F, O)` when `F` is finitely generated, after adding the `ρ`'s to its generating set.
+- This closes gap 1 of the previous referee.
+
+**The Corollary: correct as stated, for the plain full group `F = [[Γ ⋉ Y]]`.** Transitivity makes point
+stabilizers conjugate, and 2-transitivity gives one orbit on pairs.
+
+**Caution for SYNTHESIS v8 (fact 4 and the seed form of HARD-(A)).** v8 says the seed must have a
+"V-stabilized full group [that] is fp with one fg stabilizer". That is not what this node gives.
+- `F^V = [[G_V × (Γ ⋉ Y)]]` does not act on `O`: its elements split columns `C × {o}`.
+- The points of `C × O` are not isolated, so none of the high-transitivity argument applies to `F^V`.
+- The type (A) actor here is the **plain** `F`. The seed form of HARD-(A) needs `[[Γ ⋉ Y]]` finitely
+  presented, with `Stab_F(y_*)` finitely generated.
+- Finite presentation of `F^V` gives rigidity (`seed-full-group-finite-presentation-lives-on-the-boundary`,
+  item 2). It gives no type (A) action on `O`.
+- The two requirements should be listed separately.
+
+**Credit.** Houghton's groups (the case `C_Z`); Belk–Zaremsky and Zaremsky for twisted Brin–Thompson groups
+and their finiteness criterion.

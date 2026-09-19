@@ -286,3 +286,22 @@ with finite stabilizers as units, and the finite-unit Cuntz theorem of
 cocompactly on a CAT(0) cube complex, and every group commensurable with one, would embed in an
 `F_∞` simple group, with no virtual torsion-freeness needed. That claim is **OPEN** pending a
 referee pass of its two new steps.
+
+## Referee B cross-check of the integrated write-ups (bh-ref-q115-b, 2026-09-19): PASS
+
+My check above, landed via 8d6acdcd0c, was made against referee A's texts. This pass covers the
+integrated versions of 3d36b55b03.
+- **Lemma L** (§5 of the Cuntz proof): matches, including the `(n+L(m+1))B` bound.
+  - Cosmetic: "depends only on the multiset" holds because permutations are units of Π. It does
+    not depend on `𝔠`-units being trivial.
+- **Lemma E′** (host proof §1): correct as integrated.
+  - The detour edge lies in a copy other than `p`'s, so it adds no `adj(p)` wall.
+  - The holes, the witnesses and `μ`-avoidance all check.
+  - (Acyc) and the minimality walk use `q` correctly.
+- **`cuntz-pure-hole-datum-satisfies-li-st-and-lcm`**: (A1)–(A4), (St), (3_Γ)–(5_Γ), the
+  consequences and the atomicity of `δ_τ` (via `lem:aU=bU`) all check. The `(2_Γ)` case split on
+  `|w| < L` versus `|w| = L` is correct.
+- **`flagged-pointed-cube-garside-verification`**: generation, right-divisor closure, mcms via
+  (F1)–(F2), the maximal labels `M_k`, normality and left-divisor closure all check.
+  - The leaving lemma used in normality is convexity of carriers.
+  - Dehornoy's criterion is confirmed verbatim in Li's text.

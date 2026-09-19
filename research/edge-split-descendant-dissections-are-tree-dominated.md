@@ -6,6 +6,7 @@ title: Every dissection of a unimodular cell into its edge-split descendants is 
 artifacts:
   - research/artifacts/gq-bh-free-54-edge-split-reversing-tests.md
   - research/artifacts/gq-bh-free-54-tree-domination-tests.md
+  - research/artifacts/gq-bh-free-54-sc2-damage-tests.md
 distinct_from:
   edge-split-ore-iff-synchronization-and-tree-domination: that proves Ore's condition is equivalent to synchronization plus this statement; this is the tree-domination statement itself, still open.
   unimodular-cells-synchronize-under-edge-splits: that asks whether descendant systems of two nested cells meet (pointwise, Serret-type); this asks whether descendant cells of one cell, once they tile it, can be organized into a single split tree, a purely combinatorial question.
@@ -103,7 +104,8 @@ Notation is as in `edge-split-ore-iff-synchronization-and-tree-domination`.
      instances hit the caps (up to 179549 cuts and 23859 synchronizations). In rank 4,
      18 of 70 did.
    - **R2, least damage.** Minimise twice the number of straddling fragments plus the
-     number of non-inherited ones. **It always terminated, with a small repair.**
+     number of non-inherited ones. **In this run it always terminated, with a small
+     repair.**
      - Rank 3: 23 of 23 random instances, at most 5 cuts, depth at most 13, and at
        most 1.27 times as many leaves as pieces.
      - Rank 4: 70 of 70 random instances, at most 7 cuts, and at most 1.83 times as
@@ -111,8 +113,9 @@ Notation is as in `edge-split-ore-iff-synchronization-and-tree-domination`.
      - All named instances. `Z` gives 4 leaves (1 cut), `M` and `M′` give 8 each
        (2 cuts), the 9-piece prime gives 13 (4 cuts), and bh-major-mcg-2's 7-piece
        restriction gives 9 (2 cuts, matching its hand repair).
-     - **No synchronization was ever needed under R2.** Every cut fragment landed in
-       the descendant set of its child.
+     - **No synchronization was needed under R2 in this run.** Every cut fragment
+       landed in the descendant set of its child. (Later rank-4 runs did need it; see
+       Attempt 5.)
 
    **Conjecture (TD-LD).** The least-damage recursion terminates on every
    descendant dissection. It would imply (TD), and then Ore's condition given (Sync_m).
@@ -126,6 +129,29 @@ Notation is as in `edge-split-ore-iff-synchronization-and-tree-domination`.
    shares a ray with it descends from it. So synchronization can only be forced by
    fragments that meet no ray of the child. Least damage counts such fragments, and
    in every test it found splits that create none.
+5. **Local damage bounds fail; R2 still terminates** (lanes bh-free-54 and
+   bh-major-mcg-2, 2026-09-18/19).
+   - **Larger runs of R2.**
+     - SLURM job 1329260 (`sclog.py`): rank 3, 262 of 262; rank 4, 668 of 671.
+     - Direct pinned run (`sc2.py`): rank 3, 336 of 336; rank 4, 1412 of 1416.
+     - The rank-4 caps were hit inside a synchronization or cut subroutine, at
+       recursion depth at most 10. So they are not runaways of R2. But rank 4 does
+       need synchronization, which rank 3 never did.
+   - **SC (some first split cuts every straddler once) is false.**
+     `no-median-need-be-single-cut-for-a-descendant-dissection` (bh-major-mcg-2,
+     `5a5a8bd32`) gives it at 148 of 14086 rank-3 nodes, re-checked independently.
+   - **SC₂ (some first split has damage at most 3) is false too.**
+     `research/artifacts/gq-bh-free-54-sc2-damage-tests.md`:
+     - rank 3, 6 of 18018 nodes; rank 4, 10 of 36670;
+     - calibrated on rank 2 and on the three SC nodes, which have damage 3.
+   - **Lemma A (Attempt 4 plan) fails at a few nodes.** Its requirement is a split with
+     no non-inherited fragment and fewer fragments in each child. It failed at 2 of
+     14086 rank-3 nodes and 4 of 29053 rank-4 nodes (job 1329260).
+   - **Reading.** Every local invariant tried so far fails at a small fraction of
+     nodes: bounded damage per split, and a strict drop in fragment count. R2
+     terminates anyway, so its potential must be global, for example total damage
+     summed over a whole subtree. The saved all-splits-bad nodes are the test bed
+     (bh-major-mcg-2's parallel-split families).
 
 ## Evidence (MSI, single core)
 
@@ -167,3 +193,6 @@ cell by cell, they can reach as one global expansion.
   tree domination needs is small and local exactly when each split is chosen to
   minimise the fragments it disturbs. Following one piece's descent path, which is
   the Garside-style normal-form instinct, diverges.
+- **Bounded local repair is the wrong target.** SC and SC₂ fail at a fraction of a
+  percent of nodes, yet the recursion finishes. So the termination proof for tree
+  domination must use a global potential, not a per-node damage bound.

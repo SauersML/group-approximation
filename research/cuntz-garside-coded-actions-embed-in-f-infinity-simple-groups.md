@@ -67,23 +67,22 @@ What is **not** used:
   group has no proper action on a median graph (Niblo–Reeves; Chatterji–Druţu–Haglund). So Kazhdan inputs
   must enter through non-median codings with disjoint mcms, such as grid codings with
   `k`-graph combinatorics.
-- **Ã₂ lattices.** The Robertson–Steger 2-graph codings used in
-  `a2-lattices-satisfy-permutational-boone-higman` are the natural candidates for (C1) and (C2).
-  With them the theorem would need no loops or powers, only (C3) and (C4). None of this is
-  checked here.
-- **C̃_n lattices.** The locally forced seeds of `cn-building-lattices-carry-locally-forced-seeds`
-  (`21cd0dd3e`) are candidate states. The test is exactly (C1)–(C4):
-  - (C1): do seed-labelled geodesics form a category with disjoint mcms and a left-divisor-closed
-    height?
-  - (C2): is there a promise move for the passive link factor, playing the role of the flag?
-  - (C3), (C4): these come from exits, provided the coding of a tree of buildings is the free
-    product of codings. That is expected but not proved in general.
+- **Euclidean buildings, all types (done 2026-09-19).** The box orbit categories of
+  `euclidean-building-lattices-lie-in-permutational-bh-class` satisfy (C1)–(C4) with no
+  rescaling: see `euclidean-building-lattices-embed-in-f-infinity-simple-groups`. (C3) is
+  "shadows shrink", proved with a uniform box measure. This covers Ã₂, C̃_n and G̃₂, including
+  the Kazhdan non-residually-finite C̃₂ lattices.
+- **Correction (2026-09-19): no promise moves are needed for buildings.** The earlier text
+  here proposed seed codings with promise moves for C̃_n. That is unnecessary. Sector codings of
+  chambers at infinity resynchronize by themselves, because that boundary is closed and
+  generic. Promise moves are needed only when the natural boundary contains non-generic limit
+  points, as the Roller boundary does.
 
 ## Lesson for general BH
 
 For simple `F_∞` hosts, a geometric group has to supply exactly **a finite-state coding of
-its boundary whose prefix order has disjoint mcms, together with promise moves that make
-codings from different base points resynchronize.** The rest is free:
+its boundary whose prefix order has disjoint mcms, and, where that boundary is not closed,
+promise moves that make codings from different base points resynchronize.** The rest is free:
 - the Cuntz factor supplies merge packing, and with it finiteness;
 - free exits supply topological freeness, (Acyc) and minimality;
 - Li's Corollary D and Matui supply simplicity.
@@ -91,3 +90,41 @@ codings from different base points resynchronize.** The rest is free:
 So the question "does class `𝒞` satisfy Boone–Higman?" becomes, for geometric classes, "do its
 spaces have a finite-state, promise-closed prefix order with disjoint mcms?" Median geometry is
 one sufficient answer. It is not the only one, and it is the one that excludes Kazhdan groups.
+
+## Referee (bh-ref-q115-b, 2026-09-19): PASS, with one credit correction
+
+I checked `cuntz-garside-coded-actions-host-proof` adversarially, concentrating on the
+finite-unit step.
+
+**Credit.** Units are native to Li's framework, so "the finite-unit extension is new here"
+should be narrowed.
+- Li's finiteness theorem already allows units. It is stated for `𝐅(I_l ⋉ ∂Ω)` "of type `F_n` if
+  `ℭ*(𝔳,𝔳)` is of type `F_n` for all `𝔳`" (arXiv:2110.04505v2, TeX l.619, read at source).
+- `lem:Stab`, (F), (3_Γ) and `cor:thmA` are Li's, with units. Li also notes verbatim that
+  "Condition (F) is for example satisfied if ℭ is cancellative".
+- Dehornoy's criterion is quoted verbatim by Li: "𝔖∪ℭ* generates ℭ and 𝔖♯ is closed under mcms
+  and right divisors (see [13], Chapter IV, Proposition 2.25)".
+- What is new is running the pure-hole Cuntz datum, Lemma L and the (Acyc) height with units, in
+  place of Li's (`t<d`).
+
+**Checks.**
+- **(U1).** Pure holes are carried to pure holes by `𝔠₂* = 𝔠* × {1}`.
+  - `u a_i = a'_i u'_i` keeps norms, so (3_Γ) holds.
+  - (4_Γ) applies to `ω u^{-1}`, and `c_k ∈ mcm ⊆ 𝔖₂^♯` gives (5_Γ).
+  - One must use an `=*`-transversal of `𝔖₂`, since `(u,x) =* (1,x)`. U1 does so.
+- **(U2).** `([u_i,U_i])_i` is a unit of `𝐂_𝐗` by (1_𝔛), and invertible morphisms have unit
+  components by `lem:aU=bU`.
+- **(U3).**
+  - Doubling on unit classes uses `δ_{τ'}` for any `τ' ∈ [τ]`.
+  - The merge `α = δ_τ·(id ⊔ [u^{-1},uτ])` is an atom, since atoms are closed under right unit
+    multiplication. It lies in `Div(Δ)`: `Δ(τ) = δ_τρ = α·((id ⊔ [u,τ])ρ)`.
+  - Pigeonhole is over `|𝒯(*)|` classes.
+- **(U4).** A cycle gives `U_0 = σU_0` with `σ` a non-unit, by left cancellation. The height
+  increments are those of the trivial-unit case.
+- **(U5).** The unit groups are finite.
+- **Items 2–4.** The product of effective groupoids is effective, since an open subset of the
+  isotropy contains a product of open bisections. Uniqueness of the bisection `β_g` under
+  effectiveness makes `g ↦ β_g` a homomorphism. The prefix-code wreath and Krasner–Kaloujnine
+  are correct.
+
+No gap found. The Euclidean-building application added in 37f53166d2 is outside this review.

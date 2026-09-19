@@ -6,6 +6,8 @@ title: In any action with finitely many orbits on pairs, a point stabilizer with
 distinct_from:
   ra-counterexamples-are-minimal-sets-of-rigid-ambients: that shows (RA) says nothing against the permutational route; this finds the geometric constraint that route does face, which comes from double cosets, not from exactness.
   amalgams-of-orbit-finite-actions-are-type-a2: that builds type [A_2] actions of amalgams, whose point stabilizers are fundamental groups of finite graphs of groups; this shows such stabilizers are forced to be non-elliptic, so the gluing lemma is consistent with, and in a sense the only shape allowed by, hyperbolic geometry.
+  locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions: that proves the full-limit-set conclusion for proper actions on the Cayley graph of a hyperbolic group, and the locally quasiconvex corollary, first; this is the same double-coset lemma for arbitrary non-elementary actions on hyperbolic spaces (Bass–Serre trees, acylindrical actions), and item 3(a) overlaps it.
+  permutational-ports-need-stabilizers-crossing-every-splitting: that is the cofinite-subgroup version for Houghton ports, where pair orbits may be infinite; this is the pair-orbit version.
   pbh-class-closed-under-graph-products: that is a closure property of B_A; this is a restriction on the actors B_A is built from.
 ---
 

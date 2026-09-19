@@ -9,7 +9,15 @@ distinct_from:
   downhill-centrality-needs-no-data-rigidity: that proves centrality when a one-predecessor rule descends toward every site; the reader's descent does not, so (C_D) is left open here.
 ---
 **ESTABLISHED** for parts 1–4 (lane proof, bh-invent-15, 2026-09-18; not reviewed). Part 5 is
-**OPEN**.
+settled in `free-bit-components-are-central-iff-they-see-the-base` (09-19).
+- **Scope (09-19).** Parts 2–5 treat the positional layer M (the digits) as base. It is not base
+  data of the rigid seed, and over the true base the reader for Cohen's set is **not** quantum
+  rigid: `cohen-rope-reader-is-not-quantum-rigid`. The results here hold relative to a frozen M.
+- **Proof repair (09-19).** The first version of the linking step (part 2) had a gap: it passed
+  the free choice through the common `l`-image of two neighbouring positions, which is forced to
+  `bad` when a bad digit lies below the link. The theorem stands. The proof below routes the
+  link through all-good positions ("detours"). The retracted node
+  `absorbing-rope-readers-are-not-pointwise-rigid` took the gap for a counterexample.
 - **Base hypothesis.** Part 2 uses the standard property of seeds built from locally finite
   splittings: in every configuration the pointer field has a unique sink, a coset or an end of
   the Bass–Serre tree. See `locally-finite-splittings-preserve-rigid-sft-compactifications`.
@@ -48,9 +56,10 @@ distinct_from:
    - `{ρ ≡ 0 on the spine} ∪ {ρ = 1, q forced}`; or
    - `{ρ ≡ 0} ∪ {ρ = 1, bit ok} ∪ {ρ = 1, bit bad}`.
 4. **Pointwise rigidity.** Every `y`-relative family of this extension commutes.
-5. **(C_D), OPEN.** By `extension-rigidity-is-base-centrality-plus-pointwise-rigidity` (item 3),
+5. **(C_D).** By `extension-rigidity-is-base-centrality-plus-pointwise-rigidity` (item 3),
    the coupled reader over the rigid base seed is quantum rigid iff (C_D) holds: every base
-   marginal commutes with every reader marginal, near or far.
+   marginal commutes with every reader marginal, near or far. This was OPEN here. It is proved in
+   `free-bit-components-are-central-iff-they-see-the-base`.
 
 ## Proof
 **2. The region.**
@@ -77,19 +86,32 @@ tail (parent, part 4).
 - So all positions between two free-tailed positions of one row are free-tailed, with the same
   tail.
 
-**2. Consecutive positions are linked.** Let `p` and `p+1` be free-tailed positions of one row.
-- If `p`'s last digit is not `m − 1`, then `h` and `hx` lie in one block. (L) gives
-  `q(hl) = q(hxl) =: s`, and the reader rule gives `q(h) = δ(s, d)` and `q(hx) = δ(s, d+1)`.
-  So both chains carry the free choice of the one chain through `s`.
-- If the last digit is `m − 1`, then (L) links `hl` to the element at position `⌊p/m⌋` in the
-  `(0,0)`-child, and `hxl` sits at `⌊p/m⌋ + 1` there. This recurses one level down.
-- The recursion stops at the first digit of `p` that is not `m − 1`, which exists below the
-  all-good tail.
+**2. Which sites carry the choice.** For Cohen's automaton the value at a row site is
+`ok` iff the tail run is `ok` and every digit of its position is good. So a site is **free**
+(its value depends on the tail choice) iff its position is **all-good**. Every other site is
+forced to `bad` by a finite deduction: the first bad digit above it. Chains with infinitely many
+bad digits are forced entirely.
 
-**2. Global linking.** Two free chains in `R` pass through the row of a common ancestor coset in
-`R`, at positions `p, p'`. The positions between them are free-tailed (previous step), so
-consecutive links join the two chains. Hence all free chains carry one bit. Chains with
-infinitely many bad digits are forced to `bad`.
+**2. Two kinds of links between free sites.** Write a site of the subtree below a coset `C ∈ R`
+as `(w, q)`: position `q` in the descendant `C_w`, `w` a word of labels.
+- *Sideways:* `(ua, q) ~ (ub, q)` for all labels `a, b`, by (L) in `C_u`. Both sites are free
+  exactly when `q` is all-good, whatever `a, b` are.
+- *Up:* `(ua, q) ~ (u, a + mq)` when `a` is good, by the reader rule. `ok ↦ ok` and `bad ↦ bad`
+  under a good digit.
+
+**2. Detours.** Every free site `(w, q)`, `w = w_1…w_k`, is linked to a free site of `C`'s row.
+Go sideways to `(w_1…w_{k−1}g, q)` with `g` good, then up to `(w_1…w_{k−1}, g + mq)`, and
+repeat. This ends at `(∅, g + mg + ⋯ + m^{k−1}g + m^k q)`, and every intermediate site is free.
+The bad labels of `w` never matter, because sideways moves ignore labels.
+
+**2. Global linking.**
+- *Within one row.* Two free sites `p, p'` of `C`'s row share their tail. So for `k` large both
+  descend by up-links to the same position `q* = ⌊p/m^k⌋ = ⌊p'/m^k⌋`, in cosets `C_w` and `C_{w'}`.
+  The same detour (the same good `g`) lifts both to one site of `C`'s row.
+- *Between cosets.* A coset `C = C'_a` of `R` is linked to its parent: `(∅_C, p) = (a, p)` in
+  `C'`, then sideways to `(g, p)` and up.
+- *Conclusion.* So all free sites of `R` form one linked class, and they carry one bit. The top of
+  `R` is the sink coset or the spine; in the spine case, every spine coset is linked to the next.
 
 **3.** This is the case count of part 2.
 

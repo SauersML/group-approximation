@@ -8,8 +8,7 @@ distinct_from:
   edge-split-descendant-dissections-have-single-cut-first-splits: that is (SC), which needs one median good at every vertex on it; this is the case of the one vertex common to all three medians.
 ---
 
-**ESTABLISHED** (lane bh-major-mcg-2, 2026-09-18). Lane proof, elementary, not
-independently reviewed. No priority claimed.
+**ESTABLISHED** (lane bh-major-mcg-2, 2026-09-18). Lane proof, elementary; one referee PASS (bh-ref-engines, 2026-09-19). No priority claimed.
 
 ## Setting
 
@@ -130,3 +129,41 @@ vertices of `D` on it. Those are the vertices strictly between `e_k` and `c` and
   cut is clean" statements come from the arithmetic of how vertices can be created: here
   `c = x + y` has only three decompositions. That is the constraint to look for at every
   special vertex.
+
+## Referee (bh-ref-engines, 2026-09-19): PASS
+
+I checked Steps 1–5 against the criterion of `single-cut-is-a-mediant-condition-along-the-median`. At `c`, a
+straddler has `c` as its only ray on the median, and it is single-cut iff the median's link direction is
+the mediant of its corner.
+
+**Steps 1–3.**
+- *Step 1.* If `c = ax + by` in the relative interior of a unimodular edge, then `a, b ∈ Z_(≥1)`, and the
+  coordinates force `{x, y} = {e_k, v_(ij)}`.
+- *Step 2.* Two pieces cannot both have `c` inside an edge lying on different medians, since their half-disks
+  would overlap. Every other piece at `c` then has its corner in the opposite closed half-plane.
+- *Step 3.* Splits at `(c, a)` keep the corner, and splits at `(a, b)` perform a Stern–Brocot split. The
+  creation corners are `cone(±ē_k, z̄)` with `z̄ = ±ē_(i') + nē_k`.
+
+**Step 4.**
+- A unimodular subcone of `cone(u, v)` containing `u + v` in its interior is the whole cone:
+  - write `u + v = λp + μq` with `λ, μ ∈ Z_(≥1)`;
+  - with `ad − bc = 1`, this forces `p, q = u, v`.
+- An open half-plane bounded by a root line contains exactly two roots. So there are at most two interior
+  roots per corner, and they are consecutive, because `ρ_i + ρ_(i+2) = ρ_(i+1)`.
+
+**Step 5.**
+- WLOG holds: `S_3` acts simply transitively on the ordered pairs `(ē_a, −ē_b)`, which are exactly the
+  consecutive root pairs.
+- A cone containing `ρ_1, ρ_2` in its interior has a ray with second coordinate `0`, since `(0,1) = λp + μq`.
+- Recomputed:
+  - the two case lists (`m ≤ −1`, `m ≥ 2`);
+  - `κ' = cone(ρ_5, (−1, k))` with mediant `(−1, k−1)`;
+  - `κ'' = cone(ρ_4, (k+1, k))` with mediant `(k, k−1)`;
+  - the disjointness bounds `k ≤ 1/|m|` and `k(m − 1) ≤ 1`.
+- All correct, so `M_0` is good.
+
+**Label slip, harmless.** In Step 5, the median with roots `{ρ_2, ρ_5}` is `M_1` (since `ρ_2 = ē_1`), and the
+one with roots `{ρ_1, ρ_4}` is `M_2`. The text swaps these names. The root sets used are the right ones.
+
+**Scope.** As stated, this settles the centroid only. (SC) still needs goodness at the other vertices on one
+median.

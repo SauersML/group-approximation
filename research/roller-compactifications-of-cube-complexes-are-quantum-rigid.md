@@ -124,3 +124,46 @@ claim is withdrawn (see the correction in part 4): whether (W1) holds there is u
 - No finitely presented group acting properly and cocompactly on a finite-dimensional cube complex
   contains a non-exact group (Campbell–Niblo, recalled). So at Osajda's input, cube-type dynamics
   must come from infinite-dimensional wall structure.
+
+## Referee (bh-ref-ffwz, 2026-09-19): PASS for parts 1–4
+
+**Wall projections.**
+- Opposite edges `e, e'` of a square satisfy `P_e(I − P_{e'}) = 0` and `(I − P_e)P_{e'} = 0`,
+  by (Q3) on the ball containing the square. With (Q2) this gives `P_e = P_e P_{e'} = P_{e'}`.
+- Dual edges of a hyperplane are square-connected, so `Q(h)` is well defined.
+- `E_a(q) = ∏_e P_e^{±}` at one site.
+
+**Crossing pairs.** Two crossing hyperplanes have dual edges at a corner vertex of a common
+square, and so `Q(h)`, `Q(k)` commute at one site.
+
+**Disjoint pairs, `N = 0`.**
+- The hyperplanes separating the carriers `N(H)`, `N(K)` are exactly those separating `H`
+  from `K`. A dual edge's endpoints lie on the `H`-side of any `V` that separates `H` from `K`.
+- The combinatorial distance between convex subcomplexes is the number of hyperplanes
+  separating them. So `N = 0` gives a common vertex `x`.
+- "`h` and `k*`" is a non-occurring pattern visible at `x`, so `Q(h)Q(k*) = 0`.
+
+**Disjoint pairs, `N ≥ 1`.**
+- `h ⊆ v ⊆ k` holds for the side `v` of a separating `V` containing `H`.
+- Both sub-counts are smaller than `N`.
+- The two displayed chains of equalities are correct, and they give `Q(h)Q(k) = Q(k)Q(h) = Q(h)`.
+- Subsets of `Y_2` inherit rigidity: a family for a subset is a family for `Y_2`.
+
+**Part 4.** Two adjacent principal points differ exactly near the dual edges of one wall.
+Lemma 1′ of `rigid-subshifts-over-free-factors-are-tight-almost-everywhere` needs only that
+both points' `B_D`-patterns occur, and it applies. I re-checked that lemma: its wall family
+uses `x` and `z` only through (Q3). The small-cancellation premise is correctly marked
+unchecked.
+
+**Cross-check.** The same monotone-chain argument, written in the out-arrow coding of the
+end shift (the `N = 0` relation is "at most one out-edge at a vertex"), re-proves
+`free-group-boundary-shifts-are-quantum-rigid` at every `D ≥ 1`.
+
+**Credit and citation.**
+- The compactification is Roller's (poc sets and median algebras, 1998). The
+  hyperplane/ultrafilter formalism is Sageev's.
+- Kazhdan groups fix a point on every CAT(0) cube complex: Niblo–Roller (1998), Niblo–Reeves.
+- The exactness input recalled as "Campbell–Niblo" is Brodzki–Campbell–Guentner–Niblo–Wright,
+  *Property A and CAT(0) cube complexes*, J. Funct. Anal. 256 (2009). Finite-dimensional CAT(0)
+  cube complexes have property A, so groups acting properly and cocompactly on them are exact.
+  Please cite it that way.

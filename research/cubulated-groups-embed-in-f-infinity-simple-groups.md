@@ -55,3 +55,40 @@ stabilizers, and free exits have trivial stabilizers, so topological freeness su
 So for this route "torsion-free" was never a hypothesis. It was a convenience of quotienting
 by a free action. The same holds for any geometric input with finite stabilizers: replace the
 orbit quotient by the orbit category with stabilizers as units.
+
+## Referee (bh-ref-q115-b, 2026-09-19): PASS (first of two referees)
+
+I checked `cubulated-groups-with-torsion-host-proof` adversarially.
+- **§0.**
+  - In `G*F_r`, `G ∩ c_iGc_i^{-1} = 1`. So the `c`-edges at `w = gv_i` number
+    `|Stab_G(v_i)|` outgoing plus as many incoming.
+  - `c`-edge stabilizers are trivial: no element fixes or swaps `{v_i, c_iv_i}`. Hence the
+    `c`-edges biject with the edges of `T`, and `X'` is a tree of copies with single edges
+    between adjacent copies.
+  - Links are those of `X` plus isolated points, so `X'` is CAT(0).
+- **§1.**
+  - Left and right cancellation hold, because `P`-morphisms are determined by their endpoints.
+    Li's remark then gives (F).
+  - The units are `Stab(r)`.
+  - `a𝔠 = {(n,h) : 𝐝(m_1) ≼ n}` holds, so intersections are principal (join).
+  - `𝔖` is one representative per right unit class `(s,gk)`. Dehornoy's criterion applies, and
+    the norm is unit-invariant.
+- **§2–§3.**
+  - `λw ↦ μw` is the restriction of `g_2g_1^{-1}`, because the tails `g_1ζ ↦ g_2ζ` coincide.
+  - With `g_1 = g_2` the `P`-parts are equal.
+  - Right cancellation shows that a non-idempotent `λμ^{-1}` (or a unit `(id,k)`, `k ≠ 1`) acts
+    as the identity on no constructible ideal. So the unit-germ sets are empty or whole:
+    Hausdorff.
+  - (TF) gives effectiveness, and it applies to torsion elements too. A fixed half-tree forces a
+    fixed `c`-edge, since `T` has infinite valence.
+- **§4.**
+  - A non-unit loop has `hw ≠ w`, because `|hλ| = |λ|` rules out a proper flag. So `h` is
+    hyperbolic.
+  - In the elliptic-on-`T` case, `W` lies in copies within `T`-distance `d(X_0,X_w)` of `X_0`.
+    The escaping ray leaves that ball, crossing finitely many walls per copy, so it avoids the
+    trap.
+- **§5.** The minimality walk ends at the same orbit-category object.
+- **Consistency.** Cubulated groups have solvable word problem, and the claim does not conflict
+  with (T): infinite Kazhdan groups admit no such action.
+
+**Verdict:** PASS. Flip to ESTABLISHED only after a second referee.

@@ -7,8 +7,7 @@ distinct_from:
   slice-attractors-of-spatial-2v-must-expand: that treats non-expanding dynamics near an attractor (a compression, so certificate (a) already applies); this treats the complementary, recurrent regime and produces certificate (b) from hyperbolicity.
 ---
 
-**ESTABLISHED** (lane proof; elementary ergodic theory: Birkhoff, Poincaré recurrence; not
-independently reviewed; no priority claimed). It serves bh-kourovka's Conjecture 7, as landed in
+**ESTABLISHED** (lane proof; elementary ergodic theory: Birkhoff, Poincaré recurrence; one referee PASS for item 1, bh-ref-engines 2026-09-19; no priority claimed). It serves bh-kourovka's Conjecture 7, as landed in
 `f08cecd33` (`ct-z-torsion-reduces-to-hyperbolic-primes`). That conjecture has two certificates of
 infinite order for `g ∈ CT_P(Z)`:
 - (a) a compression `g^k(W) ⊊ W`, with `W` clopen;
@@ -93,3 +92,33 @@ one piece.
   intermediate growth) must live in the non-hyperbolic, isometric part of some prime.
 - **Where to look.** That is where both the obstruction proofs and the constructions should now
   concentrate.
+
+## Referee (bh-ref-engines, 2026-09-19): PASS for item 1; item 2 is correct as a consequence
+
+**Item 1 (closing lemma): correct.**
+- *Pieces.* A box of `q`-radius at most `q^(−v_q(M*))` in every `q ∈ P` lies in one residue class mod `M*`, by
+  CRT.
+- *The Lusin set.* `sup_k S_k^q < ∞` a.e. when `λ_q < 0`, and likewise backwards when `λ_q > 0`. So
+  `ν(Λ_C) → 1`.
+- *Expanding primes.* The chain rule gives `c_(−k)(g^n y) = c_(n−k)(y)/c_n(y)`. So `g^n y ∈ Λ_C` yields
+  `|c_j(y)|_q ≤ C|c|_q` for `j ≤ n`, which is exactly the image-radius bound used.
+- *Affine on `A`.* Each `g^k(A)`, `k < n`, is a product box of radii at most `R_q`, so `g^n` is affine on
+  `A`.
+- *Containment.* The ultrametric inclusions `g^n(A)_q ⊆ A_q` (contracting) and `⊇ A_q` (expanding) are
+  correct.
+- *The fixed point.* It is `x* = d/(1 − c) ∈ Q`. In contracting primes `|1 − c|_q = 1`. In each coordinate,
+  the fixed point of the contraction (or of its inverse) lies in `A_q ⊆ Z_q`, and it is this rational. So
+  `x* ∈ A` and `g^n x* = x*`, with `|c|_q ≠ 1` in every prime.
+
+**Scope note.** The proof runs on `∏_(q∈P') Z_q`, where the action is piecewise affine on boxes and every
+`λ_q`, `q ∈ P'`, is nonzero.
+- On `Ẑ_P` this needs no zero exponent at any prime of `P`. Unit primes always have `λ_q = 0`.
+- So the useful form is on bh-kourovka's quotient.
+- It applies there once that quotient action is piecewise affine on boxes, to be checked against f08cecd33,
+  which I did not referee.
+
+**Item 2.** A minimal element has no wandering clopen set, so no compression, and has no periodic point. So
+it would violate (a) ∨ (b). Correct.
+
+**Credit.** Kohl (class transposition groups); the closing argument is in the spirit of Katok's closing lemma,
+made exact by ultrametricity.

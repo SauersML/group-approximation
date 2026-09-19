@@ -33,8 +33,9 @@ cited results are credited below.
 
 Let `A` be finitely generated and recursively presented.
 1. **Order seeds are computable orders.** Suppose `A` carries an absolute order seed. That is a left order `≺` for
-   which the cut at `1` satisfies the hypotheses (D) and (M) of `order-seeds-are-rigid-relative-seeds` with
-   `C = 1`, for example a dense order with finitely generated positive cone. Then `≺` is computable, and `A` has
+   which the cut at `1` satisfies the hypotheses of `order-seeds-are-rigid-relative-seeds` (or its discrete-orbit
+   variant) with `C = 1`, for example any order with finitely generated positive cone. Such an order is always
+   discrete (`finitely-generated-positive-cones-are-discrete`). Then `≺` is computable, and `A` has
    decidable word problem.
 2. **Computable orders pass to subgroups that act freely somewhere.** Suppose `A` has decidable word
    problem and carries a relative order seed for `(A, C)`, and `Γ ≤ A` is finitely generated. If some orbit point `q = g·p` has `Stab_Γ(q) = 1`, then
@@ -61,8 +62,8 @@ Let `A` be finitely generated and recursively presented.
 ## What this means for question (O) and for CAP
 
 - **(O) needs isolated orders on hard groups.** A finitely generated positive cone makes its order isolated in the
-  space of left orders (standard; recalled). So (O) asks for a finitely presented group with a dense isolated left
-  order whose word problem is hard.
+  space of left orders (standard; recalled). So (O) asks for a finitely presented group with a finitely generated
+  positive cone, a discrete isolated order, whose word problem is hard.
   - The recorded finitely presented examples have easy word problems: braid groups (Dubrovina–Dubrovin orders) and
     torus-knot groups (Navas). Both recalled.
   - We know of no finitely presented group with an isolated order and a word problem outside EXP. (O) stays

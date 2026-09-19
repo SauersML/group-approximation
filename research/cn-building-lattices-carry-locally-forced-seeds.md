@@ -128,3 +128,54 @@ sense of `quantum-rigidity-is-decided-on-the-derived-subshift`.
 - Across Ã2 and all `C̃_n`, the higher-rank Kazhdan (IE′) problem is now purely a boundary-rigidity problem. The
   remaining building types (`Ã_n` for `n ≥ 3`, `B̃`, `D̃`, `G̃2`, `F̃4`, `Ẽ`) should follow from Tits projections in the
   same way; the same tables have to be written for each.
+
+## Referee (bh-ref-kourovka-a, 2026-09-19): PASS for items 1–3 and for the item 4 reduction; perfectness checked in outline
+
+I checked this against the refereed `a2-lattices-carry-finite-type-seeds` and against
+`c2-building-lattices-carry-finite-type-seeds`, whose Steps 2–4 it reuses.
+
+- **Apartment model.**
+  - The alcove `½ ≥ x_1 ≥ … ≥ x_n ≥ 0` has vertex types given by the number of half-integral
+    coordinates.
+  - The stabilizer of a type-`k` vertex is `W(C_k) × W(C_(n−k))`: reflections in `x_i = ½` and
+    `x_i ± x_j = 1` on `H`, and in `x_i = 0` and `x_i ± x_j = 0` on `Z`. Mixed walls do not pass
+    through the vertex.
+  - So links are joins of polar spaces of ranks `k` and `n − k`, with vertices `x + e`,
+    `e ∈ {0,±½}^H` or `{0,±½}^Z`.
+  - `d(u,o) = 2‖u − o‖_∞`, via the parity argument. Building distances are apartment distances, by
+    retraction.
+- **Item 1.**
+  - The three cases (all of `I` agreeing, some sign opposite, otherwise) give `−1, +1, 0`. The active
+    off-`I` coordinates are `≤ M − 1` and the passive ones `≤ M − ½`.
+  - The polar translation `T ⊇ S` / `T ⊄ S^⊥` is correct, since points with index off `I` are
+    collinear with all of `S`.
+  - `S` lies in the convex hull of `x` and `o`: every root functional `x_i`, `x_i ± x_j` moves between
+    its values at `x` and `o`, which I checked in all index cases. So labels are intrinsic.
+- **Item 2.** `w' = w − e` has maximal set `N`, and `λ(y) = x + e|_(supp e ∖ N)` is the span of the
+  points of `T_y` collinear with `S`, i.e. `T_y ∩ S^⊥`. It is a face of `T_y`, so it is adjacent to
+  `y`. At `*`, every neighbour gets label `o`. Correct.
+- **Descents.**
+  - The diamond is correct. `λ(u) = x + sgn w|_I + ½ sgn w|_P` (the maximal set of `o − u` is `I ∪ P`).
+    Each `y_T` (`T ⊇ S`) is adjacent to `g''` by the parity check and one step closer. This is read in
+    a genuine field matching `η` on `St(u)`, which contains `x` and every `y_T`.
+  - It is a **one-step** diamond, so confluence needs no termination.
+  - Sideways pairs are correct:
+    - for passive `y`, `u ∈ In(y)`, since `‖o − u‖ = M − ½ < ‖o − y‖ = M`;
+    - for active `y` with `T_y ⊆ S^⊥`, the maximal set of `o − y` is `I ∖ supp e`, and
+      `λ(y) = S ∨ T_y`.
+- **Item 3.** The C̃₂ Step 4 argument transfers. In particular the matching field exists because
+  `η`'s star at `z` is genuine for some `o ∈ O` **by definition of `Y`**, so the one-orbit
+  restriction on origins costs nothing.
+- **Item 4.**
+  - `Y` rigid iff `∂Y` rigid is Corollary A, with the seed locally forced.
+  - For `Y_all`, whose isolated points are exactly its locally forced seed orbits once `∂Y_all` is
+    perfect, use parts 1–2 of the derived-subshift theorem. Then `Y ⊆ Y_all` gives transfer by
+    subshift monotonicity. Correct.
+  - Perfectness is checked **in outline only**. The limits `η_c` share `z`'s label, so they agree with
+    `η` on `Out(z) ⊇ B_R`, and they differ at `u ∉ Out(z)`.
+  - I verified "at least two labels at `u`, each on an unbounded family of origins" for C̃₂ at a
+    special `z`. There the labels at `u` are the points of the rank-1 factor other than `z`, and there
+    are `≥ 2` of them by thickness. The general case is asserted.
+
+**Not checked:** the example claims (Helly by CCGHO Thm 1.1(4); Kazhdan), which are recalled, and the
+expectation that the other building types follow.

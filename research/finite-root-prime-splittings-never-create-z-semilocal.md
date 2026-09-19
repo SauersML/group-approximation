@@ -9,8 +9,7 @@ distinct_from:
   z-localized-fixes-a-vertex-or-end-of-every-tree: that allows Z_(S) to fix only an end, as an ascending union along a ray; this shows the ray case needs an edge inclusion with infinitely many relative root primes.
 ---
 
-**ESTABLISHED** (lane proof; bh-invent-12, 2026-09-18; elementary Bass–Serre theory; not independently
-reviewed). No priority is claimed. The statement may be folklore, but a quick literature search found it
+**ESTABLISHED** (lane proof; bh-invent-12, 2026-09-18; elementary Bass–Serre theory; one referee PASS with a wording fix to item 4, bh-ref-engines 2026-09-19). No priority is claimed. The statement may be folklore, but a quick literature search found it
 nowhere, nor (SL) itself. Borisov–Sapir and Stallings are recalled, not re-read.
 
 ## Definitions
@@ -136,3 +135,41 @@ would `g`.
 All the standard finitely presented residually finite constructions are excluded: HNN mapping tori
 (Borisov–Sapir), graphs of free and abelian groups, and S-arithmetic lattices. The cofinite-prime arithmetic
 has to be manufactured inside a single group, in the way a ring inverts all its primes at once.
+
+## Referee (bh-ref-engines, 2026-09-19): PASS, with one overstated sentence in item 4 corrected
+
+**Items 1–3 and item 4's main claim: correct.**
+- *Item 1.* A root of an elliptic element is elliptic. `Fix(g)` contains the geodesic `[v, w]`, and
+  `j_(Stab ε_i)(h)` divides `n` with primes in `P`, so it equals `1` for `n` coprime to `P`.
+- *Item 2.* The exponent factorization `n = j_m⋯j_1 n_0` is correct, and `ℓ(h^n) = nℓ(h)` handles hyperbolic
+  elements.
+- *Item 3* follows from item 2.
+- *Item 4.* The element `1` has roots at infinitely many `n`, so it is elliptic. Its roots `1/n` with `n`
+  coprime to `S ∪ P` fix `v`, and they generate `Z_(S∪P)`.
+
+**The overstated sentence is false as written.** "So a copy of `Z_(S)` is never an ascending union along a
+ray" does not follow, and it fails in this example:
+- Take `B = Z_({2})` (odd denominators) and `Λ = ⟨B, t | t x t^(−1) = 2x⟩`, the ascending HNN extension of `B` by `x ↦ 2x`.
+- Then `P = {2}`, and `Λ ⊇ Q = Z_(∅)`.
+- `Q` fixes only an end: `1/2^k` fixes `t^(−k)v` but not `v`.
+- Only `Z_(∅∪P) = Z_({2}) = B` fixes a vertex.
+
+In general `Z_(S)/Z_(S∪P)` is a sum of Prüfer groups at the primes of `P ∖ S`, and those roots may climb a
+ray. The correct reading:
+- the ray can only carry primes of `P`;
+- the subgroup `Z_(S∪P)` always fixes a vertex.
+
+The `distinct_from` gloss on `z-localized-fixes-a-vertex-or-end-of-every-tree` should be read the same way.
+Nothing downstream changes: the (SL) alternative uses only "some vertex group contains some `Z_(S')`",
+which is what is proved.
+
+**Finite-`ρ` cases: correct.**
+- Finite index: pigeonhole on `v^iH`.
+- Free groups: the vertices `q c^i` are distinct, otherwise a shorter power of `v` lies in `H`.
+- Abelian groups: `j` divides the torsion exponent of `B/H`.
+- Nilpotent groups: the isolator is Mal'cev's, of finite index over `H`.
+- The instances (mapping tori, graphs of free, abelian or nilpotent groups) follow. f.g. nilpotent groups are
+  linear, so they are in `𝒩`.
+
+**The CAT(0) remark is correct**, by semisimplicity and the discreteness of translation lengths (Bridson–Haefliger
+II.6.10). Credit Mal'cev (isolators), Stallings (folding), Borisov–Sapir and Druţu–Sapir.

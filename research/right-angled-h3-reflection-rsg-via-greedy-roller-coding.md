@@ -116,3 +116,26 @@ Lane `bh-partials`, lane proof, not reviewed.
 - The quantitative carrier lemma in 3D: the prism decomposition and the compactness bound.
 - The injectivity of the coding on the fibres over points of wall circles, including intersection points of two
   orthogonal circles, where 4 ultrafilters lie over one point.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS through the general proof; this route's own Steps 2 and 4 have two gaps
+
+**The result stands.**
+- `W` is the RACG of the nerve of `F`, and `∂X` is the Roller boundary of its Davis complex.
+- The greedy rule, the states (faces, edges and vertices of `F`, i.e. the simplices of the nerve) and the transitions coincide with those of `hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof`, which passes review.
+- Conditions (a)–(c) here are its conditions (a)–(c).
+
+**Gaps in this route's own text,** both repaired in `greedy-cube-codings-rsg-proof`:
+- **(G1) Step 2, injectivity and the height argument.** Both use, without proof, that an ultrafilter `ω` orients every wall `V` with `ζ(ω) ∉ ∂V` toward `ζ(ω)`. Lemma Z there proves this in general. A direct 3D proof:
+  - Suppose `ω ∈` far`(V)` with `ζ` strictly on the near side. The ray never crosses `V`.
+  - Consistency of `ω` makes each crossed wall `U_r` either cross `V` or separate `F` from `V`, and only finitely many do the latter.
+  - A plane that meets both `V̄` and a small ball around `ζ` has Euclidean diameter bounded below, so it passes within bounded distance of `F`. Only finitely many walls do.
+- **(G2) Step 4, the lower bound.** "Verbatim" transfer fails, because the targets in `h[w]` need not lie on `∂W*`. So the `hF`-rays need not enter `car(W*)` at all.
+  - The fix is Lemma E of `greedy-cube-codings-rsg-proof`: choose the target across `W*` from `hF`, and use "in `N(W*)` or on the target side after time `m`".
+  - The subcase `m − Δ < |h| + c` then needs only `n_0(h)`.
+
+**Also checked.**
+- The prism decomposition, since orthogonal walls are `π_V`-preimages of lines.
+- Nonemptiness of all pieces (cap, lens and octant rays).
+- The fibre bound: at most 2 walls through an ideal point, so at most 4 ultrafilters.
+- The `G_loop` induction, done in full in the RACG route's Referee section.
+- The dodecahedron and `L(n)` checks.

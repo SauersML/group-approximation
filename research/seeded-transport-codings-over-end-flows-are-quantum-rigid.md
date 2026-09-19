@@ -113,3 +113,22 @@ The theorem holds over every field, on modules of any dimension.
   `minimal-sfts-with-a-finite-modification-are-not-quantum-rigid`;
 - the Instances;
 - hypothesis (B)'s citation to `quantum-rigidity-is-product-stable`.
+
+## Referee (bh-ref-ffwz, 2026-09-19): hypothesis (B) citation PASS
+
+This closes the item the first referee left open.
+- **Base marginals give a base family.** The base marginals of a `D`-family of `Z` form a
+  `D`-family of `B = Y ⊠ X_∂`. A non-occurring `B`-ball pattern expands, within the ball, into
+  products over non-occurring `Z`-patterns, because the base projection of `Z` lies in `B`.
+- **`B` is rigid.** Assume `Y` is `D`-rigid and `D ≥ 1`. Then `X_∂` is `D`-rigid (see below), and
+  `Y ⊠ X_∂` is `D`-rigid by `quantum-rigidity-is-product-stable`.
+  - I checked `quantum-rigidity-product-stability-proof`, Steps 0–5: constancy along the other
+    factor by (Q3) at distance 1; factor families; `E_(a,b)(g,h) = F_a(g)G_b(h)`.
+  - It needs the sum metric on `H × F_m`, which is the metric used here.
+- **`X_∂` rigidity.** The node cites it as a lane proof. I re-derived it via the monotone-chain
+  argument of `roller-compactifications-of-cube-complexes-are-quantum-rigid`, in the out-arrow
+  coding, at every `D ≥ 1`.
+- **Monotonicity in `D`.** Rigidity is monotone upward in `D`, because a `(D+1)`-family is a
+  `D`-family. So `D ≥ max(R, r_Y, 1)` with `Y` rigid at `r_Y` suffices.
+- **Downstream.** `downhill-centrality-needs-no-data-rigidity`, Part B item 2 (sufficiency),
+  rests on this node, and it is now fully refereed.
