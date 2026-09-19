@@ -74,8 +74,8 @@ theorem matInv_x (p q : I) (h : p ≠ q) (a : A) : matInv (x p q h a) = 1 - Matr
   rw [matInv, projection_x]
   rfl
 
-/-- `Pi.single p a ⊗ Pi.single q c = a c E_pq`. -/
 omit [Fintype I] in
+/-- `Pi.single p a ⊗ Pi.single q c = a c E_pq`. -/
 theorem vecMulVec_single_single' (p q : I) (a c : A) :
     Matrix.vecMulVec (Pi.single p a) (Pi.single q c) = Matrix.single p q (a * c) := by
   ext r s
@@ -86,8 +86,8 @@ theorem vecMulVec_single_single' (p q : I) (a c : A) :
     · rw [Pi.single_eq_of_ne hs, mul_zero, if_neg (fun h => hs h.2.symm)]
   · rw [Pi.single_eq_of_ne hr, zero_mul, if_neg (fun h => hr h.1.symm)]
 
-/-- `a E_pq = (a ε_p) ε_qᵀ`. -/
 omit [Fintype I] in
+/-- `a E_pq = (a ε_p) ε_qᵀ`. -/
 theorem single_eq_vecMulVec_right (p q : I) (a : A) :
     Matrix.single p q a = Matrix.vecMulVec (Pi.single p a) (Pi.single q (1 : A)) := by
   rw [vecMulVec_single_single', mul_one]

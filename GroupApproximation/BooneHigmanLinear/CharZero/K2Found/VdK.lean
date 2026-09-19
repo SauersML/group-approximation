@@ -388,8 +388,8 @@ def piStar : StStar I A →* (Matrix I I A)ˣ :=
 
 #audit_axioms piStar_X
 
-/-- `e(ε_p, a ε_qᵀ)` is the elementary matrix `x_pq(a) = 1 + a E_pq`. -/
 omit [Fintype I] in
+/-- `e(ε_p, a ε_qᵀ)` is the elementary matrix `x_pq(a) = 1 + a E_pq`. -/
 theorem vecMulVec_single_single (p q : I) (a : A) :
     Matrix.vecMulVec (Pi.single p (1 : A)) (Pi.single q a) = Matrix.single p q a := by
   ext r s
