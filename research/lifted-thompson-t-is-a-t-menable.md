@@ -4,7 +4,7 @@ id: lifted-thompson-t-is-a-t-menable
 kind: claim
 title: "The lift T-bar of Thompson's T to the real line (the central extension of T by Z with the Euler class) has the Haagerup property"
 distinct_from:
-  thompson-v-has-haagerup-property: that is Farley's theorem for V, and so for T ≤ V; this asks it for the central extension T-bar of T by Z, which is not a subgroup of V in any known way
+  thompson-v-has-haagerup-property: that is Farley's theorem for V, and so for T ≤ V; this asks it for the central extension T-bar of T by Z, which is not a subgroup of V at all (it contains Z[1/2], excluded from V by Higman; see lifted-thompson-t-escapes-haagerup-permanence-closure)
   cantor-integer-maps-by-v-have-haagerup-property: that is Brothier's Problem B for Γ = Z, for the group C(C,Z) ⋊ V; this is its one-dimensional subcase for the subgroup T-bar ≤ C(C,Z) ⋊ T, which it implies but is not known to imply it
   lifted-thompson-t-center-has-relative-t: that is the refuting statement (relative (T) for the centre); this claim implies its negation
 artifacts: []
@@ -192,3 +192,113 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
     - Its discrete case `thompson-t-co-amenable-subgroup-kills-real-euler-class`: a co-amenable
       `H ≤ T` with `e_R|_H = 0`. Such an `H` has no finite orbit on `S^1` and is nonamenable.
     - Concrete test: is `PSL_2(Z)` (preimage `B_3`) co-amenable in `T`? A yes proves this claim.
+- 2026-09-18 (swarm-0917-w10-w10-nv-pull, cohomology-index): a `C^0`-continuity kill inside (MT),
+  with a Fuchsian calibration. Status stays OPEN.
+  - *Class-kill (established).* `thompson-t-c0-continuous-affine-actions-are-trivial`.
+    - Named invariant: unitary triviality of `Homeo+(S^1)` and `Homeo~(S^1)`. Point stabilizers
+      are `≅ H+[0,1]` (Megrelishvili 2001), and point-fixing elements generate. `T` and `T̄` are
+      `C^0`-dense in these groups.
+    - Death step: `C^0`-continuity extends the representation to the closure, where it is
+      trivial. So `κ = 1`, `T` acts trivially a.e., and `β(·, x)` is a homomorphism `T̄ → R`
+      with `z ↦ 1`, contradicting perfectness.
+    - Killed:
+      - every C^0-continuous unitary representation, affine action or cnd function of `T` or
+        `T̄`;
+      - every (MT)-witness with `C^0`-continuous Koopman representation, including every
+        `T`-invariant probability on a Polish space with a continuous `Homeo+(S^1)`-action;
+      - in particular the transplant `Homeo+(S^1)/PSL2(Z)` of the Fuchsian witness, which
+        carries no `T`-invariant probability at all. This holds with `β` arbitrary measurable
+        and `X` not mapping to `S^1`.
+  - *Calibration.* `Δ̃(2,3,7)` is perfect with a bounded Euler class, like `T̄`, yet it has a pmp
+    witness `PSL2(R)/Λ_0` with `Λ_0` a free lattice. So what separates `T̄` from the Fuchsian case
+    is the unitary triviality of its `C^0` closure, not perfectness.
+  - *What survives.*
+    - (MT)-witnesses whose Koopman representation is `C^0`-discontinuous (dyadic, PL or
+      breakpoint data, such as `T/H` or Farley-type cubical data).
+    - Merely quasi-invariant measures on circle-functorial spaces.
+    - The co-amenability test for `PSL2(Z)` is untouched, since invariant means are not measures.
+- 2026-09-18 (swarm-0917-w11-w11-nv-follow, operator-algebras): exact spectral reduction to the twist cost.
+  Status stays OPEN.
+  - *Characterization (established).* `lifted-thompson-t-haagerup-iff-twist-cost-spectral-measure`.
+    - This claim holds iff some σ-finite measure `ν` on `(R/Z) ∖ {0}` has `∫ c² dν < ∞` and
+      `Φ_ν(n) = ∫ |e(nθ) − 1|² dν → ∞`. Here `c` is the twist cost of
+      `lifted-thompson-t-relative-t-forces-dyadic-twist-gap`.
+    - Necessity: take Schoenberg states `e^{−4^{-j}ψ}` and bound `∫ c² dμ_j` by a spectral Fatou
+      inequality.
+    - Sufficiency: lift `ν` by Hahn–Banach to the compact space of `z`-twisted states. No
+      measurable selection is needed.
+  - *Explicit test (established).*
+    - `Σ_k c(2^{-k})² < ∞` implies this claim.
+    - Form internal to `T`: eigenvectors `ρ_k(r_k)ξ_k = e(2^{-k})ξ_k` whose `ι_k(S)`-costs are
+      square-summable.
+    - Relative (T) of the centre forces `liminf c(2^{-k}) > 0`, so the problem is now sandwiched
+      between two growth regimes of the single sequence `c(2^{-k})`.
+  - *What is left (OPEN).*
+    - Estimate `c(2^{-k})`. The only known bound is `c(2^{-k}) ≥ 4·2^{-k}/L`.
+    - Any family of `T`-representations with `e(2^{-k})`-eigenvectors of `r_k` whose cost is
+      `O(k^{-1/2-ε})` proves this claim.
+    - The intermediate regime, where `c(2^{-k}) → 0` but not square-summably, is decided only by
+      non-dyadic or non-geometric `ν`.
+- **2026-09-18 (swarm-0917-w12-w12-nv-follow, cohomology-index): the square-root twist regime is
+  the Euler cup product.** Status stays OPEN.
+  - *Established.* `lifted-thompson-t-root-twist-cost-iff-euler-cup-product`, via its `-proof`
+    route.
+    - (1) *Floor.* A second-order expansion of a zero-exponent word for `z` gives
+      `c(θ) ≥ 2√(2‖θ‖)/m`.
+    - (2) *Kähler lift.* Suppose `e_R ∈ V_T`, where `V_T` is the subspace of classes
+      `Im⟨b(g), π(g)b(h)⟩`, equivalently of cup products `b_1 ∪ b_2` for orthogonal
+      representations of `T`. Then the phased Weyl operators
+      `ρ_t(z^nσ(g)) = e^{−itn} e^{itβ(g)} W(√t b(g), π(g))` on Fock space are genuine
+      representations of `T̄`. They give `c(θ) = O(√‖θ‖)` and a proper cnd function
+      `ψ_0∘p + Σ_k 2^{k/2}(1 − Re⟨Ω, ρ_{π2^{−k}}Ω⟩)`. So this claim follows.
+    - (3) *Converse.* If `c(θ_n) = O(√‖θ_n‖)` along one sequence `θ_n → 0`, an ultralimit of the
+      rescaled cocycles `(π_nξ_n − ξ_n)/√|θ_n|` produces a cocycle of `T` whose area class is a
+      nonzero multiple of `e_R`. So `e_R ∈ V_T`.
+  - *New decomposition.* This claim follows from **(K)**: `e_R ∈ V_T`, a statement about
+    Thompson's `T` alone. (K) is also necessary for the optimal twist rate. (K) can fail on its
+    own, and does fail if the centre has relative (T).
+  - *Guidance.*
+    - Real cocycles give `ω = 0`, so Farley's cocycle by itself contributes nothing. A witness
+      needs two cocycles into one orthogonal representation whose antisymmetric cup product is the
+      Euler cocycle up to a coboundary.
+    - The surface-group analogue holds with trivial coefficients.
+  - *Side observations, sketched only and not written as nodes.*
+    - Twisting Jones-type representations of `T` by a character of the centre reduces to
+      representations of `C(C, Z) ⋊ T`.
+    - Pythagorean-type representations restrict to extractable ones on the centre, so they do not
+      twist.
+    - The barycentric extension of the band-cut witness is subsumed by the dyadic gap.
+    - The naive quotient `ψ(ι_k s)/ψ(r_1)` for Farley's function grows like `4^k`, consistent with
+      the dead end above.
+  - *Open next step.* Decide (K). A positive answer proves this claim. For a negative answer
+    one would look for an obstruction, for instance a bounded-cohomology or rotation-number
+    invariant that vanishes on `V_T` but not on `e_R`.
+- **2026-09-18 (swarm-0917-w13-w13-nv-break, calibration): the permanence-closure class dies.**
+  - *Class-kill (established).* `lifted-thompson-t-escapes-haagerup-permanence-closure`.
+    - Named invariant, three facts:
+      - every normal subgroup of `T̄` is `⟨z^j⟩` or `T̄` (from simplicity of `T`);
+      - `T̄` has no finite quotients;
+      - the central `z` has roots of every order.
+    - Death step: the first permanence operation pulls `T̄` back into one of its inputs:
+      - finite product: into a factor;
+      - restricted wreath `Γ ≀_X G`: into `Γ` or `G`, and always into `G` when `Γ` is abelian;
+      - finite-edge graph of groups: into a vertex group;
+      - extension with amenable quotient: into the kernel;
+      - directed union or finite-index overgroup: into a member.
+      By induction `T̄` then reaches a building block, where it dies:
+      - amenable blocks, since `T̄` is nonamenable;
+      - blocks with a proper commensurating action (cubical, Farley), since `z` is elliptic;
+      - amenable-by-(residually finite or linear) blocks, since `T̄` has no residually finite
+        image.
+    - Killed: every proof of this claim, or of `nV` Haagerup through `T̄`, by embedding into a
+      permanence construction. This includes Brothier-type `K ≀_{Q_2} V` hosts, amalgams over
+      finite groups, and linear, Lie or residually finite hosts with amenable kernels.
+  - *Sharpness.* The two operations left out are exactly the escapes:
+    - central extensions, since `T̄` is one over `T`;
+    - countable unrestricted products, since `T̄ ↪ ∏_k T` through the maps `ι_k` of
+      `lifted-thompson-t-quotients-are-rotation-centralizers`.
+    So a proof must build a new cnd function that is proper on `⟨z⟩`, at the Euler class or in a
+    residual limit of `T`-representations.
+  - *Correction.* `T̄ ⊇ Z[1/2]`, so by Higman (verbatim in
+    `hall-quotient-avoids-v-circle-groups-and-periodic-ends`) `T̄` is not a subgroup of `V` at
+    all. The frontmatter wording is updated to match.

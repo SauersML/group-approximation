@@ -17,6 +17,7 @@ artifacts:
   - research/abelianized-cover-mf-radical-is-union-of-local-cover-radicals.md
   - research/local-commutator-cover-derived-series-stops-at-one.md
   - research/local-commutator-cover-bounded-degree-linear-images-are-abelian.md
+  - research/one-ended-root-killable-lamp-covers-have-torsion.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -349,3 +350,64 @@ claimed.
   `m` growing with `L`, in which a word of `[F,F] \ [R,R]` survives, or an
   argument that controls permutation-type quotients of unbounded degree.
   `(DF)` remains OPEN.
+
+- **Fixed-point localization of the kernel spectrum is blind (2026-09-18,
+  swarm-0917-w10-w10-ptm-last1, stability-approximation).**  ESTABLISHED
+  class kill and stripping lemma:
+  `abelianized-cover-isolated-fixed-spectral-point-is-scalar`.
+
+  **Result.**  In any corona model `W` of `E`, let `chi` be an isolated,
+  `G`-fixed point of the kernel spectrum `X` that factors through the
+  exponent-sum map.  Then its indicator `p in C*(W(M))` commutes with
+  `W(E)`, and `W(e) p = lambda(e) p` for one character `lambda` of
+  `E^ab = Z^n`.
+
+  **Proof.**  Untwist by a character of the free group; the corner is then
+  a model of `G`, and the full radical kills it.
+
+  **Consequences.**  Scalar padding at such points (for example `1_N` with
+  isolated trivial character) can be stripped without changing what the
+  model detects on `E'`.  For superperfect `G` every fixed point is
+  liftable.
+
+  **Where it dies.**  `M` is free abelian, so `hat M` is connected.  The
+  regular models that `(REG)` must defeat have `X = hat M`, which has no
+  isolated points and no nontrivial clopen invariant sets.  Fixed-point
+  localization in the norm algebra is therefore vacuous against `(REG)`,
+  and wherever it succeeds it yields only a character, which is consistent
+  with MF.  Making it work at a non-isolated point needs a norm-level
+  invariant neighborhood projection, which is the spectral-gap step of
+  `commutant-projection-extraction`.
+
+  **Residual.**  Isolated fixed points that are not liftable give
+  projective corona models of `G` with cocycle class `chi|H_2(G)`.  These
+  are not decided.
+- **Induced-lamp covers and root-untwisting: a class kill (2026-09-18,
+  cohomology-index).**
+  `one-ended-root-killable-lamp-covers-have-torsion` (ESTABLISHED) tests an
+  alternative to `(DF)`.  Take a lamp cover `Gamma` of `G` with kernel
+  `P = (+) Z[G/C_i]` (`C_i` finite cyclic) whose lamps are `t_i^{|C_i|}`.
+  - **Root-untwisting (A).**  Suppose the class `c` dies once `|C_i|`-th
+    roots of the lamps are adjoined (`D_* c = 0`).  Then every corona model
+    in which each lamp has non-full spectrum has abelian image.  The model's
+    principal roots form an equivariant root map `P -> U(C*(rho(P)))`, the
+    model extends to the split root pushout, and full radical kills `G`.
+    This localizes the untwisting dichotomy to spectral gaps.
+  - **Obstruction (B).**  If `G` is one-ended, a torsion class in
+    `H^2(G;P)` restricts to zero on every prime-order subgroup, so the cover
+    has torsion.  The step where every such argument dies is Lemma B1:
+    `H^1(G; F[G/H]) -> H^1(H; F)` is zero, because an almost-invariant
+    quasi-character is constant off a finite set on a one-ended graph.
+    `St_20(L_(F_2)(1,2))` is one-ended, and root-killable lamp covers of it
+    always have torsion.  So route (a) cannot be replaced by a
+    "torsion-free induced-lamp cover plus gapped-lamp untwisting" route.
+  - **(C) for `E` itself.**  Over a one-ended base, `xi` has nonzero image
+    in `H^2(G; M (x) S)` for every nonzero ring `S`, including `Q`.  So no
+    algebraic root extension of `M` splits `E`.  Any injective model of `E`
+    must carry lamps, meaning elements of `M`, whose spectra make principal
+    roots non-equivariant, typically full-circle spectra ("odd winding").
+    The pushed class can only die analytically.
+  Net effect: DF itself is unchanged and stays OPEN.  The class "untwist by
+  algebraic roots of torsion lifts" is dead on every one-ended base with
+  torsion.  Surviving directions must use full-spectrum lamps or the
+  infinite-order part of `xi`.

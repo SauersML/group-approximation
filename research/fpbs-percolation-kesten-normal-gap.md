@@ -126,3 +126,21 @@ direction is used here.
   The natural test case is `F_2 x F_2` along one factor. The identity holds
   for amenable quotients and on free-group trees, and it reduces to
   `p_(2->2) = p_u` for amenable `N`.
+* **Local and uniform-margin certificates (stability-approximation,
+  2026-09-17, swarm-0917 w11).** The idea was to certify the gap from
+  finite-radius data of `Gamma/N`, or to transplant a uniform margin through
+  marked-group limits, as was done for the l2 classes.
+  `fpbs-kesten-margin-collapses-near-lamplighter` (ESTABLISHED)
+  tests this on the 4-regular tree. The quotients
+  `Q_n = <a,t | a^2, [a, t^k a t^-k], k <= n>` are virtually free HNN
+  extensions of `(Z/2)^(n+1)`, and they converge to the amenable `Z/2 wr Z`
+  (their balls agree up to radius `n`). By the tree cogrowth node their
+  margins are `p_c(N_n;T) - 1/3 = s(rho_n) - 1/3 > 0`, and these tend to `0`
+  at rate `(2/3)(1 - rho_n)`. **Where it dies:** at the step "choose
+  `delta > 0` from the radius-`R` ball of `Gamma/N`". Every ball of the
+  lamplighter is shared by nonamenable `Q_n` with arbitrarily small margin.
+  **Invariant:** the Kesten spectral radius `rho_Q`, which is only lower
+  semicontinuous in the marked topology. Any proof must give a margin that
+  vanishes as `1 - rho_Q -> 0` (linearly, on trees). So it must read a global
+  quantity of the quotient walk. A quantitative law
+  `p_c(N;G) - p_c(G) >= F_D(1 - rho_Q)` is not excluded.

@@ -1,0 +1,98 @@
+automaton XNOR: reachable states (0, 1), pi = {0: '1/2', 1: '1/2'}, idempotent: True
+   Lemma 4.2 at h = 1: P[q = 1] = 1/2
+   Lemma 4.2 at h = 2: P[q = 1] = 1/2
+   Lemma 4.2 at h = 3: P[q = 1] = 1/2
+
+STAGE 1  monoid relations and injectivity (Lemma 1.1)
+   x_j x_i = x_i x_(j+1) for 0 <= i < j <= 5 : ok
+   normal forms of degree <= 5 in x_0..x_5 : 462 distinct forests
+   split_s (s . e) = e for every such s : ok
+
+STAGE 2  split geometry for S_(2,3) : |S| = 2, I = 1, D = 1, K = 3, H = 2, N = 7
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(2,4) : |S| = 5, I = 2, D = 2, K = 5, H = 3, N = 9
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(3,4) : |S| = 3, I = 2, D = 1, K = 4, H = 2, N = 8
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(3,5) : |S| = 9, I = 3, D = 2, K = 6, H = 3, N = 10
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(4,6) : |S| = 14, I = 4, D = 2, K = 7, H = 3, N = 11
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(2,5) : |S| = 14, I = 3, D = 3, K = 7, H = 4, N = 11
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 2  split geometry for S_(3,6) : |S| = 28, I = 4, D = 3, K = 8, H = 4, N = 12
+   every split_s Y defined, N_(split_s Y) = N + deg s : ok
+   trees at positions >= I + d + 1 are t_(I+1), t_(I+2), ... untouched : ok
+   the first I + d + 1 subtrees sit in t_0..t_I at depth <= d < H : ok
+   their addresses form an antichain exhausting the bottom leaves : ok
+   leftmost-leaf depth drops by exactly j_0(s) = #{j : i_j = 0} : ok
+
+STAGE 4  exact conditional total variations, S = S_(2,3), automaton XNOR
+   I = 1, D = 1, K = I + D + 1 = 3, H = 2, |tops| = 16, N = 4 -> 5
+   model atoms: 65536 (source, N = 4) and 1048576 (target, N = 5)
+
+   observation                    max_s TV(Psi(split_s Y|N=n), Psi(Y|N=n+d))
+   profile+N  (B.3)                          0   DEAD in this model
+   profile+N+carets (Thm B)       219765/262144   survives this model
+   Xi_K = states<K + exact tail              0   DEAD in this model
+   Xi_K + germ at 0                        1/2   survives this model
+   Xi_(K-1) (sharpness)                  15/16   survives this model
+   Xi_K + total carets               3885/4096   survives this model
+   prefix pi_K (first K exact)         255/256   survives this model
+   sorted tree sizes              253125/262144   survives this model
+   identity id_M                       255/256   survives this model
+   ('Xi_K + germ at 0' is measured here in the FIXED-depth model, where the
+    germ cannot match; stage 5 mixes the first top's depth and drives it to 0.)
+
+   per-s detail for the two sharpness rows:
+     Xi_K = states<K + exact tail   s = x_0          TV = 0
+     Xi_K = states<K + exact tail   s = x_1          TV = 0
+     Xi_(K-1) (sharpness)           s = x_0          TV = 0
+     Xi_(K-1) (sharpness)           s = x_1          TV = 15/16
+
+STAGE 5  germ at 0 (leftmost-leaf depth) under a depth-mixed first tree
+   recursion for psi_h agrees with brute force, h = 1, 2, 3 : ok
+   after j left-spine splits a depth-h top is a fresh depth-(h-j) top : ok
+
+   TV between the H_0-mixtures, uniform over {H, ..., H + L''}:
+      j \ L''              1           3           7          15          31
+      j = 1             1/2         1/4         1/8        1/16        1/32
+      j = 2             3/4         1/2         1/4         1/8        1/16
+      j = 3               1         3/4         3/8        3/16        3/32
+   every entry is <= j / (L'' + 1), and tends to 0.  So adding the germ at 0
+   to Xi_K keeps the defect 0 once the first top's depth is mixed.
+
+   Mixing N uniformly over {n_0, ..., L} adds exactly deg(s) / (L - n_0 + 1)
+   to every row whose conditional TV is 0, because the laws for different N
+   have disjoint supports (the exact tail shows N when N > K).  So
+   delta_1(Xi_K) = 0 and delta_1(Xi_K + germ at 0) = 0.

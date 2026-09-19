@@ -1,0 +1,1 @@
+ELL 2 M 3 DEPTH 6 tree states 101 feasible configurations 197416

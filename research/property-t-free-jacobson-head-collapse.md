@@ -281,3 +281,438 @@ instead of `4`) changes no conclusion.
   higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
   pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
   OPEN.
+
+- **The Loewy-length escape is closed as stated; the real invariant is the
+  envelope abelianisation (swarm-0917-w10-w10-ptl-last1, 2026-09-18).**
+  `jacobson-p22-finite-models-put-head-in-envelope-commutator` (ESTABLISHED,
+  no Kazhdan input) answers the open spark above.
+
+  *Mechanism.* Take any finite partial model `sigma : B_0 -> G_0`. Run the
+  trap at degree one on the regular module `F_2[G_0] / (I*)^3 F_2[G_0]`,
+  where `I*` is the augmentation ideal of the Levi envelope `U*` of
+  `sigma(N_0)`. Then use `I*/(I*)^2 = U*^ab (x) F_2`. The result is
+  `sigma(x_13(Q)) in [U*, U*]`.
+
+  *Class killed.* Every finite model whose envelope `U*` is abelian:
+  - every split model `A x| F_L`, with `F_L` an arbitrary finite Levi model,
+    even though the regular module of such a model has unbounded Loewy
+    length;
+  - every exact finite quotient of `P_{2,2}(J)`.
+
+  The invariant is `U*^ab`, and every member dies at Step 5 (the trap) of
+  `jacobson-double-parabolic-two-step-trap-proof`, applied on the regular
+  module.
+
+  *What remains.* A head-keeping model must have a nonabelian envelope, and
+  the head must be a product of commutators of Levi-conjugates of
+  `sigma(N_0)`. By Corollary 3 of that node, those commutators must involve
+  wrapped Levi elements, not images of words inside the ball.
+
+  *Negative note.* The trap does not iterate to degree two: the finitary
+  ideal `(Q)` contains no trap base (`S y` is never in `y J`). So
+  `[U*, U*] / [U*, U*, U*]` is not controlled.
+
+  The norm (MF) case is untouched, and the claim stays OPEN.
+- **census-computation, swarm-0917 (swarm-0917-w10-w10-ptl-break), 2026-09-18:
+  trap-relator shadow of `P_{2,2}(J)` -- Loewy length is not the invariant;
+  every abelian-orbit model dies.**
+
+  *Proposal.* Take the finitely presented shadow `Gamma_trap`: seven
+  involutions `x_12(S), x_12(T), x_21(1), x_34(1), x_43(S), x_43(T), x_13(1)`
+  with the three trap relations, Levi commutation and eight unipotent
+  commutations. All of these hold in `P`, where the head `h` survives. Search
+  its finite quotients for one that keeps `h`, starting with Loewy-3 models,
+  which the w9 entry left open.
+
+  *Result.* `double-parabolic-head-dies-on-commuting-right-orbits`
+  (established, route `-proof`, `requires: []`).
+  - In any group satisfying the trap relations, suppose the right `d`-orbit
+    `Z` of `x_13(1)` is finite, where `d_g x = x g x g`, and suppose the left
+    and right `d`-maps commute on `Z` (equivalently, certain conjugates of
+    orbit elements commute). Then `h = 1`.
+  - So every finite model in which the normal closure of `x_13(1)` is abelian
+    kills the head, whatever its Loewy length. This includes permutation
+    models and the finite two-step models.
+  - Hence an LEF witness for `P_{2,2}(J)` must make two conjugates of orbit
+    elements fail to commute in its finite target, although in `P` they lie
+    in the abelian group `n(M_2(J))`.
+  - By the same theorem, `Z` is infinite in `P`.
+
+  *Invariant.* The finite orbit `Z` with the commutation condition (C).
+
+  *Step where it dies.* The pigeonhole: `Lambda_t Lambda_s = id` on the
+  finite set `Z` forces `Lambda_s Lambda_t = id`.
+
+  *Evidence, bounded searches only.*
+  - Permutation quotients of `Gamma_trap` of degree 4 and 6 are UNSAT.
+  - Exact `GF(2)` Loewy-3 census over Laurent-quotient Levi layers: 12167
+    tensor triples and 3000 direct-sum triples, 0 head-keeping models.
+
+  *What is left.* If every finite quotient of `Gamma_trap` kills `h`, then
+  `P_{2,2}(J)` is not LEF, which is a four-index witness. The missing step is
+  to show that the unipotent commutations force (C) on all of `Z`. The claim
+  stays OPEN.
+- **The trap-relator shadow `Gamma_trap` has a head-keeping finite quotient
+  (2026-09-18).** See `gamma-trap-has-a-head-keeping-finite-quotient`.
+
+  *Model.* It is class two over `W = M_2(F_2[x]/(x^4+1))`:
+  - `N_W = W x (W (x) W)` with cocycle `w w'^T`;
+  - the quotient is by the `G0`-span `K` of the relator differences;
+  - `u = (E_11, c_u)` with random `c_u`.
+
+  *What it satisfies.* All of (R1)-(R3), (LR), (UU), the involutions and the
+  30 `EXTRA_RELS` hold, and so does (C1) at `z = u`. The head survives in
+  `C/K`, which has dimension 13.
+
+  *Checks.* Three independent implementations agree, one of them a plain
+  `GL_33(F_2)` matrix check.
+
+  *What dies.*
+  - The orbit-trap reduction "(UU) forces (C) in finite quotients" is false.
+  - Every head-collapse argument whose relator input lies in `Gamma_trap`,
+    plus `EXTRA_RELS`, plus (C) at the base point, fails. This includes
+    finite, exact and norm-corona arguments.
+
+  *Where the head dies again.* Adding (C1) and (C2) at right-orbit depth one
+  kills the head in this family. These relations are true in `P`. The next
+  finitely presented non-LEF candidate is therefore
+  `Gamma_trap + EXTRA_RELS + (C) at depth <= 1`, and it is open.
+- **symbolic-dynamics, swarm-0917 (swarm-0917-w11-w11-ptl-break), 2026-09-17:
+  residually-finite-action certificates for the MF side of `P_{2,2}(J)` die.**
+
+  *Proposal.* Attack the MF survivor of the w9/w10 entries through dynamics.
+  Put `M = M_2(J)` (an elementary abelian 2-group) and `L = EL_2(J) x EL_2(J)`.
+  Then `C*(P_{2,2}(J)) = C(M^) x| L`, where `M^ = Hom(M, F_2) = M_2(J^*)` and
+  `(A,B).f(Y) = f(A^(-1) Y B)`. A norm-corona representation keeps the head
+  `h = E_11 (x) Q` exactly when the spectrum `Omega` of `rho(M)` is a closed
+  `L`-invariant set that meets the clopen `A_h = {f : f(h) = 1}`. The plan was
+  a Kerr--Nowak style certificate: finite sets `E` with exact partial
+  `L`-actions on balls, and maps `zeta : E -> M^` that are exactly equivariant
+  on a finite window `F` of `M` and hit `A_h`.
+
+  The candidate `Omega` was the rank-one bimodule characters
+  `omega_(phi,psi)(Y) = phi(Y psi)`, with `phi` in `V_+^*` and `psi` in `V_+`.
+  These form an equivariant image of `V_+^* x V_+` under the product action,
+  and `omega_(phi,psi)(h) = phi_1(e_0) psi_1(e_0)` can be 1. Each half is a
+  residually finite action. `EL_2(J)` acts on `V_+` and on `V_+^*` through the
+  mirror-glued models `Phi_M` of `binary-jacobson-el2-is-lef` and their
+  transposes, and every cylinder near `e_0` is realised exactly.
+
+  *Step where it dies.* Any such certificate linearises to an exact two-step
+  model on `F_2^E (+) F_2`, with `rho(Y)(u, c) = (u + c zeta_Y, c)` and the Levi
+  acting by permutations. So
+  `jacobson-double-parabolic-two-step-models-kill-head` forces
+  `zeta(e)(h) = 0` for every `e`. The product of the two halves therefore
+  cannot be made equivariant for `M`, and the failure is not small. The naive
+  pull-back `zeta(xi, w)(Y) = xi_near(Y_near w)` fails at every `(xi, w)` whose
+  support meets the seam band or the far half, which is a proportion at least
+  `1 - 2^(-4r)` of `E`. So it gives no HS model either.
+
+  The precise gap is the seam. Gluing needs a lift `P_{2,2}(J) -> P_{2,2}(J')`
+  with the identity Laurent symbol. The mirror candidates `beta`,
+  `g -> w (g^tau)^(-1) w^(-1)` (with `w` the block swap), and their composite
+  have symbols `iota`, `S o iota` and `S`. Here `S` is the Levi-swapping
+  automorphism
+  `(a, b, y) -> (b, a, K^(-1) y^t K)` of `P_{2,2}(A)`, and it is outer, because
+  inner automorphisms preserve the two Levi factors. For `EL_2` the same maps
+  give `iota` and the identity, which is why the rank-two gluing works. This
+  excludes only this family of lifts, not every lift.
+
+  *Consequence (class-kill).* Kerr--Nowak's free-group equivalence
+  "MF crossed product iff residually finite action" does not transfer to
+  `P_{2,2}(J)`. Any MF model that keeps the head must restrict on `M` to
+  spectral data that is not approximately pointwise: Levi unitaries have to
+  mix joint eigenspaces of finite subgroups of `M` that agree on the tested
+  window. The rank-marginal data of such models puts no restriction on the
+  head, because Haar measure on `M^` is `L`-invariant and gives `A_h` mass
+  `1/2`. So the MF question for `P_{2,2}(J)` has no pointwise-dynamical or
+  rank-profile shadow. The claim stays OPEN.
+- **host-geometry, swarm-0917 (swarm-0917-w11-w11-ptl-pull): mirror seams
+  of the double parabolic die on a Fredholm index.**
+
+  *Proposal.* Make `P_{2,2}(J)` LEF with the head alive by the w8 seam
+  gluing of `binary-jacobson-el2-is-lef`, so no finite-dimensional two-step
+  model is needed:
+  - keep the faithful Toeplitz end `V_+`;
+  - glue it to a mirror far end on a left-infinite half-line;
+  - take the far end root-preserving, `x_ij(a) -> 1 + lambda_ij(a) e_ij`, with
+    the identity Laurent symbol.
+
+  *Result (established class kill).* `p22-seam-lifts-die-on-fredholm-index`.
+  - Let `pi` be any root-preserving partial model of `P_{2,2}` on arbitrary
+    vector spaces, with no dimension bound or filtration. Put
+    `L(S) = phi_12(S) phi_21(1)` and `Y = range phi_13(1)`.
+  - Then `L(S)` preserves `Y`, `L(T) L(S) = 1` on `Y`, and
+    `range phi_13(Q) ≅ Y / L(S) Y`.
+  - Hence, when `L(S)` is Fredholm and `Y` has finite codimension,
+    `ind L(S) <= 0`, and `ind L(S) <= -1` if the head survives.
+  - A mirror end has `m = 1 + finite rank` and `L(S) = shift + finite rank`
+    of index `+1`. So it cannot exist for any target ring `J'` or any family
+    `lambda_ij`, whether or not the head survives there.
+  - This lifts the w9 finite-dimensional trap to infinite-dimensional exact
+    ends.
+
+  *Invariant and step where it dies.*
+  - The invariant is the Fredholm index of the S-root `L(S)` on the range
+    of `x_13(1)`. The source end `V_+` carries `-1`, and every mirror (sink)
+    end would carry `+1`.
+  - Death comes at the sink end, at the right-Levi relations
+    `[x_13(1), x_34(1)] = x_14(1)` and `[x_14(1), x_43(a)] = x_13(a)`. These
+    make `Y` stable under `L(S)`, and the one-sided `P_{2,1}` lacks them.
+  - Only four root triples and `TS = 1` are used.
+
+  *Side computation (class-two tensor models, recorded without a claim).*
+  - `experiments/p22-depth-one-class-two-2026-09-17/c2scan.py` independently
+    re-implements the w10 class-two model of `Gamma_trap` over every Levi
+    module `M_2(F_2[x]/(p))`, `S -> a`, with `p(0) = 1`, every unit
+    `a != 1` and 3 random `c_u` each.
+  - The sweep covers every pair with `deg p <= 5`, plus the first part of
+    degree 6. In total 1093 pairs were run at depth 0 and 993 at depth 1,
+    out of 1755 for `deg p <= 6`. The outputs are in `scan_depth0.txt` and
+    `scan_depth1.txt` in the same directory.
+  - With EXTRA_RELS and orbit depth 0, the head survives only for
+    `p = (x+1)^4, (x+1)^5, (x+1)^6`, in 28 pairs.
+  - At orbit depth 1 it dies in every pair scanned, so the depth-one death
+    seen by w10 is not an accident of `x^4 + 1`.
+
+  *What survives.*
+  - Models that are not root-preserving, where `pi(x_13(a))` leaves the
+    `(1,3)` block (for example, a far end mixing blocks away from the seam).
+  - Models that are nonlinear on the unipotent radical.
+  - Norm-approximate models.
+  - A seam whose two ends both have index `<= -1` is allowed, but it cannot
+    close into a finite model.
+
+  Spark: any LEF or MF model of `P_{2,2}(J)` that keeps the head must break
+  the block decomposition of the unipotent radical. The claim stays OPEN.
+- **finite-models, swarm-0917 (swarm-0917-w11-w11-ptl-follow), 2026-09-18:
+  the depth-one candidate `Gamma_1`. Its degree-one layer is rigid, and
+  class three and higher local rings do not revive the head.**
+
+  *Proposal.* Follow the w10 lead: decide whether
+  `Gamma_1 = Gamma_trap + EXTRA_RELS + (C) at depth <= 1` has a finite
+  quotient that keeps `h`. Enlarge the w10/w11 class-two search along three
+  axes:
+  - nilpotency class three;
+  - higher local rings `(x+1)^k`;
+  - Levi images that are not ring actions.
+
+  *Result (established).* `gamma-trap-degree-one-layer-is-a-matrix-ring-module`
+  (route `-proof`, `requires: []`).
+  - Let `G` be any group of seven involutions satisfying (LR), (R1)-(R3) and
+    `[as,u] = [at,u] = [bs,u] = [bt,u] = 1`. Then `<<u>>^ab` is
+    `M_2(J)/M_2(I)` for a two-sided ideal `I`, with the Levi acting by the
+    ring action.
+  - When the layer is finite, it is `M_2(F_2[x]/(p))`, with `S -> x`.
+  - Proof. `L(a) v = R(a) v` by induction, `TS = 1` passes to the operators,
+    the four block families span and are closed, and the invariant subspaces
+    are matrix ideals, because the root operators generate `M_2(J)` on both
+    sides.
+  - Consequences:
+    - The degree-one layer of every finite quotient of `Gamma_1`, and of every
+      LEF target, is a ring module.
+    - Non-ring Levi searches are empty by theorem.
+    - The w11 class-two scans over `M_2(F_2[x]/(p))` are complete at degree
+      one for `deg p <= 5`.
+    - This recovers the envelope-commutator conclusion `h in [N,N]` from
+      sixteen relations.
+
+  *Computations (bounded; in
+  `experiments/p22-class-three-depth-one-2026-09-17/`).*
+  - *Class three* (`c3scan.py`, truncated tensor algebra with central
+    class-two layer), over `(x+1)^4`:
+    - the depth-0 survivor persists;
+    - depth-1 (C) kills the head (3 seeds).
+  - *Local rings.* Over `(x+1)^k`, `k = 6..10`, depth-1 (C) kills the head
+    (2 seeds each). `p = x+1` also dies.
+  - *Propagation* (`propagate.py`, `(x+1)^4`):
+    - depth-0 (C) is implied by trap + EXTRA;
+    - depth-1 (C) forces (C) at depths 2-4;
+    - without it, the counts of (C) differences outside `K` by depth are
+      `[0,2,2,4,0]`.
+
+    So the depth-one kill is the orbit trap, run through the class-two layer.
+  - *Non-ring Levi images* (`levi_search.py`):
+    - `S_4`: 299 trials, all with `W = 0`;
+    - `S_5`: 397 trials, with 379 giving `W = 0` and 18 over the order cap;
+    - `SL_2(F_4)` sanity check: `dim W = 8`.
+
+  *Invariant.* The degree-one layer `N/[N,N]` as a module over the root
+  operators `L(S), L(T), R(S), R(T)`. It is forced to be `M_2` of a quotient
+  of `J`.
+
+  *Step where the class dies.* Every model whose head-carrying layer is
+  degree one dies at Step 5 of the route: a finite quotient of `J` has
+  `ST = 1`.
+
+  *What is left.* Any head-keeping finite quotient of `Gamma_1` differs from
+  the scanned family only in `[N,N]` and above. There are three open cases:
+  1. A class-two extension not captured by the `G0`-equivariant tensor model
+     with random `c_u`. This needs an enumeration of the gauge classes
+     `c_u mod l(v)` and of the non-split cocycles.
+  2. `deg p >= 6`.
+  3. Class `>= 4`, or a non-nilpotent `<<u>>`.
+
+  In each case the orbit trap applies: the orbit is finite, so the quotient
+  must fail (C) at some right-orbit depth `>= 2`. In the tensor models,
+  however, depth-1 (C) forces (C) at depths 2-4. The next finite target is
+  therefore a proof that depth-1 (C) propagates, or a model in which it does
+  not. The claim stays OPEN.
+- **operator-algebras, swarm-0917 (swarm-0917-w12-w12-ptl-break): head
+  survival in `P_{2,2}(J)` forces weak containment of the regular
+  representation.**
+
+  *Result (established reduction and class kill).*
+  `p22-head-survival-forces-regular-weak-containment`. For
+  `P = M_2(J) x| (EL_2(J) x EL_2(J))` and `h = x_13(Q)`, the following are
+  equivalent:
+  - `h` survives in some MF model;
+  - `P` is MF;
+  - some MF model weakly contains `lambda_P`.
+
+  *Mechanism.*
+  - Levi-stable subgroups of `M_2(J)` are the `M_2(I)`, and every nonzero
+    ideal of `J` contains `Q`. With `C_P(N) = N`, every head-keeping
+    homomorphism of `P` is injective.
+  - The Levi acts topologically freely on `N^`, through the faithful socle
+    `M_2((Q))`.
+  - The tensor upgrade `(+)_{j<=J_k} sigma^{(x) j}` makes the spectrum of the
+    radical full.
+  - Archbold-Spielberg then gives `ker pi <= ker lambda_P`.
+
+  *Corollary.* (HC) holds iff no MF model of `EL_5(J)` restricts on `P` to a
+  representation weakly containing `lambda_P`.
+
+  *Class killed.* The P22-local obstructions of three kinds are vacuous:
+  - spectral-support or window-rank obstructions, including the w11
+    survivor "Levi unitaries mixing eigenspaces non-pointwise": WLOG the
+    model is spectrally full;
+  - C*-relational index or isometry obstructions, which are refuted by
+    `lambda_P` itself, since it keeps `h` and has a faithful trace.
+
+  *Where it dies (for the hole).* The local statement `h in Rad_MF(P)`
+  holds iff `P_{2,2}(J)` is not MF. This is an MF/quasidiagonality question
+  about `lambda_P`, not a finite-model question. If `C*_r(P_{2,2}(J))` is MF,
+  the P22 lane is dead. That is undecided. The claim stays OPEN.
+- **group-rings, swarm-0917 (swarm-0917-w12-w12-ptl-follow): the double
+  parabolic `P_{2,2}(J)` is not LEF, by conjugation pigeonhole.**
+
+  *Result (established, with a class kill).* `p22-double-parabolic-is-not-lef`.
+  Take `g = diag(wK, 1)` in the left Levi, `e = x_12(1)`, `u = x_13(1)`,
+  `r1 = x_34(1)` and `r2 = x_43(S) x_34(1)`. They satisfy:
+  - `[g, r_i] = 1`;
+  - `g u g^{-1} = x_13(S) = (r2 u r2^{-1})(r1 u r1^{-1})^{-1}`;
+  - `e` commutes with `u`, `r1` and `r2`;
+  - `[e, g^{-1} u g] = x_13(Q)`.
+
+  So `Ad g` maps `A = <R-conjugates of u>` into `A`. In any finite image
+  pigeonhole makes this onto, and in any finite-dimensional linear image the
+  Zariski closure does. Then `g^{-1}ug` lies in `A`, which `e` centralizes,
+  and the head dies.
+  - `P_{2,2}(J)` is not LEF and has no faithful finite-dimensional
+    representation.
+  - The same holds for `P_{2,2}(R)` whenever `ts = 1 != st`.
+  - The witness `Gamma_pig`, with 5 generators and 6 relators, is finitely
+    presented and not residually finite.
+  - `EL_4(J)` is not LEF, without using the finite presentation of `St_4`.
+  - The w9 question "is `P_{2,2}` LEF?" is answered negatively, and the
+    Gamma_trap/(C)-propagation programme is moot.
+  - Exact checks exit 0, over `F_2` and signed over `Z`.
+
+  *Where it dies (for the hole).*
+  - In any unitary head survivor, `Ad sigma(g)` restricted to
+    `C*(sigma(A)) = C(Y)` is a proper endomorphism. Its dual `f: Y ->> Y` is
+    not injective.
+  - This is no obstruction in quasidiagonal algebras. For example, `Ad t`
+    on `C*(a)` in `C*(BS(1,2))` is such an endomorphism.
+  - So the P22-local MF question (is `P` MF?) remains. Any MF head survivor
+    must be a non-LEF MF model realizing `f` non-injectively.
+  - A toy calibration is `BS(1,2) *_<a> (<a> x <e>)`.
+  - The claim stays OPEN.
+**Amenable symbol image and Borel amalgams (operator-algebras, swarm-0917
+w13).** Established
+[[amenable-symbol-subgroups-keep-the-jacobson-head]] (route
+`amenable-symbol-subgroups-keep-the-jacobson-head-proof`). It kills a
+class of attempts and does not decide HC.
+
+The symbol kernel of `GL_n(J) -> GL_n(F_2[z,z^-1])` is `1 + M_n(I)`.
+It consists of finitary matrices, so it is locally finite. Hence every
+subgroup of `EL_n(J)` with amenable symbol image is amenable, and by
+[[amenable-implies-operator-mf]] it is MF, with every nontrivial
+involution, the head included, at norm distance 2.
+
+The w12 bus certificate group is
+`H0 = M_2(J) semidirect (<diag(wK,1), x_12(1)> x <x_34(1), x_43(S)>)`.
+Its symbol image lies in `M_2 semidirect (upper Borel x D_inf)`, so
+`H0` is amenable. The P22 conjugation pigeonhole runs inside `H0`, so
+`H0` has no finite quotient keeping the head, yet it is MF keeping the
+head. This answers the w12 spark: the pigeonhole has no MF shadow.
+
+Schafhauser, arXiv:2306.02498, Theorem 1.3 (verbatim): "If G and H are
+amenable groups with a common normal (necessarily amenable) subgroup N,
+then G *_N H is MF." Applied to the upper and lower Borel preimages
+`B_5^+` and `B_5^-`, glued along the symbol kernel `N_5` (which
+contains the head), it gives an MF group that keeps the head and
+surjects onto `EL_5(J)`. The analogous amalgam over
+`U semidirect (N_2 x N_2)` surjects onto `P22(J)`.
+
+*Invariant and step where every member dies.* The invariant is the
+symbol image. Any argument whose relations all hold in one subgroup
+with amenable symbol image dies at the conclusion
+`pi(x_13(Q)) = 1`. So does any argument that uses the two Borel
+preimages only as separately given groups glued along the symbol
+kernel. Both statements are at the EL level, and the St_5 lift was not
+checked.
+
+This covers every rank or conjugation pigeonhole on a certificate with
+triangular symbol, which includes the w6 and w12 certificates. A kill
+must use a relation in `ker(B_5^+ *_{N_5} B_5^- -> EL_5(J))`, a
+Borel-mixing relation such as the Steinberg `[x_ij, x_jk]` with `j`
+larger than both `i` and `k`, or the Weyl relations.
+
+Still open: whether `P22(J)`, `H_mix = U semidirect (EL_2(J) x
+<x_34(1), x_43(S)>)` or `EL_5(J)` is MF. This is the smallest place
+where both Borels of the left Levi meet a non-constant right action.
+The claim stays OPEN.
+- **linear-characteristic, swarm-0917 (swarm-0917-w13-w13-ptm-pull): the
+  right-Levi orientation dichotomy. A T-oriented double parabolic is LEF, so
+  every argument inside it dies.**
+
+  *Proposal.* Test the w9 spark and the `H_mix` spark on the double parabolic. Find the
+  largest subgroups of `P_(2,2)(J)` that still keep the head, and the smallest
+  that still trap it.
+
+  *Result.* `jacobson-t-oriented-double-parabolic-is-lef` (established, route
+  `jacobson-t-oriented-double-parabolic-lef-proof`, script
+  `experiments/jacobson-levi-orientation-2026-09-17/check_orientation.py`).
+  1. Right multiplication by `T` is exact on the evaluation window:
+     `ev_d(XC) = ev_d(X) C^(d)`, where `T` acts as the nilpotent shift `N_d`.
+  2. Hence `M_(2 x l)(J) x| (EL_2(J) x EL_l(F[T]))` is LEF and keeps the head,
+     through two-step models `[[Phi_M(g), ev_d(X)], [0, B^(d)]]`.
+  3. So is `M_(k x l)(J) x| (EL_k(F[S]) x EL_l(F[T]))`, for all `k` and `l`.
+  4. So is the mirror `M_2(J) x| (EL_2(F[S]) x EL_2(J))`.
+  5. The two-step trap needs only `x_34(1), x_43(S)` on the right. So it kills
+     the head in every two-step model of the spark group `H_mix`.
+
+  *Invariant.* The orientation of the right-Levi coefficient ring: `T` keeps
+  the window `span(e_0, ..., e_(d-1))`, and `S` leaves it.
+
+  *Where every member dies.* Consider any argument that uses only relations of
+  one of these groups. This includes transport through the Kazhdan Levis
+  `SL_l(F[T])` or `EL_k(F[S])`, for `k, l >= 3`, and both three-index
+  commutator families across the two Levis. Such an argument would give
+  `pi(x_13(Q)) = 1` in the exact models, where the head is at distance
+  `sqrt 2` from `1`.
+
+  *What is left.* A (T)-free proof on four indices must use a wrong-oriented
+  right root `x_43(S)` together with `x_12(S), x_12(T), x_21(1)`, or the
+  mirror set. It also needs a model of Loewy length at least 3, since two-step
+  models of `H_mix` already die.
+
+  Open spark: is `H_mix` LEF or MF?
+  - Is there a Loewy-length-3 model on which `x_43(S)` acts through the
+    down-shift on a second window?
+  - Or does `H_mix` already contain the pigeonhole witness of
+    `cohn-elementary-group-is-not-lef`?
+
+  The claim stays OPEN.

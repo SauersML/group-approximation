@@ -177,3 +177,76 @@ operator-norm asymptotic representations.
   - Under (A), the gate is equivalent to (B_op). This meets the w6-last2
     calibration, since the route uses operator-norm liftability. Neither
     prerequisite was proved here, so the gate stays OPEN.
+- **2026-09-18, swarm-0917-w12-w12-deligne-pull (probability-random): the
+  CLT/averaging amplification class dies at the op-norm gate; its HS shadow is
+  ESTABLISHED.**
+  - *Class.* Build a model `U` at a small parameter `t` whose curvature
+    `D = U(g)U(h)U(gh)^*` has eigen-angles `psi_j` (measured from
+    `2 pi t b(g,h)`) with small variance but possibly wide support. Then
+    amplify by
+    - mixtures (direct sums over a random choice of model),
+    - independent products (tensor powers `U^(tensor k)`), or
+    - any polynomial functor of `GL(d)` (Schur functors `S_lambda(U)` and
+      sums of them),
+
+    hoping for a `sqrt(k)` gain in the op defect.
+  - *Where every member dies.*
+    - Op norm of a direct sum is the max, so mixtures gain nothing.
+    - For a functor `F`, the curvature of `F(U)` is `F(D)`.
+    - `F(D)` contains the extremal `GL(d)`-weight. For `S_lambda` its
+      angle is `sum_j (lambda_j - lambda_(j+1)) X_j`, with
+      `X_j = psi_(1) + ... + psi_(j)` the partial sums of the sorted
+      angles. For `U^(tensor k)` it is `k max_j psi_j`.
+    - So `||F(D) - c^|lambda|||_op` is governed by the *support* of the
+      curvature spectrum, additively. There is no concentration gain.
+    - Rectangular `lambda = (c^d)` reduces to `det^c`: this is scalar data at
+      an integer parameter, which item 8 of
+      `sp4-winding-ratio-sharp-constant-is-gromov-dual` already
+      shows sits exactly at the threshold.
+  - *Invariant.* On this gate, the whole class reduces exactly to the sep8
+    op threshold `o(|t|)`. It gains nothing over it.
+  - *Not covered.* Subspaces invariant only under the specific image
+    `U(Gamma)^(tensor k)` and not under `GL(d)`. Such a subspace can avoid
+    extremal weights, but choosing it is structural input, not averaging.
+  - *What survives, in HS.* The distributional gain is real for normalized
+    traces.
+    - `deligne-hs-parameter-trace-threshold` (ESTABLISHED): the HS
+      parameter group `P_2`, which contains `P_op`, is `R/Z` iff small-parameter models have
+      *trace* defect `o(|t|)`, i.e. HS defect `o(|t|^(1/2))` plus centring.
+    - `1/3 in P_2` iff `E_3` is hyperlinear. So non-hyperlinearity is
+      exactly "`P_2 != R/Z` (a linear trace gap on one finite window) and
+      `3` does not divide `m`".
+    - `mod-s2-separating-twist-character-semigroup-dichotomy`
+      (ESTABLISHED): the circle part `G_2` of the separating-twist trace set
+      is a closed subgroup. The genus-two HS gap is `omega not in G_2`, and
+      `G_2 = S^1` iff the traces are tangent to the circle at 1.
+    - That split is recorded as route
+      `mod-s2-torelli-scalar-gap-via-nontangency`, with OPEN prerequisites
+      `mod-s2-separating-twist-characters-are-nontangent-at-one` and
+      `mod-s2-separating-twist-circle-group-has-order-prime-to-three`.
+  - The gate itself stays OPEN.
+
+- **2026-09-18, swarm-0917-w13-w13-deligne-pull (transplanter): calibration of the bus need "near-identity
+  honest `Mod(S_2)` representations have zero Torelli winding" (need N). Nothing is established here.**
+  N matters because, if true, it would refute (A) `mod-s2-is-point-norm-matricially-stable`. Stability would
+  lift `Sp_4(Z)` quasi-representations with nonzero Dadarlat winding to honest `M`-representations with
+  `t_s ~ 1` and nonzero winding.
+  - *Reduction (elementary).* `M^ab = Z/10` and `t_s -> 2`, so `det rho(t_s)` lies in `mu_5`. If
+    `||rho(t_s) - 1|| < eta_0 < 1`, the principal `w(rho) = Tr log rho(t_s)/(2 pi i)` lies in `(1/5)Z` and is
+    continuous. So `w` is constant on each connected component of `{rho : ||rho(t_s) - 1|| < eta_0}` in
+    `Hom(M, U(d))`. N is equivalent to: every such component contains a representation with `w = 0`.
+  - *Classes where N holds.*
+    - Monomial and Torelli-character representations: transfer gives winding sum `0` for real characters.
+    - Jones rectangular `(3,3)` family: `rho(t_s)` has eigenvalues `zeta^2 q^(24/5)` (multiplicity 1) and
+      `zeta^2 q^(-6/5)` (multiplicity 4). The `q`-exponents sum to zero, so `w` is identically `0` on the
+      branch through `zeta^2 = 1`. Its near-scalar values lie only in `mu_5`, never at `omega`, which is
+      consistent with (B_op).
+    - Clock-shift and Heisenberg representations induced from a finite-index `H >= Torelli`: `H/Torelli`
+      is a finite-index subgroup of the Kazhdan group `Sp_4(Z)`, so it has finite abelianization. A
+      nilpotent quotient of `H` therefore sees `Torelli` through a finite-index image of an abelian
+      quotient, and these representations reduce to the character class above.
+  - *Survivor.* A counterexample to N, and so the only honest threat to (A) through windings, must have
+    nonabelian, non-virtually-nilpotent Torelli image. It must also lie in a component of the near-identity
+    locus that avoids every representation factoring through a finite or Jones-type quotient. No such
+    representation is known.
+  - *Status.* The Kazhdan reduction is recorded as a sketch, not as a claim. The gate stays OPEN.

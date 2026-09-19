@@ -1,0 +1,16 @@
+p=3: t_j in Borel mod p from j=1 on
+p=5: t_j in Borel mod p from j=6 on
+p=7: t_j in Borel mod p from j=5 on
+p=11: t_j in Borel mod p from j=3 on
+p=13: never Borel; t_j mod p enters a cycle at j=7 of length 52
+p=17: never Borel; t_j mod p enters a cycle at j=2 of length 68
+p=19: never Borel; t_j mod p enters a cycle at j=2 of length 190
+p=23: never Borel; t_j mod p enters a cycle at j=7 of length 690
+p=29: t_j in Borel mod p from j=9 on
+p=31: t_j in Borel mod p from j=32 on
+p=37: never Borel; t_j mod p enters a cycle at j=13 of length 222
+p=41: t_j in Borel mod p from j=37 on
+p=43: never Borel; t_j mod p enters a cycle at j=8 of length 860
+p=47: never Borel; t_j mod p enters a cycle at j=7 of length 3196
+p=53: never Borel; t_j mod p enters a cycle at j=18 of length 742
+p=59: t_j in Borel mod p from j=14 on

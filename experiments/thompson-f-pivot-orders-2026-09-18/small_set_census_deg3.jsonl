@@ -1,0 +1,7 @@
+{"S": "0,0,0;1,1,1", "|S|": 2, "d": 3, "K": 5, "a_min": 3, "searched_to": 3, "(2a+1) mod 3^(d-1)": 7}
+{"S": "0,0,0;0,1,2;1,1,1", "|S|": 3, "d": 3, "K": 5, "a_min": 7, "searched_to": 7, "(2a+1) mod 3^(d-1)": 6}
+{"S": "0,0,0;1,1,1;2,2,2", "|S|": 3, "d": 3, "K": 6, "a_min": 6, "searched_to": 6, "(2a+1) mod 3^(d-1)": 4}
+{"S": "0,0,0;0,0,1;0,1,1;1,1,1", "|S|": 4, "d": 3, "K": 5, "a_min": 8, "searched_to": 8, "(2a+1) mod 3^(d-1)": 8}
+{"S": "0,1,2;1,2,3", "|S|": 2, "d": 3, "K": 5, "a_min": 3, "searched_to": 3, "(2a+1) mod 3^(d-1)": 7}
+{"S": "0,0,2;1,1,3", "|S|": 2, "d": 3, "K": 5, "a_min": 3, "searched_to": 3, "(2a+1) mod 3^(d-1)": 7}
+{"group": "deg3", "sets": 6, "a_min_found": 6, "unresolved_within_budget": 0, "no_stubborn_layer_proved": 0, "divisibility_violations": 6}

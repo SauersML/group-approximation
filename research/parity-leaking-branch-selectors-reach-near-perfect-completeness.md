@@ -126,3 +126,81 @@ a cycle of equations through the window.
   - *Still alive.* The constant-bias cell, 2-to-2 inner games, and new
     constructions. (F4) is the sharpest target. It would be killed by showing
     that 1%-soundness of a Grassmann 2-to-1 test forces 99% local rigidity.
+* **2-to-2 inner games presented as dense-link squares (2026-09-18).**
+  **Dead under NP not in RP** on every square of a rigid doubled LEC. Killed by
+  `dense-link-square-selectors-reduce-to-base-orientations`. Take the 2-to-2
+  game `Sq_J(G)`, whose constraint is `pi_(e1)(sigma1) = pi_(e2)(sigma2)` for
+  pairs drawn from an alpha-dense link coupling `J_q` at each right vertex. A
+  deterministic pivot turns any matching selection of value `1 - xi` into an
+  orientation of `G` with lift value `1 - 13 xi / alpha^3` (Theorem Q). Theorem
+  S\* then applies to that orientation. The converse costs a factor 2 (Q'). The
+  DKKMS derived 2-to-2 game (two members sharing a B-vertex agree on `L'`) is
+  the product square, with `alpha = 1`. So 2-to-2 selectors on it with YES value
+  at least `1 - 10^(-5)/13` die at every certified point.
+  - *Invariant.* A dense-link square presentation whose base satisfies (E),
+    (M=), (Rig) and (S). The members die at the pivot step. Every 2-to-2 game is
+    an `alpha = 1` square of its edge subdivision, but that base has stars of
+    size 2 and fails (E). So the kill does not reach general 2-to-2 games.
+  - *Still alive in the 2-to-2 cell.* (T1) sparse or non-uniformly removed
+    links, `alpha -> 0` (the KMS Remark 1.11 constraint removal, if it is not
+    uniform on links); (T2) families whose only square presentations are thin
+    and fail (E); (T3) dense-link bases failing (F1) to (F4). The constant-bias
+    cell is untouched.
+* **Constant-bias cell via 50% seed structure (2026-09-18).** **Dead under
+  NP not in RP for A-side-non-honest witnesses; the claim stays OPEN.** See
+  `constant-bias-selectors-need-seed-dishonest-witnesses` (Theorem C, Lemma F).
+  - *What is proved.* On any doubled LEC with `gamma'/4`-uniform directions,
+    (M), fibre separation `kappa` and outer soundness below
+    `Theta(gamma'^6 4^(-l)/K^2)`, consider any selector with YES lift value
+    `1/2 + gamma`, at any value in `(1/2, 1)`. It puts the source in RP unless
+    some YES labelling of value `>= 1/2 + gamma` has seed-dishonest satisfied
+    mass `> gamma - gamma' - r - kappa` against every defect-`r` honest
+    reference of every good outer labelling.
+  - *Why the old approach missed the cell.* The reading of the selector's own
+    bits at the witness's seeds pays only for satisfied ev-dishonest mass, not
+    for violated mass. So 99% rigidity is not needed.
+  - *What is killed.* A-side non-honesty is worth at most
+    `kappa = 1/(2^l - 1)` on Grassmann tests. So zoom-type, mixed and garbage
+    A-labellings over honest seeds are dead.
+  - *Survivors.* The cell `(1/2, 1 - 10^(-5))` now needs one of four failures:
+    - (C1) no read-out;
+    - (C2) marginal blow-up;
+    - (C3) loose outer soundness;
+    - (C4) YES labellings of value `> 1/2` whose satisfied seeds disagree, on
+      constant mass, with every honest encoding of every good assignment.
+
+    (C4) is a selector-free statement about B-labels alone. Also still alive:
+    2-to-2 inner games.
+* **Closing the constant-bias escape by single-reference seed rigidity
+  (2026-09-17).** **Dead** as a universal statement. Killed by
+  `dkkms-seed-rigidity-fails-on-homogeneous-kernel-mixtures`, which refutes
+  (Seed) (need 16613d6f).
+
+  On inputs with a homogeneous kernel `(φ, z)` of rank `l+1` generic on
+  tuples, take the mixture that uses `x` where `φ|_(L′)` is injective and
+  `y = x + z` elsewhere. It has DKKMS value `0.711`, and its satisfied seed
+  labels are dishonest on mass `0.289 > gamma` against every reference.
+
+  The branch is a function of `L′`, not of `V`. The transfer to hard padded
+  families is conditional on DKKMS Lemma 5.4 at the padded soundness.
+
+  Still alive: (List-Seed) with `O_gamma(1)` references (need a06a9ee8), or
+  (Seed) restricted to inputs with no generic rank-`(l+1)` homogeneous kernel.
+* **(List-Seed) with an l-free list, need `a06a9ee8` (2026-09-18,
+  swarm-0917-w13-w13-ugc-last1).** **Refuted** in
+  `dkkms-list-seed-needs-lists-exponential-in-l` (Theorem LS). On J-instances
+  with a homogeneous kernel `Φ = (φ, ζ)` of rank `2l`, the labelling that
+  switches to `x + <d, ζ>` on the defect line `c(S) = Φ(S) ∩ (0 x F_2^l) = <(0,d)>`
+  has value `>= 0.609`. Its satisfied mass on the defect branches is `>= 0.28`.
+  Every per-tuple reference covers at most `9 · 2^(-l)` of it, so every list of
+  fewer than `2^(l-6)` references leaves more than `gamma/2` uncovered, for
+  all `gamma <= 0.109`. The corrected prerequisites of the constant-bias kill,
+  each of which can fail, are:
+  - (List-Seed_l) with list size `2^(Theta(l))`, which is not refuted, since
+    `2^l` references cover this family;
+  - a list-decoding rerun of Theorem C that loses a factor `2^(-Theta(l))`,
+    which DKKMS outer soundness `exp(-k/exp(ql))` can afford at large `k`, but
+    which is unproved.
+
+  Any rerun that needs one reference of honest mass above `1/2` also fails
+  here: the heaviest reference has mass `0.289`.

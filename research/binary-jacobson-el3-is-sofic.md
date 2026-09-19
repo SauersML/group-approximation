@@ -111,3 +111,55 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - **Step where it dies.** `tr -> 1` on `L_-`, transported by `c` to the head.
   - **Survivors.** Approximations of `P` with trace `1_(L_-)` that are not restrictions from `<P,c>`. In linear form,
     the two boundary heads must have unequal rank.
+* **Haar relation as a restricted affine Laurent action (swarm-0917-w10-w10-nh-follow, 2026-09-18). New sufficient
+  condition; the claim stays OPEN.**
+  - `jacobson-haar-relation-is-laurent-affine-restriction` (ESTABLISHED). Under the residue pairing,
+    `X_+ = V_+^* ≅ D = x^(-1)F_2[[x^(-1)]]^n`. Off a null set, the Haar orbit relation of `EL_n(J)` is `R_Γ|_D`, where
+    `Γ_n = A^n x| EL_n(A)` acts freely and affinely on `F_2((1/x))^n`.
+  - So `EL_3(J)` is sofic as soon as this one free action of a residually finite linear group has a sofic restricted
+    relation. The proof goes through the full-group embedding `E -> [R_E]` and the bound `mu(Fix g) <= 1/2`.
+  - This is a group-free reformulation. The quotient step `P -> P/L_-` of the mirror route disappears, because the
+    tails `L` become translations by `D ∩ A^n`.
+  - **Where the natural approximations stop.** Two halves each approximate on their own:
+    - `A^n x| EL_n(F_2[x])` through invariant cocompact lattices (periodic points, the truncation side);
+    - `D_fin x| EL_n(F_2[x^(-1)])` through invariant balls (profinite, the corona side).
+
+    No ball is `EL_n(F_2[x])`-invariant, and `EL_n(A)` has property (FA). This is the relation-level form of the mirror
+    barrier.
+  - **Next.** Build sofic approximations of `Γ_n ↷ F_2((1/x))^n` that are not periodic-point models of either half,
+    for example through lattice duality with `G_∞ x G_0 / Γ_n`. Alternatively, show that the relation is not sofic,
+    which would give a non-sofic restricted free action of a residually finite linear group.
+* **The Haar relation is Kazhdan, so halves-gluing dies (swarm-0917-w11-w11-nh-follow, 2026-09-18). Class-kill; the
+  claim stays OPEN.**
+  - Result: `jacobson-haar-relation-is-kazhdan-and-unsplittable` (ESTABLISHED, unreviewed).
+  - `EL_n(J)` is Kazhdan for `n >= 3` (EJK). Its Haar action is ergodic, since the `D_fin`-translations are dense in
+    `D`. So `R_E ≅ R_Γ|_D` has relation property (T) (AD05 Thm 5.18, AD11 Cor 9.4).
+  - Hence `R_E` is not treeable and not Haagerup, and it has no co-amenable Haagerup subrelation.
+  - New general lemma: an ergodic Kazhdan relation is not a nontrivial amalgam over any **ergodic** subrelation. The
+    proof uses the Bass--Serre tree cnd function, which is bounded on a piece by AD05 5.22. The ergodic edge relation
+    spreads the bound, and nontriviality gives degrees `>= 2`, hence unbounded trees.
+  - Both halves `R_±` contain the ergodic tail relation `R_tail`. So `R_Γ|_D = R_+ *_(R_+∩R_-) R_-` only if one half
+    is already everything.
+  - **Invariant.** Relation property (T) of the Haar relation.
+  - **Step where every member dies.** Producing the input of a permanence theorem, for (a) Elek--Lippner (treeing),
+    (b) amalgam permanence over a hyperfinite or amenable edge that contains the tails, or (c) Følner ascent from a
+    co-amenable Haagerup subrelation.
+  - **Survivors.**
+    - Amalgams or HNN extensions over non-ergodic edges.
+    - Direct sofic models of `R_E` compatible with (T), for example finite models that are expanders in the
+      relation sense.
+    - The degenerate case where `R_+` or `R_-` alone is `R_Γ|_D`.
+    - `n = 2`.
+* **Mirror sections of `P -> E` (swarm-0917-w13-w13-nh-break, 2026-09-18). Spatial class dead; the target stays OPEN.**
+  Recorded in `jacobson-el3-lef-from-local-mirror-lifts`.
+  - **Criterion (L1).** Partial `iota`-lifts `f` on every ball, meaning maps multiplicative on the ball with
+    `pi f = iota pi`, make `E` LEF through `g -> (g, f(g)) in P`. So LEF, hence soficity, of `E` reduces to
+    finding them.
+  - **Rank four (L2).** They fail on an explicit finite ball at `n = 4`, the relator ball of `St_4(J)`. At `n = 3`
+    they fail on some ball if `E` is finitely presented.
+  - **Global lifts (L4).** A global lift is an injective endomorphism of `E`. None is spatial on `L`: the
+    commuting-pair index `I(u,g) = [g~W : W]`, with `W = (u~+1)V`, satisfies `I(x_12(a), h^k) = -k`. Natural and
+    dual copies carry `I`, and inversion flips its sign, giving `-(r_+ + r_-)k = +k`. `I` vanishes at rank two,
+    which is why `psi` exists there.
+  - **Survivors.** Partial lifts that do not globalize. Global lifts whose `L`-module is a non-split finitary
+    extension.

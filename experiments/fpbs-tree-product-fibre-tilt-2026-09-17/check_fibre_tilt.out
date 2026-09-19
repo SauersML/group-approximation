@@ -1,0 +1,59 @@
+k=3: max rel err of Ag=rho g on B_6: 6.28e-16
+  n=0: sum_S_n g=1.000000 P_n(rho)=1.000000 closed=1.000000 OK
+  n=1: sum_S_n g=2.828427 P_n(rho)=2.828427 closed=2.828427 OK
+  n=2: sum_S_n g=5.000000 P_n(rho)=5.000000 closed=5.000000 OK
+  n=3: sum_S_n g=8.485281 P_n(rho)=8.485281 closed=8.485281 OK
+  n=4: sum_S_n g=14.000000 P_n(rho)=14.000000 closed=14.000000 OK
+  n=5: sum_S_n g=22.627417 P_n(rho)=22.627417 closed=22.627417 OK
+  n=6: sum_S_n g=36.000000 P_n(rho)=36.000000 closed=36.000000 OK
+  n=7: sum_S_n g=56.568542 P_n(rho)=56.568542 closed=56.568542 OK
+k=4: max rel err of Ag=rho g on B_6: 7.49e-16
+  n=0: sum_S_n g=1.000000 P_n(rho)=1.000000 closed=1.000000 OK
+  n=1: sum_S_n g=3.464102 P_n(rho)=3.464102 closed=3.464102 OK
+  n=2: sum_S_n g=8.000000 P_n(rho)=8.000000 closed=8.000000 OK
+  n=3: sum_S_n g=17.320508 P_n(rho)=17.320508 closed=17.320508 OK
+  n=4: sum_S_n g=36.000000 P_n(rho)=36.000000 closed=36.000000 OK
+  n=5: sum_S_n g=72.746134 P_n(rho)=72.746134 closed=72.746134 OK
+  n=6: sum_S_n g=144.000000 P_n(rho)=144.000000 closed=144.000000 OK
+  n=7: sum_S_n g=280.592231 P_n(rho)=280.592231 closed=280.592231 OK
+k=5: max rel err of Ag=rho g on B_6: 0.00e+00
+  n=0: sum_S_n g=1.000000 P_n(rho)=1.000000 closed=1.000000 OK
+  n=1: sum_S_n g=4.000000 P_n(rho)=4.000000 closed=4.000000 OK
+  n=2: sum_S_n g=11.000000 P_n(rho)=11.000000 closed=11.000000 OK
+  n=3: sum_S_n g=28.000000 P_n(rho)=28.000000 closed=28.000000 OK
+  n=4: sum_S_n g=68.000000 P_n(rho)=68.000000 closed=68.000000 OK
+  n=5: sum_S_n g=160.000000 P_n(rho)=160.000000 closed=160.000000 OK
+  n=6: sum_S_n g=368.000000 P_n(rho)=368.000000 closed=368.000000 OK
+  n=7: sum_S_n g=832.000000 P_n(rho)=832.000000 closed=832.000000 OK
+k=6: max rel err of Ag=rho g on B_6: 7.94e-16
+  n=0: sum_S_n g=1.000000 P_n(rho)=1.000000 closed=1.000000 OK
+  n=1: sum_S_n g=4.472136 P_n(rho)=4.472136 closed=4.472136 OK
+  n=2: sum_S_n g=14.000000 P_n(rho)=14.000000 closed=14.000000 OK
+  n=3: sum_S_n g=40.249224 P_n(rho)=40.249224 closed=40.249224 OK
+  n=4: sum_S_n g=110.000000 P_n(rho)=110.000000 closed=110.000000 OK
+  n=5: sum_S_n g=290.688837 P_n(rho)=290.688837 closed=290.688837 OK
+  n=6: sum_S_n g=750.000000 P_n(rho)=750.000000 closed=750.000000 OK
+  n=7: sum_S_n g=1900.657781 P_n(rho)=1900.657781 closed=1900.657781 OK
+
+k=3: predicted p_t = (k-1)^(-1/2) = 0.707107
+  p=0.636396: partial sum (n<4000)=5.9500e+01, last term=2.0751e-180
+  p=0.700036: partial sum (n<4000)=5.0995e+03, last term=7.0209e-15
+  p=0.707107: partial sum (n<4000)=4.0050e+06, last term=2.0010e+03
+  p=0.714178: partial sum (n<4000)=3.7649e+22, last term=3.8231e+20
+k=4: predicted p_t = (k-1)^(-1/2) = 0.577350
+  p=0.519615: partial sum (n<4000)=7.3000e+01, last term=2.7661e-180
+  p=0.571577: partial sum (n<4000)=6.7330e+03, last term=9.3588e-15
+  p=0.577350: partial sum (n<4000)=5.3373e+06, last term=2.6673e+03
+  p=0.583124: partial sum (n<4000)=5.0186e+22, last term=5.0963e+20
+k=5: predicted p_t = (k-1)^(-1/2) = 0.500000
+  p=0.450000: partial sum (n<4000)=7.9750e+01, last term=3.1116e-180
+  p=0.495000: partial sum (n<4000)=7.5497e+03, last term=1.0528e-14
+  p=0.500000: partial sum (n<4000)=6.0035e+06, last term=3.0005e+03
+  p=0.505000: partial sum (n<4000)=5.6454e+22, last term=5.7328e+20
+
+T_4: SRW spectral radius 0.86603
+lazy projected tree walk spectral radius 1/2 + sqrt3/4 = 0.93301
+fibre-occupation threshold m_* = 1/rho_lazy = 1.07180
+product walk spectral radius = 0.86603; point threshold 1/rho = 1.15470 (= 2/sqrt3 = 1.15470)
+
+ALL OK

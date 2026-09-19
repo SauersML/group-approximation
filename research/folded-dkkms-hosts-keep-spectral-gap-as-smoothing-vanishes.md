@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - experiments/ugc-akkstv-regularize-2026-09-17/dkkms_folded_gap_large.py
   - experiments/ugc-akkstv-regularize-2026-09-17/dkkms_host_gap.py
+  - experiments/ugc-folded-gap-2026-09-17/folded_l1_gap.py
 ---
 
 **OPEN.** Numerics and a mechanism are below. They do not add up to a proof.
@@ -162,3 +163,38 @@ quantities:
 * **Open step.** Prove (P1)–(P5). The quickest route is probably a
   projection/fibre decomposition theorem, with (P2) and (P3) handled by the
   Efron–Stein bound above.
+* **2026-09-18, swarm-0917-w13-w13-ugc-pull: the case l = 1 is proved; the
+  claim stays OPEN for l >= 2.** See
+  `folded-dkkms-line-hosts-have-uniform-spectral-gap`, ESTABLISHED with route
+  `folded-dkkms-line-hosts-gap-proof`.
+  * **Result.** Take any regular source whose equations pairwise share at most
+    one variable, any `k >= 2` and any `β ∈ [0, 1]`. Then
+    `λ_2 >= 1 − sqrt(ρ_k + 2δ)`, where `ρ_k = (3/4)/(1 − 4^(−k))` and
+    `δ = C(k,2)(1 + 3(D−1) + 6(D−1)²)/N`. This is `> 0.1` once
+    `δ <= 0.002`, and it tends to `1 − sqrt(3/4) ≈ 0.134` as `k` grows. So
+    `c(1) = 0.1` works, and the table's "mechanism prediction" `0.134` is the
+    exact large-`k` limit of the bound.
+  * **(P1) at l = 1.** This holds exactly, with no `o(1)`. The relation
+    `L + H_U + H_U' = L' + H_U + H_U'` holds iff the singled-out sets agree
+    (Lemma A), so it is already an equivalence relation. The measured
+    exact-mass of 0.93–0.97 is an artifact of the numerics above. Those
+    numerics impose only disjointness and drop legitimacy (b). With (b), the
+    union-find closure and the `S`-fibres coincide on every instance tested
+    (`experiments/ugc-folded-gap-2026-09-17/folded_l1_gap.py`). The earlier
+    "Discarded" non-transitivity entry above is likewise a no-(b) effect, at
+    least at `l = 1`.
+  * **(P3) at l = 1.** This holds, via an ordered lift to `Eq^k`. Legitimacy
+    becomes a `δ`-perturbation of a product, and one Efron–Stein bound
+    finishes. The source gap is never used.
+  * **(P5) at l = 1.** This holds: `C – U – V` is a Markov chain, so smoothing
+    can only increase the gap.
+  * **Failing step for l >= 2.**
+    - `L' ⊆ L` couples `B` to `L`, so the Markov step fails.
+    - The free set must avoid `supp L'`, so its law is state-dependent and the
+      ordered-lift mixture does not factor.
+    - (P4) plus a decomposition theorem is still the missing piece.
+  * **Why it matters, updated.** The conditional kill drawn from this
+    conjecture ("`l` fixed by `δ`") is already superseded by Corollary F2 of
+    `folded-dkkms-host-gap-vanishes-as-l-grows`, because the gap is at most
+    `2(β + 6 · 2^(−l))`. For `l >= 2`, the only question left is whether `c(l)`
+    is positive at all. It is capped by `12 · 2^(−l)` for `l >= 6`.

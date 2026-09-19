@@ -75,3 +75,31 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     `black-box-repetition-needs-sqrt-scale-soundness-gap`.
   - *What would survive.* An analysis that uses instance structure, such as
     expansion, for soundness.
+* **Expansion-certified repetition (2026-09-18, swarm-0917, `w10-ugc-last1`).**
+  This attacks the survivor that the previous attempt left open.
+  - *Construction.* Take sub-sqrt NP-hard sources whose NO hosts have walk gap
+    `λ`. Repeat them `n` times, and certify soundness by an expansion-dependent
+    rate. AKKSTV Theorem 4.3 is the example: rate `Ω(λγ/log(1/γ))`
+    (`akkstv-expansion-parallel-repetition-bound`).
+  - *Where it dies.* At the soundness certification step, by
+    `expansion-certified-repetition-caps-deficit-ratio` (ESTABLISHED). The
+    `r = 1` spectral-gap SDP test of `spectral-gap-no-outputs-cannot-prove-ugc`
+    runs on the NO sources. Unless `P = NP`, it forces `λγ <= 1592 η`.
+    - Any certified rate `ψ <= Kγ^2 + κλγ` then gives output deficit ratio
+      `<= 2Kγ^2/η + 3184κ`.
+    - Pure expansion rates are therefore capped at a constant.
+    - Mixed rates need a sqrt-scale source, which is circular.
+    - Certificates through any polynomial-time multiplicative value bound,
+      such as the Feige–Lovász `σ`, certify an empty gap.
+  - *What would survive.* This is the decomposition. The route needs (P1)
+    hardness of a λ-gapped source, together with (P2) a repetition rate on
+    λ-gapped unique games that is superlinear in `λγ` and superquadratic in
+    `γ`, for example `sqrt(λ)·γ` when `γ^2 << λ`. Soundness analyses that use
+    more than `(λ, γ)` also survive.
+  - *Unchecked.* Raz–Rosen (CCC 2012) proves strong repetition for projection
+    games on expanders. It is killed here if its `c(λ)` is `O(λ)`, and it is a
+    (P2) candidate otherwise. Its exact form was not verified.
+  - *Related failed attempt.* Moshkovitz, arXiv 2103.08743, amplified UG on
+    small-set expanders, and the paper is withdrawn. The stated reason is "SSE
+    requires simulation conditioned on falling into the small set, which is not
+    necessarily possible."

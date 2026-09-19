@@ -1,0 +1,48 @@
+Outputs of the scripts in this directory (run 2026-09-18, python3 + numpy + scipy
+HiGHS, gcc -O2).  Notation of hadamard-gadget-deletion-ratio-window:
+R*(k) = best deletion ratio s/c of a Had_k -> Max-2Lin(2) gadget
+(HHM+15 Def 2.24, primaries chi_a for all a); R*'(k) = same for generic
+Had'_k gadgets (primaries chi_a, a != 0).
+
+== check_five_halves_adversary.py  (exact, Fractions) ==
+k=2, primaries chi_a for a >= 0 (4 of them): K=4, vertices=16, max K*Pr[cut] = 2 = 5/2 - 2/K: True
+k=2, primaries chi_a for a >= 1 (3 of them): K=4, vertices=16, max K*Pr[cut] = 2 = 5/2 - 2/K: True
+k=3, primaries chi_a for a >= 0 (8 of them): K=8, vertices=256, max K*Pr[cut] = 9/4 = 5/2 - 2/K: True
+k=3, primaries chi_a for a >= 1 (7 of them): K=8, vertices=256, max K*Pr[cut] = 9/4 = 5/2 - 2/K: True
+k=4, primaries chi_a for a >= 0 (16 of them): K=16, vertices=65536, max K*Pr[cut] = 19/8 = 5/2 - 2/K: True
+k=4, primaries chi_a for a >= 1 (15 of them): K=16, vertices=65536, max K*Pr[cut] = 19/8 = 5/2 - 2/K: True
+all checks passed
+
+== check_decoder_adversary.py  (exact joint law; per-edge sums in float, tol 1e-9) ==
+k=3, |P|=8 (a >= 0): delta_k = 11/64 = 0.171875; max_e K*Pr[cut] = 1.429687500 = 1 + delta(3-4/K) = 1.429687500
+k=3, |P|=7 (a >= 1): delta_k = 1/8 = 0.125000; max_e K*Pr[cut] = 1.312500000 = 1 + delta(3-4/K) = 1.312500000
+k=4, |P|=16 (a >= 0): delta_k = 1961/8192 = 0.239380; max_e K*Pr[cut] = 1.658294678 = 1 + delta(3-4/K) = 1.658294678
+k=4, |P|=15 (a >= 1): delta_k = 341/1536 = 0.222005; max_e K*Pr[cut] = 1.610514323 = 1 + delta(3-4/K) = 1.610514323
+all checks passed
+
+== rm1_mean_distance.c  (exact integer enumeration for k <= 5) ==
+k=2 full:       delta = 1/8                    bound 1.25
+k=2 punctured:  delta = 0                      bound 1
+k=3 full:       delta = 11/64                  bound 1.4296875
+k=3 punctured:  delta = 1/8                    bound 1.3125
+k=4 full:       delta = 1961/8192              bound 1.6582946777   (threshold 4/11 = 0.3636)
+k=4 punctured:  delta = 341/1536               bound 1.6105143229
+k=5 full:       sum max|W| = 899230640 over 2^26 coset representatives
+                delta = 78015813/268435456 = 0.2906315513   bound 1.8355657100 (threshold 8/23 = 0.3478)
+k=5 punctured:  delta = 2381339/8388608 = 0.2838777304     bound 1.8161484748
+  max|W| distribution over the 2^26 cosets of RM(1,5):
+  8:427924 10:8693888 12:22064064 14:21288320 16:10119795 18:3365856 20:906192
+  22:201376 24:35960 26:4960 28:496 30:32 32:1
+Monte-Carlo ESTIMATES (not proofs):
+k=6 (2e7 trials): E[max|W|] = 20.9110 +- 0.0007 ; delta_6 = 0.33663 +- 0.00001 ; bound 1.98886 ; threshold 0.34043
+k=7 (5e6 trials): E[max|W|] = 32.1375 +- 0.0019 ; delta_7 = 0.37446 +- 0.00001 ; bound 2.11169 ; threshold 0.33684
+
+== minimax_gadget_value.py  (column generation, HiGHS LP + MILP pricing; floating point) ==
+k=2 Had_k (2^k primaries, Def 2.24): 32 edges in 2 orbits, 2 pattern orbits
+  converged after 1 rounds: R*(2) = K*z = 1.250000
+k=2 Had'_k (2^k-1 primaries): 32 edges in 2 orbits, 1 pattern orbits
+  converged after 0 rounds: R*(2) = K*z = 1.000000
+k=3 Had_k (2^k primaries, Def 2.24): 1024 edges in 5 orbits, 4 pattern orbits
+  converged after 9 rounds: R*(3) = K*z = 1.375000        (= 11/8, HHM+15 Thm 1.8)
+k=3 Had'_k (2^k-1 primaries): 1024 edges in 5 orbits, 2 pattern orbits
+  converged after 9 rounds: R*(3) = K*z = 1.312500        (= 21/16, matches the decoder bound)

@@ -1,0 +1,6 @@
+n=2000 seed=0 greedy density=0.1160 | at |I|=n/2: F(I)=773, m-|S cap I|=772, 21n/50=840, F/n=0.3865
+n=2000 seed=1 greedy density=0.1190 | at |I|=n/2: F(I)=763, m-|S cap I|=763, 21n/50=840, F/n=0.3815
+n=10000 seed=0 greedy density=0.1165 | at |I|=n/2: F(I)=3860, m-|S cap I|=3857, 21n/50=4200, F/n=0.3860
+n=10000 seed=1 greedy density=0.1166 | at |I|=n/2: F(I)=3844, m-|S cap I|=3842, 21n/50=4200, F/n=0.3844
+n=40000 seed=0 greedy density=0.1156 | at |I|=n/2: F(I)=15422, m-|S cap I|=15420, 21n/50=16800, F/n=0.3856
+n=40000 seed=1 greedy density=0.1158 | at |I|=n/2: F(I)=15416, m-|S cap I|=15416, 21n/50=16800, F/n=0.3854

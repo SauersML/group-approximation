@@ -1,0 +1,66 @@
+# random Schreier levels: n, p, mean k_u/n over transitive samples (max)
+schreier n=   50 p=      2 mean=0.0333 max=0.0600
+schreier n=   50 p=      3 mean=0.0100 max=0.0400
+schreier n=   50 p=      5 mean=0.0067 max=0.0200
+schreier n=   50 p=      7 mean=0.0033 max=0.0200
+schreier n=   50 p=1000003 mean=0.0067 max=0.0200
+schreier n=  100 p=      2 mean=0.0100 max=0.0200
+schreier n=  100 p=      3 mean=0.0017 max=0.0100
+schreier n=  100 p=      5 mean=0.0067 max=0.0100
+schreier n=  100 p=      7 mean=0.0033 max=0.0100
+schreier n=  100 p=1000003 mean=0.0000 max=0.0000
+schreier n=  200 p=      2 mean=0.0050 max=0.0100
+schreier n=  200 p=      3 mean=0.0017 max=0.0050
+schreier n=  200 p=      5 mean=0.0008 max=0.0050
+schreier n=  200 p=      7 mean=0.0017 max=0.0050
+schreier n=  200 p=1000003 mean=0.0000 max=0.0000
+schreier n=  400 p=      2 mean=0.0033 max=0.0050
+schreier n=  400 p=      3 mean=0.0017 max=0.0050
+schreier n=  400 p=      5 mean=0.0000 max=0.0000
+schreier n=  400 p=      7 mean=0.0000 max=0.0000
+schreier n=  400 p=1000003 mean=0.0000 max=0.0000
+schreier n=  800 p=      2 mean=0.0013 max=0.0013
+schreier n=  800 p=      3 mean=0.0004 max=0.0013
+schreier n=  800 p=      5 mean=0.0004 max=0.0013
+schreier n=  800 p=      7 mean=0.0000 max=0.0000
+schreier n=  800 p=1000003 mean=0.0000 max=0.0000
+schreier n= 1600 p=2 mean=0.0002 max=0.0006
+schreier n= 3200 p=2 mean=0.0004 max=0.0006
+schreier n= 6400 p=2 mean=0.0002 max=0.0002
+# Cayley levels G = <A,B> <= SL2(Z/m) (or PSL2), Sanov pair and random pairs
+SL2(Z/3) sanov  |G|=   24 k_u(p=2,3,5,7,0)= 7 3 3 3 3
+SL2(Z/3) rand0  |G|=   24 k_u(p=2,3,5,7,0)= 0 2 0 0 0
+SL2(Z/3) rand1  |G|=    6 k_u(p=2,3,5,7,0)= 0 0 0 1 0
+PSL2(Z/3) sanov  |G|=   12 k_u(p=2,3,5,7,0)= 4 3 3 3 3
+PSL2(Z/3) rand0  |G|=   12 k_u(p=2,3,5,7,0)= 0 0 0 0 0
+PSL2(Z/3) rand1  |G|=   12 k_u(p=2,3,5,7,0)= 0 0 0 0 0
+SL2(Z/5) sanov  |G|=  120 k_u(p=2,3,5,7,0)= 4 0 6 0 0
+SL2(Z/5) rand0  |G|=   12 k_u(p=2,3,5,7,0)= 2 0 0 0 0
+SL2(Z/5) rand1  |G|=    6 k_u(p=2,3,5,7,0)= 2 2 2 2 2
+PSL2(Z/5) sanov  |G|=   60 k_u(p=2,3,5,7,0)= 4 0 0 0 0
+PSL2(Z/5) rand0  |G|=   12 k_u(p=2,3,5,7,0)= 0 0 0 1 0
+PSL2(Z/5) rand1  |G|=   60 k_u(p=2,3,5,7,0)= 4 0 0 0 0
+SL2(Z/7) sanov  |G|=  336 k_u(p=2,3,5,7,0)= 39 23 23 26 23
+SL2(Z/7) rand0  |G|=  336 k_u(p=2,3,5,7,0)= 21 8 7 19 7
+SL2(Z/7) rand1  |G|=  336 k_u(p=2,3,5,7,0)= 10 8 7 19 7
+PSL2(Z/7) sanov  |G|=  168 k_u(p=2,3,5,7,0)= 24 15 15 16 15
+PSL2(Z/7) rand0  |G|=   21 k_u(p=2,3,5,7,0)= 6 0 0 0 0
+PSL2(Z/7) rand1  |G|=   12 k_u(p=2,3,5,7,0)= 0 0 0 0 0
+SL2(Z/9) sanov  |G|=  648 k_u(p=2,3,5,7,0)= 45 24 17 29 17
+SL2(Z/9) rand0  |G|=   81 k_u(p=2,3,5,7,0)= 8 0 0 4 0
+SL2(Z/9) rand1  |G|=  648 k_u(p=2,3,5,7,0)= 24 14 0 4 0
+PSL2(Z/9) sanov  |G|=  324 k_u(p=2,3,5,7,0)= 34 24 17 17 17
+PSL2(Z/9) rand0  |G|=   12 k_u(p=2,3,5,7,0)= 2 2 2 2 2
+PSL2(Z/9) rand1  |G|=   27 k_u(p=2,3,5,7,0)= 8 0 0 1 0
+SL2(Z/11) sanov  |G|= 1320 k_u(p=2,3,5,7,0)= 53 11 10 10 10
+SL2(Z/11) rand0  |G|= 1320 k_u(p=2,3,5,7,0)= 0 16 17 0 0
+SL2(Z/11) rand1  |G|= 1320 k_u(p=2,3,5,7,0)= 30 10 22 0 0
+PSL2(Z/11) sanov  |G|=  660 k_u(p=2,3,5,7,0)= 42 11 10 10 10
+PSL2(Z/11) rand0  |G|=  660 k_u(p=2,3,5,7,0)= 32 21 34 21 21
+PSL2(Z/11) rand1  |G|=   60 k_u(p=2,3,5,7,0)= 4 5 4 4 4
+SL2(Z/13) sanov  |G|= 2184 k_u(p=2,3,5,7,0)= 84 56 42 41 28
+SL2(Z/13) rand0  |G|= 2184 k_u(p=2,3,5,7,0)= 14 27 0 0 0
+SL2(Z/13) rand1  |G|=   52 k_u(p=2,3,5,7,0)= 0 0 0 0 0
+PSL2(Z/13) sanov  |G|= 1092 k_u(p=2,3,5,7,0)= 56 28 28 41 28
+PSL2(Z/13) rand0  |G|= 1092 k_u(p=2,3,5,7,0)= 0 27 14 0 0
+PSL2(Z/13) rand1  |G|= 1092 k_u(p=2,3,5,7,0)= 0 0 0 13 0

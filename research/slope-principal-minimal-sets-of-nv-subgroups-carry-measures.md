@@ -7,6 +7,10 @@ distinct_from:
   minimal-sets-of-kazhdan-subgroups-of-nv-carry-invariant-measures: that is for Kazhdan subgroups and all minimal sets; this drops property (T) entirely and restricts to slope-principal minimal sets, where every stabilizer is locally trivial.
   elek-free-minimal-cantor-actions-with-invariant-measures: that constructs a measured free minimal action for each group; this asks that every germ-principal minimal subsystem of nV is measured.
   nv-point-germ-groups-embed-in-zn-by-slope: that proves the germ and compression lemmas; this is an open measure-existence statement that uses them as its hypothesis.
+  slope-principal-sets-of-v-are-locally-of-finite-order: that is the torsion rigidity of the same hypothesis at n = 1, with a counterexample to the rigidity at n >= 2; this is the measure statement, open for every n.
+artifacts:
+  - research/artifacts/slope-principal-torsion-rigidity-2026-09-18.md
+  - research/artifacts/slope-principal-v-locally-finite-order-attempt-2026-09-18.md
 ---
 
 Let `n >= 1` and `G <= nV`. Let `Z ⊆ C^n` be a minimal closed `G`-invariant set that is
@@ -51,3 +55,76 @@ subgroups of `V` have measured minimal sets.
   paradoxical brick decomposition exists.
 
 Route into the Kazhdan hole: `kazhdan-nv-measured-minimal-sets-via-slope-principality`.
+
+## Attempts
+
+- 2026-09-18 (lane `e2-w2-nv-kazhdan-halves`, wave `swarm-0917`, symbolic-dynamics,
+  inverter). No measure and no counterexample; a torsion rigidity theorem at `n = 1`, a
+  counterexample to that rigidity at `n >= 2`, a correction to this node, and a verdict
+  on the split. Artifact
+  `research/artifacts/slope-principal-torsion-rigidity-2026-09-18.md`; new nodes
+  `slope-principal-sets-of-v-are-locally-of-finite-order` and
+  `locally-torsion-subgroups-of-v-have-measured-minimal-sets`, both OPEN.
+  - **Referee outcome and demotion (2026-09-18, at landing).** The rigidity node was
+    landed as ESTABLISHED and **demoted to OPEN** in the same landing: two of three
+    referee lenses refuted it, independently and at the same step. Theorem B claimed that
+    `S × C` is `b`-invariant for an aperiodic minimal subshift `S`; it is not, since
+    `b(S × C) = {x : 0x ∈ S} × [0] ∪ {x : 1x ∈ S} × [1]`, so equality would force every
+    point of `S` to be left-special and `S` to be the full shift. The Zorn step of that
+    theorem was applied to the same non-invariant set. Both refuting lenses supplied the
+    same one-line repair — replace `S × C` by `Y = ⋂_{k >= 0} b^k(S × C)`, the natural
+    extension of `(S,σ)`, on which `b` is the two-sided shift — and it has been applied
+    to every node and artifact touched here, but it has not been refereed. Theorem A
+    (the `n = 1` rigidity, and everything this node's Attempts entry below draws from it)
+    survived all three lenses, and the hypotheses-and-citations lens recorded *survives*
+    outright: both uses of item 4 and the use of item 1 of
+    `nv-point-germ-groups-embed-in-zn-by-slope` match the source quantifiers exactly. The
+    proof is kept as
+    `research/artifacts/slope-principal-v-locally-finite-order-attempt-2026-09-18.md`.
+  - **Correction to "How it can fail on its own".** The first bullet, "a free group
+    whose minimal set has only saddle fixed points", is not a failure mode: a saddle has
+    `s ≠ 0`, so a minimal set containing a saddle fixed point of an element of `G` is not
+    slope-principal. Only the second bullet survives, and it is the right one: a minimal
+    set on which no element has a fixed point with a nonzero slope, in practice one with
+    no periodic points of the infinite-order elements at all.
+  - **Torsion rigidity, `n = 1` (proved in the attempt; survived all three lenses, but
+    the node carrying it is OPEN).** For `G <= V` and any closed
+    `G`-invariant slope-principal `Z ⊆ C`, every `g ∈ G` has a power that is the
+    identity on a clopen neighbourhood of `Z`; in particular `Z` consists of periodic
+    points of `g` and `G|_Z` is torsion. Proof: itinerary bricks
+    `E_{t+1} = E_t ∩ g^{-(t+1)}(B_{i_{t+1}})` with images `F_t = g^t(E_t)`; a shrink of
+    `E_t` puts `F_t` on a table cone, and a repeated table cone gives a canonical
+    self-compression, so item 4 of `nv-point-germ-groups-embed-in-zn-by-slope` produces a
+    nonzero-slope fixed point in `Z`; once `E_t` stabilizes, a recurrence time in a
+    `⟨g⟩`-minimal subset makes the domain and image bricks nested, giving either a
+    compression (excluded) or `g^τ = id` on the brick.
+  - **Consequence: the `n = 1` case is Burnside-hard.** A counterexample at `n = 1` is
+    exactly a finitely generated `H <= V` whose germ group along `Z` is an infinite
+    finitely generated torsion group acting without an invariant measure, hence
+    non-amenable, and it is a torsion quotient of a free product of finite cyclic groups.
+    Recorded as `locally-torsion-subgroups-of-v-have-measured-minimal-sets`. So this
+    "(T)-free" half is not the cheap half of the split: at `n = 1` it implies a
+    Burnside-type theorem about `V` that the graph does not have, while the flagship at
+    `n = 1` is already known through `thompson-v-has-haagerup-property`.
+  - **Where the method dies at `n >= 2`, with a witness.** Brin's baker map
+    `b ∈ 2V`, `b(0w,y) = (w,0y)`, `b(1w,y) = (w,1y)`, has constant slope `(1,-1)` and
+    `b^k(x,y) = (σ^k x, x_k…x_1 y)`, so `Per(b)` is countable. Over any aperiodic minimal
+    subshift `S`, `S × C` is closed, periodic-point-free and forward `b`-invariant, and
+    its maximal invariant subset `Y = ⋂_{k >= 0} b^k(S × C)` — the natural extension of
+    `(S,σ)`, where `b` is the two-sided shift — is nonempty, closed and `b`-invariant, so
+    every `⟨b⟩`-minimal subset of `Y` is slope-principal vacuously while `b` has infinite
+    order there.
+    Hence the torsion rigidity is false for `n >= 2` and no repair of the `n = 1` proof
+    exists. The two steps that break are named: a saddle slope never nests the domain and
+    image bricks, and bricks form a lattice rather than a tree, so a strict shrink resets
+    the overhang in some coordinates only.
+  - **Class-kill.** Any proof of this claim for `n >= 2` whose only dynamical input is
+    the compressing/saddle/locally-trivial trichotomy of
+    `nv-point-germ-groups-embed-in-zn-by-slope` fails: on a baker-type minimal set the
+    trichotomy is vacuous because no element has a fixed point there. A proof must
+    control elements with no periodic points in `Z`.
+  - **Next concrete test (not run).** Groups generated by baker-type maps and prefix
+    permutations preserving an aperiodic minimal subshift in the first coordinate: every
+    element with all slopes of the form `(k,-k)` preserves the Bernoulli measure of
+    `C^2`, so any counterexample of that shape has its minimal set in a Bernoulli-null
+    set.

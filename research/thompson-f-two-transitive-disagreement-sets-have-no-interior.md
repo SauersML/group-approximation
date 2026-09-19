@@ -6,6 +6,7 @@ title: In a 2-transitive action of Thompson's group F, no disagreement set of a 
 distinct_from:
   thompson-f-two-transitive-disagreement-sets-are-not-cantor: that claim excludes disagreement sets that contain no interval; this claim excludes disagreement sets that contain an interval
   thompson-f-two-transitive-disagreement-sets-are-self-similar: that claim proves that a disagreement set is never an interval and never has finitely many components; this claim excludes any interval inside it
+  thompson-f-two-transitive-binary-colourings-force-regular-closed: that claim only restricts the shape of an interior D_0 when some bad irrational orbit carries exactly two colours; this claim excludes interior outright
 ---
 
 Let `F` act on a set `Ω`, `|Ω| ≥ 3`, transitively on ordered pairs of distinct
@@ -34,3 +35,17 @@ This is one of the two halves of
   - Missing: a way to turn an interval inside `D_0` into an `F_U^c` fixing a
     point, for example by comparing `D(ω,ω')` with `D(ω,fω)` for `f` supported
     inside that interval.
+- 2026-09-18 (swarm-0917-w13-w13-z-break, host-geometry: binary colour sum rule). This carries out
+  the comparison proposed above, for `f` supported inside an interval of `D_1 = D(ω,ω')`. The
+  result is `thompson-f-two-transitive-binary-colourings-force-regular-closed`.
+  - Any bad irrational orbit `O` is dense in every disagreement set, so
+    `D = cl{c_1 ≠ c_2 on O}`.
+  - If `H` has exactly two orbits on some bad irrational `O`, then
+    `D(ω',ω'') = cl(D(ω,ω') Δ D(ω,ω''))`. So `D(fω,ω') ∩ J = J ∖ int D(ω,fω)` on the interval
+    `J ⊂ D_1`.
+  - Cutting between two interior points then shows that `D_0` is regular closed and that no gap of
+    `D_0` is bounded by two interval components. The complement of a translate between two interior
+    points is again a translate.
+  - Dies at the checkerboard type, for example the closure of the odd-level gaps of a Cantor set,
+    which passes every test above. It also dies when every bad irrational orbit has three or more
+    `H`-orbits: the sum rule fails, and `D(fω,ω') ∩ int E` is not controlled. The hole stays OPEN.

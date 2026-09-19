@@ -1,0 +1,24 @@
+== sl2d 9 0 (trials=8 prune=1)
+n=648 best_s=77 ratio=0.11883 verified_closure=648
+== sl2d 25 0 (trials=8 prune=1)
+n=15000 best_s=1657 ratio=0.11047 verified_closure=15000
+== sl2d 27 0 (trials=8 prune=1)
+n=17496 best_s=1920 ratio=0.10974 verified_closure=17496
+== sl2d 9 1 (trials=8 prune=1)
+n=54 best_s=9 ratio=0.16667 verified_closure=54
+== sl2d 25 1 (trials=8 prune=1)
+n=15000 best_s=1632 ratio=0.10880 verified_closure=15000
+== sl2d 27 1 (trials=8 prune=1)
+n=486 best_s=54 ratio=0.11111 verified_closure=486
+== sl2d 9 2 (trials=8 prune=1)
+n=54 best_s=9 ratio=0.16667 verified_closure=54
+== sl2d 25 2 (trials=8 prune=1)
+n=15000 best_s=1592 ratio=0.10613 verified_closure=15000
+== sl2d 27 2 (trials=8 prune=1)
+n=486 best_s=54 ratio=0.11111 verified_closure=486
+== sl2d 9 3 (trials=8 prune=1)
+n=54 best_s=9 ratio=0.16667 verified_closure=54
+== sl2d 25 3 (trials=8 prune=1)
+n=15000 best_s=1377 ratio=0.09180 verified_closure=15000
+== sl2d 27 3 (trials=8 prune=1)
+n=486 best_s=54 ratio=0.11111 verified_closure=486

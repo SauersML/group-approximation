@@ -87,3 +87,18 @@ bare full-defect criterion is non-vacuous on `F'` and settles Thompson's
 problem.
 
 Proof route: `thompson-commutator-full-defect-bars-t-free-collapse-proof`.
+
+## Attempts
+
+- 2026-09-18 (swarm-0917-w10-w10-ptm-break): the "finite generation of the
+  ambient group" survivor is closed **unconditionally** by
+  `fg-mf-group-with-full-compression-defect`. That node gives a
+  49-involution-generated subgroup `G` of a corona unitary group with
+  `L = <a'>`, infinite cyclic and strictly compressed, and
+  `D_G(L) = G`. `G` is MF, so (FDC_P) is false for every `P` containing
+  that pair, with no amenability hypothesis. Survivors that remain:
+  - finite presentability, torsion-freeness and simplicity of the ambient
+    group;
+  - property (T) for `L`;
+  - a spectral input on the ambient group;
+  - the ring data of `Delta`.

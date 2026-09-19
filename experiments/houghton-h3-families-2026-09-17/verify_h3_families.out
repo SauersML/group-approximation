@@ -1,0 +1,13 @@
+N_k = lam_ac^k lam_cb^k, two-ray, all 6 labelings, k <= 12
+(R) and (F) derivations: ok
+(F3), (D), (B), (C) derivations: ok, all 8 route functions
+   R3 x=1 u=2 v=3 k=5               Q-steps   47   macros A[2,3,1](5) A[2,3,1](5)
+   F' x=1 u=2 k=5                   Q-steps   20   macros R3(3) R3(3)
+   D3 c={1: 2, 2: 3, 3: 1} x=1 z=2 w=3 j=5 Q-steps    4   macros R3(5) R3(4)
+   D3 c={1: 2, 2: 3, 3: 1} x=1 z=3 w=2 j=5 Q-steps    4   macros R3(4) R3(5)
+   B3 c={1: 2, 2: 3, 3: 1} x=1 y=2 i=4 j=5 Q-steps   55   macros R3(4) R3(4) R3(7) R3(7)
+   C3 c={1: 2, 2: 3, 3: 1} p=1 q=2 z=3 j=5 Q-steps   33   macros D3(5) D3(5) R3(4) R3(4)
+   C3 c={1: 2, 2: 3, 3: 1} p=1 q=2 z=1 j=5 Q-steps   14   macros F'(5)
+   C3 c={1: 2, 2: 3, 3: 1} p=1 q=2 z=2 j=5 Q-steps   33   macros R3(4) R3(4) R3(3) R3(3)
+derivations checked: 4986
+ALL OK

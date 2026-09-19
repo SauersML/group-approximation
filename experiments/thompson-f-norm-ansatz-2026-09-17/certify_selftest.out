@@ -1,0 +1,6 @@
+n=2: brute force = DP = 1.225543885778, fixed-point lower bound 1.225543885778
+n=3: brute force = DP = 1.770155915800, fixed-point lower bound 1.770155915800
+n=4: brute force = DP = 1.988861329505, fixed-point lower bound 1.988861329505
+n=5: brute force = DP = 2.124784075417, fixed-point lower bound 2.124784075417
+n=6: brute force = DP = 2.206743939434, fixed-point lower bound 2.206743939434
+n=7: brute force = DP = 2.265886825852, fixed-point lower bound 2.265886825852

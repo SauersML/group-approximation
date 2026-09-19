@@ -50,3 +50,20 @@ artifacts:
       IRS networks (`hot-surjunctivity-tools-hold-on-irs-schreier-networks`).
   - *Open search target.* Non-sofic free actions of sofic groups carrying strict pairs with proper-subshift
     table processes. Full-support tables are excluded by artifact Proposition 1.2.
+- **Bowen–Chapman RBS criterion (swarm-0917-w10-w10-gs-last1, 2026-09-18).** An entropy-measure attempt. It
+  settles part of the domain and leaves this node OPEN. Artifact: `rbs-irs-strict-design-bridge-2026-09-18.md`.
+  - *Established.* `rbs-free-group-irs-carry-no-strict-design`: no RBS IRS carries a strict design. A strict
+    design, run fibrewise, is a Bowen–Chapman automaton on `Dom(pi)` that is injective almost everywhere and
+    misses an open set, and their Theorem 3.6 forbids that. The imports are in
+    `bowen-chapman-rbs-irs-surjunctivity-toolkit`.
+  - *What it settles.* RBS is weak-* closed and contains every co-sofic IRS (their Corollary 5.4). By their
+    Theorem 1.2 it also contains a non-co-sofic IRS. So this node holds on a nonempty non-co-sofic part of its
+    domain, and the only known non-co-sofic IRS whose surjunctivity is decided is not a counterexample.
+  - *Where counterexamples must live.* A counterexample fails RBS: its Bernoulli bundle has relative Rokhlin
+    entropy below `log|Sigma|`. In every convex splitting, the witness lives on the non-RBS components.
+  - *Where it dies.*
+    - Closing this node by "every IRS satisfies RBS" is dominated. At `pi = 1_N` that hypothesis is maximal
+      Rokhlin entropy for `F_r/N` (artifact Proposition D).
+    - So it implies `bernoulli-rokhlin-entropy-maximal-for-every-group`, which alone closes the goal.
+    - The invariant is `H_Rok(F ↷ (sub(F, Sigma), u_pi) | P)`. The step where the route dies is its
+      specialisation to atomic normal IRS.

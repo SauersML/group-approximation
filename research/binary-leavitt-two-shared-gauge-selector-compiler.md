@@ -112,3 +112,33 @@ are authenticated on one nonzero invariant carrier with operator-norm
 control.  It does not remove the open native occurrence problem here:
 neither the abstract rank polytope nor packet exactification proves that the
 depth-one and depth-two Leavitt occurrences reuse one multiplicity state.
+
+## Attempts
+
+* **Converse barrier via exactified canonical HS microstates
+  (swarm-0917-w11-w11-ptm-break, 2026-09-18). Dead: subsumed.**
+  - **Idea.** The route `arbitrary-profile-cross-gram-implies-shared-gauge-compiler`
+    uses operator-norm control only to exactify fixed finite packets, and
+    because operator-norm defect dominates HS defect. Its three lemmas
+    (TCG, Pauli lock, TSG) are normalized-HS matrix statements. If `Delta`
+    is hyperlinear, `hyperlinear-iff-group-factor-embeds-in-hyperfinite-ultrapower`
+    gives microstates with trace tending to `delta_e`. Exact regular lifts of the fixed
+    packets are then conjugated to agree on their intersection, by the
+    trace-matching step of `canonical-types-extend-every-finite-bass-serre-actor`
+    and an averaged intertwiner `(1/|A|) sum rho(a) rho'(a)^*` that is
+    HS-near the identity. These exactified models satisfy every input of
+    that toolkit: HS relator defect `o(1)`, exact packets with integer ranks, and
+    carrier trace `1/2`. So any toolkit proof of `(SGS2)` would prove `Delta`
+    non-hyperlinear.
+  - **Where it dies: novelty.** `native-cross-gram-conclusions-fail-in-every-tracial-model`
+    already proves the stronger unconditional statement. The conclusion is
+    false for the left regular representation of `L(Delta)` and for every
+    tracial ultraproduct, so this compiler and its cross-Gram premise are
+    equivalent to the nonexistence of the models they quantify over.
+    `corona-k0-positive-arithmetic-is-real-lp-feasibility` already fences
+    the extra finite-level input used here (integer packet ranks), without any
+    condition. The hyperlinear-conditional version adds nothing.
+  - **Consequence for this node.** Any proof must exclude the models outright,
+    using input that is not tracial and not positive-existential rank
+    arithmetic. Fixed-packet exactification followed by HS spectral cuts
+    cannot supply it.

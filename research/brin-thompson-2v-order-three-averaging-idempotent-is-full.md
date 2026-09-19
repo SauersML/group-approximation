@@ -56,3 +56,23 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
       known here.
   - Status: `w3-vf-nonlinear` re-derived the artifact and PASSED it (verification artifact Section 31,
     83970f5256). Nothing about the gate is decided, and this claim stays OPEN.
+* **One-sided Følner rank obstruction (swarm-0917-w12-w12-gs-break, 2026-09-18;
+  `averaging-fullness-witnesses-force-uniform-expansion`, ESTABLISHED).** This counts dimensions of `e b`
+  on finite windows of permutation modules, with `h = g ⊗ 1`.
+  - **Inequality.** Any witness `c e b = 1` forces `|F \ Fix h| <= |hF \ F| + (3/2)|S_b F \ F|` for every
+    finite `F` in every `2V`-set. Symmetrically, `S_c^(-1)` satisfies the same bound.
+  - **What it rules out.**
+    - Any mean invariant under `H_b = ⟨supp b, h⟩` alone has `m(Fix h) = 1`. So `H_b` is nonamenable,
+      `h` lies in every finite-index subgroup of `H_b`, and no amenable or residually finite quotient of
+      `H_b` keeps `h`.
+    - Every `H_b`-orbit on `C²` has vertex Cheeger constant `>= 2/5` for `supp b ∪ {h}`.
+    - Fullness forces `2V` to have Cornulier's Property FM. That question is open even for `V`
+      (Question 1.19(1), arXiv:1308.1318).
+    - If `thompson-v-has-a-fixed-point-free-amenable-action` holds, no witness has `supp b` or `supp c`
+      inside `V ⊗ 1 · 1 ⊗ V`.
+  - **Where it stops.**
+    - This constrains witnesses and does not decide their existence.
+    - One `2V`-set without fixed points that carries an invariant mean would refute the claim, whatever the
+      support. In other words, a failure of Property FM for `2V` suffices.
+    - The natural Cantor orbits are excluded by halving (`thompson-v-cantor-orbits-have-no-folner-sets`).
+      So a refutation must build an exotic co-amenable subgroup of `2V`.
