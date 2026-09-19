@@ -1,0 +1,102 @@
+{
+ "compared_orbits": [
+  2,
+  7
+ ],
+ "all_agree": true,
+ "fields": [
+  "h1_rank",
+  "h1_torsion",
+  "classes",
+  "class_coset_counts",
+  "W_rank",
+  "gcd_aug",
+  "d_upper_exact_point",
+  "theta_values",
+  "cert_l1",
+  "cert_aug",
+  "cert_support",
+  "chi",
+  "orbit_size",
+  "cosets"
+ ],
+ "rows": [
+  {
+   "orbit_index": 2,
+   "agree": true,
+   "diff": {},
+   "lean": {
+    "h1_rank": 54,
+    "h1_torsion": [
+     2
+    ],
+    "classes": 192,
+    "class_coset_counts": [
+     384,
+     768
+    ],
+    "W_rank": 138,
+    "gcd_aug": 10,
+    "d_upper_exact_point": "1/30",
+    "theta_values": [
+     "3/10"
+    ],
+    "cert_l1": 10,
+    "cert_aug": 10,
+    "cert_support": 10,
+    "orbit_index": 2,
+    "chi": [
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "orbit_size": 45,
+    "cosets": 122880
+   }
+  },
+  {
+   "orbit_index": 7,
+   "agree": true,
+   "diff": {},
+   "lean": {
+    "h1_rank": 54,
+    "h1_torsion": [],
+    "classes": 160,
+    "class_coset_counts": [
+     768
+    ],
+    "W_rank": 106,
+    "gcd_aug": 10,
+    "d_upper_exact_point": "1/30",
+    "theta_values": [
+     "3/10"
+    ],
+    "cert_l1": 10,
+    "cert_aug": 10,
+    "cert_support": 10,
+    "orbit_index": 7,
+    "chi": [
+     0,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0
+    ],
+    "orbit_size": 60,
+    "cosets": 122880
+   }
+  }
+ ]
+}

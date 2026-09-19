@@ -115,3 +115,35 @@ Status on main, by dimension:
   - *Next.* Continue chains A, B and C from their last stage sets in
     `experiments/zn-rips-link-collapse-scale-10-2026-09-18/segments/`, verify each stage with `vpiece6.sh`, and
     concatenate.
+- **w9-103, (8, 10) complete: `VR(Z^8, d_1; 10)` is contractible.** See `z8-rips-contractible-at-scale-10`.
+  - *Middle piece.* 18,816 (K) lines delete the top shell `T` from `O`, ending at exactly `O ∖ T`. They are in six
+    chains (A, B, E, F, C, D; 57 stages).
+    - Chain B left 1,120 points of its block. These were split into two halves `TE` and `TF`, and run with `kzs3`,
+      which tries only (K) at the listed points. No chain stalled.
+    - With the two (D) pieces of `z8-rips-scale-10-reduces-to-top-shell-link-collapses`, this gives a lifted
+      certificate of 628,231 moves from `Lmax_8` to `{e_8}`.
+  - *Verification.* Every stage was replayed by `kzv7` (AVX-512 `kzv6`) from its exact start set, in the order of
+    `O`, and seven stages also by `kzv6`. On shared input, `kzv6` and `kzv7` agree step for step. The d-prefix was
+    replayed again by `kzv6`.
+  - *Next.* `(8, 11)`. By analogy with this scale, the (D) stall should again be a top shell of norm-11 points with
+    `x_8 = 0`. The block-restricted `kzs3` and a verification queue with one session per worker make the (K) phase a
+    few wall-hours.
+- **w10-103, (8, 11) reduced to its top shell.** See `z8-rips-scale-11-reduces-to-top-shell-link-collapses`.
+  - *Pieces.* 843,210 (D) moves take `Lmax_8` (1,242,912 points) to `O` (399,702 points), and 346,389 (D) moves take
+    `O ∖ T` to `{e_8}`. Both are replayed by `vcert2`. `T` is 53,312 points of norm 11 with `x_8 = 0`, in seven
+    complete profile classes. So `(8, 11)` is now the single problem of deleting `T` from `O`.
+  - *Pattern.* At `r = 10` and `r = 11`, the profiles of `T` are exactly the partitions of `r` with fewer than 8
+    parts that are unbalanced in the sense of `zn-rips-slack-sphere-criterion`. The one exception is `(5,1^6)` at
+    `r = 11`, which (D) deletes. These are the zero-coordinate unbalanced sphere points of that criterion's "limit of
+    the method".
+  - *(K) witnesses.* 21 of 21 sampled points of `T` have (K) moves against `O`. The formula witness `w = e_j + e_8`,
+    with `j` the last nonzero index of `u`, is accepted by `kzc1` for 24 of 24 random single lines and for a 40-line
+    sequential chain from `C = O`. No formula line has failed. Each (K) check costs about 8 core-seconds, so the
+    whole phase is about 120 core-hours.
+  - *kzs3 caveat.* `kzc1.cpp` is a new (K)/(D) checker that shares no code with `kzs2`, `kzs3`, `kzv6`, `kzv7` or
+    `vcert2`. It replayed the six kzs3 stages `E2`–`F4` of `z8-rips-contractible-at-scale-10` (987 (K) lines), and
+    all 987 lines are accepted and every stage end set matches. So the kzs3 caveat is
+    discharged.
+  - *Next.* The (K) phase on `T`: formula witnesses first, and the `kzs2` search only where they fail, run as block
+    chains split across lanes and replayed by `kzc1`. For a uniform proof, the target is a lemma that `e_j + e_8`
+    link-collapses every unbalanced zero-coordinate top-shell point `u` with last index `j`, in a fixed class order.

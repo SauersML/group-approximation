@@ -320,3 +320,49 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      cannot supply the level-2 direction. The next check is the `(2p,2,2p)`
      slice at `p=5`.
    See `kms-hc1-witt-carry-syzygy-lifts-by-right-freeness`.
+
+10. **Level `m >= 2`: the proposed `(2p,2,2p)` slice is empty. The edge
+   tails have order at most two, and order two only on the diagonal. The
+   Kassel p-map step holds at every level.**
+   - `rho` of an edge eigencomponent lies in `u(heis)`, where letter degrees
+     stop at `2p-2`. Every monomial involves both letters. So the visible
+     shifts are `{0,p-1}` per letter, and an order-2 tail is only the
+     diagonal `(p-1)(e_x+e_y)`.
+   - An exact check at `p = 5, 7, 11` finds the shifts `(0,1)` and `(1,1)`
+     for `[[x,y],x]`, and `(1,0)` and `(1,1)` for `[[x,y],y]`. Lowest forms
+     are never visible.
+   - `u(N)` vanishes in multidegrees `(2,2p-1,0)` and `(0,2p-1,2)`. So the
+     second-order seeds `f2` are `rho`-trivial, and no jump reaches
+     `(2p,2p,2p)` from `(2p,2,2p)`.
+   - At level `m` the value of an element of `I` localizes to nine
+     (edge, shift) slices. At `m=2` these are the `(2p,p+1,2p)`-type slices
+     (first order) and the `(p+1,p+1,2p)`-type slices (diagonal).
+   - For every `t^m`-homogeneous `X`, the `z`-part of `(X t^m)^[p]` is
+     `alpha` of the Cartan part. The proof is trace invariance on
+     `ad(W)^(p-1)`, and needs no square-zero hypothesis.
+   - Next: the S-pairs of those slices at `p=5`, box `(10,6,10)`, and whether
+     their values span `W_2`.
+   See `kms-hc1-level-m-edge-tails-have-order-at-most-two`.
+
+11. **Level-n analogue of (R1): a first deviation sits only in a degree
+   `3np`, and its kernel is the image of the 3-dim `W_n`.**
+   - (RP): below the first deviation every real-root vector has p-power 0.
+     Take a vertex element `x` of order `p` and a torus lift `sigma`. Then
+     `g = [x, sigma]` lifts `t^k E_beta` up to the unit `-2u`, `[g,x]` is in
+     `ker phi^`, and `(x g)^p = 1`. Hall-Petrescu gives `g^p` in `D_(pd+1)`.
+   - (FD): given Open 1, the Lie part of the kernel is at most `H_2` in
+     degree `d0`, and the p-power part is only the Cartan defects `C_nA`
+     and `C_nB`. So `d0 = 3np` and the kernel is spanned by
+     `K_n, C_nA, C_nB` in multidegree `(np,np,np)`. `phi^` is an
+     isomorphism iff `V_n = W_n` for all `n >= 2`.
+   - Non-multihomogeneous parts of jumps cannot deviate first, which
+     removes the w12 caveat.
+   - Products of level-1 gr I elements with `(p,p,p)` words contribute 0
+     to `W_2`.
+   - The towers already give level 2 at `p = 5, 7` and level 3 at `p = 5`.
+     The direct `p = 5` S-pair step is not needed, and it is infeasible:
+     `u(N)` has 6.2M PBW monomials at `(10,10,10)`.
+   - Next: `V_n = W_n` for all `p`, via virtual-vertex Heisenberg pairs
+     with `t^2` centres plus T5, or via group-level Cartan p-power
+     relations.
+   See `kms-hc1-root-p-powers-die-first-deviation-at-3np`.

@@ -1,0 +1,17 @@
+== A-D. one-vertex k-graph monoids P in Aff(R, U)
+q=2, p_i=[(1, 1)]: k=2; |P_n| = q^m and ball bijection for n in [0,3]^k; factorisation bijections E_i x E_j -> P for all i,j; brute-force uniqueness on 16 degree pairs; 300 random splits OK; germ step: formula (worst 6); 4179 germ tests with g mu(O) in O, all g mu in P
+   E. Koszul on [-1, -1]: H_j = [(0, []), (0, []), (0, [])]  expected (Z/1)^C(1,j)
+q=3, p_i=[(1, 1)]: k=2; |P_n| = q^m and ball bijection for n in [0,2]^k; factorisation bijections E_i x E_j -> P for all i,j; brute-force uniqueness on 16 degree pairs; 200 random splits OK; germ step: formula (worst 7); 3140 germ tests with g mu(O) in O, all g mu in P
+   E. Koszul on [-2, -2]: H_j = [(0, [2]), (0, [2]), (0, [])]  expected (Z/2)^C(1,j)
+q=2, p_i=[(1, 1), (1, 1, 1)]: k=3; |P_n| = q^m and ball bijection for n in [0,2]^k; factorisation bijections E_i x E_j -> P for all i,j; brute-force uniqueness on 64 degree pairs; 200 random splits OK; germ step: formula (worst 8); 5351 germ tests with g mu(O) in O, all g mu in P
+   E. Koszul on [-1, -1, -3]: H_j = [(0, []), (0, []), (0, []), (0, [])]  expected (Z/1)^C(2,j)
+q=3, p_i=[(1, 1), (1, 0, 1)]: k=3; |P_n| = q^m and ball bijection for n in [0,1]^k; factorisation bijections E_i x E_j -> P for all i,j; brute-force uniqueness on 64 degree pairs; 150 random splits OK; germ step: formula (worst 9); 3131 germ tests with g mu(O) in O, all g mu in P
+   E. Koszul on [-2, -2, -8]: H_j = [(0, [2]), (0, [2, 2]), (0, [2]), (0, [])]  expected (Z/2)^C(2,j)
+q=2, p_i=[(1, 1), (1, 1, 1), (1, 1, 0, 1)]: k=4; |P_n| = q^m and ball bijection for n in [0,1]^k; factorisation bijections E_i x E_j -> P for all i,j; brute-force uniqueness on 256 degree pairs; 100 random splits OK; germ step: formula (worst 15); 4569 germ tests with g mu(O) in O, all g mu in P
+   E. Koszul on [-1, -1, -3, -7]: H_j = [(0, []), (0, []), (0, []), (0, []), (0, [])]  expected (Z/1)^C(3,j)
+== F. number fields: characters u -> |u|_v prod_{s in I} s(u), trivial on U?
+   Q, v=2, U=<2> (odometer): trivial characters for I in [(0,)] -> rationally acyclic: False
+   Q, v=2, U=<2,3> (BS(1,3)): trivial characters for I in [] -> rationally acyclic: True
+   Q, v=3, U=<3,2>: trivial characters for I in [] -> rationally acyclic: True
+   Q(sqrt2), v=(sqrt2), U=<sqrt2, 1+sqrt2>: trivial characters for I in [] -> rationally acyclic: True
+ALL OK

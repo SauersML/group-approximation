@@ -156,3 +156,23 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   (`Z[1/6] ⋊ Z^2`) already give `Z^2`. For `Z/2 ≀ Z` in general, every
   lamp must be non-parabolic for both `τ` and `τ^{-1}`. Open: a two-sided
   characteristic-`p` or non-linear completion.
+- 2026-09-19 (w16-117, obstruction): proposed-established
+  `rank-one-cut-outs-kill-amenable-non-abelian-quotients`. The two-sided
+  characteristic-2 completion cannot come from a rank-one lattice. Suppose
+  the cut-out factors through groups whose closed amenable subgroups are
+  compact or virtually solvable, such as `PGL_2(k)` in any characteristic.
+  Suppose also that the host is VSA (e.g. cocompact CAT(0)) and injective
+  on subproducts (e.g. irreducible). Then every amenable `P` is virtually
+  abelian, so `Z/2 ≀ Z` is excluded. Open: an `Aut(T)`-type factor, whose
+  end stabilizers are amenable but not solvable, as in
+  `Z/2 ≀ Z ≤ Aut(T_3)^2` on `DL(2,2)`.
+- 2026-09-19 (w17-117, obstruction): proposed-established
+  `tree-cut-outs-force-locally-finite-by-abelian-quotients`. For cut-outs
+  through `Aut(T)` factors, with no host hypothesis, every amenable `P` is
+  virtually locally-finite-by-`Z^k`. This excludes Grigorchuk's group,
+  `BS(1,n)` and `Z ≀ Z`. A witness for `Z/2 ≀ Z` must have the
+  Diestel–Leader shape: two tree factors where the shift is hyperbolic with
+  opposite orientations. `M` then fixes the orbit hulls of the shift axes
+  pointwise, so the host needs a nontrivial pointwise flat fixator
+  `Λ_F ∋ 1 ≠ H ∩ Σ`. The literal `DL(2,2)` completion is excluded. Open:
+  whether `Λ_F = 1` for irreducible lattices in three trees.

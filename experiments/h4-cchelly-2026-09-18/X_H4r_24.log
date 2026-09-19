@@ -1,0 +1,58 @@
+F-ball 565 N-ball 937 (max NF length 9) 1 s
+hashes ready 11 s
+sorted 524992 nontrivial commutators 12 s
+HBALL a=p5' p0 | b=p5' p2 | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5' p0 | b=p5' p2' | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5' p0' | b=p5' p2 | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5' p0' | b=p5' p2' | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p0 p2 | b=p0 p5 | |U_a|=3 |U_b|=3 common=1 | u=x2' x2' x2' | v=x2' x2' x2'
+HBALL a=p0 p2 | b=p0 p5' | |U_a|=3 |U_b|=3 common=1 | u=x2' x2' x2' | v=x2' x2' x2'
+HBALL a=p0 p2' | b=p0 p5 | |U_a|=3 |U_b|=3 common=1 | u=x2' x2' x2' | v=x2' x2' x2'
+HBALL a=p0 p2' | b=p0 p5' | |U_a|=3 |U_b|=3 common=1 | u=x2' x2' x2' | v=x2' x2' x2'
+HBALL a=p2' p0 | b=p2' p5 | |U_a|=5 |U_b|=5 common=1 | u=x1 x1 | v=x1 x1
+HBALL a=p2' p0 | b=p2' p5' | |U_a|=5 |U_b|=5 common=1 | u=x1 x1 | v=x1 x1
+HBALL a=p2' p0' | b=p2' p5 | |U_a|=5 |U_b|=5 common=1 | u=x1 x1 | v=x1 x1
+HBALL a=p2' p0' | b=p2' p5' | |U_a|=5 |U_b|=5 common=1 | u=x1 x1 | v=x1 x1
+HBALL a=p5 p0 | b=p5 p2 | |U_a|=3 |U_b|=3 common=1 | u=x0 x0 x0 | v=x0 x0 x0
+HBALL a=p5 p0 | b=p5 p2' | |U_a|=3 |U_b|=3 common=1 | u=x0 x0 x0 | v=x0 x0 x0
+HBALL a=p5 p0' | b=p5 p2 | |U_a|=3 |U_b|=3 common=1 | u=x0 x0 x0 | v=x0 x0 x0
+HBALL a=p5 p0' | b=p5 p2' | |U_a|=3 |U_b|=3 common=1 | u=x0 x0 x0 | v=x0 x0 x0
+HBALL a=p2 p0 | b=p2 p5 | |U_a|=5 |U_b|=5 common=1 | u=x1' x1' | v=x1' x1'
+HBALL a=p2 p0 | b=p2 p5' | |U_a|=5 |U_b|=5 common=1 | u=x1' x1' | v=x1' x1'
+HBALL a=p2 p0' | b=p2 p5 | |U_a|=5 |U_b|=5 common=1 | u=x1' x1' | v=x1' x1'
+HBALL a=p2 p0' | b=p2 p5' | |U_a|=5 |U_b|=5 common=1 | u=x1' x1' | v=x1' x1'
+HBALL a=p0' p2 | b=p0' p5 | |U_a|=7 |U_b|=7 common=1 | u=x2' | v=x2'
+HBALL a=p0' p2 | b=p0' p5' | |U_a|=7 |U_b|=7 common=1 | u=x2' | v=x2'
+HBALL a=p0' p2' | b=p0' p5 | |U_a|=7 |U_b|=7 common=1 | u=x2' | v=x2'
+HBALL a=p0' p2' | b=p0' p5' | |U_a|=7 |U_b|=7 common=1 | u=x2' | v=x2'
+HBALL a=p0' p2 | b=p0' p5 | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0' p2 | b=p0' p5' | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0' p2' | b=p0' p5 | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0' p2' | b=p0' p5' | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p2 p0 | b=p2 p5 | |U_a|=7 |U_b|=7 common=1 | u=x1' | v=x1'
+HBALL a=p2 p0 | b=p2 p5' | |U_a|=7 |U_b|=7 common=1 | u=x1' | v=x1'
+HBALL a=p2 p0' | b=p2 p5 | |U_a|=7 |U_b|=7 common=1 | u=x1' | v=x1'
+HBALL a=p2 p0' | b=p2 p5' | |U_a|=7 |U_b|=7 common=1 | u=x1' | v=x1'
+HBALL a=p0 p2 | b=p0 p5 | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0 p2 | b=p0 p5' | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0 p2' | b=p0 p5 | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p0 p2' | b=p0 p5' | |U_a|=3 |U_b|=3 common=1 | u=x2 x2 x2 | v=x2 x2 x2
+HBALL a=p2 p0 | b=p2 p5 | |U_a|=3 |U_b|=3 common=1 | u=x1 x1 x1 | v=x1 x1 x1
+HBALL a=p2 p0 | b=p2 p5' | |U_a|=3 |U_b|=3 common=1 | u=x1 x1 x1 | v=x1 x1 x1
+HBALL a=p2 p0' | b=p2 p5 | |U_a|=3 |U_b|=3 common=1 | u=x1 x1 x1 | v=x1 x1 x1
+HBALL a=p2 p0' | b=p2 p5' | |U_a|=3 |U_b|=3 common=1 | u=x1 x1 x1 | v=x1 x1 x1
+HBALL a=p0 p2 | b=p0 p5 | |U_a|=5 |U_b|=5 common=1 | u=x2' x2' | v=x2' x2'
+HBALL a=p0 p2 | b=p0 p5' | |U_a|=5 |U_b|=5 common=1 | u=x2' x2' | v=x2' x2'
+HBALL a=p0 p2' | b=p0 p5 | |U_a|=5 |U_b|=5 common=1 | u=x2' x2' | v=x2' x2'
+HBALL a=p0 p2' | b=p0 p5' | |U_a|=5 |U_b|=5 common=1 | u=x2' x2' | v=x2' x2'
+HBALL a=p5 p0 | b=p5 p2 | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5 p0 | b=p5 p2' | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5 p0' | b=p5 p2 | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p5 p0' | b=p5 p2' | |U_a|=3 |U_b|=3 common=1 | u=x0' x0' x0' | v=x0' x0' x0'
+HBALL a=p0 p2 | b=p0 p5 | |U_a|=7 |U_b|=7 common=1 | u=x2 | v=x2
+HBALL a=p0 p2 | b=p0 p5' | |U_a|=7 |U_b|=7 common=1 | u=x2 | v=x2
+RESULT LA=2 LB=4 |FB|=565 |NB|=937 unordered_pairs=158766 shared_classes=7800 tuples(unordered)=111840 VCFAIL=2688 HBALL=2688 HCAND=0 hash_collisions=0  13 s
+
+real	0m13.104s
+user	0m1.942s
+sys	0m0.049s

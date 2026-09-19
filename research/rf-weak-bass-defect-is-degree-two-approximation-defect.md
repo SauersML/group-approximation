@@ -172,3 +172,33 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
     residually finite amenable cd-2 group. Equivalently: `H_1(K; V) = 0` and
     `dim H_2(K; V) = χ dim V − dim V_K` for all finite-image `V`. Any proof must use amenability
     beyond Følner transversals of bounded radius.
+- **2026-09-18 (lane `w19-112`): the ultraproduct / von Neumann limit route is dead: the
+  limit sees only the `L²` rank.** See `ultraproduct-limits-of-finite-covers-see-only-the-l2-rank`
+  (proposed ESTABLISHED, obstruction).
+  - *Induced data are `χ`-blind.* `L(K) ↪ ∏^ω L(F_i)` preserves the trace, so every module
+    induced from `Q[K]` has its `L²`-dimension there, and so does every module induced into the
+    rank ultraproduct `R_ω` of the `Q[F_i]`. The induced Fox complex has profile `(n − 1, n, 1)`
+    with homology of rank 0, whatever `χ` is.
+  - *Where `χ` lives.* `χ = rk coker(Φ : R_ω ⊗ P → ∏_ω Q[F_i] ⊗ P) = rk ∏_ω H_2(N_i)`, and
+    `∏_ω H_2(N_i) ∩ im Φ = 0`. The covers' `H_2` meets the image of every finitely generated
+    `M ≤ P` in dimension `o([K:N_i])`.
+  - *Brief's question.* `b_2^{(2)} = 0` is unconditional. `χ = b_2^{(2)}` holds iff `χ = 0`, so
+    forcing `b_2^{(2)} = 0` decides nothing.
+  - *Next step.* Prove `rk coker Φ = 0` at the finite level, from structure of the covers that
+    is not induced from `Q[K]`: `H_2(N_i)` swallowed by finitely many relators up to `δ[K:N_i]`.
+- **2026-09-18 (lane `w20-112`): the finite-level `coker Φ` step is the target, and Følner
+  tilings compute `χ` rather than bound it.** See
+  `folner-tile-collapse-of-cycle-module-computes-chi-exactly` (proposed ESTABLISHED,
+  obstruction).
+  - *Exact collapse.* In the Cayley-cycle model `Q[X] ⊗ P → Q[X]^n → Q[X]`, every tile, at every
+    scale and with no relator-length condition, spans an acyclic subcomplex whose 2-cycles meet
+    `H_2(N)` in `0`. Hence `H_2(N) ≅ H_2(C/T_*)`, with quotient dimensions
+    `(χ[K:N] + β − c, β, 0)` for a transversal. Also `b_1(N) <= β − c + 1`.
+  - *Blindness.* Følner transversals give `b_2(N_i)/[K:N_i] → χ` with no Lück approximation, and
+    every estimate from the collapse has the form `b_2 = χ[K:N] + O(β)`. `χ` enters only through
+    Swan's `r = χ + n − 1`. Covering `H_2(N_i)` by finitely many relators up to `δ[K:N_i]` is
+    equivalent to `χ <= δ`, so the step has no content beyond the target. The relator-depth race
+    becomes the single number `r`.
+  - *Next step.* Bound `dim H_0(N_i; Q ⊗ P) <= (n − 1)[K:N_i] + o` from a non-tiling input. On
+    the escape side, look for a torsion-free, amenable, non-elementary-amenable group of cd 2
+    whose finite-index subgroups all have `b_1 = 0`.

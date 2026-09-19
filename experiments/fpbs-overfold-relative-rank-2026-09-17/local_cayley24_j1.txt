@@ -1,0 +1,54 @@
+cayley (0, 2, 1) (1, 0, 2) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 2, 1) (1, 2, 0) n 6 Lj-orbits 3 law 3 found none
+cayley (1, 2, 0) (0, 2, 1) n 6 Lj-orbits 1 law 2 found none
+cayley (1, 2, 0) (2, 0, 1) n 3 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 2) (1, 0, 2, 3) n 4 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 2) (1, 2, 0, 3) n 24 Lj-orbits 3 law 6 found none
+cayley (0, 1, 3, 2) (1, 2, 3, 0) n 24 Lj-orbits 4 law 8 found none
+cayley (0, 1, 3, 2) (2, 3, 0, 1) n 8 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 2) (2, 3, 1, 0) n 8 Lj-orbits 1 law 2 found none
+cayley (0, 2, 3, 1) (1, 0, 2, 3) n 24 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 1) (1, 0, 3, 2) n 12 Lj-orbits 1 law 3 found none
+cayley (0, 2, 3, 1) (1, 2, 0, 3) n 12 Lj-orbits 4 law 8 found none
+cayley (0, 2, 3, 1) (1, 2, 3, 0) n 24 Lj-orbits 4 law 8 found none
+cayley (0, 2, 3, 1) (1, 3, 0, 2) n 24 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 1) (1, 3, 2, 0) n 12 Lj-orbits 1 law 3 found none
+cayley (1, 0, 3, 2) (0, 2, 3, 1) n 12 Lj-orbits 1 law 3 found none
+cayley (1, 0, 3, 2) (2, 3, 1, 0) n 4 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 0) (0, 1, 3, 2) n 24 Lj-orbits 1 law 4 found none
+cayley (1, 2, 3, 0) (0, 2, 3, 1) n 24 Lj-orbits 3 law 6 found none
+cayley (1, 2, 3, 0) (0, 3, 1, 2) n 24 Lj-orbits 6 law 12 found none
+cayley (1, 2, 3, 0) (0, 3, 2, 1) n 8 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 0) (1, 3, 0, 2) n 24 Lj-orbits 1 law 4 found none
+cayley (1, 2, 3, 0) (2, 3, 0, 1) n 4 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 0) (3, 0, 1, 2) n 4 Lj-orbits 1 law 2 found none
+cayley (0, 1, 2, 4, 3) (1, 0, 3, 2, 4) n 12 Lj-orbits 1 law 2 found none
+cayley (0, 1, 2, 4, 3) (1, 0, 3, 4, 2) n 12 Lj-orbits 3 law 6 found none
+cayley (0, 1, 2, 4, 3) (1, 2, 0, 3, 4) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 1, 2, 4, 3) (1, 2, 0, 4, 3) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 4, 2) (1, 0, 2, 3, 4) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 4, 2) (1, 0, 3, 4, 2) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 1, 3, 4, 2) (1, 0, 4, 2, 3) n 6 Lj-orbits 1 law 2 found none
+cayley (0, 2, 1, 4, 3) (1, 0, 3, 2, 4) n 10 Lj-orbits 1 law 2 found none
+cayley (0, 2, 1, 4, 3) (1, 2, 3, 0, 4) n 20 Lj-orbits 5 law 10 found none
+cayley (0, 2, 1, 4, 3) (1, 3, 0, 4, 2) n 10 Lj-orbits 1 law 2 found none
+cayley (0, 2, 1, 4, 3) (1, 3, 2, 4, 0) n 20 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 4, 1) (1, 0, 2, 4, 3) n 20 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 4, 1) (1, 0, 3, 2, 4) n 20 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 4, 1) (1, 2, 4, 0, 3) n 20 Lj-orbits 5 law 5 found none
+cayley (0, 2, 3, 4, 1) (1, 2, 4, 3, 0) n 20 Lj-orbits 5 law 10 found none
+cayley (0, 2, 3, 4, 1) (1, 3, 0, 2, 4) n 20 Lj-orbits 1 law 5 found none
+cayley (0, 2, 3, 4, 1) (1, 3, 2, 4, 0) n 20 Lj-orbits 1 law 4 found none
+cayley (0, 2, 3, 4, 1) (1, 4, 0, 3, 2) n 20 Lj-orbits 1 law 5 found none
+cayley (0, 2, 3, 4, 1) (1, 4, 3, 0, 2) n 20 Lj-orbits 1 law 5 found none
+cayley (1, 0, 3, 4, 2) (0, 1, 2, 4, 3) n 12 Lj-orbits 1 law 2 found none
+cayley (1, 0, 3, 4, 2) (0, 1, 3, 4, 2) n 6 Lj-orbits 1 law 2 found none
+cayley (1, 0, 3, 4, 2) (0, 1, 4, 2, 3) n 6 Lj-orbits 1 law 2 found none
+cayley (1, 0, 3, 4, 2) (1, 0, 2, 3, 4) n 6 Lj-orbits 1 law 2 found none
+cayley (1, 0, 3, 4, 2) (1, 0, 4, 2, 3) n 6 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 4, 0) (0, 2, 4, 1, 3) n 20 Lj-orbits 1 law 5 found none
+cayley (1, 2, 3, 4, 0) (0, 3, 1, 4, 2) n 20 Lj-orbits 1 law 5 found none
+cayley (1, 2, 3, 4, 0) (0, 4, 3, 2, 1) n 10 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 4, 0) (2, 3, 4, 0, 1) n 5 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 4, 0) (3, 4, 0, 1, 2) n 5 Lj-orbits 1 law 2 found none
+cayley (1, 2, 3, 4, 0) (4, 0, 1, 2, 3) n 5 Lj-orbits 1 law 2 found none

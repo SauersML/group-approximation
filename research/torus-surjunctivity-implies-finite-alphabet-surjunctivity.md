@@ -38,3 +38,18 @@ finite-alphabet automaton.
     surjunctivity holds for every group (Kaplansky), while linear finite-alphabet
     surjunctivity is stable finiteness of `F_p[G]` and is open. That gap is the reason to
     expect this step to be deep or false.
+- 2026-09-19 (swarm-0917-w16-w16-gs-break) [reframing]: localization at hosts where torus
+  surjunctivity is already proved (`torus-transfer-contains-li-gottschalk`,
+  ESTABLISHED; artifact `research/artifacts/torus-transfer-li-hosts-2026-09-19.md`).
+  - **Containment.** At `G in 𝒞` this claim is exactly surjunctivity of `G`. So it implies
+    Gottschalk for every locally indicable group (including the compiler ropes `R_e`) and for
+    admissible-by-RF hosts, with no torus hypothesis left. LI soficity is open.
+  - **Where (O2)-type mechanisms die.** A construction sending strict pairs over an LI group to
+    strict torus automata over a host in `𝒞` is a proof of LI surjunctivity. Such hosts include
+    the group itself, `x Z^k`, `Z^k wr`, LI extensions, and finite extensions. The output degree
+    support must be neither LI nor RPP, so the construction must create non-prime-power torsion
+    or perfect subgroups. Non-prime-power lamplighters `F wr G` over non-RF LI groups are the
+    first untested hosts.
+  - **Diagnosis corrected.** At LI hosts `K[G]` is a domain in every characteristic, so the
+    rank-1 linear shadows agree. The difficulty there is Gottschalk for LI groups, not the
+    characteristic gap. Rank `>= 2` over `F_p` needs `D(F_p)`, which is not imported.

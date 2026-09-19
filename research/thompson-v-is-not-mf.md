@@ -42,4 +42,65 @@ inside `V` is finite with trivial defect, in every ambient group.
 
 ## Attempts
 
-None yet.
+1. **K-theory, trace and rational-cohomology lanes are dead** (swarm-0917 w16,
+   2026-09-19). See `thompson-v-k-shadow-cannot-detect-mf`.
+   - By simplicity, MF for `V` is the nonvanishing of the single rank class
+     `r(Ψ(p_s))` of `p_s = (1-s)/2`.
+   - Traces on `K_0(C*V)` are rational, by Higson--Kasparov and Lück Theorem
+     0.3. So the positive integer shadow `a_n ε_* + b_n τ_*` satisfies every
+     ordered-`K_0`, unit, character-simplex and finite-subgroup-packet
+     constraint, and gives that class the value `b_n/2 ≠ 0`.
+   - `H^(2k)(·; Q)`, `k ≥ 1`, vanishes for `V` and for every torsion
+     centralizer (`thompson-v-torsion-centralizers-are-rationally-acyclic`).
+     So Dadarlat-type and delocalized cohomological obstructions have no input.
+
+   Death step: any such argument must conclude `r(Ψ(p_s)) = 0`. A proof must
+   use data that is not homotopy invariant, namely operator-norm defects of
+   the infinite-order relators and how local models glue.
+
+2. **swarm-0917 (ptl-last1), operator-norm defect gap: a reduction, with numerics that carry no weight.**
+   The hole stays **OPEN**.
+   - **Reduction (ESTABLISHED, written proof).**
+     - Claim: `thompson-v-mf-iff-opnorm-s4-s3-defect-gap-vanishes`, via
+       `thompson-v-mf-iff-opnorm-s4-s3-defect-gap-proof`. Take `G0 = S4 *_Z2 S3`, so that
+       `V = G0/<<r5..r8>>`.
+     - Statement: this claim holds **iff** there is `epsilon_0 > 0` such that every nontrivial irreducible
+       finite-dimensional unitary representation `sigma` of `G0` has
+       `max_i ||sigma(r_i) - 1||_op >= epsilon_0`.
+     - Proof steps:
+       - operator-norm correction of the two finite subgroups;
+       - aligning the two copies of `a` by a unitary `Z` with `||Z - 1|| <= ||S - T||`;
+       - simplicity of V, together with `||rho(a) - 1|| = 2` for an exact nontrivial involution, so no
+         amplification is needed.
+     - Consequences:
+       - each `delta_n` is attained and `> 0`, and `delta_1 = 2`;
+       - "V MF" is an explicit Pi_2 sentence over Tarski-decidable matrix problems.
+     - Unlike the tracial and sofic criteria, a single low-defect irreducible summand is already a witness,
+       because padding only adds trivial summands. The whole hole is therefore a **uniform-in-dimension lower
+       bound for exact representations of a virtually free group**.
+   - **Permutation models are dead (elementary).** Let `rho` be a nontrivial permutation representation of
+     `G0`, e.g. through a finite quotient acting on a set. Then `D(rho) >= sqrt 3`.
+     - **Invariant.** The spectrum of a permutation matrix `P != 1`: each cycle of length `m >= 2` carries
+       all `m`-th roots of unity, so `||P - 1|| >= 2 sin(pi floor(m/2)/m) >= sqrt 3`.
+     - **Where it dies.** If `D(rho) < sqrt 3`, every `rho(r_i)` is the identity, so `rho` factors through V.
+       It is then trivial by `thompson-v-has-no-nontrivial-fd-unitary-representation`.
+     - **Consequence.** Any MF witness sequence must leave the permutation (and finite-quotient-permutation)
+       class for good.
+   - **Computation.** All files are in `experiments/thompson-v-opnorm-defect-gap-2026-09-17/`.
+     - `delta_2` is in `[1.92374, 1.92385]`, by a Lipschitz grid scan in `scan_n2.py`.
+     - Local-search upper bounds for V (`delta_n.py`, `out_V.json`) for `n = 3..7` are
+       `1.744, 1.688, 1.680, 1.698, 1.702`, so `delta_7 <= 1.680`.
+   - **Calibration FAILS. Do not repeat local search on `delta_n`.**
+     - The planted PSL(2,17) word set gives the same plateau at `n <= 9`: `2, 1.84, 1.69, 1.71, 1.60, 1.65,
+       1.65, 1.66, 1.70` (`out_CTRL2.json`). At `n = 9` it misses its own exact solutions, the two
+       9-dimensional irreducibles of PSL(2,17).
+     - On the pattern of its exact 17-dimensional Steinberg representation (`D = 5e-15`), the same search
+       stalls at `1.764`. With a Frobenius warm start it stalls at `1.766` (`calibrate_ctrl2.py`).
+     - So values `~1.6-1.77` are a landscape artifact for words of length 26-37. They are not evidence of a
+       gap.
+     - Any computational attack on the gap needs either certified lower bounds, e.g. a Lipschitz scan or a
+       sum-of-squares relaxation over `U(n-k) x U(k)`, or a structured ansatz for witnesses. Blind search
+       in the normal form does neither.
+   - **Next hole.** The uniform gap for irreducibles of `G0`. Neither of the following is proved:
+     - the case of irreducibles whose restriction to `S4` has bounded multiplicity pattern type;
+     - a spectral-gap argument on the representation variety.

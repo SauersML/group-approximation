@@ -395,3 +395,29 @@ vocabulary rather than its content.
   positive-entropy route dies under the same hypothesis. Zero-entropy code
   classes have local dimension zero, so size filters are blind there. A
   survivor, of any entropy, needs **accumulating backward sections** of `R`.
+
+* **Accumulating backward sections on a cocompact `Sp(n,1)` lattice (w15-026,
+  `fpbs-ray-code-deaths-depend-only-on-the-current`).** The aim was to close the
+  ray-code route by showing that quasiconvex-nullness forces the invariant
+  current `mu_R` onto a backward-locally-finite set. **The closure is false:**
+  the Markov code of the geodesic flow of a compact quaternionic hyperbolic
+  manifold is uniformly quasi-geodesic, has a quasiconvex-null (Lebesgue) class,
+  and a current equivalent to the Liouville current with nonatomic backward
+  conditionals; it dies only by the Dini filter. **What was proved instead:** for
+  codes with a finite invariant measure the death is decided exactly by the
+  current (atomic, locally finite backward conditionals), not by the relation;
+  at zero entropy the forward word determines the past. A survivor needs an
+  essentially accumulating current over a Dini-singular class.
+
+* **Toeplitz asymptotic pairs as the source of accumulation (w16-026,
+  `fpbs-zero-entropy-accumulation-needs-tail-collapse`).** The aim was to get an
+  essentially accumulating zero-entropy current from right-asymptotic pairs: one
+  right ray with infinitely many left extensions. **Dead at the first step:** at
+  zero entropy the past word is a.e. a function of the forward S-word, so all
+  left extensions but one are rho-null. More generally, tail-equivalent futures
+  with a common endpoint carry at most |Stab(eta)| pasts. So codes with finitely
+  many tail classes per endpoint satisfy (LF_mu) and die. What is left is **tail
+  collapse with separated pasts**: infinitely many tail-inequivalent typical
+  futures that fellow-travel to one endpoint and whose pasts differ. Respelling
+  collapses tails without separating the pasts, so the mechanism must use
+  relators of Gamma.

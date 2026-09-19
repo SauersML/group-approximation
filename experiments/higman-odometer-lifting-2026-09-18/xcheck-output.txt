@@ -1,0 +1,10 @@
+# gap -q -o 2g, xcheck.g with KMAX:=5 (the k=5 run with R did not finish within the time cap on a loaded host)
+k=1 withR 8
+k=2 withR 32
+k=3 withR 192
+k=4 withR 1536
+# gap -q -o 2g, xcheck.g with KMAX:=0, KMAXNOR:=4
+k=1 noR 8
+k=2 noR 32
+k=3 noR 288
+k=4 noR 4352

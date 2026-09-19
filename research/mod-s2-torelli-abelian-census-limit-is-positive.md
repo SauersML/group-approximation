@@ -108,3 +108,31 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
     identified. The single orbit at `k = 2` suggests one exists.
   - `Gamma(8)` (`2^20 * 60` cosets of `H`) is out of reach of this pipeline.
 - **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w15-w15-deligne-pull (census-computation): index-two layer below Gamma(4) computed, d = 1/30, b_1(M_8) = 54
+
+- **What was computed.** See `mod-s2-gamma4-index-two-torelli-census`, established through
+  `mod-s2-gamma4-index-two-torelli-census-proof`.
+  - The 1023 index-two subgroups `Gamma(8) < G_chi < Gamma(4)` fall into 15 `Sp_4(F_2)`-orbits.
+  - For one `chi` per orbit, the [G4] pipeline was run on the 122880 cosets of `H`.
+- **Results.**
+  - `d(G_chi) = 1/30` for all 1023. In every orbit the certificate is a mass-10 relation with
+    `l1 = aug = 10`, so it does not spread to the transfer mass 20.
+  - `b_1(M_chi) = 54` in every orbit. `H_1` is `Z^54`, except in orbit 2 (45 subgroups), where it
+    is `Z^54 + Z/2` with 192 classes.
+  - By the character decomposition of `H_1(M_8; C)` over `Gamma(4)/Gamma(8) = F_2^10`,
+    `b_1(M_8) = 54`. The same holds for every `Gamma(8) <= Gamma' <= Gamma(4)`.
+- **Reading.**
+  - Real characters are frozen from level four to level eight: every real character of `M_8` is
+    restricted from `M_4`. So the identity component of `Ann(W(Gamma(8)))` gives exactly `1/30`.
+  - Hence `d(Gamma(8)) < 1/30`, the first possible decay of the 2-adic tower, can only come from a
+    torsion character of `H_1(M_8; Z)`.
+  - In the index-two layer the only torsion is one `Z/2`, and it does not lower `d`.
+- **Where it stops.**
+  - The torsion of `H_1(M_8; Z)` is not computed. The transfer argument sees only `H_1(-; C)`.
+  - It is also open whether `b_1(M_(2^k))` stays 54 for all `k`. For `k = 4`, `Gamma(8)/Gamma(16)` is
+    again `sp_4(F_2)`, so the question is again 15 orbit runs. Each run has twice the cosets of
+    `M_8`, about 1.26e8, which is out of reach of this coset pipeline.
+  - If `b_1` stays 54 along the whole tower, (TAP) on the 2-adic tower becomes a statement about
+    torsion characters alone.
+- **Status.** OPEN.

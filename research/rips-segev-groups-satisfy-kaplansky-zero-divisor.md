@@ -366,3 +366,44 @@ the Kaplansky zero-divisor conjecture."
      the space `Rep_T` is small, and each coset fixes an exit/entry ratio.
      Show that the product of these ratios around a directed port cycle
      cannot be `±1`.
+
+22. **Port holonomy is tautological and blind over `F_2` (obstruction; `rips-segev-port-holonomy-is-tautological-and-f2-blind`).**
+   - Kills the holonomy form of the previous item: impose the escape support
+     condition, get `dim Rep_T <= 1`, and show the ratio product around a
+     directed port cycle is not `±1`.
+   - (A) The edge equation `X(z b) = - Y(z)` telescopes.  For every solution
+     and every directed cycle of length `L`, `prod rho_T = (-1)^L`.
+   - (B) The support condition is relative to a covering.  One copy per
+     active edge always satisfies it.  Adding copies whose line starts at
+     chosen points (position `0` is a port of both kinds) makes `Rep_T`
+     arbitrarily large.  So `dim Rep_T <= 1` is false in general.
+   - (C) Over `F_2` every ratio is `1`.  The `F_2` case is exactly the
+     non-existence of a finite `(u, w)`-harmonic family, a support statement.
+   - Also: `Lambda` (active cosets, active `b`-edges) is simple and oriented,
+     by the short-relation lemma.  A support-minimal counterexample is
+     globally rigid (`V = k alpha`), but that does not make any single coset
+     rigid.  On the `(x_4 x_1)^21` face, the intrinsic `R_T` is
+     2-dimensional with a free ratio on most cosets, and on all 42 over
+     `F_10007` (`port_holonomy.py`).
+   - Next step: (i) in characteristic `!= 2`, find a directed cycle of
+     locally rigid cosets (`dim R_T = 1`) in a copy-minimal covering and show
+     that the pattern-forced product is not `(-1)^L`; (ii) over `F_2`,
+     exclude harmonic families by support matching, using only simplicity of
+     `Lambda` and the rank-one lemma.
+
+23. **Harmonic cycles split over copies (strict reduction; `rips-segev-two-layer-cycles-split-over-copies`).**
+   - The previous item asked for two things: exclude `F_2` harmonic families by support matching with simple
+     `Lambda` and the rank-one lemma, and find a rigid directed cycle whose forced product is not `(-1)^L`.
+     Neither can close as stated.  In `<a, b | (a^m b)^n>`, `sum_j (a^m b)^j (1 - a^m b) = 0` satisfies every
+     such hypothesis.  A proof must use row separation or the non-monomial ratio.
+   - New object: if `u(1) + w(1) = 0`, then `sum_z Y(z)[z -> z b] + sum_T f_T (u + w)/(t - 1)` is a finite
+     1-cycle on the Cayley graph.  Relators are closed paths in `Gamma`, so it splits as `sum_i c_i` with
+     `0 != c_i in Z_1(C_i)`, over finitely many copies that `alpha` itself picks.
+   - Each `c_i` runs through a `Phi`-cycle of at least 42 lines.  A cycle line that no other `c_j` touches is
+     active and pure.  The rank-one lemma allows such lines on one row only, so each copy has at most one.
+   - Reduction: the coefficient-free **linked-cycle lemma** (in every finite family of copies carrying nonzero
+     cycles, some copy has two untouched cycle lines) excludes every relation with `u(1) + w(1) = 0`, over any
+     field.  Two copies share at most 3 cosets, so the lemma holds for at most 14 copies.  The star family is not
+     a counterexample: it leaves at least 33 lines untouched.
+   - Next step: prove the linked-cycle lemma for 15 or more copies, via an outermost copy.  Also handle
+     `u(1) + w(1) != 0`, where the chain has rays along the cosets with `f_T(1) != 0`.

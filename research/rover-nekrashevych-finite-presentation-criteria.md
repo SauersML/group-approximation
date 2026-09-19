@@ -111,3 +111,20 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
       The 2-graph method is specific to non-contracting, `S`-arithmetic examples such as the lamplighter.
   - Next: find which self-similar `H` admit `k`-graph models. The candidates are non-contracting affine groups
     `x ↦ ux + b` over `S`-integers of global fields, where the `S`-unit rank gives `k`.
+- **2026-09-18 (w12-101).**
+  - **The basilica is settled negatively for every `k ≥ 1`** (`basilica-rn-group-is-not-a-k-graph-full-group`).
+    - If `V_d(H) ≅ F(G_Λ)`, then `H_*(𝒢_H; Q) = 0`. Here `H_0(𝒢_H)` is a quotient of `Z/(d-1)`, and for a finite
+      `k`-graph, rational `H_0 = 0` forces all rational homology to vanish (a Koszul eigenspace argument).
+    - A section character `ψ(h) = Σ_x ψ(h|_x)` gives `H_1(𝒢_H; Q) ≠ 0`.
+    - The basilica and the odometer have one (exponent sum); the lamplighter, Grigorchuk and Hanoi have none.
+    - So `V_2(Basilica)` is not a finite `k`-graph full group, including `k = 1` (Cuntz–Krieger).
+  - **The lamplighter construction generalises to every `S`-rank over `F_q(t)`**
+    (`s-arithmetic-affine-rn-groups-are-k-graph-full-groups`).
+    - The `k`-graph monoid is `P_n = {x ↦ (t^m x + N)/Q_n : deg N < m}` inside `Aff(O_S, ⟨t, p_1, ..., p_{k-1}⟩)`.
+      Its path groupoid is the affine germ groupoid.
+    - So these `V_q(H)` are `F_∞`, with `H_j = (Z/(q-1))^{C(k-1,j)}`. For `q = 2` they are acyclic and simple.
+    - `H` is non-contracting for `k ≥ 2`.
+  - Number fields: a rational criterion is sketched (no trivial character `|u|_v Π_{σ∈I} σ(u)` on `U`).
+    - `BS(1,3)` passes it, but has `H_1 = H_2 = Z/2`, so it has no graph (`k = 1`) model.
+  - Next: decide whether `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_2` (i.e. `V_2(BS(1,3))`) is a `k`-graph groupoid for some
+    `k ≥ 2`; and handle higher genus.

@@ -230,3 +230,61 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     actions (`perm.g`), and read off the wreath sections of `a, b, c, d`. Then look for a recursion
     `Q_(e+1) -> Q_e wr C_2`, which would be a self-similar model beyond w11's length-2 search.
     Separately, run `e = 11` at class 20 when the host is idle.
+- **w17-053 (question (a): self-similar models with a as odometer).** Landed
+  `higman-h4-3-has-no-odometer-models-beyond-level-five` (claim and proof route).
+  - Blocked step. The brief asked to embed the `e = 3, 4` monolithic models in `W_5, W_8` and find a
+    recursion `Q_(e+1) -> Q_e wr C_2`. In those models `a` is semiregular with `2^(k-e)` cycles. The
+    natural recursion makes `a` level-transitive (the adding machine `a = (1, a) s`), and that is
+    impossible.
+  - Computed (exhaustive, exact `F_2`-linear lifting level by level in `W_k`, up to conjugation by
+    `<a>`): no homomorphism `H4(3) -> W_k` with `k >= 6` sends a generator to a `2^k`-cycle, even
+    without `R`.
+    - Equivalently, no finite 2-quotient has an exact factorization `<x> H` with `ord(x) >= 64`.
+    - So no action of `H4(3)` on `T_2`, self-similar or not and with sections of any length, has a
+      level-transitive generator. This extends w11's length-2 dead end.
+    - Odometer models: with `R`, `8, 32, 192, 1536, 11776` raw at levels 1 to 5 (classes
+      `8, 16, 48, 192, 736`). Without `R`, `8, 32, 288, 4352` raw at levels 1 to 4 (classes up to
+      9728 at level 5). None at level 6.
+    - Raw counts agree with an independent GAP enumeration.
+  - Proved: in any odometer model `d(x) = 3x + t`, of order `2^(k-2)` or `2^(k-1)` as `t` is even or
+    odd.
+    - At level 5 every model has `t` even, `ord(d) = 8` and `ord(b), ord(c) <= 4`. These are very
+      unbalanced models of degree 32, unlike the balanced monolithic ones.
+    - A conceptual proof of the level-6 wall is open. The order ladder alone does not give it.
+  - Dead: odometer, adding-machine and every level-transitive self-similar model of `H4(3)` or
+    `H4(3)/<<[a,c]^2>>`.
+  - Next: tree models in which `a` has infinite order but is not level-transitive. The first family
+    is the `j`-odometer `x -> x + 2^j`.
+    - For `j = 1` (`bfs2.py`, with `R`) there are 96, 752, 9152 and 229376 classes at levels 2 to
+      5, with max log2 orders `(4, 3, 4, 4)` at level 5. This family is alive and growing where the
+      odometer family has 736 classes and dies.
+    - Level 6 and beyond (the question is whether `ord(a) = 2^(k-1)` persists) needs a C
+      implementation or the full `W_1 x| translations` symmetry.
+    - If the `j`-odometer counts also die, the next families are elements `a` that are
+      level-transitive only on some subtree, and trees of degree `2^s`.
+- **w18-053 (question (a): two-orbit odometer tree models).** Landed
+  `higman-h4-3-two-orbit-odometer-models-stop-at-level-seven` (claim and proof route).
+  - Computed. I wrote a C lifter (`jlift.c`) that does exact `F_2`-linear lifting with orderly
+    generation up to the full centralizer of `a`, which has order `2^(2k-1)`. With it, the
+    `1`-odometer family `a : x -> x + 2` of `H4(3)/<<[a,c]^2>> -> W_k` dies at level 8.
+    - Class counts at levels 1 to 8 are `8, 80, 332, 1908, 24336, 318432, 11776, 0`.
+    - Every level-7 model has an inconsistent lifting system.
+    - The lifter reproduces w17's `J = 0` counts (with and without `R`) and `bfs2.py`'s
+      translation counts. The 271216 level-6 models that fix level 1 match `736 * 737 / 2`
+      exactly.
+  - Certificate. A GAP-verified transitive 2-group quotient of degree 128 with
+    `ord(a,b,c,d) = (64,4,4,16)` and order `2^29`. The best ord(a) per family grows from 32
+    (`J = 0`) to 64 (`J = 1`).
+  - Proved:
+    - the centralizer lemma and the exactness of orderly generation;
+    - the ladder `ord(a) <= 4 ord(d)` in 2-groups, which is tight in every top-level survivor;
+    - a model with every generator fixing level 1 is a pair of `0`-odometer models one level
+      down, so the `J = 0` wall kills that part of `J = 1`.
+  - Open: a conceptual proof of either wall. The data fit a wall at level `5 + 2J`, which is not
+    proved.
+  - Dead: the `1`-odometer family (with `R`).
+  - Not reached: `J = 2`, whose first level-6 node has `2^28` lifts, and `J = 1` without `R`.
+  - Next: treat `a : x -> x + 2^J` for `J >= 2` as a `0`-odometer problem for the finite-index
+    subgroup that fixes level `J` (Reidemeister–Schreier). Or search non-uniform tree models,
+    where `a` is level-transitive on some subtrees but stalls on others. Killing every `J` would
+    not by itself exclude infinite order.

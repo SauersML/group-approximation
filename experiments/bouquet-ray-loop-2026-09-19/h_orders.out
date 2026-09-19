@@ -1,0 +1,62 @@
+pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | 4 302500 103072640000 | 8
+pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | 1 605 605 | 7
+pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | 4 402627500 103072640000 | 7
+pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | 4 3221020 3221020 | 7
+pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | 4 302500 103072640000 | 8
+pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | 1 605 605 | 7
+pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | 4 402627500 103072640000 | 7
+pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | 4 3221020 3221020 | 7
+pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | 4 108201534566400000000 36868158082016870400000000 | 10
+pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | 1 605 605 | 7
+pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | 4 302500 103072640000 | 7
+pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | 4 3221020 3221020 | 7
+pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | 4 402627500 103072640000 | 8
+pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | 4 619520 824581120 | 7
+pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | 4 824581120 824581120 | 7
+pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | 4 619520 824581120 | 7
+pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | 1 2420 2420 | 7
+pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | 2 19360 212960 | 7
+pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | 4 619520 824581120 | 7
+pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | 4 824581120 824581120 | 7
+pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | 4 12884080 12884080 | 7
+pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | 4 206145280 206145280 | 6
+pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | 4 824581120 824581120 | 6
+pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | 4 302500 189062500 | 7
+pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | 4 108201534566400000000 140229188798054400000000 | 8
+pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | 4 402627500 251642187500 | 7
+pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | 4 302500 103072640000 | 7
+pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | 4 302500 103072640000 | 7
+pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | 4 108201534566400000000 36868158082016870400000000 | 8
+pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | 1 605 605 | 6
+pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | 4 402627500 103072640000 | 6
+pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | timeout | 600
+pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | 4 3221020 3221020 | 5
+pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | 4 3221020 4174441920 | 5
+pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | 4 3221020 4174441920 | 5
+pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | timeout | 600
+pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | 4 3221020 3221020 | 5
+pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | 4 402627500 103072640000 | 5
+pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | 4 108201534566400000000 36868158082016870400000000 | 7
+pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | 1 605 605 | 6
+pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | 4 108201534566400000000 36868158082016870400000000 | 7
+pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | 4 302500 103072640000 | 5
+pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | 4 824581120 824581120 | 5
+pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | 4 619520 824581120 | 5
+pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | 4 824581120 824581120 | 5
+pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | 4 12884080 12884080 | 5
+pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | 4 206145280 206145280 | 5
+pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | 4 824581120 824581120 | 5
+pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | 4 619520 824581120 | 5
+pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | 1 2420 2420 | 5
+pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | 2 19360 212960 | 5
+pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | 4 619520 824581120 | 5
+pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | 4 402627500 251642187500 | 5
+pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | 4 302500 189062500 | 5
+pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | 4 108201534566400000000 140229188798054400000000 | 6
+pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | timeout | 600
+pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | 4 3221020 4174441920 | 4
+pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | 4 402627500 1649162240000 | 7
+pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | 4 3221020 4174441920 | 7
+pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | 4 230425988012605440000 298632080464336650240000 | 7
+
+# partial run: the first 57 and last 3 of the 286 cases undecided in h_inf.out (the run was stopped for time; h_growth.py screened the rest).
