@@ -690,3 +690,25 @@ Next step: (MUI-J) itself. Run a Kun-type expander decomposition of
 `(W_n, lambda_n, psi_n(Gamma))` and compare it with its `psi_n(t)`-conjugate,
 using UI marginals to make the Hamming defects of the lift cost `o(1)`
 `lambda_n`-mass. The claim stays OPEN.
+
+- **(MUI-J) attacked directly (lane w12-121, 2026-09-18).** Result:
+  `mui-pair-measures-orbital-reduction` (reduction).
+  - *Marginals are free.* For every sofic `sigma`, both marginals of an MUI
+    internally `Gamma`-invariant pair measure are internally `N`-invariant:
+    truncate the UI densities, apply Kun--Thom Theorem C on the Loeb space.
+    Internal equivariance is automatic under MUI.
+  - *Finite form.* (MUI-J) iff, for each `t` in a finite generating set
+    `T subset P_Gamma`, `psi(t)` pushes admissible measures to internally
+    `Gamma`-invariant ones (they are always `t Gamma t^-1`-invariant).
+  - *Orbital reduction.* At `Gamma`-exact lifts, (T) replaces every
+    admissible measure by a TV-close exact mixture of `Gamma`-orbit measures
+    on `Y_n x Y_n` (Hecke / double-coset couplings; Theorem 4.1 is the
+    size-one double cosets). Fully exact lifts are closed.
+  - *Exact failing step for the one-point method on pairs.* Pair orbits can
+    carry mass on sets of uniform density `O(1/|Y_n|)`, so Kun's
+    decomposition of `W_n` for the uniform measure does not see them.
+
+Next step: (MUI-O). For a `Gamma`-exact lift, show the `psi(t)`-push of an
+MUI mixture of double-coset couplings is `Gamma`-invariant, by a
+`nu`-weighted count of `Lambda_t`-orbits inside `Gamma`-orbits of pairs, or
+build an exact-`Gamma` lift where it fails. The claim stays OPEN.
