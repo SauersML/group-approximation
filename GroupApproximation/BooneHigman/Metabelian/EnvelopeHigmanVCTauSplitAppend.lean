@@ -69,6 +69,7 @@ theorem higmanVCTauSplit_descP_append {d : ℕ} {m o : List (Fin d)} (hom : ¬ o
   obtain ⟨x, y, z, r, rfl⟩ := higmanVCTauSplit_three hm
   obtain ⟨e, os, rfl⟩ := higmanVCTauSplit_ne_nil hom
   simp only [List.cons_append, higmanVCTauSplit_descP_cons, List.head?_cons]
+  split_ifs <;> rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_descP_append
 
