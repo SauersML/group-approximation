@@ -221,3 +221,33 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+
+**Central-Laurent descent: the lattice-and-factor part of the `Z^4` fork is one function-field Leavitt question (swarm-0917-w15-w15-z-pull, linear-characteristic, 2026-09-19). OPEN; a new decomposition, not a decision.**
+- New ESTABLISHED (unreviewed) claim `laurent-tensors-reduce-leavitt-rank-to-function-fields`, with a route that
+  requires nothing.
+  - **Lemma.** Let `A` be any algebra and `R` a central commutative domain with `trdeg_F Frac(R) = s`. If `A ⊗ R`
+    contains a commutative domain of transcendence degree `s + m`, then `A ⊗ Frac(R)` contains `m` commuting
+    elements that are independent over `Frac(R)`. At the polynomial level the converse holds.
+  - **Proof idea.** Take a prime of the commutative hull of `D` and `R` that avoids both. Nonzero elements of `R`
+    are non-zero-divisors in `A ⊗ R`.
+- **Consequence for the host `B_Ω ⊗ L_(F_2)(1,2)`.** Let `H_Y = (LC(Y) ⋊ Z^2) ⊗ L_2`, for `Y` a point, a finite
+  orbit or an odometer factor of `Ω`. The algebra `LC(Z^2/Λ) ⋊ Z^2` is `M_N(F[Λ])`, so `H_Y` is locally
+  `M_N(L_2) ⊗ F[Z^2]`. Hence:
+  - any `F_2[Z^4]` in `H_Y` gives `Q_2(F_2(x,y))`, that is, two commuting independent elements of
+    `L_(F_2(x,y))(1,2)`;
+  - `H_Y` contains mechanism (i).
+- **Field reduction.**
+  - `Q_2(F)` implies `Q_2(K)` for every field `K ⊇ F`.
+  - `Q_2` over any field of characteristic `p` descends to `Q_2(F_p(x_1..x_e))`.
+  - So the polynomial-level commutative-rank conjecture for every `L_2 ⊗ F[Z^s]` is exactly the base case over
+    function fields.
+- **The NO side of the fork now needs three pieces, each of which can fail:**
+  1. no `F_2[Z^3]` in `B_Ω`, which is the Ore point-column lemma of lane w14-bh;
+  2. no `Q_2(F_2(x,y))`;
+  3. no embedding that essentially uses the expansive part of `Ω`, which is mechanism (iii-b).
+- **Where it dies as a proof of NO.** At piece 2.
+  - The Ara–Cortiñas Q5.7 firewall moves to `K = F_2(x,y)`: a unital map `L_K ⊗ L_K -> L_K` gives `Q_2(K)`.
+  - A rank argument cannot supply piece 2, because `[1] = 0` in `K_0(L_K)`.
+  - Piece 3 cannot be reached by the lemma, because the lattice units are not central in `B_Ω`.
+- **Transfer.** Every *field-uniform* obstruction for `L_k(1,2)`, such as `C(s_w) = k[s_u]` from lane w15-bh,
+  now covers all of `H_Y` at once.
