@@ -47,8 +47,8 @@ def gpOf (s : Set V) (u : V) : G u →* GP Γ G s :=
 variable {Γ G}
 
 theorem gpOf_killed {s : Set V} {u : V} (hu : u ∉ s) (a : G u) : gpOf Γ G s u a = 1 := by
-  show QuotientGroup.mk' _ (CoprodI.of a) = 1
-  rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
+  simp only [gpOf, MonoidHom.comp_apply, QuotientGroup.mk'_apply]
+  rw [QuotientGroup.eq_one_iff]
   exact Subgroup.subset_normalClosure (Or.inr ⟨u, hu, a, rfl⟩)
 
 theorem gpOf_comm (s : Set V) {u w : V} (h : Γ.Adj u w) (a : G u) (b : G w) :
@@ -88,8 +88,8 @@ def gpLift {A : Type} [Group A] (s : Set V) (φ : ∀ u, G u →* A)
 
 @[simp] theorem gpLift_of {A : Type} [Group A] (s : Set V) (φ : ∀ u, G u →* A) (hkill) (hcomm)
     (u : V) (a : G u) : gpLift s φ hkill hcomm (gpOf Γ G s u a) = φ u a := by
-  show QuotientGroup.lift _ _ _ (QuotientGroup.mk' _ (CoprodI.of a)) = φ u a
-  rw [QuotientGroup.mk'_apply, QuotientGroup.lift_mk, CoprodI.lift_of]
+  simp only [gpLift, gpOf, MonoidHom.comp_apply, QuotientGroup.mk'_apply, QuotientGroup.lift_mk,
+    CoprodI.lift_of]
 
 theorem gp_ext {A : Type} [Group A] {s : Set V} {f g : GP Γ G s →* A}
     (h : ∀ u (a : G u), f (gpOf Γ G s u a) = g (gpOf Γ G s u a)) : f = g := by
@@ -110,7 +110,7 @@ theorem gp_induction {s : Set V} {p : GP Γ G s → Prop} (x : GP Γ G s) (one :
 /-- `GP t → GP s` for `t ⊆ s`. -/
 def gpIncl {t s : Set V} (hts : t ⊆ s) : GP Γ G t →* GP Γ G s :=
   gpLift t (fun u => if u ∈ t then gpOf Γ G s u else 1)
-    (fun u hu a => by rw [if_neg hu]; rfl)
+    (fun u hu a => by rw [if_neg hu, MonoidHom.one_apply])
     (fun u w hadj hu hw a b => by rw [if_pos hu, if_pos hw]; exact gpOf_comm s hadj a b)
 
 theorem gpIncl_of {t s : Set V} (hts : t ⊆ s) {u : V} (hu : u ∈ t) (a : G u) :
@@ -152,9 +152,12 @@ theorem gpIncl_gpIncl {c t s : Set V} (hct : c ⊆ t) (hts : t ⊆ s) (x : GP Γ
   exact DFunLike.congr_fun h x
 
 theorem gp_empty_subsingleton : Subsingleton (GP Γ G ∅) := by
-  have h : ∀ x : GP Γ G ∅, x = 1 := fun x =>
-    gp_induction (p := fun x => x = 1) x rfl (fun u a => gpOf_killed (Set.notMem_empty u) a)
-      (fun x y hx hy => by rw [hx, hy, one_mul])
+  have h : ∀ x : GP Γ G ∅, x = 1 := by
+    intro x
+    induction x using gp_induction with
+    | one => rfl
+    | of u a => exact gpOf_killed (Set.notMem_empty u) a
+    | mul x y hx hy => rw [hx, hy, one_mul]
   exact ⟨fun a b => (h a).trans (h b).symm⟩
 
 variable (Γ G)

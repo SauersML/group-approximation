@@ -1,0 +1,242 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+[job] acn112 cores=80-87 threads=8 base=d731685977137bdae12606b06c025af318b4789e mods: GroupApproximation.CharClass.LIXKGenRotate GroupApproximation.CharClass.LIXKGenAgree GroupApproximation.CharClass.LIXKGenOfStepCAgree
+ℹ [8730/8888] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8760/8987] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8773/8987] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8777/8987] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8813/8987] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8855/8987] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8856/8987] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8891/8987] Replayed GroupApproximation.CharClass.LIXKGenSphereChartHomeo
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:199:14: 'GroupApproximation.CharClass.KGen.chartQ_clamp_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:200:14: 'GroupApproximation.CharClass.KGen.one_sub_chartQ_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:201:14: 'GroupApproximation.CharClass.KGen.sphereChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8892/8987] Replayed GroupApproximation.CharClass.LIXKGenZeroChartHomeo
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:151:14: 'GroupApproximation.CharClass.KGen.isOpen_sphereNearZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:152:14: 'GroupApproximation.CharClass.KGen.psiSphere_zeroChartFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:153:14: 'GroupApproximation.CharClass.KGen.zeroChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8911/8987] Replayed GroupApproximation.CharClass.LIXKGenSphere
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:342:14: 'GroupApproximation.CharClass.KGen.normSq_cxToEuc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:343:14: 'GroupApproximation.CharClass.KGen.cxToEuc_eucToCx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:344:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:345:14: 'GroupApproximation.CharClass.KGen.hbase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:346:14: 'GroupApproximation.CharClass.KGen.hbase_two_eq_hbase_lix' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8912/8987] Replayed GroupApproximation.CharClass.LIXKPunctured
+info: GroupApproximation/CharClass/LIXKPunctured.lean:168:14: 'GroupApproximation.CharClass.isZero_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKPunctured.lean:169:14: 'GroupApproximation.CharClass.isZero_punctured_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8913/8987] Replayed GroupApproximation.CharClass.LIXKGenPunctured
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:182:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:183:14: 'GroupApproximation.CharClass.KGen.puncturedVanish_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:184:14: 'GroupApproximation.CharClass.puncturedAcyclic_lixBase_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8927/8987] Replayed GroupApproximation.CharClass.LIXKGenOfBundle
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:142:14: 'GroupApproximation.CharClass.KGen.lixK_hexactOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:143:14: 'GroupApproximation.CharClass.KGen.lixK_hcompatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:144:14: 'GroupApproximation.CharClass.KGen.lixK_hnatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:145:14: 'GroupApproximation.CharClass.KGen.lixK_hsectionOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8932/8987] Replayed GroupApproximation.CharClass.LIXKStepC
+info: GroupApproximation/CharClass/LIXKStepC.lean:134:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepC.lean:135:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_naturality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8933/8987] Replayed GroupApproximation.CharClass.LIXKStepCTwo
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:134:14: 'GroupApproximation.CharClass.eq_of_ne_zero_of_line_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:135:14: 'GroupApproximation.CharClass.localClassesAgree_of_ne_zero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:136:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8939/8987] Replayed GroupApproximation.CharClass.LIXKGenBaseChart
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:219:14: 'GroupApproximation.CharClass.KGen.lixKBaseChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:220:14: 'GroupApproximation.CharClass.KGen.lixKFullChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:221:14: 'GroupApproximation.CharClass.KGen.lixKNbhdHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8958/8987] Replayed GroupApproximation.CharClass.LIXKGenTopLine
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:85:14: 'GroupApproximation.CharClass.KGen.hasTopLine_circleTimesSphere' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:86:14: 'GroupApproximation.CharClass.KGen.absEquiv_lixN' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8964/8987] Replayed GroupApproximation.CharClass.LIXKGenOfModel
+info: GroupApproximation/CharClass/LIXKGenOfModel.lean:62:14: 'GroupApproximation.CharClass.KGen.lixKRelModelIsoOf_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8969/8987] Replayed GroupApproximation.CharClass.LIXKGenOfPunctured
+info: GroupApproximation/CharClass/LIXKGenOfPunctured.lean:131:14: 'GroupApproximation.CharClass.KGen.hbaseOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfPunctured.lean:132:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixKZeroOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8976/8987] Replayed GroupApproximation.CharClass.LIXKGenOfTopLine
+info: GroupApproximation/CharClass/LIXKGenOfTopLine.lean:86:14: 'GroupApproximation.CharClass.KGen.hasTopLineOf_circleTimesSphere' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfTopLine.lean:87:14: 'GroupApproximation.CharClass.KGen.absEquiv_lixNOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8978/8987] Replayed GroupApproximation.CharClass.LIXKGenOfStepC
+info: GroupApproximation/CharClass/LIXKGenOfStepC.lean:171:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfStepC.lean:172:14: 'GroupApproximation.CharClass.KGen.lixK_topClass_ne_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfStepC.lean:173:14: 'GroupApproximation.CharClass.KGen.stepCHalf_of_kZeroStepCDataOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8985/8987] Built GroupApproximation.CharClass.LIXKGenRotate (21s)
+info: GroupApproximation/CharClass/LIXKGenRotate.lean:330:14: 'GroupApproximation.CharClass.KGen.rotPt_lixKZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenRotate.lean:331:14: 'GroupApproximation.CharClass.KGen.blockSouth_rotPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenRotate.lean:332:14: 'GroupApproximation.CharClass.KGen.mem_lixKZeroSet_of_rotPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenRotate.lean:333:14: 'GroupApproximation.CharClass.KGen.pull_rotMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8986/8987] Building GroupApproximation.CharClass.LIXKGenAgree (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/CharClass/LIXKGenAgree.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenAgree.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenAgree.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/CharClass/LIXKGenAgree.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/CharClass/LIXKGenAgree.setup.json --json
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:164:9: failed to synthesize instance of type class
+  T1Space ↑(lixN n dd)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:184:11: failed to synthesize instance of type class
+  T1Space ↑(lixN n dd)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:175:64: unsolved goals
+ℓ : ℕ
+K : Type
+inst✝ : Field K
+n k : ℕ
+dd : Fin ℓ → ℕ
+i : Fin (k + 1)
+q : ℕ
+hsub :
+  ∀ y ∈ Subtype.val ⁻¹' (lixKZeroSet n k dd)ᶜ,
+    (ConcreteCategory.hom (𝟙 (TopCat.of ↑(agreeBall n k dd i)))) y ∈ Subtype.val ⁻¹' {lixKZero n k dd i}ᶜ
+E : ?m.94 := sorry
+⊢ Function.Injective ⇑(ModuleCat.Hom.hom (agreeRes K n k dd i q))
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:231:15: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:336:11: Application type mismatch: The argument
+  rotPt n dd ⋯ ↑p
+has type
+  ↑sphereOne × Gen.baseM n dd
+but is expected to have type
+  ↑sphereOne
+in the application
+  Prod.mk (rotPt n dd ⋯ ↑p)
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:341:8: Type mismatch
+  (↑p, lixKSection n k G ↑p)
+has type
+  ↑(lixN n dd) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ)
+but is expected to have type
+  ↑sphereOne × Gen.baseM n dd × (?m.428 → ℂ)
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:336:4: stuck at solving universe constraint
+  max 1 ?u.223 =?= 1
+while trying to unify
+  Sort (max 1 ?u.223) : Type (max 1 ?u.223)
+with
+  Type : Type 1
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:346:31: stuck at solving universe constraint
+  max 1 ?u.223 =?= 1
+while trying to unify
+  Sort (max 1 ?u.223) : Type (max 1 ?u.223)
+with
+  Type : Type 1
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:344:4: stuck at solving universe constraint
+  max 1 ?u.223 =?= 1
+while trying to unify
+  Sort (max 1 ?u.223) : Type (max 1 ?u.223)
+with
+  Type : Type 1
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:308:34: stuck at solving universe constraint
+  max 1 ?u.223 =?= 1
+while trying to unify
+  Sort (max 1 ?u.223) : Type (max 1 ?u.223)
+with
+  Type : Type 1
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:370:2: 'show' tactic failed, pattern
+  mappingTorus (Gen.Vmat n) G circHoriz circHeight (rotPt n dd ⋯ ↑x) *ᵥ
+      (0 ⊕ᵥ blockSouth (aVecK n) (bVecK n k) (fun m => Gen.cVec m.2) lixChi circHoriz ↑x) ≠
+    0
+is not definitionally equal to target
+  (↑((agreeHomotopy n k hGc hGu hGe i) (t, x))).2 ≠ 0
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:417:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (ModuleCat.Hom.hom (relPullback K (rotBall n k hGe i ≫ sInclusion (agreeBall n k dd i)) ⋯ q)) (xloc i)
+in the target expression
+  (ModuleCat.Hom.hom (relPullback K (rotBall n k hGe i ≫ sInclusion (agreeBall n k dd i)) ⋯ q)) (xloc i) =
+    (ModuleCat.Hom.hom
+        (relPullback K (rotBall n k hGe i ≫ sInclusion (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe) ⋯ q))
+      u
+
+ℓ : ℕ
+dd : Fin ℓ → ℕ
+K : Type
+inst✝ : Field K
+n k : ℕ
+G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ
+hGc : Continuous G
+hGu : ∀ (m : Gen.baseM n dd), IsCornerUnitary (Gen.Vmat n m) (G m)
+hGe : ∀ (m : Gen.baseM n dd), G m *ᵥ (aVecK n m ⊕ᵥ 0) = bVecK n k m ⊕ᵥ 0
+q : ℕ
+u : ↑(relCohomology K (lixTotalPair n hGc hGu) (lixPuncturedInTotal n hGc hGu) q)
+xloc : (i : Fin (k + 1)) → ↑(relCohomology K (lixN n dd) {lixKZero n k dd i}ᶜ q)
+hsplit : LocalSplit (fun i => lixKRhoOf K n k dd i q) ((ModuleCat.Hom.hom (lixKSRelOf K n k hGc hGu hGe q)) u) xloc
+i : Fin (k + 1)
+hright :
+  (ModuleCat.Hom.hom (agreeRes K n k dd 0 q)) (xloc 0) =
+    (ModuleCat.Hom.hom (relPullback K (sInclusion (agreeBall n k dd 0) ≫ lixKS n k hGc hGu hGe) ⋯ q)) u
+⊢ (ModuleCat.Hom.hom (relPullback K (rotBall n k hGe i ≫ sInclusion (agreeBall n k dd i)) ⋯ q)) (xloc i) =
+    (ModuleCat.Hom.hom
+        (relPullback K (rotBall n k hGe i ≫ sInclusion (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe) ⋯ q))
+      u
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    agreeBall n k dd 0
+  has type
+    Set (↑sphereOne × Gen.baseM n dd)
+  but is expected to have type
+    Set ↑(lixN n dd)
+  in the application
+    ↑(agreeBall n k dd 0)
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:423:9: Unknown identifier `relPullback_eq_of_homotopy`
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:445:2: `simp` made no progress
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    {lixKZero n k dd 0}ᶜ
+  has type
+    Set (↑sphereOne × Gen.baseM n dd)
+  but is expected to have type
+    Set ↑(lixN n dd)
+  in the application
+    relCohomology K (lixN n dd) {lixKZero n k dd 0}ᶜ
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:474:14: 'GroupApproximation.CharClass.KGen.injective_agreeRes' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenAgree.lean:475:14: 'GroupApproximation.CharClass.KGen.restrictTo_eq_agreeRes' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:476:14: 'GroupApproximation.CharClass.KGen.agreeRes_rotRel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:477:14: 'GroupApproximation.CharClass.KGen.lixKJlocOf_rotRel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXKGenAgree.lean:478:14: 'GroupApproximation.CharClass.KGen.localClassesAgree_of_localSplitOf' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXKGenAgree
+error: build failed
+EXIT=1

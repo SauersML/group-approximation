@@ -1,0 +1,28 @@
+[job] 13:21:46 acn112 waiting for clone lock
+[job] delta sync b5b808dc0..0d9538afe: 1 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 0d9538afe log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-132143-96368.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3123 oleans
+--- errors (first 80 lines)
+70:✖ [5047/5047] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonPartition (11s)
+72:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonPartition.lean:34:0: Definition `GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.polygonFaces` of class type must be marked with `@[reducible]` or `@[implicit_reducible]`
+88:error: Lean exited with code 1
+91:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonPartition (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonMaximal.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZero.lean
+COMPILED GroupApproximation/Kazhdan/GHWEntries.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+COMPILED GroupApproximation/Kazhdan/GHWJacobsonKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonPartition
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

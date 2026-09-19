@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3414 oleans
+[job] acn112 cores=64-71 threads=8 base=4b6dd3cd8a4aa087ffd024b898ae36a4faf2cc89 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLoopCut
+ℹ [3312/3484] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10090/10090] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLoopCut (22s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:276:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.twoSectionCuts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:277:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.twoSectionCuts_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:278:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.twoSectionCuts_side_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:279:14: 'GroupApproximation.GGT.VanKampen.OsinLoopCut.ofPocketRegion' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:280:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.twoSectionCuts_cellTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:281:14: 'GroupApproximation.GGT.VanKampen.nonempty_osinLoopCut_of_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10090 jobs).
+EXIT=0

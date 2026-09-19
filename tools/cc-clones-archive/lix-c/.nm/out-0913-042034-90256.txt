@@ -1,0 +1,24 @@
+[job] 04:20:38 acn112 waiting for clone lock
+[job] delta sync 73c719552..add35a53a: 103 files changed
+===== SUMMARY
+host acn112 cores 80-87 base add35a53a log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-042034-90256.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2374 oleans
+--- errors (first 80 lines)
+45:✖ [3689/3689] Building GroupApproximation.Kazhdan.GHWCharZero (14s)
+47:error: GroupApproximation/Kazhdan/GHWCharZero.lean:377:4: Type mismatch
+65:error: GroupApproximation/Kazhdan/GHWCharZero.lean:400:14: 'GroupApproximation.GHW.hasHaagerupProperty_closure_of_charZero' depends on axioms outside the classical allowlist: [sorryAx]
+66:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+68:error: GroupApproximation/Kazhdan/GHWCharZero.lean:401:21: 'GroupApproximation.GHW.ghwFinitelyGeneratedCharZero' depends on axioms outside the classical allowlist: [sorryAx]
+69:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+71:error: Lean exited with code 1
+74:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Kazhdan.GHWCharZero (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+- GroupApproximation.Kazhdan.GHWCharZero
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

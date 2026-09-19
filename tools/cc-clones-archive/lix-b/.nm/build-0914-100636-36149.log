@@ -1,0 +1,56 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3533 oleans
+[job] acn116 cores=slurm threads=8 base=18045546944726600c5d51a57265dc402e75539d mods: GroupApproximation.GGT.VanKampen.ListNoABABLength
+✖ [612/612] Building GroupApproximation.GGT.VanKampen.ListNoABABLength (56s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/ListNoABABLength.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABLength.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABLength.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABLength.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABLength.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:44:37: unexpected token '+'; expected term
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:46:64: unexpected token '+'; expected term
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:94:28: unexpected token '+'; expected term
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:77:2: unsolved goals
+case pos
+α : Type u_1
+inst✝ : DecidableEq α
+n : ℕ
+ih :
+  ∀ m < n,
+    ∀ (w : List α),
+      w.length = m → w ≠ [] → List.IsChain (fun x1 x2 => x1 ≠ x2) w → NoABAB w → w.length + 1 ≤ 2 * w.toFinset.card
+a : α
+u v : List α
+hau : a ∉ u
+hn : (a :: (u ++ a :: v)).length = n
+hne : a :: (u ++ a :: v) ≠ []
+hchain : List.IsChain (fun x1 x2 => x1 ≠ x2) (a :: (u ++ a :: v))
+hno : NoABAB (a :: (u ++ a :: v))
+hrest : ¬u ++ a :: v = []
+ha : a ∈ u ++ a :: v
+hw : a :: (u ++ a :: v) = [a] ++ u ++ a :: v
+hune : u ≠ []
+hdisj : Disjoint u.toFinset (a :: v).toFinset
+⊢ (a :: (u ++ a :: v)).length + 1 ≤ 2 * (a :: (u ++ a :: v)).toFinset.card
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:70:11: unsolved goals
+case neg
+α : Type u_1
+inst✝ : DecidableEq α
+n : ℕ
+ih :
+  ∀ m < n,
+    ∀ (w : List α),
+      w.length = m → w ≠ [] → List.IsChain (fun x1 x2 => x1 ≠ x2) w → NoABAB w → w.length + 1 ≤ 2 * w.toFinset.card
+a : α
+rest : List α
+hn : (a :: rest).length = n
+hne : a :: rest ≠ []
+hchain : List.IsChain (fun x1 x2 => x1 ≠ x2) (a :: rest)
+hno : NoABAB (a :: rest)
+hrest : ¬rest = []
+ha : a ∉ rest
+⊢ (a :: rest).length + 1 ≤ 2 * (a :: rest).toFinset.card
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:130:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:131:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ListNoABABLength
+error: build failed
+EXIT=1

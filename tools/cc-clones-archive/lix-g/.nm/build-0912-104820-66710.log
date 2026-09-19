@@ -1,0 +1,13 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2430 oleans
+[job] acn112 cores=64-71 threads=8 base=a5f0a1992d3a1f61dfb3bfff7071f96e2d3899bf mods: GroupApproximation.CharClass.OddPTotalInterface
+ℹ [8690/8693] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8693/8693] Built GroupApproximation.CharClass.OddPTotalInterface (25s)
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:185:14: 'GroupApproximation.CharClass.OddPTotal.evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:186:14: 'GroupApproximation.CharClass.OddPTotal.coe_evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:187:14: 'GroupApproximation.CharClass.OddPTotal.GoodDeg' depends on axioms: []
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:188:14: 'GroupApproximation.CharClass.OddPTotal.ptotOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:189:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:190:14: 'GroupApproximation.CharClass.OddPTotal.EvenReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8693 jobs).
+EXIT=0

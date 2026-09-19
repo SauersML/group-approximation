@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2333 oleans
+[job] acn26 cores=slurm threads=8 base=80deb9a343d25228acb7505cc0f8c0d79701006c mods: GroupApproximation.Algebra.IntegerPolynomialUnisolvence
+✖ [2906/2906] Building GroupApproximation.Algebra.IntegerPolynomialUnisolvence (90s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerPolynomialUnisolvence.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerPolynomialUnisolvence.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Algebra/IntegerPolynomialUnisolvence.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Algebra/IntegerPolynomialUnisolvence.setup.json --json
+error: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:122:80: Application type mismatch: The argument
+  G
+has type
+  MvPolynomial (Fin d) ℤ
+but is expected to have type
+  MvPolynomial (Fin d) ℂ
+in the application
+  coeff (expVec m) G
+info: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:182:14: 'GroupApproximation.IntegerPolynomialUnisolvence.ker_gridMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:183:14: 'GroupApproximation.IntegerPolynomialUnisolvence.finite_bounded_on_grid' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:184:14: 'GroupApproximation.IntegerPolynomialUnisolvence.exists_algebraicIndependent_nat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.IntegerPolynomialUnisolvence
+error: build failed
+EXIT=1

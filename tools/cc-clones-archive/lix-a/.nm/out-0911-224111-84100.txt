@@ -1,0 +1,31 @@
+[job] 22:42:18 acn112 waiting for clone lock
+[job] delta sync 7b545b7c3..080b9297a: 38 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 080b9297a log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-224111-84100.log
+purged 3 stale artifact sets (source-newer=2, import-newer=1) of 2114 oleans
+--- errors (first 80 lines)
+44:✖ [8906/8908] Building GroupApproximation.CharClass.LIXKGenSphereChartHomeo (28s)
+46:error: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:40:8: Variable name `w` is not explicitly referenced.
+51:error: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:119:75: Invalid field notation: Type of
+106:error: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:199:14: 'GroupApproximation.CharClass.KGen.one_sub_chartQ_inv' depends on axioms outside the classical allowlist: [sorryAx]
+107:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+109:error: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:200:14: 'GroupApproximation.CharClass.KGen.sphereChartHomeo_zero' depends on axioms outside the classical allowlist: [sorryAx]
+110:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+112:error: Lean exited with code 1
+115:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenBaseChart (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenBundle.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChart.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChartZero.lean
+COMPILED GroupApproximation/CharClass/LIXKGenDeriv.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalHomeo.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSect.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSectInverse.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSector.lean
+- GroupApproximation.CharClass.LIXKGenSphereChartHomeo
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

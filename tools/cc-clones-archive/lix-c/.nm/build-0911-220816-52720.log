@@ -1,0 +1,5 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 2071 oleans
+[job] acn112 cores=88-95 threads=8 base=f9cf9937e1b61c0d5f1cdaa088c5d8f1df33fd75 mods: GroupApproximation.CharClass.ParityPDecomposable
+✔ [1616/1616] Built GroupApproximation.CharClass.ParityPDecomposable (7.5s)
+Build completed successfully (1616 jobs).
+EXIT=0

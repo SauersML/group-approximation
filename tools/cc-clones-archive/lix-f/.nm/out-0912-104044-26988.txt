@@ -1,0 +1,27 @@
+[job] 10:44:16 acn111 waiting for clone lock
+[job] delta sync 5a5886551..0f7748100: 101 files changed
+===== SUMMARY
+host acn111 cores slurm base 0f7748100 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0912-104044-26988.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+3:✖ [2164/2164] Building GroupApproximation.CharClass.OddPShuffle (58s)
+5:error: GroupApproximation/CharClass/OddPShuffle.lean:142:25: Variable name `i` is not explicitly referenced.
+10:error: GroupApproximation/CharClass/OddPShuffle.lean:142:55: Variable name `j` is not explicitly referenced.
+15:error: GroupApproximation/CharClass/OddPShuffle.lean:273:6: `Fin.lt_iff_val_lt_val` has been deprecated: Use `Fin.lt_def` instead
+16:error: GroupApproximation/CharClass/OddPShuffle.lean:273:29: `Fin.lt_iff_val_lt_val` has been deprecated: Use `Fin.lt_def` instead
+17:error: GroupApproximation/CharClass/OddPShuffle.lean:544:18: omega could not prove the goal:
+26:error: GroupApproximation/CharClass/OddPShuffle.lean:564:16: omega could not prove the goal:
+35:error: GroupApproximation/CharClass/OddPShuffle.lean:631:14: 'GroupApproximation.CharClass.tupRiffleAll_conj' depends on axioms outside the classical allowlist: [sorryAx]
+36:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+38:error: GroupApproximation/CharClass/OddPShuffle.lean:632:14: 'GroupApproximation.CharClass.tupRiffle_conj' depends on axioms outside the classical allowlist: [sorryAx]
+39:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+41:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPShuffle (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPShuffle
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

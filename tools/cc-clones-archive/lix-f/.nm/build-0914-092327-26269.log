@@ -1,0 +1,93 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3655 oleans
+[job] acn112 cores=64-71 threads=8 base=c020f89fd0345cba08a79ba2af3818f6475c5248 mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+ℹ [3295/3398] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10159/10163] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingProof
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:323:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_pair_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:324:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.exists_bridge_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:325:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.cellCorrespondence_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:326:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.one_lt_faceBoundary_length_of_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:327:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutputSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:328:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:329:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedBridgeDoublingSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:330:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedLeastAreaFilterSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10163/10163] Building GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:139:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  List.map (image Delta.toCombMap (FaceEdgeDoubling.dart Delta (cell Delta i).face j)) A.darts
+in the target expression
+  EnclosedFaceSetSucc (FaceEdgeDoubling.diagram Delta (cell Delta i).face j hlen hf)
+    (newFaces Delta (cell Delta i).face j hlen faces)
+    (List.map (image Delta.toCombMap (FaceEdgeDoubling.dart Delta (cell Delta i).face j)) A.darts)
+
+case neg
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+n : ℕ
+ih :
+  ∀ m < n,
+    ∀ (Delta : DiscDiagram W) (faces : Finset Delta.toCombMap.Face) (i : Fin Delta.rCellCount)
+      (A : CyclicArc (cellDarts Delta i)),
+      bridgeCount A.darts = m →
+        EnclosedFaceSetSucc Delta faces A.darts → (cell Delta i).face ∉ faces → ArcDoublingOutput Delta faces
+Delta : DiscDiagram W
+faces : Finset Delta.toCombMap.Face
+i : Fin Delta.rCellCount
+A : CyclicArc (cellDarts Delta i)
+hn : bridgeCount A.darts = n
+E : EnclosedFaceSetSucc Delta faces A.darts
+hi : (cell Delta i).face ∉ faces
+hfree : ¬∀ d ∈ A.darts, Delta.toCombMap.alpha d ∉ A.darts
+d : Delta.toCombMap.Dart
+hdface : Delta.toCombMap.faceOf d = (cell Delta i).face
+hlen : 1 < (Delta.faceBoundary (cell Delta i).face).darts.length
+hf : (cell Delta i).face ≠ Delta.outerFace
+j : Fin (Delta.faceBoundary (cell Delta i).face).darts.length
+had : Delta.toCombMap.alpha (FaceEdgeDoubling.dart Delta (cell Delta i).face j) ∈ A.darts
+hd : FaceEdgeDoubling.dart Delta (cell Delta i).face j ∈ A.darts
+hj : FaceEdgeDoubling.dart Delta (cell Delta i).face j = d
+E' :
+  EnclosedFaceSetSucc (FaceEdgeDoubling.diagram Delta (cell Delta i).face j hlen hf)
+    (newFaces Delta (cell Delta i).face j hlen faces)
+    (List.map (image Delta.toCombMap (FaceEdgeDoubling.dart Delta (cell Delta i).face j)) A.darts)
+hlt : bridgeCount (List.map (image Delta.toCombMap (FaceEdgeDoubling.dart Delta (cell Delta i).face j)) A.darts) < n
+⊢ ArcDoublingOutput Delta faces
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:163:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_cellDarts_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:164:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.faceOf_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:165:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:166:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc_spur' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:167:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.arcDoublingOutput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+error: build failed
+EXIT=1

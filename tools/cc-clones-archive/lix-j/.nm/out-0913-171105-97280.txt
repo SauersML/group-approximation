@@ -1,0 +1,26 @@
+[job] 17:11:11 acn112 waiting for clone lock
+[job] delta sync d5a8cf1db..f37676d79: 10 files changed
+===== SUMMARY
+host acn112 cores 64-71 base f37676d79 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-171105-97280.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3376 oleans
+--- errors (first 80 lines)
+3:✖ [1837/1837] Building GroupApproximation.Dynamics.InvolutionLocalizationStatement (11s)
+5:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:63:35: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+8:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:66:37: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑w -
+12:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:70:39: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `a`
+15:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:77:11: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑G
+20:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:82:13: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑w -
+24:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:86:46: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `a`
+27:error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:112:11: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑G
+32:error: Lean exited with code 1
+35:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.InvolutionLocalizationStatement (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+- GroupApproximation.Dynamics.InvolutionLocalizationStatement
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

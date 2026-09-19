@@ -1,0 +1,112 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2430 oleans
+[job] acn112 cores=72-79 threads=8 base=4119ef053776411a558bdf8e86a639c5a7e066cf mods: GroupApproximation.CharClass.OddPTotalGrading GroupApproximation.CharClass.OddPTotalPackagingDefs GroupApproximation.CharClass.OddPTotalPackagingGood GroupApproximation.CharClass.OddPTotalPackagingExpand GroupApproximation.CharClass.OddPTotalPackagingCartan GroupApproximation.CharClass.OddPTotalPackagingMulSingle GroupApproximation.CharClass.OddPTotalPackaging GroupApproximation.CharClass.OddPTotalProducer GroupApproximation.CharClass.OddPTotalBadTwo
+ℹ [8764/8841] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8767/8841] Replayed GroupApproximation.CharClass.OddPTotalInterface
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:185:14: 'GroupApproximation.CharClass.OddPTotal.evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:186:14: 'GroupApproximation.CharClass.OddPTotal.coe_evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:187:14: 'GroupApproximation.CharClass.OddPTotal.GoodDeg' depends on axioms: []
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:188:14: 'GroupApproximation.CharClass.OddPTotal.ptotOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:189:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:190:14: 'GroupApproximation.CharClass.OddPTotal.EvenReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8824/8841] Built GroupApproximation.CharClass.OddPFrobenius (5.2s)
+✔ [8825/8841] Built GroupApproximation.CharClass.OddPNorm (4.7s)
+ℹ [8826/8841] Built GroupApproximation.CharClass.OddPTotalGrading (17s)
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:201:14: 'GroupApproximation.CharClass.OddPTotal.component_of_eq_dite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:202:14: 'GroupApproximation.CharClass.OddPTotal.smul_mul_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:203:14: 'GroupApproximation.CharClass.OddPTotal.mul_smul_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:204:14: 'GroupApproximation.CharClass.OddPTotal.component_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:205:14: 'GroupApproximation.CharClass.OddPTotal.eq_sum_components' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:206:14: 'GroupApproximation.CharClass.OddPTotal.projDeg_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:207:14: 'GroupApproximation.CharClass.OddPTotal.projDeg_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:208:14: 'GroupApproximation.CharClass.OddPTotal.goodDeg_add' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:209:14: 'GroupApproximation.CharClass.OddPTotal.exists_of_goodDeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:210:14: 'GroupApproximation.CharClass.OddPTotal.sub_goodDeg' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:211:14: 'GroupApproximation.CharClass.OddPTotal.goodDeg_inj' depends on axioms: [propext, Quot.sound]
+✖ [8827/8841] Building GroupApproximation.CharClass.OddPDiagonal (31s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/CharClass/OddPDiagonal.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonal.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonal.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonal.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonal.setup.json --json
+error: GroupApproximation/CharClass/OddPDiagonal.lean:129:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: Lean exited with code 1
+ℹ [8834/8841] Built GroupApproximation.CharClass.OddPTotalPackagingDefs (19s)
+info: GroupApproximation/CharClass/OddPTotalPackagingDefs.lean:196:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.component_ptotOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingDefs.lean:197:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.ptotOf_natural' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingDefs.lean:198:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.totalP_isEven' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingDefs.lean:199:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.totalPtot_isEven' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8835/8841] Building GroupApproximation.CharClass.OddPTotalPackagingGood (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/CharClass/OddPTotalPackagingGood.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTotalPackagingGood.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTotalPackagingGood.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPTotalPackagingGood.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPTotalPackagingGood.setup.json --json
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:140:12: Variable name `a` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:140:14: Variable name `b` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:142:12: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:196:52: This simp argument is unused:
+  if_neg hb
+
+Hint: Omit it from the simp argument list.
+  simp only [hyb, cup_zero, map_zero, ite_self, i̵f̵_̵n̵e̵g̵ ̵h̵b̵,̵ ̵mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:198:50: This simp argument is unused:
+  if_neg ha
+
+Hint: Omit it from the simp argument list.
+  simp only [hxa, zero_cup, map_zero, ite_self, i̵f̵_̵n̵e̵g̵ ̵h̵a̵,̵ ̵zero_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:224:18: unsolved goals
+case add
+p : ℕ
+R : TotalReducedPowers p
+X Y : TopCat
+f : X ⟶ Y
+x y : DirectSum ℕ fun i => TotalPieceOf (ZMod p) Y i
+hx : (R.totalPtot X) ((TotalHOf.map (ZMod p) f) x) = (TotalHOf.map (ZMod p) f) ((R.totalPtot Y) x)
+hy : (R.totalPtot X) ((TotalHOf.map (ZMod p) f) y) = (TotalHOf.map (ZMod p) f) ((R.totalPtot Y) y)
+⊢ (TotalHOf.map (ZMod p) f) ((R.totalPtot Y) x) + (TotalHOf.map (ZMod p) f) ((R.totalPtot Y) y) =
+    (TotalHOf.map (ZMod p) f) ((R.totalPtot Y) x + (R.totalPtot Y) y)
+info: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:232:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.isGoodPiece_cup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:233:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.good' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:234:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.isGood_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:235:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.isGoodPiece_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:236:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.Ptot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:237:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.totalPtot_map' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPDiagonal
+- GroupApproximation.CharClass.OddPTotalPackagingGood
+error: build failed
+EXIT=1

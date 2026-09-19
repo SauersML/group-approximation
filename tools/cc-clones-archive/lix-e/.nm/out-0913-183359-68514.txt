@@ -1,0 +1,19 @@
+[job] 18:35:58 acn228 waiting for clone lock
+[job] delta sync c60bf78a2..def464f1b: 5 files changed
+===== SUMMARY
+host acn228 cores slurm base def464f1b log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-183359-68514.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4234 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFaceSetOnCopy
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterCellThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean
+ Quot.sound]
+Build completed successfully (10172 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,55 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2071 oleans
+[job] acn112 cores=64-71 threads=8 base=023c61d586f40aa7143281f104c8765fe26f4df7 mods: GroupApproximation.CharClass.OddPTupleFunctor
+✔ [2170/2171] Built GroupApproximation.CharClass.OddPModule (6.8s)
+✖ [2171/2171] Building GroupApproximation.CharClass.OddPTupleFunctor (9.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/OddPTupleFunctor.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTupleFunctor.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTupleFunctor.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPTupleFunctor.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPTupleFunctor.setup.json --json
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:176:4: No goals to be solved
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:187:4: No goals to be solved
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:266:4: failed to synthesize instance of type class
+  Module (GroupRingZMod p) (tupMod (ZMod p) X r (k + 1))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:273:0: Not a definitional equality: the left-hand side
+  (ModuleCat.Hom.hom (tupDHom p X r k s hs)) y
+is not definitionally equal to the right-hand side
+  (tupD (ZMod p) X r k) y
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:275:2: Type mismatch
+  rfl
+has type
+  ?m.26 = ?m.26
+but is expected to have type
+  (ModuleCat.Hom.hom (tupDHom p X r k s hs)) y = (tupD (ZMod p) X r k) y
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:283:6: failed to synthesize
+  Module (GroupRingZMod p) ↑(tupObj p X r k s hs)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:289:8: declaration uses `sorry`
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:296:4: failed to synthesize instance of type class
+  Module (GroupRingZMod p) (tupMod (ZMod p) X r k)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:314:4: Type mismatch
+  Eq.symm (tupMap_tupD (ZMod p) f j y)
+has type
+  (tupD (ZMod p) Y r j) ((tupMap (ZMod p) f r (j + 1)) y) = (tupMap (ZMod p) f r j) ((tupD (ZMod p) X r j) y)
+but is expected to have type
+  (ModuleCat.Hom.hom (tupMapHom p f r (j + 1) s hs ≫ tupDHom p Y r j s hs)) y =
+    (ModuleCat.Hom.hom (tupDHom p X r j s hs ≫ tupMapHom p f r j s hs)) y
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:327:4: Type mismatch
+  tupMap_id (ZMod p) k y
+has type
+  (tupMap (ZMod p) (𝟙 X) r k) y = y
+but is expected to have type
+  (ModuleCat.Hom.hom ((tupCxMap p (𝟙 X) r s hs).f k)) y = (ModuleCat.Hom.hom ((𝟙 (tupCx p X r s hs)).f k)) y
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:333:4: Type mismatch
+  tupMap_comp (ZMod p) f g k y
+has type
+  (tupMap (ZMod p) (f ≫ g) r k) y = (tupMap (ZMod p) g r k) ((tupMap (ZMod p) f r k) y)
+but is expected to have type
+  (ModuleCat.Hom.hom ((tupCxMap p (f ≫ g) r s hs).f k)) y =
+    (ModuleCat.Hom.hom ((tupCxMap p f r s hs ≫ tupCxMap p g r s hs).f k)) y
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPTupleFunctor
+error: build failed
+EXIT=1

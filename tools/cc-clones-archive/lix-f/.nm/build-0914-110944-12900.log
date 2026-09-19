@@ -1,0 +1,85 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3668 oleans
+[job] acn112 cores=88-95 threads=8 base=83164235d1e41263c42cbe11a435a7f97dac8238 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCut
+ℹ [3336/3387] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5017/5097] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:168:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.mem_farFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:169:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_iff_mem_farFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:170:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_alpha_iff' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:171:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:172:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.near_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:173:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.not_far_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:174:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_pow_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:175:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.mem_pocketWalk' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:176:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.pocketWalk_getElem' depends on axioms: [propext, Quot.sound]
+ℹ [10216/10244] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingProof
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:323:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_pair_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:324:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.exists_bridge_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:325:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.cellCorrespondence_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:326:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.one_lt_faceBoundary_length_of_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:327:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutputSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:328:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:329:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedBridgeDoublingSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:330:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedLeastAreaFilterSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10237/10244] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:173:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_cellDarts_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:174:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.faceOf_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:175:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:176:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc_spur' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:177:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.arcDoublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10243/10244] Built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed (22s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:280:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.first_turn_pocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:281:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.enclosedFaceSetSucc_pocketWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:282:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.pocketArc_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:283:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.exists_enclosedPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10244/10244] Built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCut (68s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCut.lean:89:21: 'GroupApproximation.GGT.VanKampen.sameCellPocketLoopCut' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10244 jobs).
+EXIT=0

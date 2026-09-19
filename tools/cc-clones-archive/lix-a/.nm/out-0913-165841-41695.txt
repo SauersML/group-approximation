@@ -1,0 +1,19 @@
+[job] 16:58:47 acn112 waiting for clone lock
+[job] delta sync 835fa3ee5..1c2f0e1aa: 10 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 1c2f0e1aa log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-165841-41695.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3774 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.BilateralThreeCellLevels
+BUILT GroupApproximation.Algebra.BilateralThreeCellMatrices
+BUILT GroupApproximation.Dynamics.BilateralThreeCellClopen
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BilateralThreeCellLevels.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellMatrices.lean
+COMPILED GroupApproximation/Dynamics/BilateralThreeCellClopen.lean
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:78:14: 'GroupApproximation.ClopenCrossedProduct.defectD_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1749 jobs).
+EXIT=0
+PROBE GREEN

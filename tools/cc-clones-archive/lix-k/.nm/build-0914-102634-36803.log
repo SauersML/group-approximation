@@ -1,0 +1,44 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3713 oleans
+[job] acn112 cores=80-87 threads=8 base=498add940ab284a555123de2e4b4ab9c26612810 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyEulerRegion
+ℹ [3295/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10288/10320] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.nodup_append_four' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_leftSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_rightSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_invDarts_sourceArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_targetArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:256:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_walk_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:257:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:258:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.alpha_not_mem_walk_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:259:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_and_alpha_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10320/10320] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyEulerRegion (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyEulerRegion.lean:178:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionEulerCopyInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyEulerRegion.lean:179:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionCopyInput.toEuler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyEulerRegion.lean:180:14: 'GroupApproximation.GGT.VanKampen.copyRegionEuler_of_offSideWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyEulerRegion.lean:181:14: 'GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionEulerCopyInput_of_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10320 jobs).
+EXIT=0

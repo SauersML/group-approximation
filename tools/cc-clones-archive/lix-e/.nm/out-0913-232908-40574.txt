@@ -1,0 +1,28 @@
+[job] 23:31:44 n7 waiting for clone lock
+[job] delta sync b4a7f3b70..5801a5272: 49 files changed
+===== SUMMARY
+host n7 cores slurm base 5801a5272 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-232908-40574.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 4339 oleans
+--- errors (first 80 lines)
+133:✖ [10192/10192] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel (29s)
+135:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:404:2: Type mismatch
+156:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:462:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.lakePocket_decomposition' depends on axioms outside the classical allowlist: [sorryAx]
+157:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+159:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:463:21: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.fullArcLake' depends on axioms outside the classical allowlist: [sorryAx]
+160:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+162:error: Lean exited with code 1
+165:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterCellThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

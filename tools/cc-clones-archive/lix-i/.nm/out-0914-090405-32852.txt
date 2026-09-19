@@ -1,0 +1,24 @@
+[job] 09:04:31 acn112 waiting for clone lock
+[job] delta sync 4c1986a07..2d653dd59: 19 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 2d653dd59 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-090405-32852.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4567 oleans
+--- errors (first 80 lines)
+6:✖ [4624/4625] Building GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (14s)
+8:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:228:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+21:error: Lean exited with code 1
+24:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.KirchbergFactorizationSentences (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/KirchbergCompactExtraction.lean
+COMPILED GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealDilation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealForms.lean
+COMPILED GroupApproximation/Analysis/KirchbergTensorSquare.lean
+- GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

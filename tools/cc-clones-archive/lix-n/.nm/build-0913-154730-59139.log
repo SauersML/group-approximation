@@ -1,0 +1,10 @@
+purged 12 stale artifact sets (source-newer=3, import-newer=9) of 3337 oleans
+[job] acn112 cores=64-71 threads=8 base=d42e8ab4a34edd3b952d020ba723c9e01ef92756 mods: GroupApproximation.Dynamics.SubshiftWordGraph
+ℹ [885/885] Built GroupApproximation.Dynamics.SubshiftWordGraph (5.1s)
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:122:14: 'GroupApproximation.WordGraph.word_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:123:14: 'GroupApproximation.WordGraph.tail_mem_language' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:124:14: 'GroupApproximation.WordGraph.wordEdge_word' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:125:14: 'GroupApproximation.WordGraph.exists_realize_of_word_mem_language' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:126:14: 'GroupApproximation.WordGraph.isCyclicEdge_zero' depends on axioms: [propext, Quot.sound]
+Build completed successfully (885 jobs).
+EXIT=0

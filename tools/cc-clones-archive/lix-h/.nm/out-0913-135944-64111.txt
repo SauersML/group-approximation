@@ -1,0 +1,35 @@
+[job] 13:59:47 acn112 waiting for clone lock
+[job] delta sync 526d8d488..492057fb6: 123 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 492057fb6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-135944-64111.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3079 oleans
+--- errors (first 80 lines)
+6:✖ [4997/4997] Building GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening (13s)
+8:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:226:30: Application type mismatch: The argument
+20:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:679:21: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerSpurThickening' depends on axioms outside the classical allowlist: [sorryAx]
+21:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+32:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:683:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerDarts_eq' depends on axioms outside the classical allowlist: [sorryAx]
+33:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+35:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:684:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.contiguityGeometry' depends on axioms outside the classical allowlist: [sorryAx]
+36:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+38:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:685:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamily_weight' depends on axioms outside the classical allowlist: [sorryAx]
+39:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+41:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:686:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamilyEquiv' depends on axioms outside the classical allowlist: [sorryAx]
+42:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+47:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:688:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.sectionFamily' depends on axioms outside the classical allowlist: [sorryAx]
+48:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+50:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:689:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.exists_spurFree' depends on axioms outside the classical allowlist: [sorryAx]
+51:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+53:error: Lean exited with code 1
+56:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/IntroLimitingTraceSentence.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean
+- GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

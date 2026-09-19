@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3380 oleans
+[job] acn112 cores=88-95 threads=8 base=42dcc09c1640e39c27ee697f1cb029e02e2425f6 mods: GroupApproximation.Dynamics.RetainedSubshift GroupApproximation.Dynamics.NoncyclicEdgeDefect
+✖ [886/887] Building GroupApproximation.Dynamics.RetainedSubshift (4.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/Dynamics/RetainedSubshift.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/RetainedSubshift.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/RetainedSubshift.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/RetainedSubshift.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/RetainedSubshift.setup.json --json
+error: GroupApproximation/Dynamics/RetainedSubshift.lean:37:19: Type mismatch
+  Iff.symm mem_iInter
+has type
+  (∀ (i : ?m.24), ?m.25 ∈ ?m.26 i) ↔ ?m.25 ∈ ⋂ i, ?m.26 i
+but is expected to have type
+  x✝ ∈ retainedSubshift X r ↔ x✝ ∈ ⋂ i, (fun x => word x i (r + 1)) ⁻¹' {w | IsCyclicEdge X r w}
+error: GroupApproximation/Dynamics/RetainedSubshift.lean:84:14: 'GroupApproximation.ChainCore.isClosed_retainedSubshift' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:85:14: 'GroupApproximation.ChainCore.mapsTo_shift_retainedSubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:86:14: 'GroupApproximation.ChainCore.retainedSubshift_succ_subset' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:87:14: 'GroupApproximation.ChainCore.retainedSubshift_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [887/887] Building GroupApproximation.Dynamics.NoncyclicEdgeDefect (4.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/NoncyclicEdgeDefect.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/NoncyclicEdgeDefect.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/NoncyclicEdgeDefect.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/NoncyclicEdgeDefect.setup.json --json
+error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:52:3: Unknown identifier `isClopen_discrete`
+error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:63:48: Invalid field `isClosed`: The environment does not contain `And.isClosed`, so it is not possible to project the field `isClosed` from an expression
+  isClopen_setOf_word_mem r ?m.20
+of type
+  IsClosed {x | word x 0 r ∈ ?m.20} ∧ IsOpen {x | word x 0 r ∈ ?m.20}
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:102:14: 'GroupApproximation.ChainCore.mapsTo_shift_reachableCylinderUnion' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:103:14: 'GroupApproximation.ChainCore.shift_mem_diff_of_not_isCyclicEdge' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:104:14: 'GroupApproximation.ChainCore.diff_image_shift_nonempty_of_not_isCyclicEdge' depends on axioms: [propext, Quot.sound]
+error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:105:14: 'GroupApproximation.ChainCore.isClosed_reachableCylinderUnion' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.RetainedSubshift
+- GroupApproximation.Dynamics.NoncyclicEdgeDefect
+error: build failed
+EXIT=1

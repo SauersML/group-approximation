@@ -1,0 +1,42 @@
+[job] 11:10:44 acn112 waiting for clone lock
+[job] delta sync fbdce4552..98e4afd44: 66 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 98e4afd44 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0912-111010-84153.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2347 oleans
+--- errors (first 80 lines)
+107:✖ [9317/9320] Building GroupApproximation.CharClass.LIXKGenOfFibre (17s)
+109:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:110:6: failed to synthesize instance of type class
+113:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:110:88: Application type mismatch: The argument
+121:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:132:6: failed to synthesize instance of type class
+125:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:132:88: Application type mismatch: The argument
+133:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:154:16: Unknown identifier `lixKPtTriv_symm_mapsTo`
+134:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:152:39: unsolved goals
+156:error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:207:14: 'GroupApproximation.CharClass.KGen.lixKFibre_relPullback_ne_zero_of_restrict' depends on axioms outside the classical allowlist: [sorryAx]
+157:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+159:error: Lean exited with code 1
+173:✖ [9320/9320] Building GroupApproximation.CharClass.LIXKGenChernOf (43s)
+175:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:56:31: Unknown identifier `tautCardOf`
+178:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:60:27: Unknown identifier `projMapOf`
+179:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:61:31: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+184:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:71:31: Unknown identifier `tautCardOf`
+187:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:73:28: Unknown identifier `projMapOf`
+190:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:74:27: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+195:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:86:31: Unknown identifier `tautCardOf`
+198:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:89:28: Unknown identifier `projMapOf`
+201:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:90:27: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+206:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:101:14: Unknown constant `KGen.lixChernDegOf_eq_of_graded`
+207:error: GroupApproximation/CharClass/LIXKGenChernOf.lean:102:14: Unknown constant `KGen.lixChernDegOf_mappingTorus`
+208:error: Lean exited with code 1
+212:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenOfLocalSquare
+mentioned-not-built GroupApproximation.CharClass.LIXKGenChernOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenOfFibre (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenOfFibreThom (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenOfLocalSquare.lean
+- GroupApproximation.CharClass.LIXKGenChernOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

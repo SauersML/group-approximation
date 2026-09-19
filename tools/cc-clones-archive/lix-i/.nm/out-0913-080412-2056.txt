@@ -1,0 +1,31 @@
+[job] 08:04:18 acn112 waiting for clone lock
+[job] delta sync 114eeb244..9ea947a92: 0 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 9ea947a92 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-080412-2056.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3183 oleans
+--- errors (first 80 lines)
+14:✖ [4662/4662] Building GroupApproximation.GGT.HullLemma35LocalFinite (9.7s)
+16:error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:253:10: omega could not prove the goal:
+32:error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:252:41: This simp argument is unused:
+39:error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:295:14: 'GroupApproximation.GGT.HullLemma35.exists_enlargedWord' depends on axioms outside the classical allowlist: [sorryAx]
+40:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+42:error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:296:14: 'GroupApproximation.GGT.HullLemma35.relBall_finite_transitive' depends on axioms outside the classical allowlist: [sorryAx]
+43:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+45:error: Lean exited with code 1
+48:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullLemma35Transitive
+mentioned-not-built GroupApproximation.GGT.HullLemma35LocalFinite (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullLemma35FreeFactors.lean
+COMPILED GroupApproximation/GGT/HullLemma35Printed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Transitive.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+- GroupApproximation.GGT.HullLemma35LocalFinite
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

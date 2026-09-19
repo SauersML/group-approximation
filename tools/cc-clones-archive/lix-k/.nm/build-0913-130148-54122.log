@@ -1,0 +1,77 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2582 oleans
+[job] acn112 cores=64-71 threads=8 base=2ac4b032ae417ee4797c9e190db528f52ccdb2f5 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount
+ℹ [3299/3384] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4985/4985] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:360:62: Variable name `hsb` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:517:42: failed to synthesize instance of type class
+  DecidablePred fun f =>
+    (RegionCandidate.phiSubdividedMultigraphO P).IsTwoGon f ∧ RegionCandidate.GapAtOHoldsCorner cuts S.family E f
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:522:35: failed to synthesize instance of type class
+  DecidablePred fun f =>
+    (RegionCandidate.phiSubdividedMultigraphO P).IsTwoGon f ∧ RegionCandidate.GapAtOHoldsCorner cuts S.family E f
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:523:38: failed to synthesize instance of type class
+  DecidablePred fun f =>
+    (RegionCandidate.phiSubdividedMultigraphO P).IsTwoGon f ∧ RegionCandidate.GapAtOHoldsCorner cuts S.family E f
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:533:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.getElem?_succ_mod_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:534:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.head?_darts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:535:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.getElem_mem_darts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:536:14: 'GroupApproximation.GGT.VanKampen.Embedded.head?_map_alpha_of_eq_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:537:14: 'GroupApproximation.GGT.VanKampen.Embedded.getElem_outerDarts_mem_targetBoundaryDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:538:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.crossO_false_true_of_eq_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:539:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eq_of_targetArc_overlap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:540:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.start_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:541:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.outer_collapsed_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:542:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.facePerm_four_of_faceOf_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:543:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.side_eq_false_of_sideCellO_eq_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:544:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_sigma_eq_of_twoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:545:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_outer_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:546:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_offset_of_gapHoldsCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:547:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_gap_offset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:548:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eq_of_gapHoldsCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:549:14: 'GroupApproximation.GGT.VanKampen.cornerTwoGonInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount
+error: build failed
+EXIT=1

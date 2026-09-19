@@ -1,0 +1,19 @@
+[job] 17:29:53 cn1017 waiting for clone lock
+[job] delta sync 8eb1da7ad..5932d213f: 12 files changed
+===== SUMMARY
+host cn1017 cores slurm base 5932d213f log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-172941-66921.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3173 oleans
+--- errors (first 80 lines)
+3:✖ [1760/1760] Building GroupApproximation.Dynamics.ReturnCells (60s)
+5:error: GroupApproximation/Dynamics/ReturnCells.lean:158:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.clopenRestrict_apply`:
+11:error: GroupApproximation/Dynamics/ReturnCells.lean:181:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+27:error: Lean exited with code 1
+30:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ReturnCells (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.ReturnCells
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

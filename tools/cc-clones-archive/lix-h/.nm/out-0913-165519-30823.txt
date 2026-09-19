@@ -1,0 +1,62 @@
+[job] 16:55:25 acn112 waiting for clone lock
+[job] delta sync 035c3cc48..4d2084188: 6 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 4d2084188 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-165519-30823.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3113 oleans
+--- errors (first 80 lines)
+3:✖ [1757/1757] Building GroupApproximation.Dynamics.ReturnSection (10s)
+5:error: GroupApproximation/Dynamics/ReturnSection.lean:103:8: failed to synthesize instance of type class
+9:error: GroupApproximation/Dynamics/ReturnSection.lean:106:20: Application type mismatch: The argument
+17:error: GroupApproximation/Dynamics/ReturnSection.lean:106:4: failed to synthesize instance of type class
+21:error: GroupApproximation/Dynamics/ReturnSection.lean:106:65: unsolved goals
+29:error: GroupApproximation/Dynamics/ReturnSection.lean:107:13: declaration uses `sorry`
+30:error: GroupApproximation/Dynamics/ReturnSection.lean:107:13: This simp argument is unused:
+37:error: GroupApproximation/Dynamics/ReturnSection.lean:107:24: This simp argument is unused:
+44:error: GroupApproximation/Dynamics/ReturnSection.lean:107:37: This simp argument is unused:
+51:error: GroupApproximation/Dynamics/ReturnSection.lean:107:61: This simp argument is unused:
+58:error: GroupApproximation/Dynamics/ReturnSection.lean:110:31: Application type mismatch: The argument
+66:error: GroupApproximation/Dynamics/ReturnSection.lean:113:65: Application type mismatch: The argument
+74:error: GroupApproximation/Dynamics/ReturnSection.lean:113:83: Application type mismatch: The argument
+82:error: GroupApproximation/Dynamics/ReturnSection.lean:113:53: failed to synthesize instance of type class
+86:error: GroupApproximation/Dynamics/ReturnSection.lean:114:8: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+93:error: GroupApproximation/Dynamics/ReturnSection.lean:118:81: Application type mismatch: The argument
+101:error: GroupApproximation/Dynamics/ReturnSection.lean:119:74: Unknown identifier `T`
+102:error: GroupApproximation/Dynamics/ReturnSection.lean:125:50: Application type mismatch: The argument
+110:error: GroupApproximation/Dynamics/ReturnSection.lean:128:16: Application type mismatch: The argument
+118:error: GroupApproximation/Dynamics/ReturnSection.lean:128:44: Application type mismatch: The argument
+126:error: GroupApproximation/Dynamics/ReturnSection.lean:128:73: Application type mismatch: The argument
+134:error: GroupApproximation/Dynamics/ReturnSection.lean:128:88: Application type mismatch: The argument
+142:error: GroupApproximation/Dynamics/ReturnSection.lean:131:65: Application type mismatch: The argument
+150:error: GroupApproximation/Dynamics/ReturnSection.lean:135:26: Application type mismatch: The argument
+158:error: GroupApproximation/Dynamics/ReturnSection.lean:138:46: Unknown identifier `isClopen_nearOrbit`
+159:error: GroupApproximation/Dynamics/ReturnSection.lean:144:28: Application type mismatch: The argument
+167:error: GroupApproximation/Dynamics/ReturnSection.lean:144:67: Application type mismatch: The argument
+175:error: GroupApproximation/Dynamics/ReturnSection.lean:146:9: unsolved goals
+187:error: GroupApproximation/Dynamics/ReturnSection.lean:161:32: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+188:error: GroupApproximation/Dynamics/ReturnSection.lean:161:56: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+189:error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: declaration uses `sorry`
+190:error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: declaration uses `sorry`
+191:error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: This simp argument is unused:
+198:error: GroupApproximation/Dynamics/ReturnSection.lean:165:22: Application type mismatch: The argument
+206:error: GroupApproximation/Dynamics/ReturnSection.lean:165:37: Application type mismatch: The argument
+214:error: GroupApproximation/Dynamics/ReturnSection.lean:167:31: Unknown identifier `T`
+215:error: GroupApproximation/Dynamics/ReturnSection.lean:167:48: Unknown identifier `T`
+216:error: GroupApproximation/Dynamics/ReturnSection.lean:167:17: failed to synthesize instance of type class
+220:error: GroupApproximation/Dynamics/ReturnSection.lean:168:25: Unknown identifier `T`
+221:error: GroupApproximation/Dynamics/ReturnSection.lean:169:34: Unknown identifier `T`
+222:error: GroupApproximation/Dynamics/ReturnSection.lean:197:22: Application type mismatch: The argument
+230:error: GroupApproximation/Dynamics/ReturnSection.lean:198:5: Unknown identifier `isClopen_sectionStep`
+231:error: GroupApproximation/Dynamics/ReturnSection.lean:203:46: Application type mismatch: The argument
+239:error: GroupApproximation/Dynamics/ReturnSection.lean:216:76: Variable name `hx` is not explicitly referenced.
+244:error: GroupApproximation/Dynamics/ReturnSection.lean:297:21: 'GroupApproximation.ChainCore.returnSectionStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+245:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+249:error: Lean exited with code 1
+252:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ReturnSection (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.ReturnSection
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

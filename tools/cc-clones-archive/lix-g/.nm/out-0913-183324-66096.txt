@@ -1,0 +1,16 @@
+[job] 18:35:58 cn1120 waiting for clone lock
+[job] delta sync 966ce8f51..1d23a20e8: 1 files changed
+===== SUMMARY
+host cn1120 cores slurm base 1d23a20e8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-183324-66096.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3561 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSimplePocket
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean
+ Quot.sound]
+Build completed successfully (10206 jobs).
+EXIT=0
+PROBE GREEN

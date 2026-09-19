@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3462 oleans
+[job] acn112 cores=80-87 threads=8 base=30ab64d739bd4625307cf7ae62af661d2500ea20 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerThickening
+ℹ [3331/3397] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10130/10130] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerThickening (73s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:114:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.eq_of_mem_of_length_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:115:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.one_lt_faceBoundary_length_of_not_loop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:116:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.exists_dart_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:117:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_embedding_doubled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:118:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.digon_ne_outerFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:119:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.digon_not_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10130 jobs).
+EXIT=0

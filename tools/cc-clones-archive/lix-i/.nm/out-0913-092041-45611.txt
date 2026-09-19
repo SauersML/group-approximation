@@ -1,0 +1,25 @@
+[job] 09:20:45 acn112 waiting for clone lock
+[job] delta sync 6dd68ce8d..0793191e3: 5 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 0793191e3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-092041-45611.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3188 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.HullLemma35Expansion
+BUILT GroupApproximation.GGT.HullLemma35Corner
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullLemma35Corner.lean
+COMPILED GroupApproximation/GGT/HullLemma35Expansion.lean
+COMPILED GroupApproximation/GGT/HullLemma35FreeFactors.lean
+COMPILED GroupApproximation/GGT/HullLemma35LocalFinite.lean
+COMPILED GroupApproximation/GGT/HullLemma35Printed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Transitive.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+info: GroupApproximation/GGT/HullLemma35Corner.lean:228:14: 'GroupApproximation.GGT.HullLemma35.corner_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4179 jobs).
+EXIT=0
+PROBE GREEN

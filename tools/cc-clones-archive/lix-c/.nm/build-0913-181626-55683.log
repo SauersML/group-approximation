@@ -1,0 +1,71 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3454 oleans
+[job] acn112 cores=88-95 threads=8 base=6ef3e9bd9ad6813116befd1e223b82344d1888cb mods: GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening
+ℹ [3302/3391] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4528/4833] Built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel (5.6s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:242:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:243:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:244:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cellEdge_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:245:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:246:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:247:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cellEdge_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:248:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:249:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:250:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:251:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cellEdge_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:252:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:253:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:254:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cellEdge_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:255:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5027/5027] Built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening (13s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:387:21: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:388:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_self_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:389:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_cell_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:390:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_eq_faceImage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:391:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.boundary_faceImage_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:392:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_of_isCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:393:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:394:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.relatorValue_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:395:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:396:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.regionFamilyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:397:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.sectionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:398:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5027 jobs).
+EXIT=0

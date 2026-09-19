@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3426 oleans
+[job] acn112 cores=64-71 threads=8 base=c4fafefb5a5b4b282feeac03c27d9aac949b29f7 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing
+ℹ [3329/3446] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10151/10151] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing (37s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_of_noncrossing_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:193:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:195:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:196:21: 'GroupApproximation.GGT.VanKampen.cellPocketKeptCellNoncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10151 jobs).
+EXIT=0

@@ -1,0 +1,13 @@
+purged 226 stale artifact sets (source-newer=15, import-newer=211) of 4810 oleans
+[job] acn112 cores=72-79 threads=8 base=185078b2b1a46f43133f668b9ee9e3c48a9ccf20 mods: GroupApproximation.Algebra.LEFRingDirectedUnion
+ℹ [1670/1670] Built GroupApproximation.Algebra.LEFRingDirectedUnion (8.6s)
+info: GroupApproximation/Algebra/LEFRingDirectedUnion.lean:107:14: 'GroupApproximation.Pestov91.IsLEFRing.of_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LEFRingDirectedUnion.lean:108:14: 'GroupApproximation.Pestov91.isLEFRing_of_forall_finset_subset_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LEFRingDirectedUnion.lean:109:14: 'GroupApproximation.Pestov91.isLEFRing_of_monotone_ringHom_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LEFRingDirectedUnion.lean:110:14: 'GroupApproximation.Pestov91.isLEFRing_of_monotone_subrings' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1670 jobs).
+EXIT=0

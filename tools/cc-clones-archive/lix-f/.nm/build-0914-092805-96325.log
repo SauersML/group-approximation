@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3659 oleans
+[job] acn112 cores=64-71 threads=8 base=0da57c90d7a213e7d813f85174f6446723a9a536 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel
+ℹ [3309/3413] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10052/10052] Built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:126:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.island_far' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:127:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.first_turn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:128:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.enclosedFaceSetSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:129:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.ringArc_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:130:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.island_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:131:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.ring_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10052 jobs).
+EXIT=0

@@ -1,0 +1,15 @@
+[job] 16:25:25 acn112 waiting for clone lock
+[job] delta sync f720ed401..9c2316846: 8 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 9c2316846 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-162513-93388.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4589 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.ItinerarySubshift
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ItinerarySubshift.lean
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:120:14: 'GroupApproximation.ChainCore.oneBlock_image_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+Build completed successfully (937 jobs).
+EXIT=0
+PROBE GREEN

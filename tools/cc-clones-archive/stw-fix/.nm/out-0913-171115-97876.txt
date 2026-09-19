@@ -1,0 +1,18 @@
+[job] 17:11:19 acn112 waiting for clone lock
+[job] delta sync a39b2f5fb..cb5b195c8: 38 files changed
+===== SUMMARY
+host acn112 cores 72-79 base cb5b195c8 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-171115-97876.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4592 oleans
+--- errors (first 80 lines)
+24:✖ [1087/1087] Building GroupApproximation.Dynamics.OneBlockCycleCondition (9.5s)
+26:error: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:70:59: Variable name `x` is not explicitly referenced.
+44:error: Lean exited with code 1
+47:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.OneBlockCycleCondition (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.OneBlockCycleCondition
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

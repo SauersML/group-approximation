@@ -1,0 +1,89 @@
+TRACE carrier=9 rotations=19 syllables=19
+TRACE carrier=9 rotation=0 target=0 states=4
+TRACE carrier=9 rotation=0 target=1 states=4
+TRACE carrier=9 rotation=0 target=2 states=5
+TRACE carrier=9 rotation=0 target=3 states=5
+TRACE carrier=9 rotation=1 target=0 states=3
+TRACE carrier=9 rotation=1 target=1 states=3
+TRACE carrier=9 rotation=1 target=2 states=6
+TRACE carrier=9 rotation=1 target=3 states=6
+TRACE carrier=9 rotation=2 target=0 states=4
+TRACE carrier=9 rotation=2 target=1 states=4
+TRACE carrier=9 rotation=2 target=2 states=8
+TRACE carrier=9 rotation=2 target=3 states=7
+TRACE carrier=9 rotation=3 target=0 states=6
+TRACE carrier=9 rotation=3 target=1 states=4
+TRACE carrier=9 rotation=3 target=2 states=4
+TRACE carrier=9 rotation=3 target=3 states=7
+TRACE carrier=9 rotation=4 target=0 states=7
+TRACE carrier=9 rotation=4 target=1 states=4
+TRACE carrier=9 rotation=4 target=2 states=4
+TRACE carrier=9 rotation=4 target=3 states=7
+TRACE carrier=9 rotation=5 target=0 states=7
+TRACE carrier=9 rotation=5 target=1 states=4
+TRACE carrier=9 rotation=5 target=2 states=5
+TRACE carrier=9 rotation=5 target=3 states=6
+TRACE carrier=9 rotation=6 target=0 states=3
+TRACE carrier=9 rotation=6 target=1 states=2
+TRACE carrier=9 rotation=6 target=2 states=5
+TRACE carrier=9 rotation=6 target=3 states=4
+TRACE carrier=9 rotation=7 target=0 states=4
+TRACE carrier=9 rotation=7 target=1 states=4
+TRACE carrier=9 rotation=7 target=2 states=7
+TRACE carrier=9 rotation=7 target=3 states=7
+TRACE carrier=9 rotation=8 target=0 states=4
+TRACE carrier=9 rotation=8 target=1 states=5
+TRACE carrier=9 rotation=8 target=2 states=7
+TRACE carrier=9 rotation=8 target=3 states=6
+TRACE carrier=9 rotation=9 target=0 states=8
+TRACE carrier=9 rotation=9 target=1 states=7
+TRACE carrier=9 rotation=9 target=2 states=4
+TRACE carrier=9 rotation=9 target=3 states=4
+TRACE carrier=9 rotation=10 target=0 states=7
+TRACE carrier=9 rotation=10 target=1 states=7
+TRACE carrier=9 rotation=10 target=2 states=5
+TRACE carrier=9 rotation=10 target=3 states=5
+TRACE carrier=9 rotation=11 target=0 states=7
+TRACE carrier=9 rotation=11 target=1 states=7
+TRACE carrier=9 rotation=11 target=2 states=4
+TRACE carrier=9 rotation=11 target=3 states=6
+TRACE carrier=9 rotation=12 target=0 states=5
+TRACE carrier=9 rotation=12 target=1 states=2
+TRACE carrier=9 rotation=12 target=2 states=3
+TRACE carrier=9 rotation=12 target=3 states=4
+TRACE carrier=9 rotation=13 target=0 states=6
+TRACE carrier=9 rotation=13 target=1 states=4
+TRACE carrier=9 rotation=13 target=2 states=5
+TRACE carrier=9 rotation=13 target=3 states=7
+TRACE carrier=9 rotation=14 target=0 states=6
+TRACE carrier=9 rotation=14 target=1 states=5
+TRACE carrier=9 rotation=14 target=2 states=4
+TRACE carrier=9 rotation=14 target=3 states=6
+TRACE carrier=9 rotation=15 target=0 states=10
+TRACE carrier=9 rotation=15 target=1 states=9
+TRACE carrier=9 rotation=15 target=2 states=8
+TRACE carrier=9 rotation=15 target=3 states=6
+TRACE carrier=9 rotation=16 target=0 states=6
+TRACE carrier=9 rotation=16 target=1 states=6
+TRACE carrier=9 rotation=16 target=2 states=3
+TRACE carrier=9 rotation=16 target=3 states=5
+TRACE carrier=9 rotation=17 target=0 states=10
+TRACE carrier=9 rotation=17 target=1 states=7
+TRACE carrier=9 rotation=17 target=2 states=5
+TRACE carrier=9 rotation=17 target=3 states=6
+TRACE carrier=9 rotation=18 target=0 states=8
+TRACE carrier=9 rotation=18 target=1 states=9
+TRACE carrier=9 rotation=18 target=2 states=4
+TRACE carrier=9 rotation=18 target=3 states=4
+carrier=9 words=76 states=67
+carrier_states=16
+distinct_augmented_words=76
+boundary_states=67
+nonempty_q=27
+free_nonempty_q=0
+direct_killed_q=7
+power_killed_q=20
+saturation_killed_q=0
+involution_killed_q=0
+difference_killed_q=0
+unresolved_q=0

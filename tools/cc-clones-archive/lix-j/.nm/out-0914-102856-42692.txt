@@ -1,0 +1,26 @@
+[job] 10:31:16 acn112 waiting for clone lock
+[job] delta sync ac902a9c1..cd45177fe: 48 files changed
+===== SUMMARY
+host acn112 cores 88-95 base cd45177fe log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0914-102856-42692.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3645 oleans
+--- errors (first 80 lines)
+30:✖ [4644/4644] Building GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting (10s)
+32:error: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:73:2: linarith failed to find a contradiction
+50:error: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:102:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_two_mul_card_le' depends on axioms outside the classical allowlist: [sorryAx]
+51:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+56:error: Lean exited with code 1
+59:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/CombMapComponentsGlueModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGlueComponentPlanarModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketCellFree.lean
+- GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

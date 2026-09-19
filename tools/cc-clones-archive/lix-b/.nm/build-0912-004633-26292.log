@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2318 oleans
+[job] acn112 cores=64-71 threads=8 base=ddd327336c3e8b8eebd06698d6a2d804ee059053 mods: GroupApproximation.CharClass.LIXKGenLocalLinear
+ℹ [8701/8841] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8772/8869] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8867/8933] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8868/8933] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8929/8933] Replayed GroupApproximation.CharClass.LIXKGenLocalEta
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:260:14: 'GroupApproximation.CharClass.KGen.lixKSection_eq_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:261:14: 'GroupApproximation.CharClass.KGen.Vmat_mulVec_lixKEtaLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:262:14: 'GroupApproximation.CharClass.KGen.lixKEtaLin_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8933/8933] Building GroupApproximation.CharClass.LIXKGenLocalLinear (29s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/LIXKGenLocalLinear.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenLocalLinear.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenLocalLinear.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKGenLocalLinear.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKGenLocalLinear.setup.json --json
+error: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:49:5: Variable name `hGu` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:350:14: 'GroupApproximation.CharClass.KGen.lixKGFrame_mulVec_lixKGLin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:351:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGHomeo_eq_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXKGenLocalLinear
+error: build failed
+EXIT=1

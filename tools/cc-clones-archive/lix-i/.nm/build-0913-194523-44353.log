@@ -1,0 +1,11 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 4354 oleans
+[job] acn151 cores=slurm threads=8 base=4c58d05e2ac1faff8cba98b650e0db3762cda341 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4
+ℹ [3332/3389] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10299/10299] Built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4 (265s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4.lean:65:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4CopySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10299 jobs).
+EXIT=0

@@ -1,0 +1,55 @@
+[job] 20:27:43 n23 waiting for clone lock
+===== SUMMARY
+host n23 cores slurm base d69606505 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-202558-95608.log
+purged 4 stale artifact sets (source-newer=2, import-newer=2) of 4746 oleans
+--- errors (first 80 lines)
+631:✖ [10133/10148] Building GroupApproximation.GGT.HullSCUnconePathPoints (13s)
+633:error: GroupApproximation/GGT/HullSCUnconePathPoints.lean:64:4: Unknown constant `List.take_append_eq_append_take`
+634:error: GroupApproximation/GGT/HullSCUnconePathPoints.lean:59:95: unsolved goals
+654:error: GroupApproximation/GGT/HullSCUnconePathPoints.lean:124:14: 'GroupApproximation.GGT.Uncone.guessPath_in_letter' depends on axioms outside the classical allowlist: [sorryAx]
+655:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+659:error: Lean exited with code 1
+665:✖ [10140/10148] Building GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer (184s)
+667:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:157:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+671:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:159:20: Invalid field `length_lt`: The environment does not contain `Nonempty.length_lt`, so it is not possible to project the field `length_lt` from an expression
+675:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:161:18: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+679:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:162:14: Invalid field `quotient_value`: The environment does not contain `Nonempty.quotient_value`, so it is not possible to project the field `quotient_value` from an expression
+683:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:164:17: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+687:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+691:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:55: Invalid field `shortenedWord_isWord`: The environment does not contain `Nonempty.shortenedWord_isWord`, so it is not possible to project the field `shortenedWord_isWord` from an expression
+699:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:269:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_dehnSteps' depends on axioms outside the classical allowlist: [sorryAx]
+700:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+705:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:271:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicCertificates' depends on axioms outside the classical allowlist: [sorryAx]
+706:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+708:error: Lean exited with code 1
+735:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullSCCyclicPeripheralRemoval
+BUILT GroupApproximation.GGT.HullSCUnconeExpansion
+mentioned-not-built GroupApproximation.GGT.HullSCUnconePathPoints (replayed or failed)
+BUILT GroupApproximation.GGT.HullSCUnconeCosetCoordinates
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaA (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaB (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeThin (replayed or failed)
+BUILT GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves
+BUILT GroupApproximation.GGT.HullSCAuxiliaryAdjoinFinite
+mentioned-not-built GroupApproximation.GGT.HullSCBoundedImageEmbedding (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.RelHypOsin24PublishedHullStep (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.RelHypProp23FromHullStep (replayed or failed)
+--- rebuilt GroupApproximation modules: 5
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+- GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

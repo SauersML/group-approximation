@@ -1,0 +1,21 @@
+[job] 09:25:32 acn112 waiting for clone lock
+[job] delta sync 386f6eb27..e725a36e2: 18 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e725a36e2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-092529-64114.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2308 oleans
+--- errors (first 80 lines)
+3:✖ [8780/8782] Building GroupApproximation.CharClass.OddPDiagonalAug (21s)
+5:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:262:0: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+10:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:271:8: (kernel) unknown constant 'GroupApproximation.CharClass.tupD_exists_preimage_stdSimplexTop_zmod'
+11:error: Lean exited with code 1
+14:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPDiagonalAug (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPDiagonalSrc (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPDiagonal (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

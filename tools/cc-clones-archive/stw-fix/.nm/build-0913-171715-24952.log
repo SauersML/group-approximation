@@ -1,0 +1,54 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4595 oleans
+[job] acn112 cores=64-71 threads=8 base=09259036f3d4ed4cc0d76bb19312fb919e48fab3 mods: GroupApproximation.Dynamics.OneBlockCycleCondition GroupApproximation.Dynamics.ItineraryCoreCycleCondition
+ℹ [1085/1088] Replayed GroupApproximation.Dynamics.ItinerarySubshift
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:111:14: 'GroupApproximation.ChainCore.continuous_itinerary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:112:14: 'GroupApproximation.ChainCore.itinerary_zpow_apply' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:113:14: 'GroupApproximation.ChainCore.itinerary_apply_self' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:114:14: 'GroupApproximation.ChainCore.isClosed_itinerarySubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:115:14: 'GroupApproximation.ChainCore.mapsTo_shift_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:116:14: 'GroupApproximation.ChainCore.continuous_oneBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:117:14: 'GroupApproximation.ChainCore.oneBlock_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:118:14: 'GroupApproximation.ChainCore.oneBlock_oneBlock' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:119:14: 'GroupApproximation.ChainCore.oneBlock_itinerary' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:120:14: 'GroupApproximation.ChainCore.oneBlock_image_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+ℹ [1086/1088] Replayed GroupApproximation.Dynamics.ItineraryInverseLimit
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:103:14: 'GroupApproximation.ChainCore.mem_inverseLimitCore' depends on axioms: [Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:104:14: 'GroupApproximation.ChainCore.isClosed_inverseLimitCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:105:14: 'GroupApproximation.ChainCore.itinerary_mem_of_le' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:106:14: 'GroupApproximation.ChainCore.preimage_itinerary_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:107:14: 'GroupApproximation.ChainCore.itinerary_image_inverseLimitCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:108:14: 'GroupApproximation.ChainCore.inverseLimitCore_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:109:14: 'GroupApproximation.ChainCore.mapsTo_zpow_inverseLimitCore' depends on axioms: [propext, Quot.sound]
+ℹ [1087/1088] Built GroupApproximation.Dynamics.OneBlockCycleCondition (14s)
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:140:14: 'GroupApproximation.ChainCore.wordEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:141:14: 'GroupApproximation.ChainCore.reflTransGen_wordEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:142:14: 'GroupApproximation.ChainCore.isCyclicEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:143:14: 'GroupApproximation.ChainCore.cycleCondition_image_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:144:14: 'GroupApproximation.ChainCore.mapsTo_comp_coreSubshift' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:145:14: 'GroupApproximation.ChainCore.isClosed_itineraryCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:146:14: 'GroupApproximation.ChainCore.mapsTo_shift_itineraryCore' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:147:14: 'GroupApproximation.ChainCore.itineraryCore_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:148:14: 'GroupApproximation.ChainCore.cycleCondition_oneBlock_image' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:149:14: 'GroupApproximation.ChainCore.oneBlock_image_itineraryCore_subset' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:150:14: 'GroupApproximation.ChainCore.isClosed_generalCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:151:14: 'GroupApproximation.ChainCore.mapsTo_zpow_generalCore' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:152:14: 'GroupApproximation.ChainCore.itinerary_image_generalCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1088/1088] Built GroupApproximation.Dynamics.ItineraryCoreCycleCondition (5.5s)
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:116:14: 'GroupApproximation.ChainCore.wordEdge_congr' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:117:14: 'GroupApproximation.ChainCore.isCyclicEdge_congr' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:118:14: 'GroupApproximation.ChainCore.cycleCondition_iInter_of_antitone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:119:14: 'GroupApproximation.ChainCore.oneBlock_image_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:120:14: 'GroupApproximation.ChainCore.isClosed_oneBlock_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:121:14: 'GroupApproximation.ChainCore.iInter_oneBlock_image_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:122:14: 'GroupApproximation.ChainCore.cycleCondition_iInter_oneBlock_image' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean:123:14: 'GroupApproximation.ChainCore.cycleCondition_itinerary_image_generalCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1088 jobs).
+EXIT=0

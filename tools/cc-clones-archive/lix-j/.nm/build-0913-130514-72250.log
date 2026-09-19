@@ -1,0 +1,49 @@
+purged 6 stale artifact sets (source-newer=2, import-newer=4) of 3144 oleans
+[job] acn112 cores=64-71 threads=8 base=5a716fd85bada734557ff2dca8d8961819bd5996 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalk
+ℹ [3295/3336] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10086/10087] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet (27s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:444:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_spanArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:445:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.outerFace_not_mem_sideFaces_of_mem_outerDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:446:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.cell_face_not_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:447:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.ofSimpleClosedWalk_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:448:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_transport' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:449:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSet_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:450:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.cut_le_length_outerDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:451:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.exists_of_exteriorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:452:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.ofBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:453:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10087/10087] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalk (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalk.lean:262:14: 'GroupApproximation.GGT.VanKampen.Embedded.targetBoundaryDarts_eq_invDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalk.lean:263:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.boundary_cycle_rotate_of_joinsCells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalk.lean:264:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceOf_alpha_mem_of_mem_cellArcList' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalk.lean:265:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10087 jobs).
+EXIT=0

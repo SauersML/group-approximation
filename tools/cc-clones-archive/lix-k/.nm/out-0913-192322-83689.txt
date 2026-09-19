@@ -1,0 +1,19 @@
+[job] 19:23:27 acn112 waiting for clone lock
+[job] delta sync 97890f538..c6c6e7dd6: 129 files changed
+===== SUMMARY
+host acn112 cores 64-71 base c6c6e7dd6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-192322-83689.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3370 oleans
+--- errors (first 80 lines)
+3:✖ [1746/1746] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement (9.7s)
+5:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean:47:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'SkewMonoidAlgebra.instAddGroup', which is 'noncomputable'
+6:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean:62:21: Variable name `hU` is not explicitly referenced.
+11:error: Lean exited with code 1
+14:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,31 @@
+[job] 08:47:39 acn112 waiting for clone lock
+[job] delta sync 0e845fdda..2d7e894f5: 2 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 2d7e894f5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-084735-77735.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4558 oleans
+--- errors (first 80 lines)
+8:✖ [4624/4624] Building GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (374s)
+10:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:177:28: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+15:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:181:4: (deterministic) timeout at `«tactic execution»`, maximum number of heartbeats (200000) has been reached
+20:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:147:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+25:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:247:8: (kernel) unknown constant 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.exists_moving_representation'
+26:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:259:8: (kernel) unknown constant 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.exists_moving_representation'
+27:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:278:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput' depends on axioms outside the classical allowlist: [GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput]
+33:error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:279:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem' depends on axioms outside the classical allowlist: [GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem]
+39:error: Lean exited with code 1
+42:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.KirchbergRealDilation
+BUILT GroupApproximation.Analysis.KirchbergTensorSquare
+mentioned-not-built GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/KirchbergCompactExtraction.lean
+COMPILED GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealDilation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealForms.lean
+COMPILED GroupApproximation/Analysis/KirchbergTensorSquare.lean
+- GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

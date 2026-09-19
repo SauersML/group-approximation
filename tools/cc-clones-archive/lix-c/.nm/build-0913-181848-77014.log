@@ -1,0 +1,22 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3455 oleans
+[job] acn112 cores=80-87 threads=8 base=70c183593b290bb9d1d72abfb25750cf4bd94222 mods: GroupApproximation.GGT.VanKampen.SurgerySideSideThickeningModel
+ℹ [635/635] Built GroupApproximation.GGT.VanKampen.SurgerySideSideThickeningModel (5.3s)
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:148:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:149:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:150:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.sideSide_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:151:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.boundary_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:152:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:153:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:154:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.sideSide_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:155:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.boundary_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean:156:14: 'GroupApproximation.GGT.VanKampen.SideSideThickeningModel.retained' depends on axioms: [propext]
+Build completed successfully (635 jobs).
+EXIT=0

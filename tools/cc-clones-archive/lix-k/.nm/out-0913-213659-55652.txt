@@ -1,0 +1,17 @@
+[job] 21:37:42 acn112 waiting for clone lock
+[job] delta sync 873a823bb..094e0827c: 14 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 094e0827c log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-213659-55652.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3452 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.QuestionsNotFinitelyPresented
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean
+ Quot.sound]
+Build completed successfully (4705 jobs).
+EXIT=0
+PROBE GREEN

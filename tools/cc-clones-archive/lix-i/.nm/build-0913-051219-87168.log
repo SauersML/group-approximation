@@ -1,0 +1,16 @@
+purged 32 stale artifact sets (source-newer=3, import-newer=29) of 3207 oleans
+[job] acn112 cores=72-79 threads=8 base=f6511f15905e161f62b121ef8fb26ba200a822be mods: GroupApproximation.GGT.HullLemma35Printed GroupApproximation.GGT.HullLemma35FreeFactors
+ℹ [2797/2978] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4566/4567] Built GroupApproximation.GGT.HullLemma35Printed (7.9s)
+ℹ [4567/4567] Built GroupApproximation.GGT.HullLemma35FreeFactors (11s)
+info: GroupApproximation/GGT/HullLemma35FreeFactors.lean:362:21: 'GroupApproximation.GGT.printedFreeFactorsHypEmbedded' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35FreeFactors.lean:364:14: 'GroupApproximation.GGT.FreeFactorsHypEmbedded.relBall_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35FreeFactors.lean:366:14: 'GroupApproximation.GGT.FreeFactorsHypEmbedded.isFourPointHyperbolic_alphabet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4567 jobs).
+EXIT=0

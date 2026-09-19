@@ -1,0 +1,123 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2346 oleans
+[job] acn112 cores=64-71 threads=8 base=8a5712fb2b3d504b25fc18628a6954cb0302cc9f mods: GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure GroupApproximation.Manuscript.NonMF.Audit.Sec5
+ℹ [2797/2934] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10018/10019] Built GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure (54s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeDefectNormalClosure.lean:81:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure.manuscriptSentence_theoremNormalClosureDefectEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeDefectNormalClosure.lean:82:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure.printedNormalClosureDefectEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10019/10019] Built GroupApproximation.Manuscript.NonMF.Audit.Sec5 (95s)
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:39:14: 'GroupApproximation.Manuscript.NonMF.TorsionFree.Suitable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:43:21: 'GroupApproximation.GGT.OsinPrinted.manuscriptSentence_saturationOsinClosed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:44:21: 'GroupApproximation.GGT.OsinPrinted.osinLemma71Printed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:45:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationSuitable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:49:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationDisplay' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:53:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationQuotientTorsionFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:54:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationQuotientFinitelyPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:58:14: 'GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.conjFactor' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:59:14: 'GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_simpleFactor_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:60:14: 'GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_conjFactor_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:64:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.defect_generator_mem_of_simpleFactor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:65:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.commutator_conjFactor_le_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:66:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.conjFactor_le_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:67:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptSimpleFactorInDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:71:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremNormalClosureNeBot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:75:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:76:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientKazhdan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:80:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremDefectFunctorial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:81:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.map_conjFactor_le_printedDefect_of_functorial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:82:21: 'GroupApproximation.Manuscript.NonMF.manuscriptLemmaCommutatorInDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:87:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremDefectEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:88:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure.manuscriptSentence_theoremNormalClosureDefectEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:89:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreeDefectNormalClosure.printedNormalClosureDefectEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:94:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremBothKazhdan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:95:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremHomsTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:96:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:101:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.exists_isNonDegenerate_isHypEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:102:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.osinTheorem12Printed_unconditional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:103:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraTrivialFiniteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:108:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraSeparableGenerated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:109:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraStablyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:110:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraNotMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:111:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraNotCDEOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:112:14: 'GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:113:14: 'GroupApproximation.reducedGroupCStar_isStablyFiniteCStarAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:114:14: 'GroupApproximation.isCDEOperatorMF_of_faithful_corona_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:115:14: 'GroupApproximation.HasMFEmbedding.isCDEOperatorMF' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:116:14: 'GroupApproximation.not_isMFAlgebra_reducedGroupCStar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:120:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.dgoTheorem235Printed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec5.lean:121:21: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.gerasimovaOsinTheorem11Printed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10019 jobs).
+EXIT=0

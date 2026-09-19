@@ -1,0 +1,49 @@
+[job] 19:59:16 acn125 waiting for clone lock
+[job] delta sync 1ba0fbdbc..ec278f867: 7 files changed
+===== SUMMARY
+host acn125 cores slurm base ec278f867 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-195614-83838.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3668 oleans
+--- errors (first 80 lines)
+21:✖ [4801/4801] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue (19s)
+23:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+24:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.604` is not an inductive datatype
+25:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+26:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.894` is not an inductive datatype
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+28:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.2397` is not an inductive datatype
+29:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+30:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.2687` is not an inductive datatype
+31:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:28: This simp argument is unused:
+41:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:39: This simp argument is unused:
+51:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:49: This simp argument is unused:
+61:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+62:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.604` is not an inductive datatype
+63:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+64:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.894` is not an inductive datatype
+65:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+66:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.2397` is not an inductive datatype
+67:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+68:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.2687` is not an inductive datatype
+69:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:28: This simp argument is unused:
+78:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:39: This simp argument is unused:
+88:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:49: This simp argument is unused:
+98:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:90:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptQ' depends on axioms outside the classical allowlist: [sorryAx]
+99:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+101:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:91:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptP' depends on axioms outside the classical allowlist: [sorryAx]
+102:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+104:error: Lean exited with code 1
+107:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

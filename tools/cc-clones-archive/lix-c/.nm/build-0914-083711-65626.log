@@ -1,0 +1,28 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3562 oleans
+[job] acn112 cores=64-71 threads=8 base=d940fb3ee204954407bb6399ba7b2c40d4995f0f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+ℹ [3295/3387] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5071/5071] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:94:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:291:21: 'GroupApproximation.GGT.VanKampen.osinLemma94JunctionFaceClause' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:293:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.facePerm_getLast_eq_head_mod' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:295:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.junctionGap_faceOf_ne_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:297:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.listVal_junctionGap_ne_one_of_mem_badJunctions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:299:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_badJunctions_le_sum_boundaryBad' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+error: build failed
+EXIT=1

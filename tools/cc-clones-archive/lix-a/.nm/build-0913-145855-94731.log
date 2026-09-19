@@ -1,0 +1,44 @@
+purged 21 stale artifact sets (source-newer=5, import-newer=16) of 3728 oleans
+[job] acn112 cores=88-95 threads=8 base=cb71b181f6dd4d34d4a8f95c77d058d20a312429 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColourModels
+ℹ [3297/3344] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10099/10100] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour (32s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:319:8: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:367:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.orient_of_sides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:368:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.mem_iff_of_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:369:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.mem_exteriorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:370:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.exists_sourceDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:371:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.cell_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:372:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.walk_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:373:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.exists_targetDart_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:374:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.walk_orient' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:375:21: 'GroupApproximation.GGT.VanKampen.pocketWalkColour' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
+error: build failed
+EXIT=1

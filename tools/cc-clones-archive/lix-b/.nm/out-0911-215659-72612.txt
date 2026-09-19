@@ -1,0 +1,29 @@
+[job] 21:57:14 acn112 waiting for clone lock
+[job] delta sync 9d5cf111f..9376e7605: 170 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 9376e7605 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-215659-72612.log
+purged 362 stale artifact sets (source-newer=5, import-newer=357) of 2527 oleans
+--- errors (first 80 lines)
+45:✖ [8916/8922] Building GroupApproximation.CharClass.GysinRetract (28s)
+47:error: GroupApproximation/CharClass/GysinRetract.lean:123:4: Unknown identifier `pull_eq_of_homotopicOf`
+48:error: Lean exited with code 1
+56:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.ThomStepCEulerOf
+BUILT GroupApproximation.CharClass.ThomToolkitInstanceOf
+BUILT GroupApproximation.CharClass.GysinFromGraded
+BUILT GroupApproximation.CharClass.ThomBridgeChart
+BUILT GroupApproximation.CharClass.ThomBundlePair
+mentioned-not-built GroupApproximation.CharClass.GysinRetract (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.GysinTautFields (replayed or failed)
+--- rebuilt GroupApproximation modules: 10
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBundlePair.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+- GroupApproximation.CharClass.GysinRetract
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

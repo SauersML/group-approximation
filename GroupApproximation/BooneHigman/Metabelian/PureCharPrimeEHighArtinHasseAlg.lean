@@ -187,12 +187,13 @@ theorem eHighArtinHasse_conj_mem (act : Q → M → M)
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_mem
 
 /-- Restriction of an algebra endomorphism to a subalgebra it preserves. -/
-def eHighArtinHasse_restr {A : Type} [Ring A] [Algebra L A] (B : Subalgebra L A)
+def eHighArtinHasse_restr {A : Type} [Semiring A] [Algebra L A] (B : Subalgebra L A)
     (e : A →ₐ[L] A) (he : ∀ x ∈ B, e x ∈ B) : B →ₐ[L] B :=
   (e.comp B.val).codRestrict B fun x => he (x : A) x.2
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_restr
 
+set_option maxHeartbeats 800000 in
 /-- Conjugation by `Ψ q`, restricted to the translation algebra. -/
 def eHighArtinHasse_conjB (act : Q → M → M)
     (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
@@ -200,7 +201,8 @@ def eHighArtinHasse_conjB (act : Q → M → M)
     (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
     (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V) (q : Q) :
     eHighArtinHasse_alg V htrans →ₐ[L] eHighArtinHasse_alg V htrans :=
-  eHighArtinHasse_restr _ (eHighArtinHasse_conj act hmul hone V hact q)
+  eHighArtinHasse_restr (eHighArtinHasse_alg V htrans)
+    (eHighArtinHasse_conj act hmul hone V hact q)
     (eHighArtinHasse_conj_mem act hadd hmul hone V htrans hact q)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB
@@ -279,6 +281,7 @@ def eHighArtinHasse_theta (V : Submodule L (M → L))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_theta
 
+set_option maxHeartbeats 800000 in
 /-- **Finite commutative algebras from invariant function spaces.**  Take a finite-dimensional,
 translation-stable, `act`-stable, point-separating `V ⊆ (M → L)`.  Then `M` embeds
 multiplicatively and `Q`-equivariantly into a finite-dimensional commutative `L`-algebra on
@@ -301,9 +304,10 @@ theorem eHighArtinHasse_exists_units_of_polyFun (act : Q → M → M)
   haveI hB : IsMulCommutative (eHighArtinHasse_alg V htrans) :=
     Algebra.isMulCommutative_adjoin L hcomm
   letI instB : CommRing (eHighArtinHasse_alg V htrans) :=
-    { (inferInstance : Ring (eHighArtinHasse_alg V htrans)) with
+    { Subalgebra.toRing (eHighArtinHasse_alg V htrans) with
       mul_comm := hB.is_comm.comm }
-  refine ⟨eHighArtinHasse_alg V htrans, instB, inferInstance, inferInstance,
+  refine ⟨eHighArtinHasse_alg V htrans, instB, Subalgebra.algebra (eHighArtinHasse_alg V htrans),
+    inferInstance,
     eHighArtinHasse_theta V htrans, eHighArtinHasse_sigma act hadd hmul hone V htrans hact,
     ?_, ?_⟩
   · intro a b hab

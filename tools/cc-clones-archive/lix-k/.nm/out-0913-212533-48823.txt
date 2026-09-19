@@ -1,0 +1,26 @@
+[job] 21:25:48 acn112 waiting for clone lock
+[job] delta sync e77f1ad7f..873a823bb: 6 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 873a823bb log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-212533-48823.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3448 oleans
+--- errors (first 80 lines)
+22:✖ [2612/2612] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (11s)
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:146:13: try 'simp' instead of 'simpa'
+41:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

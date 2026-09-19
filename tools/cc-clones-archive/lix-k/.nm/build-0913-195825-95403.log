@@ -1,0 +1,166 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3394 oleans
+[job] acn112 cores=64-71 threads=8 base=f31c01a529552234c56f423dbfe297d4a9642e27 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+✔ [2609/2612] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement (5.3s)
+✖ [2610/2612] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (24s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:88:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Matrix.single ?m.180 ?j ?a ?i' ?j'
+in the target expression
+  (Matrix.single a b x a b').val • towerE T (ZMod 2) m hW a b' = 0
+
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+W : Set X
+hW : IsClopen W
+a b : Fin (2 * m + 1)
+x : ZMod 2
+h1 : ∀ (a' : Fin (2 * m + 1)), a' ≠ a → ∑ b', (Matrix.single a b x a' b').val • towerE T (ZMod 2) m hW a' b' = 0
+b' : Fin (2 * m + 1)
+hb' : b' ≠ b
+⊢ (Matrix.single a b x a b').val • towerE T (ZMod 2) m hW a b' = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    Matrix.single a b x a
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:88:38: Application type mismatch: The argument
+  Ne.symm hb'
+has type
+  b ≠ b'
+of sort `Prop` but is expected to have type
+  ?m.171
+of sort `Type ?u.122` in the application
+  Matrix.single_apply_of_col_ne (Ne.symm hb')
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:102:45: Application type mismatch: The argument
+  hbc
+has type
+  ¬b = c
+of sort `Prop` but is expected to have type
+  Fin (2 * m + 1)
+of sort `Type` in the application
+  @Matrix.single_mul_single_of_ne (Fin (2 * m + 1)) (Fin (2 * m + 1)) ?m.231 (Fin (2 * m + 1)) ?m.233 ?m.234 ?m.235
+    ?m.236 ?m.237 a b c hbc
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:115:8: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:105:18: (deterministic) timeout at `«abstract nested proofs»`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:119:4: Function expected at
+  towerHom
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  hlev
+
+Hint: The identifier `towerHom` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:124:4: Function expected at
+  towerHom
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  hlev
+
+Hint: The identifier `towerHom` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:130:4: Function expected at
+  towerHom
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  hlev
+
+Hint: The identifier `towerHom` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:133:49: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  1 a b
+in the target expression
+  ZMod.val (?M a b) • towerE T (ZMod 2) m ?hW✝ a b = 0
+
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+U W : Set X
+x✝¹ : Sort u_2
+towerHom : x✝¹
+hlev : LevelsDisjoint T m U
+hWU : W ⊆ U
+hW : IsClopen W
+a : Fin (2 * m + 1)
+x✝ : a ∈ Finset.univ
+b : Fin (2 * m + 1)
+hb : b ≠ a
+⊢ ZMod.val (?M a b) • towerE T (ZMod 2) m ?hW✝ a b = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    ?M a
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:134:19: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  1 ?i ?i
+in the target expression
+  ZMod.val (?M a a) • towerE T (ZMod 2) m ?hW✝ a a = towerE T (ZMod 2) m hW a a
+
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+U W : Set X
+x✝¹ : Sort u_2
+towerHom : x✝¹
+hlev : LevelsDisjoint T m U
+hWU : W ⊆ U
+hW : IsClopen W
+a : Fin (2 * m + 1)
+x✝ : a ∈ Finset.univ
+⊢ ZMod.val (?M a a) • towerE T (ZMod 2) m ?hW✝ a a = towerE T (ZMod 2) m hW a a
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    ?M a
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:140:33: Function expected at
+  towerHom
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  hlev
+
+Hint: The identifier `towerHom` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:167:45: Function expected at
+  towerHom
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  hlev
+
+Hint: The identifier `towerHom` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:169:2: No applicable extensionality theorem found for type
+  ?m.15 hlev hWU hW hne
+
+Note: Extensionality theorems can be registered by marking them with the `[ext]` attribute
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:180:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_single' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:181:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:182:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:183:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.towerHom_injective`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+error: build failed
+EXIT=1

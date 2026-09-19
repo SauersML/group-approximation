@@ -1,0 +1,42 @@
+[job] 17:07:27 acn112 waiting for clone lock
+[job] delta sync 2433c7a37..11df08971: 11 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 11df08971 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-170721-81516.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3601 oleans
+--- errors (first 80 lines)
+22:✖ [4314/4317] Building GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (13s)
+24:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:49:48: Tactic `rewrite` failed: motive is not type correct:
+49:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:52:74: Tactic `rewrite` failed: motive is not type correct:
+74:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:81:64: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `y`
+77:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:84:9: unsolved goals
+88:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:111:14: unsolved goals
+95:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:112:18: unsolved goals
+142:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:122:5: `Pi.ringHom` has been deprecated: Use `RingHom.pi` instead
+145:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:140:43: Unknown constant `Int.even_neg`
+146:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:134:81: unsolved goals
+210:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:145:29: declaration uses `sorry`
+211:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:146:8: This simp argument is unused:
+218:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:152:2: 'show' tactic failed, pattern
+224:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:162:33: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `y`
+227:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:165:9: unsolved goals
+238:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:185:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent' depends on axioms outside the classical allowlist: [sorryAx]
+239:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+241:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:186:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms outside the classical allowlist: [sorryAx]
+242:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+244:error: Lean exited with code 1
+276:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+BUILT GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements
+BUILT GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly
+mentioned-not-built GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.RankTwoCoreImageHaagerup (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean
+COMPILED GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean
+COMPILED GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean
+- GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

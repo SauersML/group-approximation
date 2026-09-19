@@ -1,0 +1,19 @@
+[job] 00:09:53 acn112 waiting for clone lock
+[job] delta sync 9c15285d0..03425bbe6: 0 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 03425bbe6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-000930-45207.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2099 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXStepDGenRealTorus
+BUILT GroupApproximation.CharClass.LIXStepDGenRealTorusModel
+BUILT GroupApproximation.CharClass.LIXLemmaTwoGenTwo
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXLemmaTwoGenTwo.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenRealTorus.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenRealTorusModel.lean
+info: GroupApproximation/CharClass/LIXStepDGenRealTorusModel.lean:56:14: 'GroupApproximation.CharClass.Gen.circle_two_torusOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9310 jobs).
+EXIT=0
+PROBE GREEN

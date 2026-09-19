@@ -1,0 +1,32 @@
+purged 9 stale artifact sets (source-newer=3, import-newer=6) of 3717 oleans
+[job] acn112 cores=80-87 threads=8 base=dfdaf521f1b8cc8abefed6e55811c4eacbdf9219 mods: GroupApproximation.GGT.VanKampen.FaceSetCircuitNoncrossing
+ℹ [3295/3450] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4983/4983] Built GroupApproximation.GGT.VanKampen.FaceSetCircuitNoncrossing (10s)
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:240:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryWalk.mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:241:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryWalk.trans_internal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:242:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryWalk.exists_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:243:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.isNoncrossingClosedWalk_of_isChain_boundaryWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:244:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.FaceSetCircuits.boundaryPerm_val_of_boundaryWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:245:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.FaceSetCircuits.circuit_isNoncrossingClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:246:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.FaceSetCircuits.mem_circuit_iff_of_isChain_boundaryWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:247:14: 'GroupApproximation.GGT.VanKampen.Embedded.boundaryWalk_of_boundaryStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4983 jobs).
+EXIT=0

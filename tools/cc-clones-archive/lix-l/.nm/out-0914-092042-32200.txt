@@ -1,0 +1,43 @@
+[job] 09:20:53 acn112 waiting for clone lock
+[job] delta sync c268a0066..927bcb96e: 83 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 927bcb96e log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0914-092042-32200.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3904 oleans
+--- errors (first 80 lines)
+6:✖ [10147/10147] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift (24s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:141:20: unsolved goals
+17:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:194:63: Unknown identifier `hab`
+18:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:195:36: Unknown identifier `hab`
+19:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:196:27: Unknown identifier `hab`
+20:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:196:51: Unknown identifier `hab`
+21:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:201:22: Unknown identifier `hab`
+22:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:201:45: Unknown identifier `hab`
+23:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:203:63: Unknown identifier `hab`
+24:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:204:38: Unknown identifier `hab`
+25:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:205:29: Unknown identifier `hab`
+36:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:215:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.exists_liftCount_of_sigma_pow_embed' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+39:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:216:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.minRun_embed' depends on axioms outside the classical allowlist: [sorryAx]
+40:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+48:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:219:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.rotationBetween_embed_iff' depends on axioms outside the classical allowlist: [sorryAx]
+49:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+51:error: Lean exited with code 1
+54:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellGoodCorners.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterSpur.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchOuterDispatch.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingFaces.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift
+error: build failed
+EXIT=1
+PROBE FAILED rc=1
