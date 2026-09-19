@@ -126,3 +126,13 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Brief's step.** The uniform relation-gap detector for the slide route is not proved. The obvious central-quotient `H_2` detectors do not separate. This attempt instead closes realizations inside the natural fibred `K(G,1)`.
 
   Next: make the index-9 test `Aut(F_4)`-invariant, for example with a norm on `H_1(L ∩ F_4)` that is `≥ 2` on the pushed class in every basis. That would exclude all marked roses, and then non-rose marked graphs and the other fibrations in the BNS cone. What would remain as realizations of `RP(H,G)` is non-fibred 2-dimensional `K(G,1)`s, such as slide complexes. Alternatively, apply the canonical-cycle test to those slide complexes directly.
+
+- **w15-048, 2026-09-19: fibred realizations of (C2) reduce to a free-factor problem for `N`.** Landed `c2-fibred-realizations-reduce-to-a-primitive-class`.
+  - **Reduction.** Take any marked graph, any representative `f` of `φ`, and any fibration `χ` in the BNS cone (`χ(H) = Z` always).
+    - If `M_f` passes the canonical-cycle test, the support of the cycle in `Γ_N` maps edge-injectively to `Γ`.
+    - It therefore splits vertices of a subgraph, and gives nontrivial `A_1..A_k ≤ N`, `k ≤ 4`, whose conjugates span a free factor of `F_4` and whose `H_1` carries `c_H`. This is condition `(P_k)`.
+    - `(P_1)` holds iff some `q ∈ N`, primitive in `F_4`, has `[q] = c_H`. A marked rose passes with connected support iff this holds.
+  - **Brief's step blocked at index 9.** An `F_4`-primitive `q ∈ N` would be primitive in `J = L ∩ F_4` (Kurosh). At index 9 every consequence of this that `J` can see holds: `c_H` is primitive in `H_1(J)`, `H_1(J)/H_1(N) ≅ Z`, and the `Z`-twisted Fox vector is unimodular. So no basis-invariant norm on `H_1(L ∩ F_4)` excludes the roses here.
+  - **Search.** `c_H = 2[rP] + 2[QsRq] + [SpSrs]`. No primitive representative was found among products of `N`-conjugates of these loops or in hill-climbs in `q_0[N,N]` (evidence only).
+
+  Next: decide `(P_1)–(P_4)` for `N`. For example, run Whitehead's algorithm relative to the Stallings graphs of the windows `T_M`, using that an `F_4`-primitive `q ∈ T_M` is primitive in `T_M`. Then run the canonical-cycle test on slide complexes, which is the non-fibred remainder.
