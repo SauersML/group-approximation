@@ -42,9 +42,6 @@ theorem wordMap_prod (f : ∀ i, M i →* N i) (hf : ∀ i, Function.Injective (
     (wordMap f hf w).prod = CoprodI.lift (fun i => (of : N i →* CoprodI N).comp (f i)) w.prod := by
   simp only [Word.prod, wordMap, map_list_prod, List.map_map]
   congr 1
-  apply List.map_congr_left
-  intro l _
-  simp only [Function.comp_apply, lift_of, MonoidHom.comp_apply]
 
 theorem wordMap_injective (f : ∀ i, M i →* N i) (hf : ∀ i, Function.Injective (f i)) :
     Function.Injective (wordMap f hf) := by
