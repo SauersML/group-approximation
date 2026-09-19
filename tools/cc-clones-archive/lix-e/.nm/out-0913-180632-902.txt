@@ -1,0 +1,29 @@
+[job] 18:08:40 acn50 waiting for clone lock
+[job] delta sync 541bd14be..fc6687b3b: 5 files changed
+===== SUMMARY
+host acn50 cores slurm base fc6687b3b log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-180632-902.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4224 oleans
+--- errors (first 80 lines)
+95:✖ [5000/5000] Building GroupApproximation.GGT.VanKampen.SurgeryOuterSideThickening (138s)
+97:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean:129:29: Application type mismatch: The argument
+105:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean:319:21: 'GroupApproximation.GGT.VanKampen.OuterSideThickening.outerSideThickening' depends on axioms outside the classical allowlist: [sorryAx]
+106:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+117:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean:323:14: 'GroupApproximation.GGT.VanKampen.OuterSideThickening.exists_of_isOuterSideDart' depends on axioms outside the classical allowlist: [sorryAx]
+118:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+120:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean:324:14: 'GroupApproximation.GGT.VanKampen.OuterSideThickening.outerSideCount_lt' depends on axioms outside the classical allowlist: [sorryAx]
+121:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+126:error: GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean:326:14: 'GroupApproximation.GGT.VanKampen.OuterSideThickening.exists_sideFree' depends on axioms outside the classical allowlist: [sorryAx]
+127:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+129:error: Lean exited with code 1
+132:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryOuterSideThickening (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterCellThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean
+- GroupApproximation.GGT.VanKampen.SurgeryOuterSideThickening
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

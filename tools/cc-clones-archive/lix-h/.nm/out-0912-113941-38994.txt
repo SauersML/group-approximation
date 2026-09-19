@@ -1,0 +1,32 @@
+[job] 11:39:52 acn112 waiting for clone lock
+[job] delta sync 3733b381b..1a4555df7: 39 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 1a4555df7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0912-113941-38994.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2402 oleans
+--- errors (first 80 lines)
+111:✖ [9260/9261] Building GroupApproximation.CharClass.ChernSplittingOfOpsAdapter (19s)
+113:error: GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean:50:64: Unknown identifier `even_zero`
+116:error: GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean:88:27: Unknown identifier `even_zero`
+117:error: GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean:112:14: 'GroupApproximation.CharClass.ChernSplittingOf.one_eq_evenOf_one' depends on axioms outside the classical allowlist: [sorryAx]
+118:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+126:error: GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean:115:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingPN_of_compactOps' depends on axioms outside the classical allowlist: [sorryAx]
+127:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+129:error: GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean:116:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingPN_of_compactOps_self' depends on axioms outside the classical allowlist: [sorryAx]
+130:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+132:error: Lean exited with code 1
+135:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.ChernSplittingOfOpsAdapter (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.ChernSplittingOfLix (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ChernSplittingOfCompact.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean
+COMPILED GroupApproximation/CharClass/ParityPDataNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuCartanNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransportNarrow.lean
+- GroupApproximation.CharClass.ChernSplittingOfOpsAdapter
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

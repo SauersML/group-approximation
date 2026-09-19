@@ -1,0 +1,15 @@
+[job] 16:42:54 acn112 waiting for clone lock
+[job] delta sync 4b6dd3cd8..19d96c2c5: 121 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 19d96c2c5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-164236-92448.log
+purged 49 stale artifact sets (source-newer=13, import-newer=36) of 3420 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.ClopenSwapInvolution
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1328 jobs).
+EXIT=0
+PROBE GREEN

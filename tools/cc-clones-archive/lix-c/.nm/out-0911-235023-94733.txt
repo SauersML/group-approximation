@@ -1,0 +1,29 @@
+[job] 23:50:55 acn112 waiting for clone lock
+[job] delta sync d83a23c23..9c0a4f8ce: 15 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 9c0a4f8ce log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0911-235023-94733.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2078 oleans
+--- errors (first 80 lines)
+9:✖ [2321/2321] Building GroupApproximation.CharClass.ChernSplittingOfPowers (10s)
+11:error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:62:34: failed to synthesize instance of type class
+15:error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:62:78: unsolved goals
+24:error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:63:35: This simp argument is unused:
+31:error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:80:32: failed to synthesize instance of type class
+35:error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:129:8: declaration uses `sorry`
+36:error: Lean exited with code 1
+39:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.ChernSplittingOfPowers (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ParityPDecomposable.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepD.lean
+COMPILED GroupApproximation/CharClass/ParityPTwistSymm.lean
+COMPILED GroupApproximation/CharClass/ParityPWuAxiomGuard.lean
+COMPILED GroupApproximation/CharClass/ParityPWuComponent.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransport.lean
+COMPILED GroupApproximation/CharClass/ParityPWuValue.lean
+- GroupApproximation.CharClass.ChernSplittingOfPowers
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

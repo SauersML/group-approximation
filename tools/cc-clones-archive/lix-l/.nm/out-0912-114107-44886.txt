@@ -1,0 +1,20 @@
+[job] 11:41:44 acn112 waiting for clone lock
+[job] delta sync 88878e9e7..e0d8365e0: 30 files changed
+===== SUMMARY
+host acn112 cores 88-95 base e0d8365e0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0912-114107-44886.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2404 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXStepDGenWuData
+mentioned-not-built GroupApproximation.CharClass.LIXStepDGenModPNarrow (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXStepDGenChernSplit.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenModPNarrow.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenSlice.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenSliceV.lean
+COMPILED GroupApproximation/CharClass/LIXStepDGenWuData.lean
+ Quot.sound]
+Build completed successfully (9360 jobs).
+EXIT=0
+PROBE GREEN

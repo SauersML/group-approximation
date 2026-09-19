@@ -1,0 +1,15 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4105 oleans
+[job] n7 cores=slurm threads=8 base=41d370c6ec0e1a6f14d221ab81f5fd21596b0673 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows
+ℹ [3359/3432] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4921/4921] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows (38s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:150:14: 'GroupApproximation.GGT.VanKampen.flatMap_rotate_eq_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:151:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_rotate_eq_classWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:152:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.class_four_windows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4921 jobs).
+EXIT=0

@@ -1,0 +1,36 @@
+[job] 08:31:20 cn1046 waiting for clone lock
+[job] delta sync b1872954c..d5d1b9db7: 135 files changed
+===== SUMMARY
+host cn1046 cores slurm base d5d1b9db7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0914-083104-27926.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3526 oleans
+--- errors (first 80 lines)
+6:✖ [4672/5042] Running GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+7:error: no such file or directory (error code: 4294967294)
+9:✖ [4708/5061] Running GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+10:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean: bad import 'GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion'
+11:✖ [5060/5061] Building GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet (54s)
+13:error: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:84:12: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+36:error: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:111:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+39:error: Lean exited with code 1
+40:✖ [5061/5061] Building GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts (54s)
+42:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:51:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+49:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:88:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+73:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:141:9: Unknown constant `Equiv.Perm.apply_symm_apply`
+74:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:139:73: unsolved goals
+81:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms outside the classical allowlist: [sorryAx]
+82:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+84:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:176:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms outside the classical allowlist: [sorryAx]
+85:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+87:error: Lean exited with code 1
+93:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

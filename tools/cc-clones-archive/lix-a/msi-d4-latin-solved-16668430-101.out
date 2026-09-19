@@ -1,0 +1,2 @@
+/var/spool/slurmd/job16668803/slurm_script: line 13: 1593076 Killed                  python3 research/artifacts/search-degree4-latin-projection-solved.py --a-index "$SLURM_ARRAY_TASK_ID"
+[2026-08-22T04:02:30.446] error: Detected 1 oom_kill event in StepId=16668803.batch. Some of the step tasks have been OOM Killed.

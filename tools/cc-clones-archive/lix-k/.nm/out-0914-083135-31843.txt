@@ -1,0 +1,25 @@
+[job] 08:32:08 acn117 waiting for clone lock
+[job] delta sync 5d8014be4..151ed1151: 22 files changed
+===== SUMMARY
+host acn117 cores slurm base 151ed1151 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0914-083135-31843.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3456 oleans
+--- errors (first 80 lines)
+30:✖ [10325/10325] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram (163s)
+38:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:399:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_letters' has a leading input; state and prove a closed proposition instead of accepting construction data
+45:error: Lean exited with code 1
+48:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyOrderSection (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

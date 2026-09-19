@@ -1,0 +1,253 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3113 oleans
+[job] acn112 cores=64-71 threads=8 base=4d208418871cd8048d9334d388d9fcabd2cbccd4 mods: GroupApproximation.Dynamics.ReturnSection
+✖ [1757/1757] Building GroupApproximation.Dynamics.ReturnSection (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/Dynamics/ReturnSection.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnSection.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnSection.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnSection.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnSection.setup.json --json
+error: GroupApproximation/Dynamics/ReturnSection.lean:103:8: failed to synthesize instance of type class
+  LocallyFiniteOrder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/ReturnSection.lean:106:20: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:106:4: failed to synthesize instance of type class
+  Membership X Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/ReturnSection.lean:106:65: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+r : ℕ
+S : Set X
+x : X
+⊢ sorry ↔ ∃ j, (-↑r < j ∧ j < ↑r) ∧ x ∈ ⇑(T ^ j) '' S
+error: GroupApproximation/Dynamics/ReturnSection.lean:107:13: declaration uses `sorry`
+error: GroupApproximation/Dynamics/ReturnSection.lean:107:13: This simp argument is unused:
+  nearOrbit
+
+Hint: Omit it from the simp argument list.
+  simp only [n̵e̵a̵r̵O̵r̵b̵i̵t̵,̵ ̵mem_iUnion₂, Finset.mem_Ioo, abs_lt, exists_prop]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:107:24: This simp argument is unused:
+  mem_iUnion₂
+
+Hint: Omit it from the simp argument list.
+  simp only [nearOrbit, m̵e̵m̵_̵i̵U̵n̵i̵o̵n̵₂̵,̵ ̵Finset.mem_Ioo, abs_lt, exists_prop]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:107:37: This simp argument is unused:
+  Finset.mem_Ioo
+
+Hint: Omit it from the simp argument list.
+  simp only [nearOrbit, mem_iUnion₂, F̵i̵n̵s̵e̵t̵.̵m̵e̵m̵_̵I̵o̵o̵,̵ ̵abs_lt, exists_prop]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:107:61: This simp argument is unused:
+  exists_prop
+
+Hint: Omit it from the simp argument list.
+  simp only [nearOrbit, mem_iUnion₂, Finset.mem_Ioo, abs_lt,̵ ̵e̵x̵i̵s̵t̵s̵_̵p̵r̵o̵p̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:110:31: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:113:65: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:113:83: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:113:53: failed to synthesize instance of type class
+  HasSubset Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/ReturnSection.lean:114:8: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+X : Type u_1
+inst✝ : TopologicalSpace X
+S S' : Set X
+h : S ⊆ S'
+⊢ sorry
+error: GroupApproximation/Dynamics/ReturnSection.lean:118:81: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:119:74: Unknown identifier `T`
+error: GroupApproximation/Dynamics/ReturnSection.lean:125:50: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:128:16: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.3
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:128:44: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.9
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:128:73: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:128:88: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.16
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:131:65: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.7
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:135:26: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.8
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:138:46: Unknown identifier `isClopen_nearOrbit`
+error: GroupApproximation/Dynamics/ReturnSection.lean:144:28: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.29
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:144:67: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.39
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:146:9: unsolved goals
+case zero
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+r : ℕ
+U : ℕ → Set X
+hU : ∀ (i j : ℕ), 0 < j → j < r → Disjoint (U i) (⇑(T ^ ↑j) '' U i)
+j : ℕ
+a✝¹ : 0 < j
+a✝ : j < r
+⊢ Disjoint (sorry ()) ((fun a => (T ^ j) a) '' sorry ())
+error: GroupApproximation/Dynamics/ReturnSection.lean:161:32: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+error: GroupApproximation/Dynamics/ReturnSection.lean:161:56: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: declaration uses `sorry`
+error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: declaration uses `sorry`
+error: GroupApproximation/Dynamics/ReturnSection.lean:146:31: This simp argument is unused:
+  sectionStep
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵e̵c̵t̵i̵o̵n̵S̵t̵e̵p̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:165:22: Application type mismatch: The argument
+  r
+has type
+  ℕ
+of sort `Type` but is expected to have type
+  Set X
+of sort `Type u_1` in the application
+  nearOrbit T r
+error: GroupApproximation/Dynamics/ReturnSection.lean:165:37: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.10
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:167:31: Unknown identifier `T`
+error: GroupApproximation/Dynamics/ReturnSection.lean:167:48: Unknown identifier `T`
+error: GroupApproximation/Dynamics/ReturnSection.lean:167:17: failed to synthesize instance of type class
+  Membership X Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/ReturnSection.lean:168:25: Unknown identifier `T`
+error: GroupApproximation/Dynamics/ReturnSection.lean:169:34: Unknown identifier `T`
+error: GroupApproximation/Dynamics/ReturnSection.lean:197:22: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+but is expected to have type
+  ℕ → Set ?m.166
+in the application
+  sectionStep T
+error: GroupApproximation/Dynamics/ReturnSection.lean:198:5: Unknown identifier `isClopen_sectionStep`
+error: GroupApproximation/Dynamics/ReturnSection.lean:203:46: Application type mismatch: The argument
+  T
+has type
+  X ≃ₜ X
+of sort `Type u_1` but is expected to have type
+  ?m.220 ⊆ ?m.221
+of sort `Prop` in the application
+  nearOrbit_mono T
+error: GroupApproximation/Dynamics/ReturnSection.lean:216:76: Variable name `hx` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/Dynamics/ReturnSection.lean:297:21: 'GroupApproximation.ChainCore.returnSectionStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnSection.lean:298:14: 'GroupApproximation.ChainCore.IsReturnSection.returnGapsIn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnSection.lean:299:14: 'GroupApproximation.ChainCore.IsReturnSection.eq_univ_of_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ReturnSection
+error: build failed
+EXIT=1

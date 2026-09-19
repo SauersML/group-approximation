@@ -1,0 +1,32 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3640 oleans
+[job] acn112 cores=64-71 threads=8 base=bd2813a111bd8e4621ba1aa0cbba5c93c03956a6 mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingProof
+ℹ [3295/3336] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10158/10158] Built GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingProof (23s)
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:323:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_pair_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:324:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.exists_bridge_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:325:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.cellCorrespondence_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:326:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.one_lt_faceBoundary_length_of_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:327:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutputSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:328:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:329:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedBridgeDoublingSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:330:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedLeastAreaFilterSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10158 jobs).
+EXIT=0

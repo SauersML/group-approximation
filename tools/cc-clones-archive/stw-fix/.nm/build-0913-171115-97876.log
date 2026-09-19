@@ -1,0 +1,48 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4592 oleans
+[job] acn112 cores=72-79 threads=8 base=cb5b195c81617ab85db66d1f8e75f2b2f8cf3371 mods: GroupApproximation.Dynamics.OneBlockCycleCondition
+ℹ [1085/1087] Replayed GroupApproximation.Dynamics.ItinerarySubshift
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:111:14: 'GroupApproximation.ChainCore.continuous_itinerary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:112:14: 'GroupApproximation.ChainCore.itinerary_zpow_apply' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:113:14: 'GroupApproximation.ChainCore.itinerary_apply_self' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:114:14: 'GroupApproximation.ChainCore.isClosed_itinerarySubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:115:14: 'GroupApproximation.ChainCore.mapsTo_shift_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:116:14: 'GroupApproximation.ChainCore.continuous_oneBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:117:14: 'GroupApproximation.ChainCore.oneBlock_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:118:14: 'GroupApproximation.ChainCore.oneBlock_oneBlock' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:119:14: 'GroupApproximation.ChainCore.oneBlock_itinerary' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:120:14: 'GroupApproximation.ChainCore.oneBlock_image_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+ℹ [1086/1087] Replayed GroupApproximation.Dynamics.ItineraryInverseLimit
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:103:14: 'GroupApproximation.ChainCore.mem_inverseLimitCore' depends on axioms: [Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:104:14: 'GroupApproximation.ChainCore.isClosed_inverseLimitCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:105:14: 'GroupApproximation.ChainCore.itinerary_mem_of_le' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:106:14: 'GroupApproximation.ChainCore.preimage_itinerary_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:107:14: 'GroupApproximation.ChainCore.itinerary_image_inverseLimitCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:108:14: 'GroupApproximation.ChainCore.inverseLimitCore_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:109:14: 'GroupApproximation.ChainCore.mapsTo_zpow_inverseLimitCore' depends on axioms: [propext, Quot.sound]
+✖ [1087/1087] Building GroupApproximation.Dynamics.OneBlockCycleCondition (9.5s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/Dynamics/OneBlockCycleCondition.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/Dynamics/OneBlockCycleCondition.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/Dynamics/OneBlockCycleCondition.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/Dynamics/OneBlockCycleCondition.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/Dynamics/OneBlockCycleCondition.setup.json --json
+error: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:70:59: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:140:14: 'GroupApproximation.ChainCore.wordEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:141:14: 'GroupApproximation.ChainCore.reflTransGen_wordEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:142:14: 'GroupApproximation.ChainCore.isCyclicEdge_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:143:14: 'GroupApproximation.ChainCore.cycleCondition_image_comp' depends on axioms: []
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:144:14: 'GroupApproximation.ChainCore.mapsTo_comp_coreSubshift' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:145:14: 'GroupApproximation.ChainCore.isClosed_itineraryCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:146:14: 'GroupApproximation.ChainCore.mapsTo_shift_itineraryCore' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:147:14: 'GroupApproximation.ChainCore.itineraryCore_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:148:14: 'GroupApproximation.ChainCore.cycleCondition_oneBlock_image' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:149:14: 'GroupApproximation.ChainCore.oneBlock_image_itineraryCore_subset' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:150:14: 'GroupApproximation.ChainCore.isClosed_generalCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:151:14: 'GroupApproximation.ChainCore.mapsTo_zpow_generalCore' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/OneBlockCycleCondition.lean:152:14: 'GroupApproximation.ChainCore.itinerary_image_generalCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.OneBlockCycleCondition
+error: build failed
+EXIT=1

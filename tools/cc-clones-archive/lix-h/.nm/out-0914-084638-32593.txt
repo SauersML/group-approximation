@@ -1,0 +1,20 @@
+[job] 08:48:25 acn205 waiting for clone lock
+[job] delta sync bbf96c2b5..5e0eefb0c: 42 files changed
+===== SUMMARY
+host acn205 cores slurm base 5e0eefb0c log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-084638-32593.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3716 oleans
+--- errors (first 80 lines)
+6:✖ [10196/10196] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel (86s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:409:3: failed to synthesize instance of type class
+12:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:472:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel' depends on axioms outside the classical allowlist: [sorryAx]
+13:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+15:error: Lean exited with code 1
+18:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

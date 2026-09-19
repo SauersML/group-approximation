@@ -1,0 +1,44 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3635 oleans
+[job] acn112 cores=64-71 threads=8 base=8c3fc5f4a2285cf36e959cb365087a0ea0f247cf mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingModel
+ℹ [3297/3338] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4983/4983] Building GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingModel (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:43:27: Expected type must not contain free variables
+  diagram.toCombMap.sigma (diagram.toCombMap.alpha outerWalk[0]) = outerWalk[(0 + 1) % outerWalk.length]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:43:27: Expected type must not contain free variables
+  diagram.toCombMap.sigma (diagram.toCombMap.alpha outerWalk[1]) = outerWalk[(1 + 1) % outerWalk.length]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:43:27: Expected type must not contain free variables
+  diagram.toCombMap.sigma (diagram.toCombMap.alpha outerWalk[2]) = outerWalk[(2 + 1) % outerWalk.length]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:43:27: Expected type must not contain free variables
+  diagram.toCombMap.sigma (diagram.toCombMap.alpha outerWalk[3]) = outerWalk[(3 + 1) % outerWalk.length]
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:57:65: failed to synthesize
+  Decidable (∀ d ∈ outerWalk, faceClass d = 2)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:62:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.enclosedFaceSetSucc' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:63:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.bridgeDarts_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:64:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.bridge_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean:65:14: 'GroupApproximation.GGT.VanKampen.BridgeDoublingModel.faceOf_eq_outerFace' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingModel
+error: build failed
+EXIT=1

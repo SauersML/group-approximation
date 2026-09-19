@@ -1,0 +1,34 @@
+[job] 00:01:23 acn112 waiting for clone lock
+[job] delta sync b712a4c5c..891b3724e: 6 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 891b3724e log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0912-000056-85150.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2301 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.ThomSphereSubspaceOf
+BUILT GroupApproximation.CharClass.BundleTotalPiCohIsoOf
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/BundleTotalPiCohIsoOf.lean
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinPairRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinPairTautOf.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/GysinTautChartOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChartHom.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeTotalOf.lean
+COMPILED GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+COMPILED GroupApproximation/CharClass/ThomDataOf.lean
+COMPILED GroupApproximation/CharClass/ThomHabsOf.lean
+COMPILED GroupApproximation/CharClass/ThomKunnethOf.lean
+COMPILED GroupApproximation/CharClass/ThomProjectivePuncturedOf.lean
+COMPILED GroupApproximation/CharClass/ThomSphereSubspaceOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+COMPILED GroupApproximation/CharClass/ThomTopLineOf.lean
+info: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:63:14: 'GroupApproximation.CharClass.absToSub_injective_of_sphereOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8826 jobs).
+EXIT=0
+PROBE GREEN

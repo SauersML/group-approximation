@@ -1,0 +1,28 @@
+[job] 18:09:25 acn112 waiting for clone lock
+[job] delta sync b122008b7..7ad403c52: 19 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 7ad403c52 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-180914-12240.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3663 oleans
+--- errors (first 80 lines)
+51:✖ [5022/5022] Building GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening (13s)
+53:error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:235:10: Unknown constant `GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.respectsSections_of_sameTargetProfile`
+54:error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:318:21: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideThickening' depends on axioms outside the classical allowlist: [sorryAx]
+55:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+66:error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:322:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.sectionFamilyOfArcs' depends on axioms outside the classical allowlist: [sorryAx]
+67:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+69:error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:323:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_cellSideFree' depends on axioms outside the classical allowlist: [sorryAx]
+70:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+72:error: Lean exited with code 1
+75:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.SurgeryCellSideThickeningModel
+BUILT GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingSideRegions
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean
+- GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

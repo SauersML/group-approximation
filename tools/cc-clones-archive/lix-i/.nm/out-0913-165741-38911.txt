@@ -1,0 +1,28 @@
+[job] 16:57:52 acn112 waiting for clone lock
+[job] delta sync ad33958c0..2433c7a37: 11 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 2433c7a37 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-165741-38911.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3601 oleans
+--- errors (first 80 lines)
+6:✖ [4064/4086] Running Mathlib.Data.Matrix.Notation
+7:error: no such file or directory (error code: 4294967294)
+9:✖ [4065/4086] Running GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+10:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean: bad import 'Mathlib.Data.Matrix.Notation'
+11:✖ [4084/4086] Building GroupApproximation.Algebra.LocallyFiniteCongruenceKernel (12s)
+13:error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:97:12: Type mismatch
+19:error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:115:6: Type mismatch
+29:error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:219:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms outside the classical allowlist: [sorryAx]
+30:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+35:error: Lean exited with code 1
+40:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.LocallyFiniteCongruenceKernel (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,27 @@
+[job] 17:51:36 acn112 waiting for clone lock
+[job] delta sync c28a60924..83caf3109: 67 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 83caf3109 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-175127-43057.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3515 oleans
+--- errors (first 80 lines)
+6:✖ [4067/4067] Building GroupApproximation.Dynamics.ClopenCrossedProductAlgebra (13s)
+8:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:76:0: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'SkewMonoidAlgebra.instAlgebraOfSMulCommClass', which is 'noncomputable'
+9:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:93:43: Application type mismatch: The argument
+19:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:159:14: 'GroupApproximation.ClopenCrossedProduct.restrict_algebraMap' depends on axioms outside the classical allowlist: [sorryAx]
+20:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+22:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:160:14: 'GroupApproximation.ClopenCrossedProduct.restrict_smul' depends on axioms outside the classical allowlist: [sorryAx]
+23:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+25:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:161:14: 'GroupApproximation.ClopenCrossedProduct.restrictAlgHom_apply' depends on axioms outside the classical allowlist: [sorryAx]
+26:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+28:error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:162:14: 'GroupApproximation.ClopenCrossedProduct.smul_mem_transientIdeal' depends on axioms outside the classical allowlist: [sorryAx]
+29:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+37:error: Lean exited with code 1
+40:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ClopenCrossedProductAlgebra (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.ClopenCrossedProductAlgebra
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

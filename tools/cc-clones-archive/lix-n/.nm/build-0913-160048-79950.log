@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3326 oleans
+[job] acn112 cores=64-71 threads=8 base=c0ff0a5f90c2535c32a8feaa0015009afc9afbb9 mods: GroupApproximation.Dynamics.SubshiftCyclePeriodic
+ℹ [923/1083] Replayed GroupApproximation.Dynamics.SubshiftWordGraph
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:122:14: 'GroupApproximation.WordGraph.word_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:123:14: 'GroupApproximation.WordGraph.tail_mem_language' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:124:14: 'GroupApproximation.WordGraph.wordEdge_word' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:125:14: 'GroupApproximation.WordGraph.exists_realize_of_word_mem_language' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:126:14: 'GroupApproximation.WordGraph.isCyclicEdge_zero' depends on axioms: [propext, Quot.sound]
+ℹ [1238/1238] Built GroupApproximation.Dynamics.SubshiftCyclePeriodic (6.6s)
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:106:14: 'GroupApproximation.WordGraph.exists_edgeWalk_of_reflTransGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:107:14: 'GroupApproximation.WordGraph.edge_apply_eq_of_tail_eq_init' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:108:14: 'GroupApproximation.WordGraph.exists_periodic_of_isCyclicEdge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1238 jobs).
+EXIT=0

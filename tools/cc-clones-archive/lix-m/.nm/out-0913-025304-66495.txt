@@ -1,0 +1,21 @@
+[job] 02:53:44 acn32 waiting for clone lock
+[job] delta sync 924105b04..9dda53a05: 279 files changed
+===== SUMMARY
+host acn32 cores slurm base 9dda53a05 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0913-025304-66495.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2334 oleans
+--- errors (first 80 lines)
+6:✖ [4943/4945] Building GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel (13s)
+8:error: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:89:2: No goals to be solved
+24:error: Lean exited with code 1
+769:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel (replayed or failed)
+BUILT GroupApproximation.Manuscript.NonMF.Audit.Sec3
+mentioned-not-built GroupApproximation.Manuscript.NonMF.Audit.Sec4 (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean
+- GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

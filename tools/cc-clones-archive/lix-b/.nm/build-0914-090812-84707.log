@@ -1,0 +1,22 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3520 oleans
+[job] acn112 cores=64-71 threads=8 base=048db97d47789886676f4ebb63d70df7c7802220 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+ℹ [3295/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4593/4593] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (9.6s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:69:29: Invalid field `exists_isFaceCycle_head`: The environment does not contain `GroupApproximation.GGT.VanKampen.CombMap.exists_isFaceCycle_head`, so it is not possible to project the field `exists_isFaceCycle_head` from an expression
+  M
+of type `CombMap`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:69:9: Tactic `rcases` failed: `x✝ : ?m.40` is not an inductive datatype
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:114:14: 'GroupApproximation.GGT.VanKampen.CombMap.colour_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:115:14: 'GroupApproximation.GGT.VanKampen.CombMap.four_le_faceDegree_of_bipartite' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+error: build failed
+EXIT=1

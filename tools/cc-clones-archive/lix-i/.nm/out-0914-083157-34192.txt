@@ -1,0 +1,92 @@
+[job] 08:32:00 acn112 waiting for clone lock
+[job] delta sync cc5dc9168..1eac00758: 2 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1eac00758 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-083157-34192.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4448 oleans
+--- errors (first 80 lines)
+8:✖ [4621/4624] Building GroupApproximation.Analysis.KirchbergCompactExtraction (10s)
+10:error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:169:10: `LinearMap.restrict_coe_apply` has been deprecated: Use `LinearMap.coe_restrict_apply` instead
+11:error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:149:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergCompactExtraction.finiteDimensional_eigenspace`:
+17:error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:169:10: This simp argument is unused:
+24:error: Lean exited with code 1
+25:✖ [4623/4624] Building GroupApproximation.Analysis.KirchbergRealDilation (22s)
+27:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:30:27: type expected, got
+29:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:30:32: expected token
+30:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:37:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_zero_left`:
+36:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:40:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_zero_right`:
+42:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:43:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_add_left`:
+48:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:47:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_smul_left`:
+54:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:55:36: expected token
+55:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:55:27: Type mismatch
+61:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:86:30: Function expected at
+70:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:87:52: unsolved goals
+83:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:35: This simp argument is unused:
+90:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:67: This simp argument is unused:
+97:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:80: This simp argument is unused:
+104:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:92:37: Function expected at
+113:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:105:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+137:Full error:
+140:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:111:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.kernelForm_translate`:
+146:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:124:15: Function expected at
+153:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:129:37: Function expected at
+160:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+161:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+162:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+163:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+164:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+165:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+166:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+167:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+168:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+169:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+170:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+171:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+172:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+173:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+174:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+175:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+176:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+177:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:131:14: declaration uses `sorry`
+178:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+179:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+180:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+181:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+182:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+183:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+184:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+185:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:134:14: declaration uses `sorry`
+186:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:138:18: declaration uses `sorry`
+187:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:143:26: unsolved goals
+211:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:147:23: unsolved goals
+223:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:161:14: declaration uses `sorry`
+224:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:164:14: declaration uses `sorry`
+225:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:167:8: declaration uses `sorry`
+226:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:171:7: declaration uses `sorry`
+227:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:179:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+232:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:174:18: (deterministic) timeout at `«abstract nested proofs»`, maximum number of heartbeats (200000) has been reached
+237:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:184:11: Unknown identifier `translate`
+238:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:197:18: declaration uses `sorry`
+239:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:201:18: declaration uses `sorry`
+240:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:209:2: 'change' tactic failed, pattern
+244:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:207:6: declaration uses `sorry`
+245:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:207:11: declaration uses `sorry`
+246:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:215:15: declaration uses `sorry`
+247:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:213:8: declaration uses `sorry`
+248:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:223:8: declaration uses `sorry`
+249:error: Lean exited with code 1
+253:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.KirchbergCompactExtraction (replayed or failed)
+BUILT GroupApproximation.Analysis.KirchbergCompletionRepresentation
+BUILT GroupApproximation.Analysis.KirchbergRealForms
+mentioned-not-built GroupApproximation.Analysis.KirchbergRealDilation (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.KirchbergTensorSquare (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealForms.lean
+- GroupApproximation.Analysis.KirchbergRealDilation
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

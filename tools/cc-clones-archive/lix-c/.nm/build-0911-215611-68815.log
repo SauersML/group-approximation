@@ -1,0 +1,13 @@
+purged 182 stale artifact sets (source-newer=1, import-newer=181) of 2244 oleans
+[job] acn112 cores=72-79 threads=8 base=9376e760541b8e84a16d1bdaa78e030cd8b36573 mods: GroupApproximation.CharClass.ParityPTwistSymm GroupApproximation.CharClass.ParityPWuValue
+✔ [1607/1615] Built GroupApproximation.CharClass.ParityPSymmetric (10s)
+✔ [1608/1615] Built GroupApproximation.CharClass.ParityPNewton (17s)
+✔ [1609/1615] Built GroupApproximation.CharClass.ParityPNewtonValue (10s)
+✔ [1610/1615] Built GroupApproximation.CharClass.ParityPTwist (14s)
+✔ [1611/1615] Built GroupApproximation.CharClass.ParityPHomog (8.9s)
+✔ [1612/1615] Built GroupApproximation.CharClass.ParityPHomogConverse (10s)
+✔ [1613/1615] Built GroupApproximation.CharClass.ParityPCoeffBridge (9.3s)
+✔ [1614/1615] Built GroupApproximation.CharClass.ParityPTwistSymm (8.2s)
+✔ [1615/1615] Built GroupApproximation.CharClass.ParityPWuValue (11s)
+Build completed successfully (1615 jobs).
+EXIT=0

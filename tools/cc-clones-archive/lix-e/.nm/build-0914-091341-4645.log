@@ -1,0 +1,62 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 4456 oleans
+[job] acn03 cores=slurm threads=8 base=7c2ba3c3754cde8411f1ecc0bfc4728c0de505a8 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleKazhdanSoficMainClosed
+ℹ [4119/4193] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4598/4656] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:196:14: 'GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:197:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:198:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:199:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4646/4656] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:247:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_of_perfectSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:248:14: 'GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:249:21: 'GroupApproximation.SimpleKazhdanSofic.printedMatricialExpandersStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:250:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4651/4656] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:271:14: 'GroupApproximation.SimpleKazhdanSofic.ringEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:272:14: 'GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:273:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:274:21: 'GroupApproximation.SimpleKazhdanSofic.printedBlockElementarySimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:275:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_open_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4653/4656] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleKazhdanGeneralClosed
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleKazhdanGeneralClosed.lean:44:21: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleKazhdanGeneralClosed.lean:45:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_periodic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4656/4656] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleKazhdanSoficMainClosed (134s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleKazhdanSoficMainClosed.lean:38:21: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4656 jobs).
+EXIT=0

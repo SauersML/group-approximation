@@ -1,0 +1,34 @@
+[job] 18:36:41 acn112 waiting for clone lock
+[job] delta sync 30b67c864..a19fd73b8: 7 files changed
+===== SUMMARY
+host acn112 cores 88-95 base a19fd73b8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-183544-77263.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3365 oleans
+--- errors (first 80 lines)
+138:✖ [4315/4315] Building GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal (13s)
+140:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:92:7: Tactic `rewrite` failed: motive is not type correct:
+185:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:141:31: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑(θ
+189:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:142:58: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `c`
+192:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:155:8: declaration uses `sorry`
+199:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:176:14: 'GroupApproximation.ChainCore.DynamicRankBudget.theta_eq_returnRingHom' depends on axioms outside the classical allowlist: [sorryAx]
+200:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+202:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:177:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coeff_one_theta' depends on axioms outside the classical allowlist: [sorryAx]
+203:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+205:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:178:21: 'GroupApproximation.ChainCore.DynamicRankBudget.returnTransientIdealStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+206:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+208:error: Lean exited with code 1
+211:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean
+- GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

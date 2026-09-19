@@ -1,0 +1,47 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3482 oleans
+[job] acn157 cores=slurm threads=8 base=bb887b17de93dc817fdd3d0fceaa5380f4a6c409 mods: GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+ℹ [3342/3401] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4947/5061] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10100/10101] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.calibration_opposite_clauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:192:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:194:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:196:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:200:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.doubleTouchNeitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10101/10101] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:145:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:147:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_first' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:149:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10101 jobs).
+EXIT=0

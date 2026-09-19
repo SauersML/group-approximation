@@ -1,0 +1,49 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3613 oleans
+[job] acn112 cores=64-71 threads=8 base=eb314a807376d84422852a60d49e9c0b5aa4ba2e mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+ℹ [3295/3321] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10094/10094] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:60:26: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => arc.length ≤ _a - ↑arc.start
+Error: Application type mismatch: The argument
+  arc.start
+has type
+  Fin ((targetDarts Delta none).length + 1)
+but is expected to have type
+  Fin (_a + 1)
+in the application
+  ↑arc.start
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+arc : CyclicArc (targetDarts Delta none)
+hend : ↑arc.start + arc.length ≤ Delta.boundaryWord.length
+hword : List.map Delta.label (targetDarts Delta none) = Delta.boundaryWord
+hlen : (targetDarts Delta none).length = Delta.boundaryWord.length
+⊢ arc.length ≤ (targetDarts Delta none).length - ↑arc.start
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:96:14: 'GroupApproximation.GGT.VanKampen.isLambdaCQuasiGeodesicWord_symmetricLabelAlphabet_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:97:14: 'GroupApproximation.GGT.VanKampen.dartWord_outerArc_eq_drop_take' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:98:14: 'GroupApproximation.GGT.VanKampen.SectionCuts.drop_take_eq_sectionRun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:99:21: 'GroupApproximation.GGT.VanKampen.osinLemma94BoundaryArcsInput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+error: build failed
+EXIT=1

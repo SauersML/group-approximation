@@ -1,0 +1,94 @@
+[job] 10:49:56 acn112 waiting for clone lock
+[job] delta sync 5a5886551..de1be2b16: 130 files changed
+===== SUMMARY
+host acn112 cores 64-71 base de1be2b16 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0912-104937-74509.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+3:✖ [2173/2173] Building GroupApproximation.CharClass.OddPTopPowerAW (29s)
+5:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:118:51: `Fin.lt_iff_val_lt_val` has been deprecated: Use `Fin.lt_def` instead
+6:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:118:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+7:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:119:36: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+8:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:121:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+9:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:123:6: omega could not prove the goal:
+24:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:148:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+47:Full error:
+56:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:11: Application type mismatch: The argument
+64:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:35: failed to synthesize instance of type class
+71:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:18: failed to synthesize instance of type class
+75:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:184:4: failed to synthesize instance of type class
+79:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:186:6: Failed to rewrite using equation theorems for `catLin`
+80:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:11: Application type mismatch: The argument
+88:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:35: failed to synthesize instance of type class
+95:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:18: failed to synthesize instance of type class
+99:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:56: failed to synthesize instance of type class
+106:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:39: failed to synthesize instance of type class
+110:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:189:4: failed to synthesize instance of type class
+114:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:202:48: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+115:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:15: Application type mismatch: The argument
+123:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:75: failed to synthesize instance of type class
+130:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:58: failed to synthesize instance of type class
+134:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:219:8: failed to synthesize instance of type class
+138:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:45: Application type mismatch: The argument
+146:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:69: failed to synthesize instance of type class
+153:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:52: failed to synthesize instance of type class
+157:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:236:38: failed to synthesize instance of type class
+161:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:238:2: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+166:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:32: Application type mismatch: The argument
+174:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:56: failed to synthesize instance of type class
+181:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:39: failed to synthesize instance of type class
+185:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:77: failed to synthesize instance of type class
+192:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:60: failed to synthesize instance of type class
+196:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:248:25: failed to synthesize instance of type class
+200:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:15: Application type mismatch: The argument
+208:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:76: failed to synthesize instance of type class
+215:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:59: failed to synthesize instance of type class
+219:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:249:8: failed to synthesize instance of type class
+223:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:47: Application type mismatch: The argument
+231:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:71: failed to synthesize instance of type class
+238:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:54: failed to synthesize instance of type class
+242:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:250:40: failed to synthesize instance of type class
+246:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:32: Application type mismatch: The argument
+254:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:58: failed to synthesize instance of type class
+261:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:41: failed to synthesize instance of type class
+265:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:269:25: failed to synthesize instance of type class
+269:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:15: Application type mismatch: The argument
+277:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:57: failed to synthesize instance of type class
+284:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:40: failed to synthesize instance of type class
+288:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:270:8: failed to synthesize instance of type class
+292:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:271:34: Application type mismatch: The argument
+300:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:271:27: failed to synthesize instance of type class
+304:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:272:28: Application type mismatch: The argument
+312:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:272:12: failed to synthesize instance of type class
+316:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:273:41: Application type mismatch: The argument
+324:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:273:34: failed to synthesize instance of type class
+328:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:274:14: Application type mismatch: The argument
+336:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:274:7: failed to synthesize instance of type class
+340:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:275:33: Application type mismatch: The argument
+348:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:275:26: failed to synthesize instance of type class
+352:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:277:17: This simp argument is unused:
+359:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:277:39: This simp argument is unused:
+366:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:278:8: This simp argument is unused:
+374:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:11: Application type mismatch: The argument
+382:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:37: failed to synthesize instance of type class
+389:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:20: failed to synthesize instance of type class
+393:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:287:4: failed to synthesize instance of type class
+397:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:28: Application type mismatch: The argument
+405:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:12: failed to synthesize instance of type class
+409:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:41: Application type mismatch: The argument
+417:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:288:34: failed to synthesize instance of type class
+421:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:311:5: unexpected token ','; expected '|'
+422:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:317:37: Application type mismatch: The argument
+430:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:10: Application type mismatch: The argument
+438:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:34: failed to synthesize instance of type class
+445:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:17: failed to synthesize instance of type class
+449:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:4: failed to synthesize instance of type class
+453:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:320:45: Application type mismatch: The argument
+461:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:321:6: Failed to rewrite using equation theorems for `awLin`
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAW (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPTopPowerAW
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

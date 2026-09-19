@@ -95,9 +95,9 @@ theorem zHom_single (hR : AffineRel S x τ) (i : I) (r : R) :
     funext j
     by_cases hj : j = i
     · rw [hj]
-      change Multiplicative.ofAdd (Pi.single i r i) = _
+      change Multiplicative.ofAdd ((Pi.single i r : I → R) i) = _
       rw [Pi.single_eq_same, Pi.mulSingle_eq_same]
-    · change Multiplicative.ofAdd (Pi.single i r j) = _
+    · change Multiplicative.ofAdd ((Pi.single i r : I → R) j) = _
       rw [Pi.single_eq_of_ne hj, Pi.mulSingle_eq_of_ne hj, ofAdd_zero]
   change MonoidHom.noncommPiCoprod (fun i => hR.yiHom i) hR.yiHom_commute
     (MulEquiv.piMultiplicative (fun _ : I => R) (Multiplicative.ofAdd (Pi.single i r))) = _

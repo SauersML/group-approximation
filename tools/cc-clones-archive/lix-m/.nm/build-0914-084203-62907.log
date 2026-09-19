@@ -1,0 +1,30 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3601 oleans
+[job] acn72 cores=slurm threads=8 base=4fcbe505147098670a4ea8d4a31e79b15b4c2526 mods: GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+ℹ [3386/3436] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5074/5077] Building GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts (77s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:140:4: Tactic `assumption` failed
+
+M : CombMap
+X : Finset M.Dart
+hfix : ∀ x ∈ X, M.sigma x ≠ x
+y : M.Dart
+h : M.vertexOf y = M.vertexOf ((Equiv.symm M.sigma) y)
+⊢ M.vertexOf ((Equiv.symm M.sigma) y) = M.vertexOf y
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:174:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [5075/5077] Built GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet (78s)
+info: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:112:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+error: build failed
+EXIT=1

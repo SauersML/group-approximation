@@ -1,0 +1,19 @@
+[job] 14:58:53 acn112 waiting for clone lock
+[job] delta sync 6d7b3181a..cb71b181f: 4 files changed
+===== SUMMARY
+host acn112 cores 64-71 base cb71b181f log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-145849-94334.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3406 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Intro.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec2.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/IntroConventionSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:221:14: 'GroupApproximation.GGT.VanKampen.exists_cyclicRuns' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (615 jobs).
+EXIT=0
+PROBE GREEN

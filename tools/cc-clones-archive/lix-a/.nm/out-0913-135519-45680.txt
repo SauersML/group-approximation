@@ -1,0 +1,19 @@
+[job] 13:55:23 acn112 waiting for clone lock
+[job] delta sync 6cc9d3a7d..dfdaf521f: 94 files changed
+===== SUMMARY
+host acn112 cores 80-87 base dfdaf521f log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-135519-45680.log
+purged 9 stale artifact sets (source-newer=3, import-newer=6) of 3717 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.FaceSetCircuitNoncrossing
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullCorollary73.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullLemma510.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+ Quot.sound]
+Build completed successfully (4983 jobs).
+EXIT=0
+PROBE GREEN

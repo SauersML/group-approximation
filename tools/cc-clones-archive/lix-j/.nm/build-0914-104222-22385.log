@@ -1,0 +1,44 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3646 oleans
+[job] acn112 cores=64-71 threads=8 base=bd6eae0d668ae733d149bcddd068eba5d4b56d6f mods: GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting
+ℹ [3350/3473] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4642/4644] Replayed GroupApproximation.GGT.VanKampen.CombMapComponents
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:102:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_alpha' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:103:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_sigma' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:104:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrict_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:107:14: 'GroupApproximation.GGT.VanKampen.CombMap.edgeCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:108:14: 'GroupApproximation.GGT.VanKampen.CombMap.faceCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:109:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:110:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_euler_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4644/4644] Built GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting (14s)
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentCompl_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_subtype_compl_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:107:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_two_mul_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:108:14: 'GroupApproximation.GGT.VanKampen.CombMap.exists_hitting_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4644 jobs).
+EXIT=0

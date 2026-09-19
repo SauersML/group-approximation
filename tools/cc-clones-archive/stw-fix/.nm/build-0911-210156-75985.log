@@ -1,0 +1,121 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4750 oleans
+[job] acn112 cores=88-95 threads=8 base=38172e61dc1c4d0d28dd83265618a8fc239d6ecc mods: GroupApproximation.GGT.HullSCUnconeLemmaA GroupApproximation.GGT.HullSCUnconeWalk GroupApproximation.GGT.HullSCUnconeLemmaB GroupApproximation.GGT.HullSCUnconeSides GroupApproximation.GGT.HullSCUnconeThin
+ℹ [2833/2898] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3482/3560] Replayed GroupApproximation.Sofic.HullSuitabilityGeometry
+info: GroupApproximation/Sofic/HullSuitabilityGeometry.lean:2057:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3835/3909] Replayed GroupApproximation.Analysis.MFAlgebra
+info: GroupApproximation/Analysis/MFAlgebra.lean:267:14: 'GroupApproximation.isCDEOperatorMF_of_faithful_corona_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4179/4295] Replayed GroupApproximation.GGT.HullSCCyclicPeripheralRemoval
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:266:14: 'GroupApproximation.GGT.exists_jointWord_of_removeCyclicPeripherals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:267:14: 'GroupApproximation.GGT.removeCyclicPeripherals_relBall_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:268:14: 'GroupApproximation.GGT.removeCyclicPeripherals_locallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:269:14: 'GroupApproximation.GGT.removeCyclicPeripherals_alphabet_carrier_of_isEmpty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:270:14: 'GroupApproximation.GGT.removeCyclicPeripherals_isHyperbolicallyEmbedded_of_isEmpty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:271:14: 'GroupApproximation.GGT.cyclicPeripheralRemovalStatement_of_hyperbolicity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4180/4295] Replayed GroupApproximation.GGT.HullSCUnconeExpansion
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:426:14: 'GroupApproximation.GGT.Uncone.expo_zpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:427:14: 'GroupApproximation.GGT.Uncone.prod_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:428:14: 'GroupApproximation.GGT.Uncone.mem_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:429:14: 'GroupApproximation.GGT.Uncone.guessPath_len' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:430:14: 'GroupApproximation.GGT.Uncone.wordDist_guessPath_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:431:14: 'GroupApproximation.GGT.Uncone.wordDist_guessPath_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:432:14: 'GroupApproximation.GGT.Uncone.exists_expo_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeExpansion.lean:433:14: 'GroupApproximation.GGT.Uncone.guessPath_short' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4233/4313] Replayed GroupApproximation.GGT.HullSCUnconePathPoints
+info: GroupApproximation/GGT/HullSCUnconePathPoints.lean:122:14: 'GroupApproximation.GGT.Uncone.guessPath_at_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconePathPoints.lean:123:14: 'GroupApproximation.GGT.Uncone.guessPath_in_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconePathPoints.lean:124:14: 'GroupApproximation.GGT.Uncone.exists_letter_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconePathPoints.lean:125:14: 'GroupApproximation.GGT.Uncone.prod_take_expLetters_inr' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4234/4313] Replayed GroupApproximation.GGT.HullSCUnconeCosetCoordinates
+info: GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean:89:14: 'GroupApproximation.GGT.Uncone.wordDist_mul_zpow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean:90:14: 'GroupApproximation.GGT.Uncone.natAbs_sub_le_of_mem_relBall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean:91:14: 'GroupApproximation.GGT.Uncone.cover_chain_one' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean:92:14: 'GroupApproximation.GGT.Uncone.cover_chain_two' depends on axioms: [propext, Quot.sound]
+ℹ [4314/4384] Replayed GroupApproximation.GGT.HullSCUnconeClosingJump
+info: GroupApproximation/GGT/HullSCUnconeClosingJump.lean:137:14: 'GroupApproximation.GGT.Uncone.avoidsFrom_append_iff' depends on axioms: [propext]
+info: GroupApproximation/GGT/HullSCUnconeClosingJump.lean:138:14: 'GroupApproximation.GGT.Uncone.closingJump_inv_mem_relBall' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4316/4384] Replayed GroupApproximation.GGT.HullSCUnconeCosetAvoidance
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:246:14: 'GroupApproximation.GGT.Uncone.mk_vertex_ne_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:247:14: 'GroupApproximation.GGT.Uncone.mk_vertex_ne_of_isGeodesicWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:248:14: 'GroupApproximation.GGT.Uncone.vertex_drop' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:249:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.take' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:250:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:251:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.revWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:252:14: 'GroupApproximation.GGT.Uncone.avoidsCosetFrom_take_of_isComp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:253:14: 'GroupApproximation.GGT.Uncone.avoidsCosetFrom_drop_of_isComp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:254:14: 'GroupApproximation.GGT.Uncone.closingJump_located' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4346/4436] Replayed GroupApproximation.GGT.HullSCUnconeTriangleConnectors
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:214:14: 'GroupApproximation.GGT.Uncone.geodesicWord_drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:215:14: 'GroupApproximation.GGT.Uncone.exitConnector_mem_relBall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:216:14: 'GroupApproximation.GGT.Uncone.exitEntranceConnector_mem_relBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:217:14: 'GroupApproximation.GGT.Uncone.exitConnector_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:218:14: 'GroupApproximation.GGT.Uncone.entranceConnector_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:219:14: 'GroupApproximation.GGT.Uncone.span_mem_relBall_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4628/4641] Replayed GroupApproximation.Manuscript.NonMF.FreeCommutatorWitness
+info: GroupApproximation/Manuscript/NonMF/FreeCommutatorWitness.lean:90:21: 'GroupApproximation.Manuscript.NonMF.TheoremC.freeCommutatorWitness_package' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4637/4641] Built GroupApproximation.GGT.HullSCUnconeLemmaA (32s)
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:332:14: 'GroupApproximation.GGT.Uncone.exists_comp_of_isCompOf' depends on axioms: []
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:333:14: 'GroupApproximation.GGT.Uncone.isComp_succ_of_isCompOf_geodesic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:334:14: 'GroupApproximation.GGT.Uncone.vertex_succ_eq_mul_zpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:335:14: 'GroupApproximation.GGT.Uncone.component_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:336:14: 'GroupApproximation.GGT.Uncone.natAbs_sub_le_of_connector' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:337:14: 'GroupApproximation.GGT.Uncone.guessPath_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:338:14: 'GroupApproximation.GGT.Uncone.guessPath_letter_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:339:14: 'GroupApproximation.GGT.Uncone.letter_point_near_sides' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4638/4641] Built GroupApproximation.GGT.HullSCUnconeWalk (32s)
+info: GroupApproximation/GGT/HullSCUnconeWalk.lean:110:14: 'GroupApproximation.GGT.Uncone.exists_near_of_walk' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeWalk.lean:111:14: 'GroupApproximation.GGT.Uncone.wordDist_le_of_mem_relBall_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeWalk.lean:112:14: 'GroupApproximation.GGT.Uncone.wordDist_vertex_succ_le_one_of_not_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4639/4641] Building GroupApproximation.GGT.HullSCUnconeLemmaB (30s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/GGT/HullSCUnconeLemmaB.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCUnconeLemmaB.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCUnconeLemmaB.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCUnconeLemmaB.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCUnconeLemmaB.setup.json --json
+error: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:101:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:242:14: 'GroupApproximation.GGT.Uncone.noComp_of_avoidsCosetFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:243:14: 'GroupApproximation.GGT.Uncone.exists_of_not_avoidsCosetFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:244:14: 'GroupApproximation.GGT.Uncone.corner_walk_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:245:14: 'GroupApproximation.GGT.Uncone.corner_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.HullSCUnconeLemmaB
+error: build failed
+EXIT=1

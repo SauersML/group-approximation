@@ -1,0 +1,53 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3303 oleans
+[job] acn112 cores=72-79 threads=8 base=7f7ba2b4fb86c9d62211ae76fd73b357107f4fc0 mods: GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap
+ℹ [3346/3426] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4648/4648] Building GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:74:24: Unknown identifier `C.cyc.chain`
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:78:38: Unknown identifier `C.facePerm_alpha`
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:82:64: Unknown identifier `C.facePerm_alpha`
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:97:4: Invalid field notation: Function `faceOf_alpha` does not have a usable parameter of type `SpikeCycle ...` for which to substitute `C`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:101:59: Invalid field notation: Function `faceOf_alpha` does not have a usable parameter of type `SpikeCycle ...` for which to substitute `C`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:133:34: Invalid field notation: Function `sigma_eq` does not have a usable parameter of type `SpikeCycle ...` for which to substitute `C`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:214:32: Invalid field notation: Function `faceOf_alpha` does not have a usable parameter of type `SpikeCycle ...` for which to substitute `C`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:249:42: Unknown identifier `C.sigma_eq`
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:250:49: Unknown identifier `C.faceOf_alpha.symm`
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:262:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.exists_spikeCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:263:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.rest_ne_nil' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:264:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.lift_isFaceCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:265:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceOf_eq_shrunkFace_iff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:266:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.face_cases' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:267:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_shrunkFace_map_value' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:268:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_keptFace_map_value' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:269:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceCount_eq' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap
+error: build failed
+EXIT=1

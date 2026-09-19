@@ -1,0 +1,15 @@
+[job] 15:51:18 acn112 waiting for clone lock
+[job] delta sync 3e9636d74..185078b2b: 397 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 185078b2b log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-155051-83464.log
+purged 226 stale artifact sets (source-newer=15, import-newer=211) of 4810 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.LEFRingDirectedUnion
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/LEFRingDirectedUnion.lean
+info: GroupApproximation/Algebra/LEFRingDirectedUnion.lean:110:14: 'GroupApproximation.Pestov91.isLEFRing_of_monotone_subrings' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1670 jobs).
+EXIT=0
+PROBE GREEN

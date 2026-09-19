@@ -1,0 +1,2 @@
+TRACE carrier=1 rotations=67 syllables=67
+[2026-08-22T07:39:45.158] error: *** JOB 16687745 ON cn1054 CANCELLED AT 2026-08-22T07:39:45 DUE to SIGNAL Terminated ***

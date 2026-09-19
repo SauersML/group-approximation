@@ -1,0 +1,223 @@
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 4380 oleans
+[job] acn112 cores=64-71 threads=8 base=d97dfb2a62d249f5e5c48fae41af04cdff4a1514 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+ℹ [4131/4243] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4594/4617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:196:14: 'GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:197:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:198:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:199:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4616/4617] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem (11s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:247:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_of_perfectSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:248:14: 'GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:249:21: 'GroupApproximation.SimpleKazhdanSofic.printedMatricialExpandersStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:250:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4617/4617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:44:43: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:53:30: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:57:39: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:62:20: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:67:29: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:69:5: Function expected at
+  coeffEquiv
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `coeffEquiv` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:69:44: Function expected at
+  coeffEquiv
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `coeffEquiv` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:73:33: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:126:29: Function expected at
+  Subshift
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:133:39: Function expected at
+  Subshift
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:142:34: Function expected at
+  Subshift
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:177:20: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:182:20: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:182:48: Function expected at
+  printedGenerators
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `printedGenerators` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:188:20: Function expected at
+  Subshift
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  A
+
+Hint: The identifier `Subshift` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:188:53: Function expected at
+  printedGenerators
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `printedGenerators` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:197:89: Unknown identifier `Subshift`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:200:22: Unknown identifier `printedGenerators`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:211:11: Unknown identifier `perfectSpace_carrier`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:206:82: unsolved goals
+hgen : PrintedSimpleKazhdanGeneral
+hper : PrintedPeriodicMatricialStatement
+A : Type
+inst✝² : TopologicalSpace A
+inst✝¹ : DiscreteTopology A
+inst✝ : Finite A
+S : SymbolicDynamics.FullShift.Subshift A ℤ
+hinf : Infinite ↑S.carrier
+hmin : IsMinimal S
+n : ℕ
+hn : 3 ≤ n
+this✝ : CompactSpace ↑S.carrier
+this : Nonempty ↑S.carrier
+⊢ Infinite ↥(elementaryGroup (Fin n) (R S)) ∧
+    Group.FG ↥(elementaryGroup (Fin n) (R S)) ∧
+      IsSimpleGroup ↥(elementaryGroup (Fin n) (R S)) ∧
+        HasKazhdanPropertyT ↥(elementaryGroup (Fin n) (R S)) ∧
+          PrintedMarkedLimitExpanders S n ∧
+            IsLEF ↥(elementaryGroup (Fin n) (R S)) ∧
+              IsSofic ↥(elementaryGroup (Fin n) (R S)) ∧ IsHyperlinear ↥(elementaryGroup (Fin n) (R S))
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:266:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.ringEquiv`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:267:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:268:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_general' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:269:21: 'GroupApproximation.SimpleKazhdanSofic.printedBlockElementarySimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:270:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_open_pieces' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+error: build failed
+EXIT=1

@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2302 oleans
+[job] acn112 cores=80-87 threads=8 base=ffe2fd3d466856bbe6ba8d0910ca5bc8790ffca0 mods: GroupApproximation.CharClass.ChernSplittingOfWhitney
+ℹ [2158/2204] Replayed GroupApproximation.CharClass.LIXStepDGenRealEven
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:99:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:100:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3461/3461] Built GroupApproximation.CharClass.ChernSplittingOfWhitney (12s)
+Build completed successfully (3461 jobs).
+EXIT=0

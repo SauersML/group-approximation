@@ -1,0 +1,46 @@
+[job] 19:58:31 acn112 waiting for clone lock
+[job] delta sync a9a96021c..f31c01a52: 18 files changed
+===== SUMMARY
+host acn112 cores 64-71 base f31c01a52 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-195825-95403.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3394 oleans
+--- errors (first 80 lines)
+4:✖ [2610/2612] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (24s)
+6:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:88:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+25:Full error:
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:88:38: Application type mismatch: The argument
+36:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:102:45: Application type mismatch: The argument
+45:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:115:8: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+50:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:105:18: (deterministic) timeout at `«abstract nested proofs»`, maximum number of heartbeats (200000) has been reached
+55:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:119:4: Function expected at
+64:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:124:4: Function expected at
+73:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:130:4: Function expected at
+82:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:133:49: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+104:Full error:
+107:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:134:19: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+127:Full error:
+130:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:140:33: Function expected at
+139:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:167:45: Function expected at
+148:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:169:2: No applicable extensionality theorem found for type
+152:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:180:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_single' depends on axioms outside the classical allowlist: [sorryAx]
+153:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+155:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:181:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms outside the classical allowlist: [sorryAx]
+156:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+158:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:182:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+159:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+161:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:183:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.towerHom_injective`
+162:error: Lean exited with code 1
+165:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

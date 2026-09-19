@@ -1,0 +1,21 @@
+[job] 17:53:10 acn72 waiting for clone lock
+[job] delta sync 816697e81..4e7838112: 10 files changed
+===== SUMMARY
+host acn72 cores slurm base 4e7838112 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-175244-47380.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4221 oleans
+--- errors (first 80 lines)
+3:✖ [1795/1796] Building GroupApproximation.Algebra.FinitaryGeneralLinear (31s)
+5:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:230:14: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+16:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:371:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+17:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+20:error: Lean exited with code 1
+23:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.FinitaryGeneralLinear (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedRepresentation (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

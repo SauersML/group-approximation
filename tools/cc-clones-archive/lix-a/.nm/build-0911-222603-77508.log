@@ -1,0 +1,25 @@
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 2117 oleans
+[job] acn112 cores=64-71 threads=8 base=7b545b7c3075ab9d950606d5f11f4a4795cf360c mods: GroupApproximation.Analysis.LIXCor4PowersDiagChain
+ℹ [3019/3021] Replayed GroupApproximation.Analysis.LIXLimitAlgebra
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3020/3021] Replayed GroupApproximation.Analysis.LIXCor4PowersShape
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:330:14: 'GroupApproximation.LIX.Gen.HasSphereShape.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:331:14: 'GroupApproximation.LIX.Gen.HasSphereShape.pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:332:14: 'GroupApproximation.LIX.Gen.sphereUnitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:333:14: 'GroupApproximation.LIX.Gen.hasSphereShape_sphereStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:334:14: 'GroupApproximation.LIX.Gen.HasSphereShape.connect' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:335:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:336:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3021/3021] Built GroupApproximation.Analysis.LIXCor4PowersDiagChain (15s)
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:251:14: 'GroupApproximation.LIX.Gen.toStageZeroHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:252:14: 'GroupApproximation.LIX.Gen.flattenN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:253:14: 'GroupApproximation.LIX.Gen.diagChainN_sectionBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:254:14: 'GroupApproximation.LIX.Gen.diagOne_sphereUnitary_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3021 jobs).
+EXIT=0

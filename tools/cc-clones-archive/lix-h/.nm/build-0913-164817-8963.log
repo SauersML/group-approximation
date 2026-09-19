@@ -1,0 +1,5 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3112 oleans
+[job] acn112 cores=72-79 threads=8 base=ad004ff1a057f87729798180d4170a4b7a75f971 mods: GroupApproximation.Dynamics.ReturnTowerStatements
+✔ [1752/1752] Built GroupApproximation.Dynamics.ReturnTowerStatements (7.5s)
+Build completed successfully (1752 jobs).
+EXIT=0

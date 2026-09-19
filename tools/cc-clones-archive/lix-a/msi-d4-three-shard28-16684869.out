@@ -1,0 +1,14 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=301 words=76 states=398
+carrier=302 words=152 states=983
+carrier=303 words=228 states=1032
+carrier=304 words=304 states=1060
+carrier=305 words=404 states=1060
+carrier=306 words=504 states=1060
+carrier=307 words=504 states=1060
+carrier=308 words=504 states=1060
+[2026-08-22T07:13:26.320] error: *** JOB 16684936 ON acn224 CANCELLED AT 2026-08-22T07:13:26 DUE to SIGNAL Terminated ***

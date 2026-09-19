@@ -1,0 +1,28 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2094 oleans
+[job] acn35 cores=slurm threads=8 base=1f3ee6058bf09815c59062d157d8e2f36b426261 mods: GroupApproximation.CharClass.OddPDiagonalAug
+✖ [2248/2248] Building GroupApproximation.CharClass.OddPDiagonalAug (97s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/OddPDiagonalAug.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.setup.json --json
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:258:60: Type mismatch
+  hy
+has type
+  (ModuleCat.Hom.hom (((oddTgt p r s hs).obj (stdSimplexTop n)).d (k + 1) k)) y = 0
+but is expected to have type
+  (tupD (ZMod p) (stdSimplexTop n) r k) y = 0
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:259:72: Application type mismatch: The argument
+  y
+has type
+  ↑(((oddTgt p r s hs).obj (stdSimplexTop n)).X (k + 1))
+but is expected to have type
+  tupMod (ZMod p) (stdSimplexTop n) r (k + 1)
+in the application
+  tupD_exists_preimage_stdSimplexTop (ZMod p) n r k y
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:259:74: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1

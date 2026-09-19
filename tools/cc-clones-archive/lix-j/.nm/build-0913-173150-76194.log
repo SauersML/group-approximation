@@ -1,0 +1,40 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3439 oleans
+[job] acn112 cores=80-87 threads=8 base=97de60f05d45d85e30f7d37b2bb5896aef0916bc mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+ℹ [3303/3394] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10163/10163] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell (31s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:393:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_eq_append_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:394:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_rotate_eq_append_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:395:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_arc_darts_eq_rotate_four' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:396:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.arcs_disjoint_of_face_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:397:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.exists_cellDarts_rotate_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:398:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.listVal_arc_eq_of_value_one_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:399:14: 'GroupApproximation.GGT.VanKampen.CaseOneSameCell.listVal_arc_eq_of_value_one_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:400:14: 'GroupApproximation.GGT.VanKampen.false_of_sameCell_value_one_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:401:14: 'GroupApproximation.GGT.VanKampen.false_of_sameCell_value_one_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:402:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_rCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:403:14: 'GroupApproximation.GGT.VanKampen.false_of_pocketRegion_of_below' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10163 jobs).
+EXIT=0

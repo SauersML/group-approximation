@@ -1,0 +1,14 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3525 oleans
+[job] acn112 cores=80-87 threads=8 base=1af2833873ba8ff1f3fce15d0498303c861dbe9c mods: GroupApproximation.Algebra.DirectlyFiniteReflection
+ℹ [1675/1675] Built GroupApproximation.Algebra.DirectlyFiniteReflection (7.1s)
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:220:14: 'GroupApproximation.existsUnique_comp_eq_of_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:221:14: 'GroupApproximation.killsKernelOfDirectlyFinite_mapMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:222:14: 'GroupApproximation.isUniversalQuotients_of_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:223:14: 'GroupApproximation.isUniversalQuotients_mapMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:224:14: 'GroupApproximation.directlyFinite_iff_stablyFinite_iff_lef_iff_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:225:14: 'GroupApproximation.reflection_hypotheses_finite_model' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:226:14: 'GroupApproximation.not_killsKernelOfDirectlyFinite_toZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1675 jobs).
+EXIT=0

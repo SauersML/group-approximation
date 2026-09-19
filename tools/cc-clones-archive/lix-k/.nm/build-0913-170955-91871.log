@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3360 oleans
+[job] acn112 cores=72-79 threads=8 base=b39b4b5a1956965744772c93ec3775bb25b4cd7c mods: GroupApproximation.Manuscript.NonMFSentences.NormalKazhdanPrintedHypothesis
+ℹ [2797/2873] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4102/4102] Built GroupApproximation.Manuscript.NonMFSentences.NormalKazhdanPrintedHypothesis (10s)
+info: GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanPrintedHypothesis.lean:111:2: 'GroupApproximation.Manuscript.NonMFSentences.hsVanishes_of_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanPrintedHypothesis.lean:113:2: 'GroupApproximation.Manuscript.NonMFSentences.normalizedHSHypothesis_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanPrintedHypothesis.lean:115:2: 'GroupApproximation.Manuscript.NonMFSentences.manuscriptPrintedNormalKazhdanNormalizedHypothesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4102 jobs).
+EXIT=0

@@ -1,0 +1,28 @@
+purged 38 stale artifact sets (source-newer=14, import-newer=24) of 3417 oleans
+[job] acn112 cores=64-71 threads=8 base=dc864839f0eeba08f037a9f5fdb396927599f2ee mods: GroupApproximation.Dynamics.SubshiftLanguageStabilization
+✖ [1042/1042] Building GroupApproximation.Dynamics.SubshiftLanguageStabilization (6.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/SubshiftLanguageStabilization.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/Dynamics/SubshiftLanguageStabilization.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/SubshiftLanguageStabilization.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/Dynamics/SubshiftLanguageStabilization.setup.json --json
+error: GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean:67:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (fun r => (S r).ncard) R
+in the target expression
+  (S R).ncard ≤ (S r).ncard
+
+Y : Type u_2
+inst✝¹ : TopologicalSpace Y
+inst✝ : Finite Y
+S : ℕ → Set Y
+hS : Antitone S
+R : ℕ
+hR : (fun r => (S r).ncard) R = sInf (range fun r => (S r).ncard)
+r : ℕ
+⊢ (S R).ncard ≤ (S r).ncard
+error: GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean:84:20: Unknown identifier `image_subset`
+error: GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean:102:2: failed to synthesize instance of type class
+  Finite (ℤ → A)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.SubshiftLanguageStabilization
+error: build failed
+EXIT=1
