@@ -8,14 +8,13 @@ title: "Fix GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements: b
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```
-error: GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean: bad import 'GroupApproximation.BooneHigmanLinear.Tulenbaev.Components'
-error: GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean: bad import 'GroupApproximation.BooneHigmanLinear.Tulenbaev.Components'
+error: GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean:145:53: Unknown constant `IsLocalRing.ResidueField`
+error: GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean:148:14: 'GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.StLocalHorrocksFRStatementAt' depends on axioms outside the classical allowlist: [sorryAx]
 ```
 
-**Inputs (nearest red imports).** `fix-boone-higman-linear-tulenbaev-components`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements` compile under the repository settings without changing any statement.
 
