@@ -73,9 +73,10 @@ boundaries. T1 needs minimality, freeness and `F_2 ≤ Aut`. **T1 is not built.*
 
 ## Lesson for general BH
 
-**The hierarchy that gives rigidity is exactly what cannot carry the free commutant.** Hierarchical
-skeletons have automorphisms that permute finitely many completions per level: locally finite modulo
-shifts. Geometric codings of twisted bases lift finitely many translations.
+**The hierarchy that gives rigidity is exactly what cannot carry the free commutant.** Hochman's
+hierarchical skeletons have automorphisms that permute finitely many completions per level, so they are
+locally finite modulo shifts. That other recognizable hierarchies behave the same way is expected, not
+proved. Geometric codings of twisted bases lift finitely many translations.
 
 A rigid row with `F_2 ≤ Aut` must therefore have two layers:
 - a hierarchical skeleton, for rigidity;
