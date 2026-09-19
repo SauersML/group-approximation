@@ -78,3 +78,20 @@ val_(Phi_k)(lambda) >= 15/16      and      d_kappa(lambda) <= 1/64.
   Theorem 3 of the high-advantage node can use because it decodes any outer
   labelling of value `>= 15/16`, with no global gluing. Not a proof of either
   form.
+* **Split at the covering window (2026-09-19).**
+  `dkkms-seed-law-is-uniform-in-regime-and-far-in-window` splits this claim
+  into two parts.
+  - `T1` is the admissible points with `SD* <= 10^(-5)`. It is proved there by
+    Corollary N of `dkkms-near-perfect-labellings-are-outer-honest`, and it
+    contains every DKKMS-certified point with `l >= 5`, by Theorem C of
+    `dkkms-certified-parameters-lie-in-the-selector-kill-regime`.
+  - `T2` is the remaining admissible points. It contains no certified point,
+    and this claim is equivalent to `T2`.
+
+  At `q = 1`, the window `[k_A(l), 4^(l-1)/12]` lies in `T2` and is non-empty
+  for every `l >= 20`. On it the DKKMS seed law is at total variation
+  `>= 3/4 - 1/ln k` from every transitive law, so step (2) of the outer-honest
+  route loses more than `1/2`. So no covering or coupling transfer from a
+  uniform Grassmann test proves `T2`. Whether `T2` is true stays OPEN.
+  Suggestion: narrow the quantifier to certified points, which is all the DKKMS
+  soundness chain uses, and post `T2` separately if anything needs it.
