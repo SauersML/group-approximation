@@ -2,6 +2,7 @@ import GroupApproximation.BooneHigmanLinear.K2Poly.Statements
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.FieldTheory.RatFunc.Basic
 import Mathlib.Algebra.MvPolynomial.Equiv
+import Mathlib.RingTheory.Ideal.Quotient.Operations
 
 /-!
 # Panin's geometric presentation, specialized to polynomial rings (lane k2-panin)
@@ -18,14 +19,15 @@ chain, two reductions remove it.
   over `F[s₁..s_k][X]` (Horrocks, `HorrocksMonicAt`, residue fields finite) and a finitary
   statement for `F → F(T)` (`RatFuncFinitaryAt`, from board piece F.5).  So LSV are needed only
   over the infinite field `F_p(T)`.
-* **Linear presentation over an infinite field** (`AffineMonicFibreStatement`, stated here; the
-  proof is in `research/artifacts/gq-k2-panin-affine-presentation.md`).  Let `K` be infinite,
-  `R = K[s₀..s_n]`, `M` a closed point with `f ∈ M`, and `f'` coprime to `f` with `f' ∉ M`.  A
-  linear change of coordinates makes `f` monic in `s₀` and leaves no common zero of `f` and `f'`
-  on the `s₀`-line over the point.  Panin's étale neighbourhood can then be taken to be the
-  principal localization `A[t]_{p(f')}`, where `A = R_M`, `p(sᵢ) = sᵢ` for `i ≥ 1` and
-  `p(s₀) = s₀ + t`, with `h = p(f)` monic.  LSV's Nisnevich excision (A3) is then used only in its
-  Zariski form (LSV Lemma 2.6, which follows from Tulenbaev's patching, board piece F.4).
+* **Linear presentation over an infinite field** (`AffineMonicFibreStatement`, stated here and
+  proved in `PaninAffine.Main`). Let `K` be infinite, `R = K[s₀..s_n]`, `M` a closed point with
+  `f ∈ M`, and `f'` coprime to `f` with `f' ∉ M`. A shear `sⱼ₊₁ ↦ sⱼ₊₁ + aⱼ s₀` has two effects:
+  - `f` becomes monic in `s₀` up to a constant;
+  - `f` and `f'` have no common zero on the `s₀`-fibre through `M`.
+  With `C = K[s₁..s_n]` and `𝔭 = M ∩ C`, Nakayama then makes `(f, f')` the unit ideal of
+  `C_𝔭[s₀]`. So in LSV Cor 2.9, Zariski excision (LSV Lemma 2.6, from Tulenbaev's patching,
+  board piece F.4) and monic injectivity (Lemma 2.7) suffice. Neither the Nisnevich excision
+  (A3) nor an étale neighbourhood is needed.
 -/
 
 namespace GroupApproximation
@@ -36,34 +38,43 @@ open GroupApproximation.BooneHigman
 
 section Geometry
 
-/-- **The fibre condition.**  With `s₀` as the fibre variable (the variable `MvPolynomial.finSuccEquiv`
-singles out), `f` and `f'` generate the unit ideal modulo the image of `M ∩ K[s₁..s_n]`.  In other
-words, they have no common zero on the `s₀`-line over the image of the closed point `M`. -/
-def FibreCoprime {K : Type} [Field K] {n : ℕ} (M : Ideal (MvPolynomial (Fin (n + 1)) K))
-    (f f' : MvPolynomial (Fin (n + 1)) K) : Prop :=
-  Ideal.span {f, f'} ⊔
-      Ideal.map (MvPolynomial.rename (Fin.succ : Fin n → Fin (n + 1)))
-        (Ideal.comap (MvPolynomial.rename (Fin.succ : Fin n → Fin (n + 1))) M) = ⊤
+/-- **The fibre map** of the coordinates `φ`: `K[s₁..s_n] → R/M`, `sⱼ ↦ φ⁻¹(sⱼ₊₁) mod M`.
+Its kernel is `𝔭 = φ(M) ∩ K[s₁..s_n]`, the point under `M` of the base of the projection that
+forgets `s₀`. Mapping coefficients along it restricts a polynomial in `s₀` to the fibre over `𝔭`,
+viewed over the extension field `R/M` of the residue field `k(𝔭)`. -/
+noncomputable def fibreMap {K : Type} [Field K] {n : ℕ} (M : Ideal (MvPolynomial (Fin (n + 1)) K))
+    (φ : MvPolynomial (Fin (n + 1)) K ≃ₐ[K] MvPolynomial (Fin (n + 1)) K) :
+    MvPolynomial (Fin n) K →+* MvPolynomial (Fin (n + 1)) K ⧸ M :=
+  (Ideal.Quotient.mk M).comp
+    ((φ.symm : MvPolynomial (Fin (n + 1)) K →ₐ[K] MvPolynomial (Fin (n + 1)) K).toRingHom.comp
+      (MvPolynomial.rename (Fin.succ : Fin n → Fin (n + 1))).toRingHom)
 
-#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.FibreCoprime
+#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.fibreMap
 
 /-- **Affine presentation over a field `K`** (board piece GEO, specialized to polynomial rings).
 Let `M` be a maximal ideal of `K[s₀..s_n]`, let `f ∈ M` be nonzero, and let `f' ∉ M` be coprime
-to `f`.  Then some `K`-automorphism `φ` makes `φ f` a nonzero constant times a polynomial monic in
-`s₀` over `K[s₁..s_n]`, and makes `φ f`, `φ f'` satisfy the fibre condition at `φ(M)`.  For an
-infinite `K` a linear `φ` works (see the module docstring). -/
+to `f`. Then some `K`-automorphism `φ` satisfies:
+- `φ f` is a nonzero constant times a polynomial monic in `s₀` over `K[s₁..s_n]`;
+- `φ f` and `φ f'` are coprime on the fibre through `M`, i.e. coprime in `(R/M)[s₀]` after
+  mapping coefficients along `fibreMap M φ`.
+By `Polynomial.isCoprime_map` the fibre condition descends to the residue field `k(𝔭)`. Since
+`φ f` is monic up to a unit, Nakayama then makes `(φ f, φ f')` the unit ideal of
+`K[s₁..s_n]_𝔭[s₀]`. That is the Zariski-excision input of LSV Cor 2.9 (see
+`research/artifacts/gq-k2-panin-affine-presentation.md`). For an infinite `K`, a linear `φ` (a
+shear) works: `PaninAffine.Main.infiniteFieldAffineMonicFibre`. -/
 def AffineMonicFibreStatement (K : Type) [Field K] : Prop :=
   ∀ (n : ℕ) (f f' : MvPolynomial (Fin (n + 1)) K) (M : Ideal (MvPolynomial (Fin (n + 1)) K)),
     M.IsMaximal → f ∈ M → f' ∉ M → f ≠ 0 → IsRelPrime f f' →
       ∃ φ : MvPolynomial (Fin (n + 1)) K ≃ₐ[K] MvPolynomial (Fin (n + 1)) K,
         (∃ c : K, c ≠ 0 ∧ (MvPolynomial.finSuccEquiv K n (MvPolynomial.C c * φ f)).Monic) ∧
-          FibreCoprime (Ideal.map φ M) (φ f) (φ f')
+          IsCoprime ((MvPolynomial.finSuccEquiv K n (φ f)).map (fibreMap M φ))
+            ((MvPolynomial.finSuccEquiv K n (φ f')).map (fibreMap M φ))
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.AffineMonicFibreStatement
 
-/-- The affine presentation for every infinite field.  This is the only geometric input the
+/-- The affine presentation for every infinite field. It is the only geometric input the
 polynomial-ring case of the LSV route needs, once `unstableNKAt_of_ratFunc` has moved the finite
-base field `F_p` to `F_p(T)`. -/
+base field `F_p` to `F_p(T)`. Proved in `PaninAffine.Main`. -/
 def InfiniteFieldAffineMonicFibreStatement : Prop :=
   ∀ (K : Type) [Field K] [Infinite K], AffineMonicFibreStatement K
 

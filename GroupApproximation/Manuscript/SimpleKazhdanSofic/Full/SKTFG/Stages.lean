@@ -75,7 +75,7 @@ theorem consSet_four_cases {P : Perm (Fin 5) → Prop}
 
 section Subshift
 
-variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] (S : Subshift A ℤ)
+variable {A : Type} [TopologicalSpace A] (S : Subshift A ℤ)
 
 /-- Every even permutation of the five-level tower over `B` acts by an element of `G`. -/
 def Good (G : Subgroup (Perm S.carrier)) (B : Set S.carrier) : Prop :=
@@ -119,7 +119,7 @@ theorem good_step {G : Subgroup (Perm S.carrier)} {p R : ℕ} (hR : SepRadius S 
   have hGU := hU hUd
   have hGV := hV hVd
   have hE0 : ∀ i : Fin 5, towerLevels 5 i.castSucc = towerLevels 4 i + 0 := fun i => by
-    rw [towerLevels_val, towerLevels_val, Fin.coe_castSucc, add_zero]
+    rw [towerLevels_val, towerLevels_val, Fin.val_castSucc, add_zero]
   have hB0 : ∀ x, x ∈ cyl S z a (c + 1) ↔
       ((SimpleKazhdanSofic.subshiftHomeo S).toEquiv ^ (0 : ℤ)) x ∈ cyl S z a (c + 1) :=
     fun x => by rw [zpow_zero, Equiv.Perm.one_apply]

@@ -120,19 +120,19 @@ include hij
 theorem cons_apply_castSucc : (adjSwap i * adjSwap j) i.castSucc = i.succ := by
   have h1 : i.castSucc ≠ j.castSucc := fun h => by
     have := congrArg Fin.val h
-    simp only [Fin.coe_castSucc] at this
+    simp only [Fin.val_castSucc] at this
     omega
   have h2 : i.castSucc ≠ j.succ := fun h => by
     have := congrArg Fin.val h
-    simp only [Fin.coe_castSucc, Fin.val_succ] at this
+    simp only [Fin.val_castSucc, Fin.val_succ] at this
     omega
   rw [Perm.mul_apply, adjSwap, adjSwap, swap_apply_of_ne_of_ne h1 h2, swap_apply_left]
 
 theorem cons_apply_succ : (adjSwap i * adjSwap j) i.succ = j.succ := by
-  have e : i.succ = j.castSucc := Fin.ext (by simp only [Fin.coe_castSucc, Fin.val_succ]; omega)
+  have e : i.succ = j.castSucc := Fin.ext (by simp only [Fin.val_castSucc, Fin.val_succ]; omega)
   have h1 : j.succ ≠ i.castSucc := fun h => by
     have := congrArg Fin.val h
-    simp only [Fin.coe_castSucc, Fin.val_succ] at this
+    simp only [Fin.val_castSucc, Fin.val_succ] at this
     omega
   have h2 : j.succ ≠ i.succ := fun h => by
     have := congrArg Fin.val h
@@ -142,12 +142,12 @@ theorem cons_apply_succ : (adjSwap i * adjSwap j) i.succ = j.succ := by
   rw [Perm.mul_apply, adjSwap, adjSwap, hin, swap_apply_of_ne_of_ne h1 h2]
 
 theorem cons_apply_jsucc : (adjSwap i * adjSwap j) j.succ = i.castSucc := by
-  have e : j.castSucc = i.succ := Fin.ext (by simp only [Fin.coe_castSucc, Fin.val_succ]; omega)
+  have e : j.castSucc = i.succ := Fin.ext (by simp only [Fin.val_castSucc, Fin.val_succ]; omega)
   rw [Perm.mul_apply, adjSwap, adjSwap, swap_apply_right, e, swap_apply_right]
 
 theorem cons_apply_of_ne {x : Fin (K + 1)} (h0 : x ≠ i.castSucc) (h1 : x ≠ i.succ)
     (h2 : x ≠ j.succ) : (adjSwap i * adjSwap j) x = x := by
-  have e : j.castSucc = i.succ := Fin.ext (by simp only [Fin.coe_castSucc, Fin.val_succ]; omega)
+  have e : j.castSucc = i.succ := Fin.ext (by simp only [Fin.val_castSucc, Fin.val_succ]; omega)
   have h1' : x ≠ j.castSucc := by rw [e]; exact h1
   rw [Perm.mul_apply, adjSwap, adjSwap, swap_apply_of_ne_of_ne h1' h2,
     swap_apply_of_ne_of_ne h0 h1]

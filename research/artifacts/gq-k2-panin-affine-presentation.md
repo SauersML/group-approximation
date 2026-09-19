@@ -109,23 +109,28 @@ P1 now needs, over K = F_p(T):
 - Popescu.
 - MK.
 
-## 5. Lean status and next steps
+## 5. Lean status (updated 2026-09-19 ~12:10)
 
-Landed and unprobed:
-- `FibreCoprime`, `AffineMonicFibreStatement`, `InfiniteFieldAffineMonicFibreStatement`;
-- `RatFuncFinitaryAt`, `evalRingHom_zero_comp_mapRingHom`, `unstableNKAt_of_ratFunc`,
-  `unstableNKPolyFp_of_ratFunc`.
+`AffineMonicFibreStatement` is restated in consumer form. The fibre condition reads
+`IsCoprime` in `(R/M)[s₀]` after mapping coefficients along `fibreMap M φ : K[s₁..sₙ] → R/M`. Its
+kernel is `𝔭 = φ(M) ∩ C`, so there is no need to prove that `𝔭` is maximal. `isCoprime_map`
+then descends the condition to `k(𝔭)`, and Nakayama lifts it to `C_𝔭[s₀]` (the consumer's step).
 
-The Lean for GEO-AFF (§3) is not written. Its ingredients:
-- the λ-substitution isomorphism;
-- gcd under field extension for MvPolynomial;
-- Bézout over κ(v)[λ] (a PID), with denominators cleared;
-- a non-root of a nonzero MvPolynomial over an infinite field (Mathlib);
-- the linear coordinate change and the leading coefficient of f∘L;
-- specialization to the fibre and descent of coprimality to κ₀;
-- the Nakayama step.
+The full Lean proof of GEO-AFF is written but not yet built:
+`PaninAffine/{Algebra,Line,Main}.lean` gives `infiniteFieldAffineMonicFibre :
+InfiniteFieldAffineMonicFibreStatement`. The proof follows §3 with two substitutions:
+- Step 1's localization isomorphism is replaced by the blow-up chart `ψ : κ[s] → κ[A][t]`.
+  - `ψ` is injective, and every element becomes an image after multiplying by a power of `t`.
+  - A common factor of `ψf, ψf'` then pulls back to a factor of `s₀^N f, s₀^N f'`.
+  - Removing the `s₀`-part leaves a common factor of `f, f'`.
+  - The nonvanishing constant term `f'(x) ≠ 0` rules out powers of `t`.
+- Step 1's Bézout-with-denominators is replaced by Mathlib's resultant.
+  - Gauss (`IsPrimitive.dvd_of_fraction_map_dvd_fraction_map`) gives coprimality over `κ(A)`.
+  - Then `resultant_eq_zero_iff` gives `Res ≠ 0`.
+  - `resultant_map_map` and `exists_mul_add_mul_eq_C_resultant` specialize it at `a`.
 
-The last three are small; the first two are the bulk.
+The gcd under field extension (`isRelPrime_map_of_isRelPrime`) is proved with coefficient
+functionals `ℓ : κ → K` and a `K`-basis of `κ`.
 
 Sources: LSV arXiv:2110.11087 §2 (local copy in work/bh-pal-wire/lit); Panin arXiv:1707.01756
 §§1–2.

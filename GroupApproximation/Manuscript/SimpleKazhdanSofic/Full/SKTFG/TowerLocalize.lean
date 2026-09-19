@@ -126,12 +126,12 @@ theorem commutator_towerPerm_localize
     by_cases hk : (k : ℕ) ≤ 4
     · obtain ⟨i, rfl⟩ : ∃ i : Fin 5, k = i.castSucc := ⟨⟨k, by omega⟩, Fin.ext rfl⟩
       have hlev : (f₀ ^ (-towerLevels 4 i)) ((f₀ ^ (((i.castSucc : Fin 6) : ℕ) : ℤ)) w) ∈ U := by
-        rw [perm_zpow_apply_zpow_apply, towerLevels_val, Fin.coe_castSucc, neg_add_cancel,
+        rw [perm_zpow_apply_zpow_apply, towerLevels_val, Fin.val_castSucc, neg_add_cancel,
           zpow_zero, Equiv.Perm.one_apply]
         exact hWU w hw
       rw [ha, towerPerm_apply, towerFun_of_mem hU hlev, perm_zpow_apply_zpow_apply, hα]
       refine perm_zpow_congr f₀ ?_ w
-      rw [towerLevels_val, towerLevels_val, Fin.coe_castSucc, Fin.coe_castSucc]
+      rw [towerLevels_val, towerLevels_val, Fin.val_castSucc, Fin.val_castSucc]
       ring
     · obtain rfl : k = Fin.last 5 := Fin.ext (by rw [Fin.val_last]; omega)
       have hnot : ¬∃ j : Fin 5,
@@ -205,10 +205,10 @@ theorem commutator_towerPerm_localize
         intro hfu
         apply hx
         refine ⟨i.castSucc, (hWd _).mpr ⟨?_, ?_⟩⟩
-        · rw [perm_zpow_apply_zpow_apply, towerLevels_val, towerLevels_val, Fin.coe_castSucc,
+        · rw [perm_zpow_apply_zpow_apply, towerLevels_val, towerLevels_val, Fin.val_castSucc,
             neg_add_cancel, zpow_zero, Equiv.Perm.one_apply]
           exact hu
-        · rw [perm_zpow_apply_zpow_apply, towerLevels_val, towerLevels_val, Fin.coe_castSucc,
+        · rw [perm_zpow_apply_zpow_apply, towerLevels_val, towerLevels_val, Fin.val_castSucc,
             neg_add_cancel, zpow_zero, Equiv.Perm.one_apply]
           exact hfu
       have hB1 : ∀ j : Fin 5, ¬∃ l : Fin 5,

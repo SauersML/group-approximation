@@ -20,6 +20,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace CharZeroHost
 
+noncomputable section
+
 open MvPolynomial
 open scoped Matrix
 
@@ -48,9 +50,11 @@ theorem natVec_single (j0 : Fin n) :
   funext j
   by_cases h : j = j0
   · subst h
-    show ((Pi.single j 1 j : ℕ) : MvPolynomial (Fin k) A) = Pi.single j 1 j
+    show ((Pi.single j 1 j : ℕ) : MvPolynomial (Fin k) A) =
+      (Pi.single j 1 : Fin n → MvPolynomial (Fin k) A) j
     rw [Pi.single_eq_same, Pi.single_eq_same, Nat.cast_one]
-  · show ((Pi.single j0 1 j : ℕ) : MvPolynomial (Fin k) A) = Pi.single j0 1 j
+  · show ((Pi.single j0 1 j : ℕ) : MvPolynomial (Fin k) A) =
+      (Pi.single j0 1 : Fin n → MvPolynomial (Fin k) A) j
     rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, Nat.cast_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.natVec_single
@@ -144,9 +148,10 @@ theorem sigma_Zv (x : Aff n (MvPolynomial (Fin k) A)) (e : Fin n → ℕ) (s : F
     Pi.smul_apply, smul_eq_mul, map_add, map_mul, map_natCast, hz, ← mul_add]
   congr 1
   have hW : sigmaZ p (digL p e s).2
-      ((mat x *ᵥ natVec (fun j => e j / p) - natVec fun j => e j / p) j) =
+      ((mat x *ᵥ natVec (fun j => e j / p) - natVec fun j => e j / p :
+        Fin n → MvPolynomial (Fin k) A) j) =
       ((mat x).map (sigmaZ p (digL p e s).2) *ᵥ natVec (fun j => e j / p) -
-        natVec fun j => e j / p) j := by
+        natVec fun j => e j / p : Fin n → MvPolynomial (Fin k) A) j := by
     rw [Pi.sub_apply, Pi.sub_apply, map_sub, RingHom.map_mulVec, comp_natVec, apply_natVec]
   have hm : mat (stateG D x (digL p e s)) = (mat x).map (sigmaZ p (digL p e s).2) := rfl
   have hv : vec (stateG D x (digL p e s)) = stateVec D x (digL p e s) := rfl
@@ -173,6 +178,8 @@ theorem pow_dvd_evalN_Zv (N : ℕ) : ∀ x : Aff n (MvPolynomial (Fin k) A),
     ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.pow_dvd_evalN_Zv
+
+end
 
 end CharZeroHost
 end Metabelian
