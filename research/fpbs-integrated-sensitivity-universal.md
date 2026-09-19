@@ -139,3 +139,25 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   **Calibration:** the kernel `1_H` (H infinite amenable) has rate `rho` but is
   in no l^q, so a failure of [Q] would not refute (IS). Artifact:
   `research/artifacts/fpbs/docs/lq-two-point-walk-rate-2026-09-17.md`.
+* **Spherical transplant on tree products (swarm-0917-w14, group-rings;
+  exact identity, no counterexample).**
+  - On `X = T_{a_1} □ ... □ T_{a_r}`, `τ_p` is bi-radial. Kesten's corner
+    together with a Schur test with weight `Φ = ⊗ φ_{a_i}` gives
+    `||T_p||_{2->2} = Σ_t τ_p(t) |S_t| Φ(t)` exactly
+    (`fpbs-tree-product-two-point-norm-is-spherical-sum`).
+  - So `p_c < p_{2->2}` on `X` is one scalar series question, and
+    `p_c < p_{2->2}` implies (IS) through [Q].
+  - The test for a counterexample was whether the w12 pointwise failures
+    `τ_pc(o,z_k) gr^{2k} >= R^k` on T3xT10 make the series diverge. They do
+    not. The diagonal weight is `Θ(k^2 18^{k/2})`, so the per-step decay
+    threshold is `18^{-1/2} ≈ 0.236`. The 2-path blocks give only
+    `2p_c^2 - p_c^4 <= 0.0247`.
+  - **Where it dies:** the lower side needs `τ_pc` at the tempered scale
+    `Φ`, and no pointwise block estimate comes within `9.5^k` of it. The
+    upper side, convergence at `p_c + ε`, needs a pointwise bound
+    `τ_pc(t) <= Φ(t) · Π (a_i-1)^{-δ t_i}`. Sharpness gives only the
+    infimum `κ_pc(n)`, and w12 shows `gr`-decay itself fails pointwise.
+    This is the same missing critical-l2 input as the Russo-BK and l^q
+    routes.
+  - It does not bear on the goal for these graphs, where `p_c < p_u` is
+    already known (Hutchcroft, nonunimodular).
