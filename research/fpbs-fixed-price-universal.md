@@ -436,3 +436,19 @@ vocabulary rather than its content.
   rank-one lattice. A BB class `C` must have `C x C` carrying no equivalent
   invariant Radon measure. Open: **Radon-free crossing classes** (codes with no
   finite invariant measure).
+
+* **Radon-free crossing classes, finite-fibre half (w18-026,
+  `fpbs-finite-fibre-bb-classes-are-boundary-squares`).** The question was
+  whether a conservative crossing diagonal over a boundary class `C` forces a
+  sigma-finite invariant measure in `C x C`, and whether it must be Radon.
+  **Settled for finite fibres; reduced exactly.** Fibre masses of an ergodic imp
+  action over `dGamma` are a.e. finite or a.e. infinite. When they are finite,
+  `h lambda_0` is a `Gamma`-invariant boundary measure `lambda`, infinite on
+  every open set by minimality. So `lambda x lambda` is the forced measure in
+  `C x C`, and it is nowhere Radon, which is why the flow-entropy kill cannot
+  reach it. A fibre-mass Halmos count shows the crossing diagonal is
+  conservative iff `lambda x lambda` is. Conversely, a conservative square makes
+  `(dGamma, lambda)` itself an amenable PDR certificate, so it gives fixed
+  price one. Such `lambda` exist on every hyperbolic group (Glimm--Effros).
+  For cost `> 1` groups none has a conservative square. Open: the square problem
+  (II_inf-square) on `Sp(n,1)` lattices, and infinite fibres (Maharam type).
