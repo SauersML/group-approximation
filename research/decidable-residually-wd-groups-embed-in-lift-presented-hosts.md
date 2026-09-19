@@ -67,3 +67,20 @@ buy faithfulness only.
 - **What the embedding must build.** A recursion in which relators shrink while elements do not.
 - **The analogy.** This is the self-similar analogue of Higman's benign subgroups. Relators must be *lift-generated*
   by finitely many, as Higman's must be finitely generated after a finite-presentation trick.
+
+## Correction and scope update (bh-gate1-abstract, 2026-09-19, after referee bh-ref-t0)
+
+- **Terminology.** "Residually `W_d`" constrains a **separating family** of finite quotients: the level actions,
+  whose composition factors have order at most `d!`. It does **not** bound the composition factors of all finite
+  quotients. `F_2 ≤ Aut(T_2)` has every finite group as a quotient. Informal paraphrases of this class as "bounded
+  composition factors" should be read that way. Credit: bh-ref-t0, `farley-hughes-chart-coordinates-review`
+  (dda7d68b92).
+- **Scope of the "Scope correction" above.** Inputs beyond the residually-`W_d` class can still embed in FH groups
+  `Γ_S`, which need not be residually finite. But **hardness** cannot come from anywhere else.
+  - By `farley-hughes-certificates-have-prefix-chart-coordinates` (50a3370920; nested part refereed in
+    dda7d68b92, product addendum a lane proof), every nested or product FH certificate caps seed orbits at
+    `2^(O(n))`.
+  - Its word problem is exponential over the word problems of its structure groups `H_τ`.
+  - Those groups are residually `W_d` and carry a finite mutual recursion over a finite chart graph.
+  - So a hard input still needs a hard, finitely presented, residually-`W_d` structure group, as this node's route
+    assumes. The multi-type recursion is somewhat more permissive than a self-similar action of one group.
