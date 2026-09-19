@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleHosts.Neumann
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleHosts/NeumannNeumann.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
 
+**Repair landed, unprobed.** b3d72f4b01: SK root closure: repair ProofSentences, HalflineB.Decide and SimpleHosts.NeumannNeumann (b. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
