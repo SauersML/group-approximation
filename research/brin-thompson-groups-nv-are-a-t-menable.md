@@ -497,3 +497,33 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     must produce violating vectors that escape to infinity. A proof of (K) has to construct one
     `ψ` that dominates this form. By the integrably-paired kill, that `ψ` cannot be a wall
     function.
+- **2026-09-19 (swarm-0917-w16-w16-nv-last1, last-mile / entropy-measure): the kernel K is the
+  meet of the Jacobian and diagonal subgroups; new necessary prerequisite "[[X]] is Haagerup".**
+  - **Decomposition.** `nv-cocycle-kernel-is-jacobian-kernel-meet-diagonal` (ESTABLISHED,
+    self-contained) proves `K = M_n ∩ D`. Here `M_n` is the Lebesgue-preserving subgroup (log-Jacobian
+    `Σc_i ≡ 0`), and `D`, the subgroup with diagonal cocycle values, is the Higman–Thompson group
+    `V_{2^n,1}`, by block interleaving. Since cosets of `M_n` and `D` meet in cosets of `K`,
+    `P1 ∧ P2 ⟺ (Q_J) ∧ (Q_D)`: some cnd function is proper modulo `M_n`, and some is proper modulo
+    `D`. The goal also splits as (Q_J) plus "proper on `M_n`", and as (Q_D) plus "proper on `D`".
+    Both halves are non-cubical (the fibre element `z` has powers in distinct cosets of each), and
+    the gap class sees neither.
+  - **New necessary prerequisite that can fail on its own.** Conjugating by Salo's baker map `Φ`
+    identifies `M_2` with the full group of the homoclinic-plus-shift groupoid, and puts the
+    full-shift topological full group `[[X]]` inside `M_2`. So the goal implies
+    `full-shift-topological-full-group-is-a-t-menable` (OPEN, route
+    `full-shift-full-group-a-t-menable-from-nv`). That group is invisible to (Q_J) and tests only
+    "proper on `M_n`". It is a subgroup of the wobbling group of `Z`, contains all RAAGs, and has
+    linear orbit growth, so it contains no `Z^2 ⋊ SL_2(Z)`.
+  - **Established on the way.** `full-shift-full-group-kazhdan-subgroups-are-finite`: aperiodic
+    orbits of a Kazhdan subgroup are finite of size `≤ 1 + 8r/ε²`, by a half-line Cheeger cut, so
+    the subgroup is finite. This settles the `[[X]]`-part of
+    `kazhdan-subgroups-of-brin-thompson-groups-are-finite`. The argument dies on `M_2`, whose orbits
+    grow exponentially.
+  - **Class-kill (recorded on the new node).** Every cnd function `∫|k_g| dν` over `σ`-invariant
+    measures, and every summable series of them, is not proper on `[[X]]`. This includes the
+    restriction of the Maharam wall `ψ_M`, which is cnd and unbounded on `M_n` because `M_n`
+    contains no brick-local copy of `V`. The involutions that swap a deep cylinder around an
+    aperiodic point with its shift have `ψ → 0`, because invariant measures have no atoms at
+    aperiodic points. So a proper-on-`M_n` witness cannot be an invariant-measure wall.
+  - **What remains.** (Q_J) (Jacobian transversal), and a non-invariant-measure proper cnd
+    function on `[[X]]`, as the first test of "proper on `M_n`".
