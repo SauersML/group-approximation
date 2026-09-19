@@ -3,10 +3,6 @@ rg: 2
 id: ct-z-conjugacy-problem-is-undecidable
 kind: claim
 title: Kohl's class transposition group CT(Z) has undecidable conjugacy problem, already for explicit pairs of words in CT_{3,5,7,11,13}(Z) and even when conjugators may be taken from RCWA(Z); this answers Kourovka Problem 21.73 negatively
-requires:
-  - ct-z-finite-cycle-problems-are-undecidable
-  - ct-z-finite-subgroups-are-classified-by-stabilizer-sets
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 ---
 
 **ESTABLISHED** (lane proof; one adversarial referee PASS with minor gaps, bh-ref-kourovka-a 09-18, see Referee).

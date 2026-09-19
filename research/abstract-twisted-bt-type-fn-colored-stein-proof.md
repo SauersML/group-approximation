@@ -7,7 +7,7 @@ target: abstract-twisted-bt-type-fn-criterion
 requires:
   - abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one
   - stein-complex-elementary-intervals-are-grid-spheres
-  - twisted-bt-type-fn-interval-filtration-proof
+  - twisted-brin-thompson-type-fn-criterion
   - twisted-brin-thompson-type-fn-implies-type-an
 ---
 

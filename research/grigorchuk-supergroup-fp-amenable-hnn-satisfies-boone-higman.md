@@ -6,8 +6,6 @@ title: The finitely presented amenable HNN extension of the Grigorchuk supergrou
 distinct_from:
   grigorchuk-fp-amenable-group-satisfies-boone-higman: that is Lysenok's HNN extension of the first Grigorchuk group; this is Bartholdi's HNN extension of the Grigorchuk supergroup G̃, a different branch group containing the first one.
   bounded-last-section-ascending-hnns-satisfy-boone-higman: that is the general criterion; this checks it for G̃.
-requires:
-  - bounded-last-section-ascending-hnns-satisfy-boone-higman
 ---
 
 **ESTABLISHED** (lane proof below; elementary; not reviewed; no priority claimed).

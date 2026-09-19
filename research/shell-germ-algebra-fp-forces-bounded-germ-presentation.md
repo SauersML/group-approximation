@@ -3,7 +3,6 @@ rg: 2
 id: shell-germ-algebra-fp-forces-bounded-germ-presentation
 kind: claim
 title: If the germ Steinberg algebra of a shell envelope is finitely presented, its germ group has a presentation whose relators have boundedly many input letters but arbitrary shift exponents
-requires: [shell-cantor-embeddings-are-finite-germ-extensions, germ-steinberg-algebras-over-v-are-fg-central-simple]
 distinct_from:
   shell-envelope-fp-forces-fp-germ-group: that derives a FINITE presentation of the germ group from finite presentation of the shell group; this derives only a presentation with boundedly many input letters per relator, and no bound on the shift exponents, from finite presentation of the algebra.
   shell-germ-algebra-fp-forces-fp-germ-group: that is the OPEN full implication to finite presentation; this proves the part of it that survives, and isolates the shift exponent as the only difference.

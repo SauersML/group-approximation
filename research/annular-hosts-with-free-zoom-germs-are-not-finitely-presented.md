@@ -3,8 +3,6 @@ rg: 2
 id: annular-hosts-with-free-zoom-germs-are-not-finitely-presented
 kind: claim
 title: An annular germ host <V, Ĝ> whose germ group at 0^∞ is the free product of the input germs and the zoom is never finitely presented; finite presentation needs relations across depths
-requires:
-  - annular-free-product-germ-hosts-are-not-finitely-presented
 distinct_from:
   annular-free-product-germ-hosts-are-not-finitely-presented: that proves the local rigidity lemma and applies it to the ping-pong hosts of residually finite groups, using ping-pong to decide deep triviality; this removes ping-pong, and proves non-finite-presentation for every annular host whose germ group is (Ĝ)_p * <t>, by reducing short relations to germ relations.
   annular-free-factor-germ-extensions-fail-bhm-singfix: that shows the Belk--Hyde--Matucci SingFix certificate fails for free-factor germ groups; this shows the host itself is not finitely presented.

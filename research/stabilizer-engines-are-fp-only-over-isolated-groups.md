@@ -3,11 +3,6 @@ rg: 2
 id: stabilizer-engines-are-fp-only-over-isolated-groups
 kind: claim
 title: If the stabilizer engine F_B of an infinite finitely generated group B (or its derived group) is finitely presented, then B is an isolated point of the space of marked groups; so Reid's group is not finitely presented, and no non-finitely-presented simple input has a finitely presented engine
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - fp-stabilizer-engines-need-decidable-vertex-groups
-invalidates:
-  - simple-inputs-have-finitely-presented-stabilizer-engines
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that shows an fp engine forces a decidable vertex group; this forces the much stronger condition that the vertex group is isolated (finitely presented and finitely discriminable).
   hard-cusps-are-canonical-and-flux-free: that describes the local model at the emitter; this shows the emitter model can only give finite presentation for isolated vertex groups.

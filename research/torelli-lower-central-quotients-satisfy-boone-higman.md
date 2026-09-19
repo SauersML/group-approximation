@@ -7,12 +7,11 @@ distinct_from:
   closed-surface-mapping-class-groups-satisfy-boone-higman: that is BH for Mod(S_g) itself (residually finite); this is BH for quotients of Mod(S_g), which are not residually finite.
   deligne-lattice-satisfies-boone-higman: that is BH for Deligne's Sp_4 lattice; these quotients contain Deligne-type lattices over Sp_2g (modulo a finite central subgroup), so a host for them also hosts such a lattice.
   torelli-lower-central-quotients-are-not-residually-finite: that proves failure of residual finiteness; this is the embedding question, which also needs the word problem.
-requires:
-  - torelli-lower-central-quotients-are-not-residually-finite
-  - torelli-lower-central-quotients-have-solvable-word-problem
 artifacts:
   - research/artifacts/gq-bh-bh-free-38-torelli-quotients.md
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `torelli-lower-central-quotients-are-not-residually-finite`, `torelli-lower-central-quotients-have-solvable-word-problem`.
 
 **OPEN.** Let `g >= 3` and `c >= 2`. The question is whether
 `Q_{g,c} = Mod(S_g)/T_g[c+1]` embeds in a finitely presented simple group.

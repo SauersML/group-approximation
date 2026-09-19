@@ -4,7 +4,11 @@ id: three-tree-lattice-kernel-commutation-proof
 kind: route
 title: Kernels on different factors commute modulo their intersection, and commuting normal subgroups cannot both act nontrivially on a thick tree, so some pairwise intersection survives
 target: three-tree-lattices-escape-only-via-discrete-normal-subgroups
-requires: [tree-lattices-split-into-irreducible-blocks, irreducible-jnc-tree-lattices-pbh-via-bader-shalom, product-of-trees-lattices-with-faithful-factor-satisfy-pbh, product-of-two-trees-lattices-satisfy-permutational-boone-higman]
+requires:
+  - tree-lattices-split-into-irreducible-blocks
+  - irreducible-tree-lattices-with-jnc-closures-are-pbh
+  - product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+  - product-of-two-trees-lattices-satisfy-permutational-boone-higman
 ---
 
 Notation as in the target. Write `G_k = pr_k(Γ_0)`.

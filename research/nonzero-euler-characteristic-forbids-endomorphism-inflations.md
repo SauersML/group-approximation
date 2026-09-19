@@ -3,9 +3,6 @@ rg: 2
 id: nonzero-euler-characteristic-forbids-endomorphism-inflations
 kind: claim
 title: A group of type VF with nonzero Euler characteristic has no injective endomorphism with proper finite-index image, so no subshift over F_2 × F_2 (or over Λ_1 × Λ_1 with χ(Λ_1) ≠ 0) admits a compressing endomorphism inflation; unlabelled compression there must be non-endomorphic
-requires:
-  - labelled-hosts-of-free-actions-have-no-contracting-loops
-  - substitution-inflation-hosts-are-full-contracting-rsgs
 distinct_from:
   substitution-inflation-hosts-are-full-contracting-rsgs: that uses the inflation of a box substitution over Z^d (Euler characteristic 0, with the endomorphism v ↦ kv) to obtain finitely coded hosts; this shows that the endomorphism form of inflation is unavailable whenever χ(Λ) ≠ 0, whether or not the endomorphism is expanding, which includes the first Track A test group F_2 × F_2.
 ---

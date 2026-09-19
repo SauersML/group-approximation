@@ -3,8 +3,6 @@ rg: 2
 id: bffhz-q33-is-normal-finite-generation-of-mixed-identities
 kind: claim
 title: BFFHZ Question 3.3 at rank k says the k-variable mixed identities of G are normally finitely generated, it descends to all lower ranks, and it forces a finite basis over overgroups
-requires:
-  - bffhz-q32-forces-finitely-based-mixed-identities
 distinct_from:
   bffhz-q32-forces-finitely-based-mixed-identities: that derives a finite basis over overgroups from BFFHZ Question 3.2 (finite presentation of the automorphism action image); this is the analogous statement for the companion Question 3.3 (finite presentation of G * F_k modulo its mixed identities), with a sharper, normal-closure form and descent in the rank.
   bffhz-q32-for-fp-simple-groups: that is the open Question 3.2; this is an equivalent reformulation and consequences of Question 3.3, which it does not imply or follow from as far as shown here.

@@ -3,9 +3,6 @@ rg: 2
 id: paradoxical-subshifts-are-never-quantum-rigid
 kind: claim
 title: The Barbieri–Sablik–Salo paradoxical subshift has a finite modification at almost every vertex, so it is never quantum rigid, over any group, at any scale, over any field; nor is its trivial extension to a product
-requires:
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
-  - quantum-rigidity-is-product-stable
 distinct_from:
   minimal-sfts-with-a-finite-modification-are-not-quantum-rigid: that kills minimal SFTs with one finitely supported modification; this applies its far-modification Lemma to a non-minimal SFT, the geometry layer of self-simulation, where a local recolouring gives modifications everywhere.
   nonamenable-products-have-minimal-sft-extensions-of-free-inputs: that is the minimal self-simulation premise (MSS) for gate E1; this shows the geometry layer of the BSS construction behind it cannot serve as the rigid base for gate E2.

@@ -6,7 +6,6 @@ title: For every N >= 3, K_2(N,R_L) -> K_2(R_L) is an isomorphism, so K_2(N,R_L)
 distinct_from:
   st-n-leavitt-resolvent-word-problem-reduces-to-k2: that reduces the word problem of St_N(R_L) to injective stability (i) and a computable detector (ii); this proves (i), and (ii) is already proved.
   k2-central-in-steinberg-groups-of-leavitt-resolvent-ring: that asks whether K_2(N,R_L) is central for N >= 5; this proves it for every N >= 3.
-  leavitt-resolvent-frame-complex-route-to-injective-stability: that is the route; this carries it out, including the sign step.
 ---
 
 **ESTABLISHED** through `leavitt-resolvent-k2-stability-holds-proof`. Refereed: gq-referee-b PASS, citation and scope lens (report 740389fd9, W1--W4 applied); gq-referee-a PASS, proof-gap

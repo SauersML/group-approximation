@@ -3,7 +3,8 @@ rg: 2
 id: rectangular-escape
 kind: claim
 title: Equivariant whole maps admit rectangular escape
-invalidates: [rectangular-whole-map-extraction]
+invalidates:
+  - rectangular-whole-map-extraction
 artifacts:
   - research/artifacts/affine-leavitt-normalized-hs-decoder-audit-2026-08-21.md
 ---

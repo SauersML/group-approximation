@@ -3,7 +3,8 @@ rg: 2
 id: infinite-symmetric-groups-miss-a-unimodular-root
 kind: claim
 title: Full symmetric groups do not solve nonsingular one-variable equations internally, already at degree one
-invalidates: [kl-via-internal-closure-of-a-universal-group]
+invalidates:
+  - kl-via-internal-closure-of-a-universal-group
 distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that asks for a root in some overgroup of the coefficient group; this is about roots inside one fixed ambient group, and its equation has roots in overgroups because its coefficients generate the finite group S_3.
   overgroup-room-does-not-supply-a-root: that shows that enlarging the ambient without supplying a root only restates the conjecture; this shows that the most natural concrete ambient containing every countable group, Sym(Omega), does not supply roots of its own.

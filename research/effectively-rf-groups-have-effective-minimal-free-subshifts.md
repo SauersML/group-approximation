@@ -3,10 +3,6 @@ rg: 2
 id: effectively-rf-groups-have-effective-minimal-free-subshifts
 kind: claim
 title: (M2) holds for every infinite effectively residually finite group with solvable word problem, in particular for every infinite fp residually finite group and every infinite f.g. linear group
-requires:
-  - rf-toeplitz-subshifts-over-residually-finite-groups
-  - rf-toeplitz-subshift-has-computable-language
-  - rf-toeplitz-subshifts-from-normal-chains-are-free
 distinct_from:
   decidable-fp-groups-have-effective-minimal-free-subshifts: that is (M2) for ALL infinite fp groups with solvable word problem, including non-residually-finite ones; this proves it for the residually finite ones only.
   rf-toeplitz-subshift-has-computable-language: that proves decidability of the language; this combines it with minimality and full freeness to get (M2).

@@ -4,6 +4,7 @@ id: virtually-free-contracting-rsg-proof
 kind: route
 title: Code the ends of the Bass–Serre tree by left-normalized normal forms with the vertex-group head kept; left multiplication is a prefix replacement, same-type cones are matched by normal-form quotients, and minimal tree dynamics make the core irreducible
 target: virtually-free-groups-are-contracting-rsgs
+requires: []
 ---
 
 Lane `bh-free-52`, 2026-09-18. This is an elementary lane proof and has not been reviewed. BBMZ means Belk–Bleak–Matucci–Zaremsky, arXiv:2309.06224v3; its TeX is at `gq/src/bh-free-03/bbmz2-2309.06224.tex`. BBMZ definitions used: `Irreducible`, `Irreducible core`, Thompson-like homeomorphisms, `def:rsg`, and `def:contracting` (nucleus).

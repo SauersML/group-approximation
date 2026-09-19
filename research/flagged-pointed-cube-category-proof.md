@@ -6,8 +6,7 @@ title: Promises propagate like crossings (leaving and persistence lemmas), label
 target: flagged-pointed-cube-category-resynchronizes-cubulated-actions
 requires:
   - pointed-cube-bisection-locus-is-the-regular-boundary
-  - pointed-cube-bisection-locus-proof
-  - pointed-cube-categories-li-garside-proof
+  - pointed-cube-categories-are-li-garside-categories
 ---
 
 **Lane proof, not independently reviewed.** Notation and the two lemmas are those of

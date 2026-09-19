@@ -4,6 +4,7 @@ id: deligne-universal-central-extension-proof
 kind: route
 title: Universal central extensions are functorial and their kernels are H_2, so an injective map of perfect groups lifts injectively exactly when it is injective on H_2
 target: deligne-lattice-is-universal-central-extension-for-g-ge-4
+requires: []
 ---
 
 Item 1 is quoted in the target from the source. Items 2 and 3 are standard properties of

@@ -3,13 +3,9 @@ rg: 2
 id: time-lift-actors-carry-no-complexity-beyond-row-language
 kind: claim
 title: A finitely generated group of automorphisms of a subshift has word problem primitive recursive in the subshift's language, so in time-lift designs the acting input's complexity must already sit in the language of the space SFT, and no language-bounded family of space SFTs serves all inputs
-requires:
-  - deterministic-time-lifts-inherit-quantum-rigidity
-  - uniform-wp-bound-excludes-bh-universal-targets
 distinct_from:
   deterministic-time-lifts-inherit-quantum-rigidity: that shows time lifts inherit rigidity from the row SFT; this shows they inherit, and can only inherit, their complexity from the row SFT's language.
   minimal-free-z2-sfts-have-arbitrarily-hard-row-languages: that supplies hard minimal free Z^2-SFTs; this says that in the rule-8 design such hardness is not optional, since the acting group's word problem is bounded by it.
-  arbitrarily-complex-fp-simple-via-hard-minimal-sft-v-full-groups: that gets complexity from the subshift for Λ = Z^2 with no input group; this is the matching upper bound when an input acts by automorphisms.
 ---
 
 **ESTABLISHED** (lane proof, elementary; not reviewed; folklore-level, no priority claimed).

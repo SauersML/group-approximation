@@ -3,10 +3,9 @@ rg: 2
 id: local-lemma-cannot-certify-multiscale-recurrence
 kind: claim
 title: Over the uniform product measure, the asymmetric local lemma cannot certify recurrence at infinitely many scales alongside any translation-invariant positive-probability constraint, so it cannot produce minimal subshifts on any infinite group
-requires:
-  - decidable-fp-groups-have-effective-minimal-free-subshifts
-  - free-minimal-subshifts-with-computable-moduli-exist
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `decidable-fp-groups-have-effective-minimal-free-subshifts`, `free-minimal-subshifts-with-computable-moduli-exist`.
 
 **Status.** Lane proof, elementary, not reviewed. This is a **method-kill** for gate
 G1/(M2) of the master route. It says nothing against (M2) itself. No priority is claimed.

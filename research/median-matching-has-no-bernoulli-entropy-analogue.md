@@ -3,7 +3,8 @@ rg: 2
 id: median-matching-has-no-bernoulli-entropy-analogue
 kind: claim
 title: The median component-matching device degenerates on uniform Bernoulli shifts and on finite point sets
-invalidates: [leavitt-zero-supremum-via-median-matching]
+invalidates:
+  - leavitt-zero-supremum-via-median-matching
 distinct_from:
   openai-bounded-median-component-matching: that is the device on almost-actions of finite sets, where it matches Kazhdan components; this shows its component observable is constant on the Bernoulli shift and its no-drift identity fails by a proportional boundary on finite point sets.
   sofic-radical-localizes-bernoulli-deficit-witnesses: that says collapse of some difference in every finite model is necessary for a deficit; this says the one mechanism producing that collapse over the Leavitt units supplies nothing beyond it.

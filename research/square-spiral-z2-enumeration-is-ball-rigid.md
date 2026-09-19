@@ -3,9 +3,6 @@ rg: 2
 id: square-spiral-z2-enumeration-is-ball-rigid
 kind: claim
 title: The square-spiral enumeration of Z^2 is ball-rigid, since its far Schreier balls determine it from a finite seed; ball-transplant flexibility therefore cannot kill every one-ended input
-requires:
-  - houghton-like-envelope-fp-pins-the-enumeration-by-near-relators
-  - square-spiral-z2-enumeration-passes-the-finite-window-gate
 distinct_from:
   houghton-like-envelope-fp-pins-the-enumeration-by-near-relators: that proves finite presentation forces nu to be pinned, and kills free-shift and subgroup-supported designs by flexibility. This shows the flexibility route has a limit, with an explicit one-ended enumeration that no ball transplant can move.
   fsym-containing-fp-groups-are-pinned-by-finitely-many-equations: that gives the ball test as a non-finite-presentation criterion. This shows the criterion's hypothesis fails for the square spiral at every radius at least 5, so the test cannot be the decisive kill for one-ended inputs.

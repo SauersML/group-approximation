@@ -3,8 +3,6 @@ rg: 2
 id: order-seeds-are-rigid-relative-seeds
 kind: claim
 title: If a finitely generated group acts order-preservingly on a linear order with a densely ordered orbit, a point whose stabilizer is finitely generated, and monotone paths between orbit points, then the cut at that point is a rigid relative seed; so groups with a dense left order whose positive cone is finitely generated lie in 𝒞, and their seeds evaluate as the positivity oracle
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that builds relative seeds from tree splittings (pointers, Stallings cores, finite shifts); this builds them from an order on an orbit, with rigidity from monotone chains and no tree.
   baumslag-gersten-groups-lie-in-class-c: that seeds the stable letter of BS(1,n) by a line sink in the tree; this seeds it by the real cut of the affine action, as one instance of a general order construction.

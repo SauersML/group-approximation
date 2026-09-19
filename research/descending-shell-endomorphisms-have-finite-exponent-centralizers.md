@@ -7,10 +7,6 @@ distinct_from:
   fw-shell-inputs-at-window-zero-are-highly-transitive: that shows the descending relation forces high transitivity on finitely many cofinite orbits and a trivial centre; this uses that to bound the centralizer of the image of the endomorphism, which that node does not treat.
   fw-window-zero-descending-sign-forces-trivial-core: that forces the endomorphism core to be trivial; this is a second, independent necessary condition on the endomorphism.
   binary-leavitt-elementary-groups-have-trivial-core-endomorphisms: that exhibits the corner endomorphism with trivial core; this shows no genuine action realizes it.
-requires:
-  - fw-shell-inputs-at-window-zero-are-highly-transitive
-  - fw-window-zero-descending-sign-forces-trivial-core
-  - binary-leavitt-elementary-groups-have-trivial-core-endomorphisms
 ---
 
 **ESTABLISHED** by `descending-shell-centralizer-proof` (lane proof, elementary, not

@@ -3,7 +3,8 @@ rg: 2
 id: one-sided-shear-conjugates-cannot-strictly-nest
 kind: claim
 title: A one-orientation shear conjugate of an equal-rank finite-chart idempotent cannot sit strictly below another chart idempotent
-invalidates: [leavitt-df-failure-by-single-shear-conjugation]
+invalidates:
+  - leavitt-df-failure-by-single-shear-conjugation
 distinct_from:
   nested-two-finite-subgroup-idempotents-have-strict-rank: that assumes the smaller idempotent is literally supported in a finite subgroup and two-sided nested; this allows a square-zero shear of arbitrary support around it and needs only one-sided nesting.
   subgroup-supported-one-sided-inverse-rigidity: that constrains an intertwiner whose support generates a directly finite subgroup; this constrains the conjugating unit itself, with shear support in the whole group.

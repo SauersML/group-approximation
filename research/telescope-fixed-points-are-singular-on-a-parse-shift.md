@@ -3,8 +3,6 @@ rg: 2
 id: telescope-fixed-points-are-singular-on-a-parse-shift
 kind: claim
 title: The self-simulation equation θ = (s on the first annulus, θ on every deeper annulus) has a unique homeomorphic solution θ_s for every seed s; θ_s is a two-state transducer when s ∈ V, fixes the parse shift of never-terminating hierarchies, is singular on all of it, and carries the whole seed group in its germs at every point of it
-requires:
-  - telescopic-germ-bases-in-v-germ-extensions-are-v-separated
 distinct_from:
   telescopic-germ-bases-in-v-germ-extensions-are-v-separated: that shows self-simulation inside finite germ extensions of V collapses into V; this constructs the genuinely self-simulating elements and identifies their singular set, which is an uncountable subshift of finite type, not a finite set.
   deterministic-time-lifts-inherit-quantum-rigidity: that is about rigidity of time-deterministic SFT codings; this produces the group elements whose defining relations are a hierarchical parse rule, the object Conjecture G2-fp of the master route asks to be rigid.

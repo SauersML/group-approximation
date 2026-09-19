@@ -3,15 +3,13 @@ rg: 2
 id: varying-skeleton-lifts-reduce-e2-to-skeleton-rigidity
 kind: claim
 title: For lifts whose skeleton varies along Λ_0, determination by skeleton and input is allowed and makes E2 exactly skeleton rigidity plus centrality; minimality forces the skeleton to be joined to the input, the transport no-go lifts, and the natural design is a transplant along the input's tree heights whose minimality is the height-cocycle criterion
-requires:
-  - e2-for-plane-lifts-is-clustered-floating-freedom
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
 distinct_from:
   e2-for-plane-lifts-is-clustered-floating-freedom: that treats Λ_0-constant skeletons, where minimality forces free data and transports are impossible; this treats skeletons varying along Λ_0 (option (b)), where both obstructions lift.
   busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: that reduces rigidity of transplants along a group's own Busemann function to centrality; this asks for a transplant along a cocycle read from the INPUT, so that the skeleton is joined to the input as minimality requires.
   keyed-slots-bypass-the-phase-field-on-boundary-geometry: that recorded the height-cocycle test as no longer load-bearing for E1; Part 3 here makes it the minimality condition of option (b).
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `e2-for-plane-lifts-is-clustered-floating-freedom`, `extension-rigidity-is-base-centrality-plus-pointwise-rigidity`, `strongly-proximal-geometries-are-disjoint-from-measured-inputs`.
 
 **Status.** Parts 1, 2 and the first item of Part 3 are ESTABLISHED (the second item was corrected on 09-18) (lane proofs,
 elementary, unreviewed). Part 4 is OPEN.

@@ -3,7 +3,8 @@ rg: 2
 id: dyadic-rordam-identical-pairing-destroys-sdr
 kind: claim
 title: An identical paired branch destroys Hall's condition on an infinite singleton seed
-invalidates: [stw99-lxvi-via-dyadic-rordam-tower]
+invalidates:
+  - stw99-lxvi-via-dyadic-rordam-tower
 distinct_from:
   dyadic-rordam-tower-realizes-finite-car-corner: that is the proposed construction; this isolates a finite Hall obstruction already at the first paired step, before any limit or proper-infiniteness argument.
   uniformly-doubled-rordam-steps-force-proper-infiniteness: that uses a rank-versus-dimension argument at late high-multiplicity stages to prove the limit projection properly infinite; this proves the claimed SDR ledger is impossible at each identical paired step, using only the infinite singleton seed and finite branch data.

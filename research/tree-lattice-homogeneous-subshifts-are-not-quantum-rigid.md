@@ -3,9 +3,6 @@ rg: 2
 id: tree-lattice-homogeneous-subshifts-are-not-quantum-rigid
 kind: claim
 title: The covering-map SFT of a complete square complex (Mozes type), and its algebraic homogeneous subshifts Γ\(H_1 × H_2), carry invariant probability measures over a reducible lattice F_m × F_n but are never quantum rigid, because compact stabilizers rotate every branch at once
-requires:
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA); this answers its test (T1) negatively, since the natural measure-preserving SFTs over products of trees are not rigid.
   thick-building-flat-sfts-are-never-quantum-rigid: that kills flat codings of buildings over their translation lattice Z^d; this kills codings of products of trees over a lattice of the product itself, by tree independence or by compact rotations.

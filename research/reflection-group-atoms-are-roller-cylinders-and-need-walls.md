@@ -3,9 +3,6 @@ rg: 2
 id: reflection-group-atoms-are-roller-cylinders-and-need-walls
 kind: claim
 title: In a right-angled Coxeter group, horofunction atoms are cylinders of the Roller boundary over the walls meeting the ball, so every non-matching atom maps exactly onto a union of 2^w atoms, where w counts walls through the branch point; the configuration-tile repair of cone matching is the cubical (wall) engine, and for Kazhdan hyperbolic groups it needs a finite-type invariant family of shadow translates that walls cannot supply
-requires:
-  - pentagon-reflection-group-fails-cone-matching-at-wall-ends
-  - cuntz-stabilized-garside-full-groups-are-f-infinity
 artifacts:
   - research/artifacts/gq-bh-finf-hyp-configuration-test.md
 distinct_from:

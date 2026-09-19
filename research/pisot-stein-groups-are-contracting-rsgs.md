@@ -3,8 +3,6 @@ rg: 2
 id: pisot-stein-groups-are-contracting-rsgs
 kind: claim
 title: For an algebraic unit β > 1 with property (F), the Stein group V(Z[β],⟨β⟩,1) acts on the β-shift as a contracting rational similarity group, so every subgroup of every V(Z[β],⟨β⟩,ℓ) embeds in a finitely presented simple group
-requires:
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   stein-v-groups-act-with-type-a-on-breakpoints: that needs finite presentation of the Stein group (Cleary's theorem, degree 2 only) and passes through twisted Brin--Thompson groups; this needs no finiteness input for the Stein group, works in every degree where a unit with (F) exists, and passes through BBMZ's contracting RSGs.
   quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03) codes quadratic Sturmian rotations by substitutions; its artifact (§6) proposed β-adic coding for rank ≥ 3 interval exchanges and left it open at a uniform level-defect bound. That bound is supplied here (step 3 of the route), with scalings as well as translations.

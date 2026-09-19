@@ -3,7 +3,8 @@ rg: 2
 id: asymptotic-quantum-birkhoff-false
 kind: claim
 title: The asymptotic quantum Birkhoff conjecture is refuted
-invalidates: [sofic-model-via-quantum-birkhoff-channel-rounding]
+invalidates:
+  - sofic-model-via-quantum-birkhoff-channel-rounding
 artifacts:
   - research/artifacts/hyperlinear-divergent-strategies-2026-08-18.md
 ---

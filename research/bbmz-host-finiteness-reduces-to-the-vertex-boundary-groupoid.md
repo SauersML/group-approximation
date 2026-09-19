@@ -3,10 +3,6 @@ rg: 2
 id: bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid
 kind: claim
 title: For G*Z on its horofunction boundary, every element is finitary off finitely many coset pieces and groupoid homology in degrees >= 2 is that of G on its own horofunction boundary; so if the simple derived BBMZ host has type F_n, then H_k(G; C(∂_h G, Q)) is finite-dimensional for 2 <= k <= n
-requires:
-  - li-derived-full-group-homology-is-k-theory-cover
-  - li-ah-exact-sequence-for-minimal-comparison-groupoids
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
 distinct_from:
   twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family: that reduces F_n of the envelope SV_Γ to F_n of the full RSG family; this says what F_n of the full group itself forces, and shows that the free factor Z carries none of the difficulty.
   free-product-boundary-groupoids-carry-the-vertex-group-homology: that compactifies the Bass–Serre tree by collapsing each vertex to a point, and finds H_n(B; Z); here each vertex is blown up into a copy of the vertex group's horofunction boundary, and the higher homology is that of G acting on ∂_h G.

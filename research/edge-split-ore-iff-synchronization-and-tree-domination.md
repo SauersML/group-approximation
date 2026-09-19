@@ -3,8 +3,6 @@ rg: 2
 id: edge-split-ore-iff-synchronization-and-tree-domination
 kind: claim
 title: Ore's condition for the edge-split operad is equivalent to synchronization of descendants plus tree domination of descendant dissections, and these two give the whole rational projective full group as the edge-split group
-requires:
-  - edge-splits-cut-every-rational-hyperplane
 distinct_from:
   edge-split-operad-has-common-refinements: that is Ore's condition, still open; this proves it is equivalent to two separate statements, one pointwise and Diophantine and one combinatorial, for every m.
   unimodular-cells-synchronize-under-edge-splits: that is the synchronization half (Sync_m); this shows what else Ore needs, namely tree domination, and that nothing more is needed.

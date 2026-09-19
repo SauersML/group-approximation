@@ -3,8 +3,6 @@ rg: 2
 id: basilica-fp2-covers-contain-free-subgroups
 kind: claim
 title: Every cover of type FP_2 of the Basilica group contains a non-abelian free subgroup, so the Basilica group is not of type FP_2 and has no amenable FP_2 cover
-requires:
-  - fp-covers-of-grigorchuk-groups-are-large
 distinct_from:
   fp-covers-of-grigorchuk-groups-are-large: that is Erschler's theorem for finitely presented covers; this extends it to covers of type FP_2 by de Cornulier's perfect-kernel argument, which Benli–Grigorchuk–de la Harpe print only for the Grigorchuk group.
 ---

@@ -3,11 +3,6 @@ rg: 2
 id: bounded-root-primes-close-under-extensions-and-geometry
 kind: claim
 title: Groups whose elements have roots at finitely many primes and whose torsion has finitely many prime orders form a class closed under subgroups, extensions and finite-root-prime splittings, containing all CAT(0), hyperbolic and finitely generated linear groups; so lattices in products of trees, Deligne-type central extensions and every extension built from them are not (SL) witnesses
-requires:
-  - finite-root-prime-splittings-never-create-z-semilocal
-  - z-semilocalized-embeds-in-fp-rf-group
-  - fg-linear-groups-have-roots-at-finitely-many-primes
-  - fg-metabelian-groups-have-roots-at-finitely-many-primes
 distinct_from:
   finite-root-prime-splittings-never-create-z-semilocal: that closes the class under splittings; this adds extensions, geometric actions and an exact root formula, and runs the census of irreducible candidates for (SL).
   automaton-groups-see-only-smooth-periods: that excludes finite-state (translation-type) hosts on a rooted tree; this excludes geometric, linear and extension-built hosts, with no tree action.

@@ -3,7 +3,8 @@ rg: 2
 id: additive-index-instability
 kind: claim
 title: Additive indices are not amplification-stable
-invalidates: [additive-index-transducer]
+invalidates:
+  - additive-index-transducer
 ---
 
 Replacing a microstate by `φ ⊗ I_k` preserves every normalized-HS defect,

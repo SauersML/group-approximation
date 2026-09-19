@@ -3,14 +3,12 @@ rg: 2
 id: keyed-slots-bypass-the-phase-field-on-boundary-geometry
 kind: claim
 title: Keyed diversification slots supply the forced plane-varying data, so the phase-field condition (PF) is not needed; the natural tree cocycle is recorded as a test, and minimal lifts over boundary planes are automatically topologically free, with full freeness the one extra gate
-requires:
-  - boundary-geometry-needs-a-measure-only-on-its-own-factor
-  - keyed-diversification-slots-give-plane-constant-minimal-lifts
 distinct_from:
   boundary-geometry-needs-a-measure-only-on-its-own-factor: that proves the floating data must be plane-varying and proposes a phase cocycle (PF) to supply it; this shows keyed slots supply it without any phase coupling, retracts (PF) as a requirement, and records the tree-cocycle test.
-  keyed-diversification-slots-give-plane-constant-minimal-lifts: that lifts free inputs over Λ_0 x Z^2 with an amenable hierarchy; this records what the same mechanism needs over boundary planes W_3 x W_3, whose hierarchy directions are non-amenable.
   free-effective-minimal-subshifts-lift-to-minimal-sfts-times-z2: that is the Z^2 existence statement, which settles gate E1 given (M2); this does not reprove E1. It records the non-amenable-plane variant and its extra freeness gate.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `boundary-geometry-needs-a-measure-only-on-its-own-factor`, `keyed-diversification-slots-give-plane-constant-minimal-lifts`.
 
 **Status.** Part 1 is a correction. Parts 2 and 3 are ESTABLISHED (lane proofs, elementary,
 unreviewed). Part 4 is OPEN.

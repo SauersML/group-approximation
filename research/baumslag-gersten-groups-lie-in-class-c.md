@@ -3,11 +3,6 @@ rg: 2
 id: baumslag-gersten-groups-lie-in-class-c
 kind: claim
 title: The stable-letter subgroup of BS(1,n) has a rigid relative seed (a line sink carrying one global sign), so the Baumslag–Gersten group and its BS(1,n) analogues lie in class 𝒞; rigidity comes from the derived-subshift theorem, since the halving-coupled C_Z layers live only on the classical seed orbit
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - quantum-rigidity-is-decided-on-the-derived-subshift
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - baumslag-gersten-seed-forcing-length-is-non-elementary
 distinct_from:
   baumslag-gersten-seed-forcing-length-is-non-elementary: that proves (RS1) for a relative seed y_b of (BS(1,2), ⟨b⟩), measures the forcing length of the glued seed, and leaves (RS2) and (RS3) for y_b open; this adds three local rules to y_b, proves (RS1)–(RS3), and so puts the Baumslag–Gersten group in 𝒞.
   locally-finite-splittings-preserve-rigid-sft-compactifications: that puts BS(1,n) itself in 𝒞, with a vertex sink; this gives BS(1,n) a relative seed whose sink is a line, the axis of the stable letter.

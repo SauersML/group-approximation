@@ -3,8 +3,6 @@ rg: 2
 id: ct-p-z-isomorphism-type-remembers-the-number-of-primes
 kind: claim
 title: If CT_P(Z) and CT_Q(Z) are isomorphic for finite sets P, Q of odd primes then |P| = |Q|; this answers Kourovka Problem 17.60 for sets of different sizes
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---

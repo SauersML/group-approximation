@@ -1,11 +1,11 @@
 ---
 id: fix-bh-met-pure-char-prime-e-high-artin-hasse-alg
-kind: route
+kind: claim
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg: automatically included section variable(s) unused in theorem `GroupApp (8 errors on main 3c8b417428)"
-target: fp-metabelian-groups-satisfy-boone-higman
-status: SUPERSEDED
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **SUPERSEDED by `fix-bhmet-pure-char-prime-e-high-artin-hasse-alg`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-pure-char-prime-e-high-artin-hasse-alg`.
 

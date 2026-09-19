@@ -3,8 +3,6 @@ rg: 2
 id: bs12-rigid-seed-is-its-normal-form
 kind: claim
 title: BS(1,2) has an explicit six-letter quantum-rigid seed SFT whose seed point is the matrix normal form; the seed is forced at linear radius and carries exactly the polynomial-time word problem, so the CAP rung (1a) is complexity-neutral
-requires:
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
 distinct_from:
   locally-finite-splittings-preserve-rigid-sft-compactifications: that proves BS(m,n) is in the class C by a general gluing construction; this writes the BS(1,2) instance out (alphabet, rules, seed point, operator certificate) and measures what it certifies.
   locally-finite-tree-end-shifts-are-quantum-rigid-sfts: that is the end shift of the tree, which has no isolated point; this is a seed SFT with an isolated seed-forced point whose orbit is the group.

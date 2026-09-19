@@ -3,7 +3,8 @@ rg: 2
 id: brin-thompson-nv-stein-farley-complex-is-not-cat0
 kind: claim
 title: "For n >= 2 the expansion cube complex of nV (Farley's complex for V, generalized) is not CAT(0)"
-invalidates: [brin-thompson-nv-a-t-menable-via-stein-farley-complex]
+invalidates:
+  - brin-thompson-nv-a-t-menable-via-stein-farley-complex
 ---
 
 Let `n >= 2`. Let `K_n` be the cube complex whose vertices are finite partitions

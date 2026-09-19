@@ -4,6 +4,7 @@ id: piecewise-projective-rigidity-proof
 kind: route
 title: At a Zariski-generic data point every relator survives nearby deformations, algebraic generators do not move at all, and a transcendental endpoint moves to both sides, so a bump commutator trivial at the data point fails nearby
 target: fp-piecewise-projective-groups-rigidity-criterion
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

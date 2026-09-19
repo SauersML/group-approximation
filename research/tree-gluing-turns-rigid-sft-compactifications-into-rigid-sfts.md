@@ -3,9 +3,6 @@ rg: 2
 id: tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 kind: claim
 title: If two groups carry quantum-rigid SFT compactifications, their free product carries a minimal topologically free quantum-rigid SFT, and the class of such groups is closed under free and direct products
-requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - quantum-rigidity-is-product-stable
 distinct_from:
   quantum-rigidity-is-product-stable: that glues two SFTs over a direct product, where minimality and freeness hold only if they hold for both factors; this glues over a free product, where the Bass–Serre tree creates minimality and topological freeness that neither factor has.
   free-group-boundary-shift-is-quantum-rigid: that is the case Λ_0 = Λ_1 = Z, with both compactifications the two-point compactification of Z; this allows arbitrary vertex groups, whose compactifications carry all the geometry.

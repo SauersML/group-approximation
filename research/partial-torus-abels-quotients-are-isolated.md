@@ -3,8 +3,6 @@ rg: 2
 id: partial-torus-abels-quotients-are-isolated
 kind: claim
 title: Abels groups over S-integers of a number field in which the inverted primes split completely, extended by a group of outer diagonal automorphisms and divided by a suitable corner lattice, are isolated; so soluble minimax groups whose Prüfer radical is twisted by a rational S-unit (scaling by 2) or by an irrational p-adic unit (a golden-ratio unit at p = 11) embed in isolated groups
-requires:
-  - hall-type-prufer-quotients-embed-in-isolated-abels-groups
 distinct_from:
   partial-torus-abels-quotients-are-finitely-presented-with-max-n: that claimed max-n for these hosts, which is false (Abels LNM 1261, 0.2.17); this proves the property actually needed, finite discrimination, so the hosts are isolated, and adds number-field corners.
   hall-type-prufer-quotients-embed-in-isolated-abels-groups: that is the central case over Z[1/p], via CGP Lemma 5.13; this handles a torus that acts nontrivially on the corner, where Lemma 5.13 does not apply.

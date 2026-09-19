@@ -3,11 +3,6 @@ rg: 2
 id: ct-z-torsion-reduces-to-hyperbolic-primes
 kind: claim
 title: "Torsion in CT(Z) reduces to the hyperbolic primes: isometric primes collapse to a finite set without changing the order; if 2 is the only hyperbolic prime, finitely generated subgroups embed in Thompson's V and torsion is decidable; compression and non-trivial periodic germs are semi-decidable certificates of infinite order, but each alone is incomplete, and Conway's amusical permutation acts on Z_2 × Z_3 as the full 3-shift"
-requires:
-  - ct-z-rational-base-machines-carry-a-potential
-  - ct-z-monomial-elements-have-decidable-torsion
-  - ct-z-residue-partition-certificates-live-on-s-adic-coordinates
-  - ct-z-finite-cycle-problems-are-undecidable
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary, apart from the cited solvability of torsion

@@ -3,7 +3,8 @@ rg: 2
 id: no-invariant-mean-on-coset-space
 kind: claim
 title: A Kazhdan group has no invariant mean on an infinite-index coset space
-invalidates: [induced-charge-extension]
+invalidates:
+  - induced-charge-extension
 distinct_from:
   coordinate-action-not-sofic: that says the coset action admits no finite permutation approximation and is imported by citation; this says it admits no invariant finitely additive measure at all, and is proved here from property (T)
   finite-quotient-blindness: that is about exact finite quotients normalizing the image of Γ; this is about means on the coset space, with no quotient in sight

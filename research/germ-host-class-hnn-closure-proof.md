@@ -5,7 +5,7 @@ kind: route
 title: Proof that the cone-closed germ host class contains bounded Röver–Nekrashevych groups, consists of BH hosts, and is closed under cone-sectioned ascending HNN extensions with F_infinity tail
 target: germ-host-class-closed-under-sectioned-ascending-hnns
 requires:
-  - last-section-f-infinity-tail-bh-proof
+  - f-infinity-tail-ascending-hnns-satisfy-boone-higman
 ---
 
 Lane proof (bh-free-20, 2026-09-18); not reviewed. Notation as in the claim. "§n of P"

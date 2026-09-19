@@ -3,9 +3,6 @@ rg: 2
 id: wall-orientation-ambients-need-locally-short-walls
 kind: claim
 title: A wall-orientation subshift is D-rigid only if every wall's vertex carrier is 2D-connected; over graphical small cancellation groups whose walls pass through relators of unbounded size, as in the Arzhantseva–Osajda and Osajda non-exact groups, the wall ambient is not rigid at any scale, provided walls are quasi-isometrically embedded
-requires:
-  - ra-counterexamples-are-minimal-sets-of-rigid-ambients
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
 distinct_from:
   wall-orientation-subshifts-are-quantum-rigid: that is bh-star-b's open claim and proposes wall ambients as (RA′) counterexamples; this proves the carrier condition that any such ambient must meet, and shows that the non-exact small cancellation groups fail it for the whole ambient.
   ra-counterexamples-are-minimal-sets-of-rigid-ambients: that reduces ¬(RA) to minimal sets of rigid ambients; this tests the wall ambient, the leading non-permutational candidate.

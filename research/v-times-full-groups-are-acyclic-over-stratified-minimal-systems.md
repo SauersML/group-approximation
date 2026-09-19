@@ -3,8 +3,6 @@ rg: 2
 id: v-times-full-groups-are-acyclic-over-stratified-minimal-systems
 kind: claim
 title: The full group of V times any action is acyclic after amplification, and acyclic itself whenever the action has a transfinite filtration by closed invariant sets with minimal strata; for full shifts acyclicity is equivalent to homology-injectivity of the corner copy map, and Li's minimality is needed exactly at the pattern-avoidance step
-requires:
-  - local-transposition-presentations-follow-from-superperfection
 distinct_from:
   local-transposition-presentations-follow-from-superperfection: that proves LTP whenever H_2(F) = 0, and gets H_2 = 0 for minimal systems from Li; this extends the vanishing to stratified non-minimal systems, and locates exactly what fails for full shifts.
 ---

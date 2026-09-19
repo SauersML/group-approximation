@@ -3,10 +3,6 @@ rg: 2
 id: cuntz-stabilized-garside-full-groups-are-f-infinity
 kind: claim
 title: For every Li-Garside category with trivial units and no invariant open set beyond a loop ray, the full group of its boundary groupoid times the Cuntz groupoid is of type F_infinity, with no loop, degree-map or (t<d) hypothesis
-requires:
-  - perron-weights-do-not-give-li-finiteness
-  - thin-cycles-decide-li-packing
-  - pointed-cube-categories-are-li-garside-categories
 distinct_from:
   stabilized-kgraph-full-groups-have-type-a-actions: that gets F_infinity from Li's k-graph theorem, which needs two loops of every colour at every vertex; this needs no loops and no degree map, because the Cuntz colour supplies the merge packing.
   finitely-coded-cantor-actions-give-type-a-hosts: that assumes finite presentation of the stabilized full group; this proves it for every Li-Garside category with trivial units under (Acyc), including non-graded ones such as pointed-cube categories.

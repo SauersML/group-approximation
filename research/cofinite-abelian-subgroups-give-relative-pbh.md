@@ -3,9 +3,6 @@ rg: 2
 id: cofinite-abelian-subgroups-give-relative-pbh
 kind: claim
 title: A finitely presented group with a faithful action that has finitely generated point stabilizers and a finite-rank free abelian subgroup with finitely many orbits satisfies relative PBH, through Houghton ports; such actions have finitely many ends
-requires:
-  - amalgams-of-orbit-finite-actions-are-type-a2
-  - a2-kernel-removal-forces-recursive-kernel
 distinct_from:
   amalgams-of-orbit-finite-actions-are-type-a2: that is the gluing lemma, which needs a type [A_2] actor already extending the port's action; this supplies such actors for every action of a finite-rank free abelian group with finitely many orbits, from Brown's Houghton group H_3, so the port hypothesis becomes a condition on the input alone.
   boone-higman-implies-relative-permutational-bh: that derives relative PBH from Boone--Higman; this derives it from a one-dimensional condition on one action of the group, with no simple group and no finiteness of pair orbits.

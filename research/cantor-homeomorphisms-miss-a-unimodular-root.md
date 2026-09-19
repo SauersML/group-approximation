@@ -3,7 +3,8 @@ rg: 2
 id: cantor-homeomorphisms-miss-a-unimodular-root
 kind: claim
 title: Homeo of the Cantor set does not solve exponent-sum-one equations internally
-invalidates: [kl-via-internal-closure-of-a-universal-group]
+invalidates:
+  - kl-via-internal-closure-of-a-universal-group
 distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that asks for roots in overgroups; this exhibits an exponent-sum-one equation over Homeo of the Cantor set with no root inside Homeo of the Cantor set, while its coefficient group S_3 has roots in overgroups.
   cantor-odometer-has-no-homeomorphism-square-root: that is internal failure of Homeo of the Cantor set at degree two; this is internal failure at the unimodular degree itself.

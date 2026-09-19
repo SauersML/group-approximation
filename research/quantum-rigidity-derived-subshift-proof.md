@@ -6,7 +6,6 @@ title: Local forcing makes the idempotent of each isolated point central and dia
 target: quantum-rigidity-is-decided-on-the-derived-subshift
 requires:
   - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity-proof
 ---
 
 Notation is that of the target. For a family `E` and a pattern `α` on `B_D`, put

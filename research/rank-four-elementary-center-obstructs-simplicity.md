@@ -3,7 +3,8 @@ rg: 2
 id: rank-four-elementary-center-obstructs-simplicity
 kind: claim
 title: Every rank-four elementary group over a ring with two nonzero has a proper central involution
-invalidates: [boone-higman-via-finitely-presented-simple-ring-quotient]
+invalidates:
+  - boone-higman-via-finitely-presented-simple-ring-quotient
 artifacts:
   - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
 ---

@@ -3,9 +3,6 @@ rg: 2
 id: strand-map-bases-lift-only-bounded-displacement-letters
 kind: claim
 title: Over a base of eventual strand maps such as H_n(E_2), the lifting criterion certifies a rho-letter only if the enumeration gives it eventually periodic displacement, so over that base it reaches only virtually cyclic inputs
-requires:
-  - fsym-extensions-lift-fp-via-pair-transitive-stable-subgroups
-  - regular-enumeration-displacement-bounds-growth
 distinct_from:
   free-shift-houghton-like-envelopes-are-not-fp: that shows H_n(E_nu(P)) is not finitely presented for free-shift nu; this shows that one sufficient mechanism, over the Houghton base, cannot see any input beyond the virtually cyclic ones, whatever nu is.
   finite-ray-shift-envelopes-require-virtually-cyclic-input: that says E_nu(P) fits inside some E_m only for virtually cyclic P; this says the lifting criterion, with every conjugation-stable subgroup taken inside a strand-map base, needs each rho-generator to be eventually periodic by itself.

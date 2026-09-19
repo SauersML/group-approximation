@@ -3,8 +3,6 @@ rg: 2
 id: rank-three-edge-split-spine-closes-at-twelve-pieces
 kind: claim
 title: In rank three the closure of the edge splits under minimal common refinements stops after eight classes, the largest with twelve pieces, so the edge-split operad has finite type unless some pair has an extra minimal refinement with more than twelve pieces
-requires:
-  - edge-split-operad-satisfies-ore
 artifacts:
   - research/artifacts/gq-bh-free-54-spine-computation.md
 distinct_from:
@@ -12,6 +10,8 @@ distinct_from:
   thumann-finiteness-without-finite-type: that replaces finite type by connectivity of splitting categories; here the spine itself appears finite, and the splitting categories are computed as a by-product.
   edge-split-flop-spine-elements-split-disconnectedly: that computes the splitting category of the five-piece flop elements by hand; this reproduces it by machine as the calibration and computes it for every other class.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `edge-split-operad-satisfies-ore`.
 
 **COMPUTED** (lane bh-free-54, 2026-09-18). The search is exact within its size bound.
 Statement 1 is a finite machine computation. Statement 2 is conditional on the

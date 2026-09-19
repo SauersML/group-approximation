@@ -4,6 +4,7 @@ id: kms-central-configurations-transient-proof
 kind: route
 title: The phi-core contains every normal phi-invariant subgroup of the domain, and the central configurations are fixed by the whole group ring up to augmentation
 target: kms-self-similarity-must-make-central-configurations-transient
+requires: []
 ---
 
 **Inputs.** Kharlampovich--Myasnikov--Sapir, arXiv:1204.6506v5, read from the TeX source

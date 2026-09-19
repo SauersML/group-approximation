@@ -3,7 +3,8 @@ rg: 2
 id: wreath-products-keep-the-abelianization-of-the-base
 kind: claim
 title: A permutational wreath product never puts a non-perfect base group into its derived subgroup
-invalidates: [double-swap-embeds-group-in-derived-subgroup-proof]
+invalidates:
+  - double-swap-embeds-group-in-derived-subgroup-proof
 distinct_from:
   rf-groups-lie-in-derived-subgroups-of-rf-groups: that builds an overgroup for residually finite groups through Ore's theorem in finite permutation groups; this says the cheap wreath-product substitute for that step cannot work for any group.
   whitehead-diagonal-map-is-not-multiplicative: that is the failure of `diag(a, a^{-1}, 1)` on noncommuting units; this is the group-theoretic obstruction behind the analogous wreath-product map.

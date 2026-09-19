@@ -3,7 +3,8 @@ rg: 2
 id: finite-quotient-blindness
 kind: claim
 title: Finite quotients are blind to the compression
-invalidates: [finite-quotient-models]
+invalidates:
+  - finite-quotient-models
 distinct_from:
   literal-mark-quotient-corona-blindness: This is the finite-quotient collapse of the compression data; that claim is its operator-norm corona counterpart, where the blindness is only tracial and is computed exactly.
 ---

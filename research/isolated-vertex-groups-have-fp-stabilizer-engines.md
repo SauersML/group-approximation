@@ -3,13 +3,14 @@ rg: 2
 id: isolated-vertex-groups-have-fp-stabilizer-engines
 kind: claim
 title: For every infinite isolated group B (finitely presented and finitely discriminable), the derived full group D(F_B) of Z/2 * B on its compactified Bass–Serre tree is finitely presented
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - free-product-emitter-full-groups-need-isolated-vertex-groups
+refuted_by:
+  - stabilizer-engines-need-torsion-vertex-groups
 distinct_from:
   fp-decidable-vertex-groups-have-fp-stabilizer-engines: that assumed only "finitely presented and decidable" and is refuted at B = Z (free-product-emitter-full-groups-need-isolated-vertex-groups); this assumes "isolated", which is necessary.
   free-product-emitter-full-groups-need-isolated-vertex-groups: that proves isolation is necessary; this is the open sufficiency, the "corrected engine conjecture" named in the status of boone-higman-via-fp-stabilizer-engines.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `free-product-boundary-groupoids-carry-the-vertex-group-homology`, `free-product-emitter-full-groups-need-isolated-vertex-groups`.
 
 **REFUTED** (2026-09-18) by `stabilizer-engines-need-torsion-vertex-groups`.
 Collapsing a deep subgroup `K` of `B` into the edge stabilizer, `B *_K (K × Z/2)`, changes no

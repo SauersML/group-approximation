@@ -5,7 +5,6 @@ kind: claim
 title: Involutions of nV have clopen fixed sets, so every minimal dihedral action by elements of nV is free, and SMART's time reversal is a cellwise symbol swap outside 2V
 distinct_from:
   smart-trace-full-group-embeds-in-brin-thompson-2v: that puts the full group of SMART's trace subshift inside 2V; this shows the dihedral (reversal) symmetries of SMART lie outside 2V and act freely, so Nekrashevych's periodic fragmentations cannot be built from them inside 2V.
-  bs13-in-3v-via-smart-renormalization: that uses SMART's ternary renormalization for BS(1,3); this is about involutions and dihedral actions, not renormalization.
 ---
 
 **ESTABLISHED** by `minimal-dihedral-actions-in-brin-thompson-groups-are-free-proof` (lane proof, elementary, not reviewed; no novelty claimed).

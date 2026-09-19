@@ -3,8 +3,6 @@ rg: 2
 id: hyperplane-extensions-into-davis-lattices-are-split
 kind: claim
 title: Automorphisms of a hyperplane carrier of X_{O_d} extend by a homomorphic section through the Coxeter retraction, so every torsion-free edge-transitive lattice on T' × T_d is a hyperplane sub-amalgam of a torsion-free lattice K_0 ⋊ Γ on T' × X_{O_d}; the extension is split, so the open gate for Kourovka 21.46 is irreducibility, not extension
-requires:
-  - kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices
 ---
 
 **ESTABLISHED** (lane proof, elementary, not reviewed). This settles the gate EXT of the required

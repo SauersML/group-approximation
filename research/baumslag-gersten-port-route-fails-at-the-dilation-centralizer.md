@@ -3,10 +3,6 @@ rg: 2
 id: baumslag-gersten-port-route-fails-at-the-dilation-centralizer
 kind: claim
 title: The port route to Baumslag-Gersten (HNN of BS(1,2) along cofinite abelian ports, kernel removed by generation) fails at its first step; power-conjugate cyclic edge groups are never cofinite ports, and in the odometer-baker host the dilation has cyclic centralizer by Curtis-Hedlund-Lyndon, so no cofinite port contains it
-requires:
-  - prime-odometer-groups-generate-class-wise-increasing-rcwa-p
-  - higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness
-  - odometer-2v-is-fp-simple-and-contains-bs12
 distinct_from:
   prime-odometer-groups-generate-class-wise-increasing-rcwa-p: that removes a gluing kernel by generation when the ports are odometers; this shows that for Baumslag-Gersten the port on the dilation side cannot exist in the canonical host, so generation is never reached.
   higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness: that names faithfulness as the missing clause of Higman closure; this finds an earlier failure for BS-type HNN extensions, namely the existence of the port itself.

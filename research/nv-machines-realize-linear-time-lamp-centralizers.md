@@ -3,10 +3,6 @@ rg: 2
 id: nv-machines-realize-linear-time-lamp-centralizers
 kind: claim
 title: In a Brin-Thompson group nV the lamplighter embeds so that the lamp subgroup U_A over any non-periodic set A whose complement is nondeterministic linear-time is a centralizer, so the Dyson groups L(A) and all identity-edge combinations over U_A lie in B_A
-requires:
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - permutational-boone-higman-iff-full-cantor-hosts
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   pbh-coset-wreaths-iff-identity-edge-hnns: that proves centralizer realization (e) is equivalent to the coset-wreath and identity-edge HNN conditions and lists five structural cases (finite, centralizer, retract, fixed subgroup, intersections); this produces a computational case, where the centralizing element runs a clocked machine and the realized subgroups are indexed by linear-time sets, none of them in the structural list.
   centralizer-realizable-subgroups-are-pullback-closed: that realizes subgroups pulled back from B_A quotients; the lamp subgroups here contain no nontrivial normal subgroup of the lamplighter, so no pullback reaches them.

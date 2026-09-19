@@ -3,12 +3,6 @@ rg: 2
 id: gl-n-q-track-a-sft-has-no-known-finiteness-engine
 kind: claim
 title: None of the three finite-presentation engines for V-times-subshift hosts on main reaches the GL_n(Q) Track A SFT; Garside codings fail by freeness, tree and Bruhat-Tits shadow codings fail on St_10(R_L), and contraction fails by variable zoom; the linear route is exhausted, so rigidity implies E3' there only through a new nonlinear engine, most plausibly a fixed-zoom M2 witness
-requires:
-  - gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity
-  - quantum-family-representations-are-exhausted-at-rigidity
-  - free-sft-hosts-admit-no-finite-type-coding
-  - locally-finite-tree-end-shifts-are-quantum-rigid-sfts
-  - kazhdan-simple-groups-act-only-on-exotic-2d-buildings
 distinct_from:
   quantum-family-representations-are-exhausted-at-rigidity: that shows no quantum-family (linear) argument can prove rigidity ⇒ finite presentation once X is rigid; this checks the three NONLINEAR engines on main against the one host that matters for 5.3(5) and finds each blocked, for three different reasons.
   one-scale-filling-decides-fp-of-v-times-subshift-hosts: that reduces finite presentation to one-scale filling and supplies it by finite shadow bases; this shows shadow bases on trees and Bruhat-Tits buildings cannot carry St_10(R_L).

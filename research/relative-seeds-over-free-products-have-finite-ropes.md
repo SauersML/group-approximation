@@ -3,9 +3,6 @@ rg: 2
 id: relative-seeds-over-free-products-have-finite-ropes
 kind: claim
 title: A relative seed over a group acting on a tree with trivial edge stabilizers is determined on every far branch by one bounded entry datum; so over a free group the seeded subgroup is finitely generated, over P * Q it meets only finitely many (C∩P)-cosets of conjugates of Q, and the Aanderaa–Cohen rope has no relative seed over Z^2 * Z
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - higman-clapham-towers-leave-the-seed-form-at-three-steps
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that builds relative seeds by gluing and asks whether infinitely generated C is allowed; this answers it negatively over free groups, and gives the exact finiteness constraint over free products.
   higman-clapham-towers-leave-the-seed-form-at-three-steps: that proposes the rope test (H_1, <t_α : α ∈ I>); this shows the rope cannot be seeded over the free product K = Z^2 * Z, so its seed must use the machine's HNN letters in K_M.

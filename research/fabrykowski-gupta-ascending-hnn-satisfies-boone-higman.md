@@ -6,8 +6,6 @@ title: The ascending HNN extension of the Fabrykowski–Gupta group along its la
 distinct_from:
   grigorchuk-supergroup-fp-amenable-hnn-satisfies-boone-higman: that is a binary example; this is a ternary one, with first sections that factor through the abelianization.
   bounded-last-section-ascending-hnns-satisfy-boone-higman: that is the general criterion; this checks it for the Fabrykowski–Gupta group.
-requires:
-  - bounded-last-section-ascending-hnns-satisfy-boone-higman
 ---
 
 **ESTABLISHED** (lane proof below; elementary; not reviewed; no priority claimed).

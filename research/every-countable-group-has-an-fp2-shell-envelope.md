@@ -3,12 +3,12 @@ rg: 2
 id: every-countable-group-has-an-fp2-shell-envelope
 kind: claim
 title: Every countable group lies in a finitely generated perfect group with a shell envelope of type FP_2
-requires:
-  - bhm-singfix-finiteness-holds-for-type-fp-n
 distinct_from:
   perfect-decidable-inputs-have-fp-shell-envelopes: that asks for FINITELY PRESENTED shell envelopes of perfect decidable finitely presented inputs, with a computable enumeration, which is the Boone–Higman form; this asks only for type FP_2, for an input and an enumeration that may both be non-computable.
   every-countable-group-lies-in-a-faithful-ha2-actor: that asks for an FP_2 group with a faithful [HA_2] action, whose twisted Brin–Thompson group would be the envelope; this asks for the shell envelope itself to be FP_2, and a shell envelope is already simple for perfect inputs.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `bhm-singfix-finiteness-holds-for-type-fp-n`.
 
 **OPEN.**
 

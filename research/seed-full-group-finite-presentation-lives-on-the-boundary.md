@@ -3,10 +3,6 @@ rg: 2
 id: seed-full-group-finite-presentation-lives-on-the-boundary
 kind: claim
 title: For a seed SFT the boundary is an SFT, seeds act topologically freely so a finitely presented V-stabilized full group forces quantum rigidity of the whole SFT, and finite presentation of the seed full group passes to the full group of the boundary germ groupoid
-requires:
-  - seed-full-groups-act-oligomorphically-on-the-seed-orbit
-  - seed-evaluation-is-bounded-by-the-forcing-radius
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that makes the seed full group an oligomorphic actor reading the seed; this locates the finite presentation question, and shows that the hardness at the core and the rigidity on the boundary are separate requirements.
   seed-evaluation-is-bounded-by-the-forcing-radius: that says a hard seed must force non-locally; this says what finite presentation then demands, namely rigidity of the whole SFT and a finitely presented boundary full group.

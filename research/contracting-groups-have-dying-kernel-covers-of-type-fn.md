@@ -3,12 +3,12 @@ rg: 2
 id: contracting-groups-have-dying-kernel-covers-of-type-fn
 kind: claim
 title: Every finitely generated contracting self-similar group has, for each n, a wreath-recursion cover of type F_n whose kernel is the union of the kernels K_j of its actions on the level-j biset powers
-requires:
-  - wreath-recursion-thompson-groups-inherit-fn
 distinct_from:
   contracting-rover-nekrashevych-groups-are-f-infinity: that is the Skipper–Zaremsky question; this is a statement about covers of the input group that implies it, by wreath-recursion-thompson-groups-inherit-fn.
   wreath-recursion-thompson-groups-inherit-fn: that is the established transfer theorem; this is the open supply of covers it needs.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `wreath-recursion-thompson-groups-inherit-fn`.
 
 **OPEN.** Let `G ≤ Aut(T_d)` be finitely generated, contracting and self-similar. For every `n`,
 there is a group `B` of type `F_n` with a wreath recursion `ψ : B → B ≀ S_d` such that:

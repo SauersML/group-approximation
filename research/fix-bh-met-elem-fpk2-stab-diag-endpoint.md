@@ -1,11 +1,11 @@
 ---
 id: fix-bh-met-elem-fpk2-stab-diag-endpoint
-kind: route
+kind: claim
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint: 'change (3 errors on main 3c8b417428)"
-target: fp-metabelian-groups-satisfy-boone-higman
-status: SUPERSEDED
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **SUPERSEDED by `fix-bhmet-elem-fpk2-stab-diag-endpoint`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-elem-fpk2-stab-diag-endpoint`.
 

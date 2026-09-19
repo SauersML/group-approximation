@@ -3,10 +3,6 @@ rg: 2
 id: dying-kernel-covers-give-f-n-simple-envelopes
 kind: claim
 title: If a contracting self-similar group has a type F_n wreath-recursion cover with dying kernel, then it embeds in a simple group of type F_n; in particular every iterated monodromy group of a hyperbolic post-critically finite rational map embeds in a simple group of type F_infinity
-requires:
-  - wreath-recursion-thompson-groups-inherit-fn
-  - twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family
-  - hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity
 distinct_from:
   wreath-recursion-thompson-groups-inherit-fn: that gives type F_n for the Röver–Nekrashevych groups V_{d,r}(G); this adds the simple envelope SV_{V_d(G)} through Belk–Zaremsky and the stabilizer reduction.
   fp-self-similar-groups-embed-in-fp-simple-groups: that gives finitely presented simple envelopes for finitely presented self-similar groups; this gives type F_n simple envelopes for groups with F_n dying-kernel covers, which are typically infinitely presented.

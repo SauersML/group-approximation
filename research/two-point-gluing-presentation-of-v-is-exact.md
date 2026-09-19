@@ -3,10 +3,6 @@ rg: 2
 id: two-point-gluing-presentation-of-v-is-exact
 kind: claim
 title: Thompson's V_(2,2) is the amalgam of the centralizer of a fixed-point-free involution and the stabilizer of the halving it swaps, over their intersection, modulo disjoint-cone commutation; so the smallest gluing test of P2'b is exact
-requires:
-  - splitting-kills-the-finite-shadow-parity-of-the-gluing-group
-  - v-times-sft-gluing-kernel-is-relatively-perfect
-  - gluing-kernels-descend-from-the-free-group-full-shift
 distinct_from:
   splitting-kills-the-finite-shadow-parity-of-the-gluing-group: that proves the braid relators and the relations inside one symmetric cone partition; this proves the whole kernel is trivial, by canonical lifts of every transposition, their naturality, and Bleak-Quick.
   v-times-gluing-exactness-is-commutation-with-one-transposition: that reduces exactness for every Lambda-space to a monodromy (multiplicativity) statement for lifts of one transposition; this proves the multiplicativity statement, in the form "lifts are natural under the gluing group", for the two-point model.

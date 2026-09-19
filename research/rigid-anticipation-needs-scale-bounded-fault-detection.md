@@ -3,9 +3,6 @@ rg: 2
 id: rigid-anticipation-needs-scale-bounded-fault-detection
 kind: claim
 title: A quantum rigid anticipation layer forces long walks to be isolated at every scale; for walks that run a reversible machine this means every cell at a fixed offset from the head is revisited within bounded time, so the raw halting rung is not rigid and a rigid one needs fault detection at every scale
-requires:
-  - anticipation-layers-convert-totality-into-isolation
-  - seed-full-group-finite-presentation-lives-on-the-boundary
 distinct_from:
   anticipation-layers-convert-totality-into-isolation: that proves any two non-terminating basins of a rigid layer are within 2D in every configuration (item 5); this turns that statement about limit configurations into a uniform condition on the walks of the seed itself, and reads it off for walks that run a machine.
   seed-full-group-finite-presentation-lives-on-the-boundary: that puts the rigidity requirement on the boundary; this says which halting-rung designs can meet it there.

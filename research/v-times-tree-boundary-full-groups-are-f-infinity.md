@@ -3,12 +3,6 @@ rg: 2
 id: v-times-tree-boundary-full-groups-are-f-infinity
 kind: claim
 title: For groups whose Cayley graphs are trees, V times the boundary groupoid of their product is a product of one-sided SFT groupoids, so the master-route host of the rigid end-shift scaffold is F_∞, simple and of type (A)
-requires:
-  - free-group-boundary-shifts-are-quantum-rigid
-  - quantum-rigidity-is-product-stable
-  - v-times-ample-full-groups-are-generated-by-transpositions
-  - nekrashevych-symmetric-and-alternating-full-groups
-  - fp-v-times-minimal-action-full-groups-have-type-a-actions
 distinct_from:
   torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups: that embeds torsion-free lattices on products of trees in F_∞ k-graph full groups; this identifies the master-route host G_V × (Λ ⋉ X) of the rigid end-shift scaffold itself with a product of Matui SFT groupoids (involutions allowed), and reads it as an instance of gate E3′.
   a2-lattice-boundary-skew-shifts-are-quantum-rigid: that is the Ã₂ analogue (a finite skew product of the chamber boundary, F_∞ host, rigidity through the necessity theorem); this is the rank-one case, where no skew product is needed.

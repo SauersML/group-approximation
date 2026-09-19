@@ -3,10 +3,6 @@ rg: 2
 id: prime-odometer-groups-generate-class-wise-increasing-rcwa-p
 kind: claim
 title: The odometer groups V_(p,1)(⟨a⟩), one for each prime p in P ∪ {2}, acting on Z generate the whole class-wise increasing group R_P; so the mixed-radix gluing B *_⟨a⟩ B_3 maps onto the F_infinity group R_(3), and its free kernel is finitely normally generated
-requires:
-  - class-wise-increasing-rcwa-p-groups-are-abelian-cofinite-hosts
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - port-amalgams-with-a-locally-moving-factor-are-never-faithful
 distinct_from:
   class-wise-increasing-rcwa-p-groups-are-abelian-cofinite-hosts: that proves R_P is an F_∞ host and poses G_(2,3) = R_(3); this proves it, for every finite P.
   port-amalgams-with-a-locally-moving-factor-are-never-faithful: that proves the gluing B *_⟨a⟩ B_3 has a kernel; this proves the kernel is finitely normally generated, the first kernel removal for factors with no disjointly supported rigid stabilizers.

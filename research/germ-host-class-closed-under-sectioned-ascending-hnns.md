@@ -6,8 +6,6 @@ title: A class of cone-closed Thompson-like germ hosts contains all bounded Röv
 distinct_from:
   f-infinity-tail-ascending-hnns-satisfy-boone-higman: that is one ascending HNN step over a bounded Röver–Nekrashevych group, under hypothesis (H0); this makes the step a closure operation on a host class (so it iterates), removes (H0) by a block-ray choice, and allows the base group to be any member of the class.
   hyperbolic-groups-satisfy-boone-higman: BBMZ's full contracting RSGs have virtually cyclic germ groups at rational points; the class here allows germ groups that are ascending HNN extensions of arbitrary F_infinity groups, e.g. Z[1/2]^2 ⋊ Z.
-requires:
-  - f-infinity-tail-ascending-hnns-satisfy-boone-higman
 ---
 
 **ESTABLISHED** (lane proof `germ-host-class-hnn-closure-proof`; not reviewed; no priority

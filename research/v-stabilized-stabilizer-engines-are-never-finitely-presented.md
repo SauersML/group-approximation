@@ -3,13 +3,8 @@ rg: 2
 id: v-stabilized-stabilizer-engines-are-never-finitely-presented
 kind: claim
 title: For every k >= 2 and every infinite finitely generated B, the stabilizer-engine subshift of Z/k * B is not quantum rigid at any scale in any coding, so the Cuntz-stabilized engine F(G_V × ((Z/k * B) ⋉ X_B)) is never finitely presented; the same holds for B * Z compactified by its B-vertices
-requires:
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that derives decidability of B from finite presentation of the engine D(F_B); this shows the Cuntz-stabilized engine is never finitely presented, whatever B is.
-  boone-higman-via-stabilizer-engines: that route needs the engine D(F_S) itself to be finitely presented; this closes only the V-stabilized version, so the route stays open but must use something that multiplication by G_V destroys.
   stabilizer-engines-embed-in-every-branch-compactification: that shows the emitter engine is never of finite type; this shows it is never quantum rigid, which is what the V-stabilized necessity theorem needs.
   free-products-with-z-inherit-m2-from-decidable-free-subshifts: that builds a minimal FREE subshift over A * Z, where fibre data break the emitter symmetry; this kills the symmetric emitter form, in which the vertex group is isotropy.
 ---

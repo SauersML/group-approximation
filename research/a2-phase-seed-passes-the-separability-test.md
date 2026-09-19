@@ -3,9 +3,6 @@ rg: 2
 id: a2-phase-seed-passes-the-separability-test
 kind: claim
 title: Every modification of a point of the Ã2 phase seed changes it on a tail toward that point's own limit (the origin, deep subsectors toward its chamber, or ray tails toward its wall vertex), and such tails always meet; so the Ã2 phase seed has no separable modifications, and the opposite-type wall patterns are harmless for this test
-requires:
-  - rigid-seed-constructions-pass-the-separability-test
-  - a2-lattices-carry-finite-type-seeds
 distinct_from:
   rigid-seed-constructions-pass-the-separability-test: that audits the building seeds only in apartments and flags the wall strata; this settles the Ã2 seed in the whole building.
   a2-lattice-phase-seeds-are-quantum-rigid: that is the open quantum rigidity of the seed; this proves the classical necessary condition, so no classical freedom stands in its way.

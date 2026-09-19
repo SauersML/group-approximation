@@ -3,15 +3,9 @@ rg: 2
 id: branch-host-v-recodings-need-recurrent-residual-chains
 kind: claim
 title: The binary recoding of a Bishop–Schesler branch group is an annular germ host over V whose alternating scaffold commutes with the zoom, so finite presentation depends only on cross-depth recurrences among the input's residual-chain actions; free recurrences kill it, and one-step recurrences are exactly virtual endomorphisms
-requires:
-  - efrf-groups-frattini-embed-in-efrf-branch-groups
-  - bishop-schesler-branch-hosts-act-on-no-regular-rooted-tree
-  - annular-hosts-with-free-zoom-germs-are-not-finitely-presented
-  - annular-free-product-germ-hosts-are-not-finitely-presented
 distinct_from:
   annular-hosts-with-free-zoom-germs-are-not-finitely-presented: that treats annular hosts whose germ group is exactly (input germs) * ⟨t⟩; this shows the Bishop–Schesler branch host recodes into an annular host whose germ group is (G-germs with t) × Alt(6), extends the kill to that shape, and identifies what a cross-depth relation means for a residual chain.
   rf-groups-have-free-product-germs-over-v: that builds annular hosts from ping-pong copies of finite quotients; this derives the annular host from the branch group itself, so the branch reduction and the annular method meet in one object.
-  fp-rf-boone-higman-via-fp-self-similar-overgroups: that route needs a regular-tree self-similar overgroup; this shows the branch route over V needs the chain analogue of the same thing, a finite depth-transport rule, and that its one-step form is a virtual endomorphism.
 ---
 
 **ESTABLISHED** by `branch-host-v-recoding-proof` (lane proof, elementary given the two annular

@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-leavitt-k2-field-two-action
-kind: route
+kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction: automatically included section variable(s) unused in theorem ..."
 ---
 

@@ -3,7 +3,8 @@ rg: 2
 id: kawauchi-weak-kervaire-rests-on-unresolved-inputs
 kind: claim
 title: The claimed weak-Kervaire proof rests on unresolved four-dimensional inputs
-invalidates: [kl-via-weak-conjecture-import]
+invalidates:
+  - kl-via-weak-conjecture-import
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
 ---

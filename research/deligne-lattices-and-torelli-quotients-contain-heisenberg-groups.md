@@ -6,9 +6,6 @@ title: Deligne's lattice over Sp_4(Z) and every Torelli lower-central quotient M
 distinct_from:
   heisenberg-group-embeds-in-no-brin-thompson-group: that is the open non-embedding of H_3(Z) into mV; this shows two non-residually-finite Kazhdan BH test cases contain H_3(Z), so that open claim would exclude them from all mV.
   kazhdan-subgroups-of-brin-thompson-groups-are-finite: that would exclude them because they are infinite Kazhdan groups; this gives an independent exclusion through a nilpotent subgroup.
-requires:
-  - deligne-universal-cover-lattice-is-non-rf-kazhdan
-  - torelli-lower-central-quotients-have-solvable-word-problem
 artifacts:
   - research/artifacts/gq-bh-bh-free-38-torelli-quotients.md
 ---

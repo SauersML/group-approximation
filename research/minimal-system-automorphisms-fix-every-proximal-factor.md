@@ -3,11 +3,6 @@ rg: 2
 id: minimal-system-automorphisms-fix-every-proximal-factor
 kind: claim
 title: Automorphisms of a minimal system fix every factor map onto a proximal system and are determined by one point, so proximal systems have trivial commutant, finite extensions of proximal systems have finite commutant, and a minimally almost periodic group of automorphisms is trivial on every system that is a proximal or principal compact extension of its equicontinuous and proximal skeleton
-requires:
-  - simple-subgroups-act-trivially-on-equicontinuous-factors
-  - deterministic-time-lifts-inherit-quantum-rigidity
-  - free-group-boundary-shifts-are-quantum-rigid
-  - labbe-shift-is-a-toral-rotation-coding
 distinct_from:
   simple-subgroups-act-trivially-on-equicontinuous-factors: that shows a minimally almost periodic group acts trivially on the maximal equicontinuous factor, and on almost automorphic systems by automorphisms; this adds the proximal half (maps into proximal systems are unique, commutants act fibrewise over every proximal factor and injectively on each fibre) and the principal compact extension step, and applies both to the compression-rigid SFTs of master route v5.
   deterministic-time-lifts-inherit-quantum-rigidity: that shows time lifts inherit rigidity from the row SFT; this shows that over every rigid row SFT recorded on main, a minimally almost periodic time group acts trivially.

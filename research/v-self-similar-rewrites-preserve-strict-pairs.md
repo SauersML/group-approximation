@@ -3,7 +3,8 @@ rg: 2
 id: v-self-similar-rewrites-preserve-strict-pairs
 kind: claim
 title: Self-similar rewrites of a rule pair over Thompson's V keep its tables and its strictness
-invalidates: [thompson-v-surjunctive-via-self-similar-descent]
+invalidates:
+  - thompson-v-surjunctive-via-self-similar-descent
 distinct_from:
   strict-automata-live-on-canonical-table-groups: that proves strictness of a rule pair depends only on its canonical table groups, over every group; this applies that to the isomorphisms V -> V_U and to products over disjoint clopens, and records that these rewrites change no invariant of the pair.
   thompson-v-coset-stabilizers-contain-copies-of-v: that shows the stabilizer families of the Cantor action contain copies of V, which kills coset peeling; this concerns rewriting the automaton itself through those copies, which leaves every table unchanged.

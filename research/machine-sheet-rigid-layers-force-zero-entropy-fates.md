@@ -3,10 +3,6 @@ rg: 2
 id: machine-sheet-rigid-layers-force-zero-entropy-fates
 kind: claim
 title: Gate 4 on the machine sheet splits into a rigid ambient SFT on K_M plus a carving; if the ambient is determined on each sheet by a half-plane rule (Ledrappier or no-two-sided-fault type), every sheet pattern class has N×N complexity |A|^{O(N)}, so the machine's fate configuration must have zero window entropy, which sparse accepting sets allow at every complexity
-requires:
-  - quantum-rigidity-passes-to-subshifts
-  - machine-subgroup-is-core-free-and-draws-the-machine
-  - sfts-without-two-sided-faults-are-quantum-rigid
 distinct_from:
   machine-subgroup-is-core-free-and-draws-the-machine: that refutes the free fate-bit candidate; this states what a rigid replacement must satisfy.
   modular-machine-mortality-at-infinity-is-uniform: that shows unterminated m-adic runs are unavoidable; this shows a sheet-deterministic ambient can still carry them, provided the fate configuration has zero entropy.

@@ -3,7 +3,8 @@ rg: 2
 id: profinite-action-fixed-algebra-invariant
 kind: claim
 title: A profinite action of a compressor-generated group has G-invariant Gamma-fixed algebra
-invalidates: [profinite-clifford-filtration]
+invalidates:
+  - profinite-clifford-filtration
 distinct_from:
   infranormal-compact-closure-normal: That claim is about homomorphisms of `G` into a compact group and uses recurrence to normalize the closure of the image of `Gamma`; this one is about trace-preserving actions on a finite von Neumann algebra with an invariant finite-dimensional filtration, and uses equality of Lie dimension and component count in `Aut(B)`, with no hypothesis on the image of `G` in any compact group.
   finite-quotient-blindness: That claim is about homomorphisms into finite groups; this one is about actions on algebras, and covers infinite-dimensional profinite actions through the conditional expectations.

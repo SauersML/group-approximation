@@ -3,7 +3,8 @@ rg: 2
 id: haagerup-t-exclusion
 kind: claim
 title: (T)-compatibility excludes Haagerup carriers
-invalidates: [free-probability-carriers]
+invalidates:
+  - free-probability-carriers
 ---
 
 A carrier must contain `L(Γ)` for `Γ` Kazhdan — a diffuse (T) factor. A von

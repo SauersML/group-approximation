@@ -3,7 +3,8 @@ rg: 2
 id: replica-definetti-saturation-no-go
 kind: claim
 title: De Finetti across independent balanced replicas cannot create assignment classicality
-invalidates: [definetti-via-independent-balanced-replicas]
+invalidates:
+  - definetti-via-independent-balanced-replicas
 artifacts:
   - research/artifacts/hyperlinear-extreme-breakthroughs-2026-08-18.md
 ---

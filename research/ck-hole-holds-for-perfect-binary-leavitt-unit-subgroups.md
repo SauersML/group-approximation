@@ -3,7 +3,6 @@ rg: 2
 id: ck-hole-holds-for-perfect-binary-leavitt-unit-subgroups
 kind: claim
 title: The Chatterji--Kassabov kernel hole holds for every perfect subgroup of the binary Leavitt unit group, and its Steinberg clause (b) already contains the stable K_2 budget
-requires: [square-module-ring-hosts-are-sandwich-ring-quotients, binary-leavitt-elementary-group-is-simple, leavitt-unit-group-finitely-presented, ck-maximal-kernel-four-regimes]
 distinct_from:
   square-module-ring-hosts-are-sandwich-ring-quotients: that is the general recipe turning a square-module ring host into a witness; this instantiates it at the one host on main that is known to qualify, and adds a K_2 transfer lemma for clause (b).
   ck-sandwich-ring-has-fp-projective-simple-quotient: that is the OPEN hole for an arbitrary simple core S; this proves it for every perfect S inside L_(F_2)(1,2)^x, which gives no new Boone--Higman case.

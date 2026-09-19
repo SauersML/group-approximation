@@ -3,9 +3,6 @@ rg: 2
 id: hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
 kind: claim
 title: Closing lemma for Kohl's CT_P(Z) - if an element has an ergodic invariant probability measure whose p-adic Lyapunov exponents are all nonzero, it has a periodic point on Z-hat whose slope is not 1; so the torsion certificates reduce to non-compressible elements with a zero exponent
-requires:
-  - slice-attractors-of-spatial-2v-must-expand
-  - spatial-2v-in-affine-hosts-needs-unbounded-fibres
 distinct_from:
   slice-attractors-of-spatial-2v-must-expand: that treats non-expanding dynamics near an attractor (a compression, so certificate (a) already applies); this treats the complementary, recurrent regime and produces certificate (b) from hyperbolicity.
 ---

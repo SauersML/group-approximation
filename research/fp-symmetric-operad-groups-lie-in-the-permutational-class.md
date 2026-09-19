@@ -3,9 +3,6 @@ rg: 2
 id: fp-symmetric-operad-groups-lie-in-the-permutational-class
 kind: claim
 title: Every symmetric operad group acts on its boundary through a full Cantor group, so a finitely presented one with clopen-transitive leaves is a type (A) actor, and finitely presented simple symmetric operad groups with clopen-transitive leaves satisfy permutational Boone--Higman
-requires:
-  - fp-clopen-transitive-full-cantor-groups-have-type-a-actions
-  - permutational-boone-higman-iff-full-cantor-hosts
 distinct_from:
   ore-operad-groups-have-type-a-clopen-actions: that treats finite-type dissection operads with finite transformation groups on a given space and avoids fullness; this treats abstract symmetric operads with transformations, with any number of elementary classes and any transformation groups, and proves the boundary image is full for its own germs, so the existing full-group criterion applies directly.
   fp-clopen-transitive-full-cantor-groups-have-type-a-actions: that is the criterion for a group already known to be full; this proves that every symmetric operad group's boundary image is full and identifies clopen transitivity with a color-monoid condition.

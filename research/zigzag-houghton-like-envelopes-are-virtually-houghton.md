@@ -3,10 +3,6 @@ rg: 2
 id: zigzag-houghton-like-envelopes-are-virtually-houghton
 kind: claim
 title: For the zigzag enumeration of Z, every Houghton-like envelope H_n(E_nu(Z)) is commensurable with the Houghton group H_(4n), hence of type F_(4n-1) and not FP_(4n)
-requires:
-  - zigzag-cyclic-shift-envelope-is-finitely-presented
-  - houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group
-  - houghton-like-groups-are-strongly-shift-similar
 distinct_from:
   zigzag-cyclic-shift-envelope-is-finitely-presented: that is the case n = 1 (E_nu(Z) has index 12 in E_4, type F_3, not FP_4); this is every n >= 1, by transporting finite index through the Houghton-like construction.
   free-shift-houghton-like-envelopes-are-not-fp: that kills free-shift (generic) enumerations for every n; this is the positive rigid case the refutation leaves open, and it shows the rigid case is attained.

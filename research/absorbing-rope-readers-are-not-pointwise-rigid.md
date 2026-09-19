@@ -3,12 +3,8 @@ rg: 2
 id: absorbing-rope-readers-are-not-pointwise-rigid
 kind: claim
 title: A rope reader whose automaton merges two states (every automaton for a language that is not a group language, such as Cohen's digit set) hides the tail choice above a merging word, so sibling subtrees below it carry independent free choices and the reader is not pointwise rigid; readers with injective (group) automata link all tails, so rigid rope seeding needs rope index sets that are group languages
-requires:
-  - coupled-rope-reader-has-nested-one-bit-fibres
-  - rope-readers-cannot-be-deterministic-and-must-couple-chains
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
 invalidates:
-  - coupled-rope-reader-has-nested-one-bit-fibres
+  - coupled-rope-reader-has-nested-one-bit-fibres-via-prereqs
 distinct_from:
   coupled-rope-reader-has-nested-one-bit-fibres: that claims every free chain is linked into one bit; this shows the claim fails whenever a merging word separates two sibling subtrees, which happens for Cohen's rope set.
   rope-readers-cannot-be-deterministic-and-must-couple-chains: that refutes deterministic readers and says co-determinism maximizes free runs; this shows injectivity is exactly what makes the free runs linkable.

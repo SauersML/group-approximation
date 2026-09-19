@@ -4,6 +4,7 @@ id: wreath-recursion-thompson-groups-inherit-fn-proof
 kind: route
 title: Model V_{d,r}(B, psi) by the classifying space of the cloning EI-category, attach objects by collage pushouts, and bound the descending links as polyhedral joins over d-matching complexes with fibers built from BK_1
 target: wreath-recursion-thompson-groups-inherit-fn
+requires: []
 ---
 
 Lane proof `bh-free-06` (2026-09-18), not independently reviewed. Notation is that of the claim:

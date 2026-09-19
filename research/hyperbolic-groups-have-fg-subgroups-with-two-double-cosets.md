@@ -3,9 +3,6 @@ rg: 2
 id: hyperbolic-groups-have-fg-subgroups-with-two-double-cosets
 kind: claim
 title: Some hyperbolic group has a finitely generated subgroup of infinite index with exactly two double cosets, so double-coset rigidity for finitely generated subgroups needs a core-free hypothesis
-requires:
-  - v-point-stabilizers-are-ascending-hnn-extensions-of-v
-  - limit-set-escaping-forces-infinitely-many-double-cosets
 distinct_from:
   out-free-double-coset-finite-subgroups-have-dense-limit-sets: that reduces the Out(F_n) type (A) question to finitely generated subgroups with finitely many double cosets; this calibrates the proposed rigidity statement ("finitely generated plus finitely many double cosets implies finite index") and shows it is false in hyperbolic groups unless the subgroup is core-free.
   limit-set-escaping-forces-infinitely-many-double-cosets: that is the obstruction used in item 2 for quasiconvex subgroups; the counterexample of item 1 is not quasiconvex, as it must not be.

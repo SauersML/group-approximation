@@ -3,12 +3,6 @@ rg: 2
 id: torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups
 kind: claim
 title: Every group acting freely and cocompactly on a CAT(0) cube complex embeds in a simple group of type F_infinity, so every virtually torsion-free cubulated group embeds in a finitely presented simple group (would answer BBCMP Question 1.15)
-requires:
-  - flagged-pointed-cube-category-resynchronizes-cubulated-actions
-  - cuntz-stabilized-garside-full-groups-are-f-infinity
-  - cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
-  - matui-groupoid-homology-kunneth-and-full-shift-vanishing
 distinct_from:
   virtually-torsion-free-cubulated-groups-satisfy-boone-higman: that is the open question node (BBCMP Q1.15); this is the claimed answer, with its proof chain.
   cubulated-hyperbolic-groups-are-virtually-special: that covers hyperbolic cubulated groups via Agol; this needs no hyperbolicity, specialness or residual finiteness.

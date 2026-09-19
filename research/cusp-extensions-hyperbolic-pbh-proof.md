@@ -8,7 +8,7 @@ requires:
   - pbh-class-closed-under-centralizer-amalgams
   - hyperbolic-groups-lie-in-the-permutational-class
   - hyperbolic-group-relative-to-maximal-elementary-subgroup
-  - rel-hyperbolic-fp-simple-peripherals-proof
+  - rel-hyperbolic-groups-embed-with-fp-simple-peripherals
 ---
 
 **E(h) = C_H(h), infinite cyclic.** Standard facts, not re-read: a torsion-free virtually

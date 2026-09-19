@@ -4,6 +4,8 @@ id: annular-free-factor-singfix-colimit-proof
 kind: route
 title: SingFix({p},{p}) is the strictly increasing colimit of the finitely presented amalgams V_p *_(B_n) B_n H
 target: annular-free-factor-germ-extensions-fail-bhm-singfix
+requires:
+  - rf-groups-have-free-product-germs-over-v
 ---
 
 **Item 1.**

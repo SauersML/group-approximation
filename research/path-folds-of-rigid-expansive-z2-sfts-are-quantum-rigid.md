@@ -3,9 +3,6 @@ rg: 2
 id: path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid
 kind: claim
 title: If a horizontally expansive Z^2 SFT is quantum rigid, so is its path-fold over F_n x Z; with the converse, path-folding neither creates nor destroys quantum rigidity
-requires:
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
-  - free-group-boundary-shifts-are-quantum-rigid
 distinct_from:
   path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is: that proves the down direction (total rigid implies fibre rigid) for every fold; this is the up direction for the ABHT path-fold, and it needs centrality of the flow.
   busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: that is the analogous up direction for building lattices with corner-deterministic fibres, still open at its centrality statement (C); this proves the corresponding centrality for the tree-times-Z case with horizontally expansive fibres.

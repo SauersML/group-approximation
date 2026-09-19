@@ -434,6 +434,13 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
   - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
     that is, whether the optimal tree-size law escapes to infinity.
+  - **2026-09-19 (swarm-0917-w14-w14-f-last1, entropy-measure, obstruction).** The proxy is settled
+    negatively: `thompson-f-iid-forest-test-vectors-are-bounded-below-one`.
+    - Every product-form vector (i.i.d. bulk trees, arbitrary pointer weight, any cutoff `N`) has limiting
+      Rayleigh quotient `(b^2+m)/2 <= 1 - 1/1280`.
+    - *Invariant:* the Hellinger idempotence gap `H(nu, nu*nu) >= 1/8` of the bulk size law.
+    - *Dies at:* the merge move.
+    - *Survivors:* test vectors with correlated neighbouring tree sizes.
 - **Log-scale forest limit and the product-form cap (swarm-0917-w14-w14-f-break, 2026-09-19,
   belief-breaker, entropy-measure).** This continues the w13 entry above and answers its open proxy.
   - *Established:* `thompson-f-norm-bound-from-log-scale-forest-limit`,

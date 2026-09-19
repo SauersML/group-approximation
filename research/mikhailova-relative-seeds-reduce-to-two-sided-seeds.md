@@ -3,10 +3,6 @@ rg: 2
 id: mikhailova-relative-seeds-reduce-to-two-sided-seeds
 kind: claim
 title: Locally forced relative seeds for Mihailova subgroups M_G ≤ F×F exist exactly when G has a locally forced two-sided seed (a relative seed for its diagonal); they decide WP(G) in time exponential in the forcing radius, so hard G need a superlinear forcing radius, which the seedless boundary never sees
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - relative-seeds-descend-to-quotients-and-consume-membership
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 distinct_from:
   relative-seeds-descend-to-quotients-and-consume-membership: that proves descent, so a relative seed for (F×F, M_G) gives one for (G×G, Δ_G); this proves the converse for locally forced seeds by an explicit pullback, and adds the forcing-radius evaluation bound.
   seed-evaluation-is-bounded-by-the-forcing-radius: that bounds evaluation by exp(|B_R(n)|)·WP for all seeds; this uses local forcing (unit propagation) to get poly(|B_R(n)|). Over F×F that is 2^{O(R(n))}, one exponential lower, and needs no word problem oracle.

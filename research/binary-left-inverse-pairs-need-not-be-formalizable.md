@@ -3,7 +3,9 @@ rg: 2
 id: binary-left-inverse-pairs-need-not-be-formalizable
 kind: claim
 title: A reversible binary marker automaton over the integers admits no formalizing representatives
-invalidates: [formalizable-pairs-reduce-surjunctivity-to-kaplansky, formalizable-left-inverses-reduce-surjunctivity-to-kaplansky]
+invalidates:
+  - formalizable-pairs-reduce-surjunctivity-to-kaplansky
+  - formalizable-left-inverses-reduce-surjunctivity-to-kaplansky
 distinct_from:
   binary-left-inverse-pairs-are-formalizable: that is the universal formalizability claim; this is its negation, witnessed over the integers with alphabet F_2.
   injective-binary-automata-have-formalizable-left-inverses: that asks for some formalizable left inverse of each injective automaton; this refutes it too, because the witness is bijective and its left inverse is unique.

@@ -3,9 +3,6 @@ rg: 2
 id: perron-substitution-finiteness-for-garside-full-groups
 kind: claim
 title: A Perron substitution condition replaces Li's diagonal multiplicity condition (t<d) and makes the topological full group of a Garside category of type F_n
-requires:
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
-  - raag-cube-codings-fail-li-multiplicity-at-every-power
 distinct_from:
   finitely-coded-cantor-actions-give-type-a-hosts: that quotes Li's theorem with (t<d) verbatim; this weakens (t<d) to a Perron spectral condition on the type-substitution matrix, so it covers deterministic label-injective codings (free groups, RAAGs) that (t<d) misses.
   raag-cube-codings-fail-li-multiplicity-at-every-power: that shows (t<d) fails for RAAG codings because each maximal state returns only once; this supplies the replacement finiteness theorem whose recurrence is off-diagonal.

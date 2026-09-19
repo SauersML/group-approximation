@@ -3,9 +3,6 @@ rg: 2
 id: monomial-renormalization-compiler-gives-dilation-groups-in-nv
 kind: claim
 title: Several SMART odometers under one product or block-rotating code put Z^d[1/M] semidirect <M> into a Brin-Thompson group for every odd monomial dilation M
-requires:
-  - brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups
-  - odd-smart-induced-map-has-height-m-renormalization
 distinct_from:
   bs-1-m-embeds-in-brin-thompson-3v-for-odd-m: that is d = 1; this is every block-companion matrix M of odd dilations, including several primes under one stable letter and radical dilations such as sqrt(3).
   bs-1-minus-m-embeds-in-brin-thompson-3v-for-odd-m: that treats the sign; this treats rank and several heights at once.

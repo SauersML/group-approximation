@@ -3,8 +3,6 @@ rg: 2
 id: out-free-pair-finite-stabilizers-contain-fully-irreducibles
 kind: claim
 title: In any action of Out(F_n), n at least three, with finitely many orbits of pairs and an infinite orbit, the stabilizers of that orbit contain fully irreducible elements and are never virtually reducible or commensurated
-requires:
-  - bounded-orbit-subgroups-have-infinitely-many-double-cosets
 distinct_from:
   out-free-groups-satisfy-boone-higman: that is the open target; this is a necessary condition on the only direct route BFFHZ Remark 2.5 discusses, a type (A) action of Out(F_n) itself, and it does not decide the target.
   commensurator-rigid-groups-have-no-faithful-bs-members: that shows BLIW Theorem C never applies to Out(F_n) (n ≥ 4) because its vertex groups would be commensurated; this shows type (A) stabilizers are never commensurated, so commensurator rigidity says nothing against the type (A) route.

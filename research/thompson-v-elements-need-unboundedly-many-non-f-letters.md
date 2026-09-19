@@ -3,7 +3,8 @@ rg: 2
 id: thompson-v-elements-need-unboundedly-many-non-f-letters
 kind: claim
 title: "Words for elements of Thompson's group V need unboundedly many letters outside F: the order-break count is subadditive"
-invalidates: [thompson-v-quadratic-via-bounded-non-f-normal-form]
+invalidates:
+  - thompson-v-quadratic-via-bounded-non-f-normal-form
 ---
 
 **Established (elementary; proof in

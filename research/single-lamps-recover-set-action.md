@@ -3,7 +3,8 @@ rg: 2
 id: single-lamps-recover-set-action
 kind: claim
 title: A sofic C-action on the C2 lamp group forces the underlying set action sofic
-invalidates: [halo-target-class-enrichment]
+invalidates:
+  - halo-target-class-enrichment
 distinct_from:
   coordinate-action-not-sofic: That refutes soficity of one specific coset action; this is a general transfer lemma, valid for every action on every set and for every target class, which says the lamp-group automorphism action can never be easier than the set action.
   halo-locally-sofic-target-collapse: That collapses witnesses whose targets happen to be locally sofic, via finite generation of a single witness; this is class-agnostic and argues through the lamp coordinates, so it covers target classes containing nonsofic groups.

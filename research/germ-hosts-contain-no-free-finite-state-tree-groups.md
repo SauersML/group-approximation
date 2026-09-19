@@ -6,8 +6,6 @@ title: Finite-state tree automorphisms in a cone-closed germ host have polynomia
 distinct_from:
   germ-host-class-closed-under-sectioned-ascending-hnns: that is the closure theorem for the class 𝓒_d; this bounds its reach, showing which realizations of free-group mapping tori it cannot use.
   ascending-hnn-of-free-groups-satisfy-boone-higman: that proves BH for all F_n*_φ through BLIW's generalized Baumslag–Solitar class; this concerns only whether the germ-host route can reach them, not their BH status.
-requires:
-  - germ-host-class-closed-under-sectioned-ascending-hnns
 ---
 
 **ESTABLISHED** (lane proof below; the only literature input is Sidki's theorem, cited and

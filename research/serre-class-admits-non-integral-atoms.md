@@ -3,7 +3,8 @@ rg: 2
 id: serre-class-admits-non-integral-atoms
 kind: claim
 title: The Serre class contains a measure with an atom at 1/2 and one with Galois-unequal atoms, so it is not the set of integer-matrix spectral limits
-invalidates: [integral-limits-via-serre-converse]
+invalidates:
+  - integral-limits-via-serre-converse
 distinct_from:
   serre-class-atoms-obey-degree-bound: that proves the one constraint the class forces on atoms; this shows by explicit measures that the class forces nothing more
   integer-moment-measure-with-negative-log-determinant: that is a Galois-unequal atomic measure outside the class; this puts Galois-unequal atoms inside the class by adding a compensating equilibrium part

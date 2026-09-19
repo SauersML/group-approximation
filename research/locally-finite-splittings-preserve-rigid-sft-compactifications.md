@@ -3,8 +3,6 @@ rg: 2
 id: locally-finite-splittings-preserve-rigid-sft-compactifications
 kind: claim
 title: A finite graph of groups with finite-index edge groups has a quantum-rigid SFT compactification as soon as one vertex group does; so BS(m,n), all GBS groups, mapping tori, polycyclic groups and finite-index overgroups lie in the class 𝒞
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that glues over a free product, where vertex cosets have infinitely many edges and each needs a seed marking its exit, so every vertex group must be in 𝒞; this glues over a locally finite tree, where the exit is a finite pointer label, so only one vertex group needs a compactification and the others may be arbitrary.
   quantum-rigidity-is-product-stable: that closes 𝒞 under direct products; this closes it under finite-index HNN extensions and amalgams, which give non-product, non-residually-finite and exponentially distorted groups.

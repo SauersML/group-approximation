@@ -3,9 +3,6 @@ rg: 2
 id: quantum-rigidity-passes-to-subshifts
 kind: claim
 title: Every subshift of a D-quantum-rigid subshift over the same alphabet is D-quantum rigid, so a rigid seed is exactly a seed carved out of some rigid ambient SFT by extra rules
-requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - deterministic-extensions-of-rigid-sfts-are-rigid
 distinct_from:
   deterministic-extensions-of-rigid-sfts-are-rigid: that enlarges a rigid SFT by a deterministic layer; this shrinks one by extra rules, which never costs rigidity, and records that deterministic layers are finite-state relative to their base.
   quantum-rigidity-is-product-stable: that combines rigid factors over a product group; this is monotonicity of rigidity under inclusion over one group.

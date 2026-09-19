@@ -4,7 +4,6 @@ id: fg-linear-groups-embed-in-fp-self-similar-groups
 kind: claim
 title: Every finitely generated linear group, over any field, embeds in a finitely presented self-similar group
 distinct_from:
-  char-zero-linear-pbh-via-polynomial-self-similar-hosts: that route uses the finitely presented self-similar affine host only as a step toward permutational Boone--Higman in characteristic zero; this records the host itself, in every characteristic, as the answer to a printed question.
   finitely-generated-linear-groups-satisfy-boone-higman: that is the simple-envelope conclusion; this is the intermediate self-similar embedding, which is what Llosa Isenrich--Schesler--Wu ask for.
 artifacts:
   - research/artifacts/gq-bh-openq-papers-list.md

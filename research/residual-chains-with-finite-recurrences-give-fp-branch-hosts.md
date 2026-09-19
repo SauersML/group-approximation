@@ -3,12 +3,12 @@ rg: 2
 id: residual-chains-with-finite-recurrences-give-fp-branch-hosts
 kind: claim
 title: If some residual chain of an EFRF+ input has level actions pinned by finitely many multi-depth nonabelian recurrences with finitely presented germs, its recoded Bishop–Schesler branch host is finitely presented; and such chains exist beyond virtual endomorphisms
-requires:
-  - branch-host-v-recodings-need-recurrent-residual-chains
 distinct_from:
   branch-host-v-recodings-need-recurrent-residual-chains: that proves the necessity (finite presentation forces a pinning recurrence) and identifies one-step recurrences with virtual endomorphisms; this is the open sufficiency and existence question beyond one-step recurrences.
   every-fp-rf-group-embeds-in-fp-self-similar-group: that is the one-step (virtual endomorphism, regular tree) form; this asks for the multi-depth form, which needs no regular tree.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `branch-host-v-recodings-need-recurrent-residual-chains`.
 
 **OPEN.** Two parts.
 - **(S) Sufficiency.** Let `G` be finitely generated, recursively presented and `EFRF^+`. Suppose it

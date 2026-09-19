@@ -3,7 +3,8 @@ rg: 2
 id: toeplitz-defect-ideal-absorbers-have-nonfull-complement
 kind: claim
 title: Projections of J + T_2 that absorb elements of J mapping to invertibles in the O_3 quotient have non-full complements
-invalidates: [toeplitz-defect-ideal-connected-via-absorbing-projections]
+invalidates:
+  - toeplitz-defect-ideal-connected-via-absorbing-projections
 ---
 
 Notation as in `toeplitz-defect-ideal-unitization-k1-injective`: `A_T = T_2 * T_2`, `e = iota_1(p_3)`,

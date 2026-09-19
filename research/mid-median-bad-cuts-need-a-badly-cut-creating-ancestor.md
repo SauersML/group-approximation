@@ -3,8 +3,6 @@ rg: 2
 id: mid-median-bad-cuts-need-a-badly-cut-creating-ancestor
 kind: claim
 title: A median can cut a descendant badly at a vertex inside a median half only if that vertex was created as the midpoint of an edge that the median crosses in an ancestor whose third vertex has median value neither 0 nor plus or minus the edge value
-requires:
-  - single-cut-is-a-mediant-condition-along-the-median
 distinct_from:
   some-median-is-single-cut-at-the-centroid: that settles the centroid, where all three medians meet and the link carries a root system; this treats vertices on exactly one median, where no such rigidity exists, by the creation history of the vertex.
   edge-split-descendant-dissections-have-single-cut-first-splits: that is (SC); this pins down the only local configuration that can make a median fail at a vertex strictly inside a median half.

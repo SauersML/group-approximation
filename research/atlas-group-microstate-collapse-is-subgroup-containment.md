@@ -3,7 +3,8 @@ rg: 2
 id: atlas-group-microstate-collapse-is-subgroup-containment
 kind: claim
 title: For microstates with a group chart unitary the two-S3 collapse is exactly a subgroup containment
-invalidates: [atlas-collision-shell-boundary-floor-reduction]
+invalidates:
+  - atlas-collision-shell-boundary-floor-reduction
 distinct_from:
   atlas-two-s3-covariance-collapse: that is the open analytic claim for arbitrary chart unitaries at arbitrary multiplicity; this settles the sub-class whose chart unitary is a group element of an overgroup, where the statement has no analysis in it at all and the covariance is quantized.
   atlas-boundary-tangent-covariance-coercivity: that is the inequality between the two energies; this identifies both energies as delta functions of one stabilizer subgroup, which is what makes the sub-class decidable.

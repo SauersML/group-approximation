@@ -3,9 +3,6 @@ rg: 2
 id: decidable-host-classes-reduce-to-canonical-kazhdan-groups
 kind: claim
 title: A class of groups hosts every decidable group iff it hosts the canonical simple Kazhdan groups EL_3 of Cantor crossed-product algebras, so amenable, Haagerup and residually finite host classes are never universal
-requires:
-  - fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree
-  - boone-higman-iff-fp-just-infinite-hosts
 artifacts:
   - research/artifacts/gq-bh-synth-reductions.md
 distinct_from:

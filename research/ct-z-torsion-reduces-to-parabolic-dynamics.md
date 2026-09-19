@@ -3,9 +3,6 @@ rg: 2
 id: ct-z-torsion-reduces-to-parabolic-dynamics
 kind: claim
 title: In CT_P(Z), a prime whose degree cocycle is a continuous coboundary (elliptic prime) collapses through a variable-level quotient that preserves order and certificates; with the closing lemma and the one-prime base case, the torsion certificates are complete except on parabolic elements
-requires:
-  - hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
-  - conway-amusical-permutation-is-the-full-three-shift
 distinct_from:
   hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z: that certifies elements with a hyperbolic ergodic measure; this removes elliptic primes by induction and isolates what is left.
 ---

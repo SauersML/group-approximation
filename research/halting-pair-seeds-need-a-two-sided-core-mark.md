@@ -3,9 +3,6 @@ rg: 2
 id: halting-pair-seeds-need-a-two-sided-core-mark
 kind: claim
 title: In the halting pair (B_2, A_±) both input pieces are graphs over one seed of C (graph lemma), but seeds are not coarsely dense in the digit-letter edge cosets, so the core mark on those cosets must be certified in both directions; the negative direction is gate RR, and it needs a mortal machine run along digit paths
-requires:
-  - reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
-  - mikhailova-relative-seeds-push-down-to-bi-seeds
 distinct_from:
   mikhailova-relative-seeds-push-down-to-bi-seeds: that treats fibre products and proves the diagonal trick; this extends the trick to graphs of arbitrary homomorphisms and applies it to the input vertex of the halting pair.
   reordered-aanderaa-cohen-tower-has-fg-associated-subgroups: that makes every associated subgroup finitely generated and isolates (B_2, A_±) as the CAP pair; this locates the single non-local ingredient of a relative seed for that pair.

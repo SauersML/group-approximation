@@ -3,11 +3,6 @@ rg: 2
 id: locally-finite-tree-end-shifts-are-quantum-rigid-sfts
 kind: claim
 title: For a cocompact action on a locally finite tree with finitely generated vertex stabilizers, the end shift over the group is a quantum-rigid SFT; it is topologically free exactly when the action is strongly faithful, and then every vertex stabilizer and every (FA) subgroup is residually finite
-requires:
-  - free-group-boundary-shifts-are-quantum-rigid
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
-  - master-route-needs-only-topological-freeness
-  - baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman
 distinct_from:
   free-group-boundary-shifts-are-quantum-rigid: that treats groups whose Cayley graph is a tree, where every vertex stabilizer is trivial; this allows infinite finitely generated vertex stabilizers, which the coding absorbs by a descent step, and so reaches non-residually-finite groups such as BS(2,3).
   v-times-tree-boundary-full-groups-are-f-infinity: that proves the finiteness gate for the trivial-stabilizer scaffold; this proves the rigidity gate for the whole class of Bux–Llosa Isenrich–Wu, whose finiteness theorem is the tree analogue of gate E3′.

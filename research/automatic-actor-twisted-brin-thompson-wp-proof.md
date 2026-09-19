@@ -4,6 +4,7 @@ id: automatic-actor-twisted-brin-thompson-wp-proof
 kind: route
 title: Split a word of SV_Γ into its actor part and conjugated brick maps; the actor part is an on-the-fly automaton product and the brick part has short moved-point certificates
 target: automatic-actor-twisted-brin-thompson-groups-have-pspace-wp
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

@@ -3,8 +3,6 @@ rg: 2
 id: wreath-recursion-thompson-groups-inherit-fn
 kind: claim
 title: For every group B of type F_n and every wreath recursion psi from B to B wr S_d, injective or not, the Thompson group V_{d,r}(B, psi) has type F_n; so a self-similar group with an F_n cover whose kernel dies under splitting has an F_n Röver–Nekrashevych group
-requires:
-  - wreath-recursion-thompson-groups-inherit-fn-proof
 distinct_from:
   contracting-rover-nekrashevych-groups-are-f-infinity: that is the open Skipper–Zaremsky question for all contracting G; this is a transfer theorem that answers it whenever G has a dying-kernel cover of type F_infinity, and reduces the rest to contracting-groups-have-dying-kernel-covers-of-type-fn.
   rover-nekrashevych-polynomial-activity-tower-sigma-full: that uses finite germ extensions and needs polynomial activity; this needs no activity bound and no germ analysis, only an F_n group that maps onto the labels through a recursion.

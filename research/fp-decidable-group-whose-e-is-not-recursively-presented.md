@@ -3,10 +3,6 @@ rg: 2
 id: fp-decidable-group-whose-e-is-not-recursively-presented
 kind: claim
 title: Some finitely presented group with solvable word problem has one-variable mixed identities that are not recursively enumerable, so its group E(G) is not recursively presented, answering MathOverflow 412219 negatively
-requires:
-  - clapham-fp-embedding-preserves-word-problem
-invalidates:
-  - e-of-finitely-presented-group-is-recursively-presented
 distinct_from:
   fg-decidable-group-whose-e-is-not-recursively-presented: that is a finitely generated, infinitely presented example; this one is finitely presented, which is the case MO 412219 asks about.
   mixed-identities-encode-normal-closure-commutation: that reduces the question to undecidable normal-closure commutation in one fp decidable group; this supplies such a group, with the normal closure replaced by the core of a Mihailova subgroup in a mapping torus.

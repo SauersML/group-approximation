@@ -10,13 +10,6 @@ distinct_from:
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that makes (B ⊗ L_p)^x finitely presented and simple modulo scalars; this places the simple quotients of the Leavitt tensor powers in B_A.
   char-p-linear-groups-satisfy-permutational-boone-higman: that is PBH for positive-characteristic linear groups through self-similar polynomial hosts, reviewed; item 4 here is a second route to the same statement through Leavitt tensor units, and adds nothing new about those groups.
   leavitt-pair-unit-hosts-contain-their-own-squares: that gives (SQ) inside a host by the corner map, and at odd p it yields only (R^x x R^x)/Δ(F_p^x); this gives B_A membership of the quotient, hence (SQ) and (JE) for it.
-requires:
-  - leavitt-tensor-unit-groups-lie-in-the-permutational-class
-  - prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre
-  - leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees
-  - orbit-finite-affine-actions-are-type-a
-  - boone-higman-type-a-class-closed-under-finite-extensions
-  - char-p-linear-groups-embed-in-projective-leavitt-power-e-groups
 ---
 
 **ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; not independently reviewed; no

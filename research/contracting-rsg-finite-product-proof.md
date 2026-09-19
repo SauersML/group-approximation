@@ -4,6 +4,7 @@ id: contracting-rsg-finite-product-proof
 kind: route
 title: Place |F| labelled copies of E under a new root and let F permute the labels; RSG moves, rationality and the nucleus all come from H
 target: contracting-rsgs-closed-under-products-with-finite-groups
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-23-rsg-q11.md
 ---

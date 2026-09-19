@@ -3,7 +3,6 @@ rg: 2
 id: shell-germ-essential-algebras-are-central-simple
 kind: claim
 title: For a minimal effective second-countable ample groupoid with compact Hausdorff unit space, the Steinberg algebra modulo its singular ideal is central simple; so every shell envelope sits in the units of a central simple algebra A_nu/J
-requires: [cepss-nonhausdorff-steinberg-simplicity, shell-germ-steinberg-algebras-are-never-simple, germ-steinberg-algebras-over-v-are-fg-central-simple]
 distinct_from:
   cepss-nonhausdorff-steinberg-simplicity: that imports the criterion for simplicity of A itself, which needs the singular ideal to vanish; this is simplicity of the quotient by the singular ideal, which needs only minimality and effectiveness, plus triviality of its centre.
   shell-germ-steinberg-algebras-are-never-simple: that shows the singular ideal J of a shell envelope is nonzero and that the envelope survives in (A/J)^x; this shows A/J is central simple.

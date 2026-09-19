@@ -3,13 +3,7 @@ rg: 2
 id: gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity
 kind: claim
 title: For the GL_n(Q) Track A group (St_10(R_L)*Z) x Z^2, the group-side finiteness gates ask nothing of St_10(R_L) beyond finite presentation, so E3' = P2'a = (A_N) in degree 1, which needs quantum rigidity of the SFT and the open group-side rigidity-to-finite-presentation theorem; St_10(R_L) is not of type FP_3 if its degree-3 Steinberg homology stabilizes by rank 10, which would bar these hosts from type F_3
-requires:
-  - v-times-subshift-full-group-finiteness-is-horizontal
-  - v-times-gluing-presentations-are-exact
-  - leavitt-resolvent-k-theory-is-shifted-rational-k-theory
-  - gl-n-q-bh-via-track-a-over-st-10-times-free-group
 distinct_from:
-  gl-n-q-bh-via-track-a-over-st-10-times-free-group: that is the route and its gate map; this settles which finiteness properties of the acting group the group-side gates E3', (A_N) and P2' need there, and records the higher-finiteness limit coming from K_3.
   v-times-subshift-full-group-finiteness-is-horizontal: that proves (B_N) for every finitely generated group and topologically free subshift; this reads it for one acting group and adds the finiteness bookkeeping of that group.
   leavitt-resolvent-k-theory-is-shifted-rational-k-theory: that computes K_*(R_L) = K_(*-1)(Q); this uses K_3(R_L) = K_2(Q) to bound the finiteness type of St_10(R_L).
 ---

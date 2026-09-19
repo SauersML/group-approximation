@@ -3,7 +3,8 @@ rg: 2
 id: amenable-coefficients-have-zero-schur-kernel
 kind: claim
 title: A nonsingular equation with amenable coefficient subgroup kills no Schur multiplier class
-invalidates: [schur-kernel-search-with-amenable-coefficients]
+invalidates:
+  - schur-kernel-search-with-amenable-coefficients
 artifacts:
   - research/artifacts/kl-schur-kernel-central-extensions-2026-09-11.md
 ---

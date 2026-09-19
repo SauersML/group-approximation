@@ -3,8 +3,6 @@ rg: 2
 id: commutative-cube-degree-maps-force-tree-products
 kind: claim
 title: The pointed-cube category of a CAT(0) cube complex admits a degree map with unique factorization into a commutative monoid exactly when the complex is a product of trees
-requires:
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
 distinct_from:
   cocompact-tree-product-lattices-lie-in-type-a-class: that uses the commutative (cube k-graph) degree on products of trees; this shows no other cube complex has one.
 ---

@@ -3,8 +3,6 @@ rg: 2
 id: edge-pinned-gluing-reduces-rigidity-to-phantom-determinacy
 kind: claim
 title: Core edges with small stabilizers can be pinned by seeds of the edge group, which gives an isolated point with stabilizer exactly S; rigidity then holds when the vertex configuration is a continuous function of the pins, and fails to follow exactly at anchorless "phantom" cosets
-requires:
-  - core-marked-gluing-of-relative-seeds
 distinct_from:
   core-marked-gluing-of-relative-seeds: that assumes full stabilizers on core edges (FE), where core edges are finite sums of atoms; this drops (FE), pins the edge-group twist with a seed of the edge group, and isolates the one extra hypothesis rigidity needs.
   fate-couplings-are-rigid-only-along-directed-implication-chains: that shows proximity alone does not propagate commutation; this locates where the tower's gluing meets that obstruction, namely at anchorless double cosets of limit configurations.

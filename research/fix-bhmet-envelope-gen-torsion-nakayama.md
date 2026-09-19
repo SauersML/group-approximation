@@ -1,10 +1,11 @@
 ---
 rg: 2
 id: fix-bhmet-envelope-gen-torsion-nakayama
-kind: route
-target: fp-metabelian-groups-satisfy-boone-higman
+kind: claim
 title: "Fix GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama: Unknown constant Subgroup.map_closure"
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **RESOLVED (2d6ebaf55).** Lean module `GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean` failed to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 2 error lines).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: bh-pal-wire.

@@ -3,9 +3,6 @@ rg: 2
 id: roller-compactifications-of-cube-complexes-are-sfts
 kind: claim
 title: For a free cocompact action on a CAT(0) cube complex, the radius-2 distance-gradient SFT is exactly the Roller compactification (HL holds, seeds are principal); vertex-transitive actions (RAAGs) give (IE′), every virtually special group virtually embeds in a RAAG, and no overgroup of an infinite Kazhdan group has such an action
-requires:
-  - horofunction-lemma-holds-for-free-and-surface-groups
-  - finite-type-branch-blow-ups-are-sft-compactifications
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed): parts 1–3. Parts 4–5 combine them with

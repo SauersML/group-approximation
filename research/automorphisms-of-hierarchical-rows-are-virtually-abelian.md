@@ -3,14 +3,6 @@ rg: 2
 id: automorphisms-of-hierarchical-rows-are-virtually-abelian
 kind: claim
 title: Automorphisms of a minimal row that is finite-to-one over an equicontinuous factor, or of a path fold or Busemann transplant of such a row, form a virtually finite-by-abelian group; so every rigid row built so far carries only virtually abelian time
-requires:
-  - attracting-boundary-factors-fix-commuting-actions
-  - minimal-system-automorphisms-fix-every-proximal-factor
-  - deterministic-time-lifts-inherit-quantum-rigidity
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
-  - busemann-transplants-give-free-sfts-on-building-lattices
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
-  - labbe-shift-is-a-toral-rotation-coding
 distinct_from:
   minimal-system-automorphisms-fix-every-proximal-factor: that shows m.a.p. automorphism groups act trivially on almost automorphic and proximal-type systems; this bounds the whole automorphism group, for every group, and adds the finite-to-one hierarchical case and the fibre embedding for folds and transplants.
   attracting-boundary-factors-fix-commuting-actions: that treats rows that are finite extensions of boundary actions (finite automorphism groups); this treats rows whose rigidity comes from a Z^r fibre, which have infinite automorphism groups.

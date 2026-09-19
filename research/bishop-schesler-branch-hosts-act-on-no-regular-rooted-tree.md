@@ -3,8 +3,6 @@ rg: 2
 id: bishop-schesler-branch-hosts-act-on-no-regular-rooted-tree
 kind: claim
 title: For infinite G the Bishop–Schesler branch group Γ contains Alt(|G/N_n|+5) for every n, hence every finite group, so it acts faithfully on no regular rooted tree and lies in no self-similar or automaton group on a regular tree
-requires:
-  - efrf-groups-frattini-embed-in-efrf-branch-groups
 distinct_from:
   some-fp-rf-group-acts-on-no-regular-rooted-tree: that asks whether some finitely presented residually finite INPUT acts on no regular tree (open); this is about the branch HOST Γ built from any infinite input, and is unconditional.
   computable-tree-involution-escapes-local-self-similar-hulls: that shows one computable involution of T_2 escapes every fixed computable re-encoding into a finitely generated self-similar group; this shows the whole branch host has no faithful regular-tree action at all, under any encoding.

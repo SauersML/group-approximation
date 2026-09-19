@@ -4,6 +4,7 @@ id: alternating-group-is-generated-by-local-commutators-proof
 kind: route
 title: A 3-cycle over U, σU, τU turns h into h·(σhσ⁻¹)⁻¹ inside A, whose commutator with k is [h,k]; Nekrashevych's theorem makes the resulting normal subgroup all of A
 target: alternating-group-is-generated-by-local-commutators
+requires: []
 ---
 
 Notation is as in the target claim. The one outside input is Nekrashevych's Theorem `th:simple`

@@ -1,10 +1,11 @@
 ---
 rg: 2
 id: fix-bhmet-pure-char-prime-e-high-witt-e-base
-kind: route
-target: fp-metabelian-groups-satisfy-boone-higman
+kind: claim
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase: failed to synthesize instance of type class"
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **RESOLVED (2d6ebaf55).** Lean module `GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean` failed to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 1 error lines).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: bh-pal-wire.

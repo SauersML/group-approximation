@@ -3,8 +3,6 @@ rg: 2
 id: thompson-t-identities-hold-in-circle-orbit-wreath-overgroups
 kind: claim
 title: For every group B and every T-orbit X of the circle, every overgroup of T inside the unrestricted wreath product B^X ⋊ T satisfies all mixed identities of T; in particular T × B does, and every mixed identity of T becomes trivial when its constants are deleted
-requires:
-  - thompson-t-identities-hold-on-linearized-blow-ups
 distinct_from:
   thompson-t-identities-hold-on-linearized-blow-ups: that treats groups of homeomorphisms of a derivative blow-up; this realizes wreath products with a free lamp group inside such a blow-up and transfers to arbitrary lamp groups, which need not act on anything.
   thompson-t-identities-one-word-basis-over-cantor-overgroups: that is about overgroups acting on the Cantor set or circle extending the standard T; the overgroups here are abstract, since B is arbitrary, for instance finite or torsion.

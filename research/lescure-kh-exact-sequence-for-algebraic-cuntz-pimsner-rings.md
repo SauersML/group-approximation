@@ -3,9 +3,6 @@ rg: 2
 id: lescure-kh-exact-sequence-for-algebraic-cuntz-pimsner-rings
 kind: claim
 title: Lescure (2026) — homotopy K-theory of relative algebraic Cuntz–Pimsner rings fits a Pimsner-type long exact sequence, with no injectivity or regularity assumption on the coefficient ring
-requires: []
-distinct_from:
-  abc-leavitt-kh-vanishing-and-nil-splitting-citation: that imports the Ara–Brustenga–Cortiñas KH sequence and nil splitting for Leavitt path algebras; this imports the KH sequence for every relative algebraic Cuntz–Pimsner ring of a correspondence, which contains Leavitt path algebras, crossed products by Z and Nekrashevych algebras as special cases.
 ---
 
 **ESTABLISHED (import).** T. Lescure, *On the K-theory of algebraic Cuntz–Pimsner rings*,

@@ -3,8 +3,6 @@ rg: 2
 id: twisted-davis-amalgams-keep-hyperplane-data
 kind: claim
 title: Twisting one factor of a split Davis amalgam by a carrier-fixing commensurator keeps the Burger–Mozes hyperplane sub-amalgam (so non-residual finiteness and cd 3), wall twists give explicit such commensurators, and faithfulness on the tree is automatic once the X-projection is dense; density is the only X-side gate left
-requires:
-  - hyperplane-extensions-into-davis-lattices-are-split
 ---
 
 **ESTABLISHED** (lane proof, elementary, not reviewed) for items 1–4. Item 5 states the remaining gate.

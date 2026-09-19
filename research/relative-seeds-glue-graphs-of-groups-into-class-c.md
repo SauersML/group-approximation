@@ -3,10 +3,6 @@ rg: 2
 id: relative-seeds-glue-graphs-of-groups-into-class-c
 kind: claim
 title: Rigid relative seeds (an isolated point with stabilizer exactly C) glue along any graph of groups; so graphs of free or free abelian groups over finitely generated edge groups lie in class 𝒞, and CAP is decided by relative seeds for hard-membership subgroups
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - quantum-rigidity-is-product-stable
 distinct_from:
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that glues over trivial edge groups, where the exit of a vertex coset is one element marked by a seed; this glues over arbitrary edge groups, where the exit is a coset aC marked by a relative seed, and recovers tree gluing at C = 1.
   locally-finite-splittings-preserve-rigid-sft-compactifications: that handles finite-index edge groups, where the exit is a finite label; this is the case of relative seeds with finite orbit, and extends it to infinite-index edge groups.

@@ -3,11 +3,6 @@ rg: 2
 id: free-product-emitter-full-groups-need-isolated-vertex-groups
 kind: claim
 title: If the topological full group of Z/k * B on its compactified Bass–Serre boundary (or its simple commutator subgroup) is finitely presented, then B is an isolated group (finitely presented and finitely discriminable); so Reid's d = 0 group (MathOverflow 339541) is not finitely presented, and finitely presented decidable vertex groups do not suffice for finitely presented stabilizer engines
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
-invalidates:
-  - fp-decidable-vertex-groups-have-fp-stabilizer-engines
 distinct_from:
   fp-stabilizer-engines-need-fp-vertex-groups: that derives type F_n / FP_n of B from that of D(F_B) by a quasi-retraction; this adds the independent condition that B is finitely discriminable (no proper quotients near B), which is what kills B = Z and every infinite residually finite B.
   fp-stabilizer-engines-need-decidable-vertex-groups: that derives solvable word problem of B; isolated groups have solvable word problem (Cornulier–Guyot–Pitsch Cor. 5), so this subsumes it.

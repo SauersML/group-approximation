@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-sk-rows-steinberg-weyl-diagonal
-kind: route
+kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal: Tactic simp failed with a nested error:"
 ---
 

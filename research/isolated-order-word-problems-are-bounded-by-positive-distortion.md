@@ -3,8 +3,6 @@ rg: 2
 id: isolated-order-word-problems-are-bounded-by-positive-distortion
 kind: claim
 title: For a finitely presented group with a finitely generated positive cone, the word problem lies in NTIME ∩ coNTIME of a polynomial in the positive distortion and the Dehn function; so an isolated order can carry a hard word problem only through super-polynomial positive distortion or Dehn function, never through the regularity of its cone, and Higman-type bases carry no isolated order at all
-requires:
-  - finitely-generated-positive-cones-give-rigid-seeds
 distinct_from:
   finitely-generated-positive-cones-give-rigid-seeds: that puts every finitely generated positive cone into 𝒞 and poses (O); this bounds the word problems those groups can have and names the invariant a CAP counterexample must break.
 ---

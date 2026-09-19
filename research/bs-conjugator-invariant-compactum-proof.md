@@ -4,6 +4,7 @@ id: bs-conjugator-invariant-compactum-proof
 kind: route
 title: The BS(1,k) conjugator divides levels of a cocompactly wandering map by k, so a bounded band of fundamental domains is backward invariant and its backward limit is a compact invariant set
 target: bs-conjugators-of-wandering-maps-have-invariant-compacta
+requires: []
 ---
 
 Notation as in the target. Write `W = W(a)`, `Ω = Ω(a)`, and fix a compact

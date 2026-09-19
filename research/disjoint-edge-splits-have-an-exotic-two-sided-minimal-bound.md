@@ -3,9 +3,6 @@ rg: 2
 id: disjoint-edge-splits-have-an-exotic-two-sided-minimal-bound
 kind: claim
 title: In rank four two commuting edge splits have a 13-piece minimal common upper bound that is not above their square and splits two-sidedly, because a pinwheel dissection of one square piece is reachable from both sides; in rank three no such bound or exotic cell occurs in the searched range
-requires:
-  - splitting-categories-are-connected-iff-root-graphs-are
-  - edge-split-order-is-not-geometric-refinement
 artifacts:
   - research/artifacts/gq-bh-invent-07-edge-split-pair-bounds.md
 distinct_from:

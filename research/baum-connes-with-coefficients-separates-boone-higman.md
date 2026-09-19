@@ -3,10 +3,6 @@ rg: 2
 id: baum-connes-with-coefficients-separates-boone-higman
 kind: claim
 title: Boone–Higman predicts a finitely presented simple counterexample to the Baum–Connes conjecture with coefficients, and fails if every finitely presented simple group satisfies it
-requires:
-  - decidable-group-with-coarsely-embedded-expanders-exists
-  - hereditary-approximation-disproofs-of-boone-higman
-  - coarse-embeddability-separates-boone-higman
 distinct_from:
   baum-connes-counterexample-group-exists: that asks for a counterexample with trivial coefficients, which is unknown for every group; this is the version with coefficients, which is known to fail for groups coarsely containing expanders, and asks where finitely presented simple groups stand.
   coarse-embeddability-separates-boone-higman: that separator is coarse embeddability into Hilbert space; this one is the Baum–Connes conjecture with coefficients (BCC), which holds for every group coarsely embeddable in Hilbert space only on the injectivity side, so the two classes are not comparable by an inclusion proved here.

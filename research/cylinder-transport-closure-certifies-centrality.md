@@ -3,9 +3,6 @@ rg: 2
 id: cylinder-transport-closure-certifies-centrality
 kind: claim
 title: For any SFT extension of a rigid base over any group, base events certified at a site by locality, Boolean operations and fibre-rule steps commute with the fibre there; when every event is certified everywhere, centrality (C) holds and rigidity reduces to the pointwise fibres
-requires:
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
-  - quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products-proof
 distinct_from:
   a2-busemann-transplants-preserve-quantum-rigidity: that proves (C) for one design by induction on sector-cylinder radius; this is the abstract closure behind that induction, for every extension over every group, with the Ã₂ Determination Lemma as one way of feeding step (T2).
   quantum-rigidity-is-not-closed-under-fibre-products: its item 3 is the special case where every certified event is a single-site event of the base.

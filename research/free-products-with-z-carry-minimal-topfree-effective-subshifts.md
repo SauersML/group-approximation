@@ -3,14 +3,6 @@ rg: 2
 id: free-products-with-z-carry-minimal-topfree-effective-subshifts
 kind: claim
 title: For every nontrivial finitely generated group A with solvable word problem, A * Z carries a minimal topologically free effectively closed subshift with no premise at all, so (D) is not needed on the topologically free route and (★𝒞) is exactly a rigid finite-type cover of this subshift
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - decidable-groups-carry-free-subshifts-with-decidable-language
-  - free-products-with-z-inherit-m2-from-decidable-free-subshifts
-  - master-route-needs-only-topological-freeness
-  - nonamenable-products-have-minimal-sft-extensions-of-free-inputs
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
-  - clapham-fp-embedding-preserves-word-problem
 distinct_from:
   free-products-with-z-inherit-m2-from-decidable-free-subshifts: that needs premise (D) on A and yields a FREE minimal subshift of A * Z; this needs nothing and yields a TOPOLOGICALLY FREE one, which is all that master-route-needs-only-topological-freeness consumes.
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that glues rigid SFT compactifications into rigid SFTs; this runs the same gluing on the one-point compactification, which is effectively closed but not of finite type, and compares the two.

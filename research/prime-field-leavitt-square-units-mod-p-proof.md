@@ -7,7 +7,7 @@ target: leavitt-square-units-mod-p-complete-word-problem
 requires:
   - prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre
   - prime-field-leavitt-tensor-powers-have-trivial-k-theory
-  - leavitt-square-units-wp-complexity-proof
+  - leavitt-square-units-have-conp-parity-p-complete-word-problem
 ---
 
 Lane proof (bh-free-26), elementary. Notation is that of `leavitt-square-units-wp-complexity-proof`

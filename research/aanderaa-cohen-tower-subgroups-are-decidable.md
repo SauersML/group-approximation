@@ -3,9 +3,6 @@ rg: 2
 id: aanderaa-cohen-tower-subgroups-are-decidable
 kind: claim
 title: In the Aanderaa–Cohen Higman tower K ≤ K_M ≤ H_1 ≤ H_2 ≤ H_3 of a group C with solvable word problem (and a machine M with decidable H_0(M)), every associated subgroup of every HNN rung has decidable membership in its base, and the machine subgroup T'_M has membership Turing-equivalent to H_0(M); so the consumption condition for relative seeds holds on every rung, CAP is decided at the rung (K_M, T'_M), and gluing alone carries seeds to the input only through C x F_n
-requires:
-  - aanderaa-cohen-tower-subgroups-are-decidable-proof
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues rigid relative seeds along graphs of groups and puts K_M in class C; this checks, rung by rung, the necessary condition (decidable membership, its item 3) for the relative seeds the Aanderaa–Cohen tower needs above K_M, and locates where gluing stops.
   relative-seeds-descend-to-quotients-and-consume-membership: that shows towers over subgroups containing normal subgroups only relocate the problem; this treats the core-free machine tower.

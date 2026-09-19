@@ -3,8 +3,6 @@ rg: 2
 id: thompson-t-identities-one-word-basis-over-cantor-overgroups
 kind: claim
 title: One three-arc mixed identity E of Thompson's T forces all of them in every overgroup of homeomorphisms of the Cantor set or the circle, because a group satisfying E must preserve the cyclic order
-requires:
-  - thompson-t-identities-one-word-basis-proof
 distinct_from:
   circle-overgroups-of-thompson-t-satisfy-all-its-mixed-identities: that proves groups of orientation-preserving circle homeomorphisms containing T satisfy every mixed identity of T; this proves that inside all homeomorphisms of the Cantor set or the circle, one identity E already forces orientation preservation, so E is a basis there.
   fp-simple-group-with-non-finitely-based-mixed-identities: that asks for a finitely presented simple group whose mixed identities have no finite basis over overgroups; this rules out Thompson's T as a witness through any overgroup acting on the Cantor set or the circle extending T's standard action.

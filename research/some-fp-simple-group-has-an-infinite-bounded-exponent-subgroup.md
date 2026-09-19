@@ -8,14 +8,11 @@ distinct_from:
   fp-simple-groups-with-arbitrarily-complex-word-problem: that is the complexity consequence of Boone--Higman, the only surviving decision-problem separator; this is a consequence of a different kind, a hereditary group-theoretic property that is not a decision problem.
   bh-separators-must-omit-nested-decidable-hosts: that classifies decision-problem separators and proves host transfer for every separator; this names one separator outside its tables and the single open statement it turns on.
   circle-and-tree-product-periodic-subgroups-are-finite: that is an established lemma excluding circle groups and tree-product lattices as witnesses; this is the open existence statement.
-requires:
-  - circle-and-tree-product-periodic-subgroups-are-finite
-  - brin-thompson-2v-is-torsion-locally-finite
-  - bh-separators-must-omit-nested-decidable-hosts
-  - hereditary-approximation-disproofs-of-boone-higman
 artifacts:
   - research/artifacts/gq-bh-bh-free-06-one-stack-pumping.md
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `circle-and-tree-product-periodic-subgroups-are-finite`, `brin-thompson-2v-is-torsion-locally-finite`, `bh-separators-must-omit-nested-decidable-hosts`, `hereditary-approximation-disproofs-of-boone-higman`.
 
 **OPEN.** There are an integer `n >= 1` and a finitely presented simple group `S`
 containing an infinite finitely generated subgroup `B` with `b^n = 1` for all

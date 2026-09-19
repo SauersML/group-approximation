@@ -3,7 +3,8 @@ rg: 2
 id: torsion-free-one-relator-has-no-kazhdan-subgroup
 kind: claim
 title: No torsion-free one-relator group contains a nontrivial finitely generated Kazhdan subgroup
-invalidates: [nonsofic-one-relator-via-kazhdan-subgroup-embedding]
+invalidates:
+  - nonsofic-one-relator-via-kazhdan-subgroup-embedding
 distinct_from:
   nonsofic-one-relator-relator-has-primitivity-rank-two: that identifies the relator invariant a counterexample must have and supplies the torsion-freeness; this is the subgroup obstruction that follows, and it is what actually blocks the embedding strategy.
   fournier-facio-torsion-free-skeleton: that records the structure of a published torsion-free nonsofic group; this is a statement about what one-relator groups cannot contain, and its role here is to say that that group is not among their subgroups.

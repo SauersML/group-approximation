@@ -3,11 +3,6 @@ rg: 2
 id: torsion-free-tree-product-lattices-lie-in-the-rigid-seed-class
 kind: claim
 title: Every torsion-free cocompact lattice on a product of locally finite trees carries a quantum-rigid seed SFT, coding a vertex or end in each tree, with free finite-subgroup action on the boundary; so the Burger–Mozes simple groups and Wise's non-residually-finite lattices lie in the class 𝒞, and all such seeds are capped at NP
-requires:
-  - tree-product-lattices-carry-rigid-topologically-free-sfts
-  - locally-finite-tree-end-shifts-are-quantum-rigid-sfts
-  - quantum-rigidity-passes-to-subshifts
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that defines 𝒞 and closes it under free and direct products starting from finite groups and Z; this adds every torsion-free cocompact lattice on a product of trees, including simple and non-residually-finite ones, which no product or free product of those reaches.
   tree-product-lattices-carry-rigid-topologically-free-sfts: that codes ends only (a minimal topologically free boundary SFT); this adds sinks, so vertex tuples become an isolated free orbit, and uses block rules to keep one orbit.

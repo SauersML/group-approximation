@@ -3,7 +3,8 @@ rg: 2
 id: chart-comparison-must-fuse-torus-classes
 kind: claim
 title: Every finite image of a half-corner comparison's actor group must fuse the three order-three torus classes of GL_2(F_4)
-invalidates: [half-corner-comparison-via-finite-actor-images]
+invalidates:
+  - half-corner-comparison-via-finite-actor-images
 distinct_from:
   split-comparisons-balance-induced-brauer-characters: that is the general balance theorem for any finite chart and any pair of equal-rank projectives; this computes the Brauer difference of the specific half-corner projectives and reads off the three torus classes it forces to fuse.
   half-corner-chart-comparison-exists: that is the open existence question for the comparison itself; this is an established necessary condition on the actor group of any solution, which does not decide existence.

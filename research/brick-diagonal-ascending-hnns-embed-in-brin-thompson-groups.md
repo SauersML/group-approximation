@@ -3,8 +3,6 @@ rg: 2
 id: brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups
 kind: claim
 title: Renormalization compiler - every ascending HNN extension of a subgroup of kV along a brick diagonal embeds in (k+1)V
-requires:
-  - renormalizable-thompson-elements-give-baumslag-solitar
 distinct_from:
   renormalizable-thompson-elements-give-baumslag-solitar: that is the case H = <T> cyclic with T an odometer of the code; this is every subgroup H of kV closed under the diagonal of any brick code, with the finite-equation interface and the permutation-twisted variant.
   renormalizable-thompson-elements-are-odometer-codes: that characterizes renormalizable single elements; this needs no odometer, only closure of a whole subgroup under one brick diagonal.

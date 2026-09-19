@@ -3,7 +3,8 @@ rg: 2
 id: mf-root-transport-is-vacuous-on-leavitt-units
 kind: claim
 title: The operator-MF root transport certifies no Leavitt coefficient
-invalidates: [kl-leavitt-holds-via-mf-root-transport]
+invalidates:
+  - kl-leavitt-holds-via-mf-root-transport
 distinct_from:
   binary-leavitt-all-ranks-full-mf-radical: that is the full-radical theorem itself; this records its exact consequence for the matrix-root proof of Kervaire--Laudenbach over the same group.
   kervaire-laudenbach-holds-for-mf: that proves injectivity for MF coefficient groups; this says the same argument has nothing to extend over the Leavitt unit group.

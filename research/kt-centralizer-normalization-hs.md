@@ -3,7 +3,8 @@ rg: 2
 id: kt-centralizer-normalization-hs
 kind: claim
 title: Hilbert–Schmidt analogue of Kun–Thom centralizer normalization
-invalidates: [growing-fiber-models]
+invalidates:
+  - growing-fiber-models
 distinct_from:
   invariant-cartan-completion: that asks for an invariant diagonal masa and routes through Corollary D; this asks for normalization of a relative commutant and routes through Theorem A's endgame — no masa appears in it at all
   hs-expander-block-decomposition: that is the HS transcription of Kun's decomposition, which is the INPUT to Kun–Thom Theorem 4.1; this is the transcription of Theorem 4.1 itself, and it needs the cluster groupoid and the two median arguments on top of any decomposition

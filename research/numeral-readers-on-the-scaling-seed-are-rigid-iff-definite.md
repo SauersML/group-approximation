@@ -3,10 +3,6 @@ rg: 2
 id: numeral-readers-on-the-scaling-seed-are-rigid-iff-definite
 kind: claim
 title: The numeral reader on the modular-machine scaling seed is quantum rigid iff its automaton is definite, so a rigid reader recognizes only eventually periodic numeral sets; more generally, free data carried by flows that can sit in two branches of the Bass–Serre tree kill rigidity, so rogue runs on HNN geometry are never space-filling
-requires:
-  - modular-machine-scaling-seed-reads-regular-numerals
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - rigid-seed-decorations-compute-only-where-rogue-walks-fill-space
 distinct_from:
   modular-machine-scaling-seed-reads-regular-numerals: that builds the reader and leaves its rigidity (gate RR) open; this decides RR, in the negative except for definite automata.
   rigid-seed-decorations-compute-only-where-rogue-walks-fill-space: that gives the coarse-density criterion; this shows the criterion cannot be met by flows on a tree of branching at least 2, and turns the clustering obstruction into a concrete kill for tree-borne flows.

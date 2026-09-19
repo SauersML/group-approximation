@@ -3,7 +3,8 @@ rg: 2
 id: trace-blindness-sharpness
 kind: claim
 title: The trace-blindness of II₁ factors is sharp
-invalidates: [invariant-size-argument]
+invalidates:
+  - invariant-size-argument
 ---
 
 Take `R = ⊗_{n∈ℤ} M₂` with the Bernoulli shift `θ` and `N = ⊗_{n≥0} M₂`:

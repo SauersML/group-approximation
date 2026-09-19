@@ -3,8 +3,6 @@ rg: 2
 id: self-similar-sft-thin-walls-refute-quantum-rigidity
 kind: claim
 title: In a Z^2 SFT with an injective constant-size block substitution into itself, two configurations that agree on one column and differ on both sides refute quantum rigidity at every scale; so rigid self-similar SFTs have one-sided determining columns and no information-free macrotile column
-requires:
-  - sft-crossed-product-fp-iff-quantum-rigid
 distinct_from:
   self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale: that substitutes a non-commuting operator family, which needs scale at least D_0 >= 3; this substitutes a pair of configurations, so a wall of width ONE (below every operator scale) already refutes rigidity, and it gives the geometric necessary condition of one-sided columns.
   determinism-closure-certifies-quantum-rigidity: that obstructs one proof method through fault slabs (configurations differing only inside a slab); this refutes rigidity itself through thin walls (configurations agreeing on a slab and differing on both sides).

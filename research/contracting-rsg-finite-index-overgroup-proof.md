@@ -4,6 +4,7 @@ id: contracting-rsg-finite-index-overgroup-proof
 kind: route
 title: Induce the action to one labelled copy of E per coset; each element acts on each copy by an element of H, so rationality, the RSG moves and the nucleus all come from H
 target: contracting-rsgs-closed-under-finite-index-overgroups
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-23-rsg-q11.md
 ---

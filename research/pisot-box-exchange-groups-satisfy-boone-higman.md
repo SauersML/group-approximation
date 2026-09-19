@@ -3,9 +3,6 @@ rg: 2
 id: pisot-box-exchange-groups-satisfy-boone-higman
 kind: claim
 title: For algebraic units β_1, …, β_s with property (F), every finitely generated group of box exchanges whose i-th coordinates and translations lie in Q(β_i) embeds in a finitely presented simple group
-requires:
-  - pisot-stein-groups-are-contracting-rsgs
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   quadratic-rectangle-exchange-groups-satisfy-boone-higman: that (bh-free-03) treats box exchanges with data in Z + α_i Z, α_i quadratic, through products of substitutive Sturmian codings; this allows every (F)-unit field in each coordinate and any rank of data, through the tensor product of β-shifts.
   pisot-interval-exchange-groups-satisfy-boone-higman: that is the one-dimensional case s = 1.

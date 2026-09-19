@@ -3,15 +3,13 @@ rg: 2
 id: fold-host-v-stabilized-full-group-is-finitely-presented
 kind: claim
 title: E3 prime for the fold host - for a free minimal quantum rigid fibre with a determining half-plane, the V-stabilized full group of F_n x Z acting on the ABHT fold is finitely presented; open, with the tree coordinate certified, the fibre coordinate provably not, and the question isolated as a fibre filling
-requires:
-  - fold-transfer-theorem-for-fibres-with-a-determining-half-plane
-  - measure-preserving-fibres-block-finite-shadow-bases
-  - one-scale-filling-decides-fp-of-v-times-subshift-hosts
 distinct_from:
   fold-transfer-theorem-for-fibres-with-a-determining-half-plane: that transfers freeness, minimality and quantum rigidity along the fold; this asks for the group-level finite presentation (E3′), which rigidity alone is not known to give.
   measure-preserving-fibres-block-finite-shadow-bases: that proves the finite-shadow-basis route is closed for this host; this is the E3′ question that remains after it.
   v-stabilized-horofunction-hosts-need-upstream-certification: that is E3′ for hyperbolic seeds, blocked by the failure of upstream certification in the base; here the base (a tree) certifies, and the block is in the fibre.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `fold-transfer-theorem-for-fibres-with-a-determining-half-plane`, `measure-preserving-fibres-block-finite-shadow-bases`, `one-scale-filling-decides-fp-of-v-times-subshift-hosts`.
 
 **OPEN** (posed by bh-g2-abh, 2026-09-18).
 

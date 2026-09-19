@@ -3,9 +3,6 @@ rg: 2
 id: tree-product-transplants-pass-the-separability-test
 kind: claim
 title: In a Busemann transplant over F_m x F_n with the arrow skeleton, every skeleton modification contains a slab whose Busemann image is all of Z^2, so it meets every other modification; the transplant has separable modifications only if its fibre does, and the F_2 x F_2 transplant passes the test
-requires:
-  - cross-layer-separable-modifications-kill-quantum-rigidity
-  - busemann-transplant-minimality-is-horospherical-minimality
 distinct_from:
   busemann-transplant-minimality-is-horospherical-minimality: that proves minimality of the transplant from density of the zero-lag relation; this checks the classical necessary condition for rigidity, and its mechanism is the modification-set counterpart of that density.
   crossing-wire-shifts-pass-the-separability-test: that checks the Z^2 fibre; this checks the skeleton-fibre and cross-factor pairs that the transplant adds.

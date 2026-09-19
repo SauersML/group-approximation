@@ -3,7 +3,8 @@ rg: 2
 id: bowen-chapman-ambient-rank-models-do-not-round-peripheral
 kind: claim
 title: Honest rank models of the Bowen--Chapman ambient group do not round the peripheral subgroup in characteristic two
-invalidates: [non-linear-sofic-via-bowen-chapman-rank-transcription]
+invalidates:
+  - non-linear-sofic-via-bowen-chapman-rank-transcription
 distinct_from:
   kazhdan-group-rank-models-admit-no-expander-decomposition: that uses models of EL_3(F_2[t]) and of the Theorem E subgroup alone; this uses congruence representations of the whole ambient group EL_3(F_2[Z^3]) semidirect EL_3(Z), which a transcribed decomposition step for the double must handle, and adds an almost-centralizer at linear distance from the exact commutants.
   kazhdan-rank-rounding-fails-over-every-field: that removes rounding from property (T) for EL_3(Z[t]) over every field; this is the Bowen--Chapman pair over characteristic-two fields, with representations that extend to the ambient group.

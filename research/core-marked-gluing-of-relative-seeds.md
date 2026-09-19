@@ -3,8 +3,6 @@ rg: 2
 id: core-marked-gluing-of-relative-seeds
 kind: claim
 title: A subgroup acting on a Bass–Serre tree with finite core and full stabilizers on core edges has a rigid relative seed as soon as its vertex pieces and all edge groups do; the core replaces the sink
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that marks one vertex coset as the sink, so the stabilizer lies in a vertex group; this marks a whole finite-quotient core subtree, so the stabilizer may span several vertex groups and stable letters.
   kurosh-relative-seeds-and-the-b1-digit-splitting: that (Theorem K) is the free-product star case, obtained by re-splitting and the vertex-marked theorem; this is the general core-marked form, with arbitrary vertex groups and HNN or amalgam edges, under full core-edge stabilizers.

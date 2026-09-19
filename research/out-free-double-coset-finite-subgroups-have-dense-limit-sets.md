@@ -3,9 +3,6 @@ rg: 2
 id: out-free-double-coset-finite-subgroups-have-dense-limit-sets
 kind: claim
 title: Every subgroup of Out(F_n), n at least three, with finitely many double cosets has limit set in the free factor boundary meeting every fully irreducible fixed pair, and densely so; finite generation is the only remaining obstruction to type (A) actions
-requires:
-  - limit-set-escaping-forces-infinitely-many-double-cosets
-  - out-free-pair-finite-stabilizers-contain-fully-irreducibles
 distinct_from:
   virtually-cyclic-out-free-subgroups-have-infinite-double-cosets: that excludes virtually cyclic subgroups by an axis argument; this excludes every subgroup whose limit set misses a fully irreducible fixed pair, which contains that case (limit set φ^±) and the bounded case (empty limit set).
   out-free-groups-satisfy-boone-higman: that is the open target; this does not decide whether Out(F_n) has a type (A) action, and records why no argument ignoring finite generation can.

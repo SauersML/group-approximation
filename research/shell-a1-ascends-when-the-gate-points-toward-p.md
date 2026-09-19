@@ -7,9 +7,6 @@ distinct_from:
   shell-fp-stabilizer-forces-fp-germ-group: that proves A_1 f.p. implies Q f.p. and leaves the converse open because K is not finitely generated; this proves a partial converse, reducing A_1 to a finitely generated subgroup D with no shift, when the gate points toward p.
   shell-germ-fp-is-an-ascending-hnn-gate: that characterizes finite presentation of the germ group Q; this lifts the same ascending structure from Q to the stabilizer A_1, where the non-finitely-generated kernel K lives.
   v-point-stabilizers-are-ascending-hnn-extensions-of-v: that is the case Q = <tau>, where D is a copy of V; this handles every germ group whose gate points toward p.
-requires:
-  - v-point-stabilizers-are-ascending-hnn-extensions-of-v
-  - shell-fp-stabilizer-forces-fp-germ-group
 artifacts:
   - research/artifacts/gq-bh-bh-free-07-classical-ledger.md
 ---

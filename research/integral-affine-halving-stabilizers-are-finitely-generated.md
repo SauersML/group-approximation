@@ -3,9 +3,6 @@ rg: 2
 id: integral-affine-halving-stabilizers-are-finitely-generated
 kind: claim
 title: The stabilizer in the integral affine structure group of one halving direction of Z_2^D is finitely generated
-requires:
-  - integral-affine-structure-group-is-finitely-presented
-  - sl3z-relative-elementary-equals-principal-congruence
 distinct_from:
   integral-affine-splitting-types-have-finitely-many-tuple-orbits: that counts orbits of the structure group on tuples of halving directions; this is finite generation of the stabilizer of one direction, the edge-stabilizer input of a finite-presentation proof.
 ---

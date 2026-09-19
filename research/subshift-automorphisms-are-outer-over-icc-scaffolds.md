@@ -3,8 +3,6 @@ rg: 2
 id: subshift-automorphisms-are-outer-over-icc-scaffolds
 kind: claim
 title: Over a scaffold with trivial FC-centre acting topologically freely, no nontrivial automorphism of the system lies in its topological full group or is implemented by a unit of its crossed-product algebra, so inputs realized by cellular automata never enter fixed-scaffold hosts
-requires:
-  - minimal-system-automorphisms-fix-every-proximal-factor
 distinct_from:
   minimal-system-automorphisms-fix-every-proximal-factor: that constrains which groups can act by automorphisms on a rigid system; this shows that even when they can, automorphisms stay outside the full group and the unit group of the fixed-scaffold host.
 ---

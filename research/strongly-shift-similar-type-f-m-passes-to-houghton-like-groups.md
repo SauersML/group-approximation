@@ -3,10 +3,6 @@ rg: 2
 id: strongly-shift-similar-type-f-m-passes-to-houghton-like-groups
 kind: claim
 title: If a strongly shift-similar group G is of type F_m then every Houghton-like group H_n(G) is of type F_m, for all n >= 1 (Mallery-Zaremsky Question 5.13 for strongly shift-similar G)
-requires:
-  - finitary-mixing-preserves-type-f-m
-  - fp-strongly-shift-similar-groups-have-fp-houghton-like-groups
-  - houghton-like-groups-are-strongly-shift-similar
 distinct_from:
   fp-strongly-shift-similar-groups-have-fp-houghton-like-groups: that is the case m = 2 (finite presentation); this is every m, including m = infinity, with the same normal subgroup and a cube-complex proof of its finiteness.
   houghton-like-envelopes-lift-finite-presentation-from-germs: that (refuted) assumed only a finitely presented germ group; this assumes G itself of type F_m.

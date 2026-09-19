@@ -3,9 +3,6 @@ rg: 2
 id: finite-hirsch-length-soluble-groups-hold-no-bs-chain
 kind: claim
 title: A soluble group of Hirsch length h has no element with h+1 infinite-order eigen-elements of distinct integer dilation rates, so no soluble group of finite Hirsch length (polycyclic, soluble minimax, or any iterated ascending HNN tower over Z) contains a Baumslag-Solitar chain configuration, and no ascending zoom-tower germ host can certify the chain group
-requires:
-  - chain-configurations-need-unboundedly-many-dilation-eigenvalues
-  - zoom-tower-germ-groups-give-f-infinity-germ-extensions
 distinct_from:
   chain-configurations-need-unboundedly-many-dilation-eigenvalues: that excludes hosts that are abelian over directed unions of fg metabelian groups with boundedly many associated primes, and leaves ascending towers of height four open; this excludes every soluble group of finite Hirsch length, which answers that question for towers of every height.
   higman-chain-group-pbh-iff-chain-configuration: that excludes linear and metabelian hosts by direct arguments; this excludes the finite-rank soluble hosts by one eigenvector count.

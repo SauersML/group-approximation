@@ -1,0 +1,11 @@
+params_N40.json: N=40
+  lim Rayleigh/4 = (b^2+m)/2 = 0.928967   (b=0.993967, m=0.869964)
+  eps1=0.10985 eps2=0.50997  2eps1+eps2=0.72967
+  H_tree=0.56591 >= H_size=0.56205 >= sup|phi-phi^2|/2=0.25099 >= 1/8
+  mean bulk tree size=7.448, nu(1)=0.1614
+params_N80.json: N=80
+  lim Rayleigh/4 = (b^2+m)/2 = 0.940020   (b=0.994692, m=0.890627)
+  eps1=0.10303 eps2=0.46770  2eps1+eps2=0.67376
+  H_tree=0.52087 >= H_size=0.51690 >= sup|phi-phi^2|/2=0.22507 >= 1/8
+  mean bulk tree size=12.565, nu(1)=0.1228
+chain verified; universal ceiling 1 - 1/1280 = 0.99921875

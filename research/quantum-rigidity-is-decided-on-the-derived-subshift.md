@@ -3,8 +3,6 @@ rg: 2
 id: quantum-rigidity-is-decided-on-the-derived-subshift
 kind: claim
 title: Locally forced isolated points never affect quantum rigidity; a subshift is quantum rigid iff its derived subshift is, so a locally forced seed is rigid iff its seedless boundary is, and locally forced countable subshifts of finite Cantor–Bendixson rank are quantum rigid
-requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that defines seeds and the class C, and proves rigidity of each construction by monotone chains; this proves once and for all that the seed orbit contributes nothing to rigidity, so only the seedless boundary needs an argument.
   quantum-rigidity-is-product-stable: that is closure under products; this is closure under adding or removing locally forced isolated orbits.

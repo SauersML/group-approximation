@@ -3,7 +3,10 @@ rg: 2
 id: literal-mark-quotient-not-mf
 kind: claim
 title: The literal marked quotient is not MF
-invalidates: [literal-quotient-computes-mf-radical, literal-mark-quotient-via-shulman-amalgam, literal-mark-quotient-via-exact-finite-models]
+invalidates:
+  - literal-quotient-computes-mf-radical
+  - literal-mark-quotient-via-shulman-amalgam
+  - literal-mark-quotient-via-exact-finite-models
 artifacts:
   - GroupApproximation/Sofic/LiteralSignFreeQuotient.lean
   - GroupApproximation/Endpoint/SignFreeCompressionAudit.lean

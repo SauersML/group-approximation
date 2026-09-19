@@ -3,8 +3,6 @@ rg: 2
 id: no-nontrivial-germ-is-shift-conjugate-to-a-proper-power
 kind: claim
 title: If conjugating a germ x in Sym(N)/FSym(N) by the shift gives x^k with k ≠ -1 then x = 1; so Baumslag-Solitar near actions with t acting as the shift are trivial, and cyclic groups of germs cannot witness a non-strongly shift-similar group
-requires:
-  - infinite-shift-similar-groups-need-not-be-strongly-shift-similar
 distinct_from:
   fg-infinite-shift-similar-groups-are-strongly-shift-similar: that is the open finitely generated form of Mallery-Zaremsky Question 3.18; this rules out its simplest test case (a cyclic Γ with c(x) = x^k).
   infinite-shift-similar-groups-need-not-be-strongly-shift-similar: that builds a non-finitely-generated example from infinitely many sparse involutions; this shows no single element can play that role.

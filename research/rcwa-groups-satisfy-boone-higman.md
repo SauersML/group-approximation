@@ -3,9 +3,6 @@ rg: 2
 id: rcwa-groups-satisfy-boone-higman
 kind: claim
 title: Every finitely generated group of residue-class-wise affine permutations of Z embeds in a finitely presented simple group; for each finite prime set P the whole group RCWA_P(Z) embeds in one F_infinity simple odometer host
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - odometer-2v-is-fp-simple-and-contains-bs12
 distinct_from:
   ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers: that identifies the class-transposition group CT(Z) with the RCWA permutations fixing N_0 setwise, a subgroup that already sits in the finitely presented simple groups CT_P(Z); this embeds all of RCWA(Z), including orientation-reversing pieces and pieces with nonzero shift, which lie in no CT_P(Z).
   odometer-2v-is-fp-simple-and-contains-bs12: that builds the host 2V_tau (the case P = ∅ here) to hold BS(1,2) and Q; this generalizes the host to every finite prime set and uses it for a whole class of groups, not one group.

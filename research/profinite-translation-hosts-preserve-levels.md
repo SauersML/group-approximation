@@ -3,7 +3,6 @@ rg: 2
 id: profinite-translation-hosts-preserve-levels
 kind: claim
 title: In a crossed product of a profinite translation action, every finitely generated subring lives at one finite level, so its unit class is never divisible and perfect tiling groups cannot supply a ring host
-requires: [fp-simple-resolvent-ring-with-divisible-unit-class]
 artifacts:
   - research/artifacts/gq-deep-adelic-1-k-budget.md
 distinct_from:

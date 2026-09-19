@@ -7,8 +7,6 @@ distinct_from:
   bounded-last-section-ascending-hnns-satisfy-boone-higman: that needs finite and eventually finitary first sections, so that the host is a contracting Röver–Nekrashevych group; this allows infinite first sections (tail group any F_infinity group, e.g. Z^2) and uses a finite germ extension host instead, so it covers dilation-type examples such as the Basilica.
   last-section-ascending-hnns-embed-in-rover-nekrashevych-groups: that is the embedding lemma with no host finiteness; this proves the host has type F_infinity and embeds in a finitely presented simple group.
   bhm-singfix-condition-forces-fp-germ-groups: that is a necessary condition on germ groups; this is a sufficient criterion for germ groups that are ascending HNN extensions, a case outside the hypotheses of Belk–Hyde–Matucci Corollary cor:MainFinitenessCorollary.
-requires:
-  - last-section-ascending-hnns-embed-in-rover-nekrashevych-groups
 ---
 
 **ESTABLISHED** (lane proof `last-section-f-infinity-tail-bh-proof`; not reviewed; no priority

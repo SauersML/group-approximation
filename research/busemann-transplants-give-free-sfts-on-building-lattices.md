@@ -3,8 +3,6 @@ rg: 2
 id: busemann-transplants-give-free-sfts-on-building-lattices
 kind: claim
 title: Corner-deterministic strongly aperiodic Z^r-SFTs transplant along Busemann coordinates to free SFTs over building lattices; with Kari–Papasoglu tiles, every simply-transitive rank-2 building lattice with an SFT boundary shift carries a strongly aperiodic SFT
-requires:
-  - chamber-fixing-building-lattice-elements-translate-horospheres
 distinct_from:
   euclidean-building-boundary-shifts-are-quantum-rigid: that is the undecorated boundary shift X_Ω, which is minimal but only topologically free; this decorates it with a Busemann Z^r-fibre and makes it free, keeping finite type.
   deterministic-time-lifts-inherit-quantum-rigidity: that lifts along a deterministic TIME factor of a product group; this lifts along a deterministic CONE direction of the building's own boundary, with no product structure.

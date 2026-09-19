@@ -11,7 +11,8 @@ distinct_from:
 
 **ESTABLISHED.** Let
 [
-B_e=langle X_emid Q_eangle
+B_e=langle X_emid Q_e
+angle
 ]
 be a computable family of finite presentations, all presenting amenable
 groups. For each (e), let
@@ -25,7 +26,11 @@ L_e=
 F(X_e)ig/
 leftlangle!leftlangle
 Q_ecup{sigma(r):sigmainSigma_e^*, rin R_e}
-ightangle!ightangle .                         	ag{LNS1}
+
+ight
+angle!
+ight
+angle .                         	ag{LNS1}
 ]
 Then every (L_e) is amenable: it is a quotient of (B_e). Thus the
 amenable locus of ((L_e)) is all indices, independently of every
@@ -34,7 +39,9 @@ substitution orbit or stable kernel.
 The direct finite stable-letter simulator is
 [
 T_e=leftlangle X_e,t_1,ldots,t_{s(e)} middle|Q_e, R_e, t_i^{-1}xt_i=sigma_{e,i}(x)
- (xin X_e, 1leq ileq s(e))ightangle .          	ag{LNS2}
+ (xin X_e, 1leq ileq s(e))
+ight
+angle .          	ag{LNS2}
 ]
 No invariance or injectivity hypothesis is needed. Its exact amenability
 criterion is

@@ -3,9 +3,6 @@ rg: 2
 id: the-aanderaa-cohen-rope-is-the-digit-letter-orbit-of-one-element
 kind: claim
 title: The infinite-rank rope of the Aanderaa-Cohen tower is the free-monoid orbit of t under the digit letters a_i, its relations follow from two finite families, and relative seeds pass through it exactly when its two edge groups carry relative seeds on H_1; reordering the tower (digit letters before p) removes the infinite rank modulo two Britton checks
-requires:
-  - higman-clapham-towers-leave-the-seed-form-at-three-steps
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   higman-clapham-towers-leave-the-seed-form-at-three-steps: that lists the rope as one of three off-form steps; this analyses the rope itself, shows it is finite-state and has easy membership, and gives the reordering that should make it finitely generated.
   relative-seeds-glue-graphs-of-groups-into-class-c: that is the gluing theorem; this notes that its proof never uses finite generation of edge groups, so the rope is covered once relative seeds exist for its edge groups.

@@ -3,9 +3,6 @@ rg: 2
 id: monomial-leavitt-commutants-in-tree-roe-algebras-are-amenable
 kind: claim
 title: In the translation algebra of a tree, the relative commutant of every monomial copy of L maps unitally to the translation algebra of its grand-orbit space, and that space is amenable, so the commutant contains no Leavitt algebra; so every copy of L⊗L in K_u(tree), and every leg of any L_2⊗L_2 ↪ L_2, is non-monomial
-requires:
-  - lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square
-  - non-amenable-scaffolds-absorb-the-leavitt-factor
 distinct_from:
   lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square: that shows K[Z²] has no monomial module over a tree, so two commuting monomial Thompson shifts are impossible; this computes the full relative commutant of one monomial Leavitt copy (a Morita-type invariant) and shows it contains no unital Leavitt algebra, so even ONE monomial leg is impossible.
   non-amenable-scaffolds-absorb-the-leavitt-factor: that decides when K_u(P) or a crossed product contains L; this decides when the COMMUTANT of a monomial L contains L, by applying the Ara–Li–Lledó–Wu dichotomy to a derived space.

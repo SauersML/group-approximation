@@ -3,8 +3,6 @@ rg: 2
 id: integral-affine-structure-group-is-finitely-presented
 kind: claim
 title: The integral affine group of Z_2^D twisted by Thompson's F, (Z^(D) x| GL(Z; D)) x| F, is finitely presented
-requires:
-  - finitary-steinberg-extensions-by-oligomorphic-actions-are-fp
 distinct_from:
   finitary-steinberg-extensions-by-oligomorphic-actions-are-fp: that presents St(R; S) x| Γ and E(Z; D) x| F; this adds the diagonal signs and the integral translations, which is the full global structure group of the twisted integral-affine Brin-Thompson group.
 ---

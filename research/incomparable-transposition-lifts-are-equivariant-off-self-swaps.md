@@ -3,10 +3,6 @@ rg: 2
 id: incomparable-transposition-lifts-are-equivariant-off-self-swaps
 kind: claim
 title: In the V-times-Lambda gluing group, lifts of transpositions between incomparable cones commute when their supports are disjoint and are equivariant under the labelled Thompson piece and under every conditioned cone swap except self-swaps; so exactness reduces to coherent lifts in the comparable-cone sector
-requires:
-  - v-times-full-groups-have-local-transposition-presentations
-  - v-times-sft-gluing-kernel-is-relatively-perfect
-  - v-times-gluing-exactness-is-commutation-with-one-transposition
 distinct_from:
   v-times-full-groups-have-local-transposition-presentations: that defines the lifts and checks order, splits and one representative disjoint commutation; this proves disjoint commutation in every configuration and equivariance under all of M and under conditioned swaps outside self-swap configurations.
   v-times-gluing-exactness-is-commutation-with-one-transposition: that reduces exactness to K commuting with tau_0, or equivalently to an equivariant lift; this constructs that lift everywhere except in the comparable-cone sector.

@@ -3,7 +3,8 @@ rg: 2
 id: level-shift-obstruction
 kind: claim
 title: Level-shift towers lose Θ(1) uniformly in height
-invalidates: [tower-architectures]
+invalidates:
+  - tower-architectures
 ---
 
 `Sofic/LevelShiftObstruction` (formalized). A permutation shifting a graded

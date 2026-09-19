@@ -4,8 +4,6 @@ id: master-route-needs-only-topological-freeness
 kind: claim
 title: Both master routes use freeness of the subshift only as topological freeness, plus torsion-free isotropy for the K-gate, so the crux object is a rigid minimal topologically free SFT
 distinct_from:
-  boone-higman-via-leavitt-units-of-rigid-sft-overgroups: that route is stated for free minimal subshifts; this audits each of its steps and shows freeness is used only as topological freeness (steps 2, 3) and as freeness of finite subgroups (step 4).
-  boone-higman-via-v-times-aperiodic-sft-full-groups: that implication is stated for free minimal SFTs; this shows its steps 1, 3, 5 need only minimality and topological freeness.
   cantor-crossed-hosts-are-closed-under-boundary-products: that already allows non-free actions for torsion-free Farrell-Jones hosts (valid hosts); this treats the master route, where the acting group contains the input and may have torsion.
   free-group-boundary-shifts-are-quantum-rigid: that supplies a rigid minimal topologically free SFT over F_m x F_n and raises the question; this answers which route steps survive the loss of freeness.
 ---

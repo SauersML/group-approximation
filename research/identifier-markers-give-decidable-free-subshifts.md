@@ -4,6 +4,7 @@ id: identifier-markers-give-decidable-free-subshifts
 kind: route
 title: Nested maximal separated markers carrying locally distinct identifiers, encoded in four symbols, form a free subshift whose language is decidable because greedy marker systems have no dead ends beyond a computable horizon
 target: decidable-groups-carry-flexible-free-subshifts
+requires: []
 ---
 
 **Proof (lane proof at design level, bh-g1-simulation, 2026-09-18; unreviewed).**

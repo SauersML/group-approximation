@@ -3,8 +3,6 @@ rg: 2
 id: bounded-determination-simulations-only-realize-sft-shadows
 kind: claim
 title: A plane-constant simulation whose computation layer is determined by skeleton and data inherits rigidity but only simulates SFTs; so simulating a non-SFT forces computation-layer ambiguity, which is where G2 lives
-requires:
-  - copy-constraints-make-simulation-skeleton-and-data-commute
 distinct_from:
   copy-constraints-make-simulation-skeleton-and-data-commute: that shows the skeleton and data layers commute in every quantum family; this settles when the computation layer does as well, and shows that in useful simulations it cannot be forced to.
   plane-constant-minimal-sft-factors-are-effective-minimal: that shows plane-invariant factors of minimal SFTs are effective and minimal; this shows that with bounded determination they are even SFTs, so the simulation adds nothing.

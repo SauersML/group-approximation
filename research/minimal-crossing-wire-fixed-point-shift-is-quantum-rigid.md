@@ -3,8 +3,6 @@ rg: 2
 id: minimal-crossing-wire-fixed-point-shift-is-quantum-rigid
 kind: claim
 title: The Durand–Romashchenko minimal self-simulating tile set, rebuilt with complete crossing and with diversification slots for crossing windows, is a free minimal Z^2 SFT that is quantum rigid over every field
-requires:
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
 artifacts:
   - research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md
 distinct_from:

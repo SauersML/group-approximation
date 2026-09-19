@@ -3,9 +3,6 @@ rg: 2
 id: algebraic-interval-exchange-groups-satisfy-boone-higman
 kind: claim
 title: Every finitely generated group of interval exchanges, with or without flips, with real algebraic lengths and translations embeds in a finitely presented simple group; so do all subgroups of the Stein groups V(Z[u],⟨u⟩,ℓ) for suitable units u of every real number field
-requires:
-  - negative-base-pisot-stein-groups-are-contracting-rsgs
-  - flip-codings-remove-the-sign-obstruction-for-iet-groups
 distinct_from:
   pisot-interval-exchange-groups-satisfy-boone-higman: that covers fields containing an (F) unit, those with an isolated-sign unit, and so misses Q(√3); this covers every real number field, through negative-base codings.
   quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03) covers IET(Z+αZ) for quadratic α via substitutions; this covers every rank and every real algebraic field.

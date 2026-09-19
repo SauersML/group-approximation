@@ -3,9 +3,6 @@ rg: 2
 id: four-way-deterministic-sft-rigidity-lives-on-axis-faults
 kind: claim
 title: In a four-way deterministic Z^2-SFT one anti-diagonal carries the whole operator algebra, only the axis directions can be non-expansive, one-sided axis band rules certify quantum rigidity, and two-sided band freedom kills it at every scale; Robinson-type tile sets such as Kari–Papasoglu fall between the two
-requires:
-  - determinism-closure-certifies-quantum-rigidity
-  - quantum-rigid-sfts-over-products-have-a-single-free-branch
 distinct_from:
   determinism-closure-certifies-quantum-rigidity: that is the general closure criterion and its fault-slab obstruction; this specialises it to four-way deterministic shifts, where the corner rules already cover every non-axis normal, so the whole question moves to the two axis directions.
   fixed-point-wang-tile-rigidity-is-edge-family-commutation: that reduces self-similar side-local tile sets to single-tile edge families; this needs no self-similarity and reduces four-way deterministic shifts to one anti-diagonal and to their axis faults.

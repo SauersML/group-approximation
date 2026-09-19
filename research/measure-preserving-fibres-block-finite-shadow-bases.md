@@ -3,9 +3,6 @@ rg: 2
 id: measure-preserving-fibres-block-finite-shadow-bases
 kind: claim
 title: A group action on B x X by a cocycle into measure-preserving homeomorphisms of the fibre admits no finite shadow basis when the fibre measure is atomless with full support; so ABHT folds and Busemann transplants of minimal free fibres are never Thumann-operad instances, and base compression never certifies the fibre
-requires:
-  - one-scale-filling-decides-fp-of-v-times-subshift-hosts
-  - fold-transfer-theorem-for-fibres-with-a-determining-half-plane
 distinct_from:
   one-scale-filling-decides-fp-of-v-times-subshift-hosts: that notes that over an amenable acting group an invariant measure excludes finite shadow bases; this excludes them over non-amenable acting groups too, whenever the action is a skew product over a measure-preserving fibre, using only the fibre measure.
   v-stabilized-horofunction-hosts-need-upstream-certification: that shows ball-pattern tiles of horofunctions fail upstream certification; this shows that for skew products no tile family whatever can refine the fibre, even though the base (a tree boundary) certifies perfectly.

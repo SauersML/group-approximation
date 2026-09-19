@@ -3,9 +3,6 @@ rg: 2
 id: pointed-cube-bisection-locus-is-the-regular-boundary
 kind: claim
 title: A cubulated group acts on its Roller boundary by germs of the pointed-cube groupoid exactly at the regular points; so a closed carrier exists only inside the regular boundary, and for Z^2 * Z none exists at all
-requires:
-  - cubulated-groups-act-by-bisections-of-a-pointed-cube-category
-  - cuntz-stabilized-garside-full-groups-are-f-infinity
 distinct_from:
   cubulated-groups-act-by-bisections-of-a-pointed-cube-category: that proves the bisection action at regular points and lists closedness of R as a gate; this proves the converse (no germ at any non-regular point) and shows the gate fails for a RAAG.
   cuntz-stabilized-garside-full-groups-are-f-infinity: that closes the finiteness gate; this shows the carrier gate G1 is the real obstruction for the pointed-cube route.

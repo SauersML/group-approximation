@@ -3,10 +3,6 @@ rg: 2
 id: relational-spine-couplings-are-splittable-or-not-minimal
 kind: claim
 title: Over the end flow, a relational space coupling of seeded phases either splits or kills minimality, while the functional coupling with a transitive time clock is minimal as well as quantum rigid
-requires:
-  - seeded-transport-codings-over-end-flows-are-quantum-rigid
-  - end-shift-path-covers-are-rigid-with-one-spine
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
 distinct_from:
   seeded-transport-codings-over-end-flows-are-quantum-rigid: that proves rigidity for bijective space transport; this replaces the bijection by a relation, and settles minimality for both.
   nonamenable-products-have-minimal-sft-extensions-of-free-inputs: its phase-field trichotomy is a heuristic about hierarchy phases on unanchored grids; this is a proved dichotomy for seeded finite phases over the end flow, where the functional case turns out to be minimal.

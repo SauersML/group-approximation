@@ -6,7 +6,6 @@ title: An extension of a group in B_A by a finitely generated free group of rank
 distinct_from:
   pbh-class-closed-under-relative-holomorphs: that embeds the specific holomorphs (M * F_m) ⋊ Aut_M(M * F_m) in a relative automorphism group; this is closure under every extension with finitely generated free kernel, whatever the quotient in B_A and whatever the action.
   free-by-virtually-free-groups-satisfy-boone-higman: that reaches free-by-(virtually free) groups through BLIW generalized Baumslag--Solitar witnesses, which need a virtually free quotient; this allows any quotient in B_A, e.g. Z^2, a linear group, Aut(F_n), or a braid group.
-  b-tilde-artin-pbh-via-free-fibre-kernel-proof: that uses the same centreless-kernel embedding once, inside the B̃_n argument; this isolates it as a permanence theorem for the class.
   boone-higman-type-a-class-closed-under-finite-extensions: that is closure under subgroups, finite direct products and finite-index overgroups; this is closure under infinite extensions with free kernel.
 artifacts:
   - research/artifacts/gq-bh-bh-verify-artin-euclidean-toric.md
