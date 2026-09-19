@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md
   - research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md
   - research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md
+  - research/fpbs-mal-pushout-fold-certificates-vanish-on-random-levels-proof.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -621,3 +622,43 @@ Scripts are in `experiments/fpbs-iid-chord-union-bound-2026-09-17/`.
   `|P'| ≤ C(m + excess)`, where `C` does not depend on `j`.
 
   The claim stays OPEN, with (D0) settled and (D1) open.
+**Non-abelian certificates: the pushout quotient is a triangle group, and on
+random levels it is invisible to all finite quotients (September 19, 2026,
+swarm-0917-w15-w15-fp-last1, group-rings).** Route
+`research/fpbs-mal-pushout-fold-certificates-vanish-on-random-levels-proof.md`.
+Scripts in `experiments/fpbs-pushout-fold-group-2026-09-17/`.
+- **Result.** [[fpbs-mal-pushout-fold-certificates-vanish-on-random-levels]]
+  is ESTABLISHED through its route.
+  - *Theorem A.* If `K` is transitive on a level `V`, then
+    `N / <<K ∩ N>>^N = P_V = <t_v | t_v = t_{vc} t_{vcb}>`. This is a
+    one-vertex complex with `n` triangles, where each edge lies on 3
+    triangles. Its relator is the 2-of-3 fold rule. The abelianization is the
+    Fox element `u` of w13.
+  - *Theorem B.* Every generating graph with `E` extra edges has
+    `E >= log_|S| |Hom(P_V, S)|`, for every finite group `S`. So
+    `Q_0(X) >= limsup log_|S| Z_S(V_m)/|V_m|` on free profinite witnesses.
+    Taking `S = F_p` recovers `k_u`.
+  - *Theorem C.* On uniformly random levels,
+    `E |Hom(P_V, S)| <= (n+1)^(|S|^2 + 2|S|)`, by type counting and
+    subadditivity of entropy. So each such certificate is `O(log n)` with
+    probability `1 - 1/(n+1)`. This includes `S = F_p`, unconditionally.
+- **What it kills.** The w13 survivor "non-abelian certificates
+  `d(N_m / <<K ∩ N_m>>)`" is now `d(P_V)`. On random levels, which are the
+  sofic models of `W_b`, every finite-quotient counting lower bound on it
+  vanishes. A W-sof proof of D0 cannot go through normal generation that
+  finite quotients of bounded size detect.
+- **It is not vacuous.**
+  - `P_V` is nontrivial, and sometimes infinite: `b_1 = 1` at `n = 12`.
+  - When `H_1` is finite, `|H_1| = e^{theta n}` with `theta` in
+    `[0.04, 0.26]`.
+  - On an `A_4` Cayley level, `P_V` is perfect and maps onto `A_5`.
+- **What survives.**
+  - Counting certificates on structured (Cayley) towers, where `Z_S` grows:
+    `Z_{C_2} = 2^13` on `PSL_2(7)`. This is a non-abelian Lück-approximation
+    question.
+  - The gap `d(N | K ∩ N) - d(P_V)` between relative rank and quotient rank.
+  - `d(P_V)` detected by quotients of order `e^{Omega(n)}`, which Theorem C
+    does not reach.
+  - D1.
+
+  The claim stays OPEN.
