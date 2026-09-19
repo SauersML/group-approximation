@@ -1,0 +1,3 @@
+alphas 6 betas 5527
+{'burau hits': 890, 'genuine': 510, ('vertex centres', '01'): 56, ('vertex centres', '12'): 372, 'shadow only': 380, ('vertex centres', '20'): 82, 'pairs done': 1} 71 s
+exit 0
