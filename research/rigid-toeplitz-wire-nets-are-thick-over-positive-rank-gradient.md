@@ -77,6 +77,14 @@ As in item 6 of `quantum-rigid-subshifts-are-determined-by-thick-collars`:
   - compression toward ends needs ends or a boundary;
   - determinism needs an amenable direction;
   - finite presentation of a boundary host, read backwards, needs a boundary.
+- **Scope (bh-invent-16, via bh-ra-counter).** The bound constrains only Toeplitz shifts over `G`
+  itself (Line F).
+  - Time lifts over `Z^d × G` (Line I, `time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows`)
+    have fixed price 1, because of the infinite amenable normal factor `Z^d` (Gaboriau; recalled). So the
+    bound is 0 there, and thin nets are allowed.
+  - In Line F, a profinite skew layer over `G`'s odometer is again equicontinuous
+    (`profinite-skew-layers-collapse-into-the-equicontinuous-factor`, ca17dbe93). So the net lives
+    directly over the odometer.
 - **The cost of `G`'s odometers is unchecked.** It is the cheapest next test. If it is 1 (fixed price),
   thin nets are allowed. If it is greater than 1, the construction must fill holes of positive density
   rigidly.
