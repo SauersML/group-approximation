@@ -1097,3 +1097,24 @@ The hole itself is not closed here.
    A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
    Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
    `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
+
+**2026-09-19 (swarm-0917 w15, last mile, reframing): typing dichotomy and a one-hole Kazhdan-blind route.**
+1. **Certificate typing is empty.** `kazhdan-free-leavitt-collapse-typing-dichotomy` is ESTABLISHED, through (T).
+   - The finite certificates `R_0` with `zhat in Rad_MF(F(S)/<<R_0>>)` form an upward-closed family.
+   - One Ozawa SOS identity lifts to every cover presented by `R_0 >= R_T`. So the Kazhdan certificates are cofinal.
+   - One inert free generator gives non-Kazhdan certificates `Gamma * Z`.
+   - So "the certificate group is not Kazhdan", and any other certificate-level property, already holds by the (T)
+     theorem. It cannot type this goal.
+2. **Image typing.** Suppose some group `Gamma` has only finite Kazhdan subgroups and maps to `Delta` with
+   `phi(Rad_MF(Gamma)) != 1`. Then `Rad_MF(Delta) = Delta` by push-forward and simplicity.
+   - Every such proof exhibits a non-MF group with only finite Kazhdan subgroups.
+   - None is recorded in the graph.
+3. **New route.** `property-t-free-leavitt-via-thompson-v-not-mf` has one hole, `thompson-v-is-not-mf`, which is OPEN.
+   - The chain is `V <= St_20(R)` (by `thompson-v-lifts-through-binary-leavitt-steinberg-cover`), then
+     `Rad_MF(V) = V`, push-forward, and simplicity of `Delta`.
+   - The chain uses no Kazhdan input.
+   - The hole's group is Haagerup, so every certificate for it is non-Kazhdan and the rigid-defect engine is vacuous
+     on it.
+   - Any non-MF subgroup of `V`, such as `F` or `T`, also closes the route.
+4. **Status.** The goal stays OPEN. The route shows how much its well-typed form costs: a first non-MF Haagerup
+   group, if the witness is taken inside `V`.
