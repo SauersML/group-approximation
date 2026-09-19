@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/torus-alphabet-degree-2026-09-17.md
   - research/artifacts/torus-degree-locally-indicable-and-fox-witness-2026-09-18.md
+  - research/artifacts/sofic-torus-rectangular-small-fibre-2026-09-19.md
 ---
 
 For every countable group `G`, every `d >= 1`, and every injective continuous
@@ -178,3 +179,34 @@ independently of Gottschalk's conjecture.
   - **Where kernel descent dies.** At kernels containing a finite subgroup of
     non-prime-power order: the Bezout element has `p_N(D) = 1`. So `Alt_fin(N)`, simple
     and containing `A_5`, is out of reach of every descent argument.
+- 2026-09-19 (swarm-0917-w16-w16-gs-pull, stability-approximation): sofic models
+  (artifact `research/artifacts/sofic-torus-rectangular-small-fibre-2026-09-19.md`).
+  - **Reduction (ESTABLISHED).**
+    `sofic-torus-c2-reduces-to-rectangular-small-fibres`: C2 for
+    every sofic group, hence every amenable group, follows from the group-free lemma
+    LRSF (`local-rectangular-small-fibre-maps-lose-proportional-rank`, OPEN).
+    - *Certificate.* The pull-back certificate controls every vertex where the
+      relations `wf = w'f'` and `wf = 1` hold.
+    - *Freezing.* Freezing the uncertified vertices gives a local rectangular map with
+      surplus `o(|V|)`.
+    - *Rank.* Sylvester's inequality turns almost-full rank of `sigma_n(D)` into C2.
+  - **Per-automaton theorem and class kill (ESTABLISHED).**
+    `exact-relation-models-give-torus-degree-regularity`.
+    - C2 holds at `tau` whenever the kernel of the finitely presented local cover
+      `Gamma_(W,F)` is co-sofic. This holds, for example, when `Gamma_(W,F)` is
+      permutation stable and `<W ∪ F>` is sofic, over any `G`.
+    - Square models, with every vertex certified, are exactly finite
+      `Gamma_(W,F)`-sets. They exist with sofic statistics for all `(W, F)` iff `G` is
+      LEF.
+    - So dropping outputs, rewriting defect rows, adding registers, per-vertex moduli
+      and choosing a special sofic approximation all stop at LEF.
+    - The invariant is exact satisfaction of `R_(W,F)`. The dying step is
+      well-definedness of the pull-back at a relator defect.
+  - **Shape of the missing lemma.**
+    - LRSF must be proportional, with a constant growing with locality: small-ball
+      embeddings `T^k -> T^(k+1)` lose rank `k` per surplus site.
+    - Without locality it is false ([LEF] Theorem 3).
+    - Via Elek–Szabó rank approximation, the model route proves `l^2`-injectivity of
+      `D`, which is stronger than C2.
+  - C2 stays OPEN beyond LEF, LI-kernel descent, and the automata covered by
+    Theorem E.
