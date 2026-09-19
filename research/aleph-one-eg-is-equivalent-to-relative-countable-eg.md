@@ -145,3 +145,11 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Gap.** The coefficient filter `|coef| ≠ 1` of the rose node's (T4) is not implied by (T0).
 
   Next: an intrinsic gluing-rank bound for every rose and marked graph that passes (T0). The passing ones come from free-factor systems carrying `c_H`. Then run the same test on slide complexes.
+
+- **w17-048, 2026-09-19: realizations in mapping tori are exactly free-factor level splittings.** Landed `c2-mapping-torus-realizations-are-free-factor-level-splits`.
+  - **Theorem A (proved).** Some `M_f` of some marked graph carries a 2-cell-injective map from a finite 2-dim `K(H,1)` iff `H` has an FFLS. An FFLS is a finite graph of groups for `H` with f.g. vertex groups in `N`, stable letters of `ε = 1`, and edge groups forming a free factor system of `F_4`. The midline graph of the map is an edge-injective immersion into `Γ`.
+    - So realizability does not depend on the marked graph, and a rose suffices.
+    - The w16 gluing-rank step for every rose and the 7 stalled `w2 = a` bases all reduce to one question: does (C2) have an FFLS? The rank budget is `Σ rk V = R_E + 3 − b_1(Δ) ≤ 6`, and by Kurosh the edge groups are free factors of their vertex groups.
+  - **Computation.** `H = ⟨b,c,d,e | r⟩` is one-relator. The least Moldavanskii level width found is 3 (beam search, heuristic). In all 48 width-3 presentations tested, the edge group is not a free factor of `F_4` (exact). The two-edge refinement `{⟨pQ,qR⟩, ⟨SrpQsRRsq⟩}` is not a free factor system either.
+  - Slide complexes are not mapping tori, so Theorem A does not decide them.
+  - Next: decide whether an FFLS exists. The one-cycle case is HNN splittings over `ε`; a BNS/Brown-type analysis of `r` would settle it. Then prove the slide-complex analogue.
