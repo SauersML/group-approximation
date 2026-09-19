@@ -1,0 +1,465 @@
+---
+rg: 2
+id: approximate-collapse-for-kt-compressor
+kind: claim
+title: The congruence collapse of the compressor survives approximate representations
+distinct_from:
+  kt-centralizer-normalization-hs: that is the full normalization/(CCR) question; this is its one remaining wall after the 2026-08-18 campaign — the step-3 identification — promoted to a first-class claim so routes can require it.
+  el-r-polynomial-robust-spectral-gap: that (closed by citation) supplies uniform spectral gap for almost representations — the OTHER former gap; this is the collapse statement that no spectral-gap property supplies.
+  compressor-coset-two-point-exact: that proves the collapse for genuine congruence quotients (E-normality, π(Γ) = E); this asks whether any trace-faithful APPROXIMATE representation can break it.
+artifacts:
+  - research/kt-centralizer-normalization-hs.md
+---
+
+**Question (OPEN) — the (AC) wall, in commutation-tolerant form.**
+Let `σ = "∏_𝒰 π_n" : G → U(M)` be trace-faithful into a tracial matrix
+ultraproduct, `Λ = tΓt⁻¹` the compressed Kazhdan copy, and
+`x = (x_n) ∈ σ(Λ)' ∩ M` with `‖x‖ ≤ 1`.  Must
+
+```text
+lim_𝒰  dist₂( π_n(γ) ,  { u ∈ U(d_n) : ‖[x_n, u]‖₂ ≤ ε_n } ∩ π_n(Λ)·𝔅_n ) = 0
+```
+
+for every `γ ∈ Γ` — i.e. does the congruence-level image collapse
+`π(Γ) ⊆ π(Λ)` (true in EVERY genuine finite quotient, by E-normality)
+survive the passage to approximate representations, at least against
+the commutant of a given `x`?  A positive answer (for every such `σ`)
+combined with the citation-closed uniform spectral gap
+(`el-r-polynomial-robust-spectral-gap`) completes
+`kt-centralizer-normalization-hs` via
+`hs-normalization-via-robust-spectral-gap` — and with it the rigidity
+route to the first non-hyperlinear group.
+
+**What is known (2026-08-18 campaign, all in the parent node and its
+sibling claims):**
+
+- TRUE for every coordinatewise ultraproduct of genuine
+  representations, UNCONDITIONALLY — the collapse hypothesis is
+  automatic: `ρ(Λ) = ρ(E)` identically across all of FD
+  (`fd-invisibility-of-compression`), so the coordinate regime is
+  fully closed and any counterexample here must violate an IDENTITY
+  of finite-dimensional representation theory, not a generic
+  property (`ccr-for-coordinate-collapsing-models` supplies the
+  (T)-uniformity step).
+- The explicit full-packet Majorana endpoint is now quantitative in that
+  genuine-coordinate regime.  For the Kazhdan packet `K` and mixed return
+  `h=L e_12(x_1)L^(-1)`,
+
+  ```text
+  ||[X,rho(h)]||_2
+   <= (2/kappa_K) max_(s in K)||[X,rho(s)]||_2
+  ```
+
+  for every genuine finite-dimensional actor representation; see
+  `kt-full-kazhdan-majorana-return-collapses-in-fd`.  Thus the exact finite
+  Clifford quotient countermodels stop precisely when all packet rows are
+  imposed: finite-image compression puts `rho(h)` in `rho(Gamma)`, so the
+  returned Clifford site coincides with the original.  What remains here is
+  exactly the addition of a normalized-HS actor-relator error term to this
+  inequality.  The exact endpoint hides no further multiplicity obstruction.
+  `kt-local-actor-correction-pays-majorana-return` computes the terminal
+  perturbation explicitly: correction by `epsilon` only on `K union {h}`
+  gives the Majorana floor
+
+  ```text
+  2-(4/kappa_K)delta_K-(8/kappa_K+4)epsilon.
+  ```
+
+  Therefore the presentation/window-to-representation modulus is now the
+  only unnamed term; calling it a consequence of property `(T)` would be a
+  hidden stability assumption.
+- The group-algebra slice cannot break it (`ccr-group-algebra-slice`:
+  `FC_Λ(G) = Z`), nor can coarse-bimodule content, amplification,
+  finite quotients, small-block gluing, or the bicommutant shortcut
+  (impossible: `σ(γ) ⊥ L²(σ(Λ)'')`).
+- Becker–Lubotzky FORCES the question to be about far-from-genuine
+  approximate representations (Γ is not HS-stable; the liftable case
+  is vacuous), and Ioana's is the only engine making controlled
+  far-from-genuine ones — blocked when a factor has (T).
+- The ambient published frontier is Alekseev–Thom OP 6.2 (2026-08-05);
+  its part (b) with conjugation-coherent lifts would convert this
+  question to finite-dimensional form.  Peterson 2605.16669 does not
+  answer it (Gate 1 final, all sections now read from PDF): his §6 is
+  Popa intertwining adapted to ultraproducts of FREE PRODUCTS —
+  amenable-amalgam hypotheses throughout, conclusion shape "locate
+  the algebra", never "compare two commutants" — with no analogue for
+  matrix ultraproducts.  Two useful residues from his paper: the
+  printed (T)-interchange precedent and templates (see the route
+  node), and the SHAPE of his Prop 6.2 — rigidity-implies-confinement
+  (a rigid subalgebra's relative commutant cannot escape a
+  distinguished part of the ambient); no such theorem exists for
+  matrix ultraproducts, but a matrix-ambient analogue would constrain
+  where any counterexample to this claim could live.
+
+**Torus reduction (2026-08-18, post-capstone sharpening).**  `E` is
+generated by `Λ` together with the finitely many monomial diagonals
+`T = {h : diag entries x_i^{±1}, balanced to det 1}`: torus
+conjugation scales any slot's entry by `x_i^{±1}`, every Laurent
+monomial is reached from the `A`-cone this way, and same-slot
+additivity assembles general entries — the same two ingredients as
+`fd-invisibility-of-compression`, run inside the group instead of
+modulo a kernel.  Hence
+
+```text
+(CCR)  ⟺  Ad σ(h) (σ(Λ)' ∩ M) = σ(Λ)' ∩ M   for the finitely many h ∈ T,
+```
+
+normalization of the compressed commutant by a handful of explicit
+unitaries with clean spectral structure in congruence models.  The
+compressor `t` has disappeared from the statement; the torus carries
+the whole wall.
+
+**Enemy profile — CORRECTED (the Cantor limit is universal, not the
+discriminator).**  Trace-faithfulness forces `tr σ(e_ij(f)) = 0` for
+all `f ≠ 0`, so for EVERY `σ` (canonical congruence included) each
+root algebra is the full Haar–Cantor algebra:
+`σ(U_ij(R))'' ≅ L^∞(K)`, `K = dual of (R,+)`, with Haar trace — and
+likewise `L^∞(K₀)` for the compressed roots, the inclusion dual to
+`K ↠ K₀` with diffuse fibers.  Coordinatewise-genuine models have
+finite root images at every stage yet the same Cantor limit; and
+`ccr-for-coordinate-collapsing-models` + `fd-invisibility` prove the
+abelian-pair rigidity `L^∞(K₀)' ∩ M = L^∞(K)' ∩ M` holds for all of
+them DESPITE it.  So "roots going infinite" distinguishes nothing:
+the counterexample's ONLY possible distinguishing feature is honest
+quasi-regular (`ℓ²(M/M₀)`-type) content in the conjugation bimodule
+— the ambient-aware question below — and per-finite-subgroup
+near-genuineness (finite groups are HS-stable, constants depending
+only on the order) plus global (T) remain the constraints it must
+thread.
+
+**Two fences and the designated method (2026-08-18, final
+sharpening).**
+
+- *Intrinsic-index firewall (2026-08-25):* Jones/Pimsner--Popa index,
+  the standard invariant, and the abstract `L(Lambda)<L(Gamma)` bimodule
+  data cannot decide (AC).  For the explicit `q=2`, `d=3` pair the same
+  infinite-index subgroup-factor inclusion has scalar equal ambient
+  commutants in the constant copy inside `L(G)^omega`, but strict
+  infinite-index ambient commutant growth in the canonical Clifford
+  crossed product.  The two embeddings also agree on every finite tracial
+  `*`-moment and normalized-`L2` polynomial statistic of the subgroup
+  inclusion.  See
+  `kt-intrinsic-subfactor-data-does-not-see-ambient-wall`.  A successful
+  invariant must therefore inspect the matrix-ultraproduct ambient
+  complement, not merely the intrinsic subfactor or its standard
+  correspondence.  The ambient growth index does inspect the complement,
+  but is normalized-HS discontinuous and so does not yield a microstate
+  inequality.
+
+- *Self-similarity fence:* bridging `σ(Λ)'` to a torus-shifted copy
+  through the common subcone fails structurally — the intersection
+  cone is finitely generated (Gordan), its elementary group is again
+  Kazhdan (Ershov–Jaikin applies to any f.g. commutative ring), and
+  the sandwich reproduces the IDENTICAL cone-subcone compression
+  question one scale down.  The wall is scale-invariant; do not
+  re-attempt subcone interpolation.
+- *Designated method — relative (T) on root pairs* (attribution
+  corrected by the 2026-08-18 verification pass: EJ 2010 proves no
+  new relative-(T) theorem — it IMPORTS relative (T) from Kassabov
+  (Invent. Math. 170 (2007)); the finitely-generated-module pair
+  versions matching this node's shape are
+  Ershov–Jaikin-Zapirain–Kassabov, Memoirs AMS 1186 (2017),
+  Appendix A: Thm A.1 (`f.g. left module`), A.8
+  (`St_p(R) ⋉ M^p`), A.9 (bimodule form); cite the Memoir, and note
+  "Steinberg pair" is this graph's name, not the literature's):  That
+  is the weapon whose shape matches the enemy: the Cantor escape
+  lives entirely in the root subgroups' images going infinite, and
+  relative (T) is precisely an almost-invariance upgrade TARGETED at
+  a root subgroup rather than at the whole group.  Conjectural form
+  for the next campaign: relative (T) of the pairs forces the
+  `Ad σ`-action on `L²(M)` to have its root-invariant structure
+  controlled by the Λ-invariant structure, torus slot by torus slot
+  — which via the torus reduction is exactly (CCR).  Second possible
+  input, status now VERIFIED: bounded elementary generation is
+  PROVED in one variable (`𝔽_q[t]`: Nica, width `½(3n²−n)+29`;
+  Laurent `𝔽_q[t,t⁻¹]`: KPV Cor. 7.6, width `½(3n²−n)`) and **OPEN
+  in both directions for `d ≥ 2`** — the van der Kallen/Erovenko
+  failure constructions need infinite transcendence degree and
+  cannot start over `𝔽_q`; KPV's pessimism is an expectation, not a
+  theorem.  Fence (Abért–Lubotzky–Pyber): in char `p`, BEG does NOT
+  yield bounded CYCLIC generation — never convert one into the
+  other.
+- *Rank warning (2026-08-18 verification):* any argument consuming
+  FINITE PRESENTATION of `EL_r(𝔽_q[x̄])` — the Jekel ∀∃-lever
+  included — is UNAVAILABLE at `r = 3`: Krstić–McCool prove `E₃`
+  and `St₃` over any ring surjecting onto `F[t]` are NOT finitely
+  presented (independently confirmed via the `𝔽_q[t]`-retract and
+  Behr).  `r = 4, d ≥ 2` is open (`⟺ K₂(4,·)` finitely generated);
+  `r ≥ 5` is fine (Splitthoff + van der Kallen + Tulenbaev +
+  `K₂ = 0` — a synthesis, Tulenbaev verified from abstract only).
+  Kun–Thom demands only `r, d ≥ 3`, so a campaign wanting the lever
+  must PIN `r ≥ 5` deliberately.  The core theorems of this lane
+  consume only finite GENERATION and are unaffected.
+- *The method's precise breaking point, found by attempted assembly —
+  hence the campaign's OPENING LEMMA:* the classical relative-(T)
+  pair `(EL₂(A) ⋉ M², M²)` needs `M` finitely generated over the
+  acting ring, but `R` over the compressed ring `S_Λ` is an
+  INCREASING UNION of monomial translates `x^{−Nw₀}S_Λ`, never
+  finite.  What the method needs first is a **uniform (directed)
+  relative property (T) along the monomial exhaustion**: one Kazhdan
+  pair `(Q, κ)` with `Q` inside the compressed part, valid
+  simultaneously at every stage of the union.  Two facts about it,
+  found by pressure-testing (2026-08-18, final):
+  (i) *the stages are all isomorphic as pairs* — `x^{−Nw₀}S_Λ` is a
+  free rank-one `S_Λ`-module, so every stage is the single
+  Ershov–Jaikin pair `(EL₂(S_Λ) ⋉ S_Λ², S_Λ²)`, and stage-wise
+  relative (T) with a COMMON constant is free; the entire difficulty
+  is that the stage-`N` test set contains deep-monomial module
+  generators that `Λ`-invariance does not control.  (ii) *The naive
+  upgrade is REFUTED as pure representation theory:* since
+  `EL₂(S_Λ)` acts `S_Λ`-linearly it PRESERVES the stage-0 module, so
+  in `ℓ²(M/M₀)` the vector `δ_{M₀}` is invariant under the whole
+  group-and-stage-0 part yet at distance 1 from the (zero)
+  `M`-invariant vectors — no relative-(T)-type theorem can conclude
+  full-module invariance from compressed invariance in a general
+  unitary representation.  The opening lemma therefore MUST carry
+  the matricial-ambient hypothesis (trace-faithful matrix
+  ultraproduct): the question is whether `ℓ²(M/M₀)`-type
+  quasi-regular content can occur inside `Ad σ` on `L²(M)` — the
+  root-module specialization of the 18e bimodule formulation.  Deep
+  consistency check: the sofic proof was likewise impossible as pure
+  (T) and consumed the permutation ambient (Kun's decomposition);
+  the unitary proof must consume the matricial ambient.  The
+  pure-representation shortcut is CLOSED; do not re-attempt.
+
+**Vanguard results (2026-08-18, successor campaign's opening pass —
+proofs one-line-checkable, recorded from the fork's report).**
+
+1. **The commutants are ALWAYS unitarily conjugate:**
+   `σ(Λ)' ∩ M = u(σ(Γ)' ∩ M)u⁻¹` for `u = σ(t)`, and
+   `σ(Γ)' ⊆ σ(Λ)'`.  So (CCR) is the statement that a
+   self-conjugate nested containment is equality — strictness
+   requires infinite dimension.
+2. **Theorem (new special case):** if `σ(Γ)' ∩ M` is
+   finite-dimensional — in particular for every irreducible-type σ
+   with trivial relative commutant — (CCR) HOLDS, with no coordinate
+   hypothesis: `C ⊆ uCu⁻¹` and equal finite dimensions force
+   equality.
+3. **Shift-spectral equivalence (the most computable form of the
+   wall):** iterating the containment gives the nested ℤ-tower
+   `C_k = u^kCu^{−k}` with orthogonal L²-increments `V_k`, and
+   `Ad u` shifts `V_k` onto `V_{k+1}`; hence (CCR) FAILS for σ ⟺
+   `Ad σ(t)` contains a bilateral-shift summand (Lebesgue spectrum,
+   multiplicity `dim V₀`) supported on the commutant tower.
+   Trace-faithfulness makes `σ(t)` Haar, so the wall is now: can the
+   Koopman spectrum of one Haar unitary carry a shift on that
+   specific subspace, `G`-equivariantly?  Rigid side: exclude it.
+   Flexible side: build it.  Next-attempt pointer: intersect the
+   shift picture with Popa-style spectral gap of the `Λ`-action on
+   `L²(M) ⊖ L²(σ(Λ)'')`, which constrains where `V₀` can sit.
+4. **Jung fence (recalled statement — verify numbering before
+   further use):** all embeddings of a separable II₁ factor into a
+   matrix ultraproduct are unitarily conjugate iff it is amenable
+   (Jung 2007); `L(G)` is non-amenable, so non-conjugate
+   trace-faithful σ exist and NO argument can reduce arbitrary σ to
+   the canonical coordinate embedding by conjugation.  Peterson
+   Thm 5.2 does not rescue it (it conjugates coordinatewise
+   deformations of ONE embedding).  The transport strategy is dead;
+   only direct spectral/bimodule arguments remain.
+
+**Flexible-side vanguard (2026-08-18, second opening pass — proofs
+recorded from the fork's report, self-contained).**
+
+1. **The dichotomy is exact, and refutation is the easier half:** in
+   `W` the lamp `a_{tΓ}` has `Γ`-stabilizer exactly `Λ`, so ANY
+   trace-faithful embedding of `L(W)` hands over
+   `x = Θ(a_{tΓ}) ∈ σ(Λ)' ∖ σ(Γ)'` at distance `√2` — i.e.
+   `W` hyperlinear ⟹ ¬(CCR).  A (CCR)-counterexample needs none of
+   `L(W)`'s structure: one contraction with two commutation
+   properties.
+2. **PROPOSITION (proved): separating genuine chains exist inside
+   `Γ`.**  For every strict compressor and `k ≥ 2`, the m-adic
+   quotient `EL_r(P/m^k)` (`m = (x₁…x_d)`) has `π(Λ) ⊊ π(Γ)`,
+   witness `e_ij(x̄_{i₀})`: strictness forces some coordinate ray
+   `e_{i₀} ∉ cone(A)` (else the cone would contain `ℕ^d`), every
+   element of `S̄_Λ` has degree-1 `x_{i₀}`-coefficient zero, and
+   elementaries over a subring have entries in the subring.  So the
+   audit's "uncharted middle ground" is INHABITED — and
+   `fd-invisibility-of-compression` is thereby revealed as a
+   `G`-phenomenon, not a `Γ`-phenomenon: the Laurent-unit trick is
+   essential, and these separating `Γ`-representations provably
+   never extend to genuine representations of `G`.  Any (CCR) proof
+   must exploit exactly that non-extendability; the m-adic chains
+   are the extremal case its argument must defeat.
+3. **The flexible program, reduced to finite terms:** macroscopic
+   `Λ̄`-orbit-union diagonal projections in `ℓ²(EL_r(P/m^k)/π(Λ))`
+   commute with `π(Λ)` exactly and beat the mass fence; what remains
+   is (a) an orbit-transversality density bound against the witness
+   (finite, computable, unverified), (b) quasirandomness of the
+   coset tower for trace-faithfulness (finite, computable,
+   unverified), and (c) THE CRUX: an approximate unitary intertwiner
+   implementing the compressor — `T_k π_k(γ) T_k⁻¹ ≈ π_k(β_A(γ))` —
+   on the m-adic tower, which is `β_A`-compatible
+   (`β_A(m^k) ⊆ m^k`) with matching limiting characters, where
+   Jung's dichotomy leaves freedom in BOTH directions.  The goal's
+   main gate is now: does the approximate compressor implementation
+   exist on the separating tower?  Rigid side: prove it cannot.
+   Flexible side: estimate the per-level intertwining defect —
+   finite computations on small `P/m^k`.
+
+   *Condition (a) VERIFIED at the base level (2026-08-18, exact
+   512-point enumeration on sioux).*  At `k = 2` (`d = 3`, `q = 2`,
+   `r = 3`, shear compressor) the coset space `Q₂/π(Λ)` is exactly
+   `M₃(𝔽₂)`: the kernel `I + m̄M₃` is abelian (`m̄² = 0`),
+   `π(Λ) ∩ kernel = span(x₁,x₃)⊗M₃`, `Λ̄` acts by LEFT multiplication
+   (orbits = row spaces — 16 of them, sizes `1, 7×7, 42×6, 168`,
+   matching the subspace counts exactly), and the witness
+   `e_12(x̄₂)` acts by translation by `E_12`.  The enumeration:
+   344/512 points change orbit under the witness, and the best
+   union-of-orbits `E` (11 orbits, mass 0.41) has
+   `dens(γ₀E △ E) = 266/512 ≈ 0.52` — so the exactly-`Λ̄`-commuting
+   diagonal projection `1_E` has a `Θ(1)` commutator with
+   `π(γ₀)` at `k = 2`.  The `Γ`-level flexible seed is macroscopic
+   and real; conditions still open: (a) density stability along the
+   tower `k → ∞`, (b) quasirandomness, and (c) the crux above, on
+   which everything now rests.
+
+**Crux first results (2026-08-18, direct attack).**
+
+1. **Characters do not obstruct the crux — and the reason is the
+   two-point girth theorem.**  Approximate intertwining with defect
+   `ε` forces character agreement up to `ℓ·ε` on words of length
+   `ℓ`; the words separating `π_k` from its `β_A`-twist live in
+   congruence windows, and `congruence-transporter-girth` makes them
+   LONG (length `≳ k`), so characters force only `ε_k ≳ 1/k → 0`.
+   The lane's own girth theorem is precisely what keeps the flexible
+   crux alive against the character test.
+2. **Kazhdan-dimension obstruction (new, quantitative): the crux is
+   DEAD on bounded-commutant towers.**  If `T_k` implements the
+   compressor with defect `ε` on `H_k`, then `Ad T_k` maps the
+   commutant `π_k(Λ)'` (= exact invariants of `Ad(π_k ∘ β_A)`)
+   near-isometrically into the `(|S|ε/κ)`-neighborhood of
+   `π_k(Γ)'` — the Kazhdan constant `κ` of `(Γ, S)` applies to
+   `Ad π_k` uniformly in `k`.  Counting orthonormal families:
+   `N` orthonormal operators within `δ` of an `M`-dim space forces
+   `(1−δ)² ≤ M/N`.  With `D_Γ = dim π_k(Γ)'` bounded and
+   `D_Λ > D_Γ` (separation), the defect is bounded below by a
+   `k`-independent constant `~κ/|S| · (1 − √(D_Γ/(D_Γ+1)))`.
+   Consistent one level up with the vanguard's
+   finite-dimensional-commutant theorem: bounded commutant ⟹ rigid,
+   now quantitatively at every finite stage.
+3. **The obstruction in ratio form, and the seed's base level is
+   REFUTED by it.**  Bessel over an orthonormal basis of the twist's
+   invariants gives `D_Λ(1−δ)² ≤ D_Γ`, i.e.
+
+   ```text
+   defect ε ≥ (κ/|S|)·(1 − √(D_Γ/D_Λ)) :
+   ```
+
+   the compressor is unimplementable unless the commutant-dimension
+   RATIO `D_Λ/D_Γ → 1`.  On the seed's own space
+   `ℓ²(Q₂/π(Λ))`: `D_Γ = #(P\Q/P) = 16` (the computed orbit count)
+   while `D_Λ = Σ_{i,j} #(P`-orbits on `O_i × O_j) ≥ 168` (the free
+   orbit alone contributes ≥ 168), ratio ≥ 10, so ANY `T₂` on that
+   space has defect `≥ (1 − √(16/168))·κ/|S| ≈ 0.69·κ/|S|`.  The
+   m-adic quasi-regular seed AS CONSTRUCTED is dead at its base
+   level; whether the ratio stays `≫ 1` along the tower is a finite
+   computation expected to confirm (both dimensions are double-coset
+   counts, and the free part grows).
+4. **The needle, final form.**  A flexible construction must supply
+   separating towers with `D_Λ/D_Γ → 1` — vanishing RELATIVE
+   commutant excess in dimension — while a mass-`Θ(1)` element sits
+   in the excess (one extra dimension may carry macroscopic mass, so
+   the trio is not self-contradictory, but every natural
+   quasi-regular construction fails it).  Rigid side: prove
+   separation forces the ratio bounded away from 1 — a
+   representation-theoretic statement about the pair `(Γ, Λ)` on
+   finite quotient towers, now the sharpest known sufficient
+   condition for (CCR) on genuine towers, and plausibly attackable
+   with double-coset combinatorics.  Characters (girth-neutralized),
+   plain dimension counting, and all fences are otherwise neutral;
+   this ratio dichotomy is the live front.
+5. **The needle IS threadable at the dimension level — the ratio
+   obstruction cannot become a rigid-side win (proved template).**
+   Take `π_k = (⊕_{i≤n_k} U_i) ⊕ V₀` with `U_i` pairwise
+   non-isomorphic `Q_k`-irreps that stay irreducible on `P_k`, and
+   `V₀` a single macroscopic `Q_k`-irrep whose `P_k`-restriction
+   splits as `W ⊕ W^⊥` (two non-isomorphic irreducibles).  Then
+   `D_Γ = n_k + 1` and `D_Λ = n_k + 2` — ratio `→ 1` — while the
+   projection onto `W` lies in `π(Λ)' ∖ π(Γ)'` EXACTLY with
+   normalized mass `dim W/dim H = Θ(1)`.  (Character-mass
+   identities: `D_Γ = ⟨χ,χ⟩_Q`, `D_Λ = ⟨χ|_P, χ|_P⟩_P`.)  So the
+   rigid side cannot win by dimension counting; the final constraint
+   is TWIST-CONTENT MATCHING: does any such needle tower admit an
+   approximate intertwiner between `π_k` and the pullback
+   `π_k ∘ β_A`, whose irreducible content is `P`-level content
+   lifted through the non-surjective `β_A`?  Girth and Bessel are
+   both silent there; trace-faithfulness of needle towers is
+   plausible (quasirandom pieces); nothing currently known decides
+   it.  The crux-of-the-crux, both sides open.
+6. **Clean reframing of the crux as a self-map fixed point.**  `β_A`
+   is INJECTIVE (monomial substitution by an `ℚ`-invertible matrix
+   `A`), with image the compressed copy, so `π_k ∘ β_A` is precisely
+   `π_k|_Λ` transported through the isomorphism `Λ ≅ Γ` induced by
+   `Ad t`.  Twist-content matching therefore reads: is `π_k`
+   approximately unitarily equivalent to `π_k ∘ Ad t`?  I.e. **is
+   the representation approximately fixed by conjugation by the
+   compressor** — the exact unitary shadow of "`t` normalizes
+   `σ(Γ)`", the very statement KT 4.1 proves on the permutation
+   side.  This makes the crux a fixed-point problem for the single
+   automorphism `Ad t` acting on the (approximate) representation
+   variety of `Γ`, and puts it squarely in the domain of
+   Popa/Peterson deformation-rigidity (Peterson Thm 5.2 gives
+   inner-ness of coordinatewise deformations of a (T) subfactor with
+   factorial relative commutant — the needle towers are exactly the
+   non-factorial case its hypothesis excludes, which is why the
+   question survives).  Sharpest statement of the goal's gate: does
+   the compressor automorphism have an approximate fixed point in
+   the representation variety of `Γ` over separating needle towers?
+
+   *Compute constraint (2026-08-18, from setting up the base-level
+   test): `β_A` DEGENERATES on low m-adic quotients.*
+   `β_A(x_i) = x^{A e_i}` has total degree = the `i`-th column sum
+   of `A`; a strict compressor has some column sum `≥ 2`, so those
+   generators map into `m²` and VANISH in `P/m^k` for `k` at or
+   below the compression depth `δ_A = max_i |A e_i|₁` (e.g. the
+   shear `x↦x, y↦xy, z↦xz` kills `y, z` in `P/m²`).  The fixed-point
+   / twist-matching test is only non-degenerate for `k > δ_A` — so
+   the finite computation deciding the base case must run at
+   `k = δ_A + 1` at minimum, NOT at `k = 2`.  This is why the
+   `k = 2` enumeration settled transversality (a `Λ`-only quantity)
+   but cannot address the compressor: at `k = 2` the compressor is
+   not yet faithfully present.  The corrected base compute target:
+   build `EL_r(P/m^{δ_A+1})`, its quasi-regular rep on the separating
+   coset space, and test `χ_π(g) = χ_π(β_A(g))`.
+
+   *EXECUTED (2026-08-18, sioux, `k = 3`, shear `A` cols
+   `(1,0,0),(1,1,0),(1,0,1)`, `δ_A = 2`).*  Non-degeneracy confirmed
+   (`β(y) = xy ≠ 0`, `β(x) = x`).  Result: on the root `(R, +)`,
+   `dim β_A(R) = 5` of `10` — a proper subspace of codimension 5
+   (monomials `y, z, y², yz, z²` missed) — so `χ_π ≠ χ_π ∘ β_A`
+   already at `k = 3`.  **But this is not evidence either way for the
+   crux, and the computation proves WHY: every finite level shows
+   `β_A(R)` proper (that IS separation, `char-p` restated), while the
+   crux asks whether the intertwining DEFECT `→ 0` asymptotically.  A
+   single finite character identity can only ever reconfirm
+   separation; it cannot see defect decay.**  Method fence: "compute
+   at larger `k`" is DEAD as a route to the crux — the finite towers
+   are separated at every stage by construction, and the question
+   lives entirely in the `‖·‖₂`-rate at which approximate
+   intertwiners close that fixed gap.  Whatever decides it is
+   analytic (a uniform lower bound on the defect, or a construction
+   achieving decay), not a bigger finite model.
+
+**Stakes, stated once:** a proof refutes hyperlinearity of the
+Kun–Thom wreath group (first non-hyperlinear group; group-CEP
+refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
+while leaving both answers to Q3.4 possible.  Either way one of
+Pestov's two remaining questions is directly advanced.
+
+**Cross-lane note (2026-08-21).**  The same wall appears in
+`hnn-over-codense-kazhdan-subgroup-not-hyperlinear`: there the identity
+that must survive approximate representations is `rho(C)' = rho(A)'` for
+`C = SL_2(Z) <= A = SL_2(Z[1/p])`, true for every genuine finite-dimensional
+representation (same image in every congruence quotient) and consumed
+through property `(tau)` of `C`.  The two lanes differ only in the base:
+`EL_r(F_q[x_1..x_d])` has (T), so Becker--Lubotzky forces far-from-genuine
+approximate representations to exist and (AC) must hold for them; the
+base `SL_2(Z[1/p])` has (T;FD) but not (T), so its flexible HS-stability
+(`iwahori-local-global-defect-question`) is open, and if it holds the
+HNN theorem closes the goal with no (AC)-type statement needed.  A
+proof of (AC) for non-liftable representations would conversely supply
+the missing step in the HNN route for ANY co-dense Kazhdan pair, stable
+base or not; a disproof of flexible stability of `SL_2(Z[1/p])` would
+show that the exotic representations whose existence (AC) must survive
+also exist for a non-(T) base.

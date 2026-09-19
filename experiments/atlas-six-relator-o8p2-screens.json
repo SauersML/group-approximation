@@ -1,0 +1,208 @@
+{
+  "marked_screens_completed": 10,
+  "marked_screens_requested": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "overgroup": "O8+(2)",
+  "overgroup_order": 174182400,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "screens": [
+    {
+      "first_survivor": null,
+      "marked_screen_index": 0,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 36864,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 12,
+      "s_0_conjugacy_class_size": 56700,
+      "s_0_conjugator_fiber_candidates": 36864,
+      "s_0_seed_centralizer_order": 3072,
+      "screen": "N1-N2",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 1,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 36864,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 1,
+      "s_0_conjugacy_class_hits": 12,
+      "s_0_conjugacy_class_size": 56700,
+      "s_0_conjugator_fiber_candidates": 36864,
+      "s_0_seed_centralizer_order": 3072,
+      "screen": "N1-N2",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 2,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 1,
+        "s_11": 2984704,
+        "s_30": 1216,
+        "s_44": 56,
+        "s_55": 7
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 27,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 2985984,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "O1-O2",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 3,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 331776,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 3,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 331776,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "N1-O1",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 4,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 331776,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 1,
+      "s_0_conjugacy_class_hits": 3,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 331776,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "N1-O1",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 5,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 331776,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 3,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 331776,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "N1-O2",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 6,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 331776,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 1,
+      "s_0_conjugacy_class_hits": 3,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 331776,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "N1-O2",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 7,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 36864,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 12,
+      "s_0_conjugacy_class_size": 56700,
+      "s_0_conjugator_fiber_candidates": 36864,
+      "s_0_seed_centralizer_order": 3072,
+      "screen": "N1-N1",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 8,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 1,
+        "s_11": 36768,
+        "s_30": 80,
+        "s_44": 12,
+        "s_55": 3
+      },
+      "relative_graph_parity": 1,
+      "s_0_conjugacy_class_hits": 12,
+      "s_0_conjugacy_class_size": 56700,
+      "s_0_conjugator_fiber_candidates": 36864,
+      "s_0_seed_centralizer_order": 3072,
+      "screen": "N1-N1",
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "marked_screen_index": 9,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 1,
+        "s_11": 2984704,
+        "s_30": 1216,
+        "s_44": 56,
+        "s_55": 7
+      },
+      "relative_graph_parity": 0,
+      "s_0_conjugacy_class_hits": 27,
+      "s_0_conjugacy_class_size": 1575,
+      "s_0_conjugator_fiber_candidates": 2985984,
+      "s_0_seed_centralizer_order": 110592,
+      "screen": "O1-O1",
+      "survivor_count": 0
+    }
+  ],
+  "total_survivors": 0
+}

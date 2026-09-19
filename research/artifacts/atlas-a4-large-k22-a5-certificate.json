@@ -1,0 +1,24 @@
+{
+  "A4_edge_orders": [12,12,12,12],
+  "S3_vertex_orders": [6,6],
+  "all_relators_identity": true,
+  "generator_images_one_based": {
+    "b": [3,2,1,5,4],
+    "r": [1,2,4,5,3],
+    "u": [2,1,4,3,5],
+    "y": [2,3,1,4,5]
+  },
+  "image": "A5",
+  "image_order": 60,
+  "low_index_at_most_12": {
+    "faithful_quotients": 12,
+    "image_order_histogram": {
+      "60": 4,
+      "168": 6,
+      "1920": 2
+    },
+    "subgroups": 13
+  },
+  "regular_atlas_multiplier": 336,
+  "u_recovery": "u=r^-1*b*y^-1"
+}

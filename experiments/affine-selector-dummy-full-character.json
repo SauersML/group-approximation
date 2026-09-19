@@ -1,0 +1,15 @@
+{
+  "dummy_pair_commutes_with_fresh_selectors": true,
+  "dummy_pair_symplectic_pairing": 1,
+  "dummy_qubits": 1,
+  "fresh_full_character_dimension": 2,
+  "fresh_full_character_stabilizer_rank": 4,
+  "fresh_rank16_carrier_dimension": 65536,
+  "nineteen_qubit_without_dummy_full_character_dimension": 1,
+  "old_full_character_dimension": 2,
+  "old_full_character_stabilizer_rank": 4,
+  "old_rank16_carrier_dimension": 65536,
+  "residual_spin_dimension": 32768,
+  "selector_qubits": 5,
+  "semantic_qubits": 4
+}

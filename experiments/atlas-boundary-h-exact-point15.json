@@ -1,0 +1,12 @@
+{
+  "model": "point15",
+  "field": "Q",
+  "boundary_relations": 234,
+  "endomorphism_dimension": 225,
+  "boundary_rank": 212,
+  "boundary_nullity": 13,
+  "h_covariance_rank": 212,
+  "h_covariance_nullity": 13,
+  "target_kills_boundary_kernel": true,
+  "kernels_equal": true
+}

@@ -1,0 +1,16 @@
+/.lake/
+/docbuild/.lake/
+/tmp/
+/.pdf-preview/
+/build/
+/*.aux
+/*.log
+/*.out
+/*.toc
+scripts/msi-build.sh
+**/__pycache__/
+
+# cairn runtime state (locks, cache, generated site) — disposable
+.cairn/
+scripts/remote-build.env
+scripts/msi-build.sh.pre-split.bak

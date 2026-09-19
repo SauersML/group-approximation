@@ -1,0 +1,21 @@
+{
+  "C_loc": 0.07142857142857525,
+  "C_loc_second": 0.07142857142857353,
+  "W_pkt_kernel_dim": 120,
+  "W_pkt_max_eigenvalue": 4118.067254113008,
+  "W_pkt_min_positive_eigenvalue": 18.06850922436191,
+  "W_pkt_rank": 20040,
+  "cov_energy_on_packet_kernel": 2.3555280636697455e-17,
+  "device": "cuda",
+  "elapsed_s": 68.7,
+  "seconds_to_algebra": 32.7,
+  "seconds_to_matrices": 40.7,
+  "sum_W_cov": 0,
+  "sum_W_pkt": 0,
+  "support_W_cov": 3,
+  "support_W_pkt": 101,
+  "trace_W_cov": 4,
+  "trace_W_pkt": 1516,
+  "words_skipped_nontrivial_at_fold": [],
+  "words_with_a_form": 234
+}

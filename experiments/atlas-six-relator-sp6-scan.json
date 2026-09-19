@@ -1,0 +1,27 @@
+{
+  "chart_normalizer_order": 40320,
+  "chart_order": 20160,
+  "conjugators_tested": 1451520,
+  "first_failure_histogram": {
+    "c_19243": 1,
+    "s_0": 1410048,
+    "s_11": 41376,
+    "s_30": 80,
+    "s_44": 12,
+    "s_55": 3
+  },
+  "first_survivor": null,
+  "overgroup": "Sp(6,2)",
+  "overgroup_order": 1451520,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "s8_derived_a8_one_conjugacy_class": true,
+  "s8_maximal_subgroups": 36,
+  "survivor_count": 0
+}

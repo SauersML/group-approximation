@@ -1,0 +1,25 @@
+{
+  "A8_divisible_orders": [
+    "G2(4)"
+  ],
+  "G2(4)_A8_index_if_contained": 12480,
+  "first_arithmetic_A8_overgroup_candidate": "G2(4)",
+  "lower_endpoint": {
+    "group": "M24",
+    "index": 12144,
+    "order": 244823040
+  },
+  "simple_groups_strictly_after_M24_through_G2(4)": [
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "G2(4)",
+      "order": 251596800
+    }
+  ],
+  "upper_endpoint": {
+    "group": "G2(4)",
+    "index": 12480,
+    "order": 251596800
+  }
+}

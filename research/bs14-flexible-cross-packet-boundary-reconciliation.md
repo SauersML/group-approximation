@@ -1,0 +1,653 @@
+---
+rg: 2
+id: bs14-flexible-cross-packet-boundary-reconciliation
+kind: claim
+title: Cubic energy pays the global boundary rank in flexible BS14 extension
+distinct_from:
+  bs14-relative-involution-extension-stability: that asks for the final dimension-independent repair modulus; this isolates the quantitative boundary-rank and multiplicity-semigroup statement which the Weil compression shows is necessary.
+  direct-sum-weil-compressions-have-quadratic-padding: that proves the desired ledger for a canonical orthogonal family; this asks for it for arbitrary cross-packet couplings and heterogeneous scalar BS packets.
+  iwahori-torsion-multiplicity-stratum-reconciliation: that reconciles nearby exact torsion strata; this must first extract and globally balance the missing extension types from the two cubic residuals.
+---
+
+OPEN.  Let `(R,S)` be an exact finite-dimensional representation of
+`BS(1,4)` and let `X` be a unitary.  Set
+
+```text
+E=||X^2-1||_F^2+||X R X-R^(-1)||_F^2
+  +||(X S^2)^3-1||_F^2+||(X R S)^3-1||_F^2,           (FBR1)
+```
+
+where the norm is **unnormalized** Frobenius norm.  Prove that there is an
+integer `k<=C E`, an exact Iwahori tuple `(X~,R~,S~)` on dimension `d+k`,
+and an isometric inclusion of the original space into the enlarged one for
+which the normalized-HS displacement tends to zero as `E/d tends to 0`,
+with one modulus independent of all fourth-power orbit lengths, scalar
+return phases, and multiplicities.
+
+Equivalently, after decomposing the exact BS core into scalar packets
+`(O,v)`, the two cubic residuals must pay for an added nonnegative
+multiplicity vector `b` such that the old multiplicity data plus `b` lies in
+the restriction semigroup of exact Iwahori representations:
+
+```text
+weighted_size(b) <= C E.                              (FBR2)
+```
+
+The same `b` must repair both cubic triangles.  It may couple different
+`(O,v)` packets off diagonally; requiring an independent repair of every
+packet is false.  A proof also has to control generator displacement after
+the semigroup reconciliation, rather than merely produce an abstract exact
+extension of the enlarged BS core.
+
+The quadratic scale is forced by the normalized form of `(FBR2)`.  If
+`epsilon^2=E/d`, then
+
+```text
+k/(d+k)=O(epsilon^2).                                 (FBR3)
+```
+
+It is not yet known whether `(FBR2)` holds for arbitrary mixtures.  In
+particular, the statement is deliberately stronger than merely permitting
+unspecified `o(d)` padding and is the sharp flexible target suggested by the
+compressed Weil packets.
+
+By `iwahori-square-free-bs14-presentation`, the same target can be stated
+without the half-parabolic `S`.  Set `T=S^2`; then
+
+```text
+S=R^(-1)T^2R,       RS=T^2R,       RTR^(-1)=T^4,
+```
+
+and the two cubic residuals in `(FBR1)` are exactly
+
+```text
+||(XT)^3-1||_F^2+||(XT^2R)^3-1||_F^2.                 (FBR4)
+```
+
+No square-root rounding is required in the boundary reconciliation.  Its
+remaining content is authentication of a common congruence `(R,T)` atom and
+the cross-packet multiplicity boundary for one `X`.
+
+## Attempts
+
+- **Arbitrary authenticated Weil reservoirs now satisfy the full ledger.**
+  `weil-reservoir-mixing-has-energy-paid-completion` starts from any
+  heterogeneous sum of full even-Weil endpoints, transports the total fixed
+  reservoir by an arbitrary common basis change, and permits arbitrary
+  unitary mixing inside that reservoir before compression.  The corner
+  `QXQ` remains positive with spectrum at most `1/sqrt(5)`.  The block-free
+  first-cubic identity therefore gives
+
+  ```text
+  E_cubic >= f(1/sqrt(5)) rank(Q).
+  ```
+
+  Restoring `Q` is an exact completion and has squared flexible displacement
+  `O(rank(Q)/(d+rank(Q)))`.  Hence `(FBR2)` is proved without retained block
+  labels for every authenticated mixed Weil boundary.  What remains is only
+  reverse authentication: produce such a positive fixed reservoir or an
+  equivalent global atom from the two residual carriers of an arbitrary
+  near-solution.
+
+- **Strict alternating projection cannot expose the flexible boundary.**
+  `iwahori-two-loci-have-zero-uniform-angle` uses the compressed even-Weil
+  family to put one tuple exactly on the reflected BS locus and another
+  `O(p^(-1/2))` away on the exact simultaneous-cubic locus, while their
+  same-dimensional intersection stays a fixed distance away.  Thus no
+  uniform metric-angle, global alternating contraction, or residual-only
+  Newton basin theorem can be used before padding.  The added Weil line is
+  not a technical convenience: it changes the ambient intersection variety.
+  Any proof of `(FBR2)` must therefore reconstruct an energy-paid boundary
+  carrier (or an equivalent support-changing global atom) before invoking
+  local angle/Newton estimates.
+
+- **Every canonical compressed even-Weil block obeys the exact ledger.**  If
+  `p=5 mod 8`,
+  `even-weil-second-cubic-has-a-rank-six-determinant-gap` proves
+
+  ```text
+  ||(X R S)^3-1||_F^2 >= 2/3,
+  ```
+
+  If `p=1 mod 8`, the determinant is neutral, but
+  `deleted-fixed-line-first-cubic-has-explicit-positive-spectrum` computes
+  the first cubic exactly and gives Frobenius square at least `144/125`.
+  One restored fixed line gives an exact extension in either case.  On an
+  orthogonal sum of `K` heterogeneous canonical blocks, the **sum** of the
+  two cubic Frobenius squares is therefore at least `2K/3`; the evident
+  `K`-line completion satisfies `K<=3E/2`.  Thus `(FBR2)` is proved, with
+  the sharp quadratic normalization, for this authenticated block-diagonal
+  family.
+
+- **The charge survives transfer to the exact torsion frame on a full
+  arithmetic subfamily.**
+  `five-mod-eight-torsion-normalization-retains-a-padding-charge` performs
+  the cube-root normalization on every `p=5 mod 8` compressed Weil block.
+  The resulting `C_2*C_3*C_3` representation has only the two structural
+  residuals.  Its BS word has rank at most `46` and determinant `-1`, hence
+
+  ```text
+  ||u-1||_F^2+||v-1||_F^2 >= 2/23
+  ```
+
+  per missing line.  Orthogonal sums give `K<=(23/2)E_structural`, so the
+  sharp padding ledger is not an artifact of leaving the cubic rows
+  approximate.  The determinant-neutral and unauthenticated mixed sectors
+  remain open.
+
+- **Independent torsion retraction shrinks the last neutral carrier.**
+  `iwahori-symmetric-two-cubic-torsion-retraction` rounds the two original
+  cubic products independently and reconstructs the square-free core.  On
+  the compressed Weil packet the resulting structural residuals have ranks
+  at most twenty and thirty, rather than the larger ranks introduced by the
+  sequential second rounding.  Their determinants are respectively a cube
+  root of unity and `det(X)`.  On the canonical `p=1 mod 8` progression,
+  `neutral-weil-symmetric-retraction-is-double-neutral` sharpens the ranks
+  to twelve and twenty-two and proves that both determinants are always
+  one.  Thus the last canonical calculation is exactly the mixed-carrier
+  eigenangle/trace on at most thirty-four dimensions.  Rank and determinant
+  alone cannot settle that branch.
+
+- **The determinant-neutral torsion frame now has one exact spectral
+  residue.**  For `p=1 mod 8`,
+  `one-mod-eight-torsion-charge-reduces-to-a-double-neutral-angle` proves
+
+  ```text
+  rank(u-1)<=36, det(u) in mu_3,
+  rank(v-1)<=46, det(v)=1.
+  ```
+
+  If `det(u)` is nontrivial, then `||u-1||_F^2>=1/12`, so the missing line
+  is again energy-paid.  Only the branch `det(u)=det(v)=1` survives.  In
+  that branch rank and nonidentity are quantitatively insufficient:
+  conjugate eigenvalues `exp(+-i theta)` can approach one with fixed rank
+  and zero determinant charge.  The remaining authenticated-block
+  calculation is therefore an explicit post-normalization eigenangle bound
+  for `u` or `v`, not another determinant or carrier-rank estimate.
+
+- **Heterogeneous primes are not covered by determinant multiplication, but
+  their canonical orthogonal sums are covered by positive cubic energy.**
+  For `p=1 mod 8` the second compressed cubic has determinant `+1`; its
+  deleted mode instead appears as a conjugate rank-two eigenvalue pair in
+  the first cubic.  Even among
+  `p=5 mod 8` blocks, multiplying determinants globally retains only the
+  parity of the number of missing lines; opposite phase defects can cancel
+  while Frobenius energy remains positive.  Therefore a scalar determinant
+  or Fredholm index cannot prove `(FBR2)` for arbitrary mixtures.  The
+  required charge must be positive and matrix-valued (or be recovered after
+  an authenticated packet decomposition).  Squared Frobenius energy gives
+  exactly such a noncancelling charge once the canonical blocks are known;
+  the open issue is to authenticate an analogous boundary decomposition for
+  an arbitrary common `X` which mixes scalar packets.
+
+- **Cross-packet coupling is essential.**  The full even-Weil involution
+  couples the deleted fixed line to the primitive nonzero BS packet.  The
+  latter has no exact extension by itself.  Consequently the desired
+  correction cannot first round each scalar packet and then take a direct
+  sum.  Its multiplicity vector must be balanced globally, allowing the
+  same added line or packet type to participate in off-diagonal cubic
+  coefficients.
+
+- **The remaining algebraic sublemma is semigroup saturation with an energy
+  certificate.**  One needs either (i) a positive boundary operator whose
+  trace/rank is bounded by the energy `(FBR1)` and whose packet-valued index
+  is exactly the obstruction to lying in the Iwahori restriction semigroup,
+  or (ii) a
+  finite-period preconditioning theorem which authenticates the scalar
+  packet table and proves a uniform integral-flow rounding bound.  A mere
+  spectral threshold on the cubic residual controls only its large singular
+  directions and does not recover low-amplitude boundary spread over many
+  packets.
+
+- **The square-free torsion frame does not make the restriction semigroup
+  finite rank.**
+  `iwahori-edge-restriction-image-has-continuous-type` gives an explicit
+  continuum of exact two-dimensional modular representations whose
+  restrictions to the index-three Iwahori edge are pairwise distinct.  The
+  continuously varying coordinate is already the trace of the parabolic
+  `t=xa`.  Thus the Gerasimova--Shchepin finite-edge restriction-matrix
+  criterion cannot be imported merely because `x,a,b` have exact orders
+  `2,3,3`; the regular/congruence hypothesis or an analytic edge-alignment
+  theorem remains indispensable.
+
+- **A block-free positive charge exists once the boundary corner is
+  exposed.**
+  `positive-fixed-corner-cubic-energy-charges-deleted-rank` treats an
+  arbitrary finite-rank reservoir `Q` fixed pointwise by the first parabolic
+  word.  It allows the ambient involution to mix every deleted direction and
+  proves the exact identity
+
+  ```text
+  ||first cubic residual||_F^2=Tr_Q f(QXQ)
+  ```
+
+  with `f(t)>0` on every compact subinterval of `[0,1)`.  Thus neither
+  determinant cancellation nor heterogeneous mixing can recycle a positive
+  corner whose compression stays uniformly below one.  The logical
+  direction is load-bearing: the theorem starts with an exact dilation and
+  its corner `Q`, whereas `(FBR2)` starts only with the compressed
+  near-solution.  The remaining gate is therefore a reverse boundary
+  dilation/authentication theorem, not another scalar index.
+
+- **Two cubic carriers give an exact reverse decoder under one angle
+  hypothesis.**
+  `two-cubic-residual-carriers-recover-the-deleted-source` proves that, in a
+  positive-corner dilation, each cubic residual has a rank-doubled carrier
+  containing the common source image `PXQH`.  If the two exit halves have a
+  uniform principal-angle gap, then
+
+  ```text
+  PXQH=ran(W_1-1) intersect ran(W_2-1),
+  ```
+
+  and a spectral projection of the product of the two carrier projections
+  recovers it stably.  This also gives a sharp one-cubic no-go: one carrier
+  contains source and exit with equal rank and cannot distinguish them.
+  General scalar phases do make the exits asymptotically parallel, as
+  recorded below.  Thus the surviving arbitrary-model question is how to
+  separate energy-paid active parallel modes from continuously correctable
+  passive modes, not whether every carrier has a uniform angle.
+
+- **Canonical determinant-neutral packets have a large uniform carrier
+  angle.**
+  `even-weil-two-cubic-exit-angle-is-one-over-root-p-plus-two` computes the
+  non-source principal cosine for `p=1 mod 8` as
+
+  ```text
+  1/(sqrt(p)+2)<1/6.
+  ```
+
+  Orthogonal sums, heterogeneous primes, and multiplicity mixing preserve
+  this bound.  Hence the known neutral Weil family cannot furnish the
+  parallel-exit counterexample.  Any such counterfamily must use genuinely
+  non-Weil scalar return phases or an approximate off-diagonal coupling not
+  unitarily equivalent to multiplicity mixing of exact Weil blocks.
+
+- **Fixed-period preconditioning closes every bounded endpoint but leaves a
+  quantitative basin condition.**
+  `bounded-period-iwahori-quotients-are-finite` proves that the entire
+  augmented endpoint, not merely its metacyclic core, is finite: the imposed
+  unipotent power has finite-index normal closure.  Hence its fixed-level
+  flexible stability is unconditional.  If those finite-group stability
+  radii and moduli dominate the explicit preconditioning error
+  `alpha_K=O(K^(-1/2))` along a cofinal sequence, the staircase
+  closes the qualitative relative-stability endpoint, but does not itself
+  give the sharp quadratic padding bound in the present claim.  Qualitative
+  stability separately for every fixed `K` is not enough: its radius may
+  decay faster than `alpha`, so
+  the preconditioned tuple never enters the local basin.  This is the exact
+  uniformity datum a finite-level packet proof must report.  No return-
+  monodromy parameter or `r`-power row is required: the single `s^N=1` row
+  already makes the full endpoint finite.
+
+- **General scalar phases refute a uniform angle but obey an energy-angle
+  dichotomy.**  `scalar-bs14-exit-angle-energy-dichotomy` computes the exit
+  cosine from the return-shift numerical range:
+
+  ```text
+  kappa=|(1+a)^2<z,S^(-2)RSz>-a^2|/(1+2a).
+  ```
+
+  Long scalar cycles with return phase chosen so the weighted shift has
+  monodromy one admit Gram data with `kappa->1`.  Thus the canonical Weil
+  angle cannot be extended phase-uniformly.  However the first-cubic energy
+  satisfies `f(a)>=(3/8)(1-a^2)^2`: after thresholding the source coupling,
+  active parallel directions have rank charged by the relator energy and
+  passive directions have total normalized-HS coupling at most
+  `sqrt(tau)`.  The remaining task is to turn this active/passive split into
+  one global multiplicity-semigroup repair; searching for an unconditional
+  angle gap is now fenced.
+
+- **The global threshold has explicit qualitative rates, but invariant
+  hulling is impossible.**  `bs14-energy-threshold-active-passive-ledger`
+  chooses `tau=e^(1/4)` and gives active padding fraction `O(e^(1/2))` and
+  passive coupling cost `O(e^(1/8))`.  This would already suffice for the
+  qualitative relative-stability endpoint.  However
+  `bs14-residual-invariant-hull-has-unbounded-packet-loss` shows that the
+  BS-core invariant hull of a rank-one Weil source is the entire
+  `d`-dimensional packet.  The remaining reverse operation is isolated as
+  `bs14-residual-polar-data-build-active-dilation`: jointly round the two
+  high-residual polar decompositions to integer source/exit cells and add
+  trivial-core dimensions, without replacing the non-invariant source by a
+  core-central projection.
+
+- **The active flow is typed by the inversion relation.**
+  `bs14-trivial-boundary-inversion-forces-r-fixed-source` shows that every
+  neutral source column must lie in `Fix(R)`; on a scalar packet this exists
+  exactly at return phase `v=1`.  An ordinary integral transportation of
+  carrier dimensions is therefore insufficient.  Explicit long
+  `v=1` cycles still make the two exits parallel, so the phase restriction
+  does not revive an angle gap.  The last flow must jointly round
+  `R`-fixed source cells, their exit Grams, and the involution equations.
+
+- **The fixed-source flow is genuinely three-way and need not saturate.**
+  `bs14-two-exit-typed-transport-is-not-saturated` decomposes
+  `Fix(R|H_(O,V))` as the orbit-sum copy of `ker(V-1)` and writes the joint
+  multiplicity matrix: one source type must be matched simultaneously to
+  one exit type for each cubic.  The resulting three-uniform incidence
+  matrix has a determinant-two minor; an explicit even-parity four-cell
+  support has integral unit margins but only the half-integral joint table.
+  Therefore ordinary network-flow integrality cannot close `(FBR2)`.
+  A proof needs a BS-specific balanced-support theorem, an energy-controlled
+  parity padding lemma, or an operator argument excluding the parity cycle.
+
+- **Multiplicative saturation is not additive flexible padding.**
+  `bs14-native-cell-padding-preserves-lattice-charge` records the exact
+  affine-semigroup obstruction.  A margin outside the lattice generated by
+  the native cells stays outside after adjoining arbitrarily many cells from
+  that same support.  In the determinant-two example, a mod-two charge is
+  conserved by all four even-parity cells: doubling the entire margin vector
+  works, but same-support padding never does.  Hence even a bounded
+  saturation exponent does not prove `(FBR2)`.  The analytic repair must
+  either change rounded packet types at energy-controlled cost or exhibit a
+  native support-enlarging cell which cancels every torsion charge.
+
+- **The minimal parity hole costs exactly one support-changing cell.**
+  `three-way-parity-hole-has-one-cell-repair` explicitly inverts the
+  two-by-two-by-two even-parity incidence tetrahedron.  Its four cell
+  multiplicities are one half of four nonnegative numerators which always
+  have a common parity.  If that parity is odd, adjoining the margins of
+  any one odd-parity triple changes three numerators by `+1` and the fourth
+  by `-1`; all become nonnegative even integers.  Thus every integral hole
+  in this cone is repaired at exact additive cost one, and the six-unit
+  determinant-two example is sharp.  This removes the abstract parity
+  tetrahedron as an unbounded flexible-padding obstruction.  It does not
+  close `(FBR2)`: the added odd triple is deliberately outside the old
+  support, so the native BS packet/Gram relations must still realize that
+  one type change with energy-controlled displacement.
+
+- **The first native congruence face has no additive odd cell.**
+  `a5-d10-restriction-keeps-parity-charge` computes the complete restriction
+  table from `A_5=PSL_2(F_5)` to the level-five BS image `D_10`.  If its
+  irreducibles are `1,epsilon,rho_1,rho_2`, every exact restriction has
+
+  ```text
+  m_epsilon+m_(rho_1)+m_(rho_2)=0 mod 2.
+  ```
+
+  The integral type `epsilon+rho_1+rho_2` is half the sum of the restricted
+  `3,3',4` irreducibles, but lies outside the restriction lattice and stays
+  outside after arbitrary exact level-five padding.  Hence the abstract odd
+  triple above cannot be realized by a same-level exact atom.  The table
+  also shows the correct one-line operation:
+  `epsilon+rho_1+rho_2-epsilon+1=res(5)`.  Native reconciliation must pay a
+  **type flip** of an existing boundary line (or change congruence level),
+  not merely append an exact atom.  The remaining analytic gate is to charge
+  that flip and its joint Gram surgery to `(FBR1)` uniformly over moving
+  levels.
+
+- **The level-five type flip is energy-paid, including possible level
+  change.**  `a5-d10-parity-blocks-have-energy-paid-repair` fixes the native
+  core `h=epsilon+rho_1+rho_2` and considers its full four-relator energy on
+  `U(5)`.  If some exact Iwahori endpoint at any level restricts to `h`,
+  compactness gives a same-core correction modulus.  Otherwise the energy
+  has a positive minimum `delta_h`; adjoining one sign line gives
+  `h+epsilon=res(3+3')`, so one exact `A_5` endpoint repairs the block and
+  `1<=E/delta_h`.  Block-diagonal sums therefore have padding linear in
+  unnormalized energy and vanishing normalized displacement.  This proves
+  the desired native support change and joint Gram completion on the first
+  finite face.  The constants are fixed-level compactness constants, and
+  the proof does not survive moving levels or an unauthenticated `X` mixing
+  the native blocks; uniform moving-level energy charge remains the gate.
+
+- **Every fixed finite core face has a complete energy-paid dichotomy.**
+  `fixed-finite-core-face-has-energy-paid-completion` removes any residual
+  ambiguity about what fixed-level compactness can prove.  For a fixed
+  finite quotient `G`, core image `H`, and authenticated `H`-type `sigma`,
+  either the exact extension zero set is nonempty and compactness gives a
+  same-core correction modulus, or its energy has a positive minimum
+  `delta_sigma`.  In the latter case, complete `sigma` inside
+  `res_H^G(M lambda_G)=M[G:H]lambda_H`; the complement has fixed dimension
+  `k_sigma` and
+
+  ```text
+  k_sigma<=(k_sigma/delta_sigma)E.
+  ```
+
+  This automatically satisfies every joint Gram relation.  Finite lists of
+  authenticated faces therefore obey `(FBR2)` with face-dependent constants.
+  The moving-level problem is exactly uniform control of
+  `k_sigma/delta_sigma` by a **native efficient** completion, plus recovery
+  of the blocks when `X` cross-mixes them.  Regular completion cannot supply
+  that uniformity: its dimension has the quotient-index blowup already
+  exhibited by the rank-one Weil boundary.
+
+- **The proposed uniform trichotomy has one exact fourth case.**  On an
+  authenticated moving face, the three useful outcomes are: (i) a uniform
+  same-core correction modulus; (ii) an exact internal replacement supported
+  on `O(E)` old dimensions; or (iii) a native exact completion using `O(E)`
+  added/support-changed dimensions whose compression is close to the input.
+  Each outcome gives the required flexible repair by the standard
+  low/high-energy direct-sum split.  If none holds, the surviving enemy is a
+  **soft delocalized nonextendible face**: a sequence with
+
+  ```text
+  E_n/d_n ->0,
+  dist(input_n, same-core exact zeros) not ->0,
+  ```
+
+  for which no `O(E_n)`-rank internal carrier and no `O(E_n)` native
+  boundary completion has vanishing compression displacement.  This is the
+  exact fourth case omitted by a bare compactness argument.  The known
+  families do not realize it: compressed Weil packets satisfy (iii) with
+  one line, long return-phase packets admit a cheap same-dimensional reset,
+  and the Dadarlat/rational-`H^2` soft modes which defeat a strict
+  operator-norm basin have exact torsion rows rather than the required exact
+  BS-and-inversion core.  Excluding this fourth case for the native
+  congruence faces is equivalent to the remaining moving-level content of
+  `(FBR2)`; no present finite-face theorem excludes it.
+
+- **A dyadic diagonal does not by itself exclude the fourth case.**
+  `dyadic-face-repair-needs-cost-tail-tightness` gives the exact summation
+  criterion.  Splitting face repair constants at `L` gives
+
+  ```text
+  repaired rank/d <= L E/d
+    +mass{lambda:C_lambda>L}.
+  ```
+
+  A qualitative diagonal proof therefore requires uniform tightness of the
+  occupied repair-cost tails.  Pointwise finite-face compactness supplies
+  no such estimate: mass on a type with `C_n->infinity` and energy density
+  `1/C_n` defeats every cutoff.  Canonical character convergence also
+  cannot give ordinary conductor tightness, since it forces every fixed
+  shallow-conductor mass to vanish.  This is a quantifier firewall, not a
+  native counterexample; the remaining arithmetic input must be a uniform
+  native cost bound or an independent repair-cost tail theorem.
+
+- **Uniformly energy-paid faces cannot delocalize by mixing levels.**
+  `energy-paid-flexible-completions-aggregate` sums the padding, leakage and
+  generator Frobenius ledgers before normalization.  If every occupied
+  authenticated face has one level-independent energy-to-completion
+  constant, then arbitrary heterogeneous direct sums over moving levels
+  have padding and squared flexible displacement `O(E/d)`.  This rules out
+  diffuse sums of compressed positive-corner Weil packets, arbitrary
+  passive cuspidal redistributions plus those packets, and sums of the
+  isolated metacyclic substitutions.  Long return phases can first be reset
+  at global cost `pi/M`, while the rational-`H^2` index has vanishing
+  normalized density and is not exact on the required core.  Therefore the
+  fourth case, if real, must be genuinely cross-atom before authentication,
+  or occur on single native faces with unbounded efficient-completion cost;
+  it cannot arise merely by spreading the known local enemies over levels.
+
+- **Cross-packet Frobenius mass is not gauge-invariant.**
+  `exact-cuspidal-hadamard-mixing-has-macroscopic-cross-blocks` gives an
+  exact zero-energy endpoint over two identical BS restrictions whose
+  extender has a fixed positive fraction of off-diagonal mass relative to
+  the duplicated cyclic-packet decomposition.  The mixing is a Hadamard in
+  the full core commutant between two inequivalent cuspidal global labels.
+  Thus no estimate can pay all raw `X` blocks joining preselected packet
+  copies.  Compatibility must first quotient the exact restriction-fiber
+  gauge; only its normal complement can carry endpoint energy.
+
+- **Long return phases admit an explicit support-enlarging reset.**
+  `bs14-long-packet-monodromy-reset-creates-fixed-sources` replaces the
+  monodromy `V` of a length-`m` packet by one, distributing `V^(-1/m)` over
+  its cyclic edges.  The BS covariance stays exact and the packet-normalized
+  displacement is at most `pi/m`; the reset creates
+  `dim(V)` fixed-source lines.  Thus the `v!=1` tail is not an intrinsic
+  obstruction.  The unresolved finite part is to localize short active
+  residual mass packetwise and compute the **native** joint-cell support.
+  The determinant-two parity support above was an abstract incidence
+  witness, so it does not itself name a native odd-charge cell.
+
+- **Native cells cross every short/long cutoff.**
+  `bs14-native-cells-cross-every-length-cutoff` extracts this from the exact
+  even-Weil family.  For arbitrarily large `m=ord_p(4)`, an exact cell joins
+  the trivial length-one packet to monodromy-one packets of length `m`, and
+  its off-diagonal coupling has squared norm `1-1/p`.  The long-phase reset
+  therefore does not reduce the remaining support to a product of finite
+  short-level semigroups and an independent tail.  A qualitative staircase
+  must preserve these cross-threshold cells; otherwise it deletes the very
+  rank-one completion that repairs the canonical enemy.
+
+- **Exact global atoms are congruence restrictions, but their level moves.**
+  `bs14-global-atoms-are-moving-congruence-restrictions` uses finite-image
+  superrigidity/CSP to identify the exact extension monoid as the directed
+  union, over odd congruence levels, of restrictions of irreducible finite-
+  quotient representations.  This correctly treats a Weil restriction as
+  one atom rather than separate BS packets.  At a fixed level the monoid is
+  finite-type, and the established infinitesimal theorem repairs a tuple
+  already near its congruence stratum.  No current theorem extracts the
+  moving level and atom multiplicities from arbitrary two-cubic residual
+  polar data.  That extraction is the far-sector content of `(FBR2)`, not a
+  consequence of exact congruence classification.
+
+- **Finite-quotient induction cannot reconstruct the exposed boundary.**
+  `congruence-induction-cannot-reconstruct-a-low-rank-bs14-boundary`
+  computes the BS core image `H_p=F_p semidirect <4>` inside
+  `PSL_2(F_p)`. Its index is `(p^2-1)/(2 ord_p(4))>=(p+1)/2`. Hence
+  inducing a rank-one BS boundary to the classified congruence quotient
+  adds `Omega(p)` dimensions. The native even-Weil atom restores the same
+  canonical compressed packet with one line and constant cubic energy.
+  Thus exact odd-congruence classification plus induction is quantitatively
+  unusable for `(FBR2)`; the reverse theorem must authenticate the native
+  global atom or an equally efficient cross-packet cell.
+
+- **Bounded moments cannot name the moving level.**
+  `bs14-bounded-moments-cannot-extract-congruence-level` uses amplified
+  regular representations of two deep prime quotients.  They can be made
+  equal-dimensional and have identical normalized values on every fixed
+  finite family of word or finite-support Hecke moments, while their
+  congruence kernels differ and all cubic residuals are exactly zero.
+  Level-dependent central idempotents detect the level only after it is
+  known.  Hence a positive atom-authentication theorem must be
+  level-agnostic, conductor-growing, or directly geometric rather than a
+  fixed scalar moment separator.
+
+- **Character rigidity removes every finite-level mixture, but not the
+  regular face.**
+  `bs14-character-split-leaves-only-the-regular-microstate-face` performs
+  the central ultraproduct cut.  The finite-character branch is a
+  hyperfinite direct integral of congruence factors and is already covered
+  by hyperfinite HS stability, with no level extraction.  The complementary
+  branch has the canonical regular character and nonamenable GNS algebra
+  `L(PSL_2(Z[1/2]))`.  Producing the energy-paid boundary completion there
+  is precisely the missing full stability theorem.  Thus character
+  rigidity is available and exhausted; its unavailable strengthening is
+  regular-character microstate correction, not another classification of
+  exact characters.
+
+- **Regular character kills positive-density fixed sources.**
+  `bs14-regular-character-forces-sublinear-fixed-source` uses the Haar
+  spectral law of the infinite-order diagonal word.  Its exact fixed space
+  has `o(d)` dimension, and inversion forces every trivial-boundary source
+  into that space.  The sharp perturbative cost for creating fixed density
+  `alpha` is
+  `2alpha-(2/pi)sin(pi alpha)~(pi^2/3)alpha^3`.
+  Thus the regular face supplies the desired qualitative rank charge for
+  sources.  The remaining obstruction is operator-valued: recovering the
+  two exits and their global congruence atom from an `o(d)` source carrier.
+
+- **Opposite-root orthogonality does not authenticate moving gauges on the
+  regular face.**
+  `opposite-root-orthogonality-charges-two-jump-gauges` gives the exact
+  nonlinear plateau charge inside a pure regular quotient, using
+  `U intersection U^-=1`. But
+  `regular-tensor-camouflage-preserves-moving-root-failures` raises the
+  amplified root to the order `N_n` of its regular quotient factor:
+
+  ```text
+  (pi(u) tensor lambda_n(u))^(N_n)=pi(u)^(N_n) tensor 1.
+  ```
+
+  Thus conductor-moving root polynomials recover arbitrary payload-only
+  geometry while the fixed-word character is canonical and the Iwahori
+  defect is unchanged. Central-regular localization plus edge compatibility
+  therefore cannot promote the regular-packet tensor isometry to the moving
+  coefficient gauges needed for atom authentication. The full cubic/Weyl
+  relations must repair or split that payload geometry; invoking opposite-
+  root orthogonality before this step is circular.
+
+- **Low-rank surgery removes an exposed boundary but stays regular.**
+  `bs14-low-rank-boundary-surgery-preserves-the-regular-face` gives the
+  block-free forward lemma.  A rank-`r` neutral boundary can be cut, and the
+  compressed operator polar-corrected, while keeping involution and
+  inversion exact; both cubic residuals then have rank `O(r)` and
+  Frobenius norm `O(sqrt r)`.  When `r=o(d)`, every bounded word changes by
+  `o(1)`, so the regular character is unchanged.  Consequently this surgery
+  does not hand the remainder to hyperfinite stability.  The endpoint is
+  now sharply the reverse low-rank problem: reconstruct one global atom
+  from two sublinear-rank cubic residuals.
+
+- **Thresholding fixes the Hessian scale but not basin entry.**
+  `bs14-thresholded-newton-needs-coordinate-basin`
+  separates residuals at singular threshold `theta`.  The high carrier has
+  relative rank at most `e/theta^2`, while the low residual has operator norm
+  at most `theta`.  Uniform infinitesimal rigidity plus the correct mixed
+  Hessian estimate gives a level-independent Newton correction once the
+  tuple is operator-norm close to an exact atom.  But low residual operator
+  norm is a codomain condition, not coordinate proximity, and the spectral
+  truncation itself is not a tuple.  The surviving low-part theorem is a
+  global operator-norm coordinate-basin result; no tangent sequence defeats
+  it, because the exact-point derivative gap is already uniform.
+
+- **Rounding the two cubic spectra leaves the same relative basin.**
+  `bs14-cubic-rounding-leaves-relative-core-basin` sets
+  `A=XS^2`, `B=XRS`, and `C=S^(-2)RS`, so `B=AC`.  Each almost
+  order-three unitary rounds in operator norm to an exact one with constant
+  `1/2`, and the rounded relative product stays within the cubic defect of
+  `C`.  But independent rounding neither preserves `B=AC` nor makes
+  `A S^(-2)` a common involution inverting `R`.  Thus there is no standalone
+  cubic Bott obstruction, but also no compactness proof from the three
+  spectral labels: the missing theorem is relative operator-norm basin
+  entry uniformly over the exact periodic BS cores.
+
+- **Once a same-core exact extender is authenticated, there is no remaining
+  nonlinear gauge problem.**  If an exact endpoint `(X_0,R,S)` has been
+  found and `X=cX_0` with `[c,S]=0`, then
+  `same-core-involution-cubic-gauge-coercivity` proves the sharper identity-
+  based estimate
+
+  ```text
+  ||c-1||_2 <= ||X^2-1||_2+||(XS^2)^3-1||_2.
+  ```
+
+  This is global and independent of packet length, return phase,
+  multiplicity, dimension, and operator-norm distance.  It closes the
+  Koopman/Fourier and sign-plateau escape mechanisms **inside** an
+  authenticated same-core basin.  It does not expose the missing boundary
+  corner, choose the moving odd-congruence atom, or produce `X_0` from the
+  two residual carriers.  Accordingly the reverse low-rank theorem in
+  `(FBR2)` is now exactly atom/carrier authentication followed by same-core
+  alignment; no additional nonlinear inverse estimate for the gauge should
+  be included in that target.
+
+- **The adaptive exact target is a restriction-ring fiber, not one orbit.**
+  `congruence-endpoint-orbits-are-restriction-ring-fibers` classifies the
+  core-commutant endpoint orbits over an authenticated finite quotient by
+  the nonnegative multiplicity vectors with the prescribed restricted core.
+  Uniform Selberg gap makes orbit distance equivalent to the square root of
+  weighted total-variation distance between these vectors.  Consequently a
+  correct reverse theorem may choose any nearby point of that fiber;
+  restriction-kernel directions are exact zero modes and must not be charged
+  as defect.  The unresolved step is level-uniform rounding to the **union**
+  of these moving fibers.
+
+- **A possible counterexample must exhibit genuine boundary recycling.**
+  To refute `(FBR2)`, it is not enough to sum the known compressed blocks:
+  those already satisfy the bound.  One must mix heterogeneous levels or
+  phases through one common `X` so that both cubic Frobenius energies are
+  `o(k)`, while every exact enlargement requires at least `k` new
+  dimensions.  This is the precise phase/multiplicity-mismatch test left by
+  the one-block calculation.

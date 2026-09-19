@@ -1,0 +1,7 @@
+{
+  "collision_A4_edge_order": 12,
+  "commuting_involution_edge_order": 4,
+  "core_A4_edge_order": 12,
+  "group_order": 96,
+  "structure": "((C2 x C2 x C2) : (C2 x C2)) : C3"
+}

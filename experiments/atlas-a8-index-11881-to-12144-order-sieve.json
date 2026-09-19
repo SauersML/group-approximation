@@ -1,0 +1,31 @@
+{
+  "A8_divisible_orders": [
+    "M24"
+  ],
+  "M24_A8_index": 12144,
+  "first_remaining_A8_overgroup": "M24",
+  "lower_endpoint": {
+    "group": "A12",
+    "index": 11880,
+    "order": 239500800
+  },
+  "simple_groups_strictly_after_A12_through_M24": [
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(787)",
+      "order": 243721308
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "M24",
+      "order": 244823040
+    }
+  ],
+  "upper_endpoint": {
+    "group": "M24",
+    "index": 12144,
+    "order": 244823040
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "A8_divisible_orders": [
+    "O8-(2)"
+  ],
+  "first_remaining_A8_overgroup": "O8-(2)",
+  "lower_endpoint": {
+    "group": "O8+(2)",
+    "index": 8640,
+    "order": 174182400
+  },
+  "simple_groups_strictly_after_O8+(2)_through_O8-(2)": [
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 60,
+      "group": "L2(709)",
+      "order": 178200060
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 720,
+      "group": "L2(719)",
+      "order": 185847120
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 168,
+      "group": "L2(727)",
+      "order": 192119928
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 2520,
+      "group": "L2(729)",
+      "order": 193709880
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(733)",
+      "order": 196916052
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "O8-(2)",
+      "order": 197406720
+    }
+  ],
+  "upper_endpoint": {
+    "group": "O8-(2)",
+    "index": 9792,
+    "order": 197406720
+  }
+}

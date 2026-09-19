@@ -1,0 +1,99 @@
+{
+  "selected_pair_indices": [
+    1
+  ],
+  "target_bits": [
+    "0",
+    "1"
+  ],
+  "pair_count": 1,
+  "all_pairs_have_two_children": false,
+  "all_pairs_have_short_two_children": false,
+  "combined_one_letter_scan": {
+    "distinct_generators": 4,
+    "base_components": [
+      [
+        "000",
+        "010",
+        "10"
+      ],
+      [
+        "001",
+        "011",
+        "11"
+      ]
+    ],
+    "child_corners": [
+      {
+        "names": [
+          "pair0:l"
+        ],
+        "base": "010",
+        "child": "0100",
+        "bridge_base": "10",
+        "orientation": "child-to-base"
+      },
+      {
+        "names": [
+          "pair0:l*"
+        ],
+        "base": "010",
+        "child": "0100",
+        "bridge_base": "10",
+        "orientation": "base-to-child"
+      }
+    ],
+    "two_child_bases": []
+  },
+  "results": [
+    {
+      "boundary_index": 11,
+      "inverted": false,
+      "rotation": 3,
+      "prefix_length": 3,
+      "child_edges": [
+        {
+          "letter": "l",
+          "base": "010",
+          "child": "0100",
+          "bridge_base": "10",
+          "orientation": "child-to-base"
+        },
+        {
+          "letter": "l*",
+          "base": "010",
+          "child": "0100",
+          "bridge_base": "10",
+          "orientation": "base-to-child"
+        }
+      ],
+      "two_child_bases": [],
+      "short_search_max_depth": 9,
+      "short_search_distinct_values": 39364,
+      "short_child_corners": [
+        {
+          "base": "000",
+          "child": "0000",
+          "orientation": "base-to-child",
+          "word": "q* l q l* q",
+          "depth": 5
+        },
+        {
+          "base": "010",
+          "child": "0100",
+          "orientation": "child-to-base",
+          "word": "q q* l",
+          "depth": 3
+        },
+        {
+          "base": "10",
+          "child": "100",
+          "orientation": "base-to-child",
+          "word": "q q* l*",
+          "depth": 3
+        }
+      ],
+      "short_two_child_bases": []
+    }
+  ]
+}

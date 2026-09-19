@@ -1,0 +1,14 @@
+{
+  "ambient_permutation_degree": 4032,
+  "common_S4xC2_order": 48,
+  "common_regular_multiplicity": 84,
+  "completed_K22_group_order": 168,
+  "edge_word_orders": [3, 3, 3, 3],
+  "first_S3_order": 6,
+  "initial_three_label_group_order": 24,
+  "left_regular_copies": 7,
+  "left_vertex_order": 576,
+  "right_regular_copies": 12,
+  "right_vertex_GL3xC2_order": 336,
+  "second_S3_order": 6
+}

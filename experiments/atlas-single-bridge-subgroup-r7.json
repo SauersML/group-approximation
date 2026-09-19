@@ -1,0 +1,9 @@
+{
+  "status": "no_hit",
+  "radius": 7,
+  "completed_level": 7,
+  "states": 605022,
+  "sphere_sizes": [1, 10, 68, 425, 2580, 15198, 87646, 499094],
+  "h2_elements": 168,
+  "elapsed_seconds": 120.98749489104375
+}

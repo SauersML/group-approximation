@@ -1,0 +1,414 @@
+{
+  "outer_21_over_4_extremizers": [
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000100000100000000000100000100",
+        "order": 4
+      },
+      "alignment_hex": "00000001010000000001000000000101",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "00000100000101000000010101010001",
+        "order": 5
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 28,
+          "hex": "00000001000101000101000100000101",
+          "order": 7
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 28,
+          "hex": "00000001000100010000010101010000",
+          "order": 7
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "01000000000100010000000101000100",
+          "order": 4
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000000000100000000000101000100",
+        "order": 4
+      },
+      "alignment_hex": "00000101010000000001000000000100",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01010100000101000000000101010001",
+        "order": 5
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "01010100000101000101000101010101",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "01010001000100010100010000010100",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "00000100010101000101010100010000",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000000000001010001010000000100",
+        "order": 4
+      },
+      "alignment_hex": "00010000000001000100000101000000",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01000100010000010001000100000100",
+        "order": 5
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "01000100000101010101000000010001",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "01010100010001000000000100010100",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "00010101010000000101010001000100",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "00000100000100000000000101000000",
+        "order": 3
+      },
+      "alignment_hex": "00000001010000000001000000000100",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "00000100000101000000000101010001",
+        "order": 6
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "00000001000101000101000100000100",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "00000001000100010100000001010100",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "01000000010100010101010101000101",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000000000000010001000000000100",
+        "order": 3
+      },
+      "alignment_hex": "00010000000001000000000101000000",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01000100010000010001010000000100",
+        "order": 6
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "01000100000001000100000100010100",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "01010000010001000001000100010000",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "01000001010000000100010100010001",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000100000100000000000100000100",
+        "order": 4
+      },
+      "alignment_hex": "00000001000100000100000000000101",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "00000100000001010100010001010001",
+        "order": 3
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 28,
+          "hex": "01000000000001010101000101000100",
+          "order": 6
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 28,
+          "hex": "00000001000001010100010101010000",
+          "order": 6
+        },
+        "commutator": {
+          "defect_numerator_over_15": 24,
+          "hex": "01010001000100000101000001010101",
+          "order": 3
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100010000010000000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "01000000000100000000000101000100",
+        "order": 4
+      },
+      "alignment_hex": "00000101000100000100000000000100",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01010100000000010100010001010001",
+        "order": 5
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 28,
+          "hex": "01010100000000010101000100010000",
+          "order": 6
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 28,
+          "hex": "01010001010001000100000100010100",
+          "order": 6
+        },
+        "commutator": {
+          "defect_numerator_over_15": 30,
+          "hex": "00000100010000010000010101010101",
+          "order": 6
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100010000010000000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "00000101000100000100010000000100",
+        "order": 4
+      },
+      "alignment_hex": "00000100000100000100000101000000",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01000001000001000101000101000100",
+        "order": 5
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 28,
+          "hex": "00010101000001000001000001010001",
+          "order": 6
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 28,
+          "hex": "00000001010001000001000101000001",
+          "order": 6
+        },
+        "commutator": {
+          "defect_numerator_over_15": 30,
+          "hex": "01010100010000010101000000000101",
+          "order": 6
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "00000100000100000000000101000000",
+        "order": 3
+      },
+      "alignment_hex": "00000001000100000100000000000100",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "00000100000000010100010001010001",
+        "order": 6
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "01000100000000010101000100000100",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "00000001010000000000010101010100",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "00010000010000010001000100010101",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100010000010000000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    },
+    {
+      "a_cocycle": {
+        "defect_numerator_over_15": 24,
+        "hex": "00000001000100000100000000000100",
+        "order": 3
+      },
+      "alignment_hex": "00000100000100000000000101000000",
+      "c_cocycle": {
+        "defect_numerator_over_15": 30,
+        "hex": "01000001000001000001010001000100",
+        "order": 6
+      },
+      "generated_subgroup_order": 20160,
+      "normal_q_length": {
+        "a_cocycle": 2,
+        "c_cocycle": 4
+      },
+      "products": {
+        "a_times_c": {
+          "defect_numerator_over_15": 30,
+          "hex": "01000100000001000100000100010100",
+          "order": 15
+        },
+        "c_times_a": {
+          "defect_numerator_over_15": 30,
+          "hex": "00000101010000000101000001000001",
+          "order": 15
+        },
+        "commutator": {
+          "defect_numerator_over_15": 28,
+          "hex": "01000100010100000100000100000100",
+          "order": 7
+        }
+      },
+      "q": {
+        "defect_numerator_over_15": 16,
+        "hex": "01000000000100000000010100000001",
+        "order": 2
+      },
+      "q_conjugacy_class_size": 105
+    }
+  ]
+}

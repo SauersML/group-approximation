@@ -1,0 +1,39 @@
+{
+  "statement": "The two dimension-12 A-centralizer slices of the natural Omega8+(2) Q1920 module collapse the collision operator to the identity at every multiplicity",
+  "field": "F2",
+  "base_module_dimension": 8,
+  "ambient_source": "the natural module of Omega8+(2)",
+  "marked_Q_image": "Q=2^5:A5 of order 1920 in the singular parabolic",
+  "Q_module": {
+    "indecomposable_dimensions": [8],
+    "composition_factor_dimensions": [1, 1, 4, 1, 1]
+  },
+  "transverse_subgroup": "A=<r,u>=S3",
+  "base_centralizer_algebra_dimension": 12,
+  "coefficient_ring": "F2<x0,...,x11>, with no commutativity imposed",
+  "matrix_relations": [
+    "C^2=I",
+    "(C*T)^3=I",
+    "T*C*S*C*T^-1*C*S*T*C=I"
+  ],
+  "gbnp_version": "1.1.0",
+  "slices": [
+    {
+      "marking": 1,
+      "base_relation_count": 71,
+      "base_groebner_basis": ["x2+x1", "x3+x1+x0", "x4+x1+1", "x5+x1+x0", "x6+x1+x0", "x7+x1+x0", "x8+x1+x0+1", "x9+x1", "x10", "x11+1", "x1*x0+x0*x1", "x1^2+x0*x1+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x1", "x1+x0"],
+      "identity_coordinates": [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "base_relation_count": 63,
+      "base_groebner_basis": ["x1", "x2", "x3+x0", "x4+1", "x5+x0", "x7+x0", "x8+x6+1", "x9+x0", "x10", "x11+1", "x6*x0+x0*x6", "x6^2+x0*x6+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x6", "x6+x0"],
+      "identity_coordinates": [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+      "identity_forced": true
+    }
+  ],
+  "remaining_twist": "The other embedding twist has End_A dimension 20 and is not included in this claim."
+}

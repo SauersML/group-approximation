@@ -1,0 +1,113 @@
+[
+ {
+  "g_block_dim": 1,
+  "q1_spectrum_profile": {
+   "1": 1
+  }
+ },
+ {
+  "g_block_dim": 6,
+  "q1_spectrum_profile": {
+   "1": 4,
+   "2": 1
+  }
+ },
+ {
+  "g_block_dim": 21,
+  "q1_spectrum_profile": {
+   "1": 5,
+   "4": 2,
+   "8": 1
+  }
+ },
+ {
+  "g_block_dim": 28,
+  "q1_spectrum_profile": {
+   "2": 4,
+   "8": 1,
+   "4": 3
+  }
+ },
+ {
+  "g_block_dim": 1,
+  "q1_spectrum_profile": {
+   "1": 1
+  }
+ },
+ {
+  "g_block_dim": 84,
+  "q1_spectrum_profile": {
+   "2": 2,
+   "4": 4,
+   "16": 2,
+   "32": 1
+  }
+ },
+ {
+  "g_block_dim": 21,
+  "q1_spectrum_profile": {
+   "1": 5,
+   "4": 2,
+   "8": 1
+  }
+ },
+ {
+  "g_block_dim": 112,
+  "q1_spectrum_profile": {
+   "8": 4,
+   "16": 3,
+   "32": 1
+  }
+ },
+ {
+  "g_block_dim": 112,
+  "q1_spectrum_profile": {
+   "8": 4,
+   "16": 3,
+   "32": 1
+  }
+ },
+ {
+  "g_block_dim": 84,
+  "q1_spectrum_profile": {
+   "2": 2,
+   "4": 4,
+   "32": 1,
+   "16": 2
+  }
+ },
+ {
+  "g_block_dim": 6,
+  "q1_spectrum_profile": {
+   "1": 4,
+   "2": 1
+  }
+ },
+ {
+  "g_block_dim": 1,
+  "q1_spectrum_profile": {
+   "1": 1
+  }
+ },
+ {
+  "g_block_dim": 6,
+  "q1_spectrum_profile": {
+   "1": 4,
+   "2": 1
+  }
+ },
+ {
+  "g_block_dim": 28,
+  "q1_spectrum_profile": {
+   "2": 4,
+   "4": 3,
+   "8": 1
+  }
+ },
+ {
+  "g_block_dim": 1,
+  "q1_spectrum_profile": {
+   "1": 1
+  }
+ }
+]

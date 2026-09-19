@@ -1,0 +1,54 @@
+{
+  "statement": "For both marked Q1920 tuples, the dimension-20 A-centralizer twist of the natural Omega8+(2) module has no nonidentity collision operator on two repeated copies",
+  "field": "F2",
+  "base_module_dimension": 8,
+  "multiplicity": 2,
+  "ambient_dimension": 16,
+  "marked_Q_image": "Q=2^5:A5 of order 1920 in the singular parabolic of Omega8+(2)",
+  "Q_module": {
+    "indecomposable_dimensions": [8],
+    "composition_factor_dimensions": [1, 1, 4, 1, 1]
+  },
+  "transverse_subgroup": "A=<r,u>=S3",
+  "A_module_restriction": "1^4 + U^2, where U is the simple two-dimensional F2[S3]-module",
+  "centralizer_algebra": "End_A(H^2)=M8(F2) x M4(F2)",
+  "unknown_scalar_count": 80,
+  "matrix_relations": [
+    "C^2=I",
+    "(C*T)^3=I",
+    "T*C*S*C*T^-1*C*S*T*C=I"
+  ],
+  "encoding": {
+    "method": "direct Boolean circuit for matrix multiplication over F2, followed by audited AND/XOR Tseitin gates",
+    "source_anf_relation_count": 592,
+    "source_anf_degree_histogram": {"2": 80, "3": 256, "4": 256},
+    "source_anf_total_monomial_occurrences": 1541964,
+    "known_identity_excluded_by_one_clause": true,
+    "all_gate_truth_tables_exhaustively_audited": true,
+    "sat_solver": "CryptoMiniSat 5.14.7 through pycryptosat",
+    "witness_policy": "Any SAT assignment is substituted back into the separately expanded source ANF before acceptance"
+  },
+  "markings": [
+    {
+      "marking": 1,
+      "auxiliary_variables": 19377,
+      "clauses": 70178,
+      "and_gates": 8096,
+      "xor_gates": 11280,
+      "dimacs_sha256": "c6609062671b9ebfc640a3c3834dae8e9c0725b3952f0792b26fd52ff75bea4b",
+      "nonidentity_satisfiable": false,
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "auxiliary_variables": 19011,
+      "clauses": 68872,
+      "and_gates": 7938,
+      "xor_gates": 11072,
+      "dimacs_sha256": "776602abb9230f2e325662ea50c89d3e6eeec9cbd9732326e1b52d0d14d71a5d",
+      "nonidentity_satisfiable": false,
+      "identity_forced": true
+    }
+  ],
+  "scope": "This is an exact multiplicity-two exclusion only. It does not imply the arbitrary-multiplicity Type-B theorem."
+}

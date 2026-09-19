@@ -1,0 +1,52 @@
+---
+rg: 2
+id: lin-one-state-pauli-standardization-stops-before-groupification
+kind: claim
+title: Lin's one-state Pauli standardization stops before a word-visible common carrier
+artifacts:
+  - research/artifacts/lin-state-local-cross-gram-exactification-2026-08-23.md
+---
+
+Lin's tracial density, near-synchrony rounding, and state-dependent
+finite-group exactification form a valid analytic interface for one strategy:
+pass to an arbitrarily close tracial standard form, select one positive
+spectral corner with relative row control, and, once a finite packet has
+been proved approximately multiplicative there, exactify it through an
+opposite-algebra-preserving dilation.
+
+The interface supplies neither a strategy-independent lower bound on the
+corner nor an algebraic name for it.  It also leaves the amplification's
+multiplicity gauge free.  Hence it advances state-dependent Pauli analysis
+but does not prove common-carrier saturation `(CPS9)`, the marked-mass floor
+`(CPS2)`, or a MIPco-to-ordinary-group compiler.
+
+More sharply, `lin-canonical-dilation-twirls-unprotected-left-carriers`
+computes the exact action of Lin's displayed isometry on the original left
+algebra.  It preserves `A'`, but compresses `a tensor I` to the Reynolds
+average of `a` under the packet.  A second unrelated left context can be
+annihilated by this twirl even at zero defect (the two Pauli matrices in
+`M_2` give the minimal example).  Thus opposite-algebra preservation is not
+a sequential left-context alignment theorem.
+
+For the specific common-swap application, the mass statement admits a
+positive sharpening.  By
+`partial-isometry-gram-state-collapses-lin-corners`, the normalized Gram
+vector of `S_D8` has projection density, so almost every Lin spectral layer
+is exactly the D8 source projection and inherits its marked-mass floor.
+In the doubled D8 packet the literal reflection `j` is also a unitary
+completion of the off-diagonal Gram block, so its conjugation of the left
+observables is word-visible.  What still stops groupification is neither
+density loss nor polar naming, but selected-predicate saturation on that
+carrier and the Reynolds covariance problem above.
+
+The state-local/cross-Gram package gives the corresponding general positive
+statement. `lin-state-local-gh-is-an-intertwining-exactifier` proves that a
+left carrier already covariant with the packet moves by exactly its
+state-dependent commutator error.
+`two-transport-cross-gram-has-a-fixed-mass-reducing-corner` and
+`positive-cross-gram-state-rounds-to-common-pvm` show that one fixed-mass
+Gram carrying all mixed packet rows produces a common PVM corner of fixed
+trace. The residual groupification gate is therefore construction of that
+one word-controlled Gram and its genuinely mixed covariance. The spectral
+cut and polar gauge remain state-dependent operators rather than group
+words.
