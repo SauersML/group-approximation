@@ -95,3 +95,22 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
     The permutation representation on them therefore has almost invariant vectors and no
     base-invariant vector. So that module fails relative (T) directly.
+- **2026-09-19 (swarm-0917-w19-w19-nv-break): refutation by any relative-(T) subgroup pair
+  (class-kill, host-geometry).**
+  - Normality is removed from the w17 kill.
+    `relative-t-subgroup-pairs-have-uniform-invariant-projection` imports Cornulier's Theorem 2.2.3
+    (arXiv:math/0505193), checked verbatim: for a countable group, relative (T) of a subgroup or a
+    subset gives uniform convergence of positive definite functions on it. With the lemma of the
+    centre, this gives the quantitative projection that w17 derived from normality.
+  - Hence `wobbling-relative-t-subgroups-are-locally-finite`: in every subgroup of `[[X]]` (indeed
+    every countable subgroup of `W(Z)`), every `H` with `(Γ, H)` relative (T), normal or not, is
+    locally finite. Examples are non-normal copies of `Z`, of surface groups and of free groups.
+  - *Where every member dies.* The invariant is the uniform almost invariance of interval vectors
+    in `ℓ²(Z)`. Each member dies at the bounded-jump density count: an orbit of a finitely generated
+    subgroup with jumps at most `c` is `c`-dense in its span.
+  - *Survivors.*
+    - (S1) Infinite locally finite `H`. The candidate is `Γ_p`, now possibly with a non-normal `H`.
+    - (S2) Subset witnesses that generate no relative-(T) subgroup. Cornulier's
+      `SO_n(Z[2^{1/3}]) ⋉ Z[2^{1/3}]^n`, `n = 3, 4`, shows that these occur. For (S2) only the
+      necessary shape `|xI Δ I| < δ²|I|` (uniform in `x ∈ X`, for long intervals) is derived.
+  - Status of this node: still OPEN. The TH alternative is open in general.
