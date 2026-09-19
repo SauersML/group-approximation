@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.K2Poly.FieldTorusK2: unsolved g
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/K2Poly/FieldTorusK2.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** 7c8da9d7f0: Fix projection_h_mul in K2Poly/FieldTorusK2. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
