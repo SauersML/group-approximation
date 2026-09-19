@@ -73,3 +73,28 @@ virtual-torsion corner.
   circle: the Bloch decomposition of the Koopman representation of `T̄` on
   `L^2(R)`.  So no fibrewise argument that holds in `B(H)` can force
   `pi(z) = 1`.
+
+## Attempts
+
+**Chromatic-code route with a non-central mark (2026-09-19,
+swarm-0917-w17-w17-ptm-last1).**
+
+- **New route.**  `lifted-thompson-t-not-mf-via-chromatic-code` has one open
+  leaf, `lifted-thompson-t-bounded-area-chromatic-code`.  Its other inputs,
+  `infinite-chromatic-commutator-code-kills-mf-mark` and the dichotomy, are
+  ESTABLISHED.
+- **Marking `z` is dead** (`central-marks-escape-chromatic-codes`).
+  - Commutator codes: the invariant is the translation number.  `[F,G] = z^m`
+    makes `FG = z^m GF` conjugate to `GF`, so `m = 0`.  Proofs die at CCC1.
+  - Conjugacy-difference codes: the invariant is the Cayley graph of a
+    finite conjugacy class, which gives `chi <= 2|C| + 1`.  Proofs die at
+    CDC2, in any group.
+  - Lifting codes from `T` preserves exactness but not area.
+- **Exact skeleton, literal words dead**
+  (`lifted-thompson-t-exact-wandering-commutator-table`).
+  - Wandering copies of `F` under `x0` give an exact `K_Z` table with a
+    non-central mark.
+  - The literal shift words have CCC2 area at least
+    `(4|m-n| - 2(|c0| + |h0|)) / P`, by a bridge count in van Kampen diagrams.
+  - Bounded area needs non-literal words, presumably using the rotation and
+    cone relators of `T̄`.
