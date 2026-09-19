@@ -389,3 +389,32 @@ OPEN.
   - A YES witness must use a unit with components of both signs, which
     `leavitt-triangular-endomorphism-commutants-are-finite` does not cover. Random short words do not
     reach such units, so the witness has to be designed.
+
+**w17-z-pull obstruction-miner (linear-characteristic), 2026-09-19: mechanism (i) is dead for every field; the firewall Q_2 is answered NO, and with it Ara–Cortiñas Question 5.7 over F_2.**
+- **New theorem.** `quasi-free-algebras-contain-no-two-variable-polynomial-ring` is ESTABLISHED (unreviewed) by
+  `polynomial-subring-bound-via-fraction-field-koszul-ext`. If `k[a_1, ..., a_n] ⊆ A'`, then
+  `l.gl.dim(A' ⊗ k(y_1, ..., y_n)) >= n`, with no flatness of `A'` over the subring.
+  - The trick is to resolve `Q = (A' ⊗ K) ⊗_S S/I` with `S/I ≅ Frac(C)`. The induced Koszul complex stays exact
+    because `Tor^S(A' ⊗ K, S/I) = Tor^C(A', Frac C) = 0`. The top Ext is `Frac(C) ⊗_C A' ≠ 0`.
+  - This answers live need `03f81334`. The subfield route (`quasi-free-subfield-bound-via-koszul-ext`) stopped
+    exactly because it put flatness on the `A'` side.
+- **Cascade** (compiled by `cairn check`, through existing routes):
+  - `leavitt-algebras-contain-no-two-variable-polynomial-ring` holds for every field, by the new route
+    `leavitt-plane-freeness-from-quasi-free-polynomial-bound`;
+  - then `leavitt-commuting-units-are-algebraically-dependent` and
+    `no-unital-map-from-leavitt-tensor-square-to-leavitt-over-f2`, which is Question 5.7 at `k = F_2`;
+  - and `leavitt-unit-group-has-no-integer-heisenberg-subgroup` and
+    `kun-thom-wreath-does-not-embed-in-leavitt-unit-group`.
+- **For this claim.**
+  - At `k = F_2(x, y)` it kills mechanism (i) of the `F_2[Z^4]` test case.
+  - With `laurent-tensors-reduce-leavitt-rank-to-function-fields`, it kills every `Z^4` embedding supported on
+    the equicontinuous-factor part of `B_Ω ⊗ L_2`.
+  - With w16-z's closure of mechanism (ii), the `Z^4` fork now rests only on mechanism (iii), the entangled
+    embeddings.
+- **Where it stops.** `B_Ω ⊗ L_2` is not quasi-free, because `B_Ω ⊇ F_2[Z^2]`. The same Koszul argument only gives
+  `l.gl.dim` lower bounds there, and the upper bound `leavitt-tensor-global-dimension-bound` is
+  `gl.dim B_Ω + 1`. `F_2[Z^4]` contains a polynomial ring in 4 variables. So the method refutes the entangled case as
+  soon as `l.gl.dim(B_Ω ⊗ K) <= 2` for `K = F_2(y_1, ..., y_4)`.
+  - Whether that holds is unclear. `LC(Ω, F_2)` is a countable union of separable algebras, which can have
+    Hochschild dimension `1` rather than `0`, so the naive bound for `B_Ω` is `3`, one too many.
+  - Sharpest next target: bound `l.gl.dim(B_Ω ⊗ K)` by `2`, or find a module of projective dimension `3`.
