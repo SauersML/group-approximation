@@ -106,3 +106,12 @@ Magnus rewrite `r' ∈ F(a_0, a_1, a_2)` has occurrences `(3, 1, 3)`.
   - For example, `H_1(S_[0,1]) = Z^2` is free, because the `2 × 2` minors of its relation matrix have gcd `1`.
   - Such a `Q` still has to contain `F_2`, so it cannot be nilpotent.
   - `A ⊂ F(a_0, a_2)` is not a retract, because a rank-2 retract of `F_2` is all of `F_2`.
+
+## Attempts
+
+- **Non-finitely-generated fibre (w12-059).** [[pro-unipotent-magnus-steps-put-one-relators-in-h]] maps `G` to
+  `Û ⋊_T Z`, with `Û` the rational pro-unipotent completion of `F(a_0, a_1)`. It is injective on the window for
+  all 128 words, so all 128 lie in `𝓗`, the 32 KILL words included. The monodromy acts on `H_1` with the
+  roots of `f` as eigenvalues. This is consistent with items 1 to 3: `Û` is not finitely generated, and `T` is not
+  unipotent.
+  - For the 8 `Φ_3` words, no target in which `φ(t)^3` centralises `φ(a)` is injective on the window.

@@ -127,3 +127,15 @@ computations. Item 3 is an obstruction with a sharpness example. Nothing is new 
   different kind, and is open.
 - Rule N is sound only with `α = β = 1`. Twists `a_2 = α^{-1} σ β^{-1}` change the leading terms and are not
   covered by the proof.
+
+## Attempts
+
+- **Pro-unipotent step (w12-059).** [[pro-unipotent-magnus-steps-put-one-relators-in-h]] takes the whole Magnus HNN
+  step at once when `e_0 e_m ≠ 0`. It solves for the top letter in the completed free group of the window, so the
+  base alone decides membership in `𝓗`.
+  - All 128 words of the rank-2-window shape of item 2 at length 15 are then in `𝓗`.
+  - The open part through length 15 is the 26 words of item 3: 18 of length 14 and 8 of length 15, all with
+    `e = (0, ε, 0)`. That rule applies to them in no basis, because `H_1` of the kernel of `G -> Z` vanishes
+    rationally.
+  - Its targets are residually 𝒮, so item 3 here excludes them for the 26. `G(1, k)` is not residually 𝒮 and
+    lies in `𝓗`, so family C targets remain allowed.
