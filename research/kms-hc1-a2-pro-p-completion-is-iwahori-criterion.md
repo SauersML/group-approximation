@@ -433,3 +433,30 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      root elements by the Bruhat identity.
    - Next: the centralizer pairing `delta_a` on `diag(u,u,u^-2)`.
    See `kms-hc1-p-power-value-vanishes-on-affine-root-groups`.
+
+14. **Cartan relator: the torus kills the centralizer pairings, and `R_n`
+   carries exactly `C_nA` (obstruction, all p >= 5). `V_n` is one of four
+   `S_3`-submodules.**
+   - (S): `Gamma` has the automorphisms `(F_p^*)^3 x| S_3`: power maps,
+     the rotation `a -> c -> b -> a`, and the flip `a <-> b, c -> c^-1`.
+     Each is compatible with `phi` via an automorphism of `I_1`.
+     `sigma_(al,be,ga)` acts on `W_n` as `(al be ga)^n`. So
+     `delta_v(c) = 0` for diagonal `c` and every vertex element `v`. In
+     particular `delta_a = 0` on `diag(u,u,u^-2)`.
+   - (T): `g^p mod D_(d0+1)` does not depend on the lift of `h(1+t^n)`. The
+     Bruhat word of `h(1+t^(np))` is `[yt_(np), a^-1]` mod `D_(d0+1)`. So
+     `class(R_n) = C_nA` exactly, and the pairings enter with coefficient
+     zero. `C_nA` lies in `V_n` iff `R_n` lies in `D_(3np+1)`. No identity
+     of `I_1` decides this; it needs `Gamma`'s relators at class `3np`.
+   - (H): `W_n = L_n (+) S_n`, where `L_n` is the Kassel line and `S_n` is
+     the reflection representation, which is irreducible for `p >= 5`. So
+     `V_n` is one of `0`, `L_n`, `S_n`, `W_n`. One relation class with
+     nonzero components in both `L_n` and `S_n` gives `V_n = W_n`.
+   - `symmetry_check.py`: ALL OK for p = 5, 7, 11, 13.
+   - p = 11 tower: its orders agree with `I_1` through class 33, which
+     re-confirms `V_1 = W_1` at `p = 11`. Class 66, which would decide
+     `n = 2`, is out of reach, since the time per class grows about 1.4x
+     per class.
+   - Next: find one generic `(2p,2,2p)`-slice jump for `n = 2`, and project
+     it onto `S_3` by averaging.
+   See `kms-hc1-cartan-relator-is-tautological-mod-symmetry`.
