@@ -369,3 +369,4 @@
 35445670160	2026-09-19T13:25:26Z	GroupApproximation/Sofic/FinitePacketDelormeCenter.lean	exists_approximate_coboundary
 35456109994	2026-09-19T16:56:25Z	GroupApproximation/Sofic/FinitePacketDelormeDiagonalization.lean	boundedSeq_defect
 35463952847	2026-09-19T19:19:59Z	GroupApproximation/Sofic/FinitePacketDisplacementCocycle.lean	norm_normalizedDisplacement_sq_of_pos
+35471377199	2026-09-19T21:50:40Z	GroupApproximation/Sofic/FinitePacketFullCollapse.lean	rankScaled_normalizedDisplacement_eq
