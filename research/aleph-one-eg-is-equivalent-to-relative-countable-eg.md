@@ -153,3 +153,13 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Computation.** `H = ⟨b,c,d,e | r⟩` is one-relator. The least Moldavanskii level width found is 3 (beam search, heuristic). In all 48 width-3 presentations tested, the edge group is not a free factor of `F_4` (exact). The two-edge refinement `{⟨pQ,qR⟩, ⟨SrpQsRRsq⟩}` is not a free factor system either.
   - Slide complexes are not mapping tori, so Theorem A does not decide them.
   - Next: decide whether an FFLS exists. The one-cycle case is HNN splittings over `ε`; a BNS/Brown-type analysis of `r` would settle it. Then prove the slide-complex analogue.
+- **w18-048, 2026-09-19: the character bound excludes cyclic-edge level splittings.** Landed `c2-character-bound-excludes-cyclic-edge-level-splittings`.
+  - **Theorem B (proved; the Fox formula is exact).** Twist `H` by a character `ω` and by `ε`. The resulting torsion `Δ_ω` has degree 1 exactly on the irreducible, non-binomial hypersurface `S = {bd⁻³ + 2ced⁻¹ − 3c + 2ed⁻¹ − 2 = 0}`, and degree 0 off it.
+    - Mayer-Vietoris over the infinite cyclic cover of any level splitting gives `deg Δ_ω ≤ Σ_cycle (rk E_j − 1 + [ω|E_j = 1])`.
+    - So some cycle edge group has rank at least 2, or is infinite cyclic inside `[H,H]`.
+    - With `H_1(H) = Z^4` and Kurosh, there is no FFLS with a single cyclic cycle edge. **The one-cycle case of the FFLS question reduces to `rk E ∈ {2,3}` (`rk V ∈ {4,5}`).**
+  - **Dead ends (proved).**
+    - D1: bi-monic twisted-Alexander tests hold for every f.g. `H ≤ F_n ⋊ Z`, so they are vacuous.
+    - D2: the `D_N` torsion degree of `H` is 0 (exact coset computation).
+    - D3: every `n`-dimensional twisted order has degree at most `n`, so no twisted degree bound excludes `rk E ≥ 2`.
+  - Next: decide `rk E ∈ {2,3}` by a non-degree invariant, such as a Whitehead/Stallings enumeration of `V ≤ F_4` or `Σ¹(H)`. Then use "a cyclic cycle edge lies in `[H,H]`" for trees with more edges. The slide-complex analogue of Theorem A is still open.
