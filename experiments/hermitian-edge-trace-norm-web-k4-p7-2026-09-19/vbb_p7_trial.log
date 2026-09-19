@@ -1,0 +1,7 @@
+graph P_7^4 edges 18 tree [(0, 1), (0, 2), (0, 3), (0, 4), (1, 5), (2, 6)] free 12 MCUT 5.464102 T 2.464149 TARGET 10.3924000 first phase (1, 2) in [0,0.392699]
+sdp 0/0 boxes 5119 closed 0 stack 5120 minfc 11.913719 minhalfw 7.85e-01 vol 0.0000e+00 t 1
+sdp 0/0 boxes 10205 closed 738 stack 8730 minfc 11.172366 minhalfw 1.96e-01 vol 2.6672e-05 t 1
+sdp 0/0 boxes 15389 closed 3166 stack 9058 minfc 11.012483 minhalfw 4.91e-02 vol 2.6673e-05 t 2
+sdp 239/239 boxes 20873 closed 5231 stack 10412 minfc 11.012483 minhalfw 1.23e-02 vol 2.6673e-05 t 15
+sdp 1471/1471 boxes 25943 closed 7761 stack 10422 minfc 11.012483 minhalfw 1.23e-02 vol 2.6673e-05 t 75
+sdp 2713/2713 boxes 31011 closed 10378 stack 10256 minfc 11.012483 minhalfw 1.23e-02 vol 2.6673e-05 t 133

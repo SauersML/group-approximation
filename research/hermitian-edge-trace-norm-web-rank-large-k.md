@@ -95,3 +95,12 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
   - Next: a box bound that is not linear in `K`, for instance a second-order (`Z` plus a correction
     in the phases) or a sum-of-squares certificate in `cos`/`sin` of the phases. Alternatively,
     a proof of `c_6 >= 9.17` or `c(P_7^4) >= 6 sqrt3` from smaller pieces by pinching.
+- 2026-09-19 (w10-078): `k = 4`, `n = 19` is proved: `hermitian-edge-trace-norm-web-rank-k4-n19`,
+  by the 19 rotations of the six-vertex window `G_6 = K_5` plus a vertex on a triangle, and
+  `c(G_6) >= 8.7515` by branch-and-bound. Only `n = 13, 14` of `k = 4` remain.
+  - `hermitian-edge-trace-norm-web-k4-small-window-limits`: among windows of at most six vertices,
+    only `G_6` can close `n = 13`, which needs `c(G_6) >= 8.7935` against a numerical value of
+    `8.8106`. None can close `n = 14`.
+  - Seven-vertex windows with fewer phases than `P_7^4` are tabulated there. The best is
+    `{0..5, 8}`, with 10 phases and a 1% margin at `n = 14`.
+  - Second-order box bounds on `P_7^4` are weaker than the linear one.
