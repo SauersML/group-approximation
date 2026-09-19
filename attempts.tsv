@@ -366,3 +366,4 @@
 35410020825	2026-09-19T00:39:20Z	GroupApproximation/Sofic/FinitePacketCoronaCollapse.lean	exists_exact_covariant_coordinates_with_terminal_collapse
 35422983641	2026-09-19T05:05:45Z	GroupApproximation/Sofic/FinitePacketCoronaCovariance.lean	totalCovarianceDefect_nonneg
 35434830513	2026-09-19T09:30:33Z	GroupApproximation/Sofic/FinitePacketCovariance.lean	averagedIntertwiner_mul
+35445670160	2026-09-19T13:25:26Z	GroupApproximation/Sofic/FinitePacketDelormeCenter.lean	exists_approximate_coboundary
