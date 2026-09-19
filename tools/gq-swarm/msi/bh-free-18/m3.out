@@ -1,0 +1,15 @@
+m = 3  (0.1s)
+  R                                                            PASS
+  M(k<=6, longest 2185 steps)                                  PASS
+  E leaves=44                                                  PASS
+  T leaves=36                                                  PASS
+  C leaves=28                                                  PASS
+  P leaves=20                                                  PASS
+  P-1 leaves=12                                                PASS
+  I leaves=36                                                  PASS
+  max entry 5, max return 6                                    PASS
+  neg-I(row p image b2) leaves=42 fails=18                     PASS
+  neg-P(row p image b2) leaves=24 fails=6                      PASS
+  neg-T(A + b2 on x1) leaves=36 fails=16                       PASS
+  neg-M(swapped resets): wrong end: b k=1 sp=1 ss=0 (h=5 s=q1) PASS
+  ALL PASS
