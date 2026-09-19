@@ -182,3 +182,20 @@ distance keeps falling in `N`.**  Details are in
   cannot separate a slow decay to `0` from a positive limit.  The
   isolated open question is whether some fixed `s` has
   `liminf_N d(s,N) > 0`; a positive answer refutes ESS Q3.
+2026-09-19 (reframing, swarm-0917-w15-w15-ptm-break).  Class kill on the sharp
+family.  The claim stays **OPEN**.
+- *Established:* `bs12-sharp-pair-twist-coherent-corrections-are-bounded-below`.
+  Call `u` a twist for `C` if `u^3 = 1` and `C u C^* = u^2`, and suppose
+  `u f_0` is within `kappa` of a multiple of `f_(2N/3)`.  Then
+  `2|sin 3s| <= 4||C - A_s|| + 2 kappa`, with no condition on `Z`.
+- *The class it covers.*  For exact pairs with `Z^N = 1`, the power
+  `u = Z^(N/3)` is a twist.  For every Fourier gauge `Z = h(V) D h(V)^*`, of
+  any size, it has `kappa = 0`.  So every exact `C` over such a `Z` is at least
+  `|sin 3s|/2` away, uniformly in `N`.  This makes the first-order Livsic
+  remark above nonlinear.  An LP shows the small-`s` constant `3/2` is attained
+  inside this class (`N <= 729`).
+- *Why it matters.*  The w14 census pairs reach `d(0.5, 243) = 0.364 < 0.4987`
+  and `d/s ~ 1.35 < 1.5`.  So they are twist-incoherent, with
+  `kappa >= 2|sin 3s| - 4d`.  A proof of ESS Q3 here has to scramble the base
+  modulo 3 at scale `1/N`.  A counterexample needs an invariant other than a
+  twist.  `p = 7` gives the analogous bound `2|sin(7s/2)| <= 6 eps + 2 kappa`.
