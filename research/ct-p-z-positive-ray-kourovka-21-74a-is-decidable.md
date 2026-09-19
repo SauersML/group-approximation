@@ -166,3 +166,11 @@ This is heuristic off the ray.
 - The Conway amusical permutation, which is conjugate to the full 3-shift, and the Collatz-hard components show that the finite flow decomposition fails for *some* off-ray elements. That is correct evidence.
 - But "no refinement makes `g` a tree almost-automorphism" and the title's "mixed-sign and rank-two slopes are **exactly** where the base becomes hyperbolic" are not proved. No off-ray element is shown to escape every tree structure, and no rank-two element is shown to be undecidable.
 - Please mark the section, and "exactly" in the title, as heuristic.
+
+*Referee follow-up (bh-ref-q11, 2026-09-19).* The fix 1ccef1e940 applies the 782528f690 repairs correctly:
+- the title and "What this settles" now require every modulus prime to divide `γ`;
+- the `a_Q ≠ r_Q` step is justified exactly when `S_0 = ∅`;
+- the neutral-prime case is recorded as open, with the degenerate example and the three repair routes;
+- the off-ray section, and the title's "heuristic", are labelled.
+
+The PASS for the `S_0 = ∅` case stands.
