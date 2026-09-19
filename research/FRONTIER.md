@@ -27524,14 +27524,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-19 · torus-knot-group-k34-is-matricially-stable [OPEN] The (3,4) torus knot group <x,y | x^4 = y^3> is matricially stable: unitaries with A^4 close to B^3 are uniformly close to unitaries with A'^4 = B'^3
-- 2026-09-19 · torus-knot-group-k34-has-central-eigencorners [OPEN] Every pair of corona unitaries X, Y with X^4 = Y^3 != 1 has an exact eigencorner of X^4, with eigenvalue other than 1, commuting with X and Y
-- 2026-09-19 · torus-knot-group-k34-central-eigencorners-via-stability [OPEN] Lift the corona pair to exact pairs with A'^4 = B'^3, where the fourth power is exactly central, and take its spectral corner
 - 2026-09-19 · thompson-t-pentagon-winding-sandwich-proof [COMPLETE] Conjugate r_1 to its inverse by the involution a^2, lift the relators to the line for the Euler pairing, and transport Dadarlat's nonzero commutator winding to (BA)^60 along a path of tuples
 - 2026-09-19 · thompson-t-pentagon-winding-sandwich [ESTABLISHED] The pentagon winding of near-relator pairs is sandwiched — T not MF implies it vanishes near the relators, and its vanishing implies T is not quasidiagonal; the r_1-winding vanishes identically and the Euler class pairs to 1
 - 2026-09-19 · thompson-t-pentagon-winding-rigidity [OPEN] Pentagon-winding rigidity for T — exact pairs A^4 = B^3 = 1 with small defect on the Lochak--Schneps relators have Tr log (BA)^5 = 0
 - 2026-09-19 · thompson-t-mf-iff-opnorm-z4-z3-defect-gap-vanishes [ESTABLISHED] Thompson's T is MF iff nontrivial irreducible unitary pairs (A,B) with A^4 = B^3 = 1 have arbitrarily small operator-norm defect on the three long Lochak--Schneps relators
 - 2026-09-19 · thompson-t-mf-iff-opnorm-z4-z3-defect-gap-proof [COMPLETE] Round each cyclic generator's spectrum to roots of unity, use that the Lochak--Schneps relators hold in T, and read off nontriviality from the rounded generators
+- 2026-09-19 · thompson-t-lochak-schneps-presentation-citation [COMPLETE] Import the Lochak--Schneps presentation of T from Funar--Kapoudjian Sec. 2.1 and check its relators in an exact PL model
+- 2026-09-19 · thompson-t-lochak-schneps-presentation [ESTABLISHED] Thompson's T is the quotient of Z/4 * Z/3 by three long relators (Lochak--Schneps), realised by rotation by 1/4 and an order-3 dyadic map
+- 2026-09-19 · thompson-t-has-full-mf-radical [OPEN] Thompson's group T has full MF radical, equivalently T is not MF
 
 ## Active claims
 
