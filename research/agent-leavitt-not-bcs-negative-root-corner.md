@@ -743,3 +743,25 @@ group is locally finite, so it is amenable.
   non-hyperlinearity of `EL_20(J)`.
 - **Next falsifiable step (refutation side).** Exhibit approximations of `EL_20(J)` whose Heisenberg defect grows with
   the Toeplitz degree while `tr pi_k(z)` stays `<= 1/2`.
+
+### The canonical bilateral lift is exactly a mirror cocycle lift (swarm-0917-w15-w15-nh-break, breaker, cohomology-index, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Landed as `bilateral-lift-at-coordinate-projection-is-mirror-cocycle-lift`.
+  Its route is `bilateral-lift-at-coordinate-projection-proof`.
+- **Background.** swarm-0917-w15-w15-nh-pull (unlanded) posed the class-bijective lift `(BL_N)` of the Haar relation
+  `R_n` into the sofic bilateral Laurent relation as the single prerequisite for soficity of `EL_n(J)`. Its sufficient
+  condition was `(ML)`: a cocycle `R_n -> E_-[T_-]` lifting the symbol.
+- **Theorem.** At `N = n` and `r = pr_+`, `(BL_n)` holds **iff** `(ML)` holds.
+  * The two objects correspond bijectively through fibre maps.
+  * The key input is a null-coset lemma: a Toeplitz-plus-finite matrix with nonzero symbol hits any countable set
+    only on a null set. It forces the linear part of every realizing group element to equal the symbol pointwise.
+- **Consequence for this hole.** On the positive (sofic) side through the bilateral relation, the whole content at
+  the canonical placement is one nonabelian lifting problem:
+  * the `L_-`-valued Toeplitz defect of a pointwise lift, pulled back along the symbol cocycle, must be a
+    `[T_-]`-coboundary over the Kazhdan relation `R_n`.
+- **Conditional.** Granting the unlanded non-LEF lemma for `EL_3(J)`, no homomorphic (point-independent) witness
+  exists.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Find an invariant of `[T_-]`-valued cocycles over `R_n`, e.g. an index or entropy of
+  the tail corrections, that the pulled-back mirror class violates; that kills the canonical bilateral route.
+  Otherwise, move the lift to `N > n` or a non-coordinate `r`.
