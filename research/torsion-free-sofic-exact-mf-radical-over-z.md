@@ -337,6 +337,50 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
   - *Surviving region.* (IO) kernels must be neither relatively hyperbolic nor non-parabolically
     embeddable in an MF relatively hyperbolic group. Acylindrically hyperbolic kernels and hosts are
     not covered: Drutu--Sapir finiteness is not available there.
+- **2026-09-19, swarm-0917-w17-w17-titz-break (breaker, calibration).  Status: OPEN.**
+  - *Scope.* A screen of four remaining breaker ideas against the graph. None closes a hole. One
+    elementary necessary condition on the (XMF) branch is recorded, with proof.
+  - *Screened and discarded, with reasons.*
+    - Congruence/torsion-free repair of `EL_3(LC(X,Z) ⋊ Z)`: already dead by
+      `filtered-torsion-certificates-die-on-perfect-kernels`. Every separated filtration forces
+      residual nilpotence, and a perfect kernel admits none.
+    - MCG or `Out(F_n)` hosts: they are residually finite, so the Kazhdan kernel would have finite
+      quotients. That contradicts `mapping-torus-mf-radical-lies-in-finite-residual`.
+    - A `Σ^2` characterization of (IO): by Bieri--Renz, (IO) says only that one of `±χ` lies
+      outside `Σ^2(G)`. This merely restates "`K` is not finitely presented", which (IO) already
+      assumes, so it gives no new decomposition.
+    - Kazhdan-corner reformulation. Write `p` for the Kazhdan projection of `K`, which is central
+      and `φ`-invariant in `C*(G) = C*(K) ⋊_φ Z`, and put `B = (1-p)C*(K)`. Then `Rad_MF(G) = K`
+      iff `B ⋊_φ Z` has no nonzero `*`-homomorphism into any `∏M_{k_n}/⊕M_{k_n}`, and
+      `Rad_MF(K) = K` iff `B` has none.
+      - Proof: if `ρ(p) = e ≠ 1`, then `1-e` lifts to projections, so its corner is again of
+        this form. Conversely, `σ(g(1-p)) + (1-σ(1-p))` defines a group homomorphism.
+      - This is the C*-form of `mapping-torus-mf-radical-descends-through-kernel-radical` together
+        with (XMF). Stably finite targets cannot see it
+        (`kazhdan-mapping-tori-have-proper-stably-finite-radical`). So it is not new leverage.
+  - *Necessary condition (RET, exact return kills).* Let `Q = K/Rad_MF(K)`, with the induced
+    automorphism `ψ`. Suppose that for some nontrivial `ρ : Q -> U(C)`, with
+    `C = ∏M_{k_n}/⊕M_{k_n}`, some `m ≥ 1` and some `W ∈ U(C)`, we have `ρ∘ψ^m = Ad(W)∘ρ`. Then
+    `Rad_MF(G) ≠ K`.
+    - Proof, step 1: put `π = diag(ρ, ρψ, ..., ρψ^(m-1))` on `M_m(C)`, which is again of the form
+      `∏M/⊕M`.
+    - Step 2: let `T` have entries `T_(j,j+1) = 1` for `j < m-1`, `T_(m-1,0) = W`, and zeros
+      elsewhere. Then `T` is unitary.
+    - Step 3: `T π(q) T* = π(ψ(q))`, so `t ↦ T` extends `π` to a homomorphism of `Q ⋊_ψ Z`. This
+      homomorphism is nontrivial on `Q`, and composing it with `G -> Q ⋊_ψ Z` gives the claim.
+    - So in any (XMF) witness, `ψ` acts on the unitary-equivalence classes of nontrivial corona
+      representations of `Q` without periodic points.
+    - This recovers the finite-outer-order kill: take `ψ^m = Ad(k)` and `W = ρ(k)`.
+    - RET is the exact-return case of periodization. The approximate-return version is recorded
+      dead in the Attempts on `mf-kazhdan-quotientless-mapping-torus-exact-radical`: operator-norm
+      error at the wraparound block does not vanish. The exact case is valid, but it applies to
+      fewer pairs.
+    - Survivors: pairs `(Q, ψ)` whose corona dual has no `ψ`-periodic class. Every nontrivial `ψ`
+      of infinite outer order on the LEF subshift groups `EL_3(LC(X,F_q) ⋊ Z)` remains untested.
+  - *Next falsifiable step.* Test RET on the `(HH)` pair of need `a111e246`, namely
+    `Z wr_(Z[1/2]) BS(1,2)` with `Γ_0 = Z wr Z` and `α = Ad(τ)`. Specifically: does the natural LEF
+    corona representation have a `τ`-periodic unitary class? If it does, that candidate dies by
+    RET.
 - **2026-09-19, swarm-0917-w17-w17-titz-last1 (last mile, class kill).  Status: OPEN.**
   - *Target.* The acylindrical extension that w17-titz-break left open. Does (HI) `ψφ^m = c_hψ`
     hold for acylindrically hyperbolic hosts? If it did, it would clear (IO) of acylindrically
