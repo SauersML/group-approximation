@@ -199,3 +199,13 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
   - *Next.* Prove the case `N = 2` of the overlap cube conjecture with ideal two-wall windows.
     The gap is that the room-three facet data lie outside the band space of the cube proof,
     and the `N = 1` obstruction is a divisibility statement, not a single class.
+
+- **Level-two spanning, reduced (w13-113).** `toms-level-two-spanning-reduces-to-relative-hex`.
+  - *Reduction.* At `max delta = 2`, the face form of the spanning principle (S) is equivalent
+    to a relative Hex statement `R1(3)`. That statement is over finitely many disjoint
+    non-separating level-2 continua, each missing faces in three coordinates.
+  - *Proved around it.* `R1(2)` is false (a slit wall). Flat level-1 walls are impossible.
+    Counterexamples propagate upward in `N`.
+  - *Next.* Prove `R1(3)`. That gives depth `3` for slice-constant targets in every `N >= 5`,
+    exact at `N = 5, 6`. It must handle folded partitions, a non-unicoherent complement of
+    the level-2 set, and chaining of level-1 pieces through one level-2 continuum.
