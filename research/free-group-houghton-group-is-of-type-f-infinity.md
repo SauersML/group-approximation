@@ -8,7 +8,17 @@ distinct_from:
   hard-evaluation-seeds-with-finitely-presented-full-groups: that poses T0 as the first non-split calibration of its condition 2; this settles T0.
 ---
 
-**ESTABLISHED** (lane proof, bh-invent-03, 2026-09-19; not reviewed; no priority claimed).
+**ESTABLISHED (refereed)** (lane proof, bh-invent-03, 2026-09-19; no priority claimed). Referees:
+- bh-ref-t0 (`free-group-houghton-group-f-infinity-review`) for Regions A, S′, the imports and the **Region B repair**,
+  which is theirs;
+- bh-invent-11 for Regions S and S′;
+- bh-ref-q11 (bb16c96e08), who independently checked the Repair Lemma line by line.
+- **Region B as first written proved only `F_3`.** The walls `min(d_a, d_b)` small were not handled.
+- **`F_∞` rests on the referee's Repair Lemma** (review §3), adopted below. That lemma was checked
+  independently by bh-ref-q11 (bb16c96e08, PASS).
+- **Credit.** T0 is `RP_(F_2)(C(F_2,{a,b}))` of Bux–Llosa Isenrich–Wu (arXiv:2408.05673, Remark 1.6). It lies
+  outside their viral-expansion hypothesis (Def. 4.3: `M_ii = 1` here), so their Prop. 9.2 does not apply. The
+  V-shaped height is what replaces viral expansion.
 
 **Imported inputs.**
 - (I1) **Contractibility of the ball complex.** The Farley–Hughes complex `Δ` of `F`, with the ball S-structure
@@ -16,6 +26,8 @@ distinct_from:
   for Lehnert's `QV` (their Example 3.30): the domains of `Y` are the balls of its tree ultrametric. The domain check
   is not re-done here.
 - (I2) **Connectivity of matching complexes.** Such complexes are highly connected when every type is abundant.
+  The pure `c_a/c_A` complexes are the `lk↓` of the sub-scheme `𝓔′` that expands only `a/A`-cones, so
+  FH Props. 7.14–7.16 and 8.11 apply to them. This is the referee's citation repair.
   This is the nerve lemma of FH Prop. 7.15–7.16 with the type-vector induction of Prop. 8.11. Each contracting
   vector lowers each coordinate by at most 1, so on `{all coordinates ≥ 3n+4}` the complex is `n`-connected.
 
@@ -39,7 +51,8 @@ Notation is that of `free-group-houghton-group-has-lopsided-descending-links`.
 - **Cocompact:** `{ℓ ≤ t}` contains finitely many types, hence finitely many `F`-orbits.
 - **Descending link.** `DL(v)` is the full subcomplex of `lk(v, Δ)` on the neighbours below `v` in the `(ℓ, rank)`
   order.
-- **Brown's criterion.** By (I1) and Brown's criterion in Morse form (FH Thm. 7.3), `F` is `F_n` as soon as `DL(v)`
+- **Brown's criterion.** Use (I1), Brown's criterion (FH Thm. 7.3, a plain filtration criterion) and the
+  Bestvina–Brady Morse lemma, which adds vertices along their descending links. Then `F` is `F_n` as soon as `DL(v)`
   is `(n−1)`-connected for every `v` outside a bounded set of types.
 
 ## The four regions
@@ -87,9 +100,17 @@ number of `a/A`-cones. By symmetry in `a ↔ b`, and since `{n_a, n_b < N}` is b
   at most `N/2` cones are removed from each part.
 
 **Region S′** (`n_a = N + 1`, `n_b ≥ N`).
-- **What changes.** As in S, except that pure `c_b/c_B` sets of size `≤ 2` are also descending.
-- **How they attach.** They attach with the link {descending supersets `P ⊔ Q` with `Q ⊆ c_a/c_A`}. This is a
-  pure `c_a/c_A` matching complex avoiding `∪P`, hence connected.
+- **Corrected description (after the check below).** There are no descending uppers. The descending lowers
+  are exactly `α ≥ max(β − 2, 0)`, `α + β ≥ 1`, with the upper bounds listed in the check.
+- **The proof.** Use bh-invent-11's four-step attachment in the check section:
+  1. the retraction onto `D′ = {1 ≤ α ≤ 2d_b}`;
+  2. the edge cases `(2d_b+1, 1)`;
+  3. the single `c_b` sets;
+  4. the pairs of `c_b` sets.
+
+  Every attaching link is highly connected. The edge-case link is `≃ S^(2d_b−1)`, not contractible as the check
+  says (review §4); that is harmless. My original sentence, "pure `c_b/c_B` sets of size
+  `≤ 2`", understated the descending set.
 
 **Region B** (`n_a, n_b ≥ N + 2`).
 - **Descending moves.** No upper is descending. Every `P` with `|P| ≤ 3` is descending.
@@ -98,8 +119,15 @@ number of `a/A`-cones. By symmetry in `a ↔ b`, and since `{n_a, n_b < N}` is b
   `π_1(sd K(v)^{(2)}) = π_1(K(v))`, and in general `DL(v)` is as connected as `K(v)` up to the truncation.
 - **`K(v)`.** Here `K(v)` is the full matching complex of the four contraction types. Its coordinates are
   `≥ N + 2`, so it is highly connected by (I2).
+- **Repair at the walls (referee's Repair Lemma).** The argument above only makes `DL(v)`
+  `min(conn K(v), 2·min(d_a,d_b) − 2)`-connected, which fails on the strips `d_a` (or `d_b`) small.
+  - **Adopted from review §3.** For `d_a, d_b ≥ 1`, `DL(v) ≃ sd K_0(v)`, where
+    `K_0(v) = {P : α_P ≤ 2d_b, β_P ≤ 2d_a}`. The overshooting sets attach along contractible links.
+  - **Connectivity.** If `N ≥ 4n + 4` and `max(d_a, d_b) ≥ (n+1)/2`, then `K_0(v)` is `(n−1)`-connected. The proof
+    inducts over pure-`β` faces, via the pure `c_a/c_A` complexes.
 
-**Conclusion.** Given `n`, choose `N ≥ C·n` large. Every `v` outside the bounded set `{n_a, n_b < N} ∪ {ℓ ≤ L_0}`, with `L_0` large, has
+**Conclusion.** Given `n`, choose `N ≥ 12n + 16` and `L_0 ≥ N/4 + n` (the referee's cutoffs). Every `v` outside the bounded set `{n_a, n_b < N} ∪ {ℓ ≤ L_0}`, with `L_0 ≥ N/4 + C·n` (so that `d_b ≥ ℓ − N/4` is
+large in Regions S and S′), has
 an `(n−1)`-connected descending link. So `F` is of type `F_n` for every `n`, i.e. `F_∞`. ∎
 
 ## Lesson for general BH
@@ -113,3 +141,44 @@ an `(n−1)`-connected descending link. So `F` is of type `F_n` for every `n`, i
 - **For the hard-actor route (SYNTHESIS v9 #1).** Condition 2 (finite presentation) holds for the first non-split
   calibration. The same V-height template should apply to any tree seed with finitely many cone types, and plausibly
   to hierarchical seeds whose type vectors satisfy linear invariants.
+
+## Check of Regions S and S′ (bh-invent-11, 2026-09-19, on request; internal lane check, not an external review)
+
+**Region S: PASS.**
+- **Descending conditions.** Recomputed: lowers descend iff `β ≤ α ≤ 2d_b − β`; uppers iff `y < x` and
+  `x + y < 2|d_a|`.
+- **The two retractions.**
+  - `P ↦ P ∩ {c_a/c_A}` keeps `(α, 0)` descending, since `α ≤ 2d_b`. It satisfies `f ≥ id`.
+  - When `v^E` is attached, its link is exactly `D_low(E) * Up_<(E)`. The coupling only sees the largest
+    upper `E` and the largest lower `P_1`, and `E ∩ ∪P_1 = ∅` implies the condition for smaller uppers.
+  - A join with a possibly empty `Up_<(E)` is at least as connected as `D_low(E)`.
+- **Part sizes.** The part sizes `s, 2n_a, n_b, n_b`, and at least `N/2` after removing `E`, are correct.
+- **Make explicit: the size of `L_0`.** `L_0` must depend on `N`, with `L_0 ≥ N/4 + C·n`.
+  - In Region S, `d_b ≥ ℓ − N/4`, so this bound is what makes the truncation `2d_b − 2` large.
+  - The row `n_b = N` (`d_b = 0`) has **no** descending lowers. It is harmless only because it lies in
+    `{ℓ ≤ N/4} ⊆ {ℓ ≤ L_0}`.
+
+**Region S′: the conclusion holds, but the description needs a repair.**
+- **What is actually descending.** For `d_a = 1`, the lowers descend iff `α ≥ max(β − 2, 0)` and `α + β ≥ 1`, with
+  upper bounds `α ≤ 2d_b` for `β = 0`, `α ≤ 2d_b + 1` for `β = 1`, and `α ≤ 2d_b + 2 − β` for `β ≥ 2`. This is more
+  than "S plus pure `c_b` sets of size ≤ 2": for example `(α, β) = (1, 2)` and `(1, 3)` also descend.
+- **No descending uppers.** For `d_a ≥ 1` every upper raises `ℓ` by `x + y`. So `DL(v)` consists of lowers only;
+  the "as in S" attachment of uppers does not occur.
+- **The retraction breaks at one edge case.** `P ↦ P ∩ {c_a/c_A}` fails to stay descending exactly at
+  `(α, β) = (2d_b + 1, 1)`.
+- **The repair.**
+  1. Let `D′ = {P descending : 1 ≤ α ≤ 2d_b}`. The retraction maps `D′` into itself with `f ≥ id`, so `D′` is
+     homotopy equivalent to the truncated pure `c_a/c_A` matching complex, which is highly connected by (I2).
+  2. Attach the edge-case vertices `(2d_b + 1, 1)`. They have no descending proper supersets. Their link is the
+     poset of proper nonempty subsets other than the single `c_b` element `{c}`. It is contractible via
+     `σ ↦ σ ∖ {c}`, which is `≤ id`, onto the full simplex on `P ∖ {c}`.
+  3. Attach the single `c_b` sets `{c}`. Their link is the descending supersets. The map
+     `P ↦ (P ∩ c_a) ∪ {c}`, which is `≤ id`, is a homotopy equivalence onto the truncated `c_a/c_A` matching
+     complex avoiding the pieces of `c`. That complex is highly connected, not merely connected as stated.
+  4. Attach the pairs `{c, c′}`. Their link is `{{c}, {c′}} * (upward part)`, and the upward part is highly
+     connected by the same map with `{c, c′}`.
+
+  With this repair, Region S′ is `(n−1)`-connected for `N ≥ C·n`, and the Conclusion stands.
+- **Coverage.** The cases `n_a ≥ N + 2` with `n_b ∈ {N, N + 1}` are covered by S and S′ through the `a ↔ b`
+  symmetry, as the setting says.
+- **Not checked here.** Regions A and B, and the imports (I1) and (I2).

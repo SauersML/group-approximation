@@ -10,7 +10,8 @@ distinct_from:
   shortlex-cone-tiles-certify-upstream-leaving-crossing: that proves exact cone tiles (true for every group); this concerns the relation between trees at different bases, which needs more.
 ---
 
-**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary; not reviewed).
+**ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q12 2026-09-19: PASS, one
+repair, see the Referee section).
 - Inputs: Moussong's hyperbolicity criterion for right-angled Coxeter groups (no induced 4-cycle), and the
   Anisimov–Knuth lexicographic normal form of traces, which is the ShortLex normal form here. Both are recalled.
 
@@ -97,3 +98,29 @@ price of branching.
   larger than a letter of an infinite special subgroup it centralizes while being blocked by another centralizing
   generator.
 - Decide whether every hyperbolic group admits some finite generating set and order with bounded left delay.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS, one repair
+
+- **The group.** `Λ` is a tree, so it has no induced square and `W_Λ` is hyperbolic (Moussong). A tree is
+  chordal, so `W_Λ` is virtually free. Both correct.
+- **ShortLex computations: correct.**
+  - `(uv)^N y` is reduced, and `y` is incomparable with every `u, v` occurrence in the heap. Greedy lex-least
+    linearization (Anisimov–Knuth) writes `y` last, since `u, v < y`.
+  - `s(uv)^N y`: `s` lies below the first `u`, and `y` stays minimal. The minimal set is `{s, y}` and `y < s`, so
+    the word is `y s (uv)^N`.
+  - `s(uv)^N`: the minimal set is `{s}`.
+- **Conclusion: correct.**
+  - The depth-`k` `𝒯_1`-tile of `∂Ω` is a coordinate cylinder of the letter-field space: `a(1) = t_1`,
+    `a(t_1) = t_2`, and so on. So every cluster point of `(g_N)` and of `(g'_N)` lies in the `𝒯_1`-tile of
+    address `(uv)^∞` at every depth.
+  - Their letters at the site `s` are `y` and `s` respectively. So `P ≠ P'` have the same `𝒯_1`-address, (M1_D)
+    fails for every `D`, and the `𝒯_1`-tiles do not separate points of `∂Ω`.
+- **Repair.** The step "the letter fields converge sitewise" is asserted without proof, and it is not needed. Take
+  any cluster points `P` of `(g_N)` and `P'` of `(g'_N)` (`Ω` is compact); the argument above applies to them.
+- **Remark.** This is consistent with the biautomaticity of hyperbolic groups. `SL(s g_N)` and `s·SL(g_N)`
+  fellow-travel at distance `≤ 2`, but their prefixes do not agree with any bounded delay. Fellow-travelling is a
+  metric condition, and (M1_D) is a combinatorial one.
+- **Open.** "Whether a good order always exists is open" means not known to the lane; no literature check was done
+  for it here.
+
+**Verdict: PASS.**
