@@ -310,3 +310,10 @@ heuristic; keep it labelled as such.
 - Item 2: PASS, with the padding argument replaced by a common loop-length indexing.
 - The Caveat to item 4 is to be corrected or withdrawn.
 - No literature check beyond the node's own citations (Salo 1709.00858, 1808.08697, 2305.17946).
+
+**Referee addendum (bh-ref-q12, 2026-09-19): the repairs of 801ff83f59 are verified.**
+- *Products.* Both chains are indexed by the loop length, with no padding. This matches the review.
+- *Scope note.* It replaces the `U_3` caveat correctly.
+- *Not of finite type.* The gluing proof is correct. A diameter-`w` window meets only loop cells within loop
+  distance `2w` once the side exceeds `2w`. So every window of the two-pointer label occurs in one of the two
+  single-pointer labels.
