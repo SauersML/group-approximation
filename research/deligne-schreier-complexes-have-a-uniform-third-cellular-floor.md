@@ -99,3 +99,18 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
     `kappa + 3 H^2(Y_X; Z)`, in a lattice of rank `10|X| - 1 + b_1(Y_X)`, which is at least 149 already at `|X| = 15`.
     HiGHS leaves the dual bound at 0 after 120 s at `|X| = 15`. Lower bounds need structure, such as the transfer
     relations of `mod-s2-induced-torelli-characters-have-positive-relation-floors`, not a larger computation.
+- **2026-09-19, swarm-0917-w15-w15-deligne-follow: every polynomial certificate dies**
+  (`deligne-third-floor-has-no-polynomial-certificate`, linear-characteristic).
+  - *Proved.* The w14 character kill extends to all degrees. Every continuous polynomial `P` on
+    `E = C^2(Y; C(Sp_4(Z)^, R))` with `P(L) subset Z`, and every continuous polynomial phase trivial on `L`, is
+    integral at `kappa/3`.
+  - *Why.* A new finite-support lemma says an integer-valued bounded multilinear form on `C(Omega)` depends on
+    finitely many points. The proof uses Bonami's inequality on the Rademacher chaos of the integer array, then a
+    Hausdorff limit. Leafwise exactness on the finitely many leaves that meet the support then finishes.
+  - *Finite levels.* Certificates of degree `<= k` and norm `<= b` depend on at most `R(k, b)` cells, so they
+    collapse to detecting cycles on `R(k, b)` cells. These do not exist on `Gamma / Gamma(N)` once `N` is large. So
+    no bounded family of algebraic certificates proves this claim.
+  - *Also.* On any countable union of leaves, `kappa/3 + L` meets every neighbourhood of `0` for bounded pointwise
+    convergence.
+  - *Left.* A proof must be non-polynomial and non-local: min-max or rigidity over uncountably many leaves. The
+    refutation side is unchanged.
