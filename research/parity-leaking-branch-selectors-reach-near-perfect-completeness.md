@@ -279,3 +279,36 @@ a cycle of equations through the window.
     Grassmann agreement test at acceptance `>= (1/2 + gamma)^2`, and an
     iterated KMS zoom decoding might supply Star-List^C. The obstacle is the
     per-star split ambiguity.
+* **(Star-List^C) is circular; splice plus flip orientation (2026-09-19,
+  swarm-0917-w15-w15-ugc-follow).** **Class killed** in
+  `star-list-structure-is-circular-on-decodable-yes-inputs`. On J-instances
+  of rank `n = k - O(log(1/gamma'))`, the solution `x = 0` is found by
+  Gaussian elimination. From it one builds the flip orientation `o*`. At the
+  branch label, the preferred preimage is the defect-line branch off `W_U`; on
+  flat stars it is flipped on the degenerate half `L <= W_U`; everywhere else
+  it is balanced. `o*` has lift value `>= 0.605` (Theorem O item 1).
+  **Theorem O item 2:** every lift labelling `W'` of `o*` has
+  `val <= 1/2 + D^C_L(proj W', Lambda) + E` for every list of `L` ARBITRARY
+  references. The argument has three parts:
+  - two-sided Lemma A off `W_U^⊥`, where each reference covers one branch of
+    mass `< 2^(-s-1)`;
+  - the single bit `b_q` against the two halves of a flat star;
+  - `1/(2^l - 1) + SD*` for A-labels whose kernel is exactly the seed, by
+    Q-uniformity.
+
+  Splicing `o*` into any constant-bias selector `S` (Proposition S) gives a
+  constant-bias selector `S'` that violates (Star-List^C) for every
+  `L <= gamma'^2 2^(k-l-16)`. This range contains the whole Corollary DK^C
+  budget. So, for `2^(2-l) <= gamma' < gamma <= 0.105`, "(Star-List^C) for
+  every selector" is equivalent to "no selector exists", and it implies
+  `P != NP` (Corollary PNP). This also settles the transfer that the CLV bullet
+  left unchecked (Corollary TR). It survives noisy YES inputs of value `< 1`
+  (Corollary N).
+  **Where it dies:** the step "every constant-bias selector's witness admits a
+  short star list". The same kill applies to the exploratory GStar/KMS-zoom
+  plan above, and to any other route that would prove (Star-List^C) for all
+  selectors on all YES inputs.
+  **Still alive:** structure hypotheses restricted to YES inputs that the
+  decoder can test are non-decodable (for example PCP images with spanning
+  equation vectors), `gamma > 0.105`, `gamma' < 2^(2-l)`, and hypotheses that
+  use the selector's behaviour across inputs.
