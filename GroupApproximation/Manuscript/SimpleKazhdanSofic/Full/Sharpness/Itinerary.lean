@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Topology.Homeomorph.Lemmas
+import Mathlib.Data.ZMod.Basic
 import Mathlib.Topology.Instances.ZMod
 import Mathlib.Topology.Separation.Profinite
 import GroupApproximation.Meta.AxiomGuard

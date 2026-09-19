@@ -1,0 +1,12 @@
+max |C(g)C(h) - C(gh)|              : 1.01e-15
+max |C(g)C(g)^* - I|                 : 9.77e-15
+max l_op(Phi_k g) - KF_k(g)  (<= 0)  : 7.355e-16
+min l_op(Phi_k g) - KF_k/pi  (>= 0)  : 3.379e-02
+max op-ratio / (pi rho/min(A,1)) (<=1): 0.4044
+max best-KF-ratio / (|R0| eps)  (<=1): 0.5000
+example (5): k, op-ratio, HS-ratio, rank-ratio at identity; KF_k ratio; op-ratio after Phi_k; bound
+  k= 10  op=3.150 HS=1.412 rank=100  KF=0.4051  Phi_k op=0.4208  bound=1.2726
+  k= 20  op=4.463 HS=1.413 rank=400  KF=0.2707  Phi_k op=0.2819  bound=0.8503
+  k= 40  op=6.318 HS=1.414 rank=1600  KF=0.1823  Phi_k op=0.1901  bound=0.5728
+example (5) consistent
+ALL CHECKS PASS
