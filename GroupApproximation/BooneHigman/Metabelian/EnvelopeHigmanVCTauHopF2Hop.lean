@@ -50,10 +50,10 @@ theorem higmanVCTauHop_hopC1 {d n : ℕ} {p q : List (Fin d)} {a b c a' b' z0 e 
     higmanVCTauClassify_inc_cons2 a' (higmanVCTauUnif_inc_cons (Ne.symm he) z' [])
   have tp : higmanVCTauUnif_Inc p [a', e] :=
     higmanVCTauHop_incLen (by omega)
-      (fun h => hpy.2 ((⟨[e], rfl⟩ : [a'] <+: [a', e]).trans h))
+      (fun h => hpy.2 (List.IsPrefix.trans (⟨[e], rfl⟩ : [a'] <+: [a', e]) h))
   have tq : higmanVCTauUnif_Inc q [a', e] :=
     higmanVCTauHop_incLen (by omega)
-      (fun h => hqy.2 ((⟨[e], rfl⟩ : [a'] <+: [a', e]).trans h))
+      (fun h => hqy.2 (List.IsPrefix.trans (⟨[e], rfl⟩ : [a'] <+: [a', e]) h))
   -- the first flexible square: pair `([a, b'], u)`
   have hX1 : MapsCone (coneSwap [a, b'] [a, b, c] hj.1 hj.2) (a :: b :: c :: z0 :: z')
       (a :: b' :: z0 :: z') := (mapsCone_coneSwap_right hj.1 hj.2).append (z0 :: z')
