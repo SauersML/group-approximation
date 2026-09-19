@@ -1,0 +1,1456 @@
+{
+  "pair_count": 6,
+  "all_reducing": true,
+  "all_star_compatible": true,
+  "all_unitary": false,
+  "all_base_rank_positive": true,
+  "all_base_equals_zero_child": true,
+  "all_one_child_zero": true,
+  "compressors": {
+    "raw": {
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "outside": [],
+      "star_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "star_outside": [],
+      "reducing": true,
+      "star_compatible": true
+    },
+    "comb": {
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "outside": [],
+      "star_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "star_outside": [],
+      "reducing": true,
+      "star_compatible": true
+    }
+  },
+  "compressor_source_syllables": {
+    "raw": {
+      "distinct_syllables": 6,
+      "germ_breaker_count": 4,
+      "germ_breakers": [
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000001000100000000010001000000",
+          "positions": [
+            0
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [
+            "001"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000001000100000000010000000001",
+          "positions": [
+            2,
+            6,
+            8,
+            18,
+            22,
+            24
+          ],
+          "outside": [],
+          "star_outside": [
+            "001"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000000000100000000010001000001",
+          "positions": [
+            4,
+            10,
+            14,
+            20
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "00000001000100000000010001000000",
+          "positions": [
+            12,
+            16
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [
+            "001"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    "comb": {
+      "distinct_syllables": 28,
+      "germ_breaker_count": 11,
+      "germ_breakers": [
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000000000100000000010001000001",
+          "positions": [
+            1,
+            7,
+            9,
+            15,
+            25,
+            27,
+            51,
+            57,
+            59,
+            113,
+            117,
+            127,
+            129,
+            131,
+            133,
+            143,
+            157
+          ],
+          "outside": [
+            "011"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000100000100000000010001000101",
+          "positions": [
+            3,
+            17,
+            53
+          ],
+          "outside": [
+            "011"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000001000100000100010100000001",
+          "positions": [
+            39
+          ],
+          "outside": [],
+          "star_outside": [
+            "011"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000001000100000000010000000001",
+          "positions": [
+            41,
+            47,
+            49,
+            135,
+            137,
+            139,
+            141,
+            153,
+            155
+          ],
+          "outside": [],
+          "star_outside": [
+            "011"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000000000100000000010001000001",
+          "positions": [
+            64,
+            66,
+            68,
+            70,
+            76,
+            78,
+            80,
+            82,
+            110,
+            124,
+            146,
+            150,
+            160,
+            162,
+            164,
+            166
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000001000100000000010000000001",
+          "positions": [
+            92,
+            94,
+            96,
+            98,
+            104,
+            106,
+            108,
+            120,
+            122,
+            168,
+            170,
+            172,
+            174
+          ],
+          "outside": [],
+          "star_outside": [
+            "001"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000001010100010000010000000001",
+          "positions": [
+            102
+          ],
+          "outside": [],
+          "star_outside": [
+            "001"
+          ],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000000010100000000010001000001",
+          "positions": [
+            112,
+            126
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000100000100000000010000000101",
+          "positions": [
+            115
+          ],
+          "outside": [
+            "011"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 2,
+          "matrix_f2_hex": "01000000010100000000010001000001",
+          "positions": [
+            145,
+            159
+          ],
+          "outside": [
+            "011"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "factor": 1,
+          "matrix_f2_hex": "01000100000100000000010000000101",
+          "positions": [
+            148
+          ],
+          "outside": [
+            "001"
+          ],
+          "star_outside": [],
+          "restricted_inside_part": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "restricted_star_inside_part": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "pair_index": 0,
+      "boundary_index": 11,
+      "inverted": false,
+      "rotation": 0,
+      "prefix_length": 2,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "010",
+      "zero_child": "0100",
+      "one_child": "0101",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    },
+    {
+      "pair_index": 1,
+      "boundary_index": 11,
+      "inverted": false,
+      "rotation": 3,
+      "prefix_length": 3,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "010",
+      "zero_child": "0100",
+      "one_child": "0101",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    },
+    {
+      "pair_index": 2,
+      "boundary_index": 11,
+      "inverted": true,
+      "rotation": 6,
+      "prefix_length": 2,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "000",
+      "zero_child": "0000",
+      "one_child": "0001",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    },
+    {
+      "pair_index": 3,
+      "boundary_index": 30,
+      "inverted": false,
+      "rotation": 3,
+      "prefix_length": 2,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "000",
+      "zero_child": "0000",
+      "one_child": "0001",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    },
+    {
+      "pair_index": 4,
+      "boundary_index": 30,
+      "inverted": false,
+      "rotation": 6,
+      "prefix_length": 3,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "000",
+      "zero_child": "0000",
+      "one_child": "0001",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    },
+    {
+      "pair_index": 5,
+      "boundary_index": 30,
+      "inverted": true,
+      "rotation": 3,
+      "prefix_length": 2,
+      "ray_states": [
+        "0^infinity",
+        "01",
+        "1"
+      ],
+      "reducing": true,
+      "star_compatible": true,
+      "unitary": false,
+      "generators": {
+        "q": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        },
+        "l": {
+          "matrix": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "outside": [],
+          "star_matrix": [
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "star_outside": []
+        }
+      },
+      "base": "010",
+      "zero_child": "0100",
+      "one_child": "0101",
+      "base_rank": 1,
+      "zero_child_rank": 1,
+      "one_child_rank": 0,
+      "base_equals_zero_child": true,
+      "one_child_is_zero": true
+    }
+  ]
+}

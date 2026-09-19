@@ -1,0 +1,96 @@
+{
+  "ambient": "M23",
+  "ambient_order": 10200960,
+  "chart": "A8",
+  "chart_normalizer_order": 20160,
+  "chart_order": 20160,
+  "double_coset_size_histogram": {
+    "20160": 1,
+    "302400": 1,
+    "4233600": 1,
+    "5644800": 1
+  },
+  "double_cosets": 4,
+  "first_joint_escape": null,
+  "intersection_order_histogram": {
+    "1344": 1,
+    "20160": 1,
+    "72": 1,
+    "96": 1
+  },
+  "packet_words": 30,
+  "parities": {
+    "graph": {
+      "double_coset_records": [
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 10,
+          "packet_survivors": 30,
+          "size": 20160
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 4233600
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 5644800
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 302400
+        }
+      ],
+      "joint_survivors": 0,
+      "packet_and_19243_survivors": 0,
+      "packet_and_q14_survivors": 10,
+      "packet_survivors": 30
+    },
+    "inner": {
+      "double_coset_records": [
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 11,
+          "packet_survivors": 30,
+          "size": 20160
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 4233600
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 5644800
+        },
+        {
+          "joint_survivors": 0,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 0,
+          "packet_survivors": 0,
+          "size": 302400
+        }
+      ],
+      "joint_survivors": 0,
+      "packet_and_19243_survivors": 0,
+      "packet_and_q14_survivors": 11,
+      "packet_survivors": 30
+    }
+  }
+}

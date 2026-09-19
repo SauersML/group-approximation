@@ -1,0 +1,25 @@
+{
+  "collision_transposition_central_flags": [false, true, false],
+  "degree_cutoff": 12,
+  "faithful_local_coset_images": 12,
+  "record_fields": [
+    "degree",
+    "image_order",
+    "radial_S3_intersection_order",
+    "B_involution_label",
+    "collision_compatible_at_intersection"
+  ],
+  "record_histogram": [
+    {"record": [5, 60, 2, 3, false], "multiplicity": 1},
+    {"record": [6, 60, 2, 3, false], "multiplicity": 1},
+    {"record": [7, 168, 1, 0, true], "multiplicity": 4},
+    {"record": [8, 168, 1, 0, true], "multiplicity": 2},
+    {"record": [10, 60, 2, 3, false], "multiplicity": 1},
+    {"record": [12, 60, 2, 3, false], "multiplicity": 1},
+    {"record": [12, 1920, 1, 0, true], "multiplicity": 2}
+  ],
+  "compatible_at_intersection_count": 8,
+  "incompatible_A5_count": 4,
+  "trivial_intersection_order168_count": 6,
+  "trivial_intersection_order1920_count": 2
+}

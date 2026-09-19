@@ -1,0 +1,88 @@
+{
+  "ambient": "M24",
+  "ambient_order": 244823040,
+  "chart_normalizer_order": 20160,
+  "chart_order": 20160,
+  "factor_oriented_packet_edges": 16,
+  "parities": {
+    "graph": {
+      "cells_with_packet_survivors": [
+        {
+          "base_point_in_target_octad": false,
+          "fiber": "fixed",
+          "joint_survivors": 0,
+          "nonidentity_19243_order_histogram": {
+            "2": 25,
+            "4": 5
+          },
+          "octad_intersection": 8,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 10,
+          "packet_survivors": 30,
+          "same_octad": true,
+          "subdegree": 1
+        },
+        {
+          "base_point_in_target_octad": false,
+          "fiber": "nonzero_affine",
+          "joint_survivors": 0,
+          "nonidentity_19243_order_histogram": {
+            "2": 22,
+            "4": 5
+          },
+          "octad_intersection": 8,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 10,
+          "packet_survivors": 27,
+          "same_octad": true,
+          "subdegree": 15
+        }
+      ],
+      "joint_survivors": 0,
+      "packet_and_19243_survivors": 0,
+      "packet_and_q14_survivors": 20,
+      "packet_survivors": 57,
+      "seed_candidates_explicitly_replayed": 5806080
+    },
+    "inner": {
+      "cells_with_packet_survivors": [
+        {
+          "base_point_in_target_octad": false,
+          "fiber": "fixed",
+          "joint_survivors": 0,
+          "nonidentity_19243_order_histogram": {
+            "2": 25,
+            "4": 5
+          },
+          "octad_intersection": 8,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 11,
+          "packet_survivors": 30,
+          "same_octad": true,
+          "subdegree": 1
+        },
+        {
+          "base_point_in_target_octad": false,
+          "fiber": "nonzero_affine",
+          "joint_survivors": 0,
+          "nonidentity_19243_order_histogram": {
+            "2": 22,
+            "4": 5
+          },
+          "octad_intersection": 8,
+          "packet_and_19243_survivors": 0,
+          "packet_and_q14_survivors": 8,
+          "packet_survivors": 27,
+          "same_octad": true,
+          "subdegree": 15
+        }
+      ],
+      "joint_survivors": 0,
+      "packet_and_19243_survivors": 0,
+      "packet_and_q14_survivors": 19,
+      "packet_survivors": 57,
+      "seed_candidates_explicitly_replayed": 5806080
+    }
+  },
+  "seed_edge": 1
+}

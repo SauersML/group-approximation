@@ -1,0 +1,9 @@
+Fixed complex: ContractibleGcomplex("SL(3,Z)")
+Source degree/cell: 3 1
+Signed target cell -1: 2 terms
+Signed target cell +1: 2 terms
+Signed target cell -2: 4 terms
+Signed target cell +2: 2 terms
+Absolute target cell 1: 4 terms
+Absolute target cell 2: 6 terms
+Uniform squared row-norm bound: 4^2 + 6^2 = 52

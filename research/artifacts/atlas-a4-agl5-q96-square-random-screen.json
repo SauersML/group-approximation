@@ -1,0 +1,11 @@
+{
+  "ambient": "AGL(5,2)",
+  "found": false,
+  "q96_affine_model_found": true,
+  "random_affine_conjugators_sampled": 500000,
+  "r_candidates": 0,
+  "s_candidates": 0,
+  "seed": 19243,
+  "square_trials_requested": 2000000,
+  "z_candidates": 0
+}

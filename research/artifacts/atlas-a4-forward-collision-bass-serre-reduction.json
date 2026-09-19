@@ -1,0 +1,31 @@
+{
+  "collision_cyclic_syllables_in_D_amalg_B_K": [
+    "t",
+    "c",
+    "s",
+    "c",
+    "t^-1",
+    "c b c"
+  ],
+  "collision_relative_length": 6,
+  "edge_groups": {
+    "A=<r,z>": 9,
+    "B=<b=st>": 2
+  },
+  "euler_characteristic": "-55/144",
+  "regular_multiplicities_at_atlas_scale_k": {
+    "A_from_C_or_F": 2240,
+    "B_from_C_or_K": 10080,
+    "C": 140,
+    "F": 1120,
+    "K": 3360,
+    "total_dimension": 20160
+  },
+  "remaining_quotient": "Gamma=(F *_A C *_B K)/<<t c s c t^-1 c s t c>>",
+  "relative_C_prime_one_six": false,
+  "vertex_groups": {
+    "C=C2^4:C3^2": 144,
+    "F=C3xS3": 18,
+    "K=S3": 6
+  }
+}

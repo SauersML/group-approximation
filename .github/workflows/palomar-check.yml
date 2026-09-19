@@ -1,0 +1,124 @@
+name: Palomar check
+
+# The fast half of the Palomar gate: minutes, not hours, and independent of
+# the prover workflow.
+#
+# WHY SEPARATE.  `prover.yml` is the certificate path and takes hours, and
+# every run is cancelled the moment a newer commit lands -- with several
+# agents pushing continuously, a completed verdict on the Palomar surface can
+# be a long time coming, and it is coupled to breakage in modules that have
+# nothing to do with the submission.  This job restores the build cache the
+# prover workflow saves, builds ONLY the two Palomar libraries and whatever of
+# the development they pull in, and runs the checks that decide whether the
+# submission is coherent.
+#
+# WHAT IT DOES NOT DO.  It does not run Comparator; that is
+# `palomar-comparator.yml`, manual, and slow because it exports and
+# kernel-replays the whole proof closure.  What runs here is the check that
+# reproduces Comparator's COMPARISON: the compared declaration's transitive
+# constant closure, with the type and value hash of every constant, dumped
+# from each module's own environment and diffed.  That is what catches the
+# defect Comparator catches -- an instance resolved differently on the two
+# sides -- and it takes seconds.
+
+on:
+  push:
+    paths:
+      - 'Palomar/**'
+      - 'scripts/check_palomar_submission.py'
+      - 'scripts/check_palomar_statement_match.sh'
+      - 'scripts/PalomarChallengeType.lean'
+      - 'scripts/PalomarSolutionType.lean'
+      - 'formalization.yaml'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - '.github/workflows/palomar-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: palomar-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Palomar surface
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      # The source-level half needs no Lean at all, so it runs first and fails
+      # fast.  PyYAML is installed if absent: in CI the metadata check refuses
+      # to skip, because a check that quietly does not run reads exactly like
+      # one that passed.
+      - name: Calibrate and run the submission gate
+        run: |
+          python3 -c 'import yaml' 2>/dev/null \
+            || python3 -m pip install --disable-pip-version-check --no-deps PyYAML==6.0.3
+          python3 scripts/check_palomar_submission.py --self-test
+          python3 scripts/check_palomar_submission.py
+
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # Read-only.  The prover workflow owns these caches; this job borrows
+      # them and saves nothing, so it can never displace the entry the
+      # certificate path depends on.
+      - name: Restore Lake dependencies
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Restore compiled project
+        id: build-restore
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-
+
+      - name: Restore Mathlib olean archives
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/mathlib
+          key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Report the warm-start state
+        run: |
+          if [ -z "${{ steps.build-restore.outputs.cache-matched-key }}" ]; then
+            echo "::warning::no compiled-project cache was found; this build"
+            echo "::warning::starts from Mathlib and may exceed the timeout."
+          else
+            echo "restored ${{ steps.build-restore.outputs.cache-matched-key }}"
+          fi
+
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
+
+      - name: Build the Palomar modules
+        run: lake build PalomarChallenge PalomarSolution
+
+      # The check that reproduces Comparator's comparison.
+      - name: Palomar statement match
+        run: bash scripts/check_palomar_statement_match.sh
