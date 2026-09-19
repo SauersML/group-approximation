@@ -103,3 +103,34 @@ artifacts:
     - A base `τ` that is strict but on fewer letters (`|A| ∈ NS(G)`, which says nothing about `n`).
     - Block-code factors.
     - Coupled dynamics with no factor onto an injective automaton.
+- **Tied largest fibers, arbitrary base** (swarm-0917-w17-w17-gs-break, 2026-09-19). This kills every profile in the
+  letter-collapse class, including `(2,2,1,1)` and every tie, and it drops the bijective-base assumption. By
+  `collapse-lifts-with-tied-largest-fibers-are-surjective` (established, route `tie-collapse-sea-jacobian-proof`),
+  suppose `r ∘ Φ = τ ∘ r` with both injective, largest fiber size `q`, and `Z` the set of letters with fibers of
+  size `q`. Then one of `q`, `|Z|`, `q|Z|` lies in `NS(G)`, or `Φ` is surjective.
+  - Invariant. The charge `W(x) = Σ_g log(q / |Q_{x(g)}|)` on configurations with finitely many particles over an
+    arbitrary `Z`-sea. `W` never increases. This comes from a Jacobian of `τ` on cylinders against the image of the
+    uniform measure upstairs.
+  - The step where the earlier argument stopped. With several largest letters, the background is the full shift
+    `Z^G`, not a constant. Charge levels with two or more particles have infinite measure modulo translation, so
+    measure preservation alone proves nothing there. Only single-particle levels, `W < 2 w_min`, close by
+    compactness.
+  - How it closes. Induct over the charge levels.
+    - Split configurations are hit, by superposing preimages of the pieces with the inverse of `τ` on the sea.
+    - The mass of the missing set equals the net flux out of the finite-measure set of `S_1`-connected
+      configurations.
+    - That flux equals an alternating sum of fluxes of product models over lower levels with independent seas,
+      and each model flux is zero because `τ` is already bijective there. The weights are the linear
+      coefficients of chromatic polynomials: `1` on far atom families, `0` on disconnected overlapping ones.
+  - Consequence for ascent. A strict injective lift through a letter collapse never uses the failure of its base.
+    It exists only when one of `q`, `|Z|`, `q|Z|` already fails, and all three are below `|B|` for a non-uniform
+    profile. Single-letter doubling (`k -> k+1`, profile `(2,1,…,1)`) can therefore work only over groups with
+    `2 ∈ NS(G)`. Ascent above the least failing size `n_0` by a collapse whose three sizes avoid `NS(G)` is
+    impossible.
+  - What survives.
+    - Uniform profiles, where `q|Z| = |B|` and the statement is tautological.
+    - Block-code factors that are not letter maps.
+    - Coupled dynamics with no factor onto an injective automaton.
+    - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
+      compared with a measure-preserving base.
+    - Designs whose three sizes already fail, which the theorem cannot touch.

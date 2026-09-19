@@ -1,0 +1,95 @@
+{
+ "part1_V_sign_character": [
+  {
+   "relator": "r5",
+   "length": 26,
+   "ac_letters_mod2": 1,
+   "eta": -1
+  },
+  {
+   "relator": "r6",
+   "length": 28,
+   "ac_letters_mod2": 0,
+   "eta": 1
+  },
+  {
+   "relator": "r7",
+   "length": 26,
+   "ac_letters_mod2": 0,
+   "eta": 1
+  },
+  {
+   "relator": "r8",
+   "length": 37,
+   "ac_letters_mod2": 1,
+   "eta": -1
+  }
+ ],
+ "part2_T_characters": {
+  "min_D_over_nontrivial_characters": 0.5176380902050387,
+  "two_sin_pi_over_12": 0.5176380902050415,
+  "table": [
+   {
+    "chi_a": "i^0",
+    "chi_b": "omega^1",
+    "D": 1.7320508075688776
+   },
+   {
+    "chi_a": "i^0",
+    "chi_b": "omega^2",
+    "D": 1.7320508075688767
+   },
+   {
+    "chi_a": "i^1",
+    "chi_b": "omega^0",
+    "D": 1.414213562373095
+   },
+   {
+    "chi_a": "i^1",
+    "chi_b": "omega^1",
+    "D": 0.517638090205042
+   },
+   {
+    "chi_a": "i^1",
+    "chi_b": "omega^2",
+    "D": 1.9318516525781368
+   },
+   {
+    "chi_a": "i^2",
+    "chi_b": "omega^0",
+    "D": 2.0
+   },
+   {
+    "chi_a": "i^2",
+    "chi_b": "omega^1",
+    "D": 0.9999999999999988
+   },
+   {
+    "chi_a": "i^2",
+    "chi_b": "omega^2",
+    "D": 1.0000000000000009
+   },
+   {
+    "chi_a": "i^3",
+    "chi_b": "omega^0",
+    "D": 1.4142135623730951
+   },
+   {
+    "chi_a": "i^3",
+    "chi_b": "omega^1",
+    "D": 1.9318516525781362
+   },
+   {
+    "chi_a": "i^3",
+    "chi_b": "omega^2",
+    "D": 0.5176380902050387
+   }
+  ]
+ },
+ "part3_monomial_V": {
+  "samples": 40000,
+  "nontrivial_glued": 419,
+  "min_D": 1.9498558243636472,
+  "predicted_lower_bound": 0.5
+ }
+}

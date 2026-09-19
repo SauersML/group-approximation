@@ -104,3 +104,62 @@ inside `V` is finite with trivial defect, in every ambient group.
    - **Next hole.** The uniform gap for irreducibles of `G0`. Neither of the following is proved:
      - the case of irreducibles whose restriction to `S4` has bounded multiplicity pattern type;
      - a spectral-gap argument on the representation variety.
+
+3. **swarm-0917 (w17 nh-break, host-geometry): class kill by the Lie closure; the hole stays OPEN.**
+   - **Result (ESTABLISHED, written proof, unreviewed).** Claim:
+     `thompson-v-gap-witnesses-need-unbounded-lie-closure`, via
+     `thompson-v-gap-witnesses-need-unbounded-lie-closure-proof`. For a nontrivial irreducible
+     `sigma` of `G0`, let `K` be the closure of `sigma(G0)` and `N_sigma = dim [Lie K, Lie K]`.
+     - A nontrivial permutation of an orthogonal block decomposition forces `D >= sqrt 2`. So monomial
+       models (torus regauges with arbitrary phases) and all induced models die.
+     - If `K^0` is abelian (for example, finite or virtually abelian image), then `D >= 1/2`.
+     - **Adjoint transfer:** `D(sigma) >= min(1/2, delta_(N_sigma)/2)`, uniformly in `dim sigma`.
+     - If `D < 1/4`, then `sigma` restricted to `K^0` is irreducible.
+   - **Invariant:** `N_sigma`, the dimension of the derived algebra of the closure.
+   - **Death step (for every class with `N_sigma` bounded by `N`):** the adjoint action of `G0` on
+     `[Lie K, Lie K]_C` is a nontrivial representation of dimension at most `N`, with defect at most
+     `2 D(sigma)` (Hilbert--Schmidt contraction `||Ad(u) - 1|| <= 2||u - 1||`). It is gapped by
+     `delta_N > 0`. If it is trivial, `K^0` is central and a Frobenius commutator descent inside the
+     finite group `K/K^0` forces `D >= 1/2`.
+   - **Dead model classes:**
+     - tensor powers, Schur functors and `Sym^m` towers of a fixed representation;
+     - more generally, `pi o phi` for any fixed compact Lie group `M`, which has
+       `D >= c_(dim M) > 0`;
+     - finite-image, virtually abelian, monomial and induced models;
+     - `tau (x) pi` with a nontrivial finite projective factor `pi`.
+   - **Survivors.** Any MF witness sequence `sigma_j` must eventually be primitive and
+     Lie-irreducible, with `N_(sigma_j) -> infinity`. Examples are closures equal to `SU(n_j)` or to
+     simple groups of growing dimension. The adjoint representations of such a sequence form a second
+     witness sequence.
+   - **Next hole.** The uniform gap on Lie-irreducible `sigma` whose closure is large. A natural next
+     step is to show that witnesses can be taken with Zariski-dense image in `SU(n)`, and then to look
+     for a quantitative obstruction there, for example a Weyl-equidistribution or Kazhdan-type
+     spectral gap for the two finite subgroups `S4` and `S3` inside `SU(n)`.
+3. **swarm-0917 w17 (ptl-break), the amenable-image locus is gapped at 1/2: a class kill.** The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proof).** Claim: `thompson-gap-witnesses-need-nonamenable-image`, via
+     `thompson-gap-witnesses-need-nonamenable-image-proof`.
+     - Every nontrivial representation `rho` of `G0 = S4 *_Z2 S3` whose image is virtually solvable (by Tits,
+       equivalently amenable, or free of `F_2`) has `D(rho) >= 1/2`, in every dimension.
+     - The same holds for pairs `A^4 = B^3 = 1` against the Lochak--Schneps relators of T.
+   - **Invariant.** The Frobenius ball.
+     - In a virtually solvable subgroup of `U(n)`, elements within `1/2` of `1` commute (dimension-free).
+     - The proof runs the commutator descent `h -> [g,h]` into the toral identity component of the closure,
+       which a near-identity normalizer must centralize, and then back-tracks by the eigenspace lemma.
+   - **Where every member dies.**
+     - The relator images and their conjugates commute, so their normal closure `N` is abelian.
+     - `image/N` is a virtually solvable quotient of the simple group V, so it is trivial and the image is abelian.
+     - `rho` then factors through `G0^ab = Z/2`, where the sign character pays `||rho(r5) - 1|| = 2`. For T, the
+       characters of `Z/12` pay at least `2 sin(pi/12)`.
+   - **Kills.**
+     - finite quotients of `G0`, of every kind (not only permutation models, which entry 2 had at `sqrt 3`);
+     - monomial and induced-from-character models;
+     - virtually abelian and solvable images.
+     - A sanity run over 419 random monomial gluings gives min `D = 1.95`
+       (`experiments/amenable-image-gap-witnesses-2026-09-17/`).
+   - **Consequences.**
+     - An MF witness sequence for V (or T) must consist of representations whose image contains `F_2` once
+       `D < 1/2`: the Zassenhaus descent must converge without terminating.
+     - The finite PSL(2,17) planted control of entry 2 is structurally the wrong calibration class: its exact
+       solutions have finite image, which is impossible for V below 1/2.
+   - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
+     identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.

@@ -173,3 +173,30 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* `CP_col` at surjunctive nonsofic groups, i.e. colliding pairs, deficient or not. Spark:
     iterates `(X ∩ F^-1X, F^2)` are cover pairs, and `X_∞ = ∩ F^-n X` is a lift-closed self-cover. Artifact
     `research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md`.
+- **Locality and hyperbolic transplant (swarm-0917-w17-w17-gs-pull, 2026-09-19; host-geometry). This is a
+  reduction plus a class kill. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cover-pair-failures-have-finite-partial-table-witnesses` (Theorem L).
+    - A failure of this claim, of `CP_col` or of NPE at `G` has a finite `K ⊆ G`. The failure recurs at every
+      group into which `K` embeds partially, i.e. injectively and multiplicatively on `K`.
+    - Strong post-surjectivity reduces to one single-site lift on the finite window `Φ ∪ ΦW^-1W ∪ ΦM^-1M`.
+    - The only global ingredient, admissibility in `X`, is replaced by admissibility on one compactness set `L`.
+    - Consequences:
+      - all three properties are local, hereditary, marked-closed and colimit-closed;
+      - failures occur at finitely presented groups;
+      - LEF and residually finite groups satisfy all three by counting, with no soficity used;
+      - over all groups, this claim is equivalent to `Gottschalk(U) ∧ CP_col(U)` for the one fixed tester `U` of
+        `universal-all-group-subgroup-colimit-class-tester`.
+  - *Landed (ESTABLISHED, unreviewed).* `cp-failures-transfer-between-hyperbolic-and-leh-groups`. This claim fails
+    at some hyperbolic group iff it fails at some LEH group, e.g. `B(m, N)` or a lacunary hyperbolic group. That
+    holds iff one fixed torsion-free Kazhdan hyperbolic `T` has a Kazhdan, finite-quotient-free hyperbolic quotient
+    where it fails. The same holds for `CP_col` and NPE.
+  - *Class kill (model transfer).*
+    - The approach: prove CP on a model class `C` and move it by locality, i.e. partial embeddings, marked limits
+      or colimits.
+    - Invariant: local embeddability into `C`.
+    - Dying step: it reaches all groups iff `U` is locally embeddable into `C`. `U ⊇` Thompson's `F`, which is not
+      LEH. So `C` equal to finite, residually finite, LEF, hyperbolic or LEH groups all die at `U`.
+    - Even "CP at every hyperbolic group" would leave this claim open over all groups, as far as locality can tell.
+  - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
+    model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
+    argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.

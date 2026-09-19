@@ -8,7 +8,9 @@ distinct_from:
   leavitt-algebras-contain-no-two-variable-polynomial-ring: that is a statement about the purely infinite Leavitt algebra; this is a statement about stably finite matrix rings over a division ring, with no Leavitt structure.
 ---
 
-**OPEN.** Let `k` be a field, `D = k(<x_0, x_1>)` the free skew field, and `r >= 1`. Every commutative subfield
+**ESTABLISHED** by `free-field-matrices-trdeg-bound-via-free-derivation-module` (unreviewed).
+
+Let `k` be a field, `D = k(<x_0, x_1>)` the free skew field, and `r >= 1`. Every commutative subfield
 `F ⊆ M_r(D)` containing `k · 1` has `trdeg_k F <= 1`.
 
 **Known.**
@@ -45,3 +47,23 @@ So a proof for matrix rings over the free algebra `P` would also suffice.
 - So companion-type constructions over one centralizer do not produce transcendence degree 2.
 - A general `r = 2` argument would need to control `F`-`D`-bimodules of `D`-dimension 2 on which no subfield of
   `F` of transcendence degree 1 fixes a `D`-line. A fixed line puts that subfield inside `D`.
+
+**w17 (swarm-0917-w17-w17-bh-pull): proved, for all `r` and all fields, by Hochschild dimension.**
+Route `free-field-matrices-trdeg-bound-via-free-derivation-module`, via
+`quasi-free-algebras-have-no-trdeg-two-subfields` and its route `quasi-free-subfield-bound-via-koszul-ext`.
+- **Import.** `Ω_k(D)` is the free `D`-bimodule on `dx_0, dx_1`. This is quoted verbatim from Derksen--Volčič
+  arXiv:2512.03223 §5, citing Cohn 1995, Prop. 5.8.7 and Thm 5.8.10. So `pd_(D^e) D <= 1`.
+- **Upper bound.** Tensoring the length-one bimodule resolution with a module gives `gl.dim(D ⊗ K) <= 1` for every
+  field `K`.
+- **Lower bound.** A subfield `F ≅ K = k(y_1, y_2)` of `A'`, with `A' = M_r(D)`, makes `A' ⊗ K` free over `F ⊗ K`.
+  Inducing the Koszul resolution of the diagonal `(F ⊗ K)/(y_i ⊗ 1 - 1 ⊗ y_i)` gives `gl.dim(A' ⊗ K) >= 2`.
+- **Morita.** `M_r(D) ⊗ K` is Morita equivalent to `D ⊗ K`, so the two bounds contradict each other.
+
+Status: the proof is complete and uses one verbatim import. It is marked ESTABLISHED (unreviewed) on landing.
+
+Side results:
+- `Htr k(<x_0, x_1>) = 1`, refuting the expectation in Yekutieli--Zhang Remark 7.11;
+- `leavitt-algebras-have-no-trdeg-two-subfields`, the field-type half of Ara--Cortiñas Q5.7.
+
+The route `leavitt-rank-one-from-free-field-matrices-and-degree-reduction` now waits only on
+`leavitt-polynomial-pairs-move-to-the-nonnegative-part`.

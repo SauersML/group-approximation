@@ -1,0 +1,12 @@
+trial 1 alpha [2, 0, 1] tau [1, 2, 0] V 60 max law over overfold hits 0
+trial 2 alpha [1, 2, 0] tau [0, 1, 2] V 60 max law over overfold hits 0
+trial 3 alpha [2, 0, 1] tau [2, 1, 0] V 60 max law over overfold hits 0
+trial 4 alpha [1, 2, 0] tau [0, 1, 2] V 60 max law over overfold hits 0
+trial 5 alpha [2, 0, 1] tau [2, 1, 0] V 60 max law over overfold hits 0
+trial 6 alpha [0, 2, 1] tau [2, 1, 0] V 60 max law over overfold hits 1
+trial 7 alpha [1, 2, 0] tau [0, 2, 1] V 60 max law over overfold hits 0
+trial 8 alpha [0, 2, 1] tau [1, 2, 0] V 60 max law over overfold hits 1
+trial 9 alpha [0, 2, 1] tau [1, 2, 0] V 60 max law over overfold hits 1
+trial 10 alpha [1, 2, 0] tau [2, 1, 0] V 60 max law over overfold hits 0
+totals {('over', 'infidx'): 15642, ('law', 'intrans'): 144, ('law', 'infidx'): 528, ('law', 'hit'): 768, ('over', 'hit'): 18}
+law histogram of hits {('law', 1): 768, ('over', 1): 18}

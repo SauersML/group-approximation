@@ -1,0 +1,3 @@
+H_1(K') -> H_1(S) matrix (columns = K' generators):
+Matrix([[1, -1, 0, -1], [-1, 1, 0, -1], [1, 0, 1, 0], [-1, -1, 0, 1]])
+det = -4

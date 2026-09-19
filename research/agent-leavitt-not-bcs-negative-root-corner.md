@@ -1032,3 +1032,84 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
      `||rho(z) - 1||_2`.
   2. *Prove or refute `(HR)`.* One route is flexible HS stability of `EL_n` over the stably finite
      cone ring `R_+`, which would also give flexible stability of `Gamma`.
+
+### swarm-0917-w17-w17-nh-pull (obstruction-miner, stability-approximation / reframing)
+
+- **New lemma (ESTABLISHED, unreviewed).** `positive-characteristic-steinberg-unitary-images-are-finite`.
+  Every unitary `rho : St_n(A) -> U(d)`, with `n >= 3` and `m·1 = 0` in `A`, has finite image and factors through
+  `St_n(A/I)`, where `|A/I| <= m^d`. The steps are a level-ideal cycle, the exponent bound, central `K_2` for finite
+  rings, and determinants on a perfect group.
+- **Reframing of next step 1 above (ESTABLISHED, unreviewed).**
+  `leavitt-cone-head-bound-is-finite-congruence-gluing`.
+  - Every genuine representation entering `(QC)` acts on `Delta_+-` through finite groups dominated by
+    `St_20(B_+-)`, with `B_+-` finite quotients of the cones of order at most `2^d`.
+  - The halves have the elementary congruence property.
+  - `(QC)` is a gluing statement over `SL_20(F_2)^2`, and `||rho(z) - 1||_2^2 ≍ f_1`, the share of dimension moved by
+    the first edge factor.
+  - "Use congruence quotients" is therefore not a special case: it is the whole of `(QC)`.
+- **Class killed.** Head bounds through `kappa` alone, or through any finite `W ⊆ K ∩ ker rho_M`.
+  - *Invariant:* the exact model `rho_M : Gamma -> GL_40(F_2)`, given by `s_1, q, t_1 -> e_11`, `s_2 -> e_21` and
+    `t_2 -> e_12`. It kills `kappa` and puts the head at distance `sqrt 2` in the regular representation.
+  - `rho_M` satisfies every Leavitt relation except `t_i s_i = 1`.
+  - *Death step:* any inference from "`W` is `delta`-trivial" to "`z` is `eps`-trivial" with `eps < sqrt 2`.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Among one-ring shadows `R_+ *_(R_0) R_- -> B` with `B` finite, bound the defect of the
+  isometry relators against `f_1` in normalized Hilbert–Schmidt norm. A uniform bound would prove `(QC)` for all
+  ring-induced gluings. A family with small defect and `f_1` bounded below would refute `(QC)`, and with it `(LNC3)`.
+### Nonsoficity proves the Hamming cone bound; the refutation side is Pestov 3.4 (swarm-0917-w17-w17-nh-last1, calibration, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** `leavitt-cone-cover-hamming-head-bound-holds`, with route
+  `leavitt-cone-cover-hamming-head-bound-proof`.
+- **Approach tried.** Test w16 next step 1 before computing: what would a congruence-quotient refutation
+  of `(QC)` prove?
+- **What was proved.**
+  - `(QC)` holds for every permutation representation of `Gamma` (Hamming form `(QC_H)`). It also holds
+    for every representation into `C_m wr Sym(d)` with `m` fixed, and for genuine representations
+    pointwise close to such maps.
+  - *Proof.* Take a counterexample and apply the set section. This gives a head-moving Hamming
+    asymptotic homomorphism of `Delta`. Simplicity and tensor powers upgrade it to a sofic
+    approximation. But `R^x <= Delta` is nonsofic (`openai-leavitt-unit-nonsofic`).
+  - Every Hamming or bounded-phase monomial asymptotic homomorphism of `Delta` collapses. So the sofic
+    form of the whole `(QC)/(HR)` split is settled.
+  - *Calibration.* If `(QC)` or `(HR)` fails, then `Delta` is hyperlinear, and `R^x` is a hyperlinear
+    nonsofic group (Pestov 3.4). If both hold, the flagship follows. Every outcome of the split
+    resolves a famous problem.
+- **Class killed.** Finite-phase monomial refutations of `(QC)`. This covers w16 next step 1 in its
+  literal form: permutation or Schreier representations of congruence quotients glued on `Delta_0`,
+  and representations induced from bounded-order characters.
+  - *Invariant:* nonsoficity of `R^x`.
+  - *Death step:* the Hamming shadowing plus tensor-power amplification.
+- **Target stays OPEN.**
+- **Next falsifiable step.** The only refutation survivors are genuinely non-monomial unitary
+  representations. The proof side must show `(QC)` for unitary representations, using a property that
+  separates hyperlinear models from sofic ones. Soficity-type inputs (finite actions, Hamming bounds,
+  LEF, RF) are now exhausted on both sides.
+
+### Semisimple ring shadows satisfy the cone-cover head bound (swarm-0917-w17-w17-ptl-pull, obstruction-miner, finite-models, 2026-09-19)
+
+- **Attempt.** Refute `(QC)`, which would refute `(LNC3)`. This is next step 1 of the previous entry.
+  The search space is genuine representations of `Gamma` built from finite congruence data of the
+  halves.
+- **Result: a class kill, ESTABLISHED** as `leavitt-cone-head-bound-holds-for-semisimple-ring-shadows`.
+  - The class is every `rho = pi o Phi`, where `Phi` comes from ring maps `R_+- -> B` into one
+    finite semisimple ring `B` that agree on `F_2 1 + F_2 q`, and `pi` is any unitary representation
+    of `St_20(B)`. For these, `||rho(z) - 1||_2 <= L max_i ||rho(k_i) - 1||_2`, with `L`
+    independent of `B`, `pi` and the dimension.
+  - The class includes every Cohn shadow into `M_2(F_2)`.
+  - *Invariant:* the ideal generated by the six Leavitt defects. It equals `B`, because a nonzero
+    finite ring receives no unital map from `R`.
+  - *Death step:* orbit averaging of characters on the row group `x_1k(B)`, `2 <= k <= 19`. It
+    gives `m(head) <= 3 * sum_d m(defect_d)`.
+- **What survives.** A refutation of `(QC)` must come from one of two sources:
+  1. *radical shadows*, where `B` is not semisimple and `pi` sees the radical part of `x_13(B)`;
+  2. *non-ring gluings*, where the halves pass through different finite quotients glued by an
+     intertwiner that no common ring induces.
+- **Target stays OPEN.**
+- **Next falsifiable steps.**
+  1. *Radical shadows.* Test `B = M_n(F_2[eps]/eps^2)`, looking for a representation `pi` whose
+     character measure charges the head much more than the six defects. The defects cannot all lie
+     in the radical `J`, because they generate `B`. So a counterexample must make the part of the
+     defects outside `J` nearly invisible to `pi`.
+  2. *Non-ring gluings.* Decide whether every genuine representation of `Gamma` is, up to a
+     uniformly small `||.||_2` correction, a direct sum of ring shadows. That would reduce `(QC)`
+     to step 1.

@@ -1,0 +1,4 @@
+T1 checks 4000: max of D(sigma x conj sigma) - 2 D(sigma) = -1.713e+00 (must be <= 0)
+T2 checks 80000 (m = 1..40): max of min(1/2, D_ad/2) - D(Sym^m) = -1.419e+00 (must be <= 0)
+min D over sampled 2-dim reps = 1.9239; 3-dim = 1.8541; min D(Ad_su2) over sampled 2-dim = 1.8760
+OK

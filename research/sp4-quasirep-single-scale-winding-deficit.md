@@ -58,3 +58,17 @@ A sufficient window-free form: some `(W, eps_1)` with `S_W(eps_1) < eps_1 nu/(2 
     by `sp4-fd-projective-multiplier-is-finite`. Candidate properties are compression, matricial stability and
     residual finiteness input.
   - (SSD) itself is untouched.
+- **2026-09-19, swarm-0917-w17-w17-deligne-pull (family reframing): reduced to one algebra; open.**
+  - `sp4-ssd-is-a-matrix-ultraproduct-winding-bound` (established, unreviewed) shows that (SSD) holds iff, at one
+    scale `eps_0`, every uniform quasi-representation `Pi : Gamma -> U(Q)` has `|tau(log W_r(Pi))|/(2 pi) < eps_0 nu/(2 pi)`.
+    Here `Q = prod M_(n!)/c_omega`. The equality `w_W(eps) = S_W(eps+)` is attained, so a counterexample is a single
+    map per scale.
+  - The trace-winding is homotopy invariant. So rounding to a homomorphism in any trace-preserving image kills it.
+  - The open prerequisite is `sp4-ultraproduct-quasireps-round-to-homs-at-one-scale` (UQ), with route
+    `sp4-single-scale-deficit-from-ultraproduct-rounding`. That would give (SSD) with every `c > 0`.
+  - Where it stalls:
+    - GLMR (arXiv:2301.00476) explicitly excludes type `C_n`, because `H^2_b(Sp_4(R), R) != 0`.
+    - (UQ) implies `P_op != R/Z`.
+    - A Burger–Ozawa–Thom-type free-subgroup obstruction realized in `U(Q)` would kill (UQ) but not (SSD). This is the
+      first check to run.
+    - The twisted algebras `C*_lambda(Gamma, e(tb))` show that `Q` cannot be replaced by an arbitrary tracial algebra.
