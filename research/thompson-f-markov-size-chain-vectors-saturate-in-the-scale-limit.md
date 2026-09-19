@@ -194,3 +194,13 @@ swarm-0917-w14-w14-f-break named as the next family after its product class kill
     invisible to every density kernel in the scale limit, and by (E3) and Moore's tower they are the only
     place left for a size-only law to approach `1`.
   - *Rigorous ceiling:* still open, as before.
+- **CDF rigidity ceiling for order 1 (swarm-0917-w17-w17-f-pull, 2026-09-19, probability-random).**
+  - *Done* (`thompson-f-markov-size-chain-scale-limit-affinity-at-most-0-978`, ESTABLISHED). This supplies
+    the quantitative rigidity statement asked for above. By stationarity and the probability integral
+    transform under `r_m`, `E[U(1-D)] - E[U^2]/2` is at most `E[1up TV(r_{y_{-1}}, r_{y_0})]` in absolute value,
+    and the same holds for down-steps. Hence `Var(U+D) >= 1/3 - (4/3)·(TV defect)`, with the product chain tight.
+  - *Consequence.* Combined with (E3), this proves that every order-1 chain in (E2) has `B <= 0.980656` in
+    closed form, and `B <= 0.977125` (`R <= 0.988563`) from a cell-certified Lagrangian dual. So the order-1
+    part of this claim's class kill is now proved, within the formal limit.
+  - *Still open here.* The numerical value `0.954`, order 2, and finite `M`. At finite `M` merge is a sum and
+    the CDF identity fails.

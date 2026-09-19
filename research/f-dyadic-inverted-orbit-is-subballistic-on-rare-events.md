@@ -12,6 +12,7 @@ artifacts:
   - experiments/f-dyadic-rare-confinement-2026-09-17/band_long.py
   - experiments/f-dyadic-rare-confinement-2026-09-17/lambda_long.py
   - experiments/f-dyadic-rare-confinement-2026-09-17/psl_return.py
+  - experiments/f-dyadic-wobbling-calibrator-2026-09-17/wobbling_tree.py
 ---
 
 **OPEN.** Let `μ` be a non-degenerate symmetric finitely supported probability measure on `F` with
@@ -153,3 +154,30 @@ itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
     `pl-ea-calibrators-are-nonamenable-interval-groups` that finite presentability cannot currently be tested.
   - Survivors: `PSL_2(Z)` integrality (`c` has determinant 2), `C^1` regularity (killed as well if Lodha–Moore's
     unproved remark that `⟨t+1/2, b⟩` is nonamenable holds), and the specific relations of `F`.
+
+- 2026-09-17, swarm-0917-w17-w17-f-last1 (family calibration, role calibrator): class kill by a wobbling
+  calibrator with the same orbit metric; the hole stays OPEN. Result:
+  `f-dyadic-orbit-geometry-cannot-force-extensive-amenability`.
+  - Construction. The dyadics `φ(u) = .u1`, for reduced words `u` in the blocks `01, 011, 0111`, form a
+    free tree inside `[1/4, 1/2]`. Prepending or stripping a block moves a point a bounded distance in the
+    Schreier graph `Γ_D`, because an explicit element of `F` is affine between the two cylinders.
+    Measured distances are at most 9 (`experiments/f-dyadic-wobbling-calibrator-2026-09-17/wobbling_tree.py`).
+  - The three resulting involutions `σ_c` generate `Z/2 * Z/2 * Z/2`, acting freely on the tree. Put
+    `G = ⟨x_0, x_1, σ_A, σ_B, σ_C⟩ ≤ W(Γ_D)`. Then:
+    - the identity of `D` is bi-Lipschitz from `Γ_D` to the Schreier graph of `G`;
+    - `G ↷ D` is transitive and amenable, with `x_0`-ray Følner sets in `(0, 1/8]`;
+    - `G ↷ D` is not EA (restrict to the tree and apply JMBMdlS Lemma 2.1);
+    - so the walk on `G` has `P(|O_n| < εn) ≤ e^{−εn}` for some `ε > 0` and all large `n`, the exact
+      negation of this hole on the same orbit geometry.
+  - Invariant: the orbital graph `Γ_D` up to bi-Lipschitz equivalence (so recurrence, growth,
+    isoperimetry, resistance, return-probability class), and the wobbling group `W(Γ_D)` with arbitrary
+    pieces.
+  - Dying step: any implication "orbit graph of `F` in this class ⇒ confinement or EA". Any
+    Juschenko–Monod-style proof that makes `W(Γ_D)`, or a full group with arbitrary pieces, act EA and
+    then restricts to `F` dies there too.
+  - Gate: order preservation. Every order-preserving element of `W(Γ_D)` is piecewise-`F` with finitely
+    many pieces, so `W^+(Γ_D) ≤ PL_+([0,1])`. An order-preserving calibrator would therefore be a
+    nonamenable subgroup of `PL_+([0,1])`, which is item 4(b) of
+    `pl-ea-calibrators-are-nonamenable-interval-groups`.
+  - Any proof of this hole must use that `F` acts by homeomorphisms, or finer data. The Liouville
+    property is not a bi-Lipschitz invariant and is untouched.
