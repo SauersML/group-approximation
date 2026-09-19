@@ -154,3 +154,20 @@ distinct_from:
      opposite chambers of a generalized quadrangle: several, as item 4 requires.
    - The splitting categories become joins of opposition complexes, which is where connectivity for (G) would
      come from. This is the most concrete candidate for a first `F_∞` host of a Kazhdan hyperbolic group.
+
+## Crossing test (09-19, one direct run, 13 s)
+
+`research/artifacts/gq-bh-finf-hyp-shortlex-crossing-test.md` compares ShortLex trees at adjacent bases.
+- Every tile of one tree is a union of tiles of the other at most one level deeper (two, once, in the thin
+  (4,4,4) group). The excess does not grow with depth.
+- This holds in all five cases:
+  - F2 (calibration);
+  - Z² (control);
+  - the right-angled pentagon group;
+  - the (4,4,4) Coxeter group;
+  - a thick (4,4,4) building with GQ(2,2) residues, grown to radius 9 with exact chamber counts and all
+    self-checks passing.
+- So square filling at adjacent bases shows no obstruction, thick or thin. But Z² also passes: its ShortLex
+  boundary has isolated points, so the statistic is necessary and not sufficient.
+- What remains for the Thumann route: the Cantor property of `∂Ω`, a finite spine or (G) for far bases, and
+  `q ≥ 7`.
