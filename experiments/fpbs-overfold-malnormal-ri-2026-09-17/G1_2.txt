@@ -1,0 +1,1 @@
+STATS G 1 2 {'trials': 600, 'nontriv': 40, 'certified': 0, 'big': 0, 'rkY': [0, 0, 38, 2, 0, 0, 0, 0, 0, 0, 0, 0]}

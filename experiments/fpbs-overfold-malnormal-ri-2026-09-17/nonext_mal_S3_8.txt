@@ -1,0 +1,1 @@
+STATS mal S3 8 150 11 {'B': 150, 'kernels': 450, 'nonext_kernels': 200, 'hits': 0}
