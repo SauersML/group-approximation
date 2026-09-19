@@ -30,6 +30,9 @@ Model tests (hand).
 
 namespace GroupApproximation.Full.GL06a
 
+-- `<+` (`List.Sublist`) is a scoped notation of namespace `List` in core.
+open scoped List
+
 variable {α β : Type*}
 
 /-- The word `x :: t` reads two different objects at its first two letters. -/

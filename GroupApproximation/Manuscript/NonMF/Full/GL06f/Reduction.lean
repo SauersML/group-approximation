@@ -52,6 +52,7 @@ theorem mem_flipFaces_iff {M : CombMap.{v}} {faces : Finset M.Face} {keep : M.Da
     {z : M.Dart → Bool} (hz : ∀ x y, CombMap.FaceClassStep M keep x y → z x = z y)
     (d : M.Dart) :
     M.faceOf d ∈ flipFaces M faces z ↔ (M.faceOf d ∈ faces ↔ z d = false) := by
+  classical
   unfold flipFaces
   rw [Finset.mem_filter]
   constructor
@@ -101,7 +102,7 @@ theorem isBoundaryDart_flipFaces_iff {M : CombMap.{v}} {faces : Finset M.Face} {
         have hzeq : z d = z (M.alpha d) := hz d (M.alpha d) hstep
         have hFeq : M.faceOf d ∈ faces ↔ M.faceOf (M.alpha d) ∈ faces :=
           GL05b.faceOf_mem_iff_of_walkEqvGen hc (Relation.EqvGen.rel _ _ hstep)
-        exact hr (hFeq.symm.trans (hl.trans (iff_of_eq (congrArg (fun b => b = false) hzeq))))
+        exact (hr (hFeq.symm.trans (hl.trans (iff_of_eq (congrArg (fun b => b = false) hzeq))))).elim
     · rintro ⟨h, _⟩
       exact absurd h hd
 

@@ -221,7 +221,8 @@ noncomputable def edgeInsertion {a b : M.Dart} (hab : a ≠ b) :
     · rw [h] at hw
       simp [EdgeInsertion.embed] at hw
     · rw [h] at hw
-      simp [EdgeInsertion.embed] at hw
+      have hw' : (some none : Option (Option M.Dart)) = some (some w) := hw
+      exact Option.some_ne_none w (Option.some.inj hw').symm
 
 end RotationRefinement
 
