@@ -712,3 +712,36 @@ content in that region.
   **Next:** prove (H). On the triangular lattice this is the CLE_6 wedge
   exponent of "no loop meets both the negative real axis and the imaginary
   axis", conjecturally `1/4`, which would give `gamma = 24/5`.
+
+* **CLE_6 wedge route to (H) (w16-123, 2026-09-18): obstruction, and the
+  correct target.** See `fpbs-cle6-hull-wedge-event-is-not-the-box-event`.
+  Setting: triangular site percolation at `p = 1/2`, wired box `B_n`,
+  boundary cluster `I_n`.
+
+  The §3.4 CLE_6 loop event of
+  `fpbs-geodesic-bisector-chain-polynomial-in-inverse-theta` is the *hull
+  form* `H_n`: no hole of `I_n` meets both the negative axis `S_n` and
+  `{x > 0}`. The box event `D_n` is the *circuit form*.
+
+  - **Proved: sub-event.** `H_n ⊆ D'_n ⊆ D_n`, where `D'_n` is the
+    pinch-wall proxy computed by `tri_d.c`.
+  - **Proved: upper bound.** `P(H_n) <= 2 pi^+(n/2) = n^{-1/3+o(1)}`, via
+    four-arc duality, which forces a black half-plane arm at the origin.
+  - **Proved: pinch lemma.** No white circuit uses a step whose two
+    common neighbours lie in `I_n`.
+  - **Numerics (`tri_d.c`, 3000 samples).** `D'_n` has local slopes
+    `0.267-0.306` for `n <= 512` (`0.270(17)` at `n = 512`), consistent
+    with the Z^2 value `0.251(6)`. `P(0 ∈ I_n)` has slope near `5/48`, a
+    sanity check. `H_n` has slopes `1.1-2`, with `P(H_256) ≈ 7e-4`.
+
+  So the CLE_6 hull route cannot give (H); this is a numerical
+  obstruction, since rigorously only exponent `>= 1/3` is known, against a measured value of at least about 1. The
+  continuum object for `zeta` is filled-cluster outer boundaries
+  (external perimeters, SLE_{8/3}-type), separated from the hulls by
+  pinch passages. (H) remains OPEN.
+
+  **Next:** prove `P(D'_n) >= n^{-zeta'}` with `zeta' < 3/8`. `D'_n` is a
+  rigorous sub-event of `D_n`, so this would prove (H) on the triangular
+  lattice. Candidate tools: an exploration along `S_n` that closes fjords
+  at pinch (four-arm) points, or restriction/SLE_{8/3} estimates for
+  external perimeters.
