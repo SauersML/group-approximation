@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.PaninAffine.Line: Polynomial.fi
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/PaninAffine/Line.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** 8d272c12c3: K2 program, GEO/Cor 2.9: compile fixes from batch b1789850259 (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

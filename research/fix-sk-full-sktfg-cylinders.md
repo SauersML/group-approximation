@@ -9,6 +9,8 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.Cylinder
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: fix-bh-b.
 
 
+**Repair landed, unprobed.** 25942699a4: SKTFG: beta-reduce cylinder hypotheses and replace no-op congr steps (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
 
 ```
