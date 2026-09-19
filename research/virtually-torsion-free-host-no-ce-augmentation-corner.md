@@ -2,6 +2,7 @@
 rg: 2
 id: virtually-torsion-free-host-no-ce-augmentation-corner
 kind: claim
+refuted_by: virtually-torsion-free-mf-radical-is-torsion-free
 title: Realize a no-CE algebra in a finite-subgroup augmentation corner of a virtually torsion-free recursively presented host, off the finite radical
 distinct_from:
   nonhyperlinear-bloop-finite-augmentation-corner: that allows any countable host and any finite subgroup, and feeds the explicit-witness endpoint; this additionally demands a finitely generated recursively presented virtually torsion-free host and a finite subgroup with infinite normal closure, which is exactly what makes the same corner feed the torsion-free seed.
@@ -59,3 +60,26 @@ so one construction feeds two endpoints.
     models) uses residual finiteness of the base.  For the simple
     Burger--Mozes lattices, which have no finite quotients, it does not
     obviously apply.  That is untested.
+- 2026-09-18 (swarm-0917-w14-w14-ptm-last1, finite-models): **REFUTED**
+  for every host, by `virtually-torsion-free-mf-radical-is-torsion-free`.
+  - `K` is finite and nontrivial, and it meets the torsion-free normal core
+    `N = Core_H(E)` trivially.  So `K` embeds in the finite quotient `H/N`.
+  - Let `lambda` be the regular representation of `H/N`, of dimension
+    `d = [H:N]`.  Then `lambda(q_K)` is a projection of rank
+    `d(1 - 1/|K|) > 0`.
+  - `tr o lambda o Phi` is therefore a matrix, hence Connes-embeddable,
+    tracial state on `B`, which contradicts the hypothesis on `B`.
+  - Equivalently, `Rad_MF(H) <= N` is torsion-free, because finite quotients
+    are MF.  So the corner theorem's conclusion `K <= Rad_MF(H)` forces
+    `K = 1`.
+  - The necessary-conditions list above missed this finite-quotient
+    obstruction.
+  - Where it dies: at the very first step.  Any virtually torsion-free host
+    detects `K` in a finite quotient.
+  - The route `property-t-free-seed-via-virtual-torsion-corner` is dead.
+  - The class version,
+    `virtually-torsion-free-residual-kills-radical-calculus`, shows that no
+    combination of torsion conclusions with finite-index trace reaches a
+    torsion-free non-MF group.  The seed needs the descent hole
+    `full-mf-radical-abelianized-cover-is-not-mf` or an intrinsic analytic
+    torsion-free non-MF theorem.
