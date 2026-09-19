@@ -1,0 +1,15 @@
+Frattini quotient of U: F_3^2; 4 maximal subgroups
+[phi] |V| = 9, Pbar cosets 2880 [4s]
+[phi] Schreier gens 25921, relators 103680, twist vectors 990 [5s]
+[phi] twist reduction {'centralizer_sizes': [5, 4, 5, 4, 4, 5, 5, 4, 4, 5], 'twist_vectors': 990}
+  fastelim: 20000 pivots, 5921 gens, 81277 rows, last cost 425 [18s]
+[pbar-phi] after unit elimination 38 gens, 65430 relators [1079s]
+[pbar-phi] H_1 = Z^30 + [3, 3, 3, 3, 3, 3, 3, 3] [1084s]
+[pbar-phi] classes 180, W rank 150, gcd aug 10 [1084s]
+[pbar-phi] {"label": "pbar-phi", "cosets": 2880, "schreier_gens": 25921, "gens_after_unit_elim": 38, "h1_rank": 30, "h1_torsion": [3, 3, 3, 3, 3, 3, 3, 3], "classes": 180, "class_coset_counts": [2, 4, 12], "W_rank": 150, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 17, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2], "seconds": 1220}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/.pbar-phi-tmp.json
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/w-phi.json
+  box: {'rows': 150, 'max_row_l1': 24, 'box_size': 2, 'row_option_counts': [1, 2]}
+[phi] distance: {'rows': 150, 'max_row_l1': 24, 'box_size': 2, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[phi] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/exact-phi.json

@@ -1,0 +1,151 @@
+[chi0-fast] chi=[1, 0, 0, 0, 0, 0, 0, 0, 0, 0] orbit 60: Pbar cosets 1024
+[chi0-fast] after unit elimination 54 gens, 0 relators [79s]
+[chi0-fast] H_1 = Z^54 + [] [79s]
+[chi0-fast] classes 160, W rank 106, gcd aug 10 [79s]
+[chi0-fast] {"label": "chi0-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 89}
+[chi0-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi0-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi0-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi0-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi1-fast] chi=[0, 1, 0, 0, 0, 0, 0, 0, 0, 0] orbit 15: Pbar cosets 1024
+[chi1-fast] after unit elimination 54 gens, 0 relators [80s]
+[chi1-fast] H_1 = Z^54 + [] [80s]
+[chi1-fast] classes 160, W rank 106, gcd aug 10 [80s]
+[chi1-fast] {"label": "chi1-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 91}
+[chi1-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi1-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi1-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi1-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi2-fast] chi=[0, 0, 1, 0, 0, 0, 0, 0, 0, 0] orbit 45: Pbar cosets 1024
+[chi2-fast] after unit elimination 55 gens, 16229 relators [81s]
+[chi2-fast] H_1 = Z^54 + [2] [81s]
+[chi2-fast] classes 192, W rank 138, gcd aug 10 [81s]
+[chi2-fast] {"label": "chi2-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 55, "h1_rank": 54, "h1_torsion": [2], "classes": 192, "class_coset_counts": [2, 4], "W_rank": 138, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 88}
+[chi2-fast] short generation (SG): False, general (SG*): False; row types [(0, 4), (0, 6), (0, 8), (0, 10), (0, 12), (0, 14), (0, 16), (0, 18), (0, 20), (10, 12), (10, 14), (10, 16), (10, 18), (10, 20), (10, 22), (10, 24)]
+[chi2-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 137, 'W0_max_l1': 20, 'SG': True}
+  box: {'rows': 138, 'max_row_l1': 24, 'box_size': 256, 'row_option_counts': [1, 2]}
+[chi2-fast] distance: {'rows': 138, 'max_row_l1': 24, 'box_size': 256, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 21}
+[chi2-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi3-fast] chi=[1, 1, 0, 0, 1, 0, 0, 0, 0, 0] orbit 20: Pbar cosets 1024
+[chi3-fast] after unit elimination 54 gens, 0 relators [58s]
+[chi3-fast] H_1 = Z^54 + [] [58s]
+[chi3-fast] classes 160, W rank 106, gcd aug 10 [58s]
+[chi3-fast] {"label": "chi3-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 65}
+[chi3-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi3-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi3-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi3-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi4-fast] chi=[0, 0, 1, 0, 1, 0, 0, 0, 0, 0] orbit 180: Pbar cosets 1024
+[chi4-fast] after unit elimination 54 gens, 0 relators [54s]
+[chi4-fast] H_1 = Z^54 + [] [54s]
+[chi4-fast] classes 160, W rank 106, gcd aug 10 [54s]
+[chi4-fast] {"label": "chi4-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4, 8], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 62}
+[chi4-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi4-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi4-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi4-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi5-fast] chi=[1, 0, 1, 0, 1, 0, 0, 0, 0, 0] orbit 180: Pbar cosets 1024
+[chi5-fast] after unit elimination 54 gens, 0 relators [49s]
+[chi5-fast] H_1 = Z^54 + [] [49s]
+[chi5-fast] classes 160, W rank 106, gcd aug 10 [49s]
+[chi5-fast] {"label": "chi5-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 56}
+[chi5-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi5-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi5-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi5-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi6-fast] chi=[1, 1, 1, 0, 1, 0, 0, 0, 0, 0] orbit 60: Pbar cosets 1024
+[chi6-fast] after unit elimination 54 gens, 0 relators [45s]
+[chi6-fast] H_1 = Z^54 + [] [45s]
+[chi6-fast] classes 160, W rank 106, gcd aug 10 [45s]
+[chi6-fast] {"label": "chi6-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4, 8], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 52}
+[chi6-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi6-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi6-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi6-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi7-fast] chi=[0, 0, 0, 1, 0, 1, 0, 0, 0, 0] orbit 60: Pbar cosets 1024
+[chi7-fast] after unit elimination 54 gens, 0 relators [71s]
+[chi7-fast] H_1 = Z^54 + [] [71s]
+[chi7-fast] classes 160, W rank 106, gcd aug 10 [71s]
+[chi7-fast] {"label": "chi7-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 77}
+[chi7-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi7-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi7-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi7-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi8-fast] chi=[1, 0, 0, 1, 0, 1, 0, 0, 0, 0] orbit 120: Pbar cosets 1024
+[chi8-fast] after unit elimination 54 gens, 0 relators [66s]
+[chi8-fast] H_1 = Z^54 + [] [66s]
+[chi8-fast] classes 160, W rank 106, gcd aug 10 [66s]
+[chi8-fast] {"label": "chi8-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4, 8], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 73}
+[chi8-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi8-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi8-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi8-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi9-fast] chi=[0, 1, 0, 1, 0, 1, 0, 0, 0, 0] orbit 90: Pbar cosets 1024
+[chi9-fast] after unit elimination 54 gens, 0 relators [83s]
+[chi9-fast] H_1 = Z^54 + [] [83s]
+[chi9-fast] classes 160, W rank 106, gcd aug 10 [83s]
+[chi9-fast] {"label": "chi9-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 90}
+[chi9-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi9-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi9-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi9-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi10-fast] chi=[1, 0, 0, 0, 0, 0, 0, 1, 0, 0] orbit 10: Pbar cosets 1024
+[chi10-fast] after unit elimination 54 gens, 0 relators [72s]
+[chi10-fast] H_1 = Z^54 + [] [72s]
+[chi10-fast] classes 160, W rank 106, gcd aug 10 [72s]
+[chi10-fast] {"label": "chi10-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 78}
+[chi10-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi10-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi10-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi10-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi11-fast] chi=[1, 1, 0, 0, 1, 0, 0, 1, 0, 0] orbit 6: Pbar cosets 1024
+[chi11-fast] after unit elimination 54 gens, 0 relators [80s]
+[chi11-fast] H_1 = Z^54 + [] [80s]
+[chi11-fast] classes 160, W rank 106, gcd aug 10 [80s]
+[chi11-fast] {"label": "chi11-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 87}
+[chi11-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi11-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi11-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi11-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi12-fast] chi=[1, 1, 1, 0, 1, 0, 0, 1, 0, 0] orbit 90: Pbar cosets 1024
+[chi12-fast] after unit elimination 54 gens, 0 relators [61s]
+[chi12-fast] H_1 = Z^54 + [] [61s]
+[chi12-fast] classes 160, W rank 106, gcd aug 10 [61s]
+[chi12-fast] {"label": "chi12-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 68}
+[chi12-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi12-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi12-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi12-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi13-fast] chi=[0, 1, 0, 1, 1, 1, 0, 1, 0, 0] orbit 72: Pbar cosets 1024
+[chi13-fast] after unit elimination 54 gens, 0 relators [63s]
+[chi13-fast] H_1 = Z^54 + [] [63s]
+[chi13-fast] classes 160, W rank 106, gcd aug 10 [63s]
+[chi13-fast] {"label": "chi13-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 70}
+[chi13-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi13-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi13-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi13-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+[chi14-fast] chi=[0, 1, 0, 1, 0, 0, 0, 0, 1, 0] orbit 15: Pbar cosets 1024
+[chi14-fast] after unit elimination 54 gens, 0 relators [68s]
+[chi14-fast] H_1 = Z^54 + [] [68s]
+[chi14-fast] classes 160, W rank 106, gcd aug 10 [68s]
+[chi14-fast] {"label": "chi14-fast", "cosets": 1024, "schreier_gens": 9217, "gens_after_unit_elim": 54, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [2, 4], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 75}
+[chi14-fast] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (0, 22), (10, 10), (10, 14), (10, 16), (10, 18), (10, 20)]
+[chi14-fast] SG via W_0 + Z w1: {'w1_l1': 10, 'w1_nonneg': True, 'W0_rank': 105, 'W0_max_l1': 22, 'SG': True}
+  box: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2]}
+[chi14-fast] distance: {'rows': 106, 'max_row_l1': 22, 'box_size': 4, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[chi14-fast] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+all SG: False

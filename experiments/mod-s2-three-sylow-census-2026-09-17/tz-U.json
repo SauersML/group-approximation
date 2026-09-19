@@ -1,0 +1,49 @@
+{
+ "label": "tz-U",
+ "cosets": 320,
+ "schreier_gens": 1161,
+ "gens_after_unit_elim": 21,
+ "h1_rank": 16,
+ "h1_torsion": [
+  3,
+  3,
+  3,
+  3,
+  3
+ ],
+ "classes": 50,
+ "class_coset_counts": [
+  32,
+  64,
+  96
+ ],
+ "W_rank": 34,
+ "gcd_aug_W": 10,
+ "d": "1/30",
+ "theta_values": [
+  "3/10"
+ ],
+ "cert_l1": 12,
+ "cert_aug": 10,
+ "A_plus": 20,
+ "A_plus_support": 12,
+ "A_plus_multiplicities": [
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2
+ ],
+ "seconds": 12,
+ "V_order": 81,
+ "tietze_gens": 1161,
+ "tietze_relators": 9787,
+ "seconds_total": 17
+}

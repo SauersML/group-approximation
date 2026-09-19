@@ -1,0 +1,24 @@
+{
+ "max_classes": [
+  0,
+  1,
+  2,
+  2
+ ],
+ "Z_order": 3,
+ "phisub_count": 4,
+ "phisub_classes": [
+  0,
+  1,
+  1,
+  1
+ ],
+ "phisub_is_centre": [
+  true,
+  false,
+  false,
+  false
+ ],
+ "phi_order": 9,
+ "phi_is_abelian": true
+}
