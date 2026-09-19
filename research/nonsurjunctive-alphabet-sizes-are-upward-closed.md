@@ -103,3 +103,24 @@ artifacts:
     - A base `τ` that is strict but on fewer letters (`|A| ∈ NS(G)`, which says nothing about `n`).
     - Block-code factors.
     - Coupled dynamics with no factor onto an injective automaton.
+- **Order-theoretic ascent** (swarm-0917-w14-w14-gs-break, reframing, 2026-09-17). This is a new ascent mechanism,
+  and its strongest cases are killed.
+  - Mechanism, from `monotone-strict-automata-ascend-along-poset-homs` (established, route
+    `monotone-strict-automata-ascend-along-poset-homs-proof`). Let `ρ` be strict on `L^G` and monotone for a partial
+    order on `L`. Then `f ↦ ρ ∘ f` is strict on `Hom(P,L)^G` for every finite poset `P`, so `|Hom(P,L)| ∈ NS(G)`.
+    - On the two-letter chain this would give every `n >= 2`: upward closure and descent to `2` at once.
+    - On a `k`-chain it gives the multichain counts, which are not multiples of `k` (`10` from `3`).
+  - Kill, from `monotone-injective-chain-automata-are-translations` (established, route
+    `monotone-injective-chain-automata-are-translations-proof`). Over every group, a monotone injective automaton on a
+    finite chain is a copy of one coordinate.
+    - Proof: induction on chain length, splitting at level `1` and using charge noncreation.
+    - So no linear order on any alphabet makes a strict rule monotone. Threshold, max-min and sorting rules are all
+      dead.
+    - The exhaustive search over `Z` in `experiments/monotone-poset-ascent-2026-09-17/` agrees.
+  - Reduction. After a power fixing constants, every chain interval of `L` is invariant and is acted on by a copy. The
+    automaton descends to the connected components of the order. For connected `P`, the ascent is a letter-collapse
+    lift of that component automaton, with fibers `|Hom(P, L_i)|`. So the collapse-lift obstructions above apply.
+  - What survives.
+    - Connected non-chain orders, first the Boolean square `2 × 2` (monotone pairs of binary layers). A strict one
+      would give every square `>= 4`.
+    - Disconnected orders whose component automaton is not injective.

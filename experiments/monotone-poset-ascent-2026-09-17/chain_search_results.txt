@@ -1,0 +1,17 @@
+Output of chain_monotone_search.py (2026-09-19 run, python3):
+
+$ python3 chain_monotone_search.py 3 2
+k 3 window 2 monotone rules 175 injective 2
+copies 2 non-copies 0
+
+$ python3 chain_monotone_search.py 4 2
+k 4 window 2 monotone rules 24696 injective 2
+copies 2 non-copies 0
+
+$ python3 chain_monotone_search.py 3 3
+k 3 window 3 monotone rules 211250 injective 3
+copies 3 non-copies 0
+
+Every monotone rule on a chain alphabet that is injective over Z (pair-graph test)
+is a copy of one window coordinate, as the theorem
+monotone-injective-chain-automata-are-translations predicts over every group.
