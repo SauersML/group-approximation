@@ -1,0 +1,15 @@
+[job] 00:37:26 acn112 waiting for clone lock
+[job] delta sync 09259036f..41de120e8: 383 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 41de120e8 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0914-003721-12747.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4597 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Audit.AuditNm4CarrierAxioms
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Audit/AuditNm4CarrierAxioms.lean
+info: GroupApproximation/Audit/AuditNm4CarrierAxioms.lean:760:14: 'GroupApproximation.printedLEFRingsStablyFinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10920 jobs).
+EXIT=0
+PROBE GREEN

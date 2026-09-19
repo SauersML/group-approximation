@@ -1,0 +1,20 @@
+[job] 16:09:31 acn112 waiting for clone lock
+[job] delta sync cd6ab594b..b1ef5d376: 8 files changed
+===== SUMMARY
+host acn112 cores 64-71 base b1ef5d376 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-160924-21796.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4589 oleans
+--- errors (first 80 lines)
+3:✖ [1251/1251] Building GroupApproximation.Dynamics.RefiningClopenPartitions (5.6s)
+8:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:85:46: Unknown constant `Nat.one_div_pos_of_nat`
+13:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:117:14: 'GroupApproximation.ChainCore.exists_refiningClopenPartitions' depends on axioms outside the classical allowlist: [sorryAx]
+14:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+19:error: Lean exited with code 1
+22:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.RefiningClopenPartitions (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.RefiningClopenPartitions
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

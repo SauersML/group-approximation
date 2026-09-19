@@ -1,0 +1,66 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3584 oleans
+[job] acn112 cores=64-71 threads=8 base=730e3c99b9402a57a6384ba330c2dd6c1fdbd937 mods: GroupApproximation.GGT.VanKampen.DiscDiagramOfPlanarRestrict GroupApproximation.GGT.VanKampen.Estimating.CombMapComponentsGlueModel
+ℹ [3355/3452] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4986/5136] Replayed GroupApproximation.GGT.VanKampen.CombMapComponents
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:102:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_alpha' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:103:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_sigma' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:104:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrict_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:107:14: 'GroupApproximation.GGT.VanKampen.CombMap.edgeCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:108:14: 'GroupApproximation.GGT.VanKampen.CombMap.faceCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:109:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:110:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_euler_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10206/10207] Built GroupApproximation.GGT.VanKampen.DiscDiagramOfPlanarRestrict (11s)
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:290:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrictFace_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:291:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrictFaceBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:292:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrictFaceBoundary_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:293:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_restrictRelFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:294:14: 'GroupApproximation.GGT.VanKampen.DiscDiagram.ofPlanarRestrict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:295:14: 'GroupApproximation.GGT.VanKampen.DiscDiagram.ofPlanarRestrict_rCellCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:296:14: 'GroupApproximation.GGT.VanKampen.DiscDiagram.ofPlanarRestrict_rCellCount_of_forall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean:297:14: 'GroupApproximation.GGT.VanKampen.DiscDiagram.ofPlanarRestrict_boundaryWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10207/10207] Built GroupApproximation.GGT.VanKampen.Estimating.CombMapComponentsGlueModel (20s)
+info: GroupApproximation/GGT/VanKampen/Estimating/CombMapComponentsGlueModel.lean:78:14: 'GroupApproximation.GGT.VanKampen.CombMapComponentsGlueModel.componentOf_m1_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CombMapComponentsGlueModel.lean:79:14: 'GroupApproximation.GGT.VanKampen.CombMapComponentsGlueModel.componentCompl_m1_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CombMapComponentsGlueModel.lean:80:21: 'GroupApproximation.GGT.VanKampen.CombMapComponentsGlueModel.glueComponents' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10207 jobs).
+EXIT=0

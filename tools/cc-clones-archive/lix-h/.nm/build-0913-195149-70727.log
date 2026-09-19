@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3653 oleans
+[job] acn112 cores=88-95 threads=8 base=1ba0fbdbc7ff826f79f3d501f7f8947568055e4f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapEndpointModel
+ℹ [3376/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10161/10161] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapEndpointModel (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointModel.lean:122:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.gap_length_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointModel.lean:123:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.inGap_gap_length_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointModel.lean:124:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.ofSides_not_gapEndpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10161 jobs).
+EXIT=0

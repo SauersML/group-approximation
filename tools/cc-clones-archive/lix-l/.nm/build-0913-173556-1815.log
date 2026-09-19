@@ -1,0 +1,46 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3409 oleans
+[job] acn112 cores=64-71 threads=8 base=63831fd7aad62cd4868e9dfe958c286e0599181d mods: GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection
+✖ [3075/3075] Building GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection (18s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.setup.json --json
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:83:59: unsolved goals
+A : Type u_1
+inst✝ : CStarAlgebra A
+m u : A
+c : ℝ
+hm : IsSelfAdjoint m
+hc : c < 1
+hgap : ∀ μ ∈ spectrum ℝ m, μ ≤ c ∨ μ = 1
+hgap' : ∀ μ ∈ spectrum ℝ (u * m * star u), μ ≤ c ∨ μ = 1
+h1 : star u * u = 1
+h2 : u * star u = 1
+hM'sa : IsSelfAdjoint (u * m * star u)
+hmP : m * spectralProjection m c = spectralProjection m c
+hA : (1 - u * m * star u) * (u * spectralProjection m c * star u) = 0
+hB : spectralProjection (u * m * star u) c * (u * spectralProjection m c * star u) = u * spectralProjection m c * star u
+hC : (1 - u * m * star u) * spectralProjection (u * m * star u) c = 0
+X : A
+hX : 1 - spectralProjection m c = X * (1 - m)
+⊢ u * (X * (star u * (u * star u))) + -1 • (u * (X * (star u * (u * (m * star u))))) =
+    -1 • (u * (X * (star u * (u * (m * star u))))) + u * (X * star u)
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:130:10: failed to synthesize instance of type class
+  PartialOrder (MaximalGroupCStar E)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:150:15: failed to synthesize instance of type class
+  PartialOrder (MaximalGroupCStar E)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:206:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.unitary_conj_spectralProjection' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:207:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.shift_mul_proj_mul_star_shift' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:208:21: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.manuscriptConjugateKazhdanProjection' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection
+error: build failed
+EXIT=1

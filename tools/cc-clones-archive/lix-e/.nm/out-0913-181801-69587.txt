@@ -1,0 +1,33 @@
+[job] 18:18:25 acn112 waiting for clone lock
+[job] delta sync fdf7b4f3a..cde3aabeb: 11 files changed
+===== SUMMARY
+host acn112 cores 72-79 base cde3aabeb log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-181801-69587.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4231 oleans
+--- errors (first 80 lines)
+21:✖ [4112/4115] Building GroupApproximation.Dynamics.TwoEndedTailSymbols (22s)
+23:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:78:2: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+28:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:106:0: automatically included section variable(s) unused in theorem `GroupApproximation.TwoEndedShift.eventually_pt_atTop_eq`:
+34:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:111:0: automatically included section variable(s) unused in theorem `GroupApproximation.TwoEndedShift.eventually_pt_atBot_eq`:
+40:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:199:14: 'GroupApproximation.TwoEndedShift.symbolHom_coeff' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+43:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:200:14: 'GroupApproximation.TwoEndedShift.exists_tail_pos' depends on axioms outside the classical allowlist: [sorryAx]
+44:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+46:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:201:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms outside the classical allowlist: [sorryAx]
+47:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+49:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:202:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+52:error: Lean exited with code 1
+55:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.LaurentMonomialUnits
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailSymbols (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/LaurentMonomialUnits.lean
+- GroupApproximation.Dynamics.TwoEndedTailSymbols
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

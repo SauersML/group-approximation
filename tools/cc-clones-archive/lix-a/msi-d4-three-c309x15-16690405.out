@@ -1,0 +1,16 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=309 words=1 states=73
+distinct_augmented_words=1
+boundary_states=73
+nonempty_q=36
+free_nonempty_q=0
+direct_killed_q=2
+power_killed_q=34
+saturation_killed_q=0
+involution_killed_q=0
+relator_difference_killed_q=0
+unresolved_q=0

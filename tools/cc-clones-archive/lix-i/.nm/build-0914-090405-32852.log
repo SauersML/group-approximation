@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4567 oleans
+[job] acn112 cores=80-87 threads=8 base=2d653dd5970c7b114b31a6ffc5adfd92d627b5f4 mods: GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem GroupApproximation.Manuscript.SimpleKazhdanSofic.KirchbergFactorizationSentences
+ℹ [3696/3866] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4624/4625] Building GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.setup.json --json
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:228:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:317:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:318:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+error: build failed
+EXIT=1

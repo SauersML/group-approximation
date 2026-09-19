@@ -1,0 +1,9 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3171 oleans
+[job] acn112 cores=64-71 threads=8 base=68cc72eb2f64efdd0f5b4a75a85f5d9b9f6064e3 mods: GroupApproximation.Dynamics.ReturnTowerCrossedProduct
+ℹ [1760/1760] Built GroupApproximation.Dynamics.ReturnTowerCrossedProduct (10s)
+info: GroupApproximation/Dynamics/ReturnTowerCrossedProduct.lean:320:21: 'GroupApproximation.ChainCore.returnTowerUnitsStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ReturnTowerCrossedProduct.lean:321:14: 'GroupApproximation.ChainCore.returnTowerUnits' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1760 jobs).
+EXIT=0

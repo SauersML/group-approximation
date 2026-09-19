@@ -1,0 +1,26 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3302 oleans
+[job] acn112 cores=64-71 threads=8 base=7283939e9b951407cb6590eb07b7f7e091c39c55 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94DartMinimal
+ℹ [3336/3450] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5039/5039] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94DartMinimal (9.2s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:168:14: 'GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.transportDistinguished_dartCount_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:169:14: 'GroupApproximation.GGT.VanKampen.PinchSplit.transportDistinguished_dartCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:170:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal.false_of_dartCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:171:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal.unselectedGFacesMerged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:172:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_reduced_dartCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:173:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_reduced_dartMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5039 jobs).
+EXIT=0

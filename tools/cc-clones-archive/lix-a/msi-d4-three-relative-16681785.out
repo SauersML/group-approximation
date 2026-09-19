@@ -1,0 +1,17 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=25 words=1516 states=243
+carrier=50 words=2820 states=428
+carrier=75 words=4328 states=604
+carrier=100 words=6116 states=1027
+carrier=125 words=7928 states=1186
+carrier=150 words=8708 states=1350
+carrier=175 words=9984 states=1419
+carrier=200 words=11012 states=1435
+carrier=225 words=11624 states=1457
+carrier=250 words=12252 states=1486
+carrier=275 words=13092 states=1579
+[2026-08-22T06:44:20.535] error: *** JOB 16681785 ON acn105 CANCELLED AT 2026-08-22T06:44:20 DUE to SIGNAL Terminated ***

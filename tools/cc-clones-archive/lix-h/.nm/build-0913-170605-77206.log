@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3113 oleans
+[job] acn112 cores=80-87 threads=8 base=7564433ffe62e20db73b56bf6fc67f80eb393135 mods: GroupApproximation.Dynamics.ReturnSection GroupApproximation.Dynamics.FirstReturnMap
+ℹ [1758/1759] Built GroupApproximation.Dynamics.ReturnSection (6.8s)
+info: GroupApproximation/Dynamics/ReturnSection.lean:313:21: 'GroupApproximation.ChainCore.returnSectionStatement_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnSection.lean:314:14: 'GroupApproximation.ChainCore.IsReturnSection.returnGapsIn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnSection.lean:315:14: 'GroupApproximation.ChainCore.IsReturnSection.eq_univ_of_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1759/1759] Built GroupApproximation.Dynamics.FirstReturnMap (5.0s)
+info: GroupApproximation/Dynamics/FirstReturnMap.lean:159:21: 'GroupApproximation.ChainCore.firstReturnStatement_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/FirstReturnMap.lean:160:14: 'GroupApproximation.ChainCore.firstReturnHomeomorph' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1759 jobs).
+EXIT=0

@@ -1,0 +1,34 @@
+[job] 09:08:49 acn112 waiting for clone lock
+[job] delta sync 08d434c9c..050d866ab: 33 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 050d866ab log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-090830-4369.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3506 oleans
+--- errors (first 80 lines)
+31:✖ [2417/2418] Building GroupApproximation.Analysis.DyadicCornerEmbedding (4.0s)
+33:error: GroupApproximation/Analysis/DyadicCornerEmbedding.lean:32:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.cornerUnit_isMatrixUnits`:
+39:error: GroupApproximation/Analysis/DyadicCornerEmbedding.lean:57:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.trace_cornerUnit`:
+45:error: GroupApproximation/Analysis/DyadicCornerEmbedding.lean:85:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.nonempty_cornerEmbedding`:
+54:error: Lean exited with code 1
+55:✖ [2418/2418] Building GroupApproximation.Analysis.PauliMatrixUnits (14s)
+57:error: GroupApproximation/Analysis/PauliMatrixUnits.lean:75:28: This simp argument is unused:
+64:error: GroupApproximation/Analysis/PauliMatrixUnits.lean:182:36: Tactic `rewrite` failed: motive is not type correct:
+85:error: GroupApproximation/Analysis/PauliMatrixUnits.lean:324:14: 'GroupApproximation.Hyperfinite.coefficient_stageHom' depends on axioms outside the classical allowlist: [sorryAx]
+86:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+88:error: Lean exited with code 1
+92:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.MatrixUnitHom
+mentioned-not-built GroupApproximation.Analysis.PauliMatrixUnits (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.DyadicCornerEmbedding (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.PauliMatrixUnits
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

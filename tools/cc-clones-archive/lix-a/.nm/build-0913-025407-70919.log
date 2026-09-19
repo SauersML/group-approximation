@@ -1,0 +1,37 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3040 oleans
+[job] acn105 cores=slurm threads=8 base=c3cfee8441f2ff15cada37401252508cd2ec0015 mods: GroupApproximation.Manuscript.NonMF.HullFiniteRadical
+ℹ [2841/2897] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4505/4505] Building GroupApproximation.Manuscript.NonMF.HullFiniteRadical (126s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/HullFiniteRadical.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/HullFiniteRadical.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Manuscript/NonMF/HullFiniteRadical.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Manuscript/NonMF/HullFiniteRadical.setup.json --json
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:100:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.le_elementaryClosure_of_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:132:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.hasTrivialFiniteRadical_iff_finiteRadical_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:155:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.finite_finiteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:175:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullFiniteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:192:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullAH0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:202:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.finiteRadical_eq_bot_of_suitable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:214:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.suitable_top_of_finiteRadical_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:224:42: Unknown identifier `HullSC.isAcylindricallyHyperbolic_of_hullGeneratingSet`
+error: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:228:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullSuitableIffFiniteRadical' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMF.HullFiniteRadical
+error: build failed
+EXIT=1

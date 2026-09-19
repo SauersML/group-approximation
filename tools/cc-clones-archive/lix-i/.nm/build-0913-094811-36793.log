@@ -1,0 +1,12 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3200 oleans
+[job] acn112 cores=64-71 threads=8 base=517cec23840c88b3d96d198cb08a2b28675cf166 mods: GroupApproximation.GGT.HullLemma35PieceGeometry
+ℹ [3291/3362] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4555/4555] Built GroupApproximation.GGT.HullLemma35PieceGeometry (9.6s)
+info: GroupApproximation/GGT/HullLemma35PieceGeometry.lean:158:14: 'GroupApproximation.GGT.HullLemma35.nearBetween_of_side' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35PieceGeometry.lean:159:14: 'GroupApproximation.GGT.HullLemma35.nearBetween_of_slim' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35PieceGeometry.lean:160:14: 'GroupApproximation.GGT.HullLemma35.nearBetween_quad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35PieceGeometry.lean:161:14: 'GroupApproximation.GGT.HullLemma35.nearBetween_hexagon' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4555 jobs).
+EXIT=0

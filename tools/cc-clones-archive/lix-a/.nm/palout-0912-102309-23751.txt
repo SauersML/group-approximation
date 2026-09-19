@@ -1,0 +1,29 @@
+===== SUMMARY
+host acn30 base 6c003072f log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/palomar-0912-102309-23751.log
+build rc=0
+axioms rc=0
+stmt-strong-challenge rc=0
+stmt-strong-solution rc=0
+submission-selftest rc=0
+submission rc=1
+--- errors (first 60 lines)
+31030:::error::[palomar] Palomar/comparator-lix.json: Palomar/LIXChallenge.lean is 1323 lines; the hard cap is 1000
+31034:::error::[palomar] Palomar/comparator-lix.json: `exists_separable_simple_not_k1Injective`: the compared signature diverges at line 3: challenge '      TopologicalSpace.SeparableSpace A ∧ IsSimpleRing A ∧ ¬ IsK1Injective A :=' vs solution '      TopologicalSpace.SeparableSpace A ∧ IsSimpleRing A ∧ True ∧ ¬ IsK1Injective A :='
+31037:::error::[palomar] Palomar/comparator-lix.json: Palomar/LIXChallenge.lean:1: import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX -- the challenge may import Mathlib only; a project-local import fails mechanical verification at the registry
+31040:::error::[palomar] Palomar/comparator-lix.json: shared block diverges at block line 6: Palomar/LIXChallenge.lean 'def cornerDiag (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :' vs Palomar/LIXSolution.lean "def cornerDiag' (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :"
+31043:::error::[palomar] repository root must contain exactly one licence file; found ['COPYING', 'LICENSE']
+31046:::error::[palomar] lean-toolchain leanprover/lean4:v4.20.0 is below the registry minimum v4.28.0
+31049:::error::[palomar] dependency 'mathlib' is pinned to 'main', not a full 40-character lowercase commit SHA
+31052:::error::[palomar] dependency 'mathlib' has url 'https://gitlab.com/a/b'; the registry accepts only a credential-free public https://github.com/owner/repo
+31055:::error::[palomar] Palomar/comparator-lix.json: solution_module Palomar.Nope does not resolve to a regular file at Palomar/Nope.lean
+31058:::error::[palomar] Palomar/comparator-lix.json: permitted_axioms is ['propext', 'Quot.sound', 'Classical.choice', 'sorryAx']; the registry accepts only the three classical axioms
+31061:::error::[palomar] Palomar/comparator-lix-strong.json: Palomar/LIXStrongChallenge.lean:1: import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrong -- the challenge may import Mathlib only; a project-local import fails mechanical verification at the registry
+31064:::error::[palomar] Palomar/comparator-lix-strong.json: shared block diverges at block line 6: Palomar/LIXStrongChallenge.lean 'def cornerDiag (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :' vs Palomar/LIXStrongSolution.lean "def cornerDiag' (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :"
+31067:::error::[palomar] Palomar/comparator-lix-strong.json: Palomar/LIXStrongSolution.lean: does not declare `exists_simple_separable_order_six_witness_of`; while this configuration is pending, every theorem it selects must appear in the solution as the `_of` form carrying the outstanding hypothesis
+31070:::error::[palomar] Palomar/comparator-lix-strong.json: permitted_axioms is ['propext', 'Quot.sound', 'Classical.choice', 'sorryAx']; the registry accepts only the three classical axioms
+31073:::error::[palomar] Palomar/LIXChallenge.olean is a compiled artifact and is tracked
+31076:::error::[palomar] formalization.yaml: classification.arxiv is ['math.OA', 'math.KT', 'math.LO']; the registry accepts one or two distinct official arXiv classes
+31080:::error::[palomar] formalization.yaml: the source list declares an original result (1 original-proof entries) AND 1 substantive relationship(s); the two alternatives are exclusive
+31082:::error::[palomar] formalization.yaml: ProblemLIX.not_all_simple_unital_k1Injective is not listed in status.main_results with comparator_config Palomar/comparator-lix.json; the metadata must publish every theorem the configuration submits
+31088:::error::[palomar] could not read the git index, so submodules could not be checked; that is the same as their being there
+PALOMAR VERIFY FAILED

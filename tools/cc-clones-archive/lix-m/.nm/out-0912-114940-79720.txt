@@ -1,0 +1,15 @@
+[job] 11:49:46 acn112 waiting for clone lock
+[job] delta sync 5a5886551..924105b04: 196 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 924105b04 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0912-114940-79720.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.OddPShufflePrimRoot
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPShufflePrimRoot.lean
+ Quot.sound]
+Build completed successfully (2165 jobs).
+EXIT=0
+PROBE GREEN

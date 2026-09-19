@@ -1,0 +1,107 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3458 oleans
+[job] acn112 cores=88-95 threads=8 base=9eb8b9d820177d9728263821c78852cde1188c3b mods: GroupApproximation.Dynamics.TransientCells
+ℹ [1326/1457] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1845/1848] Replayed GroupApproximation.Dynamics.ClopenSwapInvolution
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1846/1848] Replayed GroupApproximation.Dynamics.TransientSupport
+info: GroupApproximation/Dynamics/TransientSupport.lean:281:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:282:14: 'GroupApproximation.ClopenCrossedProduct.exists_clopen_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.exists_wandering_clopen_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:284:14: 'GroupApproximation.ClopenCrossedProduct.exists_uniform_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1847/1848] Replayed GroupApproximation.Dynamics.InvolutionLocalizationRing
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:222:14: 'GroupApproximation.ClopenCrossedProduct.zpow_mem_chainRecurrentSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:223:14: 'GroupApproximation.ClopenCrossedProduct.charFn_eq_sum_of_partition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/InvolutionLocalizationRing.lean:224:14: 'GroupApproximation.ClopenCrossedProduct.involutionLocalizationRingClause_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1848/1848] Building GroupApproximation.Dynamics.TransientCells (9.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Dynamics/TransientCells.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/TransientCells.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/TransientCells.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/TransientCells.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/TransientCells.setup.json --json
+error: GroupApproximation/Dynamics/TransientCells.lean:127:8: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => ↑(_a.equivFin.symm a) ∈ _a
+Error: Application type mismatch: The argument
+  a
+has type
+  Fin V.card
+but is expected to have type
+  Fin _a.card
+in the application
+  _a.equivFin.symm a
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+case refine_2
+X : Type u_1
+inst✝² : TopologicalSpace X
+inst✝¹ : CompactSpace X
+T : X ≃ₜ X
+C : Set X
+E : Finset ℤ
+m : ℕ
+hC : IsClopen C
+ι : Type u_2
+Z : Type u_3
+inst✝ : Finite ι
+g : ι → X → Z
+hg : ∀ (i : ι), IsLocallyConstant (g i)
+φ : X → Finset ℤ × (ι → Z)
+hφdef : φ = fun y => (reachableExponents T C E (m - 1) y, fun i => g i y)
+hφ : IsLocallyConstant φ
+hfin : (Set.range φ).Finite
+V : Finset (Finset ℤ × (ι → Z))
+hVdef : V = {v ∈ hfin.toFinset | (baseSet T C E m ∩ {y | φ y = v}).Nonempty}
+hcellsub : ∀ (v : Finset ℤ × (ι → Z)), baseSet T C E m ∩ {y | φ y = v} ⊆ baseCell T C E m v.1
+a : Fin V.card
+hmem : ↑(V.equivFin.symm a) ∈ V
+⊢ ((fun a => baseSet T C E m ∩ {y | φ y = ↑(V.equivFin.symm a)}) a).Nonempty
+error: GroupApproximation/Dynamics/TransientCells.lean:152:7: Variable name `hcell` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/Dynamics/TransientCells.lean:200:14: 'GroupApproximation.ClopenCrossedProduct.mem_of_charFn_mul_eq_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:201:14: 'GroupApproximation.ClopenCrossedProduct.zpow_mem_of_mul_charFn_eq_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientCells.lean:202:14: 'GroupApproximation.ClopenCrossedProduct.isLocallyConstant_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Dynamics/TransientCells.lean:203:14: 'GroupApproximation.ClopenCrossedProduct.exists_cells' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TransientCells.lean:204:14: 'GroupApproximation.ClopenCrossedProduct.exists_transientCells' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TransientCells
+error: build failed
+EXIT=1

@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2510 oleans
+[job] acn112 cores=64-71 threads=8 base=e6dc0d444ab78d423da021ad6daad0346fe854a4 mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementaryPresented
+ℹ [2814/2853] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4595/4609] Replayed GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:376:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:377:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonShiftAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:378:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonKernelFinitary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:379:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonRadicalEquality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4609/4609] Built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementaryPresented (12s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementaryPresented.lean:63:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_twoResultsComplementaryPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4609 jobs).
+EXIT=0

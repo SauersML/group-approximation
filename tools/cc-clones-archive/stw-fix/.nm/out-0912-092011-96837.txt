@@ -1,0 +1,53 @@
+[job] 09:20:16 acn112 waiting for clone lock
+[job] delta sync 9b3ca22cb..b9f144093: 400 files changed
+===== SUMMARY
+host acn112 cores 64-71 base b9f144093 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0912-092011-96837.log
+purged 6 stale artifact sets (source-newer=2, import-newer=4) of 4766 oleans
+--- errors (first 80 lines)
+577:✖ [4965/4970] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided (23s)
+579:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:71:10: This simp argument is unused:
+586:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:71:14: This simp argument is unused:
+593:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:71:18: This simp argument is unused:
+600:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:71:22: This simp argument is unused:
+607:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:71:26: This simp argument is unused:
+614:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:130:13: Unknown identifier `S.cellDart_facePerm`
+615:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:128:55: unsolved goals
+620:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:137:13: Unknown identifier `S.cellDart_facePerm`
+621:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:135:50: unsolved goals
+626:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:146:13: Unknown identifier `S.cellDart_facePerm`
+627:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:144:76: unsolved goals
+632:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:182:16: Unknown identifier `S.IsCellDart`
+633:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:183:31: Unknown identifier `S.facePerm_of_cell`
+634:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:183:11: Tactic `rcases` failed: `x✝ : ?m.18` is not an inductive datatype
+635:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:187:16: Unknown identifier `S.cellDart_facePerm`
+636:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:259:31: Unknown identifier `S.IsCellDart`
+637:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:260:17: Unknown identifier `S.IsCellDart`
+638:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:262:29: Unknown identifier `S.cellDart_facePerm`
+639:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:265:32: Unknown identifier `S.facePerm_ne`
+640:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:265:50: Unknown identifier `S.facePerm_two_ne`
+641:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:266:5: Unknown identifier `S.facePerm_three_ne`
+642:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:266:32: Unknown identifier `S.facePerm_five_ne`
+643:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:268:23: Unknown identifier `S.sigma_fixed_of_facePerm_four`
+644:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:268:9: Tactic `rcases` failed: `x✝ : ?m.73` is not an inductive datatype
+645:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:353:7: Invalid field notation: Function `SubdividedGraph.six_le_faceDegree_of_subdividedGraph` does not have a usable parameter of type `SubdividedGraph ...` for which to substitute `S`
+650:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:360:14: 'GroupApproximation.GGT.VanKampen.CombMap.SubdividedGraph.facePerm_two_ne' depends on axioms outside the classical allowlist: [sorryAx]
+651:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+656:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:362:14: 'GroupApproximation.GGT.VanKampen.CombMap.SubdividedGraph.six_le_faceDegree_of_subdividedGraph' depends on axioms outside the classical allowlist: [sorryAx]
+657:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+662:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean:364:14: 'GroupApproximation.GGT.VanKampen.CombMap.edgeBound_of_subdividedGraph' depends on axioms outside the classical allowlist: [sorryAx]
+663:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+665:error: Lean exited with code 1
+668:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiBound (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

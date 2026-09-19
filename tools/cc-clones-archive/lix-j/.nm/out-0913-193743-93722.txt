@@ -1,0 +1,46 @@
+[job] 19:37:50 acn112 waiting for clone lock
+[job] delta sync 6042cae10..00e7c08fd: 9 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 00e7c08fd log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-193743-93722.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3471 oleans
+--- errors (first 80 lines)
+41:✖ [1541/1542] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerUnits (8.4s)
+43:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:39:83: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+44:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:41:76: Invalid projection: Projection operates on types of the form `C ...` where C is a constant. The expression
+47:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:41:4: unsolved goals
+60:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:42:74: Invalid projection: Projection operates on types of the form `C ...` where C is a constant. The expression
+63:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:42:2: unsolved goals
+75:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:134:14: 'GroupApproximation.SimpleKazhdanSofic.eU_mul_eU' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+78:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:135:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+79:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+81:error: Lean exited with code 1
+82:✖ [1542/1542] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre (8.8s)
+84:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:45:74: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+99:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:170:31: unsolved goals
+119:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:182:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleRing' depends on axioms outside the classical allowlist: [sorryAx]
+120:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+126:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:185:14: 'GroupApproximation.SimpleKazhdanSofic.mem_center_iff_eq_zero_or_one' depends on axioms outside the classical allowlist: [sorryAx]
+127:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+129:error: Lean exited with code 1
+133:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerUnits (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

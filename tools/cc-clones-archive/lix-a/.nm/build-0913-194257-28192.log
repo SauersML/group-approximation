@@ -1,0 +1,41 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4019 oleans
+[job] acn131 cores=slurm threads=8 base=55d5916c79b62a6888ed4e3131e8a96c6db720ef mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassPairTransfer
+ℹ [3317/3380] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10158/10160] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10160/10160] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassPairTransfer (227s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:79:90: unexpected identifier; expected '}'
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:79:9: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Exists.intro` has 2 explicit field, but only 1 was provided
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:79:10: Fields missing: `target_mem`, `distinct`, `source_admissible`, `target_admissible`, `a`, `a'`, `b`, `b'`, `a_le`, `a'_le`, `b_le`, `b'_le`, `source_forward`, `source_long`, `target_long`, `startConnector`, `endConnector`, `start_geodesic`, `end_geodesic`, `start_short`, `end_short`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:131:10: `List.take_succ` has been deprecated: Use `List.take_add_one` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:313:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.WordConnectorPair.exists_shift' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:314:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.listVal_flatMap_take_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:315:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_of_sideAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:316:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_sidePair_of_singleSide' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassPairTransfer.lean:317:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCases_of_residuals' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassPairTransfer
+error: build failed
+EXIT=1

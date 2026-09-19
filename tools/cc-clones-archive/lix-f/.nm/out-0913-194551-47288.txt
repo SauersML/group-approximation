@@ -1,0 +1,37 @@
+[job] 19:47:22 cn1009 waiting for clone lock
+[job] delta sync 2fa9e251a..a9a96021c: 10 files changed
+===== SUMMARY
+host cn1009 cores slurm base a9a96021c log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-194551-47288.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3606 oleans
+--- errors (first 80 lines)
+60:✖ [10280/10280] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection (31s)
+62:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:110:52: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+83:Full error:
+92:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:121:33: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+113:Full error:
+122:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:124:58: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+143:Full error:
+158:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:189:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_source_proper' depends on axioms outside the classical allowlist: [sorryAx]
+159:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+161:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:190:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplitInside_source_proper' depends on axioms outside the classical allowlist: [sorryAx]
+162:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+164:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_avoids' depends on axioms outside the classical allowlist: [sorryAx]
+165:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+167:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:192:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_inside' depends on axioms outside the classical allowlist: [sorryAx]
+168:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+170:error: Lean exited with code 1
+173:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

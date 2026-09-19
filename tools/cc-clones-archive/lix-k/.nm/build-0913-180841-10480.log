@@ -1,0 +1,37 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3370 oleans
+[job] acn112 cores=72-79 threads=8 base=ec784032cddb127177643373d5621584e8a6d613 mods: GroupApproximation.GGT.VanKampen.CombMapSameFaceForest
+ℹ [3308/3462] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4648/4648] Building GroupApproximation.GGT.VanKampen.CombMapSameFaceForest (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:218:26: failed to synthesize instance of type class
+  DecidableEq M.Vertex
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:283:64: unsolved goals
+M : CombMap
+hM : M.IsPlanar
+f : M.Face
+hne : (M.sameFaceDarts f).Nonempty
+h : (M.sameFaceDarts f).card + 2 ≤ 2 * sorry
+⊢ (Finset.image M.vertexOf (M.sameFaceDarts f)).card = sorry
+info: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:293:14: 'GroupApproximation.GGT.VanKampen.CombMap.mem_sameFaceDarts' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:294:14: 'GroupApproximation.GGT.VanKampen.SameFaceForest.alpha_mem_sameFaceDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:295:14: 'GroupApproximation.GGT.VanKampen.SameFaceForest.exists_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:296:14: 'GroupApproximation.GGT.VanKampen.SameFaceForest.exists_leaf' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:297:14: 'GroupApproximation.GGT.VanKampen.SameFaceForest.card_add_two_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:298:21: 'GroupApproximation.GGT.VanKampen.sameFaceDartForest' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapSameFaceForest
+error: build failed
+EXIT=1

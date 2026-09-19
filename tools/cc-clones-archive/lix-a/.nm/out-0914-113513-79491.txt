@@ -1,0 +1,26 @@
+[job] 11:37:33 acn112 waiting for clone lock
+[job] delta sync fa7ff2759..7a3f05eb6: 14 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 7a3f05eb6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-113513-79491.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4133 oleans
+--- errors (first 80 lines)
+25:✖ [5024/5024] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels (61s)
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:682:48: don't know how to synthesize placeholder for argument `h`
+31:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:678:86: unsolved goals
+49:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:705:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.merged_darts' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+58:error: Lean exited with code 1
+61:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCaseTwo.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

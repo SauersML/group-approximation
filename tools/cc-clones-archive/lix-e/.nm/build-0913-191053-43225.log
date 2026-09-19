@@ -1,0 +1,52 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4303 oleans
+[job] acn112 cores=80-87 threads=8 base=fce9770664e081be49bfca5f9b9b5119056d56b6 mods: GroupApproximation.Dynamics.TwoEndedUnitGroup GroupApproximation.Dynamics.TwoEndedUnitsLEF
+ℹ [1784/1804] Replayed GroupApproximation.Algebra.LaurentMonomialUnits
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:169:14: 'GroupApproximation.LaurentMonomialUnits.coeff_mul_add_of_forall_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:170:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_of_mul_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:171:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1789/1812] Replayed GroupApproximation.Algebra.FinitaryGeneralLinear
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:366:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1819/1868] Replayed GroupApproximation.Dynamics.TwoEndedTailSymbols
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:269:14: 'GroupApproximation.TwoEndedShift.symbolOp_apply_single_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:270:14: 'GroupApproximation.TwoEndedShift.symbol_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:271:14: 'GroupApproximation.TwoEndedShift.exists_tail_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:272:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:273:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2067/2101] Replayed GroupApproximation.Dynamics.TwoEndedTailBalance
+info: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:136:14: 'GroupApproximation.TwoEndedShift.card_Ioo_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:137:14: 'GroupApproximation.TwoEndedShift.exists_common_tail_exponent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:138:14: 'GroupApproximation.TwoEndedShift.units_map_mul_shiftGL_zpow_mem_GLfin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2897/2949] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4114/4115] Built GroupApproximation.Dynamics.TwoEndedUnitGroup (14s)
+info: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:212:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitGroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:213:14: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitsLEFGLThreeNotMF_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4115/4115] Built GroupApproximation.Dynamics.TwoEndedUnitsLEF (14s)
+info: GroupApproximation/Dynamics/TwoEndedUnitsLEF.lean:48:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitsLEF' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedUnitsLEF.lean:49:14: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitsLEFGLThreeNotMF_of_bilateralThree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4115 jobs).
+EXIT=0

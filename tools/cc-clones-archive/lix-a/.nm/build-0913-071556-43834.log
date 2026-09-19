@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3574 oleans
+[job] acn112 cores=64-71 threads=8 base=3af801bac3e5f48c79fe77ea33ccca48b36400e4 mods: GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable
+ℹ [2808/2983] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4608/4609] Replayed GroupApproximation.Manuscript.NonMF.HullFiniteRadical
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:100:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.le_elementaryClosure_of_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:132:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.hasTrivialFiniteRadical_iff_finiteRadical_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:155:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.finite_finiteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:175:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullFiniteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:192:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullAH0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:202:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.finiteRadical_eq_bot_of_suitable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:214:14: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.suitable_top_of_finiteRadical_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:229:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullSuitableIffFiniteRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4609/4609] Built GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable (11s)
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:114:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.mem_range_of_of_mul_eq_mul_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:135:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.mem_range_inl_of_inl_mul_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:150:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.mem_range_inr_of_inr_mul_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:193:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.normalizesNoNontrivialFinite_range_inl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:234:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.normalizesNoNontrivialFinite_range_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:265:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.exists_hullGeneratingSet_unionAlphabet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:280:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.suitable_range_inl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:295:14: 'GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.suitable_range_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4609 jobs).
+EXIT=0

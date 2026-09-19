@@ -1,0 +1,17 @@
+[job] 17:17:24 acn112 waiting for clone lock
+[job] delta sync cb5b195c8..09259036f: 15 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 09259036f log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-171715-24952.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4595 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.OneBlockCycleCondition
+BUILT GroupApproximation.Dynamics.ItineraryCoreCycleCondition
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ItineraryCoreCycleCondition.lean
+COMPILED GroupApproximation/Dynamics/OneBlockCycleCondition.lean
+ Quot.sound]
+Build completed successfully (1088 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,31 @@
+[job] 08:42:14 acn112 waiting for clone lock
+[job] delta sync 169cd95cb..99d005f8e: 40 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 99d005f8e log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-084210-79932.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3503 oleans
+--- errors (first 80 lines)
+19:✖ [2416/2417] Building GroupApproximation.Analysis.PauliHyperfiniteFactor (8.1s)
+21:error: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:199:17: This simp argument is unused:
+33:error: Lean exited with code 1
+34:✖ [2417/2417] Building GroupApproximation.Analysis.TracialUltrapowerTrace (16s)
+36:error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:139:6: Type mismatch: After simplification, term
+42:error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:224:8: typeclass instance problem is stuck
+49:error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:245:14: 'GroupApproximation.TracialUltrapower.ultratrace_star_mul_self_eq_zero_iff' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+52:error: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:246:14: 'GroupApproximation.TracialUltrapower.ultratrace_diag' depends on axioms outside the classical allowlist: [sorryAx]
+53:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+56:error: Lean exited with code 1
+60:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.TwistedGroupVonNeumannFactor
+mentioned-not-built GroupApproximation.Analysis.PauliHyperfiniteFactor (replayed or failed)
+BUILT GroupApproximation.Analysis.TracialUltrapower
+mentioned-not-built GroupApproximation.Analysis.TracialUltrapowerTrace (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.TracialUltrapowerTrace
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

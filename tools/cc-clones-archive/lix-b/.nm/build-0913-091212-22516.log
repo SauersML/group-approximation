@@ -1,0 +1,32 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3301 oleans
+[job] acn112 cores=64-71 threads=8 base=9a13b22c9ec55f95d4ab53171efba90be56b5475 mods: GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap
+ℹ [3362/3498] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4648/4648] Built GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap (11s)
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:266:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.exists_spikeCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:267:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.rest_ne_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:268:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.lift_isFaceCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:269:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceOf_eq_shrunkFace_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:270:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.face_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:271:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_shrunkFace_map_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:272:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_keptFace_map_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:273:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4648 jobs).
+EXIT=0

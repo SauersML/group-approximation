@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3631 oleans
+[job] acn112 cores=64-71 threads=8 base=0e507dc6e7afdde84cc48225859d5eef98756eb3 mods: GroupApproximation.GGT.VanKampen.CombMapRestrictionComponentFaceClasses
+ℹ [3297/3412] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4647/4647] Built GroupApproximation.GGT.VanKampen.CombMapRestrictionComponentFaceClasses (15s)
+info: GroupApproximation/GGT/VanKampen/CombMapRestrictionComponentFaceClasses.lean:74:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4647 jobs).
+EXIT=0

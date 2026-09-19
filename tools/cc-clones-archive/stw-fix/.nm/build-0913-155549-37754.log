@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4587 oleans
+[job] acn112 cores=72-79 threads=8 base=5684c45bc035c3a23f9929fe3ace317da69878be mods: GroupApproximation.Algebra.SkewMonoidAlgebraCoefficientMap
+ℹ [1215/1215] Built GroupApproximation.Algebra.SkewMonoidAlgebraCoefficientMap (6.4s)
+info: GroupApproximation/Algebra/SkewMonoidAlgebraCoefficientMap.lean:104:14: 'GroupApproximation.Pestov91.CrossedProduct.coeffMap_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/SkewMonoidAlgebraCoefficientMap.lean:105:14: 'GroupApproximation.Pestov91.CrossedProduct.coeff_coeffMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/SkewMonoidAlgebraCoefficientMap.lean:106:14: 'GroupApproximation.Pestov91.CrossedProduct.coeffMap_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/SkewMonoidAlgebraCoefficientMap.lean:107:14: 'GroupApproximation.Pestov91.CrossedProduct.coeffMap_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/SkewMonoidAlgebraCoefficientMap.lean:108:14: 'GroupApproximation.Pestov91.CrossedProduct.coeffMap_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1215 jobs).
+EXIT=0

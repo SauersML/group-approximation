@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3376 oleans
+[job] acn112 cores=64-71 threads=8 base=f37676d794302366c74cd964af845b55b1307b28 mods: GroupApproximation.Dynamics.InvolutionLocalizationStatement
+✖ [1837/1837] Building GroupApproximation.Dynamics.InvolutionLocalizationStatement (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/InvolutionLocalizationStatement.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/InvolutionLocalizationStatement.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/InvolutionLocalizationStatement.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/InvolutionLocalizationStatement.setup.json --json
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:63:35: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:66:37: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑w -
+  1`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:70:39: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `a`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:77:11: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑G
+    i j -
+  1 i j`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:82:13: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑w -
+  1`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:86:46: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `a`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean:112:11: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑G
+    i j -
+  1 i j`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.InvolutionLocalizationStatement
+error: build failed
+EXIT=1

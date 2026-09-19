@@ -1,0 +1,258 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3619 oleans
+[job] acn112 cores=72-79 threads=8 base=fc88159fc923e12653694471f2ecd6ba01612fc0 mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCoreSentences
+ℹ [3595/3651] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4308/4385] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCore
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:101:14: 'GroupApproximation.ChainCore.DynamicRankBudget.transGen_chainStep_of_zpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:102:14: 'GroupApproximation.ChainCore.DynamicRankBudget.transGen_of_firstReturn_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:103:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_mem_chainRecurrentSet_of_firstReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4473/4548] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:202:14: 'GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:203:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:204:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:205:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:206:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:207:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitizeGL_placementUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:208:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:209:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4487/4555] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnKernel
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:114:14: 'GroupApproximation.ChainCore.DynamicRankBudget.units_map_mapMatrix_eq_one_of_forall_mem_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:115:14: 'GroupApproximation.ChainCore.DynamicRankBudget.glEmbedding_returnPlacement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:116:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean:117:14: 'GroupApproximation.ChainCore.DynamicRankBudget.returnPlacement_sub_one_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4540/4603] Replayed GroupApproximation.Manuscript.OneSidedMFRadical.MFRadicalTransport
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:221:14: 'GroupApproximation.MFRadicalTransport.map_mfHomKernel_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:222:14: 'GroupApproximation.MFRadicalTransport.mem_mfHomKernel_of_conj_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:223:14: 'GroupApproximation.MFRadicalTransport.le_mfHomKernel_of_conj_mem_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:224:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_le_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:225:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_bot_of_isOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:226:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_ker_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:227:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_ker_of_conj_into_embedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:228:14: 'GroupApproximation.MFRadicalTransport.quotientMFRadicalEquivRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:229:14: 'GroupApproximation.MFRadicalTransport.isLEF_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:230:14: 'GroupApproximation.MFRadicalTransport.isOperatorMF_range_of_isLEF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:231:14: 'GroupApproximation.MFRadicalTransport.not_isOperatorMF_of_injective_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:232:14: 'GroupApproximation.MFRadicalTransport.isOperatorMF_iff_isLEF_and_isLEF_iff_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:233:14: 'GroupApproximation.MFRadicalTransport.isDedekindFiniteMonoid_of_injective_nonUnitalRingHom' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:234:14: 'GroupApproximation.MFRadicalTransport.isDedekindFiniteMonoid_of_injective_nonUnitalRingHom_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:235:14: 'GroupApproximation.MFRadicalTransport.not_isDedekindFiniteMonoid_of_tower_corner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4555/4637] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudget
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:429:14: 'GroupApproximation.ChainCore.DynamicRankBudget.image_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:430:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isLocallyFiniteGroup_elCoreKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:431:14: 'GroupApproximation.ChainCore.DynamicRankBudget.countable_units_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:432:14: 'GroupApproximation.ChainCore.DynamicRankBudget.countable_units' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:433:14: 'GroupApproximation.ChainCore.DynamicRankBudget.exists_mem_ne_one_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:434:14: 'GroupApproximation.ChainCore.DynamicRankBudget.mfHomKernel_eq_ker_of_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:435:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedDynamicRankBudget_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:436:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedIntroductionAperiodicSentence_of_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4562/4637] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnBridge
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:291:14: 'GroupApproximation.ChainCore.DynamicRankBudget.zpow_natCast_apply_eq_iterate' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:292:14: 'GroupApproximation.ChainCore.DynamicRankBudget.noShortPeriods_of_iterate' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:293:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isReturnSection_exists_zpow_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:294:14: 'GroupApproximation.ChainCore.DynamicRankBudget.returnTowerUnits_a_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:295:14: 'GroupApproximation.ChainCore.DynamicRankBudget.returnTowerUnits_b_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:296:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_and_mem_of_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:297:14: 'GroupApproximation.ChainCore.DynamicRankBudget.units_map_matrixFinOneEntry_scalar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:298:14: 'GroupApproximation.ChainCore.DynamicRankBudget.units_map_mapMatrix_scalar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:299:14: 'GroupApproximation.ChainCore.DynamicRankBudget.units_map_mapMatrix_reindex_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean:300:14: 'GroupApproximation.ChainCore.DynamicRankBudget.returnEmbeddingStatement_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4579/4654] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:182:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coeff_mul_unit_zpow_neg_toAdd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:183:14: 'GroupApproximation.ChainCore.DynamicRankBudget.clopen_coeff_mul_unit_zpow_neg_toAdd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:184:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:185:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_unit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:186:14: 'GroupApproximation.ChainCore.DynamicRankBudget.theta_eq_returnRingHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:187:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coeff_one_theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:188:21: 'GroupApproximation.ChainCore.DynamicRankBudget.returnTransientIdealStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4680/4726] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetTorsionTransfer
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean:88:14: 'GroupApproximation.ChainCore.DynamicRankBudget.ringChar_nsmul_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean:89:14: 'GroupApproximation.ChainCore.DynamicRankBudget.torsionDefectTransferStatement_of_countable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean:90:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedDynamicRankBudget_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4720/4726] Replayed GroupApproximation.Manuscript.ChainCore.BilateralThreeCoreModels
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:134:21: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.coreTransientIdealLeDefectIdealStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:135:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.isLEFRing_of_chainRecurrentSet_eq_univ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:136:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.exists_defect_ne_zero_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:137:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.clopenCrossedProductDirectlyFiniteLEFStatement_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:138:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.clopenCrossedProductNonzeroDefectStatement_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:139:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.printedBilateralThree_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:140:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.printedIntroDirectlyFiniteIffGLThreeMF_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCoreModels.lean:141:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.bilateralThreeTransferStatement_of_coreModels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4722/4726] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetAssembly
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean:81:21: 'GroupApproximation.ChainCore.DynamicRankBudget.returnEmbeddingStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean:82:21: 'GroupApproximation.ChainCore.DynamicRankBudget.torsionDefectTransferStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean:83:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedDynamicRankBudget_of_openPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean:84:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedIntroductionAperiodicSentence_of_openPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4724/4726] Replayed GroupApproximation.Manuscript.NonMFSentences.ChainCoreClosures
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:105:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedBilateralThree_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:106:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedIntroDirectlyFiniteIffGLThreeMF_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:107:21: 'GroupApproximation.ChainCore.ChainCoreClosures.bilateralThreeTransferStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:108:21: 'GroupApproximation.ChainCore.ChainCoreClosures.coreRingReflectionStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:109:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedCoreRingReflection_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:110:21: 'GroupApproximation.ChainCore.ChainCoreClosures.coreMFRadicalKillStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:111:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedCoreMFRadical_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:112:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedDynamicRankBudget_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:113:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedIntroductionAperiodicSentence_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean:114:21: 'GroupApproximation.ChainCore.ChainCoreClosures.printedTwoEndedUnitsLEFGLThreeNotMF_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4725/4726] Replayed GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCoreClosed
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreClosed.lean:48:21: 'GroupApproximation.ChainCore.DynamicRankBudget.printedInducedCore_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4726/4726] Built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCoreSentences (33s)
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSentences.lean:294:14: 'GroupApproximation.ChainCore.DynamicRankBudget.exists_corner_matrix_returnSaturation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSentences.lean:295:21: 'GroupApproximation.ChainCore.DynamicRankBudget.printedInducedCoreCorner_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSentences.lean:296:21: 'GroupApproximation.ChainCore.DynamicRankBudget.printedCoreSaturationLEF_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSentences.lean:297:21: 'GroupApproximation.ChainCore.DynamicRankBudget.printedCoreSaturationRecurrent_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSentences.lean:298:21: 'GroupApproximation.ChainCore.DynamicRankBudget.printedReturnTransientIdeal_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4726 jobs).
+EXIT=0

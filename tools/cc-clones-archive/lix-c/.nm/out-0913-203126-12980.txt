@@ -1,0 +1,20 @@
+[job] 20:33:17 acn51 waiting for clone lock
+[job] delta sync 59da9064f..dc949da1e: 41 files changed
+===== SUMMARY
+host acn51 cores slurm base dc949da1e log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-203126-12980.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3486 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyProducer
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean
+ Quot.sound]
+Build completed successfully (10150 jobs).
+EXIT=0
+PROBE GREEN

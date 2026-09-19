@@ -1,0 +1,44 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4111 oleans
+[job] acn112 cores=80-87 threads=8 base=ddb4b49ad45067e74c26e3868424decdb5fe8488 mods: GroupApproximation.Analysis.TwistedGroupVonNeumannProduct GroupApproximation.Analysis.TwistedTensorProductAlgebra
+ℹ [2414/2416] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2415/2416] Building GroupApproximation.Analysis.TwistedGroupVonNeumannProduct (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.setup.json --json
+error: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:56:5: Variable name `hσs` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:132:12: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  twistedLeftOperator (fun x x_1 => 0) ?g
+in the target expression
+  (fun g => star (twistedLeftOperator (fun x x_1 => 0) g)) g * T =
+    T * (fun g => star (twistedLeftOperator (fun x x_1 => 0) g)) g
+
+case a.inr
+G : Type u
+inst✝ : Group G
+T : ↥(GroupHilbert G) →L[ℂ] ↥(GroupHilbert G)
+hT : T ∈ (Set.range (leftRegularOperator G)).centralizer
+g : G
+⊢ (fun g => star (twistedLeftOperator (fun x x_1 => 0) g)) g * T =
+    T * (fun g => star (twistedLeftOperator (fun x x_1 => 0) g)) g
+error: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:183:2: Type mismatch: After simplification, term
+  h
+ has type
+  @Eq ℝ (‖uncurryRow F γ‖ ^ 2) (∑' (i : A), ‖↑(uncurryRow F γ) i‖ ^ 2)
+but is expected to have type
+  @Eq ℝ (‖uncurryRow F γ‖ ^ 2) (∑' (a : A), ‖↑F (γ, a)‖ ^ 2)
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:244:14: 'GroupApproximation.TwistedProduct.isTwistedICC_prodCocycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:245:14: 'GroupApproximation.TwistedProduct.groupVonNeumannAlgebra_eq_twisted_zero' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:246:14: 'GroupApproximation.TwistedProduct.curryLp' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.TwistedGroupVonNeumannProduct
+error: build failed
+EXIT=1

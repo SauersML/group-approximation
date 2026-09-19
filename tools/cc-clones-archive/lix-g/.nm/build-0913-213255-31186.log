@@ -1,0 +1,32 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3596 oleans
+[job] acn112 cores=88-95 threads=8 base=e024497d6e7fa55b9b891b917c3f37323fdef807 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapEndpointCuttingModel
+ℹ [3355/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10162/10162] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapEndpointCuttingModel (26s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:249:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.two_le_length_classSides_of_inGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:250:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.not_inGap_of_single' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:251:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.gapEndpoint_iff_of_target_cutting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:252:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.source_cell_two_le_of_target_cutting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:253:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_after_gap_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:254:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.two_mul_wordDist_gapCorner_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:255:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.two_mul_wordDist_target_gapCorner_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean:256:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCaseGapEndpointCutting_of_gapEndpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10162 jobs).
+EXIT=0

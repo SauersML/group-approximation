@@ -1,0 +1,188 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3380 oleans
+[job] cn1009 cores=slurm threads=8 base=b993a87d85de3987941efd94528ce4641809670d mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup
+ℹ [2606/2608] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits (71s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:93:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:158:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerE' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:159:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:160:14: 'GroupApproximation.SimpleKazhdanSofic.levelSum_mul_eq_mul_levelSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2607/2608] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (9.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:41:48: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?n • 0
+in the target expression
+  (n % 2) • y = (n % 2) • y + 0
+
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+n : ℕ
+y : ClopenCrossedProduct T (ZMod 2)
+⊢ (n % 2) • y = (n % 2) • y + 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:45:6: Unknown constant `ZMod.val_add`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:44:49: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+x x' : ZMod 2
+y : ClopenCrossedProduct T (ZMod 2)
+⊢ ↑(x + x') • y = ↑x • y + ↑x' • y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:49:6: Unknown constant `ZMod.val_mul`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:48:45: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+x x' : ZMod 2
+y : ClopenCrossedProduct T (ZMod 2)
+⊢ ↑(x * x') • y = ↑x • ↑x' • y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:55:22: Unknown constant `ZMod.val_zero`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:55:15: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+y : ClopenCrossedProduct T (ZMod 2)
+⊢ ↑0 • y = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:70:18: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+U W : Set X
+hlev : LevelsDisjoint T m U
+hWU : W ⊆ U
+hW : IsClopen W
+M N : Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)
+hWW : towerE T (ZMod 2) m ⋯ = towerE T (ZMod 2) m hW
+a : Fin (2 * m + 1)
+x✝² : a ∈ Finset.univ
+d : Fin (2 * m + 1)
+x✝¹ : d ∈ Finset.univ
+b : Fin (2 * m + 1)
+x✝ : b ∈ Finset.univ
+⊢ ↑(M a b) • ↑(N b d) • towerE T (ZMod 2) m hW a d = ↑(M b a) • ↑(N a d) • towerE T (ZMod 2) m hW b d
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:48: Unknown constant `ZMod.val_zero`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:15: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+U W : Set X
+hlev : LevelsDisjoint T m U
+hWU : W ⊆ U
+hW : IsClopen W
+⊢ ∑ x, ∑ x_1, ↑0 • towerE T (ZMod 2) m hW x x_1 = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:63: This simp argument is unused:
+  zero_nsmul
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.zero_apply, ZMod.val_zero, z̵e̵r̵o̵_̵n̵s̵m̵u̵l̵,̵ ̵Finset.sum_const_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:75: This simp argument is unused:
+  Finset.sum_const_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.zero_apply, ZMod.val_zero, zero_nsmul,̵ ̵F̵i̵n̵s̵e̵t̵.̵s̵u̵m̵_̵c̵o̵n̵s̵t̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:78:15: This simp argument is unused:
+  Finset.sum_ite_eq
+
+Hint: Omit it from the simp argument list.
+  simp only [Finset.sum_ite_eq,̵ ̵F̵i̵n̵s̵e̵t̵.̵s̵u̵m̵_̵i̵t̵e̵_̵e̵q̵', Finset.mem_univ, if_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:41: Unknown constant `ZMod.val`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:51: Unknown constant `ZMod.val_one`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:65: Unknown constant `ZMod.val_zero`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:80: Unknown identifier `ite_nsmul`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:91:69: unsolved goals
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+m : ℕ
+U W : Set X
+hlev : LevelsDisjoint T m U
+hWU : W ⊆ U
+hW : IsClopen W
+a : Fin (2 * m + 1)
+x✝ : a ∈ Finset.univ
+⊢ ∑ x, ↑(if a = x then 1 else 0) • towerE T (ZMod 2) m hW a x = towerE T (ZMod 2) m hW a a
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:4: This simp argument is unused:
+  one_nsmul
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+      o̵n̵e̵_̵n̵s̵m̵u̵l̵,̵ ̵zero_nsmul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:15: This simp argument is unused:
+  zero_nsmul
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+      one_nsmul, z̵e̵r̵o̵_̵n̵s̵m̵u̵l̵,̵ ̵Finset.sum_ite_eq, Finset.mem_univ, if_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:27: This simp argument is unused:
+  Finset.sum_ite_eq
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+      one_nsmul, zero_nsmul, Finset.s̵u̵m_̵i̵t̵e_̵e̵q̵,̵ ̵F̵i̵n̵s̵e̵t̵.̵me̵m̵_univ, if_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:46: This simp argument is unused:
+  Finset.mem_univ
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+      one_nsmul, zero_nsmul, Finset.sum_ite_eq, F̵in̵s̵e̵t̵.̵m̵e̵m̵_̵u̵n̵i̵v̵,̵ ̵i̵f_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:63: This simp argument is unused:
+  if_true
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+      one_nsmul, zero_nsmul, Finset.sum_ite_eq, Finset.mem_univ,̵ ̵i̵f̵_̵t̵r̵u̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:110:2: `simp` made no progress
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    M x
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:108:76: This simp argument is unused:
+  smul_mul_assoc
+
+Hint: Omit it from the simp argument list.
+  simp only [towerHom_apply, Finset.mul_sum, Finset.sum_mul, mul_smul_comm, ̵s̵m̵u̵l̵_̵m̵u̵l̵_̵a̵s̵s̵o̵c̵,̵
+      towerE_mul_towerE hlev hWU hWU hW hW, hWW, smul_ite, smul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:120:15: failed to synthesize instance of type class
+  Nontrivial (ZMod 2)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:127:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:128:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:129:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_injective' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+error: build failed
+EXIT=1

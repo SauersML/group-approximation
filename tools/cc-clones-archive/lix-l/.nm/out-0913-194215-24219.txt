@@ -1,0 +1,24 @@
+[job] 19:42:31 cn1019 waiting for clone lock
+[job] delta sync 79f422ef2..21cdcf15b: 4 files changed
+===== SUMMARY
+host cn1019 cores slurm base 21cdcf15b log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-194215-24219.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3789 oleans
+--- errors (first 80 lines)
+3:✖ [2177/2177] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (81s)
+5:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:96:83: Type mismatch
+11:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:103:16: Variable name `B` is not explicitly referenced.
+16:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:136:27: failed to synthesize instance of type class
+20:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:140:21: 'GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.printedContinuumManyDegrees' depends on axioms outside the classical allowlist: [sorryAx]
+21:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+23:error: Lean exited with code 1
+26:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,5 @@
+slot acn112.3 cores 80-87 clone stw-fix tag 0909-090131-82608 mods: GroupApproximation.KOne.DiagonalGroupNormalizer
+error: [root]: no configuration file with a supported extension:
+/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/lakefile.lean
+/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/lakefile.toml
+exit 1

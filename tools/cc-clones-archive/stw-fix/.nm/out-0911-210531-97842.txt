@@ -1,0 +1,41 @@
+[job] 21:06:50 acn72 waiting for clone lock
+[job] delta sync 38172e61d..2bc53e089: 18 files changed
+===== SUMMARY
+host acn72 cores slurm base 2bc53e089 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-210531-97842.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4752 oleans
+--- errors (first 80 lines)
+125:✖ [4641/4641] Building GroupApproximation.GGT.HullSCUnconeThin (41s)
+127:error: GroupApproximation/GGT/HullSCUnconeThin.lean:129:4: omega could not prove the goal:
+174:error: GroupApproximation/GGT/HullSCUnconeThin.lean:248:14: 'GroupApproximation.GGT.Uncone.vertex_near' depends on axioms outside the classical allowlist: [sorryAx]
+175:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+177:error: GroupApproximation/GGT/HullSCUnconeThin.lean:249:14: 'GroupApproximation.GGT.Uncone.thin' depends on axioms outside the classical allowlist: [sorryAx]
+178:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+180:error: GroupApproximation/GGT/HullSCUnconeThin.lean:250:21: 'GroupApproximation.GGT.cyclicPeripheralRemovalHyperbolicityStatement' depends on axioms outside the classical allowlist: [sorryAx]
+181:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+183:error: GroupApproximation/GGT/HullSCUnconeThin.lean:251:21: 'GroupApproximation.GGT.cyclicPeripheralRemovalStatement' depends on axioms outside the classical allowlist: [sorryAx]
+184:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+186:error: Lean exited with code 1
+189:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullSCUnconeLemmaB
+BUILT GroupApproximation.GGT.HullSCUnconeSides
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeThin (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaA.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaB.lean
+COMPILED GroupApproximation/GGT/HullSCUnconePathPoints.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeSides.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeWalk.lean
+- GroupApproximation.GGT.HullSCUnconeThin
+error: build failed
+EXIT=1
+PROBE FAILED rc=1
