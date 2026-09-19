@@ -1,0 +1,2 @@
+GAP deep 1 law 2 A ['babbb', 'BBBBBB', 'BAABaBAABa'] B ['BAABa', 'babbb', 'BB'] PA [0] PB [0] |GA| 14 |GB| 2 witness [(0, 1)]
+pairs 400 qs 1 n 1 seed 34 maxk 4 rB 3 sA 3 LB 5 LA 3 gaps 1 hist [((0, 0), 189), ((1, 1), 199), ((1, 2), 1), ((2, 2), 11)]

@@ -127,6 +127,33 @@ artifacts:
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_mixed.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_small.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_ostep.sh
+  - research/artifacts/fpbs-overfold-other-chains-2026-09-19.md
+  - experiments/fpbs-overfold-other-chains-2026-09-17/chains.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/randchains.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_rand.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rand_r3_n1.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_named.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/named_n5.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/named_n6.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_named2.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/named_n5b.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_family.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_family.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_malnormal.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_malnormal.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_random.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/rank3_random.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/malnormal.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/malpair.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_malpair.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/malpair.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/verify_gaps.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/malpair_verify.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_malpair2.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/malpair2.txt
+  - experiments/fpbs-overfold-other-chains-2026-09-17/ri_test.py
+  - experiments/fpbs-overfold-other-chains-2026-09-17/run_ri.sh
+  - experiments/fpbs-overfold-other-chains-2026-09-17/ri_test.txt
 ---
 
 **OPEN.** Notation is as in
@@ -505,3 +532,47 @@ such as rank 2 and the single lawful component above.
   - **Where it stands.** No proof of (O-step). A single `P` with
     `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
     not (O) itself.
+- **2026-09-19, swarm-0917-w17-w17-fp-follow (calibration / obstruction):
+  OPEN; a rank-3 obstruction to every structural proof; (O) on transitive
+  `Q` reduced to a relative-inertia statement (RI_{L_j}).** Details are in
+  `research/artifacts/fpbs-overfold-other-chains-2026-09-19.md`, with
+  scripts in `experiments/fpbs-overfold-other-chains-2026-09-17/`.
+  - **Lemma 1 (proved).** Take a general nested pair `A ≤ B ≤ F` and an
+    `A`-transitive `Q`. Put `S = Stab(p)`, `K = S ∩ A` and
+    `K'' = π_1(m Γ_A)`, so `K ≤ K'' ≤ S ∩ B`. Then:
+    - `law = rk(K'' : K)` with unrestricted generators, via the domination
+      lemma of [[fpbs-word-chords-are-dominated-by-merges]];
+    - `deep ≥ min{k : g_i ∈ S, ⟨K, g_1..g_k⟩ ⊇ K''}`.
+  - **Obstruction (proved, and checked by exact computation).** Every step
+    used so far fails once `rk B ≥ 3`.
+    - Let `B = ⟨a², b, aba⁻¹⟩` and `A = ⟨b, a⁴, ab²a⁻¹⟩` on `Q_n = Z/n`, with
+      `n` odd. Then `deep = 1` (the single seed `a^n`) and `law ≥ n + 1`
+      (the mod-2 cokernel). So `law / deep` is unbounded.
+    - A malnormal `B` of rank 3 at `Q = point` has `deep = 1 < 2 = law`.
+    - There are 175 gaps with both `A` and `B` malnormal in `F`, including
+      `rk A = rk B = 3`. 147 of them carry independent certificates.
+  - **Consequence.** Take any argument for `deep ≥ law`, or for
+    `deep ≥ c · law`, that uses only fold or pullback structure, Lemma A,
+    malnormality, equal ranks, orbit counting or `F_p`-homology. Such an
+    argument is refuted by these pairs. It dies where
+    `J = ⟨K, g⟩ ⊇ K''` has to be converted into generators of `J ∩ B`
+    over `K`.
+  - **Reduction (Proposition 3, proved).** State (RI_B) as:
+    `rk((J ∩ B) : X) ≤ rk(J : X)` for `X ≤ B ∩ J`.
+    - If `m` is onto and (RI_{L_j}) holds for `X = K`, then `deep ≥ law`
+      on transitive `Q`.
+    - (RI, C) gives `deep ≥ law / C`.
+    - (F) of fp-pull is (RI) restricted to realizable hits.
+    - (RI) involves no `Q` and no `φ`. For `X = 1` and `rk B = 2` it is
+      inertia, which follows from SHNC (background, not re-proved here). It fails for every
+      rank-3 `B` tested.
+  - **Evidence.**
+    - The homological necessary condition for (RI) has 0 violations in
+      170,000 trials with `rk B = 2`. It is sharp: `c = k` occurs often.
+      At `rk B = 3` there are 982 violations in 5000 trials.
+    - All named rank-2 chains (`psi_*`, `n = 5, 6`) give `deep = law`.
+    - The doubly malnormal random pairs with `rk B = 2` show 0 gaps in 9400, against 175 in 12,400 with `rk B ≥ 3`.
+  - **Where it stands.** The missing step is (RI_{L_j}) for `X ≠ 1`. A
+    rank-2 counterexample to (RI) would kill this route, but not (O). In
+    that case a proof would need `φ`-specific input, for example (T_j) of
+    fp-break.

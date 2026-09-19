@@ -1,0 +1,11 @@
+n 1 deep<=1 True law_lower_h 2 law_exact 2
+n 3 deep<=1 True law_lower_h 4 law_exact 4
+n 5 deep<=1 True law_lower_h 6 law_exact 6
+n 7 deep<=1 True law_lower_h 8 law_exact None
+n 9 deep<=1 True law_lower_h 10 law_exact None
+n 11 deep<=1 True law_lower_h 12 law_exact None
+n 13 deep<=1 True law_lower_h 14 law_exact None
+n 15 deep<=1 True law_lower_h 16 law_exact None
+n 17 deep<=1 True law_lower_h 18 law_exact None
+n 19 deep<=1 True law_lower_h 20 law_exact None
+n 21 deep<=1 True law_lower_h 22 law_exact None
