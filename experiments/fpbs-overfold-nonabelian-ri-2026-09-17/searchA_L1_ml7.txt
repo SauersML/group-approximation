@@ -1,0 +1,2 @@
+B = L_1 gens ['a', 'baBB'] Stallings basis ['a', 'bbAB']
+found 0

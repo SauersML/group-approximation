@@ -1,0 +1,1 @@
+selftest: B basis ['b', 'abbA'] rk X 7 J = F: True rk H 2 S3 bound 2

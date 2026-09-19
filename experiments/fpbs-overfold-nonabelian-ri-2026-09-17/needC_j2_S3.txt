@@ -1,0 +1,2 @@
+j 2 S3 X count 4 tested 1916 S3-skipped 0 violations 0
+hist (rk H, lower bound): [((2, 0), 474), ((3, 1), 8), ((4, 1), 12), ((7, 0), 1422)]

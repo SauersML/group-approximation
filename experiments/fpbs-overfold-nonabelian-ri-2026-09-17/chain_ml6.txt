@@ -1,0 +1,5 @@
+L_1 S3 rhos 12 hits 0
+L_1 A4 rhos 12 hits 0
+L_1 A5 rhos 12 hits 0
+L_2 S3 rhos 12 hits 0
+L_2 A4 rhos 12 hits 0

@@ -164,6 +164,28 @@ artifacts:
   - experiments/fpbs-doublecoset-transport-2026-09-17/transport.py
   - experiments/fpbs-doublecoset-transport-2026-09-17/transport_j9.txt
   - experiments/fpbs-doublecoset-transport-2026-09-17/doublecoset_j6.txt
+  - research/artifacts/fpbs-overfold-rank2-relative-inertia-2026-09-19.md
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/stall.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/cover.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/maln.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchA.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchB.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchC.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchD.py
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/selftest.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchA_L1_ml7.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/rank3_ml6.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/random_r2.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/random_r3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/nonmal_r2_S3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/mal_r2_S3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/mal_r2_A4.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/mal_r3_S3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/chain_ml6.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/needC_j1_S3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/needC_j1_A4.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/needC_j2_S3.txt
+  - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchD_nx6.txt
 ---
 
 **OPEN.** Notation is as in
@@ -649,3 +671,44 @@ such as rank 2 and the single lawful component above.
     By Lemma 1, level-0 seeds are the `g ∉ L_1` with
     `T_H ∩ g T_H ⊂ Y ∩ gY ≠ ∅`. So a proof of (O'_j) can work entirely
     inside the bounded overlaps of `L_1`-translates of `Y`.
+
+**2026-09-19, swarm-0917-w19-w19-fp-last1 (finite-models): non-abelian
+quotient test of rank-2 relative inertia. OPEN.**
+- **Target.** The w17 calibration reduced (O) on `L_{j+1}`-transitive `Q` to
+  (RI_{L_j}): `rk((J ∩ L_j) : X) ≤ rk(J : X)`. It asked for a proof for
+  rank-2 `B`, or a rank-2 counterexample. Its only evidence was mod-`p`
+  homology.
+- **Result: (RI_B) is false for rank-2 `B` (hand proof).**
+  - Take `B = ⟨b, c⟩` with `c = a b² a⁻¹`, and `X = ker(B → S3)` for
+    `b ↦ (123)`, `c ↦ (12)`.
+  - `J = ⟨X, a⟩` contains `b³` and `b⁴ = a⁻¹ c² a`, so `J = F ⊇ B`.
+  - So `rk(B : X) = d(S3) = 2 > 1 = rk(J : X)`.
+  - The mod-`p` cokernel is `H_1(S3; F_p)`, of dimension at most 1, so every
+    homological test is blind to this failure.
+  - The failure uses non-malnormality: `a⁻¹ ⟨c⟩ a ≤ B`.
+- **Lemma 2 (proved).** A violation with `J ⊇ B` forces `J = ⟨B, g⟩` with
+  `rk J = rk B` and `J ≠ B`. For rank 2 this means `[J : B] = ∞`.
+- **Hunts** (`searchB.py`, `searchC.py`, `searchD.py`), with quotients
+  `S3`, `A4`, `A5`:
+  - **Rank 3:** violations in most trials, malnormal or not.
+  - **Rank 2, not malnormal:** 33 of 198 subgroups violate. All 9 hits in the
+    unfiltered run were checked and are non-malnormal.
+  - **Rank 2, malnormal:** 0 of 356 random subgroups; 0 for `L_1` (all
+    `S3` quotients, `|g| ≤ 7`) and for `L_2`.
+  - **The case (O) needs:** `B = L_j` with `X` of finite index in `L_{j+1}`
+    (`L_{j+1}` itself or `ker(L_{j+1} → S3/A4)`), at `j = 1, 2`. There were
+    0 violations in 11,080 pairs `(X, g)`, with `F_2`/`F_3` and `S3`
+    lower bounds for `rk(J ∩ L_j : X)`.
+- **What dies.** Every proof of exact (RI_{L_j}) built only on
+  `rk L_j = 2` is refuted by the example above. That includes inertia,
+  strengthened Hanna Neumann, rank-2 Nielsen/Whitehead arguments and mod-`p`
+  homology. With the w17 rank-3 malnormal gaps, neither "rank 2" nor
+  "malnormal" suffices alone. In all data, only the conjunction has 0
+  violations.
+- **What survives.**
+  - The example has ratio exactly 2, and `searchD` found no rank-2 ratio
+    above 2. So `(RI_B, 2)` is intact, and by w17 Proposition 3 it would
+    give the weak form `deep ≥ law / 2`, which is enough for the floor route.
+  - Proposed split into independent pieces: (RI-mal), meaning (RI_B) for
+    malnormal rank-2 `B`; and (RI-C), meaning `(RI_B, 2)` for all rank-2 `B`.
+- **Artifact.** `research/artifacts/fpbs-overfold-rank2-relative-inertia-2026-09-19.md`.
