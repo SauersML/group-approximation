@@ -3,6 +3,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessS
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessStepSideWalk
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-66: hop chains along cell arcs and region boundaries
 
