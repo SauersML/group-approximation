@@ -175,6 +175,7 @@ noncomputable def chgSet (l : List (Option α)) : Finset ℕ :=
   (Finset.range l.length).filter fun j => IsChangeAt l j
 
 omit [DecidableEq α] in
+open scoped Classical in
 theorem chgSet_cons_subset (x : Option α) (t : List (Option α)) :
     chgSet (x :: t) ⊆ insert 0 ((chgSet t).image Nat.succ) := by
   intro j hj
@@ -207,6 +208,7 @@ theorem card_chgSet_cons_le_of_not_mem {x : Option α} {t : List (Option α)}
     · exact h
   exact (Finset.card_le_card hsub).trans Finset.card_image_le
 
+open scoped Classical in
 theorem exists_of_zero_mem_chgSet {x : Option α} {t : List (Option α)}
     (h0 : 0 ∈ chgSet (x :: t)) : ∃ a b r, x = some a ∧ compress t = b :: r ∧ a ≠ b := by
   obtain ⟨-, a, b, ha, hb, hab⟩ := Finset.mem_filter.mp h0
