@@ -8,86 +8,118 @@ distinct_from:
   a2-lattice-phase-seeds-are-quantum-rigid: that is the open quantum rigidity of the seed; this proves the classical necessary condition, so no classical freedom stands in its way.
 ---
 
-**ESTABLISHED** (lane bh-free-09, 2026-09-18; elementary lane proof, not independently reviewed; no
-priority claimed). It uses three standard facts about Euclidean buildings, recalled and not
-re-derived:
+**ESTABLISHED, conditional on the boundary description (S) below** (lane bh-free-09, 2026-09-18,
+revised 2026-09-19; elementary lane proof, not independently reviewed; no priority claimed).
+
+The 09-19 revision closes three gaps of the first version: seed-orbit modifications of boundary
+points, the case of a wall vertex off the chamber, and the unstated use of (S). The chamber case of
+(S) is now proved here.
+
+## Facts used
+
+These are standard facts about Euclidean buildings, recalled and not re-derived:
 - (B1) any sector and any chamber at infinity have a subsector in a common apartment;
-- (B2) along a geodesic ray `r` toward `ξ`, the Alexandrov angle `∠_(r(t))(ξ, η)` increases to the Tits
-  angle `∠(ξ, η)`;
-- (B3) in the spherical building of an `Ã₂` building (a projective plane), two distinct vertices of
-  one type are at Tits angle `120°`.
+- (B2) along a geodesic ray `r` toward `ξ ∈ ∂Δ`, the angle `∠_(r(t))(ξ, η)` increases to the Tits
+  angle `∠(ξ, η)`, and `∠_(r(t))(ξ, o) → 180°` for a fixed vertex `o`;
+- (B3) distinct vertices of one type of the spherical building (a projective plane) are at Tits angle
+  `120°`, and opposition exchanges the two types;
+- (B4) angles are upper semicontinuous: if `o_n → η` in the cone topology, the direction of
+  `[x, o_n]` at `x` tends to that of `[x, η)`.
 
-## Setting
+## The boundary description (S)
 
-As in `a2-lattices-carry-finite-type-seeds`. The label `a_o(x)` is the simplex of `Lk(x)` containing
-the germ of `[x, o]`; the phase version adds `σ(o, x) mod N`. The points of `Y_Γ^(N)` are of three
-kinds:
-- **seed-orbit points**, the fields `y_o`;
-- **chamber points**, toward a chamber `c` at infinity: the label at `x` is the chamber of `Lk(x)`
-  containing the germ of the sector `Q(x, c)`;
-- **wall points**, toward a vertex `ξ` at infinity with a ray class `ω`: the label is the wall germ
-  of `ξ` on the tree `W_ω` of rays toward `ξ` in class `ω`, and a flag adjacent to `ξ` elsewhere;
+Notation is that of `a2-lattices-carry-finite-type-seeds`. For a vertex `ξ` of `∂Δ`, `T_ξ` is its panel
+tree, whose vertices are the classes of eventually coinciding rays toward `ξ`, and `π_ξ(x)` is the class
+of the ray from `x`. Up to the phase coordinate, every point of `Y_Γ^(N)` is one of the following.
+- A **seed-orbit point** `y_o`.
+- A **chamber point** `y_c`: at `x`, the chamber germ of `Q(x, c)`.
+- A **wall point** `y_(ξ,p)`, where `p` is a vertex of `T_ξ`:
+  - at `x ∈ W_p = π_ξ^(-1)(p)` the label is the `ξ`-germ, a vertex of `Lk(x)`;
+  - elsewhere it is the chamber of `Lk(x)` that contains the `ξ`-germ and corresponds to the first
+    edge of `[π_ξ(x), p]` in `T_ξ`.
 
-each with a phase. That these exhaust the boundary is the stratification recorded on the `Ã₂` nodes.
+**Proved part.**
+- By (S3) every point is a limit of `y_(o_n)`. A bounded sequence `o_n` gives a seed-orbit point.
+- Otherwise pass to a subsequence with `o_n → η ∈ ∂Δ`. By (B4), each label contains the simplex
+  carrying the direction of `[x, η)`.
+- If `η` is regular, lying in the open chamber `c`, that simplex is the chamber germ of `Q(x, c)`, so
+  the limit is `y_c`.
+- If `η = ξ` is a vertex, every label is the `ξ`-germ or a chamber containing it.
 
-## Theorem
+**Not proved here.** That in the vertex case the choice of chamber is a `T_ξ`-pointer toward one vertex
+`p`. A limit toward an end of `T_ξ` would give a chamber point. This is the wall-stratum description of
+`a2-lattice-phase-seeds-are-quantum-rigid` (What remains, item 1), which is supported there by the
+local tables: one inward and `q²` outward wall neighbours, with outward ones forced to point back.
 
-Call a *tail toward* a point's limit:
-- for `y_o`, the vertex `o`;
-- for a chamber point, the deep part of any sector toward `c`;
-- for a wall point, a tail of any ray of `W_ω`.
+## Theorem (given (S))
 
-1. **Every modification changes the point on a tail toward its own limit.**
-2. **Tails toward one limit meet.** Two sectors toward `c` share a subsector, and two rays of `W_ω` are
-   strongly asymptotic, so they share a tail.
-
-Hence any two modifications of one point have intersecting difference sets. **`Y_Γ^(N)` passes the
-separability test at every scale.**
+1. Let `y` be a point and `y'` a modification of it. Then `y'` differs from `y`:
+   - at `o`, if `y = y_o`;
+   - on a subsector of every sector toward `c`, if `y = y_c`;
+   - on a tail of every ray toward `ξ` contained in `W_p`, if `y = y_(ξ,p)`.
+2. Two subsectors of sectors toward `c` meet, and so do two tails of one ray. So any two modifications
+   of one point have intersecting difference sets, and `Y_Γ^(N)` passes the separability test
+   (`cross-layer-separable-modifications-kill-quantum-rigidity`) at every scale.
 
 ## Proof of item 1
 
-- **Seed-orbit points.** If `y ≠ y_o`, then `y(o) ≠ *`, since `*` at `o` forces `y_o`.
-- **Phase-only changes.** They change the phase at every vertex.
-- **Wall point `(ξ, ω)`.** Let `y'` be a modification.
-  - *`y'` is a chamber point, or a wall point with a vertex of the other type, or a wall point toward
-    `ξ` with a class `ω' ≠ ω`.* At `x ∈ W_ω` the old label is the wall germ of `ξ`. The new label there
-    is a flag, a wall germ of the other type, or, since `x`'s ray to `ξ` is not of class `ω'`, a flag.
-    So `y'` differs on all of `W_ω`.
-  - *`y'` is a wall point toward `ξ' ≠ ξ` of the same type.* By (B3) `∠(ξ, ξ') = 120°`. By (B2),
-    far along any ray `r ⊆ W_ω` the germs toward `ξ` and `ξ'` make a positive angle. Angles between
-    simplicial germs are discrete, so the germs are different vertices of `Lk(r(t))` for large `t`. So
-    `y'` differs on a tail of `r`.
-- **Chamber point `c`.** Let `y'` be a modification.
-  - *`y'` is a chamber point `c'`.* In every apartment containing `c` and `c'`, the germs toward `c` and
-    `c'` differ at every vertex, as in `building-transplants-pass-the-separability-test`, item 1. By
-    (B1) every sector toward `c` has a subsector in such an apartment.
-  - *`y'` is a wall point `(ξ, ω)`.* Take a sector `S` toward `c` and an apartment `A ⊇ S`.
-    - If `ξ` is not a vertex of `c`, the new labels near `ξ` are never the chamber `c` deep in `S`.
-    - If `ξ` is a vertex of `c`, then deep in `S` the tree coordinate of `x` in the panel tree of `ξ`
-      runs toward the end on `c`'s side, away from `ω`. So the direction to the limit leaves from the
-      other side, and the label is the other chamber adjacent to `ξ`. In the apartment model this is
-      the half-plane computation: points above the wall line get the chamber below.
-    - Either way, `y'` differs on the deep part of `S`. `∎`
+- **Phase-only modifications** change the phase at every vertex.
+- **`y = y_o`.** If `y'(o) = *`, then `y' = y_o`.
+- **`y = y_(ξ,p)`.** Here `y(x)` is the `ξ`-germ on `W_p`. Fix a ray `r ⊆ W_p` toward `ξ`.
+  - *`y'` is a chamber point, a wall point whose vertex has the other type, or `y_(ξ,p')` with
+    `p' ≠ p`.* On `W_p`, the label `y'(x)` is a chamber, a vertex of the other type, or (since
+    `π_ξ(x) = p ≠ p'`) a chamber. So `y'` differs on all of `W_p`.
+  - *`y' = y_(ξ',p')` with `ξ' ≠ ξ` of the same type.* `y'(r(t))` contains the `ξ'`-germ. By (B2) and
+    (B3), `∠_(r(t))(ξ, ξ') > 0` for large `t`. Angles between vertex germs are discrete, so the
+    `ξ`-germ and the `ξ'`-germ are different vertices. So `y'(r(t))` is not the vertex `ξ`-germ.
+  - *`y' = y_o`.* `a_o(r(t))` contains the germ toward `o`, which by (B2) makes an angle `> 60°` with the
+    `ξ`-germ for large `t`. So `a_o(r(t))` is not the `ξ`-germ.
+- **`y = y_c`.** Fix a sector `S` toward `c`.
+  - *`y' = y_(c')`.* By (B1), some subsector of `S` lies in an apartment `A` with `c' ∈ ∂A`. At every
+    vertex of `A` the sectors toward `c` and toward `c'` are different Weyl cones, so their germs
+    differ.
+  - *`y' = y_(ξ,p)` with `ξ ∉ c`.* Choose a chamber `c'' ∋ ξ`, and by (B1) a subsector `S' ⊆ S` in an
+    apartment `A` with `c'' ⊆ ∂A`. At `x ∈ S'`, `y'(x)` contains the direction of the `ξ`-ray in `A`.
+    That direction is not a vertex direction of the Weyl cone `Q(x, c)`, since in a flat, distinct
+    points at infinity have distinct directions. So `y'(x) ≠ y(x)`.
+  - *`y' = y_(ξ,p)` with `ξ ∈ c`.* In an apartment `A ⊇ S`, the line `T_ξ ∩ A` has the end `e_c` of
+    `c`. Deep in `S`, meaning on a subsector, `π_ξ(x)` lies on the ray from the junction of
+    `[p, e_c)` with that line toward `e_c`. There the first step toward `p` points away from `e_c`,
+    while `y(x)` points toward `e_c`. On `W_p` the label is a vertex.
+  - *`y' = y_o`.* The sectors `Q(o, c)` and `S` share a subsector `S*`. For `x ∈ S*`, the germ of
+    `[x, o]` lies in the closed cone opposite to `Q(x, c)`, which shares no simplex with the chamber
+    germ of `Q(x, c)`. `∎`
 
-## About the opposite-type wall patterns
+## The opposite-type configuration: settled for this test
 
-The `Ã₂` node leaves open the patterns that contain wall labels of both types. They force an origin
-within bounded distance (`a2-lattice-phase-seeds-are-quantum-rigid`, What remains 2), so they occur
-only in seed-orbit points, whose modifications all change the origin. **They create no separable
-freedom.** Their difficulty is quantum: gluing the strata in a quantum family.
+**What was open.** The rigid-seed audit flagged one case: a wall point toward `ξ` modified to a point
+toward a vertex of the other type. That includes the opposite vertex `ξ̄`, whose wall line shares a
+singular line with the old one.
 
-## For `C̃₂` (not settled)
+**Answer.** Such a modification changes the point on **all of `W_p`**. On `W_p` the old labels are
+vertices of one type, and the new labels are vertices of the other type or chambers. So it creates no
+separable freedom.
 
-The labels of `c2-building-lattices-carry-finite-type-seeds` are graph-distance gradients (inward
-sets), not CAT(0) germs, so (B2) does not apply directly. The apartment computation of
-`rigid-seed-constructions-pass-the-separability-test` finds the same tail property. A proof needs the
-horofunction description of the `C̃₂` graph metric.
+**Where the opposite-type patterns occur.** Under (S), they occur only in seed-orbit points, and only
+within bounded distance of the origin. Boundary points carry vertex labels of at most one type. In
+`y_o`, a line label at vector distance `(m, 0)` and a point label at `(0, n)` within distance `R` force
+`max(m, n) <= 2R`, because the vector distance is 1-Lipschitz. So their difficulty is purely quantum:
+gluing the strata inside one family (`a2-lattice-phase-seeds-are-quantum-rigid`, What remains, item 2).
+
+## For `C̃₂` and `C̃_n` (not settled)
+
+The `C̃_n` seeds (`c2-building-lattices-carry-finite-type-seeds` and bh-invent-13's polar-projection
+seeds) use graph-distance or projection labels, not CAT(0) germs, so (B2) and (B4) do not apply
+verbatim. The same proof goes through once two facts are known:
+- every boundary point is an origin, a chamber pointer or a panel-tree pointer;
+- labels of distinct limits separate along rays.
 
 ## Lesson for general BH
 
-- **In horofunction seeds, a point's freedom always reaches its own limit.** Any change of a boundary
-  field alters it arbitrarily far toward the place it came from. Such changes can never be pulled
+- **In horofunction seeds, a point's freedom always reaches its own limit.** The origin, deep
+  subsectors and ray tails are each such a limit, and changes that reach one limit cannot be pulled
   apart.
-- **The classical side of the `Ã₂` seed is clean.** What remains for its rigidity is purely quantum:
-  gluing the seed orbit, the wall strata and the chamber stratum inside one family. That is where the
-  `Ã₂` lane should put its effort.
+- **Type is a free separator.** A modification that changes the type of the vertex at infinity
+  changes every vertex label at once.
+- **For the `Ã₂` seed, the classical side is clean.** Its rigidity reduces to the quantum gluing of the
+  three strata, and to one geometric input (S) for the wall strata.

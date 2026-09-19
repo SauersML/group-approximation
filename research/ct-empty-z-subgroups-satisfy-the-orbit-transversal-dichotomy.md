@@ -30,7 +30,10 @@ distinct_from:
     `r`.
   - A canonical map is the prefix replacement `uz ↦ vz`.
 - **The group.** Let `G = ⟨S⟩` with `S` finite and symmetric. Each `s ∈ S` is given by a
-  partition of the Cantor set into cones `[u]` and the prefix replacements `u ↦ v` on them.
+  *table*: a partition of the Cantor set into cones `[u]` and the prefix replacements `u ↦ v`
+  on them.
+  - The table of `s^(-1)` is taken to be the inverse table: pieces `[v]` with `v ↦ u`.
+  - A self-inverse table, like that of a class transposition, is allowed.
 - **Depth.** `D` is the largest length of such a `u` or `v`.
 
 **Moves and consumption.** Applying `s` to a sequence `y` replaces the prefix `u` of the piece
@@ -47,6 +50,15 @@ containing `y`.
     which `K` is consumable is clopen.
 - **Monotonicity.** A move that reads `x_(K+1)` also reads `x_K` if it is still present. So
   `C_(K+1) ⊆ C_K`.
+- **Rigid blocks.** One move shifts every unread letter by the same amount `|v| − |u|`. So a
+  block of consecutive letters that no move reads stays consecutive.
+- **Reversal.** Let a word `P` lead from `x` to `y`, and let `P^(-1)` be the inverse word with
+  the inverse tables.
+  - Each step of `P^(-1)` reads exactly the `v` just written, so it undoes that step.
+  - Hence a letter that `P` does not read is not read by `P^(-1)`, and it returns to its
+    original position in `x`.
+- Positions, not sequences, are what is tracked. A word can fix `x` and still shift its tail,
+  as `0 ↦ 00` does at `0^∞`.
 
 ## Theorem
 
@@ -78,16 +90,22 @@ Kourovka 20.44.
 **2, step 1: the frozen tail is an orbit invariant.**
 - For `x` with some position non-consumable, let `κ(x)` be the least such position. Positions
   beyond it are non-consumable too, by monotonicity.
-- Put `T(x) = σ^(κ(x)) x`. The letters of `T(x)` are never touched, so every `y` in the orbit
-  has the form `y = v·T(x)`, with `v` the current stack.
-- **Claim: `T(y) = T(x)`.**
-  - A path from `y` that consumes a letter of `T(x)` would extend the path `x → y` to one that
-    consumes it from `x`. So `κ(y) ≤ |v|`.
-  - Suppose `κ(y) < |v|`. The letters of `y` from position `κ(y)` on are never touched on the
-    reverse path `y → x`. So `x = v'·v[κ(y), |v|)·T(x)`.
-  - That letter of `v` is non-consumable from `x`, by the same concatenation argument. Hence
-    `κ(x) ≤ |v'| = κ(x) − (|v| − κ(y)) < κ(x)`, which is absurd.
-  - So `κ(y) = |v|` and `T(y) = T(x)`.
+- Put `T(x) = σ^(κ(x)) x`.
+- **Claim: every `y = P(x)` in the orbit has `κ(y)` defined and `T(y) = T(x)`.**
+  - **Setup.** No word reads the block `x[κ(x), ∞)`. By rigid blocks, `P` carries it to
+    `y[q, ∞)` for some `q`, so `y = v·T(x)` with `|v| = q`.
+  - **`κ(y) ≤ q`.** Suppose a word `R` reads, from `y`, the letter at position `q + i`. Then
+    "first `P`, then `R`" reads `x_(κ(x)+i)` from `x`, which is impossible. So `q` is
+    non-consumable from `y`.
+  - **`κ(y) ≥ q`.**
+    - Put `Q = P^(-1)`. No word reads `y[κ(y), ∞)`, so `Q` carries this block rigidly to
+      `x[q', ∞)` for some `q'`.
+    - The block contains `y_q`, which is the tracked letter `x_(κ(x))`. By reversal `Q`
+      returns it to position `κ(x)`. So `κ(x) = q' + (q − κ(y))`.
+    - Suppose a word `R` read `x_(q')` from `x`. Then "first `Q`, then `R`" would read
+      `y_(κ(y))` from `y`. So `q'` is non-consumable from `x`, and
+      `κ(x) ≤ q' = κ(x) − (q − κ(y))`.
+  - **Conclusion.** `κ(y) = q`, and `T(y) = y[q, ∞) = T(x)`, letter for letter.
 
 **2, step 2: counting.**
 - Let `N_K = {x ∈ N_0 : K not consumable}` = `{κ(x) ≤ K}`. For `L ≥ K + D`, the integers in
@@ -103,10 +121,17 @@ Kourovka 20.44.
 ## Remarks
 
 - **Examples.**
-  - `V` itself is in case 1, with one orbit on `N_0`.
-  - The element `n ↦ n/2` on `0(4)`, `n − 1` on `2(4)`, `2n + 1` on `1(2)` is in case 2.
-    - Its letters below a leading `10` or `01` block are frozen.
-    - Its orbit minima are the class `1(4)`.
+  - `V` itself (finitely generated) is in case 1. It has one orbit on `N_0` and one on the
+    negative integers.
+  - The element `g` given by `n ↦ n/2` on `0(4)`, `n − 1` on `2(4)` and `2n + 1` on `1(2)` is in
+    case 2.
+    - Its table is `00 ↦ 0`, `01 ↦ 10`, `1 ↦ 11`.
+    - The `⟨g⟩`-orbit of `10z` is the line `… ↦ 001z ↦ 01z ↦ 10z ↦ 110z ↦ 1110z ↦ …`, so the
+      tail `z` below the first `10` or `01` is frozen.
+    - On `N_0` the orbit minima are `0`, which is fixed, and the class `1(4) ∩ N_0`: the least
+      element of the line of `z = m` is `1 + 4m`.
+  - **Tools not used.** The proof does not use bh-free-16's period lemma (2a993fc15), nor any
+    automaton theory. Only the prefix-rewriting form of `CT_∅(Z)` enters.
 - **Why one prime is tame.**
   - With one prime, a canonical map is a single-stack operation. The only way to reach deep
     letters is to pop down to them, and whether that is possible is decided by a bounded

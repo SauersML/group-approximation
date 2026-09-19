@@ -57,25 +57,31 @@ theorem suslinR2Ind_comp_dilate {b c : S} (hbc : b * c = 1) (p : S[X]) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_comp_dilate
 
-set_option maxHeartbeats 800000 in
+/-- **Undoing a ring map with a left inverse.**  If `ψ ∘ φ = id` and `φ(σ)` is elementary,
+then so is `σ`. -/
+theorem suslinR2Ind_mem_of_leftInverse {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+    (φ ψ : R →+* R) (hψφ : ∀ a, ψ (φ a) = a) (σ : (Matrix ι ι R)ˣ)
+    (h : elementaryMatrixUnitMap φ σ ∈ elementaryGroup ι R) : σ ∈ elementaryGroup ι R := by
+  have he : elementaryMatrixUnitMap ψ (elementaryMatrixUnitMap φ σ) = σ := by
+    apply Units.ext
+    refine Matrix.ext fun i j ↦ ?_
+    change ψ (φ ((σ : Matrix ι ι R) i j)) = (σ : Matrix ι ι R) i j
+    exact hψφ _
+  rw [← he]
+  exact elementaryGroup_map_le ψ (Subgroup.mem_map_of_mem _ h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mem_of_leftInverse
+
 /-- **Undoing a dilation.**  If `b c = 1` and the dilate `σ(b X)` is elementary, then so is
 `σ`. -/
 theorem suslinR2Ind_mem_of_dilate {ι : Type*} [Fintype ι] [DecidableEq ι] {b c : S}
     (hbc : b * c = 1) (σ : (Matrix ι ι S[X])ˣ)
     (h : elementaryMatrixUnitMap (compRingHom (C b * X)) σ ∈ elementaryGroup ι S[X]) :
-    σ ∈ elementaryGroup ι S[X] := by
-  have he : elementaryMatrixUnitMap (compRingHom (C c * X))
-      (elementaryMatrixUnitMap (compRingHom (C b * X)) σ) = σ := by
-    apply Units.ext
-    refine Matrix.ext fun i j ↦ ?_
-    change (((σ : Matrix ι ι S[X]) i j).comp (C b * X)).comp (C c * X) =
-      (σ : Matrix ι ι S[X]) i j
-    exact suslinR2Ind_comp_dilate hbc _
-  have hm : elementaryMatrixUnitMap (compRingHom (C c * X))
-      (elementaryMatrixUnitMap (compRingHom (C b * X)) σ) ∈ elementaryGroup ι S[X] :=
-    elementaryGroup_map_le (compRingHom (C c * X))
-      (Subgroup.mem_map_of_mem (elementaryMatrixUnitMap (compRingHom (C c * X))) h)
-  rwa [he] at hm
+    σ ∈ elementaryGroup ι S[X] :=
+  suslinR2Ind_mem_of_leftInverse (compRingHom (C b * X)) (compRingHom (C c * X))
+    (fun p => by
+      rw [coe_compRingHom_apply, coe_compRingHom_apply]
+      exact suslinR2Ind_comp_dilate hbc p) σ h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mem_of_dilate
 
