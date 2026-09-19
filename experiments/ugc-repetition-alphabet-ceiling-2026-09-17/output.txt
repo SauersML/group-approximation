@@ -1,0 +1,11 @@
+[1a] min over grid of (1-t)^(1/l) - (1 - 2t/l) = 1.000e-10 (>= 0)
+[1b] min 2 eta_out - l eta = 1.000e-07; min eta_out - (1-1/e) l eta = 3.679e-08
+[1c] 2/(1-1/e)^2 = 5.005301 (<= 5.01); x1.5 = 7.507951 (<= 7.51); 1/sqrt(1-1/e) = 1.257767
+[2] odd cycle, k = 2: m, l, opt(G^l), sdp-deficit upper bound eps_ub, implied C_1 >= (1-opt)/sqrt(l eps_ub ln 2)
+    m= 3 l=1 opt=0.833333 eps_ub=0.066987 implied C_1 >= 0.7735
+    m= 3 l=2 opt=0.750000 eps_ub=0.066987 implied C_1 >= 0.8204
+    m= 5 l=1 opt=0.900000 eps_ub=0.024472 implied C_1 >= 0.7678
+    m= 7 l=1 opt=0.928571 eps_ub=0.012536 implied C_1 >= 0.7663
+    m= 9 l=1 opt=0.944444 eps_ub=0.007596 implied C_1 >= 0.7656
+    m=11 l=1 opt=0.954545 eps_ub=0.005089 implied C_1 >= 0.7653
+ALL PASS

@@ -1,0 +1,39 @@
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 radius 0 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2419), (-1, 581)]
+worst ell-k, rank N, P: (-1, 7, [(167120, 167126), (167120, 167121)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 radius 1 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2857), (-1, 143)]
+worst ell-k, rank N, P: (-1, 7, [(157877, 157878), (394034, 394038)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 radius 2 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2947), (-1, 53)]
+worst ell-k, rank N, P: (-1, 7, [(587732, 587735), (587730, 587732)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 3 radius 0 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 1623), (-1, 142), (-2, 1235)]
+worst ell-k, rank N, P: (-1, 14, [(241489, 241492), (241488, 241489), (241488, 241494)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 3 radius 1 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2521), (-1, 15), (-2, 464)]
+worst ell-k, rank N, P: (-1, 14, [(720242, 720246), (720243, 720247), (685453, 685454)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 3 radius 2 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2853), (-1, 2), (-2, 145)]
+worst ell-k, rank N, P: (-1, 14, [(34362, 34363), (34362, 34366), (680661, 680662)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 4 radius 0 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 892), (-1, 58), (-2, 727), (-3, 1323)]
+worst ell-k, rank N, P: (-1, 26, [(66608, 66614), (66608, 66611), (66608, 66609), (66609, 66613)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 4 radius 1 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2131), (-1, 3), (-2, 98), (-3, 768)]
+worst ell-k, rank N, P: (-1, 26, [(281368, 281369), (522827, 522831), (295170, 295172), (281369, 281372)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 4 radius 2 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2729), (-2, 4), (-3, 267)]
+worst ell-k, rank N, P: (-2, 14, [(652656, 652662), (382026, 382028), (652657, 652660), (337683, 337687)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 2 radius 0 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2928), (-1, 72)]
+worst ell-k, rank N, P: (-1, 16, [(318182, 318188), (318182, 318183)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 2 radius 1 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2989), (-1, 11)]
+worst ell-k, rank N, P: (-1, 16, [(33184, 33189), (33189, 33199)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 3 radius 0 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2802), (-1, 4), (-2, 194)]
+worst ell-k, rank N, P: (-1, 32, [(849790, 849798), (849785, 849790), (849781, 849798)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 3 radius 1 trials 3000
+hist ell-k (empty = no lawful part): [('empty', 2924), (-2, 76)]
+worst ell-k, rank N, P: (-2, 16, [(1701050, 1701058), (1701044, 1701047), (1701041, 1701058)])
