@@ -27,6 +27,7 @@ namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
 
+open scoped commutatorElement
 open GroupApproximation.SteinbergGroup
 
 section Colimit

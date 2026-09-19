@@ -58,9 +58,11 @@ variable (I A) in
 def U : Set ((I → A) × (I → A)) :=
   {p | IsUnimodular p.1 ∧ p.2 ⬝ᵥ p.1 = 0}
 
+omit [DecidableEq I] in
 theorem mem_U {p : (I → A) × (I → A)} : p ∈ U I A ↔ IsUnimodular p.1 ∧ p.2 ⬝ᵥ p.1 = 0 :=
   Iff.rfl
 
+omit [DecidableEq I] in
 theorem mk_mem_U {i j : I → A} : (i, j) ∈ U I A ↔ IsUnimodular i ∧ j ⬝ᵥ i = 0 :=
   Iff.rfl
 
@@ -76,10 +78,10 @@ theorem conjPair_mem {p q : (I → A) × (I → A)} (hp : p ∈ U I A) (hq : q �
   obtain ⟨-, hji⟩ := mem_U.1 hp
   obtain ⟨⟨m, hm⟩, hlk⟩ := mem_U.1 hq
   refine mem_U.2 ⟨⟨m - (m ⬝ᵥ p.1) • p.2, ?_⟩, ?_⟩
-  · simp only [conjPair, sub_dotProduct, dotProduct_add, add_dotProduct, dotProduct_smul,
+  · simp only [conjPair, sub_dotProduct, dotProduct_add, dotProduct_smul,
       smul_dotProduct, smul_eq_mul, hm, hji]
     ring
-  · simp only [conjPair, sub_dotProduct, dotProduct_add, add_dotProduct, dotProduct_smul,
+  · simp only [conjPair, sub_dotProduct, dotProduct_add, dotProduct_smul,
       smul_dotProduct, smul_eq_mul, hlk, hji]
     ring
 
@@ -386,6 +388,7 @@ def piStar : StStar I A →* (Matrix I I A)ˣ :=
 
 #audit_axioms piStar_X
 
+omit [Fintype I] in
 /-- `e(ε_p, a ε_qᵀ)` is the elementary matrix `x_pq(a) = 1 + a E_pq`. -/
 theorem vecMulVec_single_single (p q : I) (a : A) :
     Matrix.vecMulVec (Pi.single p (1 : A)) (Pi.single q a) = Matrix.single p q a := by
