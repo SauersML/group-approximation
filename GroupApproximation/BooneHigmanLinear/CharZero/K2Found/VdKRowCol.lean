@@ -74,6 +74,7 @@ theorem matInv_x (p q : I) (h : p ≠ q) (a : A) : matInv (x p q h a) = 1 - Matr
   rw [matInv, projection_x]
   rfl
 
+omit [Fintype I] in
 /-- `Pi.single p a ⊗ Pi.single q c = a c E_pq`. -/
 theorem vecMulVec_single_single' (p q : I) (a c : A) :
     Matrix.vecMulVec (Pi.single p a) (Pi.single q c) = Matrix.single p q (a * c) := by
@@ -85,6 +86,7 @@ theorem vecMulVec_single_single' (p q : I) (a c : A) :
     · rw [Pi.single_eq_of_ne hs, mul_zero, if_neg (fun h => hs h.2.symm)]
   · rw [Pi.single_eq_of_ne hr, zero_mul, if_neg (fun h => hr h.1.symm)]
 
+omit [Fintype I] in
 /-- `a E_pq = (a ε_p) ε_qᵀ`. -/
 theorem single_eq_vecMulVec_right (p q : I) (a : A) :
     Matrix.single p q a = Matrix.vecMulVec (Pi.single p a) (Pi.single q (1 : A)) := by
@@ -196,6 +198,7 @@ theorem colProd_zero (r : I) : colProd r (0 : I → A) = 1 := by
   unfold colProd
   exact map_one _
 
+omit [Fintype I] in
 theorem ofAdd_single (s : I) (b : A) :
     (fun t => Multiplicative.ofAdd ((Pi.single s b : I → A) t)) =
       Pi.mulSingle s (Multiplicative.ofAdd b) := by
@@ -264,6 +267,7 @@ theorem single_dotProduct_sub_single (r : I) (i : I → A) :
     Pi.single r (1 : A) ⬝ᵥ (i - Pi.single r (i r)) = 0 := by
   rw [single_dotProduct, Pi.sub_apply, Pi.single_eq_same, sub_self, mul_zero]
 
+omit [Fintype I] in
 theorem sub_single_add (r : I) (u v : I → A) :
     u + v - Pi.single r ((u + v) r) = (u - Pi.single r (u r)) + (v - Pi.single r (v r)) := by
   rw [Pi.add_apply, Pi.single_add]
