@@ -321,3 +321,41 @@ non-permutation unitary construction.
   - **Next.** The one-row case: `b` an `n`-cycle and `c` a `b`-interval exchange with `<= 4 rho` breaks. Show that
     profile `K` gives a rotation after `O_K(1)` column insertions and deletions at the breaks. This is Theorem 1 with
     an interval transversal, in the style of zippered rectangles and Rauzy–Veech induction.
+- **w18-124, 2026-09-19. The one-row step (a rotation after column insertions) is false; the corrected target is the
+  arc-torus. Landed `one-row-profile-pairs-need-arc-tori-not-rotations`.**
+  - **Break lemma.** For `b = +1`, `Lambda_rect <= sup_t |B_t|`, where `B_t` is the set of breaks of `c^t`.
+  - **Obstruction.** Take `c` fixing `A = [0, alpha)` and swapping `B` and `C`. Then `|B_t| <= 3`, so the profile is at
+    most 3.
+    - Every single-row repair costs at least `min(alpha, beta + gamma) / 2`. The reason is that the centraliser of a
+      full cycle consists of its powers, and a power is either the identity or fixed-point-free.
+    - Cutting the row into `A` and `B u C` costs 1.
+    - So any argument that outputs a single row fails, including Rauzy–Veech induction with one interval as
+      transversal. A repair must cut the row.
+  - **Exact reformulation.** Permutation distance is equivalent, up to a factor of 2, to the least `max(m, e)` over
+    `(m, e)`-arc-tori. These are commuting pairs whose rows are concatenations of at most `m` old arcs and padding
+    runs, with `c` changed at `e` old points.
+  - **E(a, k) is the twist theta = beta + gamma.** It is repaired with `m = 2` and `e = beta` by column insertion.
+  - **Data.**
+    - Resonant twists `n/q` have profile about `2q`.
+    - Generic twists with `beta = 1` have profile about `sqrt(n)/2`.
+    - `(400, 157, 229, 75, 96)` is two thin diagonal arc-tori (`c^3 = b^-4` and `c^2 = b^10`) at profile about 10.
+  - **Next.** Show that profile `K` gives an `(F(K), F(K))`-arc-torus with its cuts in `U_{|j| <= O(K)} c^j(B_1)`.
+- **w19-124, 2026-09-19. Localisation half of the one-row step proved for all permutation pairs; the surgery half is
+  open, with strong computational support. Landed `bounded-profile-puts-short-essential-loops-at-cone-points`.**
+  - **Theorem (CAT(0) dichotomy).** The universal cover of the square-tiled surface `S(b, c)` is CAT(0). If
+    `Lambda_rect <= K` and `R = floor(4K) + 1`, then within distance `4R` of every cone point there is a homotopically
+    nontrivial closed lattice curve of length at most `4R`. It is either a zero-period rectangle loop or a loop of nonzero
+    period.
+    - *Proof idea.* A null-homotopic rectangle loop bounds a flat rectangle by the Flat Quadrilateral Theorem, and the
+      profile bound makes fewer than `R^2` of the squares near the cone point move.
+  - **Corollary.** `Lambda_rect >= R/4` whenever some cone point has no essential loop of length `4R` within distance
+    `4R`. So the profile is quadratic up to the local systole.
+    - For one-row pairs, this places the cuts in `U_{|i|, |j| <= O(K)} b^i c^j (B_1)`.
+  - **157 example corrected.** One slit swap of length 7 gives distance at most 4, not about 60.
+  - **Data (not proved).**
+    - For 3-arc exchanges with moved-profile at most 3 and `n <= 100`, exhaustively, one swap or one excision repairs
+      at cost at most 8, which is at most 3 times the profile.
+    - At `n = 200` (random), one swap repairs at cost at most about `2 Lambda` in 234 of 250 classes, and rotations
+      repair 4 more.
+  - **Next.** Prove the surgery half in genus 2: a short zero-period loop should give a staircase slit swap, and case
+    (b) should give a padded cylinder cut. Then reduce the doubly-wide case to one-row pairs.

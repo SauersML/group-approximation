@@ -91,6 +91,17 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_r2_4012_m2_chain.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_m2_4887_rm2_rpa2b1c1.json
   - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_m2_4887.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_m2_4012_rm2_rpa2b1c1.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/feas_vmem_m2_4485_rm2_rpa2b1c1.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/feas_vmem_m2_4485_rm2_rpa2b1c1.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/feas_vmem_exact.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/feas_vmem_members.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_brute_shard.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/vcg_m2_4485_rm2_rpa2b1c2_rounds.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/vcg_masked_m2_open_entries_rm2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/maskq.sh
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/vcg.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/gowarm.sh
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -359,3 +370,66 @@ entries, one per line).
   - **Dead ends.** Memory 1 on every `d^+` dart, `(r_-, r_+) = (2, 1)` or `(3, 1)`, is feasible with `chi = -1/2`.
   - **Status.** 11 classes are certified at power two, 4887 is excluded, and 12 LP-negative representatives remain
     open: 61, 108, 198, 228, 464, 1632, 1633, 1635, 1744, 2298, 4012 and 4485.
+- **2026-09-18, addendum (w8-074): entry 4012 is excluded; the `(2, a2b1c1)` relaxation provably cannot exclude
+  4485; 11 LP-negative entries stay open.**
+  - **4012.** `census-entry-4012-has-no-power-two-legal-folded-fatgraph` proves that 4012 has no legal
+    `f^2`-folded fatgraph, for any boundary. It uses the relaxation `(r_-, r_+) = (2, a2b1c1)` of the 4887 proof,
+    here with 540 types and 114 windows.
+    - The certificate is `farkas_vmem_m2_4012_rm2_rpa2b1c1.json`, with `z'_norm = 43609` at `D = 10^6`. Both
+      `farkas_vmem.py` and `farkas_vmem_brute.py` (7,845,762 polygons) verify it.
+    - Plain column generation had stalled at phase-1 value 0.125. The step that unblocked it was warm-starting the
+      Wentges centre from the previous master dual and reloading all of that round's columns (`gowarm.sh`).
+  - **4485: the step is blocked, exactly.** The relaxation `(2, a2b1c1)` of 4485 (649 types, 112 windows) is
+    feasible. `feas_vmem_m2_4485_rm2_rpa2b1c1.json` is a rational point of it:
+    - 32 bigons and 8 quadrilaterals;
+    - window flow `1/8` on each of `bbc`, `bcc`, `cbb`, `ccb` and their inverses;
+    - `chi = -1`.
+    - `feas_vmem_exact.py` checks it in exact arithmetic: all 726 rows vanish, the normalisation is 1 and every value
+      is `>= 0`. `feas_vmem_members.py` confirms each of the 40 polygons against the enumeration of
+      `farkas_vmem_brute.py`. Both results are in `feas_vmem_m2_4485_rm2_rpa2b1c1.log`.
+    - So no Farkas vector exists for this LP, and `(2, a2b1c1)` cannot exclude 4485.
+    - The point uses only windows in `{b, c}`. At full memory 2 the `{b, c}`-masked LP of 4485 is infeasible
+      (`farkas_r2_m2_4485_mask_bcBC.json`, above). So the point is spurious: it exists only because the relaxation
+      forgets memory on the `b` and `c` blocks.
+    - Any further refinement for 4485 must raise the memory of `b` or `c`: `a2b1c2` (961 types) or `a2b2c1`
+      (949 types).
+  - **4485 at `a2b1c2` and `a2b2c1`: undecided (float).**
+    - One 900 s run of the `{b, c}`-masked column generation ends at phase-1 value 0.148 for `a2b1c2` and 0.163 for
+      `a2b2c1`. The best dart-shifted bounds are -1.07 and -2.05.
+    - Twelve chained rounds of the full `a2b1c2` LP take the phase-1 value from 1.16 (end of round 0) to 0.232.
+      Rounds 0 to 7 are `vchain4.sh`; rounds 8 to 11 are `gowarm.sh 4485 a2b1c2 7 4`, a warm-centred restart that
+      reloads round 7 unpruned. The best dart-shifted bound rose from about -11 to -8.30 (round 9) but stayed
+      negative. The status lines are in `vcg_m2_4485_rm2_rpa2b1c2_rounds.log`.
+    - This is the plateau that 4012 showed before its warm-centred restart, but here the restart did not break it.
+  - **The other nine entries at `(2, a2b1c1)`: undecided (float).** These LPs have 751 to 928 types. On the loaded
+    machine, 2 to 4 rounds of 900 s leave these phase-1 values, with best dart-shifted bounds between -9 and -14:
+    - 464: 2.48;
+    - 2298: 1.92;
+    - 228: 3.05;
+    - 198: 5.10;
+    - 1632: 5.81;
+    - 108: 7.55;
+    - 61: 7.90.
+
+    1633, 1635 and 1744 were not started.
+  - **Masked diagnostics at `(2, a2b1c1)` (float, one 900 s run each).** Masked phase-1 values:
+    - 108: 0.846 for `{a, c}` and 0.091 for `{b, c}`;
+    - 198: 1.364 for `{a, c}` and 0.122 for `{b, c}`;
+    - 1632: 0.825 for `{a, b}` and 0.225 for `{b, c}`;
+    - 61: 1.200 for `{a, b}`;
+    - 1633: 0.196 for `{b, c}`;
+    - 1744: the `{a, c}` masked LP is infeasible in float (dart-shifted bound +0.85). This says nothing about the
+      full LP, since a masked LP is a restriction of it.
+
+    Four chained rounds of the `{b, c}` mask on 108 hold the phase-1 value at 0.0915, with best dart-shifted bound
+    -4.28. All runs are in `vcg_masked_m2_open_entries_rm2.log` (`maskq.sh`, and `vcg.py` with `VCG_MASK`).
+
+    The `{b, c}` values are the smallest. If a masked LP is feasible, so is the full relaxation. So on 108, 198 and
+    1632, too, `a2b1c1` may fail in the same way as on 4485, and the memory of `b` or `c` would have to rise.
+  - **Status.** 11 classes are certified at power two, and 4887 and 4012 are excluded. 11 LP-negative
+    representatives remain open: 61, 108, 198, 228, 464, 1632, 1633, 1635, 1744, 2298 and 4485.
+  - **Next step.** Test the `{b, c}` masks exactly, run the warm-centred restart on 4485 at `a2b1c2`, and choose the
+    memory of each entry from its masked diagnostics.
+    - To test a `{b, c}` mask, run it to convergence. A feasible end gives an exact point for `feas_vmem_exact.py`;
+      an infeasible end gives a Farkas vector.
+    - The restart is `gowarm.sh 4485 a2b1c2 ROUND N`.

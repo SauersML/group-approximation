@@ -1,0 +1,81 @@
+L1 AAtATataTatAtAAtAATataTaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAAtATataaTaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAAtaTatAATaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAAtaaTatATaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAttAATAtaTaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAttATAtaaTaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAttaTAtAATaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAttaaTAtATaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtAATAtaTaaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtAATataTTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtATAtaaTaaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtATataaTTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtaTAtAATaaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtaTatAATTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtaaTAtATaaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATataTatAtAtaaTatATTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATattAtAATaTaTatAtAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATattAtAATataTAtaTaTaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATattAtATaTaTatAtAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATattAtATatATAtaaTaTaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATattAtaTaTaTatAtAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATattAtaTAtaTatAATaTaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATattAtaaTaTaTatAtAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATattAtaaTAtATatATaTaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATatAtAtAATaTaTattAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtAATaTaTatAtAtaTaTaaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtAATaTaaTatAtAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtAATataTAtaTaTaaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATatAtAtATaTaTattAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtATaTaTatAtAtaaTaTaaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtATaTaaTatAtAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtATatATAtaaTaTaaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATatAtAtaTaTaTattAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaTaTaTatAtAtAATaTaaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaTaTaaTatAtAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaTAtaTatAATaTaaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtATatAtAtaaTaTaTattAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaaTaTaTatAtAtATaTaaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaaTaTaaTatAtAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtATatAtAtaaTAtATatATaTaaT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtAAtAtAATaTaTataTatAtAtaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtAATaTaTatAtAtaTaTaTataT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtAATataTAtaTaTaTataT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtAAtAtATaTaTataTatAtAtaaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtATaTaTatAtAtaaTaTaTataT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtATatATAtaaTaTaTataT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtAAtAtaTaTaTataTatAtAtAATaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtaTaTaTatAtAtAATaTaTataT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtaTAtaTatAATaTaTataT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtAAtAtaaTaTaTataTatAtAtATaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtaaTaTaTatAtAtATaTaTataT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 VERTEX-NONFREE(7)] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAAtAtaaTAtATatATaTaTataT [s=a0 S-EXP-NONZERO] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=2 sZ=(2, 2) lg=PASS] -> ZSTABLE via s=a1
+L1 AAtaTatATatAtAAtaTatAATaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatATatAttATAtaaTaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatATatAtAtAATataTTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatATatAtAtaaTAtATaaTaT [s=a0 rankA=2 sZ=(2, 2) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAAtAtAATaTaTatAtAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAAtAtATaTaTatAtAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAAtAtaTaTaTatAtAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAAtAtaaTaTaTatAtAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtAATaTaTatAAtAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtAATaTTatAtAtaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtATaTaTatAAtAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtATaTTatAtAtaaTaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtaTaTaTatAAtAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtaTaTTatAtAtAATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtaaTaTaTatAAtAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 VERTEX-NONFREE(7)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtaTatAtAtaaTaTTatAtAtATaTaT [s=a0 rankA=4 sZ=(3, 3) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAttAtAATaTaTatATatAtAtaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAttAtATaTaTatATatAtAtaaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAttAtaTaTaTatATatAtAtAATaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAttAtaaTaTaTatATatAtAtATaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS] [s=a1 rankA=3 sZ=(2, 2) lg=PASS] [s=a2 EDGE-TRIVIAL] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAtAAtATatATaTaTatAtAtaaTaTaT [s=a0 S-EXP-NONZERO] [s=a1 VERTEX-NONFREE(9)] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=6 sZ=(4, 4) lg=PASS] -> ZSTABLE via s=a2
+L1 AAtAtAAtaTataTaTaTatAtAtAATaTaT [s=a0 S-EXP-NONZERO] [s=a1 VERTEX-NONFREE(9)] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=6 sZ=(4, 4) lg=PASS] -> ZSTABLE via s=a2
+L1 AAtAttATAtATaTaTatAtAtaaTaTaT [s=a0 S-EXP-NONZERO] [s=a1 VERTEX-NONFREE(9)] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=6 sZ=(4, 4) lg=PASS] -> ZSTABLE via s=a2
+L1 AAtAttaTAtaTaTaTatAtAtAATaTaT [s=a0 S-EXP-NONZERO] [s=a1 VERTEX-NONFREE(9)] [s=a2 rankA=1 sZ=(1, 1) lg=PASS] [s=a3 rankA=6 sZ=(4, 4) lg=PASS] -> ZSTABLE via s=a2
+L1 AAtAtAtAATaTaTatATattAtaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAtAtAATaTaTataTatAAtAtaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAtAtATaTTataTatAtAtaaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+L1 AAtAtAtATaTaaTatATatAtAtaaTaTaT [s=a0 rankA=6 sZ=(4, 4) lg=PASS_HLOOP] [s=a1 rankA=1 sZ=(1, 1) lg=PASS] [s=a2 VERTEX-NONFREE(9)] [s=a3 S-EXP-NONZERO] -> ZSTABLE via s=a0
+SENTINEL_DONE

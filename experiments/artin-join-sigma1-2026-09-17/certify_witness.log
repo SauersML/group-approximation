@@ -1,0 +1,18 @@
+== S_6 permutation rep: halves(ac,bc,be,ae)=(2, 3, 2, 4), dimension 6
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 1
+    certificate p(t) = [t - 1, 1 - t, -1, 1, -t, t]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 17 over Q(t); rank H_1 = 24 - 6 - 17 = 1
+== signed S_5 rep: halves(ac,bc,be,ae)=(2, 3, 2, 5), dimension 5
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 1
+    certificate p(t) = [0, 0, 1, -t, t - 1]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 14 over Q(t); rank H_1 = 20 - 5 - 14 = 1
+== signed S_5 rep: halves(ac,bc,be,ae)=(2, 5, 2, 3), dimension 5
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 1
+    certificate p(t) = [0, 0, t, -t - 1, 1]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 14 over Q(t); rank H_1 = 20 - 5 - 14 = 1

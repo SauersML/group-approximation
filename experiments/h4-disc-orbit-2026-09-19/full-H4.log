@@ -1,0 +1,64 @@
+H4 punctures 45 planes 121 X-planes 15 D-planes 106
+rank of Lambda in Z^84: 57
+invariant factors != 1: []
+planes with a cluster through an F-puncture: 63
+rank Lambda_full in Z^126: 60
+mixed-F meridian vectors: 10
+pair-hull F-sets [(0, 2), (1, 2), (0, 1)] : gluing closure rank 60 vs 60
+pair-hull F-sets [(0,), (1,), (2,)] : gluing closure rank 72 vs 60
+pair-hull F-sets [(0, 1), (2,)] : gluing closure rank 67 vs 60
+pair-hull F-sets [(0, 1, 2)] : gluing closure rank 60 vs 60
+Lambda_full saturated: True
+hull F-set (0,) pair-hull F-sets ((0,),) : closure 24 orbit 24 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1) pair-hull F-sets ((0,), (0, 1)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1) pair-hull F-sets ((0,), (0, 1), (1,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1) pair-hull F-sets ((0, 1),) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1) pair-hull F-sets ((0, 1), (1,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1), (0, 1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1), (0, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1, 2), (0, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1, 2), (1,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1, 2), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 1, 2), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (0, 2), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0,), (1, 2)) : closure 67 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 1, 2), (0, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 1, 2), (1,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 1, 2), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 1, 2), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 2), (1,)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 2), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (0, 2), (2,)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (1,), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (1, 2), (2,)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1), (2,)) : closure 67 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2),) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (0, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (0, 2), (1,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (0, 2), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (0, 2), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (1,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (1,), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (1,), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (1, 2)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (1, 2), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 1, 2), (2,)) : closure 60 orbit 60 ok | every F-pair in a common pair hull: True
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 2), (1,)) : closure 67 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 2), (1,), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 2), (1, 2)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 1, 2) pair-hull F-sets ((0, 2), (1, 2), (2,)) : closure 62 orbit 60 GAP | every F-pair in a common pair hull: False
+hull F-set (0, 2) pair-hull F-sets ((0,), (0, 2)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 2) pair-hull F-sets ((0,), (0, 2), (2,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 2) pair-hull F-sets ((0, 2),) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (0, 2) pair-hull F-sets ((0, 2), (2,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (1,) pair-hull F-sets ((1,),) : closure 24 orbit 24 ok | every F-pair in a common pair hull: True
+hull F-set (1, 2) pair-hull F-sets ((1,), (1, 2)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (1, 2) pair-hull F-sets ((1,), (1, 2), (2,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (1, 2) pair-hull F-sets ((1, 2),) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (1, 2) pair-hull F-sets ((1, 2), (2,)) : closure 43 orbit 43 ok | every F-pair in a common pair hull: True
+hull F-set (2,) pair-hull F-sets ((2,),) : closure 24 orbit 24 ok | every F-pair in a common pair hull: True

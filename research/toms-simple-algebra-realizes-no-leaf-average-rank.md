@@ -223,3 +223,23 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     thin neighbourhood of a 2-complex, then prove Hex on that 2-complex. The obstruction is
     a conflict-free choice of missed-face colours on adjacent components, which is what the SAT
     model decides.
+- **w15-113: the conflict-free-labelling route to `R1(3)` is vacuous; octant-jack searches.**
+  `toms-conflict-free-face-labellings-never-exist`.
+  - *Degree lemma.* Label every cell of a cube subdivision by `+-e_nu`, never by the outward
+    normal of a cube face that contains the cell. Some cell and a cell in its closure always get
+    antipodal labels. The proof is that the piecewise-linear extension is boundary-homotopic to
+    `-r`, which has degree `+-1`. So every partition into face-missing pieces has two touching
+    pieces that picked opposite faces. For level components, the conflict sits where a strictly
+    higher level lies in the closure of a lower one.
+  - *What this kills.* The next step recorded by w14-113 (rule out conflict-free missed-face
+    colourings in the grown normal form) proves nothing, because such colourings never exist.
+    That includes the `R1(2)` slit wall.
+  - *Computation.* Exact SAT, unreviewed:
+    - The octant jack is the normal form with all eight corner blobs and `R` a thin
+      neighbourhood of the three midplanes. It is UNSAT at `n = 2` and `n = 4`, and SAT there
+      would be a genuine `F(3)` counterexample.
+    - Lex-leader breaking over the 48 cube symmetries reproduces all the controls.
+    - Full `F(3)` at `n = 3` is still undecided at the 20-minute cap.
+  - *Next step.* Use set-valued labels (a level-`t` component carries `t + 1` missed
+    coordinates) and prove a Ky Fan style alternating-chain count. This is where `R1(2)` and
+    `R1(3)` differ.

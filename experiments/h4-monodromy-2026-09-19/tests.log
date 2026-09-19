@@ -1,0 +1,122 @@
+H4 strands 46 nonX 45 X 15
+pure gens have braids of length [66, 64, 136, 220]
+sigma_1^2 forgets to trivial: True
+relation 22_33 in P-circ (46-braid): False   after forgetting m: False
+relation 12 in P-circ (46-braid): False   after forgetting m: False
+relation 34 in P-circ (46-braid): False   after forgetting m: False
+relation 14 in P-circ (46-braid): False   after forgetting m: False
+relation 24 in P-circ (46-braid): False   after forgetting m: False
+relation 13 in P-circ (46-braid): True   after forgetting m: True
+H4 [c,a]=1 : True
+H4 [d,b]=1 : True
+H4 b = s3^-1 a s3 (as pure loops: b a^-1 = s3^-1 a s3 a^-1) : True
+H4 [w,b^-1 a]=1 : True
+H4 [w,a]=[w,b] : True
+H4 [u,a]=[v,b] : True
+H4 k~ nontrivial: True  k~ point-pushing (in F_45): True  a~, b~ point-pushing: True
+H4 L_124 d=0.01 [c,a]=1: False  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: False  (s1s2)^3=(s2s1)^3: False
+H4 L_124 d=0.001 [c,a]=1: False  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: False  (s1s2)^3=(s2s1)^3: False
+A4 strands 5 nonX 4 X 6
+pure gens have braids of length [2, 2, 2, 2]
+sigma_1^2 forgets to trivial: True
+relation 22_33 in P-circ (46-braid): True   after forgetting m: True
+relation 12 in P-circ (46-braid): True   after forgetting m: True
+relation 34 in P-circ (46-braid): True   after forgetting m: True
+relation 14 in P-circ (46-braid): True   after forgetting m: True
+relation 24 in P-circ (46-braid): True   after forgetting m: True
+relation 13 in P-circ (46-braid): True   after forgetting m: True
+A4 [c,a]=1 : True
+A4 [d,b]=1 : True
+A4 b = s3^-1 a s3 (as pure loops: b a^-1 = s3^-1 a s3 a^-1) : True
+A4 [w,b^-1 a]=1 : True
+A4 [w,a]=[w,b] : True
+A4 [u,a]=[v,b] : True
+A4 k~ nontrivial: True  k~ point-pushing (in F_45): True  a~, b~ point-pushing: True
+A4 L_124 d=0.01 [c,a]=1: True  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: True  (s1s2)^3=(s2s1)^3: True
+A4 L_124 d=0.001 [c,a]=1: True  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: True  (s1s2)^3=(s2s1)^3: True
+B4 strands 8 nonX 7 X 9
+pure gens have braids of length [2, 4, 4, 6]
+sigma_1^2 forgets to trivial: True
+relation 22_33 in P-circ (46-braid): True   after forgetting m: True
+relation 12 in P-circ (46-braid): True   after forgetting m: True
+relation 34 in P-circ (46-braid): True   after forgetting m: True
+relation 14 in P-circ (46-braid): True   after forgetting m: True
+relation 24 in P-circ (46-braid): True   after forgetting m: True
+relation 13 in P-circ (46-braid): True   after forgetting m: True
+B4 [c,a]=1 : True
+B4 [d,b]=1 : True
+B4 b = s3^-1 a s3 (as pure loops: b a^-1 = s3^-1 a s3 a^-1) : True
+B4 [w,b^-1 a]=1 : True
+B4 [w,a]=[w,b] : True
+B4 [u,a]=[v,b] : True
+B4 k~ nontrivial: True  k~ point-pushing (in F_45): True  a~, b~ point-pushing: True
+B4 L_124 d=0.01 [c,a]=1: True  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: True  (s1s2)^3=(s2s1)^3: True
+B4 L_124 d=0.001 [c,a]=1: True  [s4^2,s1^2]=1: True  [s4^2,s2^2]=1: True  (s1s2)^3=(s2s1)^3: True
+H4 base generic m=3 Delta=Delta': False
+H4 base generic m=2 Delta=Delta': True
+H4 base generic m=2 Delta=Delta': False
+H4 base generic m=3 Delta=Delta': False
+H4 base generic m=2 Delta=Delta': False
+H4 base generic m=5 Delta=Delta': False
+H4 base near L_12 d=0.01 m=3 Delta=Delta': True
+H4 base near L_13 d=0.01 m=2 Delta=Delta': True
+H4 base near L_14 d=0.01 m=2 Delta=Delta': True
+H4 base near L_23 d=0.01 m=3 Delta=Delta': False
+H4 base near L_24 d=0.01 m=2 Delta=Delta': False
+H4 base near L_34 d=0.01 m=5 Delta=Delta': False
+H4 base near L_12 d=0.001 m=3 Delta=Delta': True
+H4 base near L_13 d=0.001 m=2 Delta=Delta': True
+H4 base near L_14 d=0.001 m=2 Delta=Delta': True
+H4 base near L_23 d=0.001 m=3 Delta=Delta': False
+H4 base near L_24 d=0.001 m=2 Delta=Delta': False
+H4 base near L_34 d=0.001 m=5 Delta=Delta': False
+B4 base generic m=3 Delta=Delta': True
+B4 base generic m=2 Delta=Delta': True
+B4 base generic m=2 Delta=Delta': True
+B4 base generic m=3 Delta=Delta': True
+B4 base generic m=2 Delta=Delta': True
+B4 base generic m=4 Delta=Delta': True
+B4 base near L_12 d=0.01 m=3 Delta=Delta': True
+B4 base near L_13 d=0.01 m=2 Delta=Delta': True
+B4 base near L_14 d=0.01 m=2 Delta=Delta': True
+B4 base near L_23 d=0.01 m=3 Delta=Delta': True
+B4 base near L_24 d=0.01 m=2 Delta=Delta': True
+B4 base near L_34 d=0.01 m=4 Delta=Delta': True
+B4 base near L_12 d=0.001 m=3 Delta=Delta': True
+B4 base near L_13 d=0.001 m=2 Delta=Delta': True
+B4 base near L_14 d=0.001 m=2 Delta=Delta': True
+B4 base near L_23 d=0.001 m=3 Delta=Delta': True
+B4 base near L_24 d=0.001 m=2 Delta=Delta': True
+B4 base near L_34 d=0.001 m=4 Delta=Delta': True
+A4 base generic m=3 Delta=Delta': True
+A4 base generic m=2 Delta=Delta': True
+A4 base generic m=2 Delta=Delta': True
+A4 base generic m=3 Delta=Delta': True
+A4 base generic m=2 Delta=Delta': True
+A4 base generic m=3 Delta=Delta': True
+A4 base near L_12 d=0.01 m=3 Delta=Delta': True
+A4 base near L_13 d=0.01 m=2 Delta=Delta': True
+A4 base near L_14 d=0.01 m=2 Delta=Delta': True
+A4 base near L_23 d=0.01 m=3 Delta=Delta': True
+A4 base near L_24 d=0.01 m=2 Delta=Delta': True
+A4 base near L_34 d=0.01 m=3 Delta=Delta': True
+A4 base near L_12 d=0.001 m=3 Delta=Delta': True
+A4 base near L_13 d=0.001 m=2 Delta=Delta': True
+A4 base near L_14 d=0.001 m=2 Delta=Delta': True
+A4 base near L_23 d=0.001 m=3 Delta=Delta': True
+A4 base near L_24 d=0.001 m=2 Delta=Delta': True
+A4 base near L_34 d=0.001 m=3 Delta=Delta': True
+generic [4] w w^-1 trivial: True
+generic [1] w w^-1 trivial: True
+generic [2] w w^-1 trivial: True
+generic [3] w w^-1 trivial: True
+generic [4, 4] w w^-1 trivial: True
+generic [1, 2, 2, -1, 1, 1] w w^-1 trivial: True
+generic [3, 4] w w^-1 trivial: True
+L124 [4] w w^-1 trivial: True
+L124 [1] w w^-1 trivial: True
+L124 [2] w w^-1 trivial: True
+L124 [3] w w^-1 trivial: True
+L124 [4, 4] w w^-1 trivial: True
+L124 [1, 2, 2, -1, 1, 1] w w^-1 trivial: True
+L124 [3, 4] w w^-1 trivial: True

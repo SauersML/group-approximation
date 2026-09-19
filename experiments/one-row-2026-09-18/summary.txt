@@ -1,0 +1,20 @@
+One-row pairs: b = +1 on Z/n, c = R_theta o S_{beta,gamma} (3-arc circle exchange, arcs A=[0,al), B, C;
+translations theta, theta+gamma, theta-beta). All profiles below are the moved-point version
+rho^ = max_{s,t<=W} #{x : c^t(x+s) != c^t(x)+s}/(s+t), which lies between Lambda_rect and 2 Lambda_rect.
+Runs: nice -n 19, single thread, all under 2 minutes.
+
+verify.py   exact checks for n = 6..40, all al, be (0 failures):
+            theta=0: Fix(c)=A, |B_t|<=3 for all t, two-row cut commutes with c;
+            theta=L=be+ga: c'=+L on Z/(n+be) agrees with c off B.
+            Random sanity: rho^ <= sup_t |B_t| (max ratio 0.9 over 60 cases).
+qres.py     theta = n/q, n=720, L=n/(2q), window 80: rho^ = 5.81, 8.37, 10.59, 13.85, 15.79 for q = 2,3,4,6,8
+            (grows ~2q: the q-resonances are not bounded-profile counterexamples).
+scale.py / smallbeta.py   beta=1, random theta: rho^ ~ 6, 10, 16, 25 at n = 100, 400, 1000, 2000 (~ sqrt(n)/2);
+            bounded profile forces arithmetic resonance of theta.
+scan3b.py   n=400, window 40, 40 random 3-arc exchanges -> scan400.txt: crude repair (repair.py: <=2 blocks
+            or one cut) / rho^ <= ~6 except (400,157,229,75,96): rho^ 9.91, crude ratio 17.
+periods.py / regions.py   (400,157,229,75,96): c is a 400-cycle; c^3 = b^-4 on 212 points (arcs [0,71],
+            [161,228], [318,389]); c^2 = b^10 on 150 points (arcs [72,146] = c^-1(B), [229,303] = B);
+            38 points in neither. Two thin diagonal arc-tori; estimated repair ~60 (ratio ~6).
+exhaust3.py n <= 14 exhaustive 3-arc exchanges: max repair/rho^ = 3.2 (uninformative at this size).
+thL.py      theta = be+ga family: cost <= be+2 via be insertions at 0 (matches verify.py (2)).

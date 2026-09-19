@@ -69,3 +69,32 @@ separate points.  Two remarks limit the search.
   of `C_T(r_1)` as a quotient of an amalgam of finite cyclic groups.  By item
   4 of `central-eigencorners-die-over-full-radical-quotients`, any single
   `C_T(r_k)` may be used instead of `T`.
+
+- **2026-09-19 (swarm-0917-w16-w16-ptl-follow, follow-through): criterion
+  found, target still open.**  The step requested above is done. The target
+  was not proved.
+  - *Presentation.* The Lochak--Schneps presentation of `T` is
+    `Z/4 * Z/3 / <<r_1, r_2, (ba)^5>>`, imported verbatim from
+    Funar--Kapoudjian Sec. 2.1 as `thompson-t-lochak-schneps-presentation`.
+    Its relators were checked in exact PL arithmetic with
+    `alpha = rot(1/4)` and `beta = C_cfp^(-1)`. `alpha, beta` generate `T`,
+    with CFP `A = baa`, `B = bab`, `C = bb`.
+  - *Criterion* (`thompson-t-mf-iff-opnorm-z4-z3-defect-gap-vanishes`).
+    `T` is not MF iff some `epsilon_0 > 0` makes every exact pair with
+    `A^4 = B^3 = 1` and defect `< epsilon_0` trivial. Each generator is
+    corrected by spectral rounding, and no amalgam alignment is needed.
+    `delta_1 = 2 sin(pi/12)`. The sufficiency half (gap implies full radical)
+    uses only the verified relators and generation.
+  - *Sandwich* (`thompson-t-pentagon-winding-sandwich`).
+    - `kappa([X, JXJ]) = 0` identically, since `J = a^2` conjugates `r_1` to
+      its inverse.
+    - `c_0 = r_P^12 (a^4)^(-15) (b^3)^(-20)` has Euler number `e = 1`.
+    - With Dadarlat's Theorem 3.2 (`T` is Haagerup, so it has a
+      gamma-element), this gives: this claim implies
+      `thompson-t-pentagon-winding-rigidity` (PW), and PW implies that `T` is
+      not quasidiagonal.
+    - `Delta(4,3,5)` shows that PW needs `r_1` or `r_2`.
+  - *What is left.* The target is the uniform gap. The first falsifiable
+    step is PW. A refutation of PW is a sequence of low-defect pairs with
+    `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
+    must use `r_2`.

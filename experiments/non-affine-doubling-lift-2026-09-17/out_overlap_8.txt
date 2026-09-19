@@ -1,0 +1,5 @@
+scale 8: period [1365.0, 1621.0) pieces 1649845 comps 81 (436s)
+  comps per period: 63  support measure per period: 32.839
+  k= 1: overlap comps 94 measure 6.93; w_k moves measure 1.19 in 154 comps, first at 1365.5
+  k= 2: overlap comps 35 measure 9.216; w_k moves measure 0.9691 in 121 comps, first at 1365.5
+  k= 3: overlap comps 37 measure 4.536; w_k moves measure 0.5931 in 85 comps, first at 1365.5

@@ -172,3 +172,11 @@ Status on main, by dimension:
   - *Next.* Run the certificate search over all of `T` (`shdomw 8 11`, sharded, `WMAX = 4`), which finishes `(8, 11)`.
     For a uniform proof, one also needs a hand rule for the `Z_0` witnesses, and a separate deletion for the top-shell
     points with `x_k = 1`.
+- 2026-09-19 (w12-103): *Cone ending* (`zn-rips-lifted-certificate-reduces-to-z0-deletion`). In `Lmax_k`,
+  `d(b, e_k) = |b| − 1` when `b_k ≥ 1` and `|b| + 1` when `b_k = 0`, so the only points outside `N[e_k]` are
+  those of `Z_0`. Once `Z_0` is deleted, the (D) moves `x | e_k` delete everything else, in any order.
+  - So Claim 6 of `zn-rips-top-shell-sign-hull-certificates` holds without its condition (b), and without Stage 2.
+    The 824 `(7, 7)` points with `x_7 = 1` that have no certificate never need one.
+  - The lifted route to the conjecture now needs one thing per level: a `Z_0`-certificate for each unbalanced
+    point of `Z_0(k, r)`, a partition of `r` into at most `k − 1` parts.
+  - *Next.* Certify all of `T` at `(8, 11)` (running), then find a uniform witness rule for `Z_0`.

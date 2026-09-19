@@ -136,3 +136,31 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
   - If `b_1` stays 54 along the whole tower, (TAP) on the 2-adic tower becomes a statement about
     torsion characters alone.
 - **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w16-w16-deligne-follow (census-computation): first torsion level Gamma(4,8) computed integrally, the torsion character kills nothing, d = 1/30, A_+ = 10
+
+- **What was computed.** See `mod-s2-igusa-torelli-census-is-one-thirtieth`, established through
+  `mod-s2-igusa-torelli-census-proof`.
+  - The 512-coset level-four Fox complex is lifted to a free `Z[F_2^4]`-complex for
+    `pi^(-1) Gamma(4,8)`, which has 8192 cosets.
+  - Elimination is done over the local ring `(Z/2^8)[F_2^4]`, where every odd-augmentation entry is a
+    unit.
+  - The direct 8192-coset elimination ran out of memory (over 11 GB); the equivariant one needs 11 minutes.
+- **Results.**
+  - `H_1 = Z^54 + Z/2`, so `k = 1` in (I48).
+  - There are 160 classes, one over each level-four class. The order-two torsion character is 1 on
+    76 of them.
+  - Still, `W(Gamma(4,8)) = W(Gamma(4))`: rank 106, and equal Gram determinant.
+  - `d = 1/30` with a mass-10 certificate, and `A_+ = 10`, up from the bound `{10, ..., 160}`.
+  - `d = 1/30` on the whole interval `Gamma(4,8) <= Gamma' <= Gamma(4)`.
+- **Reading.** The torsion-only failure mode of the 2-adic tower is live, since torsion characters do
+  occur and are nontrivial on twists. At its first occurrence it does not fire. On the twist classes the
+  new character agrees with a level-four real character, because `W(Gamma(4))` is saturated and `eps`
+  pairs evenly with it.
+- **Where it stops.**
+  - `M_8` has `|A| = 2^10`. The dense stage would need about `54 * 1024` integer columns over
+    `Z/2^m`, which is out of reach as written.
+  - The same code handles any `Gamma(8) <= Gamma' <= Gamma(4)` with `|Gamma(4)/Gamma'|` up to about
+    `2^5`. Such subgroups are not run here.
+  - No uniform argument is given.
+- **Status.** OPEN.

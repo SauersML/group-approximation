@@ -259,6 +259,45 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   - **Next.** Compute the monodromy `μ` of explicit loops for `N`. The fibre punctures are linear:
     `y_h(b) = −h(b)/h(ℓ)`. Then test whether the w14/w15 coincidences `[u,a] = [v,b]` already hold in `F_45`, or
     only modulo `R`. Coincidences that hold only modulo `R` are the one place a counterexample can live.
+- **Braid monodromy over the 45-point fibre: the w15 coincidence is exact in F_45** (w17-042,
+  `h4-w15-coincidence-lifts-to-f45-x-flats-block-local-lifts`; local obstruction and orbit bound proved,
+  monodromy computed and calibrated on `A_4` and `B_4`).
+  - **Tool.** Brieskorn loops have closed-form 46-strand monodromy, because the punctures move linearly.
+    Inequalities are certified by the Artin action, and equalities are randomized `SL_2(𝔽_p)` tests.
+  - **The X-flats lie in collision walls.** `L_{23}`, `L_{24}` and `L_{34}` lie in 9, 10 and 5 D-walls, while `L_{1j}`
+    lies in none.
+    - Near `L_{24}` the local group is `F_{11} × ℤ`, a retract of `B°`. In it the lifts of `s_2^2` and `s_4^2`
+      generate `F_2`.
+    - So `A_X` has no local lifts to `P°`. Brieskorn lifts fail every rank-2 relation except `(1,3)`, and they
+      depend on the base point.
+  - **The w15 tuple lifts exactly.** At base `(x_0, y_0)`, `[ũ,ã] = [ṽ,b̃] = k̃ ≠ 1` holds in `F_45`, as do all the
+    identities of its derivation. The same holds at 7 of 10 nearby base points, and fails at 24 of 24 random ones.
+    - So the one known H_4 coincidence with no vertex centre is not an only-mod-`R` coincidence.
+    - The w16 dichotomy must be read existentially (some lift is exact).
+  - **Why Helly does not transport verbatim.** `μ(B°)` has infinite index in `PB_45`, because its `H_1` rank is at
+    most 121 against 990. So the y-discs are a thin orbit `𝒟°`, not all discs.
+  - **Next.** Prove (Q1): the Z/2 Helly centre disc of three discs in `𝒟°` lies in `𝒟°`. The approach is to compute
+    the μ-images of the 121 meridians and the invariant `ι` of the hull disc. Otherwise, build a triple whose hull
+    leaves the orbit.
+- **Disc orbit invariant and (Q1) at the H_1 level** (w18-042, `h4-disc-orbit-invariant-closes-covered-helly-gluing`;
+  proposed-established, exact integer linear algebra).
+  - **Invariant.** Let `ι(D)_{a,j} = e_{F_a j} − e_{m j}` for `D = σΔ_F`. This is the winding number of outside puncture
+    `j` around the moved F-arc. It is well defined on discs, and point-pushes of `m` inside `D` do not change it.
+  - **Orbit lattice.** The 121 collision meridians act as cluster full twists. Together with the section winding
+    `(−1, …, −1)` they span `Λ`, which has rank 60 in `ℤ^{126}` and is saturated.
+    - So the orbit discs adjacent to `x_0` satisfy 66 integral equations.
+    - Calibration: 60 random pure words, all inside the span.
+  - **Gluing.** The Helly hull agrees with each pair disc on the F-arcs of that pair hull. So `ι(hull)` lies in the
+    glued lattice.
+    - The glued lattice equals `Λ` in all 23 feasible patterns where every F-pair shares a pair hull. This includes
+      `{01, 02, 12}`.
+    - It is strictly larger in all 15 uncovered patterns: rank 62 or 67.
+    - `B_4` and `D_4` show the same 15 gaps, so an uncovered pattern alone is not a counterexample.
+  - **Next.** Prove or refute pair covering: in a Helly triple, any two F-punctures in the hull lie in a common pair
+    hull.
+    - If it holds, only non-abelian obstructions to (Q1) remain. Test them with 7-strand forgetful shadows through
+      `r_{29}, r_{33}, r_{35}`.
+    - If it fails, the realising triple is the (H'') candidate.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

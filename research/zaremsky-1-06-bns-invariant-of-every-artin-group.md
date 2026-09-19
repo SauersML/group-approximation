@@ -44,3 +44,19 @@ bounded; MathSciNet not reached).
   exact statements from Escartín-Ferrer arXiv:2501.08692v3 §1–§4. Work toward
   the missing inclusion (disconnected living subgraph implies `[χ]` not in `Σ^1`)
   is recorded under `artin-sigma1-is-connected-dominant-living-subgraph`.
+- 2026-09-19 (swarm-0917-w16-w16-z-follow): the whole class of 2x2 dead joins is
+  decided in `artin-2x2-dead-joins-sigma1-iff-k-q-odd-family`. These are `K_4` with
+  `l(ab) = l(ce) = 2` and all cross labels even, at the dead character.
+  - Membership holds exactly for the odd `K_q` family: three half-labels `2`, the
+    fourth odd.
+  - Every other case is outside `Σ^1`. The witness is an explicit representation
+    of dimension 1, 2 or `p` with positive twisted Alexander rank.
+  - Lessons for a corrected formula:
+    - Within this class the conjecture fails only on the odd `K_q` family, so the
+      rule must include arithmetic of the half-labels.
+    - Dead-edge rings do not detect all non-members: for halves `(2, q, 2, p)` with
+      `gcd(q, p) = 1` every ring witness is zero. The non-membership side of any
+      corrected formula has to be proved with module witnesses (twisted Alexander
+      rank), not rings.
+  - Still open: joins with larger cliques, dead cuts that are not joins, and general
+    graphs. No corrected explicit formula for all Artin groups is proposed yet.

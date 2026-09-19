@@ -1,0 +1,28 @@
+one-row 3-arc exchanges c = arcx(n,th,al,be,ga), b = +1 on Z/n   (w19-124, 2026-09-19)
+profiles: rho^ = moved-based max_{s,t<=W} moved([b^s,c^t])/(s+t)  (Lambda <= rho^ <= 2 Lambda by (R));
+          Lambda^ = rank-based (rankprof.py), W as stated; truelam.py uses all s,t.
+repairs:  swap = one slit-pair swap from a cone point (swap.py greedy / chain2.c single-swap, cost = max rank change);
+          excision m = c is the first return of +r on Z/(n+m) to the complement of [0,m) (cost <= 2m+2; excrep.py);
+          rotation = c' = +r, cost = #disagreements.
+
+157 example (400,157,229,75,96): one swap of length 7, distance <= 4, moved-profile ~9.9 (t157.py).
+
+exhaustive, 6-fold symmetry classes with rho^ <= cut (exh.py, rep3.py; ratio.awk, maxcost.awk):
+  n=40  rho^<=2.5 W 8 : 530 classes, 0 unrepaired, max cost 6, max cost/rho^ 3          (rep3_40.txt)
+  n=60  cut 3   W 8 : 2778 classes, 0 unrepaired, max cost 6 (<=2.5), 8 (<=3.0), ratio 3 (rep3_60.txt)
+  n=100 cut 3   W 8 : 7513 classes, 2 unrepaired at swap length 8: (2,1,84,15),(2,1,18,81);
+                      both repaired by one swap of length 9 at cost 6 (chain2 0 9). max cost 6, ratio 3.
+                      (rep3_100.txt, 206 KB, not landed)
+
+random (scanC.py seed n N W Lmax 0), single swap L <= 13:
+  n=200 (seed 2, 250 classes, W 25): 233 repaired, cost <= 12, max cost/Lambda^ = 1.89; 17 unrepaired.
+    of the 17 (fail200 list; failexc.py 30 -> no excision m <= 30 for any; truelam.py full Lambda):
+      rotation repairs, cost 5,5,6,14: (14,195,1,4) (186,195,2,3) (124,194,5,1) (185,186,9,5)
+      (93,120,1,79) Lambda 4.94: one swap of length 15, cost 10 (chain2 0 16, hard200.txt)
+      open (no repair found), full Lambda: (116,170,29,1) 5.46 [no swap L<=16]  (31,32,66,102) 5.47 [no swap L<=16]
+        (64,36,15,149) 6.40  (82,3,139,58) 6.48  (36,157,4,39) 8.11  (63,151,3,46) 8.21  (134,69,124,7) 8.00
+        (53,80,94,26) 8.63  (133,41,48,111) 8.67  (26,106,13,81) 8.70  (186,104,28,68) 8.84  (98,8,153,39) 9.26
+  n=400 (seed 3, 108 classes, W 30): 68 repaired (cost <= 10, ratio <= 1); failures all at Lambda^ >= 9
+    (2 at 9, 6 at 10, 13 at 11, 15 at 12 among 40), i.e. near generic sqrt(n)/2 = 10, beyond swap length 13.
+
+E(a,k) (texc.py): bounded profile, best swap grows with a; excision m = k repairs it -> padding is necessary.

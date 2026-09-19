@@ -50,3 +50,9 @@ remaining `n` need a different bound on `c_m` or windows of more than `k + 1` ve
   - The windows `P_{k+2}^k` have 14 (`k = 5`), 20 (`k = 6`) and 27 (`k = 7`) free phases after
     gauging, too many for the phase branch-and-bound of
     `experiments/hermitian-edge-trace-norm-webs-robust-2026-09-18/graphbb_r.py`.
+- 2026-09-19 (w11-078): 27 of the 35 open `k = 5` values are closed by
+  `hermitian-edge-trace-norm-web-rank-k5-weighted-pendant`, using the vertex-weighted window
+  `{0, 1, 2, 3, 4, 9}` (`K_5` plus a pendant vertex). For `k = 5`, `n = 13-17, 22, 23, 29` remain.
+- 2026-09-19 (w11-078): `hermitian-edge-trace-norm-web-rank-k5-n22-n29` closes `n = 22, 29` for
+  `k = 5` with the certificate `c(H, w) >= 6.2829`. For `k = 5`, `n = 13-17, 23` remain; for
+  `n = 16, 17, 23` the needs exceed the numerical density `1.5067` of the window `{0, 1, 2, 3, 4, 9}`.

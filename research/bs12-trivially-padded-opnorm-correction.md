@@ -217,3 +217,28 @@ family.  The claim stays **OPEN**.
     `1_N`.
   - The wave-14 twisted-clock census has limit trace `tau_reg`.  So it is
     exactly a test of Q3_full, and a positive liminf would refute TPC.
+- 2026-09-19 (swarm-0917-w16-w16-ptm-break): *twist-free bases are a dead
+  end.  The dyadic ladder reduction is new.*  See
+  `bs12-sharp-pair-dyadic-scale-ladder`.
+  - *Tried.* Correcting the sharp pair with exact pairs whose base has order
+    `M`, where `3` does not divide `M`, so that `Z^(N/3)` is not available as
+    a twist. At `N = 27`, `s = 0.1` the census gives:
+    - `M = 25`: `0.664`;
+    - `M = 23`: `0.795`;
+    - control `M = 27`: `0.147`.
+  - *Where it dies.* First, the premise is false in general. Every
+    squaring-equivariant `mu_3`-colouring `f` of `spec Z` gives the twist
+    `f(Z)`, and such colourings exist exactly on squaring orbits of even
+    length. For example, `M = 25` has orbits of lengths `4` and `20`. Second,
+    the genuinely twist-free bases (for example `M = 23`, whose orbit length
+    is `11`) cannot be aligned with `D`: the cycle types of `x2` differ. They
+    come out farther still.
+  - *Proved on the way.* The telescoping gauge `h = exp(-is sum_{k<K} H_(2^k))`
+    gives `h^* A_s h = W e^(isH_(2^K))` exactly and moves `D` by at most
+    `4 pi s (2^K - 1)/N`. So `d(s,N)` equals `dist((A_s, D^R), exact)` up to
+    `4 pi s R/N` for every dyadic `R << N/s`. The Livsic series diverges at
+    the doubling fixed point, which is why the reduction stops there.
+  - *Belief update.* The census minimisers keep an order-`N` base and are
+    twist-incoherent. A counterexample to Q3 therefore needs a lower bound
+    over order-`N` bases with scrambled mod-3 structure. Removing the twist
+    does not help.

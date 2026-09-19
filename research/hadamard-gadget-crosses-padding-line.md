@@ -59,3 +59,21 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
   `k <= 5` (2026-09-18, swarm-0917-w11-w11-ugc-break). It is inconclusive
   from `k = 7` on, because random words sit at normalized distance about
   `0.374` from `RM(1,7)`, above the threshold of about `0.337`.
+* **Folding-gap decomposition and a k = 4 census.** Done 2026-09-19 by
+  swarm-0917-w16-w16-ugc-break. It leaves this node OPEN, with a new
+  necessary condition.
+  * **The necessary condition.** `hadamard-crossing-needs-folding-gap` shows
+    `R*(k) <= K z_U(k) + eta_k <= 2 + eta_k`. Here `z_U` is Wiman's relaxed
+    value, capped at `2` by Martinsson Proposition 49(c), and `eta_k` is the
+    largest edge mass inside the non-folded locus of an optimal relaxed
+    adversary. So a witness at `k` needs `eta_k > R*(k) - 2`.
+  * **The measured gap.** The folding gap is `0` at `k = 3`, where both sides
+    are exactly `11/8`.
+  * **The k = 4 window.** `hadamard-gadget-ratio-k4-sandwich` gives
+    `1.45685 <= R*(4) <= 1.534727`. The upper bound is an exact rational
+    mixture of folded adversaries and replaces `1.6583`.
+  * **The failing step.** The gap is not known to be positive anywhere,
+    because folded pricing is only heuristic. That question is
+    `hadamard-gadget-k4-true-soundness-beats-wiman`.
+  * **What this does not decide.** Nothing here moves `k >= 6`, since the
+    `k = 5` census, with `2^31` variables, is out of reach for this code.

@@ -1,0 +1,3 @@
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 polygons 7845762 7845762 darts shifted 216 max R 48586
+max polygon charge 0 z'_norm 43609 max window charge 0
+BRUTE FARKAS VERIFIED

@@ -1,0 +1,205 @@
+# results.txt: outputs of the scripts in this directory (syntax warnings stripped; lines re-wrapped by GAP kept).
+# G = H4(3)/<<[a,c]^2>>; ords are the orders of the images of (a,b,c,d); 'layer x/y' = kept/full dimension.
+
+== b2: pqx.g on Gamma_1 = G/<<b^2>> (EpimorphismPGroup, class by class)
+                                              ^^^
+b2 class 1 actual 1 |P| = 2^4 ords [ 2, 2, 2, 2 ] s 0
+b2 class 2 actual 2 |P| = 2^9 ords [ 4, 2, 4, 4 ] s 0
+b2 class 3 actual 3 |P| = 2^16 ords [ 8, 2, 8, 8 ] s 0
+b2 class 4 actual 4 |P| = 2^24 ords [ 16, 2, 8, 16 ] s 0
+b2 class 5 actual 5 |P| = 2^36 ords [ 16, 2, 8, 32 ] s 0
+b2 class 6 actual 6 |P| = 2^52 ords [ 16, 2, 8, 32 ] s 0
+b2 class 7 actual 7 |P| = 2^78 ords [ 32, 2, 8, 32 ] s 0
+b2 class 8 actual 8 |P| = 2^113 ords [ 32, 2, 8, 32 ] s 0
+b2 class 9 actual 9 |P| = 2^172 ords [ 64, 2, 8, 32 ] s 0
+b2 class 10 actual 10 |P| = 2^258 ords [ 64, 2, 8, 32 ] s 2
+b2 class 11 actual 11 |P| = 2^396 ords [ 64, 2, 8, 32 ] s 9
+b2 class 12 actual 12 |P| = 2^608 ords [ 128, 2, 8, 32 ] s 35
+
+== b4: pqx.g on Gamma_2 = G/<<b^4>>
+                                              ^^^
+b4 class 1 actual 1 |P| = 2^4 ords [ 2, 2, 2, 2 ] s 0
+b4 class 2 actual 2 |P| = 2^10 ords [ 4, 4, 4, 4 ] s 0
+b4 class 3 actual 3 |P| = 2^18 ords [ 8, 4, 8, 8 ] s 0
+b4 class 4 actual 4 |P| = 2^29 ords [ 16, 4, 16, 16 ] s 0
+b4 class 5 actual 5 |P| = 2^45 ords [ 16, 4, 16, 32 ] s 0
+b4 class 6 actual 6 |P| = 2^69 ords [ 16, 4, 16, 64 ] s 0
+b4 class 7 actual 7 |P| = 2^111 ords [ 32, 4, 16, 64 ] s 0
+b4 class 8 actual 8 |P| = 2^173 ords [ 32, 4, 16, 64 ] s 0
+b4 class 9 actual 9 |P| = 2^283 ords [ 64, 4, 16, 64 ] s 2
+b4 class 10 actual 10 |P| = 2^457 ords [ 64, 4, 16, 64 ] s 10
+b4 class 11 actual 11 |P| = 2^762 ords [ 64, 4, 16, 64 ] s 46
+
+== bd: grow2.g+loop2.g on G'' = G/<<[b,d]^2>>, full layers (KEEP large), with FINAL recheck
+bd class 2 layer 6/6 |P| = 2^10 ords [ 4, 4, 4, 4 ] s 0
+bd class 3 layer 8/8 |P| = 2^18 ords [ 8, 8, 8, 8 ] s 0
+bd class 4 layer 10/10 |P| = 2^28 ords [ 16, 16, 16, 16 ] s 0
+bd class 5 layer 12/12 |P| = 2^40 ords [ 16, 16, 16, 16 ] s 0
+bd class 6 layer 18/18 |P| = 2^58 ords [ 16, 16, 16, 16 ] s 0
+bd class 7 layer 36/36 |P| = 2^94 ords [ 32, 32, 32, 32 ] s 0
+bd class 8 layer 46/46 |P| = 2^140 ords [ 32, 32, 32, 32 ] s 0
+bd class 9 layer 88/88 |P| = 2^228 ords [ 64, 64, 64, 64 ] s 1
+bd class 10 layer 128/128 |P| = 2^356 ords [ 64, 64, 64, 64 ] s 4
+bd class 11 layer 223/223 |P| = 2^579 ords [ 128, 128, 128, 128 ] s 21
+bd FINAL class 11 |P| = 2^579 relators hold: true ords recomputed 
+[ 128, 128, 128, 128 ] generate: true
+exit 0
+
+== bdf: grow2.g+loop2.g/loop3.g on G'' (checkpointed continuation)
+bdf class 2 layer 6/6 |P| = 2^10 ords [ 4, 4, 4, 4 ] s 0
+bdf class 3 layer 8/8 |P| = 2^18 ords [ 8, 8, 8, 8 ] s 0
+bdf class 4 layer 10/10 |P| = 2^28 ords [ 16, 16, 16, 16 ] s 0
+bdf class 5 layer 12/12 |P| = 2^40 ords [ 16, 16, 16, 16 ] s 0
+bdf class 6 layer 18/18 |P| = 2^58 ords [ 16, 16, 16, 16 ] s 0
+bdf class 7 layer 36/36 |P| = 2^94 ords [ 32, 32, 32, 32 ] s 0
+bdf class 8 layer 46/46 |P| = 2^140 ords [ 32, 32, 32, 32 ] s 1
+bdf class 9 layer 88/88 |P| = 2^228 ords [ 64, 64, 64, 64 ] s 1
+bdf class 10 layer 128/128 |P| = 2^356 ords [ 64, 64, 64, 64 ] s 5
+bdf class 11 layer 223/223 |P| = 2^579 ords [ 128, 128, 128, 128 ] s 22
+bdf class 12 layer 347/347 |P| = 2^926 ords [ 128, 128, 128, 128 ] s 121
+resume4 0 05:05:45
+bdf class 13 phase define s 0
+bdf class 13 phase tails s 0
+
+== bd4: grow2.g+loop2.g/loop3.g on G''/<<b^4>> (checkpointed)
+bd4 class 2 layer 6/6 |P| = 2^10 ords [ 4, 4, 4, 4 ] s 0
+bd4 class 3 layer 7/7 |P| = 2^17 ords [ 8, 4, 8, 8 ] s 0
+bd4 class 4 layer 9/9 |P| = 2^26 ords [ 16, 4, 16, 16 ] s 0
+bd4 class 5 layer 11/11 |P| = 2^37 ords [ 16, 4, 16, 16 ] s 0
+bd4 class 6 layer 16/16 |P| = 2^53 ords [ 16, 4, 16, 16 ] s 0
+bd4 class 7 layer 30/30 |P| = 2^83 ords [ 32, 4, 16, 32 ] s 0
+bd4 class 8 layer 39/39 |P| = 2^122 ords [ 32, 4, 16, 32 ] s 0
+bd4 class 9 layer 71/71 |P| = 2^193 ords [ 64, 4, 16, 64 ] s 1
+bd4 class 10 layer 102/102 |P| = 2^295 ords [ 64, 4, 16, 64 ] s 4
+bd4 class 11 layer 173/173 |P| = 2^468 ords [ 64, 4, 16, 64 ] s 13
+bd4 class 12 layer 265/265 |P| = 2^733 ords [ 128, 4, 16, 64 ] s 57
+bd4 class 13 layer 451/451 |P| = 2^1184 ords [ 128, 4, 16, 64 ] s 254
+resume 0
+resume4 0 05:05:43
+bd4 class 14 phase define s 0
+bd4 class 14 phase tails s 1
+
+== E: pqE.g on E = G'' x| <sigma>, 2-generator presentation
+E class 1 |P| = 2^2 ord(a) 2 ord(s) 2 s 0
+E class 2 |P| = 2^4 ord(a) 2 ord(s) 4 s 0
+E class 3 |P| = 2^6 ord(a) 4 ord(s) 4 s 0
+E class 4 |P| = 2^7 ord(a) 4 ord(s) 4 s 0
+E class 5 |P| = 2^9 ord(a) 4 ord(s) 4 s 0
+E class 6 |P| = 2^11 ord(a) 4 ord(s) 4 s 0
+E class 7 |P| = 2^13 ord(a) 8 ord(s) 4 s 0
+E class 8 |P| = 2^15 ord(a) 8 ord(s) 4 s 0
+E class 9 |P| = 2^17 ord(a) 8 ord(s) 4 s 0
+E class 10 |P| = 2^19 ord(a) 8 ord(s) 4 s 0
+E class 11 |P| = 2^22 ord(a) 16 ord(s) 4 s 0
+E class 12 |P| = 2^25 ord(a) 16 ord(s) 4 s 0
+E class 13 |P| = 2^28 ord(a) 16 ord(s) 4 s 0
+E class 14 |P| = 2^31 ord(a) 16 ord(s) 4 s 0
+E class 15 |P| = 2^34 ord(a) 16 ord(s) 4 s 0
+E class 16 |P| = 2^38 ord(a) 16 ord(s) 4 s 0
+exit 0
+
+== m8: mono.g from P_8(Gamma_1), then check-model.g on the saved model (model-b1-a32-pc.g = m8-pc.g)
+m8 start |Q| = 2^113 ords [ 32, 2, 8, 32 ]
+                                                  ^
+                                                           ^
+m8 |Q| = 2^78 soc rank 36 ords [ 32, 2, 8, 32 ] s 0
+m8 |Q| = 2^53 soc rank 26 ords [ 32, 2, 8, 32 ] s 0
+m8 |Q| = 2^38 soc rank 16 ords [ 32, 2, 8, 32 ] s 0
+m8 |Q| = 2^27 soc rank 12 ords [ 32, 2, 8, 16 ] s 0
+m8 |Q| = 2^20 soc rank 8 ords [ 32, 2, 4, 8 ] s 0
+m8 |Q| = 2^17 soc rank 4 ords [ 32, 2, 4, 8 ] s 0
+m8 |Q| = 2^15 soc rank 3 ords [ 32, 2, 2, 8 ] s 0
+m8 |Q| = 2^14 soc rank 2 ords [ 32, 1, 2, 8 ] s 0
+m8 |Q| = 2^14 soc rank 1 ords [ 32, 1, 2, 8 ] s 0
+exit 0
+m8-pc.g |MQ| = 2^14 is 2-group: true relators hold: true generated: true ords 
+[ 32, 1, 2, 8 ] socle rank 1
+
+== m12x: mono.g from P_12(Gamma_1), then check-model.g on the saved model (model-b2-a128-pc.g = m12x-pc.g)
+m12x start |Q| = 2^608 ords [ 128, 2, 8, 32 ]
+                                                  ^
+                                                           ^
+m12x |Q| = 2^397 soc rank 212 ords [ 128, 2, 8, 32 ] s 5
+m12x |Q| = 2^262 soc rank 136 ords [ 128, 2, 8, 32 ] s 53
+m12x |Q| = 2^181 soc rank 82 ords [ 128, 2, 8, 32 ] s 67
+m12x |Q| = 2^131 soc rank 51 ords [ 128, 2, 8, 32 ] s 72
+m12x |Q| = 2^114 soc rank 18 ords [ 128, 2, 8, 32 ] s 74
+m12x |Q| = 2^111 soc rank 4 ords [ 128, 2, 8, 32 ] s 76
+m12x |Q| = 2^111 soc rank 1 ords [ 128, 2, 8, 32 ] s 76
+exit 0
+m12x-pc.g |MQ| = 2^
+111 is 2-group: true relators hold: true generated: true ords [ 128, 2, 8, 32 
+ ] socle rank 1
+
+== s4: grow2.g on G with random layer truncation, KEEP = 4 (dead end)
+s4 class 2 layer 4/5 |P| = 2^8 ords [ 4, 2, 4, 4 ] s 0
+s4 class 3 layer 4/6 |P| = 2^12 ords [ 8, 2, 8, 8 ] s 0
+s4 class 4 layer 4/6 |P| = 2^16 ords [ 16, 2, 8, 16 ] s 0
+s4 class 5 layer 4/4 |P| = 2^20 ords [ 16, 2, 8, 16 ] s 0
+s4 class 6 layer 4/7 |P| = 2^24 ords [ 16, 2, 8, 16 ] s 0
+s4 class 7 layer 4/9 |P| = 2^28 ords [ 16, 2, 8, 16 ] s 0
+s4 class 8 layer 4/9 |P| = 2^32 ords [ 16, 2, 8, 16 ] s 0
+s4 class 9 layer 4/7 |P| = 2^36 ords [ 16, 2, 8, 16 ] s 0
+s4 class 10 layer 4/8 |P| = 2^40 ords [ 32, 2, 8, 16 ] s 0
+s4 class 11 layer 4/7 |P| = 2^44 ords [ 32, 2, 8, 16 ] s 0
+s4 class 12 layer 4/9 |P| = 2^48 ords [ 32, 2, 8, 16 ] s 0
+s4 class 13 layer 4/10 |P| = 2^52 ords [ 32, 2, 8, 16 ] s 0
+s4 class 14 layer 4/8 |P| = 2^56 ords [ 32, 2, 8, 16 ] s 1
+s4 FINAL class 14 |P| = 2^56 relators hold: true ords recomputed 
+[ 32, 2, 8, 16 ] generate: true
+exit 0
+
+== s8: grow2.g on G with random layer truncation, KEEP = 8 (dead end)
+s8 class 2 layer 5/5 |P| = 2^9 ords [ 4, 2, 4, 4 ] s 0
+s8 class 3 layer 7/7 |P| = 2^16 ords [ 8, 2, 8, 8 ] s 0
+s8 class 4 layer 8/8 |P| = 2^24 ords [ 16, 2, 8, 16 ] s 0
+s8 class 5 layer 8/12 |P| = 2^32 ords [ 16, 2, 8, 32 ] s 0
+s8 class 6 layer 8/11 |P| = 2^40 ords [ 16, 2, 8, 32 ] s 0
+s8 class 7 layer 8/13 |P| = 2^48 ords [ 16, 2, 8, 32 ] s 0
+s8 class 8 layer 8/12 |P| = 2^56 ords [ 16, 2, 8, 32 ] s 0
+s8 class 9 layer 8/11 |P| = 2^64 ords [ 16, 2, 8, 32 ] s 0
+s8 class 10 layer 8/12 |P| = 2^72 ords [ 32, 2, 8, 32 ] s 1
+s8 class 11 layer 8/11 |P| = 2^80 ords [ 32, 2, 8, 32 ] s 2
+s8 class 12 layer 8/13 |P| = 2^88 ords [ 32, 2, 8, 32 ] s 3
+s8 class 13 layer 8/15 |P| = 2^96 ords [ 32, 2, 8, 32 ] s 4
+s8 class 14 layer 8/14 |P| = 2^104 ords [ 32, 2, 8, 32 ] s 6
+s8 FINAL class 14 |P| = 2^104 relators hold: true ords recomputed 
+[ 32, 2, 8, 32 ] generate: true
+exit 0
+
+== s16: grow2.g on G with random layer truncation, KEEP = 16 (dead end)
+s16 class 2 layer 5/5 |P| = 2^9 ords [ 4, 2, 4, 4 ] s 0
+s16 class 3 layer 7/7 |P| = 2^16 ords [ 8, 2, 8, 8 ] s 0
+s16 class 4 layer 8/8 |P| = 2^24 ords [ 16, 2, 8, 16 ] s 0
+s16 class 5 layer 12/12 |P| = 2^36 ords [ 16, 2, 8, 32 ] s 0
+s16 class 6 layer 16/16 |P| = 2^52 ords [ 16, 2, 8, 32 ] s 0
+s16 class 7 layer 16/26 |P| = 2^68 ords [ 32, 2, 8, 32 ] s 0
+s16 class 8 layer 14/14 |P| = 2^82 ords [ 32, 2, 8, 32 ] s 0
+s16 class 9 layer 16/33 |P| = 2^98 ords [ 32, 2, 8, 32 ] s 1
+s16 class 10 layer 16/18 |P| = 2^114 ords [ 32, 2, 8, 32 ] s 3
+s16 class 11 layer 16/42 |P| = 2^130 ords [ 64, 2, 8, 32 ] s 7
+s16 class 12 layer 16/28 |P| = 2^146 ords [ 64, 2, 8, 32 ] s 12
+s16 class 13 layer 16/32 |P| = 2^162 ords [ 64, 2, 8, 32 ] s 20
+s16 class 14 layer 16/21 |P| = 2^178 ords [ 64, 2, 8, 32 ] s 31
+s16 FINAL class 14 |P| = 2^178 relators hold: true ords recomputed 
+[ 64, 2, 8, 32 ] generate: true
+exit 0
+
+== permsmall.g on model-b1-a32-pc.g (writes model-b1-a32-perm.g)
+try 1 degree 256
+degree 256 ords [ 32, 1, 2, 8 ] relators [ true, true, true, true, true 
+ ] |image| = 2^14 cycle type of a [ 32 ]
+
+== permsmall.g on model-b2-a128-pc.g: first try degree 151115727451828646838272 (no small action found; the 2^111 model is certified as a pc group only)
+
+== check-model.g on the two saved models
+model-b1-a32-pc.g |MQ| = 2^
+14 is 2-group: true relators hold: true generated: true ords 
+[ 32, 1, 2, 8 ] socle rank 1
+model-b2-a128-pc.g |MQ| = 2^
+111 is 2-group: true relators hold: true generated: true ords [ 128, 2, 8, 32 
+ ] socle rank 1
+
+== later loop3.g lines (checkpointed continuation)
+bdf.out:bdf class 13 layer 600 |P| = 2^1526 ords [ 128, 128, 128, 128 ] lift s 211
+bd4.out:bd4 class 13 layer 451/451 |P| = 2^1184 ords [ 128, 4, 16, 64 ] s 254

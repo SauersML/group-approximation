@@ -1,0 +1,1201 @@
+{"pat": "30_30", "idx": 10, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "30_30", "idx": 16, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "31_30", "idx": 26, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "31_31", "idx": 12, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 14, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 16, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 23, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 55, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 57, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 59, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 60, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 61, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 62, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 68, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 70, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 72, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 74, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 75, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 76, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 77, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 80, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 81, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 86, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 103, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 106, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 114, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "40_30", "idx": 116, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 117, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 118, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 119, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_30", "idx": 155, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 55, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 74, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "41_30", "idx": 80, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 113, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 132, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "41_30", "idx": 138, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 159, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 167, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 168, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 169, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 170, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_30", "idx": 171, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_31", "idx": 90, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "41_31", "idx": 94, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "41_31", "idx": 99, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_31", "idx": 112, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_31", "idx": 113, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_31", "idx": 114, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_31", "idx": 115, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_30", "idx": 61, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_30", "idx": 87, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_31", "idx": 67, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_31", "idx": 69, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 25, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 28, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 31, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 35, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 38, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 45, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 49, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 56, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 57, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 58, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 59, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 61, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 75, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 76, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 77, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 107, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 116, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 117, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 120, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 122, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 124, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 125, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 126, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 127, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 128, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 140, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 175, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 176, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 177, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 178, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 179, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 180, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 181, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 182, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 183, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 184, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 186, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 188, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 189, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 190, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 191, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 192, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 193, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 196, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 199, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 205, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 207, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 211, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 212, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 213, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 214, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 215, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 216, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 217, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 218, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 219, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 220, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 221, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 222, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 224, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 226, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 227, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 228, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 229, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 230, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 231, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 232, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 233, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 235, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 241, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 242, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 243, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 244, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 247, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 248, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 253, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 255, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 256, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 259, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 261, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 262, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 263, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 264, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 265, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 267, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 271, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 272, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 281, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 282, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 284, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 288, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 289, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 290, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 291, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 292, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 293, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 294, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 301, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 305, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 306, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 307, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 309, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 312, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 313, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 314, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 315, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 316, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 317, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 318, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 319, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 320, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 321, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 323, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 325, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 326, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 327, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 328, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 329, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 330, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 332, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 333, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 338, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 340, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 342, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 345, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 352, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 354, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 355, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 357, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 387, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 389, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 392, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 394, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 395, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 396, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 397, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 398, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 399, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 400, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 401, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 402, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 403, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 404, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 409, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 414, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 421, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 424, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 426, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 427, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 428, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 430, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 431, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 432, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 433, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 434, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 435, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 436, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 437, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 443, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 444, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 445, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 446, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 447, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 467, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 471, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 476, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 487, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 488, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 489, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 490, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 491, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 492, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 495, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 497, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 498, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 500, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 502, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 503, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 504, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 505, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 506, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 508, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 509, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 510, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 511, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 512, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 513, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 514, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 515, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 516, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 517, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 518, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 519, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 520, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 521, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 522, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 523, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 524, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 525, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 531, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 535, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 536, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 537, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 538, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 539, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 540, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 541, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 542, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 543, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 544, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 545, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 546, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 550, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 551, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 552, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 553, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 554, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 555, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 556, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 559, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 562, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 568, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 571, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 572, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 588, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 590, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 592, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 594, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 604, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 605, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 606, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 607, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 608, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 624, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 625, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 626, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 627, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 628, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 629, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 630, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 631, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 636, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 637, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 638, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 688, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 689, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 694, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 695, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 696, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 701, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 702, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 703, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 704, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 724, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 726, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 727, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 728, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 729, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 730, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "40_40", "idx": 732, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 733, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 734, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 735, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 736, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 737, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 738, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 739, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 740, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 741, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 742, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 743, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 744, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 745, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 746, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 747, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 748, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 749, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 750, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 751, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 752, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 753, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 755, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 756, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 757, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 759, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 762, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "40_40", "idx": 763, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 764, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 766, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 767, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 768, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 769, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 770, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 771, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 772, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 773, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 775, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 776, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 797, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "40_40", "idx": 817, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "40_40", "idx": 818, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 150, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 165, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 179, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 180, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 182, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 219, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 221, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 222, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 226, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 229, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 230, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 239, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 254, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 268, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 269, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 271, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 364, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 366, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 381, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 395, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 396, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 398, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 404, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 425, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 449, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 462, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 464, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 465, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 467, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 468, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 470, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 471, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 472, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 473, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 474, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 475, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 476, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 478, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 487, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 489, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 504, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 518, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 519, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 521, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 527, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 548, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 572, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 579, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 590, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 591, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 593, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 601, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 604, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 609, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 622, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 628, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 633, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 634, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 635, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 636, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 637, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 638, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 639, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 640, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 641, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 642, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 643, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 644, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 645, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 646, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 647, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 648, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 649, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 650, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 651, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 652, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 653, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 654, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 655, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 656, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 658, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 659, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 660, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 693, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 708, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 722, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 723, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 725, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 762, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 764, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 765, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 769, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 772, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 773, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 782, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 797, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 811, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 812, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 814, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 853, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 854, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 856, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 857, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 859, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 862, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 863, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 864, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 865, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 867, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 870, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 875, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 883, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 884, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 885, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 886, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 887, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 888, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 889, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 890, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 891, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 892, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 893, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 895, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 896, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 897, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 898, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 899, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 900, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 901, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 902, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 903, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 904, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 905, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 906, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 907, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 908, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 909, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 910, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 911, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 912, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 913, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 914, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 915, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 916, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 917, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 918, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 919, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 920, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 921, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 922, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 923, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 924, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 926, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 933, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 948, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 957, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 976, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 979, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 980, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 981, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 982, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 983, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 991, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 1000, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1013, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1018, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1029, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1030, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1041, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1076, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1077, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 1081, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1084, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1085, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1086, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1087, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 1088, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1096, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 1098, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_40", "idx": 1106, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1107, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1109, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1118, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1123, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1124, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1147, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1148, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1149, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1150, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1151, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1152, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1153, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1154, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1155, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1156, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1157, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1158, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1159, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1160, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1161, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1162, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1163, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1164, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1165, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1166, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1167, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1168, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1169, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1170, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1171, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1172, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1173, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1176, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1177, "QB": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1182, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1183, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1184, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1185, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1186, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_40", "idx": 1193, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "41_40", "idx": 1208, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_40", "idx": 1217, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 86, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 95, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 230, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 249, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 255, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 276, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 382, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 391, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 402, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 404, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 410, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 416, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 418, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 420, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 422, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 423, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 424, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 425, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 427, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 432, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 434, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 440, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 446, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 447, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 448, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 454, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 460, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 461, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 462, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 468, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 469, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 470, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 476, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 478, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 481, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 482, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 483, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 485, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 494, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 512, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "41_41", "idx": 521, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 522, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 523, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 524, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 525, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 526, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 527, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 528, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 529, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 530, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 531, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 532, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 533, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 534, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 535, "QB": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 536, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 537, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "41_41", "idx": 538, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 539, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "41_41", "idx": 540, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [4, 8], "Q": "[ 2 ] 2"}}
+{"pat": "42_40", "idx": 106, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 144, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 157, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 159, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 161, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 185, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 232, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 265, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 284, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 287, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 288, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "42_40", "idx": 289, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 290, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "42_40", "idx": 291, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 292, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 308, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 345, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 348, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 354, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 370, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 376, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 377, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 378, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 379, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 380, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 381, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 382, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 384, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 385, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 414, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 424, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 426, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 433, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 450, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 453, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 455, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 462, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 463, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 464, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 465, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 466, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 467, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 469, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 470, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 471, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 472, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 474, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 508, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 522, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 524, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "42_40", "idx": 532, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_40", "idx": 535, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 88, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 114, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 137, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 190, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 231, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 248, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 311, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 318, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 319, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 368, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 380, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 391, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 416, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 429, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 434, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 443, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 444, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 448, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "42_41", "idx": 449, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}}
+{"pat": "42_41", "idx": 450, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 451, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 452, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 453, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 456, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 459, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 463, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 464, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 466, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 468, "QB": {"orbits": [4, 8], "Q": "[ 2 ] 2"}, "QA": {"orbits": [3, 3, 6], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 474, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 475, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 479, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 480, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 485, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 486, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 487, "QB": {"orbits": [1, 1, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 494, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 495, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 497, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 500, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 501, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 532, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [3, 3, 3, 3], "Q": "[ 0 ] -1"}}
+{"pat": "42_41", "idx": 533, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 534, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 536, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_41", "idx": 544, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 44, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 77, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 94, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 97, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 98, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "42_42", "idx": 102, "QB": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "42_42", "idx": 106, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 4, 4], "Q": "[ 0 ] -1"}}
+{"pat": "42_42", "idx": 114, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 14, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 16, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 23, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 55, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 57, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 59, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 60, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 61, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 62, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 68, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 70, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 72, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 74, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 75, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 76, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 77, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 80, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 81, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 86, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 103, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 106, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 114, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 116, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 117, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 118, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 119, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 155, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 167, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 169, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 174, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 176, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 178, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 179, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 187, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 209, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 236, "QB": {"orbits": [10, 10], "Q": "[  ] 1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 238, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 240, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 241, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 242, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 243, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 247, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 248, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 250, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 251, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 252, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 253, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 258, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 260, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 262, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 263, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 264, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 265, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 266, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 267, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 268, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 269, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 270, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 271, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 272, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 273, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 274, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 275, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 276, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 277, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 278, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 279, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 280, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 281, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 282, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 283, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 284, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 285, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 286, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 287, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 288, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 289, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 290, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 308, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 310, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 314, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 316, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 317, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 318, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 322, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 324, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 327, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 328, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 330, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 331, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 332, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 333, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 334, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 337, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 338, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 339, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 340, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 342, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 343, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 345, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 346, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 347, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 348, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 349, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 350, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 351, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 352, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 353, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 354, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 355, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 356, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 357, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 358, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 359, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 360, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 361, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 362, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 363, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 367, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 368, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 369, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 376, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 377, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 378, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 379, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 382, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 383, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 388, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 390, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 392, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 399, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 416, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 429, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 430, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 432, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 433, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 434, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 435, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 440, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 442, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 447, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 448, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 449, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 450, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 451, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 453, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 457, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 459, "QB": {"orbits": [10, 10], "Q": "[  ] 1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 462, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 466, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 467, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 469, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 470, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 471, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 473, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 480, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 481, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 482, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 483, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 486, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 488, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 490, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 491, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 492, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 493, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 494, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 495, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_30", "idx": 496, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 498, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 499, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 500, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 501, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 502, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 503, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 504, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 505, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 506, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 507, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 508, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 509, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 510, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 511, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 512, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 513, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 514, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 515, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 558, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 559, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 564, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_30", "idx": 597, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 20, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 41, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 45, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 73, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 77, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 79, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 80, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 82, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 84, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 114, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 135, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 139, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 141, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 149, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 150, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 158, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 172, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 183, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 185, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 195, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 212, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 213, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 219, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 220, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 222, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 226, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 228, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 230, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 232, "QB": {"orbits": [10, 10], "Q": "[  ] 1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 233, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 235, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 237, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 238, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 239, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 240, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 241, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 242, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 243, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 244, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 245, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "50_31", "idx": 247, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 249, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "50_31", "idx": 250, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 14, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 16, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 23, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 58, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 60, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 66, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 68, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 70, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 71, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 79, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 101, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 133, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 135, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 137, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 139, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 146, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 165, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 166, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 170, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 187, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 207, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 209, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 211, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 212, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 213, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 214, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 220, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 239, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 240, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 243, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 244, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 261, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 277, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 278, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 279, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 280, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 281, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 282, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 291, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 311, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 313, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 315, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 316, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 317, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 318, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 324, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 343, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 344, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 347, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 348, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 364, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 383, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 385, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 392, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 408, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 428, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 430, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 432, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 433, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 434, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 435, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 441, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 460, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 461, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 464, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 465, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 482, "QB": {"orbits": [2, 3, 3, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 498, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 499, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 500, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 501, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 502, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 503, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 506, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [3, 3], "Q": "[ 3 ] 3"}}
+{"pat": "51_30", "idx": 512, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 532, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 534, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 536, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 537, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 538, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 539, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 545, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 564, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 565, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 568, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 569, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 585, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_30", "idx": 593, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 604, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 606, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 607, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 608, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 611, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 613, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 625, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 626, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 627, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 628, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 629, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 630, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 631, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 632, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 633, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 634, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 635, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 636, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 637, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 638, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 639, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 640, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 641, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 642, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 643, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 644, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 645, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 646, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 647, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 648, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 649, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 650, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 651, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 652, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 653, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 654, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 656, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 658, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 659, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 660, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_30", "idx": 661, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 20, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 47, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 74, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 101, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 128, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 155, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 182, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 209, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 227, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 228, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 229, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 244, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 245, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 246, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 253, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 263, "QB": {"orbits": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 264, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 266, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 3, 3], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 270, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 279, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 282, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 288, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "51_31", "idx": 292, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 293, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 294, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 295, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 296, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 297, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 298, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 299, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 300, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 301, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 302, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 303, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 304, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 305, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 306, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 307, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 308, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "51_31", "idx": 309, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 26, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 72, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 79, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 91, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 93, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "52_30", "idx": 95, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 133, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 134, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 155, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 157, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 158, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "52_30", "idx": 160, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 162, "QB": {"orbits": [4, 4, 4, 8], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 204, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 205, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 222, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 223, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 224, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 225, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 255, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 256, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 271, "QB": {"orbits": [10, 10], "Q": "[  ] 1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 283, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 288, "QB": {"orbits": [4, 4, 4, 4, 4], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 290, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "52_30", "idx": 292, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 314, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 315, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 324, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 325, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 326, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 327, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 337, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 338, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 345, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 378, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 382, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_30", "idx": 386, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 20, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 39, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 48, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "52_31", "idx": 65, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 80, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 87, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [2, 2, 2], "Q": "[ 0 ] -1"}}
+{"pat": "52_31", "idx": 122, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 133, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 147, "QB": {"orbits": [2, 6, 6, 6], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 154, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 164, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 165, "QB": {"orbits": [4, 4, 12], "Q": "[ 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 170, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 171, "QB": {"orbits": [2, 2, 2, 2, 2, 2, 4, 4], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 182, "QB": {"orbits": [1, 1, 3, 3, 3, 3, 6], "Q": "[ 0, 0 ] -1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 185, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 196, "QB": {"orbits": [1], "Q": "1 (transitive)"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}
+{"pat": "52_31", "idx": 197, "QB": {"orbits": [10, 10], "Q": "[  ] 1"}, "QA": {"orbits": [1], "Q": "1 (transitive)"}}

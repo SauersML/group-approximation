@@ -434,3 +434,28 @@ the Kaplansky zero-divisor conjecture."
      - The edge equation becomes `X(b z) = -Y(z)`, linking right cosets `<a> z` to `<a> b z`.
      - The copies are left translates, with lines in left cosets, so the port graph has to be rebuilt.
      - After that comes `b`-degree at least two.
+
+25. **Elements supported in `<a><b>` have no left annihilator; degree-one elements are two-sided regular (proposed established; `rips-segev-ab-layered-elements-have-no-left-annihilator`).**
+   - *Every `b`-degree, left side.*  If `alpha (sum_{j=0}^d u_j(a) b^j) = 0` with some `u_j != 0`, then
+     `alpha = 0`, over every field.  By the involution, nonzero elements supported in `<b><a>` have no right
+     annihilator.
+     - With `X_j = alpha u_j`, each `b`-line satisfies `sum_j X_j(v b^{-j}) = 0`.  So its active points form
+       clusters with gaps `<= d`.  The `b`-edges inside cluster spans form a port graph of minimum degree 2, and
+       the leaf-block flow cycle of the previous item applies.
+     - A multi-layer rank-one lemma, `P^i_T P^j_T' = P^i_T' P^j_T`, allows at most one pure active untouched line
+       per copy.  Inactive untouched lines carry only pass-through points at the middle positions `0, C`.  In
+       Steenbock's gluing (`b`-runs of at most 2 edges) the neighbours of a middle are never middles, so two such
+       lines are never consecutive.
+     - Among 6 consecutive untouched lines of a copy this is impossible, so visits have 3 to 8 edges.  A 13-edge
+       Greendlinger arc then meets two copies in 4 common cosets, against the two-copy bound of 3.
+   - *Flip (any group).*  If `alpha (u + v b^{±1} w) = 0` with `v w != 0`, let `g = gcd(u, w)`,
+     `u = g u_0`, `w = g w_0`.  Then coset-wise `alpha = eta w_0` and `eta (u_0 + w_0 v b^{±1}) = 0`.
+   - *Two-sided, degree one.*  Every `u + v b^{±1} w` with `v w != 0` is a non-zero-divisor on both sides.  In
+     particular this settles the right-annihilator step `(u + w b) alpha = 0`.
+   - *Open.*  Right annihilators of `b`-degree `>= 2`, i.e. `alpha (sum_j b^j v_j) = 0`.  The port graph, the
+     flow cycle and the purity step transfer.  The rank-one step does not: the port vector of a coset lies in the
+     syzygy module of `(v_0, ..., v_d)`, which has rank `d >= 2`.
+
+26. **Elements `sum_j b^j v_j(a)` of coefficient rank at most 2 have no left annihilator (proposed established; `rips-segev-rank-two-ba-elements-have-no-left-annihilator`).**  For `alpha (sum_j b^j v_j) = 0` the segments `y, ..., y b^d` (`y in supp alpha`) give a port graph of minimum degree 2, and the leaf-block flow cycle, copy splitting and purity carry over.  Good untouched lines are middle lines (never consecutive, by Fact M) or bad lines, whose port polynomial at an `I` or `O` position is a multiple of `v_d` or `v_0`.  The rank-one lemma fails for `d >= 2`; it is replaced by a row bound: pure cosets in distinct rows with nonzero port polynomials number at most `dim span(v_j) - 1` (determinant in the syzygy module, injective sums over distinct rows, Rado's theorem).  For rank 2 a copy has at most one bad line, and the window-of-6 Greendlinger count closes.  With Theorem A and the involution, every `<a>/<b>`-layered element of coefficient rank `<= 2` is a two-sided non-zero-divisor.  Open: rank 3, where only a visit of 9 or 10 edges through the bridge end escapes the 13-edge count; rank `>= 4`; mixed-layer supports.
+
+27. **Elements `sum_j b^j v_j(a)` of every coefficient rank have no left annihilator (proposed established; `rips-segev-ba-layered-elements-have-no-left-annihilator`).**  The rank condition of the rank-two node is removed.  A face of a minimal diagram has at least 42 `b`-edges and `b`-runs of at most 2 edges, so a Greendlinger arc reads at least 18 `b`-edges, not 13, and visits of up to 13 edges close the count.  For `b`-degree `d <= 2` the rank is at most 3, the row bound leaves at most 2 bad lines per copy, and windows of untouched lines give visits of at most 10 edges; this closes the rank-3 case left open there.  For `d >= 3` no row bound is needed: an edge of the copy cycle between two good untouched lines has a middle endpoint, and the copy's other `b`-edge at that middle carries level 2 into an `I` position or level `d - 2` out of an `O` position, which purity forbids, so it ends at a touched coset or at the bridge end; girth 42 keeps the bridge end from blocking, and visits have at most 11 edges.  With Theorem A and the involution, every nonzero element supported in `<a><b>` or `<b><a>` is a two-sided non-zero-divisor.  Open: mixed-layer supports.

@@ -1,0 +1,1930 @@
+# logs.txt: for each pq run NAME.out (run.sh / run2.sh), its relators and the per-class orders and word collections.
+== G1
+# G1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2}; words x1^64 x1^128 x1^256 x2^256 x2^512
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 1 word x1^256: IDENTITY
+class 1 word x2^256: IDENTITY
+class 1 word x2^512: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 2 word x1^256: IDENTITY
+class 2 word x2^256: IDENTITY
+class 2 word x2^512: IDENTITY
+class 3 has order 2^19
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 3 word x1^256: IDENTITY
+class 3 word x2^256: IDENTITY
+class 3 word x2^512: IDENTITY
+class 4 has order 2^32
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 4 word x1^256: IDENTITY
+class 4 word x2^256: IDENTITY
+class 4 word x2^512: IDENTITY
+class 5 has order 2^52
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 5 word x1^256: IDENTITY
+class 5 word x2^256: IDENTITY
+class 5 word x2^512: IDENTITY
+class 6 has order 2^84
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 6 word x1^256: IDENTITY
+class 6 word x2^256: IDENTITY
+class 6 word x2^512: IDENTITY
+class 7 has order 2^141
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 7 word x1^256: IDENTITY
+class 7 word x2^256: IDENTITY
+class 7 word x2^512: IDENTITY
+class 8 has order 2^231
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 8 word x1^256: IDENTITY
+class 8 word x2^256: IDENTITY
+class 8 word x2^512: IDENTITY
+== G2
+# G2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2}; words x1^128 x1^256 x1^512
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 1 word x1^256: IDENTITY
+class 1 word x1^512: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 2 word x1^256: IDENTITY
+class 2 word x1^512: IDENTITY
+class 3 has order 2^19
+class 3 word x1^128: IDENTITY
+class 3 word x1^256: IDENTITY
+class 3 word x1^512: IDENTITY
+class 4 has order 2^32
+class 4 word x1^128: IDENTITY
+class 4 word x1^256: IDENTITY
+class 4 word x1^512: IDENTITY
+class 5 has order 2^52
+class 5 word x1^128: IDENTITY
+class 5 word x1^256: IDENTITY
+class 5 word x1^512: IDENTITY
+class 6 has order 2^84
+class 6 word x1^128: IDENTITY
+class 6 word x1^256: IDENTITY
+class 6 word x1^512: IDENTITY
+class 7 has order 2^141
+class 7 word x1^128: IDENTITY
+class 7 word x1^256: IDENTITY
+class 7 word x1^512: IDENTITY
+class 8 has order 2^231
+class 8 word x1^128: IDENTITY
+class 8 word x1^256: IDENTITY
+class 8 word x1^512: IDENTITY
+class 9 has order 2^395
+class 9 word x1^128: IDENTITY
+class 9 word x1^256: IDENTITY
+class 9 word x1^512: IDENTITY
+class 10 has order 2^672
+class 10 word x1^128: IDENTITY
+class 10 word x1^256: IDENTITY
+class 10 word x1^512: IDENTITY
+class 11 has order 2^1172
+class 11 word x1^128: IDENTITY
+class 11 word x1^256: IDENTITY
+class 11 word x1^512: IDENTITY
+class 12 has order 2^2046
+class 12 word x1^128: IDENTITY
+class 12 word x1^256: IDENTITY
+class 12 word x1^512: IDENTITY
+class 13 has order 2^3642
+class 13 word x1^128: IDENTITY
+class 13 word x1^256: IDENTITY
+class 13 word x1^512: IDENTITY
+class 14 has order 2^6510
+class 14 word x1^128: NONTRIVIAL (len 26)
+class 14 word x1^256: IDENTITY
+class 14 word x1^512: IDENTITY
+class 15 has order 2^11776
+class 15 word x1^128: NONTRIVIAL (len 138)
+class 15 word x1^256: IDENTITY
+class 15 word x1^512: IDENTITY
+== K1
+# K1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8, [b,d,d]}; words x1^256
+class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 4 has order 2^27
+class 4 word x1^256: IDENTITY
+class 5 has order 2^38
+class 5 word x1^256: IDENTITY
+class 6 has order 2^53
+class 6 word x1^256: IDENTITY
+class 7 has order 2^77
+class 7 word x1^256: IDENTITY
+class 8 has order 2^106
+class 8 word x1^256: IDENTITY
+class 9 has order 2^158
+class 9 word x1^256: IDENTITY
+class 10 has order 2^233
+class 10 word x1^256: IDENTITY
+class 11 has order 2^357
+class 11 word x1^256: IDENTITY
+class 12 has order 2^545
+class 12 word x1^256: IDENTITY
+class 13 has order 2^868
+class 13 word x1^256: IDENTITY
+class 14 has order 2^1379
+class 14 word x1^256: IDENTITY
+class 15 has order 2^2248
+class 15 word x1^256: IDENTITY
+class 16 has order 2^3678
+class 16 word x1^256: NONTRIVIAL (len 60)
+== K3
+# K3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8, [b,d,d], [b,d]^16, [a,c^2]^16}; words x1^256
+class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 4 has order 2^27
+class 4 word x1^256: IDENTITY
+class 5 has order 2^38
+class 5 word x1^256: IDENTITY
+class 6 has order 2^52
+class 6 word x1^256: IDENTITY
+class 7 has order 2^75
+class 7 word x1^256: IDENTITY
+class 8 has order 2^104
+class 8 word x1^256: IDENTITY
+class 9 has order 2^156
+class 9 word x1^256: IDENTITY
+class 10 has order 2^230
+class 10 word x1^256: IDENTITY
+class 11 has order 2^352
+class 11 word x1^256: IDENTITY
+class 12 has order 2^536
+class 12 word x1^256: IDENTITY
+class 13 has order 2^854
+class 13 word x1^256: IDENTITY
+class 14 has order 2^1357
+class 14 word x1^256: IDENTITY
+class 15 has order 2^2214
+class 15 word x1^256: IDENTITY
+class 16 has order 2^3628
+class 16 word x1^256: NONTRIVIAL (len 45)
+== K4
+# K4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8, [b,d,d], [b,d]^8, [a,c^2]^8}; words x1^256
+class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 4 has order 2^27
+class 4 word x1^256: IDENTITY
+class 5 has order 2^37
+class 5 word x1^256: IDENTITY
+class 6 has order 2^51
+class 6 word x1^256: IDENTITY
+class 7 has order 2^74
+class 7 word x1^256: IDENTITY
+class 8 has order 2^102
+class 8 word x1^256: IDENTITY
+class 9 has order 2^152
+class 9 word x1^256: IDENTITY
+class 10 has order 2^223
+class 10 word x1^256: IDENTITY
+class 11 has order 2^341
+class 11 word x1^256: IDENTITY
+class 12 has order 2^520
+class 12 word x1^256: IDENTITY
+class 13 has order 2^829
+class 13 word x1^256: IDENTITY
+class 14 has order 2^1319
+class 14 word x1^256: IDENTITY
+class 15 has order 2^2155
+class 15 word x1^256: IDENTITY
+class 16 has order 2^3529
+class 16 word x1^256: IDENTITY
+== K5
+# K5: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8, [b,d,d], [b,d]^16, [a,c^2]^8}; words x1^256
+class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 4 has order 2^27
+class 4 word x1^256: IDENTITY
+class 5 has order 2^38
+class 5 word x1^256: IDENTITY
+class 6 has order 2^52
+class 6 word x1^256: IDENTITY
+class 7 has order 2^75
+class 7 word x1^256: IDENTITY
+class 8 has order 2^104
+class 8 word x1^256: IDENTITY
+class 9 has order 2^155
+class 9 word x1^256: IDENTITY
+class 10 has order 2^227
+class 10 word x1^256: IDENTITY
+class 11 has order 2^347
+class 11 word x1^256: IDENTITY
+class 12 has order 2^528
+class 12 word x1^256: IDENTITY
+class 13 has order 2^839
+class 13 word x1^256: IDENTITY
+class 14 has order 2^1331
+class 14 word x1^256: IDENTITY
+class 15 has order 2^2170
+class 15 word x1^256: IDENTITY
+class 16 has order 2^3551
+class 16 word x1^256: NONTRIVIAL (len 45)
+== K6
+# K6: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8, [b,d,d], [b,d]^8, [a,c^2]^16}; words x1^256
+class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 4 has order 2^27
+class 4 word x1^256: IDENTITY
+class 5 has order 2^37
+class 5 word x1^256: IDENTITY
+class 6 has order 2^51
+class 6 word x1^256: IDENTITY
+class 7 has order 2^74
+class 7 word x1^256: IDENTITY
+class 8 has order 2^102
+class 8 word x1^256: IDENTITY
+class 9 has order 2^153
+class 9 word x1^256: IDENTITY
+class 10 has order 2^226
+class 10 word x1^256: IDENTITY
+class 11 has order 2^346
+class 11 word x1^256: IDENTITY
+class 12 has order 2^528
+class 12 word x1^256: IDENTITY
+class 13 has order 2^844
+class 13 word x1^256: IDENTITY
+class 14 has order 2^1345
+class 14 word x1^256: IDENTITY
+class 15 has order 2^2199
+class 15 word x1^256: IDENTITY
+class 16 has order 2^3606
+class 16 word x1^256: IDENTITY
+== L1
+# L1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^2, [b,d,d], [b,d]^4, [a,c^2]^8}; words x1^64
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 2 has order 2^9
+class 2 word x1^64: IDENTITY
+class 3 has order 2^15
+class 3 word x1^64: IDENTITY
+class 4 has order 2^20
+class 4 word x1^64: IDENTITY
+class 5 has order 2^27
+class 5 word x1^64: IDENTITY
+class 6 has order 2^36
+class 6 word x1^64: IDENTITY
+class 7 has order 2^52
+class 7 word x1^64: IDENTITY
+class 8 has order 2^73
+class 8 word x1^64: IDENTITY
+class 9 has order 2^111
+class 9 word x1^64: IDENTITY
+class 10 has order 2^166
+class 10 word x1^64: IDENTITY
+class 11 has order 2^259
+class 11 word x1^64: IDENTITY
+class 12 has order 2^404
+class 12 word x1^64: NONTRIVIAL (len 13)
+== L2
+# L2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^2, [b,d,d], [b,d]^2, [a,c^2]^8}; words x1^64
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 2 has order 2^9
+class 2 word x1^64: IDENTITY
+class 3 has order 2^14
+class 3 word x1^64: IDENTITY
+class 4 has order 2^19
+class 4 word x1^64: IDENTITY
+class 5 has order 2^25
+class 5 word x1^64: IDENTITY
+class 6 has order 2^34
+class 6 word x1^64: IDENTITY
+class 7 has order 2^50
+class 7 word x1^64: IDENTITY
+class 8 has order 2^71
+class 8 word x1^64: IDENTITY
+class 9 has order 2^109
+class 9 word x1^64: IDENTITY
+class 10 has order 2^164
+class 10 word x1^64: IDENTITY
+class 11 has order 2^257
+class 11 word x1^64: IDENTITY
+class 12 has order 2^401
+class 12 word x1^64: IDENTITY
+== L3
+# L3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d,d], [b,d]^4, [a,c^2]^8}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^24
+class 4 word x1^128: IDENTITY
+class 5 has order 2^33
+class 5 word x1^128: IDENTITY
+class 6 has order 2^44
+class 6 word x1^128: IDENTITY
+class 7 has order 2^63
+class 7 word x1^128: IDENTITY
+class 8 has order 2^88
+class 8 word x1^128: IDENTITY
+class 9 has order 2^132
+class 9 word x1^128: IDENTITY
+class 10 has order 2^195
+class 10 word x1^128: IDENTITY
+class 11 has order 2^301
+class 11 word x1^128: IDENTITY
+class 12 has order 2^466
+class 12 word x1^128: IDENTITY
+class 13 has order 2^750
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1206
+class 14 word x1^128: IDENTITY
+== P1
+# P1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^4}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^28
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^42
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^62
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^98
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^152
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^246
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^394
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^652
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1074
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^1818
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3071
+class 14 word x1^64: NONTRIVIAL (len 179)
+class 14 word x1^128: IDENTITY
+== P2
+# P2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^105
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^163
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^266
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^429
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^715
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1188
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2025
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3450
+class 14 word x1^64: NONTRIVIAL (len 174)
+class 14 word x1^128: NONTRIVIAL (len 33)
+== P3
+# P3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [a,c]}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^9
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^15
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^21
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^31
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^45
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^69
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^107
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^173
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^283
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^477
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^808
+class 12 word x1^64: IDENTITY
+class 12 word x1^128: IDENTITY
+class 13 has order 2^1400
+class 13 word x1^64: IDENTITY
+class 13 word x1^128: IDENTITY
+class 14 has order 2^2435
+class 14 word x1^64: IDENTITY
+class 14 word x1^128: IDENTITY
+== P4
+# P4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [a^4,c]}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^103
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^158
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^253
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^403
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^665
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1095
+class 12 word x1^64: IDENTITY
+class 12 word x1^128: IDENTITY
+class 13 has order 2^1854
+class 13 word x1^64: IDENTITY
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3142
+class 14 word x1^64: IDENTITY
+class 14 word x1^128: IDENTITY
+== P5
+# P5: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [a,c^4]}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^104
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^159
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^256
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^408
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^674
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1109
+class 12 word x1^64: IDENTITY
+class 12 word x1^128: IDENTITY
+class 13 has order 2^1877
+class 13 word x1^64: IDENTITY
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3179
+class 14 word x1^64: IDENTITY
+class 14 word x1^128: IDENTITY
+== P6
+# P6: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a^2,c]^16}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^105
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^163
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^266
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^429
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^714
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1185
+class 12 word x1^64: NONTRIVIAL (len 7)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2018
+class 13 word x1^64: NONTRIVIAL (len 22)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3437
+class 14 word x1^64: NONTRIVIAL (len 52)
+class 14 word x1^128: IDENTITY
+== P7
+# P7: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^105
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^163
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^266
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^429
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^714
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1185
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2019
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3439
+class 14 word x1^64: NONTRIVIAL (len 175)
+class 14 word x1^128: NONTRIVIAL (len 26)
+== P8
+# P8: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a^2,c]^16, [a,c^2]^16}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^44
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^66
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^105
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^163
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^266
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^429
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^713
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1183
+class 12 word x1^64: NONTRIVIAL (len 7)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2014
+class 13 word x1^64: NONTRIVIAL (len 22)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3430
+class 14 word x1^64: NONTRIVIAL (len 52)
+class 14 word x1^128: IDENTITY
+== Q1
+# Q1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,b]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^47
+class 6 word x1^128: IDENTITY
+class 7 has order 2^70
+class 7 word x1^128: IDENTITY
+class 8 has order 2^100
+class 8 word x1^128: IDENTITY
+class 9 has order 2^151
+class 9 word x1^128: IDENTITY
+class 10 has order 2^224
+class 10 word x1^128: IDENTITY
+class 11 has order 2^342
+class 11 word x1^128: IDENTITY
+class 12 has order 2^521
+class 12 word x1^128: IDENTITY
+class 13 has order 2^828
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1313
+class 14 word x1^128: IDENTITY
+== Q2
+# Q2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,d]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^138
+class 9 word x1^128: IDENTITY
+class 10 has order 2^204
+class 10 word x1^128: IDENTITY
+class 11 has order 2^314
+class 11 word x1^128: IDENTITY
+class 12 has order 2^484
+class 12 word x1^128: IDENTITY
+class 13 has order 2^776
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1244
+class 14 word x1^128: NONTRIVIAL (len 26)
+== Q3
+# Q3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,a]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^26
+class 4 word x1^128: IDENTITY
+class 5 has order 2^37
+class 5 word x1^128: IDENTITY
+class 6 has order 2^51
+class 6 word x1^128: IDENTITY
+class 7 has order 2^76
+class 7 word x1^128: IDENTITY
+class 8 has order 2^110
+class 8 word x1^128: IDENTITY
+class 9 has order 2^167
+class 9 word x1^128: IDENTITY
+class 10 has order 2^250
+class 10 word x1^128: IDENTITY
+class 11 has order 2^387
+class 11 word x1^128: IDENTITY
+class 12 has order 2^598
+class 12 word x1^128: IDENTITY
+class 13 has order 2^951
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1512
+class 14 word x1^128: IDENTITY
+== Q4
+# Q4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,c]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^33
+class 5 word x1^128: IDENTITY
+class 6 has order 2^44
+class 6 word x1^128: IDENTITY
+class 7 has order 2^65
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^139
+class 9 word x1^128: IDENTITY
+class 10 has order 2^208
+class 10 word x1^128: IDENTITY
+class 11 has order 2^322
+class 11 word x1^128: IDENTITY
+class 12 has order 2^497
+class 12 word x1^128: IDENTITY
+class 13 has order 2^798
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1279
+class 14 word x1^128: IDENTITY
+== R1
+# R1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,d], [b,d,c^2]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^33
+class 5 word x1^128: IDENTITY
+class 6 has order 2^44
+class 6 word x1^128: IDENTITY
+class 7 has order 2^64
+class 7 word x1^128: IDENTITY
+class 8 has order 2^90
+class 8 word x1^128: IDENTITY
+class 9 has order 2^136
+class 9 word x1^128: IDENTITY
+class 10 has order 2^202
+class 10 word x1^128: IDENTITY
+class 11 has order 2^312
+class 11 word x1^128: IDENTITY
+class 12 has order 2^481
+class 12 word x1^128: IDENTITY
+class 13 has order 2^772
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1239
+class 14 word x1^128: IDENTITY
+== R1024
+# R1024: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^1024}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^45
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^69
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^111
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^173
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^283
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^457
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^762
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1265
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2156
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3673
+class 14 word x1^64: NONTRIVIAL (len 174)
+class 14 word x1^128: NONTRIVIAL (len 33)
+class 15 has order 2^6364
+class 15 word x1^64: NONTRIVIAL (len 429)
+class 15 word x1^128: NONTRIVIAL (len 175)
+== R16
+# R16: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^16}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^45
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^68
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^108
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^168
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^275
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^444
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^740
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1232
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2103
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3586
+class 14 word x1^64: NONTRIVIAL (len 174)
+class 14 word x1^128: NONTRIVIAL (len 33)
+class 15 has order 2^6219
+class 15 word x1^64: NONTRIVIAL (len 429)
+class 15 word x1^128: NONTRIVIAL (len 175)
+== R2
+# R2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,d], [b,d,a^2]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^138
+class 9 word x1^128: IDENTITY
+class 10 has order 2^204
+class 10 word x1^128: IDENTITY
+class 11 has order 2^314
+class 11 word x1^128: IDENTITY
+class 12 has order 2^484
+class 12 word x1^128: IDENTITY
+class 13 has order 2^776
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1244
+class 14 word x1^128: NONTRIVIAL (len 26)
+== R256
+# R256: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^256}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^45
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^69
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^111
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^173
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^283
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^456
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^760
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1263
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2154
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3671
+class 14 word x1^64: NONTRIVIAL (len 174)
+class 14 word x1^128: NONTRIVIAL (len 33)
+class 15 has order 2^6361
+class 15 word x1^64: NONTRIVIAL (len 429)
+class 15 word x1^128: NONTRIVIAL (len 175)
+== R3
+# R3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,d], [a,c^2]^8}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^476
+class 12 word x1^128: IDENTITY
+class 13 has order 2^762
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1221
+class 14 word x1^128: NONTRIVIAL (len 30)
+== R4
+# R4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^16, [b,d,d], [c,d]^16}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^45
+class 6 word x1^128: IDENTITY
+class 7 has order 2^65
+class 7 word x1^128: IDENTITY
+class 8 has order 2^91
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^203
+class 10 word x1^128: IDENTITY
+class 11 has order 2^313
+class 11 word x1^128: IDENTITY
+class 12 has order 2^483
+class 12 word x1^128: IDENTITY
+class 13 has order 2^775
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1242
+class 14 word x1^128: IDENTITY
+== R64
+# R64: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^64}; words x1^64 x1^128
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 5 has order 2^45
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 6 has order 2^69
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 7 has order 2^111
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 8 has order 2^172
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 9 has order 2^281
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 10 has order 2^454
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 11 has order 2^757
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 12 has order 2^1259
+class 12 word x1^64: NONTRIVIAL (len 12)
+class 12 word x1^128: IDENTITY
+class 13 has order 2^2147
+class 13 word x1^64: NONTRIVIAL (len 52)
+class 13 word x1^128: IDENTITY
+class 14 has order 2^3661
+class 14 word x1^64: NONTRIVIAL (len 174)
+class 14 word x1^128: NONTRIVIAL (len 33)
+class 15 has order 2^6345
+class 15 word x1^64: NONTRIVIAL (len 429)
+class 15 word x1^128: NONTRIVIAL (len 175)
+== S1
+# S1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2}; words x1^64 x1^128 x1^256
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 1 word x1^256: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 2 word x1^256: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 3 word x1^256: IDENTITY
+class 4 has order 2^28
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 4 word x1^256: IDENTITY
+class 5 has order 2^40
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 5 word x1^256: IDENTITY
+class 6 has order 2^58
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 6 word x1^256: IDENTITY
+class 7 has order 2^94
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 7 word x1^256: IDENTITY
+class 8 has order 2^140
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 8 word x1^256: IDENTITY
+class 9 has order 2^228
+class 9 word x1^64: IDENTITY
+class 9 word x1^128: IDENTITY
+class 9 word x1^256: IDENTITY
+class 10 has order 2^356
+class 10 word x1^64: IDENTITY
+class 10 word x1^128: IDENTITY
+class 10 word x1^256: IDENTITY
+class 11 has order 2^579
+class 11 word x1^64: NONTRIVIAL (len 6)
+class 11 word x1^128: IDENTITY
+class 11 word x1^256: IDENTITY
+class 12 has order 2^926
+class 12 word x1^64: NONTRIVIAL (len 28)
+class 12 word x1^128: IDENTITY
+class 12 word x1^256: IDENTITY
+class 13 has order 2^1526
+class 13 word x1^64: NONTRIVIAL (len 82)
+class 13 word x1^128: IDENTITY
+class 13 word x1^256: IDENTITY
+class 14 has order 2^2498
+class 14 word x1^64: NONTRIVIAL (len 209)
+class 14 word x1^128: IDENTITY
+class 14 word x1^256: IDENTITY
+class 15 has order 2^4174
+class 15 word x1^64: NONTRIVIAL (len 457)
+class 15 word x1^128: IDENTITY
+class 15 word x1^256: IDENTITY
+class 16 has order 2^6968
+class 16 word x1^64: NONTRIVIAL (len 971)
+class 16 word x1^128: IDENTITY
+class 16 word x1^256: IDENTITY
+== T1
+# T1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2, b^2}; words x1^16 x1^32 x1^64 x4^32
+class 1 has order 2^4
+class 1 word x1^16: IDENTITY
+class 1 word x1^32: IDENTITY
+class 1 word x1^64: IDENTITY
+class 1 word x4^32: IDENTITY
+class 2 has order 2^9
+class 2 word x1^16: IDENTITY
+class 2 word x1^32: IDENTITY
+class 2 word x1^64: IDENTITY
+class 2 word x4^32: IDENTITY
+class 3 has order 2^15
+class 3 word x1^16: IDENTITY
+class 3 word x1^32: IDENTITY
+class 3 word x1^64: IDENTITY
+class 3 word x4^32: IDENTITY
+class 4 has order 2^21
+class 4 word x1^16: IDENTITY
+class 4 word x1^32: IDENTITY
+class 4 word x1^64: IDENTITY
+class 4 word x4^32: IDENTITY
+class 5 has order 2^29
+class 5 word x1^16: IDENTITY
+class 5 word x1^32: IDENTITY
+class 5 word x1^64: IDENTITY
+class 5 word x4^32: IDENTITY
+class 6 has order 2^40
+class 6 word x1^16: IDENTITY
+class 6 word x1^32: IDENTITY
+class 6 word x1^64: IDENTITY
+class 6 word x4^32: IDENTITY
+class 7 has order 2^60
+class 7 word x1^16: NONTRIVIAL (len 2)
+class 7 word x1^32: IDENTITY
+class 7 word x1^64: IDENTITY
+class 7 word x4^32: IDENTITY
+class 8 has order 2^84
+class 8 word x1^16: NONTRIVIAL (len 6)
+class 8 word x1^32: IDENTITY
+class 8 word x1^64: IDENTITY
+class 8 word x4^32: IDENTITY
+class 9 has order 2^128
+class 9 word x1^16: NONTRIVIAL (len 11)
+class 9 word x1^32: NONTRIVIAL (len 4)
+class 9 word x1^64: IDENTITY
+class 9 word x4^32: IDENTITY
+class 10 has order 2^190
+class 10 word x1^16: NONTRIVIAL (len 27)
+class 10 word x1^32: NONTRIVIAL (len 10)
+class 10 word x1^64: IDENTITY
+class 10 word x4^32: IDENTITY
+class 11 has order 2^292
+class 11 word x1^32: NONTRIVIAL (len 30)
+class 11 word x1^64: IDENTITY
+class 11 word x1^128: IDENTITY
+class 11 word x4^32: IDENTITY
+class 12 has order 2^447
+class 12 word x1^32: NONTRIVIAL (len 71)
+class 12 word x1^64: IDENTITY
+class 12 word x1^128: IDENTITY
+class 12 word x4^32: IDENTITY
+class 13 has order 2^714
+class 13 word x1^32: NONTRIVIAL (len 165)
+class 13 word x1^64: IDENTITY
+class 13 word x1^128: IDENTITY
+class 13 word x4^32: IDENTITY
+class 14 has order 2^1136
+class 14 word x1^32: NONTRIVIAL (len 307)
+class 14 word x1^64: IDENTITY
+class 14 word x1^128: IDENTITY
+class 14 word x4^32: IDENTITY
+class 15 has order 2^1852
+class 15 word x1^32: NONTRIVIAL (len 590)
+class 15 word x1^64: IDENTITY
+class 15 word x1^128: IDENTITY
+class 15 word x4^32: IDENTITY
+== U1
+# U1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,c,c]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^16
+class 3 word x1^128: IDENTITY
+class 4 has order 2^22
+class 4 word x1^128: IDENTITY
+class 5 has order 2^27
+class 5 word x1^128: IDENTITY
+class 6 has order 2^32
+class 6 word x1^128: IDENTITY
+class 7 has order 2^39
+class 7 word x1^128: IDENTITY
+class 8 has order 2^45
+class 8 word x1^128: IDENTITY
+class 9 has order 2^54
+class 9 word x1^128: IDENTITY
+class 10 has order 2^63
+class 10 word x1^128: IDENTITY
+class 11 has order 2^74
+class 11 word x1^128: IDENTITY
+class 12 has order 2^85
+class 12 word x1^128: IDENTITY
+class 13 has order 2^101
+class 13 word x1^128: IDENTITY
+class 14 has order 2^117
+class 14 word x1^128: IDENTITY
+== U2
+# U2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,c,a]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^16
+class 3 word x1^128: IDENTITY
+class 4 has order 2^22
+class 4 word x1^128: IDENTITY
+class 5 has order 2^27
+class 5 word x1^128: IDENTITY
+class 6 has order 2^32
+class 6 word x1^128: IDENTITY
+class 7 has order 2^38
+class 7 word x1^128: IDENTITY
+class 8 has order 2^44
+class 8 word x1^128: IDENTITY
+class 9 has order 2^51
+class 9 word x1^128: IDENTITY
+class 10 has order 2^58
+class 10 word x1^128: IDENTITY
+class 11 has order 2^67
+class 11 word x1^128: IDENTITY
+class 12 has order 2^76
+class 12 word x1^128: IDENTITY
+class 13 has order 2^89
+class 13 word x1^128: IDENTITY
+class 14 has order 2^102
+class 14 word x1^128: IDENTITY
+== U3
+# U3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [c,d,d]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^476
+class 12 word x1^128: IDENTITY
+class 13 has order 2^762
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1221
+class 14 word x1^128: NONTRIVIAL (len 30)
+== U4
+# U4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a^2,c]^8}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^136
+class 9 word x1^128: IDENTITY
+class 10 has order 2^199
+class 10 word x1^128: IDENTITY
+class 11 has order 2^304
+class 11 word x1^128: IDENTITY
+class 12 has order 2^467
+class 12 word x1^128: IDENTITY
+class 13 has order 2^747
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1199
+class 14 word x1^128: IDENTITY
+== V1
+# V1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,d,d]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^16
+class 3 word x1^128: IDENTITY
+class 4 has order 2^23
+class 4 word x1^128: IDENTITY
+class 5 has order 2^31
+class 5 word x1^128: IDENTITY
+class 6 has order 2^41
+class 6 word x1^128: IDENTITY
+class 7 has order 2^56
+class 7 word x1^128: IDENTITY
+class 8 has order 2^75
+class 8 word x1^128: IDENTITY
+class 9 has order 2^105
+class 9 word x1^128: IDENTITY
+class 10 has order 2^145
+class 10 word x1^128: IDENTITY
+class 11 has order 2^210
+class 11 word x1^128: IDENTITY
+class 12 has order 2^304
+class 12 word x1^128: IDENTITY
+class 13 has order 2^458
+class 13 word x1^128: IDENTITY
+class 14 has order 2^691
+class 14 word x1^128: IDENTITY
+== V2
+# V2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,d,a]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^476
+class 12 word x1^128: IDENTITY
+class 13 has order 2^762
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1221
+class 14 word x1^128: NONTRIVIAL (len 30)
+== V3
+# V3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [b,c,c]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^476
+class 12 word x1^128: IDENTITY
+class 13 has order 2^762
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1221
+class 14 word x1^128: NONTRIVIAL (len 30)
+== V4
+# V4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [c,d,c]}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^16
+class 3 word x1^128: IDENTITY
+class 4 has order 2^22
+class 4 word x1^128: IDENTITY
+class 5 has order 2^30
+class 5 word x1^128: IDENTITY
+class 6 has order 2^41
+class 6 word x1^128: IDENTITY
+class 7 has order 2^59
+class 7 word x1^128: IDENTITY
+class 8 has order 2^84
+class 8 word x1^128: IDENTITY
+class 9 has order 2^126
+class 9 word x1^128: IDENTITY
+class 10 has order 2^187
+class 10 word x1^128: IDENTITY
+class 11 has order 2^289
+class 11 word x1^128: IDENTITY
+class 12 has order 2^449
+class 12 word x1^128: IDENTITY
+class 13 has order 2^724
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1168
+class 14 word x1^128: IDENTITY
+== W1
+# W1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,d]^32}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^475
+class 12 word x1^128: IDENTITY
+class 13 has order 2^760
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1218
+class 14 word x1^128: IDENTITY
+== W2
+# W2: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a,d]^64}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^137
+class 9 word x1^128: IDENTITY
+class 10 has order 2^201
+class 10 word x1^128: IDENTITY
+class 11 has order 2^309
+class 11 word x1^128: IDENTITY
+class 12 has order 2^476
+class 12 word x1^128: IDENTITY
+class 13 has order 2^762
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1220
+class 14 word x1^128: IDENTITY
+== W3
+# W3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [b,c]^4}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^24
+class 4 word x1^128: IDENTITY
+class 5 has order 2^33
+class 5 word x1^128: IDENTITY
+class 6 has order 2^44
+class 6 word x1^128: IDENTITY
+class 7 has order 2^63
+class 7 word x1^128: IDENTITY
+class 8 has order 2^87
+class 8 word x1^128: IDENTITY
+class 9 has order 2^129
+class 9 word x1^128: IDENTITY
+class 10 has order 2^188
+class 10 word x1^128: IDENTITY
+class 11 has order 2^286
+class 11 word x1^128: IDENTITY
+class 12 has order 2^436
+class 12 word x1^128: IDENTITY
+class 13 has order 2^693
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1100
+class 14 word x1^128: IDENTITY
+== W4
+# W4: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4, [b,d]^8, [a,c^2]^8, [b,d,d], [a^4,c]^4}; words x1^128
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 3 has order 2^17
+class 3 word x1^128: IDENTITY
+class 4 has order 2^25
+class 4 word x1^128: IDENTITY
+class 5 has order 2^34
+class 5 word x1^128: IDENTITY
+class 6 has order 2^46
+class 6 word x1^128: IDENTITY
+class 7 has order 2^66
+class 7 word x1^128: IDENTITY
+class 8 has order 2^92
+class 8 word x1^128: IDENTITY
+class 9 has order 2^136
+class 9 word x1^128: IDENTITY
+class 10 has order 2^198
+class 10 word x1^128: IDENTITY
+class 11 has order 2^302
+class 11 word x1^128: IDENTITY
+class 12 has order 2^464
+class 12 word x1^128: IDENTITY
+class 13 has order 2^741
+class 13 word x1^128: IDENTITY
+class 14 has order 2^1187
+class 14 word x1^128: IDENTITY
+== X
+# X: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2, b^4}
+class 1 has order 2^4
+class 2 has order 2^10
+class 3 has order 2^17
+class 4 has order 2^26
+class 5 has order 2^37
+class 6 has order 2^53
+class 7 has order 2^83
+class 8 has order 2^122
+class 9 has order 2^193
+class 10 has order 2^295
+class 11 has order 2^468
+class 12 has order 2^733
+class 13 has order 2^1184
+class 14 has order 2^1898
+class 15 has order 2^3111
+class 16 has order 2^5097
+class 17 has order 2^8470
+class 18 has order 2^14088
+== X16
+# X16: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2, b^4}
+class 1 has order 2^4
+class 2 has order 2^10
+class 3 has order 2^17
+class 4 has order 2^26
+class 5 has order 2^37
+class 6 has order 2^53
+class 7 has order 2^83
+class 8 has order 2^122
+class 9 has order 2^193
+class 10 has order 2^295
+class 11 has order 2^468
+class 12 has order 2^733
+class 13 has order 2^1184
+class 14 has order 2^1898
+class 15 has order 2^3111
+class 16 has order 2^5097
+== Xa
+# Xa: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2, b^4, a^128}
+class 1 has order 2^4
+class 2 has order 2^10
+class 3 has order 2^17
+class 4 has order 2^26
+class 5 has order 2^37
+class 6 has order 2^53
+class 7 has order 2^83
+class 8 has order 2^122
+class 9 has order 2^193
+class 10 has order 2^295
+class 11 has order 2^468
+class 12 has order 2^733
+class 13 has order 2^1184
+class 14 has order 2^1898
+class 15 has order 2^3111
+class 16 has order 2^5097
+class 17 has order 2^8470
+== Xa16
+# Xa16: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, [b,d]^2, b^4, a^128}
+class 1 has order 2^4
+class 2 has order 2^10
+class 3 has order 2^17
+class 4 has order 2^26
+class 5 has order 2^37
+class 6 has order 2^53
+class 7 has order 2^83
+class 8 has order 2^122
+class 9 has order 2^193
+class 10 has order 2^295
+class 11 has order 2^468
+class 12 has order 2^733
+class 13 has order 2^1184
+class 14 has order 2^1898
+class 15 has order 2^3111
+class 16 has order 2^5097
+== Z1
+# Z1: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^4}; words x1^64 x1^128 x1^256 x2^2 x4^32
+class 1 has order 2^4
+class 1 word x1^64: IDENTITY
+class 1 word x1^128: IDENTITY
+class 1 word x1^256: IDENTITY
+class 1 word x2^2: IDENTITY
+class 1 word x4^32: IDENTITY
+class 2 has order 2^10
+class 2 word x1^64: IDENTITY
+class 2 word x1^128: IDENTITY
+class 2 word x1^256: IDENTITY
+class 2 word x2^2: NONTRIVIAL (len 1)
+class 2 word x4^32: IDENTITY
+class 3 has order 2^18
+class 3 word x1^64: IDENTITY
+class 3 word x1^128: IDENTITY
+class 3 word x1^256: IDENTITY
+class 3 word x2^2: NONTRIVIAL (len 1)
+class 3 word x4^32: IDENTITY
+class 4 has order 2^29
+class 4 word x1^64: IDENTITY
+class 4 word x1^128: IDENTITY
+class 4 word x1^256: IDENTITY
+class 4 word x2^2: NONTRIVIAL (len 1)
+class 4 word x4^32: IDENTITY
+class 5 has order 2^45
+class 5 word x1^64: IDENTITY
+class 5 word x1^128: IDENTITY
+class 5 word x1^256: IDENTITY
+class 5 word x2^2: NONTRIVIAL (len 1)
+class 5 word x4^32: IDENTITY
+class 6 has order 2^69
+class 6 word x1^64: IDENTITY
+class 6 word x1^128: IDENTITY
+class 6 word x1^256: IDENTITY
+class 6 word x2^2: NONTRIVIAL (len 1)
+class 6 word x4^32: NONTRIVIAL (len 1)
+class 7 has order 2^111
+class 7 word x1^64: IDENTITY
+class 7 word x1^128: IDENTITY
+class 7 word x1^256: IDENTITY
+class 7 word x2^2: NONTRIVIAL (len 1)
+class 7 word x4^32: NONTRIVIAL (len 1)
+class 8 has order 2^173
+class 8 word x1^64: IDENTITY
+class 8 word x1^128: IDENTITY
+class 8 word x1^256: IDENTITY
+class 8 word x2^2: NONTRIVIAL (len 1)
+class 8 word x4^32: NONTRIVIAL (len 1)
+== Z3
+# Z3: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^8}; words x1^128 x1^256 x1^512 x2^4
+class 1 has order 2^4
+class 1 word x1^128: IDENTITY
+class 1 word x1^256: IDENTITY
+class 1 word x1^512: IDENTITY
+class 1 word x2^4: IDENTITY
+class 2 has order 2^10
+class 2 word x1^128: IDENTITY
+class 2 word x1^256: IDENTITY
+class 2 word x1^512: IDENTITY
+class 2 word x2^4: IDENTITY
+class 3 has order 2^19
+class 3 word x1^128: IDENTITY
+class 3 word x1^256: IDENTITY
+class 3 word x1^512: IDENTITY
+class 3 word x2^4: NONTRIVIAL (len 1)
+class 4 has order 2^31
+class 4 word x1^128: IDENTITY
+class 4 word x1^256: IDENTITY
+class 4 word x1^512: IDENTITY
+class 4 word x2^4: NONTRIVIAL (len 1)
+class 5 has order 2^49
+class 5 word x1^128: IDENTITY
+class 5 word x1^256: IDENTITY
+class 5 word x1^512: IDENTITY
+class 5 word x2^4: NONTRIVIAL (len 1)
+class 6 has order 2^77
+class 6 word x1^128: IDENTITY
+class 6 word x1^256: IDENTITY
+class 6 word x1^512: IDENTITY
+class 6 word x2^4: NONTRIVIAL (len 1)
+class 7 has order 2^127
+class 7 word x1^128: IDENTITY
+class 7 word x1^256: IDENTITY
+class 7 word x1^512: IDENTITY
+class 7 word x2^4: NONTRIVIAL (len 1)
+class 8 has order 2^204
+class 8 word x1^128: IDENTITY
+class 8 word x1^256: IDENTITY
+class 8 word x1^512: IDENTITY
+class 8 word x2^4: NONTRIVIAL (len 1)
+class 9 has order 2^341
+class 9 word x1^128: IDENTITY
+class 9 word x1^256: IDENTITY
+class 9 word x1^512: IDENTITY
+class 9 word x2^4: NONTRIVIAL (len 1)
+class 10 has order 2^570
+class 10 word x1^128: IDENTITY
+class 10 word x1^256: IDENTITY
+class 10 word x1^512: IDENTITY
+class 10 word x2^4: NONTRIVIAL (len 1)
+class 11 has order 2^976
+class 11 word x1^128: IDENTITY
+class 11 word x1^256: IDENTITY
+class 11 word x1^512: IDENTITY
+class 11 word x2^4: NONTRIVIAL (len 1)
+class 12 has order 2^1677
+class 12 word x1^128: IDENTITY
+class 12 word x1^256: IDENTITY
+class 12 word x1^512: IDENTITY
+class 12 word x2^4: NONTRIVIAL (len 1)
+class 13 has order 2^2936
+class 13 word x1^128: IDENTITY
+class 13 word x1^256: IDENTITY
+class 13 word x1^512: IDENTITY
+class 13 word x2^4: NONTRIVIAL (len 1)
+class 14 has order 2^5171
+class 14 word x1^128: NONTRIVIAL (len 29)
+class 14 word x1^256: IDENTITY
+class 14 word x1^512: IDENTITY
+class 14 word x2^4: NONTRIVIAL (len 1)
+class 15 has order 2^9216
+class 15 word x1^128: NONTRIVIAL (len 159)
+class 15 word x1^256: IDENTITY
+class 15 word x1^512: IDENTITY
+class 15 word x2^4: NONTRIVIAL (len 1)
+class 16 has order 2^16535
+class 16 word x1^128: NONTRIVIAL (len 511)
+class 16 word x1^256: NONTRIVIAL (len 60)
+class 16 word x1^512: IDENTITY
+class 16 word x2^4: NONTRIVIAL (len 1)
+
+== k2m4.out (mono4.g on k2-big-pc.g)
+|Q| = 2^318 soc rank 163 ords [ 256, 4, 16, 64 ] s 97
+|Q| = 2^217 soc rank 102 ords [ 256, 4, 16, 64 ] s 125
+|Q| = 2^170 soc rank 48 ords [ 256, 4, 16, 64 ] s 135
+|Q| = 2^150 soc rank 21 ords [ 256, 4, 16, 64 ] s 141
+|Q| = 2^147 soc rank 4 ords [ 256, 4, 16, 64 ] s 146
+|Q| = 2^146 soc rank 2 ords [ 256, 4, 16, 64 ] s 150
+|Q| = 2^146 soc rank 1 ords [ 256, 4, 16, 64 ] s 150
+monolithic: true
+== check-model.g on k2-pc.g
+k2-pc.g |MQ| = 2^146 is 2-group: true relators hold: true generated: true ords [ 256, 4, 16, 64 ] socle rank 1
+k2-pc.g presentation consistent: true
+
+== K7.out (X_4)
+# K7: relators {b^a*b^-3, c^b*c^-3, d^c*d^-3, a^d*a^-3, [a,c]^2, b^16, [b,d,d], [b,d]^32, [a,c^2]^8}; words x1^256 x1^512
+Group: G to lower exponent-2 central class 1 has order 2^4
+class 1 word x1^256: IDENTITY
+class 1 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 2 has order 2^10
+class 2 word x1^256: IDENTITY
+class 2 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 3 has order 2^18
+class 3 word x1^256: IDENTITY
+class 3 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 4 has order 2^28
+class 4 word x1^256: IDENTITY
+class 4 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 5 has order 2^40
+class 5 word x1^256: IDENTITY
+class 5 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 6 has order 2^55
+class 6 word x1^256: IDENTITY
+class 6 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 7 has order 2^79
+class 7 word x1^256: IDENTITY
+class 7 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 8 has order 2^110
+class 8 word x1^256: IDENTITY
+class 8 word x1^512: IDENTITY
+chunk exit 0 09:08:38
+Group: G to lower exponent-2 central class 9 has order 2^164
+class 9 word x1^256: IDENTITY
+class 9 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 10 has order 2^241
+class 10 word x1^256: IDENTITY
+class 10 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 11 has order 2^366
+class 11 word x1^256: IDENTITY
+class 11 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 12 has order 2^555
+class 12 word x1^256: IDENTITY
+class 12 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 13 has order 2^875
+class 13 word x1^256: IDENTITY
+class 13 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 14 has order 2^1385
+class 14 word x1^256: IDENTITY
+class 14 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 15 has order 2^2244
+class 15 word x1^256: IDENTITY
+class 15 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 16 has order 2^3657
+class 16 word x1^256: NONTRIVIAL (len 45)
+class 16 word x1^512: IDENTITY
+Group: G to lower exponent-2 central class 17 has order 2^6068
+class 17 word x1^256: NONTRIVIAL (len 220)
+class 17 word x1^512: IDENTITY
+chunk exit 124 09:28:38
+Group: G to lower exponent-2 central class 18 has order 2^10125
+class 18 word x1^256: NONTRIVIAL (len 1007)
+class 18 word x1^512: IDENTITY
+chunk exit 0 09:42:28
+chunk exit 124 10:02:46
+NO PROGRESS at 18

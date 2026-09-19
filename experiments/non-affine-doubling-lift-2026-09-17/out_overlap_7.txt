@@ -1,0 +1,11 @@
+scale 7: period [682.5, 810.5) pieces 488691 comps 69 (92s)
+  comps per period: 53  support measure per period: 27.5215
+  k= 1: overlap comps 82 measure 7.17; w_k moves measure 1.587 in 138 comps, first at 683.25
+  k= 2: overlap comps 33 measure 9.888; w_k moves measure 1.532 in 114 comps, first at 683
+  k= 3: overlap comps 40 measure 4.931; w_k moves measure 1.021 in 85 comps, first at 684
+  k= 4: overlap comps 10 measure 6.305; w_k moves measure 0.8235 in 39 comps, first at 682.5
+  k= 5: overlap comps 31 measure 6.005; w_k moves measure 0.8892 in 69 comps, first at 683.5
+  k= 6: overlap comps 32 measure 7.938; w_k moves measure 1.261 in 74 comps, first at 683
+  k= 7: overlap comps 32 measure 4.19; w_k moves measure 0.9146 in 57 comps, first at 684
+  k= 8: overlap comps 15 measure 9.422; w_k moves measure 1.106 in 66 comps, first at 685
+  k= 9: overlap comps 26 measure 2.531; w_k moves measure 0.629 in 35 comps, first at 686

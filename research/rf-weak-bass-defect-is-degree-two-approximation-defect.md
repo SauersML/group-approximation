@@ -224,3 +224,36 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
   - *Next step.* (II): prove `rk_Λ H_2(L) <= rk_Λ H_1(L)` for one amenable Z-kernel `L`.
     `F_2 × F_2` has `A_2 = Λ²` and shows amenability is needed. (I): decide whether a
     residually finite amenable cd-2 group can have `b_1 = 0` on every finite-index subgroup.
+- **2026-09-19 (lane `w22-112`): the Ore/Følner step for the fibred type (II) is blocked.**
+  See `fibred-ore-rank-comparison-is-local-indicability` (proposed ESTABLISHED; obstruction).
+  - *Result.* For `φ : G ↠ Z`, the comparison `rank_{Q(t)} φ(A) <= rk_U(A)` holds for all
+    matrices exactly when `G` is locally indicable. It then already holds on `Q[ker φ]`, where it
+    is the augmentation comparison. In a fibred counterexample, the fibre contains a
+    finitely generated rationally perfect counterexample `J`. The Fox matrix of `J` is constant
+    in `t` and breaks every Ore, Følner or specialization rank comparison over `Q[L] ⋊ ⟨t⟩`.
+  - *Calibrations.* `Z ≀ Z` (amenable, comparison holds, cd `∞`) has `ρ_2 = ∞ > ρ_1 = 1`.
+    `F_2 × F_2` (cd 2, comparison holds, not amenable) has `ρ_2 − ρ_1 = 1`. So
+    `ρ_2 <= ρ_1` needs amenability, cd 2 and a comparison valid only on projective summands,
+    all at once.
+  - *Effect on the target.* Item 6(b) for `Γ = Z` on the relation module is equivalent to
+    `χ <= 0`, and no easier than the core inequality for L²-finite projectives. Type (I) remains
+    open.
+  - *Next step.* Use the splitting `P ⊕ P'' = Q[H]^{(∞)}` together with the `Λ`-freeness of
+    `Λ ⊗ P`, or show that fibre descent ends in a type (I) counterexample.
+- **2026-09-19 (lane `w23-112`): fibre descent stops after one step; the finite-index step is the gap.**
+  See `zero-divisor-support-is-fibre-conserved` (proposed ESTABLISHED; obstruction).
+  - *Result.* For any `φ : H ↠ Z`, the minimal zero-divisor support satisfies
+    `μ(ker φ) = μ(H)`. Normalized minimal pairs lie in every fibre at once, hence in the
+    rational derived core, and generate a finitely generated `J` with `b_1(J) = 0`. In an
+    amenable cd-2 counterexample every finite-index `J' ≤ J` is again a counterexample, with
+    `μ(J') >= μ(J)`. If `b_2(J) < ∞`, then `χ(J') = [J:J'] χ(J) >= [J:J']`, and a fibred `J'` has
+    free Alexander `H_2` of rank `ρ_2 >= ρ_1 + [J:J']`.
+  - *Obstruction.* Along descent, `μ` and every zero-divisor infimum are non-decreasing. For
+    `i >= 1`, `cd = 2`, `b_1 = 0` and `χ >= 1` at every step. So termination in type (I) needs a
+    Hirsch-length-type invariant. Restricting a minimal pair to finite index gives only
+    coset-matrix zero divisors.
+  - *Calibrations.* `D_∞`: finite index can kill all element zero divisors. Hantzsche–Wendt: a
+    non-locally-indicable group with no type (I) subgroup, whose descent exits through a
+    locally indicable fibre; that exit is closed in cd 2.
+  - *Next step.* Exclude fibred finite-index subgroups of a minimal-pair group `J`, using the
+    linear growth of their Alexander `H_2`. Alternatively, build a strictly decreasing invariant.

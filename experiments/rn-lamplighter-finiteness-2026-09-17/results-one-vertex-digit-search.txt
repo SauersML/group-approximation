@@ -1,0 +1,2 @@
+d=1 widths(E)<= 60: 1330 admissible (E,F) tested, 0 commuting pairs
+d=2 widths(E)<= 6: 16 admissible (E,F) tested, 0 commuting pairs

@@ -1,0 +1,5 @@
+members 1024 dims {3: 812, 2: 197, 1: 15} finite-order words 64 violations 0
+
+real	3m26.855s
+user	1m1.111s
+sys	0m0.078s

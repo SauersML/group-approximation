@@ -385,3 +385,94 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    - Next: Route 2 (group-level Cartan p-powers), the level-`n` S-pairs, or
      a separate argument for `K_n`.
    See `kms-hc1-virtual-vertex-route-is-conjugation-inert`.
+
+13. **Ozawa (T) certificate, and amenable wq-normal / commuting routes to `b_1^(2)(Gamma_3) = 0` (w27-057).**
+   - **SOS: no certificate at radius <= 4 (numerical, not rigorous).**
+     The Ozawa SDP was reduced by the symmetry group `H` of order 48
+     (Wedderburn blocks) and solved on exactly certified balls. It gives
+     `lambda ~ 0` at every radius tried:
+
+     | radius | `lambda` | size |
+     |---|---|---|
+     | 2 | `8e-6` | |
+     | 3 | `4e-6` | `n = 115`, 51 orbit rows |
+     | 4 | `6e-6` | `n = 361` |
+
+   - **Class-killing obstruction (ESTABLISHED).** This is
+     `kms-hc1-a2-p3-isolated-flats-kill-amenable-wq-normal`.
+     - The vertex links of `X_3` are Pappus graphs, with exactly 2 geodesics
+       between antipodal vertices. So `X_3` has no flat triplane.
+     - It follows (Hruska; Hruska--Kleiner) that `X_3` has isolated flats and
+       `Gamma_3` is hyperbolic relative to virtually `Z^2` flat stabilizers.
+     - `Z^2 = <bcba, babc>` is certified exactly.
+     - Elementary subgroups are almost malnormal. So every wq-normal chain
+       from an infinite amenable subgroup, and every commuting chain of
+       infinite-order elements, stays in a proper subgroup.
+     - This kills Peterson--Thom 5.12, Popa-type wq-normal routes, and
+       Gaboriau commuting-chain routes for `Gamma_3`.
+   - **Strict reduction.** A proper cocompact cubulation of `Gamma_3` gives
+     `b_1^(2) = 0`: virtually special (Groves--Manning / Oregón-Reyes), then
+     Schreve's Atiyah theorem gives `b_1^(2)` in `(1/27)Z`, and the w26 bound
+     `<= 0.006258` finishes it. A cubulation would also refute (T).
+     Next step: cubulate `Gamma_3`, i.e. find a sufficient family of
+     quasiconvex codimension-1 subgroups.
+13. **Pi on root groups: vanishes at every level; the Pi form of Route 2
+   is empty (obstruction, all p >= 5).**
+   - (A): at the first deviation, `Pi` is additive on commuting pairs of
+     order-`p` elements, by class-2 Hall–Petrescu at the central top layer.
+   - (V): the diagonal torus of `I_1` rescales `x_ij(f)` to a vertex root
+     element when `f/t^v0` is a unit, and otherwise
+     `x_ij(f) = x_ij(t^v0(1+g)) x_ij(-t^v0)`. So `Pi = 0` on all six real
+     affine root groups, on commuting products of root elements, and on
+     their conjugates. In particular `Pi(x21(t^n)) = 0` for every `n`. This
+     is new, since `x21(t^n)` (`n >= 2`) and `x13(t)` are not vertex
+     conjugates (content invariant).
+   - (O): the proof never evaluates `W_n`, so the answer "yes" holds for
+     every `V_n` and does not settle `C_2A`. Cartan data must come from
+     infinite-order relators, such as `h(1+t^n)^p = h(1+t^(np))`, written in
+     root elements by the Bruhat identity.
+   - Next: the centralizer pairing `delta_a` on `diag(u,u,u^-2)`.
+   See `kms-hc1-p-power-value-vanishes-on-affine-root-groups`.
+
+14. **Cubulating `Gamma_3`, or proving (T): (T) is false, and convex walls do not exist (w28-057).**
+   - **Not (T).** `P_3` has index `3^6` and is torsion-free, with
+     `P_3^ab = Z^24 + Z/3` (GAP). So `Gamma_3` is not Kazhdan, and no Ozawa
+     certificate exists at any radius.
+   - **For (T3).** `ker phi^` is infinite. It lies in `bar P_3` and surjects
+     onto a finite-index subgroup of `Z_3^24 + Z/3`, because every open
+     subgroup of `I_1` has finite abelianization (`sl_3(F_3)` is perfect).
+   - **No convex walls.** `X_3` has no convex wall. At a vertex, a wall would
+     give a far-apart set of Pappus-link vertices and midpoints with an
+     admissible side colouring. There are 1293 far-apart sets, and exhaustive
+     search finds that none admits one.
+   - So cubulation needs relatively quasiconvex codimension-1 subgroups whose
+     tracks bend by at least `pi/3`, or another CAT(0) model.
+   - Next: test the quasiconvexity of bent tracks in `Y = X_3/P_3` dual to
+     `H^1(P_3;F_2) = F_2^24`, including how they meet the flats.
+   See `kms-hc1-a2-p3-no-convex-walls-and-not-kazhdan`.
+14. **Cartan relator: the torus kills the centralizer pairings, and `R_n`
+   carries exactly `C_nA` (obstruction, all p >= 5). `V_n` is one of four
+   `S_3`-submodules.**
+   - (S): `Gamma` has the automorphisms `(F_p^*)^3 x| S_3`: power maps,
+     the rotation `a -> c -> b -> a`, and the flip `a <-> b, c -> c^-1`.
+     Each is compatible with `phi` via an automorphism of `I_1`.
+     `sigma_(al,be,ga)` acts on `W_n` as `(al be ga)^n`. So
+     `delta_v(c) = 0` for diagonal `c` and every vertex element `v`. In
+     particular `delta_a = 0` on `diag(u,u,u^-2)`.
+   - (T): `g^p mod D_(d0+1)` does not depend on the lift of `h(1+t^n)`. The
+     Bruhat word of `h(1+t^(np))` is `[yt_(np), a^-1]` mod `D_(d0+1)`. So
+     `class(R_n) = C_nA` exactly, and the pairings enter with coefficient
+     zero. `C_nA` lies in `V_n` iff `R_n` lies in `D_(3np+1)`. No identity
+     of `I_1` decides this; it needs `Gamma`'s relators at class `3np`.
+   - (H): `W_n = L_n (+) S_n`, where `L_n` is the Kassel line and `S_n` is
+     the reflection representation, which is irreducible for `p >= 5`. So
+     `V_n` is one of `0`, `L_n`, `S_n`, `W_n`. One relation class with
+     nonzero components in both `L_n` and `S_n` gives `V_n = W_n`.
+   - `symmetry_check.py`: ALL OK for p = 5, 7, 11, 13.
+   - p = 11 tower: its orders agree with `I_1` through class 33, which
+     re-confirms `V_1 = W_1` at `p = 11`. Class 66, which would decide
+     `n = 2`, is out of reach, since the time per class grows about 1.4x
+     per class.
+   - Next: find one generic `(2p,2,2p)`-slice jump for `n = 2`, and project
+     it onto `S_3` by averaging.
+   See `kms-hc1-cartan-relator-is-tautological-mod-symmetry`.

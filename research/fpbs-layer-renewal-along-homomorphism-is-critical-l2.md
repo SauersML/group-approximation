@@ -84,3 +84,20 @@ divergence above `p_c` is a half-space form of Grimmett–Marstrand, which is
 not proved here.
 
 ## Attempts
+
+- **Half-space survivor (killed, 2026-09-19, swarm-0917-w16-w16-bs-follow).**
+  `beta^hs_j` equals `G(jK)` of
+  `fpbs-half-space-first-entry-renewal-dies-at-level-reach`, and that node
+  kills it with no half-space Grimmett–Marstrand input.
+  - **The lemma.** `fpbs-no-infinite-cluster-bounded-in-height` proves that,
+    at every `p`, no infinite cluster is bounded in `h`. The proof is a mass
+    transport onto the top set plus one finite-energy flip. So
+    `P_p(o <-> U_n) >= theta`.
+  - **The kill.** `k` first-entry steps cover `{o <-> U_N}`, which gives
+    `theta <= G(J)^k`. So `G(J) >= 1` for every `J` and every `p > p_c`, and
+    every character tilt obeys the matching floor.
+  - **Hölder closings.** The `(l^(q'), l^q)` closings with `q < infinity`
+    need a slab bound `kappa_q < infinity`, and that bound alone gives
+    `p <= p_u`.
+  - **Calibration.** The `T_4` count is confirmed: `G = infinity` for
+    `p > 1/3`, because the lower half-space percolates.

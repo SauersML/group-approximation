@@ -243,3 +243,50 @@ centreless invisible core, and `T_3` is the basic example.
     `M`, while `C` fixes the base vertex of each and every monomial line section is bounded.  Next: show
     that unboundedness in `X_(1,..,1)` concentrates on one monomial line after conjugating by `Gamma`,
     which would reach (L2).  Otherwise, the positive side.
+- **w19-111, 2026-09-19: line concentration refuted (method obstruction).**
+  - *Result.*  By [[level-groups-need-not-concentrate-on-monomial-lines]], for a level group `E ⊇ U_k`,
+    `E` fixes a point of the weight-`w` building iff `w` pairs nonnegatively with every exponent in the
+    supports of the traces of `E` (Bass's lemma).  So `W(E_B)` is the rational dual of the trace Newton cone.
+    Unboundedness always concentrates on monomial curves `x^m ↦ t^(<a, m>)`, where (L1) makes the image
+    cofinite.  But it need not concentrate on any monomial line: for `θ > 0` with independent coordinates,
+    `E_θ = E_3(F_q[P_θ], I_θ)`, `P_θ = { <θ, p> > 0 } ∪ 0`, contains `U_1`, avoids `e_ab(1)`, is normalised
+    by `Gamma`, fixes no point of any `X_w`, and has pole-free sections on every monomial line.
+  - *Why.*  The Newton cone of `E_θ` is an irrational half-space, which no rational weight sees and which meets
+    no monomial line in a negative ray.  Only the normaliser kills `E_θ`: it preserves the half-space, so
+    `H_B` fixes the ray of `θ` and is abelian.
+  - *What is left.*  The step proposed by w18-111 is false, and no statement about `E_B` alone closes the
+    level class.  A closing argument must move a deep trace monomial along the orbit of a nonnegative
+    `σ ∈ H_B` of infinite order onto a monomial line.  Otherwise, the positive side.
+- **w20-111, 2026-09-19: Perron-Frobenius compressors (method obstruction and reduction).**
+  - *Result.*  By [[perron-frobenius-compressors-cannot-close-the-level-class]], the σ-step proposed by
+    w19-111 is false.  For a primitive nonnegative `σ ∈ SL_d(Z)` with `σ^T θ = λ θ`, `θ > 0`, the split
+    subpair `B_σ = E_θ x| <σ>` has `U_1 ≤ E_B`, `psi(C) = 1`, `C` infranormal and not normal, and `σ` a
+    compressor.  Its traces have monomials with `<w, p> < 0` for every rational `w`.  Yet all traces and
+    their `σ`-orbits stay in `{ <θ, ·> > 0 }`, and every monomial line section is pole-free.  It fails only
+    (T).  For a survivor, one primitive compressor forces `Ncone(E_B) = R^d` and `W(E_B) = ∅`, the Newton
+    data of `EL_3(R)`.  Compressor twists `u` obey
+    `v_w(u e_a) + v_w(e_b^T u^-1) ≥ -k min_i (σ^T w)_i`.
+  - *Why.*  `σ` preserves the half-space of its Perron functional, and negative monomial rays lie outside
+    it.  For a survivor, Perron-Frobenius pushes every weight of `D(E_B)` to `θ_σ > 0`, which the invariant
+    core forbids.
+  - *What is left.*  Neither a single compressor nor any Newton or weight invariant closes the level class.
+    If a generating set of nonnegative compressors is untwisted, (W2) and (M2) kill `B`.  So a survivor needs
+    essential, bounded twists over a character-free `H_B`.  The next step is to show that such twists are
+    coboundaries modulo `E_B`, starting with diagonal twists and `H^1(H_B, Q^d) = 0`.  Otherwise, the positive
+    side.
+- **w21-111, 2026-09-19: monomial twists cancel around loops (class-killing obstruction).**
+  - *Result.*  [[monomial-twisted-level-subpairs-cannot-certify-rank-three]] kills every `B ⊇ U_k`
+    whose projection `H_B`, after conjugating `B` by some `γ ∈ Gamma`, is virtually lifted by monomially
+    twisted elements.  This covers diagonal twists `diag(x^δ(σ))` for arbitrary `δ`, signed-permutation
+    twists, twists in any finite `σ̂`-invariant group, and the untwisted case (Q4), all up to finite index.
+    No cohomology (`H^1(H_B, Q^d) = 0`), boundedness or coboundary step is needed.
+  - *Why.*  For a monomial `c = D π σ`, the double commutator
+    `[[e_xy(β), c e_ab(x^m) c^-1], c e_ba(x^m') c^-1] = e_xy(β x^(σ(m+m')))`: the twist `d_y / d_z` of the edge
+    `y → z` cancels around the loop.  A line in `K0(H_mon)` walks `e_xy(α x^(2k e_i))` down to `e_xy(α)`.
+    Finite index keeps the cone for nonnegatively generated groups (T2), and `Gamma`-conjugates keep the level
+    `U_(2k)` (T4).
+  - *What is left.*  A level certificate now needs essential non-monomial twists: for every `γ`, only an
+    infinite-index subgroup of `H_B` lifts monomially.  The loop calculus for lower-triangular (Borel) twists
+    reaches only the lowest root, giving `X_31(F_q) ≤ C` (T5).  The next step is to decide whether a Kazhdan
+    `B = < U_k, u_i σ_i >` with lower unitriangular Laurent `u_i` can have `psi(C) ≤ C_F(X_31)`.  Either
+    build it, as the first twisted candidate, or run the loop calculus for parabolic twists.

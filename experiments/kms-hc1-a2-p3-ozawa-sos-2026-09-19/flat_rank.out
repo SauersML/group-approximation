@@ -1,0 +1,4 @@
+K=5 |Q|=3^11 [u,v]=1: true ord u,v,vu^-1: 9 9 3 invariants of <u,v>: [ 3, 9 ]
+K=6 |Q|=3^14 [u,v]=1: true ord u,v,vu^-1: 9 9 3 invariants of <u,v>: [ 3, 9 ]
+K=7 |Q|=3^22 [u,v]=1: true ord u,v,vu^-1: 9 9 9 invariants of <u,v>: [ 9, 9 ]
+K=8 |Q|=3^30 [u,v]=1: true ord u,v,vu^-1: 27 27 9 invariants of <u,v>: [ 9, 27 ]

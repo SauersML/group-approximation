@@ -1,0 +1,90 @@
+# python3 poly_star_screen.py chain fan cycle scycle  (DECOS = ['', 'a']; each family run separately, exit 0)
+== family chain total 4096
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank0'), 'edge-orders-finite') 28
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank0'), 'edge-without-finite-order<=60') 28
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank1'), 'edge-orders-finite') 21
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank1'), 'edge-without-finite-order<=60') 21
+   ('star', 1, ('a1', 'b-root', 'free-rank0'), 'edge-orders-finite') 13
+   ('star', 1, ('a1', 'b-root', 'free-rank0'), 'edge-without-finite-order<=60') 13
+   ('star', 1, ('a2', 'b-lowdeg', 'free-rank0'), 'edge-without-finite-order<=60') 211
+   ('star', 1, ('a2', 'b-lowdeg', 'free-rank1'), 'edge-without-finite-order<=60') 21
+   ('star', 1, ('a2', 'b-root'), 'edge-without-finite-order<=60') 36
+   ('star', 1, ('free-rank0', 'free-rank1'), 'edge-orders-finite') 380
+   ('star', 1, ('free-rank0',), 'edge-orders-finite') 1608
+   ('star', 1, ('free-rank1',), 'edge-orders-finite') 924
+   ('survivor', 1, ('b',)) 792
+   survivor ('a', 'a', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'e', '', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'e', 'a', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'e', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'a E', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'a E', 'a', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', '', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', 'a', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+== family fan total 4096
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank0'), 'edge-orders-finite') 28
+   ('star', 1, ('a1', 'b-lowdeg', 'free-rank1'), 'edge-orders-finite') 21
+   ('star', 1, ('a1', 'b-root'), 'edge-orders-finite') 4
+   ('star', 1, ('a1', 'b-root'), 'edge-without-finite-order<=60') 18
+   ('star', 1, ('a1', 'b-root', 'free-rank0'), 'edge-orders-finite') 33
+   ('star', 1, ('free-rank0', 'free-rank1'), 'edge-orders-finite') 612
+   ('star', 1, ('free-rank0',), 'edge-orders-finite') 1608
+   ('star', 1, ('free-rank1',), 'edge-orders-finite') 1414
+   ('survivor', 1, ('b',)) 358
+   survivor ('a', 'a', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'e', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'e', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a', '', '', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a', 'a', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+== family cycle total 4096
+   ('star', 2, ('a1', 'b-lowdeg', 'free-rank0'), 'edge-orders-finite') 168
+   ('star', 2, ('a1', 'b-lowdeg', 'free-rank1'), 'edge-orders-finite') 21
+   ('star', 2, ('a1', 'b-root'), 'edge-orders-finite') 4
+   ('star', 2, ('a1', 'b-root'), 'edge-without-finite-order<=60') 16
+   ('star', 2, ('a1', 'b-root', 'free-rank0'), 'edge-orders-finite') 7
+   ('star', 2, ('free-rank0', 'free-rank1'), 'edge-orders-finite') 148
+   ('star', 2, ('free-rank0',), 'edge-orders-finite') 3180
+   ('star', 2, ('free-rank1',), 'edge-orders-finite') 350
+   ('survivor', 2, ('b',)) 202
+   survivor ('a', 'a', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'e', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'e', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'e', 'a', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a e', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'A e', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'e a', 'a E', '', '', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+== family scycle total 4096
+   ('star', 4, ('a1', 'b-lowdeg', 'free-rank0'), 'edge-orders-finite') 253
+   ('star', 4, ('a1', 'b-root'), 'edge-orders-finite') 3
+   ('star', 4, ('a1', 'b-root'), 'edge-without-finite-order<=60') 3
+   ('star', 4, ('a1', 'b-root', 'free-rank0'), 'edge-orders-finite') 21
+   ('star', 4, ('free-rank0',), 'edge-orders-finite') 3795
+   ('survivor', 4, ('b',)) 21
+   survivor ('a', 'a E', 'a', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'e', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a e', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a E', '', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'e a', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'a a', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('a', 'a E', 'e e', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('e', 'a E', 'a', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('e', 'a E', 'e', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('e', 'a E', 'a e', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('e', 'a E', 'a E', '', 'a', 'a', (('b', ('s', 't', 'u'), 'level2-full'),))
+   survivor ('e', 'a E', 'e a', '', 'a', '', (('b', ('s', 't', 'u'), 'level2-full'),))

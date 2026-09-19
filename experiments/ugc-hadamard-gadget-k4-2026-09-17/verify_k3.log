@@ -1,0 +1,7 @@
+completeness: each direction carries W(E)/K; dictator uval = 1/K
+gadget invariant under all generators and negation
+orbit 0: size 16, mincut 38400000, samples agree
+orbit 1: size 16, mincut 50400000, samples agree
+orbit 2: size 112, mincut 50400000, samples agree
+orbit 3: size 112, mincut 57600000, samples agree
+certified: R*(3) >= K * s / 1 = 11/8 ~ 1.375000

@@ -103,3 +103,32 @@ For some `delta > 0` and every `eta > 0` there are a nonzero projection
   arcs, or a counterexample built as a corona representation of `T̄` with
   `rho(z)` of arc spectrum.  By the bounded-rank remark above, any such
   counterexample has unbounded rank.
+
+- 2026-09-19 swarm-0917-w16-w16-ptm-follow (stability-approximation,
+  follow-through).  Outcome: a reduction to a Thompson-free statement.  The
+  target stays OPEN.
+  - **Established on the way.**
+    - `funar-sergiescu-lifted-thompson-t-is-t311` (imported, verbatim).
+    - `lifted-thompson-t-is-a-torus-knot-group-quotient`: `T̄` is a quotient
+      of `K(3,4) = <x, y | x^4 = y^3>` with `x^4 -> z`.  The lifts `a`, `b`
+      of `C^(-1)B` and `C^(-1)` satisfy `a^4 = b^3 = z` and `(ba)^5 = z^3`.
+      This was checked in exact arithmetic in
+      `experiments/torus-knot-cover-2026-09-17/`.  Hence
+      `rho(T̄)' ∩ Q = {rho(a), rho(b)}' ∩ Q`.
+    - `matricially-stable-groups-have-central-eigencorners`: over a
+      matricially stable group, every spectral value of a central element
+      has an exact commutant eigencorner.
+  - **New route.**  `lifted-thompson-t-eigencorners-via-torus-knot-cover`
+    reduces this target to `torus-knot-group-k34-has-central-eigencorners`.
+    That claim in turn follows from `torus-knot-group-k34-is-matricially-stable`
+    (route `torus-knot-group-k34-central-eigencorners-via-stability`).  So the
+    flagship follows from `thompson-t-has-full-mf-radical` plus stability of
+    one fixed one-relator group, a statement that mentions no Thompson group.
+  - **Evidence for the open leaf.**
+    - `pg = K(2,2)` is matricially stable (ESS Theorem 4.9).
+    - Dadarlat's rational obstruction vanishes, since `H^2(K(3,4); Q) = 0`.
+    - Hadwin-Shulman give Hilbert-Schmidt stability only.
+    - One-sided correction fails (the `diag(1, i)` example).
+  - **Caveat.**  A counterexample to the `K(3,4)` statements refutes only
+    this route, not the target: the bad pair need not satisfy the Thompson
+    relators.

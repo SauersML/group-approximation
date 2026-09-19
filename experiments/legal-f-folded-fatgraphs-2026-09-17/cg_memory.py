@@ -318,6 +318,59 @@ class CGM:
             lb += obj * float(rho.min())
         return lb
 
+    def run_box(self, kcol, tl, log, c0, delta):
+        """Phase 1 with a box-stabilised master (soft boxstep): extra columns +-e_i with costs c_i + delta and
+        -(c_i - delta) and upper bound CG_BOX_U penalise (by CG_BOX_U per unit) master duals leaving the box
+        |y_i - c_i| <= delta around the centre c (on the rows present when the box is built).  The master objective is then NOT the phase-1 value; the only quantity used is
+        the dart-shifted Farkas value of the master dual y (dart_bound with obj = 0), which is a valid
+        certificate value for any y (and is re-checked exactly by farkas_vmem.py).  Centre moves to y when the
+        value improves (serious step); when pricing finds nothing at y the box is doubled."""
+        t0 = time.time()
+        center = c0
+        best = self.dart_bound(center, 1, 0.0) if center is not None else -np.inf
+        log("box centre value %.4g delta %g" % (best, delta), flush=True)
+        boxj = []
+        def set_box(c):
+            if not boxj:
+                n = self.nrows
+                ub = float(os.environ.get("CG_BOX_U", "1.0"))     # soft box: penalty ub per unit dual excess
+                for i in range(n):
+                    for sg in (1.0, -1.0):
+                        self.h.addCol(0.0, 0.0, ub, 1, np.array([i], dtype=np.int32), np.array([sg]))
+                        boxj.append((self.ncols, i, sg)); self.ncols += 1
+            idx = np.array([j for j, _, _ in boxj], dtype=np.int32)
+            cst = np.array([(c[i] + delta) if sg > 0 else -(c[i] - delta) for _, i, sg in boxj])
+            self.h.changeColsCost(len(idx), idx, cst)
+        it = 0
+        res = None
+        while True:
+            it += 1
+            if center is not None:
+                cc = np.zeros(max(self.nrows, len(center))); cc[:len(center)] = center
+                set_box(cc)
+            res = self.solve_master()
+            if res.status != 0:
+                log("master status", res.status, res.message)
+                return None, res
+            y = res.y
+            rc, added, bestk = self.price(res, 1, kcol)
+            lbd = self.dart_bound(y, 1, 0.0)
+            step = "null"
+            if lbd > best + 1e-6 or center is None:
+                best, center, step = lbd, y.copy(), "serious"
+            elif added == 0:
+                delta *= 2.0; step = "grow %g" % delta
+            log("box it", it, "obj %.6f" % res.fun, "cols", len(self.cols), "pairs", len(self.prow),
+                "min rc %.4g" % rc, "dartLB %.4g" % lbd, "best %.4g" % best, step,
+                {k: round(v, 4) for k, v in bestk.items()}, "added", added,
+                "t", round(time.time() - t0, 1), "tm", round(self.tmaster, 1), flush=True)
+            if best > 1e-6:
+                log("dart-shifted Farkas value > 0: full LP infeasible")
+                return "infeasible", res
+            if time.time() - t0 > tl:
+                log("time limit")
+                return ("timeout", best), res
+
     def run(self, kcol=3000, tl=1100, log=print, init=None, alpha=None):
         if alpha is None:
             alpha = float(os.environ.get("CG_ALPHA", "0.0"))
@@ -325,6 +378,26 @@ class CGM:
         self.init_master()
         if init:
             self.add_cols([tuple(tuple(sl) for sl in P) for P in init])
+        c0 = None
+        if os.environ.get("CG_CENTER"):
+            # warm start of the smoothing centre from an earlier dump's dual (rows matched by window index and
+            # by pair key); only steers pricing -- every bound below is recomputed from scratch
+            Jc = json.load(open(os.environ["CG_CENTER"])); yo = Jc[os.environ.get("CG_CENTER_KEY", "y")]
+            newrows = []                        # recreate the earlier master's pair rows (balance rows, rhs 0)
+            for a, b, rw in Jc["prow"]:
+                if (a, b) not in self.prow:
+                    self.prow[(a, b)] = self.nrows; self.nrows += 1; newrows.append(self.prow[(a, b)])
+            if newrows:
+                k = len(newrows)
+                self.h.addRows(k, np.zeros(k), np.zeros(k), 0, np.zeros(k + 1, dtype=np.int32),
+                               np.array([], dtype=np.int32), np.array([]))
+                self._add_art(newrows)
+            c0 = np.zeros(self.nrows); c0[:self.rN + 1] = yo[:self.rN + 1]
+            for a, b, rw in Jc["prow"]:
+                if (a, b) in self.prow and rw < len(yo):
+                    c0[self.prow[(a, b)]] = yo[rw]
+        if float(os.environ.get("CG_BOX", "0")) > 0:
+            return self.run_box(kcol, tl, log, c0, float(os.environ["CG_BOX"]))
         class Y: pass
         for phase in (1, 2):
             if phase == 2:
@@ -338,6 +411,9 @@ class CGM:
                     log("master status", res.status, res.message)
                     return None, res
                 y = res.y
+                if it == 1 and phase == 1 and c0 is not None:
+                    best = self.dart_bound(c0, phase, res.fun); center = c0
+                    log("warm centre from", os.environ["CG_CENTER"], "dart-shifted value %.4g" % best, flush=True)
                 if center is not None and alpha > 0:
                     cp = np.zeros(len(y)); cp[:len(center)] = center
                     ys = alpha * cp + (1 - alpha) * y

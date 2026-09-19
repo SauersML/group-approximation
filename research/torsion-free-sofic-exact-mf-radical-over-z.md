@@ -269,3 +269,39 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     - All three are open problems about torsion-free hyperbolic groups. So on this route the goal
       lives inside "a sofic, non-residually-finite, non-MF torsion-free hyperbolic group with a
       Kazhdan Rips kernel over `Z`".
+- **2026-09-19, swarm-0917-w16-w16-titz-follow (reframer, reframing).  Status: OPEN.**
+  - New ESTABLISHED claim `non-mf-tf-hyperbolic-gives-fp-full-radical-kazhdan-group`, with route
+    `-proof`. It uses Olshanskii's G-subgroup theorem on `H_0 * P`, the partner `P`, the universal
+    MF quotient and FO-AT part 2.
+    - Fix any torsion-free non-elementary hyperbolic host `P`. Then "some torsion-free hyperbolic
+      group is not MF" is equivalent to: `P` has torsion-free hyperbolic quotients `Q`, injective on
+      any prescribed ball, with `Rad_MF(Q) = Q` and `Q = ⟨q, sqs⁻¹⟩`.
+    - The mechanism: `X = ⟨r, prp⁻¹⟩` is free and lies in `Rad_MF(H_0 * P)`, and `X` and `P` both
+      surject onto one Olshanskii quotient.
+    - For a Kazhdan host, `(Q × Z, Q × 0)` meets every clause of `(TFZ1)` and of the preferred
+      strengthening except soficity. It is a witness iff `Q` is sofic.
+  - *Trichotomy.* One of the following holds:
+    - (T1) every torsion-free hyperbolic group is MF;
+    - (T2) some torsion-free hyperbolic Kazhdan group is not sofic;
+    - (T3) the flagship holds, with a hyperbolic product kernel.
+
+    So refuting even the strengthened flagship forces (T1) or (T2).
+  - *New decomposition.* The route `exact-mf-radical-over-z-via-sofic-hyperbolic-kernel` needs the
+    single OPEN `sofic-tf-hyperbolic-kazhdan-group-with-full-mf-radical`. That claim splits into
+    (H1) a non-MF torsion-free hyperbolic group, and (H2) soficity of one Olshanskii quotient of a
+    fixed `Sp(2,1)` lattice. Each half can fail on its own, and each failure is itself a result:
+    - if (H1) fails, (T1) holds;
+    - if (H2) fails, a nonsofic hyperbolic group exists.
+  - *Relation to the w16 Rips list.* Of the three Rips-torus obligations listed just above, the
+    non-residual-finiteness one is redundant here, and soficity is needed for the single group
+    `Q` only. There is no Rips step and no automorphism. The price is region (AT), with
+    `cd(Q × Z) = cd Q + 1 ≥ 3`, which is consistent with the dimension-jump lemma. An unlanded w14
+    branch (commit 3ec242c521) proposed the same common-quotient step followed by a
+    Belegradek--Osin Rips step. That branch needed soficity of all torsion-free hyperbolic groups.
+  - *Audit note (not edited, outside this lane).* The "Kazhdan host" bullet of
+    `hyperbolic-rf-question-reduces-to-one-fixed-host` says every quotient in its item (2) "is
+    non-MF". Its proof route never proves this. For a finite-quotient-free hyperbolic Kazhdan group,
+    non-MF is the open implication (3) ⇒ (4) of `hyperbolic-rf-question-equals-non-mf-question`. It
+    should read "is not residually finite".
+  - *Not done.* The converse "hyperbolic witness kernel ⇒ `Rad_MF(K) = K`" needs `Out(K)` finite
+    for hyperbolic Kazhdan `K` (Paulin plus property FA_R). That theorem is not imported verbatim.

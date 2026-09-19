@@ -1,0 +1,18 @@
+scale 5: period [170.5, 202.5) pieces 56055 comps 56 (14s)
+  comps per period: 26  support measure per period: 16.8291
+  k= 1: overlap comps 41 measure 9.189; w_k moves measure 3.09 in 93 comps, first at 171.25
+  k= 2: overlap comps 26 measure 10.12; w_k moves measure 3.719 in 88 comps, first at 171
+  k= 3: overlap comps 31 measure 7.112; w_k moves measure 2.684 in 71 comps, first at 172
+  k= 4: overlap comps 18 measure 9.735; w_k moves measure 3.163 in 68 comps, first at 170.5
+  k= 5: overlap comps 33 measure 6.553; w_k moves measure 2.923 in 72 comps, first at 171.5
+  k= 6: overlap comps 24 measure 9.369; w_k moves measure 3.401 in 67 comps, first at 170.5
+  k= 7: overlap comps 34 measure 8.67; w_k moves measure 3.506 in 86 comps, first at 170.5
+  k= 8: overlap comps 24 measure 12.13; w_k moves measure 3.511 in 95 comps, first at 170.5
+  k= 9: overlap comps 38 measure 7.661; w_k moves measure 2.795 in 81 comps, first at 171.5
+  k=10: overlap comps 22 measure 9.667; w_k moves measure 3.044 in 58 comps, first at 172.505
+  k=11: overlap comps 31 measure 6.515; w_k moves measure 2.663 in 64 comps, first at 173.51
+  k=12: overlap comps 18 measure 9.782; w_k moves measure 2.58 in 51 comps, first at 174.52
+  k=13: overlap comps 29 measure 6.722; w_k moves measure 2.854 in 61 comps, first at 175.5
+  k=14: overlap comps 25 measure 9.693; w_k moves measure 4.071 in 86 comps, first at 171
+  k=15: overlap comps 35 measure 8.281; w_k moves measure 3.387 in 91 comps, first at 172
+  k=16: overlap comps 22 measure 11.83; w_k moves measure 3.204 in 82 comps, first at 170.5

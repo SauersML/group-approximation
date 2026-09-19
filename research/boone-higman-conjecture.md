@@ -705,6 +705,72 @@ presented.** See `linear-m11-bouquet-recursions-are-not-finitely-presented`.
 things: three or more state letters, a section of weight at least 2, or a two-letter section
 cycle. In each case the aim is that no finite-order loop has a section-closed letter block.
 
+**September 19: the amalgam obstruction extends to infinite edge groups and to polynomial
+recursions with any number of letters.** See
+`unit-weight-polynomial-recursions-split-over-loop-edges`.
+
+- *Lemma T* replaces one-endedness. Let `G` be fully self-replicating with a perfect,
+  transitive root group (such as `M_11`). Then every `G`-tree without inversions has a
+  vertex fixed by `G`, or an edge stabilizer that contains a coordinate copy `ι_y(G')`.
+- *Tree-of-factors obstruction.* Suppose the stable relators lie, up to conjugacy, in the
+  vertex factors of a tree of free factors of `F`, no edge factor maps onto a group
+  containing `ι_y(G')`, and no vertex factor maps onto `G`. Then `G` is not finitely
+  presented. The edge images may be infinite; the bouquet node needed them finite.
+- *Polynomial loop star.* This covers M_11 recursions with unit-weight sections (U) and
+  polynomial activity (Poly), with any number of letters and with section cycles such as
+  `s → t → s^{-1} → …`. The stable relators live in the lower-degree letters or in the
+  loop-graph components. The lower-degree centre maps into `Pol(d − 1)`, so it is proper
+  automatically. A component is harmless when its lower loops form a forest and its
+  rank is at most 1 (free split), or when its edge is small and its loop group is proper.
+- *Screen.* The screen covered 16,384 three-letter M_11 recursions in four families: chain,
+  fan, section cycle `s ↔ t`, and signed cycle. It killed 15,011 of them exactly, including
+  367 whose edge loops have no finite order `≤ 60` (so the bouquet obstruction cannot touch
+  them). The 1373 survivors all fail only (b). Each has a non-free loop component
+  containing `s, t, u` whose loops are transitive on levels 1–3, and in the 48 inspected
+  cases the level-2 image is full `M_11 ≀ M_11`. These are the first candidates on which the
+  amalgam argument genuinely fails, provided the loops generate `G`. The example is chain
+  with `(ps, pt, pu) = (a, a, e)` and no decorations.
+- Nontrivial loops are never finitary. So the bouquet node's design rule ("no finite-order
+  loop with a section-closed letter block") does not describe the obstruction.
+
+*Design rule (replaces the September 19 bouquet rule)*: a finitely presented unit-weight
+polynomial host needs a loop-graph component with `rank π_1 ≥ 2`, or a cycle of lower
+loops, that contains a top-degree letter and whose loops generate all of `G`. The other
+ways out are leaving (U), with a section of weight at least 2, or leaving (Poly), with
+exponential activity.
+
+**September 19: the 1373 loop-star survivors are dead, by homology; the loops of the first one do generate G.**
+See `m11-loop-star-survivors-are-not-finitely-presented`.
+
+- *The (γ)-case is real.* In the chain survivor with root words `(a, a, e)`, the loops
+  `s, t, u` generate all of `G`. The stabilizer sections are all of `G`, and a commutator of
+  loops is a coordinate element, so the loop group contains `∏_x ι_x(G')`. It also maps onto
+  `Z^{33} ⋊ M_11`. So the loop-star leaf maps onto `G`, and no splitting argument separates
+  this recursion.
+- *But `H_1(G) = Z^3`.* A new linear descent theorem shows that an exponent-sum functional
+  `λ` survives every relation when three conditions hold:
+  - `λ(M^p − I)` lies in the span of the functionals already found;
+  - `λ` kills the closed loop-graph walks fixed by `M^p`;
+  - `λ` restricts to a valid functional on the lower letters.
+
+  The theorem applies to unit-weight polynomial recursions under a mild uniqueness
+  condition (T_p). Its key point is that stable relators spell closed walks in the
+  loop graph.
+- *All survivors.* Exact linear algebra on all 1373 survivors gives `b_1 ≥ 1` in every
+  case:
+  - `b_1 ≥ 3` for 637 chain survivors;
+  - `b_1 ≥ 2` for 673 survivors;
+  - `b_1 ≥ 1` for the other 63 (fan, cycle, scycle).
+
+  By `fully-self-replicating-fp2-groups-have-odd-cyclic-h1`, none is `FP_2`, and neither
+  is its Tits host. All 16,384 screened three-letter M_11 recursions are therefore not
+  finitely presented.
+
+*Design rule (adds to the September 19 loop-star rule)*: a finitely presented unit-weight
+polynomial host needs `Λ_S = 0`. Every exponent-sum functional must be killed by closed
+loop-graph walks whose letter sums are fixed by `M^p`. This is on top of escaping the
+loop-star obstruction. Screen with `descent.py` first; it is cheap.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

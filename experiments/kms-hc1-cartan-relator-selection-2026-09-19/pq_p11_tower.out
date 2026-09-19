@@ -1,0 +1,36 @@
+# pqchunk.sh <pq> 11 66: lower exponent-11 central series of Gamma^A2_11 (standalone ANU pq)
+# stopped after class 33: per-class time grows ~1.4x (class 31: 98 s, 32: 140 s, 33: 195 s, load 25)
+# column 4 = order of I_1 / degree-(k+1) congruence piece: increments 3,3,2 (dim sl_3 = 8 per 3 classes)
+class 1 order 11^3 I_1 11^3 agree
+class 2 order 11^6 I_1 11^6 agree
+class 3 order 11^8 I_1 11^8 agree
+class 4 order 11^11 I_1 11^11 agree
+class 5 order 11^14 I_1 11^14 agree
+class 6 order 11^16 I_1 11^16 agree
+class 7 order 11^19 I_1 11^19 agree
+class 8 order 11^22 I_1 11^22 agree
+class 9 order 11^24 I_1 11^24 agree
+class 10 order 11^27 I_1 11^27 agree
+class 11 order 11^30 I_1 11^30 agree
+class 12 order 11^32 I_1 11^32 agree
+class 13 order 11^35 I_1 11^35 agree
+class 14 order 11^38 I_1 11^38 agree
+class 15 order 11^40 I_1 11^40 agree
+class 16 order 11^43 I_1 11^43 agree
+class 17 order 11^46 I_1 11^46 agree
+class 18 order 11^48 I_1 11^48 agree
+class 19 order 11^51 I_1 11^51 agree
+class 20 order 11^54 I_1 11^54 agree
+class 21 order 11^56 I_1 11^56 agree
+class 22 order 11^59 I_1 11^59 agree
+class 23 order 11^62 I_1 11^62 agree
+class 24 order 11^64 I_1 11^64 agree
+class 25 order 11^67 I_1 11^67 agree
+class 26 order 11^70 I_1 11^70 agree
+class 27 order 11^72 I_1 11^72 agree
+class 28 order 11^75 I_1 11^75 agree
+class 29 order 11^78 I_1 11^78 agree
+class 30 order 11^80 I_1 11^80 agree
+class 31 order 11^83 I_1 11^83 agree
+class 32 order 11^86 I_1 11^86 agree
+class 33 order 11^88 I_1 11^88 agree

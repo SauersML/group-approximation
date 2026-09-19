@@ -1,0 +1,5 @@
+class 1  index 3^3  abelian invariants of kernel: [ [ 3, 5 ] ]
+class 2  index 3^6  abelian invariants of kernel: [ [ 0, 24 ], [ 3, 1 ] ]
+image of vertex group [ a, b ] in Gamma/P_3 has order 27
+image of vertex group [ b, c ] in Gamma/P_3 has order 27
+image of vertex group [ c, a ] in Gamma/P_3 has order 27

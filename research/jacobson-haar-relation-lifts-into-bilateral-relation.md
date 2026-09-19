@@ -90,3 +90,22 @@ survivor side.
   - (HS) with values in `Ê_-` is already refuted by `jacobson-symbol-sequence-does-not-virtually-split`.
   - The candidate measurable index (relative entropy of the `u'`-invariant sigma-algebra) dies where unbounded
     `[T_-]` corrections make the conditional entropies infinite.
+* **Commuting-pair test decided; splitting over virtually free subgroups (swarm-0917-w16-w16-nh-follow, 2026-09-19,
+  cohomology-index).** Recorded in `mirror-extension-splits-over-free-finite-by-free-subgroups` (ESTABLISHED,
+  unreviewed). The hole stays OPEN.
+  - **Conjugacy of finite lifts.** Two essentially free lifts of a finite group into `N_-` that agree modulo `[T_-]`
+    are `[T_-]`-conjugate. This uses fundamental domains and partial isomorphisms of the ergodic tail relation.
+    Freeness is automatic by the null-coset lemma, and in fact every lift is properly outer.
+  - **The test named by w16-nh-last1 comes out positive.** For `h ∈ C_Q(u_a)` the linear lift `u~` commutes with a
+    corrected `h' = s h~`, `s ∈ [T_-] \ L_-`. So (NVS) has no measurable shadow, and the relative-entropy index, like
+    every coset-level index on commuting pairs, is dead.
+  - **(HS) holds over** every finitely generated virtually free subgroup of `Q` whose finite subgroups lift (graph of
+    groups plus Bass–Serre), and over every locally finite subgroup with liftable finite subgroups.
+  - Root subgroups `X_ij(A)`, `SL_n(F_2)` and the order-128 finite Steinberg shadow
+    `<x_12(1), x_12(x), x_23(1), x_23(x^(-1))>` all lift, even linearly, by re-lifting `x_23(1)` as `x_23(pq)`.
+  - **Survivors.**
+    * (FL): is there a finite subgroup of `Q` that does not lift? A single one would refute (HS).
+    * (Z2): exact `[T_-]`-conjugacy of `g_1'` and `g~_2^(-1) g_1' g~_2` for the diagonal torus. The obstruction would
+      have to be a `[T_-]`-outer-conjugacy invariant that is not `N[T_-]`-invariant.
+    * (AM): an Ocneanu-type 2-cocycle vanishing for properly outer amenable actions on the hyperfinite `T_-` would give
+      (HS) over every amenable subgroup. Then any refutation must use the Kazhdan part of `Q`.

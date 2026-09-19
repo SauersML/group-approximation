@@ -1,0 +1,50 @@
+k=5 n= 13 window induces H: False  n c/|w| = 19.30002  sqrt3(n-floor(n/(k+1))) = 19.05256  open
+k=5 n= 14 window induces H: False  n c/|w| = 20.78463  sqrt3(n-floor(n/(k+1))) = 20.78461  open
+k=5 n= 15 window induces H: True  n c/|w| = 22.26925  sqrt3(n-floor(n/(k+1))) = 22.51666  open
+k=5 n= 16 window induces H: True  n c/|w| = 23.75387  sqrt3(n-floor(n/(k+1))) = 24.24871  open
+k=5 n= 17 window induces H: True  n c/|w| = 25.23848  sqrt3(n-floor(n/(k+1))) = 25.98076  open
+k=5 n= 20 window induces H: True  n c/|w| = 29.69233  sqrt3(n-floor(n/(k+1))) = 29.44486  CLOSED
+k=5 n= 21 window induces H: True  n c/|w| = 31.17695  sqrt3(n-floor(n/(k+1))) = 31.17691  CLOSED
+k=5 n= 22 window induces H: True  n c/|w| = 32.66157  sqrt3(n-floor(n/(k+1))) = 32.90897  open
+k=5 n= 23 window induces H: True  n c/|w| = 34.14618  sqrt3(n-floor(n/(k+1))) = 34.64102  open
+k=5 n= 26 window induces H: True  n c/|w| = 38.60003  sqrt3(n-floor(n/(k+1))) = 38.10512  CLOSED
+k=5 n= 27 window induces H: True  n c/|w| = 40.08465  sqrt3(n-floor(n/(k+1))) = 39.83717  CLOSED
+k=5 n= 28 window induces H: True  n c/|w| = 41.56927  sqrt3(n-floor(n/(k+1))) = 41.56922  CLOSED
+k=5 n= 29 window induces H: True  n c/|w| = 43.05388  sqrt3(n-floor(n/(k+1))) = 43.30127  open
+k=5 n= 32 window induces H: True  n c/|w| = 47.50773  sqrt3(n-floor(n/(k+1))) = 46.76537  CLOSED
+k=5 n= 33 window induces H: True  n c/|w| = 48.99235  sqrt3(n-floor(n/(k+1))) = 48.49742  CLOSED
+k=5 n= 34 window induces H: True  n c/|w| = 50.47697  sqrt3(n-floor(n/(k+1))) = 50.22947  CLOSED
+k=5 n= 35 window induces H: True  n c/|w| = 51.96158  sqrt3(n-floor(n/(k+1))) = 51.96152  CLOSED
+k=5 n= 39 window induces H: True  n c/|w| = 57.90005  sqrt3(n-floor(n/(k+1))) = 57.15768  CLOSED
+k=5 n= 40 window induces H: True  n c/|w| = 59.38467  sqrt3(n-floor(n/(k+1))) = 58.88973  CLOSED
+k=5 n= 41 window induces H: True  n c/|w| = 60.86928  sqrt3(n-floor(n/(k+1))) = 60.62178  CLOSED
+k=5 n= 45 window induces H: True  n c/|w| = 66.80775  sqrt3(n-floor(n/(k+1))) = 65.81793  CLOSED
+k=5 n= 46 window induces H: True  n c/|w| = 68.29237  sqrt3(n-floor(n/(k+1))) = 67.54998  CLOSED
+k=5 n= 47 window induces H: True  n c/|w| = 69.77698  sqrt3(n-floor(n/(k+1))) = 69.28203  CLOSED
+k=5 n= 51 window induces H: True  n c/|w| = 75.71545  sqrt3(n-floor(n/(k+1))) = 74.47818  CLOSED
+k=5 n= 52 window induces H: True  n c/|w| = 77.20007  sqrt3(n-floor(n/(k+1))) = 76.21024  CLOSED
+k=5 n= 53 window induces H: True  n c/|w| = 78.68468  sqrt3(n-floor(n/(k+1))) = 77.94229  CLOSED
+k=5 n= 58 window induces H: True  n c/|w| = 86.10777  sqrt3(n-floor(n/(k+1))) = 84.87049  CLOSED
+k=5 n= 59 window induces H: True  n c/|w| = 87.59238  sqrt3(n-floor(n/(k+1))) = 86.60254  CLOSED
+k=5 n= 64 window induces H: True  n c/|w| = 95.01547  sqrt3(n-floor(n/(k+1))) = 93.53074  CLOSED
+k=5 n= 65 window induces H: True  n c/|w| = 96.50008  sqrt3(n-floor(n/(k+1))) = 95.26279  CLOSED
+k=5 n= 70 window induces H: True  n c/|w| = 103.92317  sqrt3(n-floor(n/(k+1))) = 102.19100  CLOSED
+k=5 n= 71 window induces H: True  n c/|w| = 105.40778  sqrt3(n-floor(n/(k+1))) = 103.92305  CLOSED
+k=5 n= 77 window induces H: True  n c/|w| = 114.31548  sqrt3(n-floor(n/(k+1))) = 112.58330  CLOSED
+k=5 n= 83 window induces H: True  n c/|w| = 123.22318  sqrt3(n-floor(n/(k+1))) = 121.24356  CLOSED
+k=5 n= 89 window induces H: True  n c/|w| = 132.13088  sqrt3(n-floor(n/(k+1))) = 129.90381  CLOSED
+k=5 closed 27 of 35: [20, 21, 26, 27, 28, 32, 33, 34, 35, 39, 40, 41, 45, 46, 47, 51, 52, 53, 58, 59, 64, 65, 70, 71, 77, 83, 89] ; still open: [13, 14, 15, 16, 17, 22, 23, 29]
+k=6 n= 17 window induces H: True  n c/|w| = 25.23848  sqrt3(n-floor(n/(k+1))) = 25.98076  open
+k=6 n= 18 window induces H: True  n c/|w| = 26.72310  sqrt3(n-floor(n/(k+1))) = 27.71281  open
+k=6 n= 19 window induces H: True  n c/|w| = 28.20772  sqrt3(n-floor(n/(k+1))) = 29.44486  open
+k=6 n= 20 window induces H: True  n c/|w| = 29.69233  sqrt3(n-floor(n/(k+1))) = 31.17691  open
+k=6 n= 25 window induces H: True  n c/|w| = 37.11542  sqrt3(n-floor(n/(k+1))) = 38.10512  open
+k=6 n= 26 window induces H: True  n c/|w| = 38.60003  sqrt3(n-floor(n/(k+1))) = 39.83717  open
+k=6 n= 27 window induces H: True  n c/|w| = 40.08465  sqrt3(n-floor(n/(k+1))) = 41.56922  open
+k=6 n= 34 window induces H: True  n c/|w| = 50.47697  sqrt3(n-floor(n/(k+1))) = 51.96152  open
+k=6 closed 0 of 8: [] ; still open: [17, 18, 19, 20, 25, 26, 27, 34]
+k=7 n= 22 window induces H: True  n c/|w| = 32.66157  sqrt3(n-floor(n/(k+1))) = 34.64102  open
+k=7 n= 23 window induces H: True  n c/|w| = 34.14618  sqrt3(n-floor(n/(k+1))) = 36.37307  open
+k=7 closed 0 of 2: [] ; still open: [22, 23]
+k=5 n=13: 6-subsets containing 0 that induce H: 0
+k=5 n=14: 6-subsets containing 0 that induce H: 0

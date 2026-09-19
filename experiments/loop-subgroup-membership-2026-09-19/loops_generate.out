@@ -1,0 +1,12 @@
+ok   u u u u u                fixes 0, section at 0 = u
+ok   s U                      fixes 0, section at 0 = s U
+ok   t U                      fixes 0, section at 0 = t U
+ok   s s s s s s s s s s s    fixes 0, section at 0 = s a e t
+ok   t t t t t t t t t t t    fixes 0, section at 0 = t a u
+ok   d = [sT, (sT)^(sUSSS)] has trivial root, length 20
+ok   support of d on level 1 is [2]
+ok   root of d|_2 = (9, 1, 2, 5, 8, 6, 10, 7, 0, 4, 3)
+
+real	0m0.196s
+user	0m0.017s
+sys	0m0.004s

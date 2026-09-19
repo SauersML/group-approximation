@@ -1,0 +1,17 @@
+Part A: brute-force Cayley density == counting formula for 240 (family, n) pairs, n <= 6
+Part B: depth-<=k family, R_k decreasing and > 1/4, limit density 4 - 2R_k:
+  k= 1  R_k=0.618033988750  density limit=2.763932022500
+  k= 2  R_k=0.484028302231  density limit=3.031943395539
+  k= 3  R_k=0.416317755764  density limit=3.167364488473
+  k= 4  R_k=0.375926793563  density limit=3.248146412873
+  k= 5  R_k=0.349386526785  density limit=3.301226946430
+  k= 6  R_k=0.330797931649  density limit=3.338404136702
+  k= 7  R_k=0.317171867965  density limit=3.365656264069
+  k= 8  R_k=0.306834926778  density limit=3.386330146443
+  k= 9  R_k=0.298779591700  density limit=3.402440816600
+  k=10  R_k=0.292364607849  density limit=3.415270784302
+  k=11  R_k=0.287163524298  density limit=3.425672951404
+  k=12  R_k=0.282882464627  density limit=3.434235070746
+  k=13  R_k=0.279312852859  density limit=3.441374294282
+  k=14  R_k=0.276302929394  density limit=3.447394141212
+Part C (float): max Psi over random pairs = 1.431349  (all <= 3/2 + a^2 < 7/4)

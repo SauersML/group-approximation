@@ -1,0 +1,9 @@
+[a,b] = x_13(1 t^0)
+[b,c] = x_21(1 t^1)
+[c,a] = x_32(1 t^1)
+root-group decompositions checked: 240
+leading terms reachable from content-(t) vertex elements: 2647
+ALL OK
+n=1 Bruhat identity True  h(1+t^n)^p = h(1+t^np): True
+n=2 Bruhat identity True  h(1+t^n)^p = h(1+t^np): True
+n=3 Bruhat identity True  h(1+t^n)^p = h(1+t^np): True
