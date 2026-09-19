@@ -1,0 +1,18 @@
+{
+ "cosets": 512,
+ "schreier_gens": 4609,
+ "h1_rank": 54,
+ "h1_torsion": [],
+ "reduced_gens": 89,
+ "classes": 160,
+ "classes_per_splitting": [
+  16
+ ],
+ "W_rank": 106,
+ "gcd_aug": 10,
+ "standard_zero": "0/200",
+ "random-curves_zero": "0/200",
+ "repeat_zero": "0/200",
+ "nine_zero": "0/200",
+ "control_zero": "0/200"
+}
