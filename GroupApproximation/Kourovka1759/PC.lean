@@ -28,7 +28,7 @@ theorem eq_place {B C : Box} (hmem : B.Mem C.r) (hdiv : B.m ∣ C.m) : ∃ Y, C 
 theorem nonneg_iff (B : Box) (t : ℤ) : 0 ≤ B.r + t * B.m ↔ 0 ≤ t := by
   have h1 := B.hr; have h2 := B.hrm
   constructor
-  · intro h; by_contra ht; push_neg at ht; nlinarith
+  · intro h; by_contra ht; push Not at ht; nlinarith
   · intro ht; have := mul_nonneg ht B.m_pos.le; linarith
 
 theorem child_r (L : ℕ) (j : Fin L) : (child L j).r = (j : ℤ) := rfl
