@@ -209,3 +209,17 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
   - *Next.* Prove `R1(3)`. That gives depth `3` for slice-constant targets in every `N >= 5`,
     exact at `N = 5, 6`. It must handle folded partitions, a non-unicoherent complement of
     the level-2 set, and chaining of level-1 pieces through one level-2 continuum.
+- **w14-113: the slack in (S) amplifies; exact SAT model for F(3).**
+  `toms-spanning-defect-is-superadditive`. The spanning defect
+  `D(M) = max_delta min_Omega (f - delta)` is superadditive under products. So one face
+  counterexample in dimension `N_0` gives `D(M) >= floor(M/N_0)`, and the face form holds in
+  every dimension iff `D = o(M)`. A defect rate `lambda < 1/3` already gives slice-constant depth
+  `(1 - 3 lambda) N / 2`. An exact local SAT model of cell-constant face counterexamples (no
+  connectivity variables) finds `F(3)` (= `R1(3)` in dimension 3) UNSAT at resolution
+  `n = 2`; `n = 3` was undecided in 20 minutes. The planar and slit-wall controls behave
+  as expected. `R1(3)` itself is still unproved.
+  - *Next step.* Growth normal form. A level-2 set may be enlarged by any closed set as long as
+    every merged level-2 component still misses faces in three coordinates. Enlarge until `R` is a
+    thin neighbourhood of a 2-complex, then prove Hex on that 2-complex. The obstruction is
+    a conflict-free choice of missed-face colours on adjacent components, which is what the SAT
+    model decides.
