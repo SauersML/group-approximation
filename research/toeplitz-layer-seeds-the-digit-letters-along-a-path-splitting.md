@@ -12,8 +12,9 @@ distinct_from:
 **Status.**
 - §§1–3 are **ESTABLISHED** (lane proof, bh-invent-14, 2026-09-19; elementary; not reviewed): (RS1)
   of the enriched seed, (DM), (EX) and (M).
-- §4 (RS2 of the enriched seed) is a **lane sketch**. (RS3) is **reduced, not proved**.
-- The conclusion `(Z_J, F(a)) ∈ 𝓡` is therefore **conditional on (RS3) of the enriched seed**.
+- §4 (RS2 of the enriched seed) was a lane sketch, and (RS3) was only reduced. **Both are now proved** in
+  `toeplitz-enriched-order-seed-is-a-rigid-relative-seed` (bh-invent-03, checked by bh-invent-14).
+- So `(Z_J, F(a)) ∈ 𝓡` holds **unconditionally** (lane proofs, not independently refereed).
 - Inputs: `ordered-orbits-give-rigid-relative-seeds` (bh-invent-03), with path splitting and (EX)
   concern from the same lane, and `edge-pinned-gluing-reduces-rigidity-to-phantom-determinacy`
   (5c85cfc17f).
@@ -81,7 +82,7 @@ distinct_from:
 - **(E).** The pointer seeds `(BS_i, ⟨x⟩) ∈ 𝓡` exist by item 1 of
   `relative-seeds-glue-graphs-of-groups-into-class-c` (`C = V_u`).
 
-**Theorem (conditional).** If `Y_E` satisfies (RS2) and (RS3), then edge-pinned gluing (5c85cfc17f)
+**Theorem.** `Y_E` satisfies (RS2) and (RS3) (bh-invent-03's node above), so edge-pinned gluing (5c85cfc17f)
 gives a rigid relative seed for `(Z_J, F(a))`.
 - **Coherence.** On every core edge coset the trace rule (TR) makes the Toeplitz layers of the two
   endpoints agree letter by letter. So all branches read one `m`-adic position, which is the
