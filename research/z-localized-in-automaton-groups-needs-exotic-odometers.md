@@ -31,25 +31,37 @@ elementary; not reviewed; no priority claimed). The general embedding question i
    many primes `ℓ` with `ord_ℓ(m)` a prime `> s`. So no subgroup of `M(Γ)` is isomorphic to `Z_(S)`.
    - This holds for every embedding into `M(Γ)`, not only for constants.
    - So an adder host `M(Γ) ⋊ Γ` over an automaton group can contain `Z_(S)` only with nontrivial image in `Γ`.
-3. **Odometers with finite-state coding die.**
-   - **Hypotheses.** Let `a ∈ Γ` (an automaton group), and let `x` be a rational point with infinite `⟨a⟩`-orbit
-     closure `Y`. Suppose `(Y, a|_Y)` is conjugate to a standard mixed-radix odometer `(Z_(r), +1)`, with eventually
-     periodic radix sequence and period product `N`, by a map `C` such that `C(0) = x` and `C` and `C^-1` are
-     finite-state synchronous transducers.
-   - **Conclusion.** If `a` has an `ℓ`-th root in `Γ` for a prime `ℓ ∤ N`, then `ord_ℓ(N)` has no prime factor
-     outside a finite set fixed by `s`, `C` and `x`.
-   - **Consequence.** By Zsigmondy, `Z_(S)` does not embed in `Γ` with `1 ↦ a`. This covers every `a` that is
-     conjugate to the standard odometer by a finite-state automorphism, including translations and odd affine maps.
-4. **The open shape.** An automaton-group witness of `Z_(S)`, with `1 ↦ a`, must have all of the following:
-   - its root elements `a^(1/ℓ)` are finite-state;
-   - no rational orbit closure of `a` is finite-state-conjugate to a standard odometer;
-   - the conjugacy `λ ↦ a^λ x` maps the rational points `1/ℓ ∈ Z_T` to rational points of smooth period.
+3. **Odometers with a finite-state orbit coding die.**
+   - **The orbit coding.** Let `a ∈ Γ` (an automaton group), and let `x` be a rational point whose `⟨a⟩`-orbit
+     closure `Y` is infinite.
+     - `a` permutes the level-`n` prefixes of `Y` in a single cycle of length `c_n`, with `c_n | c_(n+1)` and
+       level radices `r_n = c_(n+1)/c_n ∈ {1, …, m}`.
+     - So `C(λ) = a^λ x` is a homeomorphism from the mixed-radix odometer `Z_(r)` onto `Y`, with `C(0) = x`. It
+       conjugates `+1` to `a` and maps level-`n` digit cylinders onto level-`n` cylinders of `Y`. Levels of radix 1
+       carry the digit 0.
 
-   No example and no refutation are known. The profinite roots are well defined because the closure of `⟨a⟩`
-   is procyclic of order prime to `ℓ`, as in the proof.
+     This *canonical orbit coding* depends only on `(a, x)`.
+   - **Hypothesis.** The radices are eventually periodic, with product `N` over one period, and `C` is
+     finite-state: it has finitely many sections, counted together with the radix phase.
+   - **Conclusion.** There is `t` such that `a^(1/ℓ) ∉ Γ` for every prime `ℓ` with `ord_ℓ(N)` a prime `> t`. By
+     Zsigmondy there are infinitely many such `ℓ`, so `Z_(S)` does not embed in `Γ` with `1 ↦ a`.
+   - **Cases covered.** Every `a` conjugate to the standard odometer by a finite-state automorphism: translations,
+     odd affine maps and all their finite-state conjugates.
+4. **The open shape.** Two facts hold for any `a`. The only `ℓ`-th root of `a` in `Aut(T_m)`, for a prime
+   `ℓ > m`, is the profinite root `a^(1/ℓ)` in the closure of `⟨a⟩` (see the proof). And by item 1, `a^(1/ℓ)` keeps
+   the rough period of every rational point. So an automaton-group witness of `Z_(S)` with `1 ↦ a` needs all of the
+   following:
+   - every `a^(1/ℓ)`, `ℓ ∉ S`, lies in the finitely generated `Γ`;
+   - for every rational point with infinite orbit closure, the canonical orbit coding is infinite-state, or has
+     radices that are not eventually periodic;
+   - in that coding, `C(1/ℓ)` has the rough period of `C(0)`. In every finite-state coding the digits of `1/ℓ`
+     have period divisible by `ord_ℓ(N)`.
+
+   No example and no refutation are known.
 5. **What a non-finite-state generator must look like** (translation-type witnesses, which are what
-   `natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots` needs). If a finitely generated `H <= Aut(T_m)` contains
-   `τ_(1/ℓ)` for infinitely many Zsigmondy primes `ℓ`, then its generating set contains:
+   `natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots` needs). Let a finitely generated `H <= Aut(T_m)` contain
+   `τ_(1/ℓ)` for all primes `ℓ` outside a finite set, as a translation copy of `Z_(S)` does. For (a) a single
+   `ℓ ∤ m` is enough. Then its generating set contains:
    - **(a) a generator of positive-density activity.** Some generator `h` has `α_h(n) >= m^n / C` for infinitely
      many levels `n`. This excludes bounded, polynomial and subexponential activity, and every activity that is
      `o(m^n)`, finite-state or not;

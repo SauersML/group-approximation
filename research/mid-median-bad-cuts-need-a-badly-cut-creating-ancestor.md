@@ -91,6 +91,16 @@ inside its halves.
 That signature can be read off any failing configuration logged by the MSI search
 (bh-free-54, job 1328984): the vertex `p`, its creating edge, and the value `t`.
 
+**Correction (lane bh-major-mcg-2, 2026-09-19).** The equivalence claimed in this section
+is wrong.
+- **What it missed.** A median also fails at a straddler that has no vertex on it, for
+  instance a piece with values `±(1, −1, −1)` crossed at two edge midpoints (part 1 of
+  `single-cut-is-a-mediant-condition-along-the-median`). This section only considered
+  bad cuts at vertices.
+- **What stands.** The lemma of this node, about bad cuts at a vertex inside a median
+  half, stands.
+- **(SC) itself is false.** See `no-median-need-be-single-cut-for-a-descendant-dissection`.
+
 ## Lesson for general BH
 
 - **Every bad cut has a bad parent cut.** In non-LCM dissection operads, a bad
