@@ -112,7 +112,7 @@ theorem actEnd_one : actEnd D 1 = MonoidHom.id (NN D) := by
   simp only [MonoidHom.comp_apply, actEnd_of, MonoidHom.id_apply]
   congr 1
   apply Subtype.ext
-  simp [conjT_coe]
+  simp only [conjT_coe, map_one, one_mul, mul_one, inv_one]
 
 /-- `C` acting on `N = K ∗ L`. -/
 def act : C →* MulAut (NN D) := autOfEnd (actEnd D) (actEnd_mul D) (actEnd_one D)
