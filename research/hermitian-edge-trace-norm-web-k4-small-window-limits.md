@@ -105,3 +105,8 @@ certified: see `hermitian-edge-trace-norm-web-rank-k4-n19`.
   `hermitian-edge-trace-norm-web-rank-k4-n19`. What remains is `n = 13`, which needs
   `c(G_6) >= 8.7935` (margin `0.19%`) or a seven-vertex window, and `n = 14`, which needs a window
   of seven or more vertices.
+- 2026-09-19 (w11-078): the limits here are for unweighted windows. With vertex weights they fail.
+  `K_5` plus a pendant vertex, `{0, 1, 2, 3, 4, 8}`, weighted `(3/4, 3/4, 3/4, 3/4, 1, 1/5)`, has
+  density `1.5067`, and this closes `n = 13` and `n = 14`: `hermitian-edge-trace-norm-web-rank-k4-n13-n14`.
+  - A correction to table (c): `c({0..5, 7}) <= 10.4799`, not `10.700`, which was a bad local
+    minimum (`experiments/hermitian-edge-trace-norm-web-k4-weighted-2026-09-19/w7min_7.log`).
