@@ -9,6 +9,8 @@ distinct_from:
   dkkms-ev-list-structure-needs-lists-exponential-in-k: that refutes the selector-free list structure for one labelling on rank-(k-8) J-instances; this excludes those inputs.
   value-free-star-list-references-put-np-in-rp: that is the decoder (Theorem CLV) this statement would feed; this is only its structure prerequisite, selector-free.
   parity-leaking-branch-selectors-reach-near-perfect-completeness: that is H1; this, with its NP-hardness prerequisite, would kill H1's constant-bias cell on DKKMS under NP not in RP, and does not by itself decide H1.
+refuted_by:
+  - exact-kernel-rank-does-not-exclude-flip-violators
 ---
 
 **OPEN.**
@@ -92,3 +94,19 @@ constant-size sub-block.
     `k - O(log(1/gamma'))`.
 
   Both prerequisites remain untested.
+* **2026-09-19, swarm-0917-w17-w17-ugc-pull (minimal-counterexample).** Refuted
+  as stated, for every `r`, in the CIRC range
+  (`l >= 8`, `2^(2-l) <= gamma' < gamma <= 0.105`, large `k`). See
+  `exact-kernel-rank-does-not-exclude-flip-violators`.
+  - *Construction.* Swap `n` disjoint line pairs in each J-copy:
+    `{a,b,a+b}, {c,d,c+d} -> {a,b,c+d}, {c,d,a+b}`, with
+    `a+b+c+d = e_i`. The instance stays regular and satisfied by `x = 0`, and
+    its exact kernel becomes `0`, so it lies in `P_0`. But `Phi(v) = v` is
+    still a kernel map on all but a `26kn 4^(-n)` mass of tuples.
+  - *Why the flip survives.* Theorem O uses `Phi(x_e) = 0` only on the tuple
+    at hand, so it reruns on kernel-clean tuples at that extra cost, and
+    `o*` violates (P2).
+  - *What remains.* The live prerequisite is (SF_P^rob) on robust kernel rank:
+    `P^delta_r` with `delta = gamma'/(4k)`. Its hardness half (P1^rob), that is
+    NP-hardness on inputs with no large linear family of near-solutions, is
+    open. So is the range `gamma' < 2^(2-l)`.

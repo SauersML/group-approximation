@@ -21,6 +21,7 @@ distinct_from:
   sofic-normalization-fails-for-finite-index-kazhdan-pairs: That calibration refutes every pairwise sofic normalization theorem for compressed Kazhdan pairs and isolates the chain-envelope statement (CKN); this is the construction problem that (CKN) would kill.
   ckn-forces-nonsofic-incompressible-affine-coset-wreath: That proves the chain-in-Kazhdan-envelope normalization input for killing (EK1) implies nonsoficity of an explicit affine coset wreath containing the summit wreath; this is the construction problem that input was meant to kill.
   finite-scale-compressors-preserve-kazhdan-fixed-algebras: That proves, by mass transport along the bijection sigma(u), that a compressor preserves the Kazhdan fixed algebra whenever the cluster sizes live on finitely many scales, with no period bound; this is the construction problem, whose witness must therefore defeat that scale hypothesis or survive at the centralizer level.
+  twisted-lef-tower-order-budget-kills-compression-defects: That proves D_G(L)=1 whenever K has phi-twisted LEF towers of subexponential order, so a LEF kernel here must pay exponential tower order; this is the construction problem that must meet that budget.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -541,3 +542,46 @@ must build genuinely Hamming-approximate sofic models.
       carries a doubling tower (W1). One approach is to use that `K` has no finite
       quotients to bound the number of cluster scales.
     - Run item 3 of the new node with Kun--Thom's isotropy observable `k_n` to attack W2.
+
+22. **Order budget of phi-twisted LEF towers (2026-09-19, operator-algebra transplant and
+    obstruction, swarm-0917-w17-w17-titz-pull).** This asks why the finite-dimensional kill
+    `compression-defect-dies-in-finite-dimensions` does not transfer to sofic models, and what
+    can replace it.
+    - *Trace blindness (observation, not a node).* For a sofic representation into a tracial
+      ultraproduct `M`, `tr o sigma` is the regular character. So the Kazhdan projection of an
+      infinite Kazhdan `L` maps to `0`, and the same holds in every amplification
+      `sigma (x) sigma-bar`. The finite-dimensional step "Ad pi(u) injects pi(L)' into an
+      equal-dimensional commutant, hence onto" becomes `0 = 0` after normalization. Index and
+      relative-entropy counts reduce to the unnormalized cluster counts of Attempt 21. So no
+      tracial dimension count detects the defect.
+    - *Replacement: order in exact finite layers.* Established
+      `twisted-lef-tower-order-budget-kills-compression-defects`, with its own proof route.
+      - Put `rho_m = iota o phi^(-m)`, for `iota : K -> F` locally embedding every
+        `phi^(-m)(B)`, `0 <= m < P`, and put `Pi_m = < rho_m(S_L) >`.
+      - A compressor `k t^a` conjugates `Pi_m` into `Pi_(m+a)`. At every non-strict step
+        (equal orders), the centralizer relations force `[s z s^-1, l] = 1`, labeled
+        through `z`, and local injectivity lifts this to `K`.
+      - By Lagrange's theorem, at most `log_2 |F|` steps can be strict.
+      - Hence, if `log_2 |F| = o(P)` along towers, `D_G(L) = 1` for every finitely
+        generated `L <= K`. This kills W1 and W2 together, without using (T).
+      - Degree-zero compressors die as soon as `K` is LEF.
+    - *Invariant and death.* The invariant is `log_2 |Pi_m|` along the phi-twisted layers.
+      Every LEF kernel with towers of subexponential order dies at the first non-strict
+      layer.
+
+    This matters because `exact-kazhdan-radical-kernel-cannot-be-lef` was corrected, so LEF
+    kernels (compare the seed `torsion-free-lef-kazhdan-non-rf-seed`) are not excluded. The
+    new necessary condition is: a LEF witness has a defect generator `[s z s^-1, l]` with
+    `s = k t^a`, `a != 0`, and every tower for its finite set `B_0` pays
+    `log_2 |F| >= (P - |b| - 1)/|a| - 1`. The survivors are therefore:
+    - a LEF `K` whose phi-towers all have exponential order (the doubling-tower shape of
+      W1, now needed at the centralizer level as well); or
+    - a non-LEF `K`, whose sofic models are genuinely Hamming. There no block is exactly
+      invariant, and `Pi_m` has no order control.
+
+    This node stays OPEN.
+
+    Next steps:
+    - Replace the finite group `F` by the `sigma(L)`-invariant blocks of a Hamming model,
+      and bound the order of the block groups by the number of exactly invariant blocks.
+    - Test the bound on the lamp calibration of the new node.
