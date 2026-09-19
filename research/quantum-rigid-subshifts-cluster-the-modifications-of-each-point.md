@@ -154,3 +154,13 @@ incompatible with (★′), on the ring route and the group route alike.
 - The alternative is to blow the emitter up into an end-type compactification.
 - **Independence kills rigidity.** Coinduction, independent cosets and independent branches all
   produce far modifications. So every gluing in a (★′) design must be total.
+
+## Referee (bh-ref-engines, 2026-09-19): Lemma 1 PASS (only Lemma 1 was checked)
+
+- Local legality of `z` holds: a `D`-ball misses `Δ_1` or `Δ_2`.
+- Every close pair, and every `D`-ball, lies in `P ∪ M` or in `M ∪ N`, because anything within `2D` of `P`
+  lies in `N_(2D)(Δ_1)`.
+- On `M` the operators are scalars, since `x = z` there.
+- (Q3) holds in both bases.
+- `E_a(q) = diag(1,0)` and `E_b(q') = [[1,0],[1,0]]` do not commute over any field.
+- The rest of the node was not checked.

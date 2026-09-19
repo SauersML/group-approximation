@@ -180,3 +180,17 @@ remains:
      with states the cells of one tile's face-circle arrangement, refined by cosets for subgroups.
    - **What remains for 3-manifold groups.** Commensurability classes without right-angled reflection groups. There the
      walls are only quasiconvex (Bergeron–Wise), so a "quasiconvex greedy coding" is the missing tool.
+9. **2026-09-19 (lane `bh-partials`), all hyperbolic right-angled Coxeter groups with spread nerves (lane proof, not
+   reviewed).**
+   - **Landed.** `hyperbolic-racgs-with-spread-nerves-are-contracting-rsgs`, and the fully written proof of
+     `greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs` (heights over carriers, injectivity, the map to `∂G`,
+     and the finite nucleus with the surface referee's repairs).
+   - **Coverage.** Let `W_L` be hyperbolic with `|S| ≥ 3`, suppose no simplex's vertex stars cover `L`, and suppose the
+     complement graph is connected. Then `W_L` is a contracting RSG. With an odd cycle in the complement graph, so is
+     every group commensurable with `W_L`.
+   - **Consequences.** This reproves the surface case (pentagon group) and contains the H³ right-angled case.
+   - **(NA) comes from Coxeter theory.** Disjoint walls cannot share an infinite stabilizer, because the product of the
+     two reflections translates the walls.
+   - **What remains for cubulated groups.** Groups that are only virtually special, i.e. quasiconvex subgroups of RACGs
+     such as generic hyperbolic 3-manifold groups. Contracting RSGs pass to finite-index overgroups, not to subgroups,
+     and for their own cubulations (NA) and (IRR) are open.

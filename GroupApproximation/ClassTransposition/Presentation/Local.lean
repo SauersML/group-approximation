@@ -35,9 +35,9 @@ theorem splitAt_get_ge {p : ℕ} (hp : 1 ≤ p) : ∀ (b : List Box) (i j : ℕ)
   | E :: b, 0, j, hj, _ => by
     obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
     show (kids E p ++ b)[j + 1 + (p - 1)]? = (E :: b)[j + 1]?
-    rw [List.getElem?_append_right (show (kids E p).length ≤ j + 1 + (p - 1) by
-      rw [length_kids]; omega), length_kids, show j + 1 + (p - 1) - p = j by omega]
-    rfl
+    rw [List.getElem?_cons_succ, List.getElem?_append_right (show (kids E p).length ≤
+      j + 1 + (p - 1) by rw [length_kids]; omega), length_kids,
+      show j + 1 + (p - 1) - p = j by omega]
   | E :: b, i + 1, j, hj, h => by
     obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
     show (E :: splitAt b i p)[j + 1 + (p - 1)]? = (E :: b)[j + 1]?

@@ -2,7 +2,7 @@
 rg: 2
 id: time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows
 kind: claim
-title: A finitely generated group of automorphisms of a minimal free quantum-rigid Z^d-SFT, meeting the shifts trivially, times Z^d carries a minimal free rigid SFT; so (RA′) implies that such automorphism groups are exact, a non-exact one refutes (RA′), and an fp one is a carrier, and the non-exactness needs infinite fibres over the equicontinuous factor (a profinite distal layer, possible for residually finite inputs, or a relatively weakly mixing one), while homology of the V-full groups is blind to amenability
+title: A finitely generated group of automorphisms of a minimal free quantum-rigid Z^d-SFT, meeting the shifts trivially, times Z^d carries a minimal free rigid SFT; so (RA′) implies that such automorphism groups are exact, a non-exact one refutes (RA′), and an fp one is a carrier, and the non-exactness needs infinite fibres over the equicontinuous factor (a connected, infinite-dimensional distal layer, since profinite layers collapse, or a relatively weakly mixing one), while homology of the V-full groups is blind to amenability
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that poses (RA) and (RA′) for arbitrary acting groups; this shows the time-lift face of (RA′) is exactly a statement about automorphism groups of rigid Z^d-rows, and gives the carrier criterion that follows.
   automorphisms-of-hierarchical-rows-are-virtually-abelian: that bounds automorphism groups of hierarchical rows; this shows why the bound matters for (RA′), and where a non-exact automorphism group would have to live in any rigid row.
@@ -51,6 +51,9 @@ the homological and commutant side. (RA′) itself stays **OPEN**.
      - **(a) Through a distal factor.** It can act faithfully on a non-expansive distal factor
        `Y → Z → M`, through a compact group, which is possible only for maximally almost periodic groups.
        Osajda's group is residually finite, so this door is open for it.
+       - **Correction (2026-09-19).** The layer cannot be profinite: profinite skew layers over the MEF
+         collapse into it (`profinite-skew-layers-collapse-into-the-equicontinuous-factor`). For a
+         non-exact `G_0` it must be a connected, infinite-dimensional compact group such as `∏ SU(n_i)`.
        - If `Y` itself is an isometric extension of `Z`, the fibres are finite (expansiveness), so the
          distal factor must be a proper factor.
      - **(b) In a relatively weakly mixing layer** over the distal part.
@@ -104,12 +107,12 @@ Künneth; `H_*(G_V) = 0`) do not see whether `Λ ↷ X` is amenable. ∎
 - **bh-ra-counter: the sharpest time-lift target.**
   - We want a minimal, free, quantum-rigid `Z^d`-SFT `Y` with infinite fibres over its odometer or toral
     factor.
-  - Through those fibres it should factor onto a **non-abelian profinite skew extension** `Z = M ×_c K` of
-    its rotation, with `K` the profinite completion of Osajda's residually finite group `G`.
-  - The right `G`-translations of `Z` must lift to cellular automata of `Y`.
-  - There is one warning. A `G`-invariant finite partition only ever sees `K/N` for a finite-index `N`.
-    So `Y` cannot be an almost 1-1 `G`-symmetric coding of `Z`: the lift has to use genuinely expansive
-    extra data over `Z`.
+  - Through those fibres it should factor onto a skew extension `Z = M ×_c K` of its rotation whose
+    right `G`-translations lift to cellular automata of `Y`.
+  - **Corrected 2026-09-19:** `K` cannot be profinite, since such layers collapse into the MEF. It must be
+    connected and, for non-exact `G`, infinite-dimensional (for example `∏ SU(n_i)`). The lifted group
+    must commensurate the coding's singular set. See targets T1 and T2 of
+    `profinite-skew-layers-collapse-into-the-equicontinuous-factor`.
   - Alternatively, use route (b), a relatively weakly mixing layer.
 - **bh-ra-proof.** (RA′) implies a checkable dynamical corollary: automorphism groups of rigid minimal
   free `Z^d`-SFTs have only exact finitely generated subgroups, modulo shifts. A proof of (RA′) must be
@@ -126,11 +129,12 @@ automorphisms of a rigid minimal free `Z^d`-row gives a rigid, minimal, free, no
 and a carrier if it is finitely presented. It must avoid the abelian translations of the equicontinuous
 factor, and it needs infinite fibres over that factor.
 
-There it can act only through a non-expansive distal factor, which works via profinite groups and so
-exactly for residually finite inputs such as Osajda's, or in a relatively weakly mixing layer. Every
+There it can act only through a non-expansive distal factor, or in a relatively weakly mixing layer.
+The distal factor works through compact groups, so only for residually finite inputs such as Osajda's. It
+must be connected and infinite-dimensional, since profinite layers collapse (corrected 2026-09-19). Every
 rigid row built so far is finite-to-one over its rotation.
 
 Homology cannot decide the question: V-full groups of minimal systems are acyclic whether or not the
 action is amenable. The decisive (RA′) statement is analytic. Its dynamical shadow is "rigid rows have
-exact commutants", and its most promising counter-shape is a rigid row over a profinite skew extension
-of its odometer.
+exact commutants", and its most promising counter-shape is a rigid row over a connected, infinite-dimensional
+skew extension of its rotation.

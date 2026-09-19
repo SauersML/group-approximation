@@ -102,3 +102,14 @@ So **every finite Garside coding of a Cantor action gives an `F_∞` host after 
 stabilization.** The finiteness wall for higher-rank hosts (cubulated groups, non-product
 codings, deterministic automata) is gone. The remaining gates are dynamical: a closed
 invariant set with a bisection action, no invariant open set beyond a loop, and comparison.
+
+## Extension to finite unit groups (bh-major-cube-b, 2026-09-19)
+
+The hypothesis `𝔠* = 𝔠⁰` can be weakened to **finite unit groups with `𝔠` right cancellative**,
+with (Acyc) quantified over all non-unit loops. The argument counts types up to units:
+- Dickson's lemma and doubling run on unit classes;
+- one-piece cycles give unit-twisted non-unit loops;
+- Li's `lem:Stab` gives finite cell stabilizers.
+
+See `cuntz-garside-coded-actions-embed-in-f-infinity-simple-groups`, item 1, which also packages
+simplicity and the embedding. That extension is a lane proof and has not yet been refereed.

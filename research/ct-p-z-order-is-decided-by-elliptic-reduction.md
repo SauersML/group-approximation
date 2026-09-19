@@ -163,3 +163,88 @@ exponent with unbounded sums (parabolic) cannot be removed.
 - **Where everything exotic lives.** Minimal elements, undecidable torsion, and hosts for amenable
   or intermediate-growth subgroups can live only in such a core. So a construction must be
   multi-prime and parabolic, which is exactly what SMART is in the product host `2V`.
+
+## Referee (bh-ref-ffwz, 2026-09-19): PASS, with two repairs (both supplied here)
+
+**Checked and correct.**
+- **Item 1, all four implications.**
+  - (ii)⇒(i): boxes of radius `≤ R_q q^{−C}` stay inside single pieces, there are finitely many
+    boxes of bounded radius, and a canonical self-map of a box is the identity.
+  - (i)⇒(iii): a fixed point off the interior of `Fix` would have a finite-order affine germ with
+    `c ∈ Q_{>0}`, so `c = 1` and `d = 0`. The cocycle `u` built on a clopen fundamental domain is
+    consistent, because `d_q(g^k) = 0` on period-`k` points.
+  - Standing convention: "canonical" must mean normalized residues, `0 ≤ r < m` and
+    `0 ≤ s < m′`. Otherwise `x ↦ x + m` on `B(0,m)` is a "canonical" self-map of infinite order.
+    Normalized canonical maps are closed under composition and under restriction to sub-boxes.
+- **Item 2, conjugation.** `d_p(t)(hx) = 0` by the chain rule. `d_q(h) = 0` for `q ≠ p`, so
+  `d_q(t)∘h = d_q(g)` exactly, not just up to a coboundary.
+- **Item 2, collapse.**
+  - For `K ≥ v_p(M*)`, each class lies in one piece. A `p`-unit slope maps a residue class mod
+    `p^K` onto one, so classes go onto classes.
+  - `ord g♭ = ord t`: `t^n` is one affine map on each class. It fixes `x_{S∖p}` on an open set,
+    so it has `c = 1` and `s = r`.
+  - The statements about compressions, minimality and periodic classes are correct.
+- **Item 3 (A) and the base case of (B).**
+  - An infinite-order element of `V_{q,r}` has an attracting periodic orbit. In revealing-pair
+    terms, every non-torsion element has iterated augmentation chains ending in sinks: Brin,
+    Salazar-Díaz, and Bleak et al. for `V_n`. I checked this against the standard statements
+    from memory, not at source.
+  - Near an attracting periodic point `x`, `g^k` has slope with `v_q > 0`, so a small box `W`
+    around `x` satisfies `g^k W ⊊ W`.
+- **Item 4.**
+  - Gottschalk–Hedlund, with integrality recovered via `u mod 1`, is correct.
+  - For `P = {3}`, one reduction step leaves `|S♭| ≤ 1`.
+  - **Haar balance.** For uniquely ergodic `g`, Birkhoff averages of `log J`
+    (`J = ∏ q^{d_q}`) converge uniformly. Then `Haar(X) = ∫ J_n dHaar` forces `∫ log J dμ = 0`.
+    This holds only for the *unique* measure: an attracting fixed point violates it. The
+    remaining steps of item 4 are then correct.
+
+**Repair 1: collapse coordinates.** In the coordinates `(x_{S∖p}, x_p mod p^K)`, the maps
+`x ↦ s + c(x − r)` are **not** canonical. The residues `r` and `s` are normalized modulo `m`,
+not modulo its `p`-free part `m̃`. So pieces become prefix changes composed with tail
+translations.
+- *Example.* In `Ẑ_{2,3}`, take the pieces
+  - `B(0,6) → B(3,12)`, `x ↦ 2x+3`;
+  - `B(3,12) → B(9,12)`, `x ↦ x+6`;
+  - `B(9,12) → B(0,6)`, `x ↦ (x−9)/2`.
+
+  Collapsing `3` gives, on `Z_2`, the map `y ↦ y+6` on `3 + 4Z_2`, which is `11z ↦ 10(z+2)`.
+  That is an odometer step, not a prefix replacement.
+- In these coordinates `g♭` could a priori contain odometer dynamics. Those have infinite order
+  and no compression, which would break (B) and "a canonical self-map of a box is the identity".
+- *Fix.*
+  - Refine so that every piece has `v_p(m) = K`. Since `d_p = 0`, image pieces then also have
+    `v_p = K`.
+  - Use the coordinate `w = (x_{S∖p} − a)/p^K`, where `a ∈ [0, p^K)` is the integer
+    representative of the label.
+  - A piece `r + m̃p^K k ↦ s + m̃′p^K k` then reads
+    `(r−a)/p^K + m̃k ↦ (s−a′)/p^K + m̃′k`, with normalized residues in `[0, m̃)` and `[0, m̃′)`.
+  - So `g♭` is genuinely canonical in `w`, `g♭ ∈ 𝒞_{S∖p}`, and (B)'s identification with
+    `V_{q,r}` holds.
+  - In the example, `w = x/3` gives the prefix maps `0 → 10`, `10 → 11`, `11 → 0`.
+
+**Repair 2: ellipticity must descend.** "Conjecture 7 holds when at most one prime is
+non-elliptic" needs `S♭ ⊆ {non-elliptic primes of g}`. That in turn needs: if `q ≠ p` is
+elliptic for `g`, it stays elliptic for `g♭`. The node does not prove this.
+- *Fix (fibre averaging).*
+  - `t` maps `π`-fibres onto `π`-fibres by `p`-unit affine maps, which preserve normalized Haar
+    measure on the fibres.
+  - If `d_q(t) = v∘t − v` with `v` locally constant and integer valued, let `v̄` be the
+    fibre average of `v`. It is locally constant, with values in `p^{−L}Z`, and satisfies
+    `v̄∘g♭ − v̄ = d_q(g♭)`.
+  - `{v̄}` (fractional part) is `g♭`-invariant. So `v̄ − {v̄}` is an integer, locally constant
+    transfer function.
+- *Alternative.* Reduce all elliptic primes simultaneously. One conjugation makes every
+  `d_p = 0` for `p ∈ E`, and one collapse removes `E`.
+
+**Not checked.**
+- The closing lemma (`hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z`), used
+  in (C) and item 4.
+- The Haar-balance citation (`conway-amusical-permutation-is-the-full-three-shift`). I
+  re-derived it above instead.
+
+**Credit.**
+- The unit collapse is bh-kourovka's.
+- The coboundary criterion for `nV` is bh-free-01's.
+- The `V` dynamics are Brin's and Salazar-Díaz's.
+- Class transpositions and `CT(Z)` are Kohl's.

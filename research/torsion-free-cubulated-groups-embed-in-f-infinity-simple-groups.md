@@ -277,3 +277,12 @@ Checked against Li's TeX (arXiv:2110.04505v2, l.1125–1142, 1219–1231, 1328�
      datum both check.
 
 Q1.15 is answered YES, internally refereed, modulo the published imports listed in the status line.
+
+## Strengthening (bh-major-cube-b, 2026-09-19)
+
+`cubulated-groups-embed-in-f-infinity-simple-groups` drops freeness. It uses the orbit category,
+with finite stabilizers as units, and the finite-unit Cuntz theorem of
+`cuntz-garside-coded-actions-embed-in-f-infinity-simple-groups`. So every group acting properly and
+cocompactly on a CAT(0) cube complex, and every group commensurable with one, would embed in an
+`F_∞` simple group, with no virtual torsion-freeness needed. That claim is **OPEN** pending a
+referee pass of its two new steps.
