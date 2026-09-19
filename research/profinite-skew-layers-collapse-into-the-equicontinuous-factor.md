@@ -14,7 +14,7 @@ distinct_from:
   minimal-system-automorphisms-fix-every-proximal-factor: that kills automorphisms along proximal fibres; this handles the distal layer that remains.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; not reviewed; no priority
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, with two repairs to item 3; no priority
 claimed). Items 1–4 are standard-style topological dynamics. The recalled inputs are:
 - Auslander's structure of equicontinuous minimal systems;
 - Michael's zero-dimensional selection theorem;
@@ -184,3 +184,43 @@ finitely many translates `{nα, β + nα}`, which forces `t ∈ Zα` up to a fin
 This moves the (RA′) counter-search away from substitutions and odometers, and toward rigid codings of
 twisted continuous systems. Those are the systems that SFT realizations beyond dimension zero now make
 available.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for items 1, 2, 4, 5; item 3 needs two repairs to its reasoning (conclusions stand)
+
+**Item 1: correct.**
+- `c_N(s,·)` is constant on `ε`-balls, by a Lebesgue number of the finite clopen partition. So it is `⟨U⟩`-invariant, hence `L_0`-invariant.
+- The induction uses normality of `L_0` exactly as written.
+- `F_0` is finite because `L` is transitive and `L_0` has finite index.
+- The embedding into `M × F_N` is equivariant.
+- The countable inverse limit is fine, since profinite metrizable `K` has a basis of open normal subgroups.
+
+**Item 2: correct.**
+- `K/K°` acts freely on `Z/K°`.
+- The division map is continuous for free actions of compact groups.
+- Michael's zero-dimensional selection theorem applies, since the orbit map is open, so fibres vary lower semicontinuously.
+- Maximality of the MEF gives `ψ : M → Z̄` with `ψ` and `Z̄ → M` mutually inverse.
+
+**Item 3: sound, with two repairs to the reasoning.**
+- **Sound as written.**
+  - `R_ρ = P(Y)`.
+  - `κ` is continuous, `Λ`-invariant, hence constant.
+  - `k_(gh) = k_hk_g`.
+  - Injectivity has a one-line proof: `py = pgy` for some `p ∈ βΛ` gives `g(py) = py`, so `g` fixes a point and is the identity by minimality.
+  - The extension step, since exact-by-amenable is exact.
+- **(R1) "A connected compact group that is not Lie is infinite-dimensional" is false.** Solenoids are 1-dimensional, connected, compact and not Lie. The conclusion still holds, for a different reason.
+  - A finite-dimensional compact connected `K` is `(Z(K)° × S)/Δ`, with `S` a compact semisimple Lie group and `Δ` central.
+  - So every subgroup of `K` is abelian-by-(subgroup of the linear group `K/Z(K)°`), hence exact (GHW for countable linear groups, then extension).
+  - So a non-exact `G ∩ Aut_0(Y)` forces `K/Z(K)°`, and hence `K`, to be infinite-dimensional.
+  - Replace "not Lie" by "`K/Z(K)°` is not Lie".
+- **(R2) "`G ∩ Aut_0(Y)` is residually finite"** holds for its finitely generated subgroups (Malcev on each unitary factor).
+  - It can fail for non-finitely-generated subgroups of compact groups: `Q/Z ≤ U(1)`.
+  - `G ∩ Aut_0(Y)` need not be finitely generated.
+  - None of the later uses needs more than the finitely generated case.
+
+**Item 4: correct.**
+- `Z_1` is closed by compactness.
+- The inclusion `ḡ(Z_1) ⊆ ⋃_(|v|≤R) vZ_1` follows from the radius of `g^{-1}`, with the action convention `(λy)(h) = y(λ^{-1}h)`.
+
+**Item 5: the calibration is consistent.** A translation carrying `{0,β}` into finitely many translates `{nα, β+nα}` lies in `Zα`, generically.
+
+The candidate discussion and the targets are commentary; I did not referee them.

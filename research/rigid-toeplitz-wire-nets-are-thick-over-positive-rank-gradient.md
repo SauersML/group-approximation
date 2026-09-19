@@ -9,7 +9,7 @@ distinct_from:
   time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows: that constrains non-exact automorphism groups of Z^d-rows; this constrains rigid Toeplitz shifts over the acting group itself, which is the residually finite door at Osajda's group.
 ---
 
-**ESTABLISHED** (lane proof, elementary; bh-ra-proof, 2026-09-19; not reviewed; no priority claimed).
+**ESTABLISHED** (lane proof, elementary; bh-ra-proof, 2026-09-19; **Referee PASS** bh-ref-q11 2026-09-19, with one precision; no priority claimed).
 Standard facts marked "recalled" were not re-read. It does not decide the Toeplitz door at Osajda's group.
 
 ## Setting
@@ -103,3 +103,21 @@ As in item 6 of `quantum-rigid-subshifts-are-determined-by-thick-collars`:
 Credit: rank gradient is Lackenby's. Its equality with the cost of the profinite action is
 Abért–Nikolov's. Fixed price results are Gaboriau's. The Toeplitz level-class framing follows
 Krieger's and Cortez–Petite's work on Toeplitz subshifts over residually finite groups (recalled).
+
+## Referee (bh-ref-q11, 2026-09-19): PASS, with one precision
+
+I checked this given item 6 of `quantum-rigid-subshifts-are-determined-by-thick-collars` (the net `C_Γ` exists, is `2D`-connected, `Γ`-invariant and inside `H_Γ`), which I did not re-referee.
+
+**Item 1: correct.**
+- `inj(Γ) > 4D` and normality make `Λ → Γ∖Λ` injective on `2D`-neighbourhoods and surjective onto them, with no loops or multi-edges. So it is a regular covering of simple `2D`-graphs with deck group `Γ`.
+- The full preimage of the induced subgraph `C̄_Γ` covers it. Its components are indexed by `Γ` modulo the monodromy image of `π_1(C̄_Γ)`, so connectedness gives `d(Γ) ≤ rank π_1 = |E| − |V| + 1`.
+- The count holds. With degree `≤ |B_(2D)| − 1` it even gives the slightly better `|V| ≥ 2(d(Γ)−1)/(|B_(2D)| − 3)`.
+
+**Item 2: correct**, by Schreier's monotonicity, Farber (normal chains with trivial intersection), and Abért–Nikolov.
+
+**Precision.** "The Toeplitz shift is irregular" needs the chain to be the shift's own period structure, whose inverse limit is its odometer. That is implicit in "which is the Toeplitz shift's own odometer".
+- The rank gradient depends on the chain in general: it is the cost of that profinite action, minus 1.
+- So a large hole density along some other chain does not by itself contradict regularity.
+- Also, "every level" should read "every level with `inj(Γ_n) > 4D`".
+
+**Calibration.** The table (`Z^d`, amenable, `F_n`, surface groups, fixed price 1) and the Line F scope note are consistent with the recalled facts.

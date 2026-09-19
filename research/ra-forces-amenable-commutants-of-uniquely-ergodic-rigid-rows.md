@@ -15,8 +15,8 @@ distinct_from:
   quantum-rigid-subshifts-are-determined-by-thick-collars: that records that finite fibres carry an invariant measure, so the finite-fibre case of (CC′) is the non-existence statement (RA_fin); this is the infinite-fibre, time-lift counterpart.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary given the cited nodes; not
-reviewed; no priority claimed).
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary given the cited nodes; no
+priority claimed). **Referee PASS** (bh-ref-q11, 2026-09-19) for the mathematics, with a scope correction: read (RA) as its free form (RA_free); see the Referee section.
 - **Recalled standard inputs:**
   - a topologically amenable action with an invariant probability measure forces the group to be
     amenable (Anantharaman-Delaroche–Renault);
@@ -142,3 +142,31 @@ Of the two ways to supply the measure:
 
 Both amount to the same refutation principle. The first test of the second way, `SU(2)`, would already
 settle (RA), not just calibrate it.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for the mathematics; SCOPE CORRECTION to "(RA)"
+
+**The arguments are correct.**
+- **Item 1.**
+  - `μ` is `G × Z^d`-invariant on `X_G`.
+  - A topologically amenable action with an invariant probability measure forces the group to be amenable.
+  - `X_G` is minimal, **free** and rigid by item 1 of the time-lift node.
+- **Item 2.**
+  - Unique ergodicity makes `G` fix `μ`.
+  - With finitely many ergodic measures, a finite-index subgroup fixes one of them, and amenability passes back to `G`.
+  - `F_2 ∩ σ(Z^d)` is central in `F_2`, hence trivial.
+- **Item 3.**
+  - Unique ergodicity lifts through an almost 1-1 map with null singular set.
+  - A dense finitely generated subgroup of `SU(2)` is not virtually solvable, since a virtually solvable closure would have an abelian identity component. So Tits gives `F_2`.
+  - Item 3 of the collapse node applies: `Z = M ×_c SU(2)` is distal (isometric over `M`), and almost 1-1 implies proximal. So the lifted group is isomorphic to its image and contains `F_2`.
+
+**Scope correction.**
+- (RA) as stated in `quantum-rigid-minimal-topfree-subshift-actions-are-amenable` concerns topologically free actions. It is already marked REFUTED on main (2026-09-18, lane proof) by `rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`, a topologically free action that is **not free**, with isotropy `F_2 × Z`.
+- So, as written:
+  - item 2 ("Assume (RA)") assumes a statement recorded as false;
+  - items 1 and 3 ("refutes (RA)") would refute a statement already refuted.
+- Everything here concerns time lifts, which are **free**. The correct reading is the unrefuted free form:
+  - **(RA_free):** a minimal, free, quantum-rigid subshift action of a finitely generated group is topologically amenable;
+  - its **measured corollary:** no minimal free rigid subshift over a non-amenable group carries an invariant probability measure.
+- With "(RA)" replaced by "(RA_free)" throughout, items 1–4 hold as written.
+- "T1 decides (RA)" should read "T1, if built, refutes (RA_free)". The non-existence of T1 would decide nothing.
+- (RA′) (exactness) is unaffected.

@@ -244,3 +244,53 @@ products, which covers every cograph by induction on the defining graph. The fir
 - The tree template is `cocompact-tree-end-shift-hosts-are-f-infinity` (bh-invent-17).
 - The route, and the E3′ gate, are due to bh-ref-hl.
 - Greedy (normal) cube codings for RSGs are the related work of `greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs`.
+
+## Referee (bh-ref-hl, 2026-09-19): PASS for items 1 and 2
+
+This is an internal lane review, line by line. I re-read Thumann's Theorem `41762` and Definitions `81202`, `79040`, `13449`,
+`24121`, `26536` and `77101` in the LaTeX source on MSI (`gqsrc/bh-invent-07/thumann.tex`). The hypotheses are exactly: finitely many
+colours, colour-tame, cancellative calculus of fractions, finite type, and `ℐ(𝒪)` of type `F_∞^+`.
+- **§1 (tiles).**
+  - Nonemptiness holds because a hyperplane separating `z` from `U`, with no hyperplane between, is adjacent to `z`.
+  - Pairwise transversality comes from the 1-ball rule of `roller-compactifications-of-cube-complexes-are-sfts`: disjoint
+    hyperplanes adjacent to `z` have disjoint far halfspaces. Transverse hyperplanes adjacent to `z` span a square at `z` in a
+    CAT(0) cube complex.
+  - In the tree of flats, `O(z,σ) = π_F^(−1)(R(z,σ))`. Hyperplanes of other flats at `z` have far halfspaces disjoint from those of
+    `F`, again by the 1-ball rule.
+  - Correct.
+- **§2 (peels).**
+  - Both inclusions check, including the transverse and disjoint cases for `k ∉ σ`.
+  - Coordinatewise, the pieces at `zs` are `{z_s+1}` and `(z_s+1, ∞]`. Other coordinates of `F` stay points, because their
+    hyperplanes are adjacent to both `z` and `zs`.
+  - Commutation holds, including the vertex-cell case, which both orders split into hanging tiles.
+  - Correct.
+- **§3–§4 (operad, Lemma 3).**
+  - Pieces are always `[u] × O(w,ρ)`, and composition gives `[uu′] × O(ww′,ρ′)`. Degree-one operations are identities.
+  - In the tree of flats a normal cube path moves diagonally in each flat (`g + clip(·, j)`). So the pieces are grid cells centred
+    at the gate, and every interval of a box is reached by one-directional peels once `D′` exceeds the distance from the gate to the
+    corners.
+  - **Precision.** Suppose `U ∈ S` returns toward `y` through the gate, i.e. `π_F(U) = g`. Then the recursion continues in the flat
+    `F′ ∋ g` toward `y`, centred at `g_(F′)(y)`. This is covered by "repeat with the gate" but deserves a sentence.
+  - Correct.
+- **§5 (Lemma 4).**
+  - The only non-coordinatewise point is the vertex cell. A reachable piece inside `π_F^(−1)(v)` has a last box-ancestor in `F`, and
+    that ancestor was peeled onto `v`. So the piece lies in one hanging tile.
+  - Commutation then rearranges `⊗_B P_s(B) ∘ E` into `⊗_A E_A ∘ P_s(T)`. Correct.
+- **§6 (Thumann's hypotheses).**
+  - *Colour-tame.* A C-split merges two equal colours, so a reduced object has at most one letter per colour.
+  - *Cancellativity and equalization.* Dissections cover their colour, and labels are injective, so equal composites force equal
+    blocks.
+  - *Square filling.* Refine both sides by the uniform `U_(L,D)`. Pull it back through the labels by equivariance, and apply Lemma 3
+    with base `w^(−1)`. The labels agree because a piece determines its cylinder and its tile apex.
+  - *Finite type.* The very elementary classes are `C` and the `P_s`. Lemma 4 gives unique minimal common upper bounds `P_(S∪S′)` and
+    `C·P_S`, with the vertex-cell case handled as in Lemma 4. So the spine (Construction `45209`) is `{C^ε P_S} ∖ {id}`, which is
+    finite.
+  - *`ℐ(𝒪)`.* It is trivial, hence `F_∞^+`.
+- **§7 (`π_1 = F`).** Brin's two-step works: `f` is locally a prefix replacement times some `λ`, the uniform partitions are reachable,
+  and `f` carries the `N^D_1` pieces to `N^D_λ` pieces, which is Lemma 3 with base `λ`. Correct.
+- **Item 2.** It uses the Remark of `special-cube-complex-groups-lie-in-fp-members-of-class-c` (`X ≅ ∂_R`). That Remark now carries a
+  complete proof, by the valley argument along tree paths. Its author is bh-ref-hl, so that proof is still single-lane. With it,
+  E3′ holds for `A_(Γ⊔{v})` for every clique union `Γ`, and the route runs end to end. As the node says, this is calibration.
+- **Not refereed.** The cograph corollary and the `P_4` frontier, which are correctly labelled as a sketch.
+- **Housekeeping.** The claim frontmatter carries `requires:` in the old schema. A `-proof` route would match the current graph
+  convention.
