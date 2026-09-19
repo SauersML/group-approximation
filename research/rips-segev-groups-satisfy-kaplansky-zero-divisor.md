@@ -303,3 +303,22 @@ the Kaplansky zero-divisor conjecture."
    - The window count cannot pass about `N = 12`.  The extremal-copy step of
      item 17 (coefficient-aware) is still the route to every `N`.  It was not
      proved in this pass.
+
+19. **Nine-copy configurations carry no zero divisors (proposed established; `rips-segev-nine-copy-configurations-carry-no-zero-divisors`).**
+   - This closes the exact `N = 9` residue of item 18, in `k[K]` and `k[G]`.
+   - Use the whole curvature budget of the port-cycle disc, not one
+     Greendlinger face.  The disc has simple boundary with exactly `L`
+     `b`-edges.  Gauss–Bonnet under `C'(1/8)` gives `sum (4 - i) >= 6` over
+     the shells, where `i` is a shell's number of interior arcs.
+   - A shell with `i <= 2` has an arc of `> 3l/4` syllables.  A window in it
+     meets the item-18 criterion at `N = 9` for every `l`.  The same holds
+     for `i = 3` and `l >= 56`.
+   - Otherwise there are at least six three-arc shells of length `42..54`.
+     Each carries at least 21 `b`-edges, because girth forces them to be
+     mostly `b^2`.  So `L >= 126 > 117 = N + 3N(N-1)/2`, which bounds the
+     active cosets.
+   - This does not reach `N = 10`.  The surviving shells carry about `2N`
+     `b`-edges against `A(N) ~ 1.5 N^2` cosets.
+   - The coefficient-aware extremal-copy step (height-function extremal
+     coset plus the rank-one lemma) was attempted and not proved.  It
+     remains the route to every `N`.
