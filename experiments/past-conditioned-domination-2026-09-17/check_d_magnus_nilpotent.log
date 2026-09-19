@@ -1,0 +1,44 @@
+E=1,a,b     |F|=3 |S|= 7 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=4 |S|=10 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=4 |S|= 9 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=4 |S|= 9 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=5 |S|=12 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=5 |S|=12 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,b     |F|=4 |S|= 9 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=3 |S|= 7 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=6 |S|=15 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=6 |S|=14 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=4 |S|=10 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=6 |S|=14 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=6 |S|=16 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ab    |F|=5 |S|=12 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=3 |S|= 7 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=4 |S|= 9 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=4 |S|=10 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=4 |S|= 9 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=4 |S|=10 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=5 |S|=12 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,ba    |F|=5 |S|=12 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=3 |S|= 7 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=6 |S|=14 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=5 |S|=13 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=6 |S|=16 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=4 |S|=10 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=4 |S|=10 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,Ab    |F|=4 |S|=10 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=3 |S|= 7 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=5 |S|=13 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=6 |S|=16 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=6 |S|=16 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=5 |S|=13 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=5 |S|=13 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,ab,ba   |F|=6 |S|=15 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=3 |S|= 7 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=4 |S|=10 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=4 |S|=10 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=4 |S|= 9 separating degree c=2 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=6 |S|=15 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=6 |S|=15 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+E=1,a,aba   |F|=5 |S|=13 separating degree c=1 signs preserved=True  max(I-H(y1))=+0.000000
+configurations x codes tested: 13188, violations: 0
+worst gap +0.000e+00 at ('1,a,b', ['1', 'A', 'B'], [1, 1, 1, 1, 0, 0, 0, 0], 1.0, 1.0)
