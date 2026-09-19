@@ -110,7 +110,8 @@ theorem invGen_kills (w : FreeGroup (SteinbergGenerator I B))
       rw [← map_mul, x_mul,
         relQ_x_eq hij (show f (Function.surjInv hf a + Function.surjInv hf b) =
           f (Function.surjInv hf (a + b)) by
-            rw [map_add, Function.surjInv_eq, Function.surjInv_eq, Function.surjInv_eq]),
+            rw [map_add, Function.surjInv_eq hf a, Function.surjInv_eq hf b,
+              Function.surjInv_eq hf (a + b)]),
         mul_inv_cancel]
   | commute i j k l hij hkl hjk hli a b =>
       simp only [map_commutatorElement, FreeGroup.lift_apply_of, invGen]
@@ -126,7 +127,8 @@ theorem invGen_kills (w : FreeGroup (SteinbergGenerator I B))
       rw [← map_commutatorElement, x_commutator i j k hij hjk hik,
         relQ_x_eq hik (show f (Function.surjInv hf a * Function.surjInv hf b) =
           f (Function.surjInv hf (a * b)) by
-            rw [map_mul, Function.surjInv_eq, Function.surjInv_eq, Function.surjInv_eq]),
+            rw [map_mul, Function.surjInv_eq hf a, Function.surjInv_eq hf b,
+              Function.surjInv_eq hf (a * b)]),
         mul_inv_cancel]
 
 #audit_axioms invGen_kills
@@ -246,24 +248,27 @@ section Polynomial
 variable (I : Type*) [Fintype I] [DecidableEq I] (A : Type*) [CommRing A]
 
 /-- **The polynomial relative group** `𝔑_I(A[X]) = ker (ev₀ : St_I(A[X]) → St_I(A))`. -/
-abbrev polyRelSt : Subgroup (SteinbergGroup I (Polynomial A)) :=
+noncomputable abbrev polyRelSt : Subgroup (SteinbergGroup I (Polynomial A)) :=
   relSt I (Polynomial.evalRingHom (0 : A))
 
 theorem evalRingHom_zero_leftInverse_C :
-    Function.LeftInverse (Polynomial.evalRingHom (0 : A)) Polynomial.C :=
+    Function.LeftInverse (Polynomial.evalRingHom (0 : A)) (Polynomial.C : A →+* Polynomial A) :=
   fun a => by simp
 
+set_option maxHeartbeats 800000 in
 /-- `St_I(A[X]) ≅ 𝔑_I(A[X]) ⋊ St_I(A)`, split by the constants. -/
 noncomputable def polySplitEquiv :
-    relSt I (Polynomial.evalRingHom (0 : A)) ⋊[relAct Polynomial.C (Polynomial.evalRingHom 0)]
-      SteinbergGroup I A ≃* SteinbergGroup I (Polynomial A) :=
-  splitEquiv Polynomial.C (Polynomial.evalRingHom 0) (evalRingHom_zero_leftInverse_C A)
+    relSt I (Polynomial.evalRingHom (0 : A)) ⋊[relAct (Polynomial.C : A →+* Polynomial A)
+      (Polynomial.evalRingHom (0 : A))] SteinbergGroup I A ≃* SteinbergGroup I (Polynomial A) :=
+  splitEquiv (Polynomial.C : A →+* Polynomial A) (Polynomial.evalRingHom (0 : A))
+    (evalRingHom_zero_leftInverse_C A)
 
+set_option maxHeartbeats 800000 in
 /-- `𝔑_I(A[X])` is the normal closure of the `x_ij(p)` with `p(0) = 0`. -/
 theorem polyRelSt_eq_normalClosure :
     polyRelSt I A = relNC I (Polynomial.evalRingHom (0 : A)) :=
-  relSt_eq_normalClosure_of_leftInverse Polynomial.C (Polynomial.evalRingHom 0)
-    (evalRingHom_zero_leftInverse_C A)
+  relSt_eq_normalClosure_of_leftInverse (Polynomial.C : A →+* Polynomial A)
+    (Polynomial.evalRingHom (0 : A)) (evalRingHom_zero_leftInverse_C A)
 
 #audit_axioms polyRelSt_eq_normalClosure
 
