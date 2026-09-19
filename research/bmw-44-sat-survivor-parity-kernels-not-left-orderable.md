@@ -327,3 +327,21 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
   - **What is now unnecessary.** The quaternionic searches for the 41 `(4,3)` and the 62 even
     `(5,3)` classes.
   - **The three survivors.** They are not among the 994, and they stay resolved by w5-107b.
+- (w12-107, 2026-09-19) **Full solver-free resolution route, independently re-checked
+  (`bmw-44-sat-survivor-resolution-via-census-recheck`, via
+  `bmw-census-solver-free-parity-kernel-certificates`).**
+  - **Re-check.** A fresh reader, `recheck.py` in
+    `experiments/bmw-census-solver-free-recheck-2026-09-18/`, shares no code with the earlier
+    checkers and uses no SAT solver. It re-verifies all 1206 certificates of w6c, w7, w8, w9, w10 and
+    w11 from the census squares alone: 1203 classes, 0 rejected. `mutate.py` confirms that 18 kinds
+    of corruption are rejected.
+  - **Coverage.** It recomputes reducibility at cap 4000, agreeing with `out_*.jsonl` on all 6964
+    classes of the 20 patterns in degrees (3,3), (4,3), (4,4) and (5,3). `51_30#506` needs cap 60000,
+    where its image orders are 6 and 6912. Every one of the 1200 candidates has a checked certificate,
+    including the classes settled before w10. By degree the candidates are 4, 50, 689 and 457.
+  - **The three survivors.** Each carries two accepted four-term Klein chains, from
+    `chains_40_40.json` and `chains_census_40_40.json`.
+  - **Consequence.** The census theorem now holds with no exceptions and no solver: every irreducible
+    BMW lattice of these degrees has a non-left-orderable parity kernel.
+  - **Remaining classes:** none. What stays open is irreducibility of #193 and #332, which no longer
+    affects this claim.
