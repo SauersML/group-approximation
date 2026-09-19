@@ -584,6 +584,24 @@ acceptor with unknown constant
 A constructive proof must consume a total decision procedure of the input, not
 a presentation or a complexity grade.
 
+**September 18: the balanced-loop Tits host.**  This attempt is the Tits route through
+the fully self-replicating `M_11`-group `R° = ⟨M_11, b, C⟩`
+(`m11-balanced-loop-host-has-finite-h1`). Its simple host is finitely presented iff
+`R°` is.
+
+- The homological screen is now complete in degree 2:
+  - a fully self-replicating group of type `FP_2` has odd cyclic `H_1`, over every
+    field, including `p = 2` and the primes dividing `|P|`
+    (`fully-self-replicating-fp2-groups-have-odd-cyclic-h1`);
+  - this kills every `b_1 ≥ 1` candidate on this route.
+- `R°` passes that screen: `H_1(R°) = Z/55` exactly
+  (`m11-balanced-loop-host-h1-is-z55`).
+- The degree-2 Nakaoka recursion for `R°` is the identity, so homology cannot decide
+  `FP_2`.
+
+*Stuck* at `FP_2` of `R°`. This needs a presentation-level argument, for example an
+L-presentation.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

@@ -1,0 +1,5 @@
+(0) |M_11| = 7920; pi1 = aaabaaba ; pi = aabaab
+(1) [C, pi1] = C@6 (C^-1)@7 at depth 4
+(2) C = pi^-1 [C, pi1] pi (b alpha)@5 at depth 4
+(3) C^m = (1,1,1,C^m,(b alpha)^m,C^-m,1,...) for m = 1..12; C^m != 1 at depth 3 for 30 of m = 1..30
+done
