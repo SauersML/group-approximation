@@ -1,0 +1,61 @@
+=== run20.txt
+M=20 product BC(p,p*p) = 0.807853   R=(1+B)/2 = 0.903926
+  trial 0 markov BC_merge = 0.812240  R = 0.906120
+  trial 1 markov BC_merge = 0.812240  R = 0.906120
+  trial 2 markov BC_merge = 0.812240  R = 0.906120
+=== run40.txt
+M=40 product BC(p,p*p) = 0.844248   R=(1+B)/2 = 0.922124
+  trial 0 markov BC_merge = 0.849859  R = 0.924929
+  trial 1 markov BC_merge = 0.849859  R = 0.924929
+  trial 2 markov BC_merge = 0.849859  R = 0.924929
+=== run80.txt
+M=80 product BC(p,p*p) = 0.867911   R=(1+B)/2 = 0.933956
+  trial 0 markov BC_merge = 0.874572  R = 0.937286
+  trial 1 markov BC_merge = 0.874572  R = 0.937286
+  trial 2 markov BC_merge = 0.874572  R = 0.937286
+=== sl_4_8_16.txt
+N=4 trial 0  B=0.951396  R=(1+B)/2=0.975698
+N=4 trial 1  B=0.951396  R=(1+B)/2=0.975698
+N=4 trial 2  B=0.951396  R=(1+B)/2=0.975698
+N=4 trial 3  B=0.942809  R=(1+B)/2=0.971405
+N=4 best B=0.951396 (product 2sqrt2/3=0.942809)
+N=8 trial 0  B=0.953127  R=(1+B)/2=0.976564
+N=8 trial 1  B=0.953127  R=(1+B)/2=0.976564
+N=8 trial 2  B=0.953127  R=(1+B)/2=0.976564
+N=8 trial 3  B=0.942809  R=(1+B)/2=0.971405
+N=8 best B=0.953127 (product 2sqrt2/3=0.942809)
+N=16 trial 0  B=0.953743  R=(1+B)/2=0.976872
+N=16 trial 1  B=0.953743  R=(1+B)/2=0.976872
+N=16 trial 2  B=0.953743  R=(1+B)/2=0.976872
+N=16 trial 3  B=0.942809  R=(1+B)/2=0.971405
+N=16 best B=0.953743 (product 2sqrt2/3=0.942809)
+=== sl32.txt
+N=32 trial 0  B=0.953927  R=(1+B)/2=0.976964
+N=32 trial 1  B=0.953927  R=(1+B)/2=0.976964
+=== sl2_4_8.txt
+check order-1 embedding: 0.8120442016979554 0.8120442016979558
+N=4 trial 0  B=0.952351  R=0.976176
+N=4 trial 1  B=0.952351  R=0.976176
+N=4 trial 2  B=0.952351  R=0.976176
+N=4 order-2 best B=0.952351
+N=8 trial 0  B=0.954274  R=0.977137
+N=8 trial 1  B=0.954274  R=0.977137
+N=8 trial 2  B=0.954274  R=0.977137
+N=8 order-2 best B=0.954274
+=== sl2_12.txt
+check order-1 embedding: 0.8120442016979554 0.8120442016979558
+N=12 trial 0  B=0.954781  R=0.977390
+=== lift_check.out
+N=8 scale-limit B: markov 0.953127   product 0.942809
+M=  100  discrete merge_bc: lifted markov 0.765415   lifted product 0.857451
+M=  300  discrete merge_bc: lifted markov 0.812007   lifted product 0.880896
+M= 1000  discrete merge_bc: lifted markov 0.847427   lifted product 0.896274
+M= 3000  discrete merge_bc: lifted markov 0.869083   lifted product 0.904928
+=== lift_fast.out
+cross-check fast vs dense at M=200: 0.6973955007794945 0.6973955007794939
+M=   3000  fast lifted: markov 0.869083   product 0.904928
+M=  10000  fast lifted: markov 0.885810   product 0.912474
+M=  30000  fast lifted: markov 0.897236   product 0.916438
+=== lift_fast_big.out
+cross-check fast vs dense at M=200: 0.6973955007794945 0.6973955007794939
+M= 100000  fast lifted: markov 0.906655   product 0.920482

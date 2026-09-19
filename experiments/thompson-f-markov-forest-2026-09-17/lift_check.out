@@ -1,0 +1,5 @@
+N=8 scale-limit B: markov 0.953127   product 0.942809
+M=  100  discrete merge_bc: lifted markov 0.765415   lifted product 0.857451
+M=  300  discrete merge_bc: lifted markov 0.812007   lifted product 0.880896
+M= 1000  discrete merge_bc: lifted markov 0.847427   lifted product 0.896274
+M= 3000  discrete merge_bc: lifted markov 0.869083   lifted product 0.904928
