@@ -134,3 +134,20 @@ artifacts:
     - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
       compared with a measure-preserving base.
     - Designs whose three sizes already fail, which the theorem cannot touch.
+- **The first step `n0 -> n0 + 1`, by sink classes** (swarm-0917-w19-gs-follow, 2026-09-19, family
+  minimal-counterexample). New ESTABLISHED `strict-automata-below-twice-the-minimum-have-one-sink-class`, with a
+  self-contained reproof of upset descent. It does not prove the step. It classifies what a witness can look like, over
+  any group `G` with `n0 = min NS(G)`.
+  - Every proper upset of every `R(Ψ^p)` has at least `n0` letters. So below `2 n0` a strict automaton has one
+    primitive sink class, and no exact sub-alphabet.
+  - At `n0 + 1`, a strict `Ψ` is either robustly primitive (every `R(Ψ^p)` strongly connected) or has a power with a
+    never-created letter. That letter is a singleton class, which gives `g = 1` and every `n >= n0^2 + 1` in `NS(G)`.
+  - The invariant is the upset lattice of the powers.
+  - Where ascent designs die.
+    - A never-destroyed letter, including an exact one, dies at upset descent.
+    - A design that keeps the old `n0` letters sitewise old is strict only if it already proves
+      `some-nonsurjunctive-group-gives-a-binary-power-one`.
+    - Under `every-group-is-surjunctive-over-binary-power-alphabets`, only robustly primitive witnesses remain, and
+      the same holds at a second failing size `m2 < 2 n0` with `gcd(n0, m2)` a power of two.
+  - What survives. Robustly primitive strict automata at `n0 + 1`, which carry the whole first step. Above `2 n0`
+    several sinks are allowed.
