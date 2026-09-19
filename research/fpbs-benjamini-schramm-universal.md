@@ -683,3 +683,32 @@ content in that region.
   **Next:** prove `zeta_Phi < 3/8` via CLE_6 on the triangular lattice, or
   by comparison with the half-plane one-arm (`1/3`) or polychromatic
   two-arm (`1/4`) exponent. Then extend the circuits to geodesic paths.
+
+* **Geodesic paths, and the gate reduced to one critical inequality
+  (w15-123, 2026-09-18).** See
+  `fpbs-geodesic-bisector-chain-polynomial-in-inverse-theta`.
+
+  - **Theorem A.** On every monotone path, `Theta^± >= c L^{-kappa_1}`.
+    The construction uses 64 linked circuits per dyadic scale in boxes of
+    half-width `t/8`, and these boxes lie in the bisector half. So
+    `K <= C theta^{-gamma_0}` holds for all geodesic paths, and with
+    exponent `O(λ)` for `λ`-quasi-geodesics. Hairpins are still open.
+  - **Theorem B.** The box event `D_n` is an exact face condition of edge
+    walls and pinch (diagonal) walls of the wired cluster. It gives a
+    linear-time evaluator with 0 mismatches against w14's block code.
+  - **Proposition C.** `Phi(p') >= c · P_{1/2}(D_{C L(p')})`, obtained by
+    FKG from the box event, an RSW circuit and a no-large-dual-circuit
+    event. So the gate `gamma < 36/5` follows from the single critical
+    inequality (H): `P_{1/2}(D_n) >= pi(n)^β` with `β < 18/5`
+    (`zeta < 3/8`). This is ESTABLISHED modulo near-critical RSW and
+    exponential decay.
+  - **Numerics.** The critical Monte Carlo runs to `n = 2048` with 5,900
+    samples. Local slopes are stable at `0.251(6)`, with no upward drift
+    (w14's `0.31(5)` was a fluctuation), and the one-arm calibration gives
+    `0.10 ≈ 5/48`. So `β_eff ≈ 2.4 < 3.6` and `gamma ≈ 4.8`.
+  - **Refuted.** "Two half-plane arms imply `D`" is false (a pocket
+    opening to the right).
+
+  **Next:** prove (H). On the triangular lattice this is the CLE_6 wedge
+  exponent of "no loop meets both the negative real axis and the imaginary
+  axis", conjecturally `1/4`, which would give `gamma = 24/5`.
