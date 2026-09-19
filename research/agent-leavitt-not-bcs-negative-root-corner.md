@@ -1148,3 +1148,41 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### Exact half compressions force the head bound; mixed compressors cannot enter (swarm-0917-w18-w18-ptl-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+- **Attempt.** Attack the non-ring-gluing survivor above without any stability theorem. Use a rigid compression
+  defect (Kun–Thom / OpenAI type) directly in genuine representations of the cone cover `Gamma`, where the
+  relators hold exactly on each half.
+- **Result: a new decomposition and a class kill, ESTABLISHED (unreviewed).** Recorded as
+  `cone-half-compression-defects-force-head-bound`, with route `cone-half-compression-defects-force-head-bound-proof`.
+  - *Bass–Serre localization.* Edge groups of `Gamma` are finite. By Watatani, an infinite Kazhdan `L <= Gamma`
+    fixes exactly one vertex, and any `u` with `u L u^-1 <= L` fixes that vertex too. So exact Kazhdan
+    compression pairs of `Gamma` live in one conjugate of `Delta_+` or `Delta_-`.
+  - *Hilbert–Schmidt transfer (HT).* For every finite-dimensional unitary `rho`:
+    `||rho([u c u^-1, l]) - 1||_2 <= (2/kappa) max_s ||rho([s, c]) - 1||_2`.
+    - `Ad rho(u)` maps the finite-dimensional algebra `span rho(L)` into itself, hence onto itself, so it
+      preserves the commutant `rho(L)'`.
+    - The Kazhdan inequality on `(M_d, ||.||_2)` then does the rest.
+  - *Decomposition.* `(QC) <= (HEC)`, with a linear modulus. Here `(HEC)` is the purely algebraic statement
+    `leavitt-cone-half-carries-rigid-compression-defect` (OPEN): a Kazhdan `L <= Delta_+` and `u ∈ Delta_+` with
+    `u L u^-1 <= L`, and `c ∈ C_Delta(L)` with `[u c u^-1, l] ≠ 1`. So `(HEC) + (HR)` implies `Delta` is not
+    hyperlinear.
+  - *Class killed.* Every mixed-compressor certificate for `(QC)`, including the nine-leaf Kun–Thom configuration
+    of `openai-leavitt-unit-nonsofic`.
+    - *Invariant:* the Bass–Serre tree.
+    - *Death step:* the exact lift of `u L u^-1 <= L` to `Gamma`. Off a half it holds only modulo `K`, and
+      approximate `Ad` control is false in HS (`hs-analogue-of-normal-kazhdan-criterion-is-false`).
+- **Constraints on (HEC) witnesses** (proved in the OPEN node).
+  - The compressor has infinite order.
+  - The compression is strict and profinitely invisible in the residually finite `Delta_+`.
+  - `c` lies outside every residually finite overgroup of `<L, u>`.
+  - **Corner kill.** Every `L` whose commutant is `B + eMe` (`B` finite-dimensional, `e` over `R_+`) is rigid: no
+    `u ∈ Delta_+` moves `C_Delta(L)`. Block copies `E_k(S)` with `s_1, s_2 ∈ S` are of this type, since
+    `C_R(s_1, s_2) = F_2`.
+    - *Invariant:* stable finiteness of `M_20(R_+)`, from `depth-monotone-leavitt-subalgebras-are-stably-finite`.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Decide whether some `u ∈ Delta_+` strictly compresses `E_3(F_2[s_1])`, or a Kazhdan
+  overgroup of it inside `Delta_+`. Its commutant `C_R(s_1) E + (1-E) M (1-E)` is not of corner type.
+  - A *yes* with a moving centralizer proves `(QC)`.
+  - Showing that every Kazhdan subgroup of `Delta_+` has a `Delta_+`-rigid centralizer kills this route.
