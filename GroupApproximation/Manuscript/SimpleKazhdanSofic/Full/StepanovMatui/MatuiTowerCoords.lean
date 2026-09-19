@@ -114,8 +114,8 @@ theorem exists_bounded_return [CompactSpace X] (hmin : SimpleKazhdanSofic.IsMini
   obtain ⟨j, hj, hjx⟩ :=
     Set.mem_iUnion₂.mp (ht (Set.mem_univ ((T ^ (-((t.sup Int.natAbs : ℕ) : ℤ))) x)))
   have hjK : j.natAbs ≤ t.sup Int.natAbs := Finset.le_sup hj
-  obtain ⟨i, hi⟩ : ∃ i : ℕ, (i : ℤ) = (t.sup Int.natAbs : ℤ) - j :=
-    ⟨((t.sup Int.natAbs : ℤ) - j).toNat, Int.toNat_of_nonneg (by omega)⟩
+  obtain ⟨i, hi⟩ : ∃ i : ℕ, (i : ℤ) = ((t.sup Int.natAbs : ℕ) : ℤ) - j :=
+    ⟨(((t.sup Int.natAbs : ℕ) : ℤ) - j).toNat, Int.toNat_of_nonneg (by omega)⟩
   have hjx' : (T ^ j) ((T ^ (-((t.sup Int.natAbs : ℕ) : ℤ))) x) ∈ Y := hjx
   rw [zpow_apply_zpow_apply_of_eq T j (-((t.sup Int.natAbs : ℕ) : ℤ)) (-(i : ℤ)) (by omega) x]
     at hjx'

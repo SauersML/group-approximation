@@ -38,7 +38,7 @@ theorem projection_h_mul (i j : I) (hij : i ≠ j) (u v : Fˣ) :
     Matrix.diagonal_mul_diagonal]
   congr 1
   funext k
-  split_ifs <;> simp [mul_inv]
+  split_ifs <;> simp <;> ring
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.projection_h_mul
 

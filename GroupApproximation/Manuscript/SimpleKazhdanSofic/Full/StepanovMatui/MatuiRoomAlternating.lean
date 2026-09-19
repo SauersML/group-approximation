@@ -42,7 +42,7 @@ theorem alternatingFullGroup_le_of_room [TopologicalSpace X] [CompactSpace X] [T
     (hroom : ∀ a ∈ ⁅fullGroup T, fullGroup T⁆, ∀ b ∈ ⁅fullGroup T, fullGroup T⁆,
       HydeLodha.SupportedIn a V → HydeLodha.SupportedIn b V → ⁅a, b⁆ ∈ N) :
     alternatingFullGroup T ≤ N := by
-  refine Subgroup.closure_le.mpr ?_
+  refine (Subgroup.closure_le N).mpr ?_
   rintro σ ⟨f, hf, U, hU, hdat, rfl⟩
   refine threeCycle_mem_of_local hU hdat fun x hxU => ?_
   have hx1 : f x ≠ x := fun h => hdat.1 x hxU (by rw [h]; exact hxU)

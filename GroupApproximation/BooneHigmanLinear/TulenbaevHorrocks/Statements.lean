@@ -1,6 +1,7 @@
 import GroupApproximation.BooneHigmanLinear.Tulenbaev.Components
 import Mathlib.RingTheory.Localization.Away.Basic
 import Mathlib.Algebra.Polynomial.Monic
+import Mathlib.RingTheory.LocalRing.ResidueField.Defs
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
