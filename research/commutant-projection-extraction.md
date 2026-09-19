@@ -3,6 +3,8 @@ rg: 2
 id: commutant-projection-extraction
 kind: claim
 title: Corner-invisible central unitaries in a matrix corona are trivial
+refuted_by:
+  - o2-suspension-central-unitary-evades-commutant-corners
 distinct_from:
   corona-corner-detection-criterion: that claim is established and reduces the mechanism to this question; this claim is the residual operator-algebraic hole, stated without any group-theoretic hypothesis beyond centrality.
   commutant-no-growth: that claim bounds the growth of an asymptotic commutant; this one asks for projections inside the relative commutant.
@@ -142,3 +144,33 @@ nearby commuting pair.  Any proof must therefore use either the vanishing
 of the trace mass off `1` or the (T) input, not general position.
 `matrix-corona-k1-vanishes` rules out an index-theoretic invariant of the
 mark alone.
+
+## Attempts
+
+- 2026-09-19, swarm-0917-w17-w17-ptm-last1 [operator-algebras]:
+  **REFUTED** by
+  `o2-suspension-central-unitary-evades-commutant-corners`, together with
+  its proof route.
+  - *The example.*  Take `C = C_0((0,1), O_2)~`, the unitization of the
+    suspension of `O_2`, and its central winding unitary
+    `u = e^{2 pi i t} ⊗ 1`, with `u - 1` in the suspension.
+  - *C is MF.*  The suspension is separable and exact, and its primitive
+    ideal space `(0,1)` has no compact open subset. So it is AF-embeddable
+    by Gabe's Corollary B, and Arveson's theorem gives a unital isometric
+    embedding `iota : C -> Q`.
+  - *Every corner trace misses u.*  The Cuntz relation kills every tracial
+    functional on `f ⊗ O_2`. So every tracial state of `C` vanishes on the
+    suspension. Every tracial state of a corner `qQq`, with `q` in the
+    commutant of `iota(C)`, restricts to a tracial state of `C`. Hence
+    `‖q(u - 1)q‖_2 = 0` for every such corner.
+  - *The conclusion fails.*  `‖iota(u) - 1‖ = 2`, and
+    `‖(iota(u) - lambda) q‖ >= |lambda - 1|` for all `q` and `lambda`.
+  - *Scope.*  `H` is any countable generating subgroup of `U(C)`
+    containing `u`. The claim is refuted in the generality stated. It is not
+    refuted for a specific group such as `T̄` or `K(3,4)`, whose
+    eigencorner questions need input specific to the group.
+  - *Consequences.*  Two routes that require this claim are invalidated:
+    `lifted-thompson-t-eigencorners-via-projection-extraction` and
+    `torsion-free-non-mf-from-infinite-order-mark`. By the real-rank-zero
+    reduction above, relative commutants in `A_omega` need not have real
+    rank zero along a central unitary.
