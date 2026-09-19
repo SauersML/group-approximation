@@ -452,3 +452,14 @@ vocabulary rather than its content.
   price one. Such `lambda` exist on every hyperbolic group (Glimm--Effros).
   For cost `> 1` groups none has a conservative square. Open: the square problem
   (II_inf-square) on `Sp(n,1)` lattices, and infinite fibres (Maharam type).
+
+- **w19-026 (2026-09-19), (II_inf-square): invariance put into the Dini count; the square problem stays OPEN.**
+  Node `fpbs-invariant-boundary-squares-need-heavy-returns` (ESTABLISHED obstruction, full proof). For invariant
+  sigma-finite `lambda` on `dGamma`, a two-sided North--South split bounds the return mass of `A1 x A2` at `g` by
+  `a_g b_g`, where `a_g` is the expanded and `b_g` the contracted self-return. Invariance gives each of them a sphere-sum
+  budget of `M lambda(A_i)`, and this bound fails for merely quasi-invariant classes. A conservative square therefore
+  needs non-summable sphere maxima of the heavy self-returns. For nonatomic `lambda` these tend to 0, so the divergence
+  must come from slowly vanishing masses. The atomic loxodromic pair `Gamma h^+ ∪ Gamma h^-` is sharp. The
+  `Z`-calibration (Kakutani--Parry) shows that counting alone cannot decide the question. Next step: **(heavy-pair)**.
+  Show that the attracting points `g_n^+` of coincident heavy elements must converge, which forces an atom (a kill).
+  Otherwise build a nonatomic invariant `lambda` that imitates the loxodromic pair at vanishing scales.
