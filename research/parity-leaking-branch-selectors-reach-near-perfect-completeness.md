@@ -340,3 +340,25 @@ a cycle of equations through the window.
   **Still alive:** cross-input and global hypotheses, average-case
   hypotheses (only in their exact form), and decoders that query `S` on
   other inputs.
+
+- **2026-09-17, swarm-0917-w19-w19-ugc-last1 (probability-random,
+  last-mile).** Attacked the DKKMS window between Theorem S of
+  `near-perfect-selectors-on-rigid-dkkms-instances-put-np-in-rp` and Corollary
+  SC of `dkkms-2to1-value-is-at-least-seed-concentration`, where H1's DKKMS-form
+  instances are still undecided. Result:
+  `dkkms-class-seed-threshold-is-sqrt-l-over-2-to-half-l` (ESTABLISHED).
+  - **Ceiling lowered.** Bernstein on the kept-block variance `12*2^(-l)`
+    lowers the soundness ceiling from `beta = O(sqrt(l/k))` to
+    `O(sqrt(l/(2^l k)) + l/k)`. Every DKKMS-form instance family above it has
+    NO value near `1`, so it cannot carry H1.
+  - **Sharp.** A chi-square bound on the class posterior (GL_l-averaging to
+    `E_ref max` of `H` mean-one products) shows that the class seed law is flat
+    below `t = beta sqrt(k) 2^(l/2)/sqrt(l) <~ 2.03`. So no seed-guessing
+    labelling pushes the ceiling lower (Corollary TH, the thresholds are within
+    a factor of `12` in `t`).
+  - **Decomposition.** Corollary D names a band that contains published-rate
+    points of the window `[k_A, k_T]`. There, covering, seed identification
+    and Theorem S all provably fail. Any decision on H1 there needs a tool that
+    reads the per-tuple information which folding removes.
+  - **Where it stops:** H1 stays OPEN. The band `t <~ 2`, outside (R), is
+    untouched by every recorded tool.
