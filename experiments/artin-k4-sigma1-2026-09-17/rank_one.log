@@ -1,0 +1,29 @@
+⎡            1 - x₂                      x₁ - 1                   0            ↪
+⎢                                                                              ↪
+⎢               0                           0                   1 - y₂         ↪
+⎢                                                                              ↪
+⎢     -(y₁ - 1)⋅(x₁⋅y₁ + 1)                 0            (x₁ - 1)⋅(x₁⋅y₁ + 1)  ↪
+⎢                                                                              ↪
+⎢               0                 -(y₁ - 1)⋅(x₂⋅y₁ + 1)  (x₂ - 1)⋅(x₂⋅y₁ + 1)  ↪
+⎢                                                                              ↪
+⎢               0                 -(y₂ - 1)⋅(x₂⋅y₂ + 1)           0            ↪
+⎢                                                                              ↪
+⎢          ⎛  2   2            ⎞                                               ↪
+⎣-(y₂ - 1)⋅⎝x₁ ⋅y₂  + x₁⋅y₂ + 1⎠            0                     0            ↪
+
+↪                0               ⎤
+↪                                ⎥
+↪              y₁ - 1            ⎥
+↪                                ⎥
+↪                0               ⎥
+↪                                ⎥
+↪                0               ⎥
+↪                                ⎥
+↪       (x₂ - 1)⋅(x₂⋅y₂ + 1)     ⎥
+↪                                ⎥
+↪           ⎛  2   2            ⎞⎥
+↪  (x₁ - 1)⋅⎝x₁ ⋅y₂  + x₁⋅y₂ + 1⎠⎦
+nonzero 3x3 minors: 64
+number of t-coefficient equations: 248
+Groebner basis of chi-line locus (with x,y invertible):
+GroebnerBasis([1], x1, x2, y1, y2, z, domain='ZZ', order='grevlex')
