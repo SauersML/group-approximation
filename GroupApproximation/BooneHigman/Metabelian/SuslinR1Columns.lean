@@ -38,9 +38,9 @@ theorem suslinR1_mul_elementaryUnit_ne (M : Matrix ι ι R) (i j : ι) (hij : i 
 `x_{k t}(a k)` over a list of indices `k ≠ t` adds `∑ M r k * a k` to the entry at `(r, t)`. -/
 theorem suslinR1_mul_colSum_apply (M : Matrix ι ι R) (t : ι) (a : {k : ι // k ≠ t} → R)
     (l : List {k : ι // k ≠ t}) (r : ι) :
-    (M * (((l.map fun k ↦ elementaryUnit (k : ι) t k.property (a k)).prod :
+    (M * (((l.map fun k : {k : ι // k ≠ t} ↦ elementaryUnit (k : ι) t k.property (a k)).prod :
         (Matrix ι ι R)ˣ) : Matrix ι ι R)) r t =
-      M r t + (l.map fun k ↦ M r k * a k).sum := by
+      M r t + (l.map fun k : {k : ι // k ≠ t} ↦ M r k * a k).sum := by
   induction l generalizing M with
   | nil => simp
   | cons k l ih =>
@@ -48,7 +48,7 @@ theorem suslinR1_mul_colSum_apply (M : Matrix ι ι R) (t : ι) (a : {k : ι // 
     rw [Units.val_mul, ← mul_assoc, ih, mul_elementaryUnit_apply, if_pos rfl, add_assoc]
     have hs : (l.map fun k' : {k' : ι // k' ≠ t} ↦
         (M * ((elementaryUnit (k : ι) t k.property (a k) : (Matrix ι ι R)ˣ) :
-          Matrix ι ι R)) r k' * a k') = l.map fun k' ↦ M r k' * a k' :=
+          Matrix ι ι R)) r k' * a k') = l.map fun k' : {k' : ι // k' ≠ t} ↦ M r k' * a k' :=
       List.map_congr_left fun k' _ ↦ congrArg (fun x : R ↦ x * a k')
         (suslinR1_mul_elementaryUnit_ne M (k : ι) t k.property (a k) r k' k'.property)
     rw [hs]
@@ -57,7 +57,8 @@ theorem suslinR1_mul_colSum_apply (M : Matrix ι ι R) (t : ι) (a : {k : ι // 
 
 /-- The column-sum factor lies in the elementary group. -/
 theorem suslinR1_colSum_mem (t : ι) (a : {k : ι // k ≠ t} → R) (l : List {k : ι // k ≠ t}) :
-    ((l.map fun k ↦ elementaryUnit (k : ι) t k.property (a k)).prod : (Matrix ι ι R)ˣ) ∈
+    ((l.map fun k : {k : ι // k ≠ t} ↦ elementaryUnit (k : ι) t k.property (a k)).prod :
+        (Matrix ι ι R)ˣ) ∈
       elementaryGroup ι R := by
   refine Subgroup.list_prod_mem _ fun x hx ↦ ?_
   obtain ⟨k, _, rfl⟩ := List.mem_map.1 hx
@@ -78,11 +79,11 @@ theorem suslinR1_monic_of_mem_span [Nontrivial R] (M : (Matrix ι ι (Polynomial
   have hc' : ∑ j, c j * (M : Matrix ι ι (Polynomial R)) r j = p := hc
   obtain ⟨n, hn⟩ : ∃ n : ℕ, ((M : Matrix ι ι (Polynomial R)) r t).natDegree < n :=
     ⟨_, Nat.lt_succ_self _⟩
-  refine ⟨((Finset.univ : Finset {k : ι // k ≠ t}).toList.map fun k ↦
+  refine ⟨((Finset.univ : Finset {k : ι // k ≠ t}).toList.map fun k : {k : ι // k ≠ t} ↦
       elementaryUnit (k : ι) t k.property (Polynomial.X ^ n * c k)).prod,
     suslinR1_colSum_mem t _ _, ?_⟩
   rw [Units.val_mul, suslinR1_mul_colSum_apply]
-  have hsum : ((Finset.univ : Finset {k : ι // k ≠ t}).toList.map fun k ↦
+  have hsum : ((Finset.univ : Finset {k : ι // k ≠ t}).toList.map fun k : {k : ι // k ≠ t} ↦
       (M : Matrix ι ι (Polynomial R)) r k * (Polynomial.X ^ n * c k)).sum =
         Polynomial.X ^ n * p := by
     rw [Finset.sum_map_toList, ← hc', Finset.mul_sum]

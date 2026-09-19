@@ -76,6 +76,7 @@ def eHighWittE_co : (Fin n → TruncatedWittVector p e L) → Fin n × Fin e →
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_co
 
+omit [Fact (Nat.Prime p)] [Field L] in
 theorem eHighWittE_co_injective : Function.Injective (eHighWittE_co p e L n) :=
   fun _ _ h => funext fun i => TruncatedWittVector.ext fun j => congrFun h (i, j)
 

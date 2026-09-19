@@ -91,7 +91,7 @@ theorem sep_prime (a b M N : ℤ)
     (hdisj : ∀ n : ℤ, (∃ t, n = a + t * M) → (∃ t, n = b + t * N) → False) :
     ∃ p k : ℕ, p.Prime ∧ (p : ℤ) ^ k ∣ M ∧ (p : ℤ) ^ k ∣ N ∧ ¬ (p : ℤ) ^ k ∣ a - b := by
   by_contra hne
-  push_neg at hne
+  push Not at hne
   obtain ⟨g, hg⟩ : ∃ g, g = Int.gcd M N := ⟨_, rfl⟩
   have hgM : (g : ℤ) ∣ M := by
     rw [hg]

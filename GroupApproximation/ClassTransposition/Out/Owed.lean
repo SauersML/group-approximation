@@ -136,18 +136,18 @@ theorem sign_dichotomy {h : Equiv.Perm ℤ}
       rw [e] at this
       exact hn this
   · right
-    push_neg at h0
+    push Not at h0
     intro n
     constructor
     · intro hn
       obtain ⟨g, hg, rfl⟩ := exists_ct_nonneg (le_refl (0 : ℤ)) hn
       rw [← conj_apply_self h g 0]
       by_contra hc
-      push_neg at hc
+      push Not at hc
       exact absurd ((ct_sign (h₁ g hg) (h 0)).mpr hc) (not_le.mpr h0)
     · intro hhn
       by_contra hn
-      push_neg at hn
+      push Not at hn
       obtain ⟨g, hg, hgn⟩ := exists_ct_neg h0 hhn
       have e : (h⁻¹ * g * h) 0 = n := by
         rw [inv_conj_apply, hgn, perm_inv_apply_self]
