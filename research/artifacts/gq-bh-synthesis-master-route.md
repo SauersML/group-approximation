@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.1, 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1).
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -53,7 +53,7 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 
 1. **The plane lift to (★′) is blocked** (b2a87978c, 92dfb33c5), except one exceptional-key defect exit
    (ee75271f2). So on the minimal route the CARRIER is a rigid seed on Λ₀ itself, followed by tree gluing.
-2. **(RA) blocks only the minimal-subshift tracks** (4ed22df89). Type (A) coset ambients are rigid but never
+2. **Any form of (RA) blocks only the minimal-subshift tracks** (4ed22df89). Type (A) coset ambients are rigid but never
    minimal, and Conjecture H makes SV_Λ fp. So the permutational route escapes the exactness wall.
 3. **Every route outputs type (A) actors.** The minimal route does so by theorem. The ring route does so for
    L_p ⊗ L_p, and is expected to in general.
@@ -73,17 +73,28 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
    - In a Higman–Clapham envelope, port actions with fg stabilizers are absorbed over the double F ∗_N F′, where
      the input acts freely (dd87ce431). So a permutational Higman embedding must write the relators into the
      permutation structure.
-7. **(RA) splits by the equicontinuous factor** (932c4670b). Quantum rigidity is boundary determination: every
-   thick cut has at most one free side.
-   - *Finite fibres:* an invariant measure exists, so (RA) there is a **non-existence** statement. There is no
-     rigid, minimal, free, measured action of a non-amenable group.
-     - Its commutant form: rigid uniquely ergodic rows have amenable automorphism groups (8fa6f7ccd).
-     - Its residually finite form: nested periodic wire nets, which pay for the rank gradient (e4b6958a0).
+7. **Status of (RA), stated explicitly (v9.1).**
+   - **(RA) in its topologically free form is REFUTED on main.** The counterexample is
+     `rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer` (lane proof), a minimal, topologically free,
+     rigid SFT over `(F_2 × Z) ∗ Z`. It is not free: one point has stabilizer `F_2 × Z`. Its acting group is exact.
+   - **The open targets are:**
+     - **(RA_free):** every minimal, *free*, quantum-rigid subshift action is topologically amenable;
+     - **(RA′):** a minimal, topologically free, quantum-rigid subshift forces the acting group to be exact
+       (6a95ce886; it reduces to one-ended groups).
+   - Everything below concerns these two. The finite/infinite-fibre split (932c4670b) holds for both:
+     quantum rigidity is boundary determination, and every thick cut has at most one free side.
+   - *Finite fibres:* an invariant measure exists, so (RA_free) there is a **non-existence** statement. There is
+     no rigid, minimal, free, measured action of a non-amenable group.
+     - Its commutant form: time lifts are free, so a non-amenable measure-fixing commutant of a rigid, minimal,
+       free Z^d row would refute **(RA_free)**. Hence (RA_free) ⇒ rigid uniquely ergodic rows have amenable
+       automorphism groups (8fa6f7ccd, referee PASS with this scope correction, 3f64521db).
+     - Its residually finite form: nested periodic wire nets, which pay for the rank gradient (e4b6958a0,
+       referee PASS).
    - *Infinite fibres:* the target is join-cap coherence (JC′).
      - Plain cap coherence (CC′) is false already on ∂T_m ⊠ ∂T_n (cf68fcdd7).
      - Profinite layers collapse into the equicontinuous factor (ca17dbe93), so an infinite fibre needs a
        connected layer.
-   - (RA′) therefore needs a finite join dimension plus nearby corners from minimality. Infinite-dimensional
+   - In infinite fibres, both targets therefore need a finite join dimension plus nearby corners from minimality. Infinite-dimensional
      non-exact wall spaces lack exactly these two things.
 
 ### 0.4 What is LEFT for full BH, and the decisive statement
@@ -104,7 +115,7 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 | 1 | **HARD-(A), seed form:** a hierarchical seed checking one hard sequence at every level, with `[[Γ ⋉ Y]]` fp (Farley–Hughes engine; first test the Houghton group of the free group) and a fg seed stabilizer | bh-invent-11, bh-invent-03, bh-invent-14, bh-invent-15 |
 | 2 | **PBH-universality:** relators written into the permutation structure; ports are translations crossing every splitting (c6514e7e6, dd87ce431, e3897e787) | bh-ra-counter, bh-invent-02, bh-typeA-universal |
 | 3 | **Rigid seeds for non-hyperbolic Kazhdan inputs:** the Ã₂ seed boundary is classified as chambers plus panel-tree pointers (7d0b8309d); relatively hyperbolic overgroups with H_Γ parabolic | bh-g2-buildings, bh-free-09, bh-emitter-b, bh-invent-13 |
-| 4 | **(RA′), split by fibres:** finite fibres, non-existence; infinite fibres, join-cap coherence (932c4670b, cf68fcdd7, 8fa6f7ccd) | bh-ra-proof, bh-star-b, bh-invent-16, bh-ra-counter |
+| 4 | **(RA_free) and (RA′)** ((RA) in topologically free form is refuted), split by fibres: finite fibres, non-existence; infinite fibres, join-cap coherence (932c4670b, cf68fcdd7, 8fa6f7ccd) | bh-ra-proof, bh-star-b, bh-invent-16, bh-ra-counter |
 | 5 | **E3′ for seed and fold hosts.** Hyperbolic: crossing, i.e. square filling between descent trees, not upstream certification (3ddb17e3e). Fold: fibre filling (ca8f03208). 3-locality (0db1cb640) | bh-finf-hyp, bh-invent-17, bh-g2-abh |
 | 6 | **Reviews:** Euclidean-building F_∞ hosts (37f53166d); BG ∈ 𝒞 (8a8a52553); torsion cubulated F_∞ (a5ccc1aaa, one PASS); CMSZ (ba8af62eb); G₁ repair (eaca0ed9b) | referee lanes |
 | 7 | **Imports for the ring route:** FJ, Khanh | — |
@@ -157,6 +168,8 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Corrections to v8:**
   - The seed form needs the plain full group `[[Γ ⋉ Y]]` fp, not the V-stabilized one (§0.1).
   - The Osajda-walls claim in fact 5 is withdrawn (cf68fcdd7).
+  - v8, and the first v9 text, wrote "(RA)" for the open target. (RA) in its topologically free form is already
+    refuted on main. The open targets are (RA_free) and (RA′) (fact 7; bh-ref-q11, 3f64521db).
   - §7 items 2 and 3 of v8 named gates that have since moved: upstream certification was not the gate, and (SC)
     is refuted. §5 below restates them.
 
@@ -203,7 +216,7 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   6b7f954de, 0de1f29ea, c79baedd2.
 - **Seeds and HARD-(A):** 7c0c25c19, 257360ca8, 8a8a52553, ab91e4e2c, afa36f070, cfd7ccc17, ce288ce2c, 651a58160,
   dc102427a, 5c85cfc17, 3f64a9c66, 9459f6eaa, 1208f63aa, fe965ca41, 7d0b8309d, 2a9cd8317, 9d9109115, 221511f7b.
-- **(RA):** 932c4670b, e4b6958a0, cf68fcdd7, 8fa6f7ccd, ca17dbe93, c6514e7e6, dd87ce431.
+- **(RA_free), (RA′):** 932c4670b, e4b6958a0, cf68fcdd7, 8fa6f7ccd, ca17dbe93, c6514e7e6, dd87ce431, 3f64521db.
 - **Hosts:** de7c42f2a, 37f53166d, 5ff0e87eb, 3ddb17e3e, 36cb962fb, 0866cd809.
 - **MCG:** 5a5a8bd32, 165c42817, 2968688a3, acb6bede1, e3897e787.
 - **Classes:** 97e463645, 633eb2de3, 23ab3e43b, 8dd131b96, ab9c1e63e, 7263a4653, 5b76fcccb, 8ef5b0e59, 6d6fc15f9,
