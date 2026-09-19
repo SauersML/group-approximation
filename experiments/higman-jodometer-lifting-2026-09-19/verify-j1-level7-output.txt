@@ -1,0 +1,7 @@
+relators trivial: true
+orders (a,b,c,d): [ 64, 4, 4, 16 ]
+degree 128, tree automorphisms: true
+a-orbit lengths: [ [ 64, 2 ] ]
+|G| = 2^29, is 2-group: true, transitive: true
+
+[exited with code 0]

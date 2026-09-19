@@ -262,3 +262,29 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
       implementation or the full `W_1 x| translations` symmetry.
     - If the `j`-odometer counts also die, the next families are elements `a` that are
       level-transitive only on some subtree, and trees of degree `2^s`.
+- **w18-053 (question (a): two-orbit odometer tree models).** Landed
+  `higman-h4-3-two-orbit-odometer-models-stop-at-level-seven` (claim and proof route).
+  - Computed. I wrote a C lifter (`jlift.c`) that does exact `F_2`-linear lifting with orderly
+    generation up to the full centralizer of `a`, which has order `2^(2k-1)`. With it, the
+    `1`-odometer family `a : x -> x + 2` of `H4(3)/<<[a,c]^2>> -> W_k` dies at level 8.
+    - Class counts at levels 1 to 8 are `8, 80, 332, 1908, 24336, 318432, 11776, 0`.
+    - Every level-7 model has an inconsistent lifting system.
+    - The lifter reproduces w17's `J = 0` counts (with and without `R`) and `bfs2.py`'s
+      translation counts. The 271216 level-6 models that fix level 1 match `736 * 737 / 2`
+      exactly.
+  - Certificate. A GAP-verified transitive 2-group quotient of degree 128 with
+    `ord(a,b,c,d) = (64,4,4,16)` and order `2^29`. The best ord(a) per family grows from 32
+    (`J = 0`) to 64 (`J = 1`).
+  - Proved:
+    - the centralizer lemma and the exactness of orderly generation;
+    - the ladder `ord(a) <= 4 ord(d)` in 2-groups, which is tight in every top-level survivor;
+    - a model with every generator fixing level 1 is a pair of `0`-odometer models one level
+      down, so the `J = 0` wall kills that part of `J = 1`.
+  - Open: a conceptual proof of either wall. The data fit a wall at level `5 + 2J`, which is not
+    proved.
+  - Dead: the `1`-odometer family (with `R`).
+  - Not reached: `J = 2`, whose first level-6 node has `2^28` lifts, and `J = 1` without `R`.
+  - Next: treat `a : x -> x + 2^J` for `J >= 2` as a `0`-odometer problem for the finite-index
+    subgroup that fixes level `J` (Reidemeister–Schreier). Or search non-uniform tree models,
+    where `a` is level-transitive on some subtrees but stalls on others. Killing every `J` would
+    not by itself exclude infinite order.
