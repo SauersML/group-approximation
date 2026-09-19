@@ -1,0 +1,6 @@
+original: accepted | census_40_40.json 818 certificate OK: 10 leaves, 238 product steps; Gamma^+ is not left-orderable
+drop first step    rejected | AssertionError: factor not yet in P
+wrong product      rejected | AssertionError: bad product
+no contradiction   rejected | AssertionError: no contradiction
+odd split element  rejected | AssertionError
+mutation test passed

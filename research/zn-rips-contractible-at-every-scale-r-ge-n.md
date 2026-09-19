@@ -97,3 +97,21 @@ Status on main, by dimension:
   - *Next.* `(8, 10)`. `kzs` (implicit SAD adjacency, `O(M + s²/8)` memory) runs at about 200 MB and about 1.6
     CPU-s per (K) move on a 205,606-point set. There are about 19k norm-10 points with `x_8 = 0`, so the (K) phase is
     about 8 CPU-hours. It should be run as parallel `KZ_KLIST` segments from a true D-stall set of `ilv4`.
+- **w8-103, (8, 10) reduced to a top-shell deletion problem.** See `z8-rips-scale-10-reduces-to-top-shell-link-collapses`.
+  - *Domination parts.* Two verified (D) certificates handle everything outside one explicit set:
+    - 442,086 moves take `Lmax_8` (628,232 points) to a 186,146-point set `O`;
+    - 167,329 moves take `O ∖ T` to `{e_8}`.
+  - *The set `T`.* `T` is the 18,816 norm-10 points of `O` with `x_8 = 0`. These are exactly the points whose
+    magnitude profile is `(3,2,2,1,1,1)` or a 7-part partition of 10.
+  - *What is left.* Delete `T` from `O` with (K) moves. The `k ≤ 7` certificates at `r = 10` are already on main.
+  - *(K) progress.* The (K) search (`kzs2`) and the verifier (`kzv6`) avoid the `M × M` matrix, which would need
+    about 4 GB here. On the shared host the search takes about 2–6 wall-s per (K) line in each chain.
+    - `T` is split into four blocks of 4,704 points.
+    - Each block is searched from `O` minus the earlier blocks. The blocks join exactly when each one deletes just
+      its own points by (K).
+    - When staged, the chains had deleted 15,242 of the 18,816 points. The fourth chain had finished its block and
+      ended at exactly `O ∖ T`. 3,574 points were left, all in the first three blocks.
+    - 2,572 of the (K) lines are replayed by `kzv6`. The rest are search tier.
+  - *Next.* Continue chains A, B and C from their last stage sets in
+    `experiments/zn-rips-link-collapse-scale-10-2026-09-18/segments/`, verify each stage with `vpiece6.sh`, and
+    concatenate.

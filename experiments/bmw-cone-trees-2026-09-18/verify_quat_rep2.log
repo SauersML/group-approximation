@@ -1,0 +1,8 @@
+census_30_30.json 16 OK: D = [t, t**2 + t + 1), PV = t, PH = t + 1; rho is a homomorphism satisfying the tree conditions
+census_50_31.json 243 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+census_51_30.json 660 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+census_51_31.json 279 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+census_51_31.json 309 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+census_52_30.json 386 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+census_52_31.json 185 OK: D = [1, t + 1), PV = t, PH = t**2 + t + 1; rho is a homomorphism satisfying the tree conditions
+all 7 representations OK

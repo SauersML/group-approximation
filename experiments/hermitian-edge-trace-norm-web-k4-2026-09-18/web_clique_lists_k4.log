@@ -1,0 +1,2 @@
+$ python3 experiments/hermitian-edge-trace-norm-web-clique-lp-2026-09-18/web_clique_lists.py 5:8125507037692533/1125899906842624   # = the double 7.2169, TARGET of k5a/k5b
+k=4 m=5 L_m=7.216900 eps_m>=0.28870 all n>=25 pass; exceptions n>=2k+2: [13, 14, 19]

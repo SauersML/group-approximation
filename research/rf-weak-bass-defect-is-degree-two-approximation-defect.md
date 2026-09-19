@@ -125,3 +125,27 @@ normalized second Betti numbers of a residual chain of a finitely generated amen
 tend to `b_2^{(2)} = 0` (known for type `FP_2`, open without it). A residually finite
 counterexample must have linear growth of `b_2`, with slope exactly `1 + b_2(K)`. The proposed
 L²-Swan route through infinite amenable quotients cannot close the gap by itself (item 6).
+
+## Attempts
+
+- **2026-09-18 (lane `w17-112`): the Følner-tiling scheme for the degree-2 approximation. The local
+  part is proved, and the rest is a race between relator depth and Følner radius.** See
+  `folner-transversals-kill-local-degree-two-homology` (proposed ESTABLISHED).
+  - *Local bound, for any group.* Let `I_L(H)` be the part of `H_2(H; k)` carried by relators of
+    length `<= L`. Then `dim I_L(H) <= n|T B_L \ T|` for every transversal `T` of every
+    finite-index `H`. The proof: a 2-cycle of the universal cover supported on `T` is a
+    boundary, so it dies in `X_H`, and rank-nullity on `k[T]^c` leaves room only on the Følner
+    boundary. With Weiss's Følner transversals, `dim I_L(N_i) = o([K:N_i])` for every fixed `L`,
+    for every residually finite amenable `K`, of any cd.
+  - *Kazhdan check.* For the `SL_3(Q_2)` lattice `Γ` of `pro-p-route-cannot-see-amenability-in-cd-two`,
+    the bound reads `|T B_3 \ T| >= (V[Γ:N] − 1)/(6V + 1)`. This is true, since `Γ` is
+    non-amenable. So the scheme fails for `Γ` only at the choice of a small-boundary transversal,
+    which is exactly the amenability input.
+  - *What dies.* Any Følner-tiled control of `H_2` of `P ⊗ Z[K/N_i]` using relators of bounded
+    length. In a counterexample, the part of `H_2(N_i)` it misses is
+    `χ_Q(K)[K:N_i] + o([K:N_i])`.
+  - *Reduction, both directions.* Using integrality of `χ`, the target for `K` is equivalent to
+    this: for some `δ + nε < 1`, the relator depth `ℓ^δ(N_i)` is at most the Følner radius
+    `ρ_ε(N_i)` for infinitely many `i`. By the five-term sequence, the missing part is
+    `dim H_0(N_{i,L}; H_1(M_L)) − b_1(N_{i,L}) + b_1(N_i)`, where `M_L = ker(⟨S | R_{≤L}⟩ → K)`.
+  - *Next step.* Bound these coinvariants of the long relations at `L = ρ_ε(N_i)`.

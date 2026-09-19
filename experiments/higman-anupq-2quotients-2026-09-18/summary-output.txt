@@ -1,0 +1,104 @@
+== g9low
+class 1 log2|P| 4 ord(a) 2^1
+class 2 log2|P| 10 ord(a) 2^2
+class 3 log2|P| 19 ord(a) 2^3
+class 4 log2|P| 32 ord(a) 2^4
+class 5 log2|P| 52 ord(a) 2^4
+class 6 log2|P| 84 ord(a) 2^4
+class 7 log2|P| 141 ord(a) 2^5
+class 8 log2|P| 231 ord(a) 2^5
+class 9 log2|P| 395 ord(a) 2^6
+class 10 log2|P| 672 ord(a) 2^6
+class 11 log2|P| 1172 ord(a) 2^7
+class 12 log2|P| 2046 ord(a) 2^7
+== g9loop
+class 12 log2|P| 2046 ord(a) 2^7
+class 13 log2|P| 3642 ord(a) 2^7
+class 14 log2|P| 6510 ord(a) 2^8
+class 15 log2|P| 11776 ord(a) 2^8
+class 16 log2|P| 21418 ord(a) 2^9
+== g8loop
+class 10 log2|P| 672 ord(a) 2^6
+class 11 log2|P| 1172 ord(a) 2^7
+class 12 log2|P| 2046 ord(a) 2^7
+class 13 log2|P| 3642 ord(a) 2^7
+class 14 log2|P| 6510 ord(a) 2^8
+== qb8
+class 10 log2|P| 195 ord(a) 2^6
+class 11 log2|P| 306 ord(a) 2^7
+class 12 log2|P| 480 ord(a) 2^7
+class 13 log2|P| 782 ord(a) 2^7
+class 14 log2|P| 1272 ord(a) 2^8
+class 15 log2|P| 2112 ord(a) 2^8
+class 16 log2|P| 3514 ord(a) 2^8
+class 17 log2|P| 5928 ord(a) 2^8
+== bb8
+Group completed. Lower exponent-2 central class = 6, Order = 2^17
+== et9low
+class 1 log2|P| 2 ord(a) 2^1
+class 2 log2|P| 5 ord(a) 2^2
+class 3 log2|P| 9 ord(a) 2^3
+class 4 log2|P| 14 ord(a) 2^4
+class 5 log2|P| 22 ord(a) 2^5
+class 6 log2|P| 32 ord(a) 2^6
+class 7 log2|P| 51 ord(a) 2^7
+class 8 log2|P| 77 ord(a) 2^8
+class 9 log2|P| 124 ord(a) 2^8
+class 10 log2|P| 197 ord(a) 2^8
+== et9
+class 8 log2|P| 77 ord(a) 2^8
+class 9 log2|P| 124 ord(a) 2^8
+class 10 log2|P| 197 ord(a) 2^8
+class 11 log2|P| 328 ord(a) 2^8
+class 12 log2|P| 540 ord(a) 2^8
+class 13 log2|P| 918 ord(a) 2^9
+class 14 log2|P| 1548 ord(a) 2^9
+== et3
+class 10 log2|P| 197 ord(a) 2^8
+class 11 log2|P| 328 ord(a) 2^8
+class 12 log2|P| 540 ord(a) 2^8
+class 13 log2|P| 916 ord(a) 2^9
+class 14 log2|P| 1546 ord(a) 2^9
+class 15 log2|P| 2654 ord(a) 2^9
+== et10
+class 8 log2|P| 77 ord(a) 2^8
+class 9 log2|P| 124 ord(a) 2^8
+class 10 log2|P| 197 ord(a) 2^8
+class 11 log2|P| 328 ord(a) 2^8
+class 12 log2|P| 540 ord(a) 2^8
+class 13 log2|P| 918 ord(a) 2^9
+class 14 log2|P| 1548 ord(a) 2^9
+== et10b
+class 14 log2|P| 1548 ord(a) 2^9
+class 15 log2|P| 2658 ord(a) 2^9
+class 16 log2|P| 4560 ord(a) 2^9
+== bb9
+Group completed. Lower exponent-2 central class = 7, Order = 2^22
+== qb9
+class 12 log2|P| 485 ord(a) 2^7
+class 13 log2|P| 787 ord(a) 2^7
+class 14 log2|P| 1277 ord(a) 2^8
+class 15 log2|P| 2117 ord(a) 2^8
+class 16 log2|P| 3521 ord(a) 2^9
+class 17 log2|P| 5936 ord(a) 2^9
+== q9L2
+class 12 log2|P| 475 ord(a) 2^6
+class 13 log2|P| 776 ord(a) 2^6
+class 14 log2|P| 1264 ord(a) 2^6
+class 15 log2|P| 2102 ord(a) 2^6
+class 16 log2|P| 3501 ord(a) 2^6
+== qb10
+class 12 log2|P| 488 ord(a) 2^7
+class 13 log2|P| 790 ord(a) 2^7
+class 14 log2|P| 1280 ord(a) 2^8
+class 15 log2|P| 2120 ord(a) 2^8
+class 16 log2|P| 3524 ord(a) 2^9
+class 17 log2|P| 5940 ord(a) 2^9
+class 18 log2|P| 10034 ord(a) 2^10
+== qb10b
+class 12 log2|P| 491 ord(a) 2^7
+class 13 log2|P| 793 ord(a) 2^7
+class 14 log2|P| 1283 ord(a) 2^8
+class 15 log2|P| 2124 ord(a) 2^8
+class 16 log2|P| 3528 ord(a) 2^9
+class 17 log2|P| 5944 ord(a) 2^9

@@ -1,0 +1,23 @@
+formalized       281
+unassigned        60
+definition        50
+structural        40
+partial           23
+provenance        19
+attribution       18
+open               7
+total            498
+OVERLAY ERROR: stale overlay key 22a0c140cef2
+OVERLAY ERROR: stale overlay key 2742335b7b65
+OVERLAY ERROR: stale overlay key 30125ec98db7
+OVERLAY ERROR: stale overlay key 4c2aacdde5bf
+OVERLAY ERROR: stale overlay key 5220a08c2507
+OVERLAY ERROR: stale overlay key 72af66964b20
+OVERLAY ERROR: stale overlay key 8e6f029a8fbc
+OVERLAY ERROR: stale overlay key 9930780730b1
+OVERLAY ERROR: stale overlay key 995146227d08
+OVERLAY ERROR: stale overlay key d281c2f5ee4e
+OVERLAY ERROR: stale overlay key f077e2b56a7b
+OVERLAY ERROR: stale overlay key f7308dd7af88
+OVERLAY ERROR: stale overlay key fd023c25704f
+OVERLAY ERROR: stale overlay key fd0d980f0cdb

@@ -1,0 +1,35 @@
+{"pat": "30_30", "cls": 10, "R": 6, "ok": false, "leaves": null, "sec": 3.3, "msg": "budget exhausted: leaves 65 time 3"}
+{"pat": "40_30", "cls": 14, "R": 6, "ok": false, "leaves": null, "sec": 77.7, "msg": "budget exhausted: leaves 65 time 77"}
+{"pat": "40_30", "cls": 16, "R": 6, "ok": true, "leaves": 8, "sec": 26.9, "msg": ""}
+{"pat": "40_30", "cls": 57, "R": 6, "ok": false, "leaves": null, "sec": 37.9, "msg": "budget exhausted: leaves 65 time 38"}
+{"pat": "40_30", "cls": 59, "R": 6, "ok": true, "leaves": 42, "sec": 63.0, "msg": ""}
+{"pat": "40_30", "cls": 60, "R": 6, "ok": true, "leaves": 42, "sec": 61.2, "msg": ""}
+{"pat": "40_30", "cls": 61, "R": 6, "ok": false, "leaves": null, "sec": 113.9, "msg": "budget exhausted: leaves 65 time 114"}
+{"pat": "40_30", "cls": 62, "R": 6, "ok": false, "leaves": null, "sec": 45.2, "msg": "budget exhausted: leaves 65 time 45"}
+{"pat": "40_30", "cls": 68, "R": 6, "ok": false, "leaves": null, "sec": 34.4, "msg": "budget exhausted: leaves 65 time 34"}
+{"pat": "40_30", "cls": 74, "R": 6, "ok": true, "leaves": 8, "sec": 25.0, "msg": ""}
+{"pat": "40_30", "cls": 75, "R": 6, "ok": true, "leaves": 8, "sec": 24.7, "msg": ""}
+{"pat": "40_30", "cls": 76, "R": 6, "ok": true, "leaves": 8, "sec": 23.6, "msg": ""}
+{"pat": "40_30", "cls": 77, "R": 6, "ok": true, "leaves": 12, "sec": 26.8, "msg": ""}
+{"pat": "40_30", "cls": 80, "R": 6, "ok": true, "leaves": 12, "sec": 25.2, "msg": ""}
+{"pat": "40_30", "cls": 81, "R": 6, "ok": true, "leaves": 8, "sec": 25.1, "msg": ""}
+{"pat": "40_30", "cls": 86, "R": 6, "ok": true, "leaves": 12, "sec": 27.8, "msg": ""}
+{"pat": "40_30", "cls": 103, "R": 6, "ok": true, "leaves": 12, "sec": 45.4, "msg": ""}
+{"pat": "40_30", "cls": 106, "R": 6, "ok": true, "leaves": 30, "sec": 65.6, "msg": ""}
+{"pat": "40_30", "cls": 114, "R": 6, "ok": false, "leaves": null, "sec": 90.9, "msg": "budget exhausted: leaves 65 time 90"}
+{"pat": "40_40", "cls": 25, "R": 6, "ok": false, "leaves": null, "sec": 397.1, "msg": "budget exhausted: leaves 0 time 395"}
+{"pat": "40_40", "cls": 28, "R": 6, "ok": false, "leaves": null, "sec": 366.3, "msg": "budget exhausted: leaves 0 time 365"}
+{"pat": "40_40", "cls": 35, "R": 6, "ok": false, "leaves": null, "sec": 449.6, "msg": "budget exhausted: leaves 0 time 447"}
+{"pat": "41_30", "cls": 74, "R": 6, "ok": false, "leaves": null, "sec": 94.5, "msg": "budget exhausted: leaves 65 time 94"}
+{"pat": "41_30", "cls": 132, "R": 6, "ok": false, "leaves": null, "sec": 92.7, "msg": "budget exhausted: leaves 65 time 92"}
+{"pat": "41_31", "cls": 90, "R": 6, "ok": true, "leaves": 12, "sec": 122.2, "msg": ""}
+{"pat": "41_31", "cls": 94, "R": 6, "ok": true, "leaves": 12, "sec": 138.9, "msg": ""}
+{"pat": "52_31", "cls": 48, "R": 6, "ok": false, "leaves": null, "sec": 480.9, "msg": "timeout"}
+{"pat": "52_31", "cls": 87, "R": 6, "ok": false, "leaves": null, "sec": 481.1, "msg": "timeout"}
+{"pat": "52_30", "cls": 93, "R": 6, "ok": false, "leaves": null, "sec": 481.0, "msg": "timeout"}
+{"pat": "52_30", "cls": 95, "R": 6, "ok": false, "leaves": null, "sec": 481.3, "msg": "timeout"}
+{"pat": "52_30", "cls": 155, "R": 6, "ok": false, "leaves": null, "sec": 481.2, "msg": "timeout"}
+{"pat": "52_30", "cls": 157, "R": 6, "ok": false, "leaves": null, "sec": 481.2, "msg": "timeout"}
+{"pat": "52_30", "cls": 160, "R": 6, "ok": false, "leaves": null, "sec": 481.3, "msg": "timeout"}
+{"pat": "52_30", "cls": 162, "R": 6, "ok": false, "leaves": null, "sec": 481.2, "msg": "timeout"}
+{"pat": "52_30", "cls": 288, "R": 6, "ok": false, "leaves": null, "sec": 481.2, "msg": "timeout"}

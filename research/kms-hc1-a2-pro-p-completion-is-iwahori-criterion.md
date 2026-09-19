@@ -270,3 +270,29 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      straightening in `M` and is not a derivation count.
 
    See `kms-hc1-ca-edge-defect-is-a-witt-carry-syzygy`.
+
+8. **`k(p) = 0` and the seeds (S0) for every `p >= 5`; so `(E_p)` holds for
+   every `p`, given the lift.**
+   - (S0) is proved. On `u(<a,b,E13>) m0` the letter `a` acts as `E13 d/db`,
+     because `a m0 = 0`. So `rho([a,b,a]) m0` is a ten-factor product in
+     `F_p[b]/(b^p)`, truncated at `E13^3`. Its only defect is
+     `d E(b)/db = E(b) + b^(p-1)`, and the product is
+     `m0 + E23^(p-2) E13^2 m0`. The bc seed is the same computation, with
+     `c` acting as `-E21 t d/db`.
+   - `k(p) = 0` is proved. Conjugate by `G = E(lambda E23)`. Modulo
+     `lambda^p`, this is the automorphism `exp(lambda ad E23)`. It carries the
+     integral syzygy `U1 a^2 - U2 c^2 = -6 e^p` to one whose `lambda^(p-2)`
+     coefficient on `m0` is `U1 X_210 + U2 X_012`. Here `1/(p-2)! = 1`.
+   - The right side becomes `-6 e~^[p]`, with
+     `e~ = t(E32 - lambda hB - lambda^2 E23)`, which is `t` times a square-zero
+     matrix. For a degree-1 element `tX`, the Kassel cocycle adds nothing to
+     `(tX)^[p]`: every Jacobson word has z-part `tr(Y [Y,R]) = 0`. So
+     `e~^[p] = -lambda^p alpha_B z`, and `zeta(sigma) = 6 alpha_B`.
+   - Hence `k(p) = 0 != 2`, and `(E_p)` holds for every `p >= 5`, given the
+     lift of `sigma` (argued, checked at `p = 5, 7`). With Open 1 this is the
+     `n=1` case of Open 2.
+   - Checks: the seeds for `p <= 31`; the conjugation identity exactly at
+     `p = 5, 7, 11`.
+   - Open: formalise the lift, then `n >= 2`.
+
+   See `kms-hc1-witt-carry-syzygy-kassel-coordinate-vanishes`.

@@ -322,3 +322,21 @@ the Kaplansky zero-divisor conjecture."
    - The coefficient-aware extremal-copy step (height-function extremal
      coset plus the rank-one lemma) was attempted and not proved.  It
      remains the route to every `N`.
+
+20. **Port-cycle counting has an N-independent ceiling (obstruction; `rips-segev-port-cycle-counting-has-n-independent-ceiling`).**
+   - Kills the plan "a linear active-coset bound `A(N) = O(N)` plus the
+     curvature count closes every large `N`".
+   - The window criterion of item 18 is capped by girth at `E* <= 39`.  Its
+     left side is `E* - min(e*, N) <= 39`, but it must reach `2N`.  So it is
+     vacuous for `N >= 20`, and on all-`b^2` faces for `N >= 14`.
+   - Then a one-face port-cycle diagram whose boundary is the relator of a
+     directed cycle of `Phi` passes every check, with `L = L_0(Phi)`
+     `b`-edges.  In the `gamma = 42` graph of item 12, `(x_4 x_1)^21` gives
+     `L = 42`.
+   - So the method closes large `N` only with an active-coset bound below
+     `L_0`, independent of `N`.  Linear bounds close only a bounded range of
+     `N`, and the `~12N` shell figure holds only while windows bite.
+   - Next step: a local coefficient lemma for a single shell face.  The port
+     equations with fixed `u/w` must fail along `>= 21` consecutive impure
+     arc cosets of one copy, whatever the other copies are.  Item 17 shows
+     that supports alone cannot give this.

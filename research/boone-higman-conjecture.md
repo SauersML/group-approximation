@@ -617,6 +617,23 @@ There are two ways forward:
 - derive the `M_11` relations for `ι_1(M_11)` inside `G_0`;
 - find a quotient of `G_0` that does not factor through `G_0 ↠ G_0 ≀ M_11`.
 
+**September 18: the balanced-loop host is not finitely presented.**  This closes the `R°`
+route (`m11-balanced-loop-host-is-not-finitely-presented`).
+
+- For a finitely presented self-similar group, the relations have stable sections in a
+  finite section-closed set `Q^∞`. For `R°`, weight-preserving section cycles end in pure
+  powers, so `Q^∞ ⊆ {b^{55j}, α^{55j}, β^{55j}}`.
+- The relations `σ^k(α)^{11}` keep the fixed section `ω_α^{11}` at `1^k`, and it is
+  nontrivial in `Z/55 * Z/55`. So `R°` and its simple Tits host are not finitely presented.
+- The explicit inclusion also fails: `σ(R2(C)) ∉ ⟨⟨Q_0⟩⟩`, witnessed by level-3 sections
+  mapped to `S_5`. So the L-presentation tower is strictly increasing.
+
+*Dead* for `R°`. The argument is not homological. It shows that the descent which made
+the L-presentation exact also forces non-finite presentation. A finitely presented
+candidate on the Tits route needs a stable relator that is not a pure power: a relation on
+a weight-preserving section cycle that mixes state letters, or state letters with root
+permutations.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

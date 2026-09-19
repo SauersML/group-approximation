@@ -133,3 +133,15 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   - Non-discrete type F pairs with non-A Hecke graphs exist, so this is a
     gate, not a kill.
   - See `commensurated-quotients-coarsely-embed-in-hecke-graphs`.
+- 2026-09-18 (w14-117, obstruction-miner): proposed-established
+  `f-cores-reduce-benign-witnesses-to-normalized-ones`. The F-core
+  `S = ∩_f fΣf^{-1}` of every witness is an F-normalized witness with the same
+  quotient. So root => normalized witness is exactly a finiteness question on
+  `S`. Commensurated type `F` witnesses die by Browder when any of these hold:
+  finitely many F-conjugates of Σ, open closure of F in a cut-out
+  completion, open Schlichting closure (including discrete completions), or
+  lattice type with dense projection. For `U`, `V`, `Z/2 ≀ Z` and Grigorchuk's
+  group, every torsion-free finite-cd witness has a core with infinitely
+  generated homology. Survivors need `K` to act on `φ(U) ⊂ Hk` with infinite
+  image. Open: a type `F` commensurated witness for `Z/2 ≀ Z` whose core has
+  infinite index.

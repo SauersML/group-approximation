@@ -1,0 +1,30 @@
+== p=11 alpha=(0 1) slice (p,1,p); run: ETILDE=1 SEEDFORM=1 ./fo_seed p p 1 p alphaA alphaB
+ETILDE lam^1 :  0
+ETILDE lam^2 :  0
+ETILDE lam^3 :  0
+ETILDE lam^4 :  0
+ETILDE lam^5 :  0
+ETILDE lam^6 :  0
+ETILDE lam^7 :  0
+ETILDE lam^8 :  0
+ETILDE lam^9 :  0
+ETILDE lam^10 :  0
+ETILDE lam^11 :  10*z.
+ETILDE R = 6*z. ; W - R = 0
+ZETA_SIGMA 6
+real	0m38.957s
+== p=11 alpha=(0 0) slice (p,1,p); run: ETILDE=1 SEEDFORM=1 ./fo_seed p p 1 p alphaA alphaB
+ETILDE lam^1 :  0
+ETILDE lam^2 :  0
+ETILDE lam^3 :  0
+ETILDE lam^4 :  0
+ETILDE lam^5 :  0
+ETILDE lam^6 :  0
+ETILDE lam^7 :  0
+ETILDE lam^8 :  0
+ETILDE lam^9 :  0
+ETILDE lam^10 :  0
+ETILDE lam^11 :  0
+ETILDE R = 0 ; W - R = 0
+ZETA_SIGMA 0
+real	0m41.372s

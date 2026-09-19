@@ -1,0 +1,7 @@
+CONDITIONAL	dab2f2bfe084	GroupApproximation.Manuscript.NonMF.TheoremC.Configuration	carrier-debt	`Configuration` is a cited structure that the corpus produces only through declarations resting on `sorry`, so a row claiming the sentence i
+carrier-data           3 accepted,   0 new
+carrier-debt           2 accepted,   1 new
+conditional-debt       3 accepted,   0 new
+inlined-statement      1 accepted,   0 new
+open-predicate        10 accepted,   0 new
+20 conditional or literature-fed assignment(s): 19 accepted, 1 new
