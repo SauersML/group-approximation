@@ -82,6 +82,7 @@ artifacts:
   - research/properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group.md
   - research/group-algebra-corners-exclude-traceless-leavitt-inputs.md
   - research/binary-jacobson-rank-two-elementary-group-is-lef.md
+  - research/universal-fixed-projection-forces-kazhdan-subgroup.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -1193,3 +1194,35 @@ the whole Haagerup-infinite branch for `V`.
    simplicity, then Diracization. So every incoming route of that hub now also serves this goal.
 4. **Limits.** The route is one-directional. An MF `V` kills only this route and the T-free arguments that use
    relations of `V` alone. The goal stays OPEN.
+
+**2026-09-19 (swarm-0917 w16, belief breaker, operator-algebras): pair-level substitutes for (T) are (T).**
+
+1. **Established.** `universal-fixed-projection-forces-kazhdan-subgroup` (elementary written proof, no imports).
+   - Setting: `N <= Gamma` is any subgroup of any overgroup, including `Gamma = Delta`.
+   - Hypothesis: a self-adjoint `x in C*(Gamma)` fixes `Fix(N)` pointwise and has norm at most `1 - epsilon` on its
+     complement, in `lambda_(Gamma/N)` and in every `Ind sigma`.
+   - Conclusion: `N` has (T).
+   - In particular, a universal N-fixed projection exists in `C*(Gamma)` iff `N` is Kazhdan.
+   - Proof: the coset state of `delta_(eN)` is a pointwise limit of vector states of `Ind sigma` supported on the
+     coset `N`, where `sigma` is almost invariant with no fixed vector. Such vectors are orthogonal to `Fix(N)`.
+     So `x` has value `1` in the limit and at most `1 - epsilon` along the sequence.
+2. **Class killed.** The class is every model-independent replacement of the Kazhdan projection in Step 1 (transport)
+   of the compression criterion. Members:
+   - relative (T) of a pair (`Z^2 <= Z^2 x| SL_2(Z)`, the root column `J^2 <= EL_2(J) x| J^2`, the Clifford-lamp pair
+     over `Z[1/2]^2 x| (SL_2(Z) x <t>)`);
+   - relative Kazhdan projections;
+   - uniform relative Kesten or Laplacian gaps, together with their norm limits and functional calculus.
+
+   Each such certificate already is absolute (T) of the subgroup it certifies, so it is Kazhdan input under
+   certificate typing. The invariant is weak containment `Ind sigma -> lambda_(Gamma/N)` on the coset `N`. The step
+   is the requirement that the projection be correct in every representation.
+3. **Decomposition.** This complements `z-direct-factor-kills-intrinsic-t-substitutes`, which fences intrinsic
+   properties of the compressed subgroup.
+   - (T)-free compression proofs of this goal have one admissible shape left: a **model-dependent** transport
+     projection, correct only on corona representations of MF models.
+   - That class must exclude the induced limits of the class-restricted form.
+   - This is exactly the per-model question that `root-column-fixed-projection-is-not-in-root-pair-cstar` answers
+     negatively for one root pair.
+   - Routes that do not use compression, such as the Thompson V route, are untouched.
+4. **Status.** The goal stays OPEN. The approach "use relative (T) in place of (T)" is recorded dead at the transport
+   step.
