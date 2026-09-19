@@ -3,6 +3,8 @@ import Mathlib.Data.Finset.Range
 import GroupApproximation.GGT.VanKampen.ListNoABABLength
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Object changes of a rich polygon: the word combinatorics
 

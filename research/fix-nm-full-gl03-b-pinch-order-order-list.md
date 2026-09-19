@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.OrderList: 
 **OPEN.** Lean module `GroupApproximation/Manuscript/NonMF/Full/GL03BPinchOrder/OrderList.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
+**Repair landed, unprobed.** 9ddeaca04a: Open List scoped notation in 34 modules that use `<+` (List.Sublist) without it (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
