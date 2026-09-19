@@ -268,3 +268,23 @@ The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose
 error does not telescope with address length, or realize the unbounded
 cyclic-coset collisions forced by the finite-prototype theorem.
+
+* **2026-09-19 (swarm-0917 w19, belief breaker: calibration).**  This hole
+  is nonhyperlinear-strength.  The compactness proof of
+  `infinite-chromatic-commutator-code-kills-mf-mark` uses only compactness,
+  bi-invariance, and the area-to-defect bound.  It therefore runs verbatim in
+  normalized-HS unitary groups; see `chromatic-mark-codes-are-metric-agnostic`.
+  Any code solving this hole makes `Delta` nonhyperlinear
+  (`non-hyperlinear-group-via-binary-leavitt-chromatic-code`).  Conversely,
+  if `binary-leavitt-unit-group-hyperlinear` holds for `Delta`, then every
+  commutator or conjugacy-difference code for every nontrivial mark has
+  divergent area, so no refinement of the attempts above can succeed.  A
+  second, group-independent fence covers conjugacy-difference variants with
+  involution marks.  By `involution-mark-difference-codes-have-uniform-clique-bound`,
+  every such code has clique number at most `omega(A)`, uniformly over all
+  graphs and word lengths.  This kills every complete-graph
+  conjugacy-difference fold at once: the nested prefixes, all their
+  rewordings, and disjoint unions of growing finite cliques.  The
+  commutator-table analogue for the cumulative rows is not claimed.  The status
+  stays OPEN; the honest reading is that this route is not an MF-specific,
+  (T)-free route.
