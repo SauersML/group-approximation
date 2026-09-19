@@ -1,0 +1,2 @@
+order 6 j 1 Lj-orbits 3 V 48 -> 18 seed classes 69 law 3 deep none <= 2 cross-orbit seeds in witness 0 secs 0.6
+order 12 j 1 Lj-orbits 3 V 96 -> 36 seed classes 144 law 6 deep none <= 3 cross-orbit seeds in witness 0 secs 285.6
