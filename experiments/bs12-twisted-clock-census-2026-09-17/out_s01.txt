@@ -1,0 +1,3 @@
+N=27 s=0.1 defect=0.04635 ||A_s-W||=0.1997 best max=0.1473 (||C-A||=0.1473, ||Z-D||=0.1306, exact rel err=3.5e-15, restart 0)
+N=81 s=0.1 defect=0.01551 ||A_s-W||=0.1997 best max=0.1418 (||C-A||=0.1418, ||Z-D||=0.1263, exact rel err=5.4e-15, restart 0)
+N=243 s=0.1 defect=0.005171 ||A_s-W||=0.1997 best max=0.1350 (||C-A||=0.1350, ||Z-D||=0.1197, exact rel err=1.9e-14, restart 0)
