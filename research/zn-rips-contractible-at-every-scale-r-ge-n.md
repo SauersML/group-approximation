@@ -72,3 +72,15 @@ Status on main, by dimension:
     search on it fits in about 1.6 GB of bit rows. At `(8, 8)` the search needed about 4,000 s of wall time for
     5,152 K moves, and at `(8, 9)` both the rows and the links are larger. So `(8, 9)` needs many budgeted stages,
     or a partition-level (orbit) form of the (K) move.
+  - *(8, 9), D-only is ruled out.* The D-stuck set `a8_9` (113,321 points) is itself self-blocking. The greatest
+    fixed-point pass `F(a8_9) = a8_9` removes nothing, and `kchk` confirms the set piece by piece
+    (`z8-rips-lifted-domination-certificates-fail-at-scale-9`). So `(8, 9)` needs (K) moves, just as `(8, 8)` did.
+  - *(8, 9), partial (K) certificate.* It is in `experiments/zn-rips-link-collapse-scale-9-2026-09-18/partial/`.
+    - Twelve budgeted `kzf` stages make 11,148 (K) moves and 6,602 cascaded (D) moves, taking `a8_9` down to
+      95,571 points.
+    - All 12 stages are replayed by `kzv5`, and the end sets match.
+    - This is *not* a proof of `(8, 9)`.
+  - *Next.* Resume `kzf` from `partial/end-stage-12-8-9.txt.gz` and replay each new stage with `kzv5`.
+    - At `(8, 8)`, the (K) moves were exactly the norm-8 points with `x_8 = 0`. Extrapolating, about 10k more (K)
+      moves are needed, roughly 5 CPU-hours.
+    - `(8, 10)` does not fit in 2 GB with bit adjacency (186,502 D-stuck points, about 4.3 GB). It needs sparse links.
