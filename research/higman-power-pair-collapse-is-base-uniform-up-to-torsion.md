@@ -312,3 +312,22 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     - a conceptual proof of any wall; `5 + 2J` stays a guess.
   - Next: find a GAP-checkable tree model or explicit finite 2-group with `ord(a) = 128`, which needs
     `ord(c) >= 8`. Then look for a self-similar pattern in the doubling classes that can be proved.
+- **w20-053 (question (a): is `ord(a)` bounded in the 2-quotients?).** Landed
+  `higman-2-quotient-order-cap-is-attained-for-small-ord-b` (claim and proof route).
+  - Proved or certified:
+    - the cap `ord(a) | 2^(k+6)` in 2-quotients of `Gamma_k = G/<<b^(2^k)>>` (`k >= 1`), and
+      `ord(a) | 32` when `b = 1`;
+    - the cap is attained for `k = 0` and `k = 1`, by explicit monolithic pc groups of order `2^14`
+      (orders `(32,1,2,8)`, also a faithful action on 256 points) and `2^111` (orders `(128,2,8,32)`,
+      so `ord(c) = 8`). Both are saved and rechecked by `check-model.g`;
+    - the rotation `a -> b -> c -> d` is an automorphism of `G'' = G/<<[b,d]^2>>`, so all four orders
+      are equal in every `P_cl(G'')`. The common order doubles at classes 1, 2, 3, 4, 7, 9, 11 (128 at
+      class 11, `2^579`; still 128 at classes 12 and 13, `2^1526`).
+  - Computed: in `P_cl(G''/<<b^4>>)`, `ord(a) = 128` at classes 12 and 13 (order `2^1184`), with
+    `b, c, d` at their caps `(4,16,64)`, so `a` is one doubling short of the `k = 2` cap 256.
+  - Reduction: if the cap is attained for every `k`, then `ord(a)` is unbounded. This holds for `k <= 1`.
+  - Dead: truncating new central layers to random 4-, 8- or 16-dimensional pieces, even keeping the
+    generator power tails, stops `ord(a)` at 32 or 64. No virtual endomorphism
+    `U -> G` with `b^2 -> b^(odd)` was found.
+  - Next: decide `k = 2` (class 14 and beyond of `G''/<<b^4>>`, running from saved workspaces). Then find
+    the lift `Gamma_k -> Gamma_(k+1)` in the monolithic models.
