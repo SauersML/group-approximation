@@ -131,3 +131,23 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     sources with `λ → 0` and `sqrt(λ)γ/η → ∞`, which lie in the thin band
     `ω(η/sqrt(λ)) <= γ <= 1592η/λ`. Certificates that see more than
     `(λ, γ)` and exclude domain walls also survive.
+* **Sqrt-gap repetition from expanding XOR sources (2026-09-19, swarm-0917, `w14-ugc-pull`).**
+  This attacks the (P2) candidate `sqrt(λ)·γ` of the previous attempt, at alphabet 2.
+  - *Construction.* Prove the XOR Cheeger inequality
+    `δ_sdp >= sqrt(λ)γ/27` for every signed graph
+    (`xor-cheeger-sdp-deficit-at-least-sqrt-gap-times-frustration`, ESTABLISHED,
+    tight up to the constant on the odd cycle). Combined with AKKSTV Lemma 4.2,
+    it gives expanding XOR games the repetition rate `sqrt(λ)γ/54`. So (P2)
+    holds at `k = 2`.
+  - *Where it dies.* At the source, by
+    `lambda-gapped-xor-sources-cannot-feed-sqrt-rate-repetition` (ESTABLISHED).
+    The same inequality makes the basic SDP a gate: unless `P = NP`, hard
+    λ-gapped alphabet-2 sources have `sqrt(λ)γ <= 40.5η`. Every rate
+    `ψ <= Kγ^2 + κ sqrt(λ)γ` then certifies `R <= 2Kγ^2/η + 81κ`. (P1) and (P2)
+    are incompatible at alphabet 2.
+  - *What would survive.* Sources of alphabet `k >= 3` whose hard NO hosts are
+    λ-gapped basic-SDP integrality gaps with `δ_sdp/(sqrt(λ)γ) -> 0`. The open
+    decomposition question is a fixed-`k` XOR-Cheeger inequality
+    `δ_sdp >= c_k sqrt(λ)γ`. It is false uniformly in `k`, since Khot–Vishnoi
+    suggests `c_k ≲ 1/sqrt(log k)`. If it is true at each fixed `k`, then only
+    growing-alphabet sources survive.

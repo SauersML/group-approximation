@@ -1,0 +1,22 @@
+cycle-wall m=6               n=   6 lam=0.5000 delta=0.06699 tau=0.5000<= 0.5359 E[viol]=0.2997 <= 2.5294 gamma=0.16667 delta/(sqrt(lam)gamma)=0.568 OK
+cycle-wall m=10              n=  10 lam=0.1910 delta=0.02447 tau=0.5000<= 0.5125 E[viol]=0.2017 <= 1.4951 gamma=0.1 delta/(sqrt(lam)gamma)=0.560 OK
+cycle-wall m=14              n=  14 lam=0.0990 delta=0.01254 tau=0.5000<= 0.5063 E[viol]=0.1400 <= 1.0636 gamma=0.07143 delta/(sqrt(lam)gamma)=0.558 OK
+cycle-wall m=18              n=  18 lam=0.0603 delta=0.00760 tau=0.5000<= 0.5038 E[viol]=0.1095 <= 0.8259 gamma=0.05556 delta/(sqrt(lam)gamma)=0.557 OK
+torus-wall 4x4               n=  16 lam=0.5000 delta=0.07322 tau=0.5000<= 0.5858 E[viol]=0.2308 <= 2.7649 gamma=0.125 delta/(sqrt(lam)gamma)=0.828 OK
+torus-wall 6x3               n=  18 lam=0.2500 delta=0.03349 tau=0.5000<= 0.5359 E[viol]=0.1445 <= 1.7886 gamma=0.08333 delta/(sqrt(lam)gamma)=0.804 OK
+torus-wall 4x5               n=  20 lam=0.3455 delta=0.07322 tau=0.5000<= 0.8478 E[viol]=0.1628 <= 3.3262 gamma=0.125 delta/(sqrt(lam)gamma)=0.997 OK
+ladder-wall m=8 w=0.2        n=  16 lam=0.1818 delta=0.03460 tau=0.5000<= 0.7612 E[viol]=0.2238 <= 2.1666 gamma=0.11364 delta/(sqrt(lam)gamma)=0.714 OK
+ladder-wall m=9 w=3.0        n=  18 lam=0.0936 delta=0.01206 tau=0.5000<= 0.5155 E[viol]=0.0860 <= 1.0527 gamma=0.04444 delta/(sqrt(lam)gamma)=0.887 OK
+hypercube-flux k=3           n=   8 lam=0.6667 delta=0.09763 tau=0.5000<= 0.5858 E[viol]=0.2439 <= 3.1926 gamma=0.16667 delta/(sqrt(lam)gamma)=0.717 OK
+hypercube-flux k=4           n=  16 lam=0.5000 delta=0.07322 tau=0.5000<= 0.5858 E[viol]=0.2452 <= 2.7649 gamma=0.125 delta/(sqrt(lam)gamma)=0.828 OK
+rand-reg n=16 d=3 p=0.1      n=  16 lam=0.1673 delta=0.09419 tau=0.4418<= 2.2517 E[viol]=0.2011 <= 6.1482 gamma=0.125 delta/(sqrt(lam)gamma)=1.842 OK
+rand-reg n=18 d=4 p=0.05     n=  18 lam=0.3479 delta=0.05556 tau=-0.0000<= 0.6388 E[viol]=0.0556 <= 2.5149 gamma=0.05556 delta/(sqrt(lam)gamma)=1.695 OK
+rand-reg n=20 d=3 p=0.5      n=  20 lam=0.0586 delta=0.10567 tau=0.4403<= 7.2088 E[viol]=0.1934 <= 11.6519 gamma=0.13333 delta/(sqrt(lam)gamma)=3.273 OK
+rand-reg n=16 d=6 p=0.02     n=  16 lam=0.3825 delta=0.04167 tau=-0.0000<= 0.4358 E[viol]=0.0417 <= 1.7989 gamma=0.04167 delta/(sqrt(lam)gamma)=1.617 OK
+cycle-wall m=60              n=  60 lam=0.0055 delta=0.00069 tau=0.4988<= 0.5004 E[viol]=0.0351 <= 0.2472 gamma=None delta/(sqrt(lam)gamma)=nan OK
+cycle-wall m=200             n= 200 lam=0.0005 delta=0.00017 tau=0.4794<= 1.3746 E[viol]=0.0111 <= 0.2038 gamma=None delta/(sqrt(lam)gamma)=nan OK
+torus-wall 12x12             n= 144 lam=0.0670 delta=0.00852 tau=0.5000<= 0.5087 E[viol]=0.0834 <= 0.8788 gamma=None delta/(sqrt(lam)gamma)=nan OK
+hypercube-flux k=7           n= 128 lam=0.2857 delta=0.04184 tau=0.5000<= 0.5858 E[viol]=0.0941 <= 2.0900 gamma=None delta/(sqrt(lam)gamma)=nan OK
+rand-reg n=200 d=3 p=0.02    n= 200 lam=0.0709 delta=0.00993 tau=0.0800<= 0.5602 E[viol]=0.0143 <= 0.9958 gamma=None delta/(sqrt(lam)gamma)=nan OK
+rand-reg n=300 d=5 p=0.1     n= 300 lam=0.2195 delta=0.08453 tau=0.2466<= 1.5407 E[viol]=0.1358 <= 4.8179 gamma=None delta/(sqrt(lam)gamma)=nan OK
+ALL OK
