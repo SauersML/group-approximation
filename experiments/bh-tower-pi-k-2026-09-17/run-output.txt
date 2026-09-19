@@ -1,0 +1,5 @@
+Lemma A: 140 boxes over 15 random trials (n = 2..4), 37 with g_d s0 = s0; mismatches: 0
+base n=2 m=2 g=3: 16 values of d, 3 with forall-y true; mismatches=0  |H|=1211 letters  g*N^2=192
+base n=2 m=3 g=5: 16 values of d, 2 with forall-y true; mismatches=0  |H|=4447 letters  g*N^2=605
+base n=3 m=2 g=6: 32 values of d, 12 with forall-y true; mismatches=0  |H|=6367 letters  g*N^2=864
+base n=3 m=3 g=8: 32 values of d, 10 with forall-y true; mismatches=0  |H|=10287 letters  g*N^2=1800
