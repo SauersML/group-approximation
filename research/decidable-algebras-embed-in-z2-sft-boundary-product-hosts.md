@@ -221,3 +221,29 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+
+1. **Spectral-curve (Burchnall–Chaundy) kill of spectrally complete embeddings (swarm-0917-w14-w14-z-pull,
+   obstruction-miner via linear-characteristic, 2026-09-19). Partial kill; the claim stays OPEN.**
+   - **Established** (`spectrally-complete-tuples-bound-commutative-rank`, unreviewed):
+     - Use any faithful row-finite representation, such as orbit representations of `B_Ω ⊗ L_∂`.
+     - If commuting `L_1, …, L_s` have joint eigenspaces `W_μ` of constant finite dimension, varying rationally,
+       and locally complete, then every `P` commuting with them satisfies `Φ(L, P) = 0`. Here
+       `Φ = D(μ) det(y − P|W_μ)`, obtained by Cayley–Hamilton on each `W_μ` plus a Vandermonde vanishing lemma.
+     - So no commutative subalgebra containing such a tuple contains `F[Z^{s+1}]`.
+   - **Instances.**
+     - In `LC(X, K) ⋊ Z`, every *nondegenerate* band element qualifies: those whose extreme coefficients beyond
+       offset 0 are units, `≡ 1` over `F_2`.
+     - In `LC(Ω, K) ⋊ Z^s`, every commuting `s`-tuple of directional nondegenerate elements along independent
+       directions qualifies.
+     - So an `F_2[Z^3] ⊆ B_Ω` (mechanism (ii)) contains no commuting directional nondegenerate pair.
+     - An `F_2[Z^2] ⊆ LC(X, F_2) ⋊ Z` contains no nondegenerate element at all.
+   - **Invariant:** the spectral curve `Φ` of `P` over the eigen-parameters of a spectrally complete tuple.
+   - **Where every member dies:** the Cayley–Hamilton step, which needs `dim W_μ < ∞` together with local
+     completeness.
+   - **Residual gate:** degenerate elements, where an extreme coefficient vanishes somewhere and `W_μ` is `0` or
+     infinite-dimensional.
+     - The residual for `s = 1` is recorded as `minimal-cantor-z-crossed-products-contain-no-f2-z2`. That is
+       the `s = 1` case of the commutative-rank conjecture.
+     - A YES there refutes that conjecture.
+     - Within its reach this is the inhomogeneous, non-graded argument that item "Entropy-measure transplant"
+       asked for. It does not reach `L(1,2)` corners, because no spectrally complete tuple is known there.
