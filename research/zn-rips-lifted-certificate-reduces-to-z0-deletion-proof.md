@@ -51,7 +51,9 @@ An empty bad set means that every `b ∈ Lmax` with `b ≠ u` and `d(b, u) ≤ r
 `N[u] ∩ C ⊆ N[w]` for every `C ⊆ Lmax`. The point `w` is not in `Top`, so it has not been deleted. So `u | w` is a
 valid (D) move in every current set that contains `u`. Run these moves for all balanced `u ∈ Z_0`, in any order.
 
-Now `C = Lmax ∖ Z_0`. It contains `E`, because `|E| = 1 < r` and `E_k = 1`. Claim 3 finishes the proof. ∎
+Now `C = Lmax ∖ Z_0`. It contains `E`, because `|E| = 1 < r` and `E_k = 1`. So Claim 2 takes it to `{e_k}`,
+and the three groups of moves form a lifted certificate on `Lmax_k` that ends at `{e_k}`. If this holds for every
+`k = 2, …, n`, the Theorem gives contractibility. ∎
 
 ## 5. Remarks
 

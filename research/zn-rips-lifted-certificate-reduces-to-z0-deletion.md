@@ -23,12 +23,14 @@ those of `z8-rips-contractible-at-scale-8-proof` §1.
    `x ∈ C ∖ {E}` in any order, take `C` to `{E}`.
 3. *(Reduction.)* Suppose that for every `k ∈ {2, …, n}` some sequence of lifted moves takes `C = Lmax_k` to a
    set that contains `E` and meets no point of `Z_0(k, r)`. Then `VR(Z^n, d_1; r)` is contractible.
-4. *(Z_0-certificates suffice.)* Suppose that for every `k ∈ {2, …, n}`, every unbalanced `u ∈ Z_0(k, r)` has a
-   `Z_0`-certificate in the sense of `zn-rips-top-shell-sign-hull-certificates`. Then `VR(Z^n, d_1; r)` is
-   contractible. On each level the certificate is:
+4. *(Z_0-certificates suffice.)* Fix `k`. Suppose every unbalanced `u ∈ Z_0(k, r)` has a `Z_0`-certificate in the
+   sense of `zn-rips-top-shell-sign-hull-certificates`. Then there is a lifted certificate on `Lmax_k` at scale `r`
+   that ends at `{e_k}`, namely:
    - the (K) moves `K u | w` of the certificates, one for each unbalanced `u ∈ Z_0`, in any order;
    - the (D) moves `u | w` of that node's Claim 3, one for each balanced `u ∈ Z_0`, in any order;
    - the (D) moves `x | E`, one for each remaining `x ≠ E`, in any order.
+
+   So if this holds for every `k ∈ {2, …, n}`, then `VR(Z^n, d_1; r)` is contractible.
 
 So Claim 6 of `zn-rips-top-shell-sign-hull-certificates` holds with its condition (b) removed. Condition (b) is
 the one that fails at `(7, 7)`: the 824 unbalanced points with `x_7 = 1` recorded in
