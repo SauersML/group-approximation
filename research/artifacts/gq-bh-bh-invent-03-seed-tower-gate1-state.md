@@ -92,3 +92,29 @@ route, not the general target).
 Settle the coherent-coordinates question above: prove it from (S1)–(S6), or build a counterexample certificate.
 Otherwise move gate-1 effort to the Röver–Nekrashevych word-problem branch: `F_∞` self-similar groups with hard
 word problems, and relator-contracting, element-expanding recursions.
+
+## 6. Update (bh-gate1-abstract, 2026-09-19): the open door of §3
+
+- **The coherent-coordinates question is answered yes, in chart coordinates.** See
+  `farley-hughes-certificates-have-prefix-chart-coordinates` (4c81e934b2, repaired 50a3370920).
+  - Finite, 0-connected expansion schemes give finite chart atlases. Twisted connectors become table entries.
+  - Referee bh-ref-t0 (dda7d68b92) passes items 1–3 at FH source.
+  - The `2^(O(n))` seed cap passes for **nested** certificates, with the referee's depth bound.
+  - A lane addendum, not reviewed, extends the cap to product certificates such as `nV` and FH Ex. 8.5.
+- **So gate 1 in hard-seed form via FH is dead for nested and product certificates.** What remains:
+  - exotic certificates that are neither nested nor product;
+  - engines outside FH;
+  - hardness through the word problems of the structure groups (§3, "What survives").
+- **Correction to the wording of §3 and of the related LESSONS line.** The structure-group condition is residually
+  `W_d`: a separating family of finite quotients with composition factors of order `≤ d!`. It is not "bounded
+  composition factors" of all finite quotients, which would exclude free groups (`F_2 ≤ Aut(T_2)`). Credit:
+  bh-ref-t0, dda7d68b92.
+- **Two further precisions** (bh-ref-t0, 4c8bc0f94c).
+  - "`WP(Γ_S)` exponential over `WP(H_τ)`" is item 4(b) of the chart-coordinates node, a sketch, not a checked
+    theorem.
+  - Cantor-factor product certificates (`nV` type) have no singleton domains, so they cannot certify a seed full
+    group at all. They are not an escape. The only unexplored certificates are those that are neither nested nor
+    products of nested factors, and none is known.
+- **The channel that remains.** Finite recursion plus residual `W_d` gives **no** computable depth bound:
+  `finite-recursion-gives-no-computable-depth-bound`, via Bartholdi–Mitrofanov A″. So only finite presentation of
+  the structure groups could cap hardness via FH.

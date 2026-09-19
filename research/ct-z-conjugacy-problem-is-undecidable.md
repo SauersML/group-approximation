@@ -5,7 +5,7 @@ kind: claim
 title: Kohl's class transposition group CT(Z) has undecidable conjugacy problem, already for explicit pairs of words in CT_{3,5,7,11,13}(Z) and even when conjugators may be taken from RCWA(Z); this answers Kourovka Problem 21.73 negatively
 ---
 
-**ESTABLISHED** (lane proof; one adversarial referee PASS with minor gaps, bh-ref-kourovka-a 09-18, see Referee).
+**ESTABLISHED** (lane proof; referee PASS with minor gaps, bh-ref-kourovka-a 09-18; **input (H) discharged at source and gap 1 closed**, bh-ref-q11 09-19; see Referee).
 - **Proof.** Elementary: valuations and one finiteness count.
 - **Input (H).** The universality of reversible counter machines (Morita, TCS 168
   (1996) 303–320). Kari–Ollinger use the same input; Morita's paper was not read at
@@ -250,3 +250,40 @@ word by enumeration.
 **Priority.** The arXiv API search `abs:"class transpositions"` (09-18) returned 2409.13341,
 2504.08595 (orders of products, 18.48), 2604.12553 (Pan, `CT_(n) ≅ S_N`), 2607.17477 (Morrison,
 Kourovka 18.50 and seven others) and 2401.15642. None treats 21.73.
+
+## Referee note (bh-ref-q11, 2026-09-19): input (H) read at source; gap 1 closed
+
+**Source.** Morita's TCS 168 (1996) itself could not be fetched: Elsevier blocks both WebFetch and MSI. Instead I read Morita's own restatement, with proofs: K. Morita, *Theory of Reversible Computing* (Springer 2017), Ch. 9 "Other Models of Reversible Machines". It was fetched via MSI and is stored at `gq/src/bh-ref-q11/morita-book-ch9.pdf`, md5 096f5ac6…. Its reference [15] is exactly "Morita, K.: Universality of a reversible two-counter machine. Theoret. Comput. Sci. 168, 303–320 (1996)".
+
+**What it states.**
+- **Def. 9.1–9.2.** CMs with counter-test and count-up/down quadruples. Reversibility means that rules sharing a target are two complementary tests of one counter. This is equivalent to KO's `T^(−1)` being deterministic.
+- **Def. 9.4 (normal form).** "The initial state `q_0` does not appear as the fourth component of any rule in `δ` (hence `q_0` appears only at time `t = 0`), and `F` is a singleton."
+- **Lemma 9.4 [15].** Every CM(`k`) in normal form has an equivalent RCM(`2k+2`) in normal form, Bennett-style, without garbage.
+- **Lemma 9.7 [15].** Every RCM(`k`) in normal form has an RCM(2) in normal form. `(q_0, m) ⊢* (q_f, n)` iff `(q_0, ∏p_i^(m_i), 0) ⊢* (q_f, ∏p_i^(n_i), 0)`, and "M is simulated by M† step by step".
+- **Thm 9.2 [15].** RCM(2) is computationally universal: Lemmas 9.4, 9.5 (Minsky: TM → CM(5)) and 9.7.
+
+**Consequence for (H).** Take `T` with undecidable halting on blank tape.
+- The composite RCM(2) `M†` is in normal form. So its start configuration `x* = (q_0, 1, 0)` (`= ∏p_i^0`) has **no predecessor**: `x*` is initial.
+- The simulation is step by step, and `q_f` has no rules. So `M†` halts from `x*` iff it reaches `q_f`, iff `T` halts.
+- Hence halting of reversible **2**-counter machines from an initial configuration is undecidable. **(H) is discharged.**
+
+**Gap 1 of the first referee (the prime set) is closed.** No step counter is needed, because Morita's machines already come in normal form.
+- The node's `x* = (s_0, 0, 0)` convention costs nothing. Prepend a state `q_0′` with the single rule `[q_0′, 1, +, q_0]`.
+- This keeps reversibility, since `q_0` had no incoming rules, and normal form, since `q_0′` has none. It makes `(q_0′, 0, 0)` initial.
+- So the corollaries hold as stated, in `CT_(3,5,7,11,13)(Z)`.
+
+**Kourovka 21.73** stays answered negatively. It is now conditional only on Morita's published theorem, read at the author's source.
+
+**Prior-solution check (bh-ref-q11, 2026-09-19).** None found. So this node is a new result, not an independent rediscovery.
+- **Kourovka Notebook** arXiv:1401.0300v46 (1 Sep 2026, the latest edition). 21.73 and 21.74 (S. Kohl, 21st issue) have no asterisk and no comment. The Archive of Solved Problems does not list them.
+- **arXiv.** All papers with "class transposition(s)" or "residue-class-wise" in the abstract: 2401.15642, 2409.13341, 2504.08595, 2604.12553 and 2607.17477 (which solves other Kourovka problems). None treats conjugacy, cycles or undecidability in `CT(Z)`.
+- **Kohl's papers.**
+  - Math. Z. 264 (2010) introduces `CT(Z)`.
+  - J. Group Theory 20 (2017) gives the Collatz groups `G_C` and `G_T`.
+  - The RCWA manual: its "respected partitions" and tameness are a different question.
+  - None of these decides 21.73 or 21.74(b),(c).
+- **Belk–Bleak–Matucci–Zaremsky.** Neither the survey (arXiv:2306.16356v3, full text searched) nor BBMZ mentions `CT(Z)` or RCWA groups.
+- **The nearest precedents,** to be credited as analogues:
+  - Salo (arXiv:2011.07827), conjugacy in `2V`;
+  - Belk–Bleak (arXiv:1405.0982), undecidability results for `2V`;
+  - Kari–Ollinger 2008 and Morita 1996 for the machine inputs.

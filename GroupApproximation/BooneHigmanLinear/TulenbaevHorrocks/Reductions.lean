@@ -23,10 +23,12 @@ source.  This file proves, for every commutative ring `A`:
     image in `St_N(A[X,X⁻¹])` that dies in `St_N(A[Y]_g)`.
   - Horrocks makes `α = γ` constant; `A → A[Y]_g` is split by `Y ↦ 0`, so the constant is `1`.
   - Tulenbaev's route through Prop 1.4(b) and Prop 1.6 is not needed.
-* `stMonicInjStatement_of` and `horrocksMonicAt_of_stMonicInjAt` (the board's `HorrocksMonicAt`).
+* `stMonicInjStatement_of`: H.b for every commutative ring (`horrocksMonicAt_of_stMonicInjAt` in
+  `FieldCorollaries` converts it to the board's `HorrocksMonicAt`).
 
 What remains of piece H is `StLocalHorrocksStatementAt 5`, i.e. T Prop 4.3(a) over local rings
-(T §§3–4), with the field case at the residue field supplied by `stHorrocksAt_of_fieldNK`.
+(T §§3–4), with the field case at the residue field supplied by `stHorrocksAt_of_const`
+(`stHorrocksAt_of_fieldNK` in `FieldCorollaries`).
 -/
 
 namespace GroupApproximation
@@ -60,7 +62,8 @@ theorem toLaurentNeg_apply (p : A[X]) :
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.toLaurentNeg_apply
 
-theorem T_one_mul_T_neg_one : (LaurentPolynomial.T 1 * LaurentPolynomial.T (-1) : LaurentPolynomial A) = 1 := by
+theorem T_one_mul_T_neg_one :
+    (LaurentPolynomial.T 1 * LaurentPolynomial.T (-1) : LaurentPolynomial A) = 1 := by
   rw [← LaurentPolynomial.T_add]
   simp [LaurentPolynomial.T_zero]
 
@@ -370,14 +373,6 @@ theorem stMonicInjStatement_of {n₀ : ℕ} (hLG : StLocalGlobalStatementAt n₀
     (stHorrocksAt_of_localGlobal hLG hLoc A N hN) (hExc A N hN)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.stMonicInjStatement_of
-
-/-- `StMonicInjAt` gives the board's `HorrocksMonicAt` (K2Poly, LSV route). -/
-theorem horrocksMonicAt_of_stMonicInjAt {A : Type} [CommRing A] {N : ℕ}
-    (h : StMonicInjAt A N) : HorrocksMonicAt A N :=
-  fun f hf α hα => h f hf α (hα (Localization.Away f) (algebraMap A[X] (Localization.Away f))
-    (IsLocalization.Away.algebraMap_isUnit f))
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.horrocksMonicAt_of_stMonicInjAt
 
 end TulenbaevHorrocks
 end BooneHigmanLinear

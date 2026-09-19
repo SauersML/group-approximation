@@ -2,18 +2,24 @@
 rg: 2
 id: farley-hughes-certificates-have-prefix-chart-coordinates
 kind: claim
-title: Every Farley–Hughes finiteness certificate (finitely many domain types, an expansion scheme that is 0-connected with every E(b) finite, as in FH Thm 8.2 and Prop 8.10) has finite chart coordinates in which every element of Γ_S is a prefix chart swap followed by a structure-group element and the structure groups act by finite tables; so twisted connectors disappear after recoordinatization, seed orbits are evaluable in time 2^O(n) whatever the structure groups are, the word problem of Γ_S is exponential over those of the structure groups, and the hard-seed form of gate 1 via Farley–Hughes is dead for every certificate, not only in tree coordinates
+title: Every Farley–Hughes finiteness certificate (finitely many domain types, an expansion scheme that is 0-connected with every E(b) finite, as in FH Thm 8.2 and Prop 8.10) has finite chart coordinates in which every element of Γ_S is a prefix chart swap followed by a structure-group element and the structure groups act by finite tables; so twisted connectors disappear after recoordinatization, and for NESTED (compact ultrametric) certificates seed orbits are evaluable in time 2^O(n) whatever the structure groups are, so the hard-seed form of gate 1 via Farley–Hughes is dead for every nested certificate, not only in tree coordinates
 distinct_from:
   generation-axiom-closes-the-rover-door-in-tree-coordinates: that closes door (b) assuming tree coordinates with prefix connectors and uses (S5) with König; this removes the tree-coordinate and prefix-connector hypotheses, using instead the finiteness and 0-connectivity of the expansion scheme, which FH's finiteness theorems require.
   generation-axiom-rover-door-review: that referee review leaves twisted connectors, i.e. certificates without coherent coordinates, open; this shows every certificate FH's theorems can use has coherent chart coordinates with prefix connectors.
-  finite-type-farley-hughes-groups-are-exponentially-capped: that caps certificates whose maximal structure groups are finite or finite-state; this caps seed orbits for every FH certificate, with arbitrary (even hard) structure groups.
+  finite-type-farley-hughes-groups-are-exponentially-capped: that caps certificates whose maximal structure groups are finite or finite-state; this caps seed orbits for every nested or product FH certificate, with arbitrary (even hard) structure groups.
   rover-nekrashevych-engines-cap-orbit-evaluation-exponentially: that caps restriction-closed self-similar structures; this needs no restriction closure and no self-similarity hypothesis, and derives the self-similar tables from the expansion scheme.
   finitary-permutations-force-singleton-domains: that shows seed orbit points are singleton domains; this is used as an input, to give seed orbit points finite chart addresses.
   fp-self-similar-groups-with-arbitrarily-hard-word-problem: that is the word-problem branch as a target; this shows it is the only hardness channel an FH certificate has, and states the exact requirements on the structure group.
 ---
 
-**ESTABLISHED (lane bh-gate1-abstract, 2026-09-19; lane proof, not independently reviewed; referee requested).**
-Items 1–3 and 5 are proved below; item 4, the complexity accounting, is a proof sketch with an explicit recursion.
+**ESTABLISHED for nested certificates (lane bh-gate1-abstract, 2026-09-19; referee bh-ref-t0 PASS with repairs,
+`farley-hughes-chart-coordinates-review`, dda7d68b92).**
+- **Items 1–3 PASS at FH source.** These are the chart lemma, the prefix connectors and the finite tables.
+- **Item 4(a) PASS for nested certificates.** This uses the referee's address-length bound by domain-tree depth,
+  folded in below; that repair is not independently reviewed.
+- **Item 4(b).** A plausible sketch, not checked in detail.
+- **Item 5.** Corrected after the referee: it needs Def. 3.12, and the composition-factor claim was misstated.
+- **Scope.** Narrowed from "every certificate" to "every nested certificate".
 No priority is claimed: all machinery is Farley–Hughes's. Read at source, arXiv:2010.08035v1:
 Def. 3.12, Conv. 3.9, Cor. 3.8, Prop. 3.24, Def. 4.2, Def. 4.7, Def. 4.10, Def. 4.12, Def. 4.18, Prop. 4.20,
 Prop. 4.22, Def. 4.23, Prop. 4.24, Lemma 4.25, Cor. 4.26, Def. 6.1, Def. 6.6, Thm 8.2, Prop. 8.10.
@@ -70,15 +76,21 @@ Let `(𝕊, ℙ, ℰ)` be an FH certificate.
    recursion over the finite chart graph.
    - For each pair of chart systems `w, w''` at `τ` there are finitely many **transition rules**
      `c ω = c'' ω'' h`, with `h ∈ H`, relating the two systems on a common refinement.
-4. **Caps (sketch).** Let `Γ ≤ Γ_S` be finitely generated, with each generator given in the form of item 2.
+4. **Caps, for nested certificates** (those with the compact ultrametric property, Def. 3.12). Let
+   `Γ ≤ Γ_S` be finitely generated, with each generator given in the form of item 2.
    - **(a) Orbits.** For a point `y` such that `{y}` is a domain, computing `γ(y)` from a word `γ` of length
      `n`, and deciding `γ(y) ∈ U` for a fixed finite union of domains `U`, takes time `2^(O(n))`, with constants
      depending only on the certificate and the generators. **This never consults a word problem of any `H_τ`.**
    - **(b) Word problem.** `WP(Γ)` reduces in time `2^(O(n))` to the word problems of the `H_τ`, with queries of
      length `2^(O(n))`.
-5. **Structure groups.** If the domains separate points, each `H_τ` acts faithfully on a rooted tree of bounded
-   degree, through the recursion of item 3. So `H_τ` is residually finite and its finite quotients have
-   composition factors of bounded order.
+5. **Structure groups (nested certificates).** If the domains separate points, each `H_τ` acts faithfully on
+   a rooted tree of bounded degree `d`, through the recursion of item 3. So `H_τ` is residually finite and has a
+   **separating family** of finite quotients, its level actions, which are subgroups of iterated wreath products of
+   `S_d`. That family has composition factors of order at most `d!`.
+   - *Correction after the referee.* The first version said that **all** finite quotients of `H_τ` have
+     composition factors of bounded order. That is false: `F_2 ≤ Aut(T_2)` has every finite group as a quotient.
+     The right condition is residually `W_d`, the condition (N1) of
+     `every-fp-rf-group-embeds-in-fp-self-similar-group`.
 
 ## Proof
 
@@ -133,8 +145,19 @@ by Cor. 4.26 there is a common upper bound `u`.
     the tail: a recursive test one level deeper. Then rewrite the prefix and push the rule's `h` into the tail
     by (A).
   - **(C) Apply a generator.** Find its piece by (B), swap the prefix (bounded), and apply its `h` by (A).
-- **Cost.** Address lengths stay `≤ ℓ_0 + O(n)`, carried words have length `≤ L^ℓ`, and (B) satisfies
-  `T(ℓ) ≤ B·T(ℓ−1) + 2^(O(ℓ))`. So each step costs `2^(O(ℓ))`, and `n` steps cost `2^(O(n))`. This gives (a).
+- **The address-length bound** (referee's repair, dda7d68b92; the first version asserted it without proof).
+  - **Why it is needed.** Transition rules `cω = c″ω″h` change lengths, and choosing a refinement piece can
+    cascade to the end of the address.
+  - **Nested certificates.** The domains inside `R_τ` form a rooted tree (Cor. 3.20, Prop. 3.16), and S-maps
+    preserve relative depth (Prop. 3.24). Every chart maps onto a proper subdomain, so it adds at least 1 to the
+    depth. Hence every chart address of `y` has length at most the tree depth of `{y}`, however it was rewritten.
+  - **Linear growth.** `H_τ` preserves depth, and each generator changes depth by a bounded amount. So all
+    addresses in the computation have length `≤ d_y + O(n)`.
+- **Cost.** Carried words have length `≤ L^ℓ`, and (B) satisfies `T(ℓ) ≤ U·B·T(ℓ−1) + 2^(O(ℓ))`, where `U`
+  bounds the transition-rule lengths and `B` the number of refinement pieces. So `n` steps cost `2^(O(n))`. This
+  gives (a) for nested certificates.
+  - **Non-nested certificates** (product schemes, FH Prop. 6.23, Ex. 8.4). Both the depth bound and the
+    singleton-domain input are unavailable, so (a) is **not established** there.
 - **Word problem (b).** `γ = id` iff every piece of item 2 maps onto itself and, after bringing source and target
   to the same chart word by transition rules, its `h` is `1` in `H_ρ`.
 
@@ -163,56 +186,113 @@ by Cor. 4.26 there is a common upper bound `u`.
     nonstandard system.
 - **Abstract certificates add nothing either.** The compact ultrametric property already makes the domains a
   bounded-degree rooted forest (item 5), and chart coordinates live on it.
-- **Gate 1, hard-seed form, via Farley–Hughes is dead for every certificate** that Thm 8.2 or Prop. 8.10 can use.
-  By item 4(a), seed orbit evaluation costs `2^(O(n))` **even when the structure groups have hard word problems**.
+- **Gate 1, hard-seed form, via Farley–Hughes is dead for every nested certificate** that Thm 8.2 or
+  Prop. 8.10 with `n ≥ 1` can use. By item 4(a), seed orbit evaluation costs `2^(O(n))` **even when the structure
+  groups have hard word problems**.
+  - Non-nested (product or Brin-type) certificates stay open.
   - This subsumes `finite-type-farley-hughes-groups-are-exponentially-capped`,
     `rover-nekrashevych-engines-cap-orbit-evaluation-exponentially` and
     `generation-axiom-closes-the-rover-door-in-tree-coordinates`.
 
+
+## Addendum: product certificates (lane proof, 2026-09-19; not reviewed)
+
+The referee left non-nested certificates open. The main non-nested family, FH's product actions, still falls
+to the same argument.
+
+**Setting.** Take a certificate whose inverse semigroup is a product `S = S_1 × ⋯ × S_k` of nested factors acting
+on `X_1 × ⋯ × X_k`. This covers FH Ex. 8.5, `S_Σ`, and the Brin–Thompson `nV`, Prop. 6.23 and Ex. 8.4. Every
+S-map is then a product `s_1 × ⋯ × s_k` of factor S-maps, and every domain is a product of factor domains.
+Assume the factor domains separate points.
+
+**Claim.** Items 4(a) and 5 hold for such certificates, with the tree depth replaced by the **total depth**
+`δ(D_1 × ⋯ × D_k) = Σ_i depth(D_i)`.
+
+**Proof sketch.**
+1. **Singleton domains.** Suppose `(x z) ∈ Γ_S`. Refine as in `finitary-permutations-force-singleton-domains`,
+   using Lemma 3.7(1) and finite complementation of rectangles, so that the piece `D ∋ x` misses `z`. Its map
+   `s = s_1 × ⋯ × s_k` fixes `D ∖ {x}` pointwise and sends `x ↦ z`.
+   - If two factors of `D` have at least 2 points, then for each coordinate `i` some fixed point of `D ∖ {x}`
+     agrees with `x` in that coordinate. So `s_i(x_i) = x_i` for every `i`, i.e. `s(x) = x`, a contradiction.
+   - If exactly one factor `D_i` has at least 2 points, then `s_i` fixes `D_i ∖ {x_i}` and moves `x_i`. The nested
+     factor argument then forces `D_i = {x_i}`, a contradiction.
+   - So `D = {x}`. **Orbit points of seed full groups are singleton rectangles**, with finite factor addresses.
+2. **Depth.** Factor S-maps preserve relative factor depth (Prop. 3.24 in each factor), so S-maps preserve
+   relative total depth. A chart is an S-map onto a proper sub-rectangle, so it adds at least 1 to `δ`.
+   - Every chart address of `y` has length at most `δ({y})`.
+   - `H_τ` preserves `δ`, and each generator changes `δ` by a bounded amount.
+   - The recursion of item 4 then gives `2^(O(n))`, as in the nested case.
+3. **Item 5.** Each `h ∈ H_τ` is a product of factor S-maps, so `H_τ` embeds in the product of the automorphism
+   groups of the factor domain trees. It is therefore residually `W_d`, with `d` the largest factor degree.
+
+**Consequence.** The hard-seed form of gate 1 via FH is dead for nested **and product** certificates. The only
+unexplored certificates are those whose domains are neither nested nor products of nested factors, and none is
+known.
+
+**Referee bh-ref-t0: PASS (4c8bc0f94c), with one scope note.** Cantor-factor products of `nV` type have no
+singleton domains, so they cannot certify a seed full group **at all**. For them the cap is vacuous: they are
+neither covered by it nor an escape from it. The addendum has content only for products of vertex-tree factors,
+i.e. factors with singleton vertex domains, as in `QV`.
+
 ## What survives
 
-1. **The word-problem channel,** the only one left. By item 4(b), `WP(Γ_S)` can be hard only through some
-   `WP(H_τ)`. For `Γ_S` to witness HARD-(A) (`type-a-actors-with-arbitrarily-hard-word-problem`), some structure
-   group `H` must satisfy all of the following:
-   - type `F_n` with `n ≥ 2` (Prop. 8.10), or `F_∞` (Thm 8.2);
-   - residually finite with bounded composition factors, when domains separate points (item 5);
-   - acts faithfully through a **finite wreath recursion** over a finite chart graph (item 3);
-   - has a word problem harder than `T`.
+1. **The word-problem channel,** for nested and product certificates. By item 4(b), `WP(Γ_S)` can be hard only
+   through some `WP(H_τ)`. For `Γ_S` to witness HARD-(A) (`type-a-actors-with-arbitrarily-hard-word-problem`), the
+   family of structure groups must satisfy all of the following:
+   - each `H_τ` has type `F_n` with `n ≥ 2` (Prop. 8.10), or `F_∞` (Thm 8.2);
+   - each `H_τ` is residually `W_d`: it has a separating family of finite quotients with composition factors of
+     order `≤ d!` (item 5). This is a wide class, containing free groups and all finitely generated linear groups;
+   - the `H_τ` act faithfully through a **finite mutual recursion over the chart graph** (item 3). The sections of
+     `h ∈ H_τ` at a chart of type `ρ` lie in `H_ρ`. The one-type case is a finitely generated self-similar group in
+     the usual sense, and the multi-type case is a self-similar action on the path space of a finite graph;
+   - some `WP(H_τ)` is harder than `T`.
 
-   For such an `H`, the word problem is decidable: it is r.e. because `H` is finitely presented, and co-r.e. by
-   searching for a moved vertex. Its hardness is exactly the growth of the **depth of the shallowest vertex moved
-   by a nontrivial word of length `n`**. So the precise open target is:
-   > A finitely presented, finitely recursive self-similar group (finite table sections, not necessarily finite
-   > state) whose nontriviality depth grows faster than any given recursive function.
+   **What depth does and does not give** (corrected after the referee). For such a family the word problem is
+   decidable: r.e. by finite presentation, co-r.e. by finding a moved vertex. The depth `D(n)` of the shallowest
+   vertex moved by a nontrivial word of length `≤ n` gives only an **upper** bound `WP(H) ≤ 2^(O(D(n)))`. Fast
+   growth of `D` is therefore necessary for hardness, not equivalent to it.
    - Contracting groups have logarithmic depth, so they fail.
 2. **Engines outside FH's theorems.**
-   - **Infinite `ℰ(b)`.** If ℰ is only 𝕊-finite (Def. 6.12), with each `ℰ(b)` infinite but `H`-cocompact, then
-     the charts come in `H`-orbits, and orbit evaluation needs `H`'s action on the infinite sets `ℰ(b)`. Hardness
-     can then enter only through the membership problems of the stabilizers `Stab_H(w)`, `w ∈ ℰ(b)`. That is a
-     structure-group channel again.
-   - **Non-FH finiteness engines.** These are untouched.
+   - **Infinite `ℰ(b)`.** If ℰ is only 𝕊-finite (Def. 6.12), each `ℰ(b)` infinite but `H`-cocompact, hardness can
+     enter only through membership problems of stabilizers `Stab_H(w)`. That is a structure-group channel again.
+   - **Non-FH engines.** These are untouched.
+3. **Exotic non-nested, non-product certificates.** None is known to be used by any FH theorem.
 
-## Literature for the surviving channel (not re-read at source except as marked)
+## The KMS groups under the corrected condition
 
-- **Type-F groups with arbitrarily hard solvable word problem exist.**
-  - Collins–Miller, "The word problem in groups of cohomological dimension 2" (Groups St Andrews 1997, Bath),
-    abstract read: the Boone–Britton groups are iterated HNN extensions of free groups along finitely generated
-    free subgroups, with aspherical presentations, so they have type F.
-  - Run on a decidable machine or semigroup of high complexity, the Boone–Britton construction gives a word
-    problem at least that hard. The degree theory is Boone's and Clapham's.
-  - These groups are not expected to be residually finite with bounded composition factors, so they do **not**
-    fit as FH structure groups.
-- **Residually finite finitely presented groups with arbitrarily complex word problem.** These are by
-  Kharlampovich–Myasnikov–Sapir, "Algorithmically complex residually finite groups" (Bull. Math. Sci. 2017).
-  Their finiteness beyond `F_2`, their composition factors and any self-similar recursion are unchecked. They are
-  the natural test inputs for the open target above.
-- **No known group meets all four requirements** of "What survives", item 1.
+- **They pass the composition-factor screen, which is already on main.**
+  `finite-class-kms-groups-act-on-regular-rooted-trees` (lane swarm-zaremsky-3-09, 2026-09-16) shows it: under the
+  finite-class hypothesis (FC), the KMS groups `G(M)` are residually `π(p)`-groups and act faithfully on the
+  `d(p)`-regular rooted tree, with `d(2) = 7`. The wider, corrected class was never going to exclude them.
+- **They pass any depth test automatically** (lane observation, elementary).
+  - *The general bound.* Let a finitely generated `G` act faithfully on a rooted tree of degree `≤ d`. If a
+    nontrivial word of length `≤ 2n` moves a vertex at level `k`, it survives in the level-`k` action, a group of
+    order `≤ (d!)^(d^k)`. So `ρ_G(n) ≤ (d!)^(d^(D(2n)))`, where `ρ_G` is Bou-Rabee's depth function.
+  - *For the KMS groups.* KMS Thm 4.19 (arXiv:1204.6506v5) makes `ρ_G` exceed any recursive function. So **every**
+    faithful bounded-degree action of such a group, self-similar or not, has nontriviality depth beyond every
+    recursive function. The Thm 4.19 groups also have word problem as hard as a prescribed recursive set.
+- **Finite presentation.** They are finitely presented (Thm 4.18, Thm 4.19), which is what Prop. 8.10 with `n = 2`
+  needs for a finitely presented `Γ_S`. Nothing is known about `F_3` and beyond.
+- **So the KMS groups meet every requirement of "What survives" item 1 except the recursion.** That gap is the
+  whole content of `fp-self-similar-groups-with-arbitrarily-hard-word-problem`. There:
+  - the affine, lamp-digit and Cartier-monomial shapes are dead (items 3–5, by sw-010, bh-free-25 and bh-free-02);
+  - nonlinear transducers and general semilinear `φ` are open.
+- **New slack from item 3.** An FH engine needs only a **multi-type** recursion over a finite chart graph: a finite
+  family `(H_τ)`, sections of `H_τ` landing in `H_ρ`. It does not need a self-similar action of the single group
+  `G(M)`.
+  - For example, `H_τ = G(M)` could recurse into different groups `H_ρ` that recurse back.
+  - This relaxation is untested on the KMS groups.
+  - Any such family still has to contain a hard group on a cycle of the chart graph. Types whose groups are
+    finite recurse by finite state, as in Röver's `{1, b, c, d}`.
 
 ## Lesson for general BH
 
-**Finite expansion schemes are finite coordinate atlases.**
+**Finite expansion schemes are finite coordinate atlases, and depth bounds the addresses.**
 - 0-connectivity pushes every expansion through one of finitely many chart systems. Every Farley–Hughes group is
   therefore a prefix-swap-plus-structure-group group in finite chart coordinates.
-- Seeds are exponentially cheap in every Farley–Hughes engine.
-- Hardness can live only in the word (or coset-membership) problems of the structure groups, which must be
-  finitely presented, residually finite, bounded-composition-factor, finite-recursion self-similar groups.
+- In nested and product certificates, S-maps preserve depth, which bounds the address length.
+- So seeds are exponentially cheap there, and hardness can live only in the word (or coset-membership) problems of
+  the structure groups.
+- Those structure groups must be finitely presented and residually `W_d`, and must form a finite mutual
+  recursion over the chart graph.
+- For the KMS groups, residual `W_7` and super-recursive depth are already true. Only the recursion is missing.
