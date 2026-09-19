@@ -1,0 +1,26 @@
+n=4 (1) phi(K generators) fix ray n: ok (7 generators)
+n=4 (2) lid lemma phi^k(sigma) = z^-1 sigma z: ok (40 trials)
+n=4 (3) phi^k(L(1,j)^a) = L(r,1)^-k L(1,j)^a L(r,1)^k: ok (126 cases)
+n=4 (5) forced matching for [Y^m u Y^-m, alpha], random u: ok
+n=4 (4) D= 1  |word| =     16   |word|/(D log2 D) = 16.0
+n=4 (4) D= 2  |word| =     47   |word|/(D log2 D) = 23.5
+n=4 (4) D= 3  |word| =     83   |word|/(D log2 D) = 17.5
+n=4 (4) D= 5  |word| =    166   |word|/(D log2 D) = 14.3
+n=4 (4) D= 8  |word| =    308   |word|/(D log2 D) = 12.8
+n=4 (4) D=13  |word| =    566   |word|/(D log2 D) = 11.8
+n=4 (4) D=21  |word| =   1024   |word|/(D log2 D) = 11.1
+n=4 (4) D=34  |word| =   1835   |word|/(D log2 D) = 10.6
+n=4 (4) stack merge sort realizes sigma: ok (max ratio 23.5)
+n=5 (1) phi(K generators) fix ray n: ok (13 generators)
+n=5 (2) lid lemma phi^k(sigma) = z^-1 sigma z: ok (40 trials)
+n=5 (3) phi^k(L(1,j)^a) = L(r,1)^-k L(1,j)^a L(r,1)^k: ok (378 cases)
+n=5 (5) forced matching for [Y^m u Y^-m, alpha], random u: ok
+n=5 (4) D= 1  |word| =     26   |word|/(D log2 D) = 26.0
+n=5 (4) D= 2  |word| =     72   |word|/(D log2 D) = 36.0
+n=5 (4) D= 3  |word| =    126   |word|/(D log2 D) = 26.5
+n=5 (4) D= 5  |word| =    246   |word|/(D log2 D) = 21.2
+n=5 (4) D= 8  |word| =    448   |word|/(D log2 D) = 18.7
+n=5 (4) D=13  |word| =    818   |word|/(D log2 D) = 17.0
+n=5 (4) D=21  |word| =   1466   |word|/(D log2 D) = 15.9
+n=5 (4) D=34  |word| =   2608   |word|/(D log2 D) = 15.1
+n=5 (4) stack merge sort realizes sigma: ok (max ratio 36.0)
