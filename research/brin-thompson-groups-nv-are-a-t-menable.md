@@ -476,3 +476,24 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     Finally, the proof must be non-zipper: the only known proof of the `k = 1` SFT case is
     Matui's zipper action, and `brin-thompson-2v-embeds-in-no-zipper-group` forbids a
     zipper for `2V` because of the Callard–Salo distorted element.
+- **2026-09-19 (swarm-0917-w15-w15-nv-pull, obstruction-miner / cohomology-index): (K) is a
+  Hermitian-domination problem, and census refutations of (K) are dead.**
+  - **Setting.** On the `T̄`-Haagerup prerequisite, the square-root branch is (K),
+    `lifted-thompson-t-euler-class-in-kahler-subspace`.
+  - **Reformulation.** `thompson-t-kahler-euler-class-is-a-hermitian-domination-problem`
+    (ESTABLISHED, self-contained) proves that (K) holds iff the following has a solution:
+    - unknowns: a cnd function `ψ` on `T` and an odd function `f`;
+    - condition: `|⟨c, (Ω + ∂f)c⟩| ≤ ⟨c, G_ψ c⟩` for all `c ∈ c_c(T)`;
+    - here `Ω(g,k) = ∫_0^1 u_{g^{-1}} du_{k^{-1}}` is the explicit displacement area kernel,
+      with `|Ω| ≤ 1`.
+
+    The GNS completion is a universal witness for this condition.
+  - **Class-kill.** Every finite section `E × E` is feasible, with `f = 0` and
+    `ψ = 2C·1_{≠1}`. So finite SDP certificates, finite relator checks and bounded-radius
+    computations cannot refute (K), which rules out the census-computation family on this edge.
+  - **No bounded witness.** The displacement form `i(Ω + ∂f)` is `ℓ²`-unbounded for every odd
+    `f`, so every successful `ψ` must be unbounded. This part uses `e_R ≠ 0`, which is recalled.
+  - **What remains.** A refutation of (K) has to be global: for every unbounded cnd `ψ`, it
+    must produce violating vectors that escape to infinity. A proof of (K) has to construct one
+    `ψ` that dominates this form. By the integrably-paired kill, that `ψ` cannot be a wall
+    function.
