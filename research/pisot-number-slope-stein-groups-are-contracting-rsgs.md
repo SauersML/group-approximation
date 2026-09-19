@@ -3,11 +3,6 @@ rg: 2
 id: pisot-number-slope-stein-groups-are-contracting-rsgs
 kind: claim
 title: For every Pisot number β with property (F), unit or not, V(Z[1/β],<β>) is a full contracting RSG on the β-shift, hence finitely presented, with type (A) on breakpoints; for non-units D(V) is a finite-index fp simple group in every degree and every real quadratic field has such slopes; affine codings carry only one slope
-requires:
-  - pisot-stein-groups-are-contracting-rsgs
-  - pisot-unit-slope-stein-groups-are-finitely-presented
-  - stein-v-groups-act-with-type-a-on-breakpoints
-  - contracting-rsgs-embed-in-fp-simple-groups
 distinct_from:
   pisot-stein-groups-are-contracting-rsgs: that is the unit case, Γ = Z[β]; this removes the unit hypothesis (Γ = Z[1/β], slopes S-units), shows the coding exists only under (F), and adds the rank-one obstruction.
   pisot-unit-slope-stein-groups-are-finitely-presented: that gets a finite-index D(V) only when no two conjugates multiply to 1, which fails for norm +1 quadratic units; for non-units this never fails, so D(V) is finite-index fp simple in every degree, including degree 2 in every real quadratic field.

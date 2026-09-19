@@ -3,11 +3,6 @@ rg: 2
 id: smart-trace-full-group-embeds-in-brin-thompson-2v
 kind: claim
 title: The topological full group of the SMART trace subshift embeds in Brin's 2V, so a Juschenko-Monod group (finitely generated, infinite, simple, amenable) lies in a finitely presented simple group
-requires:
-  - aperiodic-full-groups-lift-along-factor-maps
-  - brin-thompson-groups-contain-full-groups-of-their-elements
-  - derived-full-group-of-cantor-minimal-system-is-simple
-  - minimal-cantor-full-groups-are-amenable
 distinct_from:
   full-shift-topological-full-group-embeds-in-2v: that is the full group of the full shift, which is not minimal and not amenable; this is the full group of a minimal subshift, whose commutator subgroup is infinite, simple and amenable.
   bs13-embeds-in-brin-thompson-3v: that uses SMART's renormalization inside 3V to build BS(1,3); this uses SMART's minimality in 2V and a factor-lifting lemma to embed a whole topological full group.

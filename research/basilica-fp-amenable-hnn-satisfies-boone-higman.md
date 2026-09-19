@@ -6,9 +6,6 @@ title: The Bartholdi–Virág finitely presented amenable HNN extension of the B
 distinct_from:
   basilica-hnn-extension-is-fp-amenable-non-ea: that records the group B~ (finitely presented, amenable, not subexponentially amenable); this embeds B~ in a finitely presented simple group.
   grigorchuk-fp-amenable-group-satisfies-boone-higman: that is a torsion-type example with finite tail group and a contracting Röver–Nekrashevych host; this is dilation-type, with tail group Z^2 and germ group Z[1/2]^2 ⋊ Z, which cannot be a germ group of a contracting RSG at a rational point (so this construction needs a non-RSG host; other embeddings of B~ are not excluded).
-requires:
-  - f-infinity-tail-ascending-hnns-satisfy-boone-higman
-  - basilica-hnn-extension-is-fp-amenable-non-ea
 ---
 
 **ESTABLISHED** (lane proof below plus the general theorem; not reviewed; no priority

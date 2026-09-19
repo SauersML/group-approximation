@@ -3,11 +3,6 @@ rg: 2
 id: effective-residual-finiteness-separator-for-boone-higman
 kind: claim
 title: The class of groups whose finitely generated residually finite subgroups are all effectively residually finite separates Boone–Higman iff every finitely presented simple group is in it; Rauzy's decidable lamplighter amalgams lie outside it
-requires:
-  - hereditary-approximation-disproofs-of-boone-higman
-  - bh-separators-must-omit-nested-decidable-hosts
-  - rf-decidable-groups-embed-in-decidable-fg-branch-groups
-  - fp-simple-group-containing-a-non-efrf-residually-finite-group
 distinct_from:
   rf-decidable-groups-embed-in-decidable-fg-branch-groups: that is Bishop–Schesler's question, about branch hosts; its lesson says Rauzy-type inputs are "no obstruction" for Boone–Higman because simple hosts are never residually finite. This corrects that at the level of subgroups: non-effective residual finiteness is a live hereditary separator even though the hosts are simple.
   central-kazhdan-residual-separator-for-boone-higman: that separator is about Kazhdan subgroups whose centres die in finite quotients; this one is about residually finite subgroups whose finite quotients cannot be found. Both are residual-type and both are invisible to simple groups themselves.

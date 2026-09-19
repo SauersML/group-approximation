@@ -3,8 +3,6 @@ rg: 2
 id: rigid-subshifts-without-isolated-points-factor-onto-the-ends
 kind: claim
 title: Over any finitely generated group, a quantum-rigid subshift without isolated points factors continuously and equivariantly onto the space of ends; so (RA) holds for every virtually free group, and over multi-ended groups non-amenable isotropy lives only over ends of one-ended vertex groups
-requires:
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
 distinct_from:
   rigid-subshifts-over-free-factors-are-tight-almost-everywhere: that works over Λ_0 × F_n with slabs, and proves (RA) over F_n; this uses balls in an arbitrary finitely generated group, where the free branches converge to a Freudenthal end.
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA); this settles it for virtually free groups and reduces it, for multi-ended groups, to one-ended pieces.

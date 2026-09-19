@@ -13,7 +13,8 @@ distinct_from:
 
 Let
 [
- A_i=langle a_i,t_imid t_i a_i^2t_i^{-1}=a_i^3angle
+ A_i=langle a_i,t_imid t_i a_i^2t_i^{-1}=a_i^3
+angle
  cong BS(2,3)qquad(i=0,1)
 ]
 and put
@@ -22,7 +23,8 @@ and put
 ]
 Let
 [
- Q_8=langle x,y,zmid z^2=1, x^2=y^2=z, [z,x]=[z,y]=1, yx=zxyangle,
+ Q_8=langle x,y,zmid z^2=1, x^2=y^2=z, [z,x]=[z,y]=1, yx=zxy
+angle,
 ]
 and let (alpha) be the involutive automorphism interchanging (x,y)
 and fixing (z). Define the explicit seven-generator group
@@ -31,19 +33,24 @@ and fixing (z). Define the explicit seven-generator group
  Pi_2=langle x,y,z,a_0,t_0,a_1,t_1mid;&Q_8, t_i a_i^2t_i^{-1}=a_i^3,\
  &[z,a_i]=[z,t_i]=1,\
  &w_i xw_i^{-1}=y,quad w_i yw_i^{-1}=x
- quad(i=0,1)angle .                                  	ag{TBS1}
+ quad(i=0,1)
+angle .                                  	ag{TBS1}
 end{aligned}
 ]
 
 Then all of the following hold.
 
-1. The subgroup (H=langle w_0,w_1angle) of (A_0*A_1) is the
+1. The subgroup (H=langle w_0,w_1
+angle) of (A_0*A_1) is the
    free group (F_2), and
    [
    Pi_2cong
-   (Q_8times_alpha F_2)
-   *_{F_2	imeslangle zangle}
-   ((A_0*A_1)	imeslangle zangle).                    	ag{TBS2}
+   (Q_8
+times_alpha F_2)
+   *_{F_2	imeslangle z
+angle}
+   ((A_0*A_1)	imeslangle z
+angle).                    	ag{TBS2}
    ]
    Thus (TBS1) genuinely has a nonamenable edge.
 

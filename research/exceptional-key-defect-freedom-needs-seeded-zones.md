@@ -3,12 +3,11 @@ rg: 2
 id: exceptional-key-defect-freedom-needs-seeded-zones
 kind: claim
 title: Profile E for aligned plane lifts needs head-seeded computation zones, since unseeded irreversible zones free every plane at infinite level; with seeded zones a single freedom bit keyed to one input orbit gives clustered, Z^2-unbounded, relatively rigid freedom, and the aligned case reduces to whether that design is minimal
-requires:
-  - aligned-plane-lifts-share-infinite-level-degeneracy
-  - plane-local-freedom-kills-rigidity-of-plane-lifts
 distinct_from:
   aligned-plane-lifts-share-infinite-level-degeneracy: that reduces the aligned conjecture to realizability of profile E; this runs the deciding test as far as it goes. It kills the unseeded designs, gives a candidate realization, and isolates the one remaining question (minimality of the candidate, or a size theorem for floating loci).
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `aligned-plane-lifts-share-infinite-level-degeneracy`, `plane-local-freedom-kills-rigidity-of-plane-lifts`.
 
 **Status.**
 - Part 1 is ESTABLISHED: a kill, lane proof, unreviewed. It is design-level in one item,

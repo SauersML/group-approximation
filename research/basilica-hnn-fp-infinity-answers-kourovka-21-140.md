@@ -9,9 +9,6 @@ requires:
   - basilica-hnn-extension-is-fp-amenable-non-ea
   - basilica-group-is-torsion-free-and-contains-every-z-n
   - thompson-f-free-groups-closed-under-extensions-and-unions
-distinct_from:
-  omits-f-from-torsion-free-amenable-non-ea-f-infinity: that route needs "F is not amenable" and Kropholler's question as extra premises; this one needs only FP_infinity of one explicit group, because F-freeness is proved outright.
-  tf-finf-infinite-cd-omits-f-via-residual-finiteness: that route needs a residually finite witness; this one uses the extension closure, so the witness may fail to be residually finite.
 ---
 
 **Route (conditional on one OPEN premise).** Let `B` be the Basilica group and `B~ = B*_σ` its

@@ -221,3 +221,89 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+**Attempt (faithful point column transplant, swarm-0917-w14; OPEN).** This transplants the
+probability/random-walk habit of reading an operator through one random starting point to the regular
+representation of the host. The result is `steinberg-ore-domains-have-faithful-point-columns`, ESTABLISHED
+(unreviewed) with a self-contained route.
+
+- **Lemma.** A nonzero left Ore domain `C` inside `LC(X, k) ⋊ P`, or inside any ample groupoid algebra with
+  compact unit space, acts faithfully on the column of one point `x`. That is, `c |-> π_x(c) δ_e` is
+  injective.
+- **Proof idea.** The points killed by a nonzero `c` form a clopen set. Compactness plus the Ore condition
+  produce one nonzero `h` killing every column. The columns separate elements, so `h = 0`.
+- **Where it applies.**
+  - `dim V_n <= |B_P(mn)|` for Ore inputs, with no pattern count factor.
+  - So `B_Ω` alone, and every crossed product over a virtually nilpotent group of growth degree `D`, contains
+    no `F_2[Z^(D+1)]`, whatever the space. This includes exponential-complexity free minimal SFTs.
+  - The boundary factor is therefore needed for the input `Z^3` for every choice of `Ω`, not only for slow
+    `Ω`.
+- **Where it dies on (E).**
+  - Here `P = Z^2 × F_d`, and the orbit balls `B_P(mn)` grow exponentially. The count is vacuous at every
+    Ore input.
+  - What survives is the structural fact: any unital `F_2[Z^4] ⊆ B_Ω ⊗ L_∂` acts faithfully on a single
+    column `k^(Z^2 × F_d)` at some point `(ω, ξ)`, with the degree-`n` part supported on
+    `B_(Z^2)(mn) × B_(F_d)(mn)`.
+  - Turning this into a NO for `Z^4` requires a linear analog of the monomial tree-slab argument on that
+    column. Such an analog would also have to exclude `F_2[Z^2] ⊆ L(1,2)`, and so decide the direction
+    of `leavitt-commuting-units-are-algebraically-dependent`. The reason:
+    - `F_2[Z^2] ⊆ B_Ω` through the `v_p`, and tensor products of injective maps over a field are
+      injective.
+    - So `F_2[Z^2] ⊆ L(1,2)` would give `F_2[Z^4] ⊆ B_Ω ⊗ L(1,2)`.
+    - By the swarm's binary-Leavitt reduction, that is the same as an embedding in `B_Ω ⊗ L_∂`. That exclusion is the `F_2` shadow of Ara–Cortiñas Question 5.7
+    (arXiv:1108.0352v3, p. 8), which is open.
+  - So the attempt stops at that firewall.
+- **Status.** (E) stays OPEN.
+
+1. **Spectral-curve (Burchnall–Chaundy) kill of spectrally complete embeddings (swarm-0917-w14-w14-z-pull,
+   obstruction-miner via linear-characteristic, 2026-09-19). Partial kill; the claim stays OPEN.**
+   - **Established** (`spectrally-complete-tuples-bound-commutative-rank`, unreviewed):
+     - Use any faithful row-finite representation, such as orbit representations of `B_Ω ⊗ L_∂`.
+     - If commuting `L_1, …, L_s` have joint eigenspaces `W_μ` of constant finite dimension, varying rationally,
+       and locally complete, then every `P` commuting with them satisfies `Φ(L, P) = 0`. Here
+       `Φ = D(μ) det(y − P|W_μ)`, obtained by Cayley–Hamilton on each `W_μ` plus a Vandermonde vanishing lemma.
+     - So no commutative subalgebra containing such a tuple contains `F[Z^{s+1}]`.
+   - **Instances.**
+     - In `LC(X, K) ⋊ Z`, every *nondegenerate* band element qualifies: those whose extreme coefficients beyond
+       offset 0 are units, `≡ 1` over `F_2`.
+     - In `LC(Ω, K) ⋊ Z^s`, every commuting `s`-tuple of directional nondegenerate elements along independent
+       directions qualifies.
+     - So an `F_2[Z^3] ⊆ B_Ω` (mechanism (ii)) contains no commuting directional nondegenerate pair.
+     - An `F_2[Z^2] ⊆ LC(X, F_2) ⋊ Z` contains no nondegenerate element at all.
+   - **Invariant:** the spectral curve `Φ` of `P` over the eigen-parameters of a spectrally complete tuple.
+   - **Where every member dies:** the Cayley–Hamilton step, which needs `dim W_μ < ∞` together with local
+     completeness.
+   - **Residual gate:** degenerate elements, where an extreme coefficient vanishes somewhere and `W_μ` is `0` or
+     infinite-dimensional.
+     - The residual for `s = 1` is recorded as `minimal-cantor-z-crossed-products-contain-no-f2-z2`. That is
+       the `s = 1` case of the commutative-rank conjecture.
+     - A YES there refutes that conjecture.
+     - Within its reach this is the inhomogeneous, non-graded argument that item "Entropy-measure transplant"
+       asked for. It does not reach `L(1,2)` corners, because no spectrally complete tuple is known there.
+
+**Mechanism (i): an exact commutant scout in `L_(F_2)(1,2)` (swarm-0917, lane w15-bh-pull; the claim stays OPEN).**
+- **Isometries are dead as generators (proved).**
+  - `leavitt-isometry-centralizers-are-monogenic` (ESTABLISHED, unreviewed) holds over any field and for any
+    `L(1,n)`: `C_L(s_w) = k[s_u]` and `C_L(t_w) = k[t_u]`, where `u` is the primitive root of `w`.
+  - So in a (i)-embedding, and in any `L_2 ⊗ L_2 -> L_2` map (the YES case above), neither commuting generator
+    can be a monomial isometry or co-isometry, even after conjugating by a unit. In particular the images of
+    `s_0 ⊗ 1` and `1 ⊗ s_0` must be non-monomial isometries.
+- **Census of small elements (evidence).** `experiments/leavitt-commutant-scout-2026-09-17/`
+  (`l2.py`, `commutant.py`, `scan_exhaustive.py`, `census_V12_output.txt`) has exact `F_2` arithmetic on
+  depth-`N` tables.
+  - It covers every `A` in the box `V_(1,2)` (depth 1, outputs of length at most 2; `2^14` elements).
+  - It computes the exact commutant of `A` in `V_(2,4)` and tests the joint growth of `{A^i B^j}`.
+  - Results: 15256 of the 16216 transcendental `A` have box commutant `F[A] ∩ box`. The other 960 all have
+    linear joint growth, at most 22 at `k = 7` against 28 for an independent pair.
+  - The larger commutants come from a matrix mechanism. They are finite modules over `F[x]` or `M_2(F[x])`, for
+    example with `x` = "insert `1` after the first letter", and they are always algebraically dependent.
+  - A random scan of `V_(1,3)` (`scan_random.py`) gave the same picture.
+- **What this changes.** Small, shallow elements give no independent commuting pair, so a counterexample to
+  `leavitt-commuting-units-are-algebraically-dependent`, if one exists, is not found by short search. This
+  matches the Ara–Cortiñas firewall: an embedding `L_2 ⊗ L_2 -> L_2` would need deep, non-monomial isometries.
+- **Mechanism (iii): counting dies on IBN.** Rank and dimension counts over `L` cannot separate entangled
+  embeddings, because `L ≅ L^2` as modules, so `L` has no IBN, and every column count collapses.
+  - What survives, by an argument sketched in the lane and not written up, is the faithful `L`-valued
+    point-column lemma for minimal `Ω`: one orbit point suffices, by Ore localization plus compactness.
+  - So a single `L`-valued column detects an entangled embedding. It gives no rank bound.
+- **Where it stops.** Everything left in (i) is Ara–Cortiñas-hard. No embedding and no obstruction beyond
+  isometries is known.

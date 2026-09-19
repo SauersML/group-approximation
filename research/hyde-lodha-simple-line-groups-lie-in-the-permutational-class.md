@@ -6,11 +6,6 @@ title: The Hyde–Lodha finitely presented simple left-orderable groups Q_n lie 
 distinct_from:
   circle-pl-groups-act-with-type-a-on-breakpoint-orbits: that proves the type (A) action of Stein's circle groups; this identifies the Hyde–Lodha groups as subgroups of one of them.
   lodha-simple-circle-group-has-a-type-a-action: that is Lodha's circle group S, which contains torsion; this is the torsion-free, left-orderable family Q_n of Hyde–Lodha acting on the line.
-requires:
-  - integral-slope-stein-v-groups-are-k-graph-full-groups
-  - circle-pl-groups-act-with-type-a-on-breakpoint-orbits
-  - bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh
-  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 **ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; elementary; not independently

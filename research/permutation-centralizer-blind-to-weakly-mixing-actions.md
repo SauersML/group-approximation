@@ -3,7 +3,8 @@ rg: 2
 id: permutation-centralizer-blind-to-weakly-mixing-actions
 kind: claim
 title: The permutations of an embedded crossed product that commute with a weakly mixing subgroup are only the images of its centralizer, so Kun-Thom Theorem 4.1 sees only Theorem B
-invalidates: [mixing-nonsofic-action-via-permutation-centralizers]
+invalidates:
+  - mixing-nonsofic-action-via-permutation-centralizers
 distinct_from:
   kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions: that covers the diagonal fixed algebra and Theorem C; this covers the permutation centralizer of Theorem 4.1, the one Kun-Thom input that node leaves open
   kun-thom-sofic-centralizer-normalization: that imports Theorem 4.1 about sofic representations; this computes what Theorem 4.1 can see of a weakly mixing free action inside a sofic embedding

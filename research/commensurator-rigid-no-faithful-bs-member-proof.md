@@ -4,6 +4,7 @@ id: commensurator-rigid-no-faithful-bs-member-proof
 kind: route
 title: Commensurator rigidity gives a virtually free kernel of the commensurator map, whose centralizer in a vertex group acts trivially on the tree
 target: commensurator-rigid-groups-have-no-faithful-bs-members
+requires: []
 ---
 
 Let `H ∈ BS_G` act on its Bass--Serre tree `X`, which has no inversions. Fix a

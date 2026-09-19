@@ -3,7 +3,9 @@ rg: 2
 id: leavitt-tensor-powers-are-not-left-coherent
 kind: claim
 title: No tensor power of L_k(1,2) with at least two factors is left or right coherent
-invalidates: [leavitt-tensor-powers-k-theory-via-coherence, prime-field-leavitt-powers-k-theory-via-coherence]
+invalidates:
+  - leavitt-tensor-powers-k-theory-via-coherence
+  - prime-field-leavitt-powers-k-theory-via-coherence
 distinct_from:
   leavitt-tensor-powers-are-left-coherent: that asserts coherence of L^(⊗d) for d >= 2; this refutes it with an explicit principal left ideal that is not finitely presented.
   leavitt-tensor-global-dimension-bound: that bounds the global dimension of L^(⊗d) by d; this shows the rings are not coherent, so the finite global dimension does not make them regular coherent.

@@ -5,8 +5,8 @@ kind: route
 title: Monomial expansion, a padding witness and one counting quantifier bound every Leavitt tensor linear group; integral letters attain C_=P
 target: leavitt-tensor-unit-word-problems-have-one-counting-quantifier
 requires:
-  - leavitt-square-units-wp-complexity-proof
-  - prime-field-leavitt-square-units-mod-p-proof
+  - leavitt-square-units-have-conp-parity-p-complete-word-problem
+  - leavitt-square-units-mod-p-complete-word-problem
 ---
 
 Lane proof (bh-free-26), elementary. It extends §6 of `leavitt-square-units-wp-complexity-proof`

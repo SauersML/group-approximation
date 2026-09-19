@@ -3,7 +3,8 @@ rg: 2
 id: slofstra-involution-not-sofic-radical
 kind: claim
 title: The Slofstra involution survives a sofic image
-invalidates: [slofstra-solution-group-collision]
+invalidates:
+  - slofstra-solution-group-collision
 distinct_from:
   slofstra-solution-group-embedding-preserves-marked-involutions: That is the general exact wagon-wheel embedding theorem and makes no approximation claim; this analyzes the particular older Higman-based source/output sign and proves that its exact finite-dimensional invisibility does not survive approximate permutation models.
   marked-approximate-radical-survives-solution-group-embedding: That conditionally transfers an approximate-radical sign already present in the source; this proves the required hypothesis fails for the particular Slofstra sign used in the older Tsirelson separation.

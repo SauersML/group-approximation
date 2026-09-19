@@ -4,7 +4,13 @@ id: tree-lattice-with-torsion-via-zappa-szep-kgraphs
 kind: route
 title: Replace the free cube k-graph by a transported one with the finite germ groupoid of cube stabilizers acting self-similarly, then run the power, phase and stabilization steps unchanged
 target: cocompact-tree-product-lattices-lie-in-type-a-class
-requires: [tree-lattice-kgraph-power-phase-proof, stabilized-kgraph-full-group-clopen-action-proof, virtually-torsion-free-tree-lattices-pbh-via-kgraphs, product-of-trees-faithful-factor-pbh-via-bass-serre-induction, boone-higman-type-a-class-closed-under-finite-extensions, type-a-action-gives-boone-higman-for-subgroups]
+requires:
+  - torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+  - stabilized-kgraph-full-groups-have-type-a-actions
+  - virtually-torsion-free-tree-lattices-satisfy-pbh
+  - product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+  - boone-higman-type-a-class-closed-under-finite-extensions
+  - type-a-action-gives-boone-higman-for-subgroups
 ---
 
 Notation as in `tree-lattice-kgraph-power-phase-proof`. Pass to the

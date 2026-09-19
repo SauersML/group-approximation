@@ -3,7 +3,8 @@ rg: 2
 id: kl-four-same-sign-corner-words-inject
 kind: claim
 title: A nonsingular word with at least four coincidence-free same-sign corners injects over every group
-invalidates: [leavitt-kl-violation-from-distinct-same-sign-labels]
+invalidates:
+  - leavitt-kl-violation-from-distinct-same-sign-labels
 distinct_from:
   kl-unit-exponent-words-inject-when-same-sign-corners-are-free: that needs the same-sign labels to generate a free group of rank e-1 and no absorbed loop, which is the only available fence at two same-sign corners; this needs only four same-sign corners that close no trivial 2-cycle, however the other same-sign labels coincide (three with two extra short-cycle conditions).
   kl-length-six-four-sign-change-words-inject: that settles the two length-six classes with two same-sign corners; this settles the remaining classes +++++- and ++++--, which have four.

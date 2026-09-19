@@ -1,0 +1,6 @@
+point 1 0.003436426116838491 1.0000000000000009 Optimization terminated successfully. (HiGHS Status 7: Optim 0.2
+P3F2 15 0.0034364235798406075 0.9999992617336168 Optimization terminated successfully. (HiGHS Status 7: Optim 23.6
+s6_1 6 0.0017182130584191258 0.4999999999999656 Optimization terminated successfully. (HiGHS Status 7: Optim 0.6
+LagF2 15 0.0034364190528208115 0.9999979443708562 Time limit reached. (HiGHS Status 13: Time limit reached) 300.0
+
+[exited with code 0]

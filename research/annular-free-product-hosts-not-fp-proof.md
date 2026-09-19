@@ -4,6 +4,8 @@ id: annular-free-product-hosts-not-fp-proof
 kind: route
 title: Short words see a bounded window of depths, and inside the window the ping-pong free product decides triviality, so one deep annulus can be changed without changing short relations
 target: annular-free-product-germ-hosts-are-not-finitely-presented
+requires:
+  - rf-groups-have-free-product-germs-over-v
 ---
 
 **Item 1.** Suppose `x'` satisfies the relators. Then `s ↦ s`, `x_i ↦ x'_i` extends to a

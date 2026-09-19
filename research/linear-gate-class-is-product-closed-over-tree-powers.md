@@ -3,10 +3,6 @@ rg: 2
 id: linear-gate-class-is-product-closed-over-tree-powers
 kind: claim
 title: The linear gate needs only a simple host, so the Bernoulli algebra over Γ replaces R_Γ, and the Track B scaffold may be any F_2^k; the inputs passing form a class closed under subgroups and direct products that contains every Z^n, Thompson's V and L^x, and the monomial status of Z^n over a fixed X is exactly the existence of a regular map Z^n → X
-requires:
-  - linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings
-  - lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square
-  - non-amenable-scaffolds-absorb-the-leavitt-factor
 distinct_from:
   canonical-algebras-embed-in-algebraic-uniform-roe-algebras: that asks the one-tree gate for the Kazhdan-canonical algebras R_Γ; this shows the gate needs no Kazhdan input, replaces R_Γ by the Bernoulli algebra B_Γ, lets the number of tree factors depend on the input, and identifies a product-closed class that passes.
   lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square: that proves the tree case of the abelian monomial obstruction by separation; Theorem 3 here is the exact criterion over any Cayley graph (a regular map Z^n → X), with a limit argument.

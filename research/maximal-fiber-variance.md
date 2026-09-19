@@ -3,7 +3,8 @@ rg: 2
 id: maximal-fiber-variance
 kind: claim
 title: Exact joint covariance can retain maximal fiber variance
-invalidates: [additive-fourier-refinement]
+invalidates:
+  - additive-fourier-refinement
 ---
 
 For every proper finite binary inclusion `α : F → G`, represent `G`

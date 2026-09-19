@@ -3,10 +3,9 @@ rg: 2
 id: infinite-kazhdan-group-in-wobbling-group-of-product-of-trees
 kind: claim
 title: Some infinite simple Kazhdan group, and ideally every canonical input H_Γ, has a coarsely dense bounded-displacement realization on F₂×F₂
-requires:
-  - kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds
-  - simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds`, `simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations`.
 
 **OPEN.** This is the sharp test of gate U (master route, Track B) over the smallest scaffold that passes
 every known necessary condition.

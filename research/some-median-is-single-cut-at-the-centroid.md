@@ -3,8 +3,6 @@ rg: 2
 id: some-median-is-single-cut-at-the-centroid
 kind: claim
 title: For every descendant dissection of a rank-three unimodular cell, some median of the cell cuts every piece containing the centroid either not at all or along one of the piece's own first splits
-requires:
-  - single-cut-is-a-mediant-condition-along-the-median
 distinct_from:
   single-cut-is-a-mediant-condition-along-the-median: that gives the local criterion and settles the vertices of the cell; this settles the centroid, where all three medians meet, by a root-system argument in the link.
   edge-split-descendant-dissections-have-single-cut-first-splits: that is (SC), which needs one median good at every vertex on it; this is the case of the one vertex common to all three medians.

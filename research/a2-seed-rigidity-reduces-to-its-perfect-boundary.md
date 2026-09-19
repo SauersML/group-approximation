@@ -3,9 +3,6 @@ rg: 2
 id: a2-seed-rigidity-reduces-to-its-perfect-boundary
 kind: claim
 title: The Ã2 origin-projection seeds are locally forced, so they are quantum rigid iff their seedless boundary is; that boundary has no isolated points, so it is its own perfect kernel and no Cantor–Bendixson reduction goes further
-requires:
-  - a2-lattices-carry-finite-type-seeds
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 distinct_from:
   quantum-rigidity-is-decided-on-the-derived-subshift: that is the general theorem (locally forced isolated points never affect rigidity); this checks its hypotheses for the Ã2 seeds and shows that its iterated form stops after one step.
   a2-lattice-phase-seeds-are-quantum-rigid: that is the open rigidity claim for the phase seed; this reduces it, exactly, to rigidity of the perfect SFT ∂Y^(N).

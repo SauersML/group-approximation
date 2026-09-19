@@ -3,7 +3,8 @@ rg: 2
 id: brin-thompson-brick-charts-are-not-commensurated
 kind: claim
 title: "For n >= 2 the standard brick charts are not commensurated by nV: breaks are codimension one"
-invalidates: [brin-thompson-nv-a-t-menable-via-brick-charts]
+invalidates:
+  - brin-thompson-nv-a-t-menable-via-brick-charts
 ---
 
 Let `n >= 2`, and let `X_n` be the set of pairs `(U, φ)` with `U ⊆ C^n` clopen

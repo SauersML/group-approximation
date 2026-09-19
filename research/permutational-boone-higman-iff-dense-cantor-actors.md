@@ -3,9 +3,6 @@ rg: 2
 id: permutational-boone-higman-iff-dense-cantor-actors
 kind: claim
 title: Permutational Boone–Higman holds exactly when every decidable input lies in a finitely presented dense subgroup of Homeo(Cantor) with finitely generated clopen stabilizers
-requires:
-  - twisted-btb-clopen-action-is-type-a
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   permutational-boone-higman-conjecture: that is the conjecture itself (every decidable input embeds in some type (A) actor, on some set); this proves it is equivalent to the same statement with the actor forced to act on one fixed homogeneous structure, the countable atomless Boolean algebra, densely in its automorphism group.
   fp-full-binary-cantor-groups-have-type-a-actions: that shows one sufficient source of dense Cantor actors (finitely presented full groups containing standard V); this states the two-sided equivalence, with no fullness hypothesis.

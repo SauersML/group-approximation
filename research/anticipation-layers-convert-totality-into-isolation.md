@@ -3,9 +3,6 @@ rg: 2
 id: anticipation-layers-convert-totality-into-isolation
 kind: claim
 title: An anticipation layer (a label copied along a locally readable step map and fixed at terminal sites) is forced exactly where every step orbit terminates, so a seed lifts to a unique isolated point displaying its computed outputs iff the computation is total; the layer is quantum rigid on the terminating part, but two far-apart non-terminating basins in any configuration destroy rigidity
-requires:
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   quantum-rigid-subshifts-cluster-the-modifications-of-each-point: that is the general far-modification lemma; this applies it to one construction, the anticipation layer, where the modifications are flips of whole non-terminating basins, and adds the positive half (forcing and rigidity where orbits terminate).
   deterministic-time-lifts-inherit-quantum-rigidity: that lifts rigidity along a deterministic time direction with a base at every time; here the label is determined by the FUTURE of a walk, which is forced only when the walk terminates, so it is the mechanism by which totality, not determinism, is consumed.

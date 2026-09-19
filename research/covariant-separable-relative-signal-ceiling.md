@@ -3,7 +3,8 @@ rg: 2
 id: covariant-separable-relative-signal-ceiling
 kind: claim
 title: Covariant separable second moments retain at most one over d plus one of relative coherence
-invalidates: [definetti-via-covariant-second-moments]
+invalidates:
+  - definetti-via-covariant-second-moments
 artifacts:
   - research/artifacts/hyperlinear-extreme-breakthroughs-2026-08-18.md
 ---

@@ -3,10 +3,6 @@ rg: 2
 id: affine-type-a-structure-groups-give-fp-simple-hosts
 kind: claim
 title: Affine type (A) - a saturated l-adic ring R and an oligomorphic permutation group G give a finitely presented virtually simple group of piecewise R[1/l]-affine maps of Z_l^D containing every GL_n(R)
-requires:
-  - twisted-integral-affine-group-fp-via-stein-complex
-  - twisted-s-integral-affine-groups-are-fp-and-virtually-simple
-  - saturated-l-adic-subrings-are-arithmetic
 distinct_from:
   twisted-brin-thompson-finite-presentation-criterion: that is Zaremsky's permutational criterion, where the structure group G permutes coordinates and needs finitely many orbits of pairs of points; this lets the structure group act linearly and asks for finitely many orbits of pairs of splitting directions, a condition on the finite field R/lR.
   twisted-s-integral-affine-groups-are-fp-and-virtually-simple: that is the instance R = Z[1/P], G = Thompson's F on the dyadics; this is the general criterion, with its hypotheses isolated.

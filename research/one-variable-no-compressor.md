@@ -3,7 +3,8 @@ rg: 2
 id: one-variable-no-compressor
 kind: claim
 title: The one-variable Laurent model contains no strict compressor
-invalidates: [one-variable-laurent-models]
+invalidates:
+  - one-variable-laurent-models
 ---
 
 `K₀ = SL_r(𝔽_q[[t]])` is compact open in unimodular `G₀`, so Haar measure is

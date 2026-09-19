@@ -3,7 +3,8 @@ rg: 2
 id: kl-length-six-four-sign-change-words-inject
 kind: claim
 title: Length-six words with four sign changes inject unless the same-sign quotient has finite order or absorbs a loop coefficient
-invalidates: [leavitt-kl-violation-from-four-sign-change-length-six-words]
+invalidates:
+  - leavitt-kl-violation-from-four-sign-change-length-six-words
 distinct_from:
   length-five-kl-fence-for-leavitt-equations: that protects every word of variable length at most five and lists the length-six sign classes left open; this settles two of those classes generically, over every coefficient group.
   leavitt-paired-quotient-passes-relative-weight-test: that applies the weight test to one paired Leavitt quotient of the class ++++--; this applies it to the relator itself for the two classes with four sign changes.

@@ -3,9 +3,6 @@ rg: 2
 id: rigid-subshifts-over-free-factors-are-tight-almost-everywhere
 kind: claim
 title: Over Λ_0 × F_n with n >= 2, an invariant probability measure on a quantum-rigid subshift lives on points determined by one thick slab; over F_n itself every quantum-rigid subshift without isolated points is a continuous extension of the boundary, hence topologically amenable
-requires:
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - quantum-rigid-sfts-over-products-have-a-single-free-branch
 distinct_from:
   quantum-rigid-sfts-over-products-have-a-single-free-branch: that proves the single-free-branch theorem for SFTs; this proves it for every subshift and shows that the free branches of nested slabs converge to an equivariant end, which no invariant measure can survive.
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA); this proves (RA) over F_n, for every rigid subshift without isolated points, and reduces the measure form over Λ_0 × F_n to tight spacetimes.

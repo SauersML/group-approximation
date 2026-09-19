@@ -3,10 +3,6 @@ rg: 2
 id: rigid-seed-decorations-compute-only-where-rogue-walks-fill-space
 kind: claim
 title: An anticipation decoration of a rigid seed is rigid as soon as every non-halting walk in every point comes near every site, and it is not rigid when a non-halting basin stays far from another modification; periodic boundary points over Z^d (d ≥ 2) must be mortal, and over the tree seeds of free products of finite and cyclic groups and the product seeds of Z² every decoration computes only a finite-state output
-requires:
-  - anticipation-layers-convert-totality-into-isolation
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   anticipation-layers-convert-totality-into-isolation: that proves forcing, isolation and rigidity on the terminating part, and the two-far-basins obstruction; this closes the gap from both sides (a sufficient coarse-density criterion, a periodic-point theorem) and proves the finite-state bound on the tree and product families.
   seed-evaluation-is-bounded-by-the-forcing-radius: that bounds evaluation of a seed by its forcing radius; this bounds what a rigid decoration can add, geometry by geometry.

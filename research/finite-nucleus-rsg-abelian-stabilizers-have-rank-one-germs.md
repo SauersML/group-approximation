@@ -4,7 +4,6 @@ id: finite-nucleus-rsg-abelian-stabilizers-have-rank-one-germs
 kind: claim
 title: In a rational similarity group with finite nucleus, a free abelian group fixing a rational point acts through a germ group of rank at most one, so all but one direction of it is locally trivial there
 distinct_from:
-  rsg-proper-power-germ-torsion-via-cyclic-germ-groups: that uses the same virtually cyclic germ groups to control a Baumslag--Solitar-type relation f g^k f^-1 = g^l; this applies them to commuting elements, which is the constraint that flats in hierarchically hyperbolic, CAT(0) and automatic groups meet.
   rsg-proper-power-conjugate-germs-torsion-at-finite-orbits: that is about proper-power conjugation at finite orbits; this is about free abelian point stabilizers, with no conjugation relation.
   z2-free-z-embeds-in-a-finite-nucleus-rsg: that is the open host-class question for the free product Z^2 * Z; this is one constraint any positive answer must respect.
 artifacts:

@@ -3,7 +3,8 @@ rg: 2
 id: fixed-leavitt-hosts-cannot-be-universal-bh-containers
 kind: claim
 title: No decidable fixed Leavitt host such as L_F2(1,2) contains every finitely generated group with solvable word problem
-invalidates: [boone-higman-via-universal-leavitt-host]
+invalidates:
+  - boone-higman-via-universal-leavitt-host
 distinct_from:
   weyl-algebra-blocks-a-universal-leavitt-host: that is an algebra non-embedding theorem valid only over fields of characteristic zero; this is a group-level non-universality statement for the repository's characteristic-2 host, from word-problem complexity, and it needs no statement about the Weyl algebra.
   complexity-bounded-host-classes-are-not-universal: that is the general principle for any class of hosts sharing one recursive word-problem bound; this is its instance for the fixed Leavitt host, including subgroups of its elementary groups and the units of its unital subalgebras, and it is what invalidates the universal-Leavitt-host route over F_2.

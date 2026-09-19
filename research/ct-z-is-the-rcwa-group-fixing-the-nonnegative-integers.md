@@ -3,8 +3,6 @@ rg: 2
 id: ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers
 kind: claim
 title: Kohl's class transposition group CT(Z) is exactly the group of residue-class-wise affine permutations of Z that fix the nonnegative integers setwise; this answers Kourovka Problem 17.59 positively
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---

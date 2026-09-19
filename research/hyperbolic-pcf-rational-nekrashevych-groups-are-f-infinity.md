@@ -3,8 +3,6 @@ rg: 2
 id: hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity
 kind: claim
 title: For every hyperbolic post-critically finite rational map f, and more generally every expanding partial self-covering of a compact space with type F_infinity fundamental group, the Nekrashevych group V_f = V_d(IMG f) has type F_infinity
-requires:
-  - wreath-recursion-thompson-groups-inherit-fn
 distinct_from:
   wreath-recursion-thompson-groups-inherit-fn: that is the general transfer theorem; this is its application to iterated monodromy groups, where the cover is the fundamental group.
   contracting-rover-nekrashevych-groups-are-f-infinity: that asks for all contracting G; this settles the IMG subclass that Nekrashevych singled out (arXiv:1312.5654, TeX l.171–175), whatever the activity growth.

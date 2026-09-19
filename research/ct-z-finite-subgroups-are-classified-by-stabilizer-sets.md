@@ -3,9 +3,6 @@ rg: 2
 id: ct-z-finite-subgroups-are-classified-by-stabilizer-sets
 kind: claim
 title: Two embeddings of a finite group in Kohl's CT(Z) are conjugate iff they have the same point-stabilizer subgroups on Z; so torsion elements are conjugate iff they have the same cycle lengths, and the conjugacy problem of CT(Z) is decidable whenever one element has finite order (Kourovka 21.73, torsion case)
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - ct-z-finite-cycle-problems-are-undecidable
 artifacts:
   - research/artifacts/gq-bh-bh-free-58-salo-source.md
 ---

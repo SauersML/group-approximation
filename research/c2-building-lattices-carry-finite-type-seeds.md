@@ -3,9 +3,6 @@ rg: 2
 id: c2-building-lattices-carry-finite-type-seeds
 kind: claim
 title: Every torsion-free type-preserving lattice in a thick locally finite C̃2 building carries a finite-type seed; the link-local method of the Ã2 node transfers, with generalized-quadrangle incidence at special vertices and complete bipartite residues at non-special ones
-requires:
-  - a2-lattices-carry-finite-type-seeds
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary building geometry; not reviewed). Items 1–2 are proved.

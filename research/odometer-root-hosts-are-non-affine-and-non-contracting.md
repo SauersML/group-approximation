@@ -3,8 +3,6 @@ rg: 2
 id: odometer-root-hosts-are-non-affine-and-non-contracting
 kind: claim
 title: On the m-ary tree the l-th roots of the odometer are exactly the rational translations by 1/l, and the translation copy of Z_(S) has only affine normalizer; so a finitely generated self-similar group containing the odometer and its roots at infinitely many primes is not contracting, not of polynomial activity, and does not normalize its translations
-requires:
-  - fg-linear-groups-have-roots-at-finitely-many-primes
 distinct_from:
   aff-n-z-localized-lies-in-fp-self-similar-group: that OPEN node asks for a finitely presented self-similar overgroup of Aff_n(Z_(l)) and notes it cannot be affine; this proves the non-affine part intrinsically (every normalizer of the translations is affine) and adds that such a host cannot be contracting or of polynomial activity, the two standard sources of self-similar finiteness theorems.
   fg-linear-groups-embed-in-fp-self-similar-groups: that embeds every finitely generated linear group in a finitely presented self-similar group R^N ⋊ E_N(R) over a finitely generated commutative ring; those hosts are linear, so they contain no Z_(S) and reach none of the groups considered here.

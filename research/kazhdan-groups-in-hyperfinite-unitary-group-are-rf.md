@@ -3,7 +3,8 @@ rg: 2
 id: kazhdan-groups-in-hyperfinite-unitary-group-are-rf
 kind: claim
 title: A finitely generated Kazhdan subgroup of U(R) is residually finite
-invalidates: [non-mf-unitary-subgroup-via-kazhdan-non-mf-groups]
+invalidates:
+  - non-mf-unitary-subgroup-via-kazhdan-non-mf-groups
 distinct_from:
   rank-twelve-leavitt-group-lacks-factorization-property: that is Kirchberg's theorem applied to the simple Kazhdan group H (factorization property would make it residually finite); this is the same rigidity read on the inside of U(R): a Kazhdan group with a faithful hyperfinite character is residually finite, so no Kazhdan non-MF group can witness non-quasidiagonality of R.
   hyperfinite-factor-qd-forces-unitary-subgroups-mf: that is the reduction of X(2) to unitary subgroups; this is the obstruction that removes the Kazhdan non-MF groups from the list of candidate witnesses.

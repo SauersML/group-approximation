@@ -3,7 +3,8 @@ rg: 2
 id: weak-containment-is-blind-to-kazhdan-fixed-algebras
 kind: claim
 title: Every action weakly contained in an action on which a Kazhdan subgroup is ergodic keeps that subgroup ergodic
-invalidates: [mixing-nonsofic-action-via-weak-containment-of-kun-thom-action]
+invalidates:
+  - mixing-nonsofic-action-via-weak-containment-of-kun-thom-action
 distinct_from:
   kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions: that shows the fixed diagonal algebra of a sofic embedding meets a subgroup-ergodic action only in the constants; this shows no action weakly contained in a subgroup-ergodic action, including factors of its ultrapowers, has a nonconstant fixed function for that subgroup
   abert-weiss-free-actions-weakly-contain-bernoulli: that imports the minimality of Bernoulli actions among free actions for weak containment; this is a rigidity statement for Kazhdan subgroups under weak containment

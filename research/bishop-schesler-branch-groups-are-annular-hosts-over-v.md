@@ -3,8 +3,6 @@ rg: 2
 id: bishop-schesler-branch-groups-are-annular-hosts-over-v
 kind: claim
 title: Every Bishop–Schesler branch group embeds in a one-orbit finite germ extension of Thompson's V, as an annular host whose germ group at the spinal point contains G × Alt(6) faithfully
-requires:
-  - efrf-groups-frattini-embed-in-efrf-branch-groups
 distinct_from:
   efrf-groups-frattini-embed-in-efrf-branch-groups: that imports the branch host Γ_G on a spherically homogeneous tree with growing alphabets; this recodes that tree into the binary Cantor set and identifies ⟨V, Γ_G⟩ as an annular host at one rational point.
   rf-groups-have-free-product-germs-over-v: that builds annular hosts directly from finite quotients in ping-pong position; this shows the Bishop–Schesler groups themselves are annular hosts, with the tree's spinal data as annular data.

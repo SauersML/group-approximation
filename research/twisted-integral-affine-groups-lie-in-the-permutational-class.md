@@ -7,10 +7,6 @@ distinct_from:
   fp-clopen-transitive-full-cantor-groups-have-type-a-actions: that needs any two nonempty clopen sets to be joined by local maps, which fails for W_(P,ℓ) at odd ℓ because clopen sets carry a class in Z/(ℓ−1); this replaces clopen sets by ordered partitions into pieces of the class of the whole space, and covers W = W_(∅,2) as the case ℓ = 2 of that criterion.
   twisted-s-integral-affine-groups-are-fp-and-virtually-simple: that proves W_(P,ℓ) finitely presented and D(W_(P,ℓ)) simple; this puts W_(P,ℓ) and every subgroup of it into the permutational class B_A.
   one-fp-simple-group-contains-every-s-integral-linear-group: that gives one finitely presented simple host for all GL_n(Z[1/P]); this makes that host a B_A group, so it also has (SQ) and (JE) with every B_A group.
-requires:
-  - twisted-s-integral-affine-groups-are-fp-and-virtually-simple
-  - fp-clopen-transitive-full-cantor-groups-have-type-a-actions
-  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 **ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; elementary given the finite

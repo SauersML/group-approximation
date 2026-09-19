@@ -3,10 +3,6 @@ rg: 2
 id: hyperbolic-groups-have-sft-horofunction-compactifications
 kind: claim
 title: The horofunction lemma holds on every hyperbolic Cayley graph, so the distance-gradient SFT is exactly the horofunction compactification and every hyperbolic group has an SFT compactification, although descents need not merge (Webster–Winchester non-Busemann points)
-requires:
-  - k-local-distance-functions-on-hyperbolic-groups-are-global
-  - finite-type-branch-blow-ups-are-sft-compactifications
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   k-local-distance-functions-on-hyperbolic-groups-are-global: that proves the unique seed and the structure of seedless points and reduces (HL) to a tube lemma; this proves (HL) outright by propagating one local target upstream, with no merging.
   finite-type-branch-blow-ups-are-sft-compactifications: its part 4(c) poses (HL) and its part 4(b) gives the Busemann criterion f = b_γ; this proves (HL) and shows that criterion is not necessary.

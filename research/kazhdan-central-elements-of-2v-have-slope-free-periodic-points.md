@@ -6,8 +6,6 @@ title: A central element of a Kazhdan (or FW) subgroup of 2V has slope zero at e
 distinct_from:
   kazhdan-subgroups-of-brin-thompson-groups-have-finite-center: that asks for finite center outright; this proves the central elements have no periodic point with nonzero slope, which reduces finite center in 2V to central elements whose periodic points are all slope-free (e.g. minimal elements).
   kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures: that uses the slope cocycle against invariant measures of all of K; this uses only fixed points of a central element, where the slope is K-invariant.
-requires:
-  - thompson-v-has-haagerup-property
 artifacts:
   - research/artifacts/gq-bh-bh-free-38-torelli-quotients.md
 ---

@@ -3,9 +3,6 @@ rg: 2
 id: order-seeds-transfer-computable-orders
 kind: claim
 title: Order seeds make the order computable, and pass computable left orders to every subgroup that acts freely on some orbit point; so, by Darbinyan's and Harrison-Trainor's groups, absolute order seeds cannot seed every decidable left-orderable group, and question (O) needs an isolated order on a finitely presented group with a hard word problem
-requires:
-  - order-seeds-are-rigid-relative-seeds
-  - seeded-recursively-presented-groups-have-solvable-word-problem
 distinct_from:
   order-seeds-are-rigid-relative-seeds: that constructs order seeds and poses question (O); this bounds what they can reach, using the computability theory of orders.
   seeded-recursively-presented-groups-have-solvable-word-problem: that shows a seed makes its point computable; this reads that point, for an order seed, as a computable order and transfers it to subgroups.

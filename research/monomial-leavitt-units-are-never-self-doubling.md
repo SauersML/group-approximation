@@ -3,8 +3,6 @@ rg: 2
 id: monomial-leavitt-units-are-never-self-doubling
 kind: claim
 title: Over every field, no Leavitt unit supported on a bisection whose homeomorphism has infinite order commutes with a unital copy of the Leavitt algebra
-requires:
-  - leavitt-copy-centralizing-units-are-self-doubling
 distinct_from:
   leavitt-copy-centralizing-units-are-self-doubling: its Theorem 4 excludes Thompson units only in characteristic 0, for aperiodic units, or when some Lefschetz count is prime to p; this removes every hypothesis, covers weighted (monomial) units, and catches the F_2 witness that Theorem 4 missed.
   leavitt-unit-centralizers-have-finite-rank: that OPEN conjecture would forbid every transcendental self-doubling unit; this proves the monomial case unconditionally, by module theory and not by centralizer rank.

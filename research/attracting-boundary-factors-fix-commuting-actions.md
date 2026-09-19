@@ -3,11 +3,6 @@ rg: 2
 id: attracting-boundary-factors-fix-commuting-actions
 kind: claim
 title: A minimal system with a dense-basin attracting point receives at most one factor map from each minimal system, so commuting actions fix it pointwise and its finite-to-one extensions have finite automorphism groups; the compression-rigid scaffolds carry only finite time
-requires:
-  - deterministic-time-lifts-inherit-quantum-rigidity
-  - strongly-regular-building-elements-are-opposition-proximal
-  - a2-lattice-boundary-skew-shifts-are-quantum-rigid
-  - chamber-fixing-building-lattice-elements-translate-horospheres
 distinct_from:
   deterministic-time-lifts-inherit-quantum-rigidity: that proves a time lift inherits rigidity from its row SFT; this bounds which time groups a row can carry at all, and the bound is finite for every boundary-type row.
   time-lift-actors-carry-no-complexity-beyond-row-language: that bounds the word problem of a time group by the row language; this bounds its cardinality by the row's boundary fibres, independently of any language.

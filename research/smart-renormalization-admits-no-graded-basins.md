@@ -3,9 +3,6 @@ rg: 2
 id: smart-renormalization-admits-no-graded-basins
 kind: claim
 title: SMART's height-3 renormalization cannot be graded, even after any finite skew-product decoration, so it does not yield the ternary Toeplitz factor that would put a periodic group in 2V
-requires:
-  - smart-induced-map-has-brick-local-height-3-renormalization
-  - graded-renormalization-gives-ternary-toeplitz-factor
 distinct_from:
   graded-renormalization-gives-ternary-toeplitz-factor: that gives the sufficient condition (a clopen colouring cycled by the renormalization); this shows SMART's renormalization fails it.
   smart-induced-map-alternates-head-direction: that finds the Z/2 eigenvalue carried by the head direction; this shows no Z/3 grading of the renormalization exists, because the attractor of the zero insertion is approached from all three depth classes.

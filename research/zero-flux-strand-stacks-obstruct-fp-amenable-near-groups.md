@@ -3,11 +3,6 @@ rg: 2
 id: zero-flux-strand-stacks-obstruct-fp-amenable-near-groups
 kind: claim
 title: A group without free subgroups that acts on a Z-indexed stack of strands with equal offset speed at both ends, containing a uniform stack shift and a non-uniform kernel element, is not finitely presented; for polyhedral enumerations of Z^2 this kills every enumeration with an active zero-flux slice, including isometric ones
-requires:
-  - fp-groups-without-free-subgroups-split-ascendingly-over-kernels
-  - piecewise-translation-z2-enumerations-are-not-fp
-  - houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group
-  - houghton-like-envelope-fp-pins-the-enumeration-by-near-relators
 distinct_from:
   piecewise-translation-z2-enumerations-are-not-fp: that is the translation-only case for Z^2, where zero flux is automatic; this isolates the mechanism as an algebraic lemma about stack germs, allows strands to migrate out of the stack, and extends the kill to piecewise-isometric enumerations whose flux character vanishes at an active slice.
   houghton-like-envelope-fp-pins-the-enumeration-by-near-relators: that is the pinning side (fp forces rigid near relators); this shows that the rigid relators of linear type produce strand stacks, and that zero-flux stacks are then fatal whenever the near group has no F_2.

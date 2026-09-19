@@ -3,8 +3,6 @@ rg: 2
 id: extension-rigidity-is-base-centrality-plus-pointwise-rigidity
 kind: claim
 title: An SFT extension is quantum rigid exactly when every quantum family has central base idempotents and the fibre over each base point is rigid relative to that point, on spaces of any dimension
-requires:
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: that reduces rigidity of one transplant to its centrality statement (C) on finite-dimensional spaces; this proves the reduction for every extension over every group on spaces of any dimension, and shows that centrality is the only obstruction beyond pointwise rigidity.
   path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is: that pulls fibre families back along one fold (a necessity statement); item 2 here is the general necessity statement for every base point, and item 1 is the converse under centrality.

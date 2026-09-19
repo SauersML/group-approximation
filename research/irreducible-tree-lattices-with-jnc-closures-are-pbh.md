@@ -6,7 +6,6 @@ title: An irreducible lattice on a product of trees whose factor closures are ju
 distinct_from:
   product-of-trees-lattices-with-faithful-factor-satisfy-pbh: that assumes a faithful or separating set of factors; this derives faithfulness on every factor from the Bader--Shalom normal subgroup theorem.
   tree-lattices-split-into-irreducible-blocks: that reduces every lattice to irreducible blocks; this settles the irreducible blocks whose factor closures are just-non-compact.
-  boone-higman-via-bader-shalom-lattice-hosts: that uses Bader--Shalom lattices as hosts for arbitrary inputs; this uses the same theorem to put given tree lattices into the type (A) class.
 ---
 
 **ESTABLISHED** through `irreducible-jnc-tree-lattices-pbh-via-bader-shalom`

@@ -4,7 +4,10 @@ id: degree-category-comparison-type-a-proof
 kind: route
 title: Units do not change cylinders, the Cuntz colour lets one duplicate a cylinder before refining it, and strong connectivity then spreads any clopen set over its whole piece
 target: degree-category-full-groups-stabilized-have-type-a-actions
-requires: [stabilized-kgraph-full-group-clopen-action-proof, type-a-action-gives-boone-higman-for-subgroups, boone-higman-type-a-class-closed-under-finite-extensions]
+requires:
+  - stabilized-kgraph-full-groups-have-type-a-actions
+  - type-a-action-gives-boone-higman-for-subgroups
+  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 Notation as in the target. Write `ℭ'' = ℭ x O_2`. For a morphism `λ`, the

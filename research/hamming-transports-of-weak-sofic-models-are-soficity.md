@@ -3,7 +3,8 @@ rg: 2
 id: hamming-transports-of-weak-sofic-models-are-soficity
 kind: claim
 title: A group admits uniform Hamming transports of its weakly sofic models exactly when it is sofic
-invalidates: [weakly-sofic-surjunctivity-via-hamming-transport]
+invalidates:
+  - weakly-sofic-surjunctivity-via-hamming-transport
 distinct_from:
   permutation-lengths-are-convex-hulls-of-coset-lengths: that describes which Hamming lengths a finite group's actions can realize; this says that realizing small defects and fixed separation for every finite set is the same as soficity, so the linear program never reaches a nonsofic group.
   regular-action-makes-weak-sofic-defects-maximal: that is the failure of one particular action; this covers every finite action and every mixture at once.

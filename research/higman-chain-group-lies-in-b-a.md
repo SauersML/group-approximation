@@ -3,18 +3,14 @@ rg: 2
 id: higman-chain-group-lies-in-b-a
 kind: claim
 title: The chain BS(1,2) *_Z BS(1,2), the common vertex group of Higman's group and the base of the Baumslag--Gersten group, lies in B_A and embeds in a finitely presented simple group, because a Kaloujnine--Krasner twist puts its chain configuration in the coset lamplighter BS(1,2) wr over BS(1,2)/<b>
-requires:
-  - higman-chain-group-pbh-iff-chain-configuration
-  - bs12-base-generator-is-a-centralizer-in-b-a
-  - pbh-amalgams-over-centralizer-separated-edges
-  - char-zero-linear-groups-satisfy-permutational-boone-higman
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   higman-chain-group-pbh-iff-chain-configuration: that reduces the question to finding a chain configuration in some B_A group, and names the twisted lamplighter M_1 as the canonical candidate without placing it; this places M_1, and so decides the question.
   bs12-base-generator-is-a-centralizer-in-b-a: that puts the untwisted coset lamplighters Λ wr_(A/<b>) A in B_A; this observes that the twisted one embeds in the untwisted one with the larger lamp group BS(1,2).
   higman-group-satisfies-boone-higman: that is the open question for Higman's group; this settles its vertex group, and leaves the cyclic closing-up of four chains as the whole remaining difficulty.
   baumslag-gersten-group-satisfies-boone-higman: that is the open question for BG; this settles its base K, and leaves the shift HNN step.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `higman-chain-group-pbh-iff-chain-configuration`, `bs12-base-generator-is-a-centralizer-in-b-a`, `pbh-amalgams-over-centralizer-separated-edges`, `char-zero-linear-groups-satisfy-permutational-boone-higman`, `type-a-action-gives-boone-higman-for-subgroups`.
 
 **OPEN**: referee FAIL of the proof, 2026-09-18, bh-ref-bs12; see the Referee section. The lane proof was marked established and not reviewed; no priority claimed.
 
@@ -163,3 +159,22 @@ restricted wreath product exists is open, and the reduction node suggests it doe
 - (ii) Find a chain configuration in a twisted Brin–Thompson group, which is (3) of the reduction.
 - (iii) Find an embedding of `M_1` into a restricted wreath product with finitely supported twists.
   The Lesson of the reduction node argues against this.
+
+## Attempts
+
+1. **2026-09-19, swarm-0917-w15-w15-bh-last1 (symbolic-dynamics): repair (ii) through renormalization or baker
+   conjugators is dead in every twisted Brin--Thompson host.**
+   - **Result.** `twisted-brin-thompson-power-conjugates-have-logarithmic-depth` (ESTABLISHED, lane proof). Cylinder
+     depth shift is finite and subadditive on `SV_G` for every actor `G` and every set `S`, and every twist has
+     shift `0`.
+   - **Consequence.** In any chain configuration `(a, b, c)` in any `SV_G`, both `b` and `c` have depth growth
+     `E(n) = O(log n)`.
+   - **Where designs die.** Renormalization conjugators, including the baker map, have `E(n) >= n`. So do
+     infinite-order Thompson elements, and products of either with commuting twists (the infinite-entropy repair).
+     Every design that takes `b` (or `c`) conjugate to one of these dies at the step "`b ~ b^2` forces
+     `E_b = O(log n)`".
+   - **What repair (ii) now needs.** A chain whose `b` or `c` is not a global twist. If both are global, then
+     `twisted-brin-thompson-global-twists-are-conjugacy-closed` returns the chain to the actor, which is circular.
+     That non-twist element must also be a prefix element of zero depth rate that conjugates an infinite-order
+     element to its square. The graph records no such element.
+   - **Status.** The node stays OPEN.

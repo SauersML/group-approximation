@@ -4,6 +4,7 @@ id: periodic-dense-sft-hosts-restriction-proof
 kind: route
 title: Full-group elements preserve every closed invariant set, a nontrivial element is seen on a dense invariant union, and finite orbits or one-dimensional folding give tame restrictions
 target: periodic-dense-sft-hosts-have-only-thompson-simple-subgroups
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

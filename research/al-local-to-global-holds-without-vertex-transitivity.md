@@ -3,8 +3,6 @@ rg: 2
 id: al-local-to-global-holds-without-vertex-transitivity
 kind: claim
 title: Amir–Lazarovich's local-to-global theorem needs no vertex-transitivity when its 2-ball condition is imposed at every vertex; a subgroup G of U(Alt_{2d-1}) with G_v|_{B_2(v)} = U_v|_{B_2(v)} for all vertices v has closure containing the simple group U^+, so for a cocompact G density is a finite check
-requires:
-  - twisted-davis-amalgams-keep-hyperplane-data
 ---
 
 **ESTABLISHED** (lane re-reading of Amir–Lazarovich's proof, not reviewed). The mathematics is AL's

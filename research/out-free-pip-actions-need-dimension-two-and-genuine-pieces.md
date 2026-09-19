@@ -3,8 +3,6 @@ rg: 2
 id: out-free-pip-actions-need-dimension-two-and-genuine-pieces
 kind: claim
 title: For n at least three, Out(F_n) has no faithful action on the circle by homeomorphisms and no faithful piecewise-integral-projective action on any compact polyhedron of dimension at most one; for n at least four no faithful such action is the projectivization of one linear action, and finite length-function coordinates cannot provide the atlas
-requires:
-  - piecewise-representative-lifts-are-rigid-under-cheap-moves
 distinct_from:
   out-free-sphere-lamination-coordinates-give-a-pip-action: that is the open positive proposal, a piecewise-integral-projective action on measured sphere laminations; this rules out the low-dimensional, linear and length-coordinate versions.
   piecewise-representative-lifts-are-rigid-under-cheap-moves: that compares the band route with the closed-MCG PML route and asks the question; this answers the easy cases of that question.

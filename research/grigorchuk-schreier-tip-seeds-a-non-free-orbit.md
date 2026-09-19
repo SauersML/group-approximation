@@ -3,9 +3,6 @@ rg: 2
 id: grigorchuk-schreier-tip-seeds-a-non-free-orbit
 kind: claim
 title: SFT compactifications are one-defect SFTs; the Grigorchuk group has a non-metric seed from its branch structure (the tip of the Schreier ray of 1^∞ is locally detectable, so G/Stab(1^∞) has a compactification with an isolated dense orbit), but free orbits and finite type stay open, and the growth argument against Cannon seeds does not close
-requires:
-  - grigorchuk-envelope-emitter-reduces-to-ie-prime-for-grigorchuk
-  - finite-type-branch-blow-ups-are-sft-compactifications
 distinct_from:
   finite-type-branch-blow-ups-are-sft-compactifications: that seeds free orbits metrically (Cannon cones) for hyperbolic groups; this reformulates the seed condition as a one-defect condition, and gives a seed of branch type for the Grigorchuk group whose orbit is not free.
   grigorchuk-envelope-emitter-reduces-to-ie-prime-for-grigorchuk: that reduces the envelope's blow-up to (IE′) for G with free orbits; this supplies the branch-type seed for the parabolic homogeneous space G/Stab(1^∞), and states exactly what is still missing for free orbits.

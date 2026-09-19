@@ -3,12 +3,12 @@ rg: 2
 id: free-minimal-sft-without-two-sided-faults-exists
 kind: claim
 title: Some infinite minimal topologically free Z^2 subshift of finite type has no two-sided fault, i.e. every line has a determining side
-requires:
-  - sfts-without-two-sided-faults-are-quantum-rigid
 distinct_from:
   free-minimal-triangle-permutive-sft-exists: that asks for non-determining normals confined to three rays by a quasigroup rule; this allows any closed set of non-determining normals without an antipodal pair and any rule shapes, so it is implied by that problem and is weaker.
   free-minimal-z2-sft-is-quantum-rigid: that asks for rigidity by any mechanism; this is the determinism mechanism, which by the required node is exactly the one that works with no two-sided fault.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `sfts-without-two-sided-faults-are-quantum-rigid`.
 
 **OPEN.** Posed by bh-free-35 (2026-09-18).
 

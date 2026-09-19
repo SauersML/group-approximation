@@ -1,0 +1,6 @@
+M 1 n 4 L 12 labels 1
+max R_n (1803, ('b', 'b', 'B', 'b'))
+mean R_n over signed sequences 524.4375
+sum R_n 8391
+
+[exited with code 0]

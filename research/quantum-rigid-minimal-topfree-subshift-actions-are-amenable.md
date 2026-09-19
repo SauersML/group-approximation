@@ -3,9 +3,6 @@ rg: 2
 id: quantum-rigid-minimal-topfree-subshift-actions-are-amenable
 kind: claim
 title: Every minimal, topologically free, quantum-rigid subshift action of a finitely generated group is topologically amenable (open); if so, the master route's object (★′) exists over no non-exact group and cannot reach Osajda's decidable non-exact group
-requires:
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - decidable-residually-finite-non-exact-group-exists
 refuted_by:
   - rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer
 distinct_from:
@@ -13,6 +10,8 @@ distinct_from:
   amenable-groupoid-full-groups-are-exact: that asks whether full groups of amenable groupoids are exact; this asks whether quantum rigidity forces the transformation groupoid to be amenable in the first place.
   master-route-needs-only-topological-freeness: that reduces the route to (★′); this is the analytic obstruction to (★′) that no current tool rules out.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `quantum-rigid-subshifts-cluster-the-modifications-of-each-point`, `decidable-residually-finite-non-exact-group-exists`.
 
 **OPEN.** Posed by lane bh-star-b, 2026-09-18, as the adversarial form of (★′). No claim is made
 either way; the evidence is below. Partial results are in the section "Progress" at the end.

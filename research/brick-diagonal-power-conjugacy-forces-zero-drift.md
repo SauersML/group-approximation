@@ -3,8 +3,6 @@ rg: 2
 id: brick-diagonal-power-conjugacy-forces-zero-drift
 kind: claim
 title: If a brick diagonal sends b to a proper power b^m, every b-invariant measure has zero exponent drift
-requires:
-  - bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets
 distinct_from:
   renormalizable-thompson-elements-are-odometer-codes: item 3(b) there proves zero drift for odometers of a code, using the tower; this needs only the weaker diagonal identity delta_e(b) = b^m, which is exactly what the compiler step consumes.
   brin-thompson-proper-power-conjugates-have-zero-entropy: that bounds entropy of elements conjugate to proper powers; this is the drift (exponent-cocycle) analogue for diagonal power-conjugacy by a brick code.

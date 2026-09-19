@@ -3,11 +3,6 @@ rg: 2
 id: ra-counterexamples-are-minimal-sets-of-rigid-ambients
 kind: claim
 title: A counterexample to (RA) at a non-exact group is exactly a topologically free minimal subsystem of a quantum-rigid ambient, and it is automatically non-amenable; coset ambients over indivisible homogeneous actions have only fixed points as minimal sets; (RA) does not obstruct the permutational route
-requires:
-  - quantum-rigidity-passes-to-subshifts
-  - cornulier-regime-coset-sfts-are-quantum-rigid
-  - group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp
-  - decidable-residually-finite-non-exact-group-exists
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA); this reduces its negation at non-exact groups to a pure minimal-set question about rigid ambients, kills the permutational (coset) ambients over indivisible actions, and records that (RA) says nothing about non-minimal rigid actions.
   rigid-subshifts-over-free-factors-are-tight-almost-everywhere: that proves (RA) over F_n from the geometry of the tree; this uses no geometry and instead locates where a counterexample could and could not come from.

@@ -3,7 +3,8 @@ rg: 2
 id: clifford-witness-has-no-hyperfinite-marked-representation
 kind: claim
 title: The Clifford witness W and the block-commuting quotient of E have no hyperfinite representation with the mark at −1
-invalidates: [non-mf-unitary-subgroup-via-clifford-witness]
+invalidates:
+  - non-mf-unitary-subgroup-via-clifford-witness
 distinct_from:
   commuting-lamp-quotient-not-mf: that is the operator-norm statement, the sign lies in the MF residual of the witness; this is the Hilbert--Schmidt-exact statement: no finite injective von Neumann algebra receives the witness with the sign at −1, so the witness does not embed in U(R).
   literal-group-embeds-in-hyperfinite-unitary-group: that is the still-open statement for the literal group E itself, whose lamp kernel is a free amalgam; this settles the two quotients in which lamps at distinct blocks commute or anticommute, where the marked lamp algebra is UHF.

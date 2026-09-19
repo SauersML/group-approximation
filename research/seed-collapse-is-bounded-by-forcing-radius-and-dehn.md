@@ -3,8 +3,6 @@ rg: 2
 id: seed-collapse-is-bounded-by-forcing-radius-and-dehn
 kind: claim
 title: For a finitely presented group with a seed, the seed-collapse function κ is at most |Ball(R(n+c))| · δ(2R(n+c)+c), with R the seed's forcing radius and δ the Dehn function, and the word problem runs in time 2^{O(κ̄)} for every computable κ̄ ≥ κ; so the complexity of a seeded group lives in R or in δ, never in how far a nontrivial element must be looked at
-requires:
-  - seeded-groups-have-solvable-word-problem
 distinct_from:
   seeded-groups-have-solvable-word-problem: that shows κ is finite, so the word problem is decidable; this bounds κ above by two intrinsic functions and bounds the word problem above by κ.
   bs12-rigid-seed-is-its-normal-form: that measures one seed, with a linear forcing radius; this is the general sandwich that such measurements feed into.

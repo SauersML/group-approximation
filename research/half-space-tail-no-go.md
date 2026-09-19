@@ -3,7 +3,8 @@ rg: 2
 id: half-space-tail-no-go
 kind: claim
 title: Half-space tensor models die in the tail
-invalidates: [half-space-tensor-models]
+invalidates:
+  - half-space-tensor-models
 ---
 
 `centralized_mem_iterate` (formalized) plus tail triviality. If the

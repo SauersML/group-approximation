@@ -3,11 +3,6 @@ rg: 2
 id: tree-product-lattices-carry-rigid-topologically-free-sfts
 kind: claim
 title: Coupled tree codings are quantum rigid, so every cocompact lattice on a product of locally finite trees carries a rigid minimal SFT coding the product of the boundaries, topologically free with torsion-free isotropy when the lattice is torsion-free; this includes the Burger–Mozes simple groups
-requires:
-  - locally-finite-tree-end-shifts-are-quantum-rigid-sfts
-  - quantum-rigidity-is-product-stable
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
-  - master-route-needs-only-topological-freeness
 distinct_from:
   quantum-rigidity-is-product-stable: that treats products of shifts over product groups; this treats several tree codings over ONE group (a join), which is rigid exactly when the vertex stabilizers of each tree couple the others, and fails for uncoupled joins.
   torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups: that proves finiteness (an F_∞ k-graph full group containing the lattice); this proves the rigidity and dynamics of the lattice's own boundary SFT, which is the (★′) half of the master route.

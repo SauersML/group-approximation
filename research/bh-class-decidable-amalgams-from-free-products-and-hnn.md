@@ -5,7 +5,6 @@ kind: claim
 title: Free-product closure plus decidable-edge HNN permanence give closure of the Boone--Higman class under decidable amalgams and finite graphs of groups
 distinct_from:
   bh-embeddability-survives-decidable-edge-hnn: that is the HNN permanence premise itself; this derives amalgam and graph-of-groups permanence from it together with free-product closure.
-  boone-higman-via-decidable-edge-towers: that derives the conjecture from HNN permanence plus the OPEN tower claim decidable-groups-embed-in-decidable-edge-towers; this needs no tower claim, so it is not subsumed while that claim is open.
   bh-embeddability-forces-decidable-edge-membership: that shows the decidable-edge hypothesis is necessary (for doubles); this shows, under the two premises, that it is also sufficient for amalgams.
 artifacts:
   - research/artifacts/gq-bh-bh-permanence-closure-reductions.md

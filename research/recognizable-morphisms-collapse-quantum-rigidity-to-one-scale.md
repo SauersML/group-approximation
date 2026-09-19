@@ -3,9 +3,6 @@ rg: 2
 id: recognizable-morphisms-collapse-quantum-rigidity-to-one-scale
 kind: claim
 title: A Z^2 SFT with a locally recognizable shape-consistent self-morphism whose letter images have sides at least 2 is quantum rigid iff it is rigid at the single scale max(r, 1, ceil(R/2)); non-commuting operator tilings double in scale
-requires:
-  - sft-crossed-product-fp-iff-quantum-rigid
-  - morphism-towers-double-covariant-tiling-scales
 distinct_from:
   self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale: that needs one constant block shape, so the block grid is fixed and non-commutation pulls back by summing over positions; this allows letter-dependent shapes (Labbé), where the grid is an operator-valued tower pointer, and uses recognizability to put the pointer's corner projection into the child algebra.
   morphism-towers-double-covariant-tiling-scales: that inflates finite-dimensional covariant families and only needs a nonzero result (existence of modules); this proves that the inflated family commutes only if the parent does, in any dimension, so NON-commutation doubles in scale.

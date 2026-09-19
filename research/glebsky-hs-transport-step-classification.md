@@ -3,7 +3,8 @@ rg: 2
 id: glebsky-hs-transport-step-classification
 kind: claim
 title: Which steps of Glebsky's permanence proof survive normalized-HS transport
-invalidates: [glebsky-verbatim-hs-transport]
+invalidates:
+  - glebsky-verbatim-hs-transport
 distinct_from:
   glebsky-weak-soficity-is-metric-free: that records that the permanence proof constructs no metric; this classifies each of its six steps by whether it transports to (U(n), normalized HS), and proves that one of them cannot
   glebsky-manufactured-invariant-length: that extracts the length Lemma 3 of the 2017 paper manufactures; this is about the 2019/2023 permanence proof that consumes it, and about what breaks when the class is not Fin

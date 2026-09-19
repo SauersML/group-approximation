@@ -3,9 +3,6 @@ rg: 2
 id: slice-attractors-of-spatial-2v-must-expand
 kind: claim
 title: In a spatial copy of Brin's 2V inside CT_P(Z) (or any piecewise-affine host of Z-hat), the image of a slice contraction must expand some prime near its attractor; otherwise the other stack's V acts on the attractor by scalings between finitely many rational centres, with polynomial orbital growth, which is impossible
-requires:
-  - spatial-2v-in-affine-hosts-needs-unbounded-fibres
-  - two-v-in-ct-p-z-needs-degree-rank-two-r
 distinct_from:
   spatial-2v-in-affine-hosts-needs-unbounded-fibres: that kills contracting push families through a fixed-point budget; this kills non-expanding slice contractions through an orbital-growth count, and so constrains every element of the image, not only the pushes.
   two-v-in-ct-p-z-needs-degree-rank-two-r: that bounds the rank of the degrees; this bounds the growth of orbits inside a fibre set, which holds even with translations (the RCWA hosts).

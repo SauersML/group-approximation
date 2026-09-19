@@ -337,3 +337,7 @@ anywhere refutes it.
   - **Open.**
     - A pattern that is finite-monoid embeddable but neither finite-group embeddable nor finite-core graded.
     - Which configurations of `EL_D(R)` (`openai-leavitt-unit-nonsofic`) embed.
+- **Descent through finite central kernels (swarm-0917-w15-w15-gs-pull).** The attempt was to push positive entropy from `X/N` over `Q = G/N` back to `X` over `G`, for finite central `N`. That is the missing direction of `rokhlin-maximality-ascends-finite-normal-extensions`.
+  - **Dying step.** A generating partition for `Q` on `X/N` sees each `N`-orbit only up to an unknown `N`-translate at every coset. Recovering `X` needs the alignment cocycle `b(q,y) in N`, and no finite-entropy coding of `b` exists in general.
+  - **Invariant.** The additive `r log |N|` slack in `rokhlin-entropy-quotient-formula-for-finite-normal-subgroups`, where `r` is the number of generators. That slack is realized exactly. Take `F_r x Z/2` on the 2-shift over `F_r`, with `Z/2` acting by the global flip. The Ornstein–Weiss map gives `X/N` = the `2^r`-shift, so `h_Q(X/N) = r log 2`, while `h_W(X) <= log 2`.
+  - **Consequence.** No descent modulus independent of rank exists. Over infinitely generated `Q`, positive or infinite quotient entropy says nothing about `X`. Every descent route has to control `b` directly, which is the liftability obstruction already recorded there.

@@ -3,9 +3,6 @@ rg: 2
 id: splitting-kills-the-finite-shadow-parity-of-the-gluing-group
 kind: claim
 title: In the smallest gluing test (V_(2,2) from the centralizer of an involution and a halving stabilizer), finite shadows with 3 to 5 cones are exact up to a central parity Z/2, and Thompson splitting kills it, so all braid relators hold and every symmetric piece-permutation group lifts
-requires:
-  - gluing-kernels-descend-from-the-free-group-full-shift
-  - v-times-sft-gluing-kernel-is-relatively-perfect
 artifacts:
   - research/artifacts/gq-bh-one-relator-finite-shadow-coset-enumeration.md
 distinct_from:

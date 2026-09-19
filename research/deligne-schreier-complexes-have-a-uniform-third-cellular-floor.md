@@ -62,3 +62,40 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   survivor after (K1), (K2) and (K3) of `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`. The
   natural next test is computational: an LP for `mu_(1/3)(Gamma / Lambda_N)` on the principal congruence quotients
   `Sp_4(Z/N)`, for small `N` prime to 3, from a certified finite presentation.
+- **2026-09-19, swarm-0917-w14-w14-deligne-break: level-2 census and a character obstruction**
+  (`deligne-third-floor-has-no-character-certificate`).
+  - *Census (numerical MILP).* On the six solved `Sp_4(F_2)`-sets, `mu = 1/(291 D)`, the Kahler-proportional
+    value. On the Weierstrass points and the 3+3 partitions (`D = 2`) this is exactly the (K2) floor `c_K = 1/582`.
+    No non-Kahler class lowers it.
+  - *Obstruction (proved).* `floor = dist(kappa/3, cl L)` in `C^2(Y; C(Sp_4(Z)^, R))`, and every continuous
+    character trivial on `L` is trivial at `kappa/3`. So this claim is equivalent to non-dual-closedness of `cl L`
+    at `kappa/3`, and no linear or detecting-cycle certificate, finite or profinite, can prove it. Already at
+    level 2, `A_0 = 98 > 97` and `196 > 194`: the exact value beats every single-cycle bound.
+  - Levels `N >= 3` were not solved exactly.
+- **2026-09-19, swarm-0917-w14-w14-deligne-follow: fixed-level floor proved, sufficient condition corrected**
+  (`deligne-third-floor-holds-above-every-fixed-level`, cohomology-index).
+  - *Proved.* Fix any finite-index `Lambda_0`. Every class `f in kappa + 3 H^2` on any Schreier complex above
+    `Gamma / Lambda_0` whose real part is pulled back from `Lambda_0` has `||f_R|| >= nu(Lambda_0) > 0`. This extends
+    (K2) from level one to every level.
+  - *Why.* Virtual divisibility of a fixed class is bounded by the finite profinite multiplier
+    `H^2_cts(Lambda_0^, Q/Z)` of `sp4-finite-index-fd-projective-multiplier-is-finite`. Dividing pullbacks up a tower
+    (the `T^2` mechanism above) is therefore dead.
+  - *Refuted.* The sufficient condition above is false as written. At `Gamma(3)` a torsion class, not divisible by
+    3, has `u_R = 0`. The repaired condition asks for `u(Z_2)` not contained in `3Z`, and it stays open.
+  - *Left.* A counterexample must use classes new at each level. The open part is a bound on `nu` uniform in the
+    level.
+- **2026-09-19, swarm-0917-w15-w15-deligne-break (census-computation): the test was run. No counterexample was
+  found, and it cannot certify lower bounds as posed.** Code and table are in
+  `experiments/deligne-third-floor-level-census-2026-09-17/`.
+  - *Presentation.* Birman-Hilden `Sp_4(Z) = Mod(S_2)/<<(t1 t2)^6>>` has 14 relators, each checked to be exact in
+    `Sp_4(Z)`. The lift exponents from the `det u` winding are: chain6 `-3`, iota2 `-2`, sep `-1`, and 0 for the rest.
+  - *Values.* `mu_(1/3)(pt) = 1/291` exactly (MILP closed). On `P^3(F_2)`, `Lag(F_2)` and `P^3(F_3)` the best
+    certified upper bound is 1/291, which is the pulled-back point model.
+    - That model is a fixed point of LP polishing.
+    - Random starts end at 0.08-0.16.
+    - No non-Kahler model beats the Kahler value on any set tried. This is weak evidence for the claim.
+  - *Where the posed test dies.* An LP gives only upper bounds. The relaxation with real `n` is identically 0
+    (`a = 0`, `n_c = -theta k_r`). By (L1), any lower bound is an `l^inf`-type closest-vector problem for the coset
+    `kappa + 3 H^2(Y_X; Z)`, in a lattice of rank `10|X| - 1 + b_1(Y_X)`, which is at least 149 already at `|X| = 15`.
+    HiGHS leaves the dual bound at 0 after 120 s at `|X| = 15`. Lower bounds need structure, such as the transfer
+    relations of `mod-s2-induced-torelli-characters-have-positive-relation-floors`, not a larger computation.

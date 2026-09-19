@@ -1,11 +1,11 @@
 ---
 id: fix-bh-met-torsion-free-noether-localize
-kind: route
+kind: claim
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize: unexpected token ':='; expected '}' (5 errors on main 3c8b417428)"
-target: fp-metabelian-groups-satisfy-boone-higman
-status: SUPERSEDED
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **SUPERSEDED by `fix-bhmet-torsion-free-noether-localize`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-torsion-free-noether-localize`.
 

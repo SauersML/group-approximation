@@ -7,7 +7,8 @@ distinct_from:
   binary-subshifts-embed-in-three-marked-kazhdan-groups: that is the case Gamma = Z, binary alphabet, F_2, with three fixed matrix generators; this is every finitely generated Gamma, every alphabet and every F_q with the standard elementary marking, and it adds the isolation of minimal subshifts of finite type.
   marked-subshift-elementary-group-determines-language: that shows the marked group determines L(X) for minimal Z-subshifts; this proves continuity in both directions with explicit moduli over every finitely generated group, for all subshifts.
   minimal-free-sft-full-group-pattern-models-are-exact: that is the topological full group statement for validly coloured Z^d-sets; this is the elementary group over the crossed product ring, compared across all subshifts.
-invalidates: [free-minimal-sft-el-sofic-via-subshift-marked-limits]
+invalidates:
+  - free-minimal-sft-el-sofic-via-subshift-marked-limits
 artifacts:
   - research/artifacts/sk-fp-sofic-b-z2-soficity-map-2026-09-13.md
 ---

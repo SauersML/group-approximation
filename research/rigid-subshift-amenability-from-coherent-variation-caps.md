@@ -3,10 +3,6 @@ rg: 2
 id: rigid-subshift-amenability-from-coherent-variation-caps
 kind: claim
 title: A quantum-rigid subshift without isolated points has continuous, finitely supported variation caps whose modification clouds are coarsely connected rays; if the scale-averaged caps are asymptotically independent of the centre (cap coherence), the action is topologically amenable — the finite-window form of (RA), plus a flippable-wall test for the wall-orientation case
-requires:
-  - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
-  - rigid-subshifts-without-isolated-points-factor-onto-the-ends
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA)/(RA′); this reduces (RA) for a given X to one finite-window combinatorial property (cap coherence) and proves the reduction, without settling (RA′).
   rigid-subshifts-without-isolated-points-factor-onto-the-ends: that builds a continuous map to Ends(Λ) from finite cuts, which says nothing over one-ended groups; this builds Reiter functions directly from the nearest variation points, over any group, at the price of a coherence hypothesis.

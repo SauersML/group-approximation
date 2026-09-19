@@ -3,8 +3,6 @@ rg: 2
 id: no-free-q-odd-action-by-v-has-a-doubling-intertwiner
 kind: claim
 title: No free action of an amenable group with free Z/p for infinitely many primes admits a V-intertwiner with its doubled lift, so Q semidirect <2> never embeds in 2V_tau with 1 sent to the odometer
-requires:
-  - q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding
 distinct_from:
   rational-rotations-and-doubling-have-no-common-tree-coding: that restricts which rotations can be almost-automorphic when the covering is; this needs no hypothesis on the action maps at all (any free homeomorphism action, exotic or not), and shows that on the rationally Cantorized circle the doubling covering alone is never almost-automorphic.
   q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding: that reduces the embedding to a tree-coding question and leaves exotic actions open; this closes every case.

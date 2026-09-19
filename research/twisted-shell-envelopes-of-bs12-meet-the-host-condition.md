@@ -3,11 +3,6 @@ rg: 2
 id: twisted-shell-envelopes-of-bs12-meet-the-host-condition
 kind: claim
 title: Placing the vertices of the Bass--Serre tree of BS(1,2) on the shells of a finite germ extension of V, with the vertex stabilizer <b> acting on its shell by a degree-one zoom, meets every part of the host condition (H) except finite presentation; so the chain group lies in B_A as soon as one such twisted shell envelope is finitely presented with finitely generated point stabilizers
-requires:
-  - type-a-actors-closed-under-inner-twisted-lamp-wreaths
-  - bs12-twist-hosts-need-dynamical-degrees
-  - shell-cantor-embeddings-are-finite-germ-extensions
-  - shell-envelope-fp-forces-fp-germ-group
 distinct_from:
   shell-cantor-embeddings-are-finite-germ-extensions: that implants a group through its regular action on the shells; this implants BS(1,2) through its action on the vertices of its Bass--Serre tree, twisted on each shell by the stabilizer, so that the base generator acquires a regular fixed point of degree one.
   bs12-twist-hosts-need-dynamical-degrees: that proves the odometer counting law any germ host must obey; here the law holds automatically, because the degree-one fixed points of b are the fibre points over a Prufer orbit of tree vertices.

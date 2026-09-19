@@ -3,7 +3,8 @@ rg: 2
 id: atlas-stabilizer-commutant-no-go
 kind: claim
 title: No stabilizer-commutant deformation of the tensor flip meets the criterion, at any multiplicity
-invalidates: [atlas-stabilizer-coset-witness]
+invalidates:
+  - atlas-stabilizer-coset-witness
 distinct_from:
   atlas-stabilizer-slice-stationary: that is a first-order statement at one point (the flip) in one slice (`U(15)` at `k = 1`); this is a uniform positive lower bound over the entire commutant family at every multiplicity, and neither implies the other.
   atlas-true-criterion-baseline: that evaluates the objective at the classical warm starts and identifies the active set; this excludes an entire deformation family around one of them, for all `k`.

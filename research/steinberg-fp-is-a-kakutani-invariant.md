@@ -3,11 +3,6 @@ rg: 2
 id: steinberg-fp-is-a-kakutani-invariant
 kind: claim
 title: Finite presentation of the Steinberg algebra is a Kakutani-equivalence invariant of ample groupoids, so quantum rigidity of Z^2 SFTs and premise (E′) are invariants of the groupoid, not of the coding or the acting group
-requires:
-  - sft-crossed-product-fp-iff-quantum-rigid
-  - quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products
-  - fp-crossed-products-force-finitely-presented-acting-group
-  - fp-crossed-products-force-sft-over-any-group
 distinct_from:
   determinism-closure-certifies-quantum-rigidity: that shows fault normals, and so the failure of determinism proofs, are invariant under conjugacy (block recodings); this shows quantum rigidity itself is invariant under Kakutani equivalence of the transformation groupoids, which also allows orbit-equivalence recodings and changes of transversal.
   sft-crossed-product-fp-iff-quantum-rigid: that equates finite presentation of the Z^2 crossed product with quantum rigidity for one coding; this transports that property between all groupoids Kakutani equivalent to it.

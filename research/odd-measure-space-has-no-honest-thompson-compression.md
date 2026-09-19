@@ -3,7 +3,8 @@ rg: 2
 id: odd-measure-space-has-no-honest-thompson-compression
 kind: claim
 title: The space of odd two-valued measures carries an invariant Haar measure, so Thompson translates cannot honestly compress it into a proper clopen set
-invalidates: [ternary-lift-by-honest-odd-measure-compression]
+invalidates:
+  - ternary-lift-by-honest-odd-measure-compression
 artifacts:
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---

@@ -3,11 +3,6 @@ rg: 2
 id: isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts
 kind: claim
 title: A finitely generated soluble minimax group embeds in an isolated group as soon as it embeds in some finitely presented group satisfying max-n; in general it embeds in an isolated group iff some homomorphism to an isolated group is injective on a finite G-discriminating subset of its periodic radical
-requires:
-  - fp-groups-with-max-n-are-limits-of-isolated-groups
-  - ascending-hnn-of-isolated-groups-embed-in-isolated-groups
-  - rf-soluble-minimax-groups-satisfy-permutational-bh
-  - linear-and-metabelian-groups-embed-in-isolated-groups
 distinct_from:
   hall-type-prufer-quotients-embed-in-isolated-abels-groups: that treats the central quotients A_n/C by explicit Abels hosts; this reduces the whole soluble minimax class to one finite set in the periodic radical, and handles every soluble minimax subgroup of every finitely presented max-n group, including arbitrary quotients of Abels groups.
   fp-groups-with-max-n-are-limits-of-isolated-groups: that shows finitely presented max-n groups are limits of their isolated quotients; this turns that approximation into an honest embedding for soluble minimax subgroups, using that their periodic radical is discriminated by a finite set.

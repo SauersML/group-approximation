@@ -3,13 +3,6 @@ rg: 2
 id: stabilizer-engines-need-torsion-vertex-groups
 kind: claim
 title: If the stabilizer engine F_B of Z/k * B (or its derived group) is finitely presented and B is infinite, then every deep subgroup of B is normal, so B is a finitely presented torsion group with only finitely many elements of prime order; F_V, F_T, F_F and every engine over a group with an element of infinite order are infinitely presented
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - stabilizer-engines-are-fp-only-over-isolated-groups
-  - fp-stabilizer-engines-need-fp-vertex-groups
-  - fp-stabilizer-engines-need-decidable-vertex-groups
-invalidates:
-  - isolated-vertex-groups-have-fp-stabilizer-engines
 artifacts:
   - research/artifacts/gq-bh-invent-18-collapse-transfer.md
 distinct_from:

@@ -7,8 +7,6 @@ distinct_from:
   pbh-coset-wreaths-iff-identity-edge-hnns: that proves centralizer realization (e) is equivalent to the coset lamplighter and identity-edge HNN conditions (a)-(d), and lists five sufficient cases; this adds a point-stabilizer characterization and three closure operations (pullback, finite-index enlargement, finite-configuration stabilizers) that generate many new cases, including every normal subgroup with a B_A quotient.
   pbh-coset-closure-passes-to-finite-index-overgroups: that changes the AMBIENT group G to a finite-index overgroup; this keeps G fixed and enlarges the SUBGROUP C to a finite-index overgroup C', or pulls C back along a homomorphism.
   pbh-wreath-closure-fails-over-undecidable-stabilizers: that shows Mihailova fiber products over quotients with unsolvable word problem are not realizable; this shows the fiber products over quotients in B_A are realizable, so the Mihailova construction splits exactly along B_A-membership of the quotient.
-requires:
-  - pbh-coset-wreaths-iff-identity-edge-hnns
 ---
 
 **ESTABLISHED** by `centralizer-realizable-subgroups-are-pullback-closed-proof` (lane proof,

@@ -1,0 +1,3 @@
+500 0 Korbits 1 extras0 1000 chords 77 hist [1000, 997, 994, 991, 986, 983, 980, 975]
+500 1 Korbits 1 extras0 1000 chords 74 hist [1000, 997, 994, 991, 988, 985, 982, 979]
+500 2 Korbits 1 extras0 1000 chords 79 hist [1000, 997, 994, 991, 988, 983, 980, 977]

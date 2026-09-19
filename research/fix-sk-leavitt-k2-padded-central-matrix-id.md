@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-leavitt-k2-padded-central-matrix-id
-kind: route
+kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId: Tactic rewrite failed: Did not find an occurrence of the pattern"
 ---
 

@@ -3,8 +3,6 @@ rg: 2
 id: ct-p-z-groups-are-pairwise-nonisomorphic
 kind: claim
 title: Kohl's class transposition groups CT_P(Z) are pairwise non-isomorphic for distinct sets P of odd primes, finite or infinite; this answers Kourovka Problem 17.60 positively
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
   - research/artifacts/gq-bh-bh-free-11-ct-p-z-second-proof.md

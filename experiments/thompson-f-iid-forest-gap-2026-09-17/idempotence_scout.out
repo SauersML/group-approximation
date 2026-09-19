@@ -1,0 +1,4 @@
+M=50: log-uniform H^2=0.34804 (H=0.5899);  minimised H^2=0.29412 (H=0.5423)
+M=200: log-uniform H^2=0.27118 (H=0.5208);  minimised H^2=0.22371 (H=0.4730)
+M=800: log-uniform H^2=0.22861 (H=0.4781);  minimised H^2=0.18773 (H=0.4333)
+M=3200: log-uniform H^2=0.20229 (H=0.4498);  minimised H^2=0.16700 (H=0.4087)

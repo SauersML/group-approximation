@@ -3,7 +3,8 @@ rg: 2
 id: window-entropy-deficits-are-not-isomorphism-invariant
 kind: claim
 title: Over a nonamenable group the window entropy of a generating partition of a Bernoulli shift depends on the partition
-invalidates: [gottschalk-via-window-entropy-deficit]
+invalidates:
+  - gottschalk-via-window-entropy-deficit
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
 ---

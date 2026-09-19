@@ -3,11 +3,6 @@ rg: 2
 id: kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds
 kind: claim
 title: Kazhdan inputs of the full-group gate over a fixed scaffold need one-ended uniformly nonamenable Schreier realizations, so amenable, polynomial-growth and virtually free scaffolds are dead while F₂×F₂ passes every test
-requires:
-  - simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations
-  - kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf
-  - simple-kazhdan-groups-have-no-proper-co-amenable-subgroups
-  - decidable-host-classes-reduce-to-canonical-kazhdan-groups
 distinct_from:
   kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf: that is the measure-theoretic kill for amenable acting groups, recovered here as item 4 by a direct ℓ² argument. This node adds the kills for virtually free and polynomial-growth scaffolds, and the one-endedness and uniform-nonamenability constraints that hold over every scaffold.
   translation-like-hosts-are-capped-by-separation-profiles: that caps FREE realizations by the input's Cayley graph; this constrains NON-free realizations of Kazhdan inputs, where the Schreier graph replaces the Cayley graph.

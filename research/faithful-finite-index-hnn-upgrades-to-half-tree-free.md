@@ -3,10 +3,6 @@ rg: 2
 id: faithful-finite-index-hnn-upgrades-to-half-tree-free
 kind: claim
 title: A faithful HNN extension of A over finite-index subgroups (ascending allowed) becomes, after a Baumslag–Solitar twist on A × Z, a non-ascending HNN extension in which no element fixes a half-tree; so the finite-type complexity gate (SS-hard)_1 is exactly the faithful finite-index HNN condition, and for the KMS groups it reduces to a commensuration of the torsion layer
-requires:
-  - nonascending-hnn-end-shifts-satisfy-e3-prime
-  - finite-index-edge-hnn-embeds-in-fp-simple-group
-  - kms-arbitrarily-hard-fp-rf-groups
 distinct_from:
   finite-index-edge-hnn-embeds-in-fp-simple-group: that embeds a faithful finite-index HNN extension in a finitely presented simple group (via Bux–Llosa Isenrich–Wu); this upgrades faithfulness to the half-tree condition at the cost of a direct factor Z, so the same input also gives a topologically free E3′ instance through Li's Zappa–Szép theorem, with the same word problem.
   finite-type-e3-prime-hosts-carry-complexity-in-units: that names the gate (SS-hard)_k; this shows that for k = 1 in HNN form it coincides with attempt 5 of `fp-simple-groups-with-arbitrarily-complex-word-problem`, and that ascending extensions are allowed.

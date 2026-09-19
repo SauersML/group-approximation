@@ -3,8 +3,6 @@ rg: 2
 id: support-constraints-on-v-subgroups-cannot-see-one-endedness
 kind: claim
 title: Free subgroups of PSL_2(Z) in Thompson's T satisfy every support and attractor constraint on main with full supports, so a surface-group obstruction in V must use one-endedness; finite attractor orbits force a normal subgroup trivial near the attractor
-requires:
-  - cyclic-centralizer-subgroups-of-v-touch-attractors
 distinct_from:
   cyclic-centralizer-subgroups-of-v-touch-attractors: that is a necessary condition; this is its calibration, showing the condition (and the support-counting strategy built on it) holds for a torsion-free group with cyclic centralizers that does embed in V.
   closed-hyperbolic-surface-groups-embed-in-thompson-v: that is the open survey Question 4.7; this shows which strategies cannot decide it.

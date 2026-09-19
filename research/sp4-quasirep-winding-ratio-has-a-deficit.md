@@ -41,3 +41,17 @@ pointer, not a proved localization.
 ## Attempts
 - **2026-09-18, swarm-0917-w7-w7-deligne-follow: posed.** It is the weakening of the sublinear-winding prerequisite
   given by the sharp constant. There is no test yet. The determinant class is excluded by item 8 of the theorem node.
+- **2026-09-18, swarm-0917-w14-w14-deligne-last1 (quantifier-shift): the limsup collapses to one scale.** See
+  `sp4-winding-ratio-is-an-infimum-over-scales`, ESTABLISHED.
+  - *Mechanism.* Tensor products add normalized windings and add defects:
+    `kappa_r(pi (x) sigma)/(d_1 d_2) = kappa_r(pi)/d_1 + kappa_r(sigma)/d_2` once both defects are at most
+    `1/(6g-1)`, since all eigenangles of the relator word are then within `pi/3`. So `S_W` is monotone and
+    superadditive on `(0, 1/(6g-1)]`, and Fekete's lemma at zero gives
+    `Theta(W) = lim S_W(eps)/eps = inf_{eps <= 1/(6g-1)} S_W(eps)/eps`.
+  - *Reduction.* This claim is equivalent to one inequality `S_W(eps_1) < tau_W eps_1` at one scale, recorded as the
+    OPEN `sp4-quasirep-single-scale-winding-deficit`, with route `sp4-winding-deficit-from-one-scale`.
+  - *All-MF branch.* `P_op = R/Z` forces `S_W(eps) >= tau_W eps` at every scale and on every window.
+  - *Obstruction to refutations.* Tensor powers, direct sums and conjugation move winding lower bounds only to
+    larger scales. So no finite family of quasi-representations can refute this claim, while one scale suffices to
+    prove it. The determinant relaxation stays strictly above `tau_W eps` at every fixed scale, so the class kill of
+    item 8 of the sharp-constant node persists at each scale.

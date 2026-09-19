@@ -3,7 +3,8 @@ rg: 2
 id: weak-invariants-give-no-bernoulli-rokhlin-lower-bound
 kind: claim
 title: No weak-equivalence invariant or group invariant bounds Bernoulli Rokhlin entropy below by a positive number
-invalidates: [positive-rokhlin-entropy-via-weak-invariant-bounds]
+invalidates:
+  - positive-rokhlin-entropy-via-weak-invariant-bounds
 distinct_from:
   every-group-has-positive-rokhlin-entropy-action: that is the open positive-entropy existence hypothesis; this is an obstruction showing that cost, l2-Betti numbers and every other weak-equivalence or group invariant cannot supply the lower bound it needs.
   bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups: that is the open maximality statement on simple Kazhdan hosts; this rules out one class of lower-bound mechanisms for it, on every group.

@@ -3,9 +3,6 @@ rg: 2
 id: k-local-distance-functions-on-hyperbolic-groups-are-global
 kind: claim
 title: On a δ-hyperbolic Cayley graph a function that is (2δ+4)-locally a distance function is globally a distance function if it has a local minimum, and otherwise an integral Coornaert–Papadopoulos horofunction with one centre, so the horofunction lemma (HL) reduces to CP horofunctions being limits of distance functions
-requires:
-  - finite-type-branch-blow-ups-are-sft-compactifications
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   finite-type-branch-blow-ups-are-sft-compactifications: its part 4(a) proves the unique seed by induction with Cannon's cone types; this reproves it by a target argument with explicit k = 2δ+4, and adds the structure of the seedless points (one centre, fellow-travelling descents, CP horofunction), which is new.
 ---

@@ -3,10 +3,6 @@ rg: 2
 id: spatial-2v-in-affine-hosts-needs-unbounded-fibres
 kind: claim
 title: A spatial copy of Brin's 2V inside CT_P(Z), or inside any host of piecewise-affine maps of Z-hat such as G_(2,3) and B, has unboundedly large fibres over every periodic slice; so every contracting design, including all rank-two designs with push slopes exactly 2 and 3, is impossible, and a writer needs Conway-type expanding pieces
-requires:
-  - two-v-in-ct-p-z-needs-degree-rank-two-r
-  - blind-commutants-of-push-families-in-ct-p-z-are-trivial
-  - brin-thompson-nv-needs-n-minus-one-primes-in-ct-z
 distinct_from:
   two-v-in-ct-p-z-needs-degree-rank-two-r: that is a dimension bound (rank of degrees), which does not apply in hosts with translations; this is a fixed-point bound on fibres, which holds in every piecewise-affine host, translations included.
   blind-commutants-of-push-families-in-ct-p-z-are-trivial: that forces the pushes to read hidden data; this forces the hidden data to be infinite over a dense set, and kills every design whose cylinders stay finitely fragmented.

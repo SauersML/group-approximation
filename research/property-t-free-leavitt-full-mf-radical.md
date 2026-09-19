@@ -1097,3 +1097,99 @@ The hole itself is not closed here.
    A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
    Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
    `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
+
+**2026-09-19 (swarm-0917 w14, last mile): the stable-finiteness step of the compression criterion cannot use an amenable subgroup, and over a Haagerup subgroup it needs an infinite projection.**
+`k-amenable-compressors-need-infinite-projections` is ESTABLISHED. It is a method obstruction, not a route: it does not settle this goal.
+
+**Setting.** A subgroup-intrinsic one-sided certificate over `L <= Delta` consists of a projection `p` in `C*_max(L)` and an
+injective endomorphism `alpha = Ad(u)|_L` with `p <= alpha_*(p)`. The Kazhdan projection of `lem:kazhdan-projection-order`
+is the model case. Its defect is `q = alpha_*(p) - p`.
+
+1. **The defect is invisible to the regular representation.** The regular trace is `alpha`-invariant, so
+   `lambda_L(q) = 0` for every `L`.
+2. **Amenable `L`.** The defect is zero in `C*_max(L)`, so `U P U* = P` in every unitary representation of `Delta`.
+   The stable-finiteness step, which is the criterion's only MF input, is then idle. This proof is self-contained:
+   Folner vectors and Fell absorption.
+3. **K-amenable `L`, including every a-T-menable `L`.** Write `x` for the class of `q` in `K_0(C*_max L)`.
+   Then `x = alpha_*[p] - [p]` lies in the kernel of `(lambda_L)_*`, which is injective. So `x = 0`.
+   Consequently `q (+) 1_k ~ 1_k` in `M_(k+1)(C*_max L)`. If `C*_max(L)` is stably finite, then `q = 0` and the step is
+   idle. The imports are Lück--Reich Theorem 5.1 and Guo--Wang--Yao's statement of Cuntz's theorem, both quoted
+   verbatim in the route.
+
+**Where a subgroup-intrinsic (T)-free compression proof must live.**
+- **(K-ghost)** A non-K-amenable `L`, where `ker (lambda_L)_*` carries the defect. This is relative rigidity, for which
+  w9 found the spectral input equivalent to relative `(tau)`.
+- **(Haagerup-infinite)** A Haagerup `L`, for example `V`, `F`, `T` or a free subgroup, whose own maximal algebra has a
+  `K_0`-trivial infinite projection in `ker lambda_L`.
+
+Amenable subgroups are excluded outright.
+
+**Not covered.** Corona projections that are not images of fixed elements of `C*_max(L)`, that is, model-specific
+spectral projections. This is the same boundary that w9 reached.
+
+**New test question.** Is `C*_max(V)` stably finite? It is left open here and is not recorded as a node. A "yes" kills
+the whole Haagerup-infinite branch for `V`.
+- **2026-09-19 (swarm-0917-w14-w14-ptl-break, finite-models). The coherent
+  Jacobson gap is true, via (T), and it is stronger than the head collapse.**
+  See `jacobson-coherent-group-is-not-mf-via-kazhdan-transport` (ESTABLISHED,
+  uses (T)).
+  - **The mechanism.** `c=t^(-1)x_12(Q)t` centralizes `EL_3(J)` inside the
+    ascending HNN group `Gamma_triangle`, because `x_12(Q)` commutes with
+    `Q I+SAT`. Rank-weighted transport with `A=union t^(-j)G_(2j+1)t^j` and
+    `C=4` then kills `w=x_13(Q)`. So `Rad_MF(Gamma_triangle)=L` and
+    `gamma_triangle>0`.
+  - **Belief change.** The `jacobson-coherent-matrix-gap` lane is now
+    methodological, exactly like this goal.
+  - **Direction.** `psi:Gamma_triangle->EL_4(J)`, `t->u`, preserves the head.
+    So a (T)-free coherent gap implies a (T)-free
+    `property-t-free-jacobson-head-collapse`, which reaches this goal through
+    `property-t-free-leavitt-via-jacobson-head-root`. This is a stronger
+    sufficient condition, not a decomposition.
+  - **New test.** At least one of these holds:
+    - `EL_3(J)` is not MF;
+    - ascending HNN extensions do not preserve MF, although they do preserve
+      hyperlinearity.
+
+    Hence an MF-permanence theorem for ascending HNN extensions would prove
+    `EL_3(J)` not MF. Its (T)-free status would still need checking.
+
+  The hole is not closed.
+
+**2026-09-19 (swarm-0917 w15, last mile, reframing): typing dichotomy and a one-hole Kazhdan-blind route.**
+1. **Certificate typing is empty.** `kazhdan-free-leavitt-collapse-typing-dichotomy` is ESTABLISHED, through (T).
+   - The finite certificates `R_0` with `zhat in Rad_MF(F(S)/<<R_0>>)` form an upward-closed family.
+   - One Ozawa SOS identity lifts to every cover presented by `R_0 >= R_T`. So the Kazhdan certificates are cofinal.
+   - One inert free generator gives non-Kazhdan certificates `Gamma * Z`.
+   - So "the certificate group is not Kazhdan", and any other certificate-level property, already holds by the (T)
+     theorem. It cannot type this goal.
+2. **Image typing.** Suppose some group `Gamma` has only finite Kazhdan subgroups and maps to `Delta` with
+   `phi(Rad_MF(Gamma)) != 1`. Then `Rad_MF(Delta) = Delta` by push-forward and simplicity.
+   - Every such proof exhibits a non-MF group with only finite Kazhdan subgroups.
+   - None is recorded in the graph.
+3. **New route.** `property-t-free-leavitt-via-thompson-v-not-mf` has one hole, `thompson-v-is-not-mf`, which is OPEN.
+   - The chain is `V <= St_20(R)` (by `thompson-v-lifts-through-binary-leavitt-steinberg-cover`), then
+     `Rad_MF(V) = V`, push-forward, and simplicity of `Delta`.
+   - The chain uses no Kazhdan input.
+   - The hole's group is Haagerup, so every certificate for it is non-Kazhdan and the rigid-defect engine is vacuous
+     on it.
+   - Any non-MF subgroup of `V`, such as `F` or `T`, also closes the route.
+4. **Status.** The goal stays OPEN. The route shows how much its well-typed form costs: a first non-MF Haagerup
+   group, if the witness is taken inside `V`.
+
+**2026-09-19 (swarm-0917 w15, belief breaker, host-geometry): the mark lives in Thompson V.**
+
+1. **Established.** `leavitt-mark-is-conjugate-into-thompson-v`: under `Delta = GL_20(R) = R^x`, an explicit
+   unit `u` conjugates `z` to the cylinder swap `v = s_00t_01 + s_01t_00 + s_1t_1` of `V`. The proof is Kazhdan-free:
+   Leavitt relations in characteristic two plus `(KH2)`. The identity was checked exactly by
+   `experiments/leavitt-mark-thompson-conjugacy-2026-09-17/check_conjugacy.py`. Characteristic two is essential,
+   because `v = 1 + e'f'` with `f'e' = 1+1 = 0`.
+2. **New decomposition.** `property-t-free-leavitt-via-thompson-v` has the single hole `thompson-v-has-full-mf-radical`,
+   which says that `V` is not MF. That hole is about a Haagerup group, so (T) cannot occur in any proof of it. On this
+   route the (T)-freeness the goal requires is structural, not a matter of bookkeeping. w15-ptl-last1 posted the same
+   hole in parallel as `thompson-v-is-not-mf`. Its closing step differs: simplicity plus the Steinberg lift, where this
+   route uses conjugacy. The two ids should be merged on landing.
+3. **Link to the V hub.** `thompson-v-full-mf-radical-from-nonhyperlinearity` gives `thompson-v-not-hyperlinear`
+   implies `thompson-v-has-full-mf-radical`. The argument is torsion criterion, then scalar kernel trivial by
+   simplicity, then Diracization. So every incoming route of that hub now also serves this goal.
+4. **Limits.** The route is one-directional. An MF `V` kills only this route and the T-free arguments that use
+   relations of `V` alone. The goal stays OPEN.

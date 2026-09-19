@@ -3,7 +3,8 @@ rg: 2
 id: wreath-base-conjugacy-classes-are-finite-multisets
 kind: claim
 title: In a permutational wreath product the conjugacy classes of the base are the finite multisets of base classes, so there are infinitely many of them
-invalidates: [fiber-product-data-via-permutational-wreath]
+invalidates:
+  - fiber-product-data-via-permutational-wreath
 distinct_from:
   fiber-product-conjugation-action-lemma: that computes orbits and stabilizers of the fiber product action on an arbitrary normal subgroup; this computes the conjugacy classes of one specific normal subgroup in one specific family of groups, and its content is that the count is infinite.
   every-wp-group-embeds-in-fp-conjugacy-finite-group: that asks for a finitely presented overgroup with finitely many conjugacy classes; this proves one natural family of candidates never has finitely many, and so is an obstruction to the obvious attack on it rather than a version of it.

@@ -3,9 +3,6 @@ rg: 2
 id: quantum-rigidity-pulls-back-along-local-isometric-quotients
 kind: claim
 title: If a quotient G' → G is injective on D-balls, a G-subshift is D-quantum rigid whenever its pullback to G' is; so rigidity is certified at finite stages of a marked-group limit, while exactness is not, and (RA′) needs a global argument
-requires:
-  - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
-  - roller-compactifications-of-cube-complexes-are-quantum-rigid
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that poses (RA′); this shows that the rigidity side of (RA′) is local, being inherited from any group with the same large balls, so a proof must use minimality or topological freeness over the group itself.
   roller-compactifications-of-cube-complexes-are-quantum-rigid: that proves rigidity over cubulated groups; this transfers such certificates to limit groups (Osajda's non-exact group is a limit of cubulated hyperbolic groups) and records why the Roller certificates themselves do not descend.

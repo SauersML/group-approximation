@@ -3,8 +3,6 @@ rg: 2
 id: natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots
 kind: claim
 title: The natural Q x| <2> lies in the Röver–Nekrashevych product host 2V_H exactly when the self-similar group H contains the binary odometer together with a root of every odd order, and such an H is never contracting, never of polynomial activity, and never finitely generated affine
-requires:
-  - affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q
 distinct_from:
   affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q: that proves the natural copy is in no 2V_H with H a finitely generated subgroup of Aff(Q); this is the exact criterion for EVERY self-similar H <= Aut(T_2), which turns the host question into one question about self-similar groups.
   dilated-registers-are-sealed: that treats register copies of Q; here Q acts through 2-adic translations on colour 1 and the dyadic register of colour 2, and the odd primes sit in the coefficient group.

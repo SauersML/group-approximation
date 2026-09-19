@@ -1,0 +1,746 @@
+R7 fix-sk-leavitt-k2-field-two-action: route without a valid target (None) became a claim
+R7 fix-sk-leavitt-k2-padded-central-matrix-id: route without a valid target (None) became a claim
+R7 fix-sk-leavitt-k2-padded-central-vectors: route without a valid target (None) became a claim
+R7 fix-sk-leavitt-k2-row-column-vec-prod: route without a valid target (None) became a claim
+R7 fix-sk-sk-rows-steinberg-weyl-diagonal: route without a valid target (None) became a claim
+R8 lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map: dropped claim key target
+R1 a2-busemann-transplants-preserve-quantum-rigidity: dropped claim-level requires (routes ['a2-busemann-transplant-rigidity-proof'] carry their own)
+R1 a2-lattice-boundary-skew-shifts-are-quantum-rigid: new route a2-lattice-boundary-skew-shifts-are-quantum-rigid-via-prereqs with its 4 prerequisites
+R1 a2-lattice-phase-seeds-are-quantum-rigid: written OPEN, so its 1 prerequisites went to the body, no route
+R1 a2-lattices-carry-finite-type-seeds: new route a2-lattices-carry-finite-type-seeds-via-prereqs with its 1 prerequisites
+R1 a2-phase-seed-passes-the-separability-test: new route a2-phase-seed-passes-the-separability-test-via-prereqs with its 2 prerequisites
+R1 a2-seed-boundaries-defeat-domination-and-central-splitting: new route a2-seed-boundaries-defeat-domination-and-central-spl-via-prereqs with its 1 prerequisites
+R1 a2-seed-rigidity-reduces-to-its-perfect-boundary: new route a2-seed-rigidity-reduces-to-its-perfect-boundary-via-prereqs with its 2 prerequisites
+R1 aanderaa-cohen-tower-subgroups-are-decidable: dropped claim-level requires (routes ['aanderaa-cohen-tower-subgroups-are-decidable-proof'] carry their own)
+R1 abht-path-folds-accept-exactly-expansive-rational-half-planes: dropped claim-level requires (routes ['one-sided-path-fold-acceptance-proof'] carry their own)
+R1 absorbing-rope-readers-are-not-pointwise-rigid: new route absorbing-rope-readers-are-not-pointwise-rigid-via-prereqs with its 3 prerequisites
+R1 abstract-rover-nekrashevych-groups-are-finitely-presented: dropped claim-level requires (routes ['abstract-rover-nekrashevych-finite-presentation-proof'] carry their own)
+R1 adder-hosts-linearize-odd-odometer-roots: dropped claim-level requires (routes ['adder-hosts-linearize-odd-odometer-roots-proof'] carry their own)
+R1 affine-self-similar-hosts-are-exactly-global-field-linear: new route affine-self-similar-hosts-are-exactly-global-field-l-via-prereqs with its 1 prerequisites
+R1 affine-type-a-structure-groups-give-fp-simple-hosts: new route affine-type-a-structure-groups-give-fp-simple-hosts-via-prereqs with its 3 prerequisites
+R1 al-local-to-global-holds-without-vertex-transitivity: new route al-local-to-global-holds-without-vertex-transitivity-via-prereqs with its 1 prerequisites
+R1 algebraic-interval-exchange-groups-satisfy-boone-higman: new route algebraic-interval-exchange-groups-satisfy-boone-hig-via-prereqs with its 2 prerequisites
+R1 aligned-plane-lifts-share-infinite-level-degeneracy: written OPEN, so its 4 prerequisites went to the body, no route
+R1 amalgams-of-orbit-finite-actions-are-type-a2: new route amalgams-of-orbit-finite-actions-are-type-a2-via-prereqs with its 3 prerequisites
+R1 amir-lazarovich-plus-subgroup-is-perfect: new route amir-lazarovich-plus-subgroup-is-perfect-via-prereqs with its 1 prerequisites
+R1 amir-lazarovich-simple-lattice-has-torsion-iff-index-four: new route amir-lazarovich-simple-lattice-has-torsion-iff-index-via-prereqs with its 1 prerequisites
+R1 annular-free-factor-germ-extensions-fail-bhm-singfix: gave its 1 prerequisites to route annular-free-factor-singfix-colimit-proof
+R1 annular-free-product-germ-hosts-are-not-finitely-presented: gave its 1 prerequisites to route annular-free-product-hosts-not-fp-proof
+R1 annular-hosts-with-free-zoom-germs-are-not-finitely-presented: dropped claim-level requires (routes ['annular-free-zoom-window-equations-proof'] carry their own)
+R1 anticipation-layers-convert-totality-into-isolation: new route anticipation-layers-convert-totality-into-isolation-via-prereqs with its 2 prerequisites
+R1 arithmetic-frames-are-capped-machines-live-in-orbits-not-words: new route arithmetic-frames-are-capped-machines-live-in-orbits-via-prereqs with its 4 prerequisites
+R1 artin-groups-embed-in-decorated-garside-odometer-groups: new route artin-groups-embed-in-decorated-garside-odometer-gro-via-prereqs with its 1 prerequisites
+R1 attracting-boundary-factors-fix-commuting-actions: new route attracting-boundary-factors-fix-commuting-actions-via-prereqs with its 4 prerequisites
+R1 automaton-groups-see-only-smooth-periods: dropped claim-level requires (routes ['automaton-groups-see-only-smooth-periods-proof'] carry their own)
+R1 automorphisms-of-hierarchical-rows-are-virtually-abelian: new route automorphisms-of-hierarchical-rows-are-virtually-abe-via-prereqs with its 7 prerequisites
+R1 ball-helly-graphs-do-not-give-the-horofunction-lemma: new route ball-helly-graphs-do-not-give-the-horofunction-lemma-via-prereqs with its 2 prerequisites
+R1 basilica-fp-amenable-hnn-satisfies-boone-higman: new route basilica-fp-amenable-hnn-satisfies-boone-higman-via-prereqs with its 2 prerequisites
+R1 basilica-fp2-covers-contain-free-subgroups: new route basilica-fp2-covers-contain-free-subgroups-via-prereqs with its 1 prerequisites
+R1 basilica-group-is-not-bi-orderable: new route basilica-group-is-not-bi-orderable-via-prereqs with its 1 prerequisites
+R1 basilica-hnn-has-no-finitely-presented-ascending-base: new route basilica-hnn-has-no-finitely-presented-ascending-bas-via-prereqs with its 3 prerequisites
+R1 basilica-hnn-self-similar-geometry-gives-no-brown-certificate: new route basilica-hnn-self-similar-geometry-gives-no-brown-ce-via-prereqs with its 1 prerequisites
+R1 baum-connes-with-coefficients-separates-boone-higman: new route baum-connes-with-coefficients-separates-boone-higman-via-prereqs with its 3 prerequisites
+R1 baumslag-gersten-group-is-highly-transitive-and-mif: new route baumslag-gersten-group-is-highly-transitive-and-mif-via-prereqs with its 2 prerequisites
+R1 baumslag-gersten-groups-lie-in-class-c: dropped claim-level requires (routes ['baumslag-gersten-class-c-proof'] carry their own)
+R1 baumslag-gersten-in-b-a-from-a-root-separated-shift: new route baumslag-gersten-in-b-a-from-a-root-separated-shift-via-prereqs with its 3 prerequisites
+R1 baumslag-gersten-port-route-fails-at-the-dilation-centralizer: new route baumslag-gersten-port-route-fails-at-the-dilation-ce-via-prereqs with its 3 prerequisites
+R1 baumslag-gersten-seed-forcing-length-is-non-elementary: new route baumslag-gersten-seed-forcing-length-is-non-elementa-via-prereqs with its 3 prerequisites
+R1 baumslag-solitar-chains-of-every-length-lie-in-b-a: written OPEN, so its 4 prerequisites went to the body, no route
+R1 bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid: new route bbmz-host-finiteness-reduces-to-the-vertex-boundary-via-prereqs with its 3 prerequisites
+R1 bffhz-q33-is-normal-finite-generation-of-mixed-identities: dropped claim-level requires (routes ['bffhz-q33-mixed-identities-proof'] carry their own)
+R1 bh-separators-must-omit-nested-decidable-hosts: new route bh-separators-must-omit-nested-decidable-hosts-via-prereqs with its 7 prerequisites
+R1 bhm-corollary-hosts-over-v-are-cover-centralizer-groups: new route bhm-corollary-hosts-over-v-are-cover-centralizer-gro-via-prereqs with its 1 prerequisites
+R1 binary-leavitt-elementary-groups-have-trivial-core-endomorphisms: dropped claim-level requires (routes ['binary-leavitt-trivial-core-endomorphism-proof'] carry their own)
+R1 binary-self-similar-completions-over-free-bases-have-zero-kh: new route binary-self-similar-completions-over-free-bases-have-via-prereqs with its 2 prerequisites
+R1 bishop-schesler-branch-groups-are-annular-hosts-over-v: new route bishop-schesler-branch-groups-are-annular-hosts-over-via-prereqs with its 1 prerequisites
+R1 bishop-schesler-branch-hosts-act-on-no-regular-rooted-tree: new route bishop-schesler-branch-hosts-act-on-no-regular-roote-via-prereqs with its 1 prerequisites
+R1 blind-commutants-of-push-families-in-ct-p-z-are-trivial: new route blind-commutants-of-push-families-in-ct-p-z-are-triv-via-prereqs with its 2 prerequisites
+R1 bm-lattices-have-color-preserving-edge-groups: new route bm-lattices-have-color-preserving-edge-groups-via-prereqs with its 1 prerequisites
+R1 boundary-geometry-needs-a-measure-only-on-its-own-factor: new route boundary-geometry-needs-a-measure-only-on-its-own-fa-via-prereqs with its 1 prerequisites
+R1 boundary-pushout-of-aut-out-free-splits-mod-every-quotient: new route boundary-pushout-of-aut-out-free-splits-mod-every-qu-via-prereqs with its 3 prerequisites
+R1 bounded-determination-simulations-only-realize-sft-shadows: new route bounded-determination-simulations-only-realize-sft-s-via-prereqs with its 1 prerequisites
+R1 bounded-propagation-operads-have-capped-word-problems: new route bounded-propagation-operads-have-capped-word-problem-via-prereqs with its 3 prerequisites
+R1 bounded-refinement-operads-reduce-to-their-carriers: new route bounded-refinement-operads-reduce-to-their-carriers-via-prereqs with its 2 prerequisites
+R1 bounded-root-primes-close-under-extensions-and-geometry: new route bounded-root-primes-close-under-extensions-and-geome-via-prereqs with its 4 prerequisites
+R1 bounded-valence-trees-scale-only-primes-below-the-valence: new route bounded-valence-trees-scale-only-primes-below-the-va-via-prereqs with its 1 prerequisites
+R1 branch-host-v-recodings-need-recurrent-residual-chains: dropped claim-level requires (routes ['branch-host-v-recoding-proof'] carry their own)
+R1 branching-squares-are-the-only-operadic-escape-from-the-cap: written OPEN, so its 3 prerequisites went to the body, no route
+R1 brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups: dropped claim-level requires (routes ['brick-diagonal-ascending-hnn-embedding-proof'] carry their own)
+R1 brick-diagonal-power-conjugacy-forces-zero-drift: dropped claim-level requires (routes ['brick-diagonal-power-conjugacy-zero-drift-proof'] carry their own)
+R1 brin-thompson-nv-needs-n-minus-one-primes-in-ct-z: new route brin-thompson-nv-needs-n-minus-one-primes-in-ct-z-via-prereqs with its 2 prerequisites
+R1 bs-1-minus-m-embeds-in-brin-thompson-3v-for-odd-m: new route bs-1-minus-m-embeds-in-brin-thompson-3v-for-odd-m-via-prereqs with its 2 prerequisites
+R1 bs-quotients-keeping-a-commutator-have-a-commensurated-core: new route bs-quotients-keeping-a-commutator-have-a-commensurat-via-prereqs with its 2 prerequisites
+R1 bs-quotients-keeping-a-commutator-need-distortion: new route bs-quotients-keeping-a-commutator-need-distortion-via-prereqs with its 3 prerequisites
+R1 bs12-rigid-seed-is-its-normal-form: new route bs12-rigid-seed-is-its-normal-form-via-prereqs with its 1 prerequisites
+R1 bs12-twist-hosts-need-dynamical-degrees: new route bs12-twist-hosts-need-dynamical-degrees-via-prereqs with its 2 prerequisites
+R1 building-transplants-pass-the-separability-test: new route building-transplants-pass-the-separability-test-via-prereqs with its 2 prerequisites
+R1 busemann-transplant-minimality-is-horospherical-minimality: new route busemann-transplant-minimality-is-horospherical-mini-via-prereqs with its 3 prerequisites
+R1 busemann-transplants-give-free-sfts-on-building-lattices: new route busemann-transplants-give-free-sfts-on-building-latt-via-prereqs with its 1 prerequisites
+R1 busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: written OPEN, so its 1 prerequisites went to the body, no route
+R1 c2-building-lattices-carry-finite-type-seeds: new route c2-building-lattices-carry-finite-type-seeds-via-prereqs with its 2 prerequisites
+R1 canonical-algebras-embed-in-algebraic-uniform-roe-algebras: written OPEN, so its 1 prerequisites went to the body, no route
+R1 cantor-cover-germ-extension-of-v-is-fp-simple: new route cantor-cover-germ-extension-of-v-is-fp-simple-via-prereqs with its 1 prerequisites
+R1 cantor-gluing-kernel-is-the-union-of-finite-alphabet-kernels: new route cantor-gluing-kernel-is-the-union-of-finite-alphabet-via-prereqs with its 3 prerequisites
+R1 causal-depth-localizes-quantum-noncommutativity: dropped claim-level requires (routes ['causal-depth-localization-proof'] carry their own)
+R1 central-kazhdan-residual-separator-for-boone-higman: new route central-kazhdan-residual-separator-for-boone-higman-via-prereqs with its 11 prerequisites
+R1 centralizer-realizable-subgroups-are-pullback-closed: dropped claim-level requires (routes ['centralizer-realizable-subgroups-are-pullback-closed-proof'] carry their own)
+R1 chain-configurations-need-unboundedly-many-dilation-eigenvalues: new route chain-configurations-need-unboundedly-many-dilation-via-prereqs with its 1 prerequisites
+R1 circle-pl-groups-act-with-type-a-on-breakpoint-orbits: new route circle-pl-groups-act-with-type-a-on-breakpoint-orbit-via-prereqs with its 2 prerequisites
+R1 circle-pl-groups-inherit-finiteness-from-interval-groups: new route circle-pl-groups-inherit-finiteness-from-interval-gr-via-prereqs with its 5 prerequisites
+R1 ck-hole-holds-for-perfect-binary-leavitt-unit-subgroups: new route ck-hole-holds-for-perfect-binary-leavitt-unit-subgro-via-prereqs with its 4 prerequisites
+R1 class-wise-increasing-rcwa-p-groups-are-abelian-cofinite-hosts: new route class-wise-increasing-rcwa-p-groups-are-abelian-cofi-via-prereqs with its 3 prerequisites
+R1 closed-hyperbolic-surface-groups-embed-in-thompson-v: written OPEN, so its 2 prerequisites went to the body, no route
+R1 cmsz-lattices-carry-free-minimal-quantum-rigid-sfts: written CONDITIONAL, so its 5 prerequisites went to the body, no route
+R1 cn-building-lattices-carry-locally-forced-seeds: new route cn-building-lattices-carry-locally-forced-seeds-via-prereqs with its 3 prerequisites
+R1 coarse-embeddability-separates-boone-higman: new route coarse-embeddability-separates-boone-higman-via-prereqs with its 4 prerequisites
+R1 cocompact-tree-end-shift-hosts-are-f-infinity: new route cocompact-tree-end-shift-hosts-are-f-infinity-via-prereqs with its 4 prerequisites
+R1 cofinite-abelian-subgroups-give-relative-pbh: new route cofinite-abelian-subgroups-give-relative-pbh-via-prereqs with its 2 prerequisites
+R1 commutative-cube-degree-maps-force-tree-products: new route commutative-cube-degree-maps-force-tree-products-via-prereqs with its 1 prerequisites
+R1 compiled-bs-stable-letters-are-never-rediagonalized: dropped claim-level requires (routes ['compiled-bs-stable-letters-never-rediagonalized-proof'] carry their own)
+R1 compiled-hnn-stages-are-capped-inside-brin-thompson-groups: new route compiled-hnn-stages-are-capped-inside-brin-thompson-via-prereqs with its 2 prerequisites
+R1 contextual-closure-certifies-quantum-rigidity: new route contextual-closure-certifies-quantum-rigidity-via-prereqs with its 3 prerequisites
+R1 contracting-groups-have-dying-kernel-covers-of-type-fn: written OPEN, so its 1 prerequisites went to the body, no route
+R1 contracting-rsgs-have-no-scaling-germs-at-periodic-tails: new route contracting-rsgs-have-no-scaling-germs-at-periodic-t-via-prereqs with its 1 prerequisites
+R1 conway-amusical-permutation-is-the-full-three-shift: new route conway-amusical-permutation-is-the-full-three-shift-via-prereqs with its 3 prerequisites
+R1 coprime-baumslag-solitar-images-in-va-are-metabelian: new route coprime-baumslag-solitar-images-in-va-are-metabelian-via-prereqs with its 1 prerequisites
+R1 core-marked-gluing-of-relative-seeds: new route core-marked-gluing-of-relative-seeds-via-prereqs with its 1 prerequisites
+R1 coupled-rope-reader-has-nested-one-bit-fibres: new route coupled-rope-reader-has-nested-one-bit-fibres-via-prereqs with its 3 prerequisites
+R1 cross-layer-separable-modifications-kill-quantum-rigidity: new route cross-layer-separable-modifications-kill-quantum-rig-via-prereqs with its 1 prerequisites
+R1 crossing-wire-fixed-point-tile-sets-are-quantum-rigid: dropped claim-level requires (routes ['crossing-wire-fixed-point-tile-sets-are-quantum-rigid-proof'] carry their own)
+R1 crossing-wire-host-fp-reduces-to-three-local-boolean-powers: written OPEN, so its 4 prerequisites went to the body, no route
+R1 crossing-wire-shifts-pass-the-separability-test: new route crossing-wire-shifts-pass-the-separability-test-via-prereqs with its 2 prerequisites
+R1 ct-empty-z-subgroups-satisfy-the-orbit-transversal-dichotomy: new route ct-empty-z-subgroups-satisfy-the-orbit-transversal-d-via-prereqs with its 2 prerequisites
+R1 ct-p-z-acts-on-the-nonnegative-integers-with-type-a: new route ct-p-z-acts-on-the-nonnegative-integers-with-type-a-via-prereqs with its 2 prerequisites
+R1 ct-p-z-groups-are-pairwise-nonisomorphic: new route ct-p-z-groups-are-pairwise-nonisomorphic-via-prereqs with its 1 prerequisites
+R1 ct-p-z-is-not-a-product-shift-full-group: new route ct-p-z-is-not-a-product-shift-full-group-via-prereqs with its 2 prerequisites
+R1 ct-p-z-isomorphism-type-remembers-the-number-of-primes: new route ct-p-z-isomorphism-type-remembers-the-number-of-prim-via-prereqs with its 1 prerequisites
+R1 ct-z-conjugacy-problem-is-undecidable: new route ct-z-conjugacy-problem-is-undecidable-via-prereqs with its 3 prerequisites
+R1 ct-z-finite-cycle-problems-are-undecidable: new route ct-z-finite-cycle-problems-are-undecidable-via-prereqs with its 1 prerequisites
+R1 ct-z-finite-subgroups-are-classified-by-stabilizer-sets: new route ct-z-finite-subgroups-are-classified-by-stabilizer-s-via-prereqs with its 2 prerequisites
+R1 ct-z-invariant-residue-partitions-are-not-conjugacy-invariant: written OPEN, so its 2 prerequisites went to the body, no route
+R1 ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers: new route ct-z-is-the-rcwa-group-fixing-the-nonnegative-intege-via-prereqs with its 1 prerequisites
+R1 ct-z-monomial-elements-have-decidable-torsion: new route ct-z-monomial-elements-have-decidable-torsion-via-prereqs with its 3 prerequisites
+R1 ct-z-normalizers-are-2-and-3-regular: new route ct-z-normalizers-are-2-and-3-regular-via-prereqs with its 2 prerequisites
+R1 ct-z-orbit-transversal-counterexamples-need-unbounded-orbits: new route ct-z-orbit-transversal-counterexamples-need-unbounde-via-prereqs with its 1 prerequisites
+R1 ct-z-orbit-transversal-dichotomy-is-collatz-hard: new route ct-z-orbit-transversal-dichotomy-is-collatz-hard-via-prereqs with its 1 prerequisites
+R1 ct-z-rational-base-machines-carry-a-potential: new route ct-z-rational-base-machines-carry-a-potential-via-prereqs with its 3 prerequisites
+R1 ct-z-residue-partition-certificates-live-on-s-adic-coordinates: new route ct-z-residue-partition-certificates-live-on-s-adic-c-via-prereqs with its 3 prerequisites
+R1 ct-z-residue-partition-question-finite-vs-infinite-reading: new route ct-z-residue-partition-question-finite-vs-infinite-r-via-prereqs with its 5 prerequisites
+R1 ct-z-residue-partitions-cannot-carve-thin-invariant-sets: new route ct-z-residue-partitions-cannot-carve-thin-invariant-via-prereqs with its 2 prerequisites
+R1 ct-z-torsion-certificate-periodic-itinerary: new route ct-z-torsion-certificate-periodic-itinerary-via-prereqs with its 3 prerequisites
+R1 ct-z-torsion-problem-and-the-brin-thompson-transplant: written None, so its 3 prerequisites went to the body, no route
+R1 ct-z-torsion-reduces-to-hyperbolic-primes: new route ct-z-torsion-reduces-to-hyperbolic-primes-via-prereqs with its 4 prerequisites
+R1 ct-z-torsion-reduces-to-parabolic-dynamics: new route ct-z-torsion-reduces-to-parabolic-dynamics-via-prereqs with its 2 prerequisites
+R1 cuntz-stabilized-garside-full-groups-are-f-infinity: dropped claim-level requires (routes ['cuntz-pure-hole-datum-satisfies-li-st-and-lcm', 'cuntz-stabilized-garside-full-groups-f-infinity-proof'] carry their own)
+R1 cyclic-centralizer-subgroups-of-v-touch-attractors: new route cyclic-centralizer-subgroups-of-v-touch-attractors-via-prereqs with its 1 prerequisites
+R1 cylinder-transport-closure-certifies-centrality: new route cylinder-transport-closure-certifies-centrality-via-prereqs with its 2 prerequisites
+R1 decidable-group-with-coarsely-embedded-expanders-exists: new route decidable-group-with-coarsely-embedded-expanders-exi-via-prereqs with its 1 prerequisites
+R1 decidable-groups-embed-in-rigid-sft-compactification-groups: written OPEN, so its 2 prerequisites went to the body, no route
+R1 decidable-host-classes-reduce-to-canonical-kazhdan-groups: new route decidable-host-classes-reduce-to-canonical-kazhdan-g-via-prereqs with its 2 prerequisites
+R1 deligne-lattices-and-torelli-quotients-contain-heisenberg-groups: new route deligne-lattices-and-torelli-quotients-contain-heise-via-prereqs with its 2 prerequisites
+R1 depth-disjoint-spinal-hosts-have-wreath-germ-groups: new route depth-disjoint-spinal-hosts-have-wreath-germ-groups-via-prereqs with its 2 prerequisites
+R1 descending-shell-endomorphisms-have-finite-exponent-centralizers: dropped claim-level requires (routes ['descending-shell-centralizer-proof'] carry their own)
+R1 determinism-closure-certifies-quantum-rigidity: new route determinism-closure-certifies-quantum-rigidity-via-prereqs with its 2 prerequisites
+R1 digit-group-stable-letters-carry-an-anchored-core-seed: new route digit-group-stable-letters-carry-an-anchored-core-se-via-prereqs with its 4 prerequisites
+R1 digit-paths-only-transport-the-halting-core-mark: new route digit-paths-only-transport-the-halting-core-mark-via-prereqs with its 2 prerequisites
+R1 dilated-registers-are-sealed: dropped claim-level requires (routes ['dilated-registers-are-sealed-proof'] carry their own)
+R1 disjoint-edge-splits-have-an-exotic-two-sided-minimal-bound: new route disjoint-edge-splits-have-an-exotic-two-sided-minima-via-prereqs with its 2 prerequisites
+R1 downhill-centrality-needs-no-data-rigidity: new route downhill-centrality-needs-no-data-rigidity-via-prereqs with its 3 prerequisites
+R1 dying-kernel-covers-give-f-n-simple-envelopes: new route dying-kernel-covers-give-f-n-simple-envelopes-via-prereqs with its 3 prerequisites
+R1 dynamically-v-separated-groups-satisfy-boone-higman: dropped claim-level requires (routes ['dynamically-v-separated-host-singfix-proof'] carry their own)
+R1 e-of-finitely-presented-group-is-recursively-presented: written REFUTED, so its 1 prerequisites went to the body, no route
+R1 e2-for-plane-lifts-is-clustered-floating-freedom: written None, so its 4 prerequisites went to the body, no route
+R1 edge-pinned-gluing-reduces-rigidity-to-phantom-determinacy: new route edge-pinned-gluing-reduces-rigidity-to-phantom-deter-via-prereqs with its 1 prerequisites
+R1 edge-split-order-is-not-geometric-refinement: new route edge-split-order-is-not-geometric-refinement-via-prereqs with its 2 prerequisites
+R1 edge-split-ore-iff-synchronization-and-tree-domination: new route edge-split-ore-iff-synchronization-and-tree-dominati-via-prereqs with its 1 prerequisites
+R1 effective-residual-finiteness-separator-for-boone-higman: new route effective-residual-finiteness-separator-for-boone-hi-via-prereqs with its 4 prerequisites
+R1 effectively-rf-groups-have-effective-minimal-free-subshifts: new route effectively-rf-groups-have-effective-minimal-free-su-via-prereqs with its 3 prerequisites
+R1 efrf-groups-frattini-embed-in-efrf-branch-groups: new route efrf-groups-frattini-embed-in-efrf-branch-groups-via-prereqs with its 1 prerequisites
+R1 elementary-shift-group-contains-every-integral-linear-group: new route elementary-shift-group-contains-every-integral-linea-via-prereqs with its 1 prerequisites
+R1 end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups: new route end-shift-codings-of-q-inputs-need-fp-rf-semilocal-v-via-prereqs with its 3 prerequisites
+R1 end-shift-path-covers-are-rigid-with-one-spine: new route end-shift-path-covers-are-rigid-with-one-spine-via-prereqs with its 3 prerequisites
+R1 every-countable-group-has-an-fp2-shell-envelope: written OPEN, so its 1 prerequisites went to the body, no route
+R1 every-decidable-group-is-a-limit-of-isolated-groups: written OPEN, so its 2 prerequisites went to the body, no route
+R1 every-fg-solvable-group-is-a-limit-of-isolated-groups: written OPEN, so its 2 prerequisites went to the body, no route
+R1 every-hyperbolic-group-is-a-limit-of-isolated-groups: written OPEN, so its 1 prerequisites went to the body, no route
+R1 exceptional-key-defect-freedom-needs-seeded-zones: written None, so its 2 prerequisites went to the body, no route
+R1 exponential-growth-groups-admit-no-contracting-block-hierarchies: new route exponential-growth-groups-admit-no-contracting-block-via-prereqs with its 2 prerequisites
+R1 extension-rigidity-is-base-centrality-plus-pointwise-rigidity: dropped claim-level requires (routes ['extension-rigidity-localization-proof'] carry their own)
+R1 f-infinity-tail-ascending-hnns-satisfy-boone-higman: dropped claim-level requires (routes ['last-section-f-infinity-tail-bh-proof'] carry their own)
+R1 fabrykowski-gupta-ascending-hnn-satisfies-boone-higman: new route fabrykowski-gupta-ascending-hnn-satisfies-boone-higm-via-prereqs with its 1 prerequisites
+R1 faithful-finite-index-hnn-upgrades-to-half-tree-free: new route faithful-finite-index-hnn-upgrades-to-half-tree-free-via-prereqs with its 3 prerequisites
+R1 fate-couplings-are-rigid-only-along-directed-implication-chains: new route fate-couplings-are-rigid-only-along-directed-implica-via-prereqs with its 2 prerequisites
+R1 fg-infinite-shift-similar-groups-are-strongly-shift-similar: written OPEN, so its 2 prerequisites went to the body, no route
+R1 fg-soluble-minimax-groups-embed-in-fp-max-n-groups: written OPEN, so its 1 prerequisites went to the body, no route
+R1 finitary-mixing-preserves-type-f-m: new route finitary-mixing-preserves-type-f-m-via-prereqs with its 1 prerequisites
+R1 finitary-perturbations-give-isolated-quotients: new route finitary-perturbations-give-isolated-quotients-via-prereqs with its 3 prerequisites
+R1 finitary-steinberg-extensions-by-oligomorphic-actions-are-fp: new route finitary-steinberg-extensions-by-oligomorphic-action-via-prereqs with its 1 prerequisites
+R1 finite-germ-extensions-with-singular-blocks-are-f-n: new route finite-germ-extensions-with-singular-blocks-are-f-n-via-prereqs with its 2 prerequisites
+R1 finite-hirsch-length-soluble-groups-hold-no-bs-chain: new route finite-hirsch-length-soluble-groups-hold-no-bs-chain-via-prereqs with its 2 prerequisites
+R1 finite-root-prime-splittings-never-create-z-semilocal: new route finite-root-prime-splittings-never-create-z-semiloca-via-prereqs with its 4 prerequisites
+R1 finite-seed-telescope-hosts-are-full-contracting-rsgs: dropped claim-level requires (routes ['finite-seed-telescope-hosts-contracting-rsg-proof'] carry their own)
+R1 finite-type-branch-blow-ups-are-sft-compactifications: new route finite-type-branch-blow-ups-are-sft-compactification-via-prereqs with its 2 prerequisites
+R1 finite-type-e3-prime-hosts-carry-complexity-in-units: new route finite-type-e3-prime-hosts-carry-complexity-in-units-via-prereqs with its 3 prerequisites
+R1 finite-type-operad-groups-split-over-a-label-kernel: written None, so its 1 prerequisites went to the body, no route
+R1 finitely-generated-positive-cones-give-rigid-seeds: new route finitely-generated-positive-cones-give-rigid-seeds-via-prereqs with its 2 prerequisites
+R1 fixed-point-free-rover-nekrashevych-elements-are-conservative: new route fixed-point-free-rover-nekrashevych-elements-are-con-via-prereqs with its 1 prerequisites
+R1 fixed-point-tile-set-rigidity-is-a-bounded-range-test: dropped claim-level requires (routes ['fixed-point-tile-set-rigidity-decimation-proof'] carry their own)
+R1 flagged-pointed-cube-category-resynchronizes-cubulated-actions: dropped claim-level requires (routes ['flagged-pointed-cube-category-proof', 'flagged-pointed-cube-garside-verification'] carry their own)
+R1 fold-host-v-stabilized-full-group-is-finitely-presented: written OPEN, so its 3 prerequisites went to the body, no route
+R1 fold-transfer-theorem-for-fibres-with-a-determining-half-plane: dropped claim-level requires (routes ['fold-transfer-theorem-proof'] carry their own)
+R1 foldable-free-minimal-quantum-rigid-z2-sft-exists: dropped claim-level requires (routes ['foldable-sft-via-diagonal-time-crossing-wire-tiles'] carry their own)
+R1 four-way-deterministic-sft-rigidity-lives-on-axis-faults: new route four-way-deterministic-sft-rigidity-lives-on-axis-fa-via-prereqs with its 2 prerequisites
+R1 fp-annular-germ-groups-are-hnn-recursive: new route fp-annular-germ-groups-are-hnn-recursive-via-prereqs with its 2 prerequisites
+R1 fp-decidable-group-whose-e-is-not-recursively-presented: new route fp-decidable-group-whose-e-is-not-recursively-presen-via-prereqs with its 1 prerequisites
+R1 fp-decidable-vertex-groups-have-fp-stabilizer-engines: written REFUTED, so its 1 prerequisites went to the body, no route
+R1 fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers: written REFUTED, so its 1 prerequisites went to the body, no route
+R1 fp-groups-with-max-n-are-limits-of-isolated-groups: new route fp-groups-with-max-n-are-limits-of-isolated-groups-via-prereqs with its 1 prerequisites
+R1 fp-relatively-simple-pair-with-unsolvable-simple-quotient: new route fp-relatively-simple-pair-with-unsolvable-simple-quo-via-prereqs with its 4 prerequisites
+R1 fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups: written OPEN, so its 3 prerequisites went to the body, no route
+R1 fp-simple-group-census-lies-in-the-permutational-class: new route fp-simple-group-census-lies-in-the-permutational-cla-via-prereqs with its 26 prerequisites
+R1 fp-simple-group-containing-a-non-efrf-residually-finite-group: new route fp-simple-group-containing-a-non-efrf-residually-fin-via-prereqs with its 3 prerequisites
+R1 fp-simple-real-box-map-groups-are-not-universal-hosts: new route fp-simple-real-box-map-groups-are-not-universal-host-via-prereqs with its 2 prerequisites
+R1 fp-stabilizer-engines-need-decidable-vertex-groups: new route fp-stabilizer-engines-need-decidable-vertex-groups-via-prereqs with its 1 prerequisites
+R1 fp-stabilizer-engines-need-fp-vertex-groups: new route fp-stabilizer-engines-need-fp-vertex-groups-via-prereqs with its 3 prerequisites
+R1 fp-strongly-shift-similar-groups-have-fp-houghton-like-groups: dropped claim-level requires (routes ['houghton-like-explicit-presentation-from-fp-g-proof'] carry their own)
+R1 fp-symmetric-operad-groups-lie-in-the-permutational-class: dropped claim-level requires (routes ['symmetric-operad-groups-full-cantor-proof'] carry their own)
+R1 free-actions-in-rover-nekrashevych-hosts-have-zero-drift: written None, so its 2 prerequisites went to the body, no route
+R1 free-minimal-sft-without-two-sided-faults-exists: written OPEN, so its 1 prerequisites went to the body, no route
+R1 free-product-boundary-groupoids-carry-the-vertex-group-homology: new route free-product-boundary-groupoids-carry-the-vertex-gro-via-prereqs with its 5 prerequisites
+R1 free-product-emitter-full-groups-need-isolated-vertex-groups: new route free-product-emitter-full-groups-need-isolated-verte-via-prereqs with its 2 prerequisites
+R1 free-product-gluing-equals-splitting-of-the-gluing-kernel: new route free-product-gluing-equals-splitting-of-the-gluing-k-via-prereqs with its 3 prerequisites
+R1 free-product-gluing-reduces-to-local-transposition-presentation: new route free-product-gluing-reduces-to-local-transposition-p-via-prereqs with its 3 prerequisites
+R1 free-product-hom-orbits-of-relative-automorphisms-are-faithful: dropped claim-level requires (routes ['free-product-hom-orbit-faithfulness-proof'] carry their own)
+R1 free-products-with-z-carry-minimal-topfree-effective-subshifts: new route free-products-with-z-carry-minimal-topfree-effective-via-prereqs with its 7 prerequisites
+R1 free-products-with-z-inherit-m2-from-decidable-free-subshifts: new route free-products-with-z-inherit-m2-from-decidable-free-via-prereqs with its 1 prerequisites
+R1 fw-window-zero-descending-sign-forces-trivial-core: dropped claim-level requires (routes ['fw-window-zero-descending-sign-proof'] carry their own)
+R1 garside-odometer-groups-have-simple-finite-index-commutator: written REFUTED, so its 1 prerequisites went to the body, no route
+R1 generic-shells-have-infinitely-generated-singular-ideals: new route generic-shells-have-infinitely-generated-singular-id-via-prereqs with its 3 prerequisites
+R1 germ-host-class-closed-under-sectioned-ascending-hnns: dropped claim-level requires (routes ['germ-host-class-hnn-closure-proof'] carry their own)
+R1 germ-hosts-contain-no-free-finite-state-tree-groups: new route germ-hosts-contain-no-free-finite-state-tree-groups-via-prereqs with its 1 prerequisites
+R1 germ-steinberg-algebras-over-v-are-fg-central-simple: new route germ-steinberg-algebras-over-v-are-fg-central-simple-via-prereqs with its 2 prerequisites
+R1 gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity: new route gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity-via-prereqs with its 4 prerequisites
+R1 gl-n-q-track-a-sft-has-no-known-finiteness-engine: new route gl-n-q-track-a-sft-has-no-known-finiteness-engine-via-prereqs with its 5 prerequisites
+R1 gluing-kernels-descend-from-the-free-group-full-shift: new route gluing-kernels-descend-from-the-free-group-full-shif-via-prereqs with its 4 prerequisites
+R1 gluing-kernels-descend-from-the-full-shift: new route gluing-kernels-descend-from-the-full-shift-via-prereqs with its 2 prerequisites
+R1 greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs: dropped claim-level requires (routes ['greedy-cube-codings-rsg-proof'] carry their own)
+R1 grigorchuk-envelope-emitter-reduces-to-ie-prime-for-grigorchuk: new route grigorchuk-envelope-emitter-reduces-to-ie-prime-for-via-prereqs with its 3 prerequisites
+R1 grigorchuk-schreier-tip-seeds-a-non-free-orbit: new route grigorchuk-schreier-tip-seeds-a-non-free-orbit-via-prereqs with its 2 prerequisites
+R1 grigorchuk-supergroup-fp-amenable-hnn-satisfies-boone-higman: new route grigorchuk-supergroup-fp-amenable-hnn-satisfies-boon-via-prereqs with its 1 prerequisites
+R1 grigorchuk-tip-subshift-is-not-of-finite-type: new route grigorchuk-tip-subshift-is-not-of-finite-type-via-prereqs with its 2 prerequisites
+R1 grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter: new route grigorchuk-type-vertex-groups-fail-ss-hard-at-the-em-via-prereqs with its 4 prerequisites
+R1 group-algebras-embed-in-shell-essential-algebras: new route group-algebras-embed-in-shell-essential-algebras-via-prereqs with its 3 prerequisites
+R1 group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp: new route group-subshifts-are-quantum-rigid-iff-the-lamp-group-via-prereqs with its 2 prerequisites
+R1 hall-type-prufer-quotients-embed-in-isolated-abels-groups: new route hall-type-prufer-quotients-embed-in-isolated-abels-g-via-prereqs with its 2 prerequisites
+R1 halting-pair-seeds-need-a-two-sided-core-mark: new route halting-pair-seeds-need-a-two-sided-core-mark-via-prereqs with its 2 prerequisites
+R1 hard-cusps-are-canonical-and-flux-free: new route hard-cusps-are-canonical-and-flux-free-via-prereqs with its 1 prerequisites
+R1 hard-evaluation-seeds-with-finitely-presented-full-groups: written OPEN, so its 2 prerequisites went to the body, no route
+R1 hard-slope-thompson-groups-have-no-piecewise-projective-hosts: new route hard-slope-thompson-groups-have-no-piecewise-project-via-prereqs with its 2 prerequisites
+R1 heisenberg-rigid-seed-certifies-only-the-malcev-normal-form: new route heisenberg-rigid-seed-certifies-only-the-malcev-norm-via-prereqs with its 1 prerequisites
+R1 higman-chain-group-lies-in-b-a: written OPEN, so its 5 prerequisites went to the body, no route
+R1 higman-clapham-envelopes-are-hnn-over-machine-times-input: new route higman-clapham-envelopes-are-hnn-over-machine-times-via-prereqs with its 2 prerequisites
+R1 higman-clapham-towers-leave-the-seed-form-at-three-steps: new route higman-clapham-towers-leave-the-seed-form-at-three-s-via-prereqs with its 3 prerequisites
+R1 higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness: new route higman-closure-of-abelian-cofinite-hosts-is-port-fai-via-prereqs with its 2 prerequisites
+R1 higman-group-embeds-in-no-lodha-moore-or-monod-group: new route higman-group-embeds-in-no-lodha-moore-or-monod-group-via-prereqs with its 2 prerequisites
+R1 higman-group-in-b-a-from-a-swap-configuration: new route higman-group-in-b-a-from-a-swap-configuration-via-prereqs with its 3 prerequisites
+R1 hnn-stages-add-no-complexity-beyond-edge-distortion: new route hnn-stages-add-no-complexity-beyond-edge-distortion-via-prereqs with its 2 prerequisites
+R1 homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers: new route homeo-cantor-has-dense-free-subgroups-without-fg-sta-via-prereqs with its 1 prerequisites
+R1 horofunction-atom-configurations-have-finitely-many-types: new route horofunction-atom-configurations-have-finitely-many-via-prereqs with its 1 prerequisites
+R1 horofunction-boundary-homology-reduces-to-the-branch-locus: new route horofunction-boundary-homology-reduces-to-the-branch-via-prereqs with its 1 prerequisites
+R1 horofunction-lemma-holds-for-free-and-surface-groups: new route horofunction-lemma-holds-for-free-and-surface-groups-via-prereqs with its 1 prerequisites
+R1 houghton-like-envelope-fp-pins-the-enumeration-by-near-relators: new route houghton-like-envelope-fp-pins-the-enumeration-by-ne-via-prereqs with its 1 prerequisites
+R1 hyde-lodha-simple-line-groups-lie-in-the-permutational-class: new route hyde-lodha-simple-line-groups-lie-in-the-permutation-via-prereqs with its 4 prerequisites
+R1 hyperbolic-cone-matching-holds-off-the-branch-locus: new route hyperbolic-cone-matching-holds-off-the-branch-locus-via-prereqs with its 3 prerequisites
+R1 hyperbolic-groups-have-fg-subgroups-with-two-double-cosets: new route hyperbolic-groups-have-fg-subgroups-with-two-double-via-prereqs with its 2 prerequisites
+R1 hyperbolic-groups-have-sft-horofunction-compactifications: new route hyperbolic-groups-have-sft-horofunction-compactifica-via-prereqs with its 3 prerequisites
+R1 hyperbolic-groups-lie-in-the-rigid-compactification-class: new route hyperbolic-groups-lie-in-the-rigid-compactification-via-prereqs with its 6 prerequisites
+R1 hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z: new route hyperbolic-measures-give-hyperbolic-periodic-points-via-prereqs with its 2 prerequisites
+R1 hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity: new route hyperbolic-pcf-rational-nekrashevych-groups-are-f-in-via-prereqs with its 1 prerequisites
+R1 hyperbolic-seed-rigidity-is-a-horofunction-boundary-question: new route hyperbolic-seed-rigidity-is-a-horofunction-boundary-via-prereqs with its 5 prerequisites
+R1 hyperplane-extensions-into-davis-lattices-are-split: new route hyperplane-extensions-into-davis-lattices-are-split-via-prereqs with its 1 prerequisites
+R1 incomparable-transposition-lifts-are-equivariant-off-self-swaps: new route incomparable-transposition-lifts-are-equivariant-off-via-prereqs with its 3 prerequisites
+R1 infinite-kazhdan-group-in-wobbling-group-of-product-of-trees: written OPEN, so its 2 prerequisites went to the body, no route
+R1 infinite-shift-similar-groups-need-not-be-strongly-shift-similar: new route infinite-shift-similar-groups-need-not-be-strongly-s-via-prereqs with its 1 prerequisites
+R1 integral-affine-halving-stabilizers-are-finitely-generated: new route integral-affine-halving-stabilizers-are-finitely-gen-via-prereqs with its 2 prerequisites
+R1 integral-affine-structure-group-is-finitely-presented: new route integral-affine-structure-group-is-finitely-presente-via-prereqs with its 1 prerequisites
+R1 integral-counting-group-avoids-leavitt-linear-simple-hosts: dropped claim-level requires (routes ['integral-counting-group-hosts-proof'] carry their own)
+R1 integral-slope-stein-v-groups-are-k-graph-full-groups: new route integral-slope-stein-v-groups-are-k-graph-full-group-via-prereqs with its 2 prerequisites
+R1 interval-exchange-pl-groups-act-with-type-a-on-breakpoints: new route interval-exchange-pl-groups-act-with-type-a-on-break-via-prereqs with its 1 prerequisites
+R1 irrational-slope-v-tau-is-of-type-f-infinity: dropped claim-level requires (routes ['irrational-slope-v-tau-is-of-type-f-infinity-proof'] carry their own)
+R1 isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts: new route isolated-embedding-of-soluble-minimax-groups-via-max-via-prereqs with its 4 prerequisites
+R1 isolated-order-word-problems-are-bounded-by-positive-distortion: new route isolated-order-word-problems-are-bounded-by-positive-via-prereqs with its 1 prerequisites
+R1 isolated-vertex-groups-have-fp-stabilizer-engines: written REFUTED, so its 2 prerequisites went to the body, no route
+R1 jeandel-rao-minimal-subshift-is-morphic-image-of-labbe-shift: dropped claim-level requires (routes ['jeandel-rao-substitutive-structure-citation'] carry their own)
+R1 jeandel-rao-minimal-subshift-is-quantum-rigid-iff-labbe-shift-is: new route jeandel-rao-minimal-subshift-is-quantum-rigid-iff-la-via-prereqs with its 7 prerequisites
+R1 k-local-distance-functions-on-hyperbolic-groups-are-global: new route k-local-distance-functions-on-hyperbolic-groups-are-via-prereqs with its 2 prerequisites
+R1 kazhdan-central-aperiodic-parts-in-2v-carry-no-measure: new route kazhdan-central-aperiodic-parts-in-2v-carry-no-measu-via-prereqs with its 3 prerequisites
+R1 kazhdan-central-elements-of-2v-have-slope-free-periodic-points: new route kazhdan-central-elements-of-2v-have-slope-free-perio-via-prereqs with its 1 prerequisites
+R1 kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds: new route kazhdan-inputs-need-one-ended-nonamenable-wobbling-s-via-prereqs with its 4 prerequisites
+R1 kazhdan-subgroups-of-fp-simple-groups-can-have-infinite-centre: new route kazhdan-subgroups-of-fp-simple-groups-can-have-infin-via-prereqs with its 3 prerequisites
+R1 keyed-slots-bypass-the-phase-field-on-boundary-geometry: written None, so its 2 prerequisites went to the body, no route
+R1 khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts: new route khanh-ara-cortinas-hypotheses-hold-for-leavitt-tenso-via-prereqs with its 3 prerequisites
+R1 kms-metabelian-layer-commensurations-have-finite-order: new route kms-metabelian-layer-commensurations-have-finite-ord-via-prereqs with its 2 prerequisites
+R1 kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices: new route kourovka-21-46-reduces-to-simple-amalgams-of-davis-l-via-prereqs with its 1 prerequisites
+R1 kurosh-relative-seeds-and-the-b1-digit-splitting: new route kurosh-relative-seeds-and-the-b1-digit-splitting-via-prereqs with its 3 prerequisites
+R1 labbe-scale-two-commutation-crosses-faults-at-distance-five: new route labbe-scale-two-commutation-crosses-faults-at-distan-via-prereqs with its 3 prerequisites
+R1 labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two: new route labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two-via-prereqs with its 4 prerequisites
+R1 labelled-hosts-of-free-actions-have-no-contracting-loops: new route labelled-hosts-of-free-actions-have-no-contracting-l-via-prereqs with its 1 prerequisites
+R1 lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square: new route lamplighter-canonical-algebra-embeds-in-leavitt-tens-via-prereqs with its 3 prerequisites
+R1 lampshuffler-bases-lift-no-shift-for-one-ended-inputs: new route lampshuffler-bases-lift-no-shift-for-one-ended-input-via-prereqs with its 1 prerequisites
+R1 leavitt-square-units-have-conp-parity-p-complete-word-problem: dropped claim-level requires (routes ['leavitt-square-units-wp-complexity-proof'] carry their own)
+R1 leavitt-square-units-mod-p-complete-word-problem: dropped claim-level requires (routes ['prime-field-leavitt-square-units-mod-p-proof'] carry their own)
+R1 leavitt-tensor-unit-groups-lie-in-the-permutational-class: new route leavitt-tensor-unit-groups-lie-in-the-permutational-via-prereqs with its 3 prerequisites
+R1 leavitt-tensor-unit-word-problems-have-one-counting-quantifier: dropped claim-level requires (routes ['leavitt-tensor-unit-counting-cap-proof'] carry their own)
+R1 lescure-kh-exact-sequence-for-algebraic-cuntz-pimsner-rings: new route lescure-kh-exact-sequence-for-algebraic-cuntz-pimsne-via-prereqs with its 0 prerequisites
+R1 li-coded-certificates-cannot-reach-hard-sft-hosts: new route li-coded-certificates-cannot-reach-hard-sft-hosts-via-prereqs with its 4 prerequisites
+R1 lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map: written REFUTED, so its 2 prerequisites went to the body, no route
+R1 limit-set-escaping-forces-infinitely-many-double-cosets: new route limit-set-escaping-forces-infinitely-many-double-cos-via-prereqs with its 1 prerequisites
+R1 linear-gate-class-is-product-closed-over-tree-powers: new route linear-gate-class-is-product-closed-over-tree-powers-via-prereqs with its 3 prerequisites
+R1 linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings: new route linear-gate-u-reduces-to-algebraic-uniform-roe-embed-via-prereqs with its 4 prerequisites
+R1 linear-time-rauzy-sets-exist: new route linear-time-rauzy-sets-exist-via-prereqs with its 0 prerequisites
+R1 local-lemma-cannot-certify-multiscale-recurrence: written None, so its 2 prerequisites went to the body, no route
+R1 local-transposition-presentations-follow-from-superperfection: new route local-transposition-presentations-follow-from-superp-via-prereqs with its 3 prerequisites
+R1 locally-finite-splittings-preserve-rigid-sft-compactifications: dropped claim-level requires (routes ['locally-finite-splittings-rigid-compactification-proof'] carry their own)
+R1 locally-finite-tree-end-shifts-are-quantum-rigid-sfts: dropped claim-level requires (routes ['locally-finite-tree-end-shift-rigidity-proof'] carry their own)
+R1 locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions: new route locally-quasiconvex-hyperbolic-groups-have-no-type-a-via-prereqs with its 2 prerequisites
+R1 lodha-simple-circle-group-has-a-type-a-action: new route lodha-simple-circle-group-has-a-type-a-action-via-prereqs with its 1 prerequisites
+R1 machine-labelled-lamp-products-are-nv-centralizers: dropped claim-level requires (routes ['machine-labelled-lamp-products-are-nv-centralizers-proof'] carry their own)
+R1 machine-sheet-rigid-layers-force-zero-entropy-fates: new route machine-sheet-rigid-layers-force-zero-entropy-fates-via-prereqs with its 3 prerequisites
+R1 machine-subgroup-is-core-free-and-draws-the-machine: new route machine-subgroup-is-core-free-and-draws-the-machine-via-prereqs with its 2 prerequisites
+R1 measure-preserving-fibres-block-finite-shadow-bases: new route measure-preserving-fibres-block-finite-shadow-bases-via-prereqs with its 2 prerequisites
+R1 mid-median-bad-cuts-need-a-badly-cut-creating-ancestor: new route mid-median-bad-cuts-need-a-badly-cut-creating-ancest-via-prereqs with its 1 prerequisites
+R1 mihailova-relative-seeds-must-force-across-both-factors: new route mihailova-relative-seeds-must-force-across-both-fact-via-prereqs with its 3 prerequisites
+R1 mikhailova-relative-seeds-push-down-to-bi-seeds: new route mikhailova-relative-seeds-push-down-to-bi-seeds-via-prereqs with its 2 prerequisites
+R1 mikhailova-relative-seeds-reduce-to-two-sided-seeds: new route mikhailova-relative-seeds-reduce-to-two-sided-seeds-via-prereqs with its 3 prerequisites
+R1 minimal-crossing-wire-fixed-point-shift-is-quantum-rigid: dropped claim-level requires (routes ['minimal-crossing-wire-fixed-point-shift-is-quantum-rigid-proof'] carry their own)
+R1 minimal-crossing-wire-shift-finite-factors-are-3-groups: new route minimal-crossing-wire-shift-finite-factors-are-3-gro-via-prereqs with its 1 prerequisites
+R1 minimal-free-sft-overgroups-exist-iff-m2-overgroups-exist: new route minimal-free-sft-overgroups-exist-iff-m2-overgroups-via-prereqs with its 1 prerequisites
+R1 minimal-system-automorphisms-fix-every-proximal-factor: new route minimal-system-automorphisms-fix-every-proximal-fact-via-prereqs with its 4 prerequisites
+R1 minimality-of-codings-is-density-of-determined-points: new route minimality-of-codings-is-density-of-determined-point-via-prereqs with its 4 prerequisites
+R1 mixed-identities-encode-normal-closure-commutation: new route mixed-identities-encode-normal-closure-commutation-via-prereqs with its 1 prerequisites
+R1 modular-machine-mortality-at-infinity-is-uniform: new route modular-machine-mortality-at-infinity-is-uniform-via-prereqs with its 1 prerequisites
+R1 modular-machine-scaling-seed-reads-regular-numerals: new route modular-machine-scaling-seed-reads-regular-numerals-via-prereqs with its 3 prerequisites
+R1 monomial-leavitt-commutants-in-tree-roe-algebras-are-amenable: new route monomial-leavitt-commutants-in-tree-roe-algebras-are-via-prereqs with its 2 prerequisites
+R1 monomial-leavitt-units-are-never-self-doubling: new route monomial-leavitt-units-are-never-self-doubling-via-prereqs with its 1 prerequisites
+R1 monomial-renormalization-compiler-gives-dilation-groups-in-nv: dropped claim-level requires (routes ['monomial-renormalization-compiler-proof'] carry their own)
+R1 n-adic-lodha-moore-groups-have-no-analytic-tree-coding: dropped claim-level requires (routes ['n-adic-lodha-moore-groups-have-no-analytic-tree-coding-proof'] carry their own)
+R1 natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots: dropped claim-level requires (routes ['natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots-proof'] carry their own)
+R1 negative-base-pisot-stein-groups-are-contracting-rsgs: dropped claim-level requires (routes ['negative-base-pisot-stein-groups-are-contracting-rsgs-proof'] carry their own)
+R1 negative-base-pisot-stein-groups-are-finitely-presented: new route negative-base-pisot-stein-groups-are-finitely-presen-via-prereqs with its 4 prerequisites
+R1 no-free-q-odd-action-by-v-has-a-doubling-intertwiner: new route no-free-q-odd-action-by-v-has-a-doubling-intertwiner-via-prereqs with its 1 prerequisites
+R1 no-nontrivial-germ-is-shift-conjugate-to-a-proper-power: new route no-nontrivial-germ-is-shift-conjugate-to-a-proper-po-via-prereqs with its 1 prerequisites
+R1 no-two-sided-fault-sfts-have-rich-strips-in-all-directions: new route no-two-sided-fault-sfts-have-rich-strips-in-all-dire-via-prereqs with its 2 prerequisites
+R1 non-amenable-scaffolds-absorb-the-leavitt-factor: new route non-amenable-scaffolds-absorb-the-leavitt-factor-via-prereqs with its 3 prerequisites
+R1 nonascending-hnn-end-shifts-satisfy-e3-prime: dropped claim-level requires (routes ['nonascending-hnn-end-shifts-satisfy-e3-prime-proof'] carry their own)
+R1 nonorientable-surface-word-stabilizers-infinite-double-cosets: new route nonorientable-surface-word-stabilizers-infinite-doub-via-prereqs with its 2 prerequisites
+R1 nonrecursive-a2-kernel-makes-e-of-wreath-not-rec-presented: new route nonrecursive-a2-kernel-makes-e-of-wreath-not-rec-pre-via-prereqs with its 2 prerequisites
+R1 nonzero-euler-characteristic-forbids-endomorphism-inflations: new route nonzero-euler-characteristic-forbids-endomorphism-in-via-prereqs with its 2 prerequisites
+R1 numeral-readers-on-the-scaling-seed-are-rigid-iff-definite: new route numeral-readers-on-the-scaling-seed-are-rigid-iff-de-via-prereqs with its 3 prerequisites
+R1 nv-machines-realize-linear-time-lamp-centralizers: dropped claim-level requires (routes ['nv-machines-realize-linear-time-lamp-centralizers-proof'] carry their own)
+R1 nv-realizable-systems-closed-under-kakutani-equivalence: new route nv-realizable-systems-closed-under-kakutani-equivale-via-prereqs with its 2 prerequisites
+R1 odd-smart-induced-map-has-height-m-renormalization: new route odd-smart-induced-map-has-height-m-renormalization-via-prereqs with its 2 prerequisites
+R1 odometer-root-hosts-are-non-affine-and-non-contracting: new route odometer-root-hosts-are-non-affine-and-non-contracti-via-prereqs with its 1 prerequisites
+R1 oligomorphic-operads-have-f-infinity-groups: written OPEN, so its 3 prerequisites went to the body, no route
+R1 one-coordinate-registers-admit-no-dilation: dropped claim-level requires (routes ['one-coordinate-registers-admit-no-dilation-proof'] carry their own)
+R1 one-scale-filling-decides-fp-of-v-times-subshift-hosts: written None, so its 2 prerequisites went to the body, no route
+R1 order-seeds-are-rigid-relative-seeds: new route order-seeds-are-rigid-relative-seeds-via-prereqs with its 1 prerequisites
+R1 order-seeds-transfer-computable-orders: new route order-seeds-transfer-computable-orders-via-prereqs with its 2 prerequisites
+R1 out-ct-p-z-is-c2: new route out-ct-p-z-is-c2-via-prereqs with its 6 prerequisites
+R1 out-ct-z-is-c2-iff-normalizers-are-somewhere-affine: new route out-ct-z-is-c2-iff-normalizers-are-somewhere-affine-via-prereqs with its 2 prerequisites
+R1 out-ct-z-is-c2: new route out-ct-z-is-c2-via-prereqs with its 2 prerequisites
+R1 out-free-double-coset-finite-subgroups-have-dense-limit-sets: new route out-free-double-coset-finite-subgroups-have-dense-li-via-prereqs with its 2 prerequisites
+R1 out-free-extension-pushed-into-the-boundary-full-group: new route out-free-extension-pushed-into-the-boundary-full-gro-via-prereqs with its 1 prerequisites
+R1 out-free-pair-finite-stabilizers-contain-fully-irreducibles: new route out-free-pair-finite-stabilizers-contain-fully-irred-via-prereqs with its 1 prerequisites
+R1 out-free-pip-actions-need-dimension-two-and-genuine-pieces: new route out-free-pip-actions-need-dimension-two-and-genuine-via-prereqs with its 1 prerequisites
+R1 outer-extensions-of-fp-steinberg-groupoids-need-no-rigidity: new route outer-extensions-of-fp-steinberg-groupoids-need-no-r-via-prereqs with its 2 prerequisites
+R1 paradoxical-subshifts-are-never-quantum-rigid: new route paradoxical-subshifts-are-never-quantum-rigid-via-prereqs with its 2 prerequisites
+R1 partial-torus-abels-quotients-are-finitely-presented-with-max-n: written REFUTED, so its 2 prerequisites went to the body, no route
+R1 partial-torus-abels-quotients-are-isolated: new route partial-torus-abels-quotients-are-isolated-via-prereqs with its 1 prerequisites
+R1 path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is: dropped claim-level requires (routes ['path-folded-sft-rigidity-pullback-proof'] carry their own)
+R1 path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid: dropped claim-level requires (routes ['path-fold-rigidity-transfer-proof'] carry their own)
+R1 pbh-coset-closure-passes-to-finite-index-overgroups: new route pbh-coset-closure-passes-to-finite-index-overgroups-via-prereqs with its 2 prerequisites
+R1 pbh-via-degree-monoid-boundary-full-groups: new route pbh-via-degree-monoid-boundary-full-groups-via-prereqs with its 2 prerequisites
+R1 pentagon-reflection-group-fails-cone-matching-at-wall-ends: written None, so its 1 prerequisites went to the body, no route
+R1 permutational-boone-higman-iff-dense-cantor-actors: new route permutational-boone-higman-iff-dense-cantor-actors-via-prereqs with its 2 prerequisites
+R1 perron-recovers-free-group-boundary-full-groups: new route perron-recovers-free-group-boundary-full-groups-via-prereqs with its 2 prerequisites
+R1 perron-substitution-finiteness-for-garside-full-groups: dropped claim-level requires (routes ['perron-substitution-finiteness-proof'] carry their own)
+R1 perron-weights-do-not-give-li-finiteness: dropped claim-level requires (routes ['perron-weights-do-not-give-li-finiteness-proof'] carry their own)
+R1 piecewise-groups-quasi-retract-onto-a-locally-faithful-base: new route piecewise-groups-quasi-retract-onto-a-locally-faithf-via-prereqs with its 1 prerequisites
+R1 piecewise-representative-lifts-are-rigid-under-cheap-moves: new route piecewise-representative-lifts-are-rigid-under-cheap-via-prereqs with its 2 prerequisites
+R1 piecewise-translation-z2-enumerations-are-not-fp: new route piecewise-translation-z2-enumerations-are-not-fp-via-prereqs with its 4 prerequisites
+R1 pinned-annular-passengers-are-class-functions-of-the-driver: new route pinned-annular-passengers-are-class-functions-of-the-via-prereqs with its 2 prerequisites
+R1 pinned-passengers-collapse-when-the-shifted-system-is-solvable: new route pinned-passengers-collapse-when-the-shifted-system-i-via-prereqs with its 3 prerequisites
+R1 pisot-box-exchange-groups-satisfy-boone-higman: new route pisot-box-exchange-groups-satisfy-boone-higman-via-prereqs with its 2 prerequisites
+R1 pisot-interval-exchange-groups-satisfy-boone-higman: new route pisot-interval-exchange-groups-satisfy-boone-higman-via-prereqs with its 1 prerequisites
+R1 pisot-number-slope-stein-groups-are-contracting-rsgs: dropped claim-level requires (routes ['pisot-number-slope-stein-groups-are-contracting-rsgs-proof'] carry their own)
+R1 pisot-stein-groups-are-contracting-rsgs: dropped claim-level requires (routes ['pisot-stein-groups-are-contracting-rsgs-proof'] carry their own)
+R1 pisot-unit-slope-stein-groups-are-finitely-presented: new route pisot-unit-slope-stein-groups-are-finitely-presented-via-prereqs with its 2 prerequisites
+R1 plane-constant-simulation-computation-layers-are-quantum-rigid: written OPEN, so its 2 prerequisites went to the body, no route
+R1 plane-local-freedom-kills-rigidity-of-plane-lifts: written None, so its 2 prerequisites went to the body, no route
+R1 pointed-cube-bisection-locus-is-the-regular-boundary: dropped claim-level requires (routes ['pointed-cube-bisection-locus-proof'] carry their own)
+R1 pointed-cube-categories-are-li-garside-categories: dropped claim-level requires (routes ['pointed-cube-categories-li-garside-proof'] carry their own)
+R1 port-amalgams-with-a-locally-moving-factor-are-never-faithful: new route port-amalgams-with-a-locally-moving-factor-are-never-via-prereqs with its 1 prerequisites
+R1 prime-odometer-groups-generate-class-wise-increasing-rcwa-p: new route prime-odometer-groups-generate-class-wise-increasing-via-prereqs with its 3 prerequisites
+R1 profinite-translation-hosts-preserve-levels: new route profinite-translation-hosts-preserve-levels-via-prereqs with its 1 prerequisites
+R1 projective-leavitt-tensor-units-lie-in-the-permutational-class: new route projective-leavitt-tensor-units-lie-in-the-permutati-via-prereqs with its 6 prerequisites
+R1 q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding: new route q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding-via-prereqs with its 2 prerequisites
+R1 quadratic-interval-exchange-full-groups-satisfy-boone-higman: new route quadratic-interval-exchange-full-groups-satisfy-boon-via-prereqs with its 1 prerequisites
+R1 quantum-rigid-minimal-topfree-subshift-actions-are-amenable: written OPEN, so its 2 prerequisites went to the body, no route
+R1 quantum-rigid-subshifts-cluster-the-modifications-of-each-point: new route quantum-rigid-subshifts-cluster-the-modifications-of-via-prereqs with its 2 prerequisites
+R1 quantum-rigidity-is-decided-on-the-derived-subshift: dropped claim-level requires (routes ['quantum-rigidity-derived-subshift-proof'] carry their own)
+R1 quantum-rigidity-is-not-closed-under-fibre-products: dropped claim-level requires (routes ['fibre-product-rigidity-kill-and-transport-proof'] carry their own)
+R1 quantum-rigidity-passes-to-subshifts: new route quantum-rigidity-passes-to-subshifts-via-prereqs with its 2 prerequisites
+R1 quantum-rigidity-pulls-back-along-local-isometric-quotients: new route quantum-rigidity-pulls-back-along-local-isometric-qu-via-prereqs with its 2 prerequisites
+R1 ra-counterexamples-are-minimal-sets-of-rigid-ambients: new route ra-counterexamples-are-minimal-sets-of-rigid-ambient-via-prereqs with its 4 prerequisites
+R1 raag-cube-codings-fail-li-multiplicity-at-every-power: new route raag-cube-codings-fail-li-multiplicity-at-every-powe-via-prereqs with its 2 prerequisites
+R1 rank-three-edge-split-spine-closes-at-twelve-pieces: written None, so its 1 prerequisites went to the body, no route
+R1 rational-frame-operads-are-capped-whatever-their-spine: written OPEN, so its 4 prerequisites went to the body, no route
+R1 rcwa-groups-satisfy-boone-higman: dropped claim-level requires (routes ['rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof'] carry their own)
+R1 rcwa-groups-satisfy-permutational-boone-higman: new route rcwa-groups-satisfy-permutational-boone-higman-via-prereqs with its 3 prerequisites
+R1 rcwa-z-generated-by-class-shifts-reflections-transpositions: new route rcwa-z-generated-by-class-shifts-reflections-transpo-via-prereqs with its 2 prerequisites
+R1 recognizable-morphisms-collapse-quantum-rigidity-to-one-scale: dropped claim-level requires (routes ['recognizable-morphism-scale-collapse-proof'] carry their own)
+R1 recognizable-morphisms-give-kakutani-equivalent-z2-groupoids: dropped claim-level requires (routes ['recognizable-morphism-kakutani-equivalence-proof'] carry their own)
+R1 reflection-group-atoms-are-roller-cylinders-and-need-walls: new route reflection-group-atoms-are-roller-cylinders-and-need-via-prereqs with its 2 prerequisites
+R1 reid-higman-thompson-variant-d-zero-abelianization: new route reid-higman-thompson-variant-d-zero-abelianization-via-prereqs with its 1 prerequisites
+R1 relational-spine-couplings-are-splittable-or-not-minimal: new route relational-spine-couplings-are-splittable-or-not-min-via-prereqs with its 3 prerequisites
+R1 relative-seeds-descend-to-quotients-and-consume-membership: new route relative-seeds-descend-to-quotients-and-consume-memb-via-prereqs with its 2 prerequisites
+R1 relative-seeds-glue-graphs-of-groups-into-class-c: dropped claim-level requires (routes ['relative-seeds-glue-graphs-of-groups-proof'] carry their own)
+R1 relative-seeds-lift-along-finitely-generated-normal-subgroups: new route relative-seeds-lift-along-finitely-generated-normal-via-prereqs with its 3 prerequisites
+R1 relative-seeds-on-free-groups-have-fg-stabilizers: new route relative-seeds-on-free-groups-have-fg-stabilizers-via-prereqs with its 2 prerequisites
+R1 relative-seeds-over-free-products-have-finite-ropes: new route relative-seeds-over-free-products-have-finite-ropes-via-prereqs with its 2 prerequisites
+R1 renormalizable-thompson-elements-give-negative-baumslag-solitar: new route renormalizable-thompson-elements-give-negative-baums-via-prereqs with its 1 prerequisites
+R1 reordered-aanderaa-cohen-tower-has-fg-associated-subgroups: new route reordered-aanderaa-cohen-tower-has-fg-associated-sub-via-prereqs with its 2 prerequisites
+R1 residual-chains-with-finite-recurrences-give-fp-branch-hosts: written OPEN, so its 1 prerequisites went to the body, no route
+R1 residual-solvability-reduces-cgp-question-1-to-question-3: new route residual-solvability-reduces-cgp-question-1-to-quest-via-prereqs with its 2 prerequisites
+R1 rf-toeplitz-subshifts-from-normal-chains-are-free: new route rf-toeplitz-subshifts-from-normal-chains-are-free-via-prereqs with its 1 prerequisites
+R1 rigid-anticipation-needs-scale-bounded-fault-detection: new route rigid-anticipation-needs-scale-bounded-fault-detecti-via-prereqs with its 2 prerequisites
+R1 rigid-fa-groups-reach-bliw-trees-only-with-infinite-index: new route rigid-fa-groups-reach-bliw-trees-only-with-infinite-via-prereqs with its 1 prerequisites
+R1 rigid-seed-constructions-pass-the-separability-test: new route rigid-seed-constructions-pass-the-separability-test-via-prereqs with its 2 prerequisites
+R1 rigid-seed-decorations-compute-only-where-rogue-walks-fill-space: new route rigid-seed-decorations-compute-only-where-rogue-walk-via-prereqs with its 3 prerequisites
+R1 rigid-subshift-amenability-from-coherent-variation-caps: new route rigid-subshift-amenability-from-coherent-variation-c-via-prereqs with its 3 prerequisites
+R1 rigid-subshifts-over-free-factors-are-tight-almost-everywhere: new route rigid-subshifts-over-free-factors-are-tight-almost-e-via-prereqs with its 2 prerequisites
+R1 rigid-subshifts-without-isolated-points-factor-onto-the-ends: new route rigid-subshifts-without-isolated-points-factor-onto-via-prereqs with its 1 prerequisites
+R1 ring-gate-k1-clause-is-unstable: new route ring-gate-k1-clause-is-unstable-via-prereqs with its 3 prerequisites
+R1 roller-compactifications-of-cube-complexes-are-quantum-rigid: new route roller-compactifications-of-cube-complexes-are-quant-via-prereqs with its 2 prerequisites
+R1 roller-compactifications-of-cube-complexes-are-sfts: new route roller-compactifications-of-cube-complexes-are-sfts-via-prereqs with its 2 prerequisites
+R1 rope-readers-cannot-be-deterministic-and-must-couple-chains: new route rope-readers-cannot-be-deterministic-and-must-couple-via-prereqs with its 2 prerequisites
+R1 s-integral-affine-structure-group-is-finitely-presented: new route s-integral-affine-structure-group-is-finitely-presen-via-prereqs with its 2 prerequisites
+R1 s-integral-splitting-stabilizers-are-finitely-generated: new route s-integral-splitting-stabilizers-are-finitely-genera-via-prereqs with its 2 prerequisites
+R1 scale-periodic-bs-chain-germ-representations-are-not-faithful: new route scale-periodic-bs-chain-germ-representations-are-not-via-prereqs with its 1 prerequisites
+R1 seed-collapse-is-bounded-by-forcing-radius-and-dehn: new route seed-collapse-is-bounded-by-forcing-radius-and-dehn-via-prereqs with its 1 prerequisites
+R1 seed-compactifications-dominate-the-end-compactification: new route seed-compactifications-dominate-the-end-compactifica-via-prereqs with its 2 prerequisites
+R1 seed-evaluation-is-bounded-by-the-forcing-radius: new route seed-evaluation-is-bounded-by-the-forcing-radius-via-prereqs with its 1 prerequisites
+R1 seed-full-group-finite-presentation-lives-on-the-boundary: new route seed-full-group-finite-presentation-lives-on-the-bou-via-prereqs with its 3 prerequisites
+R1 seed-full-groups-act-oligomorphically-on-the-seed-orbit: new route seed-full-groups-act-oligomorphically-on-the-seed-or-via-prereqs with its 2 prerequisites
+R1 seed-full-groups-surject-onto-boundary-full-groups: new route seed-full-groups-surject-onto-boundary-full-groups-via-prereqs with its 2 prerequisites
+R1 seeded-groups-have-solvable-word-problem: new route seeded-groups-have-solvable-word-problem-via-prereqs with its 1 prerequisites
+R1 seeded-transport-codings-over-end-flows-are-quantum-rigid: dropped claim-level requires (routes ['seeded-transport-rigidity-downhill-proof'] carry their own)
+R1 seeds-never-survive-marked-approximation: new route seeds-never-survive-marked-approximation-via-prereqs with its 1 prerequisites
+R1 seeds-record-every-bass-serre-pointer: new route seeds-record-every-bass-serre-pointer-via-prereqs with its 3 prerequisites
+R1 seeds-with-bounded-spread-pointer-readings-are-never-scattered: new route seeds-with-bounded-spread-pointer-readings-are-never-via-prereqs with its 2 prerequisites
+R1 self-similar-sft-thin-walls-refute-quantum-rigidity: dropped claim-level requires (routes ['self-similar-sft-thin-wall-substitution-proof'] carry their own)
+R1 self-simulating-hosts-over-one-ended-parse-shifts: written OPEN, so its 3 prerequisites went to the body, no route
+R1 several-ascending-letters-reduce-to-amalgams-over-the-base: new route several-ascending-letters-reduce-to-amalgams-over-th-via-prereqs with its 1 prerequisites
+R1 sft-isolated-points-are-finite-state-across-finite-edge-groups: dropped claim-level requires (routes ['sft-isolated-points-finite-edge-groups-proof'] carry their own)
+R1 sfts-without-two-sided-faults-are-quantum-rigid: dropped claim-level requires (routes ['sfts-without-two-sided-faults-rigidity-proof'] carry their own)
+R1 sheet-downhill-makes-the-tree-part-of-glued-seeds-rigidity-free: new route sheet-downhill-makes-the-tree-part-of-glued-seeds-ri-via-prereqs with its 3 prerequisites
+R1 shell-a1-ascends-when-the-gate-points-toward-p: dropped claim-level requires (routes ['shell-a1-ascends-when-the-gate-points-toward-p-proof'] carry their own)
+R1 shell-germ-algebra-fp-forces-bounded-germ-presentation: new route shell-germ-algebra-fp-forces-bounded-germ-presentati-via-prereqs with its 2 prerequisites
+R1 shell-germ-essential-algebras-are-central-simple: new route shell-germ-essential-algebras-are-central-simple-via-prereqs with its 3 prerequisites
+R1 shell-germ-singular-ideal-is-generated-at-the-singular-point: new route shell-germ-singular-ideal-is-generated-at-the-singul-via-prereqs with its 3 prerequisites
+R1 shell-germ-singular-ideal-is-the-boundary-annihilator: new route shell-germ-singular-ideal-is-the-boundary-annihilato-via-prereqs with its 1 prerequisites
+R1 shell-germ-steinberg-algebra-is-finitely-presented: written OPEN, so its 2 prerequisites went to the body, no route
+R1 shell-germ-steinberg-algebras-are-never-simple: new route shell-germ-steinberg-algebras-are-never-simple-via-prereqs with its 3 prerequisites
+R1 shell-one-point-groups-are-ascending-hnn-over-window-lifts: new route shell-one-point-groups-are-ascending-hnn-over-window-via-prereqs with its 2 prerequisites
+R1 shift-similar-germ-groups-are-ascending-hnn-extensions: new route shift-similar-germ-groups-are-ascending-hnn-extensio-via-prereqs with its 3 prerequisites
+R1 simple-inputs-have-finitely-presented-stabilizer-engines: written REFUTED, so its 1 prerequisites went to the body, no route
+R1 simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations: new route simple-inputs-in-wobbling-hosts-are-dense-schreier-r-via-prereqs with its 2 prerequisites
+R1 slice-attractors-of-spatial-2v-must-expand: new route slice-attractors-of-spatial-2v-must-expand-via-prereqs with its 2 prerequisites
+R1 smart-level-zero-return-map-has-free-divergence: new route smart-level-zero-return-map-has-free-divergence-via-prereqs with its 1 prerequisites
+R1 smart-renormalization-admits-no-graded-basins: new route smart-renormalization-admits-no-graded-basins-via-prereqs with its 2 prerequisites
+R1 smart-trace-full-group-embeds-in-brin-thompson-2v: new route smart-trace-full-group-embeds-in-brin-thompson-2v-via-prereqs with its 4 prerequisites
+R1 some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup: written OPEN, so its 4 prerequisites went to the body, no route
+R1 some-median-is-single-cut-at-the-centroid: new route some-median-is-single-cut-at-the-centroid-via-prereqs with its 1 prerequisites
+R1 spatial-2v-in-affine-hosts-needs-unbounded-fibres: new route spatial-2v-in-affine-hosts-needs-unbounded-fibres-via-prereqs with its 3 prerequisites
+R1 splitting-categories-are-connected-iff-root-graphs-are: new route splitting-categories-are-connected-iff-root-graphs-a-via-prereqs with its 2 prerequisites
+R1 splitting-kills-the-finite-shadow-parity-of-the-gluing-group: new route splitting-kills-the-finite-shadow-parity-of-the-glui-via-prereqs with its 2 prerequisites
+R1 square-spiral-z2-enumeration-is-ball-rigid: new route square-spiral-z2-enumeration-is-ball-rigid-via-prereqs with its 2 prerequisites
+R1 stabilizer-engines-are-fp-only-over-isolated-groups: new route stabilizer-engines-are-fp-only-over-isolated-groups-via-prereqs with its 2 prerequisites
+R1 stabilizer-engines-embed-in-every-branch-compactification: new route stabilizer-engines-embed-in-every-branch-compactific-via-prereqs with its 3 prerequisites
+R1 stabilizer-engines-need-finitely-discriminable-vertex-groups: new route stabilizer-engines-need-finitely-discriminable-verte-via-prereqs with its 3 prerequisites
+R1 stabilizer-engines-need-torsion-vertex-groups: new route stabilizer-engines-need-torsion-vertex-groups-via-prereqs with its 4 prerequisites
+R1 stabilizer-engines-of-non-fp-simple-groups-are-not-fp: new route stabilizer-engines-of-non-fp-simple-groups-are-not-f-via-prereqs with its 2 prerequisites
+R1 stein-v-groups-act-with-type-a-on-breakpoints: dropped claim-level requires (routes ['stein-v-groups-act-with-type-a-on-breakpoints-proof'] carry their own)
+R1 steinberg-fp-is-a-kakutani-invariant: dropped claim-level requires (routes ['steinberg-fp-is-a-kakutani-invariant-proof'] carry their own)
+R1 strand-map-bases-lift-only-bounded-displacement-letters: new route strand-map-bases-lift-only-bounded-displacement-lett-via-prereqs with its 2 prerequisites
+R1 strongly-shift-similar-point-stabilizers-are-copies-of-the-group: new route strongly-shift-similar-point-stabilizers-are-copies-via-prereqs with its 1 prerequisites
+R1 strongly-shift-similar-type-f-m-passes-to-houghton-like-groups: new route strongly-shift-similar-type-f-m-passes-to-houghton-l-via-prereqs with its 3 prerequisites
+R1 subshift-automorphisms-are-outer-over-icc-scaffolds: new route subshift-automorphisms-are-outer-over-icc-scaffolds-via-prereqs with its 1 prerequisites
+R1 substitution-inflation-hosts-are-full-contracting-rsgs: dropped claim-level requires (routes ['substitution-inflation-hosts-contracting-rsg-proof'] carry their own)
+R1 substitution-tiles-hold-bounded-information: written None, so its 3 prerequisites went to the body, no route
+R1 support-constraints-on-v-subgroups-cannot-see-one-endedness: new route support-constraints-on-v-subgroups-cannot-see-one-en-via-prereqs with its 1 prerequisites
+R1 surface-word-stabilizers-have-infinitely-many-double-cosets: new route surface-word-stabilizers-have-infinitely-many-double-via-prereqs with its 1 prerequisites
+R1 sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices: written CONDITIONAL, so its 3 prerequisites went to the body, no route
+R1 sw-minimal-crossing-wire-shift-is-rigid: written None, so its 2 prerequisites went to the body, no route
+R1 symmetric-ore-operads-containing-their-carrier-are-full-groups: new route symmetric-ore-operads-containing-their-carrier-are-f-via-prereqs with its 4 prerequisites
+R1 t-check-contains-no-q-rtimes-2-z: dropped claim-level requires (routes ['t-check-contains-no-q-rtimes-2-z-proof'] carry their own)
+R1 telescope-fixed-points-are-singular-on-a-parse-shift: dropped claim-level requires (routes ['telescope-fixed-points-parse-shift-proof'] carry their own)
+R1 telescopic-germ-bases-in-v-germ-extensions-are-v-separated: dropped claim-level requires (routes ['telescopic-germ-bases-dynamically-v-separated-proof'] carry their own)
+R1 the-aanderaa-cohen-rope-is-the-digit-letter-orbit-of-one-element: new route the-aanderaa-cohen-rope-is-the-digit-letter-orbit-of-via-prereqs with its 2 prerequisites
+R1 thin-cycles-decide-li-packing: dropped claim-level requires (routes ['thin-cycles-decide-li-packing-proof'] carry their own)
+R1 thompson-f-free-groups-closed-under-extensions-and-unions: new route thompson-f-free-groups-closed-under-extensions-and-u-via-prereqs with its 1 prerequisites
+R1 thompson-t-e-fails-on-closed-set-permutation-modules: new route thompson-t-e-fails-on-closed-set-permutation-modules-via-prereqs with its 1 prerequisites
+R1 thompson-t-e-fails-on-multipoint-permutation-modules: new route thompson-t-e-fails-on-multipoint-permutation-modules-via-prereqs with its 1 prerequisites
+R1 thompson-t-identities-hold-in-circle-orbit-wreath-overgroups: new route thompson-t-identities-hold-in-circle-orbit-wreath-ov-via-prereqs with its 1 prerequisites
+R1 thompson-t-identities-hold-on-linearized-blow-ups: new route thompson-t-identities-hold-on-linearized-blow-ups-via-prereqs with its 1 prerequisites
+R1 thompson-t-identities-one-word-basis-over-cantor-overgroups: dropped claim-level requires (routes ['thompson-t-identities-one-word-basis-proof'] carry their own)
+R1 thompson-t-mixed-identities-are-not-finitely-normally-generated: dropped claim-level requires (routes ['thompson-t-mixed-identities-not-fng-proof'] carry their own)
+R1 thumann-finiteness-without-finite-type: new route thumann-finiteness-without-finite-type-via-prereqs with its 2 prerequisites
+R1 time-lift-actors-carry-no-complexity-beyond-row-language: new route time-lift-actors-carry-no-complexity-beyond-row-lang-via-prereqs with its 2 prerequisites
+R1 time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows: new route time-lifts-reduce-ra-prime-to-automorphism-groups-of-via-prereqs with its 5 prerequisites
+R1 topologically-free-subshift-full-groups-force-quantum-rigidity: new route topologically-free-subshift-full-groups-force-quantu-via-prereqs with its 1 prerequisites
+R1 torelli-lower-central-quotients-are-not-residually-finite: dropped claim-level requires (routes ['torelli-lower-central-quotients-not-rf-proof'] carry their own)
+R1 torelli-lower-central-quotients-satisfy-boone-higman: written OPEN, so its 2 prerequisites went to the body, no route
+R1 torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups: dropped claim-level requires (routes ['torsion-free-cubulated-f-infinity-simple-host-proof'] carry their own)
+R1 torsion-free-tree-product-lattices-lie-in-the-rigid-seed-class: new route torsion-free-tree-product-lattices-lie-in-the-rigid-via-prereqs with its 4 prerequisites
+R1 translation-like-hosts-are-capped-by-separation-profiles: new route translation-like-hosts-are-capped-by-separation-prof-via-prereqs with its 1 prerequisites
+R1 translation-like-inputs-embed-in-full-groups-over-a-fixed-group: new route translation-like-inputs-embed-in-full-groups-over-a-via-prereqs with its 2 prerequisites
+R1 tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: new route tree-gluing-turns-rigid-sft-compactifications-into-r-via-prereqs with its 2 prerequisites
+R1 tree-lattice-homogeneous-subshifts-are-not-quantum-rigid: new route tree-lattice-homogeneous-subshifts-are-not-quantum-r-via-prereqs with its 2 prerequisites
+R1 tree-product-busemann-transplants-preserve-quantum-rigidity: dropped claim-level requires (routes ['tree-product-busemann-transplant-rigidity-proof'] carry their own)
+R1 tree-product-lattices-carry-rigid-topologically-free-sfts: new route tree-product-lattices-carry-rigid-topologically-free-via-prereqs with its 4 prerequisites
+R1 tree-product-transplants-pass-the-separability-test: new route tree-product-transplants-pass-the-separability-test-via-prereqs with its 2 prerequisites
+R1 tree-side-of-davis-amalgams-is-local-once-dense: new route tree-side-of-davis-amalgams-is-local-once-dense-via-prereqs with its 2 prerequisites
+R1 twisted-brin-thompson-global-twists-are-conjugacy-closed: new route twisted-brin-thompson-global-twists-are-conjugacy-cl-via-prereqs with its 1 prerequisites
+R1 twisted-davis-amalgams-keep-hyperplane-data: new route twisted-davis-amalgams-keep-hyperplane-data-via-prereqs with its 1 prerequisites
+R1 twisted-integral-affine-groups-lie-in-the-permutational-class: new route twisted-integral-affine-groups-lie-in-the-permutatio-via-prereqs with its 3 prerequisites
+R1 twisted-prufer-corners-embed-in-isolated-cornulier-hosts: new route twisted-prufer-corners-embed-in-isolated-cornulier-h-via-prereqs with its 4 prerequisites
+R1 twisted-s-integral-affine-groups-are-fp-and-virtually-simple: new route twisted-s-integral-affine-groups-are-fp-and-virtuall-via-prereqs with its 5 prerequisites
+R1 twisted-shell-envelopes-of-bs12-meet-the-host-condition: new route twisted-shell-envelopes-of-bs12-meet-the-host-condit-via-prereqs with its 4 prerequisites
+R1 two-point-gluing-presentation-of-v-is-exact: new route two-point-gluing-presentation-of-v-is-exact-via-prereqs with its 3 prerequisites
+R1 two-v-in-ct-p-z-needs-degree-rank-two-r: new route two-v-in-ct-p-z-needs-degree-rank-two-r-via-prereqs with its 3 prerequisites
+R1 type-a-actors-closed-under-inner-twisted-lamp-wreaths: new route type-a-actors-closed-under-inner-twisted-lamp-wreath-via-prereqs with its 3 prerequisites
+R1 type-a-stabilizers-are-hyperbolically-full: new route type-a-stabilizers-are-hyperbolically-full-via-prereqs with its 4 prerequisites
+R1 v-stabilized-emitter-hosts-are-never-finitely-presented: new route v-stabilized-emitter-hosts-are-never-finitely-presen-via-prereqs with its 3 prerequisites
+R1 v-stabilized-full-contracting-rsgs-are-finitely-presented: new route v-stabilized-full-contracting-rsgs-are-finitely-pres-via-prereqs with its 5 prerequisites
+R1 v-stabilized-horofunction-hosts-need-upstream-certification: new route v-stabilized-horofunction-hosts-need-upstream-certif-via-prereqs with its 4 prerequisites
+R1 v-stabilized-stabilizer-engines-are-never-finitely-presented: new route v-stabilized-stabilizer-engines-are-never-finitely-p-via-prereqs with its 3 prerequisites
+R1 v-times-free-product-gluing-kernels-split-over-the-factors: new route v-times-free-product-gluing-kernels-split-over-the-f-via-prereqs with its 4 prerequisites
+R1 v-times-full-groups-are-acyclic-over-stratified-minimal-systems: new route v-times-full-groups-are-acyclic-over-stratified-mini-via-prereqs with its 1 prerequisites
+R1 v-times-gluing-exactness-is-commutation-with-one-transposition: new route v-times-gluing-exactness-is-commutation-with-one-tra-via-prereqs with its 2 prerequisites
+R1 v-times-gluing-presentations-are-exact: new route v-times-gluing-presentations-are-exact-via-prereqs with its 5 prerequisites
+R1 v-times-inflation-host-full-groups-are-finitely-presented: written OPEN, so its 2 prerequisites went to the body, no route
+R1 v-times-subshift-full-group-finiteness-is-horizontal: new route v-times-subshift-full-group-finiteness-is-horizontal-via-prereqs with its 2 prerequisites
+R1 v-times-tree-boundary-full-groups-are-f-infinity: new route v-times-tree-boundary-full-groups-are-f-infinity-via-prereqs with its 5 prerequisites
+R1 varying-skeleton-lifts-reduce-e2-to-skeleton-rigidity: written None, so its 3 prerequisites went to the body, no route
+R1 virtually-cyclic-out-free-subgroups-have-infinite-double-cosets: new route virtually-cyclic-out-free-subgroups-have-infinite-do-via-prereqs with its 2 prerequisites
+R1 w-contains-heisenberg-with-divisible-centre: new route w-contains-heisenberg-with-divisible-centre-via-prereqs with its 2 prerequisites
+R1 wall-chamber-distance-sfts-are-quantum-rigid: new route wall-chamber-distance-sfts-are-quantum-rigid-via-prereqs with its 4 prerequisites
+R1 wall-orientation-ambients-need-locally-short-walls: new route wall-orientation-ambients-need-locally-short-walls-via-prereqs with its 2 prerequisites
+R1 wall-orientation-subshifts-are-quantum-rigid: written OPEN, so its 3 prerequisites went to the body, no route
+R1 wreath-recursion-thompson-groups-inherit-fn: gave its 1 prerequisites to route wreath-recursion-thompson-groups-inherit-fn-proof
+R1 z-localized-in-automaton-groups-needs-exotic-odometers: dropped claim-level requires (routes ['z-localized-in-automaton-groups-needs-exotic-odometers-proof'] carry their own)
+R1 zero-flux-strand-stacks-obstruct-fp-amenable-near-groups: new route zero-flux-strand-stacks-obstruct-fp-amenable-near-gr-via-prereqs with its 4 prerequisites
+R1 zigzag-houghton-like-envelopes-are-virtually-houghton: new route zigzag-houghton-like-envelopes-are-virtually-houghto-via-prereqs with its 3 prerequisites
+R1 zigzag-shell-singular-ideal-is-finitely-generated: new route zigzag-shell-singular-ideal-is-finitely-generated-via-prereqs with its 2 prerequisites
+R1 zoom-tower-germ-groups-give-f-infinity-germ-extensions: new route zoom-tower-germ-groups-give-f-infinity-germ-extensio-via-prereqs with its 2 prerequisites
+R2 alternating-group-is-generated-by-local-commutators-proof: requires: [] (target alternating-group-is-generated-by-local-commutators is written ESTABLISHED)
+R2 analytic-codings-make-contracting-recursions-analytic-proof: requires: [] (target analytic-codings-make-contracting-recursions-analytic is written ESTABLISHED)
+R2 automatic-actor-twisted-brin-thompson-wp-proof: requires: [] (target automatic-actor-twisted-brin-thompson-groups-have-pspace-wp is written ESTABLISHED)
+R2 bieri-strebel-line-rigidity-proof: requires: [] (target fp-bieri-strebel-line-groups-are-deformation-rigid is written ESTABLISHED)
+R2 boolean-inverse-monoid-finite-presentation-is-finite-type-proof: requires: [] (target boolean-inverse-monoid-finite-presentation-is-finite-type is written ESTABLISHED)
+R2 bs-conjugator-invariant-compactum-proof: requires: [] (target bs-conjugators-of-wandering-maps-have-invariant-compacta is written ESTABLISHED)
+R2 centralizer-amalgams-free-wreath-proof: requires: [] (target centralizer-amalgams-are-free-permutational-wreaths is written ESTABLISHED)
+R2 closed-mcg-rational-projective-full-group-proof: requires: [] (target closed-mcg-embeds-in-rational-projective-full-group is written ESTABLISHED)
+R2 commensurator-rigid-no-faithful-bs-member-proof: requires: [] (target commensurator-rigid-groups-have-no-faithful-bs-members is written ESTABLISHED)
+R2 contracting-rsg-finite-index-overgroup-proof: requires: [] (target contracting-rsgs-closed-under-finite-index-overgroups is written ESTABLISHED)
+R2 contracting-rsg-finite-product-proof: requires: [] (target contracting-rsgs-closed-under-products-with-finite-groups is written ESTABLISHED)
+R2 contracting-rsgs-embed-in-fp-simple-groups-citation: requires: [] (target contracting-rsgs-embed-in-fp-simple-groups is written ESTABLISHED)
+R2 cubulated-pointed-cube-category-proof: requires: [] (target cubulated-groups-act-by-bisections-of-a-pointed-cube-category is written ESTABLISHED)
+R2 definable-parameter-hosts-specialization-proof: requires: [] (target definable-parameter-hosts-cap-simple-subgroups-at-pspace is written ESTABLISHED)
+R2 deligne-universal-central-extension-proof: requires: [] (target deligne-lattice-is-universal-central-extension-for-g-ge-4 is written ESTABLISHED)
+R2 finite-k-graph-standard-facts-proof: requires: [] (target finite-k-graph-boundary-groupoid-standard-facts is written ESTABLISHED)
+R2 fix-bh-met-absorption-suslin-euclid-kill: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-affine-fp-identities: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-affine-fp-model: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-p-coords-assembly: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-p-coords-free-mul: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-p-host-carry-recursion: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-p-host-tree-word: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-zero-coords-denominators: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-char-zero-host-letters: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-coprimary-module: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-elem-fp-char-zero-k2-split: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-elem-fpk2-local-quillen-ideal: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-elem-fpk2-stab-diag-endpoint: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-envelope-cantor-action: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-envelope-finite-index-abel: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-envelope-gen-torsion-nakayama: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-envelope-higman-v-gen-family: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-envelope-higman-v-swap-gen-all: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-prime-e-base: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-prime-e-high-artin-hasse-alg: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-prime-e-high-coprimary-fp: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-prime-e-high-witt-e-base: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-prime-e-high-witt-e-coeff: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-zero-cocycle: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-pure-char-zero-matrix: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-torsion-free-coprimary-block: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bh-met-torsion-free-noether-localize: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-absorption-suslin-euclid-kill: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-affine-fp-identities: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-affine-fp-model: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-p-coords-assembly: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-p-coords-free-mul: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-p-host-carry-recursion: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-p-host-tree-word: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-zero-coords-denominators: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-char-zero-host-letters: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-coprimary-module: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-elem-fp-char-zero-k2-split: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-elem-fpk2-local-quillen-ideal: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-elem-fpk2-stab-diag-endpoint: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-envelope-cantor-action: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-envelope-finite-index-abel: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-envelope-gen-torsion-nakayama: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-envelope-higman-v-gen-family: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-envelope-higman-v-swap-gen-all: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-prime-e-base: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-prime-e-high-artin-hasse-alg: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-prime-e-high-coprimary-fp: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-prime-e-high-witt-e-base: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-prime-e-high-witt-e-coeff: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-zero-cocycle: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-pure-char-zero-matrix: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-torsion-free-coprimary-block: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-bhmet-torsion-free-noether-localize: route without prerequisites into non-established fp-metabelian-groups-satisfy-boone-higman became an OPEN claim
+R2 fix-boone-higman-linear-char-p-one-variable-host: route without prerequisites into non-established char-p-linear-groups-satisfy-permutational-boone-higman became an OPEN claim
+R2 free-action-fg-alternating-full-groups-force-expansivity-proof: requires: [] (target free-action-fg-alternating-full-groups-force-expansivity is written ESTABLISHED)
+R2 free-centre-by-metabelian-rank-two-linearity-proof: requires: [] (target free-centre-by-metabelian-group-of-rank-two-is-linear is written ESTABLISHED)
+R2 identifier-markers-give-decidable-free-subshifts: requires: [] (target decidable-groups-carry-flexible-free-subshifts is written ESTABLISHED)
+R2 kms-central-configurations-transient-proof: requires: [] (target kms-self-similarity-must-make-central-configurations-transient is written ESTABLISHED)
+R2 periodic-dense-sft-hosts-restriction-proof: requires: [] (target periodic-dense-sft-hosts-have-only-thompson-simple-subgroups is written ESTABLISHED)
+R2 piecewise-projective-rigidity-proof: requires: [] (target fp-piecewise-projective-groups-rigidity-criterion is written ESTABLISHED)
+R2 pl-transcendental-endpoint-non-fp-proof: requires: [] (target fp-pl-groups-with-f-have-no-transcendental-support-endpoints is written ESTABLISHED)
+R2 rf-free-product-germ-realization-proof: requires: [] (target rf-groups-have-free-product-germs-over-v is written ESTABLISHED)
+R2 seeded-groups-solvable-word-problem-proof: requires: [] (target seeded-recursively-presented-groups-have-solvable-word-problem is written ESTABLISHED)
+R2 self-similar-interval-numerations-force-perron-slopes-proof: requires: [] (target self-similar-interval-numerations-force-perron-slopes is written ESTABLISHED)
+R2 substitution-subshifts-have-stationary-bv-models-citation: requires: [] (target substitution-subshifts-have-stationary-bv-models is written ESTABLISHED)
+R2 train-track-split-cones-least-common-descendants-proof: requires: [] (target train-track-split-cones-have-least-common-descendants is written ESTABLISHED)
+R2 virtually-free-contracting-rsg-proof: requires: [] (target virtually-free-groups-are-contracting-rsgs is written ESTABLISHED)
+R3 abstract-twisted-bt-type-fn-colored-stein-proof: requires twisted-bt-type-fn-interval-filtration-proof (route) -> its target twisted-brin-thompson-type-fn-criterion
+R3 binary-leavitt-trivial-core-endomorphism-proof: requires steinberg-finiteness-kazhdan-citation (route) -> its target steinberg-finite-presentation-and-kazhdan-theorem
+R3 central-extension-untwisting-proof: requires tree-lattice-kgraph-power-phase-proof (route) -> its target torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+R3 cuntz-stabilized-garside-full-groups-f-infinity-proof: requires perron-weights-do-not-give-li-finiteness-proof (route) -> its target perron-weights-do-not-give-li-finiteness
+R3 cuntz-stabilized-garside-full-groups-f-infinity-proof: requires cuntz-pure-hole-datum-satisfies-li-st-and-lcm (route) -> its target cuntz-stabilized-garside-full-groups-are-f-infinity
+R3 cuntz-stabilized-garside-full-groups-f-infinity-proof: dropped its own target from requires
+R3 cusp-extensions-hyperbolic-pbh-proof: requires rel-hyperbolic-fp-simple-peripherals-proof (route) -> its target rel-hyperbolic-groups-embed-with-fp-simple-peripherals
+R3 cusp-extensions-rel-hyperbolic-pbh-proof: requires rel-hyperbolic-fp-simple-peripherals-proof (route) -> its target rel-hyperbolic-groups-embed-with-fp-simple-peripherals
+R3 degree-category-comparison-type-a-proof: requires stabilized-kgraph-full-group-clopen-action-proof (route) -> its target stabilized-kgraph-full-groups-have-type-a-actions
+R3 deligne-lattice-almost-v-germ-group-proof: requires simple-kazhdan-germ-extension-germ-group-proof (route) -> its target simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group
+R3 descending-shell-centralizer-proof: requires fw-window-zero-descending-sign-proof (route) -> its target fw-window-zero-descending-sign-forces-trivial-core
+R3 finitely-coded-cantor-actions-type-a-proof: requires degree-category-comparison-type-a-proof (route) -> its target degree-category-full-groups-stabilized-have-type-a-actions
+R3 finitely-coded-cantor-actions-type-a-proof: requires stabilized-kgraph-full-group-clopen-action-proof (route) -> its target stabilized-kgraph-full-groups-have-type-a-actions
+R3 flagged-pointed-cube-category-proof: requires pointed-cube-bisection-locus-proof (route) -> its target pointed-cube-bisection-locus-is-the-regular-boundary
+R3 flagged-pointed-cube-category-proof: requires pointed-cube-categories-li-garside-proof (route) -> its target pointed-cube-categories-are-li-garside-categories
+R3 flagged-pointed-cube-garside-verification: requires flagged-pointed-cube-category-proof (route) -> its target flagged-pointed-cube-category-resynchronizes-cubulated-actions
+R3 flagged-pointed-cube-garside-verification: dropped its own target from requires
+R3 flagged-pointed-cube-garside-verification: requires pointed-cube-categories-li-garside-proof (route) -> its target pointed-cube-categories-are-li-garside-categories
+R3 flagged-pointed-cube-garside-verification: requires pointed-cube-bisection-locus-proof (route) -> its target pointed-cube-bisection-locus-is-the-regular-boundary
+R3 free-rewritable-tape-layers-kill-finite-presentation-proof: requires fp-v-times-subshift-full-groups-force-quantum-rigidity-proof (route) -> its target fp-v-times-subshift-full-groups-force-quantum-rigidity
+R3 germ-host-class-hnn-closure-proof: requires last-section-f-infinity-tail-bh-proof (route) -> its target f-infinity-tail-ascending-hnns-satisfy-boone-higman
+R3 gl-n-q-bh-via-track-a-over-st-10-times-free-group: requires gl-n-q-all-n-in-st-10-of-resolvent-ring (route) -> its target gl-n-q-explicit-natural-fp-overgroup
+R3 greedy-cube-codings-rsg-proof: requires closed-surface-groups-contracting-rsg-via-bowen-series (route) -> its target closed-surface-groups-are-contracting-rsgs
+R3 leavitt-tensor-unit-counting-cap-proof: requires leavitt-square-units-wp-complexity-proof (route) -> its target leavitt-square-units-have-conp-parity-p-complete-word-problem
+R3 leavitt-tensor-unit-counting-cap-proof: requires prime-field-leavitt-square-units-mod-p-proof (route) -> its target leavitt-square-units-mod-p-complete-word-problem
+R3 machine-labelled-lamp-products-are-nv-centralizers-proof: requires nv-machines-realize-linear-time-lamp-centralizers-proof (route) -> its target nv-machines-realize-linear-time-lamp-centralizers
+R3 normal-germ-extensions-finite-kazhdan-proof: requires normal-germ-extensions-of-thompson-v-contain-no-sl3z-proof (route) -> its target normal-germ-extensions-of-thompson-v-contain-no-sl3z
+R3 pbh-graphs-of-groups-realized-good-edges-proof: requires cusp-extensions-rel-hyperbolic-pbh-proof (route) -> its target cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh
+R3 perron-substitution-finiteness-proof: dropped its own target from requires
+R3 prime-field-leavitt-square-units-mod-p-proof: requires leavitt-square-units-wp-complexity-proof (route) -> its target leavitt-square-units-have-conp-parity-p-complete-word-problem
+R3 quantum-rigidity-derived-subshift-proof: requires fp-v-times-subshift-full-groups-force-quantum-rigidity-proof (route) -> its target fp-v-times-subshift-full-groups-force-quantum-rigidity
+R3 reducible-building-lattices-via-product-boxes: requires tree-lattice-kgraph-power-phase-proof (route) -> its target torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+R3 reducible-building-lattices-via-product-boxes: requires tree-lattice-with-torsion-via-zappa-szep-kgraphs (route) -> its target cocompact-tree-product-lattices-lie-in-type-a-class
+R3 reducible-building-lattices-via-product-boxes: requires product-of-trees-faithful-factor-pbh-via-bass-serre-induction (route) -> its target product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+R3 right-angled-h3-reflection-rsg-via-greedy-roller-coding: requires closed-surface-groups-contracting-rsg-via-bowen-series (route) -> its target closed-surface-groups-are-contracting-rsgs
+R3 seeded-transport-rigidity-downhill-proof: requires quantum-rigidity-product-stability-proof (route) -> its target quantum-rigidity-is-product-stable
+R3 thin-cycles-decide-li-packing-proof: requires perron-weights-do-not-give-li-finiteness-proof (route) -> its target perron-weights-do-not-give-li-finiteness
+R3 three-tree-lattice-kernel-commutation-proof: requires irreducible-jnc-tree-lattices-pbh-via-bader-shalom (route) -> its target irreducible-tree-lattices-with-jnc-closures-are-pbh
+R3 torsion-free-cubulated-f-infinity-simple-host-proof: requires flagged-pointed-cube-category-proof (route) -> its target flagged-pointed-cube-category-resynchronizes-cubulated-actions
+R3 torsion-free-cubulated-f-infinity-simple-host-proof: requires cuntz-stabilized-garside-full-groups-f-infinity-proof (route) -> its target cuntz-stabilized-garside-full-groups-are-f-infinity
+R3 tree-lattice-block-splitting-proof: requires product-of-trees-faithful-factor-pbh-via-bass-serre-induction (route) -> its target product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+R3 tree-lattice-block-splitting-proof: requires discrete-factor-tree-lattice-splitting-proof (route) -> its target discrete-factor-tree-lattices-are-virtually-products
+R3 tree-lattice-kgraph-power-phase-proof: requires product-of-trees-faithful-factor-pbh-via-bass-serre-induction (route) -> its target product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+R3 tree-lattice-kgraph-power-phase-proof: requires tree-lattice-block-splitting-proof (route) -> its target tree-lattices-split-into-irreducible-blocks
+R3 tree-lattice-with-torsion-via-zappa-szep-kgraphs: requires tree-lattice-kgraph-power-phase-proof (route) -> its target torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+R3 tree-lattice-with-torsion-via-zappa-szep-kgraphs: requires stabilized-kgraph-full-group-clopen-action-proof (route) -> its target stabilized-kgraph-full-groups-have-type-a-actions
+R3 tree-lattice-with-torsion-via-zappa-szep-kgraphs: requires virtually-torsion-free-tree-lattices-pbh-via-kgraphs (route) -> its target virtually-torsion-free-tree-lattices-satisfy-pbh
+R3 tree-lattice-with-torsion-via-zappa-szep-kgraphs: requires product-of-trees-faithful-factor-pbh-via-bass-serre-induction (route) -> its target product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+R3 virtually-torsion-free-tree-lattices-pbh-via-kgraphs: requires tree-lattice-kgraph-power-phase-proof (route) -> its target torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+R3 wreath-recursion-thompson-groups-inherit-fn-proof: requires wreath-recursion-thompson-groups-inherit-fn-proof (route) -> its target wreath-recursion-thompson-groups-inherit-fn
+R3 wreath-recursion-thompson-groups-inherit-fn-proof: dropped its own target from requires
+R3 affine-type-a-structure-groups-give-fp-simple-hosts-via-prereqs: requires twisted-integral-affine-group-fp-via-stein-complex (route) -> its target twisted-integral-affine-full-group-is-finitely-presented
+R3 baumslag-gersten-in-b-a-from-a-root-separated-shift-via-prereqs: requires bs12-base-generator-centralizer-proof (route) -> its target bs12-base-generator-is-a-centralizer-in-b-a
+R3 circle-pl-groups-act-with-type-a-on-breakpoint-orbit-via-prereqs: requires irrational-slope-f-tau-f-infinity-citation (route) -> its target irrational-slope-f-tau-is-of-type-f-infinity
+R3 cylinder-transport-closure-certifies-centrality-via-prereqs: requires quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products-proof (route) -> its target quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products
+R3 gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity-via-prereqs: requires gl-n-q-bh-via-track-a-over-st-10-times-free-group (route) -> its target gl-n-q-embeds-in-fp-simple-group
+R3 relative-seeds-descend-to-quotients-and-consume-memb-via-prereqs: requires locally-finite-splittings-rigid-compactification-proof (route) -> its target locally-finite-splittings-preserve-rigid-sft-compactifications
+R3 stabilizer-engines-embed-in-every-branch-compactific-via-prereqs: requires boone-higman-via-stabilizer-engines (route) -> its target boone-higman-conjecture
+R3 symmetric-ore-operads-containing-their-carrier-are-f-via-prereqs: requires symmetric-operad-groups-full-cantor-proof (route) -> its target fp-symmetric-operad-groups-lie-in-the-permutational-class
+R3 twisted-brin-thompson-global-twists-are-conjugacy-cl-via-prereqs: requires twisted-bt-quasi-retract-onto-acting-group-citation (route) -> its target twisted-brin-thompson-groups-quasi-retract-onto-acting-group
+R3 v-stabilized-full-contracting-rsgs-are-finitely-pres-via-prereqs: requires contracting-rsgs-embed-in-fp-simple-groups-citation (route) -> its target contracting-rsgs-embed-in-fp-simple-groups
+R3 v-times-subshift-full-group-finiteness-is-horizontal-via-prereqs: requires twisted-bt-type-fn-interval-filtration-proof (route) -> its target twisted-brin-thompson-type-fn-criterion
+R4 absorbing-rope-readers-are-not-pointwise-rigid: invalidates claim coupled-rope-reader-has-nested-one-bit-fibres -> the routes into it ['coupled-rope-reader-has-nested-one-bit-fibres-via-prereqs']
+R6 basilica-hnn-fp-infinity-answers-kourovka-21-140: dropped route key distinct_from
+R5 bh-class-decidable-amalgams-from-free-products-and-hnn: dropped distinct_from boone-higman-via-decidable-edge-towers
+R5 binary-self-similar-completions-over-free-bases-have-zero-kh: dropped distinct_from abc-leavitt-kh-vanishing-and-nil-splitting-citation
+R6 boone-higman-via-fp-stabilizer-engines: dropped route key distinct_from
+R6 boone-higman-via-isolated-stabilizer-engines: dropped route key distinct_from
+R5 branch-host-v-recodings-need-recurrent-residual-chains: dropped distinct_from fp-rf-boone-higman-via-fp-self-similar-overgroups
+R5 coarse-embeddability-separates-boone-higman: dropped distinct_from fp-simple-nonexact-group-via-boone-higman
+R5 cocompact-fuchsian-groups-embed-in-v-all-or-none: dropped distinct_from virtually-special-groups-embed-in-brin-thompson-citation
+R5 crossing-wire-fixed-point-tile-sets-are-quantum-rigid: dropped distinct_from labbe-crossed-product-fp-via-wall-rigidity
+R5 dynamically-v-separated-groups-satisfy-boone-higman: dropped distinct_from fp-rf-boone-higman-via-fp-self-similar-overgroups
+R5 e2-for-plane-lifts-is-clustered-floating-freedom: dropped distinct_from keyed-diversification-slots-give-plane-constant-minimal-lifts
+R4 edge-split-order-is-not-geometric-refinement: invalidates claim edge-split-dissections-respecting-an-atom-plane-split-there -> edge-split-dissections-respecting-an-atom-plane-split-there.refuted_by
+R5 elementary-shift-group-contains-every-integral-linear-group: dropped distinct_from gl-n-q-all-n-in-st-10-of-resolvent-ring
+R5 end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups: dropped distinct_from gl-n-q-bh-via-track-a-over-st-10-times-free-group
+R5 fg-linear-groups-embed-in-fp-self-similar-groups: dropped distinct_from char-zero-linear-pbh-via-polynomial-self-similar-hosts
+R5 finitary-mixing-of-fp-highly-transitive-groups-is-fp: dropped distinct_from bh-class-closed-under-finite-direct-products
+R5 finitary-mixing-preserves-type-f-m: dropped distinct_from bh-class-closed-under-finite-direct-products
+R5 finitary-steinberg-extensions-by-oligomorphic-actions-are-fp: dropped distinct_from gl-n-q-all-n-in-st-10-of-resolvent-ring
+R5 finite-nucleus-rsg-abelian-stabilizers-have-rank-one-germs: dropped distinct_from rsg-proper-power-germ-torsion-via-cyclic-germ-groups
+R4 fp-decidable-group-whose-e-is-not-recursively-presented: invalidates claim e-of-finitely-presented-group-is-recursively-presented -> e-of-finitely-presented-group-is-recursively-presented.refuted_by
+R5 fp-infinity-soluble-groups-satisfy-permutational-bh: dropped distinct_from amenable-automatic-va-via-ea-and-soluble-case
+R5 fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups: dropped distinct_from fp-rf-boone-higman-via-fp-self-similar-overgroups
+R5 free-kernel-extensions-stay-in-the-permutational-class: dropped distinct_from b-tilde-artin-pbh-via-free-fibre-kernel-proof
+R4 free-product-emitter-full-groups-need-isolated-vertex-groups: invalidates claim fp-decidable-vertex-groups-have-fp-stabilizer-engines -> fp-decidable-vertex-groups-have-fp-stabilizer-engines.refuted_by
+R6 gl-n-q-bh-via-track-a-over-st-10-times-free-group: dropped route key distinct_from
+R5 gl-n-q-track-a-finiteness-needs-only-fp-and-rigidity: dropped distinct_from gl-n-q-bh-via-track-a-over-st-10-times-free-group
+R5 graded-renormalization-gives-ternary-toeplitz-factor: dropped distinct_from nv-periodic-groups-via-schreier-subshift-factors
+R5 irreducible-tree-lattices-with-jnc-closures-are-pbh: dropped distinct_from boone-higman-via-bader-shalom-lattice-hosts
+R5 keyed-slots-bypass-the-phase-field-on-boundary-geometry: dropped distinct_from keyed-diversification-slots-give-plane-constant-minimal-lifts
+R5 leavitt-ge-rings-have-stable-k1-at-rank-three: dropped distinct_from leavitt-resolvent-frame-complex-route-to-injective-stability
+R5 leavitt-resolvent-frame-complex-is-highly-connected: dropped distinct_from leavitt-resolvent-frame-complex-route-to-injective-stability
+R5 leavitt-resolvent-k2-stability-holds: dropped distinct_from leavitt-resolvent-frame-complex-route-to-injective-stability
+R5 lescure-kh-exact-sequence-for-algebraic-cuntz-pimsner-rings: dropped distinct_from abc-leavitt-kh-vanishing-and-nil-splitting-citation
+R5 li-coded-certificates-cannot-reach-hard-sft-hosts: dropped distinct_from arbitrarily-complex-fp-simple-via-hard-minimal-sft-v-full-groups
+R5 master-route-needs-only-topological-freeness: dropped distinct_from boone-higman-via-leavitt-units-of-rigid-sft-overgroups
+R5 master-route-needs-only-topological-freeness: dropped distinct_from boone-higman-via-v-times-aperiodic-sft-full-groups
+R5 minimal-dihedral-actions-in-brin-thompson-groups-are-free: dropped distinct_from bs13-in-3v-via-smart-renormalization
+R5 non-lcm-dissection-operad-groups-are-f-infinity: dropped distinct_from rational-projective-full-groups-fp-via-thumann-operad-finiteness
+R5 outer-extensions-of-fp-steinberg-groupoids-need-no-rigidity: dropped distinct_from boone-higman-via-leavitt-units-of-rigid-topologically-free-sfts
+R5 pbh-via-degree-monoid-boundary-full-groups: dropped distinct_from permutational-boone-higman-via-v-times-aperiodic-sft-full-groups
+R5 plane-local-freedom-kills-rigidity-of-plane-lifts: dropped distinct_from keyed-diversification-slots-give-plane-constant-minimal-lifts
+R5 seeded-transport-codings-over-end-flows-are-quantum-rigid: dropped distinct_from path-fold-rigidity-transfer-proof
+R5 self-simulating-hosts-over-one-ended-parse-shifts: dropped distinct_from boone-higman-via-v-times-aperiodic-sft-full-groups
+R4 stabilizer-engines-are-fp-only-over-isolated-groups: invalidates claim simple-inputs-have-finitely-presented-stabilizer-engines -> simple-inputs-have-finitely-presented-stabilizer-engines.refuted_by
+R4 stabilizer-engines-need-finitely-discriminable-vertex-groups: invalidates claim fp-decidable-vertex-groups-have-fp-stabilizer-engines -> fp-decidable-vertex-groups-have-fp-stabilizer-engines.refuted_by
+R4 stabilizer-engines-need-torsion-vertex-groups: invalidates claim isolated-vertex-groups-have-fp-stabilizer-engines -> isolated-vertex-groups-have-fp-stabilizer-engines.refuted_by
+R4 stabilizer-engines-of-non-fp-simple-groups-are-not-fp: invalidates claim simple-inputs-have-finitely-presented-stabilizer-engines -> simple-inputs-have-finitely-presented-stabilizer-engines.refuted_by
+R5 substitution-subshift-full-groups-satisfy-boone-higman: dropped distinct_from boone-higman-via-v-times-aperiodic-sft-full-groups
+R4 t-check-contains-no-q-rtimes-2-z: invalidates claim t-check-contains-q-rtimes-2-z -> t-check-contains-q-rtimes-2-z.refuted_by
+R5 time-lift-actors-carry-no-complexity-beyond-row-language: dropped distinct_from arbitrarily-complex-fp-simple-via-hard-minimal-sft-v-full-groups
+R5 transvections-are-single-carets-of-the-edge-split-operad: dropped distinct_from rational-projective-full-groups-fp-via-thumann-operad-finiteness
+R5 twisted-brin-thompson-global-twists-are-conjugacy-closed: dropped distinct_from twisted-bt-quasi-retract-onto-acting-group-citation
+R5 v-stabilized-stabilizer-engines-are-never-finitely-presented: dropped distinct_from boone-higman-via-stabilizer-engines

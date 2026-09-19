@@ -3,11 +3,6 @@ rg: 2
 id: stabilizer-engines-of-non-fp-simple-groups-are-not-fp
 kind: claim
 title: The stabilizer engine D(F_S) of a finitely generated simple group S that is not finitely presented is never finitely presented; S = D(F_(Z wr Z)) is an infinite finitely generated simple group with solvable word problem of this kind
-requires:
-  - fp-stabilizer-engines-need-fp-vertex-groups
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-invalidates:
-  - simple-inputs-have-finitely-presented-stabilizer-engines
 distinct_from:
   simple-inputs-have-finitely-presented-stabilizer-engines: that asserted that D(F_S) is finitely presented for EVERY infinite finitely generated decidable simple S; this refutes it, since the engine is finitely presented only when S already is.
 ---

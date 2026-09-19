@@ -3,9 +3,6 @@ rg: 2
 id: tree-product-busemann-transplants-preserve-quantum-rigidity
 kind: claim
 title: Busemann transplants along lattices in products of trees preserve and reflect quantum rigidity and freeness of cone-deterministic spacetimes; this settles the centrality step (C) for every Ã1 x ... x Ã1 building
-requires:
-  - busemann-transplants-give-free-sfts-on-building-lattices
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
 distinct_from:
   busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: that poses the up direction for all Euclidean building lattices and leaves the centrality step (C) open; this proves (C) and the up direction for buildings that are products of trees, irreducible lattices included, and leaves the Ã2 case open.
   path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid: that is the rank-one case over F_n x Z, where the flow is invariant along the Z factor in which the fibre letters sit; here the tiles advance in every tree at once, so no skeleton layer is invariant along the transport, and the acting group may be an irreducible lattice.

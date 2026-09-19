@@ -3,10 +3,6 @@ rg: 2
 id: non-amenable-scaffolds-absorb-the-leavitt-factor
 kind: claim
 title: A Cantor crossed product over a finitely generated group contains the Leavitt algebra unitally for some coding space iff the group is non-amenable; so Track B's Leavitt tensor is absorbed by the scaffold, and the Kazhdan and separation filters of gate U are filters on permutation matrices only
-requires:
-  - amenable-minimal-crossed-products-have-faithful-rank-models
-  - binary-leavitt-algebra-not-directly-finite
-  - kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds
 distinct_from:
   char-zero-steinberg-stably-finite-iff-invariant-measure: that is stable finiteness of a minimal groupoid's Steinberg algebra in characteristic 0 via Rainone–Sims; this is an explicit locally coded unital copy of L inside a group crossed product, over every field, characterized by amenability of the acting group, and applied to gate U.
   amenable-crossed-product-units-are-linear-sofic: that is the amenable side (everything in GL_n is linear sofic); this is the non-amenable side, where L, its non-sofic unit group and infinite Kazhdan groups are inside GL_n of the crossed product itself.

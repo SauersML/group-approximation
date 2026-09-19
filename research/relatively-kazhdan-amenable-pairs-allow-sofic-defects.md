@@ -3,7 +3,8 @@ rg: 2
 id: relatively-kazhdan-amenable-pairs-allow-sofic-defects
 kind: claim
 title: A left-orderable sofic group carries a compression defect over a relatively Kazhdan amenable infranormal pair
-invalidates: [left-orderable-non-sofic-via-relative-kazhdan-defect-criterion]
+invalidates:
+  - left-orderable-non-sofic-via-relative-kazhdan-defect-criterion
 distinct_from:
   sofic-groups-kill-rigid-compression-defects: that kills defects in sofic groups when the compressed subgroup and the compressor group are both Kazhdan; this shows the conclusion fails when only relative property (T) of an amenable compressed subgroup is available, a kind of rigidity known to occur in left-orderable groups.
 ---

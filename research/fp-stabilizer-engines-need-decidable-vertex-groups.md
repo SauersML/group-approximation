@@ -3,8 +3,6 @@ rg: 2
 id: fp-stabilizer-engines-need-decidable-vertex-groups
 kind: claim
 title: If the derived full group D(F_B) of Z/k * B on its compactified Bass–Serre tree is finitely presented, then so is F_B, and the vertex group B has solvable word problem
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 ---
 
 **ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; elementary; not reviewed).

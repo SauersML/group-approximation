@@ -3,9 +3,6 @@ rg: 2
 id: ct-p-z-is-not-a-product-shift-full-group
 kind: claim
 title: Kohl's CT(Z) and every CT_P(Z) have nontrivial isotropy only at rational points, so none is isomorphic to Brin's nV (n >= 2) or to any full group of a product of shifts of finite type; and only the identity commutes with a canonical Cuntz family
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - conway-amusical-permutation-is-the-full-three-shift
 distinct_from:
   conway-amusical-permutation-is-the-full-three-shift: that proves diagonal rigidity in the p-adic coordinates; this proves the coordinate-free statements (isomorphism type, commutants) that rigidity alone cannot give.
   ct-p-z-groups-are-pairwise-nonisomorphic: that separates the groups CT_P(Z) from each other; this separates all of them from the Brin–Thompson and product-SFT family.

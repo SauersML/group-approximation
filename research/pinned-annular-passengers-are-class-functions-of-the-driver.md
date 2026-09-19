@@ -3,9 +3,6 @@ rg: 2
 id: pinned-annular-passengers-are-class-functions-of-the-driver
 kind: claim
 title: In a pinned one-point annular host over V, the passenger's depth-n data are fixed by every automorphism of V fixing the driver's depth-n data; so the pinned quotient depends only on the Aut(V)-class of the driver datum, and inner, Aut(V)-induced, cone-copy and faithful diagonal drivers pin only bounded or ascending passengers
-requires:
-  - fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups
-  - fp-annular-germ-groups-are-hnn-recursive
 distinct_from:
   fp-annular-germ-groups-are-hnn-recursive: that gives the HNN shape of every fp annular germ group; this constrains which drivers can pin a passenger inside that shape.
   telescopic-germ-bases-in-v-germ-extensions-are-v-separated: that characterizes the ascending (telescope) case; this shows several natural non-ascending driver designs fall back into it or into bounded quotients.

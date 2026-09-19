@@ -3,9 +3,6 @@ rg: 2
 id: exponential-growth-groups-admit-no-contracting-block-hierarchies
 kind: claim
 title: A finitely generated group with a bounded-block hierarchy whose collapse map coarsely contracts the word metric has polynomial growth, so no hierarchical tiling of a regular tree, of F_2 × F_2 or of any exponential-growth group has an inflation that is a quasi-isometric self-embedding with expansion greater than one
-requires:
-  - nonzero-euler-characteristic-forbids-endomorphism-inflations
-  - labelled-hosts-of-free-actions-have-no-contracting-loops
 distinct_from:
   nonzero-euler-characteristic-forbids-endomorphism-inflations: that excludes inflations induced by injective endomorphisms when χ ≠ 0; this excludes every geometric inflation (any bounded-block hierarchy whose inflation scales distances), endomorphic or not, for every group of exponential growth.
   substitution-inflation-hosts-are-full-contracting-rsgs: that uses a geometric inflation over Z^d, where such hierarchies exist; this shows Z^d-type (virtually nilpotent) groups are the only ones where they exist.

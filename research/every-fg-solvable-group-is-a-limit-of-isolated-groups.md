@@ -3,13 +3,12 @@ rg: 2
 id: every-fg-solvable-group-is-a-limit-of-isolated-groups
 kind: claim
 title: Every finitely generated solvable group is a limit of isolated groups (Cornulier--Guyot--Pitsch Question 3; they expect a negative answer)
-requires:
-  - limits-of-isolated-groups-basic-closure
-  - relative-finite-discrimination-forces-solvable-word-problem
 distinct_from:
   every-decidable-group-is-a-limit-of-isolated-groups: that is Question 1, restricted to solvable word problem; this has no word-problem hypothesis but restricts to solvable groups.
   fp-metabelian-groups-satisfy-boone-higman: that embeds metabelian groups in finitely presented simple groups; this is about approximating solvable groups by isolated groups.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `limits-of-isolated-groups-basic-closure`, `relative-finite-discrimination-forces-solvable-word-problem`.
 
 **OPEN.**
 

@@ -3,12 +3,12 @@ rg: 2
 id: busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid
 kind: claim
 title: The Busemann transplant of a quantum-rigid corner-deterministic Z^r-SFT to a building lattice is quantum rigid, provided the boundary shift is; reduced here to one centrality statement
-requires:
-  - busemann-transplants-give-free-sfts-on-building-lattices
 distinct_from:
   euclidean-building-boundary-shifts-are-quantum-rigid: that asks rigidity of the undecorated, non-free boundary shift; this asks that rigidity survives the free Busemann decoration, and reduces the transfer to centrality of germ idempotents.
   deterministic-time-lifts-inherit-quantum-rigidity: that transfers rigidity along a deterministic time factor, where row algebras are nested; here the nesting runs along cone directions and must be conditioned on the germ field, which is the new difficulty.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `busemann-transplants-give-free-sfts-on-building-lattices`.
 
 **OPEN** (posed by bh-invent-04, 2026-09-18). Setting and notation as in
 `busemann-transplants-give-free-sfts-on-building-lattices`; quantum families (Q1–Q3) as in

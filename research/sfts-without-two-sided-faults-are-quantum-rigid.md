@@ -3,9 +3,6 @@ rg: 2
 id: sfts-without-two-sided-faults-are-quantum-rigid
 kind: claim
 title: A Z^2 subshift of finite type in which every line has a determining side is quantum rigid, so its crossed product is finitely presented over every field; rigidity is decided at two-sided faults
-requires:
-  - determinism-closure-certifies-quantum-rigidity
-  - sft-crossed-product-fp-iff-quantum-rigid
 distinct_from:
   determinism-closure-certifies-quantum-rigidity: that is a combinatorial criterion, commutation along a closure of rule shapes; this is a dynamical hypothesis on determining normals that always makes the closure all of Z^2, together with the exact geometric condition under which a determinism argument can succeed.
   permutive-triangle-sfts-are-quantum-rigid: that treats one local mechanism, where the non-determining normals lie on three rays; here any closed set of non-determining normals without an antipodal pair is allowed, for any rule shapes.

@@ -3,10 +3,6 @@ rg: 2
 id: fp-stabilizer-engines-need-fp-vertex-groups
 kind: claim
 title: If the derived full group D(F_B) of Z/k * B on its compactified Bass–Serre tree is of type F_n (or FP_n), then so is the vertex group B; so a finitely presented stabilizer engine needs a finitely presented, decidable vertex group
-requires:
-  - piecewise-groups-quasi-retract-onto-a-locally-faithful-base
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - fp-stabilizer-engines-need-decidable-vertex-groups
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that derives solvability of the word problem of B from finite presentation of D(F_B); this derives finiteness of B (F_n, FP_n) from the same hypothesis. Together they say an fp engine needs B fp and decidable.
 ---

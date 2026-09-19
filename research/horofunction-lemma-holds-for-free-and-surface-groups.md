@@ -3,8 +3,6 @@ rg: 2
 id: horofunction-lemma-holds-for-free-and-surface-groups
 kind: claim
 title: For free groups (free basis) and closed surface groups (standard generators), every R-locally distance-like gradient field is a limit of distance functions, so the distance-gradient SFT is an SFT compactification with dense seed orbit
-requires:
-  - finite-type-branch-blow-ups-are-sft-compactifications
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed).

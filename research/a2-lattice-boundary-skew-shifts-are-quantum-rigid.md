@@ -3,11 +3,6 @@ rg: 2
 id: a2-lattice-boundary-skew-shifts-are-quantum-rigid
 kind: claim
 title: Every cocompact lattice of a thick Ã2 building carries a minimal, topologically free, quantum-rigid SFT, obtained by transferring finite presentation of its boundary full-group host through the necessity theorem
-requires:
-  - topologically-free-subshift-full-groups-force-quantum-rigidity
-  - a2-lattices-embed-in-fp-simple-groups
-  - degree-category-full-groups-stabilized-have-type-a-actions
-  - v-times-ample-full-groups-are-generated-by-transpositions
 distinct_from:
   euclidean-building-boundary-shifts-are-quantum-rigid: that asks for quantum rigidity of the chamber-boundary shift X_Ω itself; this proves it for a finite skew product P of X_Ω, and leaves X_Ω itself open.
   thick-building-flat-sfts-are-never-quantum-rigid: that codes the building over its translation lattice Z^d, where rigidity always fails; this codes the boundary over the lattice itself, where rigidity holds.

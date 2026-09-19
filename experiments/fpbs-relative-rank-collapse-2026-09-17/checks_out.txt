@@ -1,0 +1,10 @@
+odometer 30 0 Korbits 1 d 1
+odometer 30 1 Korbits 1 d 1
+odometer 30 7 Korbits 1 d 5
+odometer 101 5 Korbits 1 d 5
+odometer 400 13 Korbits 1 d 13
+single-merge d=1 8 0 / 8
+single-merge d=1 12 0 / 10
+single-merge d=1 20 0 / 10
+single-merge d=1 40 0 / 10
+single-merge d=1 80 0 / 10

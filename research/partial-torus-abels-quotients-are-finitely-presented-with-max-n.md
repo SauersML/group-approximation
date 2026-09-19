@@ -3,9 +3,6 @@ rg: 2
 id: partial-torus-abels-quotients-are-finitely-presented-with-max-n
 kind: claim
 title: For n ≥ 4 and every m ≥ 2, the Abels group A_n(Z[1/m]) extended by any finitely generated group of outer diagonal automorphisms, modulo any invariant corner subgroup that is cyclic as a module, is finitely presented with max-n; so a soluble minimax group whose Prüfer radical is scaled by a non-unit such as 2 embeds in an isolated group
-requires:
-  - hall-type-prufer-quotients-embed-in-isolated-abels-groups
-  - isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts
 distinct_from:
   hall-type-prufer-quotients-embed-in-isolated-abels-groups: that uses A_n(Z[1/p]) and central quotients, where the host acts trivially on the Prüfer radical; this adds several primes and an outer torus, so the Prüfer radical can be non-central and acted on with infinite order.
   isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts: that reduces Question 4 for soluble minimax groups to finitely presented max-n overgroups; this supplies a new family of such overgroups.
@@ -13,6 +10,8 @@ distinct_from:
 refuted_by:
   - partial-torus-abels-quotients-are-isolated
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `hall-type-prufer-quotients-embed-in-isolated-abels-groups`, `isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts`.
 
 **REFUTED IN PART (2026-09-18)** by `partial-torus-abels-quotients-are-isolated`.
 - **False: the max-n clause.** `A_4(Z[1/p])` itself fails max-n, because its centre `≅ Z[1/p]`

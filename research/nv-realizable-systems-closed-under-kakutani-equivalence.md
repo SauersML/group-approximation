@@ -3,9 +3,6 @@ rg: 2
 id: nv-realizable-systems-closed-under-kakutani-equivalence
 kind: claim
 title: Brin-Thompson realizable Cantor systems are closed under factors, products, induced systems, towers (hence topological Kakutani equivalence), full-group elements and V-cocycle skew extensions
-requires:
-  - aperiodic-full-groups-lift-along-factor-maps
-  - brin-thompson-groups-contain-full-groups-of-their-elements
 distinct_from:
   decidable-minimal-subshifts-are-brin-thompson-factors: that asks whether every minimal subshift with decidable language is realizable and proves necessity plus three closure properties; this adds towers, full-group elements and skew extensions, and so invariance under topological Kakutani equivalence.
   smart-trace-full-group-embeds-in-brin-thompson-2v: that realizes one system; this is the calculus that multiplies it into a large class.

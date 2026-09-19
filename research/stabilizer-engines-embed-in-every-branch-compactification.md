@@ -3,10 +3,6 @@ rg: 2
 id: stabilizer-engines-embed-in-every-branch-compactification
 kind: claim
 title: The stabilizer engine F_S is the bottom of a monotone family of engines indexed by S-compactifications of the branch set; the one-point (emitter) member is never of finite type, and for one-ended S it is the only member with finite remainder
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
-  - boone-higman-via-stabilizer-engines
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed): parts 1–3.

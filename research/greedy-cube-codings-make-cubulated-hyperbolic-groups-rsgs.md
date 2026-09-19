@@ -3,8 +3,6 @@ rg: 2
 id: greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs
 kind: claim
 title: If a hyperbolic group acts freely and cocompactly on a CAT(0) cube complex in which disjoint hyperplanes have disjoint limit sets, the greedy cube-path coding of the Roller boundary is a Markov SFT in which the group is an RSG with finite nucleus; it is a contracting RSG exactly when that SFT has a single recurrent component
-requires:
-  - closed-surface-groups-contracting-rsg-via-bowen-series
 distinct_from:
   right-angled-reflection-groups-in-h3-are-contracting-rsgs: that is the instance where the cube complex is the Davis complex of a right-angled reflection group, and conditions (a)–(c) prove the single recurrent component; this is the general cubulated statement, with that component left as a hypothesis.
   non-elementary-hyperbolic-groups-are-contracting-rsgs: that is BBMZ-hyperbolic Question 1.1; this reduces it, for every cocompactly cubulated hyperbolic group (by Agol, every closed hyperbolic 3-manifold group), to two explicit conditions (NA) and (IRR).

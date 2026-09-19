@@ -3,11 +3,6 @@ rg: 2
 id: wall-chamber-distance-sfts-are-quantum-rigid
 kind: claim
 title: On a chamber graph whose distance counts separating walls, the distance-gradient SFT is quantum rigid by nested wall chains, so closed surface groups and every group acting simply transitively on the vertices of a CAT(0) cube complex lie in the class 𝒞; wall members of 𝒞 contain no infinite FW group
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - horofunction-lemma-holds-for-free-and-surface-groups
-  - hyperbolic-groups-have-sft-horofunction-compactifications
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   hyperbolic-seed-rigidity-is-a-horofunction-boundary-question: that reduces rigidity of the hyperbolic distance-gradient SFT to its boundary and leaves surface groups open; this proves rigidity for surface groups and all median Cayley graphs, directly on the whole SFT.
   free-group-boundary-shift-is-quantum-rigid: that is the tree case (every edge is a wall); this replaces the geodesic chain by a chain of nested walls with bounded gaps.

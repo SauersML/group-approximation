@@ -1,0 +1,13 @@
+(1, 1, 3, 'rand', ('babbA', 'BBABA', 'bAABBABAAbabb'))
+(1, 1, 3, 'rand', ('abAb', 'AABBB', 'bbbABBaBAAAbbbaa'))
+(1, 1, 3, 'rand', ('aBBBa', 'bABA', 'baaabbbabaB'))
+(1, 1, 3, 'fold', ('bAbA', 'BBaBa', 'bAbaBBaBaBaabAbb'))
+(1, 1, 3, 'fold', ('aabbAA', 'abaaaaB', 'baaBBAbAAAABA'))
+(1, 1, 3, 'fold', ('aBBBBa', 'BBAAAAAbb', 'bbbbbAABBaaaaabb'))
+(1, 1, 3, 'fold', ('aBAB', 'BabaBab', 'bababaaaBAbABAb'))
+(1, 1, 3, 'fold', ('BBBBAA', 'AAAb', 'bAAAbbbbABaaa'))
+(0, 0, 3, 'pow', ('bbabba', 'bbabba', 'bbabba'))
+(0, 0, 3, 'pow', ('bAb', 'bAb', 'bAbbAbbAb'))
+tested 12 unstable 0
+
+[exited with code 0]

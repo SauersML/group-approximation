@@ -3,9 +3,6 @@ rg: 2
 id: relative-seeds-descend-to-quotients-and-consume-membership
 kind: claim
 title: A relative seed (an SFT point isolated by a pattern, with stabilizer C) descends to Λ/N for every normal N ≤ C, keeping isolation, density and quantum rigidity, and makes membership in C decidable relative to WP(Λ); so an HNN tower over a Mihailova subgroup of F_2 x F_2 only relocates the seed problem into Q x Q
-requires:
-  - locally-finite-splittings-rigid-compactification-proof
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   locally-finite-splittings-preserve-rigid-sft-compactifications: that glues seeds over finite-index edge groups; this constrains the relative seeds needed over infinite-index edge groups (CAP rung 1c) and shows which associated subgroups can carry new complexity.
 ---

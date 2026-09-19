@@ -3,16 +3,13 @@ rg: 2
 id: crossing-wire-host-fp-reduces-to-three-local-boolean-powers
 kind: claim
 title: The crossing-wire Z^2 host is finitely presented provided (a) every triple of macrotile input bits is co-located in one tile and (b) Boolean powers of V are 3-local, i.e. presented by their triple joins (a Curtis–Tits statement); pairwise crossings are not known to suffice, because conjunction of conditioned subgroups is a commutator, which is not associative
-requires:
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
-  - one-scale-filling-decides-fp-of-v-times-subshift-hosts
-  - v-cone-sliding-localizes-disjoint-support-relations
-  - v-times-gluing-presentations-are-exact
 distinct_from:
   crossing-wire-fixed-point-tile-sets-are-quantum-rigid: that proves the linear statement (quantum rigidity) from pairwise crossings; this locates exactly which step of that proof has no group analog, and states the group-side lemma and design change that would restore it.
   one-scale-filling-decides-fp-of-v-times-subshift-hosts: that reduces finite presentation to filling at one scale; this gives a concrete mechanism for that filling on the crossing-wire host, conditional on (a) and (b).
   rigid-sfts-give-fp-v-boolean-power-crossed-products: that is P2′a for all rigid SFTs; this is the crossing-wire instance, targeted through the full group, where cone sliding already removes the disjoint-support relations.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`, `one-scale-filling-decides-fp-of-v-times-subshift-hosts`, `v-cone-sliding-localizes-disjoint-support-relations`, `v-times-gluing-presentations-are-exact`.
 
 **OPEN.** This is a conditional reduction (lane bh-invent-17, 2026-09-18).
 - *Rigorous part:* Parts 1–2, which are elementary.

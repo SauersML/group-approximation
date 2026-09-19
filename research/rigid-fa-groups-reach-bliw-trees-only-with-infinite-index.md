@@ -3,8 +3,6 @@ rg: 2
 id: rigid-fa-groups-reach-bliw-trees-only-with-infinite-index
 kind: claim
 title: A commensurator-rigid group with property FA lies in a Bux--Llosa Isenrich--Wu tree host only with infinite index in a vertex stabilizer
-requires:
-  - commensurator-rigid-groups-have-no-faithful-bs-members
 distinct_from:
   commensurator-rigid-groups-have-no-faithful-bs-members: that rules out faithful members of BS_G, that is, tree hosts in which G is commensurable with a vertex group; this handles every faithful cocompact locally finite tree host of Theorem B, using property FA to force a fixed vertex.
   bliw-locally-finite-tree-actions-embed-in-fp-simple-groups: that imports Theorems B and C as embedding theorems; this constrains how a commensurator-rigid FA group could sit inside a group they apply to.

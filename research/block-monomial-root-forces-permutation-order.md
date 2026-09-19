@@ -3,7 +3,8 @@ rg: 2
 id: block-monomial-root-forces-permutation-order
 kind: claim
 title: A block-monomial root forces its permutation part to have order dividing the degree
-invalidates: [kl-via-block-shift-hilbert-hotel]
+invalidates:
+  - kl-via-block-shift-hilbert-hotel
 distinct_from:
   block-monomial-coordinate-collapse: that is about trace-preserving models of the Kun--Thom wreath and says the permutation part of a block-monomial model is itself a sofic witness; this is an exponent-sum identity about a solution of a one-variable equation, uses no trace, no ultraproduct and no group being modelled, and its conclusion constrains the root rather than the model.
 artifacts:

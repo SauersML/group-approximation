@@ -15,6 +15,8 @@ artifacts:
   - experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py
   - research/artifacts/fpbs-congruence-fold-census-2026-09-18.md
   - research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md
+  - research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md
+  - research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -467,3 +469,155 @@ Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
   - (D1) deep-label arguments.
 
   The claim stays OPEN.
+**Relative rank gradient: an exact finite form of (D0) (September 19, 2026,
+swarm-0917-w14-w14-fp-break, finite-models).** New node
+[[fpbs-profinite-relcost-equals-relative-rank-gradient]], ESTABLISHED.
+Artifact `research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md`.
+Scripts in `experiments/fpbs-relative-rank-collapse-2026-09-17/`.
+- **What was proved.** Fold the coset graph of `K = <a, bab^{-2}>` over a
+  finite `L`-set `Q`. A chord of any length is then one vertex identification.
+  - A set of chords generates `E_L` over `E_K` on a free cover iff the fold has
+    `|Q|` vertices.
+  - Hence `d(Q) = rk(Stab_L(q) : Stab_K(q))`, and both groups have rank
+    `|Q| + 1`.
+  - On free profinite actions, `relC = lim d(Q_m)/|Q_m|`. This is the relative
+    Abert–Nikolov theorem.
+  - With Abert–Weiss and weak-containment transfer,
+    `Q_0 ≥ lim d(Q_m)/|Q_m|` for every free tower.
+- **Consequence.** (D0) now follows from one finite-combinatorial input:
+  relative rank linear in `|Q_m|` along a single free tower. Conversely,
+  `fpbs-relative-fixed-price-free-pairs` forces `d(Q_m) = o(|Q_m|)` on every
+  free tower.
+- **Where the lower bound dies.** The rank count gives `0`, since both ranks
+  are `n + 1`. Untwisted mod-`p` cokernels are small. Finite quotients bound
+  only the profinite relative rank.
+- **Numerics (upper bounds only).**
+  - Greedy merges give `d/n ≈ 0.109–0.12` at `n ≤ 600`.
+  - Random merges give `≈ 5/32`.
+  - Odometers stay bounded.
+  - No single chord ever suffices.
+- **Status.** (D1) is untouched, and the claim stays OPEN.
+**Independent chords of P2: union bound plus a uniform chain count
+(September 19, 2026, swarm-0917-w14-w14-fp-last1, probability-random).**
+Artifact `research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md`.
+Scripts are in `experiments/fpbs-iid-chord-union-bound-2026-09-17/`.
+- **Target.** Survivor P2, restricted to independent seeds. This is
+  [[fpbs-mal-iid-chord-graphings-floor]]: `Theta(epsilon, p)`, where each
+  point is active with probability `epsilon` and draws an arbitrary label
+  `h ~ p`. The claim asks for a floor uniform in `p`, including heavy-tailed
+  `b`-length, where the length-weighted floor `1/(80 m)` is empty.
+- **Proved (Lemma 1, union bound).**
+  `P[x ~ bx] <= sum_n epsilon^n sum_{D_1..D_n} prod q(D_i) N_n(D)`. Here
+  `N_n` counts vertex-simple chains of classes from `K` to `Kb` with the
+  prescribed relative positions. The proof splits each double coset into
+  the disjoint sets `K g k^{-1}` (malnormality) and uses that distinct
+  sources in a simple chain are independent. So `N_n <= rho^n` gives
+  `epsilon_0 = 1/(6 rho)`, uniformly in `p`.
+- **ESTABLISHED (Lemma 2).**
+  [[fpbs-mal-two-step-relative-position-rigidity]]: for all classes `A`, `B`
+  and double cosets `D`, `D'`, at most 12 classes `C` satisfy
+  `D(A,C) = D` and `D(C,B) = D'`. The count is 9 exceptional plus 3 generic,
+  obtained from projections of size at most 3 between hull translates and
+  free stabilizer actions. It is uniform in the label length.
+- **Open hole.** [[fpbs-mal-simple-chain-count-uniform]]:
+  `N_n <= rho^n` uniformly. Route
+  `fpbs-mal-iid-chord-graphings-floor-union-route` requires only that.
+- **Evidence.** `N_3 <= 3` and `N_4 <= 5` in all scans. These cover short
+  labels, random, folding and periodic labels up to length 16, and buried
+  `K`-syllables of length 1 and 2. Walk counts, by contrast, blow up
+  (1803 non-backtracking walks against 5 simple paths), so vertex-simplicity
+  is essential.
+- **Where it could fail.** Bridges that run along a third hull of the chain
+  give about `|h|` attachment offsets. Iterating the projection argument
+  then gives only a polynomial count `C^n prod (1 + |h_i|)^{O(1)}`, which is
+  a moment condition, not a uniform floor. A family with `N_3` growing in
+  `|h_2|` would kill this route but not the claim.
+- **Scope.** Shared-seed factor-of-iid chords (the rest of P2) are not
+  covered, because Lemma 1 needs independence of distinct points.
+### swarm-0917-w14 (fp-follow): route to the counterexample node, and the D1 excursion retraction dies
+
+- **Wiring.** New route `fpbs-mal-floor-gives-fixed-price-counterexample`
+  targets `fpbs-fixed-price-counterexample-exists`. It requires this claim,
+  `fpbs-mal-fixed-price-iff-bernoulli-finite-cost` and
+  `fpbs-mal-odometer-product-actions-have-cost-two`. Both of those are
+  ESTABLISHED. So this claim is now the only open premise of a complete route
+  to the flagship's negation. Before this, no route connected them.
+- **Setup for D1.** Write `M = L_j`. `M` is malnormal in `L`, because
+  `φ^j(K)` is malnormal in `φ^j(L)` and malnormality is transitive. Let
+  `S = S_{j+1}` be the orbit relation of `L_{j+1}`.
+  - **Chain identity (remark).** `Q_j` with labels restricted to `L_i` equals
+    `Q_{j-i}`. Transport along `φ^i`, and use Theorem M: restricted Bernoulli
+    shifts are weakly equivalent to Bernoulli.
+  - **Uniform statement (U).** There is `c > 0`, independent of `j`, with
+    promotion cost using `L`-labels `>= c ×` promotion cost using `M`-labels.
+    (U) together with D0 gives D1.
+- **Attempt.** Retract an arbitrary `L`-labelled promoting graphing `Φ` onto
+  `M`-labels.
+  - Split `Φ = Φ_in ∪ Φ_out`. `Φ_in` has labels in `M`. The edges of
+    `Φ_out` leave the `M`-orbit `Mx`.
+  - Each excursion component of `S ∨ Φ_out` outside `Mx` returns to `Mx`.
+    Each composite chord through it gives an edge of `E_M`. Let `T` be the
+    relation these chords generate. Then `S ∨ Φ_in ∨ T ⊇ E_M`.
+  - **Finite-contact lemma (proved).** An outside `S`-class `L_{j+1}·y` has
+    at most one attachment point to `Mx` for each label `w ∉ M`. Proof: if
+    `k g = w m` and `k' g = w m'` with `k, k' ∈ L_{j+1}`, then
+    `k k'^{-1} ∈ M ∩ wMw^{-1} = 1`.
+  - The hope was to charge `T` to the outside edges: each outside class would
+    contribute at most `|labels|` chords.
+- **Where it dies.**
+  - A single excursion component can chain infinitely many outside
+    `S`-classes through `Φ_out`. The finite-contact lemma bounds contacts per
+    class and per label, not per component. So the attachment set `A(C)` of
+    a component can be infinite.
+  - Then `T` restricted to the attachment domain `D` is an infinite
+    sub-relation of `E_M|_D`. Generating it can cost as much as
+    `C(E_M|_D)`, which is about `1` by Gaboriau's induction formula.
+  - Bounding that cost from below by `Φ_out`'s measure is (U) again. The
+    retraction is circular with D0/(U), so this class dies here.
+- **What survives.**
+  - Retractions that control the number of outside classes per excursion
+    component. A finite component bound would close (U) with
+    `c = 1/(labels × bound)`.
+  - Arguments that avoid retraction entirely, such as a profinite or
+    relative-rank D1 statement along `fpbs-profinite-relcost-equals-relative-rank-gradient`.
+
+  The claim stays OPEN.
+### swarm-0917-w15 (fp-pull): (D0) is proved; word chords never beat vertex merges, and the Sanov 3-adic tower is the witness
+
+- **Result 1.** [[fpbs-word-chords-are-dominated-by-merges]] is ESTABLISHED
+  through its route.
+  - Take a finite folded graph `Γ`, attach `k` arcs with any labels, and
+    fold. The identification induced on `V(Γ)` is the fold-closure of at most
+    `k − (E_Δ − V_Δ) ≤ k` pairs.
+  - The proof is a potential `|P| + E_Δ − V_Δ`, which no fold increases.
+  - The fold `Γ_Q^K` of the `K`-coset graph over a finite `Q` has three
+    vertices over each point. Its merges are exactly 2-of-3 seeds.
+  - So the least number of chords with arbitrary labels is `d(Q) = r(Q)`.
+    `rho_vs_r.py` checks the merge half, `ρ = r`, on 48 of 48 random levels.
+- **Result 2.** [[fpbs-profinite-relcost-equals-fold-seed-density]] is
+  ESTABLISHED through its route.
+  - For every essentially free profinite `X`, `relC(X) = σ_b(X)`. The route
+    re-derives the chord folding criterion and the clopen approximation
+    inline.
+  - The Sanov 3-adic action of `L` on `SL_2(Z_3)` is free, has transitive
+    levels, and is an expander tower (Selberg `(τ)`, Bourgain–Gamburd). So
+    Theorem S gives `σ_b > 0` for it.
+  - Abért–Weiss and Theorem M then give `Q_0 = relC(ρ) ≥ relC(Sanov_3) > 0`.
+    This is (D0).
+  - It refutes `fpbs-relative-fixed-price-free-pairs`, and the free-pair case
+    of `fpbs-relative-fixed-price-fg-pairs`. Those nodes are left for their
+    owners to update.
+- **Invariant.** The fold potential `|P| + E_Δ − V_Δ`. Every chord, of any
+  length and in any circuit, is charged to at most one vertex merge. This is
+  global, so the local bootstrap obstruction `bab ⊔ bbab` of w12 does not
+  apply.
+- **Where this claim still stops: (D1).** At depth `j ≥ 1`, `Q_j` allows
+  labels anywhere in `L`. The same potential gives the normal form
+  `H = Γ_j / cl(m pairs)` plus a Δ-part of excess at most `k − m`. The
+  target `t_j`-readings may pass through the Δ-part, and a single bridge can
+  serve many base points. So `k ≥ m` no longer bounds a depth-`j` seed number.
+- **Next step that can fail.** A rerouting inequality: move the
+  `t_j`-readings through the Δ-part into `Γ_j / cl(P')` with
+  `|P'| ≤ C(m + excess)`, where `C` does not depend on `j`.
+
+  The claim stays OPEN, with (D0) settled and (D1) open.

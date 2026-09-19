@@ -716,3 +716,62 @@ The claim stays OPEN.
     `cohn-elementary-group-is-not-lef`?
 
   The claim stays OPEN.
+
+- **group-rings, swarm-0917 (swarm-0917-w14-w14-ptl-follow), 2026-09-19:
+  both halves of `H_mix` are LEF, and the LEF-factor Schafhauser tool is
+  false. The `H_mix` lane reduces to MF of the single amalgam
+  `W x| D_inf`.**
+
+  *Proposal.* Follow the w13 missing tool: an MF theorem for `N`-normal
+  amalgams of LEF groups, or for `W x| D_inf`, where
+  `H_mix = (W x| <a>) *_W (W x| <b>)`, `a = x_34(1)`, `b = x_43(S)`.
+
+  *Result 1.* `h-mix-halves-are-lef-by-column-windows` (established, route
+  `h-mix-halves-are-lef-by-column-windows-proof`, script
+  `experiments/h-mix-column-windows-2026-09-17/check_windows.py`).
+  - Replace `ev_d` by restriction to any finite-dimensional window
+    `Omega ⊂ V_+^2` that the right Levi factor preserves. The two-step models
+    `[[Phi_M(g), X|Omega], [0, B|Omega]]` stay exact.
+  - The offset window `Win_d (+) Win_(d+1)` serves `x_43(S)`, so
+    `W x| <x_43(S)>` is LEF. This answers the w13 spark "`x_43(S)` through a
+    shift on a second window" for that half.
+  - `W` is LEF but not residually finite.
+  - `H_mix` is not LEF: the P22 certificate lies inside it.
+  - For right Levi factors `R <= GL_2(F_2[S])`, windows exist exactly when
+    `R` is locally finite.
+  - Death step on `D`: `ab` has characteristic polynomial `x^2 + S x + 1`, so
+    it preserves no nonzero finite-dimensional subspace. Every exact
+    column-restriction model of `H_mix` then has `Omega = 0`.
+  - Caution: `0 (+) (JQ)^2`, taken in the second column, is a nonzero normal
+    subgroup of `H_mix` that misses the head. So head survival and
+    faithfulness differ. An MF quotient of `H_mix` that keeps the head would
+    already kill the `H_mix` lane.
+
+  *Result 2.* `lef-normal-amalgams-need-not-be-mf` (established, route
+  `lef-normal-amalgams-need-not-be-mf-proof`). Doubling:
+  - `N^2 x| <swap, beta>`, with `beta(x, y) = (phi y, phi^-1 x)`, is an
+    index-two normal amalgam of two copies of `N wr Z/2`, and it contains
+    `N x|_phi Z`.
+  - Apply this to the sofic non-MF `G = K x| Z` of
+    `ascending-hnn-finitary-linear-family-is-sofic-non-mf`, whose kernel `K`
+    is locally residually finite.
+  - The result is finitely generated and sofic, and it is not MF. Its factors
+    are locally residually finite. So w13 tool (a) is false.
+  - With finitely generated residually finite `N`, the doubling is always
+    residually finite. A finitely generated counterexample would therefore
+    need `N` finitely generated, LEF and not residually finite, which is
+    exactly the situation of `W`.
+
+  *Invariant.* The right-Levi action on columns of `V_+^2`. Its
+  finite-dimensional invariant subspaces are the windows. Any certificate of
+  LEF or MF has to replace them.
+
+  *What is left.* Only tool (b): MF of `W x| D_inf` itself, or of a quotient
+  that keeps the head. It must use structure of `W` beyond "both halves are
+  LEF", because Result 2 refutes the general statement. A natural candidate is
+  a bundle of windows `c^k Omega_0` over `k in Z`, on which `D` acts through
+  the dihedral action on `Z`, glued at `|k| ~ n` by approximate unitary
+  equivalence of window models of `W`. Its endpoint step is open: the
+  `M`-parts are exactly equivalent, the `EL_2(J)`-parts are not.
+
+  The claim stays OPEN.

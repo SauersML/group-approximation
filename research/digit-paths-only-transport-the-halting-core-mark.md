@@ -3,9 +3,6 @@ rg: 2
 id: digit-paths-only-transport-the-halting-core-mark
 kind: claim
 title: An E-coset of B_1 meets H_1 in at most one P-coset gP, and it is core for A_± iff all syllables of g but the last lie in P_± and the last K_M-syllable lies in ⟨U⟩P; so the digit paths only transport the core mark, and its negative certificate is the single K_M predicate [g ∈ ⟨U⟩P]
-requires:
-  - halting-pair-seeds-need-a-two-sided-core-mark
-  - reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
 distinct_from:
   halting-pair-seeds-need-a-two-sided-core-mark: that shows the core mark needs a terminating negative certificate and proposed running it along digit paths; this proves the digit paths need only carry it, and locates the certificate in one predicate on K_M.
 ---

@@ -3,9 +3,6 @@ rg: 2
 id: perron-recovers-free-group-boundary-full-groups
 kind: claim
 title: The reduced-word boundary full group of a finitely generated free group is of type F-infinity by the Perron substitution theorem, with no power-and-phase recoding
-requires:
-  - perron-substitution-finiteness-for-garside-full-groups
-  - perron-weights-do-not-give-li-finiteness
 ---
 
 **CORRECTED (2026-09-18).**

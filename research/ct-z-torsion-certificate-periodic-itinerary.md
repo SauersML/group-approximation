@@ -3,10 +3,6 @@ rg: 2
 id: ct-z-torsion-certificate-periodic-itinerary
 kind: claim
 title: "Torsion in CT(Z): a periodic itinerary with block slope ≠ 1 is a semi-decidable certificate of infinite order (by a closing lemma for boxes), and slope-1 recurring blocks are the identity; it is complete whenever every minimal set contains an eventually periodic itinerary, which holds for all monomial elements (a proof independent of Kari–Ollinger); so torsion in CT(Z) is decidable unless some element has a minimal set with square-free itineraries"
-requires:
-  - ct-z-torsion-reduces-to-hyperbolic-primes
-  - ct-z-monomial-elements-have-decidable-torsion
-  - ct-z-residue-partition-certificates-live-on-s-adic-coordinates
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary and self-contained. No priority is claimed.

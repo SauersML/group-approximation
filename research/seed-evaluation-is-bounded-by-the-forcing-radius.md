@@ -3,8 +3,6 @@ rg: 2
 id: seed-evaluation-is-bounded-by-the-forcing-radius
 kind: claim
 title: The seed configuration of an SFT is evaluated on a ball in time exponential in the size of the ball of its forcing radius, so seeds that beat exponential time over polynomial-growth groups must force at super-polynomial radius, and locally forced seeds are capped
-requires:
-  - seed-full-groups-act-oligomorphically-on-the-seed-orbit
 distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that shows the orbit problem of a seed full group computes the seed's two-cell patterns; this bounds that evaluation from above by the forcing radius, which is the quantity a hard seed must make large.
   hard-evaluation-seeds-with-finitely-presented-full-groups: that is the open existence claim; this states the necessary condition any witness must meet and applies it to the recorded seeds.

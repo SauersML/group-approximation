@@ -3,12 +3,6 @@ rg: 2
 id: fold-transfer-theorem-for-fibres-with-a-determining-half-plane
 kind: claim
 title: Fold transfer theorem, final form - a Z^2 SFT with a local rule pointing into one rational half-plane folds to an SFT on F_n x Z that is free, minimal, quantum rigid (over any field) exactly when the fibre is, with fp central simple crossed product in the free minimal rigid case
-requires:
-  - abht-path-folds-accept-exactly-expansive-rational-half-planes
-  - path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
-  - quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products
-  - free-minimal-cantor-crossed-products-are-central-simple
 distinct_from:
   abht-path-folds-accept-exactly-expansive-rational-half-planes: that characterizes faithful folds and transfers freeness and minimality in one direction; this is the application-ready statement, with both directions for freeness and minimality proved directly, the explicit normalization, the scale bound and the fibre checklist.
   path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid: that is the rigidity transfer under ABHT's two-sided hypothesis; this states it under the exact one-sided hypothesis, together with freeness, minimality and the algebra.

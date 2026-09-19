@@ -3,8 +3,6 @@ rg: 2
 id: thompson-f-free-groups-closed-under-extensions-and-unions
 kind: claim
 title: Groups containing no copy of Thompson's group F are closed under subgroups, extensions and directed unions, so every ascending HNN extension of a residually finite group omits F
-requires:
-  - thompson-f-is-not-residually-finite
 distinct_from:
   extensions-with-f-free-outer-kernel-contain-thompson-f: that lifts a copy of F from a quotient G/K into G when Out(K) is F-free; this is the converse direction, that a copy of F in G forces one in N or in G/N, with no hypothesis.
   thompson-f-is-not-residually-finite: that puts residually finite groups in the class; this closes the class under extensions and unions, which reaches groups that are not residually finite.

@@ -3,8 +3,6 @@ rg: 2
 id: mixed-identities-encode-normal-closure-commutation
 kind: claim
 title: The mixed identity [x c x^-1, d] holds in G exactly when the normal closures of c and d commute, so a finitely presented group with solvable word problem and undecidable normal-closure commutation would answer MathOverflow 412219 negatively
-requires:
-  - e-of-finitely-presented-group-is-recursively-presented
 distinct_from:
   e-of-finitely-presented-group-is-recursively-presented: that is the open MO 412219 question and its reformulation E(G) = (G*Z)/J_1(G); this identifies an explicit two-parameter family inside J_1(G) and reduces a negative answer to one decision problem.
   bffhz-q33-is-normal-finite-generation-of-mixed-identities: that concerns finite normal generation of J_k(G); this concerns decidability of J_1(G).

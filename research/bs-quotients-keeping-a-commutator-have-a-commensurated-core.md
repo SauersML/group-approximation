@@ -3,9 +3,6 @@ rg: 2
 id: bs-quotients-keeping-a-commutator-have-a-commensurated-core
 kind: claim
 title: In every quotient of BS(m,n) (gcd(m,n) = 1, |m|, |n| ≥ 2) that keeps [tat^-1, a] nontrivial, the kernel is free, the image of <a> is an infinite cyclic commensurated core-free subgroup whose normal closure is the kernel of a modular character onto Z, and an isolated such quotient has a rigid normal structure
-requires:
-  - coprime-baumslag-solitar-images-in-va-are-metabelian
-  - fp-groups-with-a-locally-moving-simple-subgroup-are-isolated
 distinct_from:
   coprime-baumslag-solitar-images-in-va-are-metabelian: that shows one host class (VA) kills the commutator; this describes every quotient that keeps it, with no host assumed.
   bs-quotients-keeping-a-commutator-need-distortion: that turns item 2 of this node into exclusions of host classes by distortion; this is the structure theorem itself.

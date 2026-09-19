@@ -3,7 +3,8 @@ rg: 2
 id: lattice-forced-torsion-dies-in-hyperbolic-quotients
 kind: claim
 title: Torsion forced invisible by a quotientless subgroup survives a hyperbolic quotient only in a non-residually-finite one, and never through a simple lattice with flats
-invalidates: [non-vtf-hyperbolic-via-lattice-forced-torsion-quotient]
+invalidates:
+  - non-vtf-hyperbolic-via-lattice-forced-torsion-quotient
 distinct_from:
   hull-quotients-are-not-word-hyperbolic: that shows Hull's small-cancellation quotients are acylindrically but not word-hyperbolic; this concerns every homomorphism to a word-hyperbolic group and what happens to torsion forced through a quotientless subgroup
   hyperbolic-compression-centralizer-rigidity: that kills the compression witness inside a hyperbolic ambient group; this kills the amalgam forcing mechanism (a torsion element in the normal closure of a quotientless subgroup) under passage to hyperbolic quotients

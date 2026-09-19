@@ -3,10 +3,6 @@ rg: 2
 id: hyperbolic-cone-matching-holds-off-the-branch-locus
 kind: claim
 title: In a hyperbolic group every element maps all sufficiently deep atoms around a non-branch horofunction onto atoms; so the finitely generated nucleus-tile operad of the BBMZ host has Thumann's degree bound for free, and its square filling can fail only over the branch locus, and not at all if the non-surjective part of the nucleus automaton has no cycle
-requires:
-  - horofunction-atom-configurations-have-finitely-many-types
-  - finite-germ-extensions-with-singular-blocks-are-f-n
-  - thumann-finiteness-without-finite-type
 distinct_from:
   finite-germ-extensions-with-singular-blocks-are-f-n: that closes the germ-local route and names the shadow operad; this checks Thumann's hypotheses (VE) and square filling for the finitely generated version, and pins the one remaining gate to a finite automaton test.
   thumann-finiteness-without-finite-type: that removes finite type in favour of the connectivity condition (G); here (G) is not needed once the automaton test passes, because the spine is then finite.

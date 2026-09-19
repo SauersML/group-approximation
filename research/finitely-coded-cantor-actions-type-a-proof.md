@@ -4,7 +4,11 @@ id: finitely-coded-cantor-actions-type-a-proof
 kind: route
 title: The degree-category comparison lemma never used finiteness of the unit groups, so the clopen type (A) argument runs for any finitely coded groupoid with a finitely presented stabilized full group
 target: finitely-coded-cantor-actions-give-type-a-hosts
-requires: [degree-category-comparison-type-a-proof, stabilized-kgraph-full-group-clopen-action-proof, type-a-action-gives-boone-higman-for-subgroups, boone-higman-type-a-class-closed-under-finite-extensions]
+requires:
+  - degree-category-full-groups-stabilized-have-type-a-actions
+  - stabilized-kgraph-full-groups-have-type-a-actions
+  - type-a-action-gives-boone-higman-for-subgroups
+  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 **Item 1.** Steps 1–2 of `degree-category-comparison-type-a-proof` use only four

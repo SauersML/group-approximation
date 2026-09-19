@@ -3,7 +3,8 @@ rg: 2
 id: kun-thom-wreath-is-not-rational-character-approximable
 kind: claim
 title: The Kun--Thom coset wreath admits no rational-character finite-group approximation, so that route to the determinant conjecture stops at it
-invalidates: [determinant-conjecture-via-rational-character-models]
+invalidates:
+  - determinant-conjecture-via-rational-character-models
 distinct_from:
   hilbert-embeddable-witness-impossible: that excludes every approximation of the wreath by finite subgroups of unitary groups in normalized Hilbert--Schmidt; this records the consequence for the rational-character mechanism that proves the determinant conjecture
   determinant-violation-needs-nonsofic-support-subgroup: that localizes any violation to a nonsofic support; this shows that one integral approximation scheme beyond permutations already fails on a known nonsofic group

@@ -3,10 +3,6 @@ rg: 2
 id: machine-labelled-lamp-products-are-nv-centralizers
 kind: claim
 title: For any subgroup K of a Brin-Thompson group, a product over Z of centralizer subgroups of K chosen position by position by a nondeterministic linear-time labelling is a centralizer in an embedding of K wr Z into a larger Brin-Thompson group, so identity-edge combinations over it lie in B_A
-requires:
-  - nv-machines-realize-linear-time-lamp-centralizers
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - permutational-boone-higman-iff-full-cantor-hosts
 distinct_from:
   nv-machines-realize-linear-time-lamp-centralizers: that is the case K = Z/2 with one label, where the realized subgroups are the lamp subgroups U_A of the lamplighter; this allows any subgroup K of a Brin-Thompson group as lamp group, several labels, and a different realizable subgroup of K at each position, with membership decided along the orbit of one machine.
   centralizer-realizable-subgroups-are-pullback-closed: that realizes subgroups pulled back from B_A quotients, and finite intersections; the subgroups here are infinite products over computable labellings, and when D(t) varies without periodicity no pullback along a homomorphism to a B_A group produces them in general.

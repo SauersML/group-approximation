@@ -5,7 +5,7 @@ kind: route
 title: Code the Roller boundary of the right-angled tiling by the memoryless rule "reflect in the smallest-labelled separating face plane"; states are cells of one tile's face-circle arrangement (refined by cosets for subgroups); irreducibility is conditions (a)–(c), contraction is the carrier-entry lemma
 target: right-angled-reflection-groups-in-h3-are-contracting-rsgs
 requires:
-  - closed-surface-groups-contracting-rsg-via-bowen-series
+  - closed-surface-groups-are-contracting-rsgs
   - contracting-rsgs-closed-under-finite-index-overgroups
   - sft-irreducible-core-iff-unique-recurrent-component
 ---

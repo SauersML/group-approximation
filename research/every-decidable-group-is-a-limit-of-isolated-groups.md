@@ -3,13 +3,12 @@ rg: 2
 id: every-decidable-group-is-a-limit-of-isolated-groups
 kind: claim
 title: Every finitely generated group with solvable word problem is a limit of isolated groups (Cornulier--Guyot--Pitsch Question 1)
-requires:
-  - limits-of-isolated-groups-basic-closure
-  - relative-finite-discrimination-forces-solvable-word-problem
 distinct_from:
   every-decidable-group-embeds-in-an-isolated-group: that is CGP Question 4, which asks for an isolated OVERGROUP; this asks for approximation BY isolated groups in the space of marked groups. Neither is known to imply the other.
   boone-higman-conjecture: that asks for a finitely presented simple overgroup; this is an approximation statement about the normal-subgroup structure of the input, and an embedding in a finitely presented simple group gives no nearby quotient of the input.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `limits-of-isolated-groups-basic-closure`, `relative-finite-discrimination-forces-solvable-word-problem`.
 
 **OPEN.**
 

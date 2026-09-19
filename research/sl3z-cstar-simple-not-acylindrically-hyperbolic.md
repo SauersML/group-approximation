@@ -3,7 +3,8 @@ rg: 2
 id: sl3z-cstar-simple-not-acylindrically-hyperbolic
 kind: claim
 title: SL3(Z) is C*-simple but not acylindrically hyperbolic
-invalidates: [agkp-selfless-instances-of-xc]
+invalidates:
+  - agkp-selfless-instances-of-xc
 distinct_from:
   stw99-all-cstar-simple-groups-acyl-hyp-rd: that is the universal statement over all C*-simple groups; this is the single counterexample refuting it.
   agkp-acylindrically-hyperbolic-rd-groups-selfless: that is a theorem about groups inside AGKP's hypotheses; this exhibits a C*-simple group outside them.

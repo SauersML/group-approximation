@@ -3,7 +3,6 @@ rg: 2
 id: determinism-closure-certifies-quantum-rigidity
 kind: claim
 title: Two-sided determinism closure certifies quantum rigidity of a Z^2 SFT, and fault slabs in two directions defeat it in every recoding
-requires: [sft-crossed-product-fp-iff-quantum-rigid, labbe-shift-is-wall-rigid]
 distinct_from:
   permutive-triangle-sfts-are-quantum-rigid: that is one determinism mechanism (triangles, by a lamp-style distance induction); this is the general closure criterion for arbitrary finite determination rules, which recovers the triangle case, together with the exact geometric obstruction to every such proof.
   wall-rigid-z2-sft-is-quantum-rigid: that asks whether wall rigidity suffices; this shows that for shifts with fault slabs, including Labbé's, no determinism argument can be the proof.

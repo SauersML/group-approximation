@@ -3,15 +3,16 @@ rg: 2
 id: fp-decidable-vertex-groups-have-fp-stabilizer-engines
 kind: claim
 title: For every infinite finitely presented group B with solvable word problem, the derived full group D(F_B) of Z/2 * B on its compactified Bass–Serre tree is finitely presented
-requires:
-  - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   simple-inputs-have-finitely-presented-stabilizer-engines: that asked the same for finitely generated decidable SIMPLE vertex groups and is refuted (stabilizer-engines-of-non-fp-simple-groups-are-not-fp); this asks it for finitely presented decidable vertex groups, which are exactly the vertex groups the known obstructions allow.
   fp-stabilizer-engines-need-fp-vertex-groups: that is the necessity of "B finitely presented"; this is the open sufficiency of "finitely presented and decidable".
   reid-higman-thompson-variant-d-zero-abelianization: that is the case B = Z (Reid's group), which is not finitely presented (free-product-emitter-full-groups-need-isolated-vertex-groups); this is the general statement.
 refuted_by:
   - free-product-emitter-full-groups-need-isolated-vertex-groups
+  - stabilizer-engines-need-finitely-discriminable-vertex-groups
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `free-product-boundary-groupoids-carry-the-vertex-group-homology`.
 
 **REFUTED (2026-09-18)** by `free-product-emitter-full-groups-need-isolated-vertex-groups`.
 - A finitely presented `D(F_B)` forces `B` to be *isolated*: finitely presented and

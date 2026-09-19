@@ -3,12 +3,12 @@ rg: 2
 id: canonical-algebras-embed-in-algebraic-uniform-roe-algebras
 kind: claim
 title: For every finitely generated group Γ with solvable word problem, the canonical algebra R_Γ embeds unitally in a coarsely dense diagonal corner of M_n of the algebraic uniform Roe algebra C_u[F_2; F_2] of the free group (algebraic Kirchberg–Roe embedding; linear gate U with no computability)
-requires:
-  - linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings
 distinct_from:
   decidable-algebras-embed-in-oracle-leavitt-crossed-products: that asks for an oracle subshift and an embedding over Z tensored with L, for every decidable algebra; this asks, for the canonical simple algebras only, for a coefficient-free embedding into the uniform Roe algebra of one tree, which by Theorem A of the required node already produces the effective oracle.
   infinite-kazhdan-group-in-wobbling-group-of-product-of-trees: that is the permutational (full-group) form of gate U over F_2 × F_2; this is the linear form over F_2 alone, where the permutational caps do not apply (non-amenable-scaffolds-absorb-the-leavitt-factor).
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings`.
 
 **OPEN.** For every finitely generated `Γ` with solvable word problem, `R_Γ = LC(2^Δ, F_2) ⋊ (Z/2 ≀ Δ)`, with
 `Δ = C(Γ)`, has an `F_2`-module of bounded geometry in the sense of

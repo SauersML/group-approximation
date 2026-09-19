@@ -3,7 +3,8 @@ rg: 2
 id: carrier-not-decoder
 kind: claim
 title: The long-root carrier is common but not a decoder
-invalidates: [long-root-carrier-decoder]
+invalidates:
+  - long-root-carrier-decoder
 ---
 
 The long root commutes with both outer packets and the middle root, so its

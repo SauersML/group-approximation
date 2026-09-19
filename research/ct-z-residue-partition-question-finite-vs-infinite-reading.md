@@ -3,12 +3,6 @@ rg: 2
 id: ct-z-residue-partition-question-finite-vs-infinite-reading
 kind: claim
 title: "Kourovka 21.74(a): every instance of our (b), (c) and 21.73 reductions is a yes-instance; the two-transposition element τ_{1(2),0(4)}τ_{0(2),1(2)} is a no-instance for finite and infinite partitions; Kohl's mixer ψ is a no-instance only for finite partitions, since it permutes an infinite partition into residue classes"
-requires:
-  - ct-z-invariant-residue-partitions-are-not-conjugacy-invariant
-  - ct-z-residue-partitions-cannot-carve-thin-invariant-sets
-  - ct-z-north-south-element-has-no-finite-cycles
-  - ct-z-finite-cycle-problems-are-undecidable
-  - ct-z-conjugacy-problem-is-undecidable
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary and self-contained. No priority is claimed.

@@ -139,3 +139,46 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   **Calibration:** the kernel `1_H` (H infinite amenable) has rate `rho` but is
   in no l^q, so a failure of [Q] would not refute (IS). Artifact:
   `research/artifacts/fpbs/docs/lq-two-point-walk-rate-2026-09-17.md`.
+* **Spherical transplant on tree products (swarm-0917-w14, group-rings;
+  exact identity, no counterexample).**
+  - On `X = T_{a_1} □ ... □ T_{a_r}`, `τ_p` is bi-radial. Kesten's corner
+    together with a Schur test with weight `Φ = ⊗ φ_{a_i}` gives
+    `||T_p||_{2->2} = Σ_t τ_p(t) |S_t| Φ(t)` exactly
+    (`fpbs-tree-product-two-point-norm-is-spherical-sum`).
+  - So `p_c < p_{2->2}` on `X` is one scalar series question, and
+    `p_c < p_{2->2}` implies (IS) through [Q].
+  - The test for a counterexample was whether the w12 pointwise failures
+    `τ_pc(o,z_k) gr^{2k} >= R^k` on T3xT10 make the series diverge. They do
+    not. The diagonal weight is `Θ(k^2 18^{k/2})`, so the per-step decay
+    threshold is `18^{-1/2} ≈ 0.236`. The 2-path blocks give only
+    `2p_c^2 - p_c^4 <= 0.0247`.
+  - **Where it dies:** the lower side needs `τ_pc` at the tempered scale
+    `Φ`, and no pointwise block estimate comes within `9.5^k` of it. The
+    upper side, convergence at `p_c + ε`, needs a pointwise bound
+    `τ_pc(t) <= Φ(t) · Π (a_i-1)^{-δ t_i}`. Sharpness gives only the
+    infimum `κ_pc(n)`, and w12 shows `gr`-decay itself fails pointwise.
+    This is the same missing critical-l2 input as the Russo-BK and l^q
+    routes.
+  - It does not bear on the goal for these graphs, where `p_c < p_u` is
+    already known (Hutchcroft, nonunimodular).
+* **Thermodynamic-formalism / shape transplant (swarm-0917-w15, symbolic-dynamics).**
+  The idea is to treat `log lambda` like a pressure. A pressure is a pointwise
+  limit of convex log-partition functions, so it is convex and hence
+  continuous. The same property for `lambda` would give (IS) without any
+  uniformity in `n`. On `T_d`, `log lambda` is indeed convex in `log p`.
+  **Where it dies** (`fpbs-walk-rate-shape-classes-fail`, established):
+  - Take any reparametrisation `phi` of `p` and any increasing transform `psi`
+    of `lambda`.
+  - **Concavity** fails on every nonamenable Cayley graph. The reason is the
+    subcritical plateau `lambda = rho` on `(0,p_c]` together with
+    `lambda >= p`.
+  - **Convexity** fails whenever `p_u < 1`. The reason is the saturation
+    plateau `lambda = 1` from the floor `theta^2`.
+  - **Convexity also fails on `T_3 box K_2`, where `p_u = 1`** (exact rate
+    formula): `log lambda` is concave on `(0.70, 0.995)`, because parallel
+    rails give `1 - mu ~ (1-p)^2`.
+  - **Restricting the shape** to `{lambda < 1}` or to `(0,p_u)` is vacuous in
+    the collapse scenario.
+  - **The invariant is these two forced plateaus.** Any closed shape class
+    containing steep continuous ramps contains the collapse profile. So a
+    closed route must carry a quantitative modulus at `p_c`.

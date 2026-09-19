@@ -3,8 +3,6 @@ rg: 2
 id: thompson-t-e-fails-on-closed-set-permutation-modules
 kind: claim
 title: The basis candidate E of Thompson's T fails in Z ≀_X T whenever a stabilizer of X preserves a closed subset of the circle other than the empty set, a point, or the whole circle, so Cantor sets and orbit closures give no witness
-requires:
-  - thompson-t-e-fails-on-multipoint-permutation-modules
 distinct_from:
   thompson-t-e-fails-on-multipoint-permutation-modules: that treats stabilizers of finite sets of at least two points; this treats stabilizers of arbitrary closed sets, such as Cantor sets and orbit closures, by a local non-invariance argument in place of point bookkeeping.
   thompson-t-identities-hold-in-circle-orbit-wreath-overgroups: that is the point case, where every identity holds; this shows every larger closed configuration already violates E.

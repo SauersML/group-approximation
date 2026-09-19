@@ -3,7 +3,8 @@ rg: 2
 id: sparse-pauli-pair-defeats-random-order-blr
 kind: claim
 title: One sparse Pauli pair defeats randomized ordered-product BLR despite vanishing balanced parity energy
-invalidates: [random-order-operator-blr-centralization]
+invalidates:
+  - random-order-operator-blr-centralization
 distinct_from:
   averaged-commutators-do-not-give-abelian-table: that uses a linear-size disjoint Clifford matching and discards parity; this uses one Pauli pair and verifies that the balanced all-dual parity and redundant-check energies vanish.
   sparse-clifford-cycles-refute-average-commutator-rounding: that proves constant distance from commuting generator tuples; this tuple is average-close to the trivial exact tuple but its ordered full table still has constant BLR defect.

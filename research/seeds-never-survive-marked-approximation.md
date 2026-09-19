@@ -3,8 +3,6 @@ rg: 2
 id: seeds-never-survive-marked-approximation
 kind: claim
 title: Over a finitely presented group no proper marked approximation carries any configuration containing a seed pattern; a seed makes its group isolated in the closed set of marked groups admitting the pattern, and for groups with a seed this relative isolation is equivalent to finite presentation
-requires:
-  - stabilizer-engines-are-fp-only-over-isolated-groups
 distinct_from:
   stabilizer-engines-are-fp-only-over-isolated-groups: that is the approximation obstruction for emitter engines (fp engine ⇒ isolated vertex group); this shows the obstruction cannot be run on seed (finite-type) engines over fp groups, because approximating groups carry no seed configurations at all.
   stabilizer-engines-need-torsion-vertex-groups: that extends the emitter obstruction by collapsing deep subgroups; this concerns seeds, which that argument also needs to transport and cannot.

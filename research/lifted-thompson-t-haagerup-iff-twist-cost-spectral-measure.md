@@ -46,3 +46,29 @@ distinct_from:
   of Chifan–Ioana, arXiv:0906.5363).
 
 Derivation: route `lifted-thompson-t-haagerup-iff-twist-cost-spectral-measure-proof`.
+
+## Attempts
+
+- 2026-09-19 (swarm-0917-w14-w14-nv-pull, calibration): an independent check of the proof
+  route. No gap was found, and the status stays ESTABLISHED.
+  - *Suspected gap.* If `ν = Σ w_k δ_{2^{-k}}` has finite mass, then `Φ_ν` is 2-adically
+    continuous. So `Φ_ν(1 + 2^J) → Φ_ν(1)`, which is bounded, and `Φ_ν` is not proper.
+  - *Why step 6(B) survives.*
+    - The weights `w_k = R_k^{-1/2}` tend to `∞`, so `ν` has infinite mass and is only
+      σ-finite. The 2-adic continuity needs uniform convergence, which fails here.
+    - For `n = 1 + 2^J`, the index `k` of step 6(B) is `J + 2`, and `n θ_k ∈ (1/4, 1/2]`.
+      So `Φ_ν(n) ≥ 2 w_{J+2} → ∞`.
+    - `experiments/dyadic-twist-test-2026-09-17/phi_dyadic.py` computes both cases in exact
+      dyadic arithmetic.
+  - *Other steps.*
+    - Step 5 checks out: `U` is open because `2c − F` is lower semicontinuous, and every
+      minimizer lies in `U` because `c > 0` off `0`. It also gives `ψ(s) ≤ 4∫c² dν`.
+    - Step 4 checks out: the largest `j` with `4^j ≤ ψ(z^n)`.
+    - Step 6(C) checks out: `ι_k(T̄)` commutes with `r_k`, so the `e(2^{-k})`-eigenspace is
+      `π_k`-invariant, with `π_k(z)` scalar on it.
+  - *Constraint on witnesses (elementary).*
+    - `Φ_ν ≤ 4ν(R/Z)`, so every witness `ν` in (A) has infinite mass near `0`.
+    - Admissibility, together with `c(θ) ≥ |e(θ) − 1| / L`, forces `∫ |e(θ) − 1|² dν < ∞`.
+    - In particular, no probability measure, and no weak limit of spectral measures of unit
+      vectors, witnesses (A) by itself. The unbounded rescaling `Σ_j 2^j μ_j` of step 4 is
+      essential.

@@ -7,9 +7,6 @@ distinct_from:
   pbh-coset-wreaths-iff-identity-edge-hnns: that proves the equivalence of the coset conditions (a)-(e) for one pair (G, C); this shows the conditions for (G, C) follow from the conditions for (H, C) with H of finite index in G.
   free-group-coset-wreaths-satisfy-pbh: that proves the conditions from a normal finite-index N with N ∩ C a retract of N and notes that plain virtual retracts are not enough for its argument; this removes the normality requirement, so plain virtual retracts suffice.
   pbh-closed-under-decidable-permutational-wreaths: that is the open closure for all decidable stabilizers; this settles it for every stabilizer that is a virtual retract.
-requires:
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 **ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).

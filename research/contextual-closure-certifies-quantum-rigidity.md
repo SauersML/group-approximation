@@ -3,10 +3,6 @@ rg: 2
 id: contextual-closure-certifies-quantum-rigidity
 kind: claim
 title: Case splits over a commuting context, where each context pattern determines one end, certify commutation in the scale-D presentation of a Z^2 SFT across fault slabs; only local double faults (explicit 2-dim window representations) obstruct them
-requires:
-  - sft-crossed-product-fp-iff-quantum-rigid
-  - determinism-closure-certifies-quantum-rigidity
-  - sft-wall-rigidity-iff-idempotent-commutator-ideal
 distinct_from:
   determinism-closure-certifies-quantum-rigidity: that needs one rule that determines the tile from one side for every context; this lets the determining side depend on the context, which is exactly what crosses fault slabs, since a slab near one end leaves the other end determined.
   sft-wall-rigidity-iff-idempotent-commutator-ideal: that uses pairs of global tilings (first-order obstructions); this uses pairs of window patterns legal only on the boxes inside a finite window, which bound the support of certificates from below.

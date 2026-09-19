@@ -3,9 +3,6 @@ rg: 2
 id: integral-slope-stein-v-groups-are-k-graph-full-groups
 kind: claim
 title: For multiplicatively independent integers n_1..n_k >= 2, Stein's group V(Z[1/n_1...n_k], <n_1..n_k>) is the topological full group of an explicit one-vertex k-graph, hence of type F_infinity with a finite-index simple derived subgroup, and it acts with type (A) on its breakpoints; V_{2,3} is itself simple
-requires:
-  - stein-v-groups-act-with-type-a-on-breakpoints
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 distinct_from:
   stein-groups-t23-and-v23-are-finitely-presented: that is the OPEN node asking for finite presentation of T_{2,3} and V_{2,3}, stuck on an unread identification of Cantor-algebra models with the piecewise-linear groups; this proves the V half for all integral slope sets directly in the piecewise-linear model, through Li's k-graph finiteness theorem, and leaves T_{2,3} open.
   ct-p-z-is-a-one-vertex-k-graph-full-group: that identifies Kohl's CT_P(Z) with the full group of a one-vertex k-graph (least significant digit first); the k-graph here has the same edge counts and the opposite composition (most significant digit first), so the two groups share all homology, and whether they are isomorphic is left open.

@@ -3,7 +3,8 @@ rg: 2
 id: kun-thom-action-soe-class-is-rigid
 kind: claim
 title: Every free action stably orbit equivalent to the diffuse Kun-Thom action is virtually conjugate to it, so none is mixing
-invalidates: [mixing-nonsofic-action-via-soe-from-kun-thom-action]
+invalidates:
+  - mixing-nonsofic-action-via-soe-from-kun-thom-action
 distinct_from:
   kun-thom-free-nonsofic-action: that establishes nonsoficity of the Kun-Thom free action; this shows its stable orbit equivalence class contains nothing but finite-index copies of the same action
   sofic-free-actions-are-soe-invariant: that moves soficity along stable orbit equivalence; this shows that for the Kun-Thom seed the move produces no new group and no new dynamics

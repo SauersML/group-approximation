@@ -3,9 +3,6 @@ rg: 2
 id: hard-slope-thompson-groups-have-no-piecewise-projective-hosts
 kind: claim
 title: For computable Liouville slopes λ with hard digits, the simple group D(V_λ) embeds in no finitely presented group of piecewise-projective maps of an interval, circle or line; in particular V_λ and D(V_λ) are not finitely presented
-requires:
-  - fp-piecewise-projective-groups-specialize-to-algebraic-data
-  - transcendental-slope-thompson-groups-have-hard-word-problems
 distinct_from:
   transcendental-slope-thompson-groups-satisfy-boone-higman: that is the open embedding question for all computable transcendental λ; this excludes, for the hard λ, every finitely presented one-dimensional piecewise-projective host, simple or not.
   fp-pl-groups-with-f-have-no-transcendental-support-endpoints: that excludes finite presentation of PL groups containing a dyadic F and a transcendental bump; this excludes every finitely presented piecewise-projective overgroup of D(V_λ), which need not contain a dyadic F and may have any real data.

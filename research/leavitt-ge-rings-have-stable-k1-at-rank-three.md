@@ -5,7 +5,6 @@ kind: claim
 title: A ring with a Leavitt pair in which every invertible matrix is elementary times diagonal has GL_n/E_n = K_1 for every n >= 3; for R_L this would give GL_n(R_L)/E_n(R_L) = Z and the K_1 input (S1) of the frame-complex route
 distinct_from:
   leavitt-k1-stability-is-one-step: that proves surjective implies injective K_1-stability; this supplies surjectivity from the GE property.
-  leavitt-resolvent-frame-complex-route-to-injective-stability: that lists (S1) among its open inputs; this reduces (S1) to GE for R_L.
 ---
 
 **ESTABLISHED.** Item 3 uses the Menal--Moncasi theorem, read only through Khanh's account, and item 4. Proof in

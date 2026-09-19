@@ -3,8 +3,6 @@ rg: 2
 id: horofunction-atom-configurations-have-finitely-many-types
 kind: claim
 title: For a hyperbolic group, tuples of distinct atoms of one level whose boundary images share a Gromov boundary point have finitely many types under simultaneous morphisms; so every fiber product of the horofunction boundary over the Gromov boundary is the boundary of a finite-type tree
-requires:
-  - horofunction-boundary-homology-reduces-to-the-branch-locus
 distinct_from:
   horofunction-boundary-homology-reduces-to-the-branch-locus: that reduces the homological test to the fiber products X^{[p]}_≠ over the branch locus; this proves those fiber products are finite-type coded spaces, the input an Anderson–Putnam argument needs.
 ---

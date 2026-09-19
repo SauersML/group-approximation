@@ -3,7 +3,8 @@ rg: 2
 id: simple-unital-ash-algebras-realize-ranks-approximately
 kind: claim
 title: Rank functions are uniformly dense in the continuous affine functions on the trace simplex of every simple unital ASH algebra
-invalidates: [stw27-counterexample-via-ash-gluing-rank-gap]
+invalidates:
+  - stw27-counterexample-via-ash-gluing-rank-gap
 distinct_from:
   ah-algebras-realize-ranks-approximately: that is the established homogeneous case, where trivial rank-one projections realize any profile; this is the recursive subhomogeneous case, where attaching maps force boundary values and the profile must be extended across each top cell.
   stw99-problem-xxiii-rank-problem: that asks for exact realization of every lower semicontinuous rank on every simple stably finite algebra; this asks only for uniform approximation of continuous ranks, on ASH algebras.

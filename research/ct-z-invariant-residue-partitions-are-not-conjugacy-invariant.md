@@ -3,12 +3,11 @@ rg: 2
 id: ct-z-invariant-residue-partitions-are-not-conjugacy-invariant
 kind: claim
 title: "Kourovka 21.74(a): permuting a nontrivial residue-class partition is r.e. and holds for every finite-order element; it is not a conjugacy invariant in CT(Z); its conjugacy closure is: some power of g fixes a proper clopen subset of the profinite integers"
-requires:
-  - ct-z-north-south-element-has-no-finite-cycles
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `ct-z-north-south-element-has-no-finite-cycles`, `ct-p-z-is-a-one-vertex-k-graph-full-group`.
 
 **Status.** Lane proof, not reviewed, and elementary. It gives **partial results**:
 Kourovka 21.74(a) itself is still **OPEN**. No priority is claimed.

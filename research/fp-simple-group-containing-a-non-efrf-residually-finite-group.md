@@ -3,10 +3,6 @@ rg: 2
 id: fp-simple-group-containing-a-non-efrf-residually-finite-group
 kind: claim
 title: Some finitely presented simple group contains a finitely generated residually finite group that is not effectively residually finite, for example one of Rauzy's lamplighter amalgams L(A)
-requires:
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - nv-machines-realize-linear-time-lamp-centralizers
-  - linear-time-rauzy-sets-exist
 distinct_from:
   effective-residual-finiteness-separator-for-boone-higman: that is the separator theorem; this is the existence statement that refutes its separating hypothesis (S1_eff), so P_eff does not separate Boone–Higman.
   rf-decidable-groups-embed-in-decidable-fg-branch-groups: that asks for a residually finite branch host of Rauzy's groups with solvable word problem; this asks for a simple host, which is never residually finite, so the two questions are independent.

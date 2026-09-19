@@ -434,3 +434,49 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
   - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
     that is, whether the optimal tree-size law escapes to infinity.
+  - **2026-09-19 (swarm-0917-w14-w14-f-last1, entropy-measure, obstruction).** The proxy is settled
+    negatively: `thompson-f-iid-forest-test-vectors-are-bounded-below-one`.
+    - Every product-form vector (i.i.d. bulk trees, arbitrary pointer weight, any cutoff `N`) has limiting
+      Rayleigh quotient `(b^2+m)/2 <= 1 - 1/1280`.
+    - *Invariant:* the Hellinger idempotence gap `H(nu, nu*nu) >= 1/8` of the bulk size law.
+    - *Dies at:* the merge move.
+    - *Survivors:* test vectors with correlated neighbouring tree sizes.
+- **Log-scale forest limit and the product-form cap (swarm-0917-w14-w14-f-break, 2026-09-19,
+  belief-breaker, entropy-measure).** This continues the w13 entry above and answers its open proxy.
+  - *Established:* `thompson-f-norm-bound-from-log-scale-forest-limit`,
+    `||P|| >= 1/2 + sqrt(2)/3 > 0.9714` in closed form and `||P|| > 0.9743` by an exact certificate.
+    - Size-only weights reduce the w13 vector's large-window value to
+      `Phi(nu, eta)/2 = (BC(nu,eta)^2 + BC(nu*eta, nu))/2` for two tree-size laws.
+    - Log-scale size laws turn `Phi` into a continuum functional of two histograms as the cutoff
+      `M -> infinity`.
+    - The cogrowth rate is `mu > 15.188`.
+  - *Belief change:* both published numerical norm estimates are below the certified truth. They are
+    HHR's `||A+A^{-1}+B+B^{-1}|| ≈ 3.87` (`0.9675`) and EP-G's `mu ≈ 15.0` (`0.9682`). The certified gap
+    to amenability shrinks from `0.0603` to `0.0257`.
+  - *Class killed:* `thompson-f-product-forest-vectors-stay-below-71-72`. Every product-form
+    forest-stack vector, for any truncation and any positive parameters, has large-window value at
+    most `71/72 = 0.98611` (sharper: `0.98596`). The w13 proxy is answered no. The optimal size law
+    does escape to infinity, but the family's supremum lies in `(0.9743, 0.9860]`.
+  - *Invariant:* the pointer-tree size law `nu` and the tilted bulk size law `eta`, which are
+    independent under `|f|^2`.
+  - *Dies at:* the merge edge. The merged size `X + Y` of independent sizes exceeds `X` by a fixed
+    amount at the median (`P(X+Y <= t) <= F(t-1)G(t-1)`). This forces `TV(nu*eta, nu) >= 1/4 - d/2`
+    against `BC(nu,eta)^2 <= 1 - d^2`, where `d` is the Kolmogorov distance.
+  - *Survives (OPEN, heuristic):* test vectors that correlate neighbouring tree sizes. A near-eigenvector
+    must make the pointer and neighbour sizes comonotone. The necessary condition is
+    `P(s <= t < r), P(r <= t < s) = O(sqrt delta)` at quotient `4 - delta`, and it is not written up.
+    This is the next family to test.
+- **Size-correlated (Markov) test vectors in the log-scale limit (swarm-0917-w14-w14-f-follow, 2026-09-19, census-computation).**
+  This follows up the survivor "size-correlated neighbour vectors" of swarm-0917-w14-w14-f-break. The work
+  is in `thompson-f-markov-size-chain-vectors-saturate-in-the-scale-limit` (OPEN).
+  - *Established:* an exact infinite-volume formula for the Rayleigh quotient of stationary Markov size
+    chains with recursive shapes. In the formal log-scale limit, merge acts as `max`, so every product
+    law gives `2√2/3` exactly. There are necessary conditions for `B → 1`: rows must agree along up- and
+    down-steps, and `U + D → 1`.
+  - *Belief change (numerical):* order-1 and order-2 chains saturate at `B ≈ 0.954–0.955`, that is
+    `R ≈ 0.977`. Bin refinement converges geometrically and memory adds about `0.001`. At computable
+    sizes (lifted kernels up to `M = 10⁵`) they stay below the lifted product and far below `0.9743`.
+  - *Dies at:* a rigorous ceiling. That needs quantitative rigidity: near-agreement of rows forces a
+    near-product chain.
+  - *Survivor:* hierarchical or hidden-state laws that encode several log-scales at once. These are the
+    Følner-type candidates suggested by Moore's tower bound.

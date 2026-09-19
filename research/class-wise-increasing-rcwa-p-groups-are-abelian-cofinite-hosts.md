@@ -3,10 +3,6 @@ rg: 2
 id: class-wise-increasing-rcwa-p-groups-are-abelian-cofinite-hosts
 kind: claim
 title: The class-wise increasing part R_P of RCWA_P(Z) is the full group of the mixed-radix odometer on the class-transposition k-graph, of type F_infinity with finitely generated point stabilizers, so it is a cyclically cofinite host on Z; the mixed-radix gluing G_(2,3) lies in R_(3) with CT_(3)(Z) of infinite index there
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - rcwa-groups-satisfy-boone-higman
-  - higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness
 distinct_from:
   rcwa-groups-satisfy-boone-higman: that uses the host H_P, the odometer on Λ_P × F_2^+ with an extra binary colour, to get a simple host; this is the full group of the odometer on Λ_P itself, with no extra colour, which is exactly the class-wise increasing RCWA_P group and acts on Z.
   ct-p-z-is-a-one-vertex-k-graph-full-group: that is the full group of Λ_P without the odometer, the part fixing N_0; this adds the translation, which CT_P(Z) omits, and CT_P(Z) has infinite index here.

@@ -3,11 +3,6 @@ rg: 2
 id: fp-relatively-simple-pair-with-unsolvable-simple-quotient
 kind: claim
 title: Some finitely presented relatively simple group has a simple quotient with unsolvable word problem, so it sharply embeds in no finitely presented relatively simple pair with finitely normally generated largest normal subgroup
-requires:
-  - some-a2-action-has-a-nonrecursive-kernel
-  - abstract-twisted-bt-type-fn-criterion
-  - abstract-btb-pairs-fp-and-relatively-simple
-  - subgroups-of-fp-simple-groups-have-solvable-wp
 distinct_from:
   fp-relatively-simple-pairs-embed-with-fng-kernels: that is the second part of FFWZ Question 5.9, the universal removal assertion; this is its negation, and that node names this one in refuted_by.
   some-a2-action-has-a-nonrecursive-kernel: that is the action-level statement; this transfers it to relatively simple groups through the abstract twisted Brin--Thompson construction.

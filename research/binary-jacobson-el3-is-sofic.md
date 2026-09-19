@@ -163,3 +163,46 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
     which is why `psi` exists there.
   - **Survivors.** Partial lifts that do not globalize. Global lifts whose `L`-module is a non-split finitary
     extension.
+* **Kernel-averaging descent through `E = P / L_-` (swarm-0917-w14-w14-nh-break, 2026-09-18). Dead as a class.**
+  Recorded in `jacobson-mirror-kernel-has-no-conjugation-invariant-mean`.
+  - **The class.** The infinite analogue of the finite-kernel projection `|N|^-1 sum_(n in N) u_n`. It covers:
+    - a mean on `L_-` invariant under translation and `P`-conjugation, which is (CIM);
+    - coherent Følner windows or equivariant quasi-tilings of `L_-`-orbits;
+    - co-amenability of the diagonal in `P x_E P`;
+    - rescaled projections in `L(P) ⊗̄ B`, with `U = lambda ⊗ v`, that almost commute with `P` and almost fix a
+      single nontrivial `(1,t)`.
+  - **Invariant.** Property (T) of the mirror half `E_- = EL_n(J)`, onto which `P` maps with `L_-` injected, and
+    `L_- ∩ FC(E_-) = 1`.
+  - **Step where it dies.** The averaging mean pushed to `E_-` is conjugation invariant, so it lives on
+    `FC(E_-)` by the Kazhdan finite-orbit theorem. Translation by `t notin FC(E_-)` moves it off itself.
+  - The same kill applies to `(EL_n(J), L)` directly.
+  - This kills a method, not the conclusion: `(Z^3 x| SL_3(Z), Z^3)` fails in the same way, with a residually
+    finite quotient.
+  - **Survivors.** Non-regular tracial representations of `P` that are not inherited from `<P,c>`, and direct
+    approximations of `E`.
+* **Contraction-trap soficity (swarm-0917-w14-w14-nh-follow, 2026-09-19). Class-kill; the claim stays OPEN.**
+  Recorded in `contraction-trap-groups-are-sofic` (ESTABLISHED, unreviewed).
+  - **Setting.** The non-LEF certificate for `EL_3(J)` on the landing branch is a map `Gamma_3 -> EL_3(R)`. Here
+    `Gamma_3 = T(F_6, phi_C) = < F_6, g, e | g x g^(-1) = phi_C(x), [e, x] = 1 >`, with `phi_C` injective of
+    rank 6 (Stallings, checked exactly) and `a1 notin phi_C(F_6)`.
+  - **Result.** Every such trap group `T(F, phi)` over a residually finite `F` with separable `phi^j(F)` is sofic and
+    hyperlinear. The kernel over `<g>` is an increasing union of copies of iterated centralizing HNN extensions
+    `M_m`. A separability-transfer lemma makes each `M_m` residually finite, and Elek--Szabo finishes.
+  - **Invariant.** The injective endomorphism `Ad g` of the hull of `F` in the model.
+  - **Step where every member dies.** "Injective, hence surjective." It holds in finite quotients, where it kills
+    the witness `[e, g^(-1) a1 g]`. It fails in sofic models, where by the universal group the witness stays far
+    from `1`.
+  - **Consequence.** A non-soficity proof for `E` must use relations outside every contraction-trap certificate,
+    such as relations inside `A` or property (T). The trap certifies non-LEF and nothing more.
+* **S-arithmetic lattice duality (swarm-0917-w15-w15-nh-last1, 2026-09-19). The class is dead; the target stays
+  OPEN.** Recorded in `jacobson-haar-lattice-duals-are-class-bijective-extensions`.
+  - **Setup.** `Γ_n` is a lattice in `G = G_∞ x G_0`, with `G_v = K_v^n x| SL_n(K_v)`, and `K_∞^n = G/H` for
+    `H = SL_n(K_∞) x G_0`.
+  - **Transfer (D2).** For every lattice `Δ ≤ H`, soficity or CE of `Δ ↷ Γ\G` gives soficity or hyperlinearity of
+    `EL_n(J)`.
+  - **Death (D3).** `R_Δ` is SOE to a skew product `S_Δ` of `R_Γ|_D` by the non-atomic fibre `H/Δ`, and
+    `S_Δ -> R_Γ|_D` is a class-bijective factor map. Approximations only descend along such a map, so the dual problem
+    is at least as hard as the original. The fibre-free dual `K_0^n x| SL_n(A) ↷ (K_∞ x K_0)^n / A^n` returns
+    `R_Γ|_D` exactly, and `Γ` has no finite orbits on that solenoid.
+  - **Survivor (D4).** Soficity of `Δ_std ↷ Γ\G` that uses its product splitting and its fibre. Both factors are
+    Kazhdan.

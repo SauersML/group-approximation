@@ -9,7 +9,7 @@ requires:
   - pbh-coset-condition-passes-to-finite-index-overgroups
   - centralizer-amalgams-are-free-permutational-wreaths
   - boone-higman-type-a-class-closed-under-finite-extensions
-  - rel-hyperbolic-fp-simple-peripherals-proof
+  - rel-hyperbolic-groups-embed-with-fp-simple-peripherals
 ---
 
 "Good" is as in `pbh-coset-condition-passes-to-finite-index-overgroups`.

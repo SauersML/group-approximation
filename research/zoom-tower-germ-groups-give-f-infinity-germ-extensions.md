@@ -3,9 +3,6 @@ rg: 2
 id: zoom-tower-germ-groups-give-f-infinity-germ-extensions
 kind: claim
 title: A full finite germ extension of V whose singular germ groups are ascending towers over the zoom, realized by locally supported stable letters, has type F_∞ by Belk-Hyde-Matucci Theorem 2.1; the doubling extension of V on the Cantorized line is a first instance, of type F_∞ with germ group BS(1,2) and a non-normal zoom
-requires:
-  - germ-complex-and-bux-gonzalez-morse-inputs
-  - fp-clopen-transitive-full-cantor-groups-have-type-a-actions
 distinct_from:
   normal-germ-extensions-of-thompson-v-contain-no-sl3z: that treats the Corollary 2.10 regime, where the zoom is normal in the germ group and no Baumslag-Solitar dilation can live in a germ group; this certifies germ extensions outside that regime, where the zoom is dilated, through the SingFix clause of Theorem 2.1.
   bhm-singfix-condition-forces-fp-germ-groups: that shows Theorem 2.1 forces finitely presented germ groups; this gives a class of germ groups for which the SingFix groups are finitely presented, and in fact F_∞, by an explicit HNN structure.

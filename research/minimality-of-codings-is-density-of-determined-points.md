@@ -3,11 +3,6 @@ rg: 2
 id: minimality-of-codings-is-density-of-determined-points
 kind: claim
 title: An extension of a minimal base with some one-point fibres is minimal iff the points over one-point fibres are dense; for skeleton-varying E1 designs this is the exact minimality condition, product time flows cannot be sheared along the input group, and downhill then needs central letters
-requires:
-  - downhill-centrality-needs-no-data-rigidity
-  - relational-spine-couplings-are-splittable-or-not-minimal
-  - e2-for-plane-lifts-is-clustered-floating-freedom
-  - strongly-proximal-geometries-are-disjoint-from-measured-inputs
 distinct_from:
   relational-spine-couplings-are-splittable-or-not-minimal: that proves minimality of one end-flow clock by hand; this isolates the general criterion behind it, valid for every extension of every minimal system.
   strongly-proximal-geometries-are-disjoint-from-measured-inputs: its Theorem 3 says injective codings over a minimal product skeleton-times-input force the input to be of finite type; this says what minimality needs once fibres are allowed to be non-trivial.

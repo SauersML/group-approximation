@@ -3,8 +3,6 @@ rg: 2
 id: thompson-t-identities-hold-on-linearized-blow-ups
 kind: claim
 title: Every group of orientation-preserving homeomorphisms of a Denjoy blow-up of the circle along T-orbits, rational or irrational, that contains T acting on the gaps by one-sided derivatives satisfies all mixed identities of T
-requires:
-  - circle-overgroups-of-thompson-t-satisfy-all-its-mixed-identities
 distinct_from:
   circle-overgroups-of-thompson-t-satisfy-all-its-mixed-identities: that proves part (F) for irrational orbits, with T affine on the gaps and M the maps over T; this allows rational orbits, where stabilizers have nontrivial germs, and any M inside Homeo+ of the blow-up, by mirroring gap points at scale ε next to the collapsed point.
   thompson-t-identities-one-word-basis-over-cantor-overgroups: that uses one word to force orientation in overgroups where T acts in the standard way; this handles overgroups where T acts in a blown-up way, which that proof does not reach.

@@ -3,9 +3,6 @@ rg: 2
 id: higman-clapham-envelopes-are-hnn-over-machine-times-input
 kind: claim
 title: A benign pair for the relators makes the Higman envelope an HNN extension of (machine group x input) whose only machine-input coupling is the graph of F -> G; with decidably benign data, (D) of the envelope reduces to (D) of the input and of the machine, and the seed gate reduces to seed(G) plus one seed-coded HNN
-requires:
-  - decidable-free-subshifts-pass-to-graphs-of-groups
-  - clapham-fp-embedding-preserves-word-problem
 distinct_from:
   decidable-free-subshifts-pass-to-graphs-of-groups: that is the combination theorem for (D) along any finite graph of groups with decidable data; this applies it to the one splitting every Higman envelope carries, and isolates what the machine side must supply.
   clapham-fp-embedding-preserves-word-problem: that is the existence of a decidable fp envelope; this fixes the envelope's last splitting explicitly and states the decidable-membership premise (DB) that the (D) transfer and the seed transfer need.

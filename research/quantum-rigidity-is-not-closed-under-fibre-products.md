@@ -3,10 +3,6 @@ rg: 2
 id: quantum-rigidity-is-not-closed-under-fibre-products
 kind: claim
 title: Ledrappier's shift and its mirror image are quantum rigid, but their fibre product over the same Z^2 is not; centrality (C) fails there, and a site transport closure certifies (C) when every direction is covered by one layer's rules
-requires:
-  - permutive-triangle-sfts-are-quantum-rigid
-  - antipodal-one-sided-group-shift-configurations-are-walls
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
 distinct_from:
   quantum-rigidity-is-product-stable: that proves rigidity of X ⊠ Y over the PRODUCT group Λ₁ × Λ₂; this shows that the fibre product over ONE group can fail, so coupling two rigid layers on the same group is the dangerous operation.
   antipodal-one-sided-group-shift-configurations-are-walls: that kills one group shift with an antipodal pair; here each factor has one-sided configurations in one direction only (so each is rigid), and the antipodal pair appears only across the two layers.

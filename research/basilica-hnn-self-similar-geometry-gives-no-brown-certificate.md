@@ -3,8 +3,6 @@ rg: 2
 id: basilica-hnn-self-similar-geometry-gives-no-brown-certificate
 kind: claim
 title: The Basilica HNN extension acts faithfully on the 3-regular tree fixing an end, extending the self-similar action, but every vertex stabilizer is infinitely generated, and Nekrashevych's self-similarity graph carries no action at all, so neither hosts a Brown certificate
-requires:
-  - basilica-group-is-torsion-free-and-contains-every-z-n
 distinct_from:
   basilica-hnn-has-no-finitely-presented-ascending-base: that excludes the Bass–Serre trees of ascending decompositions, whose stabilizers are conjugates of bases; this treats the tree coming from the self-similar action, which is not a Bass–Serre tree of any ascending decomposition, and Nekrashevych's self-similarity graph.
 ---

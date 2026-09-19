@@ -3,15 +3,12 @@ rg: 2
 id: crossing-wire-fixed-point-tile-sets-are-quantum-rigid
 kind: claim
 title: A fixed-point Wang tile set whose macrotiles are deterministic and in which every two input wires cross is quantum rigid over every field; so a free (aperiodic) Z^2 SFT with finitely presented crossed product exists
-requires:
-  - fixed-point-wang-tile-rigidity-is-edge-family-commutation
 artifacts:
   - research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md
 distinct_from:
   fixed-point-wang-tile-rigidity-is-edge-family-commutation: that reduces rigidity of side-local fixed-point sets to commutation of face-local edge families; this proves that commutation for one explicit layout.
   free-minimal-z2-sft-is-quantum-rigid: that asks for a FREE MINIMAL rigid Z^2 SFT; this gives a free rigid one, and minimality is not proved.
   permutive-triangle-sfts-are-quantum-rigid: that gets rigidity from a group-like permutive law and allows periodic points; this gets it from hierarchical determinism, with no periodic point at all.
-  labbe-crossed-product-fp-via-wall-rigidity: that seeks rigidity of one small aperiodic shift from its geometry; this builds a large self-simulating one where commutation is forced tile by tile.
 ---
 
 **ESTABLISHED (2026-09-18)** through `crossing-wire-fixed-point-tile-sets-are-quantum-rigid-proof`. Lane proof

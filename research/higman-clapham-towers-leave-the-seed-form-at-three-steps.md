@@ -3,10 +3,6 @@ rg: 2
 id: higman-clapham-towers-leave-the-seed-form-at-three-steps
 kind: claim
 title: Read at source, Clapham's embedding supplies the decidability premise (DB) but uses infinitely generated steps, and the Aanderaa-Cohen tower leaves the finitely generated free/free-abelian seed form at exactly three steps - the input as a vertex group, one infinite-rank rope HNN indexed by a regular set, and one HNN along a subgroup encoding the halting set
-requires:
-  - higman-clapham-envelopes-are-hnn-over-machine-times-input
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - decidable-free-subshifts-pass-to-graphs-of-groups
 distinct_from:
   higman-clapham-envelopes-are-hnn-over-machine-times-input: that isolates the envelope's last splitting and states premise (DB) unverified; this reads Clapham 1967 and Cohen 1989 at source, confirms (DB) from Clapham's own proof, and lists every step of both towers against the seed-tower form.
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues rigid relative seeds along graphs of groups and puts graphs of free and free abelian groups in class C; this identifies which steps of the Higman-Clapham towers are covered by it and which need new relative seeds.

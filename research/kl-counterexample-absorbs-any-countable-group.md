@@ -3,7 +3,8 @@ rg: 2
 id: kl-counterexample-absorbs-any-countable-group
 kind: claim
 title: A Kervaire--Laudenbach counterexample can be forced to contain any prescribed countable group
-invalidates: [kl-counterexample-screening-by-local-subgroup-structure]
+invalidates:
+  - kl-counterexample-screening-by-local-subgroup-structure
 distinct_from:
   kl-counterexample-can-be-finitely-presented: that shrinks a counterexample to finite presentation data, and is a statement about where to search; this enlarges one to contain a prescribed group, and is a statement about what cannot be excluded by searching.
   kl-counterexample-can-be-two-generator-simple: that is the reduction to simple coefficient groups; this amplifies it by noting that the simple envelope can be made to swallow any countable group first, so the reduction confers no structural information about counterexamples.

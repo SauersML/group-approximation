@@ -3,7 +3,6 @@ rg: 2
 id: linear-time-rauzy-sets-exist
 kind: claim
 title: There is a symmetric set A of integers, closed but not effectively closed in the profinite topology, whose complement is decidable in linear time from the unary input
-requires: []
 distinct_from:
   effective-residual-finiteness-separator-for-boone-higman: that uses Rauzy's set, whose membership test factors the input and runs a machine; this gives a simpler set, symmetric under x -> -x, with a linear-time test in the value of the input, which is the form a machine element of a Brin-Thompson group can read.
   fp-simple-group-containing-a-non-efrf-residually-finite-group: that is the embedding question for Rauzy-type Dyson groups; this supplies the lamp set that makes it answerable.

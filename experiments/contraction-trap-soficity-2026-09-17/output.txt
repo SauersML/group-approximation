@@ -1,0 +1,19 @@
+a1 -> a2
+a2 -> c a2 a4^-1 a2 a1^-1 a3 a1 a3^-1 a1 a2^-1 a4 a2^-1
+a3 -> a4
+a4 -> a2 a4^-1 a2 a1^-1 a3 a1^-1 a3 a1 a3^-1 a1 a2^-1 a4 a2^-1 d^-1
+c -> a2 a4^-1 a2 a1^-1 a3 a1^-1 c a1 a3^-1 a1 a2^-1 a4 a2^-1
+d -> a2 a4^-1 a2 a1^-1 a3 a1^-1 d a1 a3^-1 a1 a2^-1 a4 a2^-1
+[EL3 trap] core graph: 16 vertices, 21 edges, rank 6
+[EL3 trap] PASS: images form a free basis, phi injective
+[EL3 trap] test word in phi(F)? False
+[EL3 trap] PASS: test word not in phi(F), so w = [e, g^-1 x g] != 1 by Britton
+[EL3 trap] core graph is a covering (finite index)? False
+[EL3 trap] PASS: phi(F) has infinite index, chain phi^j(F) strictly decreasing
+[rank-one a->a^2] core graph: 2 vertices, 2 edges, rank 1
+[rank-one a->a^2] PASS: images form a free basis, phi injective
+[rank-one a->a^2] test word in phi(F)? False
+[rank-one a->a^2] PASS: test word not in phi(F), so w = [e, g^-1 x g] != 1 by Britton
+[rank-one a->a^2] core graph is a covering (finite index)? True
+[rank-one a->a^2] (finite index expected here; phi(F) != F since test word missing)
+ALL PASS

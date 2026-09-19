@@ -3,7 +3,8 @@ rg: 2
 id: hard-soft-exponent-conflict-is-a-norm-mismatch
 kind: claim
 title: The hard-soft threshold exponent conflict is a norm mismatch
-invalidates: [hard-soft-threshold-exponent-proof]
+invalidates:
+  - hard-soft-threshold-exponent-proof
 distinct_from:
   hard-soft-thresholds-cannot-enter-anchor-contraction: that compares an L2 row-amplitude remainder to squared energy and derives opposite exponent requirements; this corrects that comparison.
   one-anchor-grading-makes-parity-damage-quadratic: that proves the algebraic quadratic remainder; this performs the contraction bookkeeping at the correct norm level.

@@ -3,7 +3,8 @@ rg: 2
 id: leavitt-rfd-entry-packets-satisfy-kl
 kind: claim
 title: Leavitt equations whose coefficient entries generate a residually finite-dimensional algebra inject
-invalidates: [leavitt-kl-violation-from-pure-chart-packets]
+invalidates:
+  - leavitt-kl-violation-from-pure-chart-packets
 distinct_from:
   three-root-asymmetric-kl-word-has-finite-core-pushout: that treats coefficients generating one finite subgroup; this covers the infinite matrix groups over every residually finite-dimensional entry algebra, including both free coefficient charts.
   inverse-packet-conjugator-must-mix-s-and-t-charts: that is the parallel chart obstruction in the direct-finiteness corner equation; this is the Kervaire--Laudenbach version, proved by local residual finiteness.

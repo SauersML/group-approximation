@@ -3,10 +3,6 @@ rg: 2
 id: local-transposition-presentations-follow-from-superperfection
 kind: claim
 title: For V times any action of a countable group, every lift in the local transposition presentation is a transport, so the kernel onto the full group is central and the presented group is perfect; hence the local presentation LTP holds whenever H_2 of the full group vanishes, in particular for every minimal system (Li's acyclicity), and the only question left for full shifts is H_2
-requires:
-  - v-times-full-groups-have-local-transposition-presentations
-  - v-times-ample-full-groups-are-generated-by-transpositions
-  - free-product-gluing-reduces-to-local-transposition-presentation
 distinct_from:
   v-times-full-groups-have-local-transposition-presentations: that states the Quick-type presentation LTP as open; this proves it whenever H_2(F(T)) = 0, in particular for minimal systems, and reduces it to H_2 in general.
   v-times-gluing-exactness-is-commutation-with-one-transposition: that reduces exactness of the GLUING presentation to commutation with one transposition; this shows that in the LOCAL presentation every kernel element commutes with every generator, by a transport lemma, and removes the kernel by superperfection.

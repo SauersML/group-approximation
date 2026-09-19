@@ -3,14 +3,13 @@ rg: 2
 id: plane-constant-simulation-computation-layers-are-quantum-rigid
 kind: claim
 title: Some plane-constant simulation scheme for (M1) has a quantum-rigid computation layer, so the simulating SFT itself is quantum rigid
-requires:
-  - copy-constraints-make-simulation-skeleton-and-data-commute
-  - bounded-determination-simulations-only-realize-sft-shadows
 distinct_from:
   effective-minimal-subshifts-lift-to-plane-constant-minimal-sfts: that asks only for existence of the simulating minimal SFT (M1); this asks that the simulation be quantum rigid, which (M1) does not give (golden-silver is minimal, free, of finite type and not rigid).
   free-minimal-z2-sft-is-quantum-rigid: that is the Z^2 case of G2 with no simulated data; this is G2 for simulations over Λ_0 x Z^2, reduced by the two required nodes to the computation layer alone.
   wall-rigid-z2-sft-is-quantum-rigid: that is the local-to-global step for a Z^2 SFT; this is its analogue for the computation layer of a simulation, where by the required nodes every possible non-commutativity lives.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `copy-constraints-make-simulation-skeleton-and-data-commute`, `bounded-determination-simulations-only-realize-sft-shadows`.
 
 **OPEN.** Gate G1(h) ("rigid simulation theorem") of
 `research/artifacts/gq-bh-synthesis-master-route.md`, in reduced form. Lane bh-g1-rigidsim.

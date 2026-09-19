@@ -3,8 +3,6 @@ rg: 2
 id: modular-machine-mortality-at-infinity-is-uniform
 kind: claim
 title: A modular machine terminates on every m-adic configuration iff its running time on N² is uniformly bounded, and then its halting basin H_0(M) is finite; so in a relative seed for (K_M, T'_M) the rogue sheets run the m-adic machine, and halting marks are forced there only for machines with finite H_0
-requires:
-  - machine-subgroup-is-core-free-and-draws-the-machine
 distinct_from:
   machine-subgroup-is-core-free-and-draws-the-machine: that shows the transported-bit candidate is not rigid once two unterminated components sit 2D apart; this shows unterminated components are unavoidable at infinity for every machine with infinite H_0, mortal or not.
   every-decidable-set-has-a-mortal-decider: that gives machines that halt from every configuration in N², which forces the marks on the genuine base sheet; this shows mortality on N² does not reach the rogue sheets, where configurations are m-adic.

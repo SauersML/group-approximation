@@ -3,9 +3,6 @@ rg: 2
 id: compiled-bs-stable-letters-are-never-rediagonalized
 kind: claim
 title: In a compiled BS(1,m) inside (k+1)V no element outside Z[1/m] admits a brick-diagonal power-conjugacy, so the renormalization compiler cannot be stacked into Baumslag-Solitar chains
-requires:
-  - brick-diagonal-power-conjugacy-forces-zero-drift
-  - brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups
 distinct_from:
   higman-chain-group-pbh-iff-chain-configuration: that reduces the BS chain group G_1 to finding a chain configuration (a, b, c) in some B_A group; this proves the configuration cannot come from compiling a compiled BS(1,m) a second time, and gives the positive form of the remaining route.
   brin-thompson-aperiodic-elements-have-logarithmic-movement: that bounds movement of aperiodic elements of nV; this is an exact drift obstruction for one specific construction step.
