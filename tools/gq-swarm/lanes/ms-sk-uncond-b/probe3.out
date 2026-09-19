@@ -1,0 +1,4 @@
+19:37:04 queued probe 1789778224.66466.ms-sk-uncond-b (0 overlay files; targets GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKAttestB.LEFHosts GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKAttestB.WordProblems)
+PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+sbatch: error: AssocMaxSubmitJobLimit
+sbatch: error: Batch job submission failed: Job violates accounting/QOS policy (job submit limit, user's size and/or time limits)

@@ -1,0 +1,7 @@
+GraphProducts: fix node for the conditional T7 endpoint; correct the Zaremsky citation
+
+research/fix-bhpalomar-graphproducts-main.md records what Main proves from Mathlib alone:
+Steps 1-6 of pbh-graph-product-closure-proof, and product closure of PBH. It also records the one
+remaining hypothesis, EnvelopeInput (BFFHZ Theorem C (i)=>(iv) with Theorem E), and notes that the
+chain is still unprobed while Slurm is blocked. PBH product closure is Zaremsky arXiv:2405.18354
+Proposition 5.5; the docstrings had cited arXiv:2405.09722, which is a different paper.

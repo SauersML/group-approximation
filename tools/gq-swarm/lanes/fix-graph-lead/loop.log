@@ -4,3 +4,322 @@
 2026-09-18 16:39:07 cycle 2
 2026-09-18 16:39:09 probing changed OPEN modules: GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock GroupApproximation.BooneHigman.Metabelian.CoprimaryModule GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase GroupApproximation.BooneHigman.Metabelian.AffineFPModel GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal
 2026-09-18 16:45:10 loop v1 stopped; loop2 (v4 batched probes) takes over; probe request 1789767549.89496 (27 BH repairs) in flight
+2026-09-18 19:43:46 consume 1789769423.1.bh-pal-wire job 1328760 (batch-b1789769423-3) base d2df12ed90 rc none complete=no red=16 other-overlays=0
+2026-09-18 19:43:48   GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinReduction new RED
+2026-09-18 19:43:50   GroupApproximation.BooneHigman.Metabelian.AffineFPConjugation new RED
+2026-09-18 19:43:51   GroupApproximation.BooneHigman.Metabelian.AffineFPModel OPEN RED
+2026-09-18 19:43:52   GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful new RED
+2026-09-18 19:43:54   GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeGroup new RED
+2026-09-18 19:43:55   GroupApproximation.BooneHigman.Metabelian.CharZeroHost.State new RED
+2026-09-18 19:43:56   GroupApproximation.BooneHigman.Metabelian.CoprimarySplitting new RED
+2026-09-18 19:43:57   GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleFragCantor new RED
+2026-09-18 19:43:58   GroupApproximation.BooneHigman.Metabelian.EnvelopeWreathEmbed new UNKNOWN_STALE
+2026-09-18 19:43:59   GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg OPEN RED
+2026-09-18 19:44:01   GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff OPEN RED
+2026-09-18 19:44:02   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction OPEN UNKNOWN_STALE
+2026-09-18 19:44:05   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId OPEN UNKNOWN_STALE
+2026-09-18 19:44:07   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors OPEN UNKNOWN_STALE
+2026-09-18 19:44:10   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd OPEN UNKNOWN_STALE
+2026-09-18 19:44:12   GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal OPEN UNKNOWN_STALE
+2026-09-18 19:44:14   GroupApproximation.BooneHigman.Metabelian.ChainWiredFrontierTwo new UNKNOWN_STALE <- GroupApproximation/BooneHigman/Metabelian/AffineFPConjugation.lean GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeGroup.lean GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean GroupApproximation/BooneHigman/Metabelian/CoprimarySplitting.lean GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbed.lean 
+2026-09-18 19:44:16   GroupApproximation.BooneHigman.Metabelian.ChainWiredFrontierThree new UNKNOWN_STALE <- GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinReduction.lean GroupApproximation/BooneHigman/Metabelian/AffineFPConjugation.lean GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeGroup.lean GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean GroupApproximation/BooneHigman/Metabelian/CoprimarySplitting.lean GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbed.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/RowColumn/VecProd.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean 
+2026-09-18 19:44:18   GroupApproximation.BooneHigman.Metabelian.EnvelopeVPerfect new UNKNOWN_STALE <- GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean 
+2026-09-18 19:44:20   GroupApproximation.BooneHigman.Metabelian.ElemFPFieldK2BruhatBigCellEndpoint new UNKNOWN_STALE <- GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean 
+2026-09-18 19:44:22 DRY: new= research/fix-bhmet-absorption-suslin-reduction.md research/fix-bhmet-affine-fp-conjugation.md research/fix-bhmet-char-p-host-tree-faithful.md research/fix-bhmet-char-p-host-tree-group.md research/fix-bhmet-char-zero-host-state.md research/fix-bhmet-coprimary-splitting.md research/fix-bhmet-envelope-simple-frag-cantor.md edit= research/fix-bhmet-affine-fp-model.md research/fix-bhmet-pure-char-prime-e-high-artin-hasse-alg.md research/fix-bhmet-pure-char-prime-e-high-witt-e-coeff.md res=
+printf '%s\n' 'OPEN fix-bhmet-absorption-suslin-reduction GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinReduction bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-affine-fp-conjugation GroupApproximation.BooneHigman.Metabelian.AffineFPConjugation bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-char-p-host-tree-faithful GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-char-p-host-tree-group GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeGroup bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-char-zero-host-state GroupApproximation.BooneHigman.Metabelian.CharZeroHost.State bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-coprimary-splitting GroupApproximation.BooneHigman.Metabelian.CoprimarySplitting bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'OPEN fix-bhmet-envelope-simple-frag-cantor GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleFragCantor bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+2026-09-18 19:45:07 loop3 start (main e6c93a1fe4; after merge a2646f3723; queue cleared by coordinator)
+2026-09-18 19:45:11 skip 1789767549.89496.fix-graph-lead: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:11 skip 1789767573.92667.fix-bh-b: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767632.98981.ms-map: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767647.1136.ms-nm-uncond-a: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767688.6549.ms-nm-uncond-b: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767723.9696.fix-bh-a: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767726.9985.ms-green-nm: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767729.10325.ms-green-nm: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:12 skip 1789767732.10575.ms-green-nm: PROBE DEFERRED: queue cleared 09-18 for the move to main-only; this request's ov
+2026-09-18 19:45:15 probe request (27): GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll Gr
+2026-09-18 19:45:18 probe request (17): GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal GroupApproximation.Manuscript.SimpleKazhdanSofi
+2026-09-18 19:45:21 probe request (28): GroupApproximation.BHPalomar.GraphProducts.Twist GroupApproximation.BHPalomar.GraphProducts.Statement GroupApproximation.BHPalomar.GraphProducts.FreeProductMap GroupApproximation.BHPalomar.GraphProduc
+2026-09-18 19:45:24 probe request (7): GroupApproximation.BHPalomar.GraphProducts.ProductClosure GroupApproximation.BHPalomar.GraphProducts.ProductInput GroupApproximation.BHPalomar.GraphProducts.Reduction GroupApproximation.BHPalomar.Grap
+2026-09-18 19:46:16 loop3 restarted after launcher race fix; BH27 + rest28 requests re-submitted by hand
+2026-09-18 21:02:47 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.AffineFPModel at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion at d2df12ed90
+2026-09-18 21:02:48 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord at d2df12ed90
+2026-09-18 21:02:49 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators at 90089df2a1
+2026-09-18 21:02:49 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters at d2df12ed90
+2026-09-18 21:02:49 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.CoprimaryModule at d2df12ed90
+2026-09-18 21:02:49 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split at d2df12ed90
+2026-09-18 21:02:50 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal at d2df12ed90
+2026-09-18 21:02:50 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint at d2df12ed90
+2026-09-18 21:02:50 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction at d2df12ed90
+2026-09-18 21:02:51 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel at d2df12ed90
+2026-09-18 21:02:51 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsion at 90089df2a1 -> PENDING (bh-pal-wire)
+2026-09-18 21:02:51 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama at d2df12ed90
+2026-09-18 21:02:51 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily at d2df12ed90
+2026-09-18 21:02:52 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll at d2df12ed90
+2026-09-18 21:02:52 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeWreathEmbedConeV at 90089df2a1 -> PENDING (bh-pal-wire)
+2026-09-18 21:02:52 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase at d2df12ed90
+2026-09-18 21:02:52 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg at d2df12ed90
+2026-09-18 21:02:52 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp at d2df12ed90
+2026-09-18 21:02:53 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase at d2df12ed90
+2026-09-18 21:02:53 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff at d2df12ed90
+2026-09-18 21:02:53 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle at d2df12ed90
+2026-09-18 21:02:53 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix at d2df12ed90
+2026-09-18 21:02:54 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock at d2df12ed90
+2026-09-18 21:02:54 scan: unprobed repair of OPEN GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize at d2df12ed90
+2026-09-18 21:02:56 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKAttestB.LEFHosts at f05181e78a -> PENDING (unowned)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKAttestB.WordProblems at f05181e78a -> PENDING (unowned)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction at 8d6acdcd0c -> PENDING (ms-green-sk)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId at 8d6acdcd0c -> PENDING (ms-green-sk)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors at 8d6acdcd0c -> PENDING (ms-green-sk)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd at 8d6acdcd0c -> PENDING (ms-green-sk)
+2026-09-18 21:02:57 scan: new unwired Lean GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal at 8d6acdcd0c -> PENDING (ms-green-sk)
+2026-09-18 21:02:57 DRY scan: edit= research/fix-bhmet-absorption-suslin-euclid-kill.md research/fix-bhmet-affine-fp-identities.md research/fix-bhmet-affine-fp-model.md research/fix-bhmet-char-p-coords-assembly.md research/fix-bhmet-char-p-coords-free-mul.md research/fix-bhmet-char-p-host-carry-recursion.md research/fix-bhmet-char-p-host-tree-word.md research/fix-bhmet-char-zero-coords-denominators.md research/fix-bhmet-char-zero-host-letters.md research/fix-bhmet-coprimary-module.md research/fix-bhmet-elem-fp-char-zero-k2-split.md research/fix-bhmet-elem-fpk2-local-quillen-ideal.md research/fix-bhmet-elem-fpk2-stab-diag-endpoint.md research/fix-bhmet-envelope-cantor-action.md research/fix-bhmet-envelope-finite-index-abel.md research/fix-bhmet-envelope-gen-torsion-nakayama.md research/fix-bhmet-envelope-higman-v-gen-family.md research/fix-bhmet-envelope-higman-v-swap-gen-all.md research/fix-bhmet-pure-char-prime-e-base.md research/fix-bhmet-pure-char-prime-e-high-artin-hasse-alg.md research/fix-bhmet-pure-char-prime-e-high-coprimary-fp.md research/fix-bhmet-pure-char-prime-e-high-witt-e-base.md research/fix-bhmet-pure-char-prime-e-high-witt-e-coeff.md research/fix-bhmet-pure-char-zero-cocycle.md research/fix-bhmet-pure-char-zero-matrix.md research/fix-bhmet-torsion-free-coprimary-block.md research/fix-bhmet-torsion-free-noether-localize.md
+sed -i '' -E '/^OPEN fix-bhmet-absorption-suslin-euclid-kill /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-absorption-suslin-euclid-kill /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-affine-fp-identities /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-affine-fp-identities /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-affine-fp-model /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-affine-fp-model /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-p-coords-assembly /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-p-coords-assembly /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-p-coords-free-mul /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-p-coords-free-mul /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-p-host-carry-recursion /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-p-host-carry-recursion /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-p-host-tree-word /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-p-host-tree-word /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-zero-coords-denominators /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-zero-coords-denominators /s/$/ (repair landed 90089df2a1, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-char-zero-host-letters /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-char-zero-host-letters /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-coprimary-module /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-coprimary-module /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-elem-fp-char-zero-k2-split /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-elem-fp-char-zero-k2-split /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-elem-fpk2-local-quillen-ideal /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-elem-fpk2-local-quillen-ideal /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-elem-fpk2-stab-diag-endpoint /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-elem-fpk2-stab-diag-endpoint /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-envelope-cantor-action /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-envelope-cantor-action /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-envelope-finite-index-abel /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-envelope-finite-index-abel /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsion.lean bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-envelope-gen-torsion-nakayama /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-envelope-gen-torsion-nakayama /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-envelope-higman-v-gen-family /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-envelope-higman-v-gen-family /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-envelope-higman-v-swap-gen-all /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-envelope-higman-v-swap-gen-all /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbedConeV.lean bh-pal-wire' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-prime-e-base /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-prime-e-base /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-prime-e-high-artin-hasse-alg /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-prime-e-high-artin-hasse-alg /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-prime-e-high-coprimary-fp /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-prime-e-high-coprimary-fp /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-prime-e-high-witt-e-base /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-prime-e-high-witt-e-base /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-prime-e-high-witt-e-coeff /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-prime-e-high-witt-e-coeff /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-zero-cocycle /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-zero-cocycle /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-pure-char-zero-matrix /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-pure-char-zero-matrix /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-torsion-free-coprimary-block /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-torsion-free-coprimary-block /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+sed -i '' -E '/^OPEN fix-bhmet-torsion-free-noether-localize /s/ \(repair landed [0-9a-f]+, unprobed\)//; /^OPEN fix-bhmet-torsion-free-noether-localize /s/$/ (repair landed d2df12ed90, unprobed)/' /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKAttestB/LEFHosts.lean unowned' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKAttestB/WordProblems.lean unowned' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean ms-green-sk' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean ms-green-sk' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean ms-green-sk' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/RowColumn/VecProd.lean ms-green-sk' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+printf '%s\n' 'PENDING GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean ms-green-sk' >> /private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/board/FIX-GRAPH.md
+2026-09-18 21:06:17 ---- loop4 dry tests
+2026-09-18 21:06:45 scan: repair of GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill landed at d2df12ed90, unprobed
+2026-09-18 21:06:45 scan: repair of GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities landed at d2df12ed90, unprobed
+2026-09-18 21:06:45 scan: repair of GroupApproximation.BooneHigman.Metabelian.AffineFPModel landed at d2df12ed90, unprobed
+2026-09-18 21:06:45 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly landed at d2df12ed90, unprobed
+2026-09-18 21:06:46 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul landed at d2df12ed90, unprobed
+2026-09-18 21:06:46 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion landed at d2df12ed90, unprobed
+2026-09-18 21:06:46 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord landed at d2df12ed90, unprobed
+2026-09-18 21:06:47 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators landed at 90089df2a1, unprobed
+2026-09-18 21:06:47 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters landed at d2df12ed90, unprobed
+2026-09-18 21:06:47 scan: repair of GroupApproximation.BooneHigman.Metabelian.CoprimaryModule landed at d2df12ed90, unprobed
+2026-09-18 21:06:48 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split landed at d2df12ed90, unprobed
+2026-09-18 21:06:48 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal landed at d2df12ed90, unprobed
+2026-09-18 21:06:48 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint landed at d2df12ed90, unprobed
+2026-09-18 21:06:48 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction landed at d2df12ed90, unprobed
+2026-09-18 21:06:49 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel landed at d2df12ed90, unprobed
+2026-09-18 21:06:49 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsion at 90089df2a1 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:06:49 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama landed at d2df12ed90, unprobed
+2026-09-18 21:06:50 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily landed at d2df12ed90, unprobed
+2026-09-18 21:06:50 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll landed at d2df12ed90, unprobed
+2026-09-18 21:06:50 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeWreathEmbedConeV at 90089df2a1 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:06:50 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase landed at d2df12ed90, unprobed
+2026-09-18 21:06:51 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg landed at d2df12ed90, unprobed
+2026-09-18 21:06:51 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp landed at d2df12ed90, unprobed
+2026-09-18 21:06:51 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase landed at d2df12ed90, unprobed
+2026-09-18 21:06:52 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff landed at d2df12ed90, unprobed
+2026-09-18 21:06:52 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle landed at d2df12ed90, unprobed
+2026-09-18 21:06:52 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix landed at d2df12ed90, unprobed
+2026-09-18 21:06:53 scan: repair of GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock landed at d2df12ed90, unprobed
+2026-09-18 21:06:53 scan: repair of GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize landed at d2df12ed90, unprobed
+2026-09-18 21:06:57 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction landed at 8d6acdcd0c, unprobed
+2026-09-18 21:06:57 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId landed at 8d6acdcd0c, unprobed
+2026-09-18 21:06:57 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors landed at 8d6acdcd0c, unprobed
+2026-09-18 21:06:57 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd landed at 8d6acdcd0c, unprobed
+2026-09-18 21:06:57 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal landed at 8d6acdcd0c, unprobed
+2026-09-18 21:06:57 DRY scan: edits= research/fix-bhmet-absorption-suslin-euclid-kill.md research/fix-bhmet-affine-fp-identities.md research/fix-bhmet-affine-fp-model.md research/fix-bhmet-char-p-coords-assembly.md research/fix-bhmet-char-p-coords-free-mul.md research/fix-bhmet-char-p-host-carry-recursion.md research/fix-bhmet-char-p-host-tree-word.md research/fix-bhmet-char-zero-coords-denominators.md research/fix-bhmet-char-zero-host-letters.md research/fix-bhmet-coprimary-module.md research/fix-bhmet-elem-fp-char-zero-k2-split.md research/fix-bhmet-elem-fpk2-local-quillen-ideal.md research/fix-bhmet-elem-fpk2-stab-diag-endpoint.md research/fix-bhmet-envelope-cantor-action.md research/fix-bhmet-envelope-finite-index-abel.md research/fix-bhmet-envelope-gen-torsion-nakayama.md research/fix-bhmet-envelope-higman-v-gen-family.md research/fix-bhmet-envelope-higman-v-swap-gen-all.md research/fix-bhmet-pure-char-prime-e-base.md research/fix-bhmet-pure-char-prime-e-high-artin-hasse-alg.md research/fix-bhmet-pure-char-prime-e-high-coprimary-fp.md research/fix-bhmet-pure-char-prime-e-high-witt-e-base.md research/fix-bhmet-pure-char-prime-e-high-witt-e-coeff.md research/fix-bhmet-pure-char-zero-cocycle.md research/fix-bhmet-pure-char-zero-matrix.md research/fix-bhmet-torsion-free-coprimary-block.md research/fix-bhmet-torsion-free-noether-localize.md research/fix-sk-leavitt-k2-field-two-action.md research/fix-sk-leavitt-k2-padded-central-matrix-id.md research/fix-sk-leavitt-k2-padded-central-vectors.md research/fix-sk-leavitt-k2-row-column-vec-prod.md research/fix-sk-sk-rows-steinberg-weyl-diagonal.md
+board_note GroupApproximation/BHPalomar/GraphProducts/Embedding.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/FreeProductMap.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Insert.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Main.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/ProductClosure.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/ProductInput.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Reduction.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Restrict.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Semidirect.lean 'landed 9b79e94f96' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Statement.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BHPalomar/GraphProducts/Twist.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BooneHigman/Join/HigmanVCalibCore.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/BooneHigman/Join/HigmanVCalibration.lean 'landed 8d6acdcd0c' 'landed'
+board_set fix-bhmet-absorption-suslin-euclid-kill 'UNPROBED fix-bhmet-absorption-suslin-euclid-kill GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-affine-fp-identities 'UNPROBED fix-bhmet-affine-fp-identities GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-affine-fp-model 'UNPROBED fix-bhmet-affine-fp-model GroupApproximation.BooneHigman.Metabelian.AffineFPModel bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-char-p-coords-assembly 'UNPROBED fix-bhmet-char-p-coords-assembly GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-char-p-coords-free-mul 'UNPROBED fix-bhmet-char-p-coords-free-mul GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-char-p-host-carry-recursion 'UNPROBED fix-bhmet-char-p-host-carry-recursion GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-char-p-host-tree-word 'UNPROBED fix-bhmet-char-p-host-tree-word GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-char-zero-coords-denominators 'UNPROBED fix-bhmet-char-zero-coords-denominators GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators bh-pal-wire -- repair landed 90089df2a1 (unprobed)'
+board_set fix-bhmet-char-zero-host-letters 'UNPROBED fix-bhmet-char-zero-host-letters GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-coprimary-module 'UNPROBED fix-bhmet-coprimary-module GroupApproximation.BooneHigman.Metabelian.CoprimaryModule bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-elem-fp-char-zero-k2-split 'UNPROBED fix-bhmet-elem-fp-char-zero-k2-split GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-elem-fpk2-local-quillen-ideal 'UNPROBED fix-bhmet-elem-fpk2-local-quillen-ideal GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-elem-fpk2-stab-diag-endpoint 'UNPROBED fix-bhmet-elem-fpk2-stab-diag-endpoint GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-envelope-cantor-action 'UNPROBED fix-bhmet-envelope-cantor-action GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-envelope-finite-index-abel 'UNPROBED fix-bhmet-envelope-finite-index-abel GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsion.lean 'UNPROBED GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsion.lean bh-pal-wire (landed 90089df2a1, unprobed; not root-wired)'
+board_set fix-bhmet-envelope-gen-torsion-nakayama 'UNPROBED fix-bhmet-envelope-gen-torsion-nakayama GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-envelope-higman-v-gen-family 'UNPROBED fix-bhmet-envelope-higman-v-gen-family GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-envelope-higman-v-swap-gen-all 'UNPROBED fix-bhmet-envelope-higman-v-swap-gen-all GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbedConeV.lean 'UNPROBED GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbedConeV.lean bh-pal-wire (landed 90089df2a1, unprobed; not root-wired)'
+board_set fix-bhmet-pure-char-prime-e-base 'UNPROBED fix-bhmet-pure-char-prime-e-base GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-prime-e-high-artin-hasse-alg 'UNPROBED fix-bhmet-pure-char-prime-e-high-artin-hasse-alg GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-prime-e-high-coprimary-fp 'UNPROBED fix-bhmet-pure-char-prime-e-high-coprimary-fp GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-prime-e-high-witt-e-base 'UNPROBED fix-bhmet-pure-char-prime-e-high-witt-e-base GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-prime-e-high-witt-e-coeff 'UNPROBED fix-bhmet-pure-char-prime-e-high-witt-e-coeff GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-zero-cocycle 'UNPROBED fix-bhmet-pure-char-zero-cocycle GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-pure-char-zero-matrix 'UNPROBED fix-bhmet-pure-char-zero-matrix GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-torsion-free-coprimary-block 'UNPROBED fix-bhmet-torsion-free-coprimary-block GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_set fix-bhmet-torsion-free-noether-localize 'UNPROBED fix-bhmet-torsion-free-noether-localize GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize bh-pal-wire -- repair landed d2df12ed90 (unprobed)'
+board_note GroupApproximation/BooneHigmanLinear/CharP/LowTrdegCoords.lean 'landed d6f9688298' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/CharP/OneVariableHost.lean 'landed d6f9688298' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/CharZero/Frontier.lean 'landed d01c1aebff' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/CharZero/FrontierRankFour.lean 'landed d01c1aebff' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/CharZero/Leaves.lean 'landed d01c1aebff' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/CharZero/SIntSuslin.lean 'landed d01c1aebff' 'landed'
+board_note GroupApproximation/BooneHigmanLinear/FrontierFour.lean 'landed d2df12ed90' 'landed'
+board_note GroupApproximation/ClassTransposition/Out/Flip.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/ClassTransposition/Out/Outer.lean 'landed 1284827709' 'landed'
+board_note GroupApproximation/ClassTransposition/Presentation/Basic.lean 'landed 8d6acdcd0c' 'landed'
+board_note GroupApproximation/Kourovka1759/Base.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Box.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Chain.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Equi.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Graft.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Main.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Meq.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/PC.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Statement.lean 'landed 1284827709' 'landed'
+board_note GroupApproximation/Kourovka1759/Swap.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Kourovka1759/Tree.lean 'landed 73b6d29d3e' 'landed'
+board_note GroupApproximation/Manuscript/NonMF/Full/GL03C/Endpoint.lean 'landed 07f65e67e7' 'landed'
+board_note GroupApproximation/Manuscript/NonMF/Full/NMRegradeA/InvolutionAtomBlocks.lean 'landed f7e7fbf920' 'landed'
+board_note GroupApproximation/Manuscript/NonMF/Full/NMRegradeA/TransientAtomSentences.lean 'landed f7e7fbf920' 'landed'
+board_note fix-sk-leavitt-k2-field-two-action 'repair landed 8d6acdcd0c' 'repair landed'
+board_note fix-sk-leavitt-k2-padded-central-matrix-id 'repair landed 8d6acdcd0c' 'repair landed'
+board_note fix-sk-leavitt-k2-padded-central-vectors 'repair landed 8d6acdcd0c' 'repair landed'
+board_note fix-sk-leavitt-k2-row-column-vec-prod 'repair landed 8d6acdcd0c' 'repair landed'
+board_note GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/Arzhantseva.lean 'landed e7fff6d62e' 'landed'
+board_note GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/BooneHigmanThompson.lean 'landed 8d6acdcd0c' 'landed'
+board_note fix-sk-sk-rows-steinberg-weyl-diagonal 'repair landed 8d6acdcd0c' 'repair landed'
+2026-09-18 21:07:01 consume 1789769423.1.bh-pal-wire job 1328760 (batch-b1789769423-3) base d2df12ed90 rc none complete=no partial=yes red=16 other-overlays=0
+2026-09-18 21:07:03   GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinReduction new RED
+2026-09-18 21:07:05   GroupApproximation.BooneHigman.Metabelian.AffineFPConjugation new RED
+2026-09-18 21:07:06   GroupApproximation.BooneHigman.Metabelian.AffineFPModel OPEN RED
+2026-09-18 21:07:06   GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful new RED
+2026-09-18 21:07:07   GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeGroup new RED
+2026-09-18 21:07:07   GroupApproximation.BooneHigman.Metabelian.CharZeroHost.State new RED
+2026-09-18 21:07:08   GroupApproximation.BooneHigman.Metabelian.CoprimarySplitting new RED
+2026-09-18 21:07:09   GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleFragCantor new RED
+2026-09-18 21:07:10   GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg OPEN RED
+2026-09-18 21:07:10   GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff OPEN RED
+2026-09-18 21:07:10   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction OPEN UNKNOWN_STALE
+2026-09-18 21:07:11   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId OPEN UNKNOWN_STALE
+2026-09-18 21:07:11   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors OPEN UNKNOWN_STALE
+2026-09-18 21:07:11   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd OPEN UNKNOWN_STALE
+2026-09-18 21:07:12   GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal OPEN UNKNOWN_STALE
+2026-09-18 21:07:14 DRY: new= research/fix-bhmet-absorption-suslin-reduction.md research/fix-bhmet-affine-fp-conjugation.md research/fix-bhmet-char-p-host-tree-faithful.md research/fix-bhmet-char-p-host-tree-group.md research/fix-bhmet-char-zero-host-state.md research/fix-bhmet-coprimary-splitting.md research/fix-bhmet-envelope-simple-frag-cantor.md edit= research/fix-bhmet-affine-fp-model.md research/fix-bhmet-pure-char-prime-e-high-artin-hasse-alg.md research/fix-bhmet-pure-char-prime-e-high-witt-e-coeff.md res=
+board_set GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinReduction.lean 'OPEN fix-bhmet-absorption-suslin-reduction GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinReduction bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/AffineFPConjugation.lean 'OPEN fix-bhmet-affine-fp-conjugation GroupApproximation.BooneHigman.Metabelian.AffineFPConjugation bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean 'OPEN fix-bhmet-char-p-host-tree-faithful GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeGroup.lean 'OPEN fix-bhmet-char-p-host-tree-group GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeGroup bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean 'OPEN fix-bhmet-char-zero-host-state GroupApproximation.BooneHigman.Metabelian.CharZeroHost.State bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/CoprimarySplitting.lean 'OPEN fix-bhmet-coprimary-splitting GroupApproximation.BooneHigman.Metabelian.CoprimarySplitting bh-pal-wire'
+board_set GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean 'OPEN fix-bhmet-envelope-simple-frag-cantor GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleFragCantor bh-pal-wire'
+2026-09-18 21:07:40 ---- loop4 live start (scan from 3c8b417428; SLURM-BLOCKED gate on)
+2026-09-18 21:09:21 scan: repair of GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill landed at d2df12ed90, unprobed
+2026-09-18 21:09:21 scan: repair of GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities landed at d2df12ed90, unprobed
+2026-09-18 21:09:21 scan: repair of GroupApproximation.BooneHigman.Metabelian.AffineFPModel landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators landed at 90089df2a1, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.CoprimaryModule landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split landed at d2df12ed90, unprobed
+2026-09-18 21:09:22 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsion at 90089df2a1 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeWreathEmbedConeV at 90089df2a1 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase landed at d2df12ed90, unprobed
+2026-09-18 21:09:23 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock landed at d2df12ed90, unprobed
+2026-09-18 21:09:24 scan: repair of GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize landed at d2df12ed90, unprobed
+2026-09-18 21:09:26 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwoAction landed at 8d6acdcd0c, unprobed
+2026-09-18 21:09:26 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId landed at 8d6acdcd0c, unprobed
+2026-09-18 21:09:26 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors landed at 8d6acdcd0c, unprobed
+2026-09-18 21:09:26 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd landed at 8d6acdcd0c, unprobed
+2026-09-18 21:09:26 scan: repair of GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal landed at 8d6acdcd0c, unprobed
+2026-09-18 21:09:47 scan land: LANDED ad0033c5bd on origin/main (parent a1045ed0a4):
+2026-09-18 21:09:48 SLURM-BLOCKED present: not submitting probes (still reading verdicts and landings)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinReduction at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.AffineFPConjugation at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: repair of GroupApproximation.BooneHigman.Metabelian.AffineFPModel landed at 55aba370a4, unprobed
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeGroup at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.CharZeroHost.State at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.CoprimarySplitting at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleFragCantor at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.EnvelopeWreathEmbed at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg landed at 55aba370a4, unprobed
+2026-09-18 21:20:06 scan: repair of GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff landed at 55aba370a4, unprobed
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.PureCharPrimeSplit at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:06 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.SuslinZHalfEndpoint at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:07 scan: new unwired Lean GroupApproximation.BooneHigman.Metabelian.SuslinZLocalEndpoint at 55aba370a4 -> UNPROBED (bh-pal-wire)
+2026-09-18 21:20:10 scan land: LANDED fdff6f7646 on origin/main (parent 70e4d3e8e4):
+2026-09-18 21:20:13 consume 1789778197.62834.ms-nm-uncond-a job 1338076 (batch-b1789778448-1) base e6c93a1fe4 rc none complete=no partial=yes red=0 other-overlays=0
+2026-09-18 21:20:18 consume 1789778197.62881.ms-nm-uncond-b job 1338076 (batch-b1789778448-2) base e6c93a1fe4 rc none complete=no partial=yes red=0 other-overlays=0
+2026-09-18 21:20:18 skip 1789778204.63602.ms-green-nm: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778207.63989.ms-green-nm: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778208.64219.ms-green-nm: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778213.65031.ms-nm-partial-a: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778213.65080.bh-pal-surface: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778213.65131.ms-sk-open: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778222.66216.bh-pal-graphprod: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778222.66275.ms-green-sk: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778224.66466.ms-sk-uncond-b: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778226.66780.bh-pal-wire: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778236.67839.ms-sk-uncond-a: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778718.61311.fix-graph-lead: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778724.62053.fix-graph-lead: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778785.69826.fix-graph-lead: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph
+2026-09-18 21:20:19 skip 1789778788.70253.fix-graph-lead: PROBE DEFERRED: sbatch failed: sbatch: error: Setting account: hsiehph

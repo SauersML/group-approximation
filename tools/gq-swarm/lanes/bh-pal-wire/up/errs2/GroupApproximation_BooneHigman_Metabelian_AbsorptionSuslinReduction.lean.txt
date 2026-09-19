@@ -1,0 +1,5 @@
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinReduction.lean:49:8: failed to synthesize instance of type class
+  CommRing (Polynomial (Chain.SIntPoly m k))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinReduction.lean:81:8: declaration uses `sorry`

@@ -16,3 +16,8 @@ Direction: non-MF manuscript, non-Greendlinger hypotheses and partial rows.
 - WO-NM14-2: NM19 Full/AtomRepresentatives/{SeparatingAtoms,AtomBaseSet,AtomCells,AtomTower} (00:16-00:27Z, grep sorry-free) already proves the printed atom route, so only a census regrade is owed (item 0 lander gap). ms-nm-partial-a is probing AtomTower and staging the regrade, so I do not duplicate it.
 - The build-verification probe (v2) is queued behind about 16 probes.
 - MSI leftovers: /projects/standard/hsiehph/sauer354/ms-nm-uncond-a (snapshot and logs). No jobs are running.
+## 09-18 ~21:00 re-probe after the restart
+- Probe of the six producer modules (KotowskiOllivierClosed, HullSCLemma51EmbeddedBridgeHolds, OsinLimitSetSpelling, ChainCoreClosures, CoreModelsLEFClosed, TheoremCAssemblyGreendlingerLeaf) against main e6c93a1fe, with an empty overlay: DEFERRED. Batch 1338076 hit TIMEOUT mid-build with 0 error: lines in its log, so there is no verdict. SLURM-BLOCKED is set and I am not re-probing.
+- These targets, NON_MF_SENTENCE_MAP.tsv and the conditional register are unchanged between 4a734659e and e6c93a1fe, so the detector result (0 NEW / 0 STALE) still holds on current main.
+- The branch archive (claude_great-ptolemy) contains only GL/waist, SK and TWW files. None of them concerns a non-Greendlinger row.
+- No red has been seen, so I have written no fixes and made no FIX-GRAPH entry. Next: re-probe once SLURM-BLOCKED clears.

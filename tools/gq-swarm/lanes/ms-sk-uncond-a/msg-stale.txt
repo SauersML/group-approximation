@@ -1,0 +1,9 @@
+SK: repair the stale LVAssembly/Endpoint and LVCohnK2/Final drafts as conditional wrappers (unprobed)
+
+These two drafts came back onto main through the branch merge. Both cite
+LVCohnColimit.cohn_stableK2Trivial, which does not exist, so neither could build.
+Each theorem now takes the chain's one open residual,
+h : LVCohnColimit.skCohnLimK2_degreeZeroSurjStatement, which is equivalent to stable K2(C_2(F2)) = 0,
+and delegates to the conditional SKFix01 assembly (lane sk-fix-01). Neither file adds new math.
+Neither is imported by anything, including the root.
+The files are unprobed because MSI Slurm submission is blocked (SLURM-BLOCKED).
