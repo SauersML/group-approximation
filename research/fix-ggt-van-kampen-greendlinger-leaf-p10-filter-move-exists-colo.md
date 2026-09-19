@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExist
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P10FilterMoveExists/Colour.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job direct-b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**First errors (verbatim; from union build b1789837230 on main 296aff5838).**
+**First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P10FilterMoveExists/Colour.lean:60:8: failed to synthesize instance of type class
