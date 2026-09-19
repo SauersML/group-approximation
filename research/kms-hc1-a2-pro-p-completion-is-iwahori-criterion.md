@@ -239,3 +239,34 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      closed form. At `p=11` the program runs out of 2 GB storing
      `u(N_alpha)` images at multidegree `(p,p-1,p)`.
    See `kms-hc1-edge-s-pair-jumps-are-affine-coroot-p-power-relations`.
+
+7. **`(E_11)` exact; for every `p`, `(E_p)` reduces to one scalar.** Store
+   each t-part as its vector in the induced module
+   `M = u(N)/u(N)H^+`, where `H` is the edge Heisenberg subalgebra. The
+   functional is the `z`-coefficient of the vector. This makes `p=11`
+   exact, at 130-175 s per slice.
+   - At `p=11` the jumps are `S_ca=(0,0,-1)`, `S_bc=(0,1,0)` and
+     `S_ab=(-1,-1,-1)`, with determinant `-1`. So `(E_11)` holds, and
+     `gr I = ker(A -> u(L_11))` through degree 33.
+   - For every `p`, the ca jump is carried by the unique u(h)-syzygy
+     `sigma = 2e_(p-3)+3e_(p-2)` of the two `b`-ending seeds that uses
+     `e^p = 0`, the `(Y_cY_a)^p` Witt carry.
+   - Its restricted part is `6 alpha_B` for every `p >= 5`. This is a
+     derivation count with Wilson's theorem, given the seed t-parts
+     `E23^(p-2)E13^2` and `-E23^(p-2)(E21 t)^2`. Those are numeric for
+     `p <= 13`.
+   - A rotation lemma gives the other two edges. `tau = Ad(diag(1,t,t) Pi)`
+     lifts to `N_(kappa,alpha') -> N_(kappa,alpha)` with
+     `alpha'_A = alpha_B` and `alpha'_B = -alpha_A-alpha_B-kappa`. So the
+     three edge rows are the rotations of `(k,0,6)`, with determinant
+     `108(k-2)`.
+   - Hence `(E_p)` holds iff `k(p) != 2 mod p`. Equivalently, the ca syzygy
+     does not vanish on the rotation-invariant extension
+     `N_(1,-1/3,-1/3)`.
+   - Exact: `k = 0` at `p = 5, 7, 11, 13` (`p=13` from the closed-form
+     seeds alone, SEEDFORM with a capped memo). So `(E_11)` is exact and
+     `(E_13)` holds given the lift.
+   - Open: a symbolic evaluation of the `kappa`-part `k(p)`. It comes from
+     straightening in `M` and is not a derivation count.
+
+   See `kms-hc1-ca-edge-defect-is-a-witt-carry-syzygy`.
