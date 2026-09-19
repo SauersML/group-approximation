@@ -65,3 +65,30 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     known whether Salo's construction can produce one.
   - **Next falsifiable step:** decide whether `Γ_p` embeds in `W(Z)` at all. For example, test
     whether its Schreier graphs on some faithful action can have bounded bandwidth.
+- **2026-09-19 (swarm-0917-w19-w19-nv-pull): the candidate `Γ_p` is refuted; it does not embed in
+  `W(Z)`.** See `laurent-elementary-semidirect-product-is-not-in-wobbling-group`, established by
+  `laurent-elementary-semidirect-not-in-wobbling-proof`. Every `ρ: Γ_p → W(Z)` kills an infinite
+  subgroup of the base. Where each part of the argument does its work:
+  - **Relative (T) makes base orbits finite.** Relative (T) plus normality gives a uniform
+    `(Q, κ)`. Testing it on `1_J` for intervals `J` shows that every `H`-orbit is finite.
+  - **(τ) bounds the finite `Γ`-orbits.** On a finite orbit, the half-indicator vector is
+    `O(1/n)`-invariant. Relative (T) pushes it into `ℓ²(O)^H ≅ ℓ²(O/H)`. There, (τ) of `SL_2(R)`
+    for all finite-index subgroups caps `n`. That (τ) comes from Serre's finite congruence kernel
+    (`|S| = 2`) plus the Drinfeld Selberg property.
+  - **Congruence on the infinite orbits.** There are at most `2r` infinite orbits. On each one,
+    the `u_s` for `s ∈ span{t^{2k} : |k| ≤ N}` would produce `p^{2N+1}` characters inside a
+    Schreier ball of linear size. So a nonzero ideal `I` has `I R²` acting trivially there.
+  - Cornulier's FW theorem does not apply, since `E` fails FA.
+- **Class kill.** Take any `(Γ, H)` with relative (T), `H ⊴ Γ`, and `Γ/H` with (τ) for all
+  finite-index subgroups. In any bounded-displacement action, `Γ` acts through a finite quotient
+  on `Z_fin`, and `H` is seen faithfully only on at most `2r` infinite orbits, with finite
+  `H`-orbits there. So:
+  - arithmetic quotients over module bases `R^n` with a contracting diagonal element are dead;
+  - a surviving witness needs `Γ/H` without (τ) on its finite-index subgroups, or a base whose
+    character orbits on one infinite `Γ`-orbit grow at most linearly under the `Γ/H`-action.
+  - Linear growth of character orbits under `Γ/H` is an amenability-type condition. It pulls
+    against relative (T), in the way the w17 lamplighter observation above does.
+- **Next falsifiable step:** decide whether a relative-(T) pair with a locally finite base can have
+  `Γ/H`-orbits on `Ĥ` of linear growth near the trivial character, or show that relative (T)
+  forces exponential growth there. The second would close this claim negatively for all `Γ/H`
+  with (τ).
