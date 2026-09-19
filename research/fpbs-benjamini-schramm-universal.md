@@ -745,3 +745,36 @@ content in that region.
   lattice. Candidate tools: an exploration along `S_n` that closes fjords
   at pinch (four-arm) points, or restriction/SLE_{8/3} estimates for
   external perimeters.
+
+* **Restriction-wedge route to (H) (w18-123, 2026-09-18): refuted, and the
+  FKG half-split is lossy.** See
+  `fpbs-box-event-wedge-angle-law-refutes-restriction`. The pinch-wall
+  event `D'_n(X_theta)` has a target wedge `X_theta = {|arg z| < theta}`,
+  and `theta = pi/2` is the (H) case.
+
+  - **Proved: floor.** `zeta(theta) >= 5/48` for every `theta`. The
+    outer boundary of the filled black clusters at the origin is a
+    white circuit that crosses the positive axis, so the event forces a
+    black one-arm.
+  - **Proved: half-split.** By FKG and a reflection,
+    `P(D'_n) >= P(D'_n(X^+))^2` for the quadrant `X^+ = {x > 0, y >= 0}`.
+    So `rho < 3/16` for the quadrant event implies (H), and
+    `rho >= 5/48`.
+  - **Refuted: the SLE_6-exploration/restriction bound.** Its slit-sqrt
+    calculus gives `zeta(theta) = alpha(pi+theta)/(pi-theta)`, so
+    `zeta(pi/2) = 3 zeta(0) >= 5/16`. SLE_{8/3} would give `15/8`, and
+    the SLE_6 hull `1`.
+  - **Numerics (`tri_wedge.c`, 6000 samples, n <= 256).**
+    `zeta(0) = 0.149(4)` and `zeta(pi/2) = 0.256(6)`, a ratio of
+    `0.58(2)`. The restriction law predicts `1/3`, and plain unslit
+    covariance predicts `1/2`. With the measured `alpha`, the restriction
+    law certifies only `0.447 > 3/8`.
+  - **Numerics: half-split.** The quadrant exponent is
+    `rho = 0.211(7) > 3/16`, so the half-split cannot close the gate
+    either. The two halves are strongly correlated.
+
+  **Next:** prove the widening inequality
+  `P(D'_n(pi/2)) >= c P(D'_n(0))^2` (numerically `0.256 < 0.298`), and
+  prove `zeta(0) < 3/16` for the axis-to-axis event `D'_n(0)`: no
+  pinch-free non-`I_n` path from the positive to the negative axis, a
+  two-boundary-arc event. Together these give (H).
