@@ -280,3 +280,25 @@ swarm-0917 w12).**
     Theorem B of the new node states the abstract mechanism that any other
     class would need.
 
+* **Nonunimodular calibration (2026-09-19, swarm-0917-w19-w19-bs-pull,
+  calibration).** Result: `fpbs-nonunimodular-level-sets-break-identity-e`
+  (ESTABLISHED).
+  - *Setting.* A transitive nonunimodular `Gamma ⊆ Aut(G)` and
+    `N_Delta = ker(gamma -> Delta(o, gamma o))`. This is normal, contains every
+    stabilizer, has abelian quotient `D`, and its orbits are the infinite
+    level sets of `Delta`.
+  - *Result.* The fibre kernel satisfies `sigma(c^(-1)) = c sigma(c)`, so
+    `||S_p||_(l2(D)) = chi_p`. The chain is
+    `p^(l2) = p_T <= p_c < p_t <= p^(diag) <= p_c(L;G)` (Hutchcroft
+    `thm:pcpt`). On `T_k` it is `1/(k-1) < 1/sqrt(k-1)` with no import.
+  - *What fails off Cayley graphs.* C3 fails (abelian quotient, strict gap).
+    E and E' fail: every such pair is literally type (ii). The sandwich
+    diagonal formula fails on the whole window `(p_c, p_t)`.
+  - *Invariant.* The modular function, seen as the defect of `sigma` under
+    inversion.
+  - *Step where every member dies.* Any proof of C3 or of E (l2 form) that
+    does not use unimodular mass transport would prove a false statement on
+    `(T_k, Aut(T_k)_xi, N_Delta)`. The recorded proofs use it at Step 5 of the
+    C3 proof and at (0d) of the sandwich proof.
+  - *Survivor.* `E_diag`: `p_c(N;G) = p^(diag)(N;G)`, the multi-chain
+    formulation. It equals E on Cayley graphs and holds on `T_k`.
