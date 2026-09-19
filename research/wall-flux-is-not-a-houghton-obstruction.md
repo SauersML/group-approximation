@@ -13,15 +13,15 @@ distinct_from:
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: items 1, 2 and 4 PASS
   with repairs, and item 4's proof is replaced by a simpler one; item 3 is a heuristic, not a theorem):** items
   1–4.
-- **OPEN:** Lemma 5. Of item 5a, the cases `c = h` and `c = h − 1` check; the `c = 0` claim is wrong as stated
-  (Referee section).
+- **OPEN:** the link half of Lemma 5, now Conjecture C of `level-set-join-complexes-are-highly-connected`. The
+  contractibility half is proved there. Item 5a for `c = 0` is withdrawn (Referee section).
 - No computation was run.
 
 ## Setting
 
 - This is `torsion-defect-costs-nothing-in-bhm-germ-complexes`, with defect group `⟨Δ⟩ ⊆ H_0(G_Σ)` possibly
-  infinite. For the right-angled pentagon RSG it is `⟨x⟩ ≅ Z`, and each reflection has fluxes
-  `+x, +x, −x, −x` (`gq-bh-finf-hyp-pentagon-defect-class.md`).
+  infinite. For the right-angled pentagon RSG its image in the coarse `H_0 ≅ Z` is `⟨x⟩`, and each
+  reflection has fluxes `+x, +x, −x, −x` there (the true `⟨Δ⟩` may also contain torsion; repair 1) (`gq-bh-finf-hyp-pentagon-defect-class.md`).
 - **The per-point bound.** `(L)_p/(B)_p` is finite, so each singular point carries finitely many B-germ classes.
   Since there are finitely many B-orbits of singular points, `|d| ≤ δ_max` for all singular germs.
 
@@ -33,8 +33,8 @@ distinct_from:
   finite group, and **`ψ_p = 0` whenever `⟨Δ⟩` is torsion-free** (for example `Z` for the pentagon).
 - Hence the pentagon's `±x` fluxes sit on **transfer germs**, i.e. germs at points the element moves. The
   reflection exchanges its paired singular points, which is consistent with this.
-- **Global characters.** For a B-orbit `O` of singular points, `φ_O(g) = Σ_{p∈O} d_g(p)` is a homomorphism on the
-  finite-index subgroup preserving each of the finitely many singular orbits.
+- **Global characters.** For a B-orbit `O` of singular points, `φ_O(g) = Σ_{p∈O} d_g(p)` is a homomorphism on
+  `Stab_L(O)` (repair 2: an element of `L` need not map B-orbits to B-orbits, so no finite-index claim is made).
   - It is nonzero exactly when some element's flux does not cancel inside one tail class.
   - It vanishes on commutators, so it is invisible in the simple envelope.
   - For the pentagon, whether a reflection's `+x` and `−x` points share a tail class was not computed.
@@ -60,33 +60,33 @@ distinct_from:
   - The singular points form infinitely many points in finitely many dense B-orbits. So the descending link of a
     vertex with `h` hidden points is a join of `h` factors, with `h` unbounded.
 - **The right count.** What matters for the Houghton mechanism is flux at fixed points (here none, `k = 0`) and
-  the number of ends available to one descending link (bounded for Houghton, unbounded here). So **no Houghton-type obstruction arises**, at any `n`. This is consistent with BBMZ's finite
+  the number of ends available to one descending link (bounded for Houghton, unbounded here). So one known obstruction mechanism is absent. This is **analysis, not a theorem** (referee): it proves no
+  finiteness statement. This is consistent with BBMZ's finite
   presentation.
 
-## 4. The zero-sum-completable germ complex is cocompact
+## 4. The zero-sum-completable germ complex is the orbit of non-singular cells (proof replaced per referee)
 
-- **Definition.** Let `K_0 ⊆ K = ∏'_p T_p` be spanned by the partial portraits that complete to total defect 0.
-  With `h` hidden points and revealed total `c`, completable means `c ∈ −(D_{p_1} + ⋯ + D_{p_h})`. In particular
-  `|c| ≤ h·δ_max`.
-- `L` preserves `K_0`, since total defect is invariant, as in the parent node.
-- **Finitely many orbits.** With `h ≤ n`, `|c| ≤ nδ_max` takes finitely many values. The parent node's count gives
-  finitely many orbits of cells in each `K_{0,≤n}`. Cell stabilizers are commensurable with the groups of item 2, which are `F_∞`.
+- A partial portrait is completable iff it is `portrait(ℓ)` with some points hidden, for some `ℓ ∈ L`
+  (parent, Step 1).
+- Hiding commutes with the action, so `K_0` is `L`-invariant. Moreover `ℓ·γ` is non-singular: its germs are
+  trivial and its hidden set is `ℓ(M)`.
+- So **`K_0` is exactly the `L`-orbit of BHM's non-singular cells**, and BHM Propositions 2.5, 2.6 and 2.8 apply
+  verbatim:
+  - `K_{0,≤n}` has finitely many orbits of cells, by oligomorphy;
+  - cell stabilizers are commensurable with `SingFix_L(M,M')`, which is `F_∞`.
+- This works for an infinite defect group too. The earlier invariance argument was wrong: total defect is not
+  invariant for partial portraits.
 
-## 5. What remains: the bounded-sum join lemma
+## 5. What remains
 
-**Lemma 5 (open).** Take a vertex of `K_0` with `h` hidden points and revealed total `c`. Its descending link is
-the complex of partial revealings `S ⊆ M` (with germs) that stay completable. It should be
-`(h − 3 − C)`-connected, with `C` depending only on `δ_max`. In addition `K_0` should be contractible.
+- By item 4, every descending link is isomorphic to one at a non-singular vertex, where the revealed total is 0.
+- **Contractibility of `K_0` is now proved** by a nerve argument, in `level-set-join-complexes-are-highly-connected`.
+- **The link half** is stated there as **Conjecture C**, through the inflation formula. It says that the pure
+  complexes generated by level sets of integer sums are `(h−3)`-connected.
+- **Item 5a.** The earlier description of the case `c = 0` ("removes only top simplices") is **withdrawn**. It is
+  wrong, because the completability constraint also removes lower faces. The cases `c = h` and `c = h−1` stand.
 
-**5a (proved).** Take `δ_max = 1` and `c = h − 1`, a near-extreme boundary case.
-- The link is the join of the defect-`(−1)` germ sets, with simplices allowed at most one defect-0 vertex.
-- It is obtained from the full join of the `N_p`, which is `(h−2)`-connected, by attaching cones on joins over
-  `h−1` points, which are `(h−3)`-connected.
-- So it is `(h−2)`-connected.
-- The extreme case `c = h` is a full join, also `(h−2)`-connected. The case `c = 0` removes only the top
-  simplices of a full join, so it is `(h−3)`-connected.
-
-**Consequence.** Lemma 5 together with items 2–4 and Bestvina–Brady gives `F_∞` for every bounded full contracting
+**Consequence.** Conjecture C, together with items 2 and 4 and the contractibility of `K_0`, and Bestvina–Brady gives `F_∞` for every bounded full contracting
 RSG with a bounded defect group, torsion or not. The pentagon RSG and its twisted Brin–Thompson envelope would be
 among them. Without Lemma 5 nothing is concluded, but **no Houghton-type negative answer to Question 1.2 comes from the flux**.
 

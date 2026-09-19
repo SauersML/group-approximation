@@ -2,7 +2,7 @@
 rg: 2
 id: torsion-defect-costs-nothing-in-bhm-germ-complexes
 kind: claim
-title: Nonzero germ defect is not a finiteness obstruction when the defects are torsion; a bounded full contracting RSG with finite defect group is F_infinity, because defect only splits the portraits of the BHM germ complex into finitely many orbits; defects at fixed singular points are always torsion, and a half-shift over the 3-shift gives an F_infinity example with defect 1 in Z/2
+title: Nonzero germ defect is not a finiteness obstruction when the defects are torsion; a bounded full contracting RSG with finite defect group is F_infinity, because defect only splits the portraits of the BHM germ complex into finitely many orbits; defects at fixed singular points are always torsion, and a two-point half-shift element over the 3-shift gives an F_infinity example with defect 1 in Z/2
 requires:
   - bounded-defect-free-full-contracting-rsgs-are-f-infinity
 distinct_from:
@@ -42,22 +42,25 @@ Let `L` be a bounded full contracting RSG with `⟨Δ⟩` finite. Then:
      `G_Σ|_E` maps one onto the other (Matui, as in the parent node).
    - `h = g_i` on `U_i` and `h = k` elsewhere lies in `L`, and its portrait is `γ`.
    - Conversely, every element's portrait has total defect 0 (parent node, Proposition 2.2).
-2. **Total defect is an orbit invariant, and there are finitely many orbits.**
-   - `g·γ` has total defect `total(γ) + Σ_{sing(g^{-1})} d_{g^{-1}} = total(γ)`.
-   - Fix `c ∈ ⟨Δ⟩` and a finite standard set of germs `Q_c` with total `−c`. For `γ` with total `c`, `γ ⊔ Q_c`
-     (at fresh points) is zero-sum, so it is `portrait(h)`, and then `h·γ` is supported on `h(Q)` with the germ
-     types of `Q_c`.
-   - Using `B` to move points within their B-orbits (finitely many tail classes) leaves finitely many orbits of
-     portraits for each `c`.
-   - Since `⟨Δ⟩` is finite, the vertices of `K_{≤n}` fall into finitely many `L`-orbits.
-   - The same count, with `M ⊆ M'` hidden sets, handles cubes.
-3. **Stabilizers.** The stabilizer of a portrait supported on `P` consists of the `g` with:
-   - `g(P) = P`;
-   - `sing(g) ⊆ P`;
-   - finitely many germ equations at `P`.
-
-   It contains `Fix_B(P ∪ M')` with finite index, because the germ quotients `(L)_p/(B)_p` are finite (BBMZ
-   `prop:CyclicStabilizers`). That group is `F_∞` (parent node, item (2)). Cube stabilizers are the same.
+2. **Finitely many orbits (reworded per referee).**
+   - Total defect is `L`-invariant for full portraits. It is **not** invariant for partial portraits: hidden
+     points absorb germs, and `total(g·γ) = total(γ) − Σ_{p∈g(M)} d_{g^{-1}}(p)`.
+   - The orbit count does not need invariance. Add a standard compensating set `Q_c` at fresh non-hidden points,
+     realize the result by an `h` that is non-singular on `M` (cones chosen away from `M`), and apply `h`.
+   - This leaves finitely many orbits of vertices and cubes of `K_{≤n}` for each `c`, and `c` ranges over the
+     finite group `⟨Δ⟩`.
+3. **Stabilizers (replaced per referee; the earlier version was wrong).** Already for a full zero-sum portrait
+   `γ = portrait(h)`, `Stab(γ) = h^{-1}Bh`, which moves `sing(h)`.
+   - **The data.** Let `γ` have labels `λ_i = (Bg_i)_{p_i}` outside its hidden set `M`, with total `c`.
+   - **Build `τ`.**
+     - Choose small disjoint cones `U_i ∋ p_i` avoiding `M`, with disjoint images.
+     - Choose a clopen `E_c` with `[E_c] = [E] + c` containing the images (Matui).
+     - A Matui bisection matches the complements. This gives a rational homeomorphism `τ: E → E_c` with
+       `(Bτ)_{p_i} = λ_i`, canonical elsewhere.
+   - **The stabilizer.** `Stab(γ) = τ^{-1}{k ∈ L_c : sing(k) ⊆ τ(M), k(τM) = τM}τ`, where `L_c ∈ 𝓕(L)` is the
+     full RSG on `E_c` with the nucleus of `L`.
+   - **Finiteness.** BHM Propositions 2.5 and 2.8, which do not use localization, make this group commensurable
+     with `Fix_{V_(Σ,E_c)}(τM)`. That group is `F_∞`. Cubes are handled the same way, with `M ⊆ M'`.
 4. **Links.** BHM's `K = ∏'_p T_p` and its Morse function do not involve the group. Descending links are joins of
    the discrete sets `Bgerm(L,p)` (BHM `prop:nConnected`), so `K_{≤n}` is `(n−1)`-connected.
 5. **Brown's criterion** on `K_{≤n}` gives `F_n` for every `n`. The finite-set stabilizers and `SV_L` follow as
@@ -79,22 +82,18 @@ criterion needs.
   infinite order. Then `K_{≤0}` has infinitely many orbits. Whether that is a genuine obstruction, or only a
   failure of this complex, is **open**.
 
-## Example: nonzero defect, and F_∞
+## Example: nonzero defect, and F_∞ (replaced per referee)
 
-- **The space.** The 3-shift `{0,1,2}^ℕ`, with `B = V_3` and `H_0 = Z/2` (every cone has class 1).
-- **The element τ.** List the branches along the ray `1^∞` as `C_0, C_2, C_{10}, C_{12}, C_{110}, …`. Then `τ`
-  maps each branch onto the next one by the canonical similarity, and fixes `1^∞`.
-  - `τ² = σ` near `1^∞`, where `σ` is the canonical shift `1^k w ↦ 1^{k+1}w`.
-  - `τ` is singular only at `1^∞`.
-- **Self-similar form.** `τ`'s local action at every `1^k` is `t` with `t(0x) = 2x`, `t(2x) = 10x`,
-  `t(1y) = 1t(y)`.
-- **Defect.** `t` maps `C_∅` onto `C_1 ⊔ C_2`, of class 0, while `[C_∅] = 1`. So `d_τ(1^∞) = 1 ≠ 0`.
-- **The group.** Let `L` be the full closure of `⟨V_3, τ⟩`.
-  - Its nucleus is finite: `id`, `t`, and the local action of `τ^{-1}`, since all odd powers of `τ` have deep local
-    action `t` or its inverse type (lane check).
-  - Every element is singular only on the `V_3`-orbit of `1^∞` (bounded, one tail class).
-  - So the Theorem applies: **`L` is `F_∞`** although no element is singular at exactly one point. Every element
-    has an even number of singular points.
+- **Withdrawn.** The earlier element `τ` (shifting the branches along `1^∞`) is not a homeomorphism: `C_0` is never
+  hit. This is forced, because a germ of defect `1 ∈ Z/2` cannot be the only singular germ of a homeomorphism
+  (parent, Proposition 2.2).
+- **Replacement** (referee bh-ref-q12): the two-point element `g` on the 3-shift, with `B = V_(3,1)` and
+  `H_0 = Z/2`, built from the half-shift `n: E → C_0 ⊔ C_1`, `n(0x) = 0n(x)`, `n(1x) = 02x`, `n(2x) = 1x`.
+  - `g(0x) = 0n(x)`, `g(1y) = 1n^{-1}(y)`, `g(12x) = 02x`, `g(2x) = 2x`.
+  - `g` is singular exactly at `0^∞` and `10^∞`, both with germ `n` and defect `1`.
+  - Its singular points form one tail class, so `⟨Δ⟩ = Z/2` is finite.
+- **Conclusion.** By the Theorem, with the repaired Step 3, **`L = [[⟨V_(3,1), g⟩]]` is `F_∞`**, although no element
+  of `L` has exactly one singular point.
 
 ## 3. BBMZ hosts (analysis)
 
