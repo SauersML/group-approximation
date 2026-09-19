@@ -207,6 +207,26 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   - **Next.** Case 1 is now equivalent to `(H″)`: for `a ≠ b` in `F` and `u, v ∈ N`, `[u, a] = [v, b]` implies
     `u^{-1}v ∈ C_N(a)C_N(b)`. It needs an invariant of `⟨N, F⟩` finer than `(ρ_X, ρ_Y)`, e.g. a tree for `⟨N, F⟩` whose
     edge groups at `F` are the `C_F(n)`.
+- **Commutator Helly holds in type A, but vertex centres fail there** (w14-042,
+  `h4-case1-commutator-helly-holds-in-type-a-but-vc-fails`; (Q) and (A) proved, (B) certified, searches are evidence).
+  - **Cosets.** `U_a(k) = {u ∈ N : [u, a] = k}` is empty or a coset `uC_N(a)`. So (H″) for `(a, b, k)` says the
+    cosets `U_a(k)` and `U_b(k)` meet. When they meet with `k ≠ 1`, VC fails iff `C_N(a)` and `C_N(b)` are
+    incomparable.
+  - **Type A.** In every `A_n`, (H″) holds. The reductions of w12 and w13 use only facts true for `B_{n+1}`, and the
+    arc-model Helly theorem (`braid-pure-single-edge-hexagons-always-have-a-centre`) supplies the pure centre.
+  - **VC is false in A_4.** In `B_5`, take `a = p_1p_0`, `b = p_2p_0`, `u = x_2x_0` and `v = x_2x_0x_1x_0^{-1}`.
+    - This is a Case 1 tuple with no vertex centre; its pure centre is `x_0^{-1}A_Y`.
+    - It is certified in the faithful Artin representation.
+    - An exact Garside search counts 18720 VC failures at radii (3, 6).
+  - **H_4 search.** An exact hash search at F-radius 3 and N-radius 4 found no VC failure and no Helly candidate. It
+    covered 187 `F`-elements, 305265 `N`-elements and 954436 tuples.
+    In the reversed H_4 orientation, which the target does not cover, VC already fails at radii (2, 4) (2688 tuples), but
+    every failure has a centre inside the ball.
+  - **Next.** A uniform proof of Case 1 cannot always give a hexagon vertex. It needs an H_4 analogue of the Z/2 Helly
+    argument that reaches non-vertex centres, or a proof that the H_4 centralisers `C_N(a)` are nested whenever the
+    cosets meet. A ball search cannot refute (H″); only a finite-quotient obstruction can.
+  - **Lifting test.** Vertex centres map to vertex centres under the fibred braid shadows. So an H_4 Case 1 hexagon
+    whose `P_5`-shadow is the A_4 example would refute VC in H_4. Finding one is the lifting problem.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
