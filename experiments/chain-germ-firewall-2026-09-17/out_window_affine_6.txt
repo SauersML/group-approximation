@@ -1,0 +1,1 @@
+affine n=6 rho_meta window [256.0,512.0) pieces 99072 comps 2 moved 4 first 258 last 385.5 (70s)

@@ -1,0 +1,5 @@
+# n=5000 Vc=20 Vb=8 V=100000 classes=law seeds_in_class=5000 D0=60000
+traj 0.050:0.9262 0.100:0.8274 0.150:0.6476
+run 0 hit 800 density 0.1600
+traj 0.050:0.9247 0.100:0.8259 0.150:0.6299
+run 1 hit 772 density 0.1544

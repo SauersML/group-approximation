@@ -1,0 +1,8 @@
+p=2 adjoint: True  left action: True  identities: True
+p=3 adjoint: True  left action: True  identities: True
+p=5 adjoint: True  left action: True  identities: True
+affine unipotent orders (v_1 != 0): {2: 4, 3: 3, 5: 5}
+affine torus (order, #fixed points): {3: (2, 1), 5: (4, 1), 7: (6, 1)}
+baker conjugacy and block-code factor (p=3, k=4): True
+baker conjugacy and block-code factor (p=2, k=2): True
+ALL CHECKS PASSED
