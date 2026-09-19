@@ -163,3 +163,31 @@ inside `V` is finite with trivial defect, in every ambient group.
        solutions have finite image, which is impossible for V below 1/2.
    - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
      identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.
+4. **2026-09-19, swarm-0917 w18 (ptl-last1), reframing: small-defect witnesses are dense in one simple adjoint group, which splits the hole into three classical gaps.** The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proof).** Claim: `thompson-v-mf-witnesses-are-dense-in-simple-adjoint-groups`,
+     via `thompson-v-mf-witnesses-are-dense-in-simple-adjoint-groups-proof`.
+     - Let `sigma` be a nontrivial irreducible with `D < 1/2`. Every simple ideal `h` of `[l, l]` (`l = Lie` of the
+       closure) is invariant under the closure.
+     - `g -> Ad(sigma(g))|_h` lands in `Inn(h)` with dense image, has defect at most `2D`, and satisfies
+       `delta_(dim h) <= 2D`.
+     - Conversely, nontrivial homomorphisms `G0 -> Inn(h_j)` with defect `-> 0` make V MF.
+   - **Mechanism.**
+     - Lemma O at `2D < sqrt 2`, with the transfer tool, fixes each ideal.
+     - A principal-logarithm lemma shows that an orthogonal automorphism within `sqrt 3` of `1` has eigenangles
+       below `2 pi/3`, so its logarithm is a derivation, which is inner.
+     - The transfer tool kills the finite group `Ad(K)|_h / Inn(h)`.
+   - **New decomposition** (route `thompson-v-not-mf-via-classical-adjoint-trichotomy`). By the classification
+     (finitely many exceptional types), this target is equivalent to the conjunction of three open holes:
+     - `thompson-v-gap-on-dense-projective-unitary-images`, for `PSU(k)`;
+     - `thompson-v-gap-on-dense-orthogonal-adjoint-images`, for `SO(k)/{+-1}`;
+     - `thompson-v-gap-on-dense-symplectic-adjoint-images`, for `Sp(k)/{+-1}`.
+
+     Each hole is implied by the target, so the reformulation is exact.
+   - **Kills (below `D < 1/2`).** A witness cannot use any of the following:
+     - a torus factor;
+     - a disconnected closure acting nontrivially on `h`;
+     - products or permutations of simple factors;
+     - outer automorphisms, including the transpose of `SU` and the triality of `so(8)`.
+   - **Where it stops.** Nothing here bounds the defect of a dense homomorphism into `PSU(k)` uniformly in `k`. The
+     natural next test is the SU hole in its projective form: do lifts of `r5..r8` in a dense projective
+     representation `G0 -> PU(k)` stay a uniform distance from the scalars?
