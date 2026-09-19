@@ -148,7 +148,9 @@ theorem stepEdge (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ 
       have hfc' : X.toCombMap.faceOf c ≠ f := by
         rw [hfc]
         exact hne'
-      have hpx : X.toCombMap.facePerm x = c := List.isChain_pair.mp hcyc.chain
+      have hpx : X.toCombMap.facePerm x = c := by
+        have h := List.isChain_pair.mp hcyc.chain
+        exact h
       have hpc : X.toCombMap.facePerm c = x := hcyc.closes
       refine ⟨embed X.toCombMap c, ?_, ?_, ?_, ?_, ?_⟩
       · exact
@@ -230,7 +232,9 @@ theorem stepMono (D : RelGenSet G Lambda) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ 
       have hfc' : X.toCombMap.faceOf c ≠ f := by
         rw [hfc]
         exact hne'
-      have hpx : X.toCombMap.facePerm x = c := List.isChain_pair.mp hcyc.chain
+      have hpx : X.toCombMap.facePerm x = c := by
+        have h := List.isChain_pair.mp hcyc.chain
+        exact h
       have hpc : X.toCombMap.facePerm c = x := hcyc.closes
       refine ⟨embed X.toCombMap c, ?_, ?_, ?_, ?_, ?_⟩
       · exact

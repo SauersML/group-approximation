@@ -5,12 +5,11 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal: Tactic simp failed with a nested error:"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean` fails to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 1 error lines).
+**RESOLVED (9add2d485e, trusted batched probe job direct-b1789839564).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean` fails to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 1 error lines).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: ms-green-sk.
 Source changed on main since that build: yes.
 
 
-**Repair landed, unprobed.** 1ed9483b19: SK Diagonal and PaddedCentral.MatrixId: static fixes for union build b1789837230 (unprobed. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 

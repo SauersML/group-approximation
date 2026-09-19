@@ -27,8 +27,7 @@ theorem bind_const {α β : Type*} (P : Multiset α) (S : Multiset β) :
   induction P using Multiset.induction_on with
   | empty => simp
   | cons a P ih =>
-    rw [Multiset.cons_bind, ih, Multiset.card_cons, succ_nsmul]
-    abel
+    rw [Multiset.cons_bind, ih, Multiset.card_cons, succ_nsmul, add_comm]
 
 theorem card_ml_tail_single {k : ℕ} (hk : 0 < k) : Multiset.card (ml (tail [k])) = k := by
   rw [card_ml_tail_cons hk, tail_nil, ml_leaf, Multiset.card_singleton]
