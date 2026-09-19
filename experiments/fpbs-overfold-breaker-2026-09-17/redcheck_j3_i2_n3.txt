@@ -1,0 +1,5 @@
+Q 1 level>=2 at depth 3 (35, 0, 2) | depth 1 on Q^(2) (35, 0, 2) OK
+Q 2 level>=2 at depth 3 (35, 1, 0) | depth 1 on Q^(2) (35, 1, 0) OK
+Q 3 level>=2 at depth 3 (34, 1, 0) | depth 1 on Q^(2) (34, 1, 0) OK
+Q 4 level>=2 at depth 3 (35, 0, 2) | depth 1 on Q^(2) (35, 0, 2) OK
+agree 4 of 4

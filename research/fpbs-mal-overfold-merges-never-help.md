@@ -45,6 +45,25 @@ artifacts:
   - experiments/fpbs-overfold-relative-rank-2026-09-17/top_vs_law_n6_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exact_multi_s3_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exh_n3_j3.txt
+  - research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md
+  - experiments/fpbs-overfold-breaker-2026-09-17/pb.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/smallk.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/reduction_check.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/principal_types.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/principal_types_j4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/doublecoset_check.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/doublecoset_j4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j1_n7.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j2_n6.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j3_n4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j4_n3.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j1_n14.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j2_n9.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j3_n8_single.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j4_n5_single.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j2_i1_n5.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i1_n3.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i2_n3.txt
 ---
 
 **OPEN.** Notation is as in
@@ -246,3 +265,60 @@ such as rank 2 and the single lawful component above.
 
     For the same reason, the 1-dimensional local-system bound on `law` does
     not bound `deep`.
+- **2026-09-19, swarm-0917-w17-w17-fp-break (belief breaker): OPEN; no
+  counterexample; (O) reduced to its level-0 part.** Details:
+  `research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md`.
+  Scripts: `experiments/fpbs-overfold-breaker-2026-09-17/`.
+  - **Levels.** The level of a seed type at depth `j` is the largest `i`
+    with equal images in `C_i`. Equivalently, `g = u_c u_{c'}^{-1} ∈ L_i`.
+    - Level `j` is the lawful type.
+    - At depth `j` there are `N_{j-i}` types of level `i`, with
+      `N = 1, 11, 76, 472, 2821` (`j ≤ 4`).
+    - Level-0 types have tree size `≤ 3`.
+  - **Lemma D (depth shift).** Let `deep_j^{≥i}` allow only seeds of level
+    `≥ i`. Then
+
+    ```text
+    deep_j^{≥i}(Q) = deep_{j-i}(Q^{(i)})   and   law_j(Q) = law_{j-i}(Q^{(i)}).
+    ```
+
+    - *Proof.* From the relative-rank form above: level `≥ 1` means
+      `g ∈ L_1`, and `φ` transports `(S ∩ L_1, K, K')` to the depth-`(j−1)`
+      data of `Q^{(1)}`. The one extra input is the double-coset identity
+      (T_j): `U_j ∩ L_1 = φ(U_{j-1})`, where `U_j` is the union of the
+      realised double cosets of `L_{j+1}`.
+    - (T_j) is basis-dependent: minimal subtrees in `T(L; a, b)` versus
+      `T(L_1; a, t_1)`. It is checked exactly for `j ≤ 4` by a
+      tree-projection test (`doublecoset_check.py`).
+    - Scope: `L_{j+1}`-transitive `Q`.
+    - Independent check: `reduction_check.py` gives matching closure and
+      promotion fingerprints on 22 random `Q`.
+    - Dead end, recorded: the naive proof via principal pairs fails, since
+      1, 9 and 64 level-≥1 types contain no principal pair
+      (`principal_types.py`).
+  - **Corollary.** (O) is equivalent to (O'_j): `deep_j(Q) = deep_j^{≥1}(Q)`
+    at every depth. That is, only the level-0 overfold types need to be
+    ruled out; all deeper types follow by induction. This is proved for
+    `j ≤ 4`, and for all `j` given (T).
+    - Caveat: the weak form `deep ≥ c·law` does not follow from a weak
+      level-0 bound, which only compounds to `c^j`.
+  - **Measure form (proved, all `j`).** `Q_j(X) ≤ Q_{j-1}(X^{(1)})` and
+    `Q_j^law(X) = Q_{j-1}^law(X^{(1)})`, because graphings inside
+    `E_{X|L_1}` are exactly the level-≥1 seeds.
+    - For Bernoulli `ρ`, `ρ^{(1)} ≅ ρ`, so `Q_0(ρ) ≥ Q_1(ρ) ≥ …` is
+      non-increasing, and `Q_j^law(ρ) = Q_0(ρ)`.
+    - (O) at `ρ` says this sequence is constant. The floor says its limit
+      is positive.
+  - **Census, 0 FLAGs.** The pullback-model seed reducer `smallk.py`
+    (validated against `exh_n5_j2`) ran on:
+    - every transitive `Q` with `(j, n) = (1, 7)`: 4163 classes;
+    - every transitive `Q` with `(j, n) = (2, 6)`: 624 classes;
+    - every transitive `Q` with `(j, n) = (3, 4)` and `(4, 3)`;
+    - random samples: `j=1, n=14` (300 levels) and `j=2, n=9` (100 levels),
+      with pairs;
+    - random samples, single seeds only: `j=3, n=8` and `j=4, n=5`.
+
+    Throughout, `deep = law` whenever `law ≤ 2`.
+  - **Where it dies.** No sharing mechanism is observed. A minimal
+    counterexample must use a level-0 seed in every minimal witness, so a
+    future hunt can be restricted to those.
