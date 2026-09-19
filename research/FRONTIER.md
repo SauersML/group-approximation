@@ -27676,6 +27676,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-19 · thompson-f-markov-size-chain-vectors-saturate-in-the-scale-limit [OPEN] Stationary Markov size-chain test vectors for Thompson's F saturate near Rayleigh value 0.977 in the log-scale limit, below the product cap 71/72
 - 2026-09-19 · o2-suspension-central-unitary-evades-commutant-corners-proof [COMPLETE] AF-embed the O_2-suspension by Gabe, push the unitization into a corona by Arveson, and kill every corner trace with the Cuntz relation
 - 2026-09-19 · o2-suspension-central-unitary-evades-commutant-corners [ESTABLISHED] The winding unitary of the unitized O_2-suspension is a nontrivial central unitary in a matrix corona that every commutant corner trace misses
 - 2026-09-19 · commutant-projection-extraction [REFUTED] Corner-invisible central unitaries in a matrix corona are trivial
@@ -27683,7 +27684,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-19 · entanglement-certified-ug-soundness-puts-source-in-p-krt [COMPLETE] Threshold the Kempe--Regev--Toner estimate of the entangled deficit, and compose
 - 2026-09-19 · entanglement-certified-ug-soundness-puts-source-in-p [ESTABLISHED] A polynomial-time complete reduction to unique games whose soundness bounds all entangled (or commuting-operator) strategies puts its source in P, so under P != NP every UG-hardness reduction, composed or not, has infinitely many NO outputs of entangled value at least 1 - 6 eps; entanglement-sound outer layers are left uncovered
 - 2026-09-19 · leavitt-cone-head-bound-semisimple-ring-shadows-proof [COMPLETE] Pull the head back to six Leavitt defect commutators, show they generate the finite shadow ring, and compare head and defects by orbit averaging of characters on one row group
-- 2026-09-19 · leavitt-cone-head-bound-holds-for-semisimple-ring-shadows [ESTABLISHED] The cone-cover head bound (QC) holds with a linear constant for every representation of Gamma that factors through St_20 of a finite semisimple ring shadow
 
 ## Active claims
 
