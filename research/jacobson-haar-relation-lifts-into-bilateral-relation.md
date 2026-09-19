@@ -69,3 +69,24 @@ So (ML) implies `(BL_n)`. A homomorphic section `SL_n(A) -> N_-` of `π_-` (untw
 
 A negative answer that is robust to the choice of `N` and `r` would be the first measured obstruction on the
 survivor side.
+
+## Attempts
+
+* **Corner test and untwisting (swarm-0917-w16-w16-nh-last1, 2026-09-19, cohomology-index).** Recorded in
+  `mirror-lift-untwists-only-through-a-mirror-splitting` (ESTABLISHED, unreviewed). The hole stays OPEN.
+  - **The corner test above is vacuous.** `x_12(S), x_12(T), x_23(S), x_23(T)` generate a subgroup of the class-2
+    nilpotent `UT_3(J)`. Its orbit subrelation is hyperfinite, hence treeable, and `s` lifts along any treeing. So the
+    mirror head is always absorbed there.
+  - The same holds on every treeable subrelation of `R_n`. Any obstruction to `(ML)` lives only on the non-treeable
+    (Kazhdan) whole.
+  - **Untwisting forces a splitting.** Suppose the group cocycle of an `(ML)` witness is cohomologous to a
+    homomorphism into the `U_fin` group `N_-`. Then the witness is `[T_-]`-cohomologous to `rho o s`, for a
+    homomorphic section `rho : Q -> N_-`. The proof uses weak mixing to remove the `Q`-part, and positive
+    fixed-point sets to kill `L_+`.
+  - So the canonical case splits into **(HS)** (does `N_- -> Q` split?) and **(SR)** (`U_fin` cocycle superrigidity of
+    the algebraic action `Ê_+ ↷ X_+`). The two can fail independently.
+    * A refutation of `(ML)` needs (SR) together with not-(HS).
+    * A proof of `(ML)` without (HS) needs a failure of (SR).
+  - (HS) with values in `Ê_-` is already refuted by `jacobson-symbol-sequence-does-not-virtually-split`.
+  - The candidate measurable index (relative entropy of the `u'`-invariant sigma-algebra) dies where unbounded
+    `[T_-]` corrections make the conditional entropies infinite.
