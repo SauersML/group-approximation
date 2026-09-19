@@ -337,3 +337,36 @@ representation of the host. The result is `steinberg-ore-domains-have-faithful-p
   - Piece 3 cannot be reached by the lemma, because the lattice units are not central in `B_Ω`.
 - **Transfer.** Every *field-uniform* obstruction for `L_k(1,2)`, such as `C(s_w) = k[s_u]` from lane w15-bh,
   now covers all of `H_Y` at once.
+
+**w16-bh obstruction-miner (linear-characteristic): the Q_2 firewall split into a skew-field half and a grading half.**
+OPEN.
+- **New target node.** `leavitt-algebras-contain-no-two-variable-polynomial-ring` is the field-uniform statement
+  the w15 need asked for: no two commuting independent elements in `L_k(1,2)`, for any field `k`.
+  - At `k = F_2` it gives `leavitt-commuting-units-are-algebraically-dependent`
+    (route `commuting-units-dependence-from-field-uniform-leavitt-rank`).
+  - At `k = F_2(x,y)` it kills mechanism (i), and through `laurent-tensors-reduce-leavitt-rank-to-function-fields`
+    all of `H_Y`.
+- **ESTABLISHED (unreviewed).** `leavitt-nonnegative-part-is-matrix-union-over-free-algebra`:
+  - `L_(>=0)` is the union of the unital blocks `E_N ≅ M_(2^N)(k<x_0,x_1>)`, with connecting map
+    `ψ(p)_(y,x) = ∂_y(p x_x)`.
+  - A commutative domain in `M_n(D)`, where `D` is the free skew field, restricts to the image of a minimal-rank
+    element. There it becomes a subfield of `M_r(D)`.
+  - `r = 1` is excluded by Cohn 1978 with Schofield 1985, Thm 11.6, quoted verbatim from Derksen–Volčič,
+    arXiv:2512.03223, §5.2.
+  - Hence every commuting independent pair in `L_(>=0) ∪ L_(<=0)` needs a transcendence-degree-2 subfield in
+    some `M_r(D)` with `r >= 2`.
+  - Script: `experiments/leavitt-nonnegative-part-2026-09-19/check_matrix_union.py`.
+- **Decomposition.** Route `leavitt-rank-one-from-free-field-matrices-and-degree-reduction` has two new OPEN
+  prerequisites.
+  - `matrices-over-free-fields-have-no-trdeg-two-subfields`: pure skew-field theory, field-uniform, known at
+    `r = 1`.
+  - `leavitt-polynomial-pairs-move-to-the-nonnegative-part`: the grading half.
+  - Each can fail without the other.
+- **Where it dies.**
+  - The case `r >= 2` of the skew-field half is not in the literature I checked. Companion matrices over one
+    centralizer give only transcendence degree 1.
+  - The grading half cannot go through any homomorphism: `L_(>=0)` is stably finite and `L` is purely infinite.
+    Leading forms fail, since `L` is not a graded domain, and conjugations preserve degree.
+- **Literature check.** Bilich–Hazrat–Nam, arXiv:2512.09241, has an obstruction for the Weyl algebra in
+  characteristic 0 via `C*`-completions. It says nothing about `k[x,y]` in `L_k(1,2)`. `C*` methods cannot, since
+  `C(T^2) ⊆ O_2`.
