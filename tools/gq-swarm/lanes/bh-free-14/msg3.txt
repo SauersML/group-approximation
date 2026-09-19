@@ -1,0 +1,5 @@
+Deligne lattice node: record the Lagrangian odometer-lift attempt
+
+Attempts entry on deligne-lattice-satisfies-boone-higman pointing to the lift
+over Cantor covers of the Lagrangian Grassmannian, the invariant-measure
+obstruction, and the circle exclusion. No status change (still OPEN).

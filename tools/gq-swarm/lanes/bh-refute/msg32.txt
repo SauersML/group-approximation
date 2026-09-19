@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on central extensions of Thompson's F contain F (homology recomputed)

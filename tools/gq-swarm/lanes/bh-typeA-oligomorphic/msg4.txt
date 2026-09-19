@@ -1,0 +1,7 @@
+Circle PL groups T(l;A,P) act with type (A) on A/lZ under three hypotheses
+
+The hypotheses: the group is f.p., G([0,l];A,P) is f.g., and A/IP*A is finite
+(Bieri-Strebel Cor A1, read at source). This covers the Stein and golden-ratio
+rows of the Q3.4 census: every subgroup of Stein circle groups and the f.p.
+simple T_xz of Burillo-Nucinkis-Reeves satisfy PBH. Stein F_infinity and T_tau
+F_infinity are cited, not re-read. Lane proof, not reviewed; no novelty claimed.

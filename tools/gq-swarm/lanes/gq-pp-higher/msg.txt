@@ -1,0 +1,11 @@
+Obstruction: germ extensions of piecewise-projective groups omit GL_n(Q)
+
+If every element of a group G agrees with elements of a group B of
+piecewise-L homeomorphisms off a closed nowhere dense set (L projective or
+affine with the identity principle), then the globally-L elements of G lie in
+the piece group of B. For B finitely generated and finitely piecewise this is a
+finitely generated linear group, so it is residually finite: no finite germ
+extension of B, whatever its germs, contains the standard GL_n(Q) or its
+unipotent (Q,+). The divisible part must come from nonstandard elements (as Q
+in T-bar), or from a base with infinitely many pieces. Also: the rational PIP
+group of RP^{n-1} is not finitely generated.

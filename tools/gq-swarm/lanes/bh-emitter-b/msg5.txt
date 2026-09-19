@@ -1,0 +1,1 @@
+Record the free-group pointer structure on the wall trees of the Ã2 phase seed

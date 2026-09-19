@@ -1,0 +1,6 @@
+Minimal crossing-wire fixed-point shift: a free minimal quantum rigid Z^2 SFT
+
+The Durand-Romashchenko minimal self-simulating construction (variable zoom, properties p1-p4, diversification
+slots), rebuilt with complete crossing, slots for crossing windows and a deterministic (two-way head or one-way)
+zone, is free, minimal and 1-rigid over every field. Slots are frame-forced hence classical, so the crossing-wire
+proof runs level by level. Route into free-minimal-z2-sft-is-quantum-rigid. Lane proof, not reviewed.

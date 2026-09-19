@@ -1,0 +1,13 @@
+Referee addendum: R1-R3 for the minimal crossing-wire shift checked against DR and DRS at source; the PASS stands pending one crossing-box fix
+
+DR arXiv:1802.01461 and DRS arXiv:0910.2415 were fetched fresh on MSI (md5 8e17f728, 63ad72b6).
+- R1: the Kleene closure needs only poly(log N)-checkable coordinate-fixed rules, and the layout meets this.
+- R2: macro-colours sit in the middle k positions with zero bits elsewhere; wires run perpendicularly through the
+  margins; corners are blank; slots are placed far from wires. So margins are side-local with constant corners.
+- R3: DR force a unique pattern in each slot, and slots are detached, so frame tiles are unique per coordinate.
+  The directed determinism that A3 needs, beyond the classical 2x2-determinacy of DR (p2), is supplied by the
+  layout zone table.
+- Fix needed: the END column X_0+2K of the crossing box collides with c_K. Widen the box by one column.
+
+Lesson for general BH: the rigid minimal fixed point rests only on coordinate-fixed poly(log N) gadgets and
+directed zone determinism. The one defect found is a finite indexing collision, not a structural gap.

@@ -1,0 +1,3 @@
+Referee report: degree-one corner unitaries FAIL at item 1 (w = ewe), repaired
+
+Proof-gap lens on degree-one-corner-unitaries-fail-the-k-budget (c5c61e222). Item 1 infers w = ewe from ew = we, which fails (M_2(Q)[x], w = x, w' = E_11 x^-1: u_e not a unit). Repair: replace w, w' by ewe, ew'e. Items 2-7 PASS with it; frame items unaffected (w = ewe holds there).

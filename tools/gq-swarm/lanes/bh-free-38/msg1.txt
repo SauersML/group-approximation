@@ -1,0 +1,12 @@
+Show the Torelli lower-central quotients of Mod(S_g) are not residually finite
+
+For g >= 3 and c >= 2, Nowak (arXiv:2609.12196) proved that Q = Mod(S_g)/T_g[c+1]
+has property (T) and is not linear over any field. Using his Theorem D together
+with superrigidity, the extension of Sp_2g(Z) by T_g/T_g[c+1] does not split over
+any finite-index subgroup, even modulo a finite subgroup. Hain's rational central
+line gives a central infinite cyclic subgroup. Over a virtual section of the
+linear quotient Q/D, the resulting central extension of a congruence subgroup has
+non-torsion class. By Borel it is a multiple of the universal-cover class, so it
+is commensurable with a Deligne lattice, and Deligne's theorem gives a nontrivial
+finite residual. The BH question for these groups is recorded as open, including
+the word problem, with the host classes this excludes.

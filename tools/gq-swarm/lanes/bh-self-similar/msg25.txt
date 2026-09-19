@@ -1,0 +1,3 @@
+Record referee-a PASS on the branch-substitution and spine-host nodes and referee-b PASS on compression, cycling relators, the odometer automaton and regrouping; apply nits
+
+Cite SWZ Lemma 5.3 for the persistent case of compression, note (P1) is equivalent to Sidki polynomial activity, record amenability of the odometer group (Amir-Angel-Virag), state the t versus t^-1 convention, and mark the Theorem A dependence of the contracting example.

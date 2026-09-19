@@ -1,0 +1,4 @@
+R_l residual finiteness: gq-referee-c PASS; link the report
+
+All three referees have now passed resolvent-presentation-ring-is-residually-
+finite; referees a and c passed the path normal form. Status lines only.

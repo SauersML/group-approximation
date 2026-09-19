@@ -1,0 +1,13 @@
+An explicit finitely presented group containing every GL_n(Z); twisted integral-affine host conjecture
+
+bh-universal (BH swarm, free mode). New (lane proofs, unreviewed, no priority claimed):
+- finitary-steinberg-extensions-by-oligomorphic-actions-are-fp: St(R;S) x| Gamma is finitely
+  presented when Gamma is fp with finitely many orbits on ordered k-tuples (k <= 5) and f.g.
+  pair stabilizers; so E(Z;D) x| F (finitary integer matrices indexed by the dyadics, extended
+  by Thompson's F) is finitely presented, contains Sigma = E(Z) x| Z and hence every GL_n(Z).
+- route integral-linear-one-host-via-fp-elementary-thompson-group (BH for that fp group).
+- OPEN twisted-integral-affine-full-group-is-finitely-presented: the full group W of piecewise
+  Z[1/2]-affine maps of Z_2^D twisted by F contains E(Z;D) x| F and DV_F; W' is (by cited
+  Nekrashevych/Matui, not re-read) simple and contains Sigma; finite presentation of W' would
+  give one fp simple group containing every integral linear group. Route added.
+- one-fp-simple-group-contains-every-integral-linear-group: two more sufficient conditions listed.

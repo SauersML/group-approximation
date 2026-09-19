@@ -1,0 +1,9 @@
+Reduce the RAAG calibration of the cube-category route to Li's multiplicity condition
+
+Reading Li's degree-map theorem at source shows that over a right Noetherian monoid
+with conditional lcms and a finite Garside family, only condition (F) and the
+multiplicity condition (t<d) remain; Li derives (St) and (LCM) himself. For special
+cube complexes, including Salvetti covers of RAAGs, the pointed-cube category has a
+degree map to the right-angled Artin monoid with unique factorization, and it is
+cancellative. So the calibration reduces to (t<d). Li's own sufficient criterion for
+(t<d) needs left reversibility, which fails for non-complete defining graphs.

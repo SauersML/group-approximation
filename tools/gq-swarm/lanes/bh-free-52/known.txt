@@ -1,0 +1,3 @@
+  For virtually free groups there is also a second, elementary proof with trivial nucleus
+  (`G ≤ V_{Γ,E}`): `virtually-free-groups-are-contracting-rsgs`, by a Bass--Serre normal-form
+  coding.

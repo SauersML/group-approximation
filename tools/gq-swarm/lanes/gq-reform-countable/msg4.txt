@@ -1,0 +1,4 @@
+Artifact: countable-input Boone-Higman reformulations for GL_n(Q)
+
+Table of the repo reformulations and their per-input forms for GL_n(Q), what
+does not transfer and why, and the weakest sufficient statements.

@@ -1,0 +1,12 @@
+State the interval-spherical Brown criterion as a general tool
+
+A group acting by order-preserving maps on a highly connected union of finite
+poset intervals is FP_n when vertex stabilizers are FP_n and each
+homologically essential interval of degree e has an FP_{n-e} stabilizer, with
+finitely many orbits of those. It is finitely presented when the complex is
+simply connected, vertex stabilizers are finitely presented, cover
+stabilizers are finitely generated, and the intervals with disconnected open
+part come in finitely many orbits. This abstracts the arguments behind the
+twisted Brin-Thompson criteria and reproves Zaremsky's theorem; the lesson is
+that for Thompson-like Boone-Higman envelopes, long-edge stabilizers never
+matter.

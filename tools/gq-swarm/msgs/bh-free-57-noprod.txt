@@ -1,0 +1,7 @@
+CT(Z) is not a product-shift full group: isotropy only at rational points
+
+In the Kohl groupoid, nontrivial isotropy occurs only at rational points. By Rubin-Matui (read in
+Matte Bon 1801.10133v2), CT(Z) and every CT_P(Z) are therefore not isomorphic to nV (n >= 2) or to
+any full group of a product of shifts of finite type. Also proved: a canonical Cuntz family has
+trivial commutant. The embedding question for 2V is reduced via Matte Bon's Extension Theorem and
+left open. Kourovka 17.58 is quoted and remains open.

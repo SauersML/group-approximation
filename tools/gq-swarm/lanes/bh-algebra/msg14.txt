@@ -1,0 +1,3 @@
+Retraction wall: scope made precise (inputs placed in the base)
+
+The retraction wall bounds simple inputs placed in the BASE of a retracting self-similar host; inputs placed in the completion outside the base (as Leavitt letters host UHF algebras) are not bounded by it. Lesson paragraph corrected accordingly.

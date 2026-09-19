@@ -1,0 +1,10 @@
+Deligne via rational projective full groups: shear lift, obstruction, route
+
+(1) Shear lift: a groupoid-trivial central Z-extension of Q <= T_m embeds in
+T_(m+2), centre acting as an integral shear (no odometer needed). (2) Deligne's
+class survives over representation spheres whose generic stabilizer has a
+Hermitian block (Mackey-Moore induction + Guichardet-Wigner); kills the
+standard embedding Sp_2n(Z) <= T_(2n-1) and the 5-dim rep of Sp_4. (3) OPEN:
+some embedding Sp_2n(Z) -> T_m kills the class (k*std, k >= 2n passes the
+test). (4) Route: then Deligne BH follows from the same finiteness claim as
+closed mapping class groups (rational-projective-full-groups-are-fp).

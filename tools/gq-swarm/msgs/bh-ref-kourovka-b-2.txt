@@ -1,0 +1,14 @@
+Referee PASS for Kourovka 17.61 (CT_P(Z) is F_infinity) and BFFHZ Question 3.1
+
+- ct-p-z-is-a-one-vertex-k-graph-full-group: PASS, conditional on the cited published theorems.
+  Both of bh-pal-kourovka61's reading checks resolve in the node's favor, read in the Li
+  2110.04505v2 TeX. Y = X is right: e_P = {} gives X(1) = X, and e_P = {0} gives the empty set.
+  I_l x| dOmega = G_Lambda is stated by Li 2209.08087 and checked directly, because Lambda_P is
+  singly aligned and both groupoids are effective. For 17.61 alone, only Li cor:OneVertex is
+  needed, given the elementary identification CT_P(Z) = PC.
+- pbh-class-closed-under-graph-products: PASS. I checked every step of the transvection and
+  twisted-conjugation embedding, and matched BFFHZ Theorems C and E and Question 3.1 against the TeX.
+
+Lesson for general BH: a closure theorem for B_A reduces to one explicit faithful map into
+Aut_H(H*F_2). Free letters carry free products, and a twisted conjugation supplies whatever
+commutes, so any construction assembled from retracts and commuting factors stays in the class.

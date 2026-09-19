@@ -1,0 +1,7 @@
+Record the rational-scalar obstruction for Leavitt resolvent units
+
+Under M_2(R_L) = R_L the scalar lambda is diag(lambda, lambda), so rational
+scalars die in K_1; if K_1 = U^ab (purely infinite simple) and the derived unit
+group D is perfect, then D/Z(D) cannot be finitely presented, since Z(D) would
+be a quotient of a finitely generated Schur multiplier yet contains Q^x.
+Conditional; recorded under Attempts of the open claim.

@@ -1,0 +1,11 @@
+G2 obstruction side: finite modifications and multi-ended slabs constrain quantum rigid SFTs
+
+Two first-order structure theorems for the rigidity crux of the master route.
+Over any infinite finitely generated group, a minimal SFT in which two
+configurations differ on a finite set is not quantum rigid at any scale; no
+entropy or amenability is needed. Over a product with a multi-ended factor, a
+quantum rigid SFT is determined by every thick slab except on one branch, so it
+is a near-deterministic spacetime of that factor acting on a fibre shift. The
+artifact records the honest kill attempt: every available invariant is first
+order, first order cannot kill over Z^2 (Labbe is wall-rigid), and a kill over
+amenable groups would answer Matui's question for expansive actions.

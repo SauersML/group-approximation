@@ -1,0 +1,10 @@
+CAT(0) groups on Euclidean space times a tree lie in the permutational Boone-Higman class
+
+Every group acting geometrically on Y x T with a tree factor lies in BS_G for its
+tree-vertex stabilizer G. One faithful member of BS_G puts all of BS_G in B_A (the
+permutational reading of Bux-Llosa Isenrich-Wu Theorem C). Faithful members for G
+commensurable with SL_n(Z), n >= 3, or with a definite quaternion lattice over two
+primes come from a commensurator element and the normal subgroup theorem. So all
+lattices on E^n x T, and lattices in three trees with arithmetic quaternion fibres,
+satisfy permutational Boone-Higman. Lane proofs, not independently reviewed; no
+priority claimed.

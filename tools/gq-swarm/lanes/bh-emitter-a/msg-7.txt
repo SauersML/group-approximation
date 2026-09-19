@@ -1,0 +1,4 @@
+Baumslag-Gersten seed node: state the certification conclusion without the unproved evaluation bound
+
+Lesson for general BH: until evaluation is bounded, say only what is known. The encoded memberships are easy, and
+distortion appears as forcing length, not as a certified hard function.

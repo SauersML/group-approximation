@@ -1,0 +1,7 @@
+gq-referee-b: review of sl-n-q-is-colimit-of-lattice-stabilizers
+
+Citation/hypothesis-match review of the chamber-colimit presentation of
+SL_n(Q) (landed 624b0aee3). Verdict PASS conditional on two citation
+amendments: (I3) is stated for simplicial complexes while the product of
+buildings is polysimplicial (repair: staircase triangulation, no new
+vertices); (I2) quoted from Kramer arXiv:1009.3089 section 6.4(a).

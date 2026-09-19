@@ -1,0 +1,9 @@
+Perfect SL_n(Q) probe: extension/product closures cannot create GL_n(Q)
+
+The class of groups receiving only trivial homomorphisms from SL_n(Q) contains
+every Q-free and every BS(1,4)-free group (residually finite, solvable, V, T,
+VA, T-bar, A) and is closed under subgroups, extensions, arbitrary direct
+products and free products, hence under all wreath products and finite-index
+overgroups. So the permutational-class permanence theorems never produce
+GL_n(Q); only directed unions, graphs of groups with nontrivial edges, or
+Thompson-type completions can.

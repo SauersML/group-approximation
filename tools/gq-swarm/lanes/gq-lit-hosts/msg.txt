@@ -1,0 +1,6 @@
+Extend gq host-theorem extraction: BFFHZ, RSGs, piecewise projective
+
+Add verbatim statements of BFFHZ Theorems A, C, E, Corollaries D, F and the
+Aut_G(G*F_n) mechanism, BBMZ rational similarity groups (Definitions 2.24,
+2.32, 2.41, Theorem 3.1), Monod piecewise projective groups and Lodha-Moore,
+with lane remarks for GL_n(Q) and a route-designer summary table.

@@ -1,0 +1,9 @@
+Roller compactifications of CAT(0) cube complexes are SFT compactifications
+
+For a free cocompact action on a CAT(0) cube complex, the radius-2 distance-gradient SFT is exactly the
+Roller compactification. Local realizability forces an ultrafilter (a one-step descent to adjacent
+hyperplanes, then Helly number 2), so HL holds and the seeds are the principal ultrafilters.
+Vertex-transitive actions (RAAGs, Z^n, F_n) give (IE'). Every virtually special group, hence every
+cubulated hyperbolic group, virtually embeds in a RAAG. A ladder example shows the caveat for several
+vertex orbits. No overgroup of an infinite Kazhdan group acts properly on a cube complex, so Kazhdan
+hyperbolic groups need the general tube lemma.

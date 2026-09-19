@@ -1,0 +1,6 @@
+Z_(l) bottleneck: record the negative K_2 verdict for R_l routes (Attempt 3)
+
+Lane gq-infinite-primes. After gq-k2-q (e27bd0bd3): corner tame symbols of
+K_2(Z_(l)) survive in K_2(R_l), so E_N(R_l) is not f.p. and the St_N(R_l)
+finite-residual route is expected to fail. The claim itself stays OPEN.
+Attempts only.

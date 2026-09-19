@@ -1,0 +1,9 @@
+Record referee b's citation PASS on the twisted Brin-Thompson finiteness nodes
+
+Referee b checked every quoted source and label and found no prior resolution
+in a bounded arXiv search. Its warnings are applied. Cameron's monotonicity
+theorem is replaced by an elementary count of subsets inside larger subsets.
+The twist relation is cited from lem:Relations(7). Secondary citations are
+added for the fiber lemma and for Brown's presentation argument. The priority
+wording now says "bounded search". The FFKLZ Corollary 1.6 test question is
+recorded as equivalent to type (HA_3) for the Burger-Mozes action.

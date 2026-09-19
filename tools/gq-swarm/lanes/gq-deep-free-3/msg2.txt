@@ -1,0 +1,9 @@
+PGL_2(Q), hence Aff(Q), lies in the rational group R; Aut(V) left open
+
+On the Farey Cantor set (standard V via Minkowski), every Moebius map with rational
+coefficients has finitely many local actions: deep local actions are reduced nonnegative
+integer matrices of the fixed primitive determinant, a finite set (Raney transducers). So
+PGL_2(Q) embeds in the rational group, together with Aff(Q), PSL_2(Q) and every BS(1,m).
+The copy has infinite nucleus (not contracting), finitely generated subgroups of <V,PGL_2(Q)>
+meet PGL_2(Q) in some PGL_2(Z[1/P]), and it does not normalize V. Record Aff(Q) in Aut(V)
+as OPEN, reduced to Out(V) since Q is not in V. Lane gq-deep-free-3, critic pass 2 rank 5.

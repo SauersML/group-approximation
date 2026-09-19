@@ -1,0 +1,6 @@
+Mark AimPL 3.1(c) answered in the open-questions list artifact
+
+Row A2 of gq-bh-openq-lists.md still said OPEN after the node
+fp-simple-group-with-commutator-width-at-least-two was corrected (6aa871f6e): the
+question is answered in the literature by Caprace-Fujiwara, arXiv:0809.0470, Cor. 1.4
+(finitely presented simple Kac-Moody groups of infinite commutator width; Kourovka 14.13).

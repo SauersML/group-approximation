@@ -1,0 +1,16 @@
+Gate U: non-amenable scaffolds absorb the Leavitt factor; Kazhdan and separation caps are permutational only
+
+New claim node non-amenable-scaffolds-absorb-the-leavitt-factor.
+- Leavitt dichotomy: a paradoxical 2-to-1 map is an SFT, so over a non-amenable P the Leavitt algebra embeds
+  unitally in LC(Z,k) x| P for every closed invariant Z of X_par x Y. Over amenable P it never does
+  (rank models, Elek-Szabo).
+- Track B's host (LC(Y) x| Lambda) (x) L embeds in a Leavitt-free crossed product over Lambda x F_2, where the
+  oracle can also be indexed by the Leavitt coordinate.
+- Over Z and over F_2, GL_3 of the crossed product contains infinite Kazhdan groups (EL_3(F_2[t^+-1]),
+  EL_3(F_2[t])). Over F_2, GL_1 contains the non-sofic L^x, while the full group has only finite Kazhdan
+  subgroups.
+
+Lesson for general BH: the Kazhdan, ends and separation kills of gate U come from commensurated SUBSETS
+collapsing under property FW. Commensurated SUBSPACES (such as t^n F_2[t]^3 for SL_3(F_2[t])) do not
+collapse. So gate U should be posed linearly over one fixed non-amenable Farrell-Jones scaffold, and there
+Track B is a crossed product over one scaffold, like Track A.

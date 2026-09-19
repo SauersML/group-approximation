@@ -1,0 +1,7 @@
+Closing lemma for CT_P(Z): hyperbolic invariant measures give periodic points of slope not 1
+
+If g in CT_P(Z) has an ergodic invariant probability whose p-adic Lyapunov exponents are all nonzero,
+then g has a periodic point on Z-hat of slope not 1 (certificate (b) of Conjecture 7). Lusin sets,
+recurrence and the ultrametric inequality close hyperbolic orbit segments exactly. Conjecture 7 is
+left with non-compressible elements that have a zero exponent in a surviving prime, which include
+any minimal element.

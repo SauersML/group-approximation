@@ -1,0 +1,5 @@
+gq-k2-q: T_p normal-form data: positional relations; p kills the lamp commutators
+
+In the lamp subring u is central with u b_k = p - (1+kl) b_k, so deleting any
+letter of a word gives p(w - i) - (1+k_i l)w; comparing positions gives
+p(w-i - w-i') = (k_i - k_i') l w. For w = b_k b_j b_k this is p[b_j,b_k] = 0.

@@ -1,0 +1,3 @@
+Algebra BH for all field-representable inputs over every field
+
+New claim field-representable-algebras-have-fp-simple-envelopes (+ proof route): over any field K, every finitely generated subalgebra of M_N(F ⊗ K<x>), F any field extension of K, embeds in M_n(L_2^{⊗(k+1)}), via restriction of scalars, one denominator, Nagata normalization, miracle flatness and Quillen–Suslin, then polynomially-representable-algebras-have-fp-simple-envelopes. Anan-in extension (commutative, noetherian PI) marked citation-dependent. Root Attempt 7 added. Lane proof, not reviewed; no priority claimed.

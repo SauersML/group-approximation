@@ -1,0 +1,7 @@
+Record gq-referee-b PASS and trust surfaces on three gq nodes
+
+Cite the review artifact 07f514d71 on the Laurent symbol obstruction, the
+stable symbol lemma and the tracial harmonic ring. Record the two unread
+inputs as trust surfaces: T1, naturality of the ABC fibration and the
+Bass-Heller-Swan boundary value; T2, the Fuglede-Kadison statement taken
+from a secondary source. Parts 1-3 of the tracial node remain unreviewed.

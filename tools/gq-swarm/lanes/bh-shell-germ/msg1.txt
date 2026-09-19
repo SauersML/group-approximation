@@ -1,0 +1,7 @@
+Shell germ gate collapses to one clause: a finitely presented window group
+
+The window inclusion identifies R_nu as the mapping torus of the window group W_N, so
+W_N finitely presented implies R_nu, F_nu and the shell germ group Q are finitely
+presented. Calibrated on the two-ended zigzag input, and the contrapositive shows the
+square spiral window group W_2 of Z^2 is finitely generated metabelian but not finitely
+presented.

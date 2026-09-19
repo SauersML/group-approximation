@@ -1,0 +1,5 @@
+Strengthen the profinite-product host obstruction: no simple host at all
+
+Since the filtration increases, a finitely generated simple subgroup lies in
+some F_i with i >= 1, meets K_i in the nontrivial N_i, and so would force G
+into N_i. So no finitely generated simple subgroup contains G.

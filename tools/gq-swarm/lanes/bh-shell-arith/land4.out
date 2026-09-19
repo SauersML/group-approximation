@@ -1,0 +1,5 @@
+LANDED 8505017d8 on origin/main (parent 273f8e64e):
+ .../gq-bh-bh-shell-arith-lsf-mixed-radix.md        | 590 +++++++++++++++++++++
+ ...ee-product-near-group-passes-both-germ-gates.md |   6 +
+ ...dix-near-group-has-a-local-expanding-element.md |  78 +++
+ 3 files changed, 674 insertions(+)

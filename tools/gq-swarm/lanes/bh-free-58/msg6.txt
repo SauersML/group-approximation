@@ -1,0 +1,8 @@
+bh-free-58: Kourovka 21.74(a) obstruction: residue partitions cannot carve thin invariant sets
+
+A residue-class partition permuted by g must contain each clopen-indecomposable
+component in a single class. So a computation-created invariant set W with
+indecomposable complement makes g YES only if W contains a co-class; inside pZ
+(p odd) it never does. Hence machine-plus-single-mixer reductions (codes lie in
+7Z) cannot decide 21.74(a); thick (prefix-coded) special structure is needed.
+21.74(a) stays open. Lane proof, not reviewed.

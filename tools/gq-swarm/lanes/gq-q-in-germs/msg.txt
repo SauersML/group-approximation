@@ -1,0 +1,7 @@
+Locate Q in VA via germ groups; rational-slope germs (BS yes, Heisenberg no)
+
+The germ group of VA at each singular point is T-bar with the V-shift as
+centre, so Q in VA is torsion of T lifted over a central shift; Aff(Q) and
+U_3(Q) cannot sit there that way. The rational-slope germ group E contains
+every BS(1,m) but no nonabelian nilpotent group; whether it contains
+Aff+(Q) is recorded as OPEN, with necessary conditions and a host caveat.

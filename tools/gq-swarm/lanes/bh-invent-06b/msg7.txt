@@ -1,0 +1,9 @@
+Contracting RSGs have no scaling germs at periodic tails; the asynchronous lag bound is only partly forced
+
+- contracting-rsgs-have-no-scaling-germs-at-periodic-tails: if an element of a contracting RSG maps an
+  eventually periodic point into its own tail class, its asymptotic lag is zero (iterating a scaling
+  germ yields nucleus maps with pairwise distinct slopes). Nucleus cycles whose output tail returns
+  have zero weight; cycles between different tail classes are unconstrained. The example p on the
+  2-shift (contraction unverified) shows why. So the asynchronous extension of the conservativity
+  lemma still needs a composite-lag bound. Rotation analogue reported, not decided: the conjugate-
+  odometer test family, and IET routes would contain Katok's question.

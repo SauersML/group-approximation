@@ -1,0 +1,8 @@
+Claim a brick-local height-3 renormalization of induced SMART; BS(1,3) in 3V pending
+
+Induction on the level: a level-K SMART move at the start of a level-1
+sub-move is a level-(K-1) move at the start of the matching level-0 sub-move
+plus one cell next to the head, so deleting that cell (four local cases) is a
+brick-local phi with phi U^3 = U phi on the first level-1 points. Landed OPEN
+pending two referees, with the route to bs13-embeds-in-brin-thompson-3v via
+renormalizable-thompson-elements-give-baumslag-solitar.

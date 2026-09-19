@@ -1,0 +1,3 @@
+Embed F_n/[F_n'',F_n] modulo an explicit kernel K_n via n^2 3x3 representations
+
+The block sum of the 3x3 representations x_i -> [[1, d_ij, 0],[0, x_i, d_ik],[0,0,1]] over Z[Z^n] has kernel exactly the preimage of K_n = ker(F''/[F'',F] -> (Lambda^2_Z R^n)_G): the joint corner map is (b wedge b) followed by an injective map to R^(n x n). K_2 = 0; K_n contains the torsion; K_3 = 0 would make the rank-3 group linear. Lane proof, not reviewed; no priority claimed.

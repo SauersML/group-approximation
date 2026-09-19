@@ -1,0 +1,7 @@
+Odometer lift: groupoid-trivial central Z-extensions of subgroups of V embed in 2V_tau
+
+A central extension of Q <= V by Z whose class dies on the action groupoid
+Q ⋉ C embeds in the F_infinity simple host 2V_tau, with the centre acting as
+the odometer tau x id. Instance: Thompson's lifted group T-bar <= 2V_tau
+(Boone-Higman for T-bar is already known via Belk-Hyde-Matucci; the host is
+new). Records where the lift stops (Deligne lattice needs a non-V host).

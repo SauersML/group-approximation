@@ -1,0 +1,9 @@
+Reduce automatic-group Boone-Higman to normal-form germ extensions, with Z^2 * Z calibration
+
+Read the continuous-automatic rational embeddings preprint at source and route BBMZ Problem
+5.3(11) through the Belk-Hyde-Matucci germ-extension finiteness corollary over the
+boundary Thompson group of an automatic structure. The new claim computes the singular
+structure of Z^2 * Z on its free-product normal-form boundary: four corner orbits with
+germ groups Z^2 over a Z of Thompson germs. The open premise records the remaining
+finiteness gates. Source-check notes are added to the continuous normal form node (Remark
+1.2, now read) and the spherical Artin node (Question 1.12).

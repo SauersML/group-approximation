@@ -1,0 +1,6 @@
+Root gl-n-q: record prime-shift overgroups and register dead ends (Attempt 18)
+
+Add the attempt entry for lane gq-deep-typeA-2: the finitely generated
+2-transitive prime-shift overgroups K_n and A_1 (type (A) reduced to finite
+presentation plus one finitely generated stabilizer, both open) and three dead
+register forms of the bounded-dilation spark.

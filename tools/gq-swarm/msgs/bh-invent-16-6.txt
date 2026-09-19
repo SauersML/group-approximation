@@ -1,0 +1,9 @@
+V-type full groups are acyclic over stratified-minimal systems; for full shifts acyclicity is corner-map stability
+
+Read Li 2209.08087 sections 5-6 at source. Amplified full groups F(R x (G_V x H)) are acyclic for every
+ample H (Theorem 5.17 + Theorem A + Kunneth). Restriction to closed invariant sets gives extensions
+whose kernels are full groups of the open strata, so acyclicity, and with it the local transposition
+presentation, holds for every transfinite filtration with minimal strata (countable subshifts, finitely
+layered systems). For full shifts, acyclicity is equivalent to homology-injectivity of the corner copy
+map. Li's minimality is needed exactly at pattern avoidance: fixed points cannot enter nonconstant
+cylinders.

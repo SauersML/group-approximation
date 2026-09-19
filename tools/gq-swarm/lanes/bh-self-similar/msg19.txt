@@ -1,0 +1,3 @@
+Separated automata reduce Boone-Higman to finitely presented automaton overgroups of the base
+
+For automata whose loops live on private letters over a base acting on the other letters: the action is lift-presented once the base is and the cycle germ groups are fp (descent on loop letters, base absorbed by its own lift ideal); spinal loops saturate each cycle germ group to (base wr Sym(Y)) x Sym(Z - z); and the group embeds in an unrestricted wreath product built from the germ-data group only as an abstract group, so the base may be transplanted into any finitely presented automaton group. Hence such groups satisfy Boone-Higman once the base embeds in a finitely presented automaton group; for linear activity the base is bounded, leaving one open input.

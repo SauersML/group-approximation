@@ -1,0 +1,10 @@
+BH closure reductions: joint embedding is the common core
+
+bh-permanence (BH swarm). Elementary lane proofs, no priority claimed:
+- fp-simple-groups-have-the-joint-embedding-property (OPEN statement JE);
+- free products of the BH class iff JE + (U * Z embeds);
+- free products + decidable-edge HNN give decidable amalgams and finite
+  graphs of groups;
+- finite extensions: (S wr Q embeds for fp simple S, finite simple Q) iff
+  finite-extension closure + squares; products + finite extensions iff
+  JE + that wreath statement.

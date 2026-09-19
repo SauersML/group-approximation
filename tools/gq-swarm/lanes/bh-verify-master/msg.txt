@@ -1,0 +1,6 @@
+Verify the master route's load-bearing nodes: necessity, ring sufficiency, canonical inputs, golden-silver, Labbé walls and the Ã₂ link theorem all pass
+
+Adversarial lane check of the five items named by the synthesis master route. Reports:
+research/artifacts/gq-bh-bh-verify-master-{1..5}.md. All theorems pass. One correction lands as
+an Attempts note on zero-set-confinement-unifies-host-obstructions: the Kazhdan exclusions use
+boundedness and properness, not zero-set confinement.

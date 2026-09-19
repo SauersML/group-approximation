@@ -1,0 +1,5 @@
+gq: sharpen Attempt 1 of pgl-q-projective-type-a-extension
+
+State the hypothesis of the piece-lemma citation exactly: a finitely
+generated base group whose generators have finitely many pieces, or a
+finite germ extension of one.

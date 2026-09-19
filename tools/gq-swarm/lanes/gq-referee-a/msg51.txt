@@ -1,0 +1,3 @@
+Referee report: K_infinity lies in a simple localization of an fp ring PASS
+
+Proof-gap lens on k-infinity-lies-in-a-simple-localization-of-an-fp-ring (2d7c98291). Presentation (L = V, Baumslag gap induction, normal form), minimal-support simplicity, degree argument checked; Attempt 4 rigorous bullet checked. N1: V is free abelian by partial fractions.

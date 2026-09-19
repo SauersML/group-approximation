@@ -1,0 +1,10 @@
+bh-verify-artin: complex braid groups B(e,e,n) lie in B_A
+
+Lane proof, not reviewed; no priority claimed for the bundle (presumably Nakamura's).
+
+- imprimitive-braid-groups-b-e-e-n-lie-in-the-pbh-class (+ proof): (c, y) ↦ (c + y_k^e) is a
+  bundle C × M(G(e,e,n)) → Conf_n(C) whose fibre is the (Z/e)^n-cover of C branched
+  at n points, free of rank 1 − e^(n−1)(e − n(e−1)). So P(e,e,n) is free-by-P_n and
+  B(e,e,n) ∈ B_A for all e, n ≥ 2. This covers e ≥ 3, n ≥ 3, where linearity of
+  B(e,e,n) is open (Marin's conjecture). For e = 2 it reproves A(D_n) without
+  linearity.

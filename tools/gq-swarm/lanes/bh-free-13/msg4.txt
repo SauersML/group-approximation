@@ -1,0 +1,14 @@
+L2 route to Lodha's rank question is closed on known fp simple families; lessons added
+
+simple-groups-on-trees-with-fg-edge-groups-have-b1-zero (+proof): a f.g. simple group acting on a
+tree without fixed point has s-normal, infinite-index edge stabilizers (Minasyan-Osin Thm 1.1),
+so beta_1^(2) = 0 once one edge stabilizer is f.g. (Peterson-Thom Thm main2). Covers
+Burger-Mozes/Wise/Rattaggi product lattices and every simple amalgam or HNN over a f.g. group.
+
+locally-moving-groups-have-vanishing-first-l2-betti-number (+proof): absorption lemma (a subgroup
+containing one rigid stabilizer and closed under infinite-overlap conjugates is everything), so
+rigid stabilizers are wq-normal; beta_1^(2) = 0 (elementary H^1(G,l2G)=0 when rigid stabilizers are
+nonamenable; Peterson-Thom main1 otherwise). Special cases F, T known (Bader-Furman-Sauer).
+
+fg-simple-circle-groups-with-t-are-two-generated: add "Lesson for general BH" (packing principle).
+Lane proofs, not reviewed; sources read at source.

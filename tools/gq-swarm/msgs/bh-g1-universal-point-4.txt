@@ -1,0 +1,10 @@
+Relative seeds on free groups have finitely generated stabilizers; the rope cannot be seeded
+
+relative-seeds-on-free-groups-have-fg-stabilizers: splicing along tree edges makes
+every seed-forced point over a free group finite-state and forced at linear radius, so relative-seed
+stabilizers are rational, hence finitely generated with regular membership. Consequences for the
+seed tower: the Aanderaa-Cohen / Clapham rope (HNN over an infinitely generated free factor) cannot
+be relative-seeded on its free vertex group; undistorted edges have membership at one exponential,
+so distortion alone is the currency; a CAP-refuting tower needs a non-free vertex group, a
+non-elementarily distorted edge and a rigid relative seed for it (Clapham-Cohen step 4, or a
+Mikhailova fibre product as the simplest test).

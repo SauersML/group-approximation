@@ -1,0 +1,7 @@
+Equicontinuous square-conjugators are trivial in isometric brick hosts
+
+In groups of brick maps of C^n with isometric sections, equicontinuity
+equals bounded exponent sums, and an element conjugated to an even power of
+itself by an equicontinuous homeomorphism has finite order (pro-2 sections
+against an odd closure). So the 2V_tau odometer renormalizes nothing, and
+BS(1,2) conjugators there have unbounded exponent sums. Parity is sharp.

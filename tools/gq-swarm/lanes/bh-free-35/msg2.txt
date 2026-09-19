@@ -1,0 +1,17 @@
+Complexity is conserved along HNN stages; SV_G is conjugacy-rigid on its actor
+
+An injective one-permutation HNN stage over a type (A) actor has its
+stable letter pinned by finitely many values, so its orbit problem is
+primitive recursive relative to the old one and the orbit and subgroup
+distortion of the orbit-finite edges. Identity edges must be closed under
+the permutation bicommutant: regular edges are, fiber-product (Mihailova)
+edges never are, and over V orbit distortion is tame. What remains for a
+hard actor is a regular orbit-finite edge with non-primitive-recursive
+factorization distortion.
+
+In twisted Brin-Thompson groups the germinal twist at a constant point turns
+every conjugation between global twists into a conjugation in the actor, so
+SV_G adds no conjugacies, and an HNN input with its base placed globally
+needs a base-faithful image of itself in the actor.
+
+Kourovka 7.19 node: Attempt 4 records both.

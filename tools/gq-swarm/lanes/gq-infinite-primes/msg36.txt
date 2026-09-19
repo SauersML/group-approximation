@@ -1,0 +1,15 @@
+Isometric frames over rank-one bases fail the K-budget; register squeeze by case
+
+Lane gq-infinite-primes. Over any base with K_0(B) tensor Q spanned by [1_B]
+and finite stable range: index != 1 gives a torsion unit class; index 1 gives,
+by Bass cancellation, a degree-one unit of M_j(R), so either K_1 detection
+fails or no E_(jN)(R) is finitely presented. The universal frame ring is
+gauge-graded. Closes Weyl-type and enveloping-algebra register bases.
+
+Gate Attempt 12: case 1 (singular) closed for one type by the top-determined
+node; case 2 open only with dilation letters; case 3 closed for rank-one
+bases; bracket stated. Attempt 11 lists non-sigma-simple cores as open.
+
+Unit-symmetry node: referee PASS a (8942e4e4b) and b (af0cad75d); Jordan
+Theorem O stated with the sigma-fixed unit; "finitely generated", not
+"finitely presented"; twist convention recorded.

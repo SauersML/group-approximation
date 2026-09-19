@@ -1,0 +1,7 @@
+Refine GL_n(Q) cone map: root O4 distortion, new gq target nodes
+
+Renumber the graph-derived obstructions M1-M8 so they do not clash with the root's new
+O4 (Burillo-Felipe: VA has no distorted cyclic subgroups), record that VA is out for
+every n >= 2 and that every host needs exponential distortion, point to the landed
+permutational target, the countable host-form equivalence and the cofinality node, and
+link the priority and host-theorem artifacts.

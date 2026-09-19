@@ -1,0 +1,9 @@
+Reduce the Pimsner assumption (P) to supercoherence of the register ring
+
+A single-register completion is a corner skew Laurent ring over its core
+(AGGP Lemma 2.4, one spine isometry as t_+), so ABC Theorem 3.6 and Lemma
+7.2 give (P) once the coefficient ring B+ is regular supercoherent. B+ (the
+eventually-rational register ring) is proved von Neumann regular, hence
+regular coherent; supercoherence (its polynomial rings coherent) is the one
+open input. Without resolvents the ring is L_Q(E) over a field and (P) is
+unconditional, but then Q is not inside.

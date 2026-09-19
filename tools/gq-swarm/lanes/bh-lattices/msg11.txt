@@ -1,0 +1,6 @@
+Note that every finite free cover of a Cantor boundary is a skew product
+
+Principal bundles with finite fibre over zero-dimensional spaces are trivial. So
+any finite free cover of a Cantor boundary is a skew product, and it is governed by
+the untwisting criterion. Circles behave differently: dyadic finite covers carry
+central extensions of Thompson's T back into T.

@@ -1,0 +1,6 @@
+Record bh-refute's conditional PASS on the substitution full-group chain
+
+bh-free-03: cite the internal adversarial check (98821f68e) on the Vershik RSG,
+substitution full-group and quadratic IET nodes. It is conditional on the BBMZ,
+DHS and Sturmian imports; it is not a referee review; the product and box-exchange
+nodes were not covered.

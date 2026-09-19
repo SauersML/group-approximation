@@ -1,0 +1,1 @@
+Scope the covering obstruction to midpoint balls

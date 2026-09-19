@@ -1,0 +1,8 @@
+Obstruction: proper semisimple CAT(0) groups contain no GL_2(Q)
+
+A group acting properly by semisimple isometries on a CAT(0) space has no
+distorted cyclic subgroup (axis argument), and BS(1,2) <= GL_2(Q). This rules
+out lattice-type finitely presented simple groups (Burger-Mozes, Caprace-Remy
+twin building lattices, anything proper on a CAT(0) cube complex) as hosts for
+gl-n-q-embeds-in-fp-simple-group. Heretic artifact records the three shared
+assumptions of the swarm and the fate of each denial.

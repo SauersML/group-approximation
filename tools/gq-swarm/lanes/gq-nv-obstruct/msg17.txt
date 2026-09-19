@@ -1,0 +1,7 @@
+bs12: record the binary-SMART search (not found; one lead) with scripts
+
+Exhaustive reversible-TM searches on MSI in SMART's format find ternary
+counters and binary counters with linear per-level overhead only; a partial
+8+8-state binary symmetric search has machines with Jacobsthal timing
+t_{j+1} = 2t_j + {0,-2}. Why SMART is ternary, the natural length-2 scheme,
+tables and C sources in the artifact.

@@ -1,0 +1,6 @@
+Referee four rigidity and finiteness nodes: all PASS, with small corrections recorded
+
+Referee sections on the two-sided-fault rigidity theorem (corollary needs R(D) > 4D, which holds),
+seeded transport codings (downhill induction checked), horizontal finiteness of V x subshift full
+groups (blocks must carry parent cones; degree-0 clause; HV arithmetic verified), and tree end
+shifts (BS(m,n) and PSL_2(Z[1/p]) instances checked). Wording fix in the A2 transplant claim.

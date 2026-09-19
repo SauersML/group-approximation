@@ -1,0 +1,3 @@
+Bound K_n: finitely generated of rank at most C(n,3)+C(n,4); K_3 cyclic
+
+Homological count on the rank-n free centre-by-metabelian node: ker((Lambda^2 M)_G -> (Lambda^2 R^n)_G) = H_1(G; Lambda^2 R^n / Lambda^2 M), an extension of a subgroup of H_3(Z^n) by a quotient of H_4(Z^n). Rank 3 reduces to one class. Lane proof.

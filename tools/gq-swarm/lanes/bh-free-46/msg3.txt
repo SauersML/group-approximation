@@ -1,0 +1,3 @@
+Fix a line reference in the 2609.01868 resolution node
+
+The injectivity lemma of the source is at main.tex l.378.

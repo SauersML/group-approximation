@@ -1,0 +1,7 @@
+Triangle-permutive SFTs: RPCA form, one-sided total faults, quadratic row complexity for free examples
+
+Quasigroup spacetimes are full spacetimes of a Latin controlled-permutation RPCA along the diagonal.
+Faults across the three side lines are seedless, one-sided and total; each side is nonexpansive iff its
+transversal automaton is non-injective. Via Cyr-Kra (read at source), a free example needs row complexity
+at least (m+1)^2/8 and, at low complexity, two non-injective transversal automata. Records the exact open
+shape for gate G2(b): an aperiodic SFT semi-expansive in three positively spanning directions.

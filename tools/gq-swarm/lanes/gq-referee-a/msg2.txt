@@ -1,0 +1,7 @@
+Referee report: gq-pp-fp divisible circle proof PASS (proof gaps)
+
+Proof-gap review of research/artifacts/gq-gq-pp-fp-divisible-circle-proof.md
+(942cdfa94). Lemma A, Lemma B and Corollaries 1-3 check; four one-line
+repairs are listed (an unused unjustified inequality, the reason in F2(L),
+the omitted case of Q semidirect Z with lambda = -1 in Corollary 2, and the
+wrong phrase "central Q of T-bar").

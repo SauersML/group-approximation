@@ -1,0 +1,5 @@
+gq-referee-b: PASS on leavitt-resolvent-k2-stability-holds and its two inputs (citation lens)
+
+Khanh raw-criterion and frame-cone scopes checked in TeX; GE pinned through Ara-Goodearl-Pardo
+(Thm 1.6 compression => purely infinite; Thm 2.4 cites Menal-Moncasi for GE); Weibel III Ex 5.8
+gives the w/h identities for arbitrary units; Brown not needed (Khanh l.458-460). W1-W4.

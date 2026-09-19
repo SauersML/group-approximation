@@ -1,0 +1,6 @@
+Record the finite-edge identity-HNN case on the decidable-edge HNN node
+
+Adds an Attempt section to bh-embeddability-survives-decidable-edge-hnn. By
+free-permutational-products-preserve-pbh, (P2) of Attempt 9 holds in B_A over finite
+edges. Over infinite edges with decidable membership it reduces to
+pbh-closed-under-decidable-permutational-wreaths.

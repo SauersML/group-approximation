@@ -1,0 +1,7 @@
+Referee report: one Steinberg group contains every GL_n(Q) PASS
+
+Proof-gap review of one-steinberg-group-contains-every-gl-n-q (27d360184) and
+its route through St_4 of the divisible ring: the block isomorphism, the
+scalar-block identity, the compatible Cuntz refinement and the Leavitt pair
+in D all check, conditional on four classical K_2 citations listed for the
+citation referee.

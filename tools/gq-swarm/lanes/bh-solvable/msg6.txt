@@ -1,0 +1,6 @@
+FP_∞ node: now unconditional for virtually soluble and elementary amenable groups
+
+Martínez-Pérez–Nucinkis (CMH 2010, Theorem 1.1, read at source) record that soluble
+FP_∞ groups are virtually torsion-free and constructible (Kropholler, JPAA 1993) and
+minimax. So every virtually soluble FP_∞ group, and via KMN every elementary amenable
+FP_∞ group, lies in B_A. This supersedes the earlier finite-T proviso.

@@ -1,0 +1,10 @@
+Dynamically V-separated finitely presented groups satisfy Boone-Higman
+
+Suppose G is finitely presented, phi is an injective endomorphism, and
+rho: G -> V is a representation whose phi-orbit separates points. Then the
+annular host with the single cross-depth relation t^-1 g t = phi(g) has every
+one- and two-point SingFix group an iterated ascending HNN extension of
+V_(2,r) x| G^k. So Belk-Hyde-Matucci Theorem 2.1 makes it finitely
+presented, and the type (A) criterion puts G in B_A. Z^2 * Z, which is not in V, is an
+example. Lesson: store the input as one orbit rho o phi^m. Lane proof, not
+reviewed.

@@ -1,0 +1,3 @@
+Pin down the only way a median can fail at a vertex inside a median half
+
+At a vertex on exactly one median, a bad cut of a descendant is inherited from the ancestor in which the vertex was created: the median must cross that creating edge at its midpoint and meet the third vertex with value neither 0 nor plus or minus the edge value. The single-cut conjecture thus reduces to excluding, for some median clean at the centroid, vertex-free crossings and this inherited pattern.

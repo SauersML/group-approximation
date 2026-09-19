@@ -1,0 +1,11 @@
+Seed compactifications dominate the end compactification
+
+Gluing a seed point to a translate across any cut that avoids their difference set would create a
+second origin. So the difference set coarsely connects the two seeds, and every seed compactification
+maps onto the Freudenthal end compactification. Over infinitely ended groups the seed boundary has a
+perfect kernel mapping onto the Cantor set of ends, and scattered seeds exist only over one- or
+two-ended groups.
+
+With bh-invent-10's derived-subshift theorem, the quantum condition of CAP is live only on perfect
+kernels. Over one-ended groups CAP has a rigidity-free part: scattered, locally forced seeds, which are
+rigid automatically.

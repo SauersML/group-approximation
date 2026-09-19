@@ -1,0 +1,8 @@
+Annular germ hosts with a free zoom are never finitely presented
+
+Short relations of an annular host <V, G> reduce to finitely many germ words
+evaluated at each depth, plus a finite seed. If the germ group is
+(G germs) * <t>, those germ words follow from single-depth relations, so
+conjugating one deep annulus preserves every short relation, and local
+rigidity rules out finite presentation. No ping-pong is needed. Lesson: a
+BH host needs germ relations that cross depths. Lane proof, not reviewed.

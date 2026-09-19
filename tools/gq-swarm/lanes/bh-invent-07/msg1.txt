@@ -1,0 +1,8 @@
+Weaken Thumann's operad finiteness hypothesis to F-infinity transformations; label-kernel dichotomy; oligomorphic-operad conjecture
+
+Thumann's theorem uses F-infinity-plus of the transformation groupoid only at pull-through
+subgroups, which are finite-orbit stabilizers, so F-infinity suffices. Finitely generated operads
+act on finite class sets, so transformations are residually finite modulo a class-trivial part
+that only contributes a label kernel (calibrated on the dying-kernel theorem). An oligomorphic
+version, open, unifies Thumann, the Röver–Nekrashevych transfer and the twisted Brin–Thompson
+criterion.

@@ -1,0 +1,10 @@
+Prove Kohl's factorization conjecture for RCWA(Z)
+
+New claim rcwa-z-generated-by-class-shifts-reflections-transpositions (lane proof,
+not reviewed). Every residue-class-wise affine permutation g of Z factors as
+(commuting class shifts)(element of CT(Z))(commuting class reflections):
+- precompose with class reflections to make every piece increasing;
+- postcompose with class shifts to kill the integer shift of each piece;
+- the result fixes N_0, so it lies in CT(Z) by Kourovka 17.59.
+This settles the conjecture stated in Kohl's RCWA manual (chapter 2), with a P-smooth
+refinement.

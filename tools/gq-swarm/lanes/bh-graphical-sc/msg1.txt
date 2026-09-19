@@ -1,0 +1,10 @@
+Small cancellation as a Boone-Higman hard test case: two implications and a complexity-realization lemma
+
+Land the OPEN claim graphical-small-cancellation-inputs-satisfy-boone-higman, with
+two routes showing that it implies fp-simple-nonexact-group (through Osajda's decidable
+non-exact group) and fp-simple-groups-with-arbitrarily-complex-word-problem.
+
+Also land small-cancellation-groups-realize-every-wp-complexity,
+ESTABLISHED as a lane proof: two-generator classical C'(1/6) groups G_A detect membership
+of A exactly and realize every recursive word-problem complexity, so no single decidable
+group contains them all. The artifact tabulates the known hosts against the family.

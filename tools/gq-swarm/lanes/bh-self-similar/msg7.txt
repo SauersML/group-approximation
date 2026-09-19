@@ -1,0 +1,3 @@
+Relator-complexity descent gives free splitting; the odometer-over-lamplighter automaton has a finitely presented Nekrashevych group
+
+If a well-founded complexity on reduced words never increases under sections and strictly drops at every section of every nontrivial relator, then every relator becomes freely trivial after finitely many splittings, so V_d(G) is finitely presented by the recursion relations alone. For the linear-activity automaton a = s(1,a), b = (a,b), counting b-letters then a-letters works: equality forces a word in b^e, a b^e, b^e a^-1, a b^e a^-1, none a nontrivial relator. So this non-contracting group, where the base moves the loop letter and compression does not apply, has finitely presented V_2 and embeds in a finitely presented simple group.

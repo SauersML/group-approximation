@@ -1,0 +1,7 @@
+Branch-type candidates fail (SS-hard)_1; Grigorchuk's fp envelope sits at an infinite emitter
+
+grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter:
+- Lysionok's substitution has psi(phi(g)) = (theta(g), g) with theta onto D_8, so [G : phi(G)] is infinite. Grigorchuk's finitely presented ascending HNN extension is therefore an infinite emitter.
+- No branch group is known to be finitely presented.
+- In the Grigorchuk family, finitely many self-similarity types force eventually periodic omega, which is contracting and easy. Sunic groups are finite-state, so also easy.
+- Quick check of the Noetherian candidate: metabelian groups are uniformly easy; abelian-by-polycyclic groups are probably bounded (lane sketch only).

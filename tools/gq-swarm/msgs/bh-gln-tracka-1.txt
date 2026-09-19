@@ -1,0 +1,10 @@
+Prime budget of bounded-valence trees; GL_n(Q) via Track A over St_10(R_L) x F_2
+
+bounded-valence-trees-scale-only-primes-below-the-valence: in a tree of valence at most d, a root of prime
+order above d fixes the same subtree, so bounded-valence tree codings scale only finitely many primes and
+carry all other divisibility of GL_n(Q) in a vertex group.
+
+gl-n-q-bh-via-track-a-over-st-10-times-free-group: the group-side master route for BBMZ 5.3(5) over
+St_10(R_L) x F_2. It needs no Clapham envelope or square, gets a free SFT from Barbieri-Sablik-Salo, reduces
+minimality to (M2) for St_10(R_L), and drops the K-gate, which no overgroup of GL_n(Q) can meet with known
+Farrell-Jones classes.

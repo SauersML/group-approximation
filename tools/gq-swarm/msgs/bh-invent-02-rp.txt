@@ -1,0 +1,9 @@
+Class-wise increasing RCWA_P(Z) is the odometer full group on the class-transposition k-graph
+
+R_P, the class-wise increasing part of RCWA_P(Z), is the topological full group of the mixed-radix
+odometer on Lambda_P without the extra binary colour. Li's Zappa-Szep theorem gives F_infinity
+(conditional on rechecking thm:deg's standing assumptions for Lambda_P alone), its point stabilizers
+are finitely generated, and the translation is a single free orbit: a cyclically cofinite host on Z
+containing CT_P(Z), every odometer group V_(p,1)(<a>) and sign-doubled RCWA_P(Z). The mixed-radix
+gluing G_(2,3) = <B, B_3> lies in R_(3), where CT_(3)(Z) has infinite index; kernel removal for
+B *_<a> B_3 reduces to G_(2,3) = R_(3), which holds at the class level mod 6.

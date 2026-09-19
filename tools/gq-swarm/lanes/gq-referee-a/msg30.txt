@@ -1,0 +1,7 @@
+Referee report: PGL_2(Q) embeds in the rational group PASS
+
+Proof-gap review of pgl-2-q-embeds-in-the-rational-group (d43f85bec): the
+Farey coding, the local-action matrices, the sign normalization and the
+boundary cases c = 0 and d = 0, finiteness, the infinite nucleus, the
+analytic-continuation obstruction and the non-normalization of V all check,
+with one missing sentence in the sign step.

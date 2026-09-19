@@ -1,0 +1,11 @@
+Rank-two buildings: non-domesticity at infinity reduces to vertices
+
+Lane bh-testcases. For any locally finite thick rank-two Euclidean building,
+chamber non-domesticity at infinity (hypothesis D1 of the higher-rank MIF
+route) is equivalent to a condition on each vertex space at infinity: exactly
+topological freeness for products of trees and Ã₂, and freeness from local
+point/line-domesticity for C̃₂ and G̃₂. With the proved proximality this gives
+one criterion: an fp simple group acting properly cocompactly and
+type-preservingly on such a building, with dense regular poles and vertex
+non-domesticity, is MIF and lies in B_A. Sharpens the Titz Mite–Witzel crux
+(Attempt 6). Lesson for general BH included. Lane proof, unreviewed.

@@ -1,0 +1,8 @@
+Put every faithful cocompact lattice on thick leafless trees in B_A, torsion allowed
+
+Cube stabilizers become a finite germ groupoid acting self-similarly on a
+transported cube k-graph, and Li's Zappa-Szep Example (III) gives F_infinity for
+the powered and Cuntz-stabilized full group. Condition (F) holds because germ
+classes are faithful on boxes. The comparison and type (A) steps are unchanged.
+The three-tree gap node is marked superseded in its own setting. The multi-tree
+claim now lacks only lattices with a finite kernel on X (Attempt 8).

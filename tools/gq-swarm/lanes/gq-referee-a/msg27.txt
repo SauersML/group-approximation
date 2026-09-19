@@ -1,0 +1,7 @@
+Referee report: capacity-chain presentation is not simple PASS
+
+Proof-gap review of capacity-chain-presentation-is-not-simple (e706d6b63): the
+bi-infinite chain module with half-integral capacity satisfies every
+relation, including positivity, the defect element lies in the presented
+ring and acts as 1 on the chain, and it vanishes in the concrete model. The
+refutation stands with or without a_u.

@@ -1,0 +1,20 @@
+Palomar BH: prove Kourovka 14.10(c) outright in the megasubmission solution
+
+Palomar/BooneHigmanSolution.lean now proves explicit_fp_overgroup_of_all_gl_n_q itself: it is
+GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q, stated over copies of the
+shared block's R_L and Steinberg presentation with the same bodies. The _of form stays, with no
+hypothesis, as for Q_2, and ExplicitOvergroupOwed is removed. The axioms driver checks both names.
+formalization.yaml now says two selected theorems are proved outright. The configuration stays
+pending: six theorems still carry hypotheses.
+
+Checks: trusted mutexed MSI build of GroupApproximation.SteinbergFP.Challenge in the warm dir;
+the edited solution elaborated against it with the axioms driver reporting only propext,
+Classical.choice and Quot.sound; scripts/check_palomar_submission.py passes on the edited tree.
+
+Lesson for general BH: the embedding half of the ring route is now closed in Lean, and it does not
+depend on rank. The swindle (exists_injective_elementary) embeds E_V(F) in a Steinberg group over
+any ring S with a binary Leavitt pair commuting with an injective copy of F, for any ring F with
+St_V(F) perfect. Morita collapse puts every rank into St_10, and St_n(S) is finitely presented for
+every finitely presented ring S and n >= 5 (the free-algebra case plus a finitely generated
+ideal). So for an input linear over such an F, BH still owes only a simple quotient that keeps
+the input: the K-gate, not the embedding.

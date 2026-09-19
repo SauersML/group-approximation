@@ -1,0 +1,5 @@
+2V_tau orbit node: correct the scope remark on where H4 generators can live
+
+Lane bh-testcases. Generators inside 2V_tau itself are not excluded (H4 in
+2V_tau is open); the new room in SV over 2V_tau is elements outside 2V_tau.
+Also justifies that s has infinitely many infinite orbits on S.

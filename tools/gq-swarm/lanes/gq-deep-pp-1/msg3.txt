@@ -1,0 +1,5 @@
+Root gl-n-q: note the germ-local form of attempt 10
+
+Record circle-groups-with-divisible-free-germs-omit-gl-n-q under attempt 10: it
+needs only divisible-free point-germ groups, so it extends the one-dimensional
+obstruction to finite germ extensions of the circle hosts.

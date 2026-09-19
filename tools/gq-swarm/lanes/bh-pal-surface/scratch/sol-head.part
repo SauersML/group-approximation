@@ -1,0 +1,81 @@
+/-
+Copyright (c) 2026 The group-approximation authors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+-/
+import Mathlib.Algebra.FreeAlgebra
+import Mathlib.Algebra.Group.Action.Faithful
+import Mathlib.Algebra.Group.Action.Prod
+import Mathlib.Algebra.Group.End
+import Mathlib.Algebra.RingQuot
+import Mathlib.Combinatorics.SimpleGraph.Basic
+import Mathlib.GroupTheory.Commutator.Basic
+import Mathlib.GroupTheory.Coprod.Basic
+import Mathlib.GroupTheory.CoprodI
+import Mathlib.GroupTheory.FinitelyPresentedGroup
+import Mathlib.GroupTheory.Finiteness
+import Mathlib.GroupTheory.GroupAction.Defs
+import Mathlib.GroupTheory.PresentedGroup
+import Mathlib.GroupTheory.QuotientGroup.Defs
+import Mathlib.GroupTheory.Subgroup.Simple
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import GroupApproximation.BooneHigman.Statement.API
+import GroupApproximation.SteinbergFP.Challenge
+
+/-!
+# Proofs for the Boone–Higman megasubmission (work in progress)
+
+This file repeats the challenge's shared block byte for byte.
+
+**Status.** `explicit_fp_overgroup_of_all_gl_n_q` (Kourovka 14.10(c)) is proved outright, from
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q`; it is also available
+under its `_of` name. Every other selected theorem appears under a name ending `_of` and takes,
+as a hypothesis, the proposition the development still owes:
+
+* the two metabelian theorems and the linear theorem take the development endpoints
+  `GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement` and
+  `GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement`;
+* the others take a proposition named here (`LinearSelfSimilarOwed`, `Kourovka1757Owed`,
+  `Kourovka1759Owed`, `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`,
+  `KohlFactorizationOwed`, `GraphProductOwed`, `MixedIdentitiesOwed`), which is the challenge
+  statement itself until the construction that proves it lands.
+
+The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are added, and the
+hypotheses removed, as the development discharges them.
+
+**Where each owed proposition stands.**
+* The metabelian and linear endpoints wait on the development's open gap statements; a wiring
+  file stating them from those gaps is being written, and its `_of` forms will replace the
+  endpoint hypotheses here.
+* `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
+  homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
+  that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
+* `Kourovka1759Owed`: the elementary proof by products of class transpositions is complete
+  as a written argument; its Lean development is in progress.
+* `Kourovka1760Owed`, `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an
+  explicit one-vertex higher-rank graph, simple and of type `F_∞` by Li's theorems; Matui's
+  spatial realization and the germ groups at rational points then recover `P`.
+* `Kourovka2175Owed`: elementary, by transporting class transpositions through boxes of
+  modulus four with products of class transpositions of the other group.
+* `KohlFactorizationOwed`: from Kourovka 17.59, after removing class shifts and class
+  reflections to fix the nonnegative integers.
+* `GraphProductOwed`: graph products reduce to amalgams `X ∗_C (C × K)` over retracts, which a
+  twisted conjugation realizes inside the automorphism groups `Aut_G(G ∗ F_n)` of BFFHZ.
+* `MixedIdentitiesOwed`: the witness is Thompson's group `T`.
+
+**Review status of the mathematics** (research/artifacts/gq-bh-results-summary.md; [R] is an
+internal referee pass, [IC] an adversarial check by a second lane; none is an external review):
+Kourovka 14.10(c) [R] and proved here in Lean; Kourovka 17.60, 21.75 and Kohl's
+factorization conjecture [R]; Kourovka 17.57, 17.59 and 17.61, BFFHZ Questions 3.1 and 3.3,
+the metabelian and linear theorems and LISW Question 1.11 [IC].
+
+**Not yet in the configuration**, because their statements need vocabulary Mathlib lacks
+(finiteness properties `F_n`, Thompson-like groups, decision problems over `CT(ℤ)`):
+Belk–Zaremsky Conjecture H and the FFWZ §1.2 conjecture, Kourovka 21.73 and 21.74(b),(c), Zaremsky's
+Oberwolfach 2018 Question 110, Tarocchi's and Lodha's questions, and the remaining rows of the
+summary; also the exceptional spherical Artin groups.
+
+The prose of this module was written by Claude (Anthropic), under the user's direction.
+-/
+
+namespace BooneHigman
+

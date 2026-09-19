@@ -1,0 +1,7 @@
+Referee reports: type-a orbit accumulation and host forms PASS
+
+Proof-gap reviews of type-a-orbit-accumulation-forces-fg-nontrivial-germs
+(ae52139fe) and permutational-host-forms-agree-for-countable-inputs
+(7ee358237). Both pass; one missing hypothesis is noted in a consequence of
+the first, and the Remark 3.5 citation behind the second is left to the
+citation referee.

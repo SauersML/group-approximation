@@ -1,0 +1,5 @@
+BBCMP Question 1.16: record the maximal-splitting idea as Attempt 2
+
+Idea only: Agol's canonical maximal splitting sequences as a Garside-type prefix
+for mapping class group normal forms, with the two sub-questions (regularity of
+finite versions, sequential left action) that a proof would need.

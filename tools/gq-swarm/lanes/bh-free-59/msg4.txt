@@ -1,0 +1,11 @@
+The doubling host of Neumann's group is not finitely presented
+
+For every K, the truncated presentation Gamma_K has a finite permutation quotient on
+Z/(2^r-1) in which alpha is a product of 3-cycles along a sparse orbit of x -> 2x. All
+local relations hold there, but a three-element chain of 3-cycles appears that no honest
+coordinate can realize, since gcd(d-2, e+2) = 1 is arranged by CRT. So Gamma_K is never
+Gamma. The same argument kills every host of the form <alpha, beta, affine maps of Z/m>
+over Neumann's full degree set.
+
+Elementary, written inline, not independently reviewed. Refutes the candidate in
+neumann-doubling-host-candidate (status updated there).

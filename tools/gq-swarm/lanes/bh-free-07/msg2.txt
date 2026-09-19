@@ -1,0 +1,6 @@
+Stab_V(0^inf) is an ascending HNN extension of V; shell A_1 is one when the germ gate points toward p
+
+bh-free-07 (free lane), lane proofs, elementary, not independently reviewed, no priority claimed.
+- v-point-stabilizers-are-ascending-hnn-extensions-of-v (+ proof): t K_n t^-1 = K_(n+1), so Stab_V(p) = K_2 *_phi, hence F_infinity.
+- shell-a1-ascends-when-the-gate-points-toward-p (+ proof): under the gate (G+) (B <= tau B tau^-1 exhausting ker eta), A_1 = D *_phi with D = <K_M, lifts of B> f.g. and shift-free, so A_1 f.p. <= D f.p. This is a partial converse to shell-fp-stabilizer-forces-fp-germ-group. The construction fails for (G-).
+- Ledger section 4 withdraws P2's Houghton ray-count mechanism: one-ended inputs give one-ended germ near actions regardless of ray labels, and V-coefficients make one ray F_infinity.

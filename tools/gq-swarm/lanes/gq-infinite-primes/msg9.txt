@@ -1,0 +1,7 @@
+Apply gq-referee-b remarks R1-R3 to the Z_(l) bottleneck nodes
+
+R1: state that N >= 5 suffices downstream and cite the import-free rank-five
+finite presentation; N = 4 rests on Krstic-McCool via secondary sources.
+R2: replace the Weyl-element citation by explicit commutator spreading
+identities. R3: call the restricted question the effective-RF form of the
+Kharlampovich-Myasnikov-Sapir question, left open by Rauzy. Link the review.

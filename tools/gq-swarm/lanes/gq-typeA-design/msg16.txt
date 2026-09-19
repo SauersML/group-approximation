@@ -1,0 +1,5 @@
+Steinberg shell claim: commuting windows now dead in both directions
+
+Record on Attempt 3 that fw-descending-shift-power-windows-force-torsion-centre
+closes the descending commuting case for inputs whose derived subgroup has a
+centre of infinite exponent, which includes every admissible St_N(R_L).

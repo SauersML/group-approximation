@@ -1,0 +1,12 @@
+Contracting rational similarity groups are closed under finite-index overgroups, so SL_2(Z) and every virtually free group is one
+
+New results, lane proofs, not reviewed:
+- contracting-rsgs-closed-under-finite-index-overgroups: induced action on one labelled copy of
+  the address space per coset.
+- virtually-free-product-hyperbolic-groups-are-contracting-rsgs: every non-elementary
+  virtually free group (SL_2(Z), GL_2(Z), ...) and every virtually torsion-free hyperbolic group
+  with infinitely many ends is isomorphic to a contracting RSG.
+
+With these, BBMZ-hyperbolic Question 1.1 reduces to the one-ended case. The Q1.1 node records the
+reduction and a Markov-coding attempt at the one-ended case. The finite-product node is marked as
+a special case.

@@ -1,0 +1,15 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:34:26: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:36:4: Unknown constant `Subgroup.closure_le.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:56:42: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:50:81: unsolved goals
+G : Type u_1
+inst✝ : Group G
+V : Subgroup G
+T : Set ↥V
+htop : Subgroup.closure T ⊔ commutator ↥V = ⊤
+hsurj : Function.Surjective ⇑Abelianization.of
+hbot : Subgroup.map Abelianization.of (commutator ↥V) = ⊥
+h1 : Subgroup.map Abelianization.of (Subgroup.closure T) = Subgroup.map Abelianization.of ⊤
+⊢ Subgroup.closure (⇑Abelianization.of '' T) = ⊤
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:68:11: Unknown constant `Subgroup.closure_le.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:69:4: No goals to be solved

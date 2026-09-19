@@ -1,0 +1,6 @@
+Referee C: PASS for the divisible ring D and for St_4(S) containing every GL_n(Q)
+
+finitely-presented-divisible-ring-engine: D is nonzero, contains Q centrally, and w, v, sw, vt
+form a binary Leavitt pair. one-steinberg-group-contains-every-gl-n-q: steps (a)-(e) re-derive,
+conditional on classical inputs; the centrality of K_2(4, M_k(Q)) is load-bearing and needs a
+source check. A variant of step (b) needs only centrality.

@@ -1,0 +1,9 @@
+Odometer-stable twists are unipotent mod 2 on the Frattini quotient
+
+bh-shell-kazhdan (BH swarm). New claim odometer-stable-twists-are-unipotent-mod-two with proof route
+(lane proof, elementary, unreviewed). If a f.g. group G of binary tree automorphisms satisfies
+o G o^-1 ⊆ G, then conjugation by o acts with 2-power order on the Frattini quotient of the closure,
+because o^(2^L) lies in a level stabilizer inside Phi(Ḡ). So the twist is unipotent mod 2 and fixes a
+nonzero class; Fibonacci-type twists force G = 1, while the zigzag D_infinity is consistent. Lesson for
+general BH: profinite realizations of shell self-similarity need twists that are fixed-point free in the
+group but unipotent mod p. Hyperbolic (Anosov-type) twists are excluded in every pro-p model.

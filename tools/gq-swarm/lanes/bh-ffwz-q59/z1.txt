@@ -1,0 +1,192 @@
+           As a remark, it is not dicult to adapt our proof for nitely presented self-similar
+          groups to also handle nitely generated self-similar groups that are contracting as in
+          [Nek05], even if they are not nitely presented. However, this is not new: by [BBMZa], all
+          contracting self-similar groups satisfy the BooneHigman conjecture (not even requiring
+          nite generation). In fact, the result in [BBMZa] implies that every RoverNekrashevych
+          groupofacontracting self-similar group satises the conjecture, which is stronger still. The
+          result in [BBMZa] is also much more general, dealing with so called contracting rational
+          similarity groups; in [BM], Belk and Mutucci spell out the proof just for contracting self-
+          similar and contracting RoverNekrashevych groups.
+           This paper is organized as follows. In Section 2 we recall some background on self-similar
+          groups and RoverNekrashevych groups, and prove a result about embedding wreath prod-
+          ucts (Proposition 2.5). In Section 3 we prove our main result, Theorem 1.1. In Section 4
+         we establish our general example involving matrix groups over certain rings, and prove
+         Theorem 1.2.
+          Acknowledgments. Some of the ideas in Subsection 4.1 arose from conversations at
+          the conference Topological and Homological Methods in Group Theory 2024, in Bielefeld,
+          Germany in March 2024, in particular with Henry Bradford, Francesco Fournier-Facio,
+          Eduard Schesler, Stefan Witzel, Xiaolei Wu, and Julian Wykowski. I am also grateful to
+                           EMBEDDING F.P. SELF-SIMILAR GROUPS INTO F.P. SIMPLE GROUPS                3
+              Jim Belk, Francesco Matucci, Mark Pengitore, and Rachel Skipper for helpful discussions,
+              and the referees for some excellent suggestions. The author is supported by grant #635763
+              from the Simons Foundation.
+                                                           
+                         2. Self-similar groups and RoverNekrashevych groups
+                 Let d  2 and let T be the rooted d-regular tree. This is the tree whose vertex set is
+                                    d
+              {1,:::,d}, the set of nite words in the alphabet {1,:::,d}, with an edge from w to wi
+              for each vertex w and each i  {1,:::,d}. The empty word  is the root of the tree. For
+              each w, the vertices w1,:::,wd are the children of w, and any vertex of the form ww for
+              w  {1,:::,d} is a descendent of w. If two vertices are not descendents of each other,
+              call them incomparable.
+                 Anautomorphism ofT is a self-bijection of {1,:::,d} that preserves adjacency. Denote
+                                      d
+              byAut(T )thegroupofallautomorphisms of T . Since the root is the only vertex of degree
+                       d                                    d
+              d (the others all have degree d+1), every automorphism xes it. Thus, the set of children
+              of the root is stabilized by every automorphism. This gives us a map Aut(T )  S onto
+                                                                                         d      d
+              the symmetric group, which splits via the action of S on T that just permutes the rst
+                                                                   d     d
+              letter of a word. The kernel of this map is the pointwise stabilizer of the set of children of
+              the root, which is isomorphic to Aut(T )d. Moreover, S acts by conjugation on Aut(T )d
+                                                    d                d                             d
+              by permuting the coordinates. All in all, we have an isomorphism
+                                              Aut(T )  S  Aut(T ).
+                                                    d      d d      d
+              Here we write the acting group on the left in the wreath product, for future convenience.
+              The notation d indicates that this is the wreath product coming from the action of Sd
+              specically on {1,:::,d}.
+              Denition 2.1 (Self-similar). A subgroup G  Aut(T ) is self-similar if its image in
+                                                                      d
+              S  Aut(T ) under the above isomorphism is contained in S  G.
+                d d      d                                                d d
+                 See [Nek05] for more background on self-similar groups.
+                 Given g  Aut(T ), if the image of g under the isomorphism Aut(T )  S  Aut(T ) is
+                                 d                                                d      d d      d
+              (g1,:::,gd), then we write
+                                                  g (g1,:::,gd)
+              and refer to this as the wreath recursion of g. The gi are called the level-1 states of g.
+                                                                               :           N
+                 The boundary at innity of T is the usual d-ary Cantor set C  ={1,:::,d} . Since an
+                                             d                               d
+              automorphism of T xing the boundary pointwise must be trivial, we have an embedding
+                                 d
+              Aut(T )  Homeo(C ). For each w  {1,:::,d}, dene the cone on w to be C (w) =
+                    d              d                                                           d
+              {w|C }, and let
+                          d
+                                                  h : C C (w)
+                                                   w    d     d
+              be the canonical homeomorphism sending  to w.
+                 Nowwedescribeaconstruction that takes as input a self-similar group G  Aut(T ) and
+                                                                                                d
+              outputs a group V (G) of homeomorphisms of C that has simple commutator subgroup,
+                                d                             d
+              thus entering the world of simple groups.
+             4                                M. C. B. ZAREMSKY
+             Denition 2.2 (RoverNekrashevych group). Let G  Aut(T ) be self-similar.   The
+                                                                        d
+             RoverNekrashevych group V (G) is the group of homeomorphisms of C of the following
+                                       d                                      d
+             form:
+                    Partition C into some number n of cones C (w ),:::,C (w ).
+                               d                            d  1       d  n
+                    Partition C again, into the same number of cones C (w),:::,C (w ).
+                               d                                    d  1       d  n
+                                                                                           1
+                    Now for each 1  i  n, send C (w ) homeomorphically to C (w ) via h  g h
+                                                 d  i                      d  i     wi   i  wi
+                     for some gi  G.
+               When G = {1} we get the classical HigmanThompson group Vd = Vd({1}), as in
+             [Hig74]. This general construction of Vd(G) was rst envisioned by Scott in [Sco84a], in
+             much dierent language. Subsequently, in [Rov99] Rover analyzed the case when G is the
+             Grigorchuk group from [Gri80], and in [Nek04] Nekrashevych solidied the groups in full
+             generality and with modern terminology. One notable application of RoverNekrashevych
+             groups is that they lead to the rst examples of simple groups with arbitrary niteness
+             length [SWZ19].
+               The following two results make clear why RoverNekrashevych groups are of interest to
+             the BooneHigman conjecture.
+             Citation 2.3. [Sco84a, Theorem 2] For any self-similar G  Aut(T ), if G is nitely
+                                                                             d
+             presented then so is Vd(G).
+             Citation 2.4. [Nek18, Theorem 4.7] For any self-similar G  Aut(T ), the commutator
+                                                                             d
+             subgroup [Vd(G),Vd(G)] is simple.
+               ThereasonthatthisdoesnotimmediatelyhelpwiththeconjectureisthatevenifVd(G)is
+             nitely presented, its commutator subgroup might not be. Of course if the abelianization of
+             Vd(G)isnite, then the commutator subgroup has nite index and is thus nitely presented.
+             Our goal in the next section is therefore to cleverly avoid the innite abelianization case.
+               First we record the following result about wreath products. Recall our convention that
+             in wreath products the acting group is on the left. Also, we will write  (with no subscript)
+             to indicate that it is the wreath product coming from the acting group acting on itself by
+             left translation.
+             Proposition 2.5. Let G  Aut(T ) be a self-similar group of automorphisms of the d-ary
+                                            d
+             tree T . Let V (G) be the corresponding RoverNekrashevych group. For any nite group
+                  d       d
+             F, the wreath product F  [Vd(G),Vd(G)] embeds into [Vd(G),Vd(G)].
+             Proof. Let n = |F|. For each 1  i  n, let w = 1i2  {1,:::,d}. Note that w ,:::,w
+                                                       i                              1      n
+             are pairwise incomparable vertices of T . For each i, consider the canonical homeomorphism
+                                               d
+             h : C  C (w). This conjugates Homeo(C ) isomorphically to Homeo(C (w )), which
+              wi   d     d  i                          d                          d  i
+             can be viewed as a subgroup of Homeo(C ) by extending every homeomorphism of C (w )
+                                                   d                                      d  i
+             to a homeomorphism of C by declaring that it acts trivially on C nC (w ). In particular,
+                                     d                                  d    d  i
+             for i 6= j the subgroups Homeo(C (w )) and Homeo(C (w )) of Homeo(C ) commute. From
+                                           d  i              d  j             d
+             the denition of V (G), it is clear that the image of V (G) in Homeo(C (w )) under this
+                              d                                d               d  i
+             conjugation lands in Vd(G), and hence the image of [Vd(G),Vd(G)] lands in [Vd(G),Vd(G)].
+                           EMBEDDING F.P. SELF-SIMILAR GROUPS INTO F.P. SIMPLE GROUPS              5
+              By now we have embedded ([V (G),V (G)])n into [V (G),V (G)]. Now x a bijection
+                                             d      d              d     d
+              F  {w1,:::,wn}, and use the action of F on itself by translation to induce an action
+              of F on C by permuting the cones C (w ) via the prex replacement homeomorphisms
+                       d                          d  i
+                     1
+              h    h   (and acting trivially outside these cones). This embeds F into V (G), in fact
+               wj    wi                                                                 d
+              into Vd. Up to choosing a pair of disjoint cones that are also disjoint from all the cones
+              C (w ), and extending this action of F so that any elements acting by odd permutations
+               d   i
+              also transpose those cones via prex replacements, we can assume all elements of F act as
+              even permutations. By [Hig74] this means our embedding of F lands in [Vd,Vd], hence in
+              [V (G),V (G)]. Our embedded copy of ([V (G),V (G)])n is normalized by our embedded
+                d      d                               d      d
+              copy of F, and the conjugation action just permutes the entries, and so we have embedded
+              F  [Vd(G),Vd(G)] into [Vd(G),Vd(G)].                                                
+                                         3. Proof of the main result
+                We now prove our main result, Theorem 1.1, that every nitely presented self-similar
+              group embeds in a nitely presented simple group.
+              Proof of Theorem 1.1. Let G  Aut(T ) be a nitely presented self-similar group of auto-
+                                                   d
+              morphismsofthed-arytreeT . LetV (G)bethecorrespondingRoverNekrashevych group.
+                                          d      d
+              ByCitation 2.4, the commutator subgroup [Vd(G),Vd(G)] is simple. By Citation 2.3, since
+              Gisnitely presented so is Vd(G). Thus, if Vd(G) has nite abelianization, its commutator
+              subgroup is a nitely presented simple group. If the abelianization is innite though, there
+              is no reason a priori to expect [Vd(G),Vd(G)] to be nitely presented. Our strategy is to
+              prove that there exists a possibly dierent embedding of G into Aut(T ) for a possibly
+                                                                                    d
+              dierent d, such that this copy of G is still self-similar, but now the RoverNekrashevych
+              group V (G) for this self-similar representation of G has nite abelianization.
+                      d
+                Theabelianization of any RoverNekrashevych group Vd(G) is given by a straightforward
+              procedure, described for example in [Nek18, Theorem 4.8]. For each g  G, consider the
+              wreath recursion g  (g1,:::,gd). Let G be the abelianization of G, and write g for the
+              image of g  G in G. For d even, the abelianization of Vd(G) is the result of taking G and
+              modding out the relation g = g1 +  + gd coming from the above wreath recursion, for
+              every g  G. For d odd, the abelianization is the result of taking G(Z=2Z) and modding
+              out the relation g = g1 +  + gd + sgn() coming from the above wreath recursion, for
+              every g  G. Here sgn()  Z=2Z equals 0+2Z if  is an even permutation and 1+2Z if
+               is an odd permutation.
+                Given G  Aut(T ) as above, and given m  N, consider the action of G on T   dened
+                                 d                                                        md
+              by the wreath recursion
+                                   g m(g ,:::,g ,g ,:::,g ,:::,g ,:::,g ),
+                                              1      d  1      d      1      d
+              where m is the element of S   that acts like  on {1,:::,d}, acts like  in the obvious
+                                           md
+              way on {d+1,:::,2d}, and so forth. Since the original action of G is self-similar, each gi
+              lies in G, and so this new action is also self-similar. Since the original action is faithful,
+              it is easy to see that this new action is also faithful. Thus, we have embedded G into
+              Aut(T ) as a self-similar group with this wreath recursion. Note that if m is even then
+                    md
+              6                                M. C. B. ZAREMSKY
+              the abelianization of Vmd(G) is given by taking the abelianization of G and then modding
+              out the relation g = m(g1 +  + gd) for every g  G. For convenience we will just focus
+SENTINEL

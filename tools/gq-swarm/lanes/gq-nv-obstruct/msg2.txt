@@ -1,0 +1,5 @@
+Root gl-n-q: record the nV / twisted Brin-Thompson verdict (Attempt 11)
+
+Twisted hosts contain every finitely generated subgroup and Q, so no finitary
+obstruction applies; the transversal cnd function alone would exclude GL_3(Z)
+from every nV; BS(1,2) in nV needs a drift-free base.

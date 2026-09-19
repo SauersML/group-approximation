@@ -1,0 +1,3 @@
+Referee report (scope lens): finite-state Mobius pieces see finitely many primes PASS
+
+Items 1-3 correct; both distinct_from accurate. W1: Reading bullet 3 needs the lemma that a f.g. subgroup of PGL_2(Q_p) contains only finitely many d_q (supplied). W2: Attempt 5 should say some generator of W must be wild. Euler finite-state Attempt 2 correct.

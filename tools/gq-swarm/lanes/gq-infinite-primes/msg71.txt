@@ -1,0 +1,3 @@
+Non-co-Hopfian node: Attempt 1 (ring-induced endomorphisms act by powers on K_2)
+
+Lane gq-infinite-primes.

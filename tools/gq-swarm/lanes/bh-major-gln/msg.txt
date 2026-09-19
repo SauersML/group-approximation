@@ -1,0 +1,11 @@
+GL_n(Q) skeleton, and roots from a Leavitt unit commuting with a Leavitt copy
+
+An infinite-order unit of L_F(1,2) that commutes with a unital copy of
+L_F(1,2) has roots of every order, by block-companion matrices over a tower
+of Leavitt tuples taken inside successive relative commutants. So (Q,+)
+embeds in the unit group. Over a finite field such a unit would contradict
+the open finite-rank centralizer conjecture, which isolates the one question
+the Leavitt route to GL_n(Q) depends on. Also adds the end-to-end skeleton
+for BBMZ 5.3(5): where the primes are free (in finitely presented decidable
+envelopes, through the Toeplitz resolvent), where they block (central
+scalars, finite-data hosts), and the three live routes.

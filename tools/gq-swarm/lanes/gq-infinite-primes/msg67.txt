@@ -1,0 +1,9 @@
+Frame complex of R_L is highly connected; route to condition (i) down to signs
+
+Lane gq-infinite-primes. Compress each nonzero element separately (y x z = 1), glue
+the compressions along separated vacuum isometries s_1^(M_j) s_2 whose cross
+terms vanish since t_2 s_1 = 0 = t_1 s_2: a simultaneous word multiplier for R_L.
+With it Khanh cone and fan arguments give an (r-3)-acyclic, simply connected
+frame complex X_r(R_L) for r >= 4, and GL_r/E_r = Z gives E_r-transitivity on
+frames of size <= r-1. The route to (i) now needs only the characteristic-0
+Brown presentation (sign bookkeeping).

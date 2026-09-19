@@ -1,0 +1,5 @@
+Scope note: lifts-add-no-unipotent-divisibility vs longer towers
+
+Record that the U_3(Q) exclusion needs the three-step shape (U_3(Q) is
+poly-Q-free), and link q-free-lifts-reach-only-lattice-affine-q-groups,
+which covers towers of any length for Aff(Q), B_2(Q) and GL_n(Q).

@@ -1,0 +1,7 @@
+Referee reports: four gq-infinite-primes nodes PASS (proof gaps)
+
+Proof-gap reviews of the nodes landed in 4cd432d26: Z_(l) in the Kazhdan
+Steinberg group of the resolvent ring, residually finite Steinberg groups
+force residually finite rings, the resolvent presentation is not faithful on
+the residually finite model, and the Euler lamplighter. All pass; the lower
+bound on derived length rests on an unreviewed node.

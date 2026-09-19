@@ -1,0 +1,9 @@
+CGP Question 4 for soluble minimax groups reduces to finitely presented max-n overgroups
+
+The periodic radical of a finitely generated soluble minimax group is discriminated, among its
+normal subgroups, by one finite set (minimal condition on the Chernikov radical). A finitely presented
+max-n host has an isolated quotient in which that set survives (CGP Prop. 2.3 with finite
+presentation tracked), and the residually finite quotient G/tau(G) is linear. So every soluble
+minimax subgroup of a finitely presented max-n group, e.g. of any quotient of an Abels group,
+embeds in an isolated group; the whole class follows from an embedding into finitely presented
+max-n groups.

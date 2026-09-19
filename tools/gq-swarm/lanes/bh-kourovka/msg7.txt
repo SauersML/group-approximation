@@ -1,0 +1,5 @@
+Kourovka 5.15: fp residually finite groups with recursive but non-primitive-recursive WP exist (KMS)
+
+Kharlampovich-Myasnikov-Sapir (arXiv:1204.6506, Thm t:rfg, read at source) make the word problem of a finitely presented, residually finite, solvable group at least as hard as membership in any prescribed recursive set Z. Take Z to be the diagonal set, which is recursive but not primitive recursive. The reduction built from the operations in relation G8 is primitive recursive (checked by inspection), so the word problem is recursive (McKinsey) but not primitive recursive.
+
+The 2026 Notebook still lists 5.15 as open. The node also records the reduction of 7.19 to finding a finitely presented simple host for a KMS group. Lane deduction, not reviewed.

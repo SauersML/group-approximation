@@ -1,0 +1,1 @@
+Rename the Toeplitz instance R_Toep in the resolvent-vacuum lemma

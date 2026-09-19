@@ -1,0 +1,5 @@
+Record that the index character need not be two-sided; the open statement is Sigma^1-symmetry
+
+Delta = <shift, sparse involution> is finitely generated and contains the shift, but its index-zero part
+is not finitely generated. So the finitely generated form of MZ Question 3.18 is the weaker claim that the
+index character is never exactly one-sided.

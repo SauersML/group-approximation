@@ -1,0 +1,7 @@
+Rational-base Turing machines in CT_{3}(Z) carry a potential that freezes the tape
+
+Junk reflection works: Kari-Ollinger direction switching at the junk digit gives finite order iff the
+machine is uniformly periodic. But an exact rational-base realization exists iff the states carry a
+rational potential. A digit-uniqueness law (base 3/2, digits -1, 0, 1) then makes every net tape
+change a function of the initial state, the current state and the head displacement. So these machines
+store nothing, and the coding cannot transport Kari-Ollinger's theorem to the torsion problem.

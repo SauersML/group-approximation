@@ -1,0 +1,29 @@
+ROUTE adelic-deck-lifts-exclude-affine-q-n-and-fp-bases-proof -> adelic-deck-lifts-exclude-affine-q-n-and-fp-bases
+ROUTE boone-higman-from-countable-decidable-bh -> boone-higman-conjecture
+ROUTE borel-two-q-is-units-times-aff-q-proof -> borel-two-q-is-units-times-aff-q
+ROUTE countable-char-zero-linear-from-countable-decidable-bh -> countable-char-zero-linear-groups-embed-in-fp-simple-groups
+ROUTE countable-decidable-bh-from-boone-higman -> countable-decidable-groups-embed-in-fp-simple-groups
+NOTITLE extension-product-closures-cannot-create-sl-n-q-proof
+ROUTE extension-product-closures-cannot-create-sl-n-q-proof -> extension-product-closures-cannot-create-sl-n-q
+ROUTE fg-groups-with-normal-q-n-have-non-fp-quotients-proof -> fg-groups-with-normal-q-n-have-non-fp-quotients
+ROUTE fg-subrings-of-integral-form-algebras-omit-q-proof -> fg-subrings-of-integral-form-algebras-omit-q
+ROUTE gl-n-q-bh-via-rational-leavitt-simple-group -> gl-n-q-embeds-in-fp-simple-group
+ROUTE gl-n-q-embeddings-are-branches-of-homomorphism-trees-proof -> gl-n-q-embeddings-are-branches-of-homomorphism-trees
+ROUTE gl-n-q-embeddings-detected-by-nontrivial-homomorphisms-proof -> gl-n-q-embeddings-detected-by-nontrivial-homomorphisms
+NOTITLE gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof
+ROUTE gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof -> gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring
+ROUTE gl-n-q-root-from-countable-decidable-bh -> gl-n-q-embeds-in-fp-simple-group
+ROUTE gl2-q-bh-via-root -> gl2-q-embeds-in-fp-simple-group
+ROUTE gl2-q-fa-subgroups-are-finite-proof -> gl2-q-fa-subgroups-are-finite
+NOTITLE integral-form-algebras-have-no-fg-subring-containing-q-proof
+ROUTE integral-form-algebras-have-no-fg-subring-containing-q-proof -> integral-form-algebras-have-no-fg-subring-containing-q
+ROUTE normal-germ-extensions-of-thompson-v-contain-no-sl3z-proof -> normal-germ-extensions-of-thompson-v-contain-no-sl3z
+ROUTE pgl-n-q-acts-on-rational-polyhedral-cantor-set-proof -> pgl-n-q-acts-on-rational-polyhedral-cantor-set
+ROUTE psl2-q-bh-via-root -> psl2-q-embeds-in-fp-simple-group
+NOTITLE q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof
+ROUTE q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof -> q-embeds-in-a-corner-of-a-fp-toeplitz-ring
+ROUTE sl-m-q-passes-to-finite-index-and-commutator-cores-proof -> sl-m-q-passes-to-finite-index-and-commutator-cores
+NOTITLE sl-n-q-lies-in-finite-residual-of-every-overgroup-proof
+ROUTE sl-n-q-lies-in-finite-residual-of-every-overgroup-proof -> sl-n-q-lies-in-finite-residual-of-every-overgroup
+ROUTE sl-q-local-amalgam-gluing-is-the-whole-problem-proof -> sl-q-local-amalgam-gluing-is-the-whole-problem
+ROUTE sl2-q-bh-via-gl2 -> sl2-q-embeds-in-fp-simple-group

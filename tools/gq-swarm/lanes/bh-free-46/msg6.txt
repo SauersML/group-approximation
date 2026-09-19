@@ -1,0 +1,10 @@
+Coset conditions of the permutational class pass to finite-index overgroups
+
+If C <= H <= G with [G:H] finite, G in B_A, and the coset conditions hold for (H, C), they
+hold for (G, C). Proof: the Kaloujnine-Krasner cocycle map embeds A wr_{G/C} G in
+(A wr_{H/C} H) wr_{G/H} G, which embeds in (L wr Sym(G/H)) x G, and B_A is closed under
+finite products and finite-index overgroups. So every virtual retract gives coset
+lamplighters and identity-edge HNN extensions in B_A, removing the normality requirement of
+the free-group criterion. Lesson: coset-type BH permanence is a finite-index property, so
+virtual-retraction theorems transfer wholesale; its reach is exactly the profinitely closed
+stabilizers. Lane proof, elementary, not reviewed.

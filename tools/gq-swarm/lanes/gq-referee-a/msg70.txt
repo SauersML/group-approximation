@@ -1,0 +1,3 @@
+Referee report: Leavitt resolvent stable K_2 class is computable PASS
+
+Proof-gap lens on leavitt-resolvent-stable-k2-class-is-computable (fd522c4d1). R.e. presentation of St_M(R_L) without finite presentation, the colimit step, the homomorphic section, and the WP equivalence checked; nits N1-N2.

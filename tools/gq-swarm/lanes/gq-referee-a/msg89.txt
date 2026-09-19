@@ -1,0 +1,3 @@
+Referee report: FW twisted-normalizing genuine shell action PASS for countable P, W1 scope
+
+Proof-gap lens on fw-inputs-admit-no-twisted-normalizing-genuine-shell-action (2a1326804). Straightening, residue classes, index count, orbit sizes and the m<0 reduction checked. W1: Step 2.4 needs P countable (FW => FA => f.g.); add the hypothesis. Two nits; overlap with the gq-typeA-design m=1 node noted.

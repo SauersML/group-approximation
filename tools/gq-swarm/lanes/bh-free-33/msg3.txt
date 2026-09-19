@@ -1,0 +1,9 @@
+Descending shell endomorphisms of FW groups have finite-exponent centralizers; the Leavitt corner map is excluded
+
+With high transitivity on the finitely many infinite orbits, the image of a
+descending window-zero endomorphism acts 2-transitively on the twisted copies
+of those orbits, so anything centralizing it has a power acting with finite
+support. Hence its centralizer has finite exponent and contains no infinite
+simple subgroup. The corner endomorphism of EL_n over the binary Leavitt
+algebra commutes with its conjugate by the corner swap, so no genuine action
+realizes it, and the same shape kills cone transplants.

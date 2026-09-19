@@ -1,0 +1,10 @@
+Obstruction: PL line groups bound the dilation rank over non-cyclic Q
+
+If D <= Q is non-cyclic and D x| M (M <= Q^x_{>0}) embeds in any group of PL
+homeomorphisms of R with slopes in a free abelian group S of rank r, then M
+embeds in S. Unbounded roots force D to act freely, Hoelder descends M to
+affine maps, and the right germ at their common fixed point is injective.
+So PL_2(R) (hence F, T-bar, Brin A, the commensurator of <x+1>) and every
+finitely generated PL line group contain no Aff(Q), SL_2(Q), GL_n(Q), and
+PL_2(R) contains no Z[1/6] x| <2,3>; BS(1,q) <= PL_2(R) for all q shows
+rank 1 is sharp. Kills spark S1 for Aff(Q)/GL_2(Q) in every form.

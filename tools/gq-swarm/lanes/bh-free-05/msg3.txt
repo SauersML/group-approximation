@@ -1,0 +1,7 @@
+Almost all one-relator groups (>= 3 generators) satisfy Boone-Higman
+
+Composes Sapir-Spakulova (arXiv:0809.4693, read at source: generic one-relator groups with
+>= 3 generators embed in ascending HNN extensions of f.g. free groups) with
+ascending-hnn-of-free-groups-satisfy-boone-higman. Also explicit criteria (SS thm1/lm4, Brown's
+two-generator criterion). Update note on one-relator-groups-satisfy-boone-higman (stays OPEN).
+Lane bh-free-05, lane proof, not reviewed, no priority claimed.

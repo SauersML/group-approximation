@@ -1,0 +1,7 @@
+St_N(R_L) is not co-Hopfian; twist endomorphisms have iterated core containing K_2
+
+Lane gq-infinite-primes. With U_N = 1 the isometric twist of the last coordinate is
+an injective, non-surjective endomorphism (its image fixes b_N ff*), so co-Hopfian
+window-zero exclusions do not apply to St_N(R_L) as stated; but the twist and the
+all-coordinate corner endomorphism fix the central K_2(N,R_L) = Q^x, so their
+iterated cores are nontrivial.

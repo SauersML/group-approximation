@@ -1,0 +1,6 @@
+pp-circle nodes: referee-a PASS, two wording fixes
+
+Apply the two non-blocking points of gq-referee-a (landed 1c4d03cb4): in case
+(L) the lift fixing a~ is Lambda-piecewise because integer translations lie
+in Lambda; take eps <= eps_{d'} explicitly in the multiplicativity step. Record
+the proof-gap PASS in both claims; citation check pending with gq-referee-b.

@@ -1,0 +1,3 @@
+Referee report: fg restricted-product actions have finite support PASS
+
+Proof-gap lens on fg-restricted-product-actions-have-finite-support (first review). Support cocycle, word-length bound, coordinatewise case and convexity, restricted product groups, consequences checked; nits N1-N2.

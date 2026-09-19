@@ -1,0 +1,4 @@
+bh-relhyp: record cusp extensions and Attempt 2 on the relatively hyperbolic permanence claim
+
+The claim stays OPEN; it now lists cusp-extensions-of-torsion-free-hyperbolic-groups-satisfy-pbh
+as a known case and records what remains.

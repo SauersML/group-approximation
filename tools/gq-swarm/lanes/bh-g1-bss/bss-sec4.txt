@@ -1,0 +1,271 @@
+\section{Self-simulable groups}\label{sec:selfsimulable}
+
+The purpose of this section is to prove Theorem~\ref{thm:selfsimulation}. Our main tool shall be the paradoxical subshift as defined in Section~\ref{sec:paradox}. The main idea is quite similar to the application shown on the previous section, namely, we saw that the possibility to associate paths to group elements allows us to encode arbitrary actions in subhifts by putting sequences on the path. By taking a direct product of two finitely generated groups, we will be able to associate not only a path but an actual $\NN^2$-grid to each group element. This will enable us to verify with local rules that a configuration is on some effectively closed set by implementing Turing machines via Wang tilesets.
+
+
+More precisely, given an effectively closed action $\Gamma \curvearrowright X \subseteq \{\symb{0},\symb{1}\}^{\NN}$, we use a classical embedding of Turing machines through seeded Wang tilings to construct a tiling of $\NN^2$, so that every configuration in which a special symbol occurs at $(0,0)$ encodes in a straightforward manner a configuration on the set representation of $\Gamma \curvearrowright X$. This idea is quite old and can be traced back to~\cite{Wang:1960:PTP:367177.367224,Wang1961} and~\cite{KahrMooreWang62}. These ideas were famously used by Berger to settle the undecidability of the domino problem~\cite{Berger1966}. The grids shall encode a Turing machine which verifies that the configuration indeed belongs to the set representation.
+
+Finally, we shall encode a seeded instance of our tiling of $\NN^2$ on top of the $\NN^2$-grids of a product of two paradoxical subshifts on each group, in such a way that the seed occurs at the origin of every grid. We then endow this object with local rules ensuring that all the $\NN^2$-grids communicate information coherently with the action of $\Gamma$. From here the factor map will be defined naturally using the grids and the set representation.
+
+\subsection{The computation tilespace}
+
+In this section we shall construct a set of tilings of $\NN^2$ which is defined through local rules, and which has the property that the subset of tilings such that a particular type of symbol, called the \define{seed}, occurs at $(0,0)$, maps surjectively into a fixed effectively closed set. 
+
+Let us describe how to code the dynamics of a Turing machine $\mathcal{M} = \{Q,\Sigma, q_0,q_F, \delta \}$ in a seeded tiling of $\NN^2$. Consider the alphabet $\mathcal{W}_{\mathcal{M}}$ given by the square tiles drawn on Figure~\ref{fig:Wang_turingo_no_machina}. Notice that we give special names to three of the tiles on the top row.
+
+\begin{figure}[ht!]
+	\centering
+	\input{img/Wang_turingo_no_machina}
+	\caption{The alphabet $\mathcal{W}_{\mathcal{M}}$ associated to a Turing machine $\mathcal{M} = \{Q,\Sigma, q_0,q_F, \delta \}$. $a \in \Sigma$ is an arbitrary symbol and $q \in Q$ is an arbitrary state. $(s,b),(\ell,c),(r,d) \in Q \times \Sigma$ are any pairs such that $\delta(s,b)=(s',b',0)$, $\delta(\ell,c)=(\ell',c',-1)$ and $\delta(r,d)=(r',d',+1)$.}
+	\label{fig:Wang_turingo_no_machina}
+\end{figure}
+
+Given a Turing machine $\mathcal{M}$, we define its associated set of $\NN^2$-tilings as the set $\mathcal{T}_{\mathcal{M}}$ of all maps $\tau \colon \NN^2 \to \mathcal{W}_{\mathcal{M}}$ so that whenever two tiles are horizontally or vertically adjacent to each other, both the color and the symbol on their adjacent sides coincide. See Figure~\ref{fig:Turingo_no_exampluru} for an example of pattern satisfying this constraint.
+
+\begin{remark}
+	The $\NN^2$-tilings which are described by square tiles satisfying the above kind of constraints are called \define{Wang tilings} after Hao Wang, who introduced them in~\cite{Wang1961}.
+\end{remark}
+
+The idea behind this construction is that for any $x \in \Sigma^\NN$, if we provide a horizontal row of tiles of Figure~\ref{fig:Wang_turingo_no_machina} given by \[\texttt{seed}, \texttt{tile}_1(x_0),\texttt{tile}_2(x_1),\texttt{tile}_2(x_2),\texttt{tile}_2(x_3),\dots,\] then the local rules of the tileset force any configuration to encode the dynamics of the Turing machine on the infinite word $x$.
+
+\begin{example}\label{ex:turingo_no_machina}
+	Let us consider the following simple Turing machine. Let $Q = \{a,b\}$, $\Sigma = \{0,1,\sqcup\}$, $q_0 = a$ and let $\delta$ be given by
+	\begin{align}
+		\delta(a,\sqcup) & = (b,0,+1) & \delta(a,0) &= (b,1,+1) & \delta(a,1) &= (a,0,+1) \\
+		\delta(b,\sqcup) & = (a,0,-1) & \delta(b,0) &= (b,1,0) & \delta(b,1) &= (a,0,+1).
+	\end{align}
+	A $\NN^2$-tiling associated to this Turing machine is shown in Figure~\ref{fig:Turingo_no_exampluru}. \qee
+\end{example}
+
+
+\begin{figure}[h!]
+	\centering
+	\input{img/Turingo_no_exampluru}
+	\caption{A pattern of the Wang tiling associated to the machine of Example~\ref{ex:turingo_no_machina}. Each row, starting from the bottom, can be associated to an iteration of the Turing machine on an empty tape.}
+	\label{fig:Turingo_no_exampluru}
+\end{figure}
+
+\begin{remark}
+	If the tile $\texttt{seed}$ occurs at position $(0,0)$, then necessarily $\texttt{tile}_1(a)$ occurs at $(1,0)$ for some $a \in \Sigma$, and tiles $\texttt{tile}_2(b_n)$ for some $b_n \in \Sigma$ must occur at every position $(n,0)$ for $n \geq 2$. The tiles at the remaining positions of $\NN^2$ are uniquely determined by these tiles.
+\end{remark}
+
+Now consider an effectively closed set $Y \subseteq A^{\NN}$. By definition, there exists a Turing machine $\mathcal{M}_{Y}$ so that $\mathcal{M}_{Y}$ accepts a word $w \in A^*$ if and only if $[w]\cap Y = \varnothing$. From this point forward for every effectively closed set $Y$ we fix such a machine $\mathcal{M}_{Y}$.
+
+
+Let us consider a new Turing machine $\mathcal{M}_{\texttt{search},Y}$ whose tape alphabet and behavior we describe as follows:
+
+\begin{itemize}
+	\item The tape alphabet of $\mathcal{M}_{\texttt{search},Y}$ consists of tuples in $A \times \Sigma'$, where $\Sigma' \supset A$ is the working alphabet of an universal Turing machine which contains a special symbol $\sqcup$. The symbols in the first component are not modified by the machine, but can be read.
+	\item The dynamics of $\mathcal{M}_{\texttt{search},Y}$ when run on the sequence $(y_n,\sqcup)_{n \in \NN}$ are the following:
+	\begin{enumerate}
+		\item Define $k = 1$.
+		\item For every word $w \in \bigcup_{j \leq k}A^{j}$, run the Turing machine $\mathcal{M}_{Y}$ on input $w$ for $k$ steps.
+		\begin{itemize}
+			\item If $\mathcal{M}_{Y}$ accepts $w$, check whether $y_0\dots y_{|w|-1} = w$. If it is the case, accept (go to state $q_{F}$).
+		\end{itemize}
+		\item Redefine $k$ as $k+1$ and go back to step (2).
+	\end{enumerate}
+\end{itemize}
+
+As $Y$ is effectively closed, it follows that $\mathcal{M}_{\texttt{search},Y}$ run on the sequence $(y_n,\sqcup)_{n \in \NN}$ reaches its final state $q_F$ if and only if $(y_n)_{n \in \NN}\notin Y$.
+
+
+Given $s \in \mathcal{W}_{\mathcal{M}}$, the set of \define{seeded tilings} of $\mathcal{T}_{\mathcal{M}}$ is the set of $\tau \in \mathcal{T}_{\mathcal{M}}$ such that $\tau(0,0)=s$. 
+
+\begin{definition}
+	Let $Y$ be an effectively closed set. The \define{search tilespace} $\mathcal{T}_{\texttt{Search},Y}$ is the set which consists on all seeded tilings of $\mathcal{T}_{\mathcal{M}_{\texttt{Search},Y}}$ such that 
+	\begin{enumerate}
+		\item The seed is given by the tile $\texttt{seed}$.
+		\item We forbid the tiles $\mathtt{tile}_1(a,b)$ and $\mathtt{tile}_2(a,b)$ where $b \neq \sqcup$. 
+		\item We forbid any tile carrying the final state $q_F$.
+	\end{enumerate}
+\end{definition}
+
+In simpler words, we keep only tilings associated to the machine $\mathcal{M}_{\texttt{Search},Y}$ whose bottom row is of the form
+\[
+\input{img/Turingo_no_examplurudos}\]
+
+for some $(y_n)_{n \in \NN} \in A^{\NN}$. Furthermore, the third condition imposes that in any such tiling the machine never reaches the accepting state, that is, we will have that $(y_n)_{n \in \NN} \in Y$.
+
+Next we will define an auxiliary tileset which will be useful in the part of proof of Theorem~\ref{thm:selfsimulation} which deals with the synchronization of the $\NN^2$-grids.
+
+\begin{definition}
+	Let $A$ be a finite alphabet. The \define{synchronization tilespace} $\mathcal{T}_{\texttt{Sync}}$ is the set of tilings $\sigma \colon \NN^2\to A$ with the property that
+	\[ \sigma(u+(0,1)) = \sigma(u+(1,0)) \mbox{ for every } u \in \NN^2.  \]
+\end{definition}
+
+In other words, $\mathcal{T}_{\texttt{Sync}}$ consists on all tilings in which the antidiagonals are constant.
+
+Finally, we use the two previous constructions to define the computation tileset $\mathcal{T}_{\texttt{Comp},Y}$ of an effectively closed set $Y$ as follows.
+
+\begin{definition}\label{def.ComputationSub}
+	The \define{computation tilespace} $\mathcal{T}_{\texttt{Comp},Y}$ associated to an effectively closed set $Y \subseteq A^{\NN}$ is the set of maps $(\tau,\sigma) \in \mathcal{T}_{\texttt{Search},Y} \times \mathcal{T}_{\texttt{Sync}}$ such that for every $u \in \NN^2$, $i \in \{1,2\}$ and $a \in A$, if $\tau(u+(1,0)) = \texttt{tile}_i(a,\sqcup)$ then $\sigma(u)=a$.
+\end{definition}
+
+We shall write down the two important properties of tilings in $\mathcal{T}_{\texttt{Comp},Y}$ in the following two propositions.
+
+\begin{proposition}\label{prop.Comp}
+	Let $(\tau,\sigma) \in \mathcal{T}_{\texttt{Comp},Y}$. We have that $(\sigma(0,n))_{n \in \NN} = (\sigma(n,0))_{n \in \NN} \in Y$.
+\end{proposition}
+
+\begin{proof}
+	Let $(\tau,\sigma) \in \mathcal{T}_{\texttt{Comp},Y}$. From the definition of $\mathcal{T}_{\texttt{Sync}}$ it follows that $\sigma(0,n)=\sigma(n,0)$ for all $n\in\NN$, therefore it suffices to show that $(\sigma(n,0))_{n \in \NN} \in Y$
+	
+	By definition of $\mathcal{T}_{\texttt{Search},Y}$, we have $\tau(0,0) = \texttt{tile}_1(a_0,\sqcup)$ for some $a_0 \in A$. By the local rules of the tiling we have that for $n\geq 1$, $\tau(n,0)= \texttt{tile}_2(a_n)$ for some $a_n\in A$. Therefore the tiling $\tau$ corresponds to the space time diagram of the computation of $\mathcal{M}_{\texttt{search},Y}$ on the input $(a_n,\sqcup)_{n \in \NN}$. As we removed the symbol $q_F$, it follows that $(a_n)_{n \in \NN} \in Y$. Since $a_n=\sigma(n,0)$ for every $n \in \NN$ by Definition~\ref{def.ComputationSub}, we deduce that $(\sigma(n,0))_{n \in \NN} \in Y$. 
+\end{proof}
+
+\begin{proposition}\label{prop.Complete}
+	For every $y \in Y$ there exists $(\tau,\sigma) \in \mathcal{T}_{\texttt{Comp},Y}$ so that $y = (\sigma(n,0))_{n \in \NN}$
+\end{proposition}
+
+\begin{proof}
+	Fix $y \in Y$. Let $\sigma \in A^{\NN^2}$ be given by $\sigma(n-k,k)= y_n$ for all $n\in\NN$ and $k \leq n$. It is clear that $\sigma \in \mathcal{T}_{\texttt{Sync}}$.
+	
+	
+	Since $y \in Y$, it follows that $\mathcal{M}_{\texttt{search},Y}$ on $(y_n,\sqcup)_{n \in \NN}$ does not reach the state $q_F$ and thus, if we let $\tau$ be the only configuration in $\mathcal{T}_{\texttt{Search},Y}$ which is compatible with $(y_n,\sqcup)_{n \in \NN}$, then the pair $(\tau,\sigma)$ satisfies the constraint of Definition~\ref{def.ComputationSub} with respect to $\sigma$ and therefore $(\tau,\sigma)\in \mathcal{T}_{\texttt{Comp},Y}$.
+\end{proof}
+
+In the next step of the proof, we shall overlay the computation tilings in the grids induced by the paradoxical subshifts in a product of two non-amenable groups. The role of the synchronization tilespace shall be to allow communication between these two components.
+
+\subsection{Proof of Theorem~\ref{thm:selfsimulation}} For the remainder of the section, let $\Gamma_H$, $\Gamma_V$ be two finitely generated non-amenable groups. Fix generating sets $S_H, S_V$ and let $\Gamma = \Gamma_H \times \Gamma_V$ be their direct product.
+
+Let $\Gamma \curvearrowright X \subseteq \{\symb{0},\symb{1}\}^\NN$ be an effectively closed action of $\Gamma$. Consider the following set of generators of $\Gamma$ \[S = \left(S_H \times \{1_{\Gamma_V}\} \right)\cup  \left(\{1_{\Gamma_H}\}\times S_V \right).\]  Let $A = \{\symb{0},\symb{1}\}^S$ and $Y_{\Gamma \curvearrowright X, S} \subseteq A^\NN$ be the set representation of $\Gamma \curvearrowright X$. We recall that $Y_{\Gamma \curvearrowright X, S}$ is an effectively closed subset of $A^\NN$ and that, for $s \in S$ and $y \in Y_{\Gamma \curvearrowright X, S}$, we denote by $\pi_s(y)$ the configuration $(y_n(s))_n \in X$. For simplicity of notation, and coherently with the last section, we shall denote $Y_{\Gamma \curvearrowright X, S}$ simply by $Y$.
+
+By Proposition~\ref{prop:paradox_nonempty}, there exist symmetric finite sets $K_H \Subset \Gamma_H$ and $K_V \Subset \Gamma_V$ which contain the identity and so that the paradoxical subshifts defined on $\Gamma_H$ and $\Gamma_V$ with respect to $K_H$ and $K_V$ are nonempty. Let us denote the corresponding paradoxical subshifts respectively by $\paradox_H$ and $\paradox_V$. Consider their trivial extensions to $\Gamma$ as follows \begin{align*}
+	\widetilde{\paradox}_H & = \{ \rho \in (A_{K_H})^{\Gamma} : \left(\rho(g,1_{\Gamma_V})\right)_{g \in \Gamma_H} \in \paradox_H, \\ & \quad \quad \mbox{ and } \rho(g,g') = \rho(g,1_{\Gamma_{V}}) \mbox{ for every } (g,g') \in \Gamma  \},\\
+	\widetilde{\paradox}_V & = \{ \rho' \in (A_{K_V})^{\Gamma} : \left(\rho'(1_{\Gamma_H},g)\right)_{g \in \Gamma_V}  \in \paradox_V, \\ & \quad \quad  \mbox{ and } \rho'(g,g') = \rho'(1_{\Gamma_{H}},g') \mbox{ for every } (g,g') \in \Gamma \}.
+\end{align*}
+
+It is clear that $\widetilde{\paradox}_H$ and $\widetilde{\paradox}_V$ are both $\Gamma$-subshifts of finite type. Consider the $\Gamma$-subshift of finite type $\widetilde{\paradox} = \widetilde{\paradox}_H \times \widetilde{\paradox}_V$. It follows that for every $\widetilde{g} = (g,g')\in \Gamma$ there exists a continuous map $\gamma_{\widetilde{g}}\colon \NN^2 \times \widetilde{\paradox} \to \Gamma$ given by \[ \gamma_{\widetilde{g}}((n,n'),(\rho,\rho')) = \left(\gamma^H_{g}(n, \rho), \gamma^V_{g'}(n', \rho')  \right).   \]
+Where $\gamma^H$ and $\gamma^V$ are the maps defined in Section~\ref{sec:paradox} which are determined by the restrictions of $\rho$ and $\rho'$ to $\Gamma_H \times \{1_{V}\}$ and to $\{1_{\Gamma_H}\}\times \Gamma_V$ respectively.
+
+It follows from~Lemma~\ref{lem:injectivepaths} that for every ${\rho} \in \widetilde{\paradox}$ the map $(u,\widetilde{g})\mapsto \gamma_{\widetilde{g}}(u,{\rho})$ is injective, where $u \in \NN^2$ and $\widetilde{g} \in \Gamma$.
+
+Recall that the computation tilespace $\mathcal{T}_{\texttt{Comp},Y}$ is a subset of all tuples $(\tau,\sigma) \in \mathcal{T}_{\texttt{Search},Y} \times \mathcal{T}_{\texttt{Sync}}$. Denote by $B$ the alphabet of all tiles which occur in some tiling in $\mathcal{T}_{\texttt{Search},Y}$. Also recall that given $\symb{t}\in \{\symb{G},\symb{B} \}$, $\overline{\symb{t}}$ denotes the opposite color. For $\rho \in \widetilde{\paradox}$, write $\rho = ({\rho}_H,{\rho}_V)\in \widetilde{\paradox}_H \times \widetilde{\paradox}_V$. Denote also by $\symb{t}_H(g)$,$\symb{t}_V(g)$ the colors of ${\rho}_H(g)$ and ${\rho}_V(g)$ respectively.
+
+\begin{definition}
+	The \define{final} $\Gamma$-subshift $Z_{\texttt{Final}}$ is the set of configurations $z=(\rho,\tau,\sigma) \in \widetilde{\paradox}\times B^{\Gamma} \times A^{\Gamma}$ which satisfy the following constraints:
+	\begin{enumerate}
+		\item \textbf{Embedding rule:} For every $g \in \Gamma$, $z$ respects the local rules of $\mathcal{T}_{\texttt{Comp},Y}$. More precisely, for every $g \in \Gamma$,
+		\begin{enumerate}
+			\item $\tau( gL_{\overline{\symb{t}_H(g)}}(\rho_H(g)) ,gL_{\overline{\symb{t}_V(g)}}(\rho_V(g))   ) = \texttt{seed}$.
+			\item The right side of the tile $\tau(g)$ coincides with the left side of the tile $\tau(gL_{{\symb{t}_H(g)}}(\rho_H(g)))$.
+			\item The upper side of the tile $\tau(g)$ coincides with the bottom side of the tile $\tau(gL_{{\symb{t}_V(g)}}(\rho_V(g)))$.
+			\item $\sigma(gL_{{\symb{t}_H(g)}}(\rho_H(g))) = \sigma(gL_{{\symb{t}_V(g)}}(\rho_V(g)))$.
+			\item If $\tau(gL_{{\symb{t}_H(g)}}(\rho_H(g))) = \texttt{tile}_i(a,\sqcup)$ for some $a \in A$, then $\sigma(g) = a$.
+		\end{enumerate} 
+		\item \textbf{Coherence rule:} For every $g \in \Gamma$,
+		\begin{enumerate}
+			\item  For every $s \in S_H\times  \{1_{\Gamma_V}\}$,  \[\sigma(gL_{\overline{\symb{t}_H}}(\rho_H(g)))(s)=\sigma(gs^{-1}L_{\overline{\symb{t}_H(gs^{-1})}}(\rho_H(gs^{-1})))(1_{\Gamma}).\]
+			
+			\item For every $s' \in  \{1_{\Gamma_H}\} \times S_V$, \[\sigma(gL_{\overline{\symb{t}_V}}(\rho_V(g)))(s')=\sigma(gs'^{-1}L_{\overline{\symb{t}_V(gs'^{-1})}}(\rho_V(gs'^{-1})))(1_{\Gamma}).\]
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+The following proposition translates the technical description of $Z_{\texttt{Final}}$ into the properties we shall use to prove our result.
+
+\begin{proposition}\label{claim:sft}
+	$Z_{\texttt{Final}}$ is a $\Gamma$-subshift of finite type which satisfies:
+	\begin{enumerate}
+		\item For every $g \in \Gamma$, 	\[ \left(\tau(\gamma_g(u,\rho)),\sigma(\gamma_g(u,\rho))\right)_{u \in \NN^2}\in \mathcal{T}_{\texttt{Comp},Y}.   \]
+		\item For every $g \in \Gamma$, $s\in S$ and $u \in \NN^2$ we have \[ \sigma(\gamma_g(u,\rho))(s) = \sigma(\gamma_{gs^{-1}}(u,\rho))(1_{\Gamma}).  \]
+	\end{enumerate}
+\end{proposition}
+
+In other words, a configuration $z=(\rho,\tau,\sigma)$ in $Z_{\texttt{Final}}$ satisfies that (1) for every $g \in \Gamma$, the restriction of $(\rho,\tau)$ to the $\NN^2$-grid $\gamma_g(\NN^2,\rho)$ is a valid seeded tiling of $\mathcal{T}_{\texttt{Comp},Y}$, and (2), when moving by a generator $s$ of $\Gamma$, the component $\pi_{s}(y)$ of the element $y \in Y$ read from the grid of $g$ coincides with the component $\pi_{1_{\Gamma}}(y')$ of the element $y'\in Y$ read from the grid at $gs^{-1}$.
+
+\begin{proof}
+	From the definition of $Z_{\texttt{Final}}$ it is clear that it is a $\Gamma$-subshift of finite type. Indeed, $\widetilde{\paradox}$ is a $\Gamma$-subshift of finite type and all of the other rules are clearly local. 
+	
+	Let $z = (\rho,\tau,\sigma) \in Z_{\texttt{Final}}$ and fix $g \in \Gamma$. In order to prove the first property, notice that the element $\gamma_g((0,0),\rho)$ is given by the pair \[ \gamma_g((0,0),\rho) = ( gL_{\overline{\symb{t}_H(g)}}({\rho}_H(g)) ,gL_{\overline{\symb{t}_V(g)}}({\rho}_V(g))   ).    \]
+	
+	Therefore rule (1a) is stating that $\tau(\gamma_g((0,0),\rho))=\texttt{seed}$. Similarly, the positions $gL_{{\symb{t}_H(g)}}(\rho_H(g))$ and $gL_{{\symb{t}_V(g)}}(\rho_V(g))$ are respectively the ones directly right and up from position $g$, therefore rules (1b) and (1c) implement the local rules of a Wang tileset, namely, that colors must match horizontally and vertically. As we let $B$ be the set of all tiles which occur in $\mathcal{T}_{\texttt{Search},Y}$, these three rules already imply that $\left(\tau(\gamma_g(u,\rho))\right)_{u \in \NN^2}\in \mathcal{T}_{\texttt{Search},Y}. $ 
+	
+	The same argument as above shows that rule (1d) implements the fact that antidiagonals are constant in $\mathcal{T}_{\texttt{Sync}}$ and (1e) gives the rule that defines $\mathcal{T}_{\texttt{Comp},Y}$. From here it follows that rules (1a)-(1e) imply that \[\left(\tau(\gamma_g(u,\rho)),\sigma(\gamma_g(u,\rho))\right)_{u \in \NN^2}\in \mathcal{T}_{\texttt{Comp},Y}.\]
+	
+	Let us now show the second property. Let $s \in S$. Given $(n,n') \in \NN^2$, we need to show that \[ \sigma(\gamma_{g}((n,n'),\rho))(s) = \sigma(\gamma_{gs^{-1}}((n,n'),\rho))(1_{\Gamma}).  \]
+	
+	By definition of $S$, either $s \in S_H \times \{1_{\Gamma_V}\}$ or $s \in \{1_{\Gamma_H}\} \times S_V$. Suppose $s \in S_H \times \{1_{\Gamma_V}\}$. By definition of $\mathcal{T}_{\texttt{Sync}}$ it suffices to show that for every $m \in \NN$, \[ \sigma(\gamma_{g}((0,m),\rho))(s) = \sigma(\gamma_{gs^{-1}}((0,m),\rho))(1_{\Gamma}).  \]
+	
+	Write $g = (g_1,g_2)$ and note that, \begin{align*}
+		\gamma_{g}((0,m),\rho) & = (\gamma^H_{g_1}(0,\rho_H),\gamma^V_{g_2}(m,\rho_V))\\
+		& = (g_1L_{\overline{\symb{t}_H(g)}}({\rho}_H(g)),\gamma^V_{g_2}(m,\rho_V))\\
+		& = (g_1,\gamma^V_{g_2}(m,\rho_V))L_{\overline{\symb{t}_H(g)}}({\rho}_H(g)).
+	\end{align*} and 
+	\begin{align*}
+		\gamma_{gs^{-1}}((0,m),\rho) & = (\gamma^H_{g_1s^{-1}}(0,\rho_H),\gamma^V_{g_2}(m,\rho_V))\\
+		& = (g_1s^{-1}L_{\overline{\symb{t}_H(gs^{-1})}}({\rho}_H(gs^{-1})),\gamma^V_{g_2}(m,\rho_V))\\
+		& = (g_1,\gamma^V_{g_2}(m,\rho_V))s^{-1}L_{\overline{\symb{t}_H(gs^{-1})}}({\rho}_H(gs^{-1})).
+	\end{align*}
+	
+	From rule (2a), we deduce that \begin{align*}
+		[\sigma(\gamma_{g}((0,m),\rho))](s) & = [\sigma((g_1,\gamma^V_{g_2}(m,\rho_V))L_{\overline{\symb{t}_H(g)}}({\rho}_H(g)))   ](s)\\
+		& = [\sigma( (g_1,\gamma^V_{g_2}(m,\rho_V))s^{-1} L_{\overline{\symb{t}_H(gs^{-1})}}({\rho}_H(gs^{-1})))   ](1_\Gamma)\\
+		& = [\sigma( \gamma_{gs^{-1}}((0,m),\rho))   ](1_\Gamma).\\
+	\end{align*} 
+	Which is exactly what we wanted. An analogous argument using property (2b) shows that if $s' \in \{1_{\Gamma_H}\} \times S_V$, then for every $m \in \NN$ \[ \sigma(\gamma_{g}((m,0),\rho))(s') = \sigma(\gamma_{gs'^{-1}}((m,0),\rho))(1_\Gamma).  \]
+	Again, by the definition of $\mathcal{T}_{\texttt{Sync}}$ this is enough to obtain what we want.\end{proof}
+
+Finally, consider the map
+\[\begin{array}{crcl}
+	\phi\colon &Z_\texttt{Final}&\longrightarrow&\{\symb{0},\symb{1}\}^\NN\\
+	&(\rho,\tau,\sigma)&\longmapsto & \left(\sigma(\gamma_{1_\Gamma}((n,0),\rho))(1_{\Gamma})\right)_{n\in\NN}
+\end{array}\]
+
+We will show that $\phi$ is a topological factor map from $\Gamma \curvearrowright Z_\texttt{Final}$ to $\Gamma \curvearrowright X$. It is clear from the definition that $\phi$ is a continuous map.
+\begin{claim}\label{claim:subset}
+	$\phi(Z_\texttt{Final}) \subseteq X$.
+\end{claim}
+\begin{proof}
+	Let $(\rho,\tau,\sigma)\in Z_\texttt{Final}$. By the embedding rule, we have that \[(\tau(\gamma_{1_{\Gamma}}(u,\rho)),\sigma(\gamma_{1_{\Gamma}}(u,\rho)))_{u \in \NN^2}\in \mathcal{T}_{\texttt{comp},Y}.\] By Proposition~\ref{prop.Comp}, we deduce that $\left(\sigma(\gamma_{1_\Gamma}((n,0),\rho))\right)_{n\in\NN}\in Y$. Thus $\phi(\rho,\tau,\sigma)\in X$.
+\end{proof}
+
+\begin{claim}\label{claim:equiv}
+	$\phi$ is $\Gamma$-equivariant.
+\end{claim}
+
+\begin{proof}
+	Let $s \in S$ and $(\rho,\tau,\sigma)\in Z_\texttt{Final}$. We have
+	\begin{align*}
+		s\phi(\rho,\tau,\sigma) & = s\left(\sigma(\gamma_{1_\Gamma}((n,0),\rho)(1_{\Gamma})\right)_{n\in\NN}\\
+		& = \left(\sigma(\gamma_{1_\Gamma}((n,0),\rho)(s)\right)_{n\in\NN}\\
+		& = \left(\sigma(\gamma_{s^{-1}}((n,0),\rho)(1_{\Gamma})\right)_{n\in\NN}\\
+		& = \left(\sigma(s^{-1}\gamma_{1_\Gamma}((n,0),s\rho)(1_{\Gamma})\right)_{n\in\NN}\\
+		& = \left(s\sigma(\gamma_{1_\Gamma}((n,0),s\rho)(1_{\Gamma})\right)_{n\in\NN}\\
+		& = \phi(s\rho,s\tau,s\sigma).
+	\end{align*}
+	
+	Since $S$ is a generating set for $\Gamma$, it follows that $g\phi(\rho,\tau,\sigma) = \phi(g\rho,g\tau,g\sigma)$ for any $g \in \Gamma$ and thus $\phi$ is $\Gamma$-equivariant.\end{proof}
+
+\begin{claim}\label{claim:surj}
+	$\phi$ is surjective.
+\end{claim}
+
+\begin{proof}
+	Fix $\rho \in \widetilde{\paradox}$. Let $\mathcal{R}\subseteq \Gamma$ be the set of \define{reachable} $r \in \Gamma$ for which there is $g \in \Gamma$ and $u \in \NN^2$ such that $r = \gamma_g(u,\rho)$. Since the map $(g,u) \mapsto \gamma_g(u,\rho)$ is injective (by Lemma~\ref{lem:injectivepaths}), we may denote unambiguously these values by $u(r)$ and $g(r)$ for $r \in \mathcal{R}$.
+	
+	Consider an arbitrary $x = (x_n)_{n \in \NN}\in X$ and let $y = (y_n)_{n \in \NN} \in Y$ such that $y_n(1_{\Gamma})=x_n$ for every $n \in \NN$. Consider the natural action $\Gamma \curvearrowright Y$ such that $(gy)_n(1_{\Gamma}) = (g(y_n(1_{\Gamma}))_{n \in \NN})_n$ for every $y \in Y$ and $g \in \Gamma$. By Proposition~\ref{prop.Complete}, for every $g \in \Gamma$ there exists $(\tau^g,\sigma^g) \in \mathcal{T}_{\texttt{Comp},Y}$ so that $\sigma^g(n,0) = (g^{-1}y)_n$ for every $n \in \NN$. 
+	
+			\clip (-0.5,-0.5) rectangle (+0.5,+0.5);
+	
+	Let us define $\tau \in B^{\Gamma}$ and $\sigma \in A^{\Gamma}$ as follows.
+	\[  \tau(h) = \begin{cases}
+		\tau^{g(h)}(u(h)) & \mbox{ if } h \in \mathcal{R}.\\
+		w_0 & \mbox{ if } h \notin \mathcal{R}.
+	\end{cases}     \]
+	\[  \sigma(h) = \begin{cases}
+		\sigma^{g(h)}(u(h)) & \mbox{ if } h \in \mathcal{R}.\\
+		a_0 & \mbox{ if } h \notin \mathcal{R}.
+	\end{cases}     \] 
+	
+	By construction, it follows that \[ \phi(\rho,\tau,\sigma) = \left(\sigma(\gamma_{1_\Gamma}((n,0),\rho)(1_{\Gamma})\right)_{n\in\NN} = (\sigma^{1_{\Gamma}}(n,0)(1_{\Gamma}))_{n \in \NN} = (y_n (1_{\Gamma}))_{n \in \NN} = (x_n)_{n \in \NN}.  \]
+	It suffices to check that $(\rho,\tau,\sigma) \in Z_\texttt{Final}$. It is straightforward to check that the embedding rule holds. Let us check the coherence rule, let $g \in G, s \in S$ and $(n,n') \in \NN^2$. On the one hand we have 
+	\[ \sigma(\gamma_g((n,n'),\rho)) = \sigma^g(n,n') = \sigma^g(n+n',0) = (g^{-1}y)_{n+n'}.   \]
+	On the other hand we have \[ \sigma(\gamma_{gs^{-1}}((n,n'),\rho)) = \sigma^{gs^{-1}}(n,n') = \sigma^{gs^{-1}}(n+n',0) = (sg^{-1}y)_{n+n'}.  \]
+	We obtain that \[ \sigma(\gamma_g((n,n'),\rho))(s) = (g^{-1}y)_{n+n'}(s) = (sg^{-1}y)_{n+n'}(1_{\Gamma}) = \sigma(\gamma_{gs^{-1}}((n,n'),\rho))(1_{\Gamma}). \]
+	Which is the coherence rule. It follows that $(\rho,\tau,\sigma) \in Z_\texttt{Final}$ and thus $\phi$ is surjective.\end{proof}
+
+Putting together Claims~\ref{claim:subset},~\ref{claim:equiv} and~\ref{claim:surj} we have that $\phi \colon Z_{\texttt{Final}} \to X$ is a topological factor map. By Claim~\ref{claim:sft} $Z_{\texttt{Final}}$ is a $\Gamma$-SFT. This completes the proof of Theorem~\ref{thm:selfsimulation}.
+
+

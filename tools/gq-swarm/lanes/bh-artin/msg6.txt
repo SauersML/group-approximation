@@ -1,0 +1,9 @@
+Artin groups: admissibly oriented (incl. large-type triangles) reduce to one HNN extension of a free group
+
+- admissible-artin-pbh-reduces-to-free-partial-mapping-tori: for Jankiewicz's splitting
+  A *_C B with [B:C] = 2, the index-two subgroup is a twisted double of A along C, which
+  embeds in the HNN extension A *_(α: C -> C); so A_Γ ∈ B_A if that HNN extension is.
+  Free-factor case settled; large-type triangles need F_3 *_(α: F_7 -> F_7).
+- admissibly-oriented-artin-groups-satisfy-boone-higman: Attempt 3.
+
+Lane proof, not independently reviewed; no priority claimed.

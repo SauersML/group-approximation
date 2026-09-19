@@ -1,0 +1,8 @@
+CT(Z) torsion problem: the Brin-Thompson transplant fails; tame equals finite order; reaching a class is undecidable
+
+Read Belk-Bleak (2V has unsolvable torsion problem) at source. Their coding needs independent prefix
+replacements on two coordinates. In CT(Z) one slope acts on every p-adic coordinate, and the rational
+transfer maps that do exist move symbols between alphabets of coprime sizes. In CT(Z), tame equals
+finite order. Torsion is undecidable if some finitely generated subgroup has unsolvable torsion
+problem, e.g. if 2V embeds. The analog of their Theorem 6.6 (the orbit reaching a residue class) is
+undecidable in CT_{3,5,7,11,13}(Z). The torsion problem itself stays open.

@@ -1,0 +1,63 @@
+/-- The proposition the class-transposition development owes for Kourovka 17.60. -/
+def Kourovka1760Owed : Prop :=
+  ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
+    Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q
+
+/-- Kourovka 17.60, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_60_of (h : Kourovka1760Owed) :
+    ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
+      Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q :=
+  h
+
+/-- The proposition the class-transposition development owes for Kourovka 17.61. -/
+def Kourovka1761Owed : Prop :=
+  ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+    Group.IsFinitelyPresented (classTranspositionGroupOver P)
+
+/-- Kourovka 17.61, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_61_of (h : Kourovka1761Owed) :
+    ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+      Group.IsFinitelyPresented (classTranspositionGroupOver P) :=
+  h
+
+/-- The proposition the class-transposition development owes for Kourovka 21.75. -/
+def Kourovka2175Owed : Prop :=
+  ∀ P₁ P₂ : Set ℕ, (∀ p ∈ P₁, p.Prime ∧ p ≠ 2) → (∀ p ∈ P₂, p.Prime ∧ p ≠ 2) →
+    classTranspositionGroupOver P₁ ⊔ classTranspositionGroupOver P₂ =
+      classTranspositionGroupOver (P₁ ∪ P₂)
+
+/-- Kourovka 21.75, answered negatively, from the proposition the class-transposition
+development owes. -/
+theorem kourovka_21_75_of (h : Kourovka2175Owed) :
+    ∀ P₁ P₂ : Set ℕ, (∀ p ∈ P₁, p.Prime ∧ p ≠ 2) → (∀ p ∈ P₂, p.Prime ∧ p ≠ 2) →
+      classTranspositionGroupOver P₁ ⊔ classTranspositionGroupOver P₂ =
+        classTranspositionGroupOver (P₁ ∪ P₂) :=
+  h
+
+/-- The proposition the class-transposition development owes for Kohl's factorization
+conjecture. -/
+def KohlFactorizationOwed : Prop :=
+  {g : Equiv.Perm ℤ | IsResidueClassWiseAffine g} =
+    (Subgroup.closure {g | IsClassShift g ∨ IsClassReflection g ∨ IsClassTransposition g} :
+      Set (Equiv.Perm ℤ))
+
+/-- Kohl's factorization conjecture, from the proposition the class-transposition
+development owes. -/
+theorem kohl_factorization_conjecture_of (h : KohlFactorizationOwed) :
+    {g : Equiv.Perm ℤ | IsResidueClassWiseAffine g} =
+      (Subgroup.closure {g | IsClassShift g ∨ IsClassReflection g ∨ IsClassTransposition g} :
+        Set (Equiv.Perm ℤ)) :=
+  h
+
+/-- The proposition the graph-product development owes for BFFHZ Question 3.1. -/
+def GraphProductOwed : Prop :=
+  ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+    (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G)
+
+/-- BFFHZ Question 3.1, answered positively, from the proposition the graph-product
+development owes. -/
+theorem graph_product_embeds_in_type_a_group_of (h : GraphProductOwed) :
+    ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) :=
+  h
+

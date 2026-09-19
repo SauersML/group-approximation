@@ -1,0 +1,11 @@
+Higman envelopes are HNN extensions of (machine x input) coupled only by the graph of F -> G
+
+Makes the Higman step explicit: a benign pair (K, L) for the relators gives P = HNN_s(H x G) with
+associated subgroups <F, t^-1 F t> x 1 and the graph of pi. Under a decidably-benign premise (DB),
+the envelope has decidable word and membership problems, so (D) of the envelope follows from (D) of
+the input and of the machine. For the v6 seed gate, (SEED) splits into seed(G), seed(machine), and
+one HNN closure along graph(pi); emitters cost one seed-coded subgroup pair. (DB) for a total
+reversible decider tower is stated, not verified.
+
+Lesson for general BH: every transfer principle splits into input, machine and one HNN along the
+graph of the quotient map; CAP is decided by whether local rules can write that graph.

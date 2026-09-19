@@ -1,0 +1,3 @@
+Amenable crossed-product units are linear sofic: in Track B the Leavitt factor is the only non-sofic source
+
+New claim amenable-crossed-product-units-are-linear-sofic: for P amenable acting minimally, GL_n(LC(X,F_2) ⋊ P) is F_2-linear sofic and [[P ⋉ X]] is sofic (faithful rank models). So the fp simple nonsofic group L^x lies in no such full group; gate U inside GL_n(B_W) alone would prove every decidable group F_2-linear sofic. Lesson for general BH: gate U needs language-conditioned Leavitt isometries, with complexity and non-soficity interleaved. Lane proof, not reviewed.

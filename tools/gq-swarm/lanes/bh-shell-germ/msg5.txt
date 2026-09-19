@@ -1,0 +1,6 @@
+Tree-compatible fixed-base enumerations have infinite-index near shift groups
+
+The shift and all local odometers are automorphisms of the boundary tree, so if the input
+generators are too, R_nu sits in Aut(T) and has infinite index in V_(h,r)(<a>). The
+normal-form enumeration of C_2*C_3 is an instance. A bounded MSI search found exactly the
+T_3-automorphism transpositions and no local copy of x_0.

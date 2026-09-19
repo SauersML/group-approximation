@@ -1,0 +1,7 @@
+Reduce Q semidirect 2 in 2V_tau to a binary coding of the Q-blown-up circle
+
+New claim q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding (lane proof): the centralizer of
+the odometer s in 2V_tau is fibered; Q semidirect <2> acts on the Cantorized 2-adic solenoid with
+T_1 = s and M = the baker map, all cocycles solved; embedding in 2V_tau follows from one binary
+tree on the circle blown up at Q/Z making odd rotations and doubling local similarities. The odd
+mixed-radix odometer L-space provably admits no equivariant doubling.

@@ -1,0 +1,7 @@
+The Basilica group is not bi-orderable, so its fp HNN extension lies in no diagram group
+
+- New ESTABLISHED node (lane proof): x = (a, a^b) commutes with b^2 = (a,a) but not with b, so unique roots
+  fail and the Basilica group is not bi-orderable. By Guba-Sapir (diagram groups are totally orderable, read at
+  source), neither B nor its HNN extension is a subgroup of any diagram group or of PL_+[0,1], and B is not
+  residually torsion-free nilpotent.
+- Crux node: Farley's cube-complex certificate for F_3 is closed. Free actions on other cube complexes are open.

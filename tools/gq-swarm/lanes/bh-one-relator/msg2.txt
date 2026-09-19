@@ -1,0 +1,4 @@
+Apply gq-referee-a nits N1, N2 to bg-in-isometric-brick-hosts node
+
+Record the referee-a PASS (5d3e18e0b); add the prefix argument and base case
+of the reading-length induction, and spell out the Lipschitz far case.

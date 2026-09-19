@@ -1,0 +1,7 @@
+Referee report: R_l path normal form and residual finiteness PASS
+
+Proof-gap review of resolvent-ring-has-path-normal-form and
+resolvent-presentation-ring-is-residually-finite (8abfde57d): the explicit
+ring R-prime and its inverse, the tensor-algebra corner, the twisted-shift
+finite modules, the density lemma in F_l[Z * C_m] and the separation argument
+all check, with one index slip in the delta case.

@@ -1,0 +1,7 @@
+gq-en-ring: full corners must kill rational K_2 symbols; counter engine
+
+Establish that a finitely presented E_N(R) with Q in R forces every full
+idempotent corner to send K_2(Q) to a finite group. Record the factorial counter
+engine: five operators whose sector-0 corner is the universal UHF ring U_Q, and
+why it is not a host (full corners of finitely generated rings are finitely
+generated, so that corner is not full).

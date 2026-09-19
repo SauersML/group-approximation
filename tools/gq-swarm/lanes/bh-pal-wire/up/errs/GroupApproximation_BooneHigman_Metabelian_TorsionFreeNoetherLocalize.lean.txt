@@ -1,0 +1,52 @@
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:129:16: unexpected token ':='; expected '}'
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:120:4: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Exists.intro` has 2 explicit field, but only 1 was provided
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:120:5: Fields missing: `map_one'`, `map_mul'`
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:121:10: invalid {...} notation, expected type is not known
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:43:54: unsolved goals
+A W : Type
+inst✝³ : CommRing A
+inst✝² : AddCommGroup W
+inst✝¹ : Module A W
+inst✝ : Module.Finite A W
+t : Set A
+ht : t.Finite
+hcl : Subring.closure t = ⊤
+P : Ideal A
+e : ℕ
+hW : Primary.IsCoprimaryWith A W P e
+hP : ∀ (n : ℤ), n ≠ 0 → ↑n ∉ P
+ι : Type
+g : MvPolynomial ι ℤ →+* A
+hgP : ∀ (d : MvPolynomial ι ℤ), d ≠ 0 → g d ∉ P
+halg : ∀ (a : A), ∃ p, p ≠ 0 ∧ Polynomial.eval₂ g a p ∈ P
+S : Submonoid A
+hSP : ∀ s ∈ S, s ∉ P
+hgS : ∀ d ∈ nonZeroDivisors (MvPolynomial ι ℤ), g d ∈ S
+hSg : ∀ s ∈ S, ∃ d ∈ nonZeroDivisors (MvPolynomial ι ℤ), g d = s
+φ : FractionRing (MvPolynomial ι ℤ) →+* Localization S
+hφ :
+  ∀ (d : MvPolynomial ι ℤ),
+    φ ((algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ))) d) = (algebraMap A (Localization S)) (g d)
+this✝ : Algebra (FractionRing (MvPolynomial ι ℤ)) (Localization S) := φ.toAlgebra
+instKM : Module (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W) :=
+  Module.compHom (LocalizedModule S W) (algebraMap (FractionRing (MvPolynomial ι ℤ)) (Localization S))
+this : IsScalarTower (FractionRing (MvPolynomial ι ℤ)) (Localization S) (LocalizedModule S W)
+hmk :
+  ∀ (r : A) (w : W) (s : ↥S), (algebraMap A (Localization S)) r • LocalizedModule.mk w s = LocalizedModule.mk (r • w) s
+hA :
+  ∀ (a : A),
+    (algebraMap A (Localization S)) a ∈
+      Algebra.adjoin (FractionRing (MvPolynomial ι ℤ)) (⇑(algebraMap A (Localization S)) '' t)
+hadj : Algebra.adjoin (FractionRing (MvPolynomial ι ℤ)) (⇑(algebraMap A (Localization S)) '' t) = ⊤
+hcompφ :
+  (algebraMap (FractionRing (MvPolynomial ι ℤ)) (Localization S)).comp
+      (algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ))) =
+    (algebraMap A (Localization S)).comp g
+hkill :
+  ∀ b ∈ ⇑(algebraMap A (Localization S)) '' t, ∃ p, p ≠ 0 ∧ ∀ (m : LocalizedModule S W), (Polynomial.aeval b) p • m = 0
+hfd : FiniteDimensional (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W)
+τ : A →* Module.End (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W)
+hτ : ∀ (a : A) (m : LocalizedModule S W), (τ a) m = (algebraMap A (Localization S)) a • m
+⊢ ∃ K x V x_1 x_2,
+    ringChar K = 0 ∧
+      FiniteDimensional K V ∧ ∃ τ ι₀, Function.Injective ⇑ι₀ ∧ ∀ (a : A) (w : W), ι₀ (a • w) = (τ a) (ι₀ w)

@@ -1,0 +1,3 @@
+RF hosts cannot realize the Lysenok substitution on the Grigorchuk group
+
+For a torsion group and a proper injective endomorphism, any conjugator realizing it generates the whole ascending HNN extension; so Grigorchuk's finitely presented extension, which is not residually finite, sits in every group containing the Grigorchuk group and a Lysenok conjugator. No self-similar or automaton host can therefore use the substitution; record this as a constraint on the open fp-automaton-overgroup input.

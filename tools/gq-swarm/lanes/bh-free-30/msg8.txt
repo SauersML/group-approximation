@@ -1,0 +1,7 @@
+No free Q_odd/Z action admits a V-intertwiner with its doubled lift; Q semidirect 2 is not in 2V_tau with 1 at the odometer
+
+New claim no-free-q-odd-action-by-v-has-a-doubling-intertwiner: a Markov-Kakutani fixed point gives an
+invariant measure whose cone masses halve under the intertwiner, so they lie in a finitely generated
+Z[1/2]-module, which cannot contain 1/p for infinitely many primes. It holds for any amenable group with
+free Z/p for infinitely many p and any homeomorphism action. So the lifted-odd-roots target is refuted,
+and on the rationally Cantorized circle the doubling covering is never almost-automorphic.

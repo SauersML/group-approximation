@@ -1,0 +1,3 @@
+Kourovka list: record why Grigorchuk codings by 2-adic boxes fail in CT(Z), plus the cluster lesson
+
+The natural 2-adic coding uses only 2-power slopes, which the ray theorem kills. The standard action also has (Z/2)^2 germs, which are incompatible with the torsion-free germ groups of CT(Z). Adds a "Lesson for general BH" for the CT(Z) cluster.

@@ -1,0 +1,6 @@
+LANDED 28c1ab114 on origin/main (parent c701e5ee2):
+ ...ar-building-elements-are-opposition-proximal.md |  18 ++-
+ ...trongly-regular-opposition-proximality-proof.md | 128 +++++++++++++++++++++
+ ...el-elements-are-nowhere-domestic-at-infinity.md |  24 ++++
+ 3 files changed, 169 insertions(+), 1 deletion(-)
+rc=0

@@ -1,0 +1,5 @@
+BH critic pass 1: routes and gates, overreach check, top five, untested ideas
+
+Completeness critique of the Boone-Higman attack after the bh-map subgraph map.
+Flags the linear/metabelian chain for end-to-end verification and proposes
+SL_3(Z) as the one-ended shell calibration input.

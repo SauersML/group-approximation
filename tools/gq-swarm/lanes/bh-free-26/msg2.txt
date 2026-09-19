@@ -1,0 +1,16 @@
+Mod-p word problems for every prime and a counting ceiling for Leavitt tensor hosts
+
+For every prime p, the finitely presented simple group (L_p ⊗ L_p)^x / F_p^x
+has word problem complete for ∀·Mod_pP. The char-2 slot unit is replaced by
+δ_e(1 + a_1 a_0^*) λ_(a_0), since (1 + a_1 a_0^*) a_0 = s_0 + s_1. The
+Steinberg commutator gives 1 + N_1 N_2 in every characteristic. Scalars are
+detected because 1 + N with N^2 = 0 is never a nontrivial scalar.
+
+Ceiling: every finitely generated linear group over any Leavitt tensor
+algebra over F_q has word problem in ∀·Mod_pP, and over Z[1/M] in C_=P. An
+integral group Γ_Z is C_=P-complete. So more tensor factors or other L(1,n)
+factors do not climb. PSPACE-hardness in this family would force
+PSPACE ⊆ ∀·Mod_pP or PSPACE = PP; the obstruction is finite depth.
+
+The p = 2 node now states that WP(H) is outside PH unless PH collapses
+(Toda), and root Attempt 7 records all three results.

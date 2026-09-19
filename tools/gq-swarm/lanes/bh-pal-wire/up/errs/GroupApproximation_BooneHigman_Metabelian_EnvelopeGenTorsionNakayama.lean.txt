@@ -1,0 +1,9 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:61:8: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:60:62: unsolved goals
+G : Type u_1
+inst✝ : Group G
+V : Subgroup G
+T : Set ↥V
+x : ↥V
+hx : Abelianization.of x ∈ Subgroup.closure (⇑Abelianization.of '' T)
+⊢ ↑x ∈ Subgroup.closure (Subtype.val '' T) ⊔ ⁅V, V⁆

@@ -1,0 +1,19 @@
+Host synthesis: rank-one hosts are local, coded unit groups are residually finite
+
+Two new lane-proof claims and one synthesis artifact:
+
+- rank-one-cone-hosts-put-fw-groups-in-local-map-groups (with route
+  rank-one-cone-hosts-fw-local-map-proof): in a full group whose cones form a
+  tree and whose local maps form a self-similar groupoid, every FW subgroup
+  virtually embeds in a finite power of the local-map vertex groups, and an
+  infinite simple FW subgroup embeds in one of them. This recovers the
+  Rover-Nekrashevych Kazhdan theorem and gives finite FW subgroups for V,
+  V_{n,r}, all graph full groups and Katsura odometers.
+- finitely-coded-unit-groups-act-residually-finitely: in every finitely coded
+  groupoid, of any rank, unit groups act residually finitely, so simple inputs
+  can only sit in coded hosts as non-unit elements.
+- research/artifacts/gq-bh-synth-hosts.md: the single host machine behind the
+  swarm's hosts, the four slots through which inputs enter, the five barriers
+  that separate reachable inputs from hard ones, and the master host program
+  (a Li-type finiteness theorem for non-LCM dissection categories, germ
+  extensions of 2V, and asynchronous rank-one hosts).

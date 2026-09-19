@@ -1,0 +1,8 @@
+Sandwiched elementary groups have only projective simple quotients
+
+Under the sandwich property SW_N, every nonabelian simple quotient of E_N(R)
+is PE_N(R/I_H) (elementary proof inline), so the rational-scalar and
+full-corner budgets govern every E_N-built host. Bass's normal subgroup
+theorem (recalled, not read) gives SW_N at finite stable rank; the remaining
+loophole is simple rings of infinite stable rank with PE_N not simple.
+Lane proof, not reviewed; no novelty claimed.

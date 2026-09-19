@@ -1,0 +1,3 @@
+V-times-subshift full group finiteness is horizontal: (B_N) holds in every degree
+
+For V times any topologically free subshift over a finitely generated group, descending links of the domain-filtered Stein space are highly connected at every domain level and in every degree. The proof uses a swap lemma for unique maximal joint expansions, Hatcher-Vogtmann on disjoint minimal merges, and Thumann's corona-from-core estimate, with block sizes bounded per level. So type F_n is exactly essential (n-1)-connectivity of the domain filtration, and P2' and E3' reduce exactly to the horizontal condition (A_N).

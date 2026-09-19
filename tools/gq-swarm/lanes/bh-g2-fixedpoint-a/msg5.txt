@@ -1,0 +1,4 @@
+Point the free minimal Z^2 rigidity gate at the claimed proof through crossing-wire tiles
+
+Adds a proof-claimed line (lane proof, under review) naming the route through the minimal crossing-wire
+fixed-point shift, and an Attempts entry recording the Durand-Romashchenko minimality mechanism.

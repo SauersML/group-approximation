@@ -1,0 +1,7 @@
+Parity lemma for one-head move hierarchies; full symmetric 8+8 binary class ranked
+
+crossing-move-hierarchies-have-odd-branching: with bounded junctions and
+slowly growing domains, crossings split into an odd number of sub-crossings,
+so SMART is ternary and a binary hierarchy must use returns. The full
+mirror-symmetric 8+8 binary class (mask 0, all equivalent) again shows only
+binary skeletons with a linear walk.

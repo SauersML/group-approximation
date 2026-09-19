@@ -1,0 +1,6 @@
+Item 6 applies to rigid centerless hyperbolic kernels, using hyperbolic groups in B_A
+
+Upgrade item 6 of free-by-pbh-and-surface-by-pbh-groups-lie-in-type-a-class: since
+hyperbolic groups lie in B_A (hyperbolic-groups-lie-in-the-permutational-class), every
+extension of a B_A group by a centerless one-ended hyperbolic group without virtually
+cyclic splittings (finite Out, Paulin with Rips--Bestvina--Feighn) is in B_A.

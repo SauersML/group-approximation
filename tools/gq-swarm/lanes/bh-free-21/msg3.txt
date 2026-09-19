@@ -1,0 +1,11 @@
+Classify germ groups of germ extensions of V at rational points as spiral groups inside 2V
+
+At a rational point, a germ group that normalizes the V-germs commutes with the period
+shift and is a group of spirals, C(C_2, Z) semidirect V, which embeds in the Brin-Thompson
+group 2V. So the Belk-Hyde-Matucci machine over V is Brin-Thompson-local, and a
+universal compiler must take its base or germ groups from the input. The artifact records
+that the shift is a product of two commutators in the spiral group, so these hosts evade
+Svetlov's charge obstruction; a centralizer lemma explaining the fiber-carry obstruction;
+that Z^2 *_Z Z^2 is virtually F x Z; and the open local question for two-leaf graph
+manifolds in 2V (attempt 16 on the nonfibered node). Lesson paragraphs added to the
+recoding theorem, the Z^2 * Z host and the automatic premise.

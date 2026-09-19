@@ -1,0 +1,3 @@
+Self-similar premise: K-theory reduces to twisted nils over the monomial quotient; complexity-vs-regularity tension
+
+Attempt 4 on decidable-algebras-embed-in-simple-self-similar-completions: with KH(O_psi(K<X>)) = 0 (bh-free-53, d4f9c0796) and O_psi(K<X>) = O_psi-bar(B/J), the nil terms live over the self-similar quotient B/J, a monomial algebra for lossless recursions; so the ring-side K-gate is twisted-nil vanishing over monomial algebras. Complexity needs non-injectivity, which puts a non-coherent monomial algebra under the completion. For the group transfer via ⊗ L_2 the alphabet size is irrelevant.

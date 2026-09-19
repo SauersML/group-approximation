@@ -1,0 +1,13 @@
+Germ extensions of V: length functions bound BS relations (gq)
+
+Establish regular-germ-extension-attractors-are-undistorted (lane proof, not
+independently reviewed): in any finite germ extension of V the singularity
+count is a length function growing linearly along wandering singular orbits;
+in the regular regime (eventually periodic singular points, normal or
+finite-index V-germs, V-orbit preservation) the depth-gain Lipschitz constant
+is a length function growing linearly along attracting and repelling points.
+So such elements are undistorted and never conjugate to proper powers, and
+the divisible line of Aff(Q), SL_2(Q), GL_2(Q) or U_3(Q) must avoid both
+dynamics. Record the remaining case as the open claim
+regular-germ-extensions-have-no-bs-relations, with an explicit depth-gain-zero
+infinite-order germ that neither function detects.

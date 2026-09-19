@@ -1,0 +1,9 @@
+St_N(D) retracts St_N(T_l); fix the non-homomorphic diag(g,g^-1) embeddings
+
+Lane gq-infinite-primes. St_N(D) is a retract of St_N(T_l) with the same
+finite-quotient detection, so the triangular route needs the finite residual
+of St_N(D) to be finitely normally generated (new OPEN node, with partial
+detection analysis and the design constraint; not decided). Referees a and b
+found that g -> diag(g, g^-1) is not a homomorphism: G_l now embeds in
+E_2(T_l) via referee-a's map Phi, and GL_n(Z_(l)) in E_(n+1)(R_l-bar) via
+diag(g, det(g)^-1). Review links; bottleneck Attempt 8.

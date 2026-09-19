@@ -1,0 +1,11 @@
+Right-angled Artin groups are undistorted in 2V; virtually compact special groups quasi-isometrically embed in 2V
+
+Salo's conveyor-belt embedding of A_Gamma into the full shift's topological full group and 2V is a
+quasi-isometric embedding: |g| <= (omega/2)(M(g)+1), where M is the largest head move. The proof covers
+a reduced word by at most omega chains of non-commuting syllables, reorders it so that the faithfulness
+configuration follows the heaviest chain, and compares with a subadditive scaling-exponent length on 2V.
+Through the Kaloujnine-Krasner and wreath embeddings, every virtually compact special group, including
+every cubulated hyperbolic group, quasi-isometrically embeds in the simple F_infinity group 2V. This
+answers both refinements of Zaremsky's question (arXiv:2201.00711) for cubulated hyperbolic groups.
+Also fixes Belk-Zaremsky theorem numbers to the arXiv numbering (Theorems 2 and 4). Lane proofs, not
+reviewed; no priority claimed.

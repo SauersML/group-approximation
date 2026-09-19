@@ -1,0 +1,9 @@
+Prove cone matching off the branch locus and check Thumann (VE) and square filling for the nucleus-tile operad
+
+hyperbolic-cone-matching-holds-off-the-branch-locus (lane proof, parts sketched). In a hyperbolic group,
+every element maps all deep atoms around a non-branch horofunction onto atoms: the two distance
+functions differ by a constant on the front of the ball. The finitely generated nucleus-tile operad of
+the BBMZ host therefore has (VE) and finite transformations for free, and square filling can fail only
+over the branch locus. It holds if the non-surjective part of the nucleus automaton has no cycle (C),
+which is a finite decidable test. Under (C) the spine is finite, so (G) is not needed. F_infinity of
+the host then follows from Thumann, modulo color-tameness. Next: test (C) on a surface group.

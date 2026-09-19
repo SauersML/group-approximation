@@ -1,0 +1,14 @@
+bh-bbmz-problems: survey Q4.7 node, commensurability reduction, RAAG route to V dead
+
+- New OPEN claim closed-hyperbolic-surface-groups-embed-in-thompson-v, for BBMZ survey
+  Question 4.7. It records equivalent forms, the positive answer for 2V (Salo + BBM,
+  citation-level), and the known non-embeddings that do not apply.
+- cocompact-fuchsian-groups-embed-in-v-all-or-none (+ proof), lane proof: subgroups of V
+  are closed under abstract commensurability (K wr S_n <= V plus Kaloujnine-Krasner). So
+  Q4.7 for surfaces is the single question pi_1(Sigma_2) <= V, equivalently
+  Delta(2,3,7) <= V.
+- raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group (+ proof), lane proof:
+  A_Gamma <= V forces Gamma complete multipartite (via Bleak-Salazar-Diaz Z^2*Z), so A_Gamma
+  is a product of free groups. A torsion-free non-elementary hyperbolic subgroup of such a
+  product is free. So the virtually-special route never reaches V for one-ended
+  hyperbolic groups.

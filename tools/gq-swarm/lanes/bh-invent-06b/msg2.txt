@@ -1,0 +1,12 @@
+Labelled hosts of free actions have no contracting loops; inflation hosts of substitutions are contracting RSGs
+
+Two results on gate E3 (bh-invent-06b):
+- labelled-hosts-of-free-actions-have-no-contracting-loops: in any groupoid with a continuous
+  Lambda-label over an open map to X, a contracting loop is shadowed by an element of Lambda with an
+  attracting fixed point. Free, invariant-measure (so amenable) and distal X admit no finitely coded
+  labelled host, which covers every passive enlargement of G_V x (Lambda |x X).
+- substitution-inflation-hosts-are-full-contracting-rsgs (+ proof): adjoining the inflation germs
+  of a recognizable primitive aperiodic box substitution gives a full contracting RSG on the collared
+  hierarchy shift, so the host is finitely presented, with no quantum rigidity and no finite type
+  needed. This includes Labbe's Wang shift, whose labelled host needs the open rigidity gate.
+Attempt entries on P2' and on Conjecture SS (T2 settled in substitutive form; the T3 obstruction).

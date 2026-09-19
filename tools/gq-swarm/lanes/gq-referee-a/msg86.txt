@@ -1,0 +1,3 @@
+Referee report: periodic germ extensions of V and breakpoint consumers PASS
+
+Proof-gap lens on periodic-germ-extensions-of-v-are-virtually-simple and its two consumers (rational-breakpoint dyadic PL, quadratic-breakpoint PSL_2(Z)). BHM axioms and hypotheses checked against source; A_p, sigma under transplanting, lifts and germs verified; three nits.

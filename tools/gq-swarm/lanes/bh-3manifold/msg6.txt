@@ -1,0 +1,7 @@
+Lift the capped relator for a partially pushed leaf block; correct the ambient genus
+
+Attempt 12 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: inside Push ⋊ Mod(Σ'),
+lifting a two-commutator factorization of T_y (Baykur arXiv:1206.3512) with one pushed
+generator gives relator Push(u c(u)^-1) T_y, so the non-virtually-fibered ratio m'/n' = 0 is
+reached iff c = a_1 b_1 a_1^-1 fixes a based loop u outside the boundary loop's cyclic group.
+Also corrects attempt 11: the capped ambient is Mod(Q̂) of any genus.

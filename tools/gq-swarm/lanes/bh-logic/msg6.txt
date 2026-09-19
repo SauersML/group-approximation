@@ -1,0 +1,15 @@
+bh-logic: finite-presentation version, Sigma_1-hardness and a reduction to Mihailova HNN
+
+New OPEN claim fp-embeddability-index-set-is-sigma-3-complete, with a
+conditional route.
+- Unconditionally, EMB_fp is Sigma_3 and Sigma_1-hard (Rabin), so it is not
+  co-c.e.
+- It is Sigma_3-complete under MH: every centralizing HNN extension of F_m x F_m
+  along the Mihailova subgroup of a decidable finite presentation embeds in a
+  finitely presented simple group. MH is a special case of
+  bh-embeddability-survives-decidable-edge-hnn. Each such group is finitely
+  presented, with word problem Turing-equivalent to that of the presentation.
+- Also recorded: why the DV_F witnesses do not become a uniform finitely
+  presented family, and that no printed question on this complexity was found
+  (bh-lit survey list).
+Lane proofs, not reviewed.

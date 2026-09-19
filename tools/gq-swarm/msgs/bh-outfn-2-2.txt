@@ -1,0 +1,8 @@
+Piecewise-representative lifts of Out(F_n) are quotient-blind; stabilizers lift through germs
+
+Pushed into M = [[F_n ⋉ ∂F_n]], the Aut/Out(F_n) extension splits over the finite-index Γ_n
+modulo every nontrivial normal subgroup of M: D(M) is simple and perfect (Matui), so every
+proper quotient of M is abelian and the pushed extension reduces there to the abelianized one,
+which splits over Γ_n. So no nilpotent or other quotient obstruction can refute (PR).
+Any (PR) action embeds each point stabilizer in Aut(F_n) through germs, so a solution that is
+not a virtual section has only infinite orbits. The PR node records both.

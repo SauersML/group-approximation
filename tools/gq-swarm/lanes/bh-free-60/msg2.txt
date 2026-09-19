@@ -1,0 +1,11 @@
+Kourovka 17.57: Out(CT(Z)) = C_2, with Bell's Cobham theorem read at source
+
+Bell, "A generalization of Cobham's theorem for regular sequences", is
+Sem. Lothar. Combin. 54A (2006), Article B54Ap (the node had 55, B55f).
+Read in full from the EMIS PDF: Theorem 1.4 (any commutative R) and
+Theorem 1.5 (integer-valued, k- and l-regular iff rational with poles at
+roots of unity). Add the (Z,b)-regularity check that Theorem 1.5 needs
+(the kernel lies in a finite-dimensional Q-space of sequences, and its
+integer points embed in Z^d). The CT(Z) normalizer node is now
+unconditional; the parent reduction and the Kourovka list row now say
+17.57 has answer yes on main (lane proofs, not reviewed).

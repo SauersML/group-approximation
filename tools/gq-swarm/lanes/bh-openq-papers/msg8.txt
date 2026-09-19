@@ -1,0 +1,19 @@
+Gate M2 literature pass at source: minimal free SFTs over F_n x Z, the Medvedev wall, and a hierarchical skeleton
+
+- New literature import, free-times-z-carries-a-minimal-free-sft: Aubrun-Bitar-Huriot-Tattegrain,
+  arXiv:2204.11492, l.755, "There exists a minimal strongly aperiodic SFT on F_n x Z". The
+  same holds for unimodular GBS groups and BS(1,n). F_n x Z is the first one-ended
+  non-amenable group on main known to carry a minimal free SFT, and it is an (M2) instance.
+- The (M2) node gains Attempt 7, the source check the synthesis ranked first. It records:
+  - ABT at source (effective strongly aperiodic subshifts);
+  - Barbieri-Carrasco-Vargas: effective subshifts on decidable groups attain every Pi^0_1
+    Medvedev degree, which explains why the Zorn route cannot be effective;
+  - Carrasco-Vargas: minimal SFTs have decidable language;
+  - Alvarez Lopez 1807.09256: a deterministic hierarchical construction, with explicit
+    constants, of strongly aperiodic, strongly repetitive colorings on every f.g. group.
+    It supplies freeness and a central recurrence modulus. It lacks the global modulus (the
+    seam problem), and effectivity of its limit is unchecked.
+
+Lesson for general BH: for M2 the only computability wall is the passage from central to
+global recurrence, and the Medvedev theorem shows the wall is real. On F_n x Z the SFT gate
+reduces to rigidity.

@@ -1,0 +1,1 @@
+bs12: record the forms the parity lemma leaves open (Jacobsthal marks, direct codes, joint test)

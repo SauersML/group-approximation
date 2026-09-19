@@ -1,0 +1,6 @@
+Fix ElemFPKMRoots: give the root-group instance source an expected type
+
+`inferInstanceAs` needs a known expected type. In the structure-instance source position of
+`rootGroup_commGroup` it has none, so the module failed to elaborate at line 45 and everything
+downstream (psiRoot_add, ElemFPKMIso) was red. A type ascription supplies it; nothing else changes.
+Checked by a green MSI build of ElemFPKMRoots and ElemFPKMIso.

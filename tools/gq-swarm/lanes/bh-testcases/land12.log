@@ -1,0 +1,6 @@
+LANDED 8f73dfdd1 on origin/main (parent 0888986fe):
+ ...e-higman-closed-under-finite-direct-products.md | 28 +++++++
+ ...ple-groups-have-the-joint-embedding-property.md | 13 +++
+ ...mple-groups-type-a-actions-come-from-factors.md | 92 ++++++++++++++++++++++
+ 3 files changed, 133 insertions(+)
+rc=0

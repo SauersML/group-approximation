@@ -1,0 +1,10 @@
+Busemann transplant: free SFTs on building lattices from deterministic Z^2 tiles
+
+Chamber-fixing elements of torsion-free building lattices have nonzero vector
+Busemann translation, so a strongly aperiodic Z^r fibre carried along Busemann
+coordinates makes the boundary action free. Corner-deterministic Z^r-SFTs
+embedded through an open-cone basis stay coherent across the building's
+branching and give SFTs over the lattice (given that the boundary shift is an
+SFT); with Kari-Papasoglu tiles every simply transitive rank-2 lattice carries a
+strongly aperiodic SFT. Rigidity transfer is posed and reduced to centrality of
+germ idempotents.

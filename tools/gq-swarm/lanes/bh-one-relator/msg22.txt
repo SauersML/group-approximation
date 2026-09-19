@@ -1,0 +1,3 @@
+Independent second proof of gluing exactness, as a cross-check for the referee
+
+Artifact only; no new claim. It records a proof of K = 1 for every Lambda-space that was found independently and in parallel with v-times-gluing-presentations-are-exact (22a3770d9). The lift uses a plain conditioned swap around one labelled lift. Independence of the auxiliary cone comes directly from straddles and disjoint commutation, with no Sym(4) argument. Equivariance is proved for every conditioned swap, so no generation claim is needed. Where the two proofs overlap they agree, and both rest on items 1-4 of incomparable-transposition-lifts-are-equivariant-off-self-swaps.

@@ -1,0 +1,1 @@
+Soluble minimax node: record the near-action fallback and the product-base obstructions for gate (a)

@@ -1,0 +1,7 @@
+Near-regular actions of one-ended groups carry a realization defect
+
+bh-shell-kazhdan (BH swarm). New claim one-ended-near-regular-actions-have-a-realization-defect
+with proof route (lane proof, not reviewed): delta(c_k) = -k for the shell conjugates of any
+one-ended input; no index-zero near permutation conjugates c_j into c_k (j != k), generalizing
+the one-ended no-normalization node; eps = 1 window witnesses make W_N non-realizable on N.
+Rigidity-attempt artifact, and an Attempts entry on perfect-decidable-inputs-have-fp-shell-envelopes.

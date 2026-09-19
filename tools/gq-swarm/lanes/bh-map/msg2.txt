@@ -1,0 +1,15 @@
+Houghton-like shift envelopes: generic enumerations pass the germ gate; BH reduces to one lifting
+
+The Mallery-Zaremsky Houghton-like groups H_n(G) are strongly shift-similar and contain G. So a finitely
+presented H_n(E_nu(P)) gives Boone-Higman for P through Zaremsky's type (A) theorem.
+
+New ESTABLISHED lane proof (houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group):
+- H_n(G)/FSym is the index-zero part Q_n of Ĝ^n, with Ĝ = Germs(G) ⋊ <shift>.
+- For n >= 3 it is finitely presented iff Ĝ is (Meinert's inequality over >= 3 living factors, plus Renz).
+- For G = E_nu(P), Ĝ = R_nu wr C_2. So for every n >= 2 the germ group is finitely presented iff the near shift
+  group R_nu is: the two-sided window of the n = 1 compiler disappears.
+- Generic enumerations (R_nu = P*Z) pass this gate for every infinite finitely presented P.
+
+Also lands the Mallery-Zaremsky citation (Def 4.1, Obs 5.1, Props 5.3/5.5/5.10, Cor 5.11, Question 5.13, read at
+source), the OPEN lifting claim (germs finitely presented => H_n(G) finitely presented, n >= 3), the OPEN gate
+for decidable inputs, its route, and a new route to boone-higman-conjecture. Only the lifting is open along it.

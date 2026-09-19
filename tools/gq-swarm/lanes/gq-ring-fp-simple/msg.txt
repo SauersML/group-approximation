@@ -1,0 +1,8 @@
+Add Q-in-rings results: integral-form obstruction, fp Toeplitz ring
+
+No finitely generated subring of M_n(A (x) K) contains Q when A is free
+abelian (Leavitt, group, Weyl, Steinberg algebras over any field). The
+finitely presented ring Z<S,T,N,A | TS=1, NS=S(N+1), N(1-ST)=0, A(N+1)=1>
+contains Q in the corner (1-ST)R(1-ST), so GL_n(Q) embeds in the finitely
+generated group E_(n+1)(R). Open claim: a finitely presented simple ring of
+characteristic zero, with four recorded attempts.

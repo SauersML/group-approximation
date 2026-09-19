@@ -1,0 +1,7 @@
+Corollary 2.10-regime germ extensions of V have only finite Kazhdan subgroups
+
+In a finite germ extension of V where every singular germ group is virtually
+the V-germ group, or normalizes the V-dilation at a periodic point, every
+subgroup with property (T) is finite. This generalizes the SL_3(Z) exclusion
+to all Kazhdan groups: Sp_2n(Z), the Deligne lattice, Aut(F_n) and Out(F_n)
+for n >= 5, and every simple Kazhdan input. Lane proof from landed nodes.

@@ -1,0 +1,17 @@
+
+**Attempt 2 (bh-invent-06b, 09-18): T2 in substitutive form is settled, and unlabelled self-similarity is forced.**
+- **T2, substitutive.** Take the inflation in place of the telescope fixed points. By
+  `substitution-inflation-hosts-are-full-contracting-rsgs`, for every recognizable primitive aperiodic box
+  substitution, with Labbé's Wang shift as a free minimal `Z²`-SFT instance, the host `⟨Z^d ⋉ X, inflation⟩` is a
+  full contracting RSG.
+  - **Coding.** `X` is identified with the collared hierarchy shift, a one-sided SFT.
+  - **The fault set `Y_∞`.** It becomes finitely many nucleus maps: translate by `c ∈ {-1,0,1}^d` with one level
+    of lookahead.
+  - **Finiteness.** Item 2 of the conjecture holds there with no rigidity input.
+- **Why self-simulation is forced.** By `labelled-hosts-of-free-actions-have-no-contracting-loops`, a host over a
+  free `X` can be finitely coded only if it contains germs with no `Λ`-label, and inflation is exactly such a
+  germ.
+- **The obstruction for T3.** Contracting carries need an expanding endomorphism of `Λ` with finite-index image,
+  which forces `Λ` to be virtually nilpotent. So over `F₂ × F₂` the self-similarity cannot be an endomorphism
+  inflation. It must be unlabelled and non-intertwining (telescope-type), or the compression must come from
+  `Λ` with isotropy (E3′).

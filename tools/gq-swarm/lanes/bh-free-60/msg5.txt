@@ -1,0 +1,14 @@
+Stabilizer engines: fp forces a decidable vertex group; BH reduces to fp engines over simple inputs
+
+- fp-stabilizer-engines-need-decidable-vertex-groups: if
+  D(F_B) is finitely presented then F_B is, and B has solvable word problem.
+- simple-inputs-have-finitely-presented-stabilizer-engines (OPEN): D(F_S) is fp for
+  every infinite f.g. simple S with solvable word problem. Records that Reid's group
+  (B = Z) embeds in Matui's fp full group of a 2-state graph once each vertex point is
+  doubled, as the pair-preserving, linked-germ subgroup; Li's Garside theorem is
+  inapplicable (infinite emitters).
+- boone-higman-via-stabilizer-engines: Boone-Higman-Thompson simple envelope S, then
+  S <= D(F_S) simple; fp of D(F_S) is the only open step.
+
+Lesson for general BH: the engine Z/2 * S is a uniform construction whose finite
+presentation must see the word problem of S; its first test (B = Z) is open.

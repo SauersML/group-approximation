@@ -1,0 +1,8 @@
+Rigid seed decorations compute only where rogue walks fill space
+
+Brackets rigidity of anticipation decorations: coarse-dense non-halting walks suffice (the base algebra
+is a quotient of Clop(Y_0), so stopped-path decompositions hold at any range), and a non-halting basin
+far from another modification kills it. Periodic boundary points over Z^d (d >= 2) must be mortal. On
+tree seeds of free products of finite and cyclic groups every decoration is regular (Buchi), and on the
+product seed of Z^2 every rigid total decoration is finite-state. Localizes CB and gives a design rule
+for the machine rung. Lane proof, not reviewed.

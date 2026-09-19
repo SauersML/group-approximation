@@ -1,0 +1,12 @@
+Baumslag-Gersten group lies in class C: a rigid real-cut relative seed for <b> in BS(1,2)
+
+The open relative seed for (BS(1,2), <b>) is replaced by the real-cut seed y_R: signs of the Z[1/2]
+coordinate, constant along b and monotone along a, with * at 1. It is isolated with stabilizer exactly
+<b>, its SFT is exactly the Dedekind cuts (orbit closure), and it is quantum rigid for every D >= 1 by
+monotone chains. With (BS(1,2), <a>) a vertex-group relative seed, the gluing theorem gives BG in C.
+The explicit glued seed keeps its non-elementary forcing length, while its y_R exit layers force in
+logarithmic length.
+
+Lesson for general BH: a second boundary can seed what a tree cannot. <b> fixes a non-isolated tree end,
+but the real line of the affine action gives a rigid relative seed. Distortion certifies nothing:
+forcing length is design-dependent, and the CAP invariant is membership complexity.

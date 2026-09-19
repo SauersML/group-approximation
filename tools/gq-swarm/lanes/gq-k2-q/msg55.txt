@@ -1,0 +1,8 @@
+gq-k2-q: St_4(R_L) word problem reduces to K_2 injectivity (shell gate 1)
+
+The lane remark holds: R_L and E_4(R_L) have solvable word problem (simplicity
+plus entrywise comparison). St_4(R_L) has solvable word problem iff
+nontriviality in K_2(4,R_L) is r.e., and it does if K_2(4,R_L) injects into
+stable K_2(R_L) with a computable complete invariant (e.g. K_2(R_L) = 0).
+Injective stability and stable K_2(R_L) are open; heuristically (under (P))
+the resolvent tame symbols keep K_2(R_L) from vanishing.

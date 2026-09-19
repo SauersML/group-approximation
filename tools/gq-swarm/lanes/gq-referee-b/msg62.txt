@@ -1,0 +1,3 @@
+Referee report (citation lens): odometer 2V is fp, simple and contains BS(1,2) PASS
+
+Li Example ex:ZS (III), Theorem thm:k-graphs, condition (F) (l.1454/1456), rem:ZS-Stab match; Matui simple2, Def pi, essentially principal (l.365) and Hausdorff convention (l.347) match, [[G]] = Li F via uniqueness of U; Exel-Pardo A=(2), B=(1) is the binary odometer.

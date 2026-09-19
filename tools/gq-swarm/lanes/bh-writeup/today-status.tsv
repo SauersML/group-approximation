@@ -1,0 +1,1295 @@
+a2-action-kernels-are-recursive		
+a2-boone-higman-via-rs-two-graph-full-groups		
+a2-group-embeds-in-full-group-of-its-rs-two-graph	**ESTABLISHED** (2026-09-18) by `a2-group-embeds-in-rs-two-graph-geometric-proof`. That is	
+a2-group-embeds-in-rs-two-graph-geometric-proof		
+a2-lattice-boundary-skew-shifts-are-quantum-rigid	**ESTABLISHED** (lane proof; bh-invent-12, 2026-09-18; not independently reviewed; no priority	
+a2-lattices-embed-in-fp-simple-groups	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, below; not independently reviewed; no	
+a2-lattices-lie-in-permutational-bh-class	**ESTABLISHED** (duplicate of `a2-lattices-satisfy-permutational-boone-higman`, which has priority; both are subsumed by `euclidean-building-lattices-	
+a2-lattices-pbh-via-stabilized-orbit-category		
+a2-lattices-satisfy-permutational-boone-higman	**ESTABLISHED** through `a2-lattices-pbh-via-stabilized-orbit-category` (lane proof;	
+a2-rs-matrices-irreducible-and-primitive-iff-type-transitive	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, inline below; not independently	
+abelian-lamp-wreaths-are-rf-iff-stabilizers-are-closed	**ESTABLISHED** (lane proof, elementary, not reviewed). No priority is claimed: this is	
+abelian-subgroups-of-out-free-virtually-lift-to-aut	**ESTABLISHED** (citation import plus a two-line argument; no novelty claimed).	
+abstract-btb-pairs-fp-via-colored-stein-complex		
+abstract-twisted-bt-colored-subgroup-proof		
+abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one	**ESTABLISHED** by `abstract-twisted-bt-colored-subgroup-proof` (lane proof, elementary).	 | Referee a (proof gaps): **PASS**, | applied. Referee c (independent second pass): **PASS**,
+abstract-twisted-bt-type-fn-colored-stein-proof		
+abstract-twisted-bt-type-fn-criterion	**ESTABLISHED** by `abstract-twisted-bt-type-fn-colored-stein-proof` (lane proof, 2026-09-18).	 | Referee a (proof gaps): **PASS**, | applied. Referee c (independent second pass): **PASS**, | Referee b (citations): **PASS** (68ed8a399). No priority claimed; bounded literature search
+admissible-artin-pbh-reduces-to-free-partial-mapping-tori	**ESTABLISHED** (lane proof, in the body; not independently reviewed). No priority is claimed.	
+admissibly-oriented-artin-groups-satisfy-boone-higman		
+aff-q-bh-via-stein-interval-exchange-groups		
+aff-q-embeds-in-a-stein-interval-exchange-group		
+affine-self-similar-groups-are-function-field-linear	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+affine-self-similar-hosts-are-exactly-global-field-linear	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+affine-thickening-hosts-are-never-fp	**ESTABLISHED** (elementary; written inline by lane bh-free-59, not independently	
+affine-type-a-structure-groups-give-fp-simple-hosts	**ESTABLISHED** (lane proof, not reviewed). It isolates exactly what the proofs of	
+algebra-bh-via-simple-self-similar-completions		
+algebra-boone-higman-conjecture		
+algebraic-interval-exchange-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof, not reviewed; no priority claimed).	
+all-hyperbolic-groups-lie-in-one-fp-simple-group		
+all-hyperbolic-groups-one-fp-simple-host-via-nv		
+almost-all-one-relator-groups-bh-proof		
+almost-all-one-relator-groups-satisfy-boone-higman	**ESTABLISHED** through `almost-all-one-relator-groups-bh-proof`. Lane proof	
+almost-automorphism-torsion-subgroups-are-rf-proof		
+almost-automorphism-torsion-subgroups-are-rf		
+almost-v-torsion-localization-proof		
+alternating-group-is-generated-by-local-commutators-proof		
+alternating-group-is-generated-by-local-commutators	**ESTABLISHED** through `alternating-group-is-generated-by-local-commutators-proof` (lane proof,	
+amalgams-of-orbit-finite-actions-are-type-a2	**ESTABLISHED** (lane bh-invent-02, 2026-09-18; lane proof, elementary Bass–Serre theory,	
+amenable-crossed-product-units-are-linear-sofic	**ESTABLISHED** (lane proof, bh-algebra, elementary given the rank-model node; not reviewed).	
+amenable-groupoid-full-groups-are-exact		
+amir-lazarovich-lattice-torsion-is-square-diagonals	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed). It is a reduction of	
+amir-lazarovich-plus-subgroup-is-perfect	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+amir-lazarovich-simple-lattice-has-torsion-iff-index-four	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+amir-lazarovich-simple-lattices-have-torsion-proof		
+amir-lazarovich-simple-lattices-have-torsion	**ESTABLISHED** (lane proof, not reviewed; route	
+analytic-codings-make-contracting-recursions-analytic-proof		
+analytic-codings-make-contracting-recursions-analytic	**ESTABLISHED** through `analytic-codings-make-contracting-recursions-analytic-proof` (lane	
+annular-free-factor-germ-extensions-fail-bhm-singfix	**ESTABLISHED** by `annular-free-factor-singfix-colimit-proof` (lane proof, elementary	
+annular-free-factor-singfix-colimit-proof		
+annular-free-product-germ-hosts-are-not-finitely-presented	**ESTABLISHED** by `annular-free-product-hosts-not-fp-proof` (lane proof, elementary; not	
+annular-free-product-hosts-not-fp-proof		
+annular-free-zoom-window-equations-proof		
+annular-hosts-with-free-zoom-germs-are-not-finitely-presented	**ESTABLISHED** by `annular-free-zoom-window-equations-proof` (lane proof, elementary;	
+aperiodic-full-groups-lift-along-factor-maps	**ESTABLISHED** (lane proof below, elementary; not independently reviewed; no novelty claimed).	
+aperiodic-point-stabilizers-in-germ-extensions-of-v-are-not-fg	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).	
+arbitrarily-complex-fp-simple-via-transcendental-slope-thompson		
+arithmetic-lie-lattices-faithful-bs-proof		
+arithmetic-lie-lattices-have-faithful-bs-members	**ESTABLISHED** through `arithmetic-lie-lattices-faithful-bs-proof` (lane proof; referee a	 | PASS, `research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`; referee b PASS,
+arithmetic-nsp-faithful-bs-member-proof		
+arithmetic-nsp-lattices-have-faithful-bs-members	**ESTABLISHED** through `arithmetic-nsp-faithful-bs-member-proof` (lane proof,	 | elementary apart from the cited normal subgroup theorems; referee a PASS, | `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`; referee b PASS,
+artin-deligne-boundary-actions-are-topologically-free	**ESTABLISHED** (lane proof, elementary Garside theory, not reviewed; no priority claimed).	
+artin-groups-embed-in-decorated-garside-odometer-groups	**ESTABLISHED** (corrected 2026-09-18; lane proof, not reviewed). The statement is	
+artin-groups-mod-central-garside-power-are-continuous-automatic	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). Proof:	
+artin-groups-satisfy-boone-higman		
+artin-hub-cones-reduce-pbh-to-coned-cliques-proof		
+artin-hub-cones-reduce-pbh-to-coned-cliques	**ESTABLISHED** (route `artin-hub-cones-reduce-pbh-to-coned-cliques-proof`; lane proof, not independently reviewed). It inherits the status of `artin-	
+artin-mod-central-garside-continuous-automatic-proof		
+artin-normal-form-boundary-full-groups-fix-a-point	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+artin-ordinary-foldings-are-retractions-proof		
+artin-ordinary-foldings-are-retractions	**ESTABLISHED** (route `artin-ordinary-foldings-are-retractions-proof`; lane proof, elementary, not independently reviewed). No priority is claimed: t	
+artin-pbh-reduces-along-folding-separators-proof		
+artin-pbh-reduces-along-folding-separators	**ESTABLISHED** (route `artin-pbh-reduces-along-folding-separators-proof`; lane proof, not independently reviewed). It inherits the status of `pbh-cla	
+artin-pbh-reduces-to-free-of-infinity-artin-groups-proof		
+artin-pbh-reduces-to-free-of-infinity-artin-groups	**ESTABLISHED** (route `artin-pbh-reduces-to-free-of-infinity-artin-groups-proof`; lane proof, not independently reviewed). It inherits the status of 	
+artin-pbh-reduces-to-odd-component-cliques		 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. The retraction lemma
+ascending-hnn-of-free-groups-bh-proof		
+ascending-hnn-of-free-groups-satisfy-boone-higman	**ESTABLISHED** through `ascending-hnn-of-free-groups-bh-proof`.	 | (adversarial, non-referee): PASS, `research/artifacts/gq-bh-bh-refute-verify-ascending-hnn.md`
+ascending-hnn-of-isolated-groups-embed-in-isolated-groups	**ESTABLISHED** through `ascending-hnn-of-isolated-groups-proof`. Lane proof (bh-free-05),	
+ascending-hnn-of-isolated-groups-proof		
+attracting-fixed-point-centralizers-embed-in-germ-groups	**ESTABLISHED** (lane proof, elementary; not independently reviewed; no priority claimed).	
+aut-free-groups-quasi-isometrically-embed-in-fp-simple-groups	**ESTABLISHED** through `aut-free-qi-embedding-in-twisted-brin-thompson-proof` (a lane proof, not	
+aut-free-qi-embedding-in-twisted-brin-thompson-proof		
+aut-out-free-abelianized-extension-virtually-splits-proof		
+aut-out-free-abelianized-extension-virtually-splits	**ESTABLISHED** by `aut-out-free-abelianized-extension-virtually-splits-proof`	 | (lane proof, elementary; gq-referee-a PASS; no novelty claimed). | **Review.** gq-referee-b PASS | - **Review.** gq-referee-a: PASS for items 1–3, with the W1 wording fix above
+aut-out-free-nilpotent-tower-virtually-splits	**OPEN** for `n ≥ 3` and `c ≥ 2`. Class `c = 1` is	
+automatic-actor-twisted-brin-thompson-groups-have-pspace-wp	**ESTABLISHED** through `automatic-actor-twisted-brin-thompson-wp-proof` (lane proof, elementary;	
+automatic-actor-twisted-brin-thompson-wp-proof		
+automatic-groups-bh-via-normal-form-germ-extensions		
+automatic-groups-embed-in-corner-germ-extensions		
+automatic-groups-satisfy-boone-higman		
+automaton-groups-bh-via-lift-presented-overgroups		
+automaton-groups-embed-in-lift-presented-automaton-groups		
+automaton-groups-satisfy-boone-higman		
+automaton-tail-full-groups-have-conp-relative-word-problem-proof		
+automaton-tail-full-groups-have-conp-relative-word-problem	**ESTABLISHED** by `automaton-tail-full-groups-have-conp-relative-word-problem-proof`	
+automorphism-twisted-shell-actions-have-finitely-many-orbits	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+automorphisms-fixing-open-boundary-sets-fix-large-balls	**ESTABLISHED** through `open-boundary-fixers-fix-balls-proof` (lane proof; not	
+b-a-groups-embed-in-full-hosts-with-free-torsion		
+b-tilde-artin-groups-satisfy-permutational-boone-higman	- **BFFHZ**, arXiv:2503.21882v2, after Corollary B, as quoted in	 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. It is independent of
+b-tilde-artin-groups-via-one-cone-point-fibration-proof		
+b-tilde-artin-groups-via-one-cone-point-fibration	**ESTABLISHED** through `b-tilde-artin-groups-via-one-cone-point-fibration-proof`. This	
+b3-center-first-germ-condition-proof		
+b3-center-first-normal-form-passes-the-germ-condition	**ESTABLISHED** by `b3-center-first-germ-condition-proof` (lane proof, elementary, not	
+b3-deligne-boundary-is-nonsingular-rank-three-is-not	**ESTABLISHED** (lane proof by a finite table and an elementary word argument, not	
+bartholdi-multi-substitution-hnn-surjects-onto-free-group	**ESTABLISHED** (elementary; checked by hand on generators). Honest status: this is a gap in	
+basilica-fp-amenable-hnn-satisfies-boone-higman	**ESTABLISHED** (lane proof below plus the general theorem; not reviewed; no priority	
+baum-connes-with-coefficients-separates-boone-higman	**ESTABLISHED** (lane proof, three lines; one input is cited and not re-read). No priority claimed.	
+baumslag-gersten-group-is-highly-transitive-and-mif	**ESTABLISHED** (lane proof from imported theorems read at source; not reviewed; no	
+baumslag-gersten-group-maps-onto-higman-groups	**ESTABLISHED** (lane proof, elementary Reidemeister--Schreier; not reviewed; no priority	
+baumslag-gersten-group-satisfies-boone-higman		
+baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath	**ESTABLISHED** (conditional implication; lane proof, elementary; no priority claimed). Reviewed:	 | gq-referee-a PASS (`research/artifacts/gq-referee-a-baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wr
+baumslag-gersten-splits-over-bs12-edges	**ESTABLISHED** (lane proof, elementary; no priority claimed). Reviewed: gq-referee-a PASS	
+baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman		
+baumslag-solitar-groups-are-free-by-metabelian	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed: this is	
+bbmz-oligomorphic-and-twisted-questions-are-pbh-forms	**ESTABLISHED** by `bbmz-oligomorphic-twisted-questions-proof` (lane proof, elementary, assembling	 | landed nodes). Referee a (proof gaps): PASS in | nit N2 applied. Referee b (citations): PASS,
+bbmz-oligomorphic-twisted-questions-proof		
+bell-generalized-cobham-theorem-citation		
+bell-generalized-cobham-theorem	**ESTABLISHED** (citation; route `bell-generalized-cobham-theorem-citation`). Not reproved here.	
+bffhz-q33-is-normal-finite-generation-of-mixed-identities	**ESTABLISHED** by `bffhz-q33-mixed-identities-proof` (lane proof, elementary, not	
+bffhz-q33-mixed-identities-proof		
+bg-in-isometric-brick-hosts-needs-unbounded-exponents	**ESTABLISHED** (lane proof, elementary; no novelty claimed). Reviewed: gq-referee-a PASS,	 | 5d3e18e0b; nits N1 and N2 applied below), and gq-referee-b PASS, citation lens
+bh-class-decidable-amalgams-from-free-products-and-hnn	**ESTABLISHED** by `bh-class-decidable-amalgams-proof`	
+bh-class-decidable-amalgams-proof		
+bh-class-finite-extensions-reduce-to-finite-simple-wreaths	**ESTABLISHED** by `bh-class-finite-extensions-wreath-proof`	
+bh-class-finite-extensions-wreath-proof		
+bh-class-free-products-iff-joint-embedding-and-free-z	**ESTABLISHED** by `bh-class-free-products-iff-joint-embedding-proof`	
+bh-class-free-products-iff-joint-embedding-proof		
+bh-embeddability-survives-decidable-edge-hnn		
+bh-embeddability-survives-magnus-subgroup-hnn		
+bh-separators-must-omit-nested-decidable-hosts	**ESTABLISHED** (lane proof, elementary; inputs cited below). §§1–3: gq-referee-a PASS	 | 90752e2d8), nits N1–N3 applied. gq-referee-b PASS (citations,
+bhm-corollary-hosts-over-v-are-cover-centralizer-groups	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; items (a)–(c) are elementary and complete, item (d) is a proof sketch; not reviewed; no priorit	
+bhm-singfix-finiteness-holds-for-type-fp-n	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; a check of the published argument; not reviewed; no novelty claimed).	
+bieri-strebel-line-rigidity-proof		
+binary-leavitt-elementary-groups-have-trivial-core-endomorphisms	**ESTABLISHED** by `binary-leavitt-trivial-core-endomorphism-proof` (lane proof, elementary	
+binary-leavitt-trivial-core-endomorphism-proof		
+binary-self-similar-completions-over-free-bases-have-zero-kh	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). It rests on the import	
+bishop-schesler-branch-groups-are-annular-hosts-over-v	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed). Source: Bishop–Schesler,	
+bishop-schesler-branch-hosts-act-on-no-regular-rooted-tree	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+block-power-germ-schedules-with-fp-germ-group-are-exponential	**ESTABLISHED** (lane proof, elementary plus the Bieri–Strebel splitting theorem; not independently	
+boolean-inverse-monoid-finite-presentation-is-finite-type-proof		
+boolean-inverse-monoid-finite-presentation-is-finite-type		
+boone-higman-closed-under-finite-direct-products	- **BFFHZ** (arXiv:2503.21882v2): "PBH is stable under commensurability and direct	
+boone-higman-iff-fp-just-infinite-hosts	**ESTABLISHED** through `boone-higman-iff-fp-just-infinite-hosts-proof`.	
+boone-higman-iff-simple-kazhdan-decidable-inputs	**ESTABLISHED** through `boone-higman-iff-simple-kazhdan-decidable-inputs-proof`.	
+boone-higman-is-equality-of-two-sigma-3-index-sets-proof		
+boone-higman-is-equality-of-two-sigma-3-index-sets	**ESTABLISHED** (lane proof, not reviewed; route	
+boone-higman-uniform-in-word-problem-algorithms		
+boone-higman-via-genuine-action-shell-envelopes		
+boone-higman-via-germ-steinberg-algebra-presentation		
+boone-higman-via-houghton-like-shift-envelopes		 |    `FSym`, and its maps `psi_j` are onto by MZ Lemma 3.19 (PASS, 25b091cb0).
+boone-higman-via-leavitt-units-of-rigid-topologically-free-sfts	**OPEN**, through (E′) and (K′). Steps 2, 5 and 6 are established (unreviewed; step 5 conditional on	
+boone-higman-via-stabilizer-engines		
+boundary-orbit-wreaths-over-tree-groups-are-not-fp	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+bounded-automaton-groups-embed-in-fp-automaton-groups		
+bounded-determination-simulations-only-realize-sft-shadows		
+bounded-last-section-ascending-hnns-bh-proof		
+bounded-last-section-ascending-hnns-satisfy-boone-higman	**ESTABLISHED** (lane proof, `bounded-last-section-ascending-hnns-bh-proof`; elementary; not	
+bounded-orbit-subgroups-have-infinitely-many-double-cosets	**ESTABLISHED** (lane proof, elementary, inline below; not reviewed; no priority	
+braid-group-qi-embedding-via-handle-capping-proof		
+braid-groups-in-2v-via-pure-braid-raag-embedding		
+braid-groups-quasi-isometrically-embed-in-fp-simple-groups	**ESTABLISHED** through `braid-group-qi-embedding-via-handle-capping-proof`. This is a lane proof, not	
+braid-groups-virtually-embed-in-brin-thompson-2v		
+branch-group-embeddings-in-v-are-boundary-sandwiched	**ESTABLISHED** by `branch-group-embeddings-in-v-boundary-sandwich-proof`. This is a lane proof, not independently reviewed, with no priority claimed.	
+branch-group-embeddings-in-v-boundary-sandwich-proof		
+branch-host-v-recoding-proof		
+branch-host-v-recodings-need-recurrent-residual-chains	**ESTABLISHED** by `branch-host-v-recoding-proof` (lane proof, elementary given the two annular	
+brick-diagonal-ascending-hnn-embedding-proof		
+brick-diagonal-ascending-hnns-embed-in-brin-thompson-groups	**ESTABLISHED** through `brick-diagonal-ascending-hnn-embedding-proof`. Elementary lane proof	
+brick-diagonal-power-conjugacy-forces-zero-drift	**ESTABLISHED** through `brick-diagonal-power-conjugacy-zero-drift-proof`. Elementary lane proof	
+brick-diagonal-power-conjugacy-zero-drift-proof		
+brin-thompson-2v-is-torsion-locally-finite		
+brin-thompson-aperiodic-elements-have-logarithmic-movement	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority	
+brin-thompson-groups-contain-full-groups-of-their-elements	**ESTABLISHED** (lane proof below, elementary; not independently reviewed; no novelty claimed).	
+brin-thompson-groups-contain-infinite-periodic-groups		
+brin-thompson-torsion-has-clopen-fixed-sets-proof		
+brin-thompson-torsion-has-clopen-fixed-sets	**ESTABLISHED** by `brin-thompson-torsion-has-clopen-fixed-sets-proof` (lane proof, bh-free-01,	
+bs-1-m-embeds-in-brin-thompson-3v-for-odd-m	**ESTABLISHED** (lane bh-free-18, lane proof, not reviewed) through	 | - bh-refute hand-verified the chain: PASS (`research/artifacts/gq-bh-bh-refute-verify-bs1m-in-3v.md`,
+bs-1-m-in-3v-via-odd-smart-renormalization		
+bs-1-minus-m-embeds-in-brin-thompson-3v-for-odd-m	**ESTABLISHED** (lane bh-free-18, lane proof, not reviewed). No priority claimed: the bounded arXiv	
+bs-chain-configurations-exist-in-finite-germ-extensions-of-v	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+bs-class-faithful-member-type-a-proof		
+bs-class-with-faithful-member-lies-in-type-a-class	**ESTABLISHED** through `bs-class-faithful-member-type-a-proof` (lane proof, a	 | reading of a literature proof; referee a PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-c
+bs-classes-over-virtually-quotient-free-groups-have-big-kernels	**ESTABLISHED** through `bs-quotient-free-big-kernel-proof` (lane proof,	 | elementary; referee a PASS, | referee b PASS, `research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
+bs-conjugator-invariant-compactum-proof		
+bs-conjugators-of-wandering-maps-have-invariant-compacta	**ESTABLISHED** by `bs-conjugator-invariant-compactum-proof` (lane proof, elementary;	
+bs-quotient-free-big-kernel-proof		
+bs-quotients-keeping-a-commutator-have-a-commensurated-core	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed).	
+bs-quotients-keeping-a-commutator-need-distortion	**ESTABLISHED** (lane proof below, elementary modulo the cited undistortion theorems, not	
+bs12-base-generator-centralizer-proof		
+bs12-base-generator-is-a-centralizer-in-b-a	**ESTABLISHED** by `bs12-base-generator-centralizer-proof` (lane proof, not reviewed; no	
+busemann-transplants-give-free-sfts-on-building-lattices		
+busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid	**OPEN** (posed by bh-invent-04, 2026-09-18). Setting and notation as in	
+c-tilde-artin-groups-satisfy-permutational-boone-higman		 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. It is independent of
+cantor-cover-germ-extension-of-v-is-fp-simple	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; not reviewed; no priority claimed.	
+cat0-groups-on-hyperbolic-plane-times-tree-lie-in-type-a-class	**ESTABLISHED** through `cat0-hyperbolic-plane-tree-type-a-proof` (lane proof; referee a PASS,	 | `research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`; referee b PASS,
+cat0-groups-on-symmetric-space-times-tree-lie-in-type-a-class	**ESTABLISHED** through `cat0-symmetric-space-tree-type-a-proof` (lane proof;	 | referee a PASS, | `research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`; referee b PASS,
+cat0-groups-satisfy-boone-higman		
+cat0-groups-with-a-tree-factor-lie-in-type-a-class	**ESTABLISHED** through `cat0-tree-factor-type-a-proof` (lane proof; referee a	 | PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`; referee b PASS,
+cat0-hyperbolic-plane-tree-type-a-proof		
+cat0-symmetric-space-tree-type-a-proof		
+cat0-tree-factor-type-a-proof		
+central-extension-shear-lift-into-rational-projective-groups	**ESTABLISHED** (lane proof, elementary, not reviewed). No priority claimed.	
+central-extension-untwisting-over-boundaries	**ESTABLISHED** (lane proof, elementary; not independently reviewed). This is	
+central-extension-untwisting-proof		
+central-extensions-of-thompson-f-contain-f-proof		
+central-extensions-of-thompson-f-contain-f	**ESTABLISHED** through `central-extensions-of-thompson-f-contain-f-proof` (lane bh-free-24,	
+central-kazhdan-residual-separator-for-boone-higman	**ESTABLISHED** (lane proof, elementary from the cited nodes; no priority claimed). The separating side is the OPEN node `fp-simple-group-with-kazhdan	
+centralizer-amalgams-are-free-permutational-wreaths	**ESTABLISHED** by `centralizer-amalgams-free-wreath-proof` (lane proof, elementary,	
+centralizer-amalgams-embed-in-relative-holomorphs	**ESTABLISHED** by `centralizer-amalgams-relative-holomorph-proof` (lane proof,	
+centralizer-amalgams-free-wreath-proof		
+centralizer-amalgams-relative-holomorph-proof		
+centralizer-realizable-subgroups-are-pullback-closed-proof		
+centralizer-realizable-subgroups-are-pullback-closed	**ESTABLISHED** by `centralizer-realizable-subgroups-are-pullback-closed-proof` (lane proof,	
+chamber-fixing-building-lattice-elements-translate-horospheres	**ESTABLISHED** by the proof below (lane bh-invent-04, 2026-09-18; elementary; not reviewed; no	
+char-p-linear-groups-satisfy-permutational-boone-higman		 | independently reviewed.~~ *Reviewed:* the route and all three new nodes PASS in
+char-p-rational-function-field-in-fp-simple-algebra-proof		
+char-p-rational-function-field-in-fp-simple-algebra	**ESTABLISHED** through `char-p-rational-function-field-in-fp-simple-algebra-proof`	
+char-p-rational-function-fields-in-fp-simple-algebras-proof		
+char-p-rational-function-fields-in-fp-simple-algebras	**ESTABLISHED** through `char-p-rational-function-fields-in-fp-simple-algebras-proof` (lane proof,	
+char-zero-linear-groups-satisfy-permutational-boone-higman		
+circle-and-tree-product-periodic-subgroups-are-finite	**ESTABLISHED** (lane proof, elementary; the three inputs are classical and were	
+circle-pl-groups-act-with-type-a-on-breakpoint-orbits	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed. The mechanism is the classical one for Thompson's `T` on dyadic points.)	
+circulant-graph-wreath-products-embed-in-dv-f-proof		
+circulant-graph-wreath-products-satisfy-boone-higman	**ESTABLISHED** (lane proof, not reviewed; route `circulant-graph-wreath-products-embed-in-dv-f-proof`): every such `G_U` embeds in the one finitely p	
+ck-envelope-has-a-finitely-normally-generated-maximal-kernel		
+ck-envelope-simple-core-has-finite-bi-index		
+ck-hole-holds-for-perfect-binary-leavitt-unit-subgroups	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+ck-sandwich-ring-has-fp-projective-simple-quotient		
+ck-sandwich-ring-has-infinite-ascending-ideal-chains-proof		
+ck-sandwich-ring-has-infinite-ascending-ideal-chains	**ESTABLISHED** through `ck-sandwich-ring-has-infinite-ascending-ideal-chains-proof`.	
+class-transposition-presentation-has-central-kernel	**ESTABLISHED** (lane proof, elementary, not reviewed; no cited theorem; no priority claimed).	
+class-transposition-relations-present-ct-p-z		
+class-two-aut-out-obstruction-on-commuting-pairs	**ESTABLISHED** (lane proof below, elementary, not reviewed; no novelty claimed).	
+classical-small-cancellation-complexity-realization-proof		
+closed-hyperbolic-surface-groups-embed-in-thompson-v		
+closed-mcg-bh-via-edge-split-operad		
+closed-mcg-bh-via-full-cantor-host		
+closed-mcg-bh-via-rational-projective-full-group		
+closed-mcg-cantor-host-via-train-track-traces		
+closed-mcg-embeds-in-rational-projective-full-group	**ESTABLISHED** by `closed-mcg-rational-projective-full-group-proof` (lane	
+closed-mcg-in-nv-forces-braid-groups-in-nv	**ESTABLISHED** (lane proof, elementary; not independently reviewed; no priority	
+closed-mcg-rational-projective-full-group-proof		
+closed-mcg-self-similarity-exotic-endomorphism-proof		
+closed-mcg-self-similarity-needs-exotic-virtual-endomorphisms	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). Proof:	
+closed-mcg-virtually-embeds-in-fp-full-cantor-group		
+closed-surface-mapping-class-groups-satisfy-boone-higman		
+cmsz-rs-two-graphs-of-orders-two-and-three-are-primitive	**ESTABLISHED** (lane computation plus lane proof, bh-groupoid 2026-09-18; not	
+coarse-embeddability-separates-boone-higman	**ESTABLISHED** (lane proof, short; inputs cited). gq-referee-a PASS (proof gaps,	 | `research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5); gq-referee-b PASS
+cocompact-fuchsian-groups-embed-in-v-all-or-none	**ESTABLISHED** by `cocompact-fuchsian-groups-v-all-or-none-proof` (lane proof,	
+cocompact-fuchsian-groups-v-all-or-none-proof		
+cocompact-tree-product-lattices-lie-in-type-a-class	**ESTABLISHED** through `tree-lattice-with-torsion-via-zappa-szep-kgraphs` (lane	
+commensurator-finite-no-faithful-bs-proof		
+commensurator-rigid-bs-classes-are-virtual-products	**ESTABLISHED** through `commensurator-rigid-bs-products-proof` (lane proof,	 | elementary given `commensurator-rigid-groups-have-no-faithful-bs-members`; referee a PASS, | `research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`; referee b PASS,
+commensurator-rigid-bs-products-proof		
+commensurator-rigid-groups-have-no-faithful-bs-members	**ESTABLISHED** by `commensurator-rigid-no-faithful-bs-member-proof` (lane proof,	
+commensurator-rigid-groups-lack-faithful-bs-members	**ESTABLISHED** through `commensurator-finite-no-faithful-bs-proof` (lane proof;	 | referee a PASS, | `research/artifacts/gq-referee-a-hecke-products-and-commensurator-rigidity.md`; referee b PASS,
+commensurator-rigid-no-faithful-bs-member-proof		
+common-decidable-hosts-iff-uniform-word-problem-proof		
+common-decidable-hosts-iff-uniform-word-problem	**ESTABLISHED** (lane proof, not reviewed; route	
+commonly-fixed-letters-compress-to-faithful-actions-proof		
+commonly-fixed-letters-compress-to-faithful-actions	**ESTABLISHED** by `commonly-fixed-letters-compress-to-faithful-actions-proof` (lane proof, elementary; no priority claimed). Referee a (proof gaps) P	
+commutative-cube-degree-maps-force-tree-products	**ESTABLISHED** (lane proof, elementary; uses only standard facts on CAT(0) cube	
+commuting-translations-sharing-an-inflow-ray-are-not-realizable	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed). Cornulier (arXiv:1901.05065,	
+compact-skew-products-cannot-carry-divisible-fiber-subgroups	**ESTABLISHED** (lane `bh-solvable`, lane proof, elementary; not independently reviewed).	
+compiled-bs-stable-letters-are-never-rediagonalized	**ESTABLISHED** through `compiled-bs-stable-letters-never-rediagonalized-proof`. Elementary lane	
+compiled-bs-stable-letters-never-rediagonalized-proof		
+complete-artin-atoms-are-invisible-to-artin-combinatorics	**ESTABLISHED** (lane proof, elementary, in the body; not independently reviewed). A negative, method-level statement; no priority is claimed.	
+complex-braid-groups-in-pbh-except-g24-g27-g29-g33-g34-proof		
+complex-braid-groups-in-pbh-except-g24-g27-g29-g33-g34	**ESTABLISHED** through `complex-braid-groups-in-pbh-except-g24-g27-g29-g33-g34-proof`.	
+complex-braid-groups-satisfy-permutational-boone-higman		
+complex-fp-simple-groups-via-small-cancellation-bh		
+computable-grigorchuk-bh-via-minimal-subshift-full-groups		
+computable-grigorchuk-groups-satisfy-boone-higman		
+constant-descendants-make-completions-simple	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed). The proof is that of	
+continuity-of-automatic-structures-decidable-proof		
+continuity-of-automatic-structures-is-decidable	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed). Proof:	
+contracting-groups-have-dying-kernel-covers-of-type-fn		
+contracting-rover-nekrashevych-groups-are-f-infinity	**OPEN** as printed; partially settled on main. R. Skipper, M. C. B. Zaremsky,	
+contracting-rsg-finite-index-overgroup-proof		
+contracting-rsg-finite-product-proof		
+contracting-rsg-torsion-subgroups-are-residually-finite		
+contracting-rsgs-closed-under-finite-index-overgroups	**ESTABLISHED** by `contracting-rsg-finite-index-overgroup-proof` (lane `bh-free-23`, lane proof,	
+contracting-rsgs-closed-under-products-with-finite-groups	**ESTABLISHED** by `contracting-rsg-finite-product-proof` (lane `bh-free-23`, lane proof,	
+contracting-rsgs-embed-in-fp-simple-groups-citation		
+contracting-rsgs-embed-in-fp-simple-groups		
+contracting-rsgs-have-fp-full-closures-proof		
+contracting-rsgs-have-fp-full-closures	**ESTABLISHED** through `contracting-rsgs-have-fp-full-closures-proof`. Lane proof	
+coprime-baumslag-solitar-images-in-va-are-metabelian	**ESTABLISHED** (lane proof below, elementary modulo the cited theorem, not reviewed; no priority	
+coprime-four-cycle-artin-pbh-reduces-to-one-tetrahedral-group	**ESTABLISHED** (lane proof, in the body below; not independently reviewed). It inherits the status of `artin-pbh-reduces-along-folding-separators` (l	
+copy-constraints-make-simulation-skeleton-and-data-commute		
+cornulier-regime-coset-sfts-are-quantum-rigid		
+coset-invariant-sft-rigidity-descends-along-double-cosets		
+coset-invariant-sft-rigidity-descent-proof		
+ct-p-z-acts-on-the-nonnegative-integers-with-type-a	**ESTABLISHED** (lane proof, elementary given the characterization of CT_P(Z) in	
+ct-p-z-groups-are-pairwise-nonisomorphic	**ESTABLISHED** (lane proof, not reviewed). No priority is claimed. For finite `P`, an	
+ct-p-z-has-a-finite-class-transposition-presentation		
+ct-p-z-is-a-one-vertex-k-graph-full-group	**ESTABLISHED** (lane proof, not reviewed). It rests on four cited theorems, all read	
+ct-p-z-isomorphism-type-remembers-the-number-of-primes	**ESTABLISHED** (lane proof, not reviewed). It uses the parent node plus Matui	
+ct-p1-and-ct-p2-always-generate-ct-p1-union-p2		
+ct-p1-and-ct-p2-generate-ct-of-the-union-proof		
+ct-p1-and-ct-p2-generate-ct-of-the-union	**ESTABLISHED** (route `ct-p1-and-ct-p2-generate-ct-of-the-union-proof`; lane proof, elementary, not independently reviewed). No priority is claimed. 	
+ct-z-conjugacy-problem-is-undecidable	**ESTABLISHED** (lane proof, not reviewed).	
+ct-z-finite-cycle-problems-are-undecidable	**ESTABLISHED** (lane proof, not reviewed).	
+ct-z-finite-subgroups-are-classified-by-stabilizer-sets	**ESTABLISHED** (lane proof, not reviewed).	
+ct-z-invariant-residue-partitions-are-not-conjugacy-invariant	Kourovka 21.74(a) itself is still **OPEN**. No priority is claimed.	
+ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers	**ESTABLISHED** (lane proof, not reviewed). It uses only	
+ct-z-normalizers-are-2-and-3-regular	**ESTABLISHED** (lane proof, not reviewed). No priority is claimed.	
+ct-z-north-south-element-has-no-finite-cycles	**ESTABLISHED** (lane proof, not reviewed). Elementary and self-contained. No	
+ct-z-residue-partitions-cannot-carve-thin-invariant-sets	**ESTABLISHED** (lane proof, not reviewed). Elementary. No priority is claimed.	
+cube-complex-times-tree-fb-closures-pbh-proof		
+cube-complex-times-tree-lattices-with-fb-closures-are-pbh	**ESTABLISHED** through `cube-complex-times-tree-fb-closures-pbh-proof` (lane proof,	
+cubical-hecke-members-faithful-proof		
+cubical-hecke-members-faithful-when-closure-fixes-bounded-sets	**ESTABLISHED** through `cubical-hecke-members-faithful-proof` (lane proof,	
+cubulated-groups-act-by-bisections-of-a-pointed-cube-category	**ESTABLISHED** through `cubulated-pointed-cube-category-proof` (lane proof,	
+cubulated-pointed-cube-category-proof		
+cuntz-stabilized-full-groups-contain-their-own-squares	**ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; elementary; not independently	
+cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple		
+cusp-extensions-hyperbolic-pbh-proof		
+cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh	**ESTABLISHED** by `cusp-extensions-rel-hyperbolic-pbh-proof` (lane proof, not	
+cusp-extensions-of-torsion-free-hyperbolic-groups-satisfy-pbh	**ESTABLISHED** by `cusp-extensions-hyperbolic-pbh-proof` (lane proof, not reviewed;	
+cusp-extensions-rel-hyperbolic-pbh-proof		
+cyclic-centralizer-subgroups-of-nv-have-meeting-supports	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed).	
+cyclic-centralizer-subgroups-of-v-touch-attractors	**ESTABLISHED** (lane proof below, elementary; not reviewed; no priority claimed). It relies on one input	
+cyclic-input-window-zero-needs-an-automorphism-twist-proof		
+cyclic-input-window-zero-needs-an-automorphism-twist	**ESTABLISHED** by `cyclic-input-window-zero-needs-an-automorphism-twist-proof` (lane proof, elementary, not independently reviewed, no priority claim	
+d-tilde-artin-groups-satisfy-permutational-boone-higman		
+decidable-algebras-embed-in-oracle-leavitt-crossed-products		
+decidable-algebras-embed-in-simple-ln-completions		
+decidable-algebras-embed-in-simple-self-similar-completions		
+decidable-fg-self-similar-groups-embed-in-fp-self-similar		
+decidable-fp-groups-have-effective-minimal-free-subshifts		
+decidable-graphical-non-exact-groups-exist		
+decidable-graphical-non-exact-groups-proof		
+decidable-group-with-coarsely-embedded-expanders-exists	**ESTABLISHED** (lane proof; every input is read at source, including the curvature formula behind the	 | Greendlinger step, Gruber–Sisto Lemma 2.14). gq-referee-a PASS (proof gaps, | applied. gq-referee-b PASS (citations,
+decidable-groups-embed-in-fp-groups-satisfying-m2		
+decidable-groups-embed-in-fp-groups-with-minimal-free-sft		
+decidable-groups-have-universal-hyperaperiodic-points		
+decidable-groups-lie-in-fp-topologically-free-crossed-products		
+decidable-host-classes-reduce-to-canonical-kazhdan-groups	**ESTABLISHED** (lane proof, elementary given the cited host lemma; not reviewed; no	
+decidable-houghton-envelopes-via-generic-nu-and-lifting		
+decidable-inputs-admit-two-sided-fg-near-index-kernel		
+decidable-inputs-have-fp-genuine-action-shell-envelopes		
+decidable-inputs-have-fp-houghton-like-shift-envelopes		
+decidable-inputs-have-fp-shell-envelopes		
+decidable-minimal-subshift-full-groups-satisfy-boone-higman		
+decidable-minimal-subshifts-are-brin-thompson-factors		
+decidable-subshift-full-groups-bh-via-brin-thompson-factors		
+decodable-small-cancellation-families-give-polytime-wp		
+decorated-garside-odometer-full-groups-are-type-f-infinity	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). The finiteness	
+definable-parameter-hosts-cap-simple-subgroups-at-pspace	**ESTABLISHED** through `definable-parameter-hosts-specialization-proof` (lane proof, elementary	
+definable-parameter-hosts-specialization-proof		
+degree-category-comparison-type-a-proof		
+degree-category-full-groups-stabilized-have-type-a-actions	**ESTABLISHED** through `degree-category-comparison-type-a-proof` (lane proof,	
+degree-coboundary-subgroups-of-coded-full-groups-are-rf		
+deligne-bh-via-rational-projective-full-group		
+deligne-class-dies-on-some-rational-projective-host		
+deligne-class-dies-over-flag-varieties-iff-flag-has-lagrangian		
+deligne-class-survives-on-every-linear-rational-projective-host	**ESTABLISHED** (lane proof, not reviewed). The textbook inputs are the same as for	
+deligne-class-survives-on-standard-rational-projective-hosts	**ESTABLISHED** (lane proof, modulo textbook inputs flagged below; not reviewed).	
+deligne-commuting-parabolic-diagonal-singularity-proof		
+deligne-extension-dies-on-lagrangian-cantor-covers	**ESTABLISHED** (lane proof, elementary topology, not reviewed). No priority claimed.	
+deligne-forms-are-singular-on-commuting-parabolic-diagonals	**ESTABLISHED** by `deligne-commuting-parabolic-diagonal-singularity-proof` (lane proof,	
+deligne-lattice-almost-v-germ-group-proof		
+deligne-lattice-bh-via-lagrangian-brin-thompson-group		
+deligne-lattice-in-almost-v-sits-in-one-germ-group	**ESTABLISHED** by `deligne-lattice-almost-v-germ-group-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-ge	
+deligne-lattice-in-fg-simple-lagrangian-brin-thompson-group		
+deligne-lattice-is-universal-central-extension-for-g-ge-4	**ESTABLISHED** (item 1 by citation, read at source; items 2--3 lane proof, elementary,	
+deligne-lattice-lagrangian-brin-thompson-embedding-proof		
+deligne-lattice-satisfies-boone-higman		
+deligne-lattices-and-torelli-quotients-contain-heisenberg-groups	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+deligne-lift-actions-are-not-almost-v	**ESTABLISHED** (lane proof, short, from landed nodes plus Borel density; not	
+deligne-universal-central-extension-proof		
+dendrite-rearrangement-group-g3-has-simple-commutator-subgroup	**ESTABLISHED** (lane proof, not independently reviewed). The proof is the one step	
+dendrite-rearrangement-groups-are-finitely-presented		
+depth-disjoint-spinal-hosts-have-wreath-germ-groups	**ESTABLISHED** (lane proof, elementary given the cited inputs; not reviewed; no priority claimed).	
+descending-shell-centralizer-proof		
+descending-shell-endomorphisms-have-finite-exponent-centralizers	**ESTABLISHED** by `descending-shell-centralizer-proof` (lane proof, elementary, not	
+determinism-closure-certifies-quantum-rigidity		
+deterministic-extension-rigidity-proof		
+deterministic-extensions-of-rigid-sfts-are-rigid	**ESTABLISHED** through `deterministic-extension-rigidity-proof` (lane proof, elementary; not	
+deterministic-time-lifts-inherit-quantum-rigidity	**ESTABLISHED** by the proof below (lane bh-free-25, gate G2 second angle, 2026-09-18;	
+discrete-factor-tree-lattice-splitting-proof		
+discrete-factor-tree-lattices-are-virtually-products	**ESTABLISHED** through `discrete-factor-tree-lattice-splitting-proof`	
+domain-exact-hnn-hosts-have-multivalley-kernels	**ESTABLISHED** (lane proof, bh-free-05, elementary, not reviewed). No priority claimed.	
+double-of-psl2-z-half-along-psl2-z-lies-in-b-a	**ESTABLISHED** by `double-of-psl2-z-half-along-psl2-z-proof` (lane proof; not	
+double-of-psl2-z-half-along-psl2-z-proof		
+drutu-sapir-bh-via-ascending-hnn-of-free-groups		
+drutu-sapir-group-satisfies-boone-higman		
+dying-kernel-covers-give-f-n-simple-envelopes	**ESTABLISHED** (lane proof `bh-free-06`, 2026-09-18; a composition of established lane nodes; not	
+dynamically-v-separated-groups-satisfy-boone-higman	**ESTABLISHED** by `dynamically-v-separated-host-singfix-proof` (lane proof. It rests on	
+dynamically-v-separated-host-singfix-proof		
+e-of-finitely-presented-group-is-recursively-presented	**REFUTED** (2026-09-18, lane bh-free-08, lane proof, not reviewed) by `fp-decidable-group-whose-e-is-not-recursively-presented`: some finitely presen	
+e-type-artin-groups-satisfy-permutational-boone-higman	**ESTABLISHED** through `e-type-artin-pbh-via-spherical-permutational-form`	 | (independent review PASS, 2026-09-13). Each of `A(E_6)`, `A(E_7)` and `A(E_8)` | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. The same
+edge-split-descendants-are-not-factor-closed	**ESTABLISHED** (lane bh-free-61, 2026-09-18). Lane proof, finite hand	
+edge-split-dissections-respecting-an-atom-plane-split-there	**OPEN** (lane bh-free-54, 2026-09-18), with a partial proof and exhaustive checks up	
+edge-split-operad-has-common-refinements	**OPEN** (lane bh-free-54, 2026-09-18).	
+edge-split-operad-satisfies-ore	**OPEN** (lane bh-free-54, 2026-09-18). The first `m ≥ 2` case is `m = 2`.	
+edge-split-ore-via-atom-plane-restriction		
+edge-splits-cut-every-rational-hyperplane	**ESTABLISHED** (lane bh-free-61, 2026-09-18). Lane proof, elementary, not	
+edge-splits-resolve-every-rational-plane	**ESTABLISHED** for `m = 2` (lane bh-free-54, 2026-09-18). Lane proof below;	
+effective-minimal-subshifts-lift-to-plane-constant-minimal-sfts		
+effective-residual-finiteness-separator-for-boone-higman	**ESTABLISHED** (lane proof, elementary; Rauzy's theorem was read at source, arXiv:2002.02540 TeX, md5 daf6a587…, copy in `gq/src/bh-invent-11/rauzy	
+effectively-rf-groups-have-effective-minimal-free-subshifts		
+efrf-groups-frattini-embed-in-efrf-branch-groups		
+elementary-groups-over-polynomial-f-p-rings-are-fp		 | from textbooks, as listed in the route. Independently reviewed: PASS (`research/artifacts/review-metabelian-bh
+elementary-groups-over-polynomial-s-integers-are-fp		
+elementary-shift-group-contains-every-integral-linear-group	**ESTABLISHED** (lane proof, not reviewed). Items 1–3 are folklore-level; no priority	
+embedding-in-fp-simple-groups-is-sigma-3-complete-proof		
+embedding-in-fp-simple-groups-is-sigma-3-complete	**ESTABLISHED** (lane proof, not reviewed; route	
+equicontinuous-bs-bases-force-conjugator-entropy-proof		
+equicontinuous-bs-bases-force-conjugator-entropy	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority	
+equicontinuous-square-conjugators-are-trivial-in-brick-hosts	**ESTABLISHED** (lane proof, elementary; no novelty claimed). Reviewed: gq-referee-a PASS	
+equivariant-scaling-hnn-vertex-groups-are-linear-proof		
+equivariant-scaling-hnn-vertex-groups-are-linear	**ESTABLISHED** by `equivariant-scaling-hnn-vertex-groups-are-linear-proof`	
+escaping-invariant-sets-force-infinitely-many-double-cosets	**ESTABLISHED** (lane proof, elementary, inline; not reviewed; no priority	
+euclidean-artin-toric-commensurability-proof		
+euclidean-artin-toric-commensurability	**ESTABLISHED** through `euclidean-artin-toric-commensurability-proof`. This is a lane	
+euclidean-building-boundary-shifts-are-quantum-rigid		 |   (`boundary-crossed-product-is-a-leavitt-path-algebra`, review PASS). Its difference sets are lines,
+euclidean-building-lattices-lie-in-permutational-bh-class	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, below. It was checked adversarially by	 | bh-verify-euclid, PASS conditional on the Ciobotaru–Le Bars trust caveat below. No priority claimed.) It res | gives PASS with two wording nits and one trust note.
+eventually-periodic-genuine-shell-actions-give-fp-envelopes	**ESTABLISHED** by `eventually-periodic-genuine-shell-proof`	
+eventually-periodic-genuine-shell-proof		
+eventually-periodic-grigorchuk-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof below, elementary apart from one imported theorem; not reviewed). No	
+eventually-rigid-g-automorphism-groups-act-with-type-a-except-fp	**ESTABLISHED** (lane proof; its inputs are BFFHZ arXiv:2503.21882v2 Lemma `lem:faithful`, Proposition `prop:2trans` and	
+eventually-rigid-g-automorphism-groups-are-finitely-presented		
+every-cocf-group-is-exact		
+every-countable-group-embeds-in-simple-fp2-via-fp2-shells		
+every-countable-group-has-an-fp2-shell-envelope		
+every-decidable-group-embeds-in-an-isolated-group		
+every-decidable-group-is-a-limit-of-isolated-groups		
+every-fg-solvable-group-is-a-limit-of-isolated-groups		
+every-gl-n-z-embeds-in-some-brin-thompson-group		
+every-hyperbolic-group-embeds-in-some-brin-thompson-group		
+every-hyperbolic-group-is-a-limit-of-isolated-groups		
+every-integral-linear-group-in-one-host-via-nv		
+every-real-number-field-lies-in-an-f-unit-field	**REFUTED** by `f-unit-fields-are-characterized-by-isolated-sign-units` (09-18). `Q(√3)` lies in no (F)-unit field: every	
+exact-twisted-shell-actions-are-exact-factorizations	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+exotic-a2-lattices-bh-as-cocompact-a2-lattices		
+exotic-a2-lattices-satisfy-boone-higman	**ESTABLISHED** (2026-09-18, bh-groupoid; lane proof, not independently reviewed): a special case of	
+explicit-type-a-actor-with-non-pr-orbit-problem		
+exponential-chart-minimal-pl-elements-have-bounded-roots	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+extensions-with-f-free-outer-kernel-contain-thompson-f-proof		
+extensions-with-f-free-outer-kernel-contain-thompson-f	**ESTABLISHED** through `extensions-with-f-free-outer-kernel-contain-thompson-f-proof` (lane	
+f-infinity-tail-ascending-hnns-satisfy-boone-higman	**ESTABLISHED** (lane proof `last-section-f-infinity-tail-bh-proof`; not reviewed; no priority	
+f-unit-fields-are-characterized-by-isolated-sign-units	**ESTABLISHED** (lane proof, not reviewed; no priority claimed).	
+f2-times-f2-has-a-quantum-rigid-free-minimal-sft		
+fabrykowski-gupta-ascending-hnn-satisfies-boone-higman	**ESTABLISHED** (lane proof below; elementary; not reviewed; no priority claimed).	
+factorial-odometer-affine-hosts-are-rational-stein-groups	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+faithful-continuous-normal-form-for-infinite-fg-groups		
+faithful-generalized-bs-witnesses-pass-to-direct-products-proof		
+faithful-generalized-bs-witnesses-pass-to-direct-products	**ESTABLISHED** (lane proof, elementary, not reviewed; route	
+faithful-hecke-members-pass-to-direct-products	**ESTABLISHED** through `faithful-hecke-members-products-proof` (lane proof,	 | elementary; referee a PASS,
+faithful-hecke-members-products-proof		
+ffwz-nonfaithful-stein-stabilizers-contain-canonical-kernel	**ESTABLISHED** by the proof below (lane proof, elementary, not reviewed). It exhibits a gap in	
+fg-complex-linear-groups-are-quasi-retracts-of-simple-groups		
+fg-decidable-group-whose-e-is-not-recursively-presented	**ESTABLISHED** (lane proof, elementary, written below, not reviewed; no priority claimed).	
+fg-infinite-shift-similar-groups-are-strongly-shift-similar		
+fg-linear-groups-embed-in-fp-self-similar-groups		
+fg-simple-circle-groups-with-t-are-two-generated	**ESTABLISHED** by `fg-simple-circle-groups-with-t-two-generation-proof` (lane proof,	
+fg-simple-circle-groups-with-t-two-generation-proof		
+fg-simple-subgroups-of-houghton-like-groups-embed-in-germs	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).	
+fg-soluble-minimax-groups-satisfy-boone-higman		
+fiber-detecting-block-characters-force-npc-graph-manifolds	**ESTABLISHED** (lane proof; item 2 imports a published criterion, read at source; not	
+fiber-type-toric-arrangement-groups-lie-in-the-pbh-class-proof		
+fiber-type-toric-arrangement-groups-lie-in-the-pbh-class	**ESTABLISHED** through `fiber-type-toric-arrangement-groups-lie-in-the-pbh-class-proof`.	
+fibre-products-over-b-a-quotients-lie-in-cr	**ESTABLISHED** by `fibre-products-over-b-a-quotients-proof` (lane proof, elementary; not	
+fibre-products-over-b-a-quotients-proof		
+field-representable-algebras-have-fp-simple-envelopes-proof		
+field-representable-algebras-have-fp-simple-envelopes	**ESTABLISHED** through `field-representable-algebras-have-fp-simple-envelopes-proof`	
+finitary-extensions-preserve-lift-presentability	**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-fi	
+finitary-mixing-of-fp-highly-transitive-groups-is-fp	**ESTABLISHED** (lane proof, elementary, proved below; not independently reviewed; no priority claimed).	
+finitary-mixing-preserves-type-f-m	**ESTABLISHED** (lane proof, below; not independently reviewed; no priority claimed). The only imports are	
+finitary-perturbations-give-isolated-quotients	**ESTABLISHED** (lane proof below, elementary modulo the two landed nodes it cites, not reviewed;	
+finitary-steinberg-extensions-by-oligomorphic-actions-are-fp	**ESTABLISHED** (lane proof, not reviewed; elementary). No priority claimed: the	
+finite-commutator-wachter-weiss-groups-are-not-fp-proof		
+finite-commutator-wachter-weiss-groups-are-not-fp	**ESTABLISHED** by `finite-commutator-wachter-weiss-groups-are-not-fp-proof`	
+finite-cycle-block-commutators-reduce-to-monodromy	**ESTABLISHED** (elementary lane proof, written inline, not independently reviewed; no	
+finite-double-coset-space-with-free-minimal-coset-sft		
+finite-edge-closure-via-free-torsion-full-hosts		
+finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a-proof		
+finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a	**ESTABLISHED** by `finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a-proof` (lane	
+finite-index-edge-hnn-embeds-in-fp-simple-group		
+finite-index-in-a-full-group-is-local-fullness-at-one-cone	**ESTABLISHED** (lane proof, elementary given Matui's theorem; not reviewed; no novelty claimed).	
+finite-index-in-a-kernel-fg-near-host-passes-both-germ-gates	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).	
+finite-index-odometer-near-shift-groups-germ-gate-proof		
+finite-index-odometer-near-shift-groups-pass-the-germ-gate	**ESTABLISHED** by `finite-index-odometer-near-shift-groups-germ-gate-proof` (lane proof,	
+finite-k-graph-boundary-groupoid-standard-facts	**ESTABLISHED** (2026-09-18) by `finite-k-graph-standard-facts-proof` (lane proof, bh-groupoid; not independently reviewed). That proof derives item 1	
+finite-k-graph-full-groups-have-exponential-word-problem	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, inline below; not independently	
+finite-k-graph-standard-facts-proof		
+finite-nucleus-rsg-abelian-stabilizers-have-rank-one-germs	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).	
+finite-seed-telescope-hosts-are-full-contracting-rsgs	**ESTABLISHED** by `finite-seed-telescope-hosts-contracting-rsg-proof` (lane proof, elementary	
+finite-seed-telescope-hosts-contracting-rsg-proof		
+finite-state-li-coded-full-groups-have-exponential-word-problem	**ESTABLISHED** (lane proof, bh-g3-libridge 2026-09-18, inline below; not independently	
+finite-subgroups-of-full-cantor-groups-conjugacy-criterion-proof		
+finite-subgroups-of-full-cantor-groups-conjugacy-criterion	**ESTABLISHED** by `finite-subgroups-of-full-cantor-groups-conjugacy-criterion-proof`	
+finite-type-operad-groups-split-over-a-label-kernel		
+finitely-coded-cantor-actions-give-type-a-hosts	**ESTABLISHED** through `finitely-coded-cantor-actions-type-a-proof` (lane proof;	
+finitely-coded-cantor-actions-type-a-proof		
+finitely-coded-groupoid-unit-groups-are-residually-finite	**ESTABLISHED** (lane proof, bh-g3-libridge 2026-09-18, inline below; not independently	
+finitely-coded-unit-groups-act-residually-finitely		
+finitely-generated-linear-groups-satisfy-boone-higman-proof		
+finitely-generated-linear-groups-satisfy-boone-higman	**ESTABLISHED** by `finitely-generated-linear-groups-satisfy-boone-higman-proof`. It	 | **Adversarial check (2026-09-18, lane `bh-verify-linear`): PASS**, in |   `R = F_p[s_1..s_k]`. Its route and new nodes PASS in | `fp-self-similar-subgroups-satisfy-permutational-boone-higman` (a), has PASS in
+finitely-generated-weakly-branch-group-embeds-in-thompson-v	**OPEN** (stated positively; the source expects a negative answer). C. Bodart,	
+fixed-base-finite-subgroups-cylinder-count-proof		
+fixed-base-finite-subgroups-satisfy-a-cylinder-count-congruence	**ESTABLISHED** by `fixed-base-finite-subgroups-cylinder-count-proof` (lane proof,	
+flip-codings-remove-the-sign-obstruction-for-iet-groups	**ESTABLISHED** (lane proofs, not reviewed). Items 1–3 are proved here. Item 4, the former open step, is proved in	
+forest-artin-groups-satisfy-permutational-boone-higman-proof		
+forest-artin-groups-satisfy-permutational-boone-higman	**ESTABLISHED** (route `forest-artin-groups-satisfy-permutational-boone-higman-proof`; lane proof, not independently reviewed). It inherits the status	
+fox-rational-section-fails-class-two-virtually	**ESTABLISHED** (lane proof below, elementary; not reviewed; no novelty claimed).	
+fp-almost-v-groups-fp-germ-groups-proof		
+fp-almost-v-groups-have-fp-germ-groups	**ESTABLISHED** by `fp-almost-v-groups-fp-germ-groups-proof` (lane proof, elementary; gq-referee-a PASS,	
+fp-annular-germ-groups-are-hnn-recursive	**ESTABLISHED** (lane proof, elementary given the cited inputs; not reviewed; no priority claimed).	
+fp-bieri-strebel-line-groups-are-deformation-rigid	**ESTABLISHED** through `bieri-strebel-line-rigidity-proof` (lane proof, elementary given the	
+fp-boolean-inverse-monoids-need-not-have-fp-full-groups		
+fp-decidable-group-whose-e-is-not-recursively-presented	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; elementary apart from Clapham's embedding theorem; not reviewed. MathOverflow 412219 had no answe	
+fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers	**REFUTED** (09-18, bh-free-19) by `v-and-a-homeomorphism-never-generate-a-free-product`:	
+fp-embeddability-index-set-is-sigma-3-complete		
+fp-embeddability-index-set-sigma-3-from-mihailova-hnn		
+fp-germ-extensions-locally-moving-bases-proof		
+fp-germ-extensions-of-locally-moving-bases-have-fp-germ-groups	**ESTABLISHED** by `fp-germ-extensions-locally-moving-bases-proof` (lane proof, elementary;	 | gq-referee-a PASS, `research/artifacts/gq-referee-a-fp-germ-extensions-of-locally-moving-bases-have-fp-germ-gr
+fp-groups-with-max-n-are-limits-of-isolated-groups	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed; it is the proof	
+fp-infinite-simple-group-not-two-generated		
+fp-infinity-soluble-groups-satisfy-permutational-bh-proof		
+fp-infinity-soluble-groups-satisfy-permutational-bh	**ESTABLISHED** by `fp-infinity-soluble-groups-satisfy-permutational-bh-proof` (lane	
+fp-metabelian-groups-satisfy-boone-higman		 | (lane `bh-metabelian`). **Independently reviewed: PASS** (`research/artifacts/review-metabelian-bh-2026-09-13.
+fp-piecewise-projective-groups-rigidity-criterion	**ESTABLISHED** through `piecewise-projective-rigidity-proof` (lane proof, elementary, not	
+fp-piecewise-projective-groups-specialize-to-algebraic-data	**ESTABLISHED** (lane proof, elementary given Tarski--Seidenberg; not reviewed). No priority is	
+fp-pl-groups-with-f-have-no-transcendental-support-endpoints	**ESTABLISHED** through `pl-transcendental-endpoint-non-fp-proof` (lane proof, elementary, not	
+fp-positive-l2-betti-groups-are-acylindrically-hyperbolic		
+fp-ray-near-actions-with-the-shift-exist		
+fp-rf-groups-embed-in-hnn-recursive-annular-germ-groups	**OPEN** (target; the design and the reduction are lane work, not reviewed).	
+fp-rf-groups-with-non-primitive-recursive-word-problem	**ESTABLISHED** as a literature answer. The main input is cited and was read at source:	
+fp-rsgs-have-fp-full-closures		
+fp-self-similar-groups-with-arbitrarily-hard-word-problem		
+fp-simple-group-containing-a-non-efrf-residually-finite-group		
+fp-simple-group-not-coarsely-embeddable-in-hilbert-space		
+fp-simple-group-of-finite-cohomological-dimension-above-two		
+fp-simple-group-with-commutator-width-at-least-two		
+fp-simple-group-with-kazhdan-subgroup-of-non-residual-centre		
+fp-simple-group-with-nonrecursive-mixed-identities		
+fp-simple-group-with-positive-first-l2-betti-number		
+fp-simple-group-with-pspace-complete-word-problem		
+fp-simple-groups-can-contain-infinite-finite-exponent-groups		
+fp-simple-groups-embed-in-fp-simple-mif-groups		
+fp-simple-groups-have-residually-finite-torsion	**OPEN**, stated in the refutation direction. Define	
+fp-simple-groups-have-the-joint-embedding-property		
+fp-simple-groups-with-arbitrarily-complex-word-problem		 |      by bh-free-02 (math PASS, e0faf3f03).
+fp-simple-kac-moody-lattices-are-highly-transitive		
+fp-simple-non-coarsely-embeddable-group-via-graphical-bh		
+fp-simple-nonexact-group-via-graphical-small-cancellation-bh		
+fp-simple-nonexact-group-via-nonexact-type-a-actor		
+fp-simple-nonexact-group		
+fp-simple-real-box-map-groups-are-not-universal-hosts	**ESTABLISHED** (lane proof, elementary given Tarski--Seidenberg; not reviewed). No priority is	
+fp-stabilizer-engines-need-decidable-vertex-groups	**ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; elementary; not reviewed).	
+fp-strongly-shift-similar-groups-have-fp-houghton-like-groups	**ESTABLISHED** (lane proof, elementary modulo the cited Mallery--Zaremsky facts and P. Hall's extension lemma;	
+fp-window-group-makes-shell-germ-group-fp	**ESTABLISHED** by `fp-window-group-shell-germ-proof` (lane proof, elementary, not	
+fp-window-group-shell-germ-proof		
+free-burnside-groups-satisfy-boone-higman		
+free-by-pbh-and-surface-by-pbh-groups-lie-in-type-a-class	**ESTABLISHED** (lane proof, elementary; not independently reviewed; no priority	 |   (`hyperbolic-groups-lie-in-the-permutational-class`, referees a and b PASS). So item 6
+free-by-virtually-free-groups-satisfy-boone-higman-proof		
+free-by-virtually-free-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof, not reviewed; route	
+free-centre-by-metabelian-bh-via-linearity		
+free-centre-by-metabelian-corner-kernel-is-the-torsion	**ESTABLISHED** (lane proof, inline; not independently reviewed). The one outside input	
+free-centre-by-metabelian-group-of-rank-two-is-linear	**ESTABLISHED** by `free-centre-by-metabelian-rank-two-linearity-proof` (lane proof,	
+free-centre-by-metabelian-group-of-rank-two-satisfies-pbh	**ESTABLISHED** by `free-centre-by-metabelian-rank-two-pbh-via-linearity` (lane proof,	
+free-centre-by-metabelian-groups-are-linear	**ESTABLISHED** by `free-centre-by-metabelian-linearity-via-gamma-seven-quotient`	
+free-centre-by-metabelian-groups-linear-iff-residually-finite		
+free-centre-by-metabelian-groups-satisfy-boone-higman		
+free-centre-by-metabelian-linear-modulo-exterior-square-kernel	**ESTABLISHED** (lane proof, elementary, inline below; not independently reviewed; no	
+free-centre-by-metabelian-linearity-via-gamma-seven-quotient		
+free-centre-by-metabelian-rank-two-linearity-proof		
+free-centre-by-metabelian-rank-two-pbh-via-linearity		
+free-crossed-leavitt-k-gate-is-a-farrell-jones-instance	**ESTABLISHED** (lane proof, bh-algebra, a corollary of the route of	
+free-factor-system-stabilizers-distortion-citation		
+free-factor-system-stabilizers-distortion-dichotomy		
+free-group-boundary-shift-is-quantum-rigid	**ESTABLISHED** (lane proof, elementary; bh-invent-12, 2026-09-18; not independently reviewed; no	
+free-group-boundary-shift-rigidity-proof		
+free-group-boundary-shifts-are-quantum-rigid	**ESTABLISHED** through `free-group-boundary-shift-rigidity-proof` (lane bh-g2-fixedpoint-b,	
+free-group-coset-wreaths-satisfy-pbh-proof		
+free-group-coset-wreaths-satisfy-pbh	**ESTABLISHED** by `free-group-coset-wreaths-satisfy-pbh-proof` (lane proof, not	
+free-groups-have-no-pair-finite-actions-with-fg-stabilizers	**ESTABLISHED** (lane proof, elementary, not reviewed). No novelty claimed; the	
+free-kernel-extensions-stay-in-the-permutational-class-proof		
+free-kernel-extensions-stay-in-the-permutational-class	**ESTABLISHED** through `free-kernel-extensions-stay-in-the-permutational-class-proof`.	
+free-minimal-triangle-permutive-sft-exists		 | **Payoff.** By `permutive-triangle-sfts-are-quantum-rigid` (reviewed PASS), such an `Ω` is quantum rigid. Its
+free-minimal-zn-derived-full-groups-are-never-fp	**OPEN** (stated in the expected negative direction; the printed source asks whether	 | PASS) settles one family of free minimal `Z^d` actions. For `N = 1` the answer is
+free-permutational-products-preserve-pbh-proof		
+free-permutational-products-preserve-pbh	**ESTABLISHED** by `free-permutational-products-preserve-pbh-proof` (lane proof,	
+free-product-boundary-groupoids-carry-the-vertex-group-homology	**ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; elementary apart from the imported	
+free-product-finite-factor-contracting-rsg-proof		
+free-product-hom-orbit-faithfulness-proof		
+free-product-hom-orbits-of-relative-automorphisms-are-faithful	**ESTABLISHED** through `free-product-hom-orbit-faithfulness-proof`. Elementary lane	
+free-products-of-hyperbolic-groups-are-contracting-rsgs	**ESTABLISHED** by `hyperbolic-free-product-contracting-rsg-proof` (lane `bh-free-23`, lane	
+free-products-with-a-finite-factor-are-contracting-rsgs	**ESTABLISHED** by `free-product-finite-factor-contracting-rsg-proof` (lane `bh-free-23`,	
+free-products-with-z-inherit-m2-from-universal-points		
+free-shift-houghton-envelopes-local-stability-proof		 | Lane proof. Referee a PASS (`research/artifacts/gq-referee-a-free-shift-houghton-envelopes-and-regular-enumera
+free-shift-houghton-like-envelopes-are-not-fp	**ESTABLISHED** by `free-shift-houghton-envelopes-local-stability-proof`, a lane proof that is elementary.	 | Referee a PASS (`research/artifacts/gq-referee-a-free-shift-houghton-envelopes-and-regular-enumerations.md`, |    `regular-enumerations-can-make-near-shift-free-product` (refereed PASS, afbbd1818).
+free-times-z-carries-a-minimal-free-sft		
+fsym-by-odometer-group-on-the-integers-is-fp-proof		
+fsym-by-odometer-group-on-the-integers-is-fp	**ESTABLISHED** by `fsym-by-odometer-group-on-the-integers-is-fp-proof` (lane proof, elementary given the cited	
+fsym-containing-fp-groups-are-pinned-by-finitely-many-equations	**ESTABLISHED** (lane proof, elementary, written inline; not independently reviewed; no priority claimed — the	
+fsym-extensions-lift-fp-via-pair-transitive-stable-subgroups	**ESTABLISHED** (lane proof, elementary, proved below; not independently reviewed; no priority claimed).	
+full-corner-copies-of-q-force-central-rational-scalars	**ESTABLISHED** (lane proof, elementary, inline below; not reviewed; no novelty claimed —	
+full-group-label-length-bounds-distortion	**ESTABLISHED** (lane proof below, elementary, not independently reviewed; no priority claimed, the	
+full-shift-topological-full-group-is-residually-finite-proof		
+full-shift-topological-full-group-is-residually-finite	**ESTABLISHED** by `full-shift-topological-full-group-is-residually-finite-proof` (lane proof,	
+full-shift-topological-full-groups-are-torsion-locally-finite	**ESTABLISHED** (lane proof by `bh-free-06`; not independently reviewed). No	
+fw-inputs-admit-no-twisted-normalizing-genuine-shell-action	**ESTABLISHED** by `fw-twisted-normalizing-shell-action-proof` (lane proof, elementary;	 | gq-referee-a PASS for finitely generated `P`, `research/artifacts/gq-referee-a-fw-inputs-admit-no-twisted-norm
+fw-inputs-pass-window-zero-only-via-proper-self-embeddings-proof		
+fw-inputs-pass-window-zero-only-via-proper-self-embeddings	**ESTABLISHED** by `fw-inputs-pass-window-zero-only-via-proper-self-embeddings-proof`. Lane proof, elementary modulo the Delorme–Guichardet theorem 	
+fw-twisted-normalizing-shell-action-proof		
+fw-window-zero-descending-sign-forces-trivial-core	**ESTABLISHED** by `fw-window-zero-descending-sign-proof` (lane proof, elementary, not	
+fw-window-zero-descending-sign-proof		
+g-free-z-acts-locally-faithfully-on-horofunction-boundary	**ESTABLISHED** (lane proof below, elementary, not independently reviewed).	
+garside-decorated-groupoids-hide-artin-groups-in-isotropy	**ESTABLISHED** (lane proof, elementary, not reviewed). This corrects the same	
+garside-odometer-groups-have-simple-finite-index-commutator	**REFUTED** (2026-09-18, by the same lane) by	
+generic-shells-have-infinitely-generated-singular-ideals	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+genuine-action-shell-envelopes-generalize-the-regular-shell	**ESTABLISHED** by `genuine-action-shell-generalization-proof`	
+genuine-action-shell-generalization-proof		
+germ-host-class-closed-under-sectioned-ascending-hnns	**ESTABLISHED** (lane proof `germ-host-class-hnn-closure-proof`; not reviewed; no priority	
+germ-host-class-hnn-closure-proof		
+germ-hosts-contain-no-free-finite-state-tree-groups	**ESTABLISHED** (lane proof below; the only literature input is Sidki's theorem, cited and	
+germ-rate-homomorphism-test-proof		
+germ-rate-homomorphism-tests-germ-extension-finiteness	**ESTABLISHED** by `germ-rate-homomorphism-test-proof` (lane proof, elementary, not	
+germ-steinberg-algebras-over-v-are-fg-central-simple	**ESTABLISHED** (lane proof, elementary given the cited inputs, not reviewed; no priority	
+gl-n-f2t-bh-via-horner-resolvent-leavitt-tensor		
+gl-n-f2t-embeds-in-fp-simple-group		
+gl-n-q-embeds-in-fp-simple-group		
+graded-renormalization-gives-ternary-toeplitz-factor-proof		
+graded-renormalization-gives-ternary-toeplitz-factor	**ESTABLISHED** by `graded-renormalization-gives-ternary-toeplitz-factor-proof` (lane proof, bh-free-01,	
+graph-houghton-bh-via-eventually-rigid-g-automorphisms		
+graph-houghton-groups-embed-in-eventually-rigid-g-automorphisms	**ESTABLISHED** (lane proof, elementary given one cited theorem; not reviewed; no priority claimed).	
+graph-houghton-groups-satisfy-boone-higman		
+graphical-small-cancellation-inputs-satisfy-boone-higman		
+grigorchuk-fp-amenable-group-boone-higman-proof		
+grigorchuk-fp-amenable-group-satisfies-boone-higman	**ESTABLISHED** (lane proof, `grigorchuk-fp-amenable-group-boone-higman-proof`; not	
+grigorchuk-group-embeds-in-fp-residually-finite-group		
+grigorchuk-groups-lie-in-one-point-germ-extensions-of-v	**ESTABLISHED** (lane proof below, elementary apart from the cited Bieri–Strebel theorem; not	
+grigorchuk-supergroup-fp-amenable-hnn-satisfies-boone-higman	**ESTABLISHED** (lane proof below; elementary; not reviewed; no priority claimed).	
+group-algebras-embed-in-shell-essential-algebras	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+groupoid-lifts-of-central-extensions-need-no-invariant-measure	**ESTABLISHED** (lane proof, elementary, not reviewed). No priority claimed.	
+gupta-torsion-element-survives-modulo-gamma-seven-citation		
+gupta-torsion-element-survives-modulo-gamma-seven		
+hall-quotient-avoids-v-circle-groups-and-periodic-ends	**ESTABLISHED** (lane `bh-solvable`, lane proof). Part 1 uses Higman's theorem, read at	
+hard-self-similar-groups-via-self-similar-kms-modules		
+hard-slope-thompson-groups-have-no-piecewise-projective-hosts	**ESTABLISHED** (lane proof, not reviewed; a two-line combination of the required nodes).	
+height-two-bs-tower-is-not-residually-finite	**ESTABLISHED** (elementary; no novelty claimed; not yet refereed).	
+higman-chain-configuration-reduction-proof		
+higman-chain-group-pbh-iff-chain-configuration	**ESTABLISHED** by `higman-chain-configuration-reduction-proof` (lane proof, not reviewed;	
+higman-closure-theorems-inapplicable-proof		
+higman-group-embeds-in-no-lodha-moore-or-monod-group	**ESTABLISHED** (corollary; lane proof, not independently reviewed). It adds no	
+higman-group-satisfies-boone-higman		
+higman-images-in-brick-hosts-have-iterated-log-growth	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority	
+hnn-extensions-split-over-their-vertex-group-via-the-double	**ESTABLISHED** (elementary; no novelty claimed for item 1, which is standard Bass--Serre theory;	
+hnn-stages-add-no-complexity-beyond-edge-distortion	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed). Item 5(c) uses a	
+homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers	**ESTABLISHED** (lane proof, elementary, not reviewed). No novelty claimed: dense free	
+homeomorphism-group-mixed-identities-depend-only-on-closure	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; elementary plus Tarski–Seidenberg; not reviewed; no priority claimed. Part 2 is also known thro	
+homogeneous-conjugation-invariants-vanish-on-bs-bases	**ESTABLISHED** by `homogeneous-invariants-vanish-on-bs-bases-proof` (lane proof,	
+homogeneous-invariants-vanish-on-bs-bases-proof		
+horner-resolvent-leavitt-tensor-k1-k2-vanish		
+houghton-groups-embed-in-thompson-v-proof		
+houghton-groups-embed-in-thompson-v	**ESTABLISHED** through `houghton-groups-embed-in-thompson-v-proof` (elementary; not	
+houghton-like-envelope-fp-pins-the-enumeration-by-near-relators	**ESTABLISHED** (lane proof, bh-free-48, not independently reviewed, no priority claimed). The proof is below.	
+houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group	**ESTABLISHED** by `houghton-like-germ-groups-are-index-zero-products-proof`. This is a lane proof. Its inputs are elementary, plus two Σ-invariant i	 | *Referee a PASS for items 1–4 (`research/artifacts/gq-referee-a-houghton-like-envelopes-have-fp-germs-iff-fp
+houghton-like-envelopes-lift-finite-presentation-from-germs	**REFUTED** by `free-shift-houghton-like-envelopes-are-not-fp` item 4 (lane proof, bh-map 2026-09-18). Counterexample: `G = E_nu(Z)` with a free-shift	
+houghton-like-explicit-presentation-from-fp-g-proof		
+houghton-like-fp-spectrum-is-closed-under-multiplication	**ESTABLISHED** (lane proof, written inline, elementary given the cited nodes and Mallery--Zaremsky	
+houghton-like-germ-groups-are-index-zero-products-proof		
+houghton-like-groups-are-strongly-shift-similar	**ESTABLISHED** by `houghton-like-groups-strongly-shift-similar-citation` (citation import, read at source). Referee b PASS	
+houghton-like-groups-strongly-shift-similar-citation		
+hyperbolic-free-product-contracting-rsg-proof		
+hyperbolic-groups-have-fg-subgroups-with-two-double-cosets	**ESTABLISHED** (lane proof; not reviewed; no priority claimed).	
+hyperbolic-groups-in-b-a-proof		
+hyperbolic-groups-lie-in-the-permutational-class	**ESTABLISHED** by `hyperbolic-groups-in-b-a-proof` (lane proof: a read-off from a literature	 | proof plus landed closure nodes). Referee a (proof gaps): PASS, | nit N1 applied. Referee b (citations): PASS,
+hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups		
+hyperbolic-groups-undistortedly-embed-in-fp-simple-groups	**ESTABLISHED** by `hyperbolic-undistorted-fp-simple-embedding-proof` (lane proof, not independently	
+hyperbolic-kac-moody-lattices-are-torsion-locally-finite		
+hyperbolic-kac-moody-torsion-lf-proof		
+hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity	**ESTABLISHED** (lane proof `bh-free-06`; it applies `wreath-recursion-thompson-groups-inherit-fn`	
+hyperbolic-undistorted-fp-simple-embedding-proof		
+imprimitive-braid-groups-b-e-e-n-lie-in-the-pbh-class-proof		
+imprimitive-braid-groups-b-e-e-n-lie-in-the-pbh-class	**ESTABLISHED** through `imprimitive-braid-groups-b-e-e-n-lie-in-the-pbh-class-proof`.	
+infinite-kazhdan-group-in-wobbling-group-of-product-of-trees		
+infinite-shift-higman-compiler		
+infinite-shift-similar-groups-need-not-be-strongly-shift-similar	**ESTABLISHED** (lane proof, elementary, below; not independently reviewed; no priority claimed). A bounded	
+integral-affine-halving-stabilizers-are-finitely-generated	**ESTABLISHED** (lane proof, not reviewed). It uses two classical inputs, recalled and not	
+integral-affine-splitting-types-have-finitely-many-tuple-orbits	**ESTABLISHED** (lane proof, not reviewed; elementary).	
+integral-affine-structure-group-is-finitely-presented	**ESTABLISHED** (lane proof, not reviewed; elementary). No priority claimed.	
+integral-counting-group-avoids-leavitt-linear-simple-hosts	**ESTABLISHED** (route `integral-counting-group-hosts-proof`; lane proof by bh-free-26,	
+integral-counting-group-hosts-proof		
+integral-linear-one-host-via-elementary-shift-group		
+integral-linear-one-host-via-fp-elementary-thompson-group		
+integral-linear-one-host-via-twisted-integral-affine-full-group		
+interval-exchange-pl-groups-act-with-type-a-on-breakpoints	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).	
+interval-spherical-brown-criterion-proof		
+interval-spherical-brown-criterion	**ESTABLISHED** by `interval-spherical-brown-criterion-proof` (lane proof, assembling the	 | `abstract-twisted-bt-type-fn-colored-stein-proof`). Referee c (independent second pass): **PASS**, | Referee b (citations): **PASS** (68ed8a399), with Brown 1984 unread at source. It is a variant of Brown's
+irreducible-jnc-tree-lattices-pbh-via-bader-shalom		
+irreducible-tree-lattices-with-jnc-closures-are-pbh	**ESTABLISHED** through `irreducible-jnc-tree-lattices-pbh-via-bader-shalom`	
+katsura-one-vertex-actions-are-odometers-proof		
+katsura-one-vertex-actions-are-odometers	**ESTABLISHED** through `katsura-one-vertex-actions-are-odometers-proof`. Lane proof (bh-cool), elementary, not	
+kazhdan-almost-v-central-v-elements-proof		
+kazhdan-central-aperiodic-parts-in-2v-carry-no-measure	**ESTABLISHED** (lane proof, elementary from the required nodes; not reviewed; no	
+kazhdan-central-elements-of-2v-have-slope-free-periodic-points	**ESTABLISHED** (lane proof, elementary given Farley's theorem; not reviewed; no	
+kazhdan-groups-avoid-full-groups-of-subexponential-actions	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed; no priority claimed).	
+kazhdan-inputs-need-one-ended-nonamenable-wobbling-scaffolds	**ESTABLISHED** (lane proof, bh-gate-u-wobble; elementary except the cited facts; not reviewed; no priority	
+kazhdan-simple-groups-act-only-on-exotic-2d-buildings	**ESTABLISHED** for items 1–3, given the cited imports. Lane proof, elementary; not reviewed; no priority	
+kazhdan-subgroups-of-almost-v-have-no-central-v-elements	**ESTABLISHED** by `kazhdan-almost-v-central-v-elements-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-ge	 | from landed nodes plus the revealing-pair structure of elements of `V`; gq-referee-b PASS, research/artifacts/
+kazhdan-subgroups-of-brin-thompson-groups-are-finite		
+kazhdan-subgroups-of-brin-thompson-groups-have-finite-center		
+kazhdan-subgroups-of-fp-simple-groups-can-have-infinite-centre	**ESTABLISHED** (lane proof, elementary; the Kazhdan property of the real Jacobi group is recalled, not re-read at source; no priority claimed).	
+khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts		
+km-building-open-subgroups-have-infinite-bi-index	**ESTABLISHED** through `km-building-open-subgroups-bi-index-proof`. Checked once by the	
+km-building-open-subgroups-have-infinite-ht-orbits	**ESTABLISHED** through `km-building-open-ht-orbits-from-bi-index-proof`. Checked once by the	
+km-negative-completion-building-open-dichotomy-proof		
+km-negative-completion-building-open-dichotomy	**ESTABLISHED** through `km-negative-completion-building-open-dichotomy-proof` (lane	
+kms-central-configurations-transient-proof		
+kms-configuration-modules-carry-self-similar-structures	**REFUTED** (09-18, bh-free-25, the author of this node) by	
+kms-configuration-modules-have-trivial-coinvariants	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+kms-self-similarity-must-make-central-configurations-transient	**ESTABLISHED** by `kms-central-configurations-transient-proof` (lane proof, elementary	
+kojima-sheng-two-generator-torsion-criterion-fails-in-v	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+kourovka-7-19-explicit-fp-simple-group-with-non-pr-word-problem		
+kourovka-7-19-via-hard-type-a-actor		
+kourovka-7-19-via-small-cancellation-bh		
+labbe-tiles-admit-periodic-quantum-tilings-at-every-scale		 |   - *General lesson* (gq-referee-a PASS, 834cfa8c3).
+lagrangian-brin-thompson-group-is-finitely-presented		
+lagrangian-thompson-group-contains-deligne-lattice	**ESTABLISHED** (lane proof, not reviewed; textbook inputs on the Lagrangian	
+lagrangian-thompson-group-is-finitely-presented		
+lamp-digit-modules-give-self-similar-semidirect-products	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+lamp-wreath-representation-of-2609-01868-is-not-faithful	**ESTABLISHED** (lane proof below, elementary; source read at arXiv:2609.01868v1 main.tex; no priority	
+lamp-wreaths-over-cyclic-cosets-of-f2-lie-in-b-a	**ESTABLISHED** by `lamp-wreaths-over-cyclic-cosets-of-f2-proof` (lane proof, elementary; not	
+lamp-wreaths-over-cyclic-cosets-of-f2-proof		
+lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a	**ESTABLISHED** by `lamp-wreaths-over-psl2-tree-vertices-proof` (lane proof; not	
+lamp-wreaths-over-psl2-tree-vertices-proof		
+lamplighters-in-v-show-near-action-neatness-is-no-bh-obstruction	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed. Cornulier,	
+lampshuffler-bases-lift-no-shift-for-one-ended-inputs	**ESTABLISHED** (lane proof, elementary, proved below; not independently reviewed; no priority claimed).	
+last-section-ascending-hnns-embed-in-rover-nekrashevych-groups	**ESTABLISHED** (lane proof, elementary, written below; not reviewed; no priority	
+last-section-f-infinity-tail-bh-proof		
+leavitt-copy-centralizing-units-are-self-doubling	**ESTABLISHED** (lane proof, bh-gln-centralizer, elementary; not reviewed; no priority claimed).	
+leavitt-pair-unit-hosts-contain-their-own-squares	**ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; elementary; not independently	
+leavitt-resolvent-ring-has-two-sided-division	**ESTABLISHED** (lane proof, elementary, inline; not reviewed; no novelty claimed).	
+leavitt-square-unit-group-is-fp-simple-and-acyclic		
+leavitt-square-units-have-conp-parity-p-complete-word-problem		 | by bh-free-02 (math PASS, e0faf3f03, artifact
+leavitt-square-units-mod-p-complete-word-problem		
+leavitt-square-units-wp-complexity-proof		
+leavitt-stabilization-kernel-avoids-corner-and-index-subgroups	**ESTABLISHED** (lane proof, short corollaries of `leavitt-stabilization-kernels-are-one-step`	
+leavitt-steinberg-hosts-must-live-in-the-stabilization-kernel	**ESTABLISHED** (lane proof; not reviewed; no novelty claimed). Part 1 reuses the	
+leavitt-swindle-kills-deligne-center-in-ring-induced-hosts	**ESTABLISHED** through `symplectic-leavitt-swindle-proof`. Lane proof: elementary group	
+leavitt-tensor-k-theory-is-carried-by-nil-groups	**ESTABLISHED** (lane proof by bh-free-26, 2026-09-18, elementary apart from standard facts on	
+leavitt-tensor-unit-counting-cap-proof		
+leavitt-tensor-unit-groups-lie-in-the-permutational-class	**ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; not independently reviewed; no	
+leavitt-tensor-unit-word-problems-have-one-counting-quantifier	**ESTABLISHED** (route `leavitt-tensor-unit-counting-cap-proof`; lane proof by bh-free-26,	
+leavitt-tensors-of-2-power-completions-are-z-crossed-products	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed).	
+leavitt-unit-commuting-with-a-leavitt-copy-gives-q-in-units	**ESTABLISHED** (lane proof, bh-major-gln, elementary, not reviewed; no priority claimed).	
+lescure-kh-exact-sequence-for-algebraic-cuntz-pimsner-rings		
+li-coded-certificates-cannot-reach-hard-sft-hosts	**ESTABLISHED** (lane proof, bh-g3-libridge 2026-09-18, inline below; not independently	
+li-garside-criterion-fails-on-artin-monoid-omega-infinity	**ESTABLISHED** (lane proof, not reviewed). This is a record of why a route fails, not a	
+lift-ideal-membership-is-decided-along-paths-proof		
+lift-ideal-membership-is-decided-along-paths	**ESTABLISHED** by `lift-ideal-membership-is-decided-along-paths-proof` (lane proof by bh-free-02,	
+lift-presentability-is-invariant-under-level-regrouping-proof		
+lift-presentability-is-invariant-under-level-regrouping	**ESTABLISHED** by `lift-presentability-is-invariant-under-level-regrouping-proof` (lane proof, elementary; it	 | refereed; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping
+lift-presentable-groups-closed-under-products-and-wreaths	**ESTABLISHED** (lane proof below, elementary; uses Theorem A of	
+lift-presentation-passes-to-invariant-subalphabets-proof		
+lift-presentation-passes-to-invariant-subalphabets	**ESTABLISHED** by `lift-presentation-passes-to-invariant-subalphabets-proof` (lane proof by	
+lift-presented-automaton-groups-satisfy-boone-higman-proof		
+lift-presented-automaton-groups-satisfy-boone-higman	**ESTABLISHED** by `lift-presented-automaton-groups-satisfy-boone-higman-proof`	 | (lane proof, elementary given the cited inputs; no priority claimed). Referee a (proof gaps) PASS: `research/a
+lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map	**REFUTED** (full target) by `no-free-q-odd-action-by-v-has-a-doubling-intertwiner`: no single doubling element serves all odd q, so there is no Q ⋊	
+limit-groups-over-hyperbolic-bh-proof		
+limit-groups-over-hyperbolic-groups-satisfy-boone-higman	**ESTABLISHED** by `limit-groups-over-hyperbolic-bh-proof` (lane proof, not reviewed;	
+limit-set-escaping-forces-infinitely-many-double-cosets	**ESTABLISHED** (lane proof; elementary Gromov-hyperbolic estimates, inline; not	
+limits-of-isolated-groups-basic-closure	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed; the	
+linear-activity-automata-can-have-non-fp-nekrashevych-groups	**ESTABLISHED** (lane proof below, from `loop-retraction-forces-fp-eventual-section-groups`; no priority	 | claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persis
+linear-activity-odometer-automaton-has-fp-nekrashevych-group	**ESTABLISHED** (lane proof below via `relator-complexity-descent-gives-free-splitting`; no	 | Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.
+ln-completion-word-problem-reduces-to-base-algebra	**ESTABLISHED** through `ln-completion-word-problem-reduction-proof`.	
+ln-completions-of-noninjective-recursions-proof		
+local-lemma-cannot-certify-multiscale-recurrence		
+locally-moving-groups-first-l2-betti-proof		
+locally-moving-groups-have-vanishing-first-l2-betti-number	**ESTABLISHED** by `locally-moving-groups-first-l2-betti-proof` (lane proof, bh-free-13, 2026-09-18; not	
+locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions	**ESTABLISHED** (lane proof; not reviewed; no priority claimed).	
+lodha-moore-groups-embed-in-lodha-circle-group-proof		
+lodha-moore-groups-embed-in-lodha-circle-group	**ESTABLISHED** through `lodha-moore-groups-embed-in-lodha-circle-group-proof`. It rests on	
+lodha-moore-groups-with-quadratic-breakpoints-satisfy-bh		
+lodha-simple-circle-group-has-a-type-a-action	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).	
+lodha-simple-group-s-is-two-generated-proof		
+lodha-simple-group-s-is-two-generated	**ESTABLISHED** by `lodha-simple-group-s-is-two-generated-proof` (lane proof, bh-free-13, 2026-09-18; not	
+loop-braid-distortion-from-free-factor-systems-proof		
+loop-braid-groups-are-distorted-in-aut-free-groups	**ESTABLISHED** through `loop-braid-distortion-from-free-factor-systems-proof`. This is a lane proof: a short	
+loop-retraction-forces-fp-eventual-section-groups-proof		
+loop-retraction-forces-fp-eventual-section-groups	**ESTABLISHED** by `loop-retraction-forces-fp-eventual-section-groups-proof` (lane proof, elementary; it uses	 | arXiv:1712.05361 §5). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-ac
+lossless-monomial-recursions-give-simple-completions-proof		
+lossless-monomial-recursions-give-simple-completions	**ESTABLISHED** through `lossless-monomial-recursions-give-simple-completions-proof` (lane proof,	
+low-complexity-mapping-class-groups-are-continuous-automatic	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). Proof:	
+low-complexity-mcg-continuous-automatic-proof		
+m2-envelopes-via-free-product-with-z		
+mapping-class-groups-are-continuous-automatic	**OPEN** in general. Settled for low complexity; see below.	
+maslov-cantorizations-have-no-finite-dissection-type		
+maslov-no-finite-dissection-type-proof		
+master-route-needs-only-topological-freeness	**ESTABLISHED** (lane bh-g3-topfree, 2026-09-18; elementary audit of established nodes, not	
+mif-free-product-automorphism-ascending-hnn-is-pbh	**ESTABLISHED** through `mif-free-product-ascending-hnn-pbh-proof`. Not	
+mihailova-centralizing-hnn-extensions-embed-in-fp-simple-groups		
+minimal-dihedral-actions-in-brin-thompson-groups-are-free-proof		
+minimal-dihedral-actions-in-brin-thompson-groups-are-free	**ESTABLISHED** by `minimal-dihedral-actions-in-brin-thompson-groups-are-free-proof` (lane proof, elementary, not reviewed; no novelty claimed).	
+minimal-free-sft-via-minimal-self-simulation-of-squares		
+minimal-piecewise-full-group-derived-subgroup-is-simple		
+minimal-sfts-with-a-finite-modification-are-not-quantum-rigid		
+mixed-identities-encode-normal-closure-commutation	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+mixed-radix-prefix-replacement-groups-omit-baumslag-solitar	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+monomial-renormalization-compiler-gives-dilation-groups-in-nv	**ESTABLISHED** through `monomial-renormalization-compiler-proof`. Elementary lane proof	
+monomial-renormalization-compiler-proof		
+mosher-suffix-uniqueness-continuity-proof		
+mosher-suffix-uniqueness-gives-continuous-inverse-normal-forms	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed). Proof:	
+multi-ended-branch-actions-are-boundary-sandwiched	**ESTABLISHED** by `multi-ended-weakly-branch-actions-sandwich-proof`. For branch groups this is exactly Matte Bon–Nekrashevych–Zheng's "first key	
+multi-ended-weakly-branch-actions-sandwich-proof		
+mz-germ-finite-presentation-lifts-to-the-envelope		
+n-adic-lodha-moore-groups-embed-in-piecewise-projective-group		
+n-adic-lodha-moore-groups-have-no-analytic-tree-coding-proof		
+n-adic-lodha-moore-groups-have-no-analytic-tree-coding	**ESTABLISHED** through `n-adic-lodha-moore-groups-have-no-analytic-tree-coding-proof` (lane	
+negative-base-pisot-stein-groups-are-contracting-rsgs-proof		
+negative-base-pisot-stein-groups-are-contracting-rsgs	**ESTABLISHED** (route `negative-base-pisot-stein-groups-are-contracting-rsgs-proof`; lane proof, not reviewed; no	
+negative-base-pisot-stein-groups-are-finitely-presented	**ESTABLISHED** (lane proof, not reviewed; no priority claimed).	
+nekrashevych-fp-iff-cycle-germ-groups-fp-proof		
+nekrashevych-fp-iff-cycle-germ-groups-fp	**ESTABLISHED** by `nekrashevych-fp-iff-cycle-germ-groups-fp-proof` (lane proof, elementary; no priority	 | claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-nekrashevych-fp-iff-cycle-germ-groups-
+neumann-alternating-product-group-embeds-in-fp-rf-group		
+neumann-doubling-host-candidate	**ESTABLISHED** for the stated properties. **REFUTED as a host:** the host is not finitely	
+neumann-doubling-host-is-not-fp	**ESTABLISHED** (elementary; written inline by lane bh-free-59, not independently	
+neumann-group-is-locally-finite-by-z-and-not-fp	**ESTABLISHED** (elementary; written inline by lane bh-free-59, not independently	
+neumann-projective-host-candidate	**ESTABLISHED** for items (1)–(3). **REFUTED as a host:** `Γ_P` is not finitely presented, by the	
+no-free-q-odd-action-by-v-has-a-doubling-intertwiner	**ESTABLISHED** (lane proof, bh-free-30, 09-18; elementary; not reviewed; no priority claimed).	
+no-homeomorphism-shifts-odd-denominator-translations	**ESTABLISHED** (lane proof, not reviewed; elementary; no priority claimed).	
+no-homeomorphism-shifts-primes-acting-as-l-adic-scalars	**ESTABLISHED** (lane proof, not reviewed). No priority claimed. One deep input, recalled and	
+no-nontrivial-germ-is-shift-conjugate-to-a-proper-power	**ESTABLISHED** (lane proof, elementary, below; not independently reviewed; no priority claimed).	
+non-elementary-hyperbolic-groups-are-contracting-rsgs		
+non-exact-group-with-polytime-word-problem-exists		
+non-fp2-groups-are-quasi-retracts-of-simple-groups-proof		
+non-fp2-groups-are-quasi-retracts-of-simple-groups	**ESTABLISHED** by `non-fp2-groups-are-quasi-retracts-of-simple-groups-proof`	
+non-lcm-dissection-operad-groups-are-f-infinity		
+non-spanning-subsets-of-an-f2-space-are-highly-connected	**ESTABLISHED** (lane proof from standard results, recalled and not re-read: the Nerve	
+nonamenable-products-have-minimal-sft-extensions-of-free-inputs		
+nonfibered-closed-graph-manifold-groups-satisfy-pbh		
+nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups	**ESTABLISHED** (lane proof, elementary given one cited theorem; not independently	
+noninjective-ln-completions-have-self-similar-bases	**ESTABLISHED** through `ln-completions-of-noninjective-recursions-proof` (lane proof, bh-algebra,	
+nonorientable-surface-word-stabilizers-infinite-double-cosets	**ESTABLISHED** (lane proof, same counting method as the orientable node; not	
+nonrecursive-a2-kernel-makes-e-of-wreath-not-rec-presented		
+norm-minus-one-sturmian-jm-groups-satisfy-boone-higman-proof		
+norm-minus-one-sturmian-jm-groups-satisfy-boone-higman	**ESTABLISHED** (route `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman-proof`; lane	
+normal-germ-extensions-finite-kazhdan-proof		
+normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups	**ESTABLISHED** by `normal-germ-extensions-finite-kazhdan-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-	 | landed nodes; gq-referee-b PASS, research/artifacts/gq-referee-b-kazhdan-almost-v-central-and-normal-germ-exte
+nv-periodic-groups-via-graded-renormalization		
+nv-periodic-groups-via-schreier-subshift-factors		
+nv-realizable-systems-closed-under-kakutani-equivalence	**ESTABLISHED** (lane proofs below, elementary; not reviewed; no novelty claimed).	
+odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators	**ESTABLISHED** (lane proof, bh-free-30, 09-18; elementary, every identity is checked below; not reviewed; no priority claimed).	
+odd-smart-induced-map-has-height-m-renormalization	**ESTABLISHED** (lane bh-free-18, lane proof, not reviewed). It follows the refereed `m = 3` proof	 | - **Independent hand check** by bh-refute: PASS, not a referee report
+odd-smart-machines-have-exact-m-fold-moves	**ESTABLISHED** (lane bh-free-18, elementary lane proof, not reviewed). No priority claimed: two	
+odometer-2v-orbit-action-is-type-a	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).	
+odometer-conjugation-realizes-the-shell-shift-proof		
+odometer-conjugation-realizes-the-shell-shift	**ESTABLISHED** by `odometer-conjugation-realizes-the-shell-shift-proof` (lane proof, elementary, not independently reviewed, no priority claimed).	
+odometer-generators-carry-no-nonsolvable-baumslag-solitar-proof		
+odometer-generators-carry-no-nonsolvable-baumslag-solitar	**ESTABLISHED** through `odometer-generators-carry-no-nonsolvable-baumslag-solitar-proof`. Lane proof (bh-cool),	
+odometer-houghton-like-groups-are-finitely-presented		
+odometer-kernel-preimage-is-strongly-shift-similar-proof		
+odometer-kernel-preimage-is-strongly-shift-similar	**ESTABLISHED** by `odometer-kernel-preimage-is-strongly-shift-similar-proof` (lane proof, elementary given the	
+odometer-lift-central-extensions-of-v-subgroups-into-2v-tau	**ESTABLISHED** (lane proof, elementary, not reviewed). No priority is claimed; the	
+odometer-stable-twists-are-unipotent-mod-two-proof		
+odometer-stable-twists-are-unipotent-mod-two	**ESTABLISHED** by `odometer-stable-twists-are-unipotent-mod-two-proof` (lane proof, elementary, not independently reviewed, no priority claimed).	
+oligomorphic-fp-infinity-actor-without-thompson-f		
+oligomorphic-operads-have-f-infinity-groups	**OPEN** (conjecture, lane bh-invent-07, 2026-09-18). Proposed as the operadic finiteness engine for	 |      (bh-typeA-universal; referee a PASS, second pass pending).
+once-punctured-mcg-continuous-asynchronous-proof		
+once-punctured-mcg-is-lipschitz-retract-of-out-free		
+once-punctured-mcg-lipschitz-retract-citation		
+once-punctured-mcgs-are-continuous-asynchronous-automatic	**ESTABLISHED** (lane proof, not reviewed; no priority claimed), modulo the cited	
+one-ended-near-regular-actions-have-a-realization-defect-proof		
+one-ended-near-regular-actions-have-a-realization-defect	**ESTABLISHED** by `one-ended-near-regular-actions-have-a-realization-defect-proof`. This is a lane proof: elementary, not independently reviewed, wit	
+one-ended-schreier-orbits-force-index-zero-proof		
+one-ended-schreier-orbits-force-index-zero	**ESTABLISHED** by `one-ended-schreier-orbits-force-index-zero-proof`. Lane proof, elementary, not independently reviewed, no priority claimed. The en	
+one-fp-simple-group-contains-every-brin-thompson-subgroup-proof		
+one-fp-simple-group-contains-every-brin-thompson-subgroup	**ESTABLISHED** (route `one-fp-simple-group-contains-every-brin-thompson-subgroup-proof`;	
+one-fp-simple-group-contains-every-integral-linear-group	**ESTABLISHED** (lane proof, not reviewed; load-bearing, referee review requested) via route	
+one-fp-simple-group-contains-every-s-integral-linear-group	**ESTABLISHED** (lane proof, not reviewed; load-bearing, referee review requested) by route	
+one-relator-groups-satisfy-boone-higman		
+open-boundary-fixers-fix-balls-proof		
+open-euclidean-artin-types-resist-garside-normal-form-routes	**ESTABLISHED** as a status and obstruction record (lane bh-artin, 2026-09-18; the mathematical content is elementary or cited, not independently revi	
+ore-operad-groups-contain-the-derived-full-group	**ESTABLISHED** (lane bh-free-54, 2026-09-18), modulo Matui's normal-subgroup theorem.	
+ore-operad-groups-have-type-a-clopen-actions	**ESTABLISHED** (lane bh-free-54, 2026-09-18). Lane proof below, not independently	
+osajda-decidable-nonexact-group-satisfies-boone-higman		
+out-ct-p-z-is-c2	**ESTABLISHED** (lane proof, not reviewed). No priority is claimed.	
+out-ct-z-is-c2-iff-normalizers-are-somewhere-affine		
+out-ct-z-is-c2	**ESTABLISHED** (lane proof, not reviewed). No priority is claimed.	
+out-free-double-coset-finite-subgroups-have-dense-limit-sets	**ESTABLISHED** for items 1 and 3 (lane proof; not reviewed; no priority	
+out-free-groups-satisfy-boone-higman		
+out-free-groups-virtually-embed-in-aut-free-groups		
+out-free-pair-finite-stabilizers-contain-fully-irreducibles	**ESTABLISHED** (lane proof, elementary given the cited inputs; not reviewed; no	
+path-folded-sft-rigidity-pullback-proof		
+path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is	**ESTABLISHED** through `path-folded-sft-rigidity-pullback-proof` (lane bh-g2-fixedpoint-b,	
+path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid	**OPEN** (posed by bh-g2-fixedpoint-b, 2026-09-18).	
+pbh-amalgams-over-centralizer-separated-edges	**ESTABLISHED** by `pbh-centralizer-separated-edges-proof` (lane proof, elementary	
+pbh-centralizer-amalgam-closure-proof		
+pbh-centralizer-amalgam-via-theorem-e-proof		
+pbh-centralizer-separated-edges-proof		
+pbh-class-closed-under-centralizer-amalgams	**ESTABLISHED** by `pbh-centralizer-amalgam-closure-proof` and, independently of the	
+pbh-class-closed-under-common-retract-amalgams		 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS (Steps 0--4 re-derive
+pbh-class-closed-under-graph-products	**ESTABLISHED** through `pbh-graph-product-closure-proof`. Re-verified end to	
+pbh-closed-under-decidable-permutational-wreaths		
+pbh-closed-under-finite-edge-graphs-of-groups		
+pbh-closed-under-permutational-wreaths-with-infinite-stabilizers		
+pbh-coset-closure-passes-to-finite-index-overgroups	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+pbh-coset-condition-finite-index-overgroups-proof		
+pbh-coset-condition-passes-to-finite-index-overgroups	**ESTABLISHED** by `pbh-coset-condition-finite-index-overgroups-proof` (lane proof,	
+pbh-coset-wreath-subgroups-closure-properties-proof		
+pbh-coset-wreath-subgroups-closure-properties	**ESTABLISHED** by `pbh-coset-wreath-subgroups-closure-properties-proof` (lane proof,	
+pbh-coset-wreaths-iff-identity-edge-hnns-proof		
+pbh-coset-wreaths-iff-identity-edge-hnns	**ESTABLISHED** by `pbh-coset-wreaths-iff-identity-edge-hnns-proof` (lane proof, not	
+pbh-finite-edge-closure-equivalences-proof		
+pbh-finite-edge-closure-equivalences	**ESTABLISHED** by `pbh-finite-edge-closure-equivalences-proof` (lane proof, not reviewed;	
+pbh-full-cantor-hosts-proof		
+pbh-graphs-of-groups-over-realized-good-edges	**ESTABLISHED** by `pbh-graphs-of-groups-realized-good-edges-proof` (lane proof, not	
+pbh-graphs-of-groups-realized-good-edges-proof		
+pbh-via-degree-monoid-boundary-full-groups	**ESTABLISHED** (lane proof, not reviewed). The proof is the argument of	
+pbh-wreath-closure-fails-over-undecidable-stabilizers	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+perfect-decidable-inputs-have-fp-shell-envelopes		
+perfect-subgroup-local-triviality-proof		
+perfect-subgroups-are-locally-trivial-in-abelian-germ-hosts	**ESTABLISHED** by `perfect-subgroup-local-triviality-proof` (lane proof, elementary apart	
+periodic-dense-sft-hosts-have-only-thompson-simple-subgroups	**ESTABLISHED** through `periodic-dense-sft-hosts-restriction-proof` (lane proof, elementary; not	
+periodic-dense-sft-hosts-restriction-proof		
+periodic-germ-extensions-of-v-are-virtually-simple-proof		
+periodic-germ-extensions-of-v-are-virtually-simple	**ESTABLISHED** by `periodic-germ-extensions-of-v-are-virtually-simple-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/gq-refe	
+periodic-k-graph-subgroups-with-ray-cocycle-are-finite	**ESTABLISHED** (lane proof, elementary, not reviewed). No imported theorems. No	
+permutational-boone-higman-iff-dense-cantor-actors	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed — it	
+permutational-boone-higman-iff-full-cantor-hosts	**ESTABLISHED** by `pbh-full-cantor-hosts-proof` (lane proof, elementary, assembling	
+perron-recovers-free-group-boundary-full-groups	**ESTABLISHED** (lane proof; a direct calibration of	
+perron-substitution-finiteness-for-garside-full-groups	**ESTABLISHED** through `perron-substitution-finiteness-proof` (lane proof; it uses	
+perron-substitution-finiteness-proof		
+persistent-hosts-build-the-input-from-its-carries-proof		
+persistent-hosts-build-the-input-from-its-carries	**ESTABLISHED** by `persistent-hosts-build-the-input-from-its-carries-proof` (lane proof, elementary,	
+persistent-subexponential-automata-generate-finite-groups	**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-lin	
+piecewise-canonical-permutations-are-transposition-products	**ESTABLISHED** (lane proof, not reviewed). It is elementary: it uses only the Chinese	
+piecewise-projective-rigidity-proof		
+piecewise-translation-z2-enumerations-are-not-fp	**ESTABLISHED** (lane proof, written inline, not independently reviewed, no priority claimed). It proves the	
+pinned-annular-passengers-are-class-functions-of-the-driver	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+pinned-passengers-collapse-when-the-shifted-system-is-solvable	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+pisot-box-exchange-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof, not reviewed; no priority claimed; inputs as in	
+pisot-interval-exchange-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof, a corollary of `pisot-stein-groups-are-contracting-rsgs`, whose inputs it inherits;	
+pisot-stein-groups-are-contracting-rsgs-proof		
+pisot-stein-groups-are-contracting-rsgs	**ESTABLISHED** (route `pisot-stein-groups-are-contracting-rsgs-proof`; lane proof, not reviewed; no priority	 | claimed). Referee-c: PASS with fixes (d1081f87a), fixes applied.
+pisot-unit-slope-stein-groups-are-finitely-presented	**ESTABLISHED** (lane proof, not reviewed; no priority claimed). Inputs:	
+pl-transcendental-endpoint-non-fp-proof		
+plane-constant-simulation-computation-layers-are-quantum-rigid		
+pointed-cube-categories-are-li-garside-categories	**ESTABLISHED** through `pointed-cube-categories-li-garside-proof` (lane proof,	
+pointed-cube-categories-li-garside-proof		
+polynomial-automata-reduce-to-cycling-relators	**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-od	
+polytime-non-exact-group-via-decodable-labellings		
+positive-char-polynomial-affine-groups-are-self-similar		 | reviewed.~~ *Reviewed:* PASS in `research/artifacts/review-metabelian-bh-2026-09-13.md`
+power-map-free-mapping-tori-satisfy-permutational-boone-higman	**ESTABLISHED** through `power-map-free-mapping-tori-pbh-proof`. Not	
+prefix-replacement-actions-recode-into-germ-extensions-of-v	**ESTABLISHED** (lane proof, elementary apart from the two imports named below; not	
+prime-field-leavitt-square-units-mod-p-proof		
+prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre		
+primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple	**ESTABLISHED** (2026-09-18). The proof `primitive-two-graph-fp-simple-embedding-proof` is complete: its last open input, `finite-k-graph-boundary-gro	
+product-of-simple-groups-type-a-actions-come-from-factors	**ESTABLISHED** (lane proof, elementary; not independently reviewed; no priority	
+product-of-trees-lattices-satisfy-permutational-boone-higman		
+product-subgroups-lie-in-cr-when-goursat-quotient-in-b-a	**ESTABLISHED** by `product-subgroups-lie-in-cr-when-goursat-quotient-proof` (lane proof;	
+product-subgroups-lie-in-cr-when-goursat-quotient-proof		
+product-substitution-full-groups-satisfy-boone-higman-proof		
+product-substitution-full-groups-satisfy-boone-higman	**ESTABLISHED** by `product-substitution-full-groups-satisfy-boone-higman-proof`	
+products-of-hyperbolic-groups-qi-embed-in-fp-simple-groups	**ESTABLISHED** by `qi-permutational-class-products-and-finite-extensions-proof` (lane proof, formal on top	
+profinite-product-full-groups-have-no-fg-simple-hosts	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+profinite-translation-hosts-preserve-levels	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+pspace-fp-simple-via-lift-presented-automaton-overgroups		
+pure-braid-groups-embed-in-raags		
+q-difference-lamplighter-is-not-quasi-linear	**ESTABLISHED** (lane `bh-solvable`, lane proof, elementary; not independently	
+q-difference-lamplighter-satisfies-boone-higman		
+q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding	**ESTABLISHED** (lane proof, bh-free-30, 09-18; elementary; not reviewed; no priority claimed). Notation as in `odd-roots-of-the-2v-tau-odometer-have-	
+qi-permutational-class-products-and-finite-extensions-proof		
+quadratic-breakpoint-psl2z-groups-satisfy-boone-higman-proof		
+quadratic-breakpoint-psl2z-groups-satisfy-boone-higman	**ESTABLISHED** by `quadratic-breakpoint-psl2z-groups-satisfy-boone-higman-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/gq-	
+quadratic-interval-exchange-full-groups-satisfy-boone-higman		
+quadratic-rectangle-exchange-groups-satisfy-boone-higman-proof		
+quadratic-rectangle-exchange-groups-satisfy-boone-higman	**ESTABLISHED** by `quadratic-rectangle-exchange-groups-satisfy-boone-higman-proof`	
+quadratic-rotation-iet-groups-satisfy-boone-higman-proof		
+quadratic-rotation-iet-groups-satisfy-boone-higman	**ESTABLISHED** by `quadratic-rotation-iet-groups-satisfy-boone-higman-proof` (lane	 | **Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, f
+quantum-family-representations-are-exhausted-at-rigidity		
+quantum-rigid-sfts-over-products-have-a-single-free-branch		
+quantum-rigidity-is-product-stable	**ESTABLISHED** through `quantum-rigidity-product-stability-proof` (lane proof, elementary; not	
+quantum-rigidity-product-stability-proof		
+raag-cube-codings-fail-li-multiplicity-at-every-power	**ESTABLISHED** (lane proof, elementary; Li's definitions read at source in	
+raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group	**ESTABLISHED** by `raag-subgroups-of-v-hyperbolic-proof` (lane proof, elementary,	
+raag-subgroups-of-v-hyperbolic-proof		
+raag-undistortion-in-2v-via-heaviest-belt-chain-proof		
+raags-are-undistorted-in-brin-thompson-group-2v	**ESTABLISHED** by `raag-undistortion-in-2v-via-heaviest-belt-chain-proof` (lane proof, elementary, not	
+rank-one-cone-hosts-fw-local-map-proof		
+rank-one-cone-hosts-put-fw-groups-in-local-map-groups	**ESTABLISHED** through `rank-one-cone-hosts-fw-local-map-proof`. It is a lane proof and elementary: the proof of `kazhdan-subgroups-of-rover-nekrashe	
+rank-one-rational-projective-full-group-is-flip-v	**ESTABLISHED** (lane bh-free-54, 2026-09-18). Lane proof, not independently	
+rank-two-building-non-domesticity-is-vertex-non-domesticity	**ESTABLISHED** (lane proof, elementary modulo the standard facts (V1)–(V3); not	
+rank-two-synchronization-off-totally-irrational-rays	**ESTABLISHED** (lane bh-free-61, 2026-09-18). Lane proof, elementary, not	
+rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman-proof		
+rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman	**ESTABLISHED** by `rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/	
+rational-germ-groups-of-germ-extensions-of-v-embed-in-2v	**ESTABLISHED** (lane proof, elementary; not independently reviewed; no priority claimed).	
+rational-germ-singular-sets-are-finite-graph-path-spaces	**ESTABLISHED** by `rational-germ-singular-sets-graph-path-space-proof` (lane proof,	
+rational-germ-singular-sets-graph-path-space-proof		
+rational-projective-full-groups-are-finitely-presented	**OPEN** (lane bh-free-54, 2026-09-18).	
+rational-projective-full-groups-fp-via-thumann-operad-finiteness		
+rational-rotations-and-doubling-have-no-common-tree-coding	**ESTABLISHED** by `rational-rotations-doubling-no-common-tree-coding-proof` (lane proof,	
+rational-rotations-doubling-no-common-tree-coding-proof		
+ray-germ-one-point-groups-are-v-point-stabilizers	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; elementary; not reviewed; no novelty claimed). It is a calibration for the open converse "a germ 	
+rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof		
+rcwa-groups-over-pids-satisfy-boone-higman	**ESTABLISHED** by `rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof`. This is a lane	
+rcwa-groups-satisfy-boone-higman	**ESTABLISHED** by `rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof`. Lane proof,	 | reviewed by gq-referee-a (proof-gap lens): PASS with three nits, all applied |   (both referees PASS).
+rcwa-groups-satisfy-permutational-boone-higman	**ESTABLISHED** (lane proof, not reviewed). It combines the two host nodes with	
+rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof		
+rcwa-z-generated-by-class-shifts-reflections-transpositions	**ESTABLISHED** (lane proof, not reviewed). It uses only	
+reducible-building-lattices-via-product-boxes		
+reducible-euclidean-building-lattices-lie-in-type-a-class	**ESTABLISHED** through `reducible-building-lattices-via-product-boxes` (lane proof;	
+regular-enumerations-can-make-near-shift-free-product	**ESTABLISHED** by `regular-free-shift-fresh-trajectory-proof`, an	 | elementary back-and-forth construction. Referee a PASS
+reid-higman-thompson-variant-d-zero-abelianization	**ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; not reviewed). No priority is	
+rel-hyperbolic-bh-permanence-implies-free-product-closure	**ESTABLISHED** by the argument below. Lane proof, elementary, not reviewed. No	
+rel-hyperbolic-fp-simple-peripherals-proof		
+rel-hyperbolic-groups-embed-with-fp-simple-peripherals	**ESTABLISHED** by `rel-hyperbolic-fp-simple-peripherals-proof`. Lane proof, not	
+rel-hyperbolic-groups-with-bh-peripherals-satisfy-bh		
+rel-hyperbolic-permanence-implies-finite-edge-amalgams	**ESTABLISHED** by the argument below (lane proof, elementary, not reviewed; no priority	
+relative-finite-discrimination-forces-solvable-word-problem	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed: it is the	
+relator-complexity-descent-gives-free-splitting	**ESTABLISHED** (lane proof below, elementary; the consequence for `V_d(G)` uses consequence 2 of Theorem A of	 | `rover-nekrashevych-fp-iff-finite-lift-presentation`, not yet refereed; no priority claimed). Referee a (proof
+renormalizable-thompson-elements-give-negative-baumslag-solitar	**ESTABLISHED** (lane bh-free-18, elementary lane proof, not reviewed; no priority claimed).	
+residual-chains-with-finite-recurrences-give-fp-branch-hosts		
+residual-solvability-reduces-cgp-question-1-to-question-3	**ESTABLISHED** (lane proof below, elementary, not reviewed; no priority claimed).	
+restriction-realizations-of-twisted-shells-are-trivial	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+retracting-constant-hosts-add-only-residual-inputs	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed).	
+retracts-inherit-proper-power-conjugacy	**ESTABLISHED** by `higman-closure-theorems-inapplicable-proof` (lane proof,	
+rf-decidable-groups-embed-in-decidable-fg-branch-groups		
+rf-free-minimal-zn-actions-have-non-fp-derived-full-groups		
+rf-free-minimal-zn-non-fp-proof		
+rf-free-product-germ-realization-proof		
+rf-groups-have-free-product-germs-over-v	**ESTABLISHED** by `rf-free-product-germ-realization-proof` (lane proof, elementary; not	
+rf-hosts-cannot-realize-branch-substitutions	**ESTABLISHED** (lane proof below, elementary; no priority claimed. Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-and-spine-h	
+rf-hosts-cannot-realize-the-lysenok-substitution	**ESTABLISHED** (lane proof below, elementary; the input that `Γ̃` is not residually finite is cited from Sapir–Wise,	 | J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-read here; no priority claimed). 
+rf-soluble-finite-rank-groups-are-char-zero-linear		
+rf-soluble-minimax-groups-satisfy-permutational-bh-proof		 |    PASS, `research/artifacts/review-metabelian-bh-2026-09-13.md`), with one factor,
+rf-soluble-minimax-groups-satisfy-permutational-bh	**ESTABLISHED** by `rf-soluble-minimax-groups-satisfy-permutational-bh-proof`	
+rf-toeplitz-subshifts-from-normal-chains-are-free		 | Both are recorded on that node, whose route has two PASS reviews.
+rigid-affine-hosts-are-linear-over-number-fields-proof		
+rigid-affine-hosts-are-linear-over-number-fields	**ESTABLISHED** by `rigid-affine-hosts-are-linear-over-number-fields-proof`	
+rigid-boolean-inverse-monoid-presentations-have-fp-full-groups	**OPEN** (conjecture of bh-invent-03). The equivalences and implications stated below are lane proofs,	
+rigid-fa-groups-reach-bliw-trees-only-with-infinite-index	**ESTABLISHED** (lane proof, elementary given its inputs; not reviewed; no priority	
+rigid-sfts-give-fp-v-boolean-power-crossed-products		
+rigid-topologically-free-sfts-force-solvable-word-problem	**ESTABLISHED** (lane bh-g3-topfree, 2026-09-18; elementary lane proof, not reviewed; no priority	
+ring-gate-k1-clause-is-unstable	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+robertson-steger-a2-two-graphs-are-primitive-and-aperiodic		
+row-factors-lift-z-crossed-products-into-z2-hosts	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed).	
+rs-strip-tail-transitivity-forces-primitive-transition-matrices	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, inline below; not independently	
+rs-two-graph-aperiodicity-from-h3-and-irreducibility	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, inline below; not independently	
+rsg-finite-set-stabilizers-are-iterated-ascending-hnn-proof		
+rsg-z2-locally-trivial-along-rational-attraction	**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).	
+rsv-quaternionic-doubles-are-never-virtually-simple	**ESTABLISHED** (lane proof, elementary, not reviewed). It uses only the exact sequence that	
+s-integral-affine-structure-group-is-finitely-presented	**ESTABLISHED** (lane proof, not reviewed). No priority claimed. Three classical inputs are	
+s-integral-linear-one-host-via-twisted-affine-group		
+s-integral-splitting-stabilizers-are-finitely-generated	**ESTABLISHED** (lane proof, not reviewed). Two classical inputs are recalled, not re-read,	
+sandwiched-e-n-has-only-projective-simple-quotients	**ESTABLISHED** for parts 1–2 (lane proof, elementary, inline; not reviewed; no novelty	
+saturated-l-adic-subrings-are-arithmetic	**ESTABLISHED** (lane proof, not reviewed; standard commutative algebra, no priority claimed).	
+scalar-descendant-hosts-see-only-rfd-inputs	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed).	
+scalar-descendants-make-completions-simple-proof		
+scalar-descendants-make-completions-simple	**ESTABLISHED** through `scalar-descendants-make-completions-simple-proof` (lane proof, bh-algebra,	
+schur-multiplier-obstruction-kills-thickening-hosts	**ESTABLISHED** (lane bh-free-59, written inline, not independently reviewed). Textbook	
+self-similar-sft-rigidity-scale-collapse-proof		
+self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale		
+self-simulating-hosts-over-one-ended-parse-shifts		
+separated-automata-reduce-bh-to-fp-overgroups-of-the-base-proof		
+separated-automata-reduce-bh-to-fp-overgroups-of-the-base	**ESTABLISHED** by `separated-automata-reduce-bh-to-fp-overgroups-of-the-base-proof` (lane proof, elementary; no	 | priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-separated-automata-reduce-bh-
+set-transitive-coset-shifts-have-only-constant-minimal-sets		
+several-ascending-letters-reduce-to-amalgams-over-the-base	**Status.** Parts 1 and 2 are **ESTABLISHED** (elementary, proofs below). Part 3 is a	
+sft-groupoid-boolean-inverse-monoids-are-finitely-presented		
+sft-irreducible-core-iff-unique-recurrent-component	**ESTABLISHED** (lane `bh-free-23`, lane proof, elementary, not independently reviewed; no priority	
+shell-a1-ascends-when-the-gate-points-toward-p-proof		
+shell-a1-ascends-when-the-gate-points-toward-p	**ESTABLISHED** by `shell-a1-ascends-when-the-gate-points-toward-p-proof`	
+shell-envelopes-depend-only-on-the-near-image	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+shell-germ-algebra-fp-forces-bounded-germ-presentation	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+shell-germ-algebra-fp-forces-fp-germ-group		
+shell-germ-essential-algebras-are-central-simple		
+shell-germ-singular-ideal-is-generated-at-the-singular-point	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+shell-germ-singular-ideal-is-the-boundary-annihilator	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+shell-germ-steinberg-algebra-is-finitely-presented		
+shell-germ-steinberg-algebras-are-never-simple	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+shell-one-point-groups-are-ascending-hnn-over-window-lifts	**ESTABLISHED** (lane proof, bh-free-08, 2026-09-18; elementary; not reviewed; no novelty claimed).	
+shell-shift-admits-no-baumslag-solitar-conjugation	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+shift-similar-germ-groups-are-ascending-hnn-extensions	**ESTABLISHED** (lane proof, below). Imports: the refereed `characters-living-on-m-plus-one-factors-lie-in-sigma-m`;	
+simple-groups-on-trees-b1-zero-proof		
+simple-groups-on-trees-with-fg-edge-groups-have-b1-zero	**ESTABLISHED** by `simple-groups-on-trees-b1-zero-proof` (lane proof, bh-free-13, 2026-09-18; not	
+simple-inputs-have-finitely-presented-stabilizer-engines	**OPEN** (stated by bh-free-60, 2026-09-18). Notation `F_B`, `D(F_B)` is as in	
+simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations	**ESTABLISHED** (lane proof, bh-gate-u-wobble; elementary; not reviewed; no priority claimed). This is	
+simple-kazhdan-germ-extension-germ-group-proof		
+simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group	**ESTABLISHED** by `simple-kazhdan-germ-extension-germ-group-proof` (referee-a PASS, research/artifacts/gq-referee-a-simple-kazhdan-in-germ-extension-	
+simple-subgroups-act-trivially-on-equicontinuous-factors		
+simplicity-of-finite-presentations-arithmetical-position-proof		
+simplicity-of-finite-presentations-arithmetical-position	**ESTABLISHED** by `simplicity-of-finite-presentations-arithmetical-position-proof`	
+single-configuration-check-mark-group-is-lift-presented-proof		
+single-configuration-check-mark-group-is-lift-presented	**ESTABLISHED** by `single-configuration-check-mark-group-is-lift-presented-proof` (lane proof by	
+small-cancellation-groups-realize-every-wp-complexity		
+smart-level-zero-return-map-has-free-divergence	**ESTABLISHED** (lane proof below, bh-free-50, 2026-09-18, by hand; not independently reviewed; no	 |   PASS);
+smart-renormalization-admits-no-graded-basins	**ESTABLISHED** (lane proof below, bh-free-01, elementary, not independently reviewed). It uses only the	
+smart-trace-full-group-embeds-in-brin-thompson-2v	**ESTABLISHED** (lane proof below; not independently reviewed). Two inputs are imported without	
+solvable-bs-faithful-witness-proof		
+solvable-bs-groups-have-faithful-generalized-bs-witnesses	**ESTABLISHED** through `solvable-bs-faithful-witness-proof`. Lane proof (bh-free-05),	
+some-a2-action-has-a-nonrecursive-kernel		
+some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup		
+some-hyperbolic-group-embeds-in-no-brin-thompson-group		
+some-nonexact-group-has-a-type-a-action		
+some-nv-element-has-a-graded-height-3-renormalization		
+spherical-artin-bh-via-decorated-garside-odometer-groups	**DEAD** (2026-09-18). Its third input,	
+spherical-artin-groups-satisfy-boone-higman		 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. The line
+spherical-artin-groups-satisfy-permutational-boone-higman		 | **Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. This one
+spinal-extensions-of-lift-presented-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof below; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-finitary-and-s	
+spine-and-odometer-mover-generate-a-2-adic-lamplighter	**ESTABLISHED** (items 1–4, lane proof below, elementary; not yet refereed; no priority claimed). Item 5 is	
+spine-grigorchuk-automaton-group-has-a-bounded-action	**ESTABLISHED** (lane proof below; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-commonly-fixed-letters-compress	
+spine-hosts-reduce-to-fp-rf-overgroups-of-the-lamp	**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-and-spine-	
+spine-mover-automata-over-fp-bases-are-lift-presented	**ESTABLISHED** (lane proof below, elementary; uses Theorem A of	
+square-spiral-z2-enumeration-is-ball-rigid	**ESTABLISHED** (lane proof, bh-free-48, not independently reviewed, no priority claimed). The proof is below.	
+stabilized-kgraph-full-group-clopen-action-proof		
+stabilized-kgraph-full-groups-have-type-a-actions	**ESTABLISHED** through `stabilized-kgraph-full-group-clopen-action-proof` (lane	
+stationary-vershik-maps-generate-contracting-rsgs-proof		
+stationary-vershik-maps-generate-contracting-rsgs	**ESTABLISHED** by `stationary-vershik-maps-generate-contracting-rsgs-proof` (lane	 | **Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, f
+stein-complex-elementary-intervals-are-grid-spheres	**ESTABLISHED** by `stein-interval-grid-sphere-proof` (lane proof). Referee a (proof gaps):	 | **PASS** (`research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md`, | 16bd2d9b5). Referee b (citations): **PASS** (68ed8a399); it confirms that the
+stein-derived-groups-need-computable-modules-proof		
+stein-derived-groups-need-computable-modules	**ESTABLISHED** (route `stein-derived-groups-need-computable-modules-proof`; lane proof, not reviewed; no	
+stein-elements-with-hyperbolic-periodic-points-bound-roots	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+stein-interval-grid-sphere-proof		
+stein-v-groups-act-with-type-a-on-breakpoints-proof		
+stein-v-groups-act-with-type-a-on-breakpoints	**ESTABLISHED** (route `stein-v-groups-act-with-type-a-on-breakpoints-proof`; lane proof, elementary, not	
+steinberg-groups-of-r-l-are-quasisimple-proof		
+steinberg-groups-of-r-l-are-quasisimple	**ESTABLISHED** through `steinberg-groups-of-r-l-are-quasisimple-proof`. Lane proof, not independently reviewed.	
+steinberg-simple-quotients-of-q-rings-reduce-to-pe-n	**ESTABLISHED** for parts 1–4 (lane proof, elementary, inline; not reviewed; no novelty	
+strand-map-bases-lift-only-bounded-displacement-letters	**ESTABLISHED** (lane proof, elementary, proved below; not independently reviewed; no priority claimed).	
+strongly-regular-building-elements-are-opposition-proximal	**ESTABLISHED** (lane proof `strongly-regular-opposition-proximality-proof`, bh-testcases	
+strongly-regular-opposition-proximality-proof		
+strongly-shift-similar-point-stabilizers-are-copies-of-the-group	**ESTABLISHED** (lane proof, elementary, proved below; not independently reviewed; no priority claimed, it is	
+strongly-shift-similar-type-f-m-passes-to-houghton-like-groups	**ESTABLISHED** (lane proof, below; not independently reviewed; no priority claimed). The imports were read at	
+subshift-full-groups-give-infinite-order-twisted-near-shells	**ESTABLISHED** for items 1–3 (lane proof below; elementary; not independently reviewed; no novelty	
+subshift-languages-give-monomial-algebras-in-crossed-products	**ESTABLISHED** (lane proof, bh-algebra, elementary, not reviewed; no priority claimed, likely folklore	
+substitution-subshift-full-groups-satisfy-boone-higman-proof		
+substitution-subshift-full-groups-satisfy-boone-higman	**ESTABLISHED** by `substitution-subshift-full-groups-satisfy-boone-higman-proof`	 | **Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, f
+substitution-subshifts-have-stationary-bv-models-citation		
+substitution-subshifts-have-stationary-bv-models		
+subsurface-mapping-class-groups-are-undistorted		
+subsurface-mcg-undistorted-citation		
+supersolvable-arrangement-groups-lie-in-the-pbh-class-proof		
+supersolvable-arrangement-groups-lie-in-the-pbh-class	**ESTABLISHED** through `supersolvable-arrangement-groups-lie-in-the-pbh-class-proof`.	
+support-constraints-on-v-subgroups-cannot-see-one-endedness	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+surface-generalized-bs-groups-satisfy-boone-higman-proof		
+surface-generalized-bs-groups-satisfy-boone-higman	**ESTABLISHED** (lane proof, not reviewed; route	
+surface-group-atoms-are-wall-arrangement-cells	**ESTABLISHED** by `surface-group-atoms-wall-cells-proof` (lane `bh-free-23`, lane proof, not	
+surface-group-atoms-wall-cells-proof		
+surface-groups-have-faithful-generalized-bs-witnesses-proof		
+surface-groups-have-faithful-generalized-bs-witnesses	**ESTABLISHED** (lane proof, not reviewed; route	
+surface-word-stabilizers-have-infinitely-many-double-cosets	**ESTABLISHED** (lane proof, elementary counting plus one cited counting theorem;	
+symplectic-leavitt-swindle-proof		
+synchronous-cores-in-out-v-have-order-at-most-two-proof		
+synchronous-cores-in-out-v-have-order-at-most-two	**ESTABLISHED** through `synchronous-cores-in-out-v-have-order-at-most-two-proof`. Lane proof	
+tame-power-conjugator-proof		
+tame-power-conjugators-have-more-hyperbolic-points	**ESTABLISHED** by `tame-power-conjugator-proof` (lane proof, elementary; not	
+telescope-fixed-points-are-singular-on-a-parse-shift	**ESTABLISHED** by `telescope-fixed-points-parse-shift-proof` (lane proof, elementary, no imports.	
+telescope-fixed-points-parse-shift-proof		
+telescopic-germ-bases-dynamically-v-separated-proof		
+telescopic-germ-bases-in-v-germ-extensions-are-v-separated	**ESTABLISHED** by `telescopic-germ-bases-dynamically-v-separated-proof` (lane proof, elementary;	
+thick-building-flat-sfts-are-never-quantum-rigid		
+thick-building-flat-sfts-never-quantum-rigid-proof		
+thin-rational-actions-finite-germ-extension-proof		
+thin-rational-actions-give-finite-germ-extensions	**ESTABLISHED** by `thin-rational-actions-finite-germ-extension-proof` (lane proof,	
+thompson-f-exact-via-amenable-full-groups		
+thompson-group-f-is-exact		
+thompson-t-mixed-identities-are-not-finitely-normally-generated	**ESTABLISHED** by `thompson-t-mixed-identities-not-fng-proof` (lane proof, not	
+thompson-t-mixed-identities-not-fng-proof		
+thompson-v-binary-shell-action-passes-both-germ-gates	**ESTABLISHED** (lane proof below, given the cited nodes; not independently reviewed; no novelty claimed).	
+three-tree-lattice-kernel-commutation-proof		
+three-tree-lattices-escape-only-via-discrete-normal-subgroups	**ESTABLISHED** through `three-tree-lattice-kernel-commutation-proof` (lane	
+thumann-operad-groups-need-only-f-infinity-transformations	**ESTABLISHED** (lane bh-invent-07, 2026-09-18; lane proof, not independently reviewed; no priority	
+time-lift-actors-carry-no-complexity-beyond-row-language	**ESTABLISHED** (lane proof, elementary; not reviewed; folklore-level, no priority claimed).	
+titz-witzel-kernel-elements-are-nowhere-domestic-at-infinity		
+titz-witzel-lattices-pbh-via-euclidean-building-lattices		
+titz-witzel-lattices-satisfy-permutational-boone-higman	**ESTABLISHED** (2026-09-18) through `titz-witzel-lattices-pbh-via-euclidean-building-lattices`,	 | `research/artifacts/gq-bh-verify-euclid-report.md` §7, PASS). The hypotheses match: C̃₂ is an
+topologically-free-subshift-full-groups-force-quantum-rigidity	**ESTABLISHED** (lane proof, elementary; bh-invent-12, 2026-09-18; not independently reviewed; no	
+torelli-lower-central-quotients-are-not-residually-finite	**ESTABLISHED** by `torelli-lower-central-quotients-not-rf-proof`. This is a lane	
+torelli-lower-central-quotients-do-not-virtually-split	**ESTABLISHED** (lane proof, elementary given the cited inputs; not reviewed; no	
+torelli-lower-central-quotients-have-solvable-word-problem	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed, since	
+torelli-lower-central-quotients-not-rf-proof		
+torelli-lower-central-quotients-satisfy-boone-higman		
+torsion-free-isotropy-leavitt-tensor-hosts-have-trivial-k1-k2		
+torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups	**ESTABLISHED** through `tree-lattice-kgraph-power-phase-proof` (lane proof; not	
+torsion-subgroups-of-almost-v-groups-localize-at-singular-germs		
+train-track-split-cones-have-least-common-descendants	**ESTABLISHED** by `train-track-split-cones-least-common-descendants-proof` (lane	
+train-track-split-cones-least-common-descendants-proof		
+train-track-trace-groupoid-hosts-closed-mcg	**OPEN** (lane bh-mcg, 2026-09-18). This is a construction proposal with explicit	
+transcendental-slope-thompson-groups-have-hard-word-problems	**ESTABLISHED** (lane proof, elementary, not reviewed). No priority is claimed. Finitely generated	
+transcendental-slope-thompson-groups-satisfy-boone-higman		
+translation-like-hosts-are-capped-by-separation-profiles	**ESTABLISHED** (lane proof, bh-invent-09; elementary given the cited coarse-geometry facts; not reviewed).	
+translation-like-inputs-embed-in-full-groups-over-a-fixed-group	**ESTABLISHED** (lane proof, bh-invent-09; elementary; not reviewed; no priority claimed). It answers the	
+transvections-are-single-carets-of-the-edge-split-operad	**ESTABLISHED** (lane bh-free-54, 2026-09-18). Lane proof below; elementary, not	
+tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh	**ESTABLISHED** (lane proof, a direct application of BLIW's tree method via	
+tree-compatible-fixed-base-enumerations-have-infinite-index	**ESTABLISHED** by `tree-compatible-fixed-base-infinite-index-proof` (lane proof,	
+tree-compatible-fixed-base-infinite-index-proof		
+tree-lattice-block-splitting-proof		
+tree-lattice-kgraph-power-phase-proof		
+tree-lattice-with-torsion-via-zappa-szep-kgraphs		
+tree-lattices-split-into-irreducible-blocks	**ESTABLISHED** through `tree-lattice-block-splitting-proof` (lane proof,	
+triangle-free-all-3-artin-groups-satisfy-pbh-proof		
+triangle-free-all-3-artin-groups-satisfy-pbh	**ESTABLISHED** (route `triangle-free-all-3-artin-groups-satisfy-pbh-proof`; lane proof, not independently reviewed). It inherits the status of `artin	
+triangle-permutive-sfts-have-one-sided-total-faults		
+twice-punctured-torus-mcg-is-continuous-automatic		
+twisted-brin-thompson-global-twists-are-conjugacy-closed	**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).	
+twisted-brin-thompson-groups-embed-along-equivariant-inclusions	**ESTABLISHED** (lane proof, not reviewed; elementary). No priority claimed; this is	
+twisted-brin-thompson-groups-quasi-retract-onto-acting-group		
+twisted-brin-thompson-labels-are-rigid	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority	
+twisted-brin-thompson-type-fn-criterion	**ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18).	 | Referee a (proof gaps): **PASS**, | with nits N1–N6 applied. Referee c (independent second proof-gap pass): **PASS**, | version 329a4461c. Referee b (citations and priority): **PASS**,
+twisted-brin-thompson-type-fn-implies-type-an	checked by referee b (**PASS**,	
+twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family		
+twisted-bt-quasi-retract-onto-acting-group-citation		
+twisted-bt-type-fn-interval-filtration-proof		
+twisted-bt-type-fn-necessity-citation		
+twisted-genuine-shell-actions-pass-both-germ-gates	**ESTABLISHED** (lane proof below; elementary; not independently reviewed; no novelty claimed).	
+twisted-integral-affine-brin-thompson-group-is-simple	**ESTABLISHED** (lane proof, not reviewed). It uses the Bleak–Elliott–Hyde criterion, as quoted	
+twisted-integral-affine-full-group-is-finitely-presented	**ESTABLISHED** (lane proof, not reviewed; **load-bearing, referee review requested**).	
+twisted-integral-affine-group-fp-via-stein-complex		
+twisted-s-integral-affine-groups-are-fp-and-virtually-simple	**ESTABLISHED** (lane proof, not reviewed). **Load-bearing, referee review requested,** together	
+two-counter-kms-top-has-no-affine-self-similar-action	**ESTABLISHED** by the proof below (lane bh-free-25, 2026-09-18; elementary, not	
+two-dim-cat0-product-groups-are-torsion-locally-finite		
+two-dim-cat0-product-groups-torsion-lf-proof		
+two-leaf-graph-manifold-twist-realizations	**ESTABLISHED** for items 1, 3 and 4 (lane proof, elementary; not independently reviewed).	
+two-radix-host-meets-the-fp-ray-conditions-except-realizability	**ESTABLISHED** (lane proof, not reviewed; no novelty claimed).	
+two-radix-odometer-host-is-f-infinity-with-fg-charge-kernel	**ESTABLISHED** (lane proof, not reviewed; the finiteness input is X. Li, arXiv:2110.04505v2,	
+two-sided-coset-sft-cyclic-descent-collapse-proof		
+two-sided-free-group-coset-sfts-collapse-under-cyclic-descent		
+type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups	**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, inline below; not independently	
+type-transitive-a2-bh-via-rs-two-graph-full-groups		
+type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups	**ESTABLISHED** (2026-09-18) by route `type-transitive-a2-bh-via-rs-two-graph-full-groups`. Every step is a lane proof or an import pinned at source; 	
+undistorted-type-a-class-closure-and-qi-boone-higman	**ESTABLISHED** through `undistorted-type-a-class-closure-proof`. This is a lane proof, not independently	
+undistorted-type-a-class-closure-proof		
+unequal-radix-free-product-near-group-passes-both-germ-gates		
+unequal-radix-near-group-halves-are-tree-groups-that-are-not-fp	**ESTABLISHED** (lane proof, not reviewed; no novelty claimed).	
+unequal-radix-near-group-has-a-local-expanding-element	**ESTABLISHED** (lane proof by hand, cross-checked by an exact symbolic computation on MSI; not	
+unimodular-cells-synchronize-under-edge-splits	**OPEN** (lane bh-free-61, 2026-09-18). Trivial for `m = 1`. For `m ≥ 2`,	
+unimodular-dissection-operad-has-finite-type	**OPEN** (lane bh-free-54, 2026-09-18). Holds for `m = 1`. For `m = 2`, even its	
+unimodular-dissections-have-egyptian-fraction-volumes	**ESTABLISHED** (lane bh-free-54, 2026-09-18). Lane proof below; elementary, not	
+unimodular-maslov-cantorization-is-minimal-expansive		
+unimodular-maslov-cantorization-proof		
+unimodular-maslov-cells-do-not-dissect-mixed-atoms	**ESTABLISHED** (lane proof below, not reviewed). No priority is claimed.	
+v-and-a-homeomorphism-never-generate-a-free-product	**ESTABLISHED** (lane proof, elementary, not reviewed). No novelty claimed: this is the	
+v-binary-shell-envelope-is-finitely-presented		
+v-by-normalizer-groups-are-self-similar-proof		
+v-by-normalizer-groups-are-self-similar	**ESTABLISHED** through `v-by-normalizer-groups-are-self-similar-proof`. Lane proof	
+v-cone-sliding-localizes-disjoint-support-relations		
+v-element-invariant-measures-live-on-the-periodic-part-proof		
+v-element-invariant-measures-live-on-the-periodic-part	**ESTABLISHED** by `v-element-invariant-measures-live-on-the-periodic-part-proof` (lane bh-free-16,	
+v-normalizer-full-closures-are-integrally-acyclic-proof		
+v-normalizer-full-closures-are-integrally-acyclic	**ESTABLISHED** through `v-normalizer-full-closures-are-integrally-acyclic-proof`. Lane proof	
+v-normalizer-groupoids-carry-lag-cocycle-iff-lipschitz-proof		
+v-normalizer-groupoids-carry-lag-cocycle-iff-lipschitz	**ESTABLISHED** through `v-normalizer-groupoids-carry-lag-cocycle-iff-lipschitz-proof`.	
+v-normalizer-rsgs-contract-iff-finite-outer-order-proof		
+v-normalizer-rsgs-contract-iff-finite-outer-order	**ESTABLISHED** through `v-normalizer-rsgs-contract-iff-finite-outer-order-proof`. Lane proof	
+v-point-stabilizers-are-ascending-hnn-extensions-of-v-proof		
+v-point-stabilizers-are-ascending-hnn-extensions-of-v	**ESTABLISHED** by `v-point-stabilizers-are-ascending-hnn-extensions-of-v-proof` (lane	
+v-times-full-groups-have-local-transposition-presentations		
+v-times-quantum-rigid-sft-full-groups-are-fp		
+v-times-sft-full-groups-glue-from-two-wreath-pieces		
+v-times-sft-full-groups-split-into-two-wreath-pieces-proof		
+v-times-sft-full-groups-split-into-two-wreath-pieces	**ESTABLISHED** by `v-times-sft-full-groups-split-into-two-wreath-pieces-proof` (lane proof, elementary given the	
+v-times-sft-gluing-kernel-is-relatively-perfect	**ESTABLISHED** (lane proof, elementary; no priority claimed). Reviewed: gq-referee-a PASS	
+vertex-free-type-rotating-a2-bh-by-type-rotation-character		
+vertex-free-type-rotating-a2-groups-satisfy-boone-higman	**ESTABLISHED** (2026-09-18, bh-groupoid; lane proofs, not independently reviewed): see the	
+virtual-retracts-satisfy-pbh-coset-wreath-closure-proof		
+virtual-retracts-satisfy-pbh-coset-wreath-closure	**ESTABLISHED** by `virtual-retracts-satisfy-pbh-coset-wreath-closure-proof` (lane proof;	
+virtually-compact-special-groups-undistorted-in-2v	**ESTABLISHED** by `virtually-compact-special-undistorted-in-2v-proof` (lane proof, not independently	
+virtually-compact-special-undistorted-in-2v-proof		
+virtually-cyclic-out-free-subgroups-have-infinite-double-cosets	**ESTABLISHED** (lane proof; not reviewed; no priority claimed).	
+virtually-free-contracting-rsg-proof		
+virtually-free-extensions-lie-in-generalized-bs-classes-proof		
+virtually-free-extensions-lie-in-generalized-bs-classes	**ESTABLISHED** (lane proof, elementary, not reviewed; route	
+virtually-free-groups-are-contracting-rsgs	**ESTABLISHED** (route `virtually-free-contracting-rsg-proof`; lane proof by `bh-free-52`, elementary, not reviewed; no priority claimed, may be folkl	
+virtually-free-product-hyperbolic-groups-are-contracting-rsgs	**ESTABLISHED** by `virtually-freely-decomposable-hyperbolic-rsg-proof` (lane `bh-free-23`,	
+virtually-freely-decomposable-hyperbolic-rsg-proof		
+virtually-torsion-free-cubulated-groups-satisfy-boone-higman		
+virtually-torsion-free-tree-lattices-pbh-via-kgraphs		
+virtually-torsion-free-tree-lattices-satisfy-pbh	**ESTABLISHED** through `virtually-torsion-free-tree-lattices-pbh-via-kgraphs`	
+w-contains-heisenberg-with-divisible-centre	**ESTABLISHED** (lane proof, not reviewed; no priority or novelty claimed for Boone–Higman).	
+weyl-toric-arrangements-b-d-e-f-are-not-fiber-type-proof		
+weyl-toric-arrangements-b-d-e-f-are-not-fiber-type	**ESTABLISHED** through `weyl-toric-arrangements-b-d-e-f-are-not-fiber-type-proof`.	
+window-zero-twists-are-fixed-point-free-proof		
+window-zero-twists-are-fixed-point-free	**ESTABLISHED** by `window-zero-twists-are-fixed-point-free-proof` (lane proof, elementary, not independently reviewed, no priority claimed).	
+wreath-recursion-thompson-groups-inherit-fn-proof		
+wreath-recursion-thompson-groups-inherit-fn	**ESTABLISHED** (lane proof `bh-free-06`, 2026-09-18, in	
+wreaths-over-clopen-stabilizer-cosets-lie-in-b-a	**ESTABLISHED** by `wreaths-over-clopen-stabilizer-cosets-proof` (lane proof,	
+wreaths-over-clopen-stabilizer-cosets-proof		
+z-wr-psl2-z-half-embeds-in-fp-self-similar-group	**REFUTED** by `z-wr-psl2-z-half-is-not-residually-finite` (2026-09-18, lane proof, elementary, not reviewed). The wreath product is not residually fi	
+z-wr-psl2-z-half-is-not-residually-finite	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed, the	
+z2-free-z-embeds-in-a-finite-nucleus-rsg		
+z2-free-z-lies-in-an-fp-full-germ-extension-of-v	**ESTABLISHED** (lane proof, not independently reviewed; no priority claimed).	
+z2-free-z-normal-form-boundary-has-corner-singular-orbits	**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).	
+zaremsky-2-19a-every-hyperbolic-group-in-some-nv-resolved		
+zaremsky-2-19c-every-gl-n-z-in-some-mv-resolved		
+zero-flux-strand-stacks-obstruct-fp-amenable-near-groups	**ESTABLISHED** (lane proof, below, not independently reviewed, no priority claimed; the lemma is a Bieri–Strebel	
+zero-set-confinement-unifies-host-obstructions	**ESTABLISHED** (lane proof, bh-synth-obstructions, elementary; the only import is Delorme–Guichardet,	
+zigzag-houghton-like-envelopes-are-virtually-houghton	**ESTABLISHED** (lane proof, elementary, written inline; not independently reviewed; no priority claimed — for	
+zigzag-shell-singular-ideal-is-finitely-generated	**ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).	
+zn-subshift-is-rf-iff-periodically-approximable		
+zn-subshift-rf-periodic-approximation-proof		

@@ -1,0 +1,3 @@
+Referee report: run compression and spine Grigorchuk automaton PASS, W1
+
+Proof-gap lens on commonly-fixed-letters-compress-to-faithful-actions and spine-grigorchuk-automaton-group-has-a-bounded-action (ef03b7c34). Cocycle rule, sigma^b = sigma^[b], kappa-equivariance, faithfulness, boundedness and contraction checked. W1: the BH step rests on the unrefereed necessity half of Theorem A; the Remark route via Rover VGamma is unconditional.

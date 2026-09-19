@@ -1,0 +1,7 @@
+Target a wild copy of Q semidirect 2 in 2V_tau via lifted odd roots of the odometer
+
+New OPEN claim lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map. An odd root
+r = (tau^{k(y)} x, rho y) of s = tau x id, built from a V-torsion lift, is squared by the
+baker map u exactly when explicit functional equations (A)+(B) on (rho, k) hold. Solutions
+for all odd q, compatibly, would embed Q semidirect <2> in the F_infinity simple group
+2V_tau. Attempt 1: solutions need lookahead; first-letter recursions force rho = id.

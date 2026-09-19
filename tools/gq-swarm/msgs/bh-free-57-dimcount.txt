@@ -1,0 +1,7 @@
+nV needs n-1 odd primes inside CT(Z); any 2V in CT_{3}(Z) is spatial
+
+Leaves of the Kohl groupoid for CT_P(Z) have asymptotic dimension <= |P|+1 (the degree map has
+ultrametric fibres; Bell-Dranishnikov). By Matte Bon 1801.10133v2 (Cor. c-asdim-obstruction), nV
+therefore has no nontrivial homomorphism to CT_P(Z) for n > |P|+1, so 3V does not embed in CT_{3}(Z).
+Any embedding of 2V in CT_{3}(Z) extends with r = 1 to commuting full Cuntz families, which must be
+non-canonical and must blow up the fixed slices. Whether 2V embeds in CT(Z) is still open.

@@ -1,0 +1,5 @@
+Referee C: PASS for the Toeplitz corner embedding and GL_n(Q) in E_(n+1)(R_T)
+
+Independent re-derivation of Q -> E R_T E (one-sided resolvent suffices), the concrete model,
+the Limits remark (the ideal of E is the simple finitary ring), the embedding Psi of GL_n(Q)
+into E_(n+1)(R_T), finite generation, and solvable word problem in the model group.

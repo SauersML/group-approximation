@@ -1,0 +1,14 @@
+  2.7 route gl-n-q-all-n-in-st-10-of-resolvent-ring: fires
+  2.7 route gl-n-q-explicit-via-q-coefficient-leavitt-tensor-host: open: fp-central-simple-q-ring-with-trivial-leavitt-k-theory q-coefficient-leavitt-tensor-unit-groups-are-fp
+  2.7 route gl-n-q-explicit-via-st-4-of-divisible-ring: fires
+  2.7 route gl-n-q-explicit-via-st-4-of-resolvent-ring: fires
+  2.7 route gl-n-q-explicit-via-steinberg-group-of-resolvent-ring: fires
+  capacity-chain-presentation-is-not-simple: ESTABLISHED
+  gl-n-q-embeds-in-fp-simple-group: OPEN
+  gl-n-q-explicit-natural-fp-overgroup: ESTABLISHED
+  one-steinberg-group-contains-every-gl-n-q: ESTABLISHED
+  register-comparison-presentations-are-not-simple: ESTABLISHED
+  root G routes: 10
+  sl2-casimir-cannot-separate-verma-from-finite-dimensional: ESTABLISHED
+iterations 2, undefined 0, gq claims 234, gq computed ESTABLISHED 181
+MISMATCH steinberg-finite-presentation-and-kazhdan-theorem body=O computed=E

@@ -1,0 +1,3 @@
+Referee PASS for P2prime-b exactness (K = 1 for every Lambda and X) and the one-transposition criterion
+
+Checked line by line: the face lemma, the room lemma (the Sym(4) Coxeter relations and injectivity), independence of the auxiliary piece, coherence and equivariance. Calibrated against the finite shadows: room is present there too, the room argument makes the shadow kernel central, and what shadows lack is the self-similar swindle; the remark is corrected accordingly. Scope nit for non-free X: F(T) is the full-bisection group.

@@ -1,0 +1,7 @@
+gq-referee-b: review of fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings
+
+Citation/hypothesis review: PASS. Posner-Rowen, Amitsur-Levitzki, the prime
+radical and the representable-rings host are used within their hypotheses,
+with one needed line (multilinear identities pass to central localizations),
+the Bergman gap for GK dimension <= 1, and Small-Stafford-Warfield confirmed
+by title and hypotheses plus Pappacena-Small-Wald.

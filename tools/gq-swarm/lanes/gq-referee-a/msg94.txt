@@ -1,0 +1,3 @@
+Referee report: commensurator-rigid BS products and CAT(0) symmetric space x tree PASS, W1
+
+Proof-gap lens on commensurator-rigid-bs-products-proof and cat0-symmetric-space-tree-type-a-proof (8200dc09a). VZ(K) finite, Out(K) finite, splitting, and the non-Margulis dichotomy checked. W1: a line T may carry a non-simplicial action; add the direct linear argument or restrict.

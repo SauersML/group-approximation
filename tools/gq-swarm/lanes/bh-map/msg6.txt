@@ -1,0 +1,6 @@
+Record referee b's PASS on the Mallery-Zaremsky Houghton-like import and the type (A) step
+
+Referee b (25b091cb0) confirmed the quotes, SHA-256 and numbering of the Mallery-Zaremsky citation. They also
+confirmed that the Prop 5.5 representation of H_n(G) meets the hypothesis of Zaremsky 2405.18354 Prop 5.3, since
+the two definitions of strongly shift-similar agree for infinite groups. Recorded on the claim node and on the
+root route.

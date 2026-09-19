@@ -1,0 +1,8 @@
+Virtually free groups are contracting RSGs with trivial nucleus, by a Bass-Serre normal-form coding
+
+A second, elementary proof of the virtually free case of BBMZ Question 1.1: code tree ends by
+left-normalized normal forms with the vertex-group head kept. Every element acts as a prefix
+replacement, so the nucleus is trivial and G lies in V_{Gamma,E}; non-split finite normal
+subgroups such as the center of SL_2(Z) act faithfully through the head. Question 1.1 gets an
+Attempt 3 recording a gate lemma for amalgams over finite groups and why its copying step fails
+for SL_2(Z).

@@ -1,0 +1,15 @@
+Compute the horofunction atoms of closed surface groups as cells of wall arrangements
+
+- New claim surface-group-atoms-are-wall-arrangement-cells, with proof
+  surface-group-atoms-wall-cells-proof (lane proof, not reviewed). For pi_1(Sigma_g) with the
+  regular 4g-gon generators:
+  - word length counts separating tiling walls;
+  - the atoms of B_n are the unbounded cells of a finite wall arrangement;
+  - the horofunction boundary has no isolated points;
+  - cells that are half-planes are gated.
+- So every hypothesis of the Belk-Bleak-Matucci-Zaremsky theorems holds except the irreducible
+  core, which remains open for surface groups.
+- Lesson for general BH: gated half-plane cells are the one-ended replacement for cut vertices.
+  For groups whose word metric counts separating walls, the obstruction lives only in the
+  non-median part of the wall geometry.
+- Also updated: the Q1.1 node (Attempt 4) and the lane artifact.

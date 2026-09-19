@@ -1,0 +1,12 @@
+SL_n(Q) cannot be split across a normal series; union criterion
+
+Add sl-n-q-lies-in-one-factor-of-every-normal-series (+ proof): in any finite
+series of normal subgroups of a group containing SL_n(Q)/C (C central), the
+first term containing it has a factor that is nonabelian and contains (Q,+).
+So no group with abelian-or-Q-free factors (solvable-by-Q-free, lifts with any
+abelian deck group, module extensions of Q-free groups) contains GL_n(Q),
+SL_n(Q), PGL_n(Q) or PSL_n(Q); this is why the Belk-Hyde-Matucci central-lift
+split of (Q,+) has no analogue. Add ascending-unions-embed-along-coherent-chains
+(+ proof), the union criterion, and an artifact on the pattern's scope and
+what a GL_n(Q) version must supply. Self-contained proofs, not independently
+reviewed.

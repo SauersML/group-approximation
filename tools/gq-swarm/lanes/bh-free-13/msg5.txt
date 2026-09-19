@@ -1,0 +1,10 @@
+Lodha's rank question through L2 reduces to refuting Osin's problem
+
+fp-positive-l2-betti-groups-are-acylindrically-hyperbolic: new OPEN node for Osin's printed problem
+(arXiv:1501.03066, TeX l.212-214), with his solved case (maps onto Z) and his Q*Q warning.
+fp-simple-group-with-positive-first-l2-betti-number: new OPEN node. Such a group refutes Osin's
+problem; with beta_1 > 1 it answers Lodha's question. Peterson-Thom Cor coromoon forces it to have
+no infinite f.g. ws-normal subgroup of infinite index, so it is not locally moving, not a tree
+splitting over a f.g. edge group, not a product lattice, not Kazhdan. Precedent: Osin-Thom f.g.
+simple groups with beta_1 >= n-1-eps (arXiv:1108.2411 l.84), not fp.
+fp-infinite-simple-group-not-two-generated: Attempt 4 records the reduction. Sources read at source.

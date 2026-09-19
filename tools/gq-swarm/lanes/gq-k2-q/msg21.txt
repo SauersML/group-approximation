@@ -1,0 +1,9 @@
+gq-k2-q: Euler symbols die in F_(2,l); cyclotomic point detects them only before folding
+
+In F_(2,l) every c_q = {pi_0, pi_q} is trivial: for l odd c_q = z^q with
+z = {1+y, 1+l}, and a Steinberg relation kills z (Fermat quotients); for
+l = 2, c_q = {1+y, -(1+y)}. Under u -> zeta_l - 1 the image of c_q in
+K_2(O_K/p^n) = Z/l has Hilbert symbol zeta^(-q), but the sigma-orbit has
+length divisible by l, so the induced D -> M_m(O_K/p^n) sends c_q to 1.
+The RF-residual node stays open (Attempt 3). Also: both PASS reports and
+referee-a calibrations on the rational-symbols node.

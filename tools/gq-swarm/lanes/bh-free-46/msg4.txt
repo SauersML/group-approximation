@@ -1,0 +1,4 @@
+Cross-link the 2609.01868 non-residual-finiteness node to the unfaithfulness node
+
+bh-self-similar pinned the error inside the source construction and confirmed that condition
+(Omega) holds for PSL_2(Z), so Theorem A is false as stated. Replace the scope caveat accordingly.

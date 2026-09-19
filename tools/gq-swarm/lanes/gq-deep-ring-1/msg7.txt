@@ -1,0 +1,9 @@
+U_3(Q) in Kronecker integral units needs a non-root-of-unity eigenvalue
+
+In a direct limit of GL_r(Z) along Kronecker maps, which contains the
+finite-type part of <V, t> <= L_Z(1,2)^x, a unipotent element has unipotent
+roots of only finitely many orders. Torsion quotients of U_3(Q) kill its centre,
+and without tori in the Zariski closures the centre acts unipotently. So an
+embedding of U_3(Q) there needs an element whose eigenvalues are not all roots
+of unity. That kills Kronecker root towers of transvections for U_3(Q) and the
+rational model twisted by the regular representation of (Q/Z)^2.

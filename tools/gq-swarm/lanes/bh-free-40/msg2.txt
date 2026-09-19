@@ -1,0 +1,3 @@
+Surface-word stabilizers in Out(F_2g) have infinitely many double cosets
+
+For g >= 2 the stabilizer of the conjugacy class of the one-cusp surface word is not a type (A) point stabilizer, nor is anything virtually contained in it: the Aut-orbit of the word grows exponentially (transvections a_1 -> a_1 c are injective on classes) while each mapping class group orbit grows polynomially (Dehn-Nielsen-Baer plus Mirzakhani, cited). Settles the test case left by the previous landing; recorded on that node and as Attempt 5 on the Out(F_n) root.

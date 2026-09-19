@@ -1,0 +1,8 @@
+Basilica HNN extension: its self-similar geometry gives no Brown certificate for FP_3
+
+- New ESTABLISHED node (lane proof): Nekrashevych's self-similarity graph carries no action of the Basilica group
+  (it models the shift on the limit space). The HNN extension B~ acts faithfully on the 3-regular tree fixing an
+  end, extending the self-similar action, but every vertex stabilizer is a strictly increasing union of conjugated
+  level stabilizers, hence infinitely generated. So Brown's criterion does not apply.
+- Crux node: the exact algebraic form of FP_3 via Bieri's product criterion and the ascending-HNN Mayer-Vietoris
+  sequence (alpha = 1 - t sigma_* onto H_2(B; prod ZB~) and injective on H_1).

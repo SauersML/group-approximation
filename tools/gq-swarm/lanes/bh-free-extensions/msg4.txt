@@ -1,0 +1,10 @@
+Amir-Lazarovich simple lattices are the colour-preserving subgroup Λ'^+ and have torsion
+
+Lane bh-free-extensions (lane proof, not reviewed; no priority claimed).
+- amir-lazarovich-simple-lattices-have-torsion (+ -proof):
+  - Setting: AL's explicit scaffolding with d >= 9, and a BMW seed Γ in which two generators a_j, a_k collapse modulo FR(Γ). This holds for FR(Γ) = Γ^+ and for seeds containing Radu's Δ.
+  - Result: every finite quotient of Λ' factors through the parity map (Z/2)^2. So AL's simple lattice Λ equals Λ'^+ and contains the involutions DD'; cd Λ = ∞, and it does not answer Kourovka 21.46.
+  - Method: a pair-move lemma, then spreading of the collapsed pair through the region avoiding the point 1 (Jordan's theorem gives Alt(2d-2) there), then peeling to the rest.
+  - Erratum: AL's explicit scaffolding violates their (E4)/(D4) for d <= 8.
+- artifact gq-bh-bh-free-extensions-al-ymove-closure.md: MSI job 1300364 record, with calibrated closure computation for d = 9..12 and script.
+- amir-lazarovich-lattice-torsion-is-square-diagonals: Resolution pointer.

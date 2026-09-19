@@ -1,0 +1,7 @@
+Determinism closure certifies quantum rigidity of Z^2 SFTs; fault slabs defeat it in every recoding, including Labbe's shift
+
+Two-sided closure of B_(2D) under finite determination rules gives D-quantum rigidity, and recovers the
+triangle-permutive case. A pair of configurations differing only inside a slab blocks the closure in
+that slab's normal direction in every recoding. Labbe's four fault directions therefore bound the
+closure, so no determinism argument proves its rigidity. Notes where a proof or a periodic quantum
+tiling must live (resonant separations across fault normals).

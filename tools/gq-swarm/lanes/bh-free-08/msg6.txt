@@ -1,0 +1,7 @@
+Extend the closure principle to Brin's group A and TA through the reals with powers of two
+
+Brin's piecewise-linear maps are self-similar near their singular points, so
+their graphs are definable in the real field with a predicate for the powers of
+two, whose theory is decidable (van den Dries). So the finitely presented simple
+group TA has recursive mixed identities too. Record the known fp simple groups
+the closure principle does not yet cover.

@@ -1,0 +1,6 @@
+Levelled actions: a virtual character vanishing on point stabilizers kills FP_2 of finitary split extensions
+
+New node levelled-actions-make-finitary-extensions-not-fp2 (lane proof): the lampshuffler theorem
+holds for every action with a levelled orbit, not only free ones, so in any FP_2 split extension
+Alt_fin(X) x| G the point stabilizers span H_1(G_1;Q) for every finite-index G_1. The Abels actions
+of A_p/C pass (torus in stabilizers); gate (b) of fg-soluble-minimax is updated.

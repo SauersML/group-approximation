@@ -1,0 +1,11 @@
+Digit group stable letters carry an anchored core seed; (FE) fails for all stable-letter pairs
+
+In the k-letter BS(1,m) digit group Z_J of the reordered Higman tower (Cohen, CGT 1989, sections 9.4,
+9.6), F(a) is the stabilizer of a locally forced isolated point: its core in the locally finite Bass-
+Serre tree, a C_Z anchor on each core coset, and coherent m-adic phases. (RS1), the stabilizer and the
+(RS2) classification are proved; (RS3) reduces to tree data plus one sign. An automorphism gives
+(Z_J, Sigma). The core-marked gluing hypothesis (FE) fails on every stable-letter edge (S_e = 1), and
+this construction is the locally finite edge-pinned case.
+
+Lesson for general BH: the machine digits are tree data; counting in base m costs no rigidity beyond
+trees, so the complexity must sit in the halting pair.

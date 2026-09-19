@@ -1,0 +1,11 @@
+bh-free-12: correct the Matui reduction (open core = minimal free SFTs) and add general-BH lessons
+
+free-minimal-zn-derived-full-groups-are-never-fp Attempt 2 corrects Attempt 1: by the earlier
+zd-derived-full-group-fp-forces-finite-type, the residually finite case was already decided for
+subshifts (RF free minimal subshifts are never SFTs); the open core is minimal free Z^N SFTs
+(Labbe's Omega_U); Robinson Xi_min is decided iff Xi_min is not SFT (GJS App. A.1 sheared tilings;
+patch size not determined); its mod-2 cohomology (Z/2)^9, (Z/2)^2 gives no obstruction.
+rf-free-minimal-zn-actions-have-non-fp-derived-full-groups and zn-subshift-is-rf-iff-periodically-approximable:
+cross-links and overlap notes (PA = Kerr-Nowak RF for free subshifts), plus lessons.
+Torsion nodes: "Lesson for general BH" (equicontinuity principle; Burnside test forces non-RF torsion
+in every BH host; asynchronous/higher-rank hosts only).

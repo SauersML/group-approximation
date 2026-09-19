@@ -1,0 +1,9 @@
+gq-k2-q: singular top matrix covered for all one-type register designs
+
+Replace invertibility of the top matrix by injectivity of the stacked top
+blocks: only finitely many occur, so harmonic functionals have bounded
+denominators and [1] of infinite order is divisible by finitely many primes.
+Every one-type design is top-determined, singular or not (one loop plus
+dilations included). Left open: multi-type designs with a type direction that
+is never a top, whose consistency conditions would need coefficients of
+unbounded prime support.

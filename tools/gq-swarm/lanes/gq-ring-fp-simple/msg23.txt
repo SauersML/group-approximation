@@ -1,0 +1,6 @@
+Record the referee b pass on the register no-go; apply W1-W3
+
+P_f is the product of all polynomials in the Boolean description; say
+extra relations from the base closure; the dilation case is not covered by
+this theorem, and the argument runs for any delta-generic chain meeting
+(C2)-(C4).

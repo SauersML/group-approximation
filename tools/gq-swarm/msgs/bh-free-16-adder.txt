@@ -1,0 +1,10 @@
+Adder hosts linearize the odd odometer roots; the 2V_H route to Q x| <2> is an (SL) witness at l = 2
+
+For any self-similar Gamma containing the odometer, <A, id x Gamma> with the 2-adic adder
+A(x,y) = (x+y, y) is the self-similar group M x| Gamma, where M is the Z-span of the Gamma-orbit
+of the identity function. Its translations are exactly the constants in M. So the natural
+Q x| <2> lies in the 4-ary product host once M contains the odd constants: the multiplicative
+root problem becomes an additive span problem. Gamma must be non-abelian (metabelian lemma) and
+not piecewise-affine over one Z[1/N]. Any finitely presented coefficient group for this route
+is a finitely presented residually finite group containing Z_(2), i.e. an (SL) witness at
+l = 2. No witness was found. Lane proof, unreviewed.

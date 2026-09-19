@@ -1,0 +1,10 @@
+Verify free centre-by-metabelian linearity: PASS, repair a false cyclic-subgroup lemma
+
+Adversarial check of the chain proving every F_n/[F_n'',F_n] linear in characteristic 0.
+K_n = T_n (including K_3 = 0) and the Gupta-Levin 1986 inputs were re-derived and read at
+source. Route step 3 used a false lemma (a nontrivial subgroup of a cyclic group of even order
+need not contain the involution); it holds given Kuz'min's d = 2. A Kuz'min-free repair via
+Lemma 2.2(i),(iii) gives the same theorem with gamma_c for some finite c. Priority unresolved:
+two 1976 papers were not readable.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

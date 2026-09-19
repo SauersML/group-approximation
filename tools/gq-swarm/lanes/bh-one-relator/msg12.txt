@@ -1,0 +1,4 @@
+Record why the lamp-wreath closure cannot supply the BG wreath input
+
+Coset spaces of proper-power cyclic subgroups are never type (A) spaces, so
+the BG reduction needs the open decidable wreath closure.

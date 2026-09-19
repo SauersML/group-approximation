@@ -1,0 +1,3 @@
+Referee report (citation lens): Z_(l) tree lemma and free-group mapping tori PASS
+
+Both proofs correct; Bass-Serre bookkeeping for the ascending HNN verified (unique up-neighbour, down-neighbours indexed by F/phi(F)). Textbook imports checked directly, not at source. Fixes: edge-stabilizer overclaim in the tree lemma, non-exhausting chain for Z[1/P], uncited non-linearity remark.

@@ -1,0 +1,6 @@
+Record referee-b PASS on bh-separators node and apply W1–W3
+
+- 2V simple/fp and F_2 ≤ V and Mihailova pinned via referee-b's sources;
+- W1: coNP remark softened to a bounded-search remark;
+- W2: T non-decreasing, constant absorption spelled out;
+- W3: Miller 1971 marked unpinned.

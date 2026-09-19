@@ -150,3 +150,48 @@ User: "let's do major BH problblem solves, this can be open problems or things h
 - INSIGHT FIRST still applies: general mechanisms, not scattered cases.
 - Each major target has a team (see ROSTER "MAJOR"), and its lead lane owns the end-to-end proof skeleton on board/major-<target>.md.
 - Before claiming a named problem is solved, check the literature at source, including the question author's later arXiv papers.
+
+## LEAN LANES (USER ORDER 09-18 ~14:30): manuscripts + Palomar BH, compile on MSI
+User: "make sure agents are formalizing entire manuscript in Lean for simple kazhdan and non-MF group, and also preparing lean palomar submission for BH megaresults; they can use msi to compile lean".
+- BUILD only on MSI, via `bash $GQ/gqprobe-lean.sh <lane> <Module.Name...>` with Bash run_in_background: true. It builds a snapshot of origin/main plus your overlay (paths listed one per line in $GQ/work/<lane>/overlay.files, files under $GQ/work/<lane>/<path>). Probes are serialized fleet-wide by one lock, so author while you wait, batch edits, name narrow targets (never the whole library), and run one probe per lane at a time. The output is PROBE GREEN / PROBE FAILED + error index / PROBE DEFERRED.
+- LAND Lean only with `bash $GQ/gqland-lean-green.sh <lane> <msgfile> <paths...>`. Every .lean file must match a GREEN record byte for byte, so if you edit after a green you must probe again. research/*.md still goes through gqland.sh.
+- UNCONDITIONAL means:
+  - no sorry, admit or axiom;
+  - no hypothesis standing in for a manuscript claim, and no literature inputs in Lean (Mathlib-only foundations);
+  - a Statement that merely takes the endpoint as a hypothesis is a skeleton, not a result.
+  Report status honestly: a closed endpoint versus conditional (name each remaining hypothesis).
+- EDITING EXISTING MODULES:
+  - copy them from origin/main (`git show`), and set GQ_BASE + GQ_BASE_PATHS;
+  - if another session changed the file in the last 2 h (commits with Claude-Session 01M3PcEt..., i.e. the NM/GL/SK/st-/bh-met-/bh-wire- lanes; check with `git log -3 --format='%h %ci %s' origin/main -- <file>`), do NOT edit it: pick another target or add a new module that consumes it.
+  - Prefer NEW modules in your own directory, and register the prefix in $GQ/board/LEAN-OWNERS.md with a line "<path-prefix> <lane>" (check it first, never take another lane's prefix).
+- Root GroupApproximation.lean wiring: only bh-pal-integrate (BH) and ms-map (manuscripts), and only for green modules. Run the cyclecheck preflight and read the memories root-docstring-import-trap and transitive-dangling-imports-kill-main.
+- MANUSCRIPTS:
+  - non_mf_groups_exist.tex (census metadata/NON_MF_SENTENCE_CENSUS.tsv, map NON_MF_SENTENCE_MAP.tsv);
+  - simple_kazhdan_sofic_group.tex (metadata/SK_SENTENCE_CENSUS.tsv, SK_SENTENCE_MAP.tsv).
+  - The goal: every sentence formalized unconditionally, with the endpoint theorems green on main.
+  - Worklist: $GQ/board/MS-WORKLIST.md (owned by ms-map; claim items by appending your lane name there).
+  - Census "formalized" rows are assignments, not build attestations; many ride conditional endpoints.
+  - Do not edit either .tex (prose belongs to the user).
+- PALOMAR BH MEGASUBMISSION:
+  - one combined config, Mathlib only, containing only results we solved that others have not;
+  - plan: research/artifacts/gq-bh-pal-scope.md (T1–T8 tiers + lane roster) and gq-bh-palomar-plan.md;
+  - what is solved and how reviewed: research/artifacts/gq-bh-results-summary.md (c7f12fba7);
+  - bh-pal-surface owns Palomar/BooneHigman*, Palomar/comparator-boone-higman.json, scripts/PalomarBooneHigman*, formalization.yaml; other lanes send it statements and never edit its files;
+  - T4 (lean-eval higman_infinite_simple) is OUT: not our result.
+- NEVER stop, kill or TaskStop a background task or process that you did not start yourself in this lane, even if you see its ID in your inherited context. The coordinator's sync loop and other lanes' gqprobe-lean.sh runs are not yours (09-18 14:47: a lane's cleanup killed both). Kill only MSI jobs whose names or paths you created.
+- MSI COMPUTE (09-18 ~14:55: a lane ran 16 unpinned processes on the shared node acn112, load ~165, and another team had to re-pin them). Anything beyond one core or a few minutes goes through SLURM: `sbatch -p msismall -c <=16 --time=<=01:00:00 --output=/projects/standard/hsiehph/sauer354/<lane>/%j.out`. Never run multi-process compute directly on acn112 or acl42. Lean builds only through gqprobe-lean.sh, which is pinned and serialized.
+- MSI STORAGE (09-18 ~15:45): the hsiehph quotas are at 98% (/projects) and 96% (/scratch.global), and a cleanup agent is deleting stale sauer354 files. Write small outputs only, delete your own scratch when you finish, and never copy the warm .lake. The live dirs (nonsofic_existence, gq-slurm, .elan, bh-free-18) are on the keep-list; tell team-lead if you need another dir kept.
+- gqprobe-lean.sh is now v2: it syncs by checksum (fast) and builds as a SLURM job on msismall (-c 16), polling until done. Same interface. PROBE DEFERRED means MSI contact was lost, so check before re-probing.
+
+## EVERYTHING ON MAIN, RED OK; CAIRN FIX GRAPH (USER ORDER 09-18 ~16:10)
+User: "get everything onto main idgaf if red. use fix graph tho" / "cairn graph" / "like just fix it lol".
+- LAND NOW. Do not hold work for a green build. Land Lean with `bash $GQ/gqland-lean.sh <lane> <msg> <paths>` (no green record needed) as soon as a file is a coherent step, red or not. Keep probing with gqprobe-lean.sh to FIX things, not to gate landings. `gqland-lean-green.sh` stays available for green bytes.
+- NEVER add a red module to the root GroupApproximation.lean import list. Root wiring stays green-only, so the other session's root build keeps working. New red modules stay unwired orphans until fixed.
+- CAIRN FIX GRAPH. Every red or conditional module you land gets a fix node in the Cairn research graph:
+  - path `research/fix-<module-slug>.md`, frontmatter `id`, `kind: route`, `rg: 2`, `title: Fix <Module>: <one-line problem>`, `target: <the claim node it serves>` (when one exists), `status: OPEN`;
+  - body: module path, first error (verbatim, ≤5 lines), what it needs, and a `requires:` list of fix nodes for red imports.
+  - Land it with gqland.sh in the same pass. When the module goes green, flip the node to `status: RESOLVED` with the green commit.
+  - The index of open fixes is `board/FIX-GRAPH.md`, owned by fix-graph-lead; append one line per node.
+- JUST FIX IT. If you find a red module in your own area, fix it: take a fresh copy from origin/main, set GQ_BASE, and respect the 2-hour rule for files the other session touched.
+- PRIORITY IS NOT A RISK. Credit other people generously and prominently: cite prior and parallel work (for example van Doorn–Judin–Monticone–Morrison arXiv:2607.17477 on other Kourovka problems) in the node. Never hold a result for a priority check. Record the relation and move on.
+- gqprobe-lean.sh is now v3 (09-18 ~16:30): Slurm across ag2tb,msismall,msilarge,aglarge,agsmall with 8 cores, 48G and 50 min. A job pending >20 min is cancelled and the probe reports DEFERRED, releasing the lock. The fix graph has ONE node per red module: fix-graph-lead owns research/fix-*.md, and the duplicate fix-bh-met-* nodes are being marked superseded.

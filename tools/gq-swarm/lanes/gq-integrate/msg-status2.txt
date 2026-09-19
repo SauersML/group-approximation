@@ -1,0 +1,6 @@
+gq graph-health status artifact, pass 2
+
+Record the pass-2 text fixes (3befe79c8), a clean lint over 456 gq files, the
+recomputed statuses (root G OPEN, root for Problem 2.7 ESTABLISHED), three
+wiring mismatches left for their owners, and the ten routes into root G, one of
+which is now dead through a refutation.

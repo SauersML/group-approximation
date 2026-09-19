@@ -1,0 +1,9 @@
+Aff(Q) forces distortion in abelian kernels; commensurating end-germs omit it
+
+Lemma: in any finitely generated overgroup of Q x| K (K <= Q^x_{>0} not
+finitely generated: Aff(Q), the Borel of SL_2(Q)), every abelian quotient kills
+some <T_1, D_a> with a != 1, in which T_1 is distorted. Application: no
+finitely generated group of dyadic PL end-germs commensurating x -> x+1 contains
+Aff(Q), SL_2(Q) or PSL_2(Q) (centralizers are copies of T-bar, undistorted by
+Burillo--Felipe), so VA-type germ extensions with affine or dilation end-germs
+cannot carry Aff(Q) under the hypotheses of Belk--Hyde--Matucci Theorem 2.1.

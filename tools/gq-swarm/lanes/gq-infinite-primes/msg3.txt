@@ -1,0 +1,5 @@
+Root gl-n-q: record the one-prime localization reductions (Attempt 16)
+
+Lane gq-infinite-primes: O1 is exactly the all-primes case; the co-nonempty
+case is OPEN; Ihara amalgam plus a Hecke overgroup and Bux-Llosa Isenrich-Wu
+Theorem C gives SL_2(Q). Attempts section only.

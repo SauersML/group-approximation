@@ -1,0 +1,7 @@
+Saturation is automatic: a symmetric Ore operad that contains its carrier is the carrier's full group
+
+New node. Let a symmetric refinement operad with the calculus of fractions identify its pieces by local maps of a group Lambda. If its operad group contains Lambda, the operad group is exactly the full group [[Lambda]]. The proof uses no domination, no Matui and no dynamical hypothesis; it reuses the fullness step of the symmetric-operad node. So every refinement host is the canonical full group, and the operad is only a finiteness certificate. The dynamics-channel reduction follows: a finitely generated Lambda-substitution with finite transformations, Ore, one color class and (G)_2 puts Lambda in B_A. There is no condition on Lambda's pair orbits (GL_{m+1}(Z) on unimodular cones has infinitely many). For the edge-split operad this recovers the saturation of bh-free-54 (Ore is TD there). In the symmetric case it supersedes the derived-full-group step of the closed-MCG route.
+
+Corrections, after the referee pass:
+- bounded-refinement node: its title claim holds for the transformation channel only, and a scope section records this.
+- symmetric-operad node: the planar remark is fixed per referee gap 1, and the two channels are named.

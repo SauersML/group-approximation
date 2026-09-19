@@ -1,0 +1,10 @@
+LIB "freegb.lib";
+ring r = 0,(x,y),dp;
+def R = freeAlgebra(r, 4);
+setring R;
+ideal I = x*x - x, y*y - y, x*y*x - x*y;
+ideal G = twostd(I);
+print("PROBE " + string(size(G)));
+if (reduce(x*y*x - x*y, G) == 0) { print("P1 OK"); } else { print("P1 NO"); }
+if (reduce(x*y - y*x, G) == 0) { print("P2 OK"); } else { print("P2 NO"); }
+quit;

@@ -1,0 +1,9 @@
+Pin Houghton-like enumerations by far-out near relators; verify the free-shift kill
+
+Adversarial check of free-shift-houghton-like-envelopes-are-not-fp: PASS, no gap
+(artifact gq-bh-bh-free-48-local-stability-verification). New claim
+houghton-like-envelope-fp-pins-the-enumeration-by-near-relators: if H_n(E_nu(P))
+is finitely presented, nu is the unique bijection that agrees with a finite seed
+and satisfies finitely many near relators of R_nu far out. Translation relators
+lambda_g = s^a force P virtually cyclic. Relators supported on an infinite-index
+subgroup never pin nu, so the <t>-supported mixed relation alone is flexible.

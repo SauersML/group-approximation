@@ -1,0 +1,11 @@
+Adelic median graph: root group parabolic in every prime; fg hosts
+
+sl-2-q-root-group-is-parabolic-in-every-prime-factor: on the restricted
+product of the Bruhat-Tits trees, U(Q) fixes one end in every factor and no
+vertex, is the kernel of the infinite-rank Busemann map on B(Q), and u(1/m!)
+displaces the base vertex by 2 Omega(m!), which forces a word-length lower
+bound on isometric hosts. fg-restricted-product-actions-have-finite-support:
+finitely generated coordinatewise actions on restricted products fix almost
+all base coordinates, so no coordinatewise thickening hosts the adelic
+SL_2(Q), GL_n(Q) or Aff(Q), and monomial hosts must merge prime directions.
+Artifact section 7 answers the critic pass-2 questions; root Attempts entry.

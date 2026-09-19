@@ -1,0 +1,9 @@
+Show Li's multiplicity gate fails on pointed-cube codings beyond tree products
+
+Commutative (UFP*) degree maps on the pointed-cube category of a CAT(0) cube
+complex exist exactly for products of trees. For every RAAG and every power N of
+the clique Garside family, the trace-degree coding violates Li's (t<d): a
+maximal-clique state has one self-return per layer (label injectivity), forced by
+(1_Gamma) for N=1 and by the (2_Gamma) one-layer completion for N>=2. Record the
+free-group/square calibrations (pass only after k-graph recoding), the G*Z
+faithfulness lemma, and Attempt 5 on the Q1.15 node.

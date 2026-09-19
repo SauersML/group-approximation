@@ -1,0 +1,5 @@
+gq-referee-b: PASS on bh-separators-must-omit-nested-decidable-hosts (citation lens)
+
+Belk-Bleak, Brin, Bleak-Salazar (F_2 in V), Mihailova (via Bogopolski-Ventura), Zaremsky p.3 quote,
+Birget pinned; Scott and Roever via secondary sources. W1 "hardest known WP" unsourced; W2 T
+non-decreasing; W3 Miller 1971 unpinned.

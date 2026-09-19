@@ -1,0 +1,3 @@
+Referee report (citation lens): graded rings with degree-one units fail the K-budget PASS
+
+Laurent-symbol node hypotheses match item by item; W1 fix in place; lamplighter K_1 computation checked.

@@ -1,0 +1,14 @@
+aff-q-does-not-embed-in-aut-thompson-f-proof	Direct proof from cited structure theorems for T-bar and Aut(F)
+bffhz-closures-cannot-create-gl-n-q-proof	Deduce the closure statements from the vertex-fixing property in free splittings
+gl-n-q-fixes-a-vertex-in-free-splittings-proof	Direct proof on trees with trivial edge stabilizers
+gl-n-q-via-gl-infinity-q	GL_n(Q) inherits a finitely presented simple overgroup from GL_infinity(Q)
+gl-n-qbar-via-countable-char-zero-linear-groups	GL_n(Qbar) is a countable characteristic-zero linear group
+lifts-add-no-unipotent-divisibility-proof	Direct proof by a transfer lemma for groups without (Q,+)
+number-field-gl-n-via-gl-n-q	Restrict scalars from K to Q and use a finitely presented simple host of GL_nd(Q)
+number-field-linear-groups-embed-in-gl-n-q-proof	Restriction of scalars along a Q-basis of K
+prufer-groups-do-not-embed-in-gl-infinity-q-proof	Bound from below the dimension an element of order p must move
+sl-n-q-lies-in-finite-residual-of-every-overgroup-proof	Direct proof from the absence of nontrivial finite quotients of divisible groups
+extension-product-closures-cannot-create-sl-n-q-proof	Direct proof by tracking the nontrivial images of SL_n(Q)
+gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof	Extend the corner embedding of Q to GL_n(Q) inside E_(n+1)(R_T)
+integral-form-algebras-have-no-fg-subring-containing-q-proof	Direct proof through a Z-basis of the integral form
+q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof	Direct computation in the Toeplitz ring with its number operator

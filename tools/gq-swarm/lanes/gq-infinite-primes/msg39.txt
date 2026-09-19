@@ -1,0 +1,5 @@
+Rank-one frame node: record referee-a PASS (128e1b392), N1-N3
+
+Lane gq-infinite-primes. The index is unique but (m, n) need not be coprime;
+Vaserstein normalization of stable range stated; P_j x = x and y P_j = y are
+automatic from yx = 1_j.

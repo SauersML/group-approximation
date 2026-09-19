@@ -1,0 +1,10 @@
+- **Item 2 is vacuous for finitely presented `G` with finitely generated point stabilizers**
+  (added 2026-09-18). Let `X = G/H` with `G` finitely presented and `H` finitely generated, and
+  take `F` a large ball `{g x_0 : |g| <= L}`.
+  - Every edge of `K_F` lies in a simplex that also contains a Schreier-graph path between its
+    ends, so edge loops reduce to Schreier loops.
+  - A Schreier loop at `x_0` reads a word in `H`. It differs from a product of generators of `H`
+    by relators of `G`.
+  - Both kinds of bounded closed paths lie in translates of `F`, so they are null-homotopic.
+  - So `π_1(K_F) = 1`, and any obstruction for such actions must be of the line (Coxeter) type or
+    homological, as in `levelled-actions-make-finitary-extensions-not-fp2`.

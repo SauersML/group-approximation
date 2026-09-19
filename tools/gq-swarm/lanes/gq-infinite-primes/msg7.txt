@@ -1,0 +1,9 @@
+Z_(l) in the f.p. Kazhdan group St_N(R_l); bottleneck reduced to RF
+
+Lane gq-infinite-primes. The eight-relator ring R_l does not present R_l-bar
+(e x e - e x^q e). The corner Z_(l) exists in R_l, so by Krstic-McCool
+Z_(l) embeds in the finitely presented Kazhdan group St_N(R_l), N >= 4.
+Finite quotients of St_N(R) factor through St_N of finite quotient rings,
+so St_N(R_l) RF needs R_l RF (both OPEN, routes landed). An explicit
+effectively RF soluble host (Euler lamplighter) shows Rauzy-type
+obstructions do not apply.

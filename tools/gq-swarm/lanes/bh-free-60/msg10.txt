@@ -1,0 +1,11 @@
+Partial-torus Abels hosts are isolated; Pruefer radical twisted by an irrational p-adic unit
+
+Kneser's criterion (Abels LNM 1261, 0.2.8, read at source) and compact presentability of A_4(Q_q)
+(0.2.17), via restriction of scalars, make A_n(O_K[1/m]) finitely presented at completely split
+primes. Extended by outer diagonal automorphisms and divided by a cogenerated corner lattice, the
+host is finitely discriminable by commutator descent to the corner, hence isolated. G_2 (radical
+scaled by 2) and G_lambda (golden-ratio unit at p = 11) embed in isolated groups.
+
+Correction: the max-n claims of cf708c5c7 and d477f9e62 were false. A_4(Z[1/p]) has a centre that
+is not finitely normally generated (Abels 0.2.17). Marked refuted in part, examples corrected, gate
+reformulated.

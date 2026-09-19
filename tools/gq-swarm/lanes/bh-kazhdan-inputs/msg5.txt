@@ -1,0 +1,6 @@
+Record the almost-V constraints on the Deligne lattice
+
+Attempt entry on deligne-lattice-satisfies-boone-higman: the center of
+Gamma~ is singular in every almost-V host, a finite-index subgroup sits in
+one singular germ group, and the Corollary 2.10 germ regime hosts no infinite
+Kazhdan group. No exclusion of shell envelopes.

@@ -1,0 +1,7 @@
+Algebraic closure makes rational K_1 classes divisible
+
+Lane gq-infinite-primes. With Qbar in R, the rational scalars land in the
+divisible image of Qbar^x in K_1(R). So the stable scalar clause needs a
+divisible subgroup of infinite rank in K_1(R); with reduced K_1 (e.g. f.g.)
+every rational scalar dies stably and a widened-gate host must use loophole
+(i), hence contain no Leavitt tuple and have a large unstable K_1 defect.

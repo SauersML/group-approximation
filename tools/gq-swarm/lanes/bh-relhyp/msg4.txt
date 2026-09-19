@@ -1,0 +1,6 @@
+bh-relhyp: limit groups over torsion-free hyperbolic groups satisfy Boone--Higman
+
+limit-groups-over-hyperbolic-groups-satisfy-boone-higman (+ route; lane proof, not reviewed):
+every finitely generated subgroup of the Lyndon completion of a group in the
+Kharlampovich--Myasnikov class that lies in B_A (e.g. torsion-free hyperbolic) is in B_A,
+via their iterated extensions of centralizers and pbh-class-closed-under-centralizer-amalgams.

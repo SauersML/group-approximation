@@ -1,0 +1,15 @@
+Record that the F_infinity half of the BBMZ hyperbolic host is a question about G on its own horofunction boundary
+
+New node bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid (lane proof, not reviewed).
+For H = G*Z on its horofunction boundary, every element is finitary (by atom morphisms) off finitely
+many coset pieces, each homeomorphic to the horofunction boundary of G. The groupoid homology in
+degrees >= 2 equals H_k(G; C(horofunction boundary of G)). By Li, if the simple derived host is F_n,
+these are finite-dimensional over Q for 2 <= k <= n. This holds for surface groups and in top degree
+for closed hyperbolic manifold groups. It is open in middle degrees, including for Kazhdan Sp(n,1)
+lattices.
+
+The finite germ extension theorem of Belk-Hyde-Matucci does not apply to either resolution of the
+parabolic vertex. The pieces are chopped by V, and after collapsing them to points the transport base
+is not finitely generated.
+
+The parent Zaremsky node gets Attempt 7.

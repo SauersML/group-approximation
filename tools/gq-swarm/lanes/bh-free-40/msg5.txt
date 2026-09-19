@@ -1,0 +1,3 @@
+Calibrate double-coset rigidity: false in hyperbolic groups without core-freeness
+
+Rips construction over Thompson V (finitely presented, highly transitive on eventually-zero points with finitely generated point stabilizer) gives a hyperbolic group with a finitely generated infinite-index subgroup with exactly two double cosets; infinite-index quasiconvex subgroups are rigid by the limit-set lemma. So the Out(F_n) rigidity target must be core-free, which is the type (A) setting; open. Attempt 8 on the Out(F_n) root.

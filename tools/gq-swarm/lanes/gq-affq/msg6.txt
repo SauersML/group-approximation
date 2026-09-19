@@ -1,0 +1,6 @@
+SMART tripling node: fix second checkpoint index; cross-link
+
+The second renormalization checkpoint compared time 12, which is S^5, with
+S^2; the correct S^6 is at time 18. Its correspondence is one inserted 2, a
+one-cell head shift and a state change, matching the substitution of
+smart-level-zero-return-map-factors-onto-3-adic-odometer, now cross-linked.

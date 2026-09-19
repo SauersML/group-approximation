@@ -1,0 +1,157 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemReducesToLanguage
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# `L(X)` computes the word problem of `G_X`
+
+`simple_kazhdan_sofic_group.tex`, corollary `cor:wp`, first paragraph of the proof:
+
+> Multiplying out a word in the generators in `LC(A^ℤ, F₂) ⋊ ℤ`, which maps onto `R`, gives a matrix
+> with entries `∑_j f_j u^j`, each `f_j` given by a table on the words of some length, using
+> `uf = (f∘T⁻¹)u`.  The word is trivial in `G_X` if and only if the tables of its difference from
+> `I₃` vanish on `L(X)`, so `L(X)` computes the word problem.
+
+This module proves skf-degrees' `PrintedWordProblemReducesToLanguage` for the generators
+`e_ij(s)`, `s ∈ {u, u⁻¹} ∪ {e_a}`, of `WordProblemDegreeStatements`.
+
+* The coefficient tables are `u ↦ u¹`, `u⁻¹ ↦ u⁻¹` and `e_a ↦ 1_{x_0 = a}`
+  (`coeffTable`, `eval_coeffTable`).
+* In characteristic `2`, `e_ij(s)⁻¹ = e_ij(s)`, so a letter and its inverse multiply out to the
+  same matrix (`val_wordValue`).
+* `CylinderTables.turingReducible_of_wordTables` then gives the reduction.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open CylinderTables SymbolicDynamics.FullShift SkewMonoidAlgebra
+open Multiplicative (ofAdd)
+
+variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
+
+/-- The coefficient table of a coefficient symbol. -/
+def coeffTable : Coeff A → Table A
+  | .u => [((1 : ℤ), [])]
+  | .uInv => [((-1 : ℤ), [])]
+  | .letter a => [((0 : ℤ), [((0 : ℤ), a)])]
+
+/-- The letter of a generator symbol. -/
+def genTable (g : Gen A) : (Fin 3 × Fin 3) × Table A :=
+  (g.1.1, coeffTable g.2)
+
+omit [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] in
+theorem primrec_coeffTable [Primcodable A] : Primrec (coeffTable : Coeff A → Table A) := by
+  have he : Primrec (Coeff.equivOption A) := Primrec.of_equiv
+  refine (Primrec.option_casesOn he (Primrec.const [((1 : ℤ), ([] : Cyl A))])
+    (Primrec.option_casesOn Primrec.snd (Primrec.const [((-1 : ℤ), ([] : Cyl A))])
+      (Primrec.list_cons.comp (Primrec.pair (Primrec.const (0 : ℤ))
+        (Primrec.list_cons.comp (Primrec.pair (Primrec.const (0 : ℤ)) Primrec.snd)
+          (Primrec.const []))) (Primrec.const [])).to₂).to₂).of_eq fun c => ?_
+  cases c <;> rfl
+
+omit [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] in
+theorem primrec_genTable [Primcodable A] : Primrec (genTable : Gen A → (Fin 3 × Fin 3) × Table A) :=
+  (Primrec.pair (Primrec.subtype_val.comp Primrec.fst) (primrec_coeffTable.comp Primrec.snd)).of_eq
+    fun _ => rfl
+
+omit [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] in
+theorem cylMem_letter {a : A} {x : ℤ → A} : cylMem [((0 : ℤ), a)] x ↔ x 0 = a := by
+  simp [cylMem]
+
+theorem cylInd_letter (S : Subshift A ℤ) (a : A) :
+    cylInd S.carrier [((0 : ℤ), a)] = letterIndicator S a := by
+  refine LocallyConstant.ext fun x => ?_
+  rw [cylInd_apply]
+  show (if cylMem [((0 : ℤ), a)] x.1 then (1 : ZMod 2) else 0) = if x.1 0 = a then 1 else 0
+  by_cases h : x.1 0 = a
+  · rw [if_pos (cylMem_letter.2 h), if_pos h]
+  · rw [if_neg fun e => h (cylMem_letter.1 e), if_neg h]
+
+/-- **The coefficient tables evaluate to the coefficient symbols.** -/
+theorem eval_coeffTable (S : Subshift A ℤ) (c : Coeff A) :
+    eval (subshiftHomeo S) (coeffTable c) = coeffValue S c := by
+  cases c with
+  | u =>
+    rw [coeffTable, eval_cons, eval_nil, add_zero]
+    show single (ofAdd (1 : ℤ)) (ClopenCoeff.of (subshiftHomeo S) (ZMod 2) (cylInd S.carrier [])) =
+      ((Pestov91.CrossedProduct.unitOf (ofAdd (1 : ℤ)) :
+        (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))ˣ) :
+          ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
+    rw [cylInd_nil, map_one (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)),
+      Pestov91.CrossedProduct.val_unitOf]
+  | uInv =>
+    rw [coeffTable, eval_cons, eval_nil, add_zero]
+    show single (ofAdd (-1 : ℤ)) (ClopenCoeff.of (subshiftHomeo S) (ZMod 2) (cylInd S.carrier [])) =
+      (((Pestov91.CrossedProduct.unitOf (ofAdd (1 : ℤ)))⁻¹ :
+        (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))ˣ) :
+          ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
+    rw [cylInd_nil, map_one (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)),
+      Pestov91.CrossedProduct.val_inv_unitOf, ofAdd_neg]
+  | letter a =>
+    rw [coeffTable, eval_cons, eval_nil, add_zero]
+    show single (ofAdd (0 : ℤ))
+        (ClopenCoeff.of (subshiftHomeo S) (ZMod 2) (cylInd S.carrier [((0 : ℤ), a)])) =
+      ClopenCrossedProduct.coeff (subshiftHomeo S) (ZMod 2) (letterIndicator S a)
+    rw [ClopenCrossedProduct.coeff_apply, Pestov91.CrossedProduct.C_apply, ofAdd_zero,
+      cylInd_letter]
+
+omit [DiscreteTopology A] [DecidableEq A] in
+/-- `1 - a E_ij = 1 + a E_ij` in characteristic `2`. -/
+theorem one_sub_single_eq (S : Subshift A ℤ) (i j : Fin 3) (a : R S) :
+    (1 - Matrix.single i j a : Matrix (Fin 3) (Fin 3) (R S)) = 1 + Matrix.single i j a := by
+  have hself : (Matrix.single i j a : Matrix (Fin 3) (Fin 3) (R S)) + Matrix.single i j a = 0 := by
+    rw [← Matrix.single_add, add_self (subshiftHomeo S) a, Matrix.single_zero]
+  rw [sub_eq_iff_eq_add, add_assoc, hself, add_zero]
+
+/-- **A word multiplies out to its matrix of tables.** -/
+theorem val_wordValue (S : Subshift A ℤ) (w : List (Gen A × Bool)) :
+    (((wordValue (genValue S) w : G S) : (Matrix (Fin 3) (Fin 3) (R S))ˣ) :
+      Matrix (Fin 3) (Fin 3) (R S)) = matEval (subshiftHomeo S) (wordM genTable w) := by
+  induction w with
+  | nil =>
+    show (1 : Matrix (Fin 3) (Fin 3) (R S)) = matEval (subshiftHomeo S) (matOne : Mat A)
+    rw [matEval_matOne]
+  | cons x w ih =>
+    obtain ⟨g, b⟩ := x
+    have h : g.1.1.1 ≠ g.1.1.2 := g.1.2
+    have hletter : (((if b then genValue S g else (genValue S g)⁻¹ : G S) :
+        (Matrix (Fin 3) (Fin 3) (R S))ˣ) : Matrix (Fin 3) (Fin 3) (R S)) =
+        1 + Matrix.single g.1.1.1 g.1.1.2 (coeffValue S g.2) := by
+      cases b
+      · show (1 - Matrix.single g.1.1.1 g.1.1.2 (coeffValue S g.2) : Matrix (Fin 3) (Fin 3) (R S)) = _
+        exact one_sub_single_eq S _ _ _
+      · rfl
+    show ((((if b then genValue S g else (genValue S g)⁻¹) * wordValue (genValue S) w : G S) :
+        (Matrix (Fin 3) (Fin 3) (R S))ˣ) : Matrix (Fin 3) (Fin 3) (R S)) =
+      matEval (subshiftHomeo S) (matMul (elemMat g.1.1.1 g.1.1.2 (coeffTable g.2)) (wordM genTable w))
+    rw [Subgroup.coe_mul, Units.val_mul, hletter, ih, matEval_matMul _ (fun _ => rfl),
+      matEval_elemMat _ h, val_elementaryUnit, eval_coeffTable]
+
+theorem wordValue_eq_one_iff (S : Subshift A ℤ) (w : List (Gen A × Bool)) :
+    wordValue (genValue S) w = 1 ↔ matEval (subshiftHomeo S) (wordM genTable w) = 1 := by
+  rw [← val_wordValue]
+  constructor
+  · intro hw
+    rw [hw]
+    rfl
+  · intro hw
+    exact Subtype.ext (Units.ext hw)
+
+open Classical in
+/-- **cor:wp, proof, first paragraph: `L(X)` computes the word problem.** -/
+theorem printedWordProblemReducesToLanguage : PrintedWordProblemReducesToLanguage := by
+  intro A _ _ _ _ _ S
+  have hlang : ∀ v : List A, v ∈ language S ↔ v ∈ listLanguage S.carrier :=
+    fun v => mem_listLanguage_iff.symm
+  refine turingReducible_of_wordTables S.mapsTo (subshiftHomeo S) primrec_genTable
+    (fun w => wordValue (genValue S) w = 1) (wordValue_eq_one_iff S) (fun n => rfl) fun n => ?_
+  show Part.some (if ∃ v : List A, Encodable.decode n = some v ∧ v ∈ language S then 1 else 0) = _
+  simp only [hlang]
+
+end SimpleKazhdanSofic
+end GroupApproximation
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.eval_coeffTable
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.val_wordValue
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedWordProblemReducesToLanguage

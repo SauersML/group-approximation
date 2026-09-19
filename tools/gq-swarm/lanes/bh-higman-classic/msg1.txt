@@ -1,0 +1,6 @@
+Sandwich rings over any coefficient ring have infinite ascending ideal chains
+
+Sealed monomials p q p^j q in U_k = k[T]<p,q>/(p(1-g)q-1) generate monomial ideals, so U_k has
+continuum many proper two-sided ideals for every nonzero commutative k. This extends the class kill of
+finite-bi-index sandwich envelopes (Attempt 9) from Z to all coefficient rings, e.g. Q[T]. Lane proof,
+not reviewed. Adds Attempt 10 to ck-envelope-simple-core-has-finite-bi-index.

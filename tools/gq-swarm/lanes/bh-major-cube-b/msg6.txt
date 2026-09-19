@@ -1,0 +1,8 @@
+Flagged pointed-cube coding resynchronizes cubulated actions; claimed F_infinity simple hosts for all cubulated groups
+
+Adds the flagged pointed-cube category (states may forbid adjacent walls the future will not cross): it is
+Li-Garside with trivial units, its boundary is the whole Roller boundary, and every element of a free cocompact
+cubulated group acts by a global bisection, repairing the resynchronization obstruction. With free loops at
+every vertex (G * F_r), Cuntz stabilization, Li Corollary D and Matui simplicity this gives a claimed proof
+that every virtually torsion-free cubulated group embeds in an F_infinity simple group (BBCMP Q1.15); the
+claim node is OPEN pending independent review, with a referee checklist.

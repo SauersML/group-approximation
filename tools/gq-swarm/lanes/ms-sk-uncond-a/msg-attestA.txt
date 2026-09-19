@@ -1,0 +1,7 @@
+SK SKAttestA: audit every declaration of the 100 formalized census rows at tex l.33-466
+
+Worklist item 2, lane ms-sk-uncond-a. The formalized rows of metadata/SK_SENTENCE_CENSUS.tsv with tex line <= 480 (abstract, introduction, thm:main, thm:general and its proof) list 241 distinct declarations. Checks on origin/main:
+(a) every declaration resolves, and its module lies in the root import closure (8048 modules);
+(b) the signatures were read by hand and bind no owed Statement. Two rows also list an _of_ form (printedGXAnswersBrownOzawaPestov_of_main, printedSimpleKazhdanSoficMain_of_pieces), and each of those rows also lists the closed endpoint;
+(c) 89 of the 241 declarations had no #audit line anywhere.
+Full/SKAttestA/{Intro,General}.lean audit every declaration of every row: #audit_closed_axioms for the 39 input-free theorems, #audit_axioms otherwise. A build of the two modules attests the range. They are unwired orphans until a probe is green.

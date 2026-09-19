@@ -1,0 +1,3 @@
+Referee report (citation lens): T_p Attempt 4 on the central-deformation Euler host PASS
+
+Quillen homotopy invariance applies to D (left regular noetherian, gl.dim <= 3); ABC hypotheses hold for Z[u] with u -> u + l; order <= 4 checked.

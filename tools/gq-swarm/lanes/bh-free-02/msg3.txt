@@ -1,0 +1,13 @@
+Bound piecewise prefix-and-automaton host groups by coNP relative to their automaton groups; the odometer and affine 2V hosts are coNP-complete
+
+bh-free-02 (BH swarm, free lane). New lane-proof claim
+automaton-tail-full-groups-have-conp-relative-word-problem (+ proof): every finitely
+generated group of homeomorphisms acting piecewise by prefix replacement plus
+automaton-group tails (nV, Rover–Nekrashevych V_d(G) for automaton G, the 2-graph
+hosts 2V_tau and 2V_H) has word problem in coNP^{WP(H_i)}, hence in PSPACE. So 2V_tau
+and 2V_{G_N} are coNP-complete, and Zaremsky's exponential-Dehn f.p. simple groups
+have coNP word problem. Beating Birget's coNP inside these hosts needs an f.p.
+automaton group with WP outside P. Attempts added to
+fp-simple-groups-with-arbitrarily-complex-word-problem (6) and
+fp-self-similar-groups-with-arbitrarily-hard-word-problem (4, incl. the scope of the
+Cartier kill: proved only for sigma∘C_0).

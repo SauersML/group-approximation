@@ -1,0 +1,10 @@
+Make BS(2,3) the pivot of Cornulier-Guyot-Pitsch Questions 1 and 3, and add two isolated-quotient mechanisms
+
+Baumslag-Solitar groups are free-by-metabelian, hence limits of their solvable quotients; since
+the limits of isolated groups form a closed class, a positive answer to CGP Question 3 gives
+Question 1 at every residually solvable group, and a Baumslag-Solitar group that is not such a
+limit would answer both questions negatively at once. Adds: finitely presented groups whose
+F-avoiding maximal normal subgroups are finitely normally generated (e.g. max-n) are limits of
+isolated groups; and a finitary-perturbation construction of isolated quotients inside
+FSym(S) x| P, with its rigidity limit for faithful actions of torsion-free groups. Attempts
+recorded on the Question 1 and 3 nodes. Lane proofs, not reviewed, no priority claimed.

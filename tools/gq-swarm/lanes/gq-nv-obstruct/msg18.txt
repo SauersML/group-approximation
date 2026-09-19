@@ -1,0 +1,1 @@
+Binary SMART search: per-type ranking shows linear walks in every candidate

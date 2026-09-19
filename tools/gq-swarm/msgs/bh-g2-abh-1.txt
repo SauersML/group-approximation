@@ -1,0 +1,12 @@
+Prove the path-fold rigidity transfer: ABHT's F_n x Z fold is quantum rigid iff its Z^2 fibre is
+
+The centrality step (C) left open on path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid is proved:
+every flow idempotent is central, by transporting commutation one tree step at a time along the chain of
+backward arrows, using that the flow is constant along t-cosets. With central flow, letters at equal
+horoheights coincide and a section family is a quantum family for the fibre, whose rigidity finishes the
+proof. With the fold lemma this is an equivalence: tree folds neither create nor destroy quantum rigidity,
+so gate G2 along path-folds over F_n x Z is exactly the Z^2 gate for expansive fibres.
+
+Lesson for general BH: a skeleton idempotent that is invariant along the fibre's deterministic direction
+and dominated by a chain under which the fibre is transported is central; non-amenable folds of amenable
+fibres add no rigidity, so E2 must be won in the fibre or by a non-fold mechanism.

@@ -1,0 +1,9 @@
+Seed evaluation is bounded by the forcing radius; hard seeds must force non-locally
+
+An isolated point of an SFT is computed on a ball by searching admissible patterns up to its
+forcing radius R(n), the least radius at which all admissible extensions of the seed agree. So
+evaluation costs at most exponential in |B_R(n)|, and over polynomial-growth groups a seed that
+beats exponential time needs super-polynomial forcing radius. Locally forced seeds, which include
+forward-deterministic machine seeds and the recorded finite-state seeds, have linear R and are
+capped. The open hard-seed premise records the necessary condition, the backward-signal candidate
+shape, and the ordered-field design rule for exact orbit closure.

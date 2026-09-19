@@ -1,0 +1,6 @@
+Prove Brin-Thompson realizability is closed under Kakutani equivalence
+
+Land a lane proof that the class of Cantor systems realized as factors of Brin-Thompson elements on
+clopen invariant sets is closed under factors, products, induced systems, towers (so topological
+Kakutani equivalence), aperiodic full-group elements and V-cocycle skew extensions. Every such
+minimal subshift has its Matui group inside some nV.

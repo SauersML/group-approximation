@@ -1,0 +1,14 @@
+Deligne hosts over flag varieties: simplicity is free, Siegel type is forced, pair diagrams fail at n = 2
+
+- cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple: for any minimal topologically
+  free Cantor action, [[(Gamma x| X) x G_2]] is integrally acyclic and simple (X. Li Cor D +
+  Kunneth vanishing); so 2V_Lambda(n) = D(2V_Lambda(n)) is simple.
+- deligne-class-dies-over-flag-varieties-iff-flag-has-lagrangian: Deligne's lattice lifts over a
+  Cantor cover of Sp_2n(R)/P_I iff n is in I; never over spaces with an invariant measure
+  (so never over profinite/2-adic models).
+- maslov-cantorizations-have-no-finite-dissection-type (+ proof route): at n = 2 no Sp_4(Z)-
+  invariant Maslov Cantorization has finite dissection type (rational light cones meet at
+  corners over Q(sqrt(2p)) for every odd prime p), and Sp_4(Z)-rigid pair diagrams would force
+  it; so the standard Stein-Farley engine cannot prove 2V_Lambda(2) finitely presented.
+- Engine status recorded on lagrangian-brin-thompson-group-is-finitely-presented and on
+  deligne-lattice-satisfies-boone-higman.

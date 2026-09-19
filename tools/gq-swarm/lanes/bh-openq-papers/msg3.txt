@@ -1,0 +1,19 @@
+Show coset-wreath subgroups pass to finite-index overgroups and preimages, so virtual retracts suffice
+
+Write CR(G) for the subgroups C of G in B_A satisfying the coset-wreath conditions, for
+example that Z/2 wr_(G/C) G lies in B_A. Three new closure properties:
+- CR(G) is closed under finite-index overgroups inside G. Lamps pull back along the
+  finite cover G/C' -> G/C.
+- If K has finite index in G, then CR(K) is contained in CR(G). The proof uses the
+  monomial embedding of G in L_K wr S_n with the marker (m,1,...,1).
+- Preimages of CR(Q) along homomorphisms to Q in B_A lie in CR(G). This includes normal
+  subgroups with quotient in B_A.
+
+Consequences, all lane proofs and not reviewed:
+- Plain virtual retracts lie in CR, with no normality needed.
+- For every finitely generated subgroup C of a limit group (Wilton), in particular of a
+  surface group, and of every finitely generated virtually free or Fuchsian group:
+  Z wr_(G/C) G, the identity-edge HNN and the double G *_C G lie in B_A.
+- A Mihailova fibre product P in F x F over Q lies in CR when Q is in B_A. It fails to when
+  Q has unsolvable word problem. For finitely presented Q in B_A this gives finitely
+  presented doubles and HNN extensions of F x F over Mihailova subgroups in B_A.

@@ -1,0 +1,12 @@
+Emitter full groups need isolated vertex groups; Reid's d = 0 group is not finitely presented
+
+If the full group of Z/k * B on its compactified Bass-Serre boundary (or its simple commutator
+subgroup) is finitely presented, then B is isolated in the space of marked groups: finitely
+presented and finitely discriminable (Cornulier-Guyot-Pitsch Prop. 2.2). Bounded configurations at
+the parabolic point transfer to every nearby marked group of B, so a finite presentation makes all
+nearby groups quotients of B, and Matui monolithicity excludes proper ones.
+
+Consequences: MathOverflow 339541 (Reid) answered, no finite presentation. The engine conjecture
+for finitely presented decidable vertex groups is refuted by B = Z; its route is dead as stated.
+The corrected route needs an isolated vertex group containing the input, which is exactly
+Cornulier-Guyot-Pitsch Question 4. Updates the Reid node and the parent homology node.

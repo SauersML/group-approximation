@@ -1,0 +1,3 @@
+Referee report (citation lens): K_infinity in a simple localization of an fp ring PASS
+
+Items 1-3 correct. Baumslag pinned (Proc. AMS 35 (1972) 61-62, via Kassabov-Riley); simplicity pinned to Oinert 0904.4661 Thm 6.13. Priority: the group ring of Baumslag group is an evident precursor. Wording: letter swap, title tape over Z[t_v], Reading bullet 2 drops the non-diagonal alternative. Attempt 4 correctly scoped.

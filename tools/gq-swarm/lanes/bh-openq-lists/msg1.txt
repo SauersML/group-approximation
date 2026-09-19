@@ -1,0 +1,16 @@
+Record open questions near Boone-Higman found in problem lists, and answer one of them
+
+The Oberwolfach 2018 Thompson-family problem session asked whether Higman's group
+embeds in the Lodha-Moore groups or in Monod's group H(R). The piecewise-analytic
+circle obstruction already on main gives a negative answer for both, recorded here as
+a corollary node.
+
+Three further questions become OPEN nodes:
+- an AIM problem on finitely presented simple groups of commutator width at least 2;
+- Minasyan's MathOverflow question on B. H. Neumann's group and finitely presented
+  residually finite overgroups;
+- the MathOverflow question on recursive presentability of E(G), reformulated as
+  E(G) = (G * Z) / J_1(G), the rank-one BFFHZ quotient.
+
+Two sibling nodes gain an "also printed" line for their AIM problem-list sources. The
+artifact lists every problem list searched, what was found, and what was not reached.

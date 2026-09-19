@@ -1,0 +1,5 @@
+gq-en-ring: point matricial divisibility at the SL_3(Z) Toeplitz candidate
+
+In the scope of matricial-divisibility-kills-rational-k2-symbols, record the
+unrefereed candidate sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational and
+the open budget claim for it.

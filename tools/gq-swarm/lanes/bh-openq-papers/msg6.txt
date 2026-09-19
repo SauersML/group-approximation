@@ -1,0 +1,19 @@
+Subgroups of products of LR groups lie in CR when their Goursat quotient is in B_A; add BH lessons to this lane's nodes
+
+New: product-subgroups-lie-in-cr-when-goursat-quotient-in-b-a (+ proof).
+- Setting: G_1, G_2 in B_A with property (LR), such as free, limit and surface groups, and a
+  subgroup H of G_1 x G_2 with finitely generated projections.
+- If the Goursat quotient Q_H is in B_A, then H satisfies the coset-wreath conditions. So the
+  coset wreaths, identity-edge HNN extensions and doubles over H lie in B_A.
+- For finitely generated H in F_m x F_n: Q_H in B_A implies H in CR, which implies that Q_H
+  has solvable word problem. Every finitely presented Q occurs, via Mihailova.
+- Proof: H is the preimage of the diagonal retract of Q x Q. Pull it back along a virtual
+  retraction, intersect with the retract F_1 x F_2, and return by finite-index inheritance.
+
+Lesson for general BH: over products of free groups, identity-edge combination closures of
+B_A are permutational Boone-Higman for the Goursat quotients in disguise. They cannot be
+easier than PBH for finitely presented groups. The remaining difficulty of general
+combination theorems lies in twisted edge maps.
+
+Seven earlier claim nodes of this lane each gain a "Lesson for general BH" paragraph.
+Lane proofs, not reviewed; no priority claimed.

@@ -1,0 +1,9 @@
+Higman images in brick hosts: exponent sums O((log m)^2) along 2^m
+
+Lane bh-testcases. For any homomorphism from H4 to an isometric-section brick
+group (nV, 2V_tau, affine 2V_{G_N}), the cycle of conjugations gives
+E_{i+1}(2^m) <= L + 2 E_i(m); unwinding around the cycle yields
+E_i(2^m) = O((log m)^2) and E_i(N) = O(log N (log log N)^2). So H4 -> 2V_tau
+(and H4 -> nV) is trivial as soon as brick maps with unbounded exponent sums
+must grow faster than (log m)^2 along 2^m; that growth gap is OPEN.
+Lane proof, unreviewed; no priority claimed.

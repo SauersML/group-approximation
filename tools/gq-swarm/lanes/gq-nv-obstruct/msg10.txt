@@ -1,0 +1,6 @@
+Establish SMART odometer factor (both referees PASS); odometer hole YES
+
+smart-level-zero-return-map-factors-onto-3-adic-odometer gets its proof
+route (bounded returns proved directly, 8-state coding into 2V) after PASS
+from gq-referee-a and gq-referee-b, so some-brin-thompson-element-factors-
+onto-an-odometer holds with k = 2, m = 3 via the route landed earlier.

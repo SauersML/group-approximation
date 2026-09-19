@@ -1,0 +1,8 @@
+Add the n = 2 cases of the GL_n(Q) root and an FA finiteness lemma
+
+Record SL_2(Q), GL_2(Q) and the countable simple group PSL_2(Q) as OPEN
+claims wired to gl-n-q-embeds-in-fp-simple-group, each with its structure
+(Ihara amalgams, the restricted product of Bruhat--Tits trees with SL_2(Z)
+stabilizers, the constraining subgroups) and its host status. Establish that
+every FA subgroup of GL_2(Q) or PGL_2(Q) is finite, so fixed-point arguments
+on trees or cube complexes cannot exclude any host for n = 2.

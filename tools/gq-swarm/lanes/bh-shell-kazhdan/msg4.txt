@@ -1,0 +1,6 @@
+Attempts on the descending window-zero case (sign -1, proper self-embedding)
+
+bh-shell-kazhdan (BH swarm). Records the exact model G^+ ⊆ G, the shift identity for out-counts,
+pi∘psi ≅ pi ⊕ 1 with the Kazhdan projection image containing the compacts for transitive actions,
+and a proof that the infinite-order F_2 twist a↦b, b↦bab^-1 collapses to eventual 2-periodicity
+(centralizer of the shift in NearSym(N) is <s>). The case stays OPEN.

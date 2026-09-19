@@ -1,0 +1,7 @@
+Abelian subgroups of Out(F_n) virtually lift to Aut(F_n); class-two global setup
+
+Feighn--Handel principal sets give virtual homomorphic lifts of abelian
+subgroups, so the commuting-pair class-two test is empty. Randal-Williams'
+stable twisted cohomology makes the rational class-two obstruction a
+well-defined element of H^2(Out(F_n); Lambda^2 H_Q) = Q for n >= 11; deciding
+virtual sections also needs control of H^1 of finite-index subgroups.

@@ -1,0 +1,8 @@
+Odometer roots force non-affine, non-contracting self-similar hosts; point the GL_n(Q) Track A route at the new M2 path
+
+odometer-root-hosts-are-non-affine-and-non-contracting: on the m-ary tree the l-th roots of the odometer are exactly
+the translations by 1/l, and the translations by Z_(S) have only affine normalizer. So a finitely generated
+self-similar group containing the odometer and its roots at infinitely many primes is not contracting, is not of
+polynomial activity, and does not normalize its translations. The linear self-similar hosts contain no Z_(S).
+
+gl-n-q-bh-via-track-a-over-st-10-times-free-group: record the (M2) path over St_10(R_L)*Z from bh-g1-simulation.

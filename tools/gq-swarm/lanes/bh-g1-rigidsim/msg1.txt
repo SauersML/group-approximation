@@ -1,0 +1,8 @@
+Rigid simulation gate: copied layers are always rigid; useful simulations force computation-layer ambiguity
+
+In a plane-constant simulation over Λ_0 x Z^2 with an aligned rigid skeleton and uniform reading,
+every quantum family has commuting skeleton and data layers, independent of the growth of Λ_0:
+copy rules are exact operator identities. A companion dichotomy shows a computation layer
+determined by skeleton and data transfers rigidity but only simulates SFTs, so any simulation of a
+non-SFT minimal subshift has configurations differing only in the computation layer. The open
+target (RS) is quantum rigidity of that layer, with an unsplittable-ambiguity necessary condition.

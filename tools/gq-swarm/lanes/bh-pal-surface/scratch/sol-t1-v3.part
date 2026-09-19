@@ -1,0 +1,74 @@
+
+/-- The challenge's metabelian groups are the development's. -/
+theorem isMetabelianGroup_iff {G : Type} [Group G] :
+    IsMetabelianGroup G ↔ GroupApproximation.BooneHigman.IsMetabelianGroup G :=
+  Iff.rfl
+
+/-- The challenge's embeddings in finitely presented simple groups are the development's. -/
+theorem embedsInFinitelyPresentedSimpleGroup_iff {G : Type} [Group G] :
+    EmbedsInFinitelyPresentedSimpleGroup G ↔
+      GroupApproximation.BooneHigman.EmbedsInFinitelyPresentedSimpleGroup G :=
+  Iff.rfl
+/-- **Kourovka 14.10(c), BBMZ Problem 2.7**, proved outright:
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q` states the same
+proposition over byte-identical copies of the shared definitions, so it closes this one by
+definitional unfolding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q :
+    Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
+      ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
+        SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
+  GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q
+
+/-- The same statement under its `_of` name; no hypothesis is outstanding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q_of :
+    Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
+      ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
+        SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
+  explicit_fp_overgroup_of_all_gl_n_q
+
+
+/-- The finitely generated metabelian form, from the development endpoint. -/
+theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
+    (h : GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement) :
+    ∀ (G : Type) [Group G], Group.FG G → IsMetabelianGroup G →
+      EmbedsInFinitelyPresentedSimpleGroup G := by
+  intro G _ hfg hmet
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr (h G hfg (isMetabelianGroup_iff.mp hmet))
+
+/-- BBMZ Problem 5.3(7), from the same endpoint: a finitely presented group is finitely
+generated. -/
+theorem finitely_presented_metabelian_embeds_in_finitely_presented_simple_of
+    (h : GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement) :
+    ∀ (G : Type) [Group G], Group.IsFinitelyPresented G → IsMetabelianGroup G →
+      EmbedsInFinitelyPresentedSimpleGroup G := by
+  intro G _ hfp hmet
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigman.finitelyPresentedMetabelianStatement_of_finitelyGenerated h
+      G hfp (isMetabelianGroup_iff.mp hmet))
+
+/-- Finitely generated linear groups, from the development endpoint. -/
+theorem finitely_generated_linear_embeds_in_finitely_presented_simple_of
+    (h : GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement) :
+    ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
+      H.FG →
+      EmbedsInFinitelyPresentedSimpleGroup H := by
+  intro K _ n H hfg
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr (h K n H hfg)
+
+/-- The proposition the linear development owes for Llosa Isenrich–Schesler–Wu Question 1.11. -/
+def LinearSelfSimilarOwed : Prop :=
+  ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
+    H.FG →
+    ∃ (d : ℕ) (S : Subgroup (Equiv.Perm (List (Fin d)))), IsSelfSimilar S ∧
+      Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f
+
+/-- Llosa Isenrich–Schesler–Wu Question 1.11, from the proposition the linear development
+owes. -/
+theorem finitely_generated_linear_embeds_in_finitely_presented_self_similar_of
+    (h : LinearSelfSimilarOwed) :
+    ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
+      H.FG →
+      ∃ (d : ℕ) (S : Subgroup (Equiv.Perm (List (Fin d)))), IsSelfSimilar S ∧
+        Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f :=
+  h
+

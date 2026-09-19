@@ -1,0 +1,9 @@
+Finitely presented almost-V groups have finitely presented germ groups
+
+Any finitely presented E with V <= E <= H (finite V-singular sets) has finitely
+presented isotropy germ groups at every point, however its finite
+presentation is proved: map the Schreier complex of the point stabilizer
+into the germ groupoid of V with finitely many free arrows. Extends the shell
+argument to all almost-V groups. Consequences: germ groups cannot be
+compensated elsewhere; E_omega for aperiodic Grigorchuk omega is not
+finitely presented. Lane proof, not independently reviewed.

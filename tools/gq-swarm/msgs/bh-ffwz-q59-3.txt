@@ -1,0 +1,6 @@
+Thompson T mixed identities hold on every derivative-action Denjoy blow-up, rational orbits included
+
+Any group of orientation-preserving homeomorphisms of a blow-up of the circle along T-orbits that
+contains T acting on the gaps by one-sided slopes satisfies all mixed identities of T. The proof mirrors
+trajectories into the circle at a small scale. This kills the rational-orbit blow-ups left alive on the
+finite-basis node (Attempt 7 recorded there). Lane proof, not reviewed.

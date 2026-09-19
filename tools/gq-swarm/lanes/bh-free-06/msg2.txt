@@ -1,0 +1,5 @@
+2V torsion question opened; V excluded as a bounded-exponent witness (Röver, re-proved by one-stack pumping)
+
+New OPEN claim brin-thompson-2v-is-torsion-locally-finite, the sharpest open host for the bounded-exponent separator. The only published nV claim (arXiv:2209.11982) is withdrawn. Lane remark: [[σ]] of the full two-sided 2-shift lies in 2V via the baker map.
+
+New artifact gq-bh-bh-free-06-one-stack-pumping: an independent pumping re-proof that f.g. periodic subgroups of V and V_{n,r} are finite. No priority claimed (Röver; BCR 1402.3860 Thm 1.3). It locates exactly where the argument breaks at 2V and at Röver–Nekrashevych groups. Attempt 2 is added on some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup.

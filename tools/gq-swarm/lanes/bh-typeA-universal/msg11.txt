@@ -1,0 +1,8 @@
+Record referee c's independent PASS and justify the F_n permutational equivalence
+
+Referee c re-derived the faithful type F_n criterion independently and passed
+it. Its two nits are applied. The shorter argument for the character module
+is added. The "H embeds in an F_n simple twisted Brin-Thompson group iff it
+embeds in an (A_n)-actor" lesson now justifies the forward direction: an F_n
+SV_G is itself an (A_n)-actor through its oligomorphic clopen action, whose
+finite-set stabilizers are products of copies of SV_G.

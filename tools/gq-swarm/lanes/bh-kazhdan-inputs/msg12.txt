@@ -1,0 +1,7 @@
+Cross-reference the parallel FW window-zero nodes
+
+Add reverse pointers from fw-inputs-admit-no-twisted-normalizing-genuine-shell-action
+to the gq-typeA-design nodes on the same gate, and record in Scope that the
+open direction (m < 0, non-surjective endomorphism) is treated there: high
+transitivity and trivial endomorphism core close it for FW inputs with
+nontrivial centre (Deligne lattice, E_N(R_L)) and for co-Hopfian FW inputs.

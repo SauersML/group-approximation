@@ -1,0 +1,8 @@
+gq-k2-q: dilation letters cannot make the unit class divisible
+
+For one register per type with affine letters N -> pN + r (dilations, shifts,
+upward letters, resets) and any resolvents, harmonic functionals on K_0 have
+denominators dividing powers of the top-level determinant when it is
+nonzero, so [1] of infinite order is divisible by only finitely many primes.
+Dilations send levels strictly down and resolvents live in K_1. The singular
+case is open; tested examples collapse to torsion.

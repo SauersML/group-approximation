@@ -1,0 +1,1 @@
+Record that complete reducibility tolerates a finite kernel on the factor

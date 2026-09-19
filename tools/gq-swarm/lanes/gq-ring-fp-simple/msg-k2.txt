@@ -1,0 +1,6 @@
+Prime-shift K_n: degree character, scalar centre, and finite presentation reduced to a one-sided relation modulo GL_n(Z)
+
+K_n/<<GL_n(Z)>> is (Q_>0/I_n) ⋊ Z; Bieri--Strebel forces e to be a one-sided
+product of prime dilations modulo GL_n(Z) if K_n is finitely presented. Point
+germs are provably blind to e; <GL_n(Z), 2I, σ_n> is not finitely presented.
+Whether K_2 is finitely presented is recorded as OPEN with Attempt 1.

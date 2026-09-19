@@ -1,0 +1,3 @@
+Referee report (citation lens): degree-one corner unitaries fail the K-budget PASS
+
+Items 1-7 correct; Morita pinned to Weibel K-book III Cor. 5.6.1-5.6.2 with the corner-map identification; PF standard; internal nodes in range. Gate Attempt 13 no-Pimsner claim correct. W1: title should say matricial.

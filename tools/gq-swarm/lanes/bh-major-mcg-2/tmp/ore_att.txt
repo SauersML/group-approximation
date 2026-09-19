@@ -1,0 +1,17 @@
+5. **LD_atom is false; Ore's condition is atomic** (lane bh-major-mcg-2, 2026-09-18).
+   - **Attempt 4 is superseded.**
+     `edge-split-dissections-respecting-a-first-split-need-not-split-there` is a
+     ten-piece dissection that respects the plane of `E_{01}` but does not refine
+     `E_{01}` in `≥_E`. So "the brute-force failures of Attempt 2 were artefacts of the
+     size window" does not follow: at ten pieces, respecting a plane really is weaker
+     than refining the split.
+   - **Ore's condition is still open.** That pair has a common upper bound with 12
+     pieces.
+   - **The correct reduction** (`edge-split-ore-via-first-split-refinements`, any
+     rank). Ore's condition is equivalent to WLD
+     (`edge-split-dissections-refine-into-any-first-split`): every edge-split
+     dissection can be refined into one that makes any prescribed first split.
+   - **Rank.** The plane lemma holds in every rank (the cut lemma of
+     `edge-splits-cut-every-rational-hyperplane`). But the rank-three reduction
+     through LD_atom is gone, so rank `6g − 6` now needs WLD directly.
+

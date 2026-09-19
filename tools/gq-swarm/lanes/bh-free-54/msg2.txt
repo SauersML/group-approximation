@@ -1,0 +1,3 @@
+Settle the rank-one case of the rational projective full-group gate and record why the tree method stops at rank two
+
+In rank one the full group is the Roever-Nekrashevych group of the letter flip on four binary Stern-Brocot trees, finitely presented because finite self-similar groups are contracting. For m >= 2, nonnegative unimodular matrices are not right-LCM (an explicit intersection of two unimodular subcones has four extreme rays), so the unimodular subcones do not form a tree. The Attempts entry also corrects the poset to dissections and states the decisive m = 2 test: mergeable sets in unimodular dissections.

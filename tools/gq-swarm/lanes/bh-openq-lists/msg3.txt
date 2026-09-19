@@ -1,0 +1,16 @@
+Answer Tarocchi's question: the commutator subgroup of the dendrite rearrangement group G_3 is simple
+
+Tarocchi proved [G_n, G_n] simple for n >= 4. For n = 3 his argument reduces to showing
+that the 3-cycle c at the central branch point lies in every nontrivial normal
+subgroup N of [G_3, G_3]. The reduction already leaves [G_3, G_3]/N cyclic, generated
+by c. Conjugating c by g = tau_2 rho_12, an element of [G_3, G_3], gives c^{-1} Y. The
+error term Y is a commutator of two elements of a single rigid stabilizer, so Y lies in N.
+Since the quotient is abelian, c = c^{-1} modulo N, and c lies in N.
+
+The commit also records printed open questions from 2024-2026 papers, as OPEN nodes:
+- finite presentation of the dendrite rearrangement groups;
+- Boone-Higman for the graph Houghton groups (Hill-Kwak-Udall-West);
+- finitely generated weakly branch subgroups of V (the literal question is answered
+  yes by the finitary automorphism group);
+- whether Kodama's n-adic Lodha-Moore groups are piecewise projective;
+- simplicity of derived subgroups of minimal piecewise full groups (Garrido-Reid).

@@ -1,0 +1,16 @@
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean:117:48: Application type mismatch: The argument
+  Multiplicative.ofAdd a
+has type
+  Multiplicative R
+but is expected to have type
+  ?m.46 p
+in the application
+  MonoidHom.noncommPiCoprod_mulSingle ?m.48 p (Multiplicative.ofAdd a)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean:125:48: Application type mismatch: The argument
+  Multiplicative.ofAdd a
+has type
+  Multiplicative R
+but is expected to have type
+  ?m.46 p
+in the application
+  MonoidHom.noncommPiCoprod_mulSingle ?m.48 p (Multiplicative.ofAdd a)

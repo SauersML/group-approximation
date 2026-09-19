@@ -1,0 +1,13 @@
+E3 prime for the fold host: base compression cannot certify the fibre; pose the fold host's finite presentation
+
+Proves that an action on B x X by a cocycle into measure-preserving homeomorphisms of a fibre with an atomless,
+full-support measure has no finite family of clopen tiles whose translates form a basis. The fibre profile
+b -> mu(Y_b) of a tile is transported unchanged, so tiles cannot shrink. Consequently ABHT folds and Busemann
+transplants of minimal free fibres are never finite-shadow-basis (Thumann) instances. The tree certifies its own
+coordinate with one edge, but never the fibre. Poses fold-host-v-stabilized-full-group-is-finitely-presented
+(open) with the one-scale reduction, the structural picture (vertical direction Cuntz-Krieger compressed), and
+three routes: transfer from the fibre host, direct filling trading width for height, and a refutation test.
+
+Lesson for general BH: along skew-product transports, E1 and E2 transfer exactly but E3 prime does not. Finite
+presentation must be paid in the fibre as the nonlinear one-scale filling, the same open step as for the
+amenable Z^2 hosts, so the fold route and the Z^2 route stand or fall together on that filling problem.

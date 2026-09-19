@@ -1,0 +1,13 @@
+BH results summary: credit prior and parallel work, drop priority holds, add FFWZ Q5.9, Reid non-fp, wider Tanner
+
+- Removes every "priority check pending" hold. bh-openq-lists found no overlap with van Doorn-Judin-Monticone-Morrison arXiv:2607.17477.
+- New section 0 credits prior and parallel work: arXiv:2607.17477 and Pan (Kourovka 21.8); Kochloukova-de Sousa Luiz arXiv:2509.05798 (Baumslag's group is not self-similar); Garrido-Reid arXiv:2501.00908 (the minimal case of the Matui reduction step); RSV cor:pi1ofdouble; Kharlampovich-Myasnikov-Sapir; Hyde-Lodha. It also lists the work our proofs rest on.
+- New rows:
+  - FFWZ Q5.9: no to both parts (25056ab91); lane proof, referee running.
+  - MO 339541: Reid's group is not finitely presented (5d7507af3, bb487abce); referee running.
+  - Tanner widened to slopes commensurable with an (F) unit (fd9f710c0).
+  - Kourovka 21.74(a) (d61d20b6b) and 17.58 (ad962750f), both still open.
+
+Counts: 22 full answers (9 refereed, 12 checked, 1 lane-only) and 10 partial answers.
+
+Lesson for general BH: kernel removal is not a general tool. A finitely presented abstract Rover-Nekrashevych group can carry a type [A_2] action with a non-recursive kernel, so any route from BH to PBH must use special structure of the input, not a generic relative-to-absolute step.

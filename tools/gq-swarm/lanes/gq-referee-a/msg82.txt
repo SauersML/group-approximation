@@ -1,0 +1,3 @@
+Referee report: loop retraction, linear-activity automata, persistent subexponential automata PASS
+
+Proof-gap lens on loop-retraction-forces-fp-eventual-section-groups, linear-activity-automata-can-have-non-fp-nekrashevych-groups and persistent-subexponential-automata-generate-finite-groups (70ac9f576). Key step pi sigma = theta pi, activity bound and faithfulness, first-return walk counting, acyclicity and the rho-embedding checked; one nit.

@@ -1,0 +1,7 @@
+Pin where the hyperbolic-groups method stops for groups with flats
+
+A free abelian group fixing a rational point of a finite-nucleus rational
+similarity group acts through germs of rank at most one. So natural
+boundaries with Z^2-fixed points of faithful germs cannot be coded
+rationally. The sharp host-class test is open: does Z^2 * Z, which lies in
+every closed-surface mapping class group, embed in any finite-nucleus RSG?

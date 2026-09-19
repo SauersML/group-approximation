@@ -1,0 +1,6 @@
+Drop the K_2 centrality proviso in the rational Leavitt path dichotomy
+
+By infinitely-generated-symbols-block-fp-elementary-groups, a finitely presented
+E_N(R) already forces a finitely generated image of K_2(Q) in K_2(R); a finitely
+presented PE_N(R) gives a finitely presented E_N(R) through the finitely
+generated centre. So the K_2 condition on completions is necessary outright.

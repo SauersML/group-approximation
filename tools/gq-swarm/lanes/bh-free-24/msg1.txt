@@ -1,0 +1,10 @@
+Add a Curtis-Tits generic-action reduction to the Kac-Moody high transitivity node
+
+Attempt 6 on fp-simple-kac-moody-lattices-are-highly-transitive (BFFHZ Question 3.6,
+part one). The lattices have property FA, so splitting and acylindrical methods are
+unavailable, but they are colimits of finite rank-two Levi groups. Their actions are
+exactly compatible families of finite-group actions (Lemma A), and a standard Baire
+argument (Lemma B) reduces high transitivity to a finite free-completion statement for
+the Levi amalgam, which must use non-sphericity. Also records the FFKLZ constraint:
+the lattices lie in HF, so every highly transitive action has non-FP-infinity
+stabilizers of finite sets of infinitely many sizes. Lane proofs, not reviewed.

@@ -1,0 +1,8 @@
+LANDED a8c38b9cb on origin/main (parent e57b7ace1):
+ ...groups-with-arbitrarily-complex-word-problem.md | 16 +++++-----
+ ...ing-group-avoids-leavitt-linear-simple-hosts.md | 18 ++++++++++++
+ ...its-have-conp-parity-p-complete-word-problem.md | 34 +++++++++++++++++-----
+ ...itt-square-units-mod-p-complete-word-problem.md | 20 +++++++++++--
+ .../leavitt-square-units-wp-complexity-proof.md    | 10 +++++--
+ ...t-word-problems-have-one-counting-quantifier.md | 15 +++++++++-
+ 6 files changed, 92 insertions(+), 21 deletions(-)

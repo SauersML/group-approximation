@@ -1,0 +1,10 @@
+Add gq calibration worlds for GL_n(Q) hosts
+
+Twelve tests every GL_n(Q) method must pass before investment: residual
+finiteness (with a second reason via SL_2(K) for every infinite field, so the
+char-p transfer does not escape it), the Z[1/m] uniformity world, exponential
+distortion (root O4; BS(1,2) in nV is open), roots of every order, central and
+covering lifts, the identity-principle and derivative tests for piecewise
+hosts, property (T) for n >= 3, Witte one-manifold rigidity (quoted), cube
+complexes, ring obstructions, stabilizers, and finite presentation against
+divisibility, with a family-by-test matrix.

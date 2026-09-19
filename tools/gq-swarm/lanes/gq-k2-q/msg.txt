@@ -1,0 +1,8 @@
+gq-k2-q: generation lemma and chamber-colimit presentation of SL_n(Q)
+
+GL_n(Q) is GL_n(Z) plus one commuting dilation per prime (established,
+elementary). SL_n(Q) is the colimit of squarefree diagonal lattice
+stabilizers over the restricted product of Bruhat-Tits chambers (OPEN until
+the two textbook imports are quoted). Artifact records the Steinberg/K_2 view
+(Tate symbols of order p-1 as the uniformity defect) and what a single host
+for the chain GL_n(Z[1/m!]) needs.

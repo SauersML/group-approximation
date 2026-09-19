@@ -1,0 +1,10 @@
+BS classes over virtually quotient-free groups: big tree kernels, virtually K semidirect F_m
+
+If the finite residual of G has finite index (e.g. G virtually simple), the finite
+residuals of the vertex groups of any member of BS_G are one normal subgroup fixing
+the tree, of finite index in every vertex group; so the member is virtually
+K semidirect F_m, and virtually K x F_m when the outer action is finite. For a
+lattice in three trees with a virtually simple fibre (the non-residually-finite case
+BLIW cannot reach), this gives B_A when the projection to the other two factors is
+discrete, and isolates the remaining case: F_m acting through a non-discrete
+normalizer. Lane proof, elementary; no priority claimed.

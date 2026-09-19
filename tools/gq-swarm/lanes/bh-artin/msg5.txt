@@ -1,0 +1,8 @@
+Artin groups: complete atoms are invisible to parabolic, LCM and folding combinatorics
+
+- complete-artin-atoms-are-invisible-to-artin-combinatorics: a complete (free-of-infinity)
+  Artin group always lies on one side of every folding separation, LCM-homomorphisms
+  send it into a complete parabolic, and folds with complete result come from complete
+  graphs. So the atoms T4 (K_4 all 3) and P need a host outside Artin combinatorics.
+
+Lane proof, elementary, not independently reviewed; negative, method-level.

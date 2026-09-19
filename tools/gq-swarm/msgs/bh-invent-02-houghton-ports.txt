@@ -1,0 +1,9 @@
+Houghton ports: abelian-cofinite actions give relative permutational Boone-Higman
+
+Brown's Houghton group H_3 contains an element with exactly two free orbits, so every action of
+Z^n with finitely many orbits extends (after doubling) to a type [A_2] action of a product of
+Houghton groups. With the orbit-finite gluing lemma this proves: a finitely presented group with a
+faithful action having finitely generated point stabilizers and a cofinite free abelian subgroup
+satisfies relative PBH (FFWZ Conjecture 1.8). Such actions force solvable word problem and
+finitely many ends per orbit. Records FFWZ Conjecture 1.8 and poses the one-dimensional Higman
+embedding problem as a route to it.

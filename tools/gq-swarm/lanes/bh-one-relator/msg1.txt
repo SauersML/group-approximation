@@ -1,0 +1,11 @@
+BG images in isometric-section brick hosts need unbounded exponents; one-relator BH status check
+
+New claim bg-in-isometric-brick-hosts-needs-unbounded-exponents
+(lane proof, elementary): in any group of brick maps of C^n with isometric
+sections (nV, 2V_tau, affine 2V hosts), a nontrivial image of the
+Baumslag-Gersten generator a has zero periodic exponents, unbounded exponent
+sums and zero entropy. So the BS(1,2) = <s,u> in 2V_tau never extends to BG.
+
+Attempts entries on baumslag-gersten-group-satisfies-boone-higman and
+one-relator-groups-satisfy-boone-higman (item 9: the hierarchy reduction is
+already complete; arXiv check through 2026-09 finds no one-relator progress).

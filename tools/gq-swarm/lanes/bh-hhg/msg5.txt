@@ -1,0 +1,9 @@
+BBCMP Question 1.16: low-complexity mapping class groups are continuous automatic
+
+Record BBCMP Question 1.16 verbatim as an open root. An Artin group of finite type
+modulo a central Garside power is continuous automatic: the normal forms are the
+positive Deligne forms with small infimum, and left multiplication is sequential
+and moves the infimum by at most one. By capping, Birman–Hilden and
+commensurability, the mapping class groups of punctured spheres, the torus, the
+once-punctured torus and the closed genus-two surface are continuous automatic.
+Genus three and higher remain open.

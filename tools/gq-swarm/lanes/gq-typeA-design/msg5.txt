@@ -1,0 +1,6 @@
+Steinberg centre obstruction: cite refereed scalar node, record PASS
+
+After gq-referee-a PASS (660620059): take the elementary rational scalars
+from leavitt-tuples-make-rational-scalar-powers-elementary (refereed) instead
+of the unreviewed ibn-failure part 3, drop the trust surface, and record the
+review.

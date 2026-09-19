@@ -1,0 +1,7 @@
+Correct M_m nodes: its sweeps break bounded return for SMART's inducing set
+
+M_m has a hollow sweep H0 -> (2j, H, pass) whose steps all lie outside SMART's
+genuine-move set, so that set is not a bounded-return section and the SMART
+pipeline does not transfer to M_m as stated. The counts and random-tape
+checks stand but are blind to sweeps (random tapes have short zero blocks).
+SMART_m has no sweep. Lesson: test bounded glue on long background blocks.

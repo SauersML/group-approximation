@@ -1,0 +1,7 @@
+Germ quasi-retraction: fp stabilizer engines need fp vertex groups; refute the simple-input engine claim
+
+A finitely generated group of H-piecewise homeomorphisms containing H quasi-retracts onto H
+(label at one locally faithful point), so F_n/FP_n pass down to H. For the stabilizer engine
+D(F_B) of Z/k * B this forces B to be finitely presented, so the simple-input engine claim is
+false (S = D(F_(Z wr Z)) is decidable, simple, not fp) and its route is circular. New open
+engine conjecture for fp decidable B, with a route to Boone-Higman via Clapham and doubling.

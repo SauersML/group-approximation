@@ -1,0 +1,12 @@
+Torus amalgams of GL_n(Q), SL_n(Q), Aff(Q) are never finitely presented
+
+Lane gq-infinite-primes. For every finitely generated B containing the
+diagonal, monomial or Borel subgroup C, Gamma *_C B is not finitely presented:
+the Baumslag--Solitar relation at p fails in the S-arithmetic stage E_S for
+every p outside S. So every prime-permutation amalgam Pi_n^H is not finitely
+presented, including H = Thompson T acting 2-transitively on the primes, where
+Z wr_P T is finitely presented (Cornulier) and the metabelian test is silent.
+Finite presentation of any K_n^H needs a hidden relation.
+
+Also: Attempt 5 on the SL_2(Q) permanence target, and Attempt 2 on the K_2
+node (e lies in <<GL_2(Z)>> iff one explicit axis-fixing element does).

@@ -1,0 +1,3 @@
+Spine-plus-mover automata over finitely presented self-similar bases are lift-presented
+
+For any finitely presented self-similar P, the automaton with P as base, spine copies of P along the letter 2 and an odometer mover on {2,3} is lift-presented: base relators lie in P's own lift ideal, spine relators in the normal closure of a finite presentation of P, and a two-level descent (non-base letters, then base letters) handles the rest. So the recurrent-mover test case reduces to a finitely presented self-similar overgroup of the Grigorchuk group.

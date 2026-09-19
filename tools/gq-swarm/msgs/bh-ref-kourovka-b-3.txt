@@ -1,0 +1,14 @@
+Referee PASS: Sync_m in every rank, T_{2,3} and T_tau of type F_infinity, and exact two-point gluing of V
+
+- Sync_m for edge-split cells (bh-free-61): PASS. The half-tube lemma, its Dirichlet corollary and
+  all four steps of the induction were checked. Only the hierarchy, link and finite-type steps of
+  the MCG gate stay open.
+- Oligomorphic F_n lemma and circle-group finiteness (bh-near-actions): PASS. Priority note:
+  Stein 1992 very likely already covers T_{2,3}, and BNR assert T_tau.
+- Two-point gluing presentation of V is exact (bh-one-relator): PASS, conditional on the GAP
+  coset-enumeration certificate. Its script was read and every relator holds in the gluing group.
+  Bleak-Quick's presentation was checked against the TeX.
+
+Lesson for general BH: all three are local-to-global passes. Reachability tubes plus a shared
+vertex, finite-set stabilizers plus Brown, and natural canonical lifts plus Bleak-Quick each turn
+a local certificate into a global finiteness or exactness statement.

@@ -1,0 +1,7 @@
+LANDED f454b873d on origin/main (parent 5b3ec1846):
+ .../gq-bh-bh-free-02-wachter-weiss-reading.md      | 63 +++++++++++++++
+ ...self-similar-groups-embed-in-fp-self-similar.md | 15 ++++
+ ...utator-wachter-weiss-groups-are-not-fp-proof.md | 93 ++++++++++++++++++++++
+ ...e-commutator-wachter-weiss-groups-are-not-fp.md | 71 +++++++++++++++++
+ ...ar-groups-with-arbitrarily-hard-word-problem.md | 13 +++
+ 5 files changed, 255 insertions(+)

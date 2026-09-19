@@ -1,0 +1,12 @@
+A commutator with a finite block cycle only moves one block by a commutator with the monodromy
+
+The classical proof that every element of a "full" homeomorphism group is a single
+commutator uses an infinite product over a disjoint chain of copies, which has infinite
+support and so is not an element of V or of any nV. This records the exact reason the
+obvious finite repair fails: for a block-preserving Y and an h that cycles n blocks, the
+block components of [Y, h] telescope, so an element supported in one block can only be a
+commutator of that block's component with the monodromy of the cycle, and nothing at all
+when the cycle is untwisted.
+
+Elementary, written inline, not independently reviewed, no priority claimed. The node
+states explicitly that it gives no bound on the commutator width of any group.

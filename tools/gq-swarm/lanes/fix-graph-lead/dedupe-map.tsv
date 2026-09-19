@@ -1,0 +1,27 @@
+research/fix-bh-met-absorption-suslin-euclid-kill.md	fix-bhmet-absorption-suslin-euclid-kill	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-affine-fp-identities.md	fix-bhmet-affine-fp-identities	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-affine-fp-model.md	fix-bhmet-affine-fp-model	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-p-coords-assembly.md	fix-bhmet-char-p-coords-assembly	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-p-coords-free-mul.md	fix-bhmet-char-p-coords-free-mul	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-p-host-carry-recursion.md	fix-bhmet-char-p-host-carry-recursion	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-p-host-tree-word.md	fix-bhmet-char-p-host-tree-word	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-zero-coords-denominators.md	fix-bhmet-char-zero-coords-denominators	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-char-zero-host-letters.md	fix-bhmet-char-zero-host-letters	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-coprimary-module.md	fix-bhmet-coprimary-module	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-elem-fp-char-zero-k2-split.md	fix-bhmet-elem-fp-char-zero-k2-split	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-elem-fpk2-local-quillen-ideal.md	fix-bhmet-elem-fpk2-local-quillen-ideal	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-elem-fpk2-stab-diag-endpoint.md	fix-bhmet-elem-fpk2-stab-diag-endpoint	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-envelope-cantor-action.md	fix-bhmet-envelope-cantor-action	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-envelope-finite-index-abel.md	fix-bhmet-envelope-finite-index-abel	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-envelope-gen-torsion-nakayama.md	fix-bhmet-envelope-gen-torsion-nakayama	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-envelope-higman-v-gen-family.md	fix-bhmet-envelope-higman-v-gen-family	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-envelope-higman-v-swap-gen-all.md	fix-bhmet-envelope-higman-v-swap-gen-all	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-prime-e-base.md	fix-bhmet-pure-char-prime-e-base	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-prime-e-high-artin-hasse-alg.md	fix-bhmet-pure-char-prime-e-high-artin-hasse-alg	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-prime-e-high-coprimary-fp.md	fix-bhmet-pure-char-prime-e-high-coprimary-fp	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-prime-e-high-witt-e-base.md	fix-bhmet-pure-char-prime-e-high-witt-e-base	proof error.	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-prime-e-high-witt-e-coeff.md	fix-bhmet-pure-char-prime-e-high-witt-e-coeff	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-zero-cocycle.md	fix-bhmet-pure-char-zero-cocycle	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-pure-char-zero-matrix.md	fix-bhmet-pure-char-zero-matrix	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-torsion-free-coprimary-block.md	fix-bhmet-torsion-free-coprimary-block	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman
+research/fix-bh-met-torsion-free-noether-localize.md	fix-bhmet-torsion-free-noether-localize	mechanical (Lean/Mathlib drift).	fp-metabelian-groups-satisfy-boone-higman

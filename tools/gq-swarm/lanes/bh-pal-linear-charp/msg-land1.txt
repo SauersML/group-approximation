@@ -1,0 +1,3 @@
+BooneHigmanLinear CharP: unconditional trdeg <= 1 char-p linear host (unbuilt; fix node)
+
+New modules GroupApproximation/BooneHigmanLinear/CharP/{LowTrdegCoords,OneVariableHost}.lean: coordinates in at most trdeg_{F_p} K variables, and the one-variable self-similar host from Euclid + Nagao. Every f.g. linear group over a field of transcendence degree <= 1 over F_p embeds in an f.p. self-similar group, with no gap Statement. The T3 slice is conditional on the envelope statement. Landed unbuilt under the everything-on-main order; the closure contains known red upstream modules (AbsorptionSuslinEuclidKill, AffineFP*). Not root-imported. Fix node fix-boone-higman-linear-char-p-one-variable-host.

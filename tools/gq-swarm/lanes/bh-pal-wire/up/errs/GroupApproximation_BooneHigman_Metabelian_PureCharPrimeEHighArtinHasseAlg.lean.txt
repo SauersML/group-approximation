@@ -1,0 +1,41 @@
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:113:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_mul`:
+  [AddCommGroup M]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [AddCommGroup M] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_one`:
+  [AddCommGroup M]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [AddCommGroup M] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:217:4: Application type mismatch: The argument
+  eHighArtinHasse_conj_one act hmul hone V hact ↑b
+has type
+  (eHighArtinHasse_conj act hmul hone V hact 1) ↑b = ↑b
+but is expected to have type
+  ↑((AlgEquiv.ofAlgHom (?m.156 1) (?m.157 1) ⋯ ⋯) b) = ↑(1 b)
+in the application
+  Subtype.ext (eHighArtinHasse_conj_one act hmul hone V hact ↑b)
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:219:4: Application type mismatch: The argument
+  eHighArtinHasse_conj_mul act hmul hone V hact q r ↑b
+has type
+  (eHighArtinHasse_conj act hmul hone V hact (q * r)) ↑b =
+    (eHighArtinHasse_conj act hmul hone V hact q) ((eHighArtinHasse_conj act hmul hone V hact r) ↑b)
+but is expected to have type
+  ↑((AlgEquiv.ofAlgHom (?m.156 (q * r)) (?m.157 (q * r)) ⋯ ⋯) b) =
+    ↑((AlgEquiv.ofAlgHom ?m.96 ?m.121 ⋯ ⋯ * AlgEquiv.ofAlgHom ?m.96 ?m.121 ⋯ ⋯) b)
+in the application
+  Subtype.ext (eHighArtinHasse_conj_mul act hmul hone V hact q r ↑b)
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:202:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:221:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_sigma`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:254:40: failed to synthesize instance of type class
+  CommRing ↥(eHighArtinHasse_alg V htrans)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:255:36: Unknown identifier `eHighArtinHasse_sigma`

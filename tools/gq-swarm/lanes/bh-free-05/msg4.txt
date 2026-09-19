@@ -1,0 +1,7 @@
+Correct novelty claim: generic one-relator BH already follows from generic hyperbolicity
+
+Random one-relator groups are C'(1/6) hence hyperbolic with probability -> 1 (Gromov,
+Ol'shanskii; stated for 2 generators in Dunfield-Thurston, read at source), so the "almost all"
+statement follows from BBMZ's hyperbolic theorem and is not new. Retitles the node; the content
+is the explicit Sapir-Spakulova/Brown criteria, which include non-hyperbolic one-relator groups.
+Lane bh-free-05.

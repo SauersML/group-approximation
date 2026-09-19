@@ -1,0 +1,5 @@
+Dying-kernel covers give simple envelopes of type F_n; IMGs of hyperbolic PCF rational maps embed in F_∞ simple groups
+
+New ESTABLISHED: dying-kernel-covers-give-f-n-simple-envelopes. It composes wreath-recursion-thompson-groups-inherit-fn with bh-free-45's twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family: the family of V_d(G) is {V_{d,r}(G)}. So an F_n dying-kernel cover of a contracting G gives the simple group SV_{V_d(G)} of type F_n. In particular IMG(f) ≤ SV_{V_f}, which is F_∞ simple, for every hyperbolic PCF rational f. The node notes that G is typically distorted in V_d(G).
+
+Lesson for general BH: for full-group hosts, the whole F_n-simple-envelope problem is supplying an F_n cover of the nucleus data with a dying kernel.

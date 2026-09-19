@@ -1,0 +1,9 @@
+Steinberg shell gate 2: mixed near relations exist, attempt recorded
+
+Any countable input with an element of infinite order and infinite index
+admits an enumeration satisfying the route-form mixed near relation, so the
+free-shift obstruction never binds St_4(R_L) (t = x_12(1)); computable given
+the word and power problems. Record the gate-2 attempt on the St_4(R_L)
+shell claim: window N >= 1 forced (one end), fixed-base RN hosts closed by
+(T), and the Kazhdan obstruction attempt with where it dies. Gate 2 stays
+OPEN.

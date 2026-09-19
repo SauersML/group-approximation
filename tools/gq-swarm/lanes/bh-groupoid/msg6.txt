@@ -1,0 +1,9 @@
+Prove Boone–Higman for every cocompact lattice of a thick Ã2 building, with or without torsion (settles exotic Ã2 lattices), via Li's theorem for the orbit category of parallelograms
+
+- a2-lattices-embed-in-fp-simple-groups (new, lane proof): orbit category with finite unit groups
+  (tile stabilizers), its groupoid = Γ-twisted tail equivalence of sectors (= Li's I_l ⋉ ∂Ω, Hausdorff),
+  F_∞ by Li thm:deg, weighted complete reducibility + tile-level link argument, dense aperiodic
+  sectors (Baire + branching), finite-extension lemma S ≀ Sym(r) ↪ S for purely infinite minimal hosts.
+- exotic-a2-lattices-satisfy-boone-higman: OPEN -> ESTABLISHED (lane proof, unreviewed).
+- frontier §9: products of trees — naive RS route reducible (colour-1 moves fix the T2-edge);
+  C̃2/G̃2 plan with the tile/half-rosette structure and generalized n-gon pencil closure.

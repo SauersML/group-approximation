@@ -1,0 +1,8 @@
+BCC separator for Boone–Higman; referee-a PASS and nits on decidable-expanders and CE nodes
+
+- baum-connes-with-coefficients-separates-boone-higman: BH implies a finitely presented
+  simple counterexample to Baum–Connes with coefficients; BH fails if every fp simple group
+  satisfies BCC (Chabert–Echterhoff heredity cited; Osajda Cor 3.3).
+- decidable-group-with-coarsely-embedded-expanders-exists: referee-a PASS (3ef678ef5);
+  N1 two-face Greendlinger form for singular diagrams; N2 recompute each round.
+- coarse-embeddability-separates-boone-higman: referee-a PASS recorded.

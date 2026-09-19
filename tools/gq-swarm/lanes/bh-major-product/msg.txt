@@ -1,0 +1,11 @@
+Self-square hosts: Cuntz-stabilized full groups and Leavitt-pair unit groups contain their own squares; Titz Mite-Witzel product instances settled
+
+New elementary nodes: cuntz-stabilized-full-groups-contain-their-own-squares (cone-shift
+bisections square any full group, incl. [[G x R_2]], D([[G x R_2]]), CT_P(Z)) and
+leavitt-pair-unit-hosts-contain-their-own-squares (the Cuntz corner map embeds R x R in R, so
+units, GL_n, E_n square themselves; on St_n the corner square loses exactly one K_2).
+Attempt 14 on boone-higman-closed-under-finite-direct-products: Titz Mite-Witzel kernels are now
+in B_A via the Euclidean-building theorem, so the sharpest instances of Attempt 13 hold; (SQ)
+holds on the recorded census except possibly W and odd-prime Leavitt hosts; displacement
+criterion. Attempt 5 on fp-simple-groups-have-the-joint-embedding-property: remaining JE tests
+and a three-gate reduction of (L x L)^x in B_A. Lane proofs, unreviewed.

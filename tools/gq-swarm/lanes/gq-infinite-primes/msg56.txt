@@ -1,0 +1,8 @@
+Leavitt stabilization kernels are one-step; stabilization = refinement after a twist
+
+Lane gq-infinite-primes. Refinement D_(N+1) fixes every generator in the image of
+j_N, so D_(N+1) j_N = j_(N+1) j_N and, by induction, every iterated stabilization
+has the kernel of j_N. So U_N = ker(K_2(N,R) -> K_2(R)) = ker(j_N) for any ring
+with a Leavitt pair. Also j_N = D_N Sigma^(e) with Sigma^(e) the isometric twist of
+the last coordinate. For R_L, condition (i) is injectivity of one map at one
+level. Supersedes item 4 of the refinement node.

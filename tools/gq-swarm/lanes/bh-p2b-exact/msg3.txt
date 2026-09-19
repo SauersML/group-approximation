@@ -1,0 +1,3 @@
+P2 prime b: gluing exactness is commutation with one Thompson transposition
+
+New node v-times-gluing-exactness-is-commutation-with-one-transposition. The gluing group is the normal closure of any nontrivial element of V. So its kernel is trivial iff it commutes with tau_0 = (00 01), and it is finitely normally generated iff finitely many kernel relators force that commutation (the monodromy form). Centralizers of tau_0 lift. The node records the dead bounded-factorization route (F(T) != MNM over (Z,2)) and the open complexity-induction route to FSG(Z,2), whose missing step is one multiplicativity lemma.

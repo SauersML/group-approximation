@@ -1,0 +1,9 @@
+BS chain hosts: PL germ towers are never faithful, ascending germ towers give F_infty extensions, chains need unbounded dilation spectra
+
+Three lane results on the one-relator/Baumslag-Gersten/Higman chain (BBMZ 5.3(9)):
+- scale-periodic-bs-chain-germ-representations-are-not-faithful: every PL germ realization of the chain group G_1 at an end of the line kills [c_1, sigma^k c_1 sigma^-k], so its germ group is a proper quotient of G_1.
+- zoom-tower-germ-groups-give-f-infinity-germ-extensions: full germ extensions of V whose germ groups are locally realized ascending towers over the zoom are F_infty via the SingFix clause of Belk-Hyde-Matucci Theorem 2.1; the doubling extension of V is an instance outside Corollary 2.10.
+- chain-configurations-need-unboundedly-many-dilation-eigenvalues: b dilates a^n c a^-n by 2^(2^n), which excludes hosts that are abelian over directed unions of fg metabelian groups with bounded associated primes, including ascending towers of height at most three.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Cx1kxpcwHuuQ8mqh4hcKQy

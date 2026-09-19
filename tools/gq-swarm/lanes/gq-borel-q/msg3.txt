@@ -1,0 +1,5 @@
+Root gl-n-q: record the amalgam dead end under Attempts
+
+Attempt 5: BN-pair, Curtis-Tits and local Steinberg amalgam presentations of
+SL_m(Q) give no reduction (gluing the pieces is equivalent to embedding), with
+pointers to the surviving nontrivial-homomorphism reduction and B_2(Q).

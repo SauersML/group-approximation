@@ -1,0 +1,5 @@
+K_infinity: single-twist tapes are one-pass, and one pass cannot invert generic irreducibles
+
+Attempt 5 on countable-char-zero-fields-embed-in-fp-simple-rings: the fixed-
+region lemma and an algebraic streaming lower bound (W registers never reach a
+generic irreducible in more than W earlier variables).

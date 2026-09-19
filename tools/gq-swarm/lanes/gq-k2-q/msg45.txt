@@ -1,0 +1,7 @@
+gq-k2-q: torsion K_1 modulo central scalars kills every scalar symbol
+
+For central Q-bar, the commutator pairing of diag(nu, nu^-1, 1)-blocks with
+diag(g, 1, g^-1) is a homomorphism Phi_nu: K_1(R) -> K_2(R) extending {nu, x};
+K_2(Q-bar) = 0 (Garland, tame sequence, Bass-Tate); so if K_1(R) is torsion
+modulo central scalars, every {lambda, x} vanishes. The K_2 half of the gate
+becomes a K_1 condition for central Q-bar.

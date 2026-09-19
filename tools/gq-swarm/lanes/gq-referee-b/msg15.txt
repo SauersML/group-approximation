@@ -1,0 +1,8 @@
+gq-referee-b: review of the characteristic-0 ring envelope theorems
+
+Citation/hypothesis review of rational-function-fields-embed-in-fp-simple-rings,
+char-zero-representable-rings-embed-in-fp-simple-rings,
+field-envelopes-pass-to-algebraic-closures and
+fp-simple-q-algebras-embed-in-fp-simple-rings: all PASS; the OPEN nodes
+countable-char-zero-fields-embed-in-fp-simple-rings and
+char-zero-ring-boone-higman are accurate. One wording fix, bounded novelty.

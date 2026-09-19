@@ -1,0 +1,3 @@
+2V torsion node: oblivious writing machines are torsion locally finite too
+
+This follows from Barbieri–Kari–Salo Proposition 3 (α: OB → Z^d with locally finite kernel LP). A counterexample must therefore couple tape-dependent movement with writing (EL = <RFA, LP>).

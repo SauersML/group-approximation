@@ -1,0 +1,5 @@
+BG: germ-chain lemma and a line design for germ-extension hosts
+
+Common fixed points of a, tat^-1, t^2at^-2 with torsion-free linear germ
+groups force a to be the identity nearby; this kills the natural PL and
+log-affine (BS(1,2)-germ) designs on the line, and isolates the loopholes.

@@ -1,0 +1,5 @@
+Cross-reference the Houghton-like route on the two Mallery-Zaremsky compiler gates
+
+Adds one Attempts bullet each to mz-germ-finite-presentation-lifts-to-the-envelope and
+infinite-shift-higman-compiler, pointing to the H_n(E_nu(P)) alternative landed in 9b43b26d1. No change to either
+claim.

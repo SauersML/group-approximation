@@ -1,0 +1,11 @@
+Higher-rank MIF: strongly regular building elements are opposition-proximal
+
+Lane bh-testcases. Proves strongly-regular-building-elements-are-opposition-
+proximal (both parts) for every locally finite thick Euclidean building,
+modulo standard facts (opposite germs, common subsectors, apartment isometries,
+cone topology): opposition is open with dense slices, and strongly regular
+elements contract the chambers opposite their repelling pole uniformly on
+compacta. This is premise (PR2)/(D2-dynamics) of the Titz Mite–Witzel MIF
+route. Also records explicit non-domestic open sets for strongly regular
+elements on the nowhere-domestic node, and isolates the crux in singular
+(panel-tree) directions. Lesson paragraphs included. Lane proof, unreviewed.

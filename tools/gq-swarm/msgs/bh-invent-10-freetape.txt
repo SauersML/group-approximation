@@ -1,0 +1,5 @@
+A freely rewritable tape layer kills finite presentation of V-times-Turing-machine full groups
+
+Over every infinite finitely generated group, no finitely presented subgroup of F(G_V x (Lambda ⋉ homoclinic)) contains the translations and the tape-conditioned 3-cycles. The proof runs the necessity theorem's orbit representation with matrix units in place of idempotents, then feeds it a slot family from a proper colouring of the neighbourhood graph. Corollaries: finitely generated simple Turing-Thompson groups over every Lambda that are never finitely presented; the area-preserving subgroup of 3V is simple and not finitely presented; the tensor-shift ring is not finitely presented.
+
+Lesson for general BH: no free layer. Minimality bought from an unconstrained, locally rewritable layer (noise, scratch tape, surgery) always costs finite presentation, so E1 cannot be bypassed; the minimal free structure must be carried by constraints, and those constraints are what E2 pays for.

@@ -1,0 +1,11 @@
+Tree-by-complex lattices with faithful tree factor are in B_A; Amir–Lazarovich
+
+Lane bh-testcases. A cocompact lattice in Aut(T) × Aut(Y), T a locally finite
+tree and Y simply connected locally finite, lies in B_A when it acts faithfully
+on T: vertex stabilizers act properly cocompactly on Y, so edge stabilizers are
+finitely presented, and BLIW's tree criterion applies. Just-infiniteness
+supplies faithfulness. Amir–Lazarovich's lattices Λ' (Theorem A proof, read at
+source: vertex-transitive projections, just-infinite by Bader–Shalom) are
+therefore in B_A, so Λ', Λ^k and Λ' × (B_A) embed in f.p. simple groups.
+Ranking updated: Q_{g,2} (bh-free-38), BG ↠ H4 ⋊ C4 (bh-free-35), the
+Amir–Lazarovich row, and the new H4 constraints. Lane proof, unreviewed.

@@ -1,0 +1,10 @@
+Record known explicit Q-embeddings; exclude Aff(Q), GL_2(Q) from Aut(F)
+
+Artifact gq-gq-lit-q-embeddings: the mechanism of each known explicit
+embedding of (Q,+) into a finitely presented group (Belk-Hyde-Matucci Q <= T-bar
+and VA, Kojima-Sheng Q <= nV, Mikaelian's explicit Higman groups and his GL(n,Q)
+announcement, the Johnson/Higman question), what supplies divisibility in each,
+and their reach on Q^n, Aff(Q), U_3(Q), GL_2(Q). New claim
+aff-q-does-not-embed-in-aut-thompson-f with direct proof from BHM Prop. 13 and
+Brin's model: T-bar contains no Q^2, and Aff(Q), SL_2(Q), GL_2(Q) embed neither
+in T-bar nor in Aut(F).

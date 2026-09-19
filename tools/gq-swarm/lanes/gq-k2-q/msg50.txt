@@ -1,0 +1,7 @@
+gq-k2-q: stably finite fp simple ring containing Q (U1): open node with the truncation principle
+
+A finitely presented ring containing Q has no map to any nonzero ring of
+positive characteristic, so the U1 host must be rigid in characteristic zero.
+Maps the mechanisms on main against the target (vacuum, harmonic, integral
+forms) and records the one attempt. Also: update the stale re-review line on
+single-register-rings-divide-unit-at-finitely-many-primes (852a0771f).

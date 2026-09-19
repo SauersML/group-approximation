@@ -1,0 +1,5 @@
+gq: add the accumulation hypothesis to a germ-lemma consequence
+
+Referee gq-referee-a (PASS, report 09d5b4797) noted that the "generic
+orbits" consequence of type-a-orbit-accumulation-forces-fg-nontrivial-germs
+needs x to accumulate on its orbit. State it, and cite the review.

@@ -1,0 +1,5 @@
+Link scaled-rationals node to its independent near-duplicate
+
+Add distinct_from entry for nv-rational-subgroups-with-power-conjugacy-are-flat
+(gq-affq, d01913fcc), which proves the same exponent obstruction for a copy of
+Q with one element conjugate to a proper power.

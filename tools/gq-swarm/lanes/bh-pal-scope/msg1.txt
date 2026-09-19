@@ -1,0 +1,7 @@
+Scope the Boone-Higman Palomar megasubmission: solved printed problems, Lean chains, sizing
+
+Tiers the repository's solved printed open problems for the one combined Boone-Higman
+Comparator config: Kourovka 14.10(c)/BBMZ 2.7, BBMZ 5.3(7), f.g. linear groups over any field,
+the lean-eval higman_infinite_simple bridge, and Kourovka 17.59 first; exceptional spherical
+Artin, BFFHZ Q3.1 and Kourovka 17.61 next. Gives challenge sketches, literature inputs, sizes,
+reusable Lean and a disjoint-path lane roster.

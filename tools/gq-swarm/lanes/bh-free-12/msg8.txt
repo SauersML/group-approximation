@@ -1,0 +1,8 @@
+Contracting RSG torsion question: OPEN node with the synchronous-nucleus reduction and the two obstacles
+
+New OPEN claim contracting-rsg-torsion-subgroups-are-residually-finite: f.g. torsion subgroups of
+contracting RSGs RF (would exclude BBMZ hyperbolic hosts as bounded-exponent witnesses). Attempt 1:
+covered when the nucleus is length-preserving and surjective (graph almost-automorphism theorem);
+tools (equicontinuity => profinite closure => RF; finite-order clopen trick); obstacles (asynchronous
+nucleus: depth only super-additive, rational maps not bi-Lipschitz; non-surjective local actions);
+the sharp uniform-modulus statement that would suffice.

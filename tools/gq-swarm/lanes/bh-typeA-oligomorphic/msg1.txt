@@ -1,0 +1,7 @@
+PBH is equivalent to embedding in a finitely presented dense subgroup of Homeo(Cantor) with f.g. clopen stabilizers
+
+The countable atomless Boolean algebra is universal for the permutational
+Boone-Higman conjecture: (2)=>(1) is a direct type (A) check on clopens, and
+(1)=>(2) uses the clopen action of the twisted Brin-Thompson group. Lane proof,
+not reviewed; no novelty claimed. Open refinement: whether the stabilizer
+clause can be dropped.

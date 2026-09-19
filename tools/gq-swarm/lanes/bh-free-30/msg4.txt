@@ -1,0 +1,6 @@
+Record per-q solution and uniform-doubling reduction on the odd-roots target
+
+Attempt 2 on lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map: every odd q is solved
+separately, by the new claim odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators. The full
+Q semidirect <2> target reduces, modulo a sketched centralizer lemma, to a free Q_odd/Z action
+on C by V intertwined with its doubled twist by a single element of V.

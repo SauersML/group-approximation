@@ -1,0 +1,8 @@
+Finite-residual BS node: referee a's fixes and PASS
+
+W1: G must be infinite for "no member is faithful" (for finite G a free group on
+its tree is faithful). N1: the splitting off the free group is now exact in general,
+C = Z(K) x F over the free quotient, so H_2 = K x F even when Z(K) is infinite (the
+old case split missed that). N2: the finite-Out(R(G)) sentence is stated as a
+separate conclusion. N3: p is injective on K and [p(Gamma) : p(K)] is finite by
+covolume when p(Gamma) is discrete. Referee a PASS: c13c7d258.

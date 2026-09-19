@@ -1,0 +1,6 @@
+Apply gq-referee-b remarks to the R_l residual-finiteness nodes
+
+Z * C_m is residually finite because it is virtually free (Kurosh), with
+Gruenberg as a pointer only. Link the PASS report on the claim. Mark the
+three K-theory inputs of the K_2 heuristic as not read at source, and note
+that centrality of K_2(N,R_l) needs an unproved stable-rank bound.

@@ -1,0 +1,9 @@
+Faithful one-vertex Hecke members pass to finite direct products
+
+A one-vertex Hecke member of BS_G is faithful iff G has no nontrivial normal
+subgroup inside all domains that is invariant under all the partial maps. The
+kernel of a product member projects to such subgroups of each factor, so faithful
+data on G_1 and G_2 give faithful data on G_1 x G_2. Hence BS_G lies in B_A for G
+virtually a product of free abelian groups, arithmetic Lie lattices (surface and
+free groups included) and definite quaternion two-tree lattices, e.g. Z^n x S,
+S x S', reducible arithmetic lattices. Lane proof, elementary; no priority claimed.

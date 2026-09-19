@@ -1,0 +1,8 @@
+No monomial Leavitt unit of infinite order is self-doubling, over any field
+
+Isotropy-twisted induced (Chen) modules turn each hyperbolic periodic orbit of
+g in V into a finite-dimensional spectral block that the periodic part cannot
+absorb, so f*u_g is never conjugate to its double. This removes every
+hypothesis from Theorem 4 of leavitt-copy-centralizing-units-are-self-doubling,
+catches its F_2 example, and pins route R2 for GL_n(Q): the witness must be a
+non-monomial transcendental unit (a unital L (x) F[u^+-1] -> L).

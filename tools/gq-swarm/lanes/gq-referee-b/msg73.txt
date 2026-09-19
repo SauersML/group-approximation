@@ -1,0 +1,5 @@
+gq-referee-b: PASS on hyperbolic-groups-lie-in-the-permutational-class and BBMZ Q1.5/Q1.6 node
+
+All BBMZ quotes and labels verbatim in the local TeX; thrm:hyp_embed = Theorem E,
+prop:fin_gen_stabs = Prop 5.8 by counters. W1: BFFHZ Theorem C (2)=>(1) and l.185 give the
+PBH conclusion in two lines; priority text should say so. Q1.5/1.6 wording and Clapham use OK.

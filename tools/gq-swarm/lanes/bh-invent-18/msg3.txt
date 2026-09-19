@@ -1,0 +1,7 @@
+Anticipation layers: totality is isolation, and rigidity needs convergent walks
+
+A label copied along a locally readable walk and fixed where the walk halts is forced on a seed iff
+the walk halts everywhere, so a decorated seed stays isolated exactly when the computation is total,
+with the same stabilizer. The layer is quantum rigid on the terminating part (a transport identity
+for path projections), and two far-apart non-terminating basins in any point destroy rigidity by the
+clustering lemma. States the decisive lemma CB (merge versus compute). Lane proof, not reviewed.

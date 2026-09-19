@@ -1,0 +1,8 @@
+Odometer node: a height-3 renormalization is not a tape deletion
+
+Record the gq-affq MSI search and its structural conclusion: a brick-local
+height-3 renormalization of the induced SMART witness cannot be a
+bounded-radius tape-cell deletion (a deletion shifts a tail, so it is not
+brick-local; and empirically the needed radius grows with the zero-block
+level). It must instead consume a 3-adic digit in the odometer coordinate.
+Adds artifact gq-affq-smart-renormalization-search.md.

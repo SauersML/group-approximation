@@ -1,0 +1,1 @@
+Rotation 4: adversarial PASS on hyperbolic groups undistortedly embed in fp simple groups (both lemmas re-derived)

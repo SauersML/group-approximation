@@ -1,0 +1,9 @@
+Rank the canonical Boone–Higman test cases; open free Burnside and Osajda nodes
+
+Lane bh-testcases. The artifact ranks twelve explicit inputs where BH is not
+known (Higman group, Baumslag–Gersten, B(2,665), Deligne lattice, Osajda's
+decidable non-exact group, Out(F_3), closed Mod(Σ_3), exotic Ã₂ lattices,
+GL_2(Q), C_2, Euclidean Artin remainder, KMS groups), with the dead host
+families and their node ids. Two new OPEN nodes: free Burnside groups
+(BBMZ Problem 5.3(6), which had no node) and the Osajda group, where BH meets
+the exactness separator. No priority claimed; textbook facts marked unpinned.

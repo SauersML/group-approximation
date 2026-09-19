@@ -1,0 +1,7 @@
+Rope readers cannot be deterministic and must couple their chains
+
+A deterministic reader is a sliding-block factor, so it only marks residue-periodic sets;
+co-deterministic automata maximize the free runs at infinity rather than removing them (fix (b)
+fails). The uncoupled numeral reader is not quantum rigid (two free chains lift to a noncommuting
+family). New gate (RR prime): block and scaling coupling rules that collapse the freedom to one global
+bit. Lane proof for parts 1-3, sketch for part 4, not reviewed.

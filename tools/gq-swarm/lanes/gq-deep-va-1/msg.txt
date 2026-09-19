@@ -1,0 +1,8 @@
+Q x|_2 Z in T-check: doubling semiconjugacy structure theorem
+
+Any copy of Q x|_2 Z in T-check = <T-bar, x -> 2x> has D free with translation
+number an isomorphism onto Q and doubling element g x -> 2x. It is semiconjugate
+to the affine action by h = lim delta^-m t^m, which is affine on no interval. The
+doubling element is never conjugate to x -> 2x. In the minimal case the question
+reduces to a PL degree-2 circle map compatible with rational rotations in T.
+Adds the OPEN node t-check-contains-q-rtimes-2-z. Lane gq-deep-va-1.

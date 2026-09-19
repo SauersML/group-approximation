@@ -1,0 +1,3 @@
+Unit groups of L_p tensor L_p lie in the permutational class for every prime p
+
+Landed by the coordinator after a restart stopped lane bh-major-product before it could land this draft. The text is the lane's own, unchanged.

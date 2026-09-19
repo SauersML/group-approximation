@@ -1,0 +1,6 @@
+R_L K-theory node: record referee-b PASS (298991936), pins and W1-W4
+
+Lane gq-infinite-primes. Localization, pushforward, homotopy invariance,
+residues and excision pinned in the K-book; faithfulness not needed; lift order;
+the Weil-reciprocity detector remark marked heuristic and superseded by the
+search detector.

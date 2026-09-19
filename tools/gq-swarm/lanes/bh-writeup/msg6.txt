@@ -1,0 +1,9 @@
+BH results summary: referee passes for 17.61, BFFHZ Q3.1, FFWZ Q5.9 and Reid non-fp; T_{2,3}/T_tau/V_tau; the Kourovka 21.140 reduction
+
+- Referee passes: Kourovka 17.61, conditional on the published Li / Matui / FKPS theorems, and BFFHZ Q3.1 (4697bc8f5); FFWZ Q5.9 (9dfa9e546), where part 2 is conditional on SV_P being finitely presented; MO 339541 non-finite-presentation (a23f54860).
+- Section 5: T_{2,3}, V_{2,3}, T_tau and V_tau are finitely presented (8c548b3da). These are credited as proofs written out for statements that Stein, MMN and BNR assert, so they are not counted as printed answers.
+- Section 4: Kourovka 21.140 and Zaremsky 2.8 reduced to FP_infinity of the Basilica HNN extension (6dc3f9d10). Still open, not counted.
+
+Counts: 22 full answers (12 refereed, 10 checked, 0 lane-only) and 10 partial answers.
+
+Lesson for general BH: the finite-presentation clause of type (A) reduces to 3-set stabilizers for 3-oligomorphic actions, so certifying an actor is a finite-set check.

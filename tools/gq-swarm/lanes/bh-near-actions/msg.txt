@@ -1,0 +1,3 @@
+bh-near-actions: Stein groups with negative-base slopes are fp
+
+The square of the coding y -> {-beta y} is orientation preserving, so V(Z[beta],<beta>,l) itself is a full contracting RSG whenever the negative-base map is finite on Z[beta], hence finitely presented by BBMZ Theorem A. In degree >= 3 the derived subgroup is a finite-index finitely presented simple group, and every real field of degree >= 3 has such units, including totally real fields with no (F) unit. Every quadratic unit slope now gives a finitely presented Stein group (norm +1 was open). Type (A) node and lane summary updated. Lane proof, not reviewed; lesson paragraph included.

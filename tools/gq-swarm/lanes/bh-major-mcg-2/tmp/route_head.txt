@@ -1,0 +1,6 @@
+**Dead (2026-09-18).** Its second input,
+`edge-split-dissections-respecting-an-atom-plane-split-there`, is refuted by
+`edge-split-dissections-respecting-a-first-split-need-not-split-there`. Step 2 fails:
+geometric refinement does not imply refinement in the operad order. The replacement
+route is `edge-split-ore-via-first-split-refinements`.
+

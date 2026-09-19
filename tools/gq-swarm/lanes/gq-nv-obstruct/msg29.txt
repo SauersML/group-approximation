@@ -1,0 +1,4 @@
+Twisted BT hosts for GL_n(Q): apply bh-referee-c fix F1 (finite H via H x Z), record PASS-with-fixes
+
+Item 3: for finite H, pass to <diag(H,1), diag(I_n,2)> = H x Z in GL_(n+1)(Q), so the host always
+contains every kV, 2V and Q, as the title says. Review 4933b62e6.

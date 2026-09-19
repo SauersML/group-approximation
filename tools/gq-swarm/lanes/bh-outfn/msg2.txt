@@ -1,0 +1,5 @@
+Apply referee-a W1 to the abelianized Aut/Out virtual splitting node
+
+The splitting of the [F_n,F_n] extension over a finite-index subgroup gives a
+virtual section; the converse is now stated only under the conditions referee a
+names. Record referee a's PASS (329ff16a3).

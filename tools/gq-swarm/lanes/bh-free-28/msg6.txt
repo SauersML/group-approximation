@@ -1,0 +1,15 @@
+Prove every free centre-by-metabelian group F_n/[F_n'',F_n] linear, hence in B_A
+
+- Corner representation. x_i -> [[I_n, e_i, 0],[0, x_i, e_i^T],[0, 0, I_n]] over Z[Z^n] has
+  kernel exactly the torsion T_n. K_3 = 0 by a skew-hermitian/Koszul computation, so C_3
+  embeds in GL_7. For n >= 4, a homological count plus retractions gives
+  T_n = (Z/d)^C(n,4), d even.
+- Gupta-Levin 1986 Lemma 4.4 (read at source) keeps Gupta's torsion element u_6 out of
+  gamma_7. So T_n meets gamma_7(C_n) trivially, and C_n embeds in
+  rho_n(C_n) x C_n/gamma_7(C_n), a linear group in characteristic zero.
+- Consequences: C_n is residually nilpotent and residually finite, and lies in B_A. The
+  parent node free-centre-by-metabelian-groups-satisfy-boone-higman is ESTABLISHED
+  through free-centre-by-metabelian-bh-via-linearity.
+
+Lane proofs, not independently reviewed. No novelty claimed; a bounded search found no
+prior linearity statement for n >= 4.

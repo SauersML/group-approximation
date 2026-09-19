@@ -1,0 +1,16 @@
+Z^2 SFTs in which every line has a determining side are quantum rigid; rigidity is decided at two-sided faults
+
+- sfts-without-two-sided-faults-are-quantum-rigid (+ proof). If for every line one of its two normals is
+  determining, then compactness gives finitely many rules in open half-planes with a uniform margin, and the
+  determinism closure grows through every Euclidean ball. So the SFT is quantum rigid and its crossed product is
+  finitely presented over every field: no permutivity or group law needed. It recovers Ledrappier and, through
+  Theorem B of the hex-cone node, all quasigroup spacetimes. Trichotomy: no two-sided fault means rigid; walls
+  mean not rigid; slab faults (Labbe) are the open fault-crossing zone, where the glued two-dimensional family
+  commutes. A two-sided fault blocks every determinism closure, so for fixed-point tile sets a bounded-range
+  search is informative only through noncommutative derivations.
+- free-minimal-sft-without-two-sided-faults-exists (OPEN): the design target, weaker than the triangle-permutive
+  problem. Attempts: Kari-Papasoglu (seeded axes), Labbe (slabs), the Guillon-Zinoviadis extremely expansive SFT
+  (one vertical line left to make one-sided), and a heuristic obstacle for one-way reversible partitioned automata.
+
+Lesson for general BH: a rigid free minimal SFT needs one-sided information flow across every line, or a
+noncommutative mechanism at slab faults; walls are what to avoid.

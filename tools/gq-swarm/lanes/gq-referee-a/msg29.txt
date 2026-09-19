@@ -1,0 +1,8 @@
+Referee reports: register-completion Pimsner sequence and eventually-rational ring
+
+Proof-gap reviews of register-completion-pimsner-from-supercoherence and
+eventually-rational-register-ring-is-regular-supercoherent (bcdfabf89). The
+regularity proof and exact sequence pass (one false sentence about
+projective dimension). The Pimsner reduction passes after two repairs:
+t_+ as the sum of all spine isometries, and the telescope identification of
+the cokernel. A literature lead for supercoherence is recorded.

@@ -1,0 +1,7 @@
+Mortal decider node: restrict forcing to the genuine sheet (S1)
+
+After d03fdfb06: seedless limit points run the m-adic extension, which is not mortal for infinite halting sets.
+So mortality gives (S1) only, and rigidity plus exact orbit closure need a coupling layer. This withdraws a
+board remark that rogue runs terminate.
+
+Lane bh-invent-03.

@@ -1,0 +1,6 @@
+Referee C: PASS for abstract twisted Brin-Thompson groups and the interval Brown criterion
+
+Second independent proof-gap pass (7d6252b61) on the colored-subgroup realization of abstract
+SV_G inside the faithful (S+G)V_G, the type F_n / fp criterion for every action, and the
+interval-spherical Brown criterion. Definitions checked against the FFWZ text and BZ TeX on MSI.
+Two nits.

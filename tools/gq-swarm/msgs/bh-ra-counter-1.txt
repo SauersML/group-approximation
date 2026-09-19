@@ -1,0 +1,3 @@
+Counterexamples to (RA) are minimal sets of rigid ambients; indivisible coset ambients have only fixed points
+
+Carving reduction and automatic non-amenability at non-exact groups; the permutational coset ambients are rigid, topologically free and non-amenable but never minimal, and over indivisible homogeneous actions every minimal set is a fixed point. (RA) does not obstruct the permutational route.

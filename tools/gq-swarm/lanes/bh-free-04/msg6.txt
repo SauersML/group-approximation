@@ -1,0 +1,8 @@
+Leavitt stabilization kernel avoids corner and index subgroups
+
+U_N = ker j_N meets trivially every index-deleted subgroup (N >= 4) and every
+halving-corner subgroup H_(gg*) at every index, for every Leavitt pair (g,h);
+unstable Steinberg symbols are central and faithful for N >= 4. So a nontrivial
+element of U_N must use all N indices and both halves of every Leavitt split.
+Lane proof (corollaries of the one-step and surjective-stability nodes plus the
+classical extra-index lemma); not reviewed; no novelty claimed.

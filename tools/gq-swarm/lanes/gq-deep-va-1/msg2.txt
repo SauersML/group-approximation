@@ -1,0 +1,8 @@
+Q x|_2 Z in T-check must blow up the doubling fixed point
+
+In any copy of Q x|_2 Z in T-check the doubling semiconjugacy has a nondegenerate
+fibre over 0. Periodic multiplier rigidity gives exponent a for every invariant
+measure, then uniform expansion, then a = 1 and no wandering intervals. The
+absolutely continuous invariant measure would then be the measure of maximal
+entropy with a density in 2^(c+Z), making h piecewise linear somewhere, which is
+impossible. So Q never acts minimally. Open-node attempts updated. Lane gq-deep-va-1.

@@ -1,0 +1,7 @@
+Calibration worlds: the T3 germ-extension test needs a regime
+
+The unrestricted question (an element conjugate to its square in some finite
+germ extension of V) is trivially yes via shell envelopes, which hold every
+countable group. Restrict T3 to the regular regime, cite 8fc27465a (attractors
+and wandering non-V germs are undistorted and admit no BS relation), and name
+the open remainder regular-germ-extensions-have-no-bs-relations.

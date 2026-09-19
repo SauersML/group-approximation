@@ -1,0 +1,6 @@
+Record gq-union-obstruct results; relate tree kill to CAT(0) distortion node
+
+Root Attempts item 11 lists the four union and tree obstructions. The
+product-of-trees node now says what it adds beyond
+proper-semisimple-cat0-groups-contain-no-gl-2-q: (Q,+) itself, with no
+properness or local finiteness. The artifact is updated to match.

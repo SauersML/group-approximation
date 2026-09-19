@@ -1,0 +1,8 @@
+Local transposition presentations of V-type full groups follow from superperfection
+
+In the Quick-type local presentation of the full group of V times any Lambda-space, every lift is a
+transport, so the kernel onto the full group is central and the presented group is perfect. So the
+presentation is exact whenever H_2 of the full group vanishes, in particular for every minimal system,
+where Li gives integral acyclicity. For full shifts the residue is exactly H_2. The same mechanism closes
+the gluing presentation once lifts transport one step at a time inside the gluing group, where relative
+perfectness replaces H_2.

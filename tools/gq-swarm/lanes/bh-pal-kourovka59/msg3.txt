@@ -1,0 +1,7 @@
+Add the general-BH lesson to the piecewise-canonical generation node
+
+For a box groupoid, showing that the transposition group equals the full group is a
+finite type calculus. Swaps preserve the type, factorization squares change it,
+and refinement cancels. So only counting is needed; this is the elementary shadow
+of H_0 (x) Z/2 = H_1 = 0. The lesson also records the two cautions: all the room
+comes from refinement, and the check gives no relations.

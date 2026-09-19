@@ -1,0 +1,8 @@
+Refute finite presentation of the prime-shift group A_1
+
+Deep-denominator germs give a homomorphism A_1 -> Z wr Z killing the
+translation and ι and sending m_r to the valuation vector of r. So no
+dilation lies in the normal closure of x+1, A_1/<<τ>> is Z wr Z up to order
+2, and A_1 is not finitely presented (Baumslag). The prime-shift type (A)
+route for Aff(Q) fails in its stated form; injectivity of Pi_1 -> A_1 stays
+open with its kernel confined to <<τ>><ι>.

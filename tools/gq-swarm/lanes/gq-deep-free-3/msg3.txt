@@ -1,0 +1,5 @@
+pgl-2-q in rational group: record two referee PASSes, apply amendments
+
+gq-referee-a (1b7427840) and gq-referee-b (ff17d3b47) both PASS. Add the sign-agreement
+sentence in Step 2 and the finitely-many-cones remark in Step 1 (referee-a), fix the author
+order of arXiv:1711.01668 (referee-b), and link both review artifacts.

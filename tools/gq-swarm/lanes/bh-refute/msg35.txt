@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on bh-free-20 germ-host class closed under sectioned ascending HNNs (all four referee points)

@@ -1,0 +1,6 @@
+gq-k2-q: T_p K_2 f.g.-central attempt: grading, units, torsion lamp commutators
+
+B is graded by b-degree with B_0 = Z[u][x;sigma], so units are +-x^k times
+units in 1 + B_+; expanding b_k u b_j gives p(b_j - b_k) = (k-j) l b_k b_j and
+hence (k-j) l [b_j, b_k] = 0. K_2(N, T_p) finitely generated and central is
+not established: no symbol-generation theorem applies to this ring.

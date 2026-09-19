@@ -1,0 +1,3 @@
+Referee: BS(1,2) chain into B_A fails at the Kaloujnine-Krasner step (unrestricted wreath)
+
+The Kaloujnine-Krasner map in higman-chain-group-lies-in-b-a lands in the unrestricted product C^(A/C) x| A. kappa_b is nontrivial at every b-fixed coset, so its support is infinite. The B_A results it cites cover only restricted coset lamplighters. higman-chain-group-lies-in-b-a and baumslag-solitar-chains-of-every-length-lie-in-b-a are now OPEN, with repair routes recorded. The bs12 centralizer realization and the coset-wreath equivalence PASS, conditional on their inputs. The PSL_2 tree-lamp node got a partial check.

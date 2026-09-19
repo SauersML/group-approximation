@@ -1,0 +1,10 @@
+Closed-surface mapping class groups are self-similar only via exotic virtual endomorphisms
+
+For genus at least three, a finite-index subgroup of Mod(S_g) acting faithfully
+and self-similarly on a finitely branching rooted tree must have a section
+homomorphism that is neither injective nor of finite image. The proof combines
+the level-kernel recursion with Irmak rigidity and a normal core in the
+extended mapping class group. So Zaremsky's self-similar route to BBMZ Problem
+5.3(2) needs a homomorphism with infinite image and nontrivial kernel, which
+would follow from, but is not known to require, a virtual Z quotient
+(Ivanov's question).

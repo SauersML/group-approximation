@@ -1,0 +1,7 @@
+Subshift full groups give infinite-order twisted near shells; open finitely presented analogue
+
+bh-shell-universal. The topological full group of a minimal subshift near-acts on a forward orbit ray
+with sigma acting as the shift. So its index kernel gets an infinite-order twisted near shell action,
+with near group [[sigma]] itself. The germ gate then fails because [[sigma]] is not f.p.
+(LEF + simple commutator subgroup, cited, not read). New OPEN target
+fp-ray-near-actions-with-the-shift-exist. Lane proofs, not reviewed.

@@ -1,0 +1,11 @@
+gq-cuntz-cstar: record that Lambda_h is not finitely presented
+
+Part 6 of harmonic-cuntz-el3-is-fg-simple-over-all-gl-n-q said only that
+EL_3(C_h) and Lambda_h are not both finitely presented. It now proves that
+Lambda_h is not finitely presented, self-contained, without citing the
+refutation node (that would make a cycle): EL_3(C_h) is finitely generated,
+and a finitely presented central quotient of a finitely generated group has
+a finitely generated kernel, being a quotient of R/[F,R]; Q^x is not.
+This agrees with the refutation landed in 7ce417eef. The consequence text,
+the dictionary artifact and the finitely presented ring node are updated,
+and the three nodes cite gq-referee-a's PASS reports (84eb81f44).

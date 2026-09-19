@@ -1,0 +1,15 @@
+Linear gate: Bernoulli algebras suffice, scaffolds F_2^k are all admissible, the passing class is product-closed
+
+New claim node linear-gate-class-is-product-closed-over-tree-powers.
+- Theorem 1: the Bernoulli algebra B_Gamma = M_2^{(x)Gamma} x| Gamma is simple and decidable and contains
+  Gamma, so it replaces R_Gamma in the linear gate, with no half-line overgroup and no Kazhdan input.
+  B_Z = R_1 embeds in L (x) L, so the R_Z test (which contains K[Z^n] for every n) was an artifact.
+- Theorem 2: F_2^k x Z^2 is CAT(0), so Farrell-Jones holds for every k, and the scaffold may grow with the
+  input. The class of inputs passing over some F_2^k is closed under subgroups and direct products, and it
+  contains finite groups, every Z^n, V, L^x and subgroups of GL_n(L^{(x)j}).
+- Theorem 3: K[Z^n] has a faithful monomial module over a Cayley graph X iff Z^n maps regularly into X
+  (binomial-product argument plus a limit).
+
+Lesson for general BH: gate U never needed Kazhdan inputs or a fixed scaffold. The passing class is
+product-closed and generated so far by the bilateral shift and Leavitt tensor powers, and the obstruction side
+is coarse geometry (monomially) or exactness (linearly).

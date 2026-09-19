@@ -1,0 +1,4 @@
+bh-logic: notation fix in the DV_F embedding proof
+
+The generator of F is now written f, so it no longer clashes with the vertex
+elements x_j. No mathematical change.

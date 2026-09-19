@@ -1,0 +1,2 @@
+L 9 pureV (inT, inF): {(True, True): 9, (True, False): 145, (False, False): 3328}
+calib inT [('tau', True), ('w', True), ('x0', True), ('x1', True), ('v10', False)]

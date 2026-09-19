@@ -1,0 +1,9 @@
+Prove F_2/[F_2'',F_2] linear, hence in B_A; reduce C_r (r >= 4) to residual finiteness
+
+A second-order Magnus embedding x, y -> 4x4 block matrices [[1,a,c],[0,gI,b],[0,0,1]]
+over Z[x^(±1),y^(±1)] is faithful on the free centre-by-metabelian group of rank 2:
+the corner map is injective on F''/[F'',F] because c([e, h e h^-1]) = D (h - h^-1)
+with D = a(e).b(e) != 0. So C_2 is linear in characteristic zero and lies in B_A.
+For r >= 4, Gupta's 1973 theorem (abstract) reduces linearity, and hence B_A
+membership, to residual finiteness of C_r. Lane proofs, not reviewed; no priority
+claimed (Gupta 1969 gives faithful representations in this family).

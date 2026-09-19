@@ -1,0 +1,14 @@
+Telescopes and self-simulation: germ calculus, dissolution into V, and parse-shift fixed points
+
+A telescope lets a group act on every annulus around a point through the orbit of one
+endomorphism. Its germ group is (P/K_inf)*sigma. Inside a finite germ extension of V, a faithful
+telescopic germ base is exactly a dynamically V-separated group, the converse of the V-separated
+theorem, and a self-simulating finite germ extension of V simulates only subgroups of V.
+
+The fixed point of the self-simulation equation theta = (s, theta, theta, ...) is unique. It is
+a two-state transducer when s is in V, it is singular on the whole parse shift of
+never-terminating hierarchies (a golden-mean SFT), and it carries the seed in its germ at every
+point of that shift. Along one chain the host is PSPACE-capped.
+
+Also records the OPEN multidimensional version: self-simulating hosts over one-ended parse
+shifts, the group-side twin of Conjecture G2-fp.

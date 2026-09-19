@@ -1,0 +1,7 @@
+gq-referee-b: four reviews (direct St_n finite presentation and three nodes)
+
+Citation/hypothesis reviews, all PASS: gq-referee-c direct proof that St_n(R)
+is finitely presented for fp R and n >= 5 (checked against Milnor section 5);
+q-algebra-elementary-quotients-contain-gl-n-q; gl-n-q-hosts-cannot-act-on-
+one-manifolds with Witte via Parwani Thm 1.2; integral-leavitt-unit-group-
+contains-q (needs a citation for the Z-basis of L_Z(1,2)).

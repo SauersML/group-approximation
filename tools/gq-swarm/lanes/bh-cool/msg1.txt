@@ -1,0 +1,7 @@
+Odometer generators carry no non-solvable Baumslag-Solitar groups faithfully
+
+If a is conjugate to (+1) x id on K x Y (K compact monothetic) and
+t a^m t^-1 = a^n with n invertible on K, then t a t^-1 commutes with a; so
+for |m|, |n| >= 2 the map BS(m,n) -> <a,t> is not injective unless both m
+and n are non-invertible on K. Elementary lane proof (bh-cool), unreviewed.
+Plus an artifact recording which "cool" targets are already known.

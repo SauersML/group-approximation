@@ -1,0 +1,7 @@
+Point every citation of the Perron finiteness claim to its refutation
+
+Marks perron-substitution-finiteness-for-garside-full-groups OPEN and its proof INVALID (refuted by
+perron-weights-do-not-give-li-finiteness, ba9176b48a); corrects perron-recovers-free-group-boundary-full-groups
+(conclusion true via Li cor:ProdGraphs with Matui recoding, not via Perron); updates the synthesis
+master-route artifact rows. Lesson for general BH: finiteness certificates need merge packing; after
+Cuntz stabilization packing is automatic.

@@ -1,0 +1,8 @@
+Lift an ascending shell window to the one-point group; ray-germ calibration
+
+If the shell germ group has an ascending window in the direction of the V-germ,
+the one-point group A_1 is an ascending HNN extension of an explicit lift of the
+window, so it inherits every finiteness property of that lift. As a calibration,
+when the germs translate finitely many rays of blocks the one-point group is a
+stabilizer of finitely many rational points in V, hence F_infinity, unlike the
+matching Houghton group. Record the attempt and its gap on the FP_2 shell node.

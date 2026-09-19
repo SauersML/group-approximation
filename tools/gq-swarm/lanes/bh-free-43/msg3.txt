@@ -1,0 +1,9 @@
+Adversarial check of CT(Z) = [[G]]: the 17.59 node and 17.61 item 3 PASS
+
+Re-derived the one-vertex k-graph model, normality of CT_P(Z) in the full
+group, the 17.59 argument and item 3. Read at source and matched
+hypotheses for FKPS thm:H computation (colour-2 gcd 1 gives trivial
+homology), Li cor:AHConj with his comparison definition, and Matui
+simple2 with its standing assumptions. The only unread input left is
+Li's identification of the one-vertex groupoid, which only the F_infinity
+claim of 17.61 uses.

@@ -1,0 +1,9 @@
+Decide continuity of automatic structures; S_{1,2} modulo Birman–Hilden
+
+An automatic structure with uniqueness is continuous exactly when each left
+multiplier map has bounded lookahead (K = |Q|^2). This is decidable by a
+split-cycle search in the twin graph of the multiplier automaton, and it is the
+first test for Mosher's structure. Mod(S_{1,2}) is continuous automatic, given
+the recalled Birman–Hilden identification with Mod(S_{0,5}). Record S_{2,1} as
+the first case with no hyperelliptic shortcut, and the Raney-type theorem for
+Rauzy–Veech codings as the precise missing ingredient.

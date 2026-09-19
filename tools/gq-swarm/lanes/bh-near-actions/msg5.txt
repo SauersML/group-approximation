@@ -1,0 +1,4 @@
+bh-near-actions: minimal interval exchanges over real quadratic fields satisfy BH
+
+Corollary of the Stein V type (A) node: [[T]] for any minimal IET with parameters in a real quadratic
+field embeds in V(Z[lambda],<lambda>,N); all subgroups (incl. f.g. simple amenable [[T]]') are BH.

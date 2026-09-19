@@ -1,0 +1,53 @@
+FF   bh-g2-fixedpoint-a research/artifacts/gq-bh-g2-fixedpoint-a-diagonal-time-layout.md
+FF   bh-g2-fixedpoint-a research/sw-minimal-crossing-wire-shift-is-rigid.md
+MERGE conflicts=0 bh-p2b-exact research/v-stabilized-horofunction-hosts-need-upstream-certification.md
+FF   bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Twist.lean
+FF   bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Statement.lean
+FF   bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/FreeProductMap.lean
+FF   bh-pal-kourovka57 GroupApproximation/ClassTransposition/Out/Flip.lean
+FF   bh-partials research/right-angled-reflection-groups-in-h3-are-contracting-rsgs.md
+MERGE conflicts=1 bh-ref-q115-b research/torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups.md
+MERGE conflicts=0 bh-ref-q115-b research/cuntz-stabilized-garside-full-groups-f-infinity-proof.md
+MERGE conflicts=0 bh-ref-q115-b research/torsion-free-cubulated-f-infinity-simple-host-proof.md
+FF   ms-green-sk GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean
+FF   ms-green-sk GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean
+FF   ms-green-sk GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean
+FF   ms-green-sk GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean
+FF   ms-green-sk GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/RowColumn/VecProd.lean
+NEW  bh-e3prime research/grigorchuk-tip-subshift-is-not-of-finite-type.md
+NEW  bh-ffwz-q59 research/thompson-t-e-fails-on-closed-set-permutation-modules.md
+NEW  bh-free-09 research/a2-phase-seed-passes-the-separability-test.md
+NEW  bh-free-16 research/z-localized-in-automaton-groups-needs-exotic-odometers.md
+NEW  bh-free-16 research/z-localized-in-automaton-groups-needs-exotic-odometers-proof.md
+NEW  bh-free-54 research/rank-three-edge-split-spine-closes-at-twelve-pieces.md
+NEW  bh-free-57 research/elliptic-primes-collapse-so-ct-z-torsion-reduces-to-parabolic-dynamics.md
+NEW  bh-free-58 research/ct-empty-z-subgroups-satisfy-the-orbit-transversal-dichotomy.md
+NEW  bh-free-60 research/twisted-prufer-corners-embed-in-isolated-cornulier-hosts.md
+NEW  bh-g1-bss research/exceptional-key-defect-freedom-needs-seeded-zones.md
+NEW  bh-g2-fixedpoint-b research/sheet-downhill-makes-the-tree-part-of-glued-seeds-rigidity-free.md
+NEW  bh-g3-topfree research/relative-seeds-lift-along-finitely-generated-normal-subgroups.md
+NEW  bh-gln-tracka research/gl-n-q-track-a-sft-has-no-known-finiteness-engine.md
+NEW  bh-invent-03 research/edge-pinned-gluing-reduces-rigidity-to-phantom-determinacy.md
+NEW  bh-invent-10 research/mikhailova-relative-seeds-reduce-to-two-sided-seeds.md
+NEW  bh-invent-12 research/bounded-root-primes-close-under-extensions-and-geometry.md
+NEW  bh-invent-15 research/absorbing-rope-readers-are-not-pointwise-rigid.md
+NEW  bh-invent-18 research/numeral-readers-on-the-scaling-seed-are-rigid-iff-definite.md
+NEW  bh-p2b-exact research/v-stabilized-full-contracting-rsgs-are-finitely-presented.md
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Insert.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Restrict.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/ProductInput.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/ProductClosure.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Embedding.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Reduction.lean
+NEW  bh-pal-graphprod GroupApproximation/BHPalomar/GraphProducts/Main.lean
+NEW  bh-pal-kourovka61 GroupApproximation/ClassTransposition/Presentation/Basic.lean
+NEW  bh-pal-met-join GroupApproximation/BooneHigman/Join/HigmanVCalibCore.lean
+NEW  bh-pal-met-join GroupApproximation/BooneHigman/Join/HigmanVCalibration.lean
+NEW  bh-pal-met-join research/higman-v-step-b-calibration-identity-derived.md
+NEW  bh-partials research/greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs.md
+NEW  bh-partials research/greedy-cube-codings-rsg-proof.md
+NEW  bh-solvable research/hall-quotient-has-a-singularity-free-rational-solenoidal-model.md
+NEW  bh-star-b research/quantum-rigidity-pulls-back-along-local-isometric-quotients.md
+NEW  bh-typeA-universal research/substitution-tiles-hold-bounded-information-so-machines-run-in-words.md
+NEW  ms-sk-open GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/BooneHigmanThompson.lean
+NEW  team-lead research/artifacts/gq-draft-bh-groupoid-resolvent-vacuum-rings-have-no-k0-state-proof.md

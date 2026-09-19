@@ -1,0 +1,8 @@
+Seed-collapse sandwich: log T_WP <~ kappa <~ |Ball(R(n))| * Dehn(O(R(n)))
+
+For an fp seeded group, the seed-collapse function is bounded by the forcing radius R and the Dehn
+function (a nontrivial element is always caught inside the seed window), and the word problem runs in
+time 2^O(kappa). So linear-forcing rigid seeds put all complexity in the Dehn function: CAP cannot be
+decided from seed forcing, distortion alone (Baumslag-Gersten) gives no notCAP content, and the target
+is a linear-forcing rigid seed on a machine-simulating tower. Also sharpens the CAP remark of
+seeded-groups-have-solvable-word-problem. Lane proof, not reviewed.

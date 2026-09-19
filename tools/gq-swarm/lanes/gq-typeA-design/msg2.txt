@@ -1,0 +1,5 @@
+Spell out pair-stabilizer step; flag VA citation as trust surface
+
+After gq-referee-a PASS (09d5b4797): state the finite generation of pair
+stabilizers used for FSym(Omega) x| SV, and mark the (Q,+) in B_A consequence
+as resting on BFFHZ Remark 3.5 pending a source check.

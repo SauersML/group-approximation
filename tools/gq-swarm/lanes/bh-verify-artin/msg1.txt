@@ -1,0 +1,13 @@
+bh-verify-artin: adversarial check of the Artin-group BH claims on main
+
+Adds research/artifacts/gq-bh-bh-verify-artin-report.md, and appends a
+verification note to seven nodes (no mathematics changed).
+
+- C̃_n: PASS. B̃_n: PASS. Both are independent of linearity and rest on
+  BFFHZ Theorem A; the C̃_n case is an immediate corollary of BFFHZ
+  Corollary B and Charney–Crisp.
+- Spherical types (plain and permutational) and E types: PASS conditional.
+  They are carried entirely by polynomial-linear-groups-satisfy-boone-higman
+  (m = 1, k = 2) and char-zero-linear-groups-satisfy-permutational-boone-higman.
+- The common-retract amalgam lemma and the clique reduction: PASS, with
+  core steps re-derived.

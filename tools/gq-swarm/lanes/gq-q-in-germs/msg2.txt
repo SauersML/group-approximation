@@ -1,0 +1,5 @@
+Record gq-va-affq results under rational-slope Aff+(Q) attempts
+
+No finitely generated subgroup of the rational-slope germ group E contains
+Aff_K(Q) for non-finitely-generated K (780e84702), and periodic-point germ
+hosts omit Aff_K(Q) (ff94a5e66). The node stays OPEN only for E itself.

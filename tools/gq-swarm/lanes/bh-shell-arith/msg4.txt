@@ -1,0 +1,9 @@
+The A5*A6 unequal-radix near group contains an element supported in one root with slope 59^2, which tree-compatible near groups cannot contain
+
+bh-shell-arith, coordinator-approved bounded MSI search: validation, planted detector calibration, an
+equal-radix negative control (0 hits in 9 targeted commutators and in 171,019 random commutators) and
+the A5*A6 run (9 hits in 9 targeted, 2 random). The simplest hit is the length-6 word
+k = s^-1 lambda(x^-1) lambda(z^-1) s lambda(x) lambda(z). It is the identity on root 0 and has slope
+59^2 on generic depth-one cones of root 1. This is proved by hand and cross-checked by an
+independent symbolic cone trace, with scripts in the artifact. It is a necessary condition for
+[H:R_nu] < infinity; finite index remains open. Lane proof, not reviewed; no novelty claimed.

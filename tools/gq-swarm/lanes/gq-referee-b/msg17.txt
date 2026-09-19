@@ -1,0 +1,6 @@
+gq-referee-b: review of three Z_(l)-embedding nodes
+
+Citation/hypothesis review of z-localized-embeds-in-fp-kazhdan-steinberg-group,
+steinberg-rf-forces-ring-rf-proof and the wording of
+z-localized-embeds-in-fg-rf-soluble-group: all PASS. Krstic-McCool and EJZ
+hypotheses match R_l; Rauzy and KMS abstracts checked at source.

@@ -1,0 +1,25 @@
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:110:6: Application type mismatch: The argument
+  MvPolynomial.constantCoeff
+has type
+  @RingHom (MvPolynomial (Fin k) (Localization.Away ↑m)) (Localization.Away ↑m) AddMonoidAlgebra.nonAssocSemiring
+    OreLocalization.instCommSemiring.toNonAssocSemiring
+but is expected to have type
+  @RingHom (?m.39 m k N) (?m.41 m k N) Ring.toSemiring.toNonAssocSemiring Ring.toSemiring.toNonAssocSemiring
+in the application
+  K2Map MvPolynomial.constantCoeff
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:129:21: Function expected at
+  h.right
+but this term has type
+  CharZeroK2NilFGPosStatement
+
+Note: Expected a function because this term is being applied to the argument
+  m
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:134:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:166:8: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+h : CharZeroK2NilPosStatement
+⊢ CharZeroK2NilFGPosStatement

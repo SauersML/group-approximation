@@ -1,0 +1,6 @@
+A2 Busemann transplants: fix the metric convention and the Step 6 base shift
+
+Referee fixes to the A2 transplant rigidity proof. Distances on Gamma use the word metric of
+S_4 = {d(o, g o) <= 4}, which is dominated by building distance on V_0. The section family now
+shifts the base point along an interior direction u_*, so M(N^2) need not lie in the closed cone.
+The rigidity threshold becomes kappa + D_Y, which is at most (3mu+1) D_Y in the old setting.

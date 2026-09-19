@@ -1,0 +1,3 @@
+Referee report: simple Kazhdan in germ extension of V sits in one germ group PASS
+
+Proof-gap lens on simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group (c04729d6c). Finite-index step, Haagerup kernel, injective coordinate, singularity via abelian germ groups of V, and finite presentation via SingFix checked; nits N1-N2.

@@ -1,0 +1,8 @@
+Reduce Kourovka 17.57 (Out(CT(Z)) = C_2?) to local rigidity of normalizing homeomorphisms
+
+Out(CT(Z)) is the normalizer of CT(Z) in Homeo of the profinite integers, modulo CT(Z) (Matui's spatial theorem; the centralizer is trivial). Every normalizer:
+- maps Z onto Z;
+- maps N_0 to N_0 or to Z_<0;
+- fixes the germ group Q_{>0}^x of every integer pointwise, by the prime-axis invariant of the 17.60 node.
+
+Hence Out(CT(Z)) = C_2 iff every normalizer fixing N_0 is affine on some box. By minimality and the 17.59 answer, such a map is then RCWA^+ = CT(Z). The local rigidity step stays open; one attempt and the one-prime calibration (Out(V) = O_2 is infinite) are recorded. Lane proof, not reviewed.

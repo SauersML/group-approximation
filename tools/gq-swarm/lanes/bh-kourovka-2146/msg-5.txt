@@ -1,0 +1,6 @@
+Kourovka 21.46: the tree side of Davis amalgams is local once the X side is dense; explicit input identified
+
+New node tree-side-of-davis-amalgams-is-local-once-dense.
+- If the X-projection of W_1 *_A W_2 is dense (closure contains U^+), the tree action is automatically faithful and non-discrete. Boundary-2-transitivity then reduces to the finite permutation groups W_i acting on W_i/A (Burger-Mozes, as used by Radu; the biregular case is flagged).
+- Explicit torsion-free non-residually-finite input with d = 6: the type-preserving index-4 subgroups of Radu's Gamma_{6,6,k}, which are torsion-free by Radu's lemma and simple for most k.
+- The approved MSI check was deliberately not run. The input tables are not yet wired, and the positive control (an untwisted Amir-Lazarovich lattice) needs their interlacing construction. A blind single run would mostly test for bugs. The node records a three-part plan for the one approved job.

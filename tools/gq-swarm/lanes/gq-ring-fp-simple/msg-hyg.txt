@@ -1,0 +1,5 @@
+Status lines for two nodes flagged by critic pass 3 (both OPEN)
+
+brin-thompson-nv-cnd-proper-modulo-triangular-subgroup and
+some-gl-n-z-embeds-in-no-brin-thompson-group get honest OPEN status lines from
+their own text; no mathematics changed.

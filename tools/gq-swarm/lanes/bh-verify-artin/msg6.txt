@@ -1,0 +1,16 @@
+bh-verify-artin: complex braid groups in B_A except G_24, G_27, G_29, G_33, G_34
+
+Lane assembly, not reviewed; no priority claimed.
+
+- complex-braid-groups-in-pbh-except-g24-g27-g29-g33-g34 (+ proof), by case over the
+  Shephard–Todd list:
+  - rank 2: Hopf bundle, P(W) = Z × F;
+  - G(de,e,n) with d ≥ 2: unbranched cover of Conf_n(C^×);
+  - G(e,e,n): the one-cone-point bundle;
+  - real exceptional types: spherical Artin groups;
+  - G_25, G_26, G_31, G_32: regular centralizers in E_6, E_7, E_8, through Bessis's
+    Theorem 12.4(iii), read at source (G_31: Cor. 12.7).
+- complex-braid-groups-satisfy-permutational-boone-higman (OPEN): the five remaining
+  well-generated types, with what is known: linearity conjectural (Marin), Garside,
+  not regular centralizers of real groups, rank-3 reduction to the Klein and
+  Valentiner line-arrangement groups, and Lyashko–Looijenga giving only a quotient.

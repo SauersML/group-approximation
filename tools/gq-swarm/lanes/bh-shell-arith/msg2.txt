@@ -1,0 +1,9 @@
+Two-radix odometer host is F_infinity with finitely generated near-index kernel; the unequal-radix near group is two non-fp tree groups glued by disjoint-support relations
+
+bh-shell-arith. X. Li's higher-rank Zappa--Szep theorem (Example ex:ZS (III)) applies to the
+self-similar action of R_2 x Z on two copies of the one-vertex 2-graph Lam(h_0,h_1), giving the
+two-radix odometer host H type F_infinity, and a table/counting argument shows its near-index
+kernel is <W, a_c a_c'^-1>. So the unequal-radix candidate reduces to [H:R_nu] < infinity. Its
+halves <lambda(A_eps), s> are one-radix tree groups that are not finitely presented; the whole
+near group escapes the tree and amalgam kills and realizes the full rank-2 germ group of H at
+(0,-1/2). Lane proofs, not reviewed; no novelty claimed.

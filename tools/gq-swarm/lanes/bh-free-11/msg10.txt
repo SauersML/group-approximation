@@ -1,0 +1,9 @@
+Prove that lattice-coset monoids admit no UFP* degree map
+
+In pbh-via-degree-monoid-boundary-full-groups, the Hecke-branching wall becomes a proved
+obstruction.
+- For n >= 2, Z^n ⋊ M_n^{(p)}(Z) has no degree map to any N^k satisfying (UFP*).
+- GL_n(Z) acts transitively on the index-p lattices, so they all have the same degree.
+- pI then factors through two distinct index-p lattices, which (UFP*) forbids.
+Lesson for general BH: extending the finiteness transfer to GL_n-type or lattice-coset hosts
+needs Li's general Garside criterion, not a degree map.

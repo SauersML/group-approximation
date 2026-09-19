@@ -1,0 +1,8 @@
+Record why link-by-link free completion cannot prove Kac-Moody high transitivity
+
+Attempt 7 on fp-simple-kac-moody-lattices-are-highly-transitive. Star-shaped partial
+links always complete, but the growth order unavoidably produces vertices whose partial
+links are unions of stars, where the rank-two Levi relations can force closure. A
+curvature lemma from simplicity: the Levi coset-graph girths satisfy sum 1/g >= 1/2,
+so the development is not CAT(-1) and free constructions in the Ronan-Tits style do not
+apply. Lane proof, not reviewed; statement (E) stays open.

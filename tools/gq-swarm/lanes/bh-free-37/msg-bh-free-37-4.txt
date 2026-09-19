@@ -1,0 +1,12 @@
+Kourovka 21.74(a): YES is r.e., holds at finite order, and is not conjugacy-invariant; its conjugacy closure is clopen decomposability
+
+- New node ct-z-invariant-residue-partitions-are-not-conjugacy-invariant (21.74(a) itself remains OPEN).
+  - YES instances are recursively enumerable.
+  - Every finite-order element is YES.
+  - Clopen straightening: g is conjugate in CT(Z) to a YES element iff some power fixes a proper
+    clopen subset of the profinite integers.
+  - A general NO criterion for CT_0(Z): attracting 2-adic basins plus a unit fiber translation.
+  - An explicit pair h, g = tau h tau in CT_0(Z), where h is YES and g is not. So no conjugacy
+    invariant decides (a).
+  - The node records the precise gaps for decidability and for undecidability.
+- The 21.75 node gains a "Lesson for general BH" paragraph: shared-colour routing.

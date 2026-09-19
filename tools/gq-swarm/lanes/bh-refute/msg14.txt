@@ -1,0 +1,1 @@
+Rotation (a): adversarial PASS on tree-product lattices with torsion in B_A (Li Example (III) application, T3/T6)

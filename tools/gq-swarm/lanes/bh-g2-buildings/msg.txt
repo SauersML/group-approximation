@@ -1,0 +1,13 @@
+Free products turn rigid SFT compactifications into rigid minimal topologically free SFTs
+
+tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: if Lambda_0 and Lambda_1 carry
+quantum-rigid SFT compactifications (an SFT with one isolated, dense seed orbit with trivial
+stabilizer), then Lambda_0 * Lambda_1 carries a minimal, topologically free, quantum-rigid SFT, and a
+rigid compactification. The Bass-Serre tree supplies minimality and topological freeness; rigidity
+crosses the tree by the monotone chain 1 - A_i <= B_i <= 1 - A_(i+1). The class is closed under free
+and direct products and contains finite groups and Z.
+
+Route rigid-topfree-sfts-via-rigid-sft-compactifications reduces gate E1'+E2
+(decidable-groups-lie-in-fp-groups-with-rigid-topfree-sfts) to the open premise
+decidable-groups-embed-in-rigid-sft-compactification-groups: a rigid, locally checkable coordinate
+system with a unique origin on an fp overgroup. Lane proofs, unreviewed.

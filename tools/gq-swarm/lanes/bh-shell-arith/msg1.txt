@@ -1,0 +1,9 @@
+Unequal-radix free products escape the A5 tree-automorphism kill of arithmetic shell enumerations; finite index in a kernel-fg near host passes both germ gates
+
+bh-shell-arith. The equal-radix A_5*A_5 benchmark is dead on main because every generator,
+including the shift, is an automorphism of one digit tree. For A_0*A_1 with |A_0| != |A_1| the
+least-significant-first mixed-radix enumeration is still arithmetic (mixed relations hold), but
+its shift is a radix conversion that is not a cone map. New: an elementary sufficient criterion
+(finite index in a finitely presented near host with finitely generated near-index kernel passes
+(G1), (G2) and the shell germ gate), and the OPEN candidate for the perfect input A_5*A_6.
+Lane proofs, not reviewed; no novelty claimed.

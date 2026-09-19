@@ -1,0 +1,9 @@
+Tree-factor nodes: require a simplicial action on T; line case by a direct linear argument
+
+Referee a (PASS, adb8abf2e) found that for T a line, a geometric action on X x R
+need not be simplicial on R (dense translation parts), so the Bass-Serre step does
+not apply. The tree-factor setting now asks for an action by tree automorphisms,
+automatic when T has a branch vertex; the symmetric-space-times-tree node handles
+T = R directly: a virtually torsion-free Gamma embeds virtually in
+Isom(X)^0 x Isom(R), which is real linear. Also N1 (finite index of the kernel at
+every vertex) in the virtual-product proof; referee a PASS recorded.

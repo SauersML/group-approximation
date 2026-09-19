@@ -1,0 +1,10 @@
+Apply referee-b amendments W1-W3 to the commutative-linear host lemma
+
+gq-referee-b passed piecewise-commutative-linear-hosts-miss-linear-gl-n-q
+(citation and hypothesis lens) with three wording amendments, all applied:
+W1 says once that in the prefix instances (Z-hat; V_d, Sc(n), V_d(G), nV) the
+stabilizer of X has no divisible subgroup, so only part (a) has content there;
+W2 cites survey Remark 5.5 correctly (T is isomorphic to the PIP group of the
+circle) and drops the unneeded rational-breakpoint claim; W3 adds Thurston's PIP
+groups of spheres via the sphere of rays with L = SL^pm_m(R), with topological
+freeness and linearity proved in the route. The review artifact is linked.

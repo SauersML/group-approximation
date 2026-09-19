@@ -1,0 +1,9 @@
+Drop the torsion hypotheses: BS structure theorem for all members, CAT(0) X x T with VTF fibres
+
+Consumes bh-free-22's commensurator-rigid-groups-have-no-faithful-bs-members (every
+member of BS_G has a tree kernel of finite index in the vertex groups): the kernel K
+has finite virtual center and finite Out, so every member of BS_G, torsion or not,
+is virtually K x F with F free. Hence the symmetric-space-times-tree theorem needs
+only virtually torsion-free fibre groups (e.g. Gamma virtually torsion-free, or
+residually finite fibres). Back-link to bh-free-22's node added. Lane proofs; no
+priority claimed.

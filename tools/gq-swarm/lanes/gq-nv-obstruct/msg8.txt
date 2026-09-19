@@ -1,0 +1,6 @@
+SMART odometer claim: MSI desubstitution and local-phase computation
+
+Seven Z-tape runs of 3^11 steps: bounded return gap 6, unique desubstitution
+under b->bdp, d->dbq, p->bqp, q->dpq at 8 levels, and the radius-(k+2)
+window determines the level-k phase with no conflicts (k = 1..7). Script and
+output in the artifact; the claim stays OPEN pending referees.

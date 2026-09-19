@@ -1,0 +1,10 @@
+Record the prime-shift questions of root Attempt 18 as OPEN nodes
+
+Add prime-shift-hnn-map-to-a1-is-injective,
+prime-shift-affine-group-a1-is-finitely-presented and
+prime-shift-affine-group-a1-has-fg-point-stabilizer, with the known
+consequences from prime-shift-hnn-groups-are-not-finitely-presented. Wire the
+last two, through the type (A) reduction already established for A_1, into
+aff-q-embeds-in-fp-simple-group by the route
+aff-q-bh-via-prime-shift-type-a-action, and point root Attempt 18 at the
+nodes.

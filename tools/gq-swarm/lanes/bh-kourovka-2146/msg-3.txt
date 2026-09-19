@@ -1,0 +1,8 @@
+Kourovka 21.46: twisted Davis amalgams keep the hyperplane sub-amalgam; tree faithfulness follows from density
+
+New node twisted-davis-amalgams-keep-hyperplane-data.
+- Twisting one factor of the split amalgam by a commensurator that fixes the carrier and commutes with the edge group keeps the Burger-Mozes hyperplane sub-amalgam. So the twisted amalgam stays non-residually finite, torsion-free and of cd 3, and every such twist leaves the fibred group.
+- Wall twists give explicit twists: fields constant on the regions of non-crossing walls, with jumps in Sym(E_i).
+- If the X-projection is dense in the universal group, the tree action is faithful, so the core-free gate follows from density.
+- Density is impossible when the twists preserve the carrier type D.
+The remaining gate is density (a finitely-many-orbits local-to-global statement) together with a boundary-2-transitive tree closure.

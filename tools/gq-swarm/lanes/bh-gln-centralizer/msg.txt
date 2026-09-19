@@ -1,0 +1,7 @@
+Leavitt units commuting with a unital Leavitt copy are self-doubling
+
+Commuting with a unital copy of L_F(1,2) is equivalent to being conjugate to
+the double t+t; doubling kills Lefschetz traces and finite torsion, so no
+infinite-order Thompson unit qualifies in characteristic 0 (or aperiodic over
+any field), and (Q,+) in the units forces infinite centralizer rank, so the
+finite-rank conjecture kills the whole finite-field Leavitt route to GL_n(Q).

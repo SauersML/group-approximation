@@ -1,0 +1,1 @@
+Rotation 9: adversarial PASS on Torelli lower-central quotients not residually finite (non-splitting + Deligne-class argument re-derived)

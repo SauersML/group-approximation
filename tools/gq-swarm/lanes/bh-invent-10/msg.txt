@@ -1,0 +1,9 @@
+Relative automorphisms act faithfully on free-product Hom-orbits; the Q3.4 residue is the double-coset clause
+
+bh-invent-10. For every group S ≠ 1 and n ≥ 2, Aut_S(S * F_n) acts faithfully
+on the orbit of (t, 1, ..., 1) in Hom_S(S * F_n, S * <t>). The proof substitutes
+t for x_1, which is an isomorphism, and uses MIF of free products (Hull–Osin).
+
+So in the kernel-removal criterion for BFFHZ Question 3.4 the core condition is
+free. The pair invariants ⟨⟨t^j⟩⟩ show that the double-coset clause is the
+entire residue. Attempt 12 is recorded on the Q3.4 node.

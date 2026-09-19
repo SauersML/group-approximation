@@ -1,0 +1,10 @@
+Prove that the end shift of a free group is quantum rigid over the group itself
+
+The edge rule of the end-orientation SFT over a tree group makes the
+backward arrows along any geodesic an increasing chain of idempotents, and
+monotone chains commute. So the rank-one boundary shift left unchecked in
+euclidean-building-boundary-shifts-are-quantum-rigid is D-rigid for every D
+and field. With product stability, the boundary product over F_m x F_n is a
+rigid, minimal, topologically free (not free) SFT over a one-ended
+non-amenable group. Lesson: compression supplies rigidity; the G2 gap is
+freeness plus coupling.

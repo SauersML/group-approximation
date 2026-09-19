@@ -1,0 +1,20 @@
+abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q-proof	Direct computation in the abelian base of the wreath product
+aff-q-forces-distortion-in-abelian-kernels-proof	Direct elementary proof in a finitely generated overgroup of Aff(Q)
+ascending-unions-embed-along-coherent-chains-proof	Restrict an embedding to the chain, and glue coherent embeddings of the terms
+circle-groups-with-divisible-free-germs-omit-gl-n-q-proof	Direct proof through Poincare rotation numbers
+commensurating-end-germ-groups-omit-aff-q-proof	Apply the abelian-kernel distortion corollary to the commensurated germ
+divisible-elements-act-elliptically-on-trees-proof	Direct proof from the absence of divisible subgroups in residually finite groups
+fg-pl-quasi-similarity-groups-contain-no-gl-2-q-proof	Each listed group scales a copy of Q by ratios that no PL quasi-similarity can realize
+fp-simple-ring-of-char-zero-via-leavitt-resolvent-ring	The Leavitt resolvent ring is a finitely presented simple ring containing Q
+gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings-proof	Direct proof with lattice classes in Q_p^(n+1), following Serre's Trees
+gl-n-q-bh-via-leavitt-resolvent-units	Embed GL_n(Q) in the derived unit group of the Leavitt resolvent ring modulo its centre
+leavitt-resolvent-ring-is-fp-simple-of-char-zero-proof	Apply the Leavitt--Nekrashevych completion criteria to the resolvent ring
+no-q-in-tree-product-actions-with-finite-stabilizers-proof	Direct proof from the elliptic action of divisible elements on each tree factor
+periodic-point-germ-groups-omit-aff-q-proof	Modular maps from commensuration combined with undistorted cyclic subgroups of V
+pl-line-hosts-bound-dilation-rank-proof	Direct proof from the derivative images of finitely generated groups
+pl-quasi-similarity-groups-scale-rational-lines-by-ratio-proof	Direct proof using Aut(Q) = Q^x
+pp-circle-and-lift-hosts-miss-gl-n-q-proof	Deduce the host exclusions from the free action of divisible subgroups
+pp-circle-divisible-subgroups-act-freely-proof	Direct proof through germs of divisible subgroups at common fixed points
+q-free-lifts-reach-only-lattice-affine-q-groups-proof	Direct proof by tracking Q-free subgroups through the normal series
+q-free-normal-towers-omit-aff-q-proof	Direct proof with Higman's theorem as the only outside input
+sl-n-q-lies-in-one-factor-of-every-normal-series-proof	Direct proof with the root groups X_ij, which generate SL_n(Q)

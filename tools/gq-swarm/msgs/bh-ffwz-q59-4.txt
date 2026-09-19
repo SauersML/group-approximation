@@ -1,0 +1,6 @@
+Thompson T mixed identities hold in every overgroup inside B^X ⋊ T for X a circle orbit, and have trivial deletions
+
+For every lamp group B and every T-orbit X of the circle, overgroups of T inside the unrestricted wreath
+product B^X ⋊ T satisfy all mixed identities of T. This includes T x B, so constant-deletion of any mixed
+identity of T is trivial. The proof realizes free lamps in derivative blow-up gaps and reduces arbitrary
+lamps to free ones. Attempt 8 recorded on the finite-basis node. Lane proof, not reviewed.

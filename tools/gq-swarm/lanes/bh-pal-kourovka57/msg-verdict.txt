@@ -1,0 +1,5 @@
+Record a second adversarial check of the Kourovka 17.57 chain (Adamczewski-Bell route): PASS
+
+Re-derives steps 1-8 of out-ct-z-is-c2 and checks Hausdorffness of the germ groupoid for Matui. Conditional on Matui spatial and Adamczewski-Bell as stated; three wording fixes listed.
+
+Lesson for general BH: a normalizer-rigidity result reduces to two independent deep inputs (spatial realization, Cobham-type rationality); only the elementary outer-automorphism layer is Lean-ready now.

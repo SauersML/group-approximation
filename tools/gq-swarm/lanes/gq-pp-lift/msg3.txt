@@ -1,0 +1,5 @@
+Cite gq-referee-b PASS on lifts-add-no-unipotent-divisibility
+
+Replace "Not independently reviewed" in the claim and its proof route with
+the referee PASS (citation and hypothesis lens, no amendments) and list the
+review artifact.

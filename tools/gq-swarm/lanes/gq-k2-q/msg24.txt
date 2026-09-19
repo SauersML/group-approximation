@@ -1,0 +1,7 @@
+gq-k2-q: one-sided inverses cannot repair the Steinberg residual
+
+The residually finite quotient St_N(T)/St_N(T)_rf depends only on T modulo
+its finite residual ideal (from steinberg-rf-forces-ring-rf), and finite
+rings are Dedekind-finite, so a design with one-sided inverses of the lamps
+has the same residually finite Steinberg quotient as the design with
+two-sided inverses, and the same finite-normal-generation question.

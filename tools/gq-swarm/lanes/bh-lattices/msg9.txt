@@ -1,0 +1,10 @@
+Show why finite central kernels resist untwisting over the boundary
+
+A finite central extension of a boundary action can be realized with the kernel
+acting freely exactly when its class dies in H^2 with coefficients in the
+continuous functions on the boundary. That forces the class to vanish on every
+point stabilizer, and for tree-product lattices on every periodic flat torus fixing
+a boundary point. Stabilizing by the Cuntz groupoid cannot help, since continuous
+cohomology is a retract of that of the product. Vanishing of Matui homology does
+not transfer to twists, because the dual complex consists of measures. Test case
+counted: Burger-Mozes simple lattices have free H_2 of rank (m-1)(n-1)-1 (Attempt 10).

@@ -1,0 +1,10 @@
+Roots force centralizer rank; wire the Leavitt unit group as GL_n(Q) host
+
+A k-th root of a transcendental unit makes its localized centralizer a vector
+space over the degree-k field K(x^(1/k)) (Eisenstein at x), so k divides the
+centralizer rank. With the finite-rank bound for Thompson units this bounds
+their roots in L_(F_2)(1,2)^x (the north-south unit has none), extending
+Higman's root finiteness from V to the Leavitt unit group. Record the finitely
+presented simple unit group as a candidate host for GL_n(Q) (route to the
+root), what an embedding must supply, the commutative-subalgebra dead end, and
+the obstruction (Q,+) not in U, reduced to the open finite-rank conjecture.

@@ -1,0 +1,7 @@
+LANDED dfcd3ab62 on origin/main (parent 9cc4d1995):
+ research/full-group-label-length-bounds-distortion.md         |  8 ++++++++
+ ...perbolic-groups-undistortedly-embed-in-fp-simple-groups.md | 11 +++++++++++
+ ...ducts-of-hyperbolic-groups-qi-embed-in-fp-simple-groups.md |  7 +++++++
+ research/raags-are-undistorted-in-brin-thompson-group-2v.md   |  9 +++++++++
+ .../virtually-compact-special-groups-undistorted-in-2v.md     |  8 ++++++++
+ 5 files changed, 43 insertions(+)

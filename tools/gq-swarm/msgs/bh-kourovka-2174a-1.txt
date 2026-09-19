@@ -1,0 +1,7 @@
+Kourovka 21.74(a): the reductions are blind to it; a two-transposition no-instance; psi permutes an infinite partition
+
+All instances of the 21.74(b),(c) and 21.73 reductions permute {0(7),...,6(7)}. The element
+tau_{1(2),0(4)} tau_{0(2),1(2)} permutes no nontrivial partition into residue classes, finite or
+infinite. Kohl's mixer psi permutes an infinite one, so the problem depends on reading the
+partition as finite. Dissipative elements are always yes-instances for infinite partitions.
+21.74(a) itself stays open; the note states the missing steps both ways.

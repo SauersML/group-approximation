@@ -1,0 +1,11 @@
+generators 62 J 2 QSET two MAXLEN 4 RLEN 2 target r
+level 1 new 62 time 0.4 overflow 0
+level 2 new 3440 time 3.4 overflow 2
+level 3 new 186986 time 173.2 overflow 2830
+level 4 new 246641 time 470.0 overflow 64413
+ball 437130 overflow 64413 stopped_early True
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 912
+near misses (fix both axes and (1,-1)): 327
+target-translated words checked 2656 overflow 847 matches 0
+total time 483.6

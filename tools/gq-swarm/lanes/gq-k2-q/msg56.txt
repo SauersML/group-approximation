@@ -1,0 +1,8 @@
+gq-k2-q: St_N(R_L) word problem reduces to K_2(N,R_L) (shell gate 1)
+
+For every N >= 4, including the N >= 5 the shell route uses: the lane remark
+holds (R_L and E_N(R_L) have solvable word problem, by simplicity and entrywise
+comparison); WP(St_N(R_L)) is solvable iff nontriviality in K_2(N,R_L) is r.e.;
+it is solvable if K_2(N,R_L) injects into stable K_2(R_L) with a computable
+complete invariant (e.g. stable K_2 = 0). Injective stability and stable
+K_2(R_L) are open.

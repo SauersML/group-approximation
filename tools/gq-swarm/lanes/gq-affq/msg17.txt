@@ -1,0 +1,10 @@
+KEP 2V-hosts: framing, referee nits, Z[1/2N] by doubling but not Q
+
+Reframe odometer-2v-is-fp-simple-and-contains-bs12: no novelty for BH of
+BS(1,2); the value is the host next to 2V. Record both referee PASSes, apply
+their nits, and add a bounded priority check. New claim: over the affine
+self-similar group G_N = Z[1/N] x| <p | N>, the 2V-host is simple, F_n
+when G_N is, and contains Z[1/2N] x| <2> (F_infinity host for N = 3), while
+the natural Q x| <2> lies in no such host over a finitely generated
+H <= Aff(Q). Attempts on bs12 (no bounded-return import of the odometer
+into kV) and on the Aff(Q) node.

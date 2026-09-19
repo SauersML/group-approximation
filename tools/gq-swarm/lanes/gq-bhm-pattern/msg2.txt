@@ -1,0 +1,7 @@
+Credit extension-product-closures for the no-layered-host consequence
+
+The consequence "no group with abelian-or-Q-free factors contains SL_n(Q)"
+already follows from the earlier extension-product-closures-cannot-create-sl-n-q
+(its class contains abelian and Q-free groups and is closed under extensions).
+Retitle sl-n-q-lies-in-one-factor-of-every-normal-series to its new content,
+the localization of SL_n(Q) in one factor, and add distinct_from and credit.

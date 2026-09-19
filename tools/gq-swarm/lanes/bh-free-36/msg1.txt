@@ -1,0 +1,14 @@
+Give cubical lattices faithful Hecke members from large commensurator closures
+
+A Hecke HNN extension of a discrete torsion-free group of cube-complex
+automorphisms acts faithfully on its Bass-Serre tree once the closure of the
+group and its commensurator letters has no open subgroup fixing a point at
+infinity: the kernel is a discrete normal subgroup of the closure, each of its
+elements commutes with a compact open subgroup whose fixed set is bounded, so it
+is elliptic and hence trivial. Such a faithful member forces residual finiteness.
+
+As a corollary, every virtually torsion-free group acting geometrically on
+(CAT(0) cube complex) x (tree) whose cube-complex projection has such a closure
+lies in the type (A) class. Record BBCMP Question 1.15 (virtually torsion-free
+cubulated groups) as an open node with its known cases, and list the new class
+on the CAT(0) root.

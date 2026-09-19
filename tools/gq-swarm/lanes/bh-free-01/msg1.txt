@@ -1,0 +1,8 @@
+bh-free-01: torsion in Brin–Thompson nV — clopen fixed sets, free dihedral actions, level-coboundary criterion; open periodic-subgroup question with a Schreier-subshift route
+
+New ESTABLISHED (lane proof, elementary): brin-thompson-torsion-has-clopen-fixed-sets (+ proof).
+Torsion elements of nV are the identity near their fixed points, so every minimal dihedral action by
+involutions of nV is free (Nekrashevych fragmentation cannot run inside nV), and a finitely generated
+H <= nV is finite iff its level cocycle is a continuous coboundary; periodic H are orbitwise coboundaries.
+New OPEN claim brin-thompson-groups-contain-infinite-periodic-groups with conditional route
+nv-periodic-groups-via-schreier-subshift-factors (factor onto a Grigorchuk-type Toeplitz subshift).

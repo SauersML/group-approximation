@@ -1,0 +1,32 @@
+host acl43 python /usr/bin/python3.11 start Fri Sep 18 17:00:28 CDT 2026
+[free3] R0=12 N=6 sphere sizes [1, 3, 6, 12, 24, 48, 96, 192, 384, 768, 1536, 3072, 6144, 12288, 24576] |B_N|=190 ball=49150 t=0.3s
+[free3] keys for 47616 shell points t=1.5s
+[free3] k=0: n=1 atoms=3 bad=1 badchild=0 chain=1 cap=0; n=2 atoms=6 bad=0 badchild=0 chain=0 cap=0; n=3 atoms=12 bad=0 badchild=0 chain=0 cap=0; n=4 atoms=24 bad=0 badchild=0 chain=0 cap=0; n=5 atoms=48 bad=0 badchild=0 chain=0 cap=32
+[free3] k=1: n=1 atoms=3 bad=1 badchild=0 chain=1 cap=0; n=2 atoms=6 bad=0 badchild=0 chain=0 cap=0; n=3 atoms=12 bad=0 badchild=0 chain=0 cap=0; n=4 atoms=24 bad=0 badchild=0 chain=0 cap=0; n=5 atoms=48 bad=0 badchild=0 chain=0 cap=32
+[free3] k=2: n=1 atoms=3 bad=1 badchild=0 chain=1 cap=0; n=2 atoms=6 bad=0 badchild=0 chain=0 cap=0; n=3 atoms=12 bad=0 badchild=0 chain=0 cap=0; n=4 atoms=24 bad=0 badchild=0 chain=0 cap=0; n=5 atoms=48 bad=0 badchild=0 chain=0 cap=32
+[free3] done t=1.8s
+[square] R0=24 N=10 sphere sizes [1, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100, 104] |B_N|=221 ball=1405 t=0.0s
+[square] keys for 480 shell points t=0.3s
+[square] k=0: n=1 atoms=8 bad=4 badchild=4 chain=9 cap=4; n=2 atoms=16 bad=4 badchild=4 chain=8 cap=12; n=3 atoms=24 bad=4 badchild=4 chain=7 cap=20; n=4 atoms=32 bad=4 badchild=4 chain=6 cap=28; n=5 atoms=40 bad=4 badchild=4 chain=5 cap=36; n=6 atoms=48 bad=4 badchild=4 chain=4 cap=44; n=7 atoms=56 bad=4 badchild=4 chain=3 cap=52; n=8 atoms=64 bad=4 badchild=4 chain=2 cap=60; n=9 atoms=72 bad=4 badchild=0 chain=1 cap=68
+[square] k=1: n=1 atoms=8 bad=4 badchild=4 chain=9 cap=4; n=2 atoms=16 bad=4 badchild=4 chain=8 cap=12; n=3 atoms=24 bad=4 badchild=4 chain=7 cap=20; n=4 atoms=32 bad=4 badchild=4 chain=6 cap=28; n=5 atoms=40 bad=4 badchild=4 chain=5 cap=36; n=6 atoms=48 bad=4 badchild=4 chain=4 cap=44; n=7 atoms=56 bad=4 badchild=4 chain=3 cap=52; n=8 atoms=64 bad=4 badchild=4 chain=2 cap=60; n=9 atoms=72 bad=4 badchild=0 chain=1 cap=68
+[square] k=2: n=1 atoms=8 bad=4 badchild=4 chain=9 cap=4; n=2 atoms=16 bad=4 badchild=4 chain=8 cap=12; n=3 atoms=24 bad=4 badchild=4 chain=7 cap=20; n=4 atoms=32 bad=4 badchild=4 chain=6 cap=28; n=5 atoms=40 bad=4 badchild=4 chain=5 cap=36; n=6 atoms=48 bad=4 badchild=4 chain=4 cap=44; n=7 atoms=56 bad=4 badchild=4 chain=3 cap=52; n=8 atoms=64 bad=4 badchild=4 chain=2 cap=60; n=9 atoms=72 bad=4 badchild=0 chain=1 cap=68
+[square] k=3: n=1 atoms=8 bad=4 badchild=4 chain=9 cap=4; n=2 atoms=16 bad=4 badchild=4 chain=8 cap=12; n=3 atoms=24 bad=4 badchild=4 chain=7 cap=20; n=4 atoms=32 bad=4 badchild=4 chain=6 cap=28; n=5 atoms=40 bad=4 badchild=4 chain=5 cap=36; n=6 atoms=48 bad=4 badchild=4 chain=4 cap=44; n=7 atoms=56 bad=4 badchild=4 chain=3 cap=52; n=8 atoms=64 bad=4 badchild=4 chain=2 cap=60; n=9 atoms=72 bad=4 badchild=0 chain=1 cap=68
+[square] done t=0.3s
+[pentagon] R0=9 N=5 sphere sizes [1, 5, 15, 40, 105, 275, 720, 1885, 4935, 12920, 33825, 88555] |B_N|=441 ball=143281 t=1.4s
+[pentagon] keys for 142120 shell points t=7.0s
+[pentagon] k=0: n=1 atoms=10 bad=5 badchild=4 chain=4 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=3 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=2 cap=10; n=4 atoms=210 bad=4 badchild=0 chain=1 cap=149
+[pentagon] k=1: n=1 atoms=10 bad=5 badchild=4 chain=4 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=3 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=2 cap=10; n=4 atoms=210 bad=4 badchild=0 chain=1 cap=149
+[pentagon] k=2: n=1 atoms=10 bad=5 badchild=4 chain=4 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=3 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=2 cap=10; n=4 atoms=210 bad=4 badchild=0 chain=1 cap=149
+[pentagon] k=3: n=1 atoms=10 bad=5 badchild=4 chain=4 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=3 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=2 cap=10; n=4 atoms=210 bad=4 badchild=0 chain=1 cap=149
+[pentagon] k=4: n=1 atoms=10 bad=5 badchild=4 chain=4 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=3 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=2 cap=10; n=4 atoms=210 bad=4 badchild=0 chain=1 cap=149
+[pentagon] done t=8.0s
+[pentagonB] R0=8 N=6 sphere sizes [1, 5, 15, 40, 105, 275, 720, 1885, 4935, 12920, 33825] |B_N|=1161 ball=54726 t=0.3s
+[pentagonB] keys for 54285 shell points t=5.8s
+[pentagonB] k=0: n=1 atoms=10 bad=5 badchild=4 chain=5 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=4 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=3 cap=0; n=4 atoms=210 bad=4 badchild=4 chain=2 cap=28; n=5 atoms=550 bad=4 badchild=0 chain=1 cap=395
+[pentagonB] k=1: n=1 atoms=10 bad=5 badchild=4 chain=5 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=4 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=3 cap=0; n=4 atoms=210 bad=4 badchild=4 chain=2 cap=28; n=5 atoms=550 bad=4 badchild=0 chain=1 cap=395
+[pentagonB] k=2: n=1 atoms=10 bad=5 badchild=4 chain=5 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=4 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=3 cap=0; n=4 atoms=210 bad=4 badchild=4 chain=2 cap=28; n=5 atoms=550 bad=4 badchild=0 chain=1 cap=395
+[pentagonB] k=3: n=1 atoms=10 bad=5 badchild=4 chain=5 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=4 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=3 cap=0; n=4 atoms=210 bad=4 badchild=4 chain=2 cap=28; n=5 atoms=550 bad=4 badchild=0 chain=1 cap=395
+[pentagonB] k=4: n=1 atoms=10 bad=5 badchild=4 chain=5 cap=0; n=2 atoms=30 bad=4 badchild=4 chain=4 cap=0; n=3 atoms=80 bad=4 badchild=4 chain=3 cap=0; n=4 atoms=210 bad=4 badchild=4 chain=2 cap=28; n=5 atoms=550 bad=4 badchild=0 chain=1 cap=395
+[pentagonB] done t=6.3s
+ALL DONE t=16.5s
+end Fri Sep 18 17:00:45 CDT 2026 rc=0

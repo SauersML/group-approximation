@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on Lodha's S is 2-generated (packing proof re-derived)

@@ -1,0 +1,10 @@
+Prove the finite k-graph standard facts from Li's definitions, closing Boone–Higman for type-transitive vertex-free Ã2 groups (incl. all CMSZ groups and the 65 exotic order-3 CMSZ buildings)
+
+- finite-k-graph-standard-facts-proof (new route, lane proof): Li's maximal characters are the infinite
+  paths (∂Ω = Ω_max ≅ Λ^∞), germs of cd^{-1} are Kumjian–Pask arrows, products/topology/effectiveness
+  elementary; Li arXiv:2110.04501 read at source.
+- finite-k-graph-boundary-groupoid-standard-facts: OPEN -> ESTABLISHED (lane proof).
+- primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple: OPEN -> ESTABLISHED.
+- type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups: OPEN -> ESTABLISHED (lane proofs, unreviewed).
+- Status updates on exotic-a2-lattices-satisfy-boone-higman, vertex-free-type-rotating-a2-groups-satisfy-boone-higman,
+  the route, and frontier §7.

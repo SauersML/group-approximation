@@ -1,0 +1,4 @@
+LANDED 3606462f6 on origin/main (parent 010df8cad):
+ ...-commutator-wachter-weiss-groups-are-not-fp-proof.md | 17 +++++++++++++++++
+ ...finite-commutator-wachter-weiss-groups-are-not-fp.md | 10 +++++++++-
+ 2 files changed, 26 insertions(+), 1 deletion(-)

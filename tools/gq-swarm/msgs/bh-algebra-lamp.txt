@@ -1,0 +1,18 @@
+R_1 embeds in L (x) L by the bilateral shift; no monomial module of K[Z^2] over a tree
+
+New claim node lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square.
+- Theorem 1: the canonical algebra R_1 = M_2^{(x)Z} x| Z embeds unitally in L_K (x) L_K over every field. The
+  shift maps to u = x_1(x)y_1 + x_2(x)y_2 and site 0 to 1 (x) span{x_p y_q}. This gives an explicit algebraic
+  Kirchberg-type embedding into the translation algebra of F_2 x F_2.
+- Theorem 2: K[Z^2] has no faithful permutation-monomial module of bounded geometry over a tree (separation
+  bounds every stabilizer; a product of short binomials kills every orbit). So a one-tree embedding of R_Gamma,
+  for Gamma with an element of infinite order, cannot be monomial on the lamps. In any L (x) L -> L the images
+  of g(x)1 and 1(x)g (g in V) are never both in V.
+- Theorem 3: coarsely dense corners of M_n(K_u(P)) are K_u(P) for non-amenable P. The one-tree R_1 case follows
+  from L_2 (x) L_2 -> K_u(F_2), which a positive answer to the Brownlowe-Sorensen problem would give.
+Also records that Ara-Li-Lledo-Wu Theorem 6.3 and Brownlowe-Sorensen were read at source, and upgrades the
+priority note on non-amenable-scaffolds-absorb-the-leavitt-factor.
+
+Lesson for general BH: moving the first canonical input from two trees to one is exactly the algebraic form of
+O_2 (x) O_2 = O_2. It is open over fields and provably not monomial, which makes it the concrete first test of
+whether gate U is geometric.

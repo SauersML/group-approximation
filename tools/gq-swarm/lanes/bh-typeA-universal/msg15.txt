@@ -1,0 +1,8 @@
+Drop the grading hypothesis from the finite-presentation half of the interval Brown criterion
+
+The pi_1 argument needs only covers, of any rank difference. Maximal chains of
+a finite interval are chains of covers, and each non-cover interval is
+attached along a connected suspension. So the criterion now applies without
+lattice structure, joins of atoms or grading. That is the non-LCM setting of
+dissection posets with prime pieces, relevant to the rational projective full
+groups and the hosts program's "Li without lcms" gate.

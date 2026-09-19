@@ -1,0 +1,7 @@
+Finitely presented Bieri-Strebel line groups are deformation-rigid; hard real parameters cannot enter finitely presented PL hosts
+
+A finitely presented G(R;A,P) with P nontrivial has algebraic slopes, and after rescaling its
+breakpoints lie in Q(P). So the necessary conditions of D13.3 are not sufficient: take
+G(R; Z[1/2] + Z[1/2]tau, gp(2)) with tau irrational. A finitely generated PL group with data in
+Q(lambda), lambda transcendental, that contains a dyadic F and a bump with an irrational endpoint
+is not finitely presented. Recorded as Attempt 8 on the Birget root.

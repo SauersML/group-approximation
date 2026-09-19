@@ -1,0 +1,12 @@
+Seeds record every Bass-Serre pointer; scattered seeds over split groups must hide one
+
+For any amalgam or HNN splitting, gluing a seed and a translate across an edge coset would create a
+second origin. So a seed's pattern on each thickened edge coset records which side the origin is on.
+If a bounded window reads that pointer on every edge orbit, the seed boundary maps onto the
+Bass-Serre boundary and is uncountable. Finite edge groups make this automatic, which recovers end
+domination.
+
+Every glued or product seed reads its pointers locally. So seed towers over non-elementary splittings
+are never scattered, and their rigidity must be paid on a perfect kernel. A scattered seed over an
+infinitely ended group times Z must hide some column pointer; whether that is possible is open, and
+a conjecture records the expected answer.

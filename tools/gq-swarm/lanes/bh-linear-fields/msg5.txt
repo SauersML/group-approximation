@@ -1,0 +1,8 @@
+OPEN: piecewise PGL_2(Z[1/2]) circle groups (Lodha-Moore type with quadratic breakpoints); the wall recorded
+
+New OPEN claim lodha-moore-groups-with-quadratic-breakpoints-satisfy-bh with Attempt 1:
+germ groups at quadratic irrationals are pairs in St_xi = O[1/2]^x/Z[1/2]^x (rank s_2(K));
+any orientation-preserving germ extension over a base with diagonal germs has infinite
+abelianization, so the family-permutation device of the V-hosts does not transfer; the BHM
+finiteness inputs Fix_S(M) are unknown; and by Lodha's Lemma 2.7(1) no group containing
+y_10 is a finite germ extension of V. Lane proofs of the proved parts, unreviewed.

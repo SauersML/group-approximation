@@ -1,0 +1,10 @@
+Baumslag-Gersten group: highly transitive and MIF, maps onto Higman's groups
+
+BG is acylindrically hyperbolic by Minasyan-Osin's HNN corollary (the
+associated subgroup <a> of BS(1,2) is weakly malnormal), and it is
+torsion-free, so Hull-Osin make it highly transitive and MIF. Main's
+proper-power orbit count then leaves finite generation of point stabilizers
+as the only failing clause of type (A). BG/<<t^n>> is Higman's H_n split by
+C_n, which links the BG and H4 test cases and recovers Baumslag's theorem
+that finite quotients of BG are cyclic. The BG node gains an Attempts entry
+with a germinal-twist constraint on global-twist hosts SV_G.

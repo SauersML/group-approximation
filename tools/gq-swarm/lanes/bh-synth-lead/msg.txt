@@ -1,0 +1,7 @@
+Land BH master-route synthesis: local rigidity principle and rigid aperiodic tilings of decidable envelopes
+
+Lead synthesis of the 09-18 swarm. Almost all obstructions are non-rigid models invisible to finitely many
+local relators, and every success is a rigid finite-type coding. So the whole conjecture concentrates on
+one object: a quantum-rigid free minimal SFT over a finitely presented envelope of each decidable group,
+then the ring-side (K-theory) or group-side (P2') finiteness. Includes three strategies, their gates with
+supplied and missing inputs, a lane assignment table and an honest assessment.

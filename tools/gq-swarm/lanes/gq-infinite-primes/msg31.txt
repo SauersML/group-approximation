@@ -1,0 +1,8 @@
+Hygiene: update the residual-node status in the Z_(l) bottleneck; qualify K_2^T
+
+Lane gq-infinite-primes, from the gq-writeup hygiene list. Attempt 3 of the
+Z_(l) bottleneck node now records resolvent-steinberg-rf-residual-is-
+infinitely-normally-generated as ESTABLISHED (inputs read at source,
+69ed7e51a), closing its route, and St_N(R_l) not residually finite for l odd.
+The torus-amalgams node says "the prime-shift group K_2^T" instead of bare
+K_2^T. No ids renamed.

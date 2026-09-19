@@ -1,0 +1,7 @@
+LANDED 1f296008a on origin/main (parent 0d5da4a8c):
+ ...nas-hypotheses-hold-for-leavitt-tensor-hosts.md | 149 +++++++++++++++++++++
+ ...t-square-unit-group-is-fp-simple-and-acyclic.md |   7 +
+ ...its-have-conp-parity-p-complete-word-problem.md |   5 +-
+ ...itt-square-units-mod-p-complete-word-problem.md |   3 +-
+ ...eavitt-tensor-hosts-fp-and-simple-mod-centre.md |   7 +
+ 5 files changed, 169 insertions(+), 2 deletions(-)

@@ -1,0 +1,9 @@
+Commensurator-rigid groups have no faithful generalized Baumslag-Solitar members
+
+If G -> Comm(G) is injective with finite-index image, then some finite-index
+subgroup of each vertex group of any group in BS_G acts trivially on the
+Bass-Serre tree: the kernel N of the commensurator map is virtually free and
+finitely generated, so its centralizer in a vertex group has finite index and
+fixes every vertex. So Bux-Llosa Isenrich-Wu Theorem C never applies to
+Out(F_n) (n >= 4, Farb-Handel) or closed Mod(S_g) (g >= 3, Ivanov), a second
+obstruction beside residual finiteness. Lane proof, not reviewed.

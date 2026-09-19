@@ -1,0 +1,16 @@
+Commutants of monomial Leavitt copies in tree translation algebras contain no Leavitt algebra
+
+New claim node monomial-leavitt-commutants-in-tree-roe-algebras-are-amenable.
+- Monomial unital copies of L in K_u(X) are exactly bounded-displacement 2-to-1 maps.
+- The grand orbits of such a map are Chen modules (aperiodic or cycle type) or periodic lines, and the
+  relative commutant maps unitally to the translation algebra of the grand-orbit space Q_phi (exactly, off the
+  lines).
+- Over a tree, Q_phi is amenable: otherwise the Ara-Li-Lledo-Wu paradoxical lift gives a second monomial copy,
+  hence a monomial K[Z^2], which is impossible. So by ALLW Theorem 6.3 the commutant contains no unital L(1,n).
+- Hence both legs of any L (x) L in a tree translation algebra are non-monomial, and in any unital
+  L_K (x) L_K -> L_K no leg is a prefix-code copy, over every field.
+
+Lesson for general BH: ALLW's amenability dichotomy has a relative (Morita-type) version. Over one tree, a
+dynamically built Leavitt copy always has an amenable commutant, so O_2 (x) O_2 = O_2-type embeddings need
+genuinely linear Leavitt copies. Track B loses nothing, since its scaffold F_2 x F_2 hosts L (x) L and R_1
+monomially.

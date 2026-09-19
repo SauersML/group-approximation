@@ -1,0 +1,5 @@
+Plan the Boone-Higman Palomar megasubmission
+
+Recon of the Palomar surface, the existing metabelian pair and the BooneHigman Lean
+chain, candidate results with tiers, a Mathlib-only challenge rendering for one
+megaconfig, the dependency graph, a lane split and the user decisions. No claims.

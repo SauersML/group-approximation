@@ -1,0 +1,3 @@
+Record the manuscript formalization worklist for both notes
+
+Endpoint status, the other session's active zones, and eleven unowned work items for the simple Kazhdan note and the non-MF paper, read from origin/main. The red-module probe result follows in the next revision.

@@ -1,0 +1,8 @@
+Q-coefficient Leavitt tensor hosts: fp overgroup route, scalar obstruction
+
+For a finitely presented central simple Q-ring B with trivial Leavitt
+K-theory, (B tensor L_Q(1,2))^x would be a finitely presented overgroup of
+GL_infinity(Q), which serves Problem 2.7. Record the one missing input
+(H_2(GL_3) = 0 in characteristic zero), the open existence of such B, and the
+elementary obstruction that its simple scalar quotient is never finitely
+presented, since Q^x is central and not finitely generated.

@@ -1,0 +1,10 @@
+Prove that quantum rigidity of SFTs is stable under products
+
+For SFTs X over L1 and Y over L2, the product SFT X x Y over L1 x L2
+is quantum rigid iff both factors are, and free and minimal iff both
+are. The constancy rules make each factor's letter projections
+constant along the other factor, so a product family splits into two
+factor families that commute at every common site. Consequence for
+the master route: uncoupled products create no faults; coupling is
+needed for existence (G1), not for rigidity (G2), so G2 reduces to
+rigidity of the coupling layer. Lane proof, elementary, unreviewed.

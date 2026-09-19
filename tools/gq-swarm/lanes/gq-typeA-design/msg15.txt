@@ -1,0 +1,7 @@
+Descending shift-power windows force a torsion centre for FW inputs
+
+If s^m rho_g s^-m = rho_psi(g) near for an FW input with infinite supports,
+labels along the m rays give finitely many self-similar infinite orbits, and
+central elements are trapped in levels of bounded size, so Z(P) has finite
+exponent. With the commuting-window reduction this closes commuting windows
+of every width in both directions for St_N(R_L), whose centre contains Q^x.

@@ -1,0 +1,3 @@
+Reduce single-cut first splits to a Stern-Brocot mediant condition at vertices on one median
+
+In rank three a median cuts a straddling piece along one of its own first splits exactly when it enters the piece at a vertex whose corner has the median's link direction as mediant. At the cell's own vertices this is automatic (corners are Stern-Brocot descendants of the root), and the centroid lies inside no proper descendant, so the single-cut conjecture is a finite Stern-Brocot condition at the vertices lying on one median.

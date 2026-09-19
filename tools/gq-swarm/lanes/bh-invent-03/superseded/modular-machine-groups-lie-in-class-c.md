@@ -1,0 +1,97 @@
+---
+rg: 2
+id: modular-machine-groups-lie-in-class-c
+kind: claim
+title: For every modular machine, the Aanderaa–Cohen machine group (Simpson's G_M, an HNN extension of ⟨t⟩ * Z^2) has a quantum-rigid seed; the proof uses a free-product form of M. Hall's theorem for its associated subgroups
+requires:
+  - relative-seeds-glue-graphs-of-groups-into-class-c
+  - modular-machine-halting-invariance
+distinct_from:
+  relative-seeds-glue-graphs-of-groups-into-class-c: that glues relative seeds and gives them for subgroups of free and free abelian groups; this supplies them for the associated subgroups ⟨t(a,b), x^M, y^N⟩ of the base ⟨t⟩ * Z^2, which are neither, and so gets the first rung of the Aanderaa–Cohen tower.
+  novikov-boone-via-modular-machine-tower: that uses the same tower to transport halting into the word problem; this asks for a rigid seed on its first stage, where no halting set is involved yet.
+---
+
+**ESTABLISHED** by the proof below (lane bh-invent-03, 2026-09-18; elementary lane proof, not reviewed; no priority
+claimed).
+
+**Credits.** The machine group is that of **Aanderaa and Cohen**'s modular-machine proof of **Higman**'s embedding
+theorem, in **Simpson**'s exposition. Its formalization is `Computability/BooneGroupBase` and
+`modular-machine-halting-invariance`. The subgroup lemma is a free-product form of **Marshall Hall**'s theorem, with
+the usual covering argument (Bass–Serre, Scott–Wall).
+
+## Setting
+
+These are Simpson's conventions, as formalized in the repository.
+- **The base.** `G_0 = ⟨t, x, y | xy = yx⟩ = ⟨t⟩ * Z^2`, with `t(α, β) = x^(−α) y^(−β) t x^α y^β`.
+- **Associated subgroups.** `G_(ab)^(MN) = ⟨t(a,b), x^M, y^N⟩`.
+- **Quadruples.** A modular machine with modulus `M` has quadruples, each giving a partial isomorphism:
+  - an `R`-quadruple `(a, b, c, R)` gives `G_(ab)^(MM) -> G_(c0)^(M^2,1)`, acting on indices by
+    `(a+uM, b+vM) ↦ (c+uM^2, v)`;
+  - an `L`-quadruple gives `G_(ab)^(MM) -> G_(0c)^(1,M^2)`.
+- **The machine group.** `G_M` is the HNN extension of `G_0` with one stable letter `r_i` for each quadruple. It is
+  finitely presented.
+
+## Statement
+
+1. **Free-product Hall lemma.**
+   - **Hypotheses.** Let `Λ = A_1 * ⋯ * A_n`, and let `S ≤ Λ` be finitely generated.
+     - `S` has a nonempty minimal invariant subtree `T_S` in the Bass–Serre tree `T` of the splitting.
+     - The stabilizer `S_v` of each vertex `v` of `T_S` has finite index in `Λ_v`.
+     - Every finite-index subgroup of every `A_j` lies in `𝒞`.
+   - **Conclusions.**
+     - `S` is a free factor of a finite-index subgroup `H ≤ Λ`.
+     - `(Λ, S) ∈ 𝓡`, i.e. `(Λ, S)` has a rigid relative seed.
+2. **The associated subgroups.** Every `G_(ab)^(MN)` with `M, N ≥ 1` satisfies 1 inside `G_0`. So
+   `(G_0, G_(ab)^(MN)) ∈ 𝓡`.
+3. **Rung 1.** For **every** modular machine `M`, `G_M ∈ 𝒞`.
+4. **Rung 2, trivial machine.** For the machine with no quadruples, the next stage
+   `⟨G_0, k | [k, t] = 1⟩ ≅ Z^2 * Z^2` is in `𝒞`.
+
+**Correction.** Corollary (c) of `relative-seeds-glue-graphs-of-groups-into-class-c` (5deee01840) called the
+modular-machine groups HNN extensions of free groups. In Simpson's form the base is `⟨t⟩ * Z^2`, so the
+membership of these groups in `𝒞` is established here, by 2–3, and not by that corollary.
+
+## Proof
+
+**1. The Hall lemma.**
+- **The core.** `S\T_S` is a finite graph of groups, since `S` is finitely generated. Its vertex groups `S_v` have
+  finite index in the `Λ_v`, and its edge groups are trivial. It immerses into the one-edge-per-factor graph of
+  groups of `Λ`.
+- **Completion.**
+  - Realize `Λ` by a graph of spaces with vertex spaces `K(A_j, 1)`, joined by edges to one central point.
+  - Each core vertex is a finite cover of degree `d_v = [Λ_v : S_v]`, with `d_v` edge slots, some of them used.
+  - Attach to every unused slot a new edge ending at a new degree-1 vertex space of the other kind. This is always
+    possible because edge spaces are points.
+  - The result is a finite-sheeted cover of the graph of spaces. Its fundamental group `H` has finite index in `Λ`.
+- **`S` is a free factor.** The graph of groups of `H` has trivial edge groups, and its core subgraph is connected. So
+  `H = S * S'`, with `S'` a free product of finite-index subgroups of conjugates of the `A_j` and a free group.
+- **The relative seed.**
+  - `S` and `S'` are free products of members of `𝒞`, so they lie in `𝒞` by gluing (trivial edge groups).
+  - Item 1 of `relative-seeds-glue-graphs-of-groups-into-class-c`, for the graph `S — S'` with trivial edge group,
+    with `C = V_u = S` and the one-point shift, gives `(H, S) ∈ 𝓡`.
+  - Induction (item 2 there) gives `(Λ, S) ∈ 𝓡`.
+
+**2. The associated subgroups.** Let `S = G_(ab)^(MN)`, `v_0 = ⟨x, y⟩` and `w = x^(−a) y^(−b)⟨t⟩`.
+- `w` is adjacent to `v_0`, since `x^(−a)y^(−b) ∈ v_0`.
+- `S_(v_0) = ⟨x^M, y^N⟩` has index `MN` in `Z^2`, and `S_w = ⟨t(a,b)⟩` is the whole stabilizer of `w`.
+- `S` is generated by these two, so `T_S = S·{v_0 — w}`, and every vertex of `T_S` has a finite-index stabilizer.
+- Finite-index subgroups of `Z` and `Z^2` are copies of `Z` and `Z^2`, both in `𝒞`. So 1 applies.
+
+**3. Rung 1.**
+- `G_M` is the fundamental group of a graph of groups with one vertex `G_0` and one loop per quadruple.
+- Its edge groups are the `G_(ab)^(MM)`, `G_(c0)^(M^2,1)` and `G_(0c)^(1,M^2)`, all in `𝓡` by 2.
+- `G_0 = Z * Z^2 ∈ 𝒞`.
+- So `G_M ∈ 𝒞` by gluing with `C = 1`.
+
+**4. Trivial machine.** `(G_0, ⟨t⟩) ∈ 𝓡` by gluing, vertex-marked at the `⟨t⟩`-vertex. `(⟨t⟩, ⟨t⟩)` is the
+one-point shift. So the HNN extension over `⟨t⟩` with the identity lies in `𝒞`. ∎
+
+## Lesson for general BH
+
+The Aanderaa–Cohen machine costs nothing for seeds.
+- **The first rung is free.** Every modular machine group has a rigid seed: its associated subgroups are
+  tree-quasiconvex with finite-index vertex pieces, and Hall completion plus relative-seed gluing handles them.
+- **The machine enters only at the halting rung.** There, the associated subgroup's vertex piece is
+  `⟨t(p) : p ∈ H_M⟩`. It is infinitely generated, and its coset mark is the halting set itself.
+- **So the tower's first real test is rung 2.** Can the halting marks be locally forced? The team plan is in
+  `board/seed-tower.md`, and the forcing principle in `seed-tower-reduces-to-mortal-forcing-and-input-geometry`.

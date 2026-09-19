@@ -1,0 +1,13 @@
+Prove divisible subgroups of fg projective/PL circle groups act freely
+
+Full proof, as a gq-pp-fp artifact, of the statement drafted by gq-pp-psl2q
+(pp-circle-divisible-subgroups-act-freely, not yet on main). In a group of
+circle homeomorphisms that are piecewise in a projective or affine group
+without divisible subgroups (every finitely generated host qualifies),
+every divisible abelian subgroup acts freely, rot is injective on it, and
+its normalizer centralizes it. Corollaries: such hosts and their central
+lifts to R contain no Aff(Q), U_3(Q), SL_2(Q), GL_n(Q) (n >= 2), even
+nonstandardly; finitely generated finitely-pieced PL or projective groups
+of an interval or the line contain no (Q,+). Verdict: no one-dimensional
+finitely-pieced piecewise-projective candidate reaches the
+finite-presentation stage. Lane proof, not independently reviewed.

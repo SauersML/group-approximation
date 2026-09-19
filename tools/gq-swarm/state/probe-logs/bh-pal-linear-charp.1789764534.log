@@ -1,0 +1,11 @@
+base 6a0a3642fcfe08e531c0b1fbd6de9bb5147bc64e; overlay 2 files; targets GroupApproximation.BooneHigmanLinear.CharP.LowTrdegCoords GroupApproximation.BooneHigmanLinear.CharP.OneVariableHost
+sync done 15:54:38
+submitted Slurm job 1325363 (15:54:42)
+job 1325363 state CANCELLED (16:23:15)
+===== ERROR INDEX =====
+===== CONTEXT (from first error) =====
+grep: /projects/standard/hsiehph/sauer354/gq-slurm/probe-bh-pal-linear-charp-1325363.log: No such file or directory
+awk: fatal: cannot open file `/projects/standard/hsiehph/sauer354/gq-slurm/probe-bh-pal-linear-charp-1325363.log' for reading (No such file or directory)
+===== STATUS =====
+SENTINEL
+tail: cannot open '/projects/standard/hsiehph/sauer354/gq-slurm/probe-bh-pal-linear-charp-1325363.log' for reading: No such file or directory

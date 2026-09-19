@@ -1,0 +1,6 @@
+Split finitary extensions: finite presentation forces local presentability of FSym at one G-finite scale
+
+New node fp-split-finitary-extensions-force-local-presentations-of-fsym (lane proof): the finitary
+analogue of the necessity half of Cornulier's wreath-product criterion (arXiv:math/0509090). A
+nontrivial covering of the scale-F nerve obstructs; the line calibrates via a Coxeter cocone (Brown's
+H_2). Records why gate (b) for Abels' quotient resists derivation.

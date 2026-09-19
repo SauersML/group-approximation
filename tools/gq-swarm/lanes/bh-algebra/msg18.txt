@@ -1,0 +1,3 @@
+Kazhdan groups avoid full groups of subexponential-growth actions (gate U calibration)
+
+New claim kazhdan-groups-avoid-full-groups-of-subexponential-actions: for P of subexponential growth (e.g. Z²) acting on any compact X, every Kazhdan subgroup of [[P ⋉ X]] is finite (amenable orbits force finite orbits; expansion bounds them). So the canonical inputs H_Γ never lie in the permutational units of (LC(X,F_2) ⋊ Z²) ⊗ L supported in B; gate U must use the Leavitt tree or non-monomial units. Lesson for general BH included. Lane proof, not reviewed.

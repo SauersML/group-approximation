@@ -1,0 +1,8 @@
+Spatial 2V in piecewise-affine hosts needs unbounded fibres; contracting designs are dead
+
+In any host of piecewise-affine maps of Z-hat (CT_P(Z), B, G_(2,3)) each element has only finitely
+many non-interior fixed points. A spatial copy of 2V would give a push-pop power fixing whole slices,
+so fibres over every periodic slice must be unboundedly large. Every contracting design is therefore
+impossible, including slopes exactly 2 and 3 with offsets read from finite residue data. Surviving
+designs need Conway-type expanding pieces. The statement holds verbatim for G_(2,3) and B.
+2V <= CT(Z) is still open.

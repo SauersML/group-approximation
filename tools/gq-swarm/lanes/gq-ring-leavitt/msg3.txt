@@ -1,0 +1,8 @@
+Record referee PASS on the Leavitt scalar-commutator refutation
+
+Both referees passed leavitt-scalar-commutators-block-fp-central-quotients and
+leavitt-resolvent-derived-units-mod-centre-not-fp (58d536cf7, c81257d90).
+Per the citation review, the resolvent step now cites the split node
+leavitt-resolvent-ring-is-fp-and-contains-q, so the refutation does not depend
+on simplicity of R_L, and the E_N(R) sentences are marked as resting on an
+unreviewed repository-internal Lean node.

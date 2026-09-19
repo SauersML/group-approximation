@@ -1,0 +1,8 @@
+Transport the rank-one germ lemma along orbits in finite-nucleus RSGs
+
+In a finite-nucleus rational similarity group, a free abelian group of rank
+at least two has a nontrivial element that is the identity near every point
+attracted to a rational point with finite orbit. Record it as an Attempt on
+the Z^2 * Z host-class question, add the Röver--Nekrashevych rational-attractor
+sketch, and record the Zappa--Szép route for product-of-trees lattices as
+subsumed by Bux--Llosa Isenrich--Wu.

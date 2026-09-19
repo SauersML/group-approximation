@@ -1,0 +1,3 @@
+Referee report: BS classes over virtually quotient-free groups have big kernels PASS, W1
+
+Proof-gap lens on bs-classes-over-virtually-quotient-free-groups-have-big-kernels (b57b718b4, text at bcec5f995). Finite residual invariance, the common normal N, the finite-Out branch and the three-tree reduction checked. W1: no-faithful-member needs G infinite; N1: the Z(K) case split is unnecessary and misses infinite centre.

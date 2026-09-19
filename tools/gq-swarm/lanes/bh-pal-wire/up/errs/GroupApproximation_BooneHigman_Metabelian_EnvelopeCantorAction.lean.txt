@@ -1,0 +1,6 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:75:60: unsolved goals
+X : Type u_1
+x : Cantor X
+n : ℕ
+hn : n < (firstWord (n + 1) x).length
+⊢ (x 0 :: List.ofFn fun i => x (↑i + 1))[n] = x n
