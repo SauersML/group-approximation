@@ -25,6 +25,13 @@ in ordered-pair form these are `vdkPiece i j k p q` (VdKPerfect), here `piece i 
   zeros, `X(v, w)` is the elementary `x(v, w)` of vdK 3.10 at either zero.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

@@ -22,6 +22,13 @@ the `r`-th coordinate. This file proves:
 Nothing here assumes that a column is unimodular.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
