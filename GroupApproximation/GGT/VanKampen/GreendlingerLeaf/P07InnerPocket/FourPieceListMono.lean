@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceList
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, inner pocket: monochrome side chunks
 

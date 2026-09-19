@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessS
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessStepLobeFace
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-64: the Cycle statement is the Order statement
 

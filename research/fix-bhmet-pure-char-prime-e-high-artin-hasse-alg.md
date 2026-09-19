@@ -16,6 +16,8 @@ Source changed on main since that build: yes.
 
 
 
+**Repair landed, unprobed.** ecfe76c3e3: BH chain wave 4: static fixes for the five bh-pal-wire reds of union build b1789837230 (un. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from union build b1789837230 on main 296aff5838).**
 
 ```
