@@ -153,3 +153,32 @@ now exactly a published open question.
   deep binary runs.
 - *Where the remaining difficulty sits.* Any proof or counterexample must address
   the unpadded conjugator problem itself.
+
+2026-09-19 (census-computation, swarm-0917-w14-w14-ptm-last1).  **Test
+family `(A_s, D)`: moving the base beats the fixed-base floor, and the
+distance keeps falling in `N`.**  Details are in
+`bs12-twisted-clock-exact-pair-census`.  The claim stays **OPEN**.
+- *Sharpened fixed-base floor (proved).*  Take `k = (N-1)/2`.  Then
+  `D^k H D^(-k)` changes `cos a` to `cos(a + pi - pi/N)`, which gives
+  `||A_s D^k A_s^* - D^(2k)|| >= 2 sin(s(1+cos(pi/N)))`.  Hence every
+  `C` with `C D C^* = D^2` has `||C - A_s|| >= sin(s(1+cos(pi/N))) -> sin 2s`.
+  This replaces `|J_1(2s)|/2` above: at `s = 1/2` it is `0.841` against
+  `0.220`.  Any exact correction closer than this must move the
+  near-antipodal powers `Z^((N-1)/2)` and `Z^(N-1)` by order one.
+- *Census (explicit exact pairs, upper bounds only).*  The search runs over
+  all exact pairs with simple `N`-th-root base in `U(N)`, namely
+  `(U W diag U^*, U D U^*)`.  The values of `d(s,N)` are:
+  - `0.566 -> 0.364` at `s = 0.5`, for `N = 9 .. 243`;
+  - `0.314 -> 0.259` at `s = 0.25`, for `N = 27 .. 243`;
+  - `0.147 -> 0.135` at `s = 0.1`, for `N = 27 .. 243`.
+
+  The optimal `U` is far from `1`.  It blurs the clock over a position
+  window of about `0.05 N` sites.  These are the spectrum-changing
+  corrections that the Livsic / first-order analysis above could not see.
+  They come in below the first-order level `~ 1.5 s`.
+- *Belief update.*  At `s = 1/2` there is no plateau, so the census gives
+  no evidence for a Q3 counterexample on this family.  At small `s`,
+  `d/s` falls only slowly (`1.47 -> 1.35` at `s = 0.1`), so the census
+  cannot separate a slow decay to `0` from a positive limit.  The
+  isolated open question is whether some fixed `s` has
+  `liminf_N d(s,N) > 0`; a positive answer refutes ESS Q3.
