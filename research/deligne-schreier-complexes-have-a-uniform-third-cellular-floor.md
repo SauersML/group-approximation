@@ -127,3 +127,24 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
     for this claim. The dual bound stays 0 from 12 points on, so the MILP tool is dead there too.
   - *Left.* A large-level primal model with defect below the Kahler value in `SL_2(Z[1/2])` would be a genuine
     calibration counterexample. None has been found.
+- **2026-09-19, swarm-0917-w17-w17-deligne-break: failure of this claim is one dynamical object, and four
+  construction classes cannot produce it** (`deligne-third-floor-failure-is-continuous-untwisting`,
+  entropy-measure).
+  - *Reformulation (U).* This claim fails iff some finitely approximable compact metrizable `Gamma`-space carries a
+    continuous circle untwisting of the Deligne class. The space is the ultralimit of the phase profiles of a
+    counterexample sequence. It can be taken free, over `Gamma^bar`, and with an invariant probability.
+  - *Killed.* Isotropy and point-evaluation arguments on the proof side (after the product with `Gamma/Gamma(n!)`
+    every stabilizer is trivial). On the refutation side:
+    - finite orbits (C1);
+    - phases cohomologous to discrete ones, including the Cantor analogue `K_3` of the (DM1) survivor 1 (C2);
+    - limit laws that are factors of Bernoulli, profinite or Bernoulli x profinite, via (DM1) (C3);
+    - fixed-radius random local rules with fixed congruence data, over any `X_n` (C4).
+  - *Survivor 2 of (DM1).* In sup norm, "incoherent" voltage towers always cohere on their own ultralimit system, so
+    they reduce to the object in (U).
+  - *Not new.* The candidate conditions "a uniform circle cosystole on all finite-index subgroups" and "floor
+    failure makes `E_3` hyperlinear" were checked and dropped. The first is stronger than the repaired condition of
+    `deligne-third-floor-holds-above-every-fixed-level`. The second already follows from the existing
+    sector-gap and operator-to-HS routes.
+  - *Left.* (NFA): no finitely approximable space carries a continuous untwisting. A connected compact space and a
+    free compact space carry untwistings that are not cohomologous to discrete ones (step 6 of the proof). So (C2)
+    alone cannot prove this claim, and whether such spaces are finitely approximable is the open core.
