@@ -55,3 +55,30 @@ force it (`modular-vertex-extension-does-not-force-congruence`).
   `modular-vertex-extension-does-not-force-congruence` do not decide this. Their
   vertex representation is only extended on one side, and no bound on its
   `t`-transported defect is recorded. Open.
+
+- **2026-09-19 (swarm-0917, operator-algebras).** Decomposition and a class
+  kill.
+  * **Decomposition.** The route
+    `iwahori-capture-from-finite-image-and-finite-image-congruence` splits
+    this claim into (FI) `iwahori-vertex-finite-image-capture`, which removes
+    infinite-image mass, and (NC)
+    `iwahori-finite-image-vertex-congruence-capture`, which handles
+    non-congruence finite quotients. The two halves are equivalent to this
+    claim together, by the Step 6 replacement argument.
+  * **Class kill.** `iwahori-bounded-dimensional-vertex-constituents-are-congruence`
+    (proof through the new import `peterson-thom-sl2-s-integer-character-rigidity`)
+    shows that constituents of bounded dimension are asymptotically
+    congruence. So every countersequence to this claim, to (FI) or to (NC)
+    carries its gap on irreducible constituents of dimension tending to
+    infinity. This kills fixed small non-congruence representations, their
+    amplifications and mixtures, and bounded-degree non-congruence
+    quotients. The invariant is the mass of the Peterson--Thom restricted
+    character on the type-I non-congruence part, which is zero. Bounded
+    dimension enters through the weight `1/D` and a polynomial identity.
+  * **Dead: NC implies a nonsofic vertex action.** Trying to feed an (NC)
+    countersequence into the codense-`(tau)` coset argument fails. That
+    argument needs Hamming correction of the chart labels. HS-closeness does
+    not see the chart-label block vectors: `||XL||_HS <= ||X||_HS ||L||_op`
+    with `||L||_op^2` of order `|V|/|B|`, so an `o(1)` HS error can move
+    every label.
+  * **Dead: uniform `(tau)` for (NC).** Recorded in the Attempts of (NC).
