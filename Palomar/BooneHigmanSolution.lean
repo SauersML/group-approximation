@@ -21,23 +21,27 @@ import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.BooneHigman.Statement.API
 import GroupApproximation.SteinbergFP.Challenge
 import GroupApproximation.BooneHigmanLinear.FrontierFour
+import GroupApproximation.Kourovka1759.Main
+import GroupApproximation.BHPalomar.GraphProducts.Main
 
 /-!
 # Proofs for the Boone–Higman megasubmission (work in progress)
 
 This file repeats the challenge's shared block byte for byte.
 
-**Status.** `explicit_fp_overgroup_of_all_gl_n_q` (Kourovka 14.10(c)) is proved outright, from
-`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q`; it is also available
-under its `_of` name. Every other selected theorem appears under a name ending `_of` and takes,
-as a hypothesis, the proposition the development still owes:
+**Status.** Two selected theorems are proved outright, and each is also available under its
+`_of` name: `explicit_fp_overgroup_of_all_gl_n_q` (Kourovka 14.10(c)), from
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q`, and `kourovka_17_59`, from
+`GroupApproximation.Kourovka1759.kourovka_17_59`. Every other selected theorem appears under a
+name ending `_of` and takes, as a hypothesis, the proposition the development still owes:
 
 * the two metabelian theorems and the linear theorem take `RouteAOwed`, the four open inputs of
   route A (`GroupApproximation/BooneHigmanLinear/FrontierFour.lean`);
+* the graph-product theorem takes `GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput`;
 * the others take a proposition named here (`LinearSelfSimilarOwed`, `Kourovka1757Owed`,
-  `Kourovka1759Owed`, `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`,
-  `KohlFactorizationOwed`, `GraphProductOwed`, `MixedIdentitiesOwed`), which is the challenge
-  statement itself until the construction that proves it lands.
+  `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`, `KohlFactorizationOwed`,
+  `MixedIdentitiesOwed`), which is the challenge statement itself until the construction that
+  proves it lands.
 
 The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are added, and the
 hypotheses removed, as the development discharges them.
@@ -49,8 +53,6 @@ hypotheses removed, as the development discharges them.
 * `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
   homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
   that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
-* `Kourovka1759Owed`: the elementary proof by products of class transpositions is complete
-  as a written argument; its Lean development is in progress.
 * `Kourovka1760Owed`, `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an
   explicit one-vertex higher-rank graph, simple and of type `F_∞` by Li's theorems; Matui's
   spatial realization and the germ groups at rational points then recover `P`.
@@ -58,14 +60,17 @@ hypotheses removed, as the development discharges them.
   modulus four with products of class transpositions of the other group.
 * `KohlFactorizationOwed`: from Kourovka 17.59, after removing class shifts and class
   reflections to fix the nonnegative integers.
-* `GraphProductOwed`: graph products reduce to amalgams `X ∗_C (C × K)` over retracts, which a
-  twisted conjugation realizes inside the automorphism groups `Aut_G(G ∗ F_n)` of BFFHZ.
+* `EnvelopeInput` is BFFHZ Theorem C (i) ⇒ (iv) with Theorem E: a group with an action of type
+  (A) embeds in a group `H` such that `Aut_H(H ∗ F₂)` has an overgroup with an action of type
+  (A). Everything else is proved in `GroupApproximation/BHPalomar/GraphProducts/`: graph
+  products reduce to amalgams `X ∗_C (C × K)` over retracts, which a twisted conjugation
+  realizes inside `Aut_H(H ∗ F₂)`.
 * `MixedIdentitiesOwed`: the witness is Thompson's group `T`.
 
 **Review status of the mathematics** (research/artifacts/gq-bh-results-summary.md; [R] is an
 internal referee pass, [IC] an adversarial check by a second lane; none is an external review):
-Kourovka 14.10(c) [R] and proved here in Lean; Kourovka 17.60, 21.75 and Kohl's
-factorization conjecture [R]; Kourovka 17.57, 17.59 and 17.61, BFFHZ Questions 3.1 and 3.3,
+Kourovka 14.10(c) [R] and Kourovka 17.59 [IC], both proved here in Lean; Kourovka 17.60, 21.75
+and Kohl's factorization conjecture [R]; Kourovka 17.57 and 17.61, BFFHZ Questions 3.1 and 3.3,
 the metabelian and linear theorems and LISW Question 1.11 [IC].
 
 **Not yet in the configuration**, because their statements need vocabulary Mathlib lacks
@@ -346,16 +351,20 @@ theorem kourovka_17_57_of (h : Kourovka1757Owed) :
       integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹ :=
   h
 
-/-- The proposition the class-transposition development owes for Kourovka 17.59. -/
-def Kourovka1759Owed : Prop :=
-  (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
-    {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n}
-
-/-- Kourovka 17.59, from the proposition the class-transposition development owes. -/
-theorem kourovka_17_59_of (h : Kourovka1759Owed) :
+/-- **Kourovka 17.59**, proved outright: `GroupApproximation.Kourovka1759.kourovka_17_59`
+(lane bh-pal-kourovka59) states the same proposition over byte-identical copies of
+`IsClassTransposition`, `classTranspositionGroup` and `IsResidueClassWiseAffine`, so it closes
+this one by definitional unfolding. -/
+theorem kourovka_17_59 :
     (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
       {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
-  h
+  GroupApproximation.Kourovka1759.kourovka_17_59
+
+/-- The same statement under its `_of` name; no hypothesis is outstanding. -/
+theorem kourovka_17_59_of :
+    (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
+      {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
+  kourovka_17_59
 
 /-- The proposition the class-transposition development owes for Kourovka 17.60. -/
 def Kourovka1760Owed : Prop :=
@@ -408,17 +417,30 @@ theorem kohl_factorization_conjecture_of (h : KohlFactorizationOwed) :
         Set (Equiv.Perm ℤ)) :=
   h
 
-/-- The proposition the graph-product development owes for BFFHZ Question 3.1. -/
-def GraphProductOwed : Prop :=
-  ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
-    (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G)
+/-- The challenge's groups with an overgroup carrying an action of type (A) are the
+graph-product development's permutational Boone–Higman groups: the same existentials, grouped
+differently. -/
+theorem embedsInTypeAGroup_iff_satisfiesPBH {G : Type} [Group G] :
+    EmbedsInTypeAGroup G ↔ GroupApproximation.BHPalomar.GraphProducts.SatisfiesPBH G := by
+  constructor
+  · rintro ⟨Γ, _, ⟨S, _, hA⟩, f, hf⟩
+    exact ⟨Γ, inferInstance, S, inferInstance, hA, f, hf⟩
+  · rintro ⟨Γ, _, S, _, hA, f, hf⟩
+    exact ⟨Γ, inferInstance, ⟨S, inferInstance, hA⟩, f, hf⟩
 
-/-- BFFHZ Question 3.1, answered positively, from the proposition the graph-product
-development owes. -/
-theorem graph_product_embeds_in_type_a_group_of (h : GraphProductOwed) :
+/-- BFFHZ Question 3.1, answered positively, from BFFHZ Theorem C (i) ⇒ (iv) together with
+Theorem E (`GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput`), through
+`GroupApproximation.BHPalomar.GraphProducts.question31_of_envelopeInput` (lane
+bh-pal-graphprod). The two graph products agree by definition, since the relators
+`a b a⁻¹ b⁻¹` there are the commutators `⁅a, b⁆` here. -/
+theorem graph_product_embeds_in_type_a_group_of
+    (h : GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput) :
     ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
-      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) :=
-  h
+      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) := by
+  intro ι _ Γ G _ hG
+  exact embedsInTypeAGroup_iff_satisfiesPBH.mpr
+    (GroupApproximation.BHPalomar.GraphProducts.question31_of_envelopeInput h ι Γ G
+      fun i => embedsInTypeAGroup_iff_satisfiesPBH.mp (hG i))
 
 /-- The proposition the mixed-identities development owes for BFFHZ Question 3.3. -/
 def MixedIdentitiesOwed : Prop :=

@@ -29,9 +29,9 @@ project:
     Fournier-Facio, Hyde and Zaremsky: graph products of groups satisfying the
     permutational Boone-Higman conjecture satisfy it too (Question 3.1), and some
     finitely presented simple group has mixed identities that are not finitely normally
-    generated (Question 3.3). The explicit overgroup of every GL_n(Q) is proved outright in
-    Lean; every other theorem is proved in the solution only from an explicit hypothesis
-    that the development is still discharging.
+    generated (Question 3.3). The explicit overgroup of every GL_n(Q) and Kourovka 17.59
+    are proved outright in Lean; every other theorem is proved in the solution only from
+    an explicit hypothesis that the development is still discharging.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -152,8 +152,8 @@ status:
   scope: >-
     Work in progress. Palomar/comparator-boone-higman.json is pending, so no theorem is
     published here. In Palomar/BooneHigmanSolution.lean,
-    explicit_fp_overgroup_of_all_gl_n_q is proved outright; every other selected theorem is
-    proved only in its _of form, from an explicit hypothesis.
+    explicit_fp_overgroup_of_all_gl_n_q and kourovka_17_59 are proved outright; every other
+    selected theorem is proved only in its _of form, from an explicit hypothesis.
   main_results: []
 
 fidelity:

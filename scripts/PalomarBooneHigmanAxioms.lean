@@ -12,8 +12,8 @@ their axiom closure is already the closure the finished theorems will rest on. A
 here means a selected statement is reached through an unfinished proof in the development.
 
 The names carry `_of` because the configuration's unsuffixed names do not exist yet, except
-`explicit_fp_overgroup_of_all_gl_n_q`, which is proved outright and is checked under both
-names. The loop does not stop at the first failure.
+`explicit_fp_overgroup_of_all_gl_n_q` and `kourovka_17_59`, which are proved outright and are
+checked under both names. The loop does not stop at the first failure.
 -/
 
 open Lean Elab Command
@@ -30,6 +30,7 @@ def compared : List Name :=
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_simple_of,
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar_of,
    `BooneHigman.kourovka_17_57_of,
+   `BooneHigman.kourovka_17_59,
    `BooneHigman.kourovka_17_59_of,
    `BooneHigman.kourovka_17_60_of,
    `BooneHigman.kourovka_17_61_of,
