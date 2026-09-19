@@ -1,0 +1,7 @@
+Part A: 1123543 tuples, failures: none
+Part A OK
+Part A occurrence counts (B=6): {'C1inc_0': 864, 'C2inc_-1': 1512, 'C1dec_1': 1512, 'C2dec_0': 864}
+K=2: min max = 3 (window [1, 2, 3, 2, 1]); level-0 bound F_(K+2) = 3; level-1 bound phi^F(ceil((K-1)/2)) = 1.618; OK
+K=3: min max = 7 (window [1, 2, 5, 7, 5, 2, 1]); level-0 bound F_(K+2) = 5; level-1 bound phi^F(ceil((K-1)/2)) = 1.618; OK
+K=4: min max = 16 (window [1, 2, 6, 10, 16, 10, 6, 2, 1]); level-0 bound F_(K+2) = 8; level-1 bound phi^F(ceil((K-1)/2)) = 1.618; OK
+Part B OK
