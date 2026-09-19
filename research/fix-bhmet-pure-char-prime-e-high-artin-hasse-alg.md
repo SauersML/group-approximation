@@ -15,15 +15,12 @@ Source changed on main since that build: yes.
 **Still red after wave 1** (batch job 1328760, base d2df12ed9). A second repair landed at 55aba370a, unprobed: MSI Slurm submission is blocked. It stays OPEN until a trusted probe builds it green.
 
 
-**Repair landed, unprobed.** 282fc2c1df: BH chain wave 3: WittETW omit, ArtinHasseAlg heartbeats (unprobed). Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**First errors (verbatim; from union build b1789837230 on main 296aff5838).**
 
 ```
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:113:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHas
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHas
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:217:4: Application type mismatch: The argument
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:219:4: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:308:18: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:332:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_exists_units_of_polyFun' depends on axioms outside the classical allowlist: [
 ```
 
 **Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-pure-char-prime-e-high-artin-hasse-alg`, now superseded).

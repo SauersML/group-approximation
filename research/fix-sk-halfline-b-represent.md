@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.HalflineB.Represent: dsimp made no progress"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/HalflineB/Represent.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
+**RESOLVED (296aff5838, union build b1789837230: lake "Built" line for this module; its 310-file import closure is unchanged on main since that base and holds no unlanded overlay bytes).** Previously OPEN (red at 463f140e0d in probe job 1398755). Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/HalflineB/Represent.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: unowned.
 
 **First errors (verbatim).**

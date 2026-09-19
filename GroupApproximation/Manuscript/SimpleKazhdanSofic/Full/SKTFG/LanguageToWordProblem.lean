@@ -270,8 +270,8 @@ theorem cyl_nonempty_iff (a₀ : A) (v : List A) {c : ℤ} (hc : (v.length : ℤ
     refine ⟨⟨x, hxS⟩, fun n h0 h1 => ?_⟩
     have hm : n.toNat < v.length := by omega
     have e1 : ((n.toNat : ℕ) : ℤ) = n := Int.toNat_of_nonneg h0
-    have h2 := hx ⟨n.toNat, hm⟩
-    rw [Fin.val_mk, e1] at h2
+    have h2 : x ((n.toNat : ℕ) : ℤ) = v.get ⟨n.toNat, hm⟩ := hx ⟨n.toNat, hm⟩
+    rw [e1] at h2
     show x n = v.getD n.toNat a₀
     rw [h2, List.getD_eq_getElem _ _ hm, List.get_eq_getElem]
 
@@ -286,11 +286,11 @@ theorem mem_listLanguage_iff_exists_append {L : List A} (hL : ∀ a, a ∈ L) {X
       (mem_allWords hL).2 (List.length_ofFn), x, hx, fun t => ?_⟩
     by_cases ht : (t : ℕ) < v.length
     · rw [List.get_eq_getElem, List.getElem_append_left ht]
-      exact (h ⟨t, ht⟩).trans (List.get_eq_getElem _ _)
+      exact (h ⟨t, ht⟩).trans List.get_eq_getElem
     · have ht' : v.length ≤ (t : ℕ) := Nat.le_of_not_lt ht
       rw [List.get_eq_getElem, List.getElem_append_right ht', List.getElem_ofFn]
+      show x ((t : ℕ) : ℤ) = x ((v.length + ((t : ℕ) - v.length) : ℕ) : ℤ)
       congr 1
-      show ((t : ℕ) : ℤ) = ((v.length + ((t : ℕ) - v.length) : ℕ) : ℤ)
       omega
   · rintro ⟨u, -, x, hx, h⟩
     refine ⟨x, hx, fun t => ?_⟩

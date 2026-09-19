@@ -62,7 +62,7 @@ abbrev StLim : Type _ :=
   DirectLimit (fun i => SteinbergGroup I (R i)) (fun i j h => ringMap (I := I) (φ i j h))
 
 /-- The canonical map `St_I(R_i) → lim St_I(R_j)`. -/
-def stOf (i : ι) : SteinbergGroup I (R i) →* StLim I φ where
+noncomputable def stOf (i : ι) : SteinbergGroup I (R i) →* StLim I φ where
   toFun u := ⟦⟨i, u⟩⟧
   map_one' := (DirectLimit.one_def i).symm
   map_mul' u v := (DirectLimit.mul_def i u v).symm

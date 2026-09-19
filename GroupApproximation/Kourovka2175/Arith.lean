@@ -127,11 +127,11 @@ theorem exists_two_avoid (x y : ℤ) (hx0 : 0 ≤ x) (hx : x < 4) (hy0 : 0 ≤ y
       z₁ ≠ x ∧ z₁ ≠ y ∧ z₂ ≠ x ∧ z₂ ≠ y := by
   interval_cases x <;> interval_cases y <;>
     first
-      | exact ⟨0, 1, by norm_num⟩
-      | exact ⟨0, 2, by norm_num⟩
-      | exact ⟨0, 3, by norm_num⟩
-      | exact ⟨1, 2, by norm_num⟩
-      | exact ⟨1, 3, by norm_num⟩
-      | exact ⟨2, 3, by norm_num⟩
+      | (refine ⟨0, 1, ?_⟩; decide)
+      | (refine ⟨0, 2, ?_⟩; decide)
+      | (refine ⟨0, 3, ?_⟩; decide)
+      | (refine ⟨1, 2, ?_⟩; decide)
+      | (refine ⟨1, 3, ?_⟩; decide)
+      | (refine ⟨2, 3, ?_⟩; decide)
 
 end GroupApproximation.Kourovka2175

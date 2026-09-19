@@ -1,0 +1,21 @@
+(m,d)=(0,4) L=2 weights=generic: monotone pairs=30 survivors=0 of all
+(m,d)=(0,4) L=2 weights=ones: monotone pairs=30 survivors=0 of all
+(m,d)=(0,4) L=3 weights=generic: monotone pairs=30 survivors=0 of all
+(m,d)=(0,4) L=3 weights=ones: monotone pairs=30 survivors=0 of all
+round 0: cols=300 rows=366 value=19.0769 improving=500
+round 1: cols=800 rows=381 value=10.9091 improving=500
+round 2: cols=1300 rows=420 value=10.4805 improving=500
+round 3: cols=1800 rows=467 value=10.4793 improving=500
+round 4: cols=2300 rows=467 value=10.3185 improving=226
+round 5: cols=2526 rows=467 value=10.234 improving=0
+FINAL (m,d)=(0,4) L=2 W=(1,) mode=full: exact min violation = 10.234
+  p=0.0957 levels=(2, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0745 levels=(2, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 1) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0638 levels=(2, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(1, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0426 levels=(2, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1, 2, 2, 2) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+  p=0.0319 levels=(1, 2, 2, 1, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1) weights=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)

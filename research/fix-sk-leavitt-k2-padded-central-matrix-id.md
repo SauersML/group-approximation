@@ -9,12 +9,12 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCen
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: ms-green-sk.
 Source changed on main since that build: yes.
 
-**Repair landed, unprobed.** 8d6acdcd0c: Land the Boone-Higman swarms unlanded lane drafts and Lean edits. Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
-error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean:39:65: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean:40:48: Type mismatch
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean:43:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.one_add_single_mulVec_single_of_ne' depends on axioms outside the
 ```
 
 **What it needs.** Make `GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.MatrixId` compile with the repository's `-DwarningAsError=true` settings, changing no statement.

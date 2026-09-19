@@ -52,6 +52,8 @@ theorem simpleKazhdanHost (Δ : Type) [Group Δ] [Infinite Δ] (hΔ : Group.FG �
     rw [Set.Finite.coe_toFinset]
     exact Lamplighter.closure_lampGenerators hT
   haveI : Infinite (LampSpace Δ) := infinite_of_perfectSpace (LampSpace Δ)
+  haveI : TotallySeparatedSpace (LampSpace Δ) :=
+    totallySeparatedSpace_of_t0_of_basis_clopen isTopologicalBasis_isClopen
   obtain ⟨hT3, hInf⟩ := printedGroupCrossedProductPropertyTInfinite (LampAffine Δ) (LampSpace Δ)
     (lampGenerators_finite hTfin).toFinset hSgen 3 le_rfl
   exact ⟨hInf, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT3,

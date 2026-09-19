@@ -2,7 +2,7 @@
 rg: 2
 id: thompson-f-tree-size-observations-have-zero-defect
 kind: claim
-title: For every Guba set S_(m+1,m+d+1) of Thompson's F, the observation that reads the sizes and depths of the first I+D+1 trees and every later tree exactly has shadow defect zero (proved for width m+d at most 3; every single-level dyadic or stable padding fails at width 4)
+title: For every Guba set S_(m+1,m+d+1) of Thompson's F, the observation that reads the sizes and depths of the first I+D+1 trees and every later tree exactly has shadow defect zero (proved at every width by a left-dominant iterated-exponential tower law, route thompson-f-tree-size-observations-via-tower-law; the scale-shift padding of Theorem 1 works only up to width 3)
 distinct_from:
   thompson-f-non-idempotent-prefix-with-exact-tail-is-dead: that is the statement for every prefix invariant with no idempotent state measure at once; this is the one invariant (sizes, with depths) that it names first, proved here for the Guba sets of width at most 3 by an explicit padding, together with a precise obstruction showing where that padding stops. It is therefore a partial special case of that node and does not close it.
   thompson-f-exact-tail-observations-have-zero-defect: that kills the exact tail only when the prefix is read through an invariant carrying an idempotent probability, by a tower coupling; sizes carry no such measure, and the shadow law here is not a tower coupling but a scale-shift padding (a uniform global dyadic scale plus two huge end combs).
@@ -35,6 +35,8 @@ artifacts:
   - experiments/thompson-f-size-levels-2026-09-17/hierarchical_kill.out
   - experiments/thompson-f-size-levels-2026-09-17/multilevel_lp.py
   - experiments/thompson-f-size-levels-2026-09-17/colgen_lp.py
+  - experiments/thompson-f-relative-levels-2026-09-17/tower_check.py
+  - experiments/thompson-f-relative-levels-2026-09-17/tower_check.out
 ---
 
 **OPEN.** The boxed statement is proved for every Guba set of width `m + d <= 3`: Theorem 1 below,
@@ -289,3 +291,30 @@ single-level padding with two absorbing ends at width 4. It does **not** kill:
   - *Numerics:* multi-level LP (`multilevel_lp.py`, `colgen_lp.py`) agrees. It is feasible at width 3 with
     weights `{1,2}`, and at `(0,4)` with one level the exact minimum violation is `5.263`.
 
+- **2026-09-19, swarm-0917-w17-w17-f-follow.**
+  - *Found:* the boxed statement holds at **every** width. It is now ESTABLISHED through the route
+    `thompson-f-tree-size-observations-via-tower-law`, which requires the new claim
+    `thompson-f-tower-size-laws-have-zero-defect` (proof in `thompson-f-tower-size-laws-have-zero-defect-proof`).
+    The body above ("OPEN", "open for width `>= 4`", "candidate for positive defect") predates this and
+    is superseded.
+  - *The law.* It uses complete depth-`d` tops. At the `N = (m+1) 2^d` leaves, in global left-to-right
+    order, it hangs trees with `n_v` carets and depth `e_v`, and the tail is trivial.
+    - The sizes are `n_v = 2^(λ + D_v) + Unif{0..2^(λ + D_v) − 1}`.
+    - `λ` is uniform on a long window.
+    - `D_v = Σ_(i >= v) g_i`, with gaps `g_i = G + n'_i`, where `n'` is an independent copy of the same
+      construction one stage lower. There are `m + d + 1` stages, and the last has constant gaps.
+    - The depths are an independent tower of the same kind.
+  - *Why it works.* Every piece of `split_s z` is a block of consecutive leaves, and its size is
+    dominated by its leftmost leaf. The size vector is therefore a fixed kernel of the log-scales
+    `λ + D_(a_j)`. The uniform `λ` absorbs one of them, and the gaps between them are the same problem
+    one stage lower with one coordinate fewer. Depths are `d − h_j + e_(a_j)` by dominance.
+  - *Checks.* `tower_check.py` checks the interval structure, the size and depth formulas via
+    `split_word`, and realizability, for 13 pairs `(m, d)` up to width 5, with 0 failures.
+  - *Relation to earlier kills.* Theorem 2 here and the class-`H` kill of
+    `thompson-f-hierarchical-size-laws-die-at-width-four` stay valid. The tower is outside both, because
+    its scale cluster sits at a random height, so no deterministic window separates its levels. The
+    consequence drawn in the w16 entry above ("some middle size ratio neither tight nor separated") is
+    false: in the tower every ratio is separated.
+  - *Consequence.* By A.1 of the gate, sizes, depths and the exact tail give no flow certificate for any
+    Guba set. The width-4 positive-defect candidate is dead. Exact middle shapes remain undecided at
+    width `>= 4`.
