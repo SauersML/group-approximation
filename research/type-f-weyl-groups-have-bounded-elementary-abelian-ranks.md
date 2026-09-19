@@ -166,3 +166,13 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   abelian, so `Z/2 ≀ Z` is excluded. Open: an `Aut(T)`-type factor, whose
   end stabilizers are amenable but not solvable, as in
   `Z/2 ≀ Z ≤ Aut(T_3)^2` on `DL(2,2)`.
+- 2026-09-19 (w17-117, obstruction): proposed-established
+  `tree-cut-outs-force-locally-finite-by-abelian-quotients`. For cut-outs
+  through `Aut(T)` factors, with no host hypothesis, every amenable `P` is
+  virtually locally-finite-by-`Z^k`. This excludes Grigorchuk's group,
+  `BS(1,n)` and `Z ≀ Z`. A witness for `Z/2 ≀ Z` must have the
+  Diestel–Leader shape: two tree factors where the shift is hyperbolic with
+  opposite orientations. `M` then fixes the orbit hulls of the shift axes
+  pointwise, so the host needs a nontrivial pointwise flat fixator
+  `Λ_F ∋ 1 ≠ H ∩ Σ`. The literal `DL(2,2)` completion is excluded. Open:
+  whether `Λ_F = 1` for irreducible lattices in three trees.
