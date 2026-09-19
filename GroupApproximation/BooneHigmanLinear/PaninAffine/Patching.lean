@@ -33,6 +33,7 @@ namespace BooneHigmanLinear
 namespace PaninAffine
 
 open GroupApproximation.SteinbergGroup GroupApproximation.BooneHigman Matrix
+open scoped commutatorElement
 
 section Relations
 

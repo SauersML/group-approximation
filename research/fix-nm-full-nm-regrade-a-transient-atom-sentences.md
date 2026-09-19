@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.NonMF.Full.NMRegradeA.TransientAtomSentences: Set.diff_eq has been deprecated: Use Set.sdiff_eq instead"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/NonMF/Full/NMRegradeA/TransientAtomSentences.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (b576f069a9, trusted batched probe job direct-b1789846523).** Previously OPEN. Lean module `GroupApproximation/Manuscript/NonMF/Full/NMRegradeA/TransientAtomSentences.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-nm-partial-a.
 
 **First errors (verbatim).**

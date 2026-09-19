@@ -112,7 +112,7 @@ theorem manuscriptSentence_representativeSetClopen (hC : IsClopen C) {atom : Fin
       exact hne ⟨d, hd, i, j, hi, hj, not_le.1 hij⟩
   have hbase : atomBaseSet T C E m N atom = C \ earlierAtomTest T C E m N atom := by
     unfold atomBaseSet
-    rw [hB, Set.diff_eq, compl_compl]
+    rw [hB, Set.sdiff_eq, compl_compl]
   refine ⟨?_, hbase, isClopen_atomBaseSet hC hatom⟩
   rw [hB]
   exact hA.compl
