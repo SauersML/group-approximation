@@ -2,6 +2,8 @@
 mixed-memory LP of lp_vmem.py (d^- darts with memory rm, d^+ darts with memory rp, flow on (R+1)-windows).
 The only changes from cg_memory.CGM are the row/column builder (lp_vmem.build) and the window sums of the dart
 bound (a window counts every type in lp_vmem.VTypes.wt[window]).
+With the environment variable VCG_MASK (e.g. VCG_MASK=bcBC) it solves the masked LP instead: windows with a letter
+outside the mask are fixed at 0. Without it the behaviour is unchanged.
 usage: python3 vcg.py '<phi0 json>' m rm rp [--kcol N] [--tl SEC] [--dual out.json] [--load dump.json]
 """
 import sys, json, time, itertools, os
@@ -19,6 +21,20 @@ class VCG(CG.CGM):
         finally:
             CG.LM.build = saved
         self.wt = TY.wt
+        # optional window mask (env VCG_MASK=letters, e.g. bcBC): windows not inside the mask get upper bound 0,
+        # and the bounds minimise over the masked windows only (the masked LP of the w6-074 addendum)
+        mk = os.environ.get("VCG_MASK")
+        self.wlive = np.array([set(v) <= set(mk) for v in TY.windows]) if mk else np.ones(len(TY.windows), bool)
+
+    def init_master(self):
+        super().init_master()
+        for j in np.where(~self.wlive)[0]:
+            self.h.changeColBounds(int(j), 0.0, 0.0)
+
+    def window_rc(self, y):
+        if not hasattr(self, "WB"):
+            super().window_rc(y)
+        return float(min(0.0, (-(self.WB.T @ y[:self.rN + 1]))[self.wlive].min()))
 
     def rho_of(self, y, phase):
         """rho_d = min(0, min over polygons P through d of rc_P / |P|), exact (min-plus)."""
@@ -49,7 +65,7 @@ class VCG(CG.CGM):
     def dart_bound(self, y, phase, obj):
         yp = np.zeros(self.nrows); yp[:len(y)] = y; y = yp
         rho = self.rho_of(y, phase)
-        wsum = np.array([rho[ts].sum() for ts in self.wt])
+        wsum = np.array([rho[ts].sum() for ts in self.wt])[self.wlive]
         lb = float(y[self.rN]) + self.window_rc(y) + float(wsum.min())
         if phase == 1:
             lb0 = lb                                # dart-shifted Farkas value (no artificial term)

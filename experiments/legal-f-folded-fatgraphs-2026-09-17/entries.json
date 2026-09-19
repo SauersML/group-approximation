@@ -1,0 +1,13 @@
+{"61": {"a": "bbc", "b": "ccba", "c": "bbcb"},
+"108": {"a": "abb", "b": "bccc", "c": "cabb"},
+"198": {"a": "bbc", "b": "aaab", "c": "bbca"},
+"228": {"a": "aab", "b": "aabc", "c": "ccca"},
+"464": {"a": "aab", "b": "bbc", "c": "bbca"},
+"1632": {"a": "bbc", "b": "bbcb", "c": "cacc"},
+"1633": {"a": "bbc", "b": "bbcb", "c": "ccac"},
+"1635": {"a": "bcb", "b": "bbcb", "c": "ccac"},
+"1744": {"a": "bcb", "b": "abbc", "c": "bcbb"},
+"2298": {"a": "bac", "b": "acab", "c": "bbac"},
+"4012": {"a": "ab", "b": "bbac", "c": "abb"},
+"4485": {"a": "abb", "b": "bca", "c": "babb"},
+"4887": {"a": "ab", "b": "bbca", "c": "aab"}}
