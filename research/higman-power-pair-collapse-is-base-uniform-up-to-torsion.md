@@ -230,3 +230,35 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     actions (`perm.g`), and read off the wreath sections of `a, b, c, d`. Then look for a recursion
     `Q_(e+1) -> Q_e wr C_2`, which would be a self-similar model beyond w11's length-2 search.
     Separately, run `e = 11` at class 20 when the host is idle.
+- **w17-053 (question (a): self-similar models with a as odometer).** Landed
+  `higman-h4-3-has-no-odometer-models-beyond-level-five` (claim and proof route).
+  - Blocked step. The brief asked to embed the `e = 3, 4` monolithic models in `W_5, W_8` and find a
+    recursion `Q_(e+1) -> Q_e wr C_2`. In those models `a` is semiregular with `2^(k-e)` cycles. The
+    natural recursion makes `a` level-transitive (the adding machine `a = (1, a) s`), and that is
+    impossible.
+  - Computed (exhaustive, exact `F_2`-linear lifting level by level in `W_k`, up to conjugation by
+    `<a>`): no homomorphism `H4(3) -> W_k` with `k >= 6` sends a generator to a `2^k`-cycle, even
+    without `R`.
+    - Equivalently, no finite 2-quotient has an exact factorization `<x> H` with `ord(x) >= 64`.
+    - So no action of `H4(3)` on `T_2`, self-similar or not and with sections of any length, has a
+      level-transitive generator. This extends w11's length-2 dead end.
+    - Odometer models: with `R`, `8, 32, 192, 1536, 11776` raw at levels 1 to 5 (classes
+      `8, 16, 48, 192, 736`). Without `R`, `8, 32, 288, 4352` raw at levels 1 to 4 (classes up to
+      9728 at level 5). None at level 6.
+    - Raw counts agree with an independent GAP enumeration.
+  - Proved: in any odometer model `d(x) = 3x + t`, of order `2^(k-2)` or `2^(k-1)` as `t` is even or
+    odd.
+    - At level 5 every model has `t` even, `ord(d) = 8` and `ord(b), ord(c) <= 4`. These are very
+      unbalanced models of degree 32, unlike the balanced monolithic ones.
+    - A conceptual proof of the level-6 wall is open. The order ladder alone does not give it.
+  - Dead: odometer, adding-machine and every level-transitive self-similar model of `H4(3)` or
+    `H4(3)/<<[a,c]^2>>`.
+  - Next: tree models in which `a` has infinite order but is not level-transitive. The first family
+    is the `j`-odometer `x -> x + 2^j`.
+    - For `j = 1` (`bfs2.py`, with `R`) there are 96, 752, 9152 and 229376 classes at levels 2 to
+      5, with max log2 orders `(4, 3, 4, 4)` at level 5. This family is alive and growing where the
+      odometer family has 736 classes and dies.
+    - Level 6 and beyond (the question is whether `ord(a) = 2^(k-1)` persists) needs a C
+      implementation or the full `W_1 x| translations` symmetry.
+    - If the `j`-odometer counts also die, the next families are elements `a` that are
+      level-transitive only on some subtree, and trees of degree `2^s`.

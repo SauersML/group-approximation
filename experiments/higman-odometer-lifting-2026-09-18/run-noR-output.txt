@@ -1,0 +1,8 @@
+level 1 classes 8 lift-count histogram of parents {8: 1} log2 order profiles [((1, 0, 0, 0), 1), ((1, 0, 0, 1), 1), ((1, 0, 1, 0), 1), ((1, 0, 1, 1), 1), ((1, 1, 0, 0), 1), ((1, 1, 0, 1), 1), ((1, 1, 1, 0), 1), ((1, 1, 1, 1), 1)]
+level 2 classes 16 lift-count histogram of parents {16: 1, 8: 2, 0: 5} log2 order profiles [((2, 0, 0, 1), 2), ((2, 0, 1, 1), 6), ((2, 1, 0, 1), 2), ((2, 1, 1, 1), 6)]
+level 3 classes 72 lift-count histogram of parents {32: 2, 0: 7, 16: 3, 8: 4} log2 order profiles [((3, 0, 0, 1), 1), ((3, 0, 1, 1), 15), ((3, 0, 1, 2), 12), ((3, 1, 0, 1), 1), ((3, 1, 1, 1), 15), ((3, 1, 1, 2), 12), ((3, 2, 0, 1), 2), ((3, 2, 1, 1), 6), ((3, 2, 1, 2), 8)]
+level 4 classes 544 lift-count histogram of parents {128: 4, 0: 45, 64: 5, 32: 2, 16: 8, 8: 8} log2 order profiles [((4, 0, 1, 2), 192), ((4, 0, 1, 3), 24), ((4, 1, 1, 2), 192), ((4, 1, 1, 3), 24), ((4, 2, 1, 2), 48), ((4, 2, 2, 2), 16), ((4, 2, 2, 3), 48)]
+level 5 classes 9728 lift-count histogram of parents {512: 16, 0: 468, 256: 32, 128: 20, 64: 8} log2 order profiles [((5, 0, 1, 3), 4608), ((5, 1, 1, 3), 4608), ((5, 2, 1, 3), 192), ((5, 2, 2, 3), 320)]
+level 6 classes 0 lift-count histogram of parents {0: 9728} log2 order profiles []
+NO ODOMETER MODEL AT LEVEL 6
+exit 0
