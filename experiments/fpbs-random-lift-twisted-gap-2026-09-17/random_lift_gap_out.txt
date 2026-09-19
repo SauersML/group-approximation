@@ -1,0 +1,55 @@
+N=6 levels=3 seed=1 select=True tries=[3, 1, 1]  Kesten sqrt(3)/2=0.8660
+j=0 |t_j|=1
+  m=1 n=    6 lam=0.7258 lower=   0.27 greedy=    2 ratio=0.3333
+  m=2 n=   36 lam=0.8340 lower=   1.00 greedy=    5 ratio=0.1389
+  m=3 n=  216 lam=0.8650 lower=   4.86 greedy=   27 ratio=0.1250
+j=1 |t_j|=4
+  m=1 n=    6 lam=0.6703 lower=   0.33 greedy=    2 ratio=0.3333
+  m=2 n=   36 lam=0.8912 lower=   0.65 greedy=    5 ratio=0.1389
+  m=3 n=  216 lam=0.8912 lower=   3.92 greedy=   29 ratio=0.1343
+j=2 |t_j|=11
+  m=1 n=    6 lam=0.8683 lower=   0.13 greedy=    2 ratio=0.3333
+  m=2 n=   36 lam=0.8683 lower=   0.79 greedy=    6 ratio=0.1667
+  m=3 n=  216 lam=0.8705 lower=   4.66 greedy=   27 ratio=0.1250
+j=3 |t_j|=28
+  m=1 n=    6 lam=0.8431 lower=   0.16 greedy=    2 ratio=0.3333
+  m=2 n=   36 lam=0.8431 lower=   0.94 greedy=    5 ratio=0.1389
+  m=3 n=  216 lam=0.8680 lower=   4.75 greedy=   28 ratio=0.1296
+fix-proportion a      0.00000
+fix-proportion b      0.00000
+fix-proportion ab     0.00000
+fix-proportion [a,b]  0.00000
+N=16 levels=2 seed=2 select=True tries=[5, 1]  Kesten sqrt(3)/2=0.8660
+j=0 |t_j|=1
+  m=1 n=   16 lam=0.7369 lower=   0.70 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.8668 lower=   5.68 greedy=   32 ratio=0.1250
+j=1 |t_j|=4
+  m=1 n=   16 lam=0.7767 lower=   0.60 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.8589 lower=   6.02 greedy=   33 ratio=0.1289
+j=2 |t_j|=11
+  m=1 n=   16 lam=0.8103 lower=   0.51 greedy=    3 ratio=0.1875
+  m=2 n=  256 lam=0.8516 lower=   6.33 greedy=   33 ratio=0.1289
+j=3 |t_j|=28
+  m=1 n=   16 lam=0.8690 lower=   0.35 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.8690 lower=   5.59 greedy=   33 ratio=0.1289
+fix-proportion a      0.00000
+fix-proportion b      0.00000
+fix-proportion ab     0.00391
+fix-proportion [a,b]  0.00391
+N=16 levels=2 seed=2 select=False tries=[1, 1]  Kesten sqrt(3)/2=0.8660
+j=0 |t_j|=1
+  m=1 n=   16 lam=0.8232 lower=   0.47 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.8649 lower=   5.77 greedy=   33 ratio=0.1289
+j=1 |t_j|=4
+  m=1 n=   16 lam=0.8039 lower=   0.52 greedy=    3 ratio=0.1875
+  m=2 n=  256 lam=0.8554 lower=   6.17 greedy=   34 ratio=0.1328
+j=2 |t_j|=11
+  m=1 n=   16 lam=0.9260 lower=   0.20 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.9260 lower=   3.16 greedy=   33 ratio=0.1289
+j=3 |t_j|=28
+  m=1 n=   16 lam=0.8765 lower=   0.33 greedy=    4 ratio=0.2500
+  m=2 n=  256 lam=0.8765 lower=   5.27 greedy=   31 ratio=0.1211
+fix-proportion a      0.00391
+fix-proportion b      0.00000
+fix-proportion ab     0.00000
+fix-proportion [a,b]  0.00391

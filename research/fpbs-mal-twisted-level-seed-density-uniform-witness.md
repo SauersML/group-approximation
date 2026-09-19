@@ -11,9 +11,12 @@ distinct_from:
 artifacts:
   - experiments/fpbs-depth-overfolding-2026-09-17/law_by_depth.py
   - experiments/fpbs-depth-overfolding-2026-09-17/law_by_depth_n120.txt
+  - experiments/fpbs-random-lift-twisted-gap-2026-09-17/random_lift_gap.py
+  - experiments/fpbs-random-lift-twisted-gap-2026-09-17/random_lift_gap_out.txt
 ---
 
-**OPEN.** Notation is as in
+**ESTABLISHED** by `fpbs-mal-twisted-level-seed-density-random-lift-proof`,
+with `c = 1/60`. Notation is as in
 [[fpbs-mal-depth-promotion-equals-overfold-merge-number]]. `Q^{(j)}` is `Q`
 with `b` acting as `t_j = φ^j(b)`, and `r` is the 2-of-3 percolation number.
 Prove that there is `c > 0` such that, for every `j ≥ 1`, some essentially
@@ -53,3 +56,32 @@ Equivalently, `Q_j^law(X_j) ≥ c`, by item 4 of
   `r(Q^{(j)})/n` on random `Q` with `n = 120`. They stay between `0.117`
   and `0.125` for `j = 0..4`, in 3 trials, and `Q^{(j)}` stays transitive.
   They are upper bounds only, so they show no decay but prove nothing.
+
+## Attempts
+
+- **2026-09-19, swarm-0917-w16-w16-fp-follow: ESTABLISHED** through
+  `fpbs-mal-twisted-level-seed-density-random-lift-proof`, with `c = 1/60`.
+  The random-levels route closes once the levels are chosen as a tower of
+  random `N`-lifts for each depth.
+  - *Density from gap.* On a finite level, a percolating set `S` whose
+    closure stage has size `m = ⌊n/2⌋` leaves `m − |S|` full triples inside
+    that stage. Expander mixing for
+    `M_j = (U_a + U_a^* + U_{t_j} + U_{t_j}^*)/4` caps the full triples. This
+    gives `r(Q^{(j)}) ≥ (1 − λ_j(Q)) n/6`.
+  - *Gap from strong convergence.* On a random `N`-lift of `Q`, the new
+    part of `M_j` is a fixed self-adjoint polynomial with `M_{|Q|}(C)`
+    coefficients in `2|Q|` random permutations restricted to `1^⊥`.
+    - By Chen–Garza-Vargas–Tropp–van Handel, Theorem 3.9, its norm is at
+      most the norm of the free limit plus `ε`, with probability tending
+      to 1.
+    - The free limit is the Koopman operator of a free `L`-action. So it is
+      a multiple of Kesten's operator of `L_j = <a, t_j> ≅ F_2`, with norm
+      `√3/2` at every depth.
+  - *Essentially free.* A reduced word of length `ℓ` has at most
+    `ℓ²/(N − ℓ)` of its fixed points survive a lift, in expectation. Choose
+    the lifts by Markov's inequality and a union bound.
+  - The constant is uniform because `L_j` is free on `{a, t_j}` at every
+    depth. The towers depend on `j`.
+  - `experiments/fpbs-random-lift-twisted-gap-2026-09-17/` is a numerical
+    check for `j ≤ 3`, with `|t_3| = 28`. It shows spectra near `0.866` and
+    greedy `r/n` between `0.121` and `0.134`.
