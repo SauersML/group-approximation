@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** for items 1–4 (lane proof, elementary given recalled hyperbolic geometry; bh-ra-proof,
-2026-09-19; not reviewed; no priority claimed). It addresses (RA_free) and (RA_fin), the measured forms,
+2026-09-19; **Referee PASS** bh-ref-q11 2026-09-19, with one precision on item 4(b); no priority claimed). It addresses (RA_free) and (RA_fin), the measured forms,
 over hyperbolic lattices. (RA′) at Osajda's group is not touched.
 
 ## Setting
@@ -148,3 +148,36 @@ Credit: Gaboriau (fixed price of surface groups, cost). The visual-metric estima
 invariant boundary measures for non-elementary groups are standard (recalled). The cut lemma rests on
 bh-star-b's two-piece certificate and clustering (ca15e5298, f676c07d2). The slab-tightness template
 is bh-star-b's `Λ_0 × F_n` theorem.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS; one precision on the fixed-price step
+
+**Imports, checked as stated on main.**
+- Item 1 of the collars node: for `Λ = P ⊔ M ⊔ N` with `d(P,N) > 2D`, every extension of `ω` agrees with `y` on `P`, or every extension agrees on `N`.
+- Lemma 1 of the clustering node: `d(Δ_1, Δ_2) > 2D` refutes rigidity. It holds for **arbitrary**, possibly infinite, difference sets, which is what item 2 needs.
+
+**Items 1–2: correct.**
+- The crossing point `q` gives an endpoint within `DK < W` of `γ`.
+- If neither side varies, then `x` is tight. So "exactly one side" holds.
+- In item 2, difference sets in half-spaces more than `2DK` apart are more than `2D` apart in `d_Λ`.
+
+**Item 3, the measure-concentration step: correct.**
+- **Case I (far sides at arbitrarily large depth).** The case analysis for two far chosen sides at depth `> R` is exhaustive:
+  - disjoint and far apart: facing away is excluded by item 2, so they are nested (the second hyperplane lies between `o` and the far side), and the caps intersect;
+  - crossing: every quadrant is unbounded, so the caps meet;
+  - within `2DK`: the visual projections of `2DK`-close points at depth `> R` give caps within `Ce^(2DK−R)`.
+- So `diam S_R ≤ 2Ce^(−R) + Ce^(2DK−R)`.
+- `ξ` is equivariant: hyperplanes deeper than `d(o, g^{-1}o)` have the same near and far sides for both base points. A non-elementary `Λ` has no invariant probability measure on `∂ℍ^n`.
+- **Case II (a finite centre).** Centrality propagates, and the near-bisector hyperplane `γ_k` exists by density. `ρ_x` is proper because the orbit of `o` is locally finite. Then mass transport on `k`-subsets gives `ν(F ∋ λ) = 0`.
+- **"Infinitely many".** The same mass transport on an orbit `Λγ` works, because the orbit is infinite for lattices. A finite-index stabilizer of `γ` would put the limit set in `∂γ`. That is exactly where the lattice hypothesis is needed.
+
+**Item 4(a) and 4(c): correct.**
+- Finite-to-one extensions of the Haar-measured MEF carry the fibre-uniform measure, since `g` maps fibres bijectively.
+- For group subshifts, tightness at one point makes the kernel of restriction to `M_γ` zero.
+
+**Item 4(b): correct, with a precision.**
+- **Surface groups.** An index-`k` subgroup has genus `k(g−1)+1`, so `(d(Γ)−1)/k = (2k(g−1)+1)/k ≥ 2g−2` for **every** finite-index `Γ`. The bound needs neither Abért–Nikolov nor fixed price.
+- **Fixed price `c > 1`.** A chain has rank gradient `c − 1` only when it is Farber, i.e. the profinite action is essentially free. The wire-net bound also needs `inj(Γ_n) → ∞`.
+- Both hold when the Toeplitz period chain has trivial intersection, which is the Toeplitz node's convention.
+- If the cores contain a common `N ≠ 1`, then `N` fixes the Toeplitz point and acts trivially on `X`, so the action is not faithful. The claim therefore holds for faithful Toeplitz shifts, and should say so.
+- The regularity conclusion is along the period structure, as in that node's referee note.
+- This step uses only the Toeplitz node plus cost. It does not use items 1–3.
