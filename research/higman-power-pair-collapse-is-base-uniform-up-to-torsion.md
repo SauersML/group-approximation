@@ -206,3 +206,27 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
   - Next: `e = 11`, which needs class 20, at about `2^29000`. That is beyond 2 GB, so it needs
     more `Bbar_11` relators checked at level 4–5, or a larger workspace. For all `e`, look for a
     uniform family of finite 2-group quotients read off from the class-18 presentation.
+- **w16-053 (question (a): uniform models of ord(a) = 2^e need exponential rank).** Landed
+  `higman-order-2e-models-need-exponential-rank` (claim and proof route).
+  - Proved, for every quotient of `H4(3)`:
+    - If `2^e | ord(a)`, then `2^(e-2) | ord(d)`, `2^(e-4) | ord(c)` and `2^(e-6) | ord(b)`.
+    - Every linear representation over any field in which `a` keeps order `2^e` has degree at least
+      `2^(e-2)`. In characteristic 2 the bound is `2^(e-1) + 1`.
+    - A model of level `e` (a finite quotient of `Gammabar_e` with `a^(2^(e-1)) != 1`) has order at
+      least `2^(2e-2)`.
+  - So no family of models of unbounded level lies in `GL_n` of fixed `n` over any fields. The
+    brief's "p-adic analytic family" is dead at finite level. A uniform family must be of wreath or
+    Sylow type, with linear rank at least `2^(e-2)`.
+  - Computed (GAP on ANUPQ exports, greedy): monolithic models obtained by killing hyperplanes of
+    `Omega_1(Z)`.
+    - Smallest orders `2^8`, `2^12` and at most `2^50` for `e = 3, 4, 5`.
+    - Faithful irreducible degrees `8 = 2^e` (at `e = 3`) and `32 = 2^(e+1)` (at `e = 4`).
+    - Core-free permutation degrees 32 and 256. `a` is always semiregular.
+    - Order profiles are balanced, never near the extreme `(e, e-6, e-4, e-2)`.
+  - Not attempted: `e = 11`. The host ran at load 30 on 4 cores, and a class-20 pq run gets about 5%
+    of a core inside the 1200 s cap.
+  - Dead: fixed-degree matrix, arithmetic and affine families, and `GL_n(Z/p^j)` with `p` odd.
+  - Next: embed the `e = 3, 4` models (in `mono3.g`) into `W_5` and `W_8` via their core-free
+    actions (`perm.g`), and read off the wreath sections of `a, b, c, d`. Then look for a recursion
+    `Q_(e+1) -> Q_e wr C_2`, which would be a self-similar model beyond w11's length-2 search.
+    Separately, run `e = 11` at class 20 when the host is idle.

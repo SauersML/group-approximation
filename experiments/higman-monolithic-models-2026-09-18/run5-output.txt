@@ -1,0 +1,8 @@
+  try 1: |Q|=2^53 log2 ord(a,b,c,d)=[ 5, 5, 5, 5 ]
+  try 2: |Q|=2^51 log2 ord(a,b,c,d)=[ 5, 5, 4, 5 ]
+  try 3: |Q|=2^52 log2 ord(a,b,c,d)=[ 5, 5, 4, 5 ]
+  try 4: |Q|=2^52 log2 ord(a,b,c,d)=[ 5, 4, 4, 5 ]
+   |Q|=2^53 greedy core-free index 2^42
+   |Q|=2^51 greedy core-free index 2^46
+   |Q|=2^52 greedy core-free index 2^47
+   |Q|=2^52 greedy core-free index 2^47
