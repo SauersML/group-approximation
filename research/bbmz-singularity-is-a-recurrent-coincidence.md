@@ -15,7 +15,7 @@ distinct_from:
 ---
 
 **Status.**
-- **ESTABLISHED (lane proof, bh-q12-kazhdan, 2026-09-19; not reviewed):** Theorem A, Lemma B, Proposition C,
+- **ESTABLISHED (lane proof, bh-q12-kazhdan, 2026-09-19; Referee bh-ref-q12 2026-09-19: Lemma B, Proposition C, Theorem D and Theorem E PASS, with a repair to the uncountability criterion; Theorem A checked only in its changed step):** Theorem A, Lemma B, Proposition C,
   Theorem D.
 - **ESTABLISHED modulo BBMZ as stated:** Theorem E. It uses BBMZ (arXiv:2309.06224) `prop:MakeMorphisms` and
   `rem:SelfSimilarTree`, as `horofunction-atom-configurations-have-finitely-many-types` does.
@@ -189,8 +189,9 @@ first.
 **Conclusion.** Let `T_sing` be the set of types whose `E` is not an atom shadow. Then `sing(g)` corresponds
 bijectively to the paths of the finite pair graph `𝒢_g` that visit `T_sing` infinitely often. Consequently:
 - `sing(g)` is either countable or of cardinality `2^{ℵ_0}`;
-- it is uncountable iff some type in `T_sing` lies in a strongly connected component of `𝒢_g` that is not a single
-  cycle, counting parallel edges.
+- it is uncountable iff some type in `T_sing`, reachable from a level-`|g|` root type, lies in a **nontrivial**
+  strongly connected component of `𝒢_g` that is not a single simple cycle, counting parallel edges. (Corrected per
+  the referee: trivial components, a single vertex without a loop, are visited at most once and do not count.)
 
 This is a finite check once `𝒢_g` is built. Building `𝒢_g` is a finite computation from the BBMZ data (joint
 signatures in a ball of radius about `R + 2|g|`, Cannon's cone types, and the morphism test). Its effectiveness is
@@ -198,14 +199,14 @@ expected but not verified here.
 
 ## Consequence for the Kazhdan program
 
-- **Conjecture U, uncountable form.** For a Kazhdan hyperbolic `Γ`, some generator `s` of `Γ ∗ Z` has a branching
-  component of `𝒢_s` meeting `T_sing`.
+- **Conjecture U, uncountable form.** For a Kazhdan hyperbolic `Γ`, some generator `s` of `Γ ∗ Z` has a `T_sing` type, reachable
+  from a root type, in a nontrivial strongly connected component of `𝒢_s` that is not a single simple cycle.
   - By Theorems A and E, this is the whole content.
   - Frontier separation (uncountable `F'_{g^k}`) puts continuum-many points over the region where singularity is
     possible. It does not place a `T_sing` type in their components.
 - **Decidable, not decided.** Deciding it for one explicit Kazhdan group, e.g. a uniform lattice or a Żuk group, is
   a finite computation. It needs the atoms of balls of radius about `R + 2|g|`. It was not run.
-- **If it fails** (all singular components are single cycles), every singular set is countable. Bounded then needs
+- **If it fails** (every reachable nontrivial component meeting `T_sing` is a single simple cycle), every singular set is countable. Bounded then needs
   only finitely many entry paths, a second finite check.
   - That would be the first real hope for a bounded, hence (by the refereed level-set theorem, once `C_r` holds)
     `F_∞`, host of a Kazhdan group.
@@ -222,3 +223,86 @@ expected but not verified here.
   principle and has a countable/continuum dichotomy.
 - **For BH hosts in general**, "bounded versus unbounded" should be read off a finite type graph of paired local
   pictures, not argued from the dimension or separation of the boundary.
+
+## Referee (bh-ref-q12, 2026-09-19): B, C, D, E PASS; one repair to the criterion in Theorem E
+
+**Theorem A.** Only the changed step was checked. The single-value hypothesis replaces fiber uniqueness in
+Step 1 of `hyperbolic-cone-matching-holds-off-the-branch-locus`, Theorem 1. Steps 2–4 of that node were not
+re-reviewed here.
+
+**Lemma B: correct.**
+- Front inequality. Descending rays give `min_(B_m) η = −m` and `min_(gB_n) η = c − n`. Then the 1-Lipschitz
+  bound gives `f ≥ c` and `f ≤ c`, respectively.
+- Conical intrusion.
+  - The descending ray `β` of `η_a` from `1` lies in the argmin sets, so `f ≥ a` on it.
+  - The descending ray `α` of `η_b` from `g` gives `f ≤ b` on it.
+  - Both rays converge to `ζ` (refereed k-local node). Rays to a common endpoint are eventually `8δ`-close after a
+    shift of at most `|g|`.
+
+**Proposition C: correct.** `B_(n−|g|) ⊆ gB_n ⊆ B_(n+|g|)`, and atoms of a larger set are finer.
+
+**Theorem D: correct, checked step by step.**
+- *Cylinders.*
+  - A wall separates two points of `B_m` iff its depth is `≤ m`.
+  - An edge dual to a wall of depth `k ≤ m` lies inside `B_m`, so orientations of walls of depth `≤ m` are exactly
+    what the `B_m`-atoms see.
+- *Offsets.*
+  - Genericity leaves `W_0` as the only wall separating `1` from `g` with `ζ` in its limit set. So `f ∈ {a, a−2}`
+    near `ζ`.
+  - (+)-walls have `δ_g = δ_1 + a`, and (−)-walls have `δ_g = δ_1 + a − 2`.
+  - Crossing walls.
+    - `r_0` commutes with the crossing reflection and preserves both halfspaces, because `W_0` meets both.
+    - Genericity for the pair `(1, r_0)`, together with `f_(r_0) ∘ r_0 = −f_(r_0)`, forces the values `±1`.
+    - So the other-side part of the far halfspace is exactly one step deeper, and `δ_g = δ_1 + a − 1`.
+- *Classification of cutting walls: complete.*
+  - A deep wall disjoint from `W_0` whose far halfspace contains `W_0` separates `1` from `g`, so it is one of
+    finitely many, of bounded depth.
+  - Every other deep wall near `ζ` is crossing, (+) or (−).
+  - (−)-walls never cut cylinders on the `1`-side.
+- *The sandwich.*
+  - With `n = N + a − 1`, `E_n` is the cylinder of the (+)-walls of depth `≤ N−1` and the crossing walls of depth
+    `≤ N`. So `Z_N ⊆ E_n ⊆ Z_(N−1)`.
+  - Only `Z_N` or `Z_(N−1)` can equal it (Proposition C).
+  - The two equalities are the negations of (ii) and (i), respectively.
+- *Calibration.* Plausible. It cites `gq-bh-finf-hyp-pentagon-three-checks.md`, which is not reviewed.
+
+**Theorem E: correct, with one repair.**
+- *Finitely many types.*
+  - Both fronts lie within `R(δ,|g|)` of `γ(n−|g|)`. For `E_n`, the ray from `g` at time `n` is within `2|g| + O(δ)`
+    of `γ(n − |g|)`, via the Busemann shift.
+  - A joint signature fixes one `ℓ` together with the cone types relative to `1` and relative to `g`. Then
+    `prop:MakeMorphisms` in the `1`-tree, and in the `g`-tree applied to `g^(-1)E` with `g^(-1)ℓg`, gives both
+    morphisms from the same `ℓ`.
+  - This is "modulo BBMZ as stated", as the node says.
+- *The type decides atomicity.* By Proposition C, `E_n` is an atom shadow iff it equals `Z_k(σ)` for some
+  `k ∈ [n−|g|, n+|g|]`. Morphisms preserve relative depth.
+- *The type decides the children.*
+  - The children of `(Z, E)` are the pairs `(Z′, E′)` with `E′` a `g`-child of `E` and `Z′` the child of `Z`
+    containing it.
+  - Both morphisms are the same `ℓ` on shadows, so containment is preserved, and restriction gives morphisms of the
+    children (`rem:SelfSimilarTree`).
+- *Paths and points.* Nested atom shadows determine the horofunction on all of `G`, so each intersection is one
+  point. Distinct paths separate.
+- *So `sing(g)` is the set of paths visiting `T_sing` infinitely often.*
+  - This is a `G_δ` subset of the compact path space, so the countable-or-continuum dichotomy also follows from the
+    perfect-set property.
+  - The graph argument: a path visiting `v` infinitely often stays in `SCC(v)` after its first visit.
+- **Repair: the uncountability criterion as stated is wrong in a degenerate case.**
+  - "Some type in `T_sing` lies in a strongly connected component that is not a single cycle" also counts
+    **trivial** components: a single vertex without a loop, which a path visits at most once. It also ignores
+    reachability.
+  - **Correct form.** `sing(g)` is uncountable iff some type in `T_sing`, reachable from a level-`|g|` root type,
+    lies in a **nontrivial** strongly connected component that is not a single simple cycle, counting parallel
+    edges.
+  - The same wording applies to Conjecture U's "branching component", in this node and in
+    `q12-line-state-for-hyperbolic-hosts`.
+- *Credit.* The analogy with Sidki's circuit dichotomy (polynomial versus exponential activity of finite-state
+  automorphisms) is apt.
+
+**Repairs in the same commit.** The edits to `countable-sets-never-separate-continua-without-local-cut-points` and
+`q12-line-state-for-hyperbolic-hosts` match my review of 21a84b5e16: "with overwhelming probability", and
+Conjecture U also needing frontier Theorem 1.
+
+**Verdict.**
+- Lemma B, Proposition C, Theorem D and Theorem E: PASS, with the criterion repaired.
+- Theorem A: its changed step PASSes; the underlying cone-matching theorem was not re-reviewed.

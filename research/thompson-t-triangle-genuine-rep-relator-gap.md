@@ -50,3 +50,27 @@ some faithful unitary representation.
 
   A quantitative Malcev theorem of the needed kind would itself be a form of this claim, so neither tool
   closes it.
+
+- **2026-09-19 (swarm-0917-w19-w19-ptl-follow).** Exact decomposition, plus a kill of the
+  finite-quotient mode. The node stays OPEN.
+  - *Decomposition.* By `thompson-t-witnesses-are-dense-in-simple-adjoint-groups`, item 2, this claim
+    is equivalent to three uniform gaps, one per classical family:
+    - `thompson-t-triangle-gap-on-dense-projective-unitary-images`;
+    - `thompson-t-triangle-gap-on-dense-orthogonal-adjoint-images`;
+    - `thompson-t-triangle-gap-on-dense-symplectic-adjoint-images`.
+
+    Each concerns homomorphisms of `Delta` with **dense** image in one classical adjoint group, and
+    the route is `thompson-t-triangle-gap-via-classical-adjoint-trichotomy`. It is an instance of the
+    new engine `lie-closure-trichotomy-without-finite-quotients`, which needs only three inputs: the
+    positivity of `gamma_n`, the fact that `T` has no finite quotients, and `gamma_1 = infinity`.
+  - *The suggested failure mode is dead.* The "How it fails" paragraph above proposes finite quotients
+    `Delta ->> Q_j`. By item 5 of that claim, every nontrivial representation through any finite
+    quotient has `d_T >= 1/2`. The same bound, or better, kills two further classes:
+    - induced representations from surface subgroups, at `sqrt 2`;
+    - all pullbacks from one fixed compact group, such as `Sym^m` over a dense `Delta -> SO(3)`, at
+      `min(1/2, gamma_3/2)`.
+
+    The invariant is `N = dim [l, l]` of the image closure, and the death step is `delta_N`.
+  - *Comparison.* Each Delta-level gap follows from the matching gap over `Z/4 * Z/3`, with the same
+    constant.
+  - *Not done.* No uniform bound for dense images with rank tending to infinity has been proved.

@@ -225,9 +225,14 @@ Assume the factor domains separate points.
 3. **Item 5.** Each `h ∈ H_τ` is a product of factor S-maps, so `H_τ` embeds in the product of the automorphism
    groups of the factor domain trees. It is therefore residually `W_d`, with `d` the largest factor degree.
 
-**Consequence.** The hard-seed form of gate 1 via FH is dead for nested **and product** certificates. The open part
-of door (i) shrinks to certificates whose domains are neither nested nor products of nested factors. No such
-FH application is known.
+**Consequence.** The hard-seed form of gate 1 via FH is dead for nested **and product** certificates. The only
+unexplored certificates are those whose domains are neither nested nor products of nested factors, and none is
+known.
+
+**Referee bh-ref-t0: PASS (4c8bc0f94c), with one scope note.** Cantor-factor products of `nV` type have no
+singleton domains, so they cannot certify a seed full group **at all**. For them the cap is vacuous: they are
+neither covered by it nor an escape from it. The addendum has content only for products of vertex-tree factors,
+i.e. factors with singleton vertex domains, as in `QV`.
 
 ## What survives
 

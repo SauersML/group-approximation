@@ -64,8 +64,8 @@ distinct_from:
       infinitely many depths. In the cubical case these are a wall that crosses the frontier wall and a wall that does
       not.
     - So the uncountable form of Conjecture U does not need persistence at every frontier point. It is equivalent to
-      a finite condition: some generator's pair-type graph has a branching strongly connected component that
-      contains a non-atom type. See `bbmz-singularity-is-a-recurrent-coincidence`.
+      a finite condition: some generator's pair-type graph has a non-atom type, reachable from a root type, in a
+      nontrivial strongly connected component that is not a single simple cycle. See `bbmz-singularity-is-a-recurrent-coincidence`.
 - **The sharp bound `h − 3`** in Theorem L. It is not needed for `F_∞`.
 
 ## What follows

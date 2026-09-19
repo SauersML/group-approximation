@@ -85,8 +85,8 @@ Osin's argument survives the exclusion of x and y:
    has `cells_avoid`: at least area, no relator cell has its face in a region. The family's diagram is
    O-equivalent to the least-area `Δ`, so it is least area. Hence the kept cell and `m₁` are unchanged by removing
    `x ∪ y`.
-4. **x ≠ y.** `a ≠ b` in a pairwise-compatible family, so the face sets are disjoint, and each is nonempty
-   (`faces_nonempty`).
+4. **x ≠ y.** This is the input `a ≠ b` of `SectionPocketFaceSetFirstTurnInput` (x, y are a, b in some order).
+   Pairwise compatibility then makes their face sets disjoint, and each is nonempty (`faces_nonempty`).
 5. **Proper source arc.** The gap arc misses the nonempty source arc of `x`, so its length is less than `|∂Π|`,
    as `SectionPocketFaceSetFirstTurnInput` requires.
 6. **Edge conditions for the inner sides: settled by the landed copy.** The walk must have distinct darts and use
@@ -104,3 +104,42 @@ proves `OsinSectionPocketFaceSetFirstTurnSectionStatement` (`Estimating/OsinPock
 (`pocketPinchLabelledFirstTurnSection`) and the collar gives `OsinSectionPocketCutSectionStatement`. The wiring
 into the torsion-free endpoints is done by ms-nm-uncond-b and nm-gl03d. The turn lemmas are
 `Estimating/OsinPocketExclusiveTurns.lean` (lane nm-switch-core).
+
+## Referee check of the settled items (bh-ref-q12, 2026-09-19)
+
+The Lean fields were checked at origin/main against the route's selection: `x, y` are extreme among
+`RegionCandidate.exteriorAt S.family i` targeting section `j`, on the copy from the landed thickenings.
+
+- **(R2), both arcs: correct.**
+  - `RealizedSectionFamily.nondegenerate` is `∀ a ∈ family, 0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length`
+    (`Estimating/OsinAppendixSections`).
+  - `GloballyDistinguishedSectionFamily` extends it.
+  - `exteriorAt` is a filter of `ofKind`, itself a filter of the family. So every selected region has both arcs
+    nonempty, on the copy too, since the copy `S′` is again a `GloballyDistinguishedSectionFamily`.
+- **R-cell-free regions: correct.**
+  - `ContiguityGeometry.innerGRegion hlea` (`Estimating/OsinAppendixO52Prep`) has
+    `cells_avoid : ∀ C ∈ relatorCells, C.face ∉ faces`, derived from least area.
+  - Least area of the family's diagram is `S.equiv.leastArea hlea`, used the same way in `OsinAppendixEulerCount`
+    and elsewhere. It applies to the copy through `S′.equiv`.
+- **`x ≠ y`: correct, but the stated reason is not the one needed.** The concern (review, 2a) was the case of a
+  single exterior region.
+  - That case is excluded by the target statement itself: `SectionPocketFaceSetFirstTurnInput` takes `a ≠ b` in
+    `exteriorAt S.family i`, both targeting `j`. So there are at least two such regions, and the extremes are
+    distinct.
+  - Pairwise compatibility (`RegionCandidate.Compatible` is `Disjoint a.1 b.1`) together with `faces_nonempty`
+    then makes them face-disjoint and nonempty. That is what the note's item 4 states.
+- **Inner-side edge conditions (e5c60d78a2): correct.**
+  - `IsOuterSideDart` and `IsCellSideDart` both quantify over `a.2.rightSide ++ a.2.leftSide`
+    (`SurgeryOuterSideThickening`, `SurgeryCellSideThickening`). So the proved `SectionPocketRegionsCopyStatement`
+    (`RegionPairThickening.sectionPocketRegionsCopy`) excludes the exterior and the cells of perimeter > 1 across
+    inner sides as well.
+  - It also excludes edges between distinct regions. The earlier copy conditions exclude outer spurs, outer cell
+    darts and cell hairs.
+  - Together these cover each pair of pieces of the exclusive walk:
+    - inner side / inner side;
+    - side / gap arc on `∂Π`;
+    - side / target arc;
+    - gap arc / target arc;
+    - self-edges.
+  - Not traced here: the Lean proof that these imply `FirstTurnWalk.isNoncrossingClosedWalk` for the assembled
+    walk. It remains the producer's job.
