@@ -126,3 +126,23 @@ latter.
     - Candidates are finite extensions of non-residually-finite lattices in
       products of trees.
   - The seed stays OPEN.
+- **Lifted Thompson route (2026-09-19, swarm-0917-w15-w15-ptm-last1,
+  host-geometry).**
+  - `lifted-thompson-t-mf-radical-dichotomy` (established) shows
+    `Rad_MF(T̄) in {1, T̄}` for the torsion-free finitely presented lift `T̄`
+    of Thompson's `T`.
+    - Simplicity of `T` and perfectness of `T̄` confine the radical to either
+      all of `T̄` or `<z^m>`.
+    - The dilation `g -> g(2x)/2` sends `z` to a square root of `z`, and so
+      rules out every `m >= 1`.
+  - Hence `T̄` is not MF iff `z in Rad_MF(T̄)`.  In that case `T`, every
+    rotation centralizer `C_T(r_k)`, and `V` all have full MF radical.
+  - New route `property-t-free-seed-via-lifted-thompson-t` has the single hole
+    `lifted-thompson-t-is-not-mf`.  The same hole also closes the wave-15
+    Thompson-`V` route to the binary-Leavitt endpoint.  It is the first
+    decomposition in which one prerequisite feeds both deep inputs of the goal.
+  - It is refuted by an MF model of `T`, of one `C_T(r_k)`, or of `2V`.
+  - Fibrewise central descent from `Rad_MF(T) = T` does not reach the hole.
+    The fibres over `sp(pi(z))` are arbitrary C-star quotients, and twisted
+    Koopman representations of `T` exist on `L^2(R)`.
+  - The seed stays OPEN.

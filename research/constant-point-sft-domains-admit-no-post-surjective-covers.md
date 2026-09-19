@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md
   - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
   - research/artifacts/pointed-pre-injective-sections-2026-09-18.md
+  - research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -146,3 +147,29 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
     post-surjective map that is injective on that constant's class. Take `τ^-1` on `τ(A^G)`. That domain is only
     sofic, and the finite-type version is open.
   - Artifact: `research/artifacts/pointed-pre-injective-sections-2026-09-18.md`.
+- **Injective images are SFT pairs (swarm-0917-w15-w15-gs-follow, 2026-09-19; calibration). This closes the C3
+  finite-type gap and splits CP into Gottschalk plus a colliding surplus. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `injective-automaton-images-are-sft-cover-pairs`.
+    - For an injective `τ` with memory `S`, `Y = τ(A^G)` is an SFT with window `ST`, where `T` is a memory of
+      `τ^-1`. `Y` is strongly irreducible, contains every constant, and has `D = ∅`. `(Y, τ^-1)` is a bijective
+      cover pair with `Φ = S^-1`.
+    - The w14 remark "that domain is only sofic, and the finite-type version is open" is closed.
+  - *Theorem II.* `G` is non-surjunctive iff some proper constant-point SFT cover pair is injective on one
+    constant's class, iff some proper SI SFT cover pair through every constant is bijective.
+  - *Theorem III (sharpens Theorem Q).* A pair has a section iff `F` maps some subshift `X' ⊆ X` bijectively onto
+    `A^G`. Such an `X'` is automatically a strongly irreducible SFT through every constant. So PRUNE (need
+    36774ad3) asks for an SFT conjugacy subsystem.
+  - *Split.* `CP(G) ⟺ Gottschalk(G) ∧ CP_col(G)`.
+    - `CP_col` says no proper constant-point SFT pair collides at every constant.
+    - The bijective fragment `CP_bij` of this claim is exactly Gottschalk.
+    - `CP ⇒ Gottschalk` needs one line, with no decoder and no bounded-defect domain.
+    - Either conjunct fails on its own. The pair `(τ(A^G), τ^-1)` refutes `CP_bij` only, and the free monoid
+      refutes the analogue of `CP_col` only.
+  - *Class kill.*
+    - Invariant: pointed injectivity (bijective, pre-injective or pointed-injective pairs).
+    - Dying step: Theorem II.
+    - Consequence: any "proof of CP" that handles only such pairs is a restatement of Gottschalk, not a
+      reduction. The only content CP adds beyond Gottschalk is `CP_col`, which the route never uses.
+  - *What is left.* `CP_col` at surjunctive nonsofic groups, i.e. colliding pairs, deficient or not. Spark:
+    iterates `(X ∩ F^-1X, F^2)` are cover pairs, and `X_∞ = ∩ F^-n X` is a lift-closed self-cover. Artifact
+    `research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md`.

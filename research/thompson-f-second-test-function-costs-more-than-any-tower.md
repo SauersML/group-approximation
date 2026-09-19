@@ -3,6 +3,8 @@ rg: 2
 id: thompson-f-second-test-function-costs-more-than-any-tower
 kind: claim
 title: In Thompson's F, the coarse Reiter radius, which equals the two-test-function fine Ramsey radius up to bounded towers, is not bounded by any bounded tower around the one-test-function fine Ramsey radius (SFG)
+refuted_by:
+  - thompson-f-amenability-radii-collapse-to-one-tower-degree
 distinct_from:
   thompson-f-ramsey-amplification-needs-unbounded-tower-overhead: that is ¬AMP, the one-function radius ψ against the set radius R; this is CR against ψ. Both imply RGAP₁, and RGAP₁ is exactly their disjunction.
   thompson-f-ramsey-radius-single-gap-below-reiter-radius: that is RGAP₁, CR against R; this is the stronger statement with R replaced by ψ ≥ R.
@@ -49,3 +51,18 @@ selector coding of the quantifier swap. Its death is recorded on `thompson-f-ram
 Encoding two pairs as one marked pair is marker coding, which dies at the pigeonhole `c_{g'}⁻¹c_g ∈ XX⁻¹` (w10-f-last1).
 Both kills apply here with the same invariant and at the same step. SFC is the two-function case of the packing those
 kills address, which otherwise involves `|B_M|` point pairs.
+
+## Attempts
+
+- 2026-09-19 (swarm-0917-w15-w15-f-last1, calibration): **refuted**. SFC holds:
+  `CR(N) ≤ exp_{E+1}(ψ(exp_{E+1}(N)))`, where `E` is the constant of CRE(E), Corollary 1 of the established
+  `thompson-f-coarse-reiter-radius-is-one-ramsey-call-away`. The proof composes CRE(E) with `R(t) ≤ ψ(2t)` from
+  clause 3 of the degree-order node. By clause 5 of that node, RGAP₁ is `¬AMP ∨ SFG`, and CRE refutes RGAP₁, so it
+  refutes this disjunct as well.
+  - The selector and marker obstructions above do not block this. The one-Ramsey-call proof encodes all `|B_M|`
+    generator pairs in the self-wreath `(F ≀ Z) × Z ≤ F` and applies minimax there. It never packs two test
+    functions into one.
+  - Full statement, the Følner-function extension (`Føl ≈ CR`) and the class kill: `thompson-f-amenability-radii-collapse-to-one-tower-degree`,
+    proved in `thompson-f-amenability-radii-collapse-proof`.
+  - Consequence: the route `thompson-f-single-ramsey-reiter-gap-via-second-test-function-gap` is dead. Its only open
+    prerequisite is false, not just unproved.

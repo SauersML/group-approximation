@@ -775,3 +775,54 @@ The claim stays OPEN.
   `M`-parts are exactly equivalent, the `EL_2(J)`-parts are not.
 
   The claim stays OPEN.
+
+- **group-rings, swarm-0917 (swarm-0917-w15-w15-ptl-follow), 2026-09-19: the
+  rank-three contraction trap has no operator-norm shadow; its witness
+  survives in an amenable Magnus-lamp quotient.**
+
+  *Proposal.* Collapse the head operator-normly from the 12-relator
+  contraction-trap certificate `Gamma_3 = T(F_6, phi_C)` of
+  `jacobson-el3-is-not-lef` alone. That is, show
+  `w = [e, g^-1 a1 g]`, which maps to `x_23(-sq)`, lies in
+  `Rad_MF(Gamma_3)`, the operator-norm analogue of the finite-quotient
+  collapse.
+
+  *Result.* Refuted: `contraction-trap-witness-is-outside-the-mf-radical`
+  (established, route `contraction-trap-witness-is-outside-the-mf-radical-proof`,
+  script `experiments/contraction-trap-mf-2026-09-17/fox_separation.py`).
+  - `Gamma_3` maps onto a subgroup of `(Z/2)^(Q/P) x| Q`, where `Q` is the
+    ascending HNN of the Magnus group `Z[A]^6 x| A` along
+    `Phi(a, f) = (phi_ab(a), phi_ab(f) D)`, with `D` the abelianized Fox
+    Jacobian of `phi_C`. `Q` is solvable, so the lamp group is amenable,
+    hence MF.
+  - `w` maps to a nonzero lamp difference, because `e_1` is not in
+    `Z[A]^6 D`. The certificate is one `F_5` point, `z = (4,4,2,1,4,1)`,
+    where `rank D(z) = 5` and `e_1` leaves the row space (also checked by
+    hand).
+  - Simpler quotients cannot see this. Nilpotent images of `F_6` fail
+    because `phi_ab` is onto. Rank-one affine images fail because the
+    character is `phi`-fixed and there `det D` is a unit.
+
+  *Invariant.* `det D = -x2^6 x3^2 P_C / (x1^6 x4^4 x6)`, with
+  `P_C = x1x3x4x5x6 - x1x3x4x5 + x1x4x5x6 - x1x4x6 - x2^2x3x5x6 + x3x4x5x6 - x3x4x6`
+  a non-unit of `Z[A]`. `P_C` restricts to the unit `-alpha^2 beta` on the
+  `phi`-fixed torus.
+
+  *Where it dies.* The step "injective endomorphism of the hull, hence
+  onto", transplanted from finite models to operator-norm models. In the
+  MF model, `Ad t` maps the hull `G` of `P` injectively but not onto,
+  because `P_C` is not a unit. The same death applies to every trap that
+  passes the metabelian Fox test, including every Baumslag-Solitar trap.
+
+  *What is left.* Any (T)-free head collapse must use relations of
+  `EL_3(J)` beyond the 12 trap relators. The precise open extension is
+  **(E1)**: take the base to be the true image `A_J` of `A` in `EL_3(J)`,
+  where over `F_2` all six generators are involutions and `c` commutes with
+  `U a1 U^-1`. Does some amenable quotient of
+  `<A_J, g | g a g^-1 = Psi(a)>` still separate `g^-1 a1 g` from `A_J`?
+  The Magnus construction does not respect these involution relations,
+  since every metabelian quotient of an involution-generated base is
+  virtually abelian. If no amenable quotient separates, that is evidence
+  for the collapse. If one does, the head lane needs property (T).
+
+  The claim stays OPEN.

@@ -1,0 +1,29 @@
+Part 1: lemma 2L eps + 2 kappa >= |e^(2isL) - hol_p| near the floor (min slack must be >= 0)
+  N=9 s=0.500 p=3  min slack 1.0372  min eps seen 0.7539  eps-floor(kappa=0) 0.4987
+  N=27 s=0.500 p=3  min slack 1.1497  min eps seen 0.7825  eps-floor(kappa=0) 0.4987
+  N=27 s=0.200 p=3  min slack 0.3606  min eps seen 0.3679  eps-floor(kappa=0) 0.2823
+  N=45 s=0.900 p=3  min slack 4.3531  min eps seen 1.2988  eps-floor(kappa=0) 0.2137
+  N=21 s=0.500 p=7  min slack 2.7472  min eps seen 0.7811  eps-floor(kappa=0) 0.3280
+  N=63 s=1.047 p=7  min slack 7.7155  min eps seen 1.4497  eps-floor(kappa=0) 0.1667
+Part 2: Fourier gauge class Z = h(V) D h(V)^*: max kappa over random h (must be ~0)
+  N=27  max kappa 0.00e+00
+  N=81  max kappa 0.00e+00
+  N=243  max kappa 1.95e-05
+Part 3: monomial LP optimum t (phase) and realized distances; t/s should be 1.5
+  s=0.02 N=   9  t=0.030000  t/s=1.5000  floor |sin3s|/2=0.0300  ||C-A||=0.0300 ||Z-D||=0.0300 defect=2.69e-02
+  s=0.02 N=  27  t=0.030000  t/s=1.5000  floor |sin3s|/2=0.0300  ||C-A||=0.0300 ||Z-D||=0.0300 defect=9.27e-03
+  s=0.02 N=  81  t=0.030000  t/s=1.5000  floor |sin3s|/2=0.0300  ||C-A||=0.0300 ||Z-D||=0.0300 defect=3.10e-03
+  s=0.02 N= 243  t=0.030000  t/s=1.5000  floor |sin3s|/2=0.0300  ||C-A||=0.0300 ||Z-D||=0.0300 defect=1.03e-03
+  s=0.02 N= 729  t=0.030000  t/s=1.5000  floor |sin3s|/2=0.0300
+  s=0.10 N=   9  t=0.150000  t/s=1.5000  floor |sin3s|/2=0.1478  ||C-A||=0.1499 ||Z-D||=0.1499 defect=1.35e-01
+  s=0.10 N=  27  t=0.150000  t/s=1.5000  floor |sin3s|/2=0.1478  ||C-A||=0.1499 ||Z-D||=0.1499 defect=4.64e-02
+  s=0.10 N=  81  t=0.150000  t/s=1.5000  floor |sin3s|/2=0.1478  ||C-A||=0.1499 ||Z-D||=0.1499 defect=1.55e-02
+  s=0.10 N= 243  t=0.150000  t/s=1.5000  floor |sin3s|/2=0.1478  ||C-A||=0.1499 ||Z-D||=0.1499 defect=5.17e-03
+  s=0.10 N= 729  t=0.150000  t/s=1.5000  floor |sin3s|/2=0.1478
+  s=0.50 N=   9  t=0.750000  t/s=1.5000  floor |sin3s|/2=0.4987  ||C-A||=0.7325 ||Z-D||=0.7325 defect=6.61e-01
+  s=0.50 N=  27  t=0.750000  t/s=1.5000  floor |sin3s|/2=0.4987  ||C-A||=0.7325 ||Z-D||=0.7325 defect=2.31e-01
+  s=0.50 N=  81  t=0.750000  t/s=1.5000  floor |sin3s|/2=0.4987  ||C-A||=0.7325 ||Z-D||=0.7325 defect=7.75e-02
+  s=0.50 N= 243  t=0.750000  t/s=1.5000  floor |sin3s|/2=0.4987  ||C-A||=0.7325 ||Z-D||=0.7325 defect=2.59e-02
+  s=0.50 N= 729  t=0.750000  t/s=1.5000  floor |sin3s|/2=0.4987
+Part 4: p = 7 (L = 3) bound 2|sin(7s/2)| <= 6 eps + 2 kappa; at s = pi/3 p=3 is silent
+  p=3 floor 6.12e-17   p=7 floor 0.1667

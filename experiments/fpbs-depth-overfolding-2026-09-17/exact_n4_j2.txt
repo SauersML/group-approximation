@@ -1,0 +1,8 @@
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 391 11 law 2 deep 2 overfold seeds in witness 0 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 398 10 law 1 deep 1 overfold seeds in witness 0 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 396 9 law 1 deep 1 overfold seeds in witness 0 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 385 7 law 2 deep 2 overfold seeds in witness 0 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 393 13 law 1 deep 1 overfold seeds in witness 0 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 389 10 law 3 deep 3 overfold seeds in witness 1 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 391 10 law 3 deep 3 overfold seeds in witness 2 
+n 4 j 2 V 80 -> 32 seed-classes all/lawful 407 11 law 1 deep 1 overfold seeds in witness 0 

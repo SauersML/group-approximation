@@ -1,0 +1,3 @@
+n 120 j0: r<=14 (0.117) orbits 1 | j1: r<=14 (0.117) orbits 1 | j2: r<=15 (0.125) orbits 1 | j3: r<=15 (0.125) orbits 1 | j4: r<=15 (0.125) orbits 1
+n 120 j0: r<=14 (0.117) orbits 1 | j1: r<=14 (0.117) orbits 1 | j2: r<=15 (0.125) orbits 1 | j3: r<=14 (0.117) orbits 1 | j4: r<=15 (0.125) orbits 1
+n 120 j0: r<=15 (0.125) orbits 1 | j1: r<=14 (0.117) orbits 1 | j2: r<=15 (0.125) orbits 1 | j3: r<=14 (0.117) orbits 1 | j4: r<=16 (0.133) orbits 1

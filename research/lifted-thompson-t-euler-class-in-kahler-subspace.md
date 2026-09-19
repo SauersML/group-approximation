@@ -63,3 +63,44 @@ Hilbert space and 1-cocycles `b_1, b_2` into `π` such that
     `→ 0` would then need `M ⊗ M̄` (the conjugation action on Hilbert–Schmidt operators on Fock
     space) to have almost invariant vectors for `T`. That is the falsifiable next question on this
     lead.
+- **2026-09-19 (swarm-0917-w15-w15-nv-last1, operator-algebras): the smooth-model witness classes
+  die; the noncommutative pairing.**
+  - *Established.* `trace-class-conjugation-cocycles-have-exact-cup-products`.
+    - The invariant is the relative trace `N(g) = Re tr(F^* b_2(g))`.
+    - Every conjugation cocycle `U F U^* − F` with `F ∈ S_p` (`2 ≤ p ≤ ∞`, `S_∞ = B`) has exact
+      cup product with every `S_{p'}`-valued partner. So all pairs from the trace-class commutant
+      algebra `A_1(U)`, plus `S_2`, are killed.
+    - For any action of `T` by `C³` circle diffeomorphisms, the Hilbert-transform (Connes)
+      Fredholm-module cocycle is trace-class valued. The commutator kernel is `C¹` on the torus.
+    - The Navas–Liouville cocycle has `L¹(μ)` values.
+    - So both canonical sources of unitary cocycles for smooth circle groups are excluded as
+      (K)-witnesses. This includes the two natural unitary objects of the Ghys–Sergiescu model.
+  - *Where a witness could still live, among conjugation models.* It needs a potential whose
+    relative trace against the partner diverges: a Hilbert–Schmidt but not trace-class commutator
+    structure that no `(S_p, S_{p'})` pairing absorbs.
+  - *Not pursued.* The `M ⊗ M̄` question from the w13 spark is a separate route through the
+    twist cost, not a (K)-witness. The observation below is made informally, with no proof
+    written:
+    - the Weyl symbol identifies `M ⊗ M̄` with a Koopman representation of a nonsingular Gaussian
+      action of smooth `T`;
+    - so its Gaussian vectors are almost invariant iff `T` has almost fixed points in the
+      Hilbert–Schmidt Siegel disk.
+- **2026-09-19 (swarm-0917-w15-w15-nv-follow, reframing): the metaplectic lead made precise;
+  (K) stays OPEN.**
+  - *Established.* `lifted-thompson-t-farey-fock-twist-bound`. No Ghys–Sergiescu smoothing is
+    needed. In the Farey model `T ≅ PPSL_2(Z)`, breakpoints are cusps and the pieces differ by
+    parabolics, so every element is `C^1` with Lipschitz `log g'`. That puts it in the
+    Weil–Petersson class, so `T` acts through `Sp_res(H^{1/2}/R)` and gives the Farey–Fock
+    representation `M`.
+  - The Weyl-twisted representations `W(√t b)M ⊗ M̄` of `T̄` give
+    `c(t/4π) ≤ K|t| + B√(2|t|(1+n(ρ))) + δ(ρ)^{1/2}`. Conversely, every vector has defect at least
+    `δ_*/2`, where `δ_*` is the Bekka defect of `M|_T`.
+  - *Consequences for this node.*
+    - The w13 spark is exactly the question "is `M|_T` Bekka-amenable?".
+    - If no, the metaplectic lead dies, along with every `V ⊗ M̄` family.
+    - If yes, relative (T) of the centre is refuted.
+    - If yes with a subexponential particle-number profile, `T̄` is Haagerup without (K).
+    - An exactly invariant normal state with finite second moment would give the (K) rate `O(√θ)`.
+      No such state is known, so (K) is not decided.
+  - *The w13 PL obstacle, explained.* It is a model artefact: dyadic `log g'` jumps, while Farey
+    `log g'` only has kinks.

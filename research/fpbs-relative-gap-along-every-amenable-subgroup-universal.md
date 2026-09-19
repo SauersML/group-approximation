@@ -48,3 +48,28 @@ never co-amenable. So `fpbs-co-amenable-subgroup-relative-threshold-is-pc`
 does not produce `p_c(H;G) = p_c(G)`.
 
 ## Attempts
+
+- **BK layer renewal along a homomorphism `h : Gamma -> Z`, for cyclic
+  `H = <z>` with `h(z) != 0` (DEAD as a class, 2026-09-19).** This is
+  recorded in `fpbs-layer-renewal-along-homomorphism-is-critical-l2`.
+  - **The approach.** Cut an open path at its first visit to the height band
+    `[jK, (j+1)K)` and apply BK. This gives
+    `R_(i+j) <= R_j (R_(i-1) + R_i)` for the band-restricted two-point
+    kernels. Closing it with a coefficient below `1` would give exponential
+    decay of `tau_p(o,z^n)`, and hence RG along `<z>`.
+  - **Scalar coefficients die at "coefficient finite".** Let
+    `beta^w_j = sum_(Lambda_j) tau_p(o,.) w`, for any submultiplicative
+    weight `w`. It is infinite for every `j` and every `p > p_c`.
+    - The invariant is that `ker h` is co-amenable, so its relative
+      susceptibility is infinite by
+      `fpbs-co-amenable-subgroup-relative-threshold-is-pc`.
+    - The symmetrization `w(x) + w(x^(-1)) >= 2` carries this to every
+      weight.
+  - **Operator coefficients survive only as critical l2.** If
+    `||R_(J-1)|| + ||R_J|| < 1` at some `p > p_c`, then
+    `||T_p|| <= 2 sum_j ||R_j|| < infinity`, so `p_c < p_(2->2)`.
+  - **Calibration.** On `T_4` the target is true, and the operator route
+    runs on `(p_c, p_(2->2))`. So the failure lies in the method.
+  - **Survivor.** Half-space-restricted first-passage coefficients. Their
+    divergence above `p_c` would be a half-space Grimmett–Marstrand statement
+    for nonamenable `Gamma`, and it is not decided.

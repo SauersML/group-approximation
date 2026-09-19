@@ -480,3 +480,43 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     near-product chain.
   - *Survivor:* hierarchical or hidden-state laws that encode several log-scales at once. These are the
     Følner-type candidates suggested by Moore's tower bound.
+- **Guba's systems Q_k through density (swarm-0917-w15-w15-f-break, 2026-09-19, belief-breaker, group-rings).**
+  - *Established (unrefereed):* `thompson-f-guba-q4-systems-have-common-multiples`.
+    - For finite `Z`, `|{1, x_0, x_1} Z| <= (3 - δ(Z)/2)|Z|`, where `δ` is the `{x_0, x_1}` density.
+    - The copy `ψ(F) = <x_2 x_0^-1, x_1 x_0^-1>` turns `Z` into `Y = x_0^-1 ψ(Z)` with
+      `|AY| = |{1, x_0, x_1} Z|`, where `A = {x_0, x_1, x_2}`.
+    - A dimension count then solves Guba's `Q_k` for all coefficients and all fields as soon as
+      `δ̄ > 4 - 2/k`.
+    - Guba's own `δ̄ > 3.5` (survey Theorem 2.7) therefore solves `Q_4`.
+  - *Belief changed:* the survey's "possible candidiate to a negative solution" `Q_4` is dead, and so
+    is its `ε = 1/4` hope. The graph's listing of `Q_4` as an open non-amenability candidate (in
+    `thompson-f-is-not-amenable` and `thompson-f-rescaled-x0-binomials-have-common-multiples`) is
+    superseded.
+  - *Invariant:* the `{x_0, x_1}` density `δ̄`.
+  - *Where every member dies:* a negative `Q_k` forces `δ̄ <= 4 - 2/k`. So the Q-family can certify
+    non-amenability only at `k >= 5`, and `Q_5` falls to any finite set of density `> 3.6`. On the
+    amenable side, each density improvement solves a further block of `Q_k`. Density approaching 4
+    solves them all, but that is the root itself.
+  - *Computation:* exact mod-`p` search (`experiments/guba-qk-2026-09-17/qk_linalg.py`) finds no
+    solution of `Q_2`, `Q_3` or `Q_4` in degree `<= 5`. The solutions exist only on huge supports.
+- **Is the forest-window support lossy? (swarm-0917-w15-w15-f-pull, 2026-09-19, transplanter, operator-algebras.)**
+  The w13 test vectors live on the windows `E(S_n)`. The question is whether that support alone
+  keeps them below `1`.
+  - *Established:* `thompson-f-one-sided-forest-windows-are-norm-lossless`. It is not lossy.
+    - The move graph on `S_n` is the induced Cayley subgraph on `E(S_n)`.
+    - Its top eigenvalue `rho_n` increases to `4||P||` exactly.
+    - So `F` is amenable iff `rho_n -> 4`, and the union of the windows is the positive-monoid
+      forest cone `R`.
+    - Proof: an intrinsic membership test for `R`, left translates that absorb every finite set
+      into `R` (the Ore property, via dyadic refinement), and the compression identity
+      `||K_R|| = ||K||`. The steps are checked in exact arithmetic for `n <= 7` and on 200 random
+      sets.
+  - *Decomposition:* `<f,Kf> = 4 - delta(f) - energy(f)` on `R`. Here `delta(f)` is the `l^2` mass
+    on pointer-at-root and pointer-on-leaf states, and `energy(f)` is the Dirichlet energy.
+    Amenability is exactly "both can be made small at once".
+  - *Dies at:* any ansatz family whose pointer-leaf plus pointer-at-root mass stays `>= c`
+    is capped at `||P|| >= 1 - c/4` and cannot reach `1`. This is a checkable necessary condition
+    on the w13/w14 families.
+  - *Survives:* the w13 proxy, sharpened. The support is exact, so the only open question is
+    whether the amplitude class, not the window, can approach `1`. Small exact windows are useless
+    as certificates: `rho_12 / 4 ≈ 0.815`, far below the certified `0.9397`.

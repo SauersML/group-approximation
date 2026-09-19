@@ -1,0 +1,38 @@
+== Gamma_3 trap
+PASS Gamma_3 trap: phi_ab injective (exponent matrix det != 0)
+   det(exponent matrix of phi_ab) = 1
+PASS Gamma_3 trap: det D != 0 in Q(A)
+   det D = -y2**6*y3**2*(y1*y3*y4*y5*y6 - y1*y3*y4*y5 + y1*y4*y5*y6 - y1*y4*y6 - y2**2*y3*y5*y6 + y3*y4*y5*y6 - y3*y4*y6)/(y1**6*y4**4*y6)
+PASS Gamma_3 trap: chain rule Phi o mg = mg o phi on random words
+PASS Gamma_3 trap: F_p certificate, e_a1 not in row space of D(x)
+   p = 5  point x = [4, 4, 2, 1, 4, 1]
+   D(x) mod p = [[0, 1, 0, 0, 0, 0], [0, 0, 2, 3, 1, 0], [0, 0, 0, 1, 0, 0], [1, 0, 3, 4, 0, 3], [3, 0, 3, 2, 2, 0], [0, 0, 0, 0, 0, 2]]
+   rank D(x) = 5
+PASS Gamma_3: phi_ab in GL_6(Z)
+   non-monomial factors of det D: [y1*y3*y4*y5*y6 - y1*y3*y4*y5 + y1*y4*y5*y6 - y1*y4*y6 - y2**2*y3*y5*y6 + y3*y4*y5*y6 - y3*y4*y6]
+PASS Gamma_3: det D is not a unit of Z[A] (has a non-monomial factor)
+   non-monomial factors at the certificate point (mod p): [0]
+   det D at invariant characters = alpha**2/beta
+PASS invariant-character specialization of det D is a monomial (unit)
+PASS P_C restricts to -alpha^2 beta on the phi-fixed torus
+   det(D - gamma) on the fixed torus = (alpha**2 + beta*gamma)*(gamma - 1)**4*(gamma + 1)/beta
+PASS det(D - gamma) = (alpha^2 + beta gamma)(gamma-1)^4(gamma+1)/beta on the fixed torus
+PASS row a1 of D on the torus is e_a2 (relation C1: mu_a2 = gamma mu_a1)
+== BS(1,2) toy trap
+PASS BS(1,2) toy trap: phi_ab injective (exponent matrix det != 0)
+   det(exponent matrix of phi_ab) = 2
+PASS BS(1,2) toy trap: det D != 0 in Q(A)
+   det D = y1 + 1
+PASS BS(1,2) toy trap: chain rule Phi o mg = mg o phi on random words
+PASS BS(1,2) toy trap: F_p certificate, e_a not in row space of D(x)
+   p = 5  point x = [4]
+   D(x) mod p = [[0]]
+   rank D(x) = 0
+== automorphism control
+PASS automorphism control: phi_ab injective (exponent matrix det != 0)
+   det(exponent matrix of phi_ab) = 1
+PASS automorphism control: det D != 0 in Q(A)
+   det D = 1
+PASS automorphism control: chain rule Phi o mg = mg o phi on random words
+PASS automorphism control: control finds no certificate
+fails = 0
