@@ -2,6 +2,8 @@
 Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
+import Mathlib.Algebra.BigOperators.Group.List.Basic
+import Mathlib.Algebra.Group.End
 import Mathlib.GroupTheory.CoprodI
 
 /-!
@@ -38,8 +40,7 @@ def wordMap (f : ∀ i, M i →* N i) (hf : ∀ i, Function.Injective (f i)) (w 
 
 theorem wordMap_prod (f : ∀ i, M i →* N i) (hf : ∀ i, Function.Injective (f i)) (w : Word M) :
     (wordMap f hf w).prod = CoprodI.lift (fun i => (of : N i →* CoprodI N).comp (f i)) w.prod := by
-  unfold Word.prod wordMap
-  rw [map_list_prod, List.map_map, List.map_map]
+  simp only [Word.prod, wordMap, map_list_prod, List.map_map]
   congr 1
   apply List.map_congr_left
   intro l _

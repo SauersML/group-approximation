@@ -80,21 +80,16 @@ theorem uT_injective (b : Bool) : Function.Injective (uT D b) := by
     exact Prod.ext (D.hφ hst) (h1.2.trans h2.2.symm)
 
 theorem piHom_jW : (piHom.comp tj).comp (W D) = SemidirectProduct.inl.comp
-    (Monoid.CoprodI.lift fun b => (Monoid.CoprodI.of : (fun _ : Bool => H) b →* HH H).comp (uT D b)) := by
+    (Monoid.CoprodI.lift fun b =>
+      (Monoid.CoprodI.of (M := fun _ : Bool => H) (i := b)).comp (uT D b)) := by
   apply Monoid.CoprodI.ext_hom
   intro b
   ext t
+  simp only [MonoidHom.comp_apply, W_of, Monoid.CoprodI.lift_of]
   cases b
-  · show piHom (tj (W D (Monoid.CoprodI.of t))) = SemidirectProduct.inl
-      (Monoid.CoprodI.lift (fun b => (Monoid.CoprodI.of : (fun _ : Bool => H) b →* HH H).comp (uT D b))
-        (Monoid.CoprodI.of t))
-    rw [W_of, wT_false_apply, tj_inl, piHom_inl, Monoid.CoprodI.lift_of, MonoidHom.comp_apply,
-      uT_false_apply]
-  · show piHom (tj (W D (Monoid.CoprodI.of t))) = SemidirectProduct.inl
-      (Monoid.CoprodI.lift (fun b => (Monoid.CoprodI.of : (fun _ : Bool => H) b →* HH H).comp (uT D b))
-        (Monoid.CoprodI.of t))
-    rw [W_of, wT_true_apply, map_mul tj, map_mul tj, map_inv tj, tj_inl, tj_inr_of, piHom_conj_y,
-      Monoid.CoprodI.lift_of, MonoidHom.comp_apply, uT_true_apply]
+  · rw [wT_false_apply, tj_inl, piHom_inl, uT_false_apply]
+  · rw [wT_true_apply, map_mul tj, map_mul tj, map_inv tj, tj_inl, tj_inr_of, piHom_conj_y,
+      uT_true_apply]
 
 /-- **`w` is injective**, even after `j : H ∗ ⟨y⟩ → H ∗ F₂`. -/
 theorem jW_injective : Function.Injective (tj.comp (W D)) := by
