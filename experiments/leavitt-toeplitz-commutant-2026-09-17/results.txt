@@ -1,0 +1,23 @@
+$ python3 toeplitz_scout.py 2 3 6 8
+control power_rank(s_0) = 7 (expect 7)
+1+s00t1                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+1+s0t1                           dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+1+s1t00                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+1+s0t10                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+(1+s00t1)(1+s1t00)               dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+swap00_01                        dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+swap*(1+s00t1)                   dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+(1+s0t10)(1+s1t00)(1+s00t1)      dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1, 1, 1, 1, 1]  (max 7)
+flip (control: C contains M_2)   dimC=4 dim kappa(C)=4  basis power-ranks=[2, 2, 2, 2]  random=[2, 2, 2, 1, 2, 2, 1, 2]  (max 7)
+
+$ python3 toeplitz_scout.py 3 4 5 4
+control power_rank(s_0) = 6 (expect 6)
+1+s00t1                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+1+s0t1                           dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+1+s1t00                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+1+s0t10                          dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+(1+s00t1)(1+s1t00)               dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+swap00_01                        dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+swap*(1+s00t1)                   dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+(1+s0t10)(1+s1t00)(1+s00t1)      dimC=1 dim kappa(C)=1  basis power-ranks=[1]  random=[1, 1, 1, 1]  (max 6)
+flip (control: C contains M_2)   dimC=4 dim kappa(C)=4  basis power-ranks=[2, 2, 2, 2]  random=[1, 2, 2, 2]  (max 6)

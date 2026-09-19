@@ -410,3 +410,29 @@ OPEN.
     is not recorded as a prerequisite.
   - The remaining NO obstruction must say which singular element can sit in a trdeg-2 domain. Grading, leading
     forms and Hochschild dimension give no handle on that.
+
+**w18 obstruction-miner (linear-characteristic), 2026-09-19: a one-isometry linear criterion for mechanism (i), and a Toeplitz rung between Q5.7 and Q_2.**
+- **Established.** `toeplitz-commutant-compression-detects-polynomial-pairs`, by
+  `toeplitz-commutant-compression-detects-polynomial-pairs-proof` (unreviewed, elementary, any field `k`, any
+  unital `k`-algebra `A`). Let `S'S = 1`, `P = 1 - SS'` and `Φ(a) = S a S'`.
+  - `C(S,S') = { T : T - Φ(T) ∈ PAP }`, and `κ(T) = PTP` is a unital homomorphism `C(S,S') -> PAP` with image
+    `PAP ∩ (1 - Φ)(A)`.
+  - If `κ(T)` is transcendental, then `S` and `T` are commuting and algebraically independent. Proof: take the
+    lowest `S`-degree, multiply by `S'^(i_0)` and then by `P`; since `PS = 0`, this leaves `p_(i_0)(κ(T)) = 0`.
+  - Doubly commuting isometries with `(1 - SS')(1 - RR') ≠ 0` are exactly unital embeddings of `J ⊗ J`, where
+    `J = k⟨x, y | yx = 1⟩`. Every nonzero ideal of `J ⊗ J` contains `p ⊗ p`.
+  - The chain is `Q5.7 YES => J ⊗ J embeds in L => (transcendental κ for some S) => Q_2 fails at k`. A
+    transcendental element of any `C_u` also gives the third condition, with `S = u s_0`.
+- **Posed (OPEN).** `toeplitz-tensor-square-embeds-in-binary-leavitt`, at `F_2`. A NO answers Q5.7 negatively over
+  `F_2`, and it follows from Q_2. A YES refutes Q_2 at `F_2`, the no-polynomial-pair form of mechanism (i).
+- **Killed.** Every monomial, or conjugate-to-monomial, first isometry `S = s_w`.
+  - `C(S,S') ⊆ F_2[s_v]` by `leavitt-isometry-centralizers-are-monogenic`.
+  - `κ(s_v)` is nilpotent, since `κ(s_v)^m = P s_w P = 0`, so the compressed commutant is algebraic.
+  - The invariant is the compressed commutant `κ(C(S,S'))`. It dies at the step where `κ` must be transcendental.
+- **Screen.** Take `S = u s_0` for eight transvection and permutation units, in the boxes `(2,3)` and `(3,4)`. Each
+  gives `C(S,S') = F_2`, while the flip control gives `M_2(F_2)`
+  (`experiments/leavitt-toeplitz-commutant-2026-09-17/results.txt`).
+- **Where it stops.**
+  - For `F_2[Z^4]` the pair is polynomial, not Laurent, since `R` is a proper isometry and not a unit. So a YES
+    here does not yet give units for the test case.
+  - No non-monomial `S` with a nonscalar `C(S,S')` beyond the `M_2` controls is known.
