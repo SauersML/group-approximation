@@ -62,3 +62,15 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   survivor after (K1), (K2) and (K3) of `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`. The
   natural next test is computational: an LP for `mu_(1/3)(Gamma / Lambda_N)` on the principal congruence quotients
   `Sp_4(Z/N)`, for small `N` prime to 3, from a certified finite presentation.
+- **2026-09-19, swarm-0917-w14-w14-deligne-follow: fixed-level floor proved, sufficient condition corrected**
+  (`deligne-third-floor-holds-above-every-fixed-level`, cohomology-index).
+  - *Proved.* Fix any finite-index `Lambda_0`. Every class `f in kappa + 3 H^2` on any Schreier complex above
+    `Gamma / Lambda_0` whose real part is pulled back from `Lambda_0` has `||f_R|| >= nu(Lambda_0) > 0`. This extends
+    (K2) from level one to every level.
+  - *Why.* Virtual divisibility of a fixed class is bounded by the finite profinite multiplier
+    `H^2_cts(Lambda_0^, Q/Z)` of `sp4-finite-index-fd-projective-multiplier-is-finite`. Dividing pullbacks up a tower
+    (the `T^2` mechanism above) is therefore dead.
+  - *Refuted.* The sufficient condition above is false as written. At `Gamma(3)` a torsion class, not divisible by
+    3, has `u_R = 0`. The repaired condition asks for `u(Z_2)` not contained in `3Z`, and it stays open.
+  - *Left.* A counterexample must use classes new at each level. The open part is a bound on `nu` uniform in the
+    level.
