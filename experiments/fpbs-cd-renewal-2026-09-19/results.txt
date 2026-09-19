@@ -1,0 +1,18 @@
+interior sites 23
+n=3 configs=8388608 C=0.482817 U=0.773861 C&U=0.480162 D'=0.771206 D'&C=0.477507 UH=0.480162 UH&LH=0.477507 kappaH=0.999969
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0
+interior sites 217
+n=8 configs=20000 C=0.449150 U=0.678100 C&U=0.436500 D'=0.659050 D'&C=0.425450 UH=0.436500 UH&LH=0.425450 kappaH=0.999383
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0
+interior sites 945
+n=16 configs=20000 C=0.414250 U=0.619150 C&U=0.397950 D'=0.591400 D'&C=0.381500 UH=0.397950 UH&LH=0.381500 kappaH=0.998557
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0
+interior sites 3937
+n=32 configs=20000 C=0.383650 U=0.567400 C&U=0.362150 D'=0.532450 D'&C=0.340000 UH=0.362150 UH&LH=0.340000 kappaH=0.997881
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0
+interior sites 16065
+n=64 configs=5000 C=0.363000 U=0.524800 C&U=0.335800 D'=0.484000 D'&C=0.310400 UH=0.335800 UH&LH=0.310400 kappaH=0.999233
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0
+interior sites 64897
+n=128 configs=1000 C=0.338000 U=0.496000 C&U=0.310000 D'=0.443000 D'&C=0.280000 UH=0.310000 UH&LH=0.280000 kappaH=0.994431
+violations: (1) D'!=U&L 0  (2) A(UH)!=C&U on C 0  (3) local forcing 0  (4) flip U 0  flip D' 0

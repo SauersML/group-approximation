@@ -809,3 +809,31 @@ content in that region.
 
   **Next:** prove (CD) by decoupling the arm-arc events across scales
   under the incipient-infinite-cluster conditioning.
+
+* **Exact half-plane decomposition of the axis box event, and why (CD_H)
+  cannot come from soft tools (w20-123, 2026-09-19).** See
+  `fpbs-cd-h-exact-decomposition-and-renewal-obstruction`.
+
+  - **Proved: exact decomposition.** `D'_n(0) = U_n ∩ L_n` on every
+    configuration, where `U_n` and `L_n` are increasing, exchanged by
+    reflection, and say that there is no pinch-free non-`I_n` path from
+    the negative to the positive axis in the upper or lower half-plane.
+    Moreover `A_n(UH) = C_n ∩ U_n`.
+  - **Proved: one-site flip.** `P(D'_n(0)) <= 2 P(D'_n(0) ∩ C_n)`, so the
+    one-arm conditioning costs a factor at most 2.
+  - **Proved: reformulation.** (ii) holds iff `U_n` and `L_n` beat FKG by
+    `n^{2 alpha_H - 3/16 + eps}`, that is, iff the (CD_H) loss is
+    `delta_H < 7/24 - 2 alpha_H` (about 0.037). (CD_H) holds iff
+    `zeta(0) <= 2 alpha_H - 5/48`.
+  - **Obstruction, and a dead route.** An independent-scales product model
+    has every structural property: FKG, reflection, the flip, and exact
+    quasi-multiplicativity. It has FKG gain 1 and `kappa = n^{-0.415}`. So
+    arm separation plus quasi-multiplicativity under one-arm conditioning
+    cannot prove (CD_H), or even (ii). Exact enumeration at `n = 3` gives
+    `kappa_H = 0.999969 < 1`, so conditional positive association fails.
+  - **Numerics.** `delta_H` is about 0.002, against a threshold of 0.037.
+
+  **Next:** prove `P(D'_n(0)) >= n^{-3/16+eps}` for the single increasing
+  event `U_n ∩ L_n`, using lattice-specific input. The candidates are the
+  SLE6 slit-separation exponent of the white Γ_n clusters (predicted
+  `7/48`) and a quantitative per-scale arm-sharing lemma.
