@@ -20,6 +20,13 @@ The two remaining inputs of vdK's Theorem 1 are 3.4 (`St*(n, A)` is perfect, usi
 3.7–3.22 (the elements `X(i, j) ∈ St(n, A)`).
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

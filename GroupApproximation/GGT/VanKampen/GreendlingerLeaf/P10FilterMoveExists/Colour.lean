@@ -57,6 +57,7 @@ noncomputable def p10FM_z (F : Finset M.Face) (B : List M.Dart) (p q : Bool) (d 
 theorem p10FM_z_eq_true_iff (F : Finset M.Face) (B : List M.Dart) (p q : Bool) (d : M.Dart) :
     p10FM_z M F B p q d = true ↔ p10FM_InZ M F B p q (M.faceOf d) := by
   unfold p10FM_z
+  classical
   exact decide_eq_true_iff
 
 #audit_axioms

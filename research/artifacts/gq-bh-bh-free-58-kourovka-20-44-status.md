@@ -1,5 +1,10 @@
 # Kourovka 20.44 (Kohl): best-known form of the dichotomy
 
+> **Superseded (2026-09-19).** The full, current picture is the node
+> `kourovka-20-44-holds-for-rank-one-slope-groups`. The V-case conjecture below is now proved
+> (`ct-empty-z-subgroups-satisfy-the-orbit-transversal-dichotomy`, refereed PASS), as are the
+> integer-ray and the frozen mixed-ray cases. This page is kept as the record of the search.
+
 Lane bh-free-58, 2026-09-18. Status: **OPEN**. This page collects what is proved and what the
 search for a provable counterexample found.
 

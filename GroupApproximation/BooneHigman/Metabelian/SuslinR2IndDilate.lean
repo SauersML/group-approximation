@@ -72,6 +72,7 @@ theorem suslinR2Ind_mem_of_leftInverse {ι R : Type*} [Fintype ι] [DecidableEq 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mem_of_leftInverse
 
+set_option maxHeartbeats 1000000 in
 /-- **Undoing a dilation.**  If `b c = 1` and the dilate `σ(b X)` is elementary, then so is
 `σ`. -/
 theorem suslinR2Ind_mem_of_dilate {ι : Type*} [Fintype ι] [DecidableEq ι] {b c : S}

@@ -192,7 +192,8 @@ theorem nearest_face_not_mem (S : SlitPocket Delta) (harc : S.arc.darts ≠ []) 
 /-- **The slit pocket core from a slit pocket** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121).  The disc-region fields of `GL06p.SlitPocketCore` come from `S`,
 and `nearest_face` from the nonempty arc.  The remaining fields are the cell inside the pocket,
-the three geodesic sides, the collar bound and the minimality of the two slits. -/
+the three geodesic sides, the collar bound, the metric minimality of the two slits and their two
+feet on the boundary. -/
 noncomputable def toCore {D : RelGenSet G Lambda} (S : SlitPocket Delta)
     (harc : S.arc.darts ≠ [])
     (inner : RelatorCell S.copy.toCombMap S.copy.outerFace W)
@@ -204,10 +205,14 @@ noncomputable def toCore {D : RelGenSet G Lambda} (S : SlitPocket Delta)
     (slitOut_geodesic : GGT.OsinComponents.IsGeodesicWord D 1
       (RelLetter.listVal (dartWord S.copy S.slitOut)) (dartWord S.copy S.slitOut))
     (outer_length_le : S.outerPart.length ≤ Delta.boundaryWord.length)
-    (slitIn_minimal : ∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-      GL06p.IsBoundaryToCellWalk Delta j q → S.slitIn.length ≤ q.length)
-    (slitOut_minimal : ∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-      GL06p.IsBoundaryToCellWalk Delta j q → S.slitOut.length ≤ q.length) :
+    (slitIn_minimal : GL06p.MetricClassMinimal D Delta S.slitIn.length)
+    (slitOut_minimal : GL06p.MetricClassMinimal D Delta S.slitOut.length)
+    (foot_in : ∀ d ∈ S.slitIn.head?, ∃ b : S.copy.toCombMap.Dart,
+      S.copy.toCombMap.faceOf b = S.copy.outerFace ∧
+        S.copy.toCombMap.vertexOf b = S.copy.toCombMap.vertexOf d)
+    (foot_out : ∀ d ∈ S.slitOut.getLast?, ∃ b : S.copy.toCombMap.Dart,
+      S.copy.toCombMap.faceOf b = S.copy.outerFace ∧
+        S.copy.toCombMap.vertexOf b = S.copy.toCombMap.vertexOf (S.copy.toCombMap.alpha d)) :
     GL06p.SlitPocketCore D Delta where
   copy := S.copy
   equiv := S.equiv
@@ -229,23 +234,25 @@ noncomputable def toCore {D : RelGenSet G Lambda} (S : SlitPocket Delta)
   outer_length_le := outer_length_le
   slitIn_minimal := slitIn_minimal
   slitOut_minimal := slitOut_minimal
+  foot_in := foot_in
+  foot_out := foot_out
 
 end SlitPocket
 
 end Slit
 
-/-- **Slit pockets exist for every diagram with a nearest path** (Osin, proof of Lemma 9.7(b);
-`thm:hull`, non_mf_groups_exist.tex ~2121), under the hypotheses of
+/-- **Slit pockets exist for every diagram with a metric nearest walk** (Osin, proof of
+Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121), under the hypotheses of
 `GL06p.slitPocketCoreStatement`.  It asks for a slit pocket with a nonempty arc, which is steps 2
 and 3 (`SlitPocket.ofSimple`, `SlitPocket.ofNoncrossing`), and for the fields outside the disc
-regions: a relator cell inside the pocket, the geodesic sides, the collar bound and slit
-minimality.  Not proved here. -/
+regions: a relator cell inside the pocket, the geodesic sides, the collar bound, slit
+minimality and the two feet.  Not proved here. -/
 def SlitPocketStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda)
     (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W),
     Delta.LeastArea → (∀ d, (symmetricLabelAlphabet D).IsLetter (Delta.label d)) →
       (∀ word ∈ W, 1 < word.length) → 2 ≤ Delta.rCellCount →
-        GL06p.NearestCellPath Delta →
+        GL06p.MetricNearestWalk D Delta →
           ∃ S : SlitPocket Delta, S.arc.darts ≠ [] ∧
             ∃ inner : RelatorCell S.copy.toCombMap S.copy.outerFace W,
               inner ∈ S.copy.relatorCells ∧ inner.face ∈ S.pocket.faces ∧
@@ -256,10 +263,15 @@ def SlitPocketStatement : Prop :=
               GGT.OsinComponents.IsGeodesicWord D 1
                 (RelLetter.listVal (dartWord S.copy S.slitOut)) (dartWord S.copy S.slitOut) ∧
               S.outerPart.length ≤ Delta.boundaryWord.length ∧
-              (∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-                GL06p.IsBoundaryToCellWalk Delta j q → S.slitIn.length ≤ q.length) ∧
-              (∀ (j : Fin Delta.rCellCount) (q : List Delta.toCombMap.Dart),
-                GL06p.IsBoundaryToCellWalk Delta j q → S.slitOut.length ≤ q.length)
+              GL06p.MetricClassMinimal D Delta S.slitIn.length ∧
+              GL06p.MetricClassMinimal D Delta S.slitOut.length ∧
+              (∀ d ∈ S.slitIn.head?, ∃ b : S.copy.toCombMap.Dart,
+                S.copy.toCombMap.faceOf b = S.copy.outerFace ∧
+                  S.copy.toCombMap.vertexOf b = S.copy.toCombMap.vertexOf d) ∧
+              (∀ d ∈ S.slitOut.getLast?, ∃ b : S.copy.toCombMap.Dart,
+                S.copy.toCombMap.faceOf b = S.copy.outerFace ∧
+                  S.copy.toCombMap.vertexOf b =
+                    S.copy.toCombMap.vertexOf (S.copy.toCombMap.alpha d))
 
 /-- **Steps 2 and 3 of GL06p from the slit pockets** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121).  With `GL06p.longSlitWindowsStatement` (step 4),
@@ -267,9 +279,9 @@ non_mf_groups_exist.tex ~2121).  With `GL06p.longSlitWindowsStatement` (step 4),
 theorem slitPocketCoreStatement_of_slitPocketStatement (h : SlitPocketStatement.{u, w, v}) :
     GL06p.slitPocketCoreStatement.{u, w, v} := by
   intro _G _ _Lambda D W Delta hlea hletters hW hcells hpath
-  obtain ⟨S, harc, inner, hmem, hface, hg₁, hg₂, hg₃, hlen, hmin₁, hmin₂⟩ :=
+  obtain ⟨S, harc, inner, hmem, hface, hg₁, hg₂, hg₃, hlen, hmin₁, hmin₂, hfin, hfout⟩ :=
     h D W Delta hlea hletters hW hcells hpath
-  exact ⟨S.toCore harc inner hmem hface hg₁ hg₂ hg₃ hlen hmin₁ hmin₂⟩
+  exact ⟨S.toCore harc inner hmem hface hg₁ hg₂ hg₃ hlen hmin₁ hmin₂ hfin hfout⟩
 
 end GroupApproximation.Full.GL06eSlit
 

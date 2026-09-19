@@ -18,6 +18,13 @@ W. van der Kallen, *Another presentation for Steinberg groups*, Indag. Math. **3
   alone (vdK 3.7–3.22, still owed).
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
@@ -112,12 +119,14 @@ theorem vdkPiece_dotProduct (i j k : I → A) (p q : I) : vdkPiece i j k p q ⬝
   simp only [vdkPiece, smul_dotProduct, sub_dotProduct, single_dotProduct, one_mul, smul_eq_mul]
   ring
 
+omit [Fintype I] in
 theorem vdkPiece_apply (i j k : I → A) (p q r : I) :
     vdkPiece i j k p q r =
       j p * k q * i q * Pi.single p (1 : A) r - j p * k q * i p * Pi.single q (1 : A) r := by
   simp only [vdkPiece, Pi.smul_apply, Pi.sub_apply, smul_eq_mul]
   ring
 
+omit [Fintype I] in
 theorem vdkPiece_apply_of_ne (i j k : I → A) {p q r : I} (hp : r ≠ p) (hq : r ≠ q) :
     vdkPiece i j k p q r = 0 := by
   rw [vdkPiece_apply, Pi.single_eq_of_ne hp, Pi.single_eq_of_ne hq, mul_zero, mul_zero, sub_zero]
