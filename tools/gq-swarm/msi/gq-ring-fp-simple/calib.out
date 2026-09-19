@@ -1,0 +1,60 @@
+k(1,1) = (Fraction(2, 1), Fraction(1, 1))  r on probes: [('1', '0'), ('0', '1'), ('2', '1'), ('1/2', '-1/2'), ('-8', '29'), ('-4', '25'), ('-5/2', '43/2'), ('-31/2', '129/2'), ('-11', '38'), ('-5', '54')]
+generators: 15  wide = False  J = 1  MAXLEN = 3  RLEN = 1
+level 1 new elements 15 time 0.4 overflow 0
+level 2 new elements 186 time 0.4 overflow 0
+level 3 new elements 2160 time 0.9 overflow 0
+ball size 2362 overflow 0 stopped_early False
+linear-collision hits (|det L| != 1): 805
+  HIT 2 | s0E | vs | 
+  HIT 2 | s-1X s0E | vs | s-1X
+  HIT 2 | s-1x s0E | vs | s-1x
+  HIT 1/2 | s-1Y s-1x | vs | s-1X s0E
+  HIT 2 | s-1Y s0E | vs | s-1Y
+  HIT 1/2 | s-1y s-1X | vs | s-1x s0E
+  HIT 2 | s-1y s0E | vs | s-1y
+  HIT 1/2 | s0X s0X | vs | s0E
+  HIT 1/2 | s0X s0Y | vs | s0E
+  HIT 1/2 | s0X s0y | vs | s0E
+  HIT 1/2 | s0X s0W | vs | s0E
+  HIT 1/2 | s0X s0D | vs | s0E
+  HIT 2 | s0X s0E | vs | 
+  HIT 1/2 | s0x s0x | vs | s0E
+  HIT 1/2 | s0x s0Y | vs | s0E
+  HIT 1/2 | s0x s0y | vs | s0E
+  HIT 1/2 | s0x s0W | vs | s0E
+  HIT 1/2 | s0x s0D | vs | s0E
+  HIT 2 | s0x s0E | vs | 
+  HIT 1/2 | s0Y s0X | vs | s0E
+near misses (fix both axes and (1,-1)): 12
+  near 3 / 10 probes agree with r | s1X s0x
+  near 2 / 10 probes agree with r | s-1X s0x
+  near 2 / 10 probes agree with r | s-1X s1x
+  near 2 / 10 probes agree with r | s-1Y s0y
+  near 2 / 10 probes agree with r | s-1Y s1y
+  near 2 / 10 probes agree with r | s0X s-1x
+  near 2 / 10 probes agree with r | s0X s1x
+  near 2 / 10 probes agree with r | s0Y s-1y
+  near 2 / 10 probes agree with r | s0Y s1y
+  near 2 / 10 probes agree with r | s1X s-1x
+r-translated words checked 16 overflow 0 matches 22
+  RHIT |det L| = 2 uninformative | s1Y s1X | = L r | 
+  RHIT |det L| = 4 NEW | s1Y s1X s0E | = L r | 
+  RHIT |det L| = 2 uninformative | s-1X s1Y s1X | = L r | s-1X
+  RHIT |det L| = 2 uninformative | s-1x s1Y s1X | = L r | s-1x
+  RHIT |det L| = 2 uninformative | s-1Y s1Y s1X | = L r | s-1Y
+  RHIT |det L| = 2 uninformative | s-1y s1Y s1X | = L r | s-1y
+  RHIT |det L| = 2 uninformative | s0X s1Y s1X | = L r | s0X
+  RHIT |det L| = 2 uninformative | s0x s1Y s1X | = L r | s0x
+  RHIT |det L| = 2 uninformative | s0Y s1Y s1X | = L r | s0Y
+  RHIT |det L| = 2 uninformative | s0y s1Y s1X | = L r | s0y
+  RHIT |det L| = 2 uninformative | s1X s1Y s1X | = L r | s1X
+  RHIT |det L| = 2 uninformative | s1y s1y | = L r | s1x
+  RHIT |det L| = 4 NEW | s1y s1y s0E | = L r | s1x
+  RHIT |det L| = 2 uninformative | s1Y s1Y s1X | = L r | s1Y
+  RHIT |det L| = 2 uninformative | s1X | = L r | s1y
+  RHIT |det L| = 4 NEW | s1X s0E | = L r | s1y
+  RHIT |det L| = 8 NEW | s1X s0E s0E | = L r | s1y
+  RHIT |det L| = 2 uninformative | s1X s1Y | = L r | s0W
+  RHIT |det L| = 4 NEW | s1X s1Y s0E | = L r | s0W
+  RHIT |det L| = 2 uninformative | s1y s1x | = L r | s0D
+total time 0.9
