@@ -84,6 +84,49 @@ the basis of `f`, cell by cell and canonically.
 `𝒢` is connected (every size is reached from 1 by binary splits), and the comb edges `x_{n,n,2}`
 form a spanning tree. With O3 this gives the statement. ∎
 
+## O1 in full (pass 5, 09-19)
+
+The O1 paragraph above asserts that "each `p`-child subtree is equal to one whose first split is
+`q`". This rests on the following lemma, which O1 did not state.
+
+**Restriction lemma.** Let `M` be the leaf set of a tree rooted at a box `Q`, and suppose `M`
+refines the `p`-split of `Q`. Then for each `p`-child `P_c` of `Q`, the set
+`M|P_c = {E ∈ M : E ⊆ P_c}` is the leaf set of a tree rooted at `P_c`. Hence `M` is the leaf set
+of a tree whose root split is `p`.
+
+*Proof.* Induct on `|M|`. The case `|M| = 1` is vacuous. Let `r` be the root prime of the tree.
+- If `r = p`, the restrictions are its subtrees.
+- If `r ≠ p`, let `R_b` be the `r`-children of `Q`.
+  1. By CRT, `R_b ∩ P_c` is a single class mod `pr·m_Q`. It is both a `p`-child of `R_b` and an
+     `r`-child of `P_c`.
+  2. So `M|R_b`, the leaf set of the subtree at `R_b`, refines the `p`-split of `R_b`. It has
+     fewer leaves than `M`.
+  3. By induction, each `M|(R_b ∩ P_c)` is a tree leaf set.
+  4. `M|P_c` is their union over `b`, so it is the leaf set of the tree that splits `P_c` by `r`
+     and then grows those trees. ∎
+
+**O1, the tree case, in full.** Claim: two tree words (splits only) with the same leaf set, rooted
+at the same cell, are equal in `𝒞` up to a final permutation. Induct on the number of leaves.
+1. Relation (b) (far commutation) rewrites a tree word as its root split followed by the
+   subtree words of the children, one after another.
+2. **Same root prime.** The subtrees at each child have the same leaf set, namely the
+   restriction. Apply induction to each, then move the resulting block permutations to the end
+   by (d).
+3. **Root primes `p ≠ q`.**
+   - The common leaf set refines both root splits. So its restriction to each `p`-child `A_a`
+     refines the `q`-split of `A_a`: a `q`-child of `A_a` is `A_a ∩` a `q`-child of `Q`, by CRT.
+   - By the restriction lemma, there is a tree rooted at `A_a` with root split `q` and the same
+     leaves as the subtree at `A_a`.
+   - Induction (fewer leaves) makes the two subtrees equal up to a permutation.
+   - After that, the word is: split by `p`, then every child by `q`, then subtrees at the
+     grandchildren. Relation (c) at the root turns it into: split by `q`, then every child by `p`,
+     then a permutation. The grandchild subtrees are carried along by (d).
+   - The result has root prime `q`, the same as the other word, so case 2 applies.
+
+The general case of O1 (words with permutations) reduces to this one: by (d), push the
+permutations to the end. Two words with the same realization then differ by a permutation of an
+ordered basis with distinct cells. That permutation is determined, and by (a) the two words agree.
+
 ## Use
 
 `class-transposition-relations-present-ct-p-z` (pass 4, artifact §5) sends:
@@ -103,3 +146,33 @@ of three finite checks:
 So a host's infinite presentation is never the hard part. The hard part is comparing it with
 another generating set, such as the class transpositions, and that comparison lives entirely in
 the central defects of the 2-cells.
+
+## Referee (ref-k1761, 2026-09-19): PASS for O1–O4, including the pass-5 repair
+
+Checked line by line.
+- **Restriction lemma: correct.** For distinct primes `p ≠ r`, `R_b ∩ P_c` is a single class mod
+  `pr·m_Q` by CRT, and it is both a `p`-child of `R_b` and an `r`-child of `P_c`. `M|R_b` refines
+  the `p`-split of `R_b` and has fewer leaves, so the induction and the final regrowing at `P_c`
+  are valid.
+- **O1, tree case: correct.**
+  - (b) separates the child subtrees.
+  - Same root prime: induction, then (d) pushes the block permutations right.
+  - Different root primes:
+    - the common leaf set refines both root splits;
+    - the lemma makes every `p`-child subtree start with `q`;
+    - (b) groups these `q`-splits after the root;
+    - (c) swaps the root prime, and its grandchild permutation is carried right by (d).
+    - Its matching `j + pl ≡ j' + ql' (mod pq)` is correct: the grandchildren are
+      `a + (j+pl)m` and `a + (j'+ql')m` mod `pqm`.
+  - The reduction of general words (push permutations right by (d), then compare with (a)) is
+    correct.
+- **O2 precision.** Right cancellation needs one line. Suppose `gf` and `hf` have the same
+  realization. For each source cell, the target cells `f` produces from it are fixed by the
+  pattern of `f`. Their union is that cell, so the realizations of `g` and `h` coincide, and O1
+  applies. Left cancellation is O1 based at the realization of `f`.
+- **O3 and O4: correct.** Canonical maps send sub-boxes to boxes with the same split pattern, so
+  targets are determined after refinement. The two groupoid facts are standard: Gabriel–Zisman for
+  the universal groupoid of an Ore category, and vertex groups of presented connected groupoids.
+  The comb edges `x_{n,n,2}` form a spanning tree on the objects. Lemma 1 of
+  `piecewise-canonical-permutations-are-transposition-products` (surjectivity) reads correctly;
+  the rest of that node is not refereed here.

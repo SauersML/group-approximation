@@ -10,6 +10,8 @@ Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a c
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean` failed to build in the trusted gqprobe-lean v4 batch, Slurm job 1328760 (09-18, base d2df12ed9 plus bh-pal-wire's wave-1 overlay; request log gq-slurm/batch-b1789769423-3.log; 4 error lines, including the axiom-guard lines that follow them). Its imports built green in that batch, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: bh-pal-wire. Node written by fix-bh-b.
 
+**Repair landed, unprobed.** 123c645991: BH metabelian: complete the TreeFaithful omit repair and add fix nodes for the 8 wave-2 im. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
@@ -21,7 +23,6 @@ error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean:154
 
 **Kind.** mechanical (Lean/Mathlib drift): the unused-section-variable linter fires on 4 theorems.
 
-**Repair landed, unprobed.** 55aba370a4 (bh-pal-wire) added `omit [DecidableEq σ] in` to length_wordOf, vecOf_wordOf and vecOf_sub, and `omit [Fintype m] in` to listPoint_wordOf. The linter named BOTH `[DecidableEq σ]` and `[Fintype m]` for the first three, so those would still fail. fix-bh-b's commit that adds this node also changes them to `omit [DecidableEq σ] [Fintype m] in`, matching the linter's suggestion verbatim.
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeFaithful` compile with the repository's `-DwarningAsError=true` settings, changing no statement. Slurm submission has been blocked since 09-18 ~20:55 (state/SLURM-BLOCKED), so no trusted build has run since the repair landed.
 
