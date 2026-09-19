@@ -93,6 +93,46 @@ translation, i.e. of one `b`-type and one `B`-type domain under local similarity
 - **The same lopsidedness** occurs for the tree seed of `(Z/2)^(*3)`: `(2k+1; 2k+1, 1, 1)`, where the `c_x`
   contractions are isolated. There the interchange is `t·C(t) = Y ∖ C(t)`.
 
+## Addendum (2026-09-19): T0 reduces to one connectivity statement
+
+Farley–Hughes §6.2, as quoted from source by bh-invent-11: an expansion scheme `𝓔` is `n`-connected iff for every
+`b` and every `v` obtained from `{b}` by expansions, `lk({b}, Δ(𝓔(b))_[{b}, v])` is `(n−1)`-connected (Def 6.6). An
+`n`-connected scheme makes `Δ^𝓔` `n`-connected (Thm 6.9).
+
+**The enriched scheme.** `𝓔^+(b)` is `{b}` together with the maximal partition and one interchange partition. The
+interchange partitions, chosen by the same local maps for every ball of a type, so that `𝓔^+` is invariant, are:
+
+| ball | interchange type |
+|---|---|
+| `b`-cone | `(1;0,0,2,1)` (§ Proof, item 3) |
+| `B`-cone | `(1;0,0,1,2)` |
+| `a`-cone | `(1;2,1,0,0)` |
+| `A`-cone | `(1;1,2,0,0)` |
+
+The two `b`/`B`-cone entries are symmetric, and the `a`/`A` entries come from `C(a) = {a} ⊔ C(aa) ⊔ a·X_b`.
+
+**Conditional theorem.** If `𝓔^+` is `n`-connected for all `n`, then `F` has type `F_∞`.
+
+*Proof.* We apply FH Proposition 8.10.
+- **Hypotheses.** There are finitely many domain types; every `𝕊(D,D)` is trivial; every `𝓔^+(b)` is finite.
+- **Type vectors.** In `H_0 = Z⟨s, c_a, c_b⟩` we have `[Y] = −s`, `c_A = −s − c_a` and `c_B = −s − c_b`. So every
+  pseudovertex has type `(n_a + n_b − 1; n_a, n_a, n_b, n_b)`, and large rank forces `s` and `max(n_a, n_b)` to be
+  large.
+- **The region.** Put `R_n = {w : s ≥ α_n, and (a, A ≥ α_n or b, B ≥ α_n)}` with `α_n = 5n + 7`. On `R_n` the
+  interchange vectors of the large pair are available, and every contracting vector lowers each coordinate by at
+  most 2.
+- **The induction (Proposition 8.11).**
+  - Condition (1) holds because `α_n − 2 ≥ α_(n−1)`.
+  - Condition (2) holds because `α_n − 2j ≥ α_(n−j+1)` for all `j ≥ 2`, since `3j ≥ 5`.
+  - The base case `ℓ_sc ≥ −1` needs `α_(−1) = 2`, which makes an interchange vector `≼ w`.
+- **Conclusion.** So `ℓ_sc(w) ≥ n` on `R_n`. Every vertex of large rank lies in `R_(n−1)`, so Proposition 8.10
+  gives `F_n` for every `n`. ∎
+
+**What remains is exactly (i):** the interval links of `𝓔^+(b)`. Without interchange, bh-invent-11's observation
+applies: every ball of type `b` has children of types `a` and `A`, so no deeper interchange-free scheme repairs the
+lopsided vertices. T0 is then decided by Brown's criterion directly, i.e. by whether the rank-`k` 1-cycles die within
+bounded rank.
+
 ## Lesson for general BH
 
 **Finite presentation of seed full groups is a Houghton-type problem, even for tree seeds.**
