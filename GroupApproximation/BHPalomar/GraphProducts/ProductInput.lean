@@ -116,7 +116,9 @@ theorem productInput_holds : ProductInput := by
   obtain ⟨Γ₁, _, S₁, _, h₁, f₁, hf₁⟩ := hA
   obtain ⟨Γ₂, _, S₂, _, h₂, f₂, hf₂⟩ := hB
   exact ⟨Γ₁ × Γ₂, inferInstance, S₁ ⊕ S₂, sumProdAction Γ₁ Γ₂ S₁ S₂, isTypeA_sum h₁ h₂,
-    MonoidHom.prodMap f₁ f₂, fun x y hxy =>
-      Prod.ext (hf₁ (congrArg Prod.fst hxy)) (hf₂ (congrArg Prod.snd hxy))⟩
+    MonoidHom.prodMap f₁ f₂, fun x y hxy => by
+      have h1 : f₁ x.1 = f₁ y.1 := congrArg Prod.fst hxy
+      have h2 : f₂ x.2 = f₂ y.2 := congrArg Prod.snd hxy
+      exact Prod.ext (hf₁ h1) (hf₂ h2)⟩
 
 end GroupApproximation.BHPalomar.GraphProducts

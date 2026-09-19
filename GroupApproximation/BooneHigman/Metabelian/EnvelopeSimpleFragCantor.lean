@@ -32,7 +32,7 @@ theorem frag_firstWord_prepend (w : List X) (y : Cantor X) (N : ℕ) :
 theorem frag_eq_of_firstWord {a b : Cantor X} (M : ℕ)
     (h : ∀ N, firstWord (M + N) a = firstWord (M + N) b) : a = b := by
   funext n
-  have h1 : (fun i : Fin (M + (n + 1)) => a i) = fun i => b i :=
+  have h1 : (fun i : Fin (M + (n + 1)) => a i) = fun i : Fin (M + (n + 1)) => b i :=
     List.ofFn_inj.mp (h (n + 1))
   exact congrFun h1 ⟨n, by omega⟩
 
