@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -208,3 +209,32 @@ quantifier-shift).** Artifact
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
 
   The claim stays OPEN.
+
+**Relative rank gradient: an exact finite form of (D0) (September 19, 2026,
+swarm-0917-w14-w14-fp-break, finite-models).** New node
+[[fpbs-profinite-relcost-equals-relative-rank-gradient]], ESTABLISHED.
+Artifact `research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md`.
+Scripts in `experiments/fpbs-relative-rank-collapse-2026-09-17/`.
+- **What was proved.** Fold the coset graph of `K = <a, bab^{-2}>` over a
+  finite `L`-set `Q`. A chord of any length is then one vertex identification.
+  - A set of chords generates `E_L` over `E_K` on a free cover iff the fold has
+    `|Q|` vertices.
+  - Hence `d(Q) = rk(Stab_L(q) : Stab_K(q))`, and both groups have rank
+    `|Q| + 1`.
+  - On free profinite actions, `relC = lim d(Q_m)/|Q_m|`. This is the relative
+    Abert–Nikolov theorem.
+  - With Abert–Weiss and weak-containment transfer,
+    `Q_0 ≥ lim d(Q_m)/|Q_m|` for every free tower.
+- **Consequence.** (D0) now follows from one finite-combinatorial input:
+  relative rank linear in `|Q_m|` along a single free tower. Conversely,
+  `fpbs-relative-fixed-price-free-pairs` forces `d(Q_m) = o(|Q_m|)` on every
+  free tower.
+- **Where the lower bound dies.** The rank count gives `0`, since both ranks
+  are `n + 1`. Untwisted mod-`p` cokernels are small. Finite quotients bound
+  only the profinite relative rank.
+- **Numerics (upper bounds only).**
+  - Greedy merges give `d/n ≈ 0.109–0.12` at `n ≤ 600`.
+  - Random merges give `≈ 5/32`.
+  - Odometers stay bounded.
+  - No single chord ever suffices.
+- **Status.** (D1) is untouched, and the claim stays OPEN.
