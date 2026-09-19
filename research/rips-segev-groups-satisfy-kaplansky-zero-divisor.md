@@ -390,3 +390,20 @@ the Kaplansky zero-divisor conjecture."
      that the pattern-forced product is not `(-1)^L`; (ii) over `F_2`,
      exclude harmonic families by support matching, using only simplicity of
      `Lambda` and the rank-one lemma.
+
+23. **Harmonic cycles split over copies (strict reduction; `rips-segev-two-layer-cycles-split-over-copies`).**
+   - The previous item asked for two things: exclude `F_2` harmonic families by support matching with simple
+     `Lambda` and the rank-one lemma, and find a rigid directed cycle whose forced product is not `(-1)^L`.
+     Neither can close as stated.  In `<a, b | (a^m b)^n>`, `sum_j (a^m b)^j (1 - a^m b) = 0` satisfies every
+     such hypothesis.  A proof must use row separation or the non-monomial ratio.
+   - New object: if `u(1) + w(1) = 0`, then `sum_z Y(z)[z -> z b] + sum_T f_T (u + w)/(t - 1)` is a finite
+     1-cycle on the Cayley graph.  Relators are closed paths in `Gamma`, so it splits as `sum_i c_i` with
+     `0 != c_i in Z_1(C_i)`, over finitely many copies that `alpha` itself picks.
+   - Each `c_i` runs through a `Phi`-cycle of at least 42 lines.  A cycle line that no other `c_j` touches is
+     active and pure.  The rank-one lemma allows such lines on one row only, so each copy has at most one.
+   - Reduction: the coefficient-free **linked-cycle lemma** (in every finite family of copies carrying nonzero
+     cycles, some copy has two untouched cycle lines) excludes every relation with `u(1) + w(1) = 0`, over any
+     field.  Two copies share at most 3 cosets, so the lemma holds for at most 14 copies.  The star family is not
+     a counterexample: it leaves at least 33 lines untouched.
+   - Next step: prove the linked-cycle lemma for 15 or more copies, via an outermost copy.  Also handle
+     `u(1) + w(1) != 0`, where the chain has rays along the cosets with `f_T(1) != 0`.
