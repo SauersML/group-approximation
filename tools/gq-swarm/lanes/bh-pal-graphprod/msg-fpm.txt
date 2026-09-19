@@ -1,0 +1,4 @@
+GraphProducts.FreeProductMap: open Monoid.CoprodI by full name; drop subst-direction dependence (unprobed)
+
+open Monoid CoprodI relied on resolving CoprodI through the just-opened Monoid; name it in full.
+wordMap_injective no longer assumes which side of i = j the rfl pattern keeps.

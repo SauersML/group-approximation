@@ -1,0 +1,3 @@
+Cairn fix graph: record the unprobed repairs landed on main up to 70e4d3e8e4
+
+Every OPEN fix node whose module changed on main since the last scan now names the landing commit. It stays OPEN until a trusted probe builds it green.

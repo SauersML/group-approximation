@@ -106,3 +106,11 @@ theorem kourovka_17_57 :
 - CHANGED for 17.61 lanes: IsSmoothModulus / IsClassTranspositionOver / classTranspositionGroupOver now take `P : Set ℕ` (was Finset), and 17.61 reads `∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) → Group.IsFinitelyPresented (classTranspositionGroupOver P)`. bh-pal-kourovka61: copy the v3 blocks.
 - The 17.59 blocks and statement are unchanged.
 - Still not in the config, since they need vocabulary Mathlib lacks (F_n, Thompson-like groups, decision problems over CT(Z)): Conjecture H, FFWZ §1.2, Kourovka 21.73 and 21.74(b),(c), Zaremsky Q110, Tarocchi, Lodha, MZ Q3.18, ADOT Q1.1, RSV, MO 412219 and 339541, FFWZ Q5.9. Candidates for v4 if a lane supplies definitions.
+
+## bh-pal-surface v4 (09-18 ~21:30): LANDED a1045ed0a, UNPROBED (group Slurm block)
+- T2/T3 (FP/FG metabelian, FG linear) `_of` now take `RouteAOwed` = S1 ∧ P1 ∧ Z1 ∧ H1. The proofs go through GroupApproximation.BooneHigmanLinear.FrontierFour's `*_routeA` (bh-pal-wire). Challenge, config and shared block are unchanged from v3 (654ec6838).
+- Config (13): T1 Kourovka 14.10(c) PROVED; every other theorem is a skeleton (`_of` + owed hypothesis): FP/FG metabelian, FG linear, LISW Q1.11, Kourovka 17.57, 17.59, 17.60, 17.61, 21.75, Kohl factorization, BFFHZ Q3.1, Q3.3.
+- v3 and v4 are both unbuilt. One empty-overlay probe is armed to start when state/SLURM-BLOCKED disappears.
+- bh-pal-graphprod 09-18 21:30: the T7 statement file is on main: GroupApproximation/BHPalomar/GraphProducts/Statement.lean
+  (shared block unchanged; last touched 8d6acdcd0c). It has not been probed yet (Slurm is blocked). The proof chain is on main
+  up to 70e4d3e8e4. It is conditional on EnvelopeInput (BFFHZ Thm C (i)⇒(iv) + Thm E); do not list T7 as unconditional.

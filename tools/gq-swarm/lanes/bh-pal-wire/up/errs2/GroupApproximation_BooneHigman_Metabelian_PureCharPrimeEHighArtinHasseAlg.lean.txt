@@ -1,0 +1,86 @@
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:203:2: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:206:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:214:5: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:226:4: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:227:6: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:233:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:241:4: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:255:32: Unknown identifier `eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:256:5: Unknown identifier `eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:258:48: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:257:25: unsolved goals
+L M Q : Type
+inst✝² : Field L
+inst✝¹ : AddCommGroup M
+inst✝ : Group Q
+act : Q → M → M
+hadd : ∀ (q : Q) (x y : M), act q (x + y) = act q x + act q y
+hmul : ∀ (q r : Q) (x : M), act (q * r) x = act q (act r x)
+hone : ∀ (x : M), act 1 x = x
+V : Submodule L (M → L)
+htrans : ∀ (m : M), ∀ f ∈ V, (fun x => f (x + m)) ∈ V
+hact : ∀ (q : Q), ∀ f ∈ V, (fun x => f (act q x)) ∈ V
+q : Q
+b : ↥(eHighArtinHasse_alg V htrans)
+⊢ sorry (sorry b) = b
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:261:48: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:260:25: unsolved goals
+L M Q : Type
+inst✝² : Field L
+inst✝¹ : AddCommGroup M
+inst✝ : Group Q
+act : Q → M → M
+hadd : ∀ (q : Q) (x y : M), act q (x + y) = act q x + act q y
+hmul : ∀ (q r : Q) (x : M), act (q * r) x = act q (act r x)
+hone : ∀ (x : M), act 1 x = x
+V : Submodule L (M → L)
+htrans : ∀ (m : M), ∀ f ∈ V, (fun x => f (x + m)) ∈ V
+hact : ∀ (q : Q), ∀ f ∈ V, (fun x => f (act q x)) ∈ V
+q : Q
+b : ↥(eHighArtinHasse_alg V htrans)
+⊢ sorry (sorry b) = b
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:268:10: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:304:7: failed to synthesize instance of type class
+  Ring ↥(eHighArtinHasse_alg V htrans)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:306:47: failed to synthesize instance of type class
+  Algebra L ↥(eHighArtinHasse_alg V htrans)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.

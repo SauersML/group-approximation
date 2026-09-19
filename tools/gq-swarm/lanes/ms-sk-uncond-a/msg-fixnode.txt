@@ -1,0 +1,5 @@
+research: fix node for the SK open row's single owed Prop (degree-zero K2 surjectivity of the Cohn algebra)
+
+Records the one owed Prop behind census row 768ac9454e9b (tex l.733-735), its equivalent forms, the conditional modules that
+take it, the proved inputs, and the open sub-inputs (two-generator Gersten; the K2 localization / Mayer-Vietoris step).
+Lane ms-sk-uncond-a.

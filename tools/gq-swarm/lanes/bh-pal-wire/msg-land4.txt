@@ -1,0 +1,4 @@
+Cairn fix graph: 24 BH metabelian fix nodes RESOLVED; 3 still red after wave 1
+
+The trusted gqprobe v4 batch job 1328760 (base d2df12ed9 plus the overlay landed as 2d6ebaf55; no other overlay in the batch) built 24 of the 27 repaired modules green before it was cancelled. Their import closures are unchanged on main since then.
+AffineFPModel, PureCharPrimeEHighArtinHasseAlg and PureCharPrimeEHighWittECoeff stayed red. Second repair 55aba370a, unprobed (Slurm blocked).

@@ -1,0 +1,4 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeWreathEmbed.lean:101:4: failed to synthesize instance of type class
+  CommMagma (↥V ⧸ commutator ↥V)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
