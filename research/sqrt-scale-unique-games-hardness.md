@@ -163,3 +163,30 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     soundness certification.
   - *Survivor.* Unchanged: (P2) needs a rate superlinear in `λγ`. No published
     expander bound on record (AKKSTV, Raz–Rosen) has one.
+* **Correlated and heterogeneous products (2026-09-19, swarm-0917,
+  `w19-ugc-pull`, reframing).** **Dead for bounded base alphabet.** This closes
+  two of the survivors listed two attempts above.
+  - *Class.* Routes that output a µ-product `H` of polynomial-time computed
+    factors `G_1, ..., G_l`:
+    - the factors may differ, and each may be repeated;
+    - `µ` is any coupling of their constraint sets whose coordinate marginals
+      have density at most `D` (independent, heterogeneous, partial,
+      expander-walk, sampler and diagonal couplings);
+    - completeness is certified by the union bound `Σ_j (1 − opt(G_j)) <= η_Σ`.
+  - *Result.* `correlated-products-cannot-substitute-rounds-for-alphabet`
+    (ESTABLISHED) shows that `sdp+` tensorizes coupling-blindly:
+    `sdp+(H) >= 1 − D Σ_j (1 − sdp+(G_j))`. It uses the new import
+    `steurer-hellinger-relaxation-rounding` (Theorems 3 and 8 of Steurer).
+    Hence `opt(H) >= 1 − C_+ sqrt(D ln K Σ_j (1 − sdp(G_j)))`, and the base
+    SDPs decide the route. Unless `P = NP`, the ratio against `η_cert = D η_Σ`
+    is at most `sqrt(12 C_3 ln K)`, uniformly in `l` and `µ`.
+  - *Invariant and step.* The invariant is the Hellinger deficit, which is
+    subadditive over coordinates for every coupling. The route dies at output
+    soundness.
+  - *What would survive.*
+    - Set-indexed (unordered) direct products and fortification.
+    - Couplings whose YES completeness beats the union bound by a growing
+      factor. The diagonal coupling has `η_out = η_Σ/l`, but it does not
+      amplify soundness either.
+    - Composition or alphabet reduction after the product.
+    - Base alphabet `ln K >= C^2/(12 C_3)`.
