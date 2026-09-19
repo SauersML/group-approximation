@@ -144,3 +144,14 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
   - Next: decide `V_3(BS(1,2))`, i.e. `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_3`. It passes every homological test: its
     homology `(Z/2, Z/2, 0)` is that of the one-vertex `(3,3)` 2-graph. Either build a 2-graph model or find a
     finer (K-theoretic or order) invariant.
+- **2026-09-18 (w14-101).**
+  - **`V_3(BS(1,2))` is settled negatively for every `k`** (`rational-affine-rn-groups-are-not-k-graph-full-groups`).
+    - Homology cannot see it, but the degree cocycle can.
+    - Every continuous `Z`-cocycle on the germ groupoid of `Aff(Z[1/pm], U)` on `Z_p` (`m > 1`) is a multiplier
+      character plus a coboundary. Odometer averaging gives `I_0 ∈ ⋂ m^j Z[1/p] = 0`.
+    - So a `k`-graph model would force the multiplier skew product to be AF up to Kakutani equivalence. Its core is
+      the translation groupoid `Z[1/m] ⋉ Z_p`, with `H_1 = Z[1/m] ≠ 0`.
+  - This covers every `V_p(Z[1/m] ⋊ U_0)` over `Q`, and re-proves `V_2(BS(1,r))`.
+  - Over `F_q(t)` the translation core is locally finite, hence AF, which is why the models exist there.
+  - Next: finiteness of `V_3(BS(1,2))` must come from a Stein–Farley complex decorated by the 2-adic Bruhat–Tits tree,
+    not from `k`-graphs.
