@@ -123,7 +123,7 @@ theorem exists_rotate_block {A : α → Prop} {l : List α} (h : CyclicNoInterle
     | nil =>
       refine ⟨(u₁ ++ v).length, u₂ ++ u₁, v, ?_, ?_, hv⟩
       · have e : u₁ ++ (v ++ (u₂ ++ ([] ++ []))) = (u₁ ++ v) ++ u₂ := by
-          simp only [List.nil_append, List.append_nil, List.append_assoc]
+          simp only [List.append_nil, List.append_assoc]
         rw [e, List.rotate_append_length_eq, List.append_assoc]
       · intro x hx
         exact (List.mem_append.mp hx).elim (hu₂ x) (hu₁ x)
