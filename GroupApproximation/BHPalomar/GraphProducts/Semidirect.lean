@@ -92,7 +92,7 @@ def actEnd (c : C) : NN D →* NN D :=
   Monoid.CoprodI.lift fun b => (Monoid.CoprodI.of (i := b)).comp (conjT D c b)
 
 @[simp] theorem actEnd_of (c : C) (b : Bool) (t : ↥(factorT D b)) :
-    actEnd D c (Monoid.CoprodI.of (i := b) t) = Monoid.CoprodI.of (conjT D c b t) := by
+    actEnd D c (Monoid.CoprodI.of (i := b) t) = Monoid.CoprodI.of (i := b) (conjT D c b t) := by
   simp [actEnd]
 
 theorem actEnd_mul (c d : C) : actEnd D (c * d) = (actEnd D c).comp (actEnd D d) := by
@@ -118,7 +118,7 @@ theorem actEnd_one : actEnd D 1 = MonoidHom.id (NN D) := by
 def act : C →* MulAut (NN D) := autOfEnd (actEnd D) (actEnd_mul D) (actEnd_one D)
 
 @[simp] theorem act_of (c : C) (b : Bool) (t : ↥(factorT D b)) :
-    act D c (Monoid.CoprodI.of (i := b) t) = Monoid.CoprodI.of (conjT D c b t) := by
+    act D c (Monoid.CoprodI.of (i := b) t) = Monoid.CoprodI.of (i := b) (conjT D c b t) := by
   simp [act]
 
 /-- `S = (K ∗ L) ⋊ C`. -/
@@ -142,7 +142,7 @@ theorem elemF_coe (k : K) : ((elemF D k : ↥(factorT D false)) : X × K) = (1, 
 
 /-- `x ↦ (x ι(r x)⁻¹, r x)`. -/
 def psiX : X →* SS D :=
-  MonoidHom.mk' (fun x => ⟨Monoid.CoprodI.of (elemT D x), D.r x⟩) (fun x y => by
+  MonoidHom.mk' (fun x => ⟨Monoid.CoprodI.of (M := fun b : Bool => ↥(factorT D b)) (i := true) (elemT D x), D.r x⟩) (fun x y => by
     apply SemidirectProduct.ext
     · simp only [SemidirectProduct.mul_left]
       rw [act_of, ← map_mul]
@@ -155,11 +155,11 @@ def psiX : X →* SS D :=
       · simp
     · simp only [SemidirectProduct.mul_right, map_mul])
 
-theorem psiX_apply (x : X) : psiX D x = ⟨Monoid.CoprodI.of (elemT D x), D.r x⟩ := rfl
+theorem psiX_apply (x : X) : psiX D x = ⟨Monoid.CoprodI.of (M := fun b : Bool => ↥(factorT D b)) (i := true) (elemT D x), D.r x⟩ := rfl
 
 /-- `(c, k) ↦ (k, c)`. -/
 def psiCK : C × K →* SS D :=
-  MonoidHom.mk' (fun p => ⟨Monoid.CoprodI.of (elemF D p.2), p.1⟩) (fun p q => by
+  MonoidHom.mk' (fun p => ⟨Monoid.CoprodI.of (M := fun b : Bool => ↥(factorT D b)) (i := false) (elemF D p.2), p.1⟩) (fun p q => by
     apply SemidirectProduct.ext
     · simp only [SemidirectProduct.mul_left]
       rw [act_of, ← map_mul]
@@ -171,15 +171,12 @@ def psiCK : C × K →* SS D :=
       · simp
     · simp only [SemidirectProduct.mul_right, Prod.fst_mul])
 
-theorem psiCK_apply (p : C × K) : psiCK D p = ⟨Monoid.CoprodI.of (elemF D p.2), p.1⟩ := rfl
+theorem psiCK_apply (p : C × K) : psiCK D p = ⟨Monoid.CoprodI.of (M := fun b : Bool => ↥(factorT D b)) (i := false) (elemF D p.2), p.1⟩ := rfl
 
 theorem psi_rel (c : C) : psiX D (D.ι c) = psiCK D (c, 1) := by
-  apply SemidirectProduct.ext
-  · show Monoid.CoprodI.of (elemT D (D.ι c)) = Monoid.CoprodI.of (elemF D (1 : K))
-    have h1 : elemT D (D.ι c) = 1 := Subtype.ext (by simp [elemT_coe, D.hr])
-    have h2 : elemF D (1 : K) = 1 := Subtype.ext (by simp [elemF_coe])
-    rw [h1, h2, map_one, map_one]
-  · exact D.hr c
+  have h1 : elemT D (D.ι c) = 1 := Subtype.ext (by simp [elemT_coe, D.hr])
+  have h2 : elemF D (1 : K) = 1 := Subtype.ext (by simp [elemF_coe])
+  simp only [psiX_apply, psiCK_apply, h1, h2, map_one, D.hr]
 
 /-- `Ψ : X *_C (C × K) → (K ∗ L) ⋊ C`. -/
 def Psi : RetractAmalgam D.ι K →* SS D :=
@@ -191,7 +188,7 @@ def Psi : RetractAmalgam D.ι K →* SS D :=
 
 theorem Psi_mk (y : Coprod X (C × K)) :
     Psi D (QuotientGroup.mk' _ y) = Coprod.lift (psiX D) (psiCK D) y :=
-  QuotientGroup.lift_mk' _ _
+  rfl
 
 /-! ### The inverse map `S → G` -/
 
