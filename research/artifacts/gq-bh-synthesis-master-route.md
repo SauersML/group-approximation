@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9.3, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.4, 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5 and v9.3 adds §0.6.
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5, v9.3 adds §0.6, and v9.4 marks Kourovka 21.73 and 21.74(b),(c) solved.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -129,7 +129,8 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   - 19.45 is Collatz-hard (c0b107c65e; credit Kohl's 18.47(b), f8dd716a18).
   - 21.74(a) is decidable for every g in V, for any moduli (19e10ad19b, PASS).
   - 20.44 is reduced to totally consumable groups (06eb299b09, e2b397604f PASS). Frozen tails anywhere give 20.44
-    (bc9e6452bf, 643914a82b PASS).
+    (bc9e6452bf, 643914a82b PASS). Both are now unconditional, since the Collatz-hardness input 7b84a747f passed
+    review (23366da0aa).
 - **(RA_free).**
   - No rigid regular Toeplitz shift exists over surface groups, by the rank-gradient bound (e4b6958a0).
   - Algebraic rows carry rigid free commutants but are never minimal. So the test T1 is an invariant free minimal
@@ -150,11 +151,13 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   bh-ra-t2.
 - **BBMZ Q1.2.** New lane bh-q12-kazhdan works on persistence for the Z^r extension toward Kazhdan hyperbolic
   groups.
-- **Kourovka (named, off-route; prior-solution check pending with bh-ref-q11).**
+- **Kourovka 21.73 and 21.74(b),(c): SOLVED, negatively** (bh-free-58). The prior-solution check (23366da0aa) against
+  Kourovka v46, arXiv 2023–2026, Kohl and BBMZ found no earlier solution, so these are new results. The nearest
+  analogue, credited, is Salo's undecidability of conjugacy in 2V (arXiv:2011.07827).
   - **21.73:** the conjugacy problem in CT(Z) is undecidable (`ct-z-conjugacy-problem-is-undecidable`,
     a95cb1edf). PASS, with the Morita input read at source and discharged (e361044922).
   - **21.74(b),(c):** the finite-cycle problems in CT(Z) are undecidable
-    (`ct-z-finite-cycle-problems-are-undecidable`, 71b76e027). PASS, conditional on Kari–Ollinger Theorems 3
+    (`ct-z-finite-cycle-problems-are-undecidable`, 71b76e027). PASS, conditional only on Kari–Ollinger Theorems 3
     and 6, which are published.
   - bh-free-58's hand-off for 21.73/21.74, 20.44, 19.45/19.46 and 21.140 is ce7ab8f74.
 
