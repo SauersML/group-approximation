@@ -1148,3 +1148,33 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### swarm-0917-w18-w18-nh-follow (reframing): graded density kills every half compression defect
+
+- **Question.** The parallel w18-ptl-pull lane (not landed here) reduced `(QC)` to (HEC). (HEC) asks for a Kazhdan
+  `L <= Delta_+`, a compressor `u ∈ Delta_+` with `u L u^-1 <= L`, and `c ∈ C_Delta(L)`, `l ∈ L` with
+  `[u c u^-1, l] ≠ 1`. This is the node `leavitt-cone-half-carries-rigid-compression-defect`, which comes with
+  constraints C0-C4 and the next test `E_3(F_2[s_1])`.
+- **Result.** (HEC) is false. This is ESTABLISHED as `cone-half-compressions-have-graded-rigid-commutants`.
+  - Let `u ∈ GL_20(R)` with `u, u^-1` of nonnegative degree, for example any `u ∈ Delta_+`, and let `L <= GL_20(R_+)`
+    be any subgroup with `u L u^-1 <= L`.
+  - Then `C_Delta(u L u^-1) = C_Delta(L)`, with or without (T).
+- **Proof.** Let `A = F_2 L`.
+  - The degree-0 parts satisfy `u_0 (u^-1)_0 = 1`, so leading terms transform by the injective map
+    `x_j ↦ u_0 x_j u_0^-1`.
+  - The graded pieces of `M_20(R_+)` have finite dimension `400 · 2^(j+1)`, so `gr(u A u^-1) = gr(A)`. Hence
+    `u A u^-1` is degree-dense in `A`.
+  - Commutation with a fixed matrix of bounded degree range is continuous for the valuation filtration, and
+    `∩ F_k = 0`. So `(u A u^-1)' = A'`.
+  - (KH2) identifies `St_20` with `GL_20`.
+- **Class killed.** Every exact rigid-compression-defect certificate for `(QC)`.
+  - *Invariant:* the Z-grading, under which each cone has finite-dimensional graded pieces.
+  - *Death step:* `C_Delta(u L u^-1) ≠ C_Delta(L)`.
+  - Together with the Bass-Serre localization of exact Kazhdan compression pairs of `Gamma` into one half, this covers
+    every exact configuration. It subsumes the corner kill C4 and explains the profinite invisibility C2 as
+    invisibility modulo degree truncations.
+- **Target stays OPEN.** `(QC)` must now come from relations of `Gamma` that hold only modulo `K`, through
+  approximate relators or rounding. That is the regime of (HR) and of the mixed-block coherence (MW) of the w18-nh-last1
+  lane.
+- **Recommendation.** When the w18-ptl-pull nodes land, mark `leavitt-cone-half-carries-rigid-compression-defect`
+  REFUTED, and mark the route `(QC) <= (HEC)` dead, citing this node.

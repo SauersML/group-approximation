@@ -1,0 +1,2 @@
+(a) R_+ closure/grading: OK on 62 basis elements, dims 2^(j+1) for j<=4
+(b) leading-term lemma for u in E_3(R_+): OK on 40 random trials
