@@ -472,8 +472,7 @@ theorem turingReducible_language_genFam [Fintype A] [Primcodable A] (hinf : Infi
         rw [List.all_eq_true] at h
         have h0 := h 0 (List.mem_map.2 ⟨u, hu, if_pos huv⟩)
         exact absurd (of_decide_eq_true h0) zero_ne_one
-      rw [if_pos (hex.2 hv), hfalse]
-      rfl
+      rw [if_pos (hex.2 hv), hfalse, cond_false]
     · have htrue : ((allWords L (N + 1 - v.length)).map fun u =>
           if v ++ u ∈ language S then 0 else 1).all (fun a => decide (a = 1)) = true := by
         rw [List.all_eq_true]
@@ -482,8 +481,7 @@ theorem turingReducible_language_genFam [Fintype A] [Primcodable A] (hinf : Infi
         have hnot : v ++ u ∉ language S := fun h =>
           hv ((mem_language_iff_exists_append S hL v _).2 ⟨u, hu, h⟩)
         simp [hnot]
-      rw [if_neg fun h => hv (hex.1 h), htrue]
-      rfl
+      rw [if_neg fun h => hv (hex.1 h), htrue, cond_true]
 
 end Main
 
