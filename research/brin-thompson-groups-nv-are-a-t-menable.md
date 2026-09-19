@@ -527,3 +527,17 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     aperiodic points. So a proper-on-`M_n` witness cannot be an invariant-measure wall.
   - **What remains.** (Q_J) (Jacobian transversal), and a non-invariant-measure proper cnd
     function on `[[X]]`, as the first test of "proper on `M_n`".
+- **Refutation side: hyperfinite class-kill of char-p Burger lamp realizations** (swarm-0917-w17-w17-nv-pull,
+  2026-09-19, family entropy-measure). Recorded on `char-p-lamp-realizations-with-invariant-measures-die`.
+  - **Statement.** Take a lamp realization `φ∘λ = q(λ)∘φ` in `nV`, with linear parts containing
+    `EL_2(F_p[t^±])`. It dies whenever `Λ` preserves a probability `ν` on `C^n` and `q(Λ)` acts
+    essentially freely on `φ_*ν`. Haar measure is always free.
+  - **Invariant.** Orbits of subgroups of `nV` lie in the lagged product tail relation. That
+    relation is Borel amenable, with explicit Reiter functions.
+  - **Death step.** The Reiter functions are averaged over the fibres of the invariant measure, and
+    freeness turns them into a Reiter sequence on `q(Λ)`. So `q(Λ)` is amenable, which contradicts
+    relative (T).
+  - **Consequence.** Every conjugacy onto `(F_p^2)^Z` dies, for every `p`, including `p = 2`
+    (Proposition B's homeomorphism). This complements the fixed-point kill (Theorem K). A surviving
+    realization must have lifts with no invariant lift of any free measure.
+  - **Effect.** This does not bear on the positive (Haagerup) side.
