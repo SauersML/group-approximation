@@ -153,3 +153,21 @@ now exactly a published open question.
   deep binary runs.
 - *Where the remaining difficulty sits.* Any proof or counterexample must address
   the unpadded conjugator problem itself.
+- 2026-09-19 (swarm-0917-w15-w15-ptm-follow): *decomposition along the limit
+  trace.*  Route `bs12-trivially-padded-opnorm-correction-via-faithful-padding`
+  proves that Q3 is equivalent to `bs12-faithful-trace-opnorm-correction`
+  (Q3_full, for near-reps with faithful limit trace) together with
+  `bs12-regular-padding-is-removable` (RPR).  The proof pads by the odd clock
+  representation, which makes the trace faithful.
+  - Q3_full follows from LV HS-stability (`bs1n-hs-stable-levit-vigdorovich`,
+    verbatim) together with
+    `bs12-full-lift-uniqueness-in-matrix-ultraproducts`.
+  - Every K/KL obstruction vanishes
+    (`bs12-matrix-lift-pairs-have-zero-kl-class`).
+  - The live crux is de-amplification without Z-stability.  CGSTW Thm 1.2
+    fails verbatim, because the relative commutant of `prod M_N` in `Q_omega`
+    is `C`.
+  - Uniqueness is false for non-faithful traces: `1_{N-1} + chi` versus
+    `1_N`.
+  - The wave-14 twisted-clock census has limit trace `tau_reg`.  So it is
+    exactly a test of Q3_full, and a positive liminf would refute TPC.
