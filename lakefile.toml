@@ -279,7 +279,8 @@ roots = ["Palomar.MetabelianBooneHigmanModelTests"]
 
 # The Comparator configuration `Palomar/comparator-boone-higman.json`: stage 1 of the
 # Boone–Higman megasubmission, the printed questions answered here and proved outright
-# (Kourovka 14.10(c) = BBMZ Problem 2.7, Kourovka 17.59, and Kohl's factorization conjecture).
+# (Kourovka 14.10(c) = BBMZ Problem 2.7, Kourovka 17.59 and 21.75, and Kohl's factorization
+# conjecture).
 # `Palomar/BooneHigmanChallenge.lean` imports Mathlib only; `Palomar/BooneHigmanSolution.lean`
 # proves each theorem from the development.  Not in `defaultTargets`.
 [[lean_lib]]

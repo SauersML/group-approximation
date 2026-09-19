@@ -126,7 +126,7 @@ theorem teq_congr (k : ℕ) (c c' : Fin k → STree) (h : ∀ j, TEq (c j) (c' j
         funext i
         by_cases hi : i = a
         · subst hi; simp
-        · simp [Function.update_of_ne hi, hi]
+        · simp [hi]
       rw [heq]
       refine ih.trans (teq_update k _ a (c' a) ?_)
       simpa [ha] using h a
