@@ -19,8 +19,10 @@ complementation (FH Def. 3.12). Assume the domains **separate points**: for `x �
 
 1. If the transposition `(x z)` lies in `Γ_S`, then `{x}` and `{z}` are domains.
 2. **Seeds.** Let `F = [[Γ ⋉ Y]]` be a seed full group with seed orbit `O`, so `F ⊇ FSym(O)`
-   (`seed-full-groups-act-oligomorphically-on-the-seed-orbit`). Then for any such certificate on any `X ⊇ O`
-   (for instance `X = O` or `X = Y`) with `F ≤ Γ_S`, every point of `O` is a singleton domain. In particular
+   (`seed-full-groups-act-oligomorphically-on-the-seed-orbit`). Take a certificate on `X` with `F ≤ Γ_S`, where either `X = O`, or `X = Y` and the seed orbit consists
+   of isolated points. Then every point of `O` is a singleton domain. For any other `X` one must assume that each
+   transposition of `O` acts on `X` as a transposition. (Precision fix after bh-ref-q11, 454679b3dc. The containment
+   `F ⊇ FSym(O)` is imported from the oligomorphic-action node and was not re-checked.) In particular
    `addr(y_*)` is finite.
 
 ## Proof
