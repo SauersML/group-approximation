@@ -68,6 +68,29 @@ thompson-t-has-full-mf-radical  ==>  (PW)  ==>  T is not a quasidiagonal group.
     necessary condition that has been found.
   - *Small dimensions.* Each fixed dimension is gapped (`delta_n > 0`), so a finite-dimensional search
     can refute (PW) only through a sequence with dimension going to infinity. It cannot prove (PW).
+- **2026-09-19 (swarm-0917-w19-w19-ptl-last1, reframing): (PW) is equivalent to T not MF, so it is not a
+  weaker intermediate.** See `thompson-t-pentagon-winding-rigidity-equals-full-radical`, which is
+  ESTABLISHED.
+  - *Obstruction.* The obstructing invariant is the twisted spectrum `Lambda`. It is the set of
+    `lambda in S^1` for which there are pairs with
+    - `U^4 ≈ V^3 ≈ lambda` and `(VU)^5 ≈ lambda^3`;
+    - `r_1, r_2 ≈ 1`.
+
+    `Lambda` is a closed subgroup of `S^1`.
+  - *Death step.* Suppose `T` is MF. From a corona model `rho`, the dilation maps
+    `T̄ -> C_T(t_k)` together with the exact spectral projections of the finite-order unitary
+    `rho(t_k)` put `e^(2 pi i/2^k)` in `Lambda`. So `Lambda = S^1`.
+  - *Rescaling.* The rescaling `(e^(-i theta/4) U, e^(-i theta/3) V)`, rounded, leaves `r_1` and `r_2`
+    unchanged, because they are commutators. It sends `(BA)^5` to about `e^(i theta/12)`. So
+    `kappa_P != 0` at defect about `|theta|/12`.
+
+  Hence (PW) implies T not MF, and the sandwich collapses. The same argument kills every "arc-detecting"
+  vanishing statement for `(BA)^5`. Status of this node: still OPEN, and now equivalent to
+  `thompson-t-has-full-mf-radical`.
+  - *Relator-drop census (experiments/thompson-t-relator-drop-2026-09-17).* No `SL_2(C)` lift of a rigid
+    `Delta(4,3,5)` character satisfies `r_1` or `r_2`. `Delta/<<r_1>>` maps onto `A_5` and `Delta/<<r_2>>`
+    maps onto `A_6`. These are finite images only, so there is no non-torsion `H_2` class that separates
+    `r_2`. The "must use `r_2`" constraint above is confirmed but gives no handle.
 
 ## What a computation should look for
 
