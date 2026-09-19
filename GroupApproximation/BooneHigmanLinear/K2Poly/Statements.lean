@@ -1,0 +1,137 @@
+import GroupApproximation.BooneHigmanLinear.PolyFpK2
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The K₂ program for T2/T3: statements and wiring (lane bh-pal-wire)
+
+The dependency tree, its owners and the sources are in the swarm board `k2-poly.md`. The char-`p`
+input `P1` of route A is `ONEVAR ∧ DIAG`:
+
+* ONEVAR is `ElemFP.PolyK2OneVarNilStatementOver (ZMod p)`, stable `NK₂(F_p[s₁..s_k]) = 0`;
+* DIAG is `ElemFP.PolyK2StabRangeDiagStatementOver (ZMod p) 4`.
+
+This module does three things.
+
+* **DIAG from Tulenbaev's injective stability.** `stabRangeDiag_of_injStab` derives DIAG from
+  `TulenbaevInjStabFpStatement` (Tulenbaev, Math. USSR Sb. 45 (1983), Thm 5.3(a), elementary).
+  `gapOver_of_oneVar_of_injStab` and `polyFpK2VanishingGeTwo_of_oneVar_of_injStab` then reduce
+  `P1`, and the owed input `hV`, to ONEVAR together with that stability statement.
+* **The local case.** It states the case over one ring `B`, generically, so that no
+  `Localization` instance diamond arises at the call site:
+  - `LocalNKAt B r`: stable `NK₂` vanishing at rank `r` over `B`;
+  - `HorrocksMonicAt A r`: Tulenbaev's Cor 5.2(a). An element of `St_r(A[X])` that dies in every
+    ring where a monic `f` becomes a unit is trivial;
+  - `MonicKillAt B r`: a `NK₂` element dies after inverting some monic polynomial. This is the
+    deep core, where Quillen's homotopy invariance lives.
+* **One wiring step for the local case.** `localNKAt_of_horrocks_of_monicKill` shows that
+  `LocalNKAt` follows from the Horrocks and monic-kill statements.
+  - `LocalNKFpStatement` is the local case at the maximal localizations of `F_p[s₁..s_k]`.
+
+The monic-kill and Horrocks statements quantify over every ring `S` in which `f` becomes a unit,
+instead of naming `A[X]_f`. By the universal property of localization this is equivalent. It
+also keeps `Localization.Away f` out of the statements, whose semiring instance paths do not unify
+under instance search.
+-/
+
+namespace GroupApproximation
+namespace BooneHigmanLinear
+
+open GroupApproximation.BooneHigman
+
+section Stability
+
+/-- One stabilization killing `u` means `u` dies after padding. -/
+theorem k2DiesAfterPadding_of_K2Stab {R : Type*} [Ring R] {N : ℕ}
+    {u : SteinbergBasic.K2n N R} (h : SteinbergBasic.K2Stab N R u = 1) :
+    Metabelian.ElemFP.K2DiesAfterPadding u := by
+  refine ⟨N + 1, Nat.le_succ N, ?_⟩
+  have hemb : (Fin.castLEEmb (Nat.le_succ N) : Fin N ↪ Fin (N + 1)) = Fin.castSuccEmb :=
+    Function.Embedding.ext fun _ => Fin.ext rfl
+  rw [hemb]
+  exact h
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.k2DiesAfterPadding_of_K2Stab
+
+/-- **DIAG from Tulenbaev's injective stability.** -/
+theorem stabRangeDiag_of_injStab (h : TulenbaevInjStabFpStatement) (p : ℕ) (hp : p.Prime) :
+    Metabelian.ElemFP.PolyK2StabRangeDiagStatementOver (ZMod p) 4 := by
+  intro k _ u _ hstab
+  exact h p hp k (k + 4) (by omega) u (k2DiesAfterPadding_of_K2Stab hstab)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.stabRangeDiag_of_injStab
+
+/-- **`P1` from ONEVAR and Tulenbaev's injective stability.** -/
+theorem gapOver_of_oneVar_of_injStab
+    (hone : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2OneVarNilStatementOver (ZMod p))
+    (hinj : TulenbaevInjStabFpStatement) :
+    ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4 :=
+  fun p hp => ⟨hone p hp, stabRangeDiag_of_injStab hinj p hp⟩
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.gapOver_of_oneVar_of_injStab
+
+/-- The owed char-`p` input `hV` from ONEVAR and Tulenbaev's injective stability. -/
+theorem polyFpK2VanishingGeTwo_of_oneVar_of_injStab
+    (hone : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2OneVarNilStatementOver (ZMod p))
+    (hinj : TulenbaevInjStabFpStatement) : PolyFpK2VanishingGeTwoStatement :=
+  polyFpK2VanishingGeTwo_of_gapOver (gapOver_of_oneVar_of_injStab hone hinj)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.polyFpK2VanishingGeTwo_of_oneVar_of_injStab
+
+end Stability
+
+section Local
+
+/-- **Stable `NK₂` vanishing over `B` at rank `r`**: an element of `K₂(r, B[X])` killed by
+`X ↦ 0` dies after padding. -/
+def LocalNKAt (B : Type) [CommRing B] (r : ℕ) : Prop :=
+  ∀ u : SteinbergBasic.K2 (Fin r) (Polynomial B),
+    SteinbergBasic.K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1 →
+      Metabelian.ElemFP.K2DiesAfterPadding u
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.LocalNKAt
+
+/-- **Horrocks for `St_r`, monic form** (Tulenbaev Cor 5.2(a); board piece H.b, owner pal-q111).
+If `f ∈ A[X]` is monic and `α ∈ St_r(A[X])` becomes trivial in every commutative ring where `f`
+becomes a unit, then `α = 1`. -/
+def HorrocksMonicAt (A : Type) [CommRing A] (r : ℕ) : Prop :=
+  ∀ f : Polynomial A, f.Monic → ∀ α : SteinbergBasic.St r (Polynomial A),
+    (∀ (S : Type) [CommRing S] (φ : Polynomial A →+* S), IsUnit (φ f) →
+      SteinbergGroup.ringMap φ α = 1) → α = 1
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.HorrocksMonicAt
+
+/-- **Monic kill** (board piece MK, the deep core, owner bh-pal-wire).  Every element of
+`K₂(r, B[X])` killed by `X ↦ 0` becomes trivial, after padding to some rank `M`, in every commutative ring where
+some monic `f` becomes a unit. -/
+def MonicKillAt (B : Type) [CommRing B] (r : ℕ) : Prop :=
+  ∀ u : SteinbergBasic.K2 (Fin r) (Polynomial B),
+    SteinbergBasic.K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1 →
+      ∃ f : Polynomial B, f.Monic ∧ ∃ M : ℕ, ∃ hrM : r ≤ M,
+        ∀ (S : Type) [CommRing S] (φ : Polynomial B →+* S), IsUnit (φ f) →
+          SteinbergGroup.ringMap φ
+            (SteinbergGroup.indexMap (Fin.castLEEmb hrM)
+              (u : SteinbergBasic.St r (Polynomial B))) = 1
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.MonicKillAt
+
+/-- **LOCAL from Horrocks and monic kill.** -/
+theorem localNKAt_of_horrocks_of_monicKill {B : Type} [CommRing B] {r : ℕ}
+    (hH : ∀ M : ℕ, HorrocksMonicAt B M) (hMK : MonicKillAt B r) : LocalNKAt B r := by
+  intro u hu
+  obtain ⟨f, hf, M, hrM, hkill⟩ := hMK u hu
+  exact ⟨M, hrM, Subtype.ext (hH M f hf _ hkill)⟩
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.localNKAt_of_horrocks_of_monicKill
+
+/-- **The local case of ONEVAR** (board piece LOCAL): stable `NK₂` vanishes at every rank
+`r ≥ 5` over the localization of `F_p[s₁..s_k]` at any maximal ideal. -/
+def LocalNKFpStatement : Prop :=
+  ∀ p : ℕ, p.Prime → ∀ k : ℕ, ∀ (𝔪 : Ideal (MvPolynomial (Fin k) (ZMod p))) [𝔪.IsMaximal],
+    ∀ r : ℕ, 5 ≤ r → LocalNKAt (Localization.AtPrime 𝔪) r
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.LocalNKFpStatement
+
+end Local
+
+end BooneHigmanLinear
+end GroupApproximation
