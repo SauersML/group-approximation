@@ -12,7 +12,9 @@ distinct_from:
 ---
 
 **Status.**
-- Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; no priority claimed; Referee bh-ref-q12 2026-09-19: items 1, 3 and 4 PASS, item 2 PASS with a repair to the padding argument, and the Caveat to item 4 is wrong as stated; see the Referee section).
+- Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; no priority claimed; Referee bh-ref-q12 2026-09-19: items 1, 3 and 4 PASS, item 2 PASS with a repair to the padding argument, and the Caveat to item 4 is wrong as stated; see the Referee section). All three repairs are applied: common
+  loop-length indexing, the Caveat withdrawn and replaced by a scope note, and the not-finite-type claim
+  proved.
 - Item 5 is the sharpened open crux. Item 6 is heuristic and labelled so.
 - Recalled inputs, not re-proved:
   - linear groups over fields satisfy the minimal condition on centralizers (Wehrfritz);
@@ -67,10 +69,13 @@ A group `Γ` has a **two-sided cellular encoding** if all of the following hold:
 
    For `F = A_5`, the group `F wr Z` is **not virtually linear**. This answers the first test of the
    `gq-bh-invent-16-ra-free-state` handoff: a commuting pair can lift a group that is not virtually linear.
-   With single-pointer labels, the label layer is sofic, not of finite type (see the proof).
+   With single-pointer labels, the label layer is sofic. When loop lengths are unbounded, it is not of
+   finite type (see the proof, which follows the referee's gluing argument).
 2. **Closure, and the plaquette condition is free.**
-   - Groups with a two-sided cellular encoding are closed under finite direct products, using parallel tracks
-     and padding to common loop lengths. The class contains `GL_2(F_2[t^(±1)])` (the linear pair) and every
+   - Groups with two-sided cellular encodings on a **common loop-length sequence** `(ℓ_n)` are closed under
+     finite direct products, using parallel tracks on the same loops and no padding. Both known encodings
+     are indexed by the loop length itself: `F wr Z/ℓ_n` and `A_(ℓ_n) = M_2(F_2)[t]/(t^(ℓ_n) − 1)`. (The
+     earlier padding argument was wrong; see the Referee section.) The class contains `GL_2(F_2[t^(±1)])` (the linear pair) and every
      `F wr Z`. For example it contains `GL_2(F_2[t^(±1)]) × (A_5 wr Z)`, which is non-amenable and not
      virtually linear.
    - For any such `Γ`, the 2×2 plaquette cocycle condition of the linear node (item 4(c)) costs nothing. Use
@@ -154,10 +159,21 @@ A group `Γ` has a **two-sided cellular encoding** if all of the following hold:
   labels alone, without `b`, and preserve single-pointer labels, so they are automorphisms of the sofic
   layer. Rather than trying to update `b`, which changes globally when the pointer passes the origin, we
   drop it from the lifted system.
+- *Not of finite type, when loop lengths are unbounded* (the referee's gluing argument, written out).
+  - Suppose the single-pointer layer were of finite type with window diameter `w`. Take one skeleton
+    configuration with a level-`n` loop of length `ℓ_n > 8w`, and fix the value track and all other loops.
+  - Let `x_1` and `x_2` be the single-pointer labels with pointers at loop cells `k_1` and `k_2`, at loop
+    distance more than `4w`. Let `x_12` carry both pointers.
+  - A window of diameter `w` meets only loop cells within loop distance `2w` of each other: the loop is a
+    square boundary of side more than `2w`, and Euclidean-close cells on it are close along it. So no window
+    sees both pointers.
+  - Every window of `x_12` therefore occurs in `x_1` or in `x_2`: near `k_1` in `x_1`, near `k_2` in `x_2`,
+    and elsewhere in both. So `x_12` would be admissible, which contradicts "exactly one pointer".
 
 **2.**
-- *Products.* Run the encodings on parallel tracks and pad the loop words to a common length with a blank
-  symbol that every rule fixes. Rules on different tracks commute, and each track's pair commutes.
+- *Products.* Run the two encodings on parallel tracks of the same level-`n` loops, both of length `ℓ_n`.
+  Rules on different tracks commute, and each track's pair commutes. No padding is used: rotations and
+  pointer moves act on the whole cycle of length `ℓ_n` on each track.
 - *Plaquettes.* Horizontal transports lie in `Q_n × 1` and vertical ones in `1 × Q_n`, so they commute
   elementwise. With the linear node's rule (a horizontal transport depends only on the vertical boundary
   crossed, and conversely), the plaquette identity holds. `Q_n × Q_n` is regular on itself. Right
@@ -179,9 +195,11 @@ restriction to single-pointer data does.
   finite product of fields, one for each minimal prime. So `Γ` is (nilpotent)-by-(a subgroup of a finite
   product of `GL_d(fields)`), which is exact by Guentner–Higson–Weinberger and closure under extensions by
   amenable groups.
-- *Caveat.* Regularity is used. For a merely transitive `H`, the centralizer `N_H(H_x)/H_x` is a section.
-  For example, `U_3(F_q)` acting on the cosets of an index-`p` subgroup of its center has extraspecial
-  centralizers, whose minimal faithful degree is unbounded. So the ultraproduct step fails as stated. ∎
+- *Scope.* Regularity is used, through "the centralizer of a regular `H` is `H`". For a merely transitive
+  `H`, the centralizer is the section `N_H(H_x)/H_x`. Whether item 4 extends to that case is not decided
+  here. (An earlier example offered for this was wrong: the `U_3(F_q)` action is regular, and its
+  extraspecial quotients embed in `GL_3` over commutative rings. It is withdrawn; see the Referee
+  section.) ∎
 
 ## Lesson for general BH
 
