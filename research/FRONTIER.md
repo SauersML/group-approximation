@@ -27677,6 +27677,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-19 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
 - 2026-09-19 · deligne-third-floor-failure-is-continuous-untwisting-proof [COMPLETE] Take the ultralimit of the phase profiles of a counterexample sequence, read the flat holonomy on the limit as a continuous untwisting, and push every candidate limit back to an exact finite model or into the Bernoulli-profinite obstruction
 - 2026-09-19 · deligne-third-floor-failure-is-continuous-untwisting [ESTABLISHED] The third cellular floor fails exactly when a finitely approximable compact free Sp_4(Z)-space carries a continuous circle untwisting of the Deligne class, and every such space is non-profinite, non-Bernoulli and not untwistable with discrete phases
 - 2026-09-19 · deligne-schreier-complexes-have-a-uniform-third-cellular-floor [OPEN] Integral classes congruent to the Deligne class mod three have cellular norm bounded below uniformly over all Schreier complexes of Sp_4(Z)
@@ -27684,7 +27685,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-19 · sp4-ssd-is-a-matrix-ultraproduct-winding-bound-proof [COMPLETE] Take ultraproducts of amplified window witnesses, lift unitaries back, and differentiate the trace of the logarithm along a straight-line path of letters
 - 2026-09-19 · sp4-ssd-is-a-matrix-ultraproduct-winding-bound [ESTABLISHED] The single-scale winding deficit is exactly a trace-winding bound for uniform quasi-representations of Sp4(Z) into one matrix ultraproduct, and rounding to homomorphisms there proves it
 - 2026-09-19 · sp4-single-scale-deficit-from-ultraproduct-rounding [OPEN] Rounding uniform quasi-representations into the matrix ultraproduct at one scale gives the single-scale winding deficit with every constant
-- 2026-09-19 · sp4-quasirep-single-scale-winding-deficit [OPEN] At one fixed defect scale and on one finite window, no Sp4(Z) quasi-representation reaches the all-MF winding ratio
 
 ## Active claims
 
