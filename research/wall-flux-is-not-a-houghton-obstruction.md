@@ -10,8 +10,11 @@ distinct_from:
 ---
 
 **Status.**
-- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; not reviewed):** items 1–4.
-- **OPEN:** Lemma 5, with item 5a proved in boundary cases.
+- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: items 1, 2 and 4 PASS
+  with repairs, and item 4's proof is replaced by a simpler one; item 3 is a heuristic, not a theorem):** items
+  1–4.
+- **OPEN:** Lemma 5. Of item 5a, the cases `c = h` and `c = h − 1` check; the `c = 0` claim is wrong as stated
+  (Referee section).
 - No computation was run.
 
 ## Setting
@@ -96,3 +99,61 @@ among them. Without Lemma 5 nothing is concluded, but **no Houghton-type negativ
 - **The finiteness question for bounded hosts is one combinatorial lemma:** high connectivity of bounded-sum joins,
   together with contractibility of the zero-sum part. For hyperbolic inputs, the genuine frontier stays at
   exponential activity.
+
+## Referee (bh-ref-q12, 2026-09-19): items 1, 2, 4 PASS with repairs; item 3 heuristic; 5a partly wrong
+
+**Item 1 (no flux at fixed points): correct, with two repairs.**
+- `ψ_p` is a homomorphism on `Stab_L(p)`, it is a germ invariant, and it vanishes on `(B)_p`.
+- Finite index gives `g^m ∈ (B)_p` for some `m ≥ 1`, so `ψ_p` is always **torsion-valued**, and it is 0 when
+  `⟨Δ⟩` is torsion-free.
+- **Repair 1.** "`⟨Δ⟩ = ⟨x⟩ ≅ Z` for the pentagon" is not established. Only the image of `⟨Δ⟩` in the coarse
+  `H_0 ≅ Z` is computed (`gq-bh-finf-hyp-pentagon-defect-class.md`). The true `⟨Δ⟩` may also contain torsion in
+  the kernel of `H_0(true) → H_0(coarse)`.
+  - What is established is that fixed-point germs carry no **infinite-order** flux. That is all item 2 uses.
+- **Repair 2.** `φ_O` is a homomorphism on `Stab_L(O)`. But "finite-index subgroup preserving each orbit" is
+  unjustified: an element of `L` need not map `B`-orbits (tail classes) to `B`-orbits.
+
+**Item 2: correct.**
+- The stabilizers of the cells of `K_0` are handled by BHM Propositions 2.5 and 2.8, and so are `F_∞`. These use
+  only `|(L)_p : (B)_p| < ∞`.
+- So `k = 0` is true in the torsion-free case, but it is not needed for the finiteness of stabilizers.
+
+**Item 3 is a heuristic, not a theorem.**
+- The facts quoted are correct: Houghton's `H_n` is `F_(n−1)` and not `F_n` (Brown), and `FSym` is not finitely
+  generated.
+- But "no Houghton-type obstruction arises, at any `n`" only says that one known mechanism is absent. It proves no
+  finiteness statement. Grade it as analysis.
+
+**Item 4 (cocompactness): the conclusion is correct; the stated reason is wrong and is replaced.**
+- **The stated reason is wrong.** Total defect is not `L`-invariant for partial portraits; hidden points absorb
+  germs, as in the parent's referee section.
+- **The correct reason.** A partial portrait is completable iff it is `portrait(ℓ)` with some points hidden, for
+  some `ℓ ∈ L` (parent Step 1). Hiding commutes with the action, so `K_0` is `L`-invariant.
+- **Moreover `ℓ·γ` is non-singular.** It has trivial germs and hidden set `ℓ(M)`. So
+  **`K_0` is exactly the `L`-orbit of BHM's non-singular cells.**
+- BHM Propositions 2.5, 2.6 and 2.8 then apply verbatim:
+  - `K_(0,≤n)` has finitely many orbits of cells, by oligomorphy;
+  - cell stabilizers are commensurable with `SingFix_L(M,M')`, which is `F_∞`.
+- The bound `|c| ≤ nδ_max` and the parent's count are not needed. They also cover an infinite defect group.
+
+**Lemma 5 and 5a.**
+- **Where the problem lives.** Every vertex of `K_0` is `L`-equivalent to a non-singular one. So all descending
+  links are isomorphic to links at non-singular vertices, where the revealed total is 0.
+- **What Lemma 5 needs.** High connectivity, depending only on `h`, of the subcomplex of the join
+  `∗_(p∈M) Bgerm(L,p)` of revealings `S ⊆ M` whose defect sum `σ` lies in `−Σ_(p∈M∖S) D_p`. Here each
+  `Bgerm(L,p)` is finite and contains the trivial germ. Contractibility of `K_0`, or directly high connectivity of
+  `K_(0,≤n)`, is also needed. Both are open.
+- **5a, cases `c = h` and `c = h − 1`: descriptions and connectivity check.** Attaching cones along
+  `(h−3)`-connected joins preserves `(h−2)`-connectivity.
+- **5a, case `c = 0`: wrong as stated.**
+  - Take `δ_max = 1` and `D_p = {−1, 0, 1}`. The constraint `|σ| ≤ h − |S|` also removes non-top simplices once
+    `|S| > h/2`. For example, `h = 4` with three revealed germs of defect `+1` has `σ = 3 > 1`.
+  - With one-signed `D_p`, far more is removed.
+  - Since `c = 0` is the only case that matters (above), Lemma 5 is open in its essential case.
+
+**Literature.** No source found for `F_∞` of bounded full contracting RSGs with a non-torsion defect (searches
+09-19, as in `bounded-defect-free-full-contracting-rsgs-are-f-infinity`).
+
+**Verdict: PASS with repairs** for items 1, 2 and 4 (item 4's proof replaced). Item 3 is a heuristic. Item 5a is
+correct for `c = h` and `c = h−1` and wrong for `c = 0`, which is the case that matters. `F_∞` for the pentagon RSG
+remains open.
