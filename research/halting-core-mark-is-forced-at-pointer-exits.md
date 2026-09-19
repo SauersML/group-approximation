@@ -143,3 +143,34 @@ For `k ∈ K = T ⋊ ⟨x,y⟩` with `T` free on `t(r,s) = y^{-s}x^{-r}t x^r y^s
 - **Where the freedom goes.** All remaining freedom sits in end-type configurations, as free bits on the cosets
   that run to the end. They cannot be linked along the base, but each such coset carries the spine, which is
   exactly the visibility that centrality needs.
+
+## Correction (bh-g1-universal-point, 2026-09-19): rigidity is inherited-refuted; forcing stands
+
+bh-invent-15's `cohen-rope-reader-is-not-quantum-rigid` (1208f63aa) refutes quantum rigidity of the Cohen rope
+reader. The rigid seed records no `x`-positions below the sink, so the digits are extension data. Once the absorbing
+state `bad` is reached, the reader is blind to them, and far branches switch independently.
+
+**What survives.**
+- Theorem 1 and Lemma 2 are statements about forced values in anchored configurations, i.e. about (RS1).
+- They do not use rigidity and stand as written.
+
+**What is refuted.** Two things:
+- **(RS3) for the core-mark layer, as designed.** The rope marks are a consumed input of `ν_i`.
+- **Blindness in `ν_i` itself.** Determinized, the split automaton of Lemma 2 has states such as `prefix`,
+  `suffix` and `reject`.
+  - `reject` is absorbing, and it is blind to the positions of later letters.
+  - Those positions are the same unrecorded `x`-data.
+  - So `ν_i` has the blind-state defect independently of the rope reader.
+  - Only the outgoing exit (O), which reads the pointer mark alone, is free of it.
+
+**Consequence for the design.** An exit rule that is rigid under gate (GL-rigid) needs an injective, group-language
+reader. Two routes are open:
+- Replace the split test `[σ ∈ Q_i P]` by a group-language invariant that detects crossing. A prefix/suffix
+  split is not a group language, so this needs a new invariant, not a new automaton.
+- Choose the tower so that every non-core coset exits through an **outgoing** pointer, where (O) is local.
+  - That holds if trace groups lie in both edge groups at every vertex.
+  - Here `P ∩ A_i° = φ_i(P) ≠ P`, so it fails.
+
+**Lesson.** Forcing and rigidity separate at readers. An absorbing state is harmless for (RS1) and fatal for (RS3)
+whenever the data it ignores is extension data. Exit certificates must therefore be written as injective readers,
+or read off a pointer.
