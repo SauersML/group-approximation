@@ -23,6 +23,13 @@ Write `i = i_r ε_r + i_s ε_s + l` with `l_r = l_s = 0`, and `y_r = [x(l)_r, x_
   `x_s(i_s j) y x_r(i_r j)`; the three factors commute pairwise.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
@@ -183,7 +190,6 @@ theorem xvw_of_apply_eq_zero {i j : I → A} {r : I} (hir : i r = 0) :
 def CommSetup (r s : I) (l j : I → A) : Prop :=
   r ≠ s ∧ l r = 0 ∧ l s = 0 ∧ j r = 0 ∧ j s = 0 ∧ j ⬝ᵥ l = 0
 
-omit [DecidableEq I] in
 theorem CommSetup.symm {r s : I} {l j : I → A} (h : CommSetup r s l j) : CommSetup s r l j :=
   ⟨h.1.symm, h.2.2.1, h.2.1, h.2.2.2.2.1, h.2.2.2.1, h.2.2.2.2.2⟩
 
@@ -292,35 +298,29 @@ theorem wEl_conj_row {r s q : I} (hrs : r ≠ s) (hrq : r ≠ q) (hsq : s ≠ q)
         rw [show (1 : A) * (-1 * c) = -c by ring, show (-1 : A) * c = -c by ring]
         exact hC
 
-omit [Fintype I] in
 /-- `u` with its `r`-th and `s`-th coordinates set to zero. -/
 def norm2 (r s : I) (u : I → A) : I → A :=
   u - Pi.single r (u r) - Pi.single s (u s)
 
-omit [Fintype I] in
 theorem norm2_add (r s : I) (u v : I → A) : norm2 r s (u + v) = norm2 r s u + norm2 r s v := by
   simp only [norm2, Pi.add_apply, Pi.single_add]
   abel
 
-omit [Fintype I] in
 theorem norm2_single_left {r s : I} (hrs : r ≠ s) (c : A) :
     norm2 r s (Pi.single r c) = 0 := by
   rw [norm2, Pi.single_eq_same, Pi.single_eq_of_ne hrs.symm, Pi.single_zero, sub_self, sub_zero]
 
-omit [Fintype I] in
 theorem norm2_single_right {r s : I} (hrs : r ≠ s) (c : A) :
     norm2 r s (Pi.single s c) = 0 := by
   rw [norm2, Pi.single_eq_same, Pi.single_eq_of_ne hrs, Pi.single_zero, sub_zero, sub_self]
 
-omit [Fintype I] in
 theorem norm2_single_other {r s q : I} (hqr : q ≠ r) (hqs : q ≠ s) (c : A) :
     norm2 r s (Pi.single q c) = Pi.single q c := by
-  rw [norm2, Pi.single_eq_of_ne hqr.symm, Pi.single_eq_of_ne hqs.symm, Pi.single_zero, sub_zero,
-    sub_zero]
+  rw [norm2, Pi.single_eq_of_ne hqr.symm, Pi.single_eq_of_ne hqs.symm, Pi.single_zero,
+    Pi.single_zero, sub_zero, sub_zero]
 
-omit [Fintype I] in
 theorem norm2_of {r s : I} {u : I → A} (hur : u r = 0) (hus : u s = 0) : norm2 r s u = u := by
-  rw [norm2, hur, hus, Pi.single_zero, sub_zero, sub_zero]
+  rw [norm2, hur, hus, Pi.single_zero, Pi.single_zero, sub_zero, sub_zero]
 
 theorem colProd_neg (r : I) (i : I → A) : colProd r (-i) = (colProd r i)⁻¹ := by
   apply eq_inv_of_mul_eq_one_right

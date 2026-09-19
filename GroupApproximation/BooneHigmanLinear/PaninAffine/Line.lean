@@ -135,13 +135,13 @@ theorem finSuccEquiv_shear (a : Fin n → K) (g : MvPolynomial (Fin (n + 1)) K) 
     · rw [shear_apply, shearHom_X_succ, map_add, map_mul, finSuccEquiv_X_succ,
         finSuccEquiv_X_zero, finSuccEquiv_C', aeval_X]
       simp [shearLine]
-  refine MvPolynomial.induction_on g ?_ ?_ ?_
-  · intro c
+  induction g using MvPolynomial.induction_on with
+  | C c =>
     rw [shear_apply, show shearHom a (C c) = C c by simp [shearHom], finSuccEquiv_C', aeval_C,
       Polynomial.algebraMap_apply, MvPolynomial.algebraMap_eq]
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [map_add, hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [map_mul, hp, hX]
 
 /-- The `s₀`-leading coefficient of the sheared polynomial, as a polynomial in the shear

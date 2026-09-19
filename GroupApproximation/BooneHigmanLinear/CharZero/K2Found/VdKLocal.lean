@@ -22,6 +22,13 @@ Still to do for vdK's Theorem 1: independence of `r` (vdK 3.9–3.10), the addit
 the remaining cases of 3.12, and 3.13–3.22.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

@@ -18,6 +18,13 @@ W. van der Kallen, *Another presentation for Steinberg groups*, Indag. Math. **3
   alone (vdK 3.7–3.22, still owed).
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
