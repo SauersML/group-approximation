@@ -1,0 +1,8 @@
+n 12 trial 0 V0 36 rho 2 arcs 5808 pairs 1368064 full 568 distinct_R 49 k(R) dist {1: 12, 2: 37} witness>2 None
+n 12 trial 1 V0 36 rho 3 arcs 5808 pairs 1349892 full 0 distinct_R 48 k(R) dist {2: 36, 1: 12} witness>2 None
+n 12 trial 2 V0 36 rho 2 arcs 5808 pairs 1361384 full 348 distinct_R 46 k(R) dist {2: 34, 1: 12} witness>2 None
+n 12 trial 3 V0 36 rho 2 arcs 5808 pairs 1342436 full 2912 distinct_R 46 k(R) dist {2: 34, 1: 12} witness>2 None
+
+real	5m28.793s
+user	2m25.994s
+sys	0m0.474s
