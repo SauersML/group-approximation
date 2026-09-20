@@ -18,7 +18,8 @@ Source changed on main since that build: yes.
 
 
 
-**Repair landed, unprobed.** 3d373fe132: BH chain wave 7: ElemFPK2PolyDegKernel and ArtinHasseAlg (unprobed). Stays OPEN until a trusted probe builds it green.
+
+**Repair landed, unprobed.** e35edba33a: BH chain wave 10: ArtinHasseAlg CommRing structure from the scoped IsMulCommutative instan. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
