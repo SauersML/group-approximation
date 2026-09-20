@@ -95,3 +95,36 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
     The permutation representation on them therefore has almost invariant vectors and no
     base-invariant vector. So that module fails relative (T) directly.
+- **2026-09-20 (swarm-0917-w20-w20-nv-pull): local (germ-wise) cocycles (die; class-kill).**
+  Full statement and proof: `full-shift-full-group-local-cocycles-are-displacement-bounded`
+  (ESTABLISHED, `requires: []`).
+  - *Class.* 1-cocycles `b` of a unitary representation carrying a covariant spectral measure `P`
+    on `X` (`π(g)P(A)π(g)^* = P(gA)`) that are local: `P(gB)b(g) = P(hB)b(h)` whenever
+    `k_g = k_h` on the clopen `B`. This class contains:
+    - measured walls over *any* `Z`-extension `Ω → X` with *any* `τ`-invariant σ-finite measure.
+      These include the w16 invariant-measure walls, the periodic-point sums, walls over arbitrary
+      or quasi-invariant `ν` (via `m(A × {t}) = ν(σ^t A)`), and Maharam skew products;
+    - `ℓ²` of unions of orbits, with arbitrary `η`, which includes pattern-weighted cut walls;
+    - orbit-wise sums with divergent separate bounds;
+    - direct sums, integrals and pointwise limits of all of these.
+  - **Reduction.** Locality splits `b(g)` orthogonally over the images of the germ pieces:
+    `b(g) = Σ_k P(σ^k L_k) b(σ^k)`, where `L_k = {k_g = k}`. Hence
+    `ψ(g) ≤ ψ(σ) Σ_{k ∈ k_g(X)} k²`.
+  - **Where every member dies.** On `B_1 = {|k_g| ≤ 1}`, where `ψ ≤ 2ψ(σ)`. This set contains all
+    swaps `s_U` (an infinite elementary abelian 2-group) and the w16 involutions `g_m`.
+  - **Invariant:** germ subadditivity. Only three germ types have displacement at most one, but
+    infinitely many elements are built from them.
+  - **Calibration.** The same lemma kills every local cocycle on `V` (the family `g_W`, with
+    `ψ(g_W) ≤ ψ(t)`). `V` is Haagerup (Farley), so this is *not* evidence against the claim. It
+    shows that a witness must be non-local, like Farley's.
+  - **Surviving:**
+    - (S1) representations with no covariant spectral measure on `X`: configuration spaces, the
+      clopen algebra, Farley-type cube complexes that are not brick charts;
+    - (S2) non-local cocycles on covariant representations, which must put mass over the points
+      that stabilizer elements fix.
+
+    The parallel w20 node on orbit wobbling groups kills the restrictions of cnd functions on
+    `W(Y)`. Together the two nodes leave only witnesses that are non-local and do not extend to
+    `W(Y)`.
+  - *Correction to the w16 "Surviving" line.* Its two named survivors (quasi-invariant measured
+    walls, and pattern-weighted orbit walls) are local. So they die here.
