@@ -26,6 +26,7 @@ variable {I : Type*} [Fintype I] [DecidableEq I] {J : Type*} [Fintype J] [Decida
 
 /-- A pair `(i, k) ≠ (i, l)` has `k ≠ l`.  (`simple_kazhdan_sofic_group.tex` l.733-735,
 leaf T1b.iii.) -/
+omit [Fintype I] [DecidableEq I] [Fintype J] [DecidableEq J] in
 theorem pair_snd_ne {i : I} {k l : J} (h : (i, k) ≠ (i, l)) : k ≠ l :=
   fun e => h (congrArg (Prod.mk i) e)
 
@@ -35,6 +36,7 @@ noncomputable def auxIndex (hI : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ b �
   (hI i i i).choose
 
 /-- `i ≠ auxIndex hI i`.  (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+omit [Fintype I] [DecidableEq I] in
 theorem auxIndex_ne (hI : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ b ∧ d ≠ c) (i : I) :
     i ≠ auxIndex hI i :=
   ((hI i i i).choose_spec.1).symm
@@ -42,7 +44,7 @@ theorem auxIndex_ne (hI : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ b ∧ d �
 /-- The image of the generator `x_{αβ}(a)` of `St_{I×J}(R)`.
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
 noncomputable def blockGen (hI : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ b ∧ d ≠ c)
-    (α β : I × J) (h : α ≠ β) (a : R) : SteinbergGroup I (Matrix J J R) :=
+    (α β : I × J) (_h : α ≠ β) (a : R) : SteinbergGroup I (Matrix J J R) :=
   if h1 : α.1 = β.1 then diagElem α.1 (auxIndex hI α.1) (auxIndex_ne hI α.1) α.2 β.2 a
   else x α.1 β.1 h1 (Matrix.single α.2 β.2 a)
 

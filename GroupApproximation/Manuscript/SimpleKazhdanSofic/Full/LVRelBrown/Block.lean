@@ -190,6 +190,7 @@ theorem x_mem_stabRow (i j : Fin (m + 1)) (hij : i ≠ j) (hj : j ≠ Fin.last m
 def topBlock (g : Matrix (Fin (m + 1)) (Fin (m + 1)) B) : Matrix (Fin m) (Fin m) B :=
   g.submatrix Fin.castSucc Fin.castSucc
 
+omit [Ring B] in
 theorem topBlock_apply (g : Matrix (Fin (m + 1)) (Fin (m + 1)) B) (i j : Fin m) :
     topBlock g i j = g i.castSucc j.castSucc :=
   rfl

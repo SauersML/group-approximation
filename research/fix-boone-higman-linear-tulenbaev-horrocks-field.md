@@ -9,7 +9,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Field: bad im
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 
-**Repair landed, unprobed.** 9eed012501: Horrocks for Steinberg groups: local reduction, lighter imports, and Tulenbaevs Lemma 3.3. Stays OPEN until a trusted probe builds it green.
+
+**Repair landed, unprobed.** 41df56f6b6: Horrocks H.L2: fix the reds from batch b1789878900, and add DegOne, B0Maps and HL5Act/Deg0. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

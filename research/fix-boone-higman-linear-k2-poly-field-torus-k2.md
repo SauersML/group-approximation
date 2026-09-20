@@ -9,6 +9,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.K2Poly.FieldTorusK2: unsolved g
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 
+**Repair landed, unprobed.** f15539b758: K2 program: probe fixes (SteinRank1 import, FieldTorusK2 seq-focus lint) and H.L1 (ii) loc. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
 
 ```

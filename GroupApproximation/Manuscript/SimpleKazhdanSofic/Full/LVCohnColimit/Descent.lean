@@ -94,11 +94,12 @@ Steinberg group of the range (the corestriction is a ring isomorphism).
 theorem eq_one_of_ringMap_rangeRestrict_eq_one (f : A →+* B) (hf : Function.Injective f)
     (y : SteinbergGroup I A) (hy : ringMap (I := I) f.rangeRestrict y = 1) : y = 1 := by
   have hinv : ((RingEquiv.ofBijective f.rangeRestrict
-      ⟨fun a b hab => hf (congrArg Subtype.val hab), f.rangeRestrict_surjective⟩).symm :
+      ⟨fun _ _ hab => hf (congrArg Subtype.val hab), f.rangeRestrict_surjective⟩).symm :
         f.range →+* A).comp f.rangeRestrict = RingHom.id A :=
-    RingHom.ext fun c => RingEquiv.symm_apply_apply _ c
+    RingHom.ext fun c => (RingEquiv.ofBijective f.rangeRestrict
+      ⟨fun _ _ hab => hf (congrArg Subtype.val hab), f.rangeRestrict_surjective⟩).symm_apply_apply c
   have h2 := congrArg (ringMap (I := I) ((RingEquiv.ofBijective f.rangeRestrict
-      ⟨fun a b hab => hf (congrArg Subtype.val hab), f.rangeRestrict_surjective⟩).symm :
+      ⟨fun _ _ hab => hf (congrArg Subtype.val hab), f.rangeRestrict_surjective⟩).symm :
         f.range →+* A)) hy
   rw [map_one, LVCohnK2.ringMap_ringMap, hinv, LVCohnK2.ringMap_id_apply] at h2
   exact h2
