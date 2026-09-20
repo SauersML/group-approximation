@@ -1,0 +1,5 @@
+Artin relations hold for all 8 edges (cd, de free)
+rank of stacked sigma over Q: 5  => c0 = 1
+rank of twisted stack over Q(s): 5  => ct = 1
+kernel vector: [0, -1, 0, 0, 0, 1]
+verified: twisted stack kills it identically in s

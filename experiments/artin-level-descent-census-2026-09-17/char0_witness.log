@@ -1,0 +1,20 @@
+## q=3 p=4
+try 0 (i,j)=(2,2) relation defect 9.2e+00  sigma-stack sv [6.39795  1.051615]  twisted-stack sv [6.469802 1.8362  ]
+try 1 (i,j)=(1,2) relation defect 2.6e+01  sigma-stack sv [3.867358 2.083623]  twisted-stack sv [9.757559 2.504478]
+try 2 (i,j)=(1,3) relation defect 1.4e-14  sigma-stack sv [4.953586 0.      ]  twisted-stack sv [8.444379 0.783523]
+try 3 (i,j)=(2,3) relation defect 4.1e-15  sigma-stack sv [3.712105 0.      ]  twisted-stack sv [3.7115  0.50274]
+try 4 (i,j)=(2,2) relation defect 1.9e+01  sigma-stack sv [3.434253 1.66636 ]  twisted-stack sv [9.608894 2.632279]
+try 5 (i,j)=(2,3) relation defect 8.5e-15  sigma-stack sv [6.028772 0.      ]  twisted-stack sv [7.157824 0.388153]
+try 7 (i,j)=(2,3) relation defect 5.9e-15  sigma-stack sv [4.3904 0.    ]  twisted-stack sv [5.707128 2.032131]
+try 8 (i,j)=(1,2) relation defect 5.0e+01  sigma-stack sv [36.020244  0.968927]  twisted-stack sv [30.889825  2.937673]
+solutions found: 8
+## q=3 p=5
+try 0 (i,j)=(2,3) relation defect 4.5e-15  sigma-stack sv [3.806 0.   ]  twisted-stack sv [3.946626 0.511702]
+try 1 (i,j)=(1,2) relation defect 4.3e-14  sigma-stack sv [3.238189 0.      ]  twisted-stack sv [7.31225  0.678472]
+try 2 (i,j)=(1,4) relation defect 3.5e-15  sigma-stack sv [4.528383 0.      ]  twisted-stack sv [5.942781 0.700275]
+try 3 (i,j)=(2,4) relation defect 7.1e-15  sigma-stack sv [4.598582 0.      ]  twisted-stack sv [5.301183 0.59012 ]
+try 4 (i,j)=(2,3) relation defect 1.0e-14  sigma-stack sv [3.379066 0.      ]  twisted-stack sv [5.770182 0.643569]
+try 5 (i,j)=(2,4) relation defect 5.0e-15  sigma-stack sv [3.421235 0.      ]  twisted-stack sv [5.184719 1.852329]
+try 7 (i,j)=(2,4) relation defect 5.2e-15  sigma-stack sv [3.780075 0.      ]  twisted-stack sv [4.744053 0.563941]
+try 8 (i,j)=(1,2) relation defect 1.0e-14  sigma-stack sv [7.649667 0.      ]  twisted-stack sv [7.6975   0.758896]
+solutions found: 8
