@@ -333,3 +333,41 @@ and finite-entropy Cantor hosts cannot.
   Theorem 5.1 item (3) is "Right-angled Artin groups". The survey text says "Boone–Higman
   embeddings for right-angled Artin groups are now known (see Theorem 5.1)". Remark 5.4 adds only
   the types `A_n, B_n = C_n, D_n, I_2(m), Ã_n` and the Euclidean triangle Artin groups.
+
+## Attempt (bh-last1-w21, 2026-09-20): wedge Hall hosts and star-shaped kernels
+
+This attempt is on the one-sided free case `G = F_2 *_{φ : A -> B}`, with `[F:A] = k` and
+`[F:B] = ∞`. That is the `χ >= 0` case left untouched above. Details and proofs are in
+`wedge-hall-hosts-have-no-star-shaped-kernels`.
+
+- **The complement map must be designed.** Random Hall hosts, with random `L_0` and random
+  `α`, do have kernels. Hosts with a two-peak kernel:
+  - 6 of 20 for `k = 2`;
+  - 6 of 20 for `k = 3`.
+
+  In each such host an explicit cyclically reduced word was Britton-verified to die in `H`.
+  So "any `α`" is false. An exact decision procedure for two-peak kernels in any Hall host
+  runs on the pair graph of `Γ_Q`.
+- **Wedge design (ESTABLISHED on paper).** Take `S = Φ^-1(L_0) = b π' b^-1` inside the
+  `F`-component of `q_0 · b`, so that `M = <F, S> = F * S`. Then every kernel element needs a
+  **cascading pinch**. In the dual tree of its Britton matching, some valley `s^-1 X s` has
+  content `X ∉ F`.
+  - Star-shaped kernels (all valleys pinching directly) die by a free-product normal-form
+    argument in `F * S`.
+  - This includes every two-peak kernel and every `(t f t^-1 g)^p` whose valleys pinch
+    directly.
+  - Census: 0 wedge hosts of 40 have a two-peak kernel. A brute-force census found 0 kernel
+    words among about 1.58M words of shapes `(+-+-)`, `(++--+-)` and `(+-+-+-)`.
+- **Why it does not close (finite-orbit obstruction).** `G ≅ M *_{Q -> B̄}` with `Q = A * S`.
+  - `P = F * S` always has `P ∩ C_2 ⊋ B̄`, because finite `S`-orbits in `Σ_2` have nontrivial
+    stabilizers. Also `P ∩ C_1 ⊋ Q` when `k >= 2`.
+  - So the one-step HNN-subgroup criterion never holds, and the cascading pinches draw on
+    `Φ(C_1 ∩ M) \ B̄`, which the wedge does not control.
+  - This agrees with the endless folds of the bh-last1 Attempt.
+- **Remaining hole.** Design the complement of `L_0` in `C_2` level by level, so that no
+  cascading pinch closes. For example, require at each level `j` that
+  `<F, S_1, ..., S_j>` is a free product with the next pullback `S_{j+1}`. A proof would
+  need this tower to stay free product at every level (a limit argument).
+- **Artifact.** `experiments/hall-host-kernels-2026-09-17/hall_kernel_census.py`. Run it
+  with arguments `20 0 2` or `20 0 3` for the exact two-peak test, or `4 2` for the
+  brute-force census.
