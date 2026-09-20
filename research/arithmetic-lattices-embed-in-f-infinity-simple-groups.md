@@ -13,9 +13,22 @@ artifacts:
   - research/artifacts/gq-bh-q12-alt-host-routes.md
 ---
 
-**ESTABLISHED** by `arithmetic-lattices-embed-in-f-infinity-simple-groups-proof` (lane proof
-assembling landed nodes, not independently reviewed). No priority claimed; a bounded search found
-no statement of this corollary.
+**OPEN (proof claimed, under review).** The claimed proof is
+`arithmetic-lattices-embed-in-f-infinity-simple-groups-proof`, a lane proof assembling landed nodes.
+A referee (bh-ref-t0) is checking it.
+
+**Priority: attribution to Llosa Isenrich–Schesler–Wu.** Their arXiv:2510.01952, Theorem 1.4 with
+Remark 1.5, as quoted by a summarizing fetch of the arXiv HTML and not read at source, says:
+
+> "Let H be a finitely generated subgroup of GL_n(ℚ). There exists a simple group G that has the
+> same finiteness properties as H, H is a subgroup of G, and G admits a quasi-retract onto H."
+
+Remark 1.5 extends it to finitely generated subgroups of `GL_n(ℚ̄)`. Every lattice in `Sp(n,1)` or
+`F_4^{(-20)}` is arithmetic, so it is linear over a number field: a finite-index subgroup is, and a
+faithful induced representation passes this to the lattice. Each is also of type `F_∞`. So the
+Kazhdan hyperbolic consequence below already follows from their theorem, although they do not state
+it for lattices. This node is an independent second route, through Bux–Llosa Isenrich–Wu trees
+rather than Röver–Nekrashevych groups, and claims no priority.
 
 ## Statement
 

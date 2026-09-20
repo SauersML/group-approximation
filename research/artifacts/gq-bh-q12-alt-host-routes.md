@@ -4,6 +4,12 @@ Target: an `F_∞` simple host, not built from a BBMZ rational similarity group,
 group with property (T). Result: `arithmetic-lattices-embed-in-f-infinity-simple-groups` covers every
 lattice in `Sp(n,1)`, `n ≥ 2`, and in `F_4^{(-20)}`. The three routes in the brief are assessed below.
 
+**Priority (added 09-19).** Llosa Isenrich–Schesler–Wu, arXiv:2510.01952, Theorem 1.4 and
+Remark 1.5: every finitely generated `ℚ̄`-linear group embeds in a simple group with the same
+finiteness properties. That already covers every `F_∞` lattice in `Sp(n,1)` and `F_4^{(-20)}`. The
+landed node is an independent tree route with attribution to them. The quote came from a summarizing
+fetch and was not read at source.
+
 ## Route (b): twisted Brin–Thompson SV_G with G = Γ is blocked
 
 By `abstract-twisted-bt-type-fn-criterion` (refereed), `SV_G` is of type `F_∞` iff `G ↷ S` is of
