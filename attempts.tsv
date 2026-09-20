@@ -376,3 +376,4 @@
 35510346438	2026-09-20T20:05:17Z	GroupApproximation/Sofic/FinitePerfectLampExactRadical.lean	actualCoronaMFResidual_eq_lampSub
 35531030795	2026-09-20T20:48:13Z	GroupApproximation/Sofic/FiniteResidualKernel.lean	subsingleton_mulAut_of_natCard_eq_two
 35538997119	2026-09-20T21:33:12Z	GroupApproximation/Sofic/FiniteStageRobustGap.lean	applyMat_one
+35544912402	2026-09-20T23:32:56Z	GroupApproximation/Sofic/FiniteStageRobustGap.lean	norm_word_displacement_le
