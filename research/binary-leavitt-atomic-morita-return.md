@@ -184,3 +184,36 @@ trivial-amenable-radical, or non-inner-amenable type, or of the kind that
 `(T)` itself satisfies.  Otherwise the proof must use ambient data, such as
 simplicity of `EL_20` or Leavitt coefficients, which forbid the tensor
 splitting.  This does not prove `(BLAMR)`, and the claim stays OPEN.
+
+2026-09-17 (swarm-0917-w22-w22-ptl-last1, quantifier-shift).  The stably
+finite C-star rung left undecided by the wave-6 attempt is now decided by
+`stably-finite-msg-rung-is-one-universal-algebra`.
+
+- **It is one statement.**  `(MSG)` on `L` along all stably finite targets
+  is `(MSG)` in the single universal stably finite quotient `C*_SF(G)` of
+  `C*_max(G)`, and it is automatically uniform.
+- **It is Kazhdan when `C*_max(G)` is stably finite.**  In that case the
+  rung is equivalent to `(T)` of `L`, by the rung-0 induction argument.
+- **It is a genuine sufficient prerequisite.**  The adjoint and norm
+  coronas are stably finite targets.  So the rung for the compressed
+  subgroup `L` and the normal subgroup `K` feeds the manuscript transport
+  and normal-subgroup theorems through the per-model lemma.
+- **It has a necessary sub-prerequisite.**  The manuscript proper-isometry
+  computation, rerun with the Kesten eigenprojection, needs no `(T)`.  So
+  the rung for a strictly compressed `L` forces both the quasi-regular
+  algebra `C*_(lambda_(G/uLu^-1))(G)` and `C*_max(G)` to be not stably
+  finite.
+
+For the rank-four cell in `EL_20(L_(F_2)(1,2))`, the compression is
+strict, as the manuscript records.  Any Property-`(T)`-free proof of the
+rung must therefore contain a Kazhdan-free proof that `C*_max(EL_20)` has
+a proper isometry in some matrix algebra.  The graph's only source of such
+an isometry is the Kazhdan projection.
+
+The approach "prove `(MSG)` for the compressed subgroup from stable
+finiteness of the targets alone" dies at that step.  It also dies on every
+class of ambient groups containing one pair with `C*_max(G)` stably finite
+and `L` without `(T)`, such as `(F_2,F_2)` and `(BS(1,2),<a>)`.  What
+survives has to produce a proper isometry of `C*_max(EL_20)` without
+Kazhdan projections, or use a model-specific property of corona targets
+that general stably finite targets lack.  The claim stays OPEN.
