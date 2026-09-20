@@ -9,6 +9,7 @@ distinct_from:
   sp4-quasirep-windings-are-sublinear: that is a statement about plain quasi-representations of Sp_4(Z) excluding the full parameter circle; this is a statement about the lattice itself, and by deligne-lattice-non-mf-forces-finite-parameter-group it implies finiteness of P_op but is not known to be implied by it without commutant-projection-extraction.
   deligne-lattice-non-mf-forces-finite-parameter-group: that is the established theorem relating this claim to P_op; this is the open statement itself.
   commutant-projection-extraction: that is a general corner question for central unitaries; this is a single group-theoretic statement to which it would reduce the finite-parameter branch.
+  deligne-lattice-hyperlinear-iff-full-hs-parameter-circle: that is the established tracial analogue (hyperlinear iff P_2 = R/Z, unconditionally); this is the open operator-norm statement, which that node splits into non-hyperlinearity plus HS-invisible rigidity.
 ---
 
 **OPEN.** Let `Gamma~ = E_infinity` be the preimage of `Sp_4(Z)` in the universal cover of `Sp_4(R)`. The claim is
@@ -46,3 +47,26 @@ Equivalent forms, by `deligne-lattice-non-mf-forces-finite-parameter-group`:
   `deligne-lattice-non-mf-forces-finite-parameter-group`. No direct attack has been made. The dimension-growth and
   Kazhdan-rigidity inputs from `normal-kazhdan-defect-non-mf` do not apply as stated: `z` is central of infinite
   order, and `Gamma~` is not residually finite, so no finite quotient sees `z`.
+- **2026-09-20, swarm-0917-w20-w20-deligne-last1 (operator-algebras): the tracial half is settled; every tracially
+  visible refutation makes the lattice hyperlinear. Claim stays OPEN.**
+  See `deligne-lattice-hyperlinear-iff-full-hs-parameter-circle` (ESTABLISHED, unreviewed).
+  - *Theorem.* In any tracial matrix ultraproduct, the distribution of `V(z)` is supported in `e(P_2)`. The reason is
+    that the spectral projection of a short arc is a central corner that is an HS model at the arc's centre. Hence:
+    - `Gamma~` is hyperlinear iff `P_2 = R/Z`;
+    - `E_q` is hyperlinear iff `1/q` is in `P_2`;
+    - the hyperlinear radical is `{1}` or exactly `<z^(m_2)>`, unconditionally.
+
+    In the tracial world the analogue of `(CPE*)` holds automatically.
+  - *Class killed.* Suppose an MF embedding of `Gamma~` has, for every `N`, a limit trace that sees `Theta(z)^N != 1`.
+    Then it forces `P_2 = R/Z`, so `Gamma~` is hyperlinear, which refutes the target of
+    `dogon-sp2g-weak-ucp-nonhyperlinear`. Direct sums of HS-faithful models glued to residually finite data belong to
+    this class.
+  - *Split.* This claim follows from two prerequisites:
+    - (HL) `Gamma~` is not hyperlinear;
+    - (IR) every corona model with `||Theta_n(z)^(m_2) - 1||_2 -> 0` has `Theta(z)^(m_2) = 1`.
+
+    On (HL), (IR) follows from `(CPE*)` at `z^(m_2)`.
+  - *Where it dies.* The route is not shorter, because (HL) is itself the open problem of a non-hyperlinear lattice.
+    The norm transfer dies at one step: cutting a nondegenerate arc of `sp(Theta(z))` by a projection. A refutation of
+    this claim that leaves the lattice possibly non-hyperlinear must live in the O_2-suspension regime, with separating
+    arcs that are null for every limit trace.
