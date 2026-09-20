@@ -71,7 +71,7 @@ def stage (n : ℕ) : Subring CohnTwoF2 := (stageHom n).range
 /-- The `n`-th stage is isomorphic to `∏_{j ≤ n} M_{2^j}(𝔽₂)`. -/
 def stageEquiv (n : ℕ) : stage n ≃+* StageAlg n :=
   (RingEquiv.ofBijective (stageHom n).rangeRestrict
-    ⟨fun x y hxy => stageHom_injective n (congrArg Subtype.val hxy),
+    ⟨fun _ _ hxy => stageHom_injective n (congrArg Subtype.val hxy),
       (stageHom n).rangeRestrict_surjective⟩).symm
 
 /-! ### Membership in the stages -/

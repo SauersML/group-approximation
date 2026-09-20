@@ -128,7 +128,7 @@ theorem X_mem_rootSub {Φ : Fin N → Fin N → Prop} (i j : Fin N) (h : i ≠ j
 
 theorem rootSub_le {Φ : Fin N → Fin N → Prop} {K : Subgroup (St N)}
     (hK : ∀ (i j : Fin N) (h : i ≠ j), Φ i j → X i j h ∈ K) : rootSub Φ ≤ K := by
-  refine Subgroup.closure_le.mpr ?_
+  refine (Subgroup.closure_le _).mpr ?_
   rintro g ⟨i, j, h, hΦ, rfl⟩
   exact hK i j h hΦ
 

@@ -1,6 +1,8 @@
 import Mathlib.Tactic.Group
 import Mathlib.Data.Matrix.Basis
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Weyl.Basic
+import GroupApproximation.Leavitt.UniversalLeavittOver
+import GroupApproximation.Leavitt.ElementaryGroup
 
 /-!
 # The rank-four vertex setting and generation of `St_4(L)` (glue for `K₂(4, L) = ⊥`)

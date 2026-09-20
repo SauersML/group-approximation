@@ -54,20 +54,32 @@ theorem isFrame_pair {u w : Fin 4 → A} (huw : IsFrameEdge A u w) : IsFrame [u,
 
 theorem vertex_of_isFrame {v : Fin 4 → A} (h : IsFrame [v]) : IsFrameVertex A v := by
   obtain ⟨-, g, hg⟩ := h
-  exact ⟨g, fun r => hg 0 (by decide) r⟩
+  have h0 : (0 : Fin 4).val < [v].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  exact ⟨g, fun r => hg 0 h0 r⟩
 
 #audit_axioms GroupApproximation.Full.LVFrame.vertex_of_isFrame
 
 theorem edge_of_isFrame {v w : Fin 4 → A} (h : IsFrame [v, w]) : IsFrameEdge A v w := by
   obtain ⟨-, g, hg⟩ := h
-  exact ⟨g, fun r => ⟨hg 0 (by decide) r, hg 1 (by decide) r⟩⟩
+  have h0 : (0 : Fin 4).val < [v, w].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  have h1 : (1 : Fin 4).val < [v, w].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  exact ⟨g, fun r => ⟨hg 0 h0 r, hg 1 h1 r⟩⟩
 
 #audit_axioms GroupApproximation.Full.LVFrame.edge_of_isFrame
 
 theorem triangle_of_isFrame {v u w : Fin 4 → A} (h : IsFrame [v, u, w]) :
     IsFrameTriangle A v u w := by
   obtain ⟨-, g, hg⟩ := h
-  exact ⟨g, fun r => ⟨hg 0 (by decide) r, hg 1 (by decide) r, hg 2 (by decide) r⟩⟩
+  have h0 : (0 : Fin 4).val < [v, u, w].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  have h1 : (1 : Fin 4).val < [v, u, w].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  have h2 : (2 : Fin 4).val < [v, u, w].length := by
+    simp only [List.length_cons, List.length_nil]; decide
+  exact ⟨g, fun r => ⟨hg 0 h0 r, hg 1 h1 r, hg 2 h2 r⟩⟩
 
 #audit_axioms GroupApproximation.Full.LVFrame.triangle_of_isFrame
 

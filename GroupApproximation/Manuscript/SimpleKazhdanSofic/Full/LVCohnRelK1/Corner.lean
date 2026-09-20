@@ -26,9 +26,11 @@ def unitSum (E : κ → κ → A) (B : Matrix κ κ 𝕜) : A := ∑ a, ∑ b, B
 /-- `1 + ∑_{a,b} (B - 1)_{ab} e_{ab}` (`simple_kazhdan_sofic_group.tex` l.733-735). -/
 def unitLift (E : κ → κ → A) (B : Matrix κ κ 𝕜) : A := 1 + unitSum E (B - 1)
 
+omit [DecidableEq κ] in
 theorem unitSum_zero (E : κ → κ → A) : unitSum E (0 : Matrix κ κ 𝕜) = 0 := by
   simp only [unitSum, Matrix.zero_apply, zero_smul, Finset.sum_const_zero]
 
+omit [DecidableEq κ] in
 theorem unitSum_add (E : κ → κ → A) (B B' : Matrix κ κ 𝕜) :
     unitSum E (B + B') = unitSum E B + unitSum E B' := by
   simp only [unitSum, Matrix.add_apply, add_smul, Finset.sum_add_distrib]
