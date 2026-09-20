@@ -1,0 +1,8 @@
+words in defect: (0, 1)  (0=(VU)^5, 1=r_1, 2=r_2)
+reference mu_1 = 2 sin(pi/24) = 0.261052
+  n=4 0.223074 U-type (0, 1, 1, 3) V-type (0, 1, 2, 2)
+  n=4 0.223074 U-type (0, 2, 2, 3) V-type (0, 1, 1, 2)
+  n=4 0.259014 U-type (0, 1, 2, 3) V-type (0, 0, 1, 2)
+  n=4 0.261052 U-type (3, 3, 3, 3) V-type (1, 1, 1, 1)
+  n=4 0.261052 U-type (0, 0, 0, 0) V-type (2, 2, 2, 2)
+n=4: upper bound mu_n <= 0.223074  (ratio to mu_1: 0.8545)
