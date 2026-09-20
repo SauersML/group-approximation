@@ -73,3 +73,29 @@ virtual-torsion corner.
   circle: the Bloch decomposition of the Koopman representation of `T̄` on
   `L^2(R)`.  So no fibrewise argument that holds in `B(H)` can force
   `pi(z) = 1`.
+
+## Attempts
+
+- **2026-09-20 (swarm-0917-w20-w20-ptm-last1, stability-approximation):
+  the chromatic-code lane has a hidden prerequisite, "`T` is not sofic".
+  ESTABLISHED as `lifted-thompson-t-chromatic-codes-force-t-nonhyperlinear`.**
+  - *Descent.*  A bounded-area commutator code on `T̄` is, with the same
+    constants, a code on `T` and on every `C_T(r_k)`, because adding
+    relators only shrinks area.  Its mark is a commutator.  By translation
+    numbers no nontrivial commutator lies in `⟨z⟩`, so the pushed mark is
+    nontrivial.
+  - *Criterion.*  Pigeonhole over a finite normalized Hilbert--Schmidt net
+    of `U(k)` shows that a finitely presented group with such a code is not
+    hyperlinear.
+  - *Consequence.*  Any code-based proof of this claim proves that `T`,
+    `V` and `2V` are not sofic.  It also makes `T` an explicit nonhyperlinear
+    group.
+  - *Class kill.*  Conversely, a sofic or hyperlinear `T` kills every
+    commutator code, for every mark, on `T̄`, `T` and each `C_T(r_k)`.
+    Among them are the wave-19 triple-shift template and all
+    conjugate-template survivors.  The point where it dies is (CCC1)/(CCC2)
+    evaluated in a Hilbert--Schmidt approximation of `T`.
+  - *What remains.*  The target itself stays **OPEN**.  The lanes that do not
+    pay this cost are operator-norm-only ones:
+    - `lifted-thompson-t-not-mf-via-central-eigencorners`;
+    - the uniform rotation-centralizer gap reformulation of wave 19.
