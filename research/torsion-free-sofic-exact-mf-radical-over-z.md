@@ -361,3 +361,25 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
   - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
     refuted, because MF of `N` is unknown.
+- **2026-09-20, swarm-0917-w21-w21-titz-last1 (last mile, class kill, cohomology-index).  Status:
+  OPEN.**
+  - *Target.* The MF half of the w20 hole `torsion-free-sofic-quotientless-locally-mf-stable-kazhdan-kernel`,
+    which is on the landing branch. Its condition (LS) is local MF-stability.
+  - New ESTABLISHED (unreviewed) claim `mf-stable-kernels-lack-lef-nonsplit-central-extensions`,
+    with route `-proof`. It has no prerequisites.
+    - Theorem (WK): if a central `Z`-extension `Ktilde` of `K` is LEF and `<t>` meets
+      `[Ktilde, Ktilde]`, then `K` is not LS. The rounding already fails for one relator
+      `zhat ∈ N ∩ [F,F]`.
+  - *Invariant and death step.* The invariant is the integer winding `(1/2πi) Tr log zhat`.
+    - Scalar-twisted irreducibles of the finite LEF approximations of `Ktilde` are asymptotic
+      representations of `K` with winding `n_i d / m_i ≠ 0`.
+    - Exact tuples on `{zhat}` have winding `0`, and a geodesic homotopy preserves the winding.
+    - So the approach dies at the (LS) rounding step for `R = {zhat}`.
+    - Sanity check: for `Z^2` and the Heisenberg group this is Voiculescu's pair.
+  - *Consequence.* Every w20 kernel is perfect, since it is Kazhdan with (Q). So it has **no nonsplit
+    LEF central `Z`-extension**.
+    - In the MF regime the kernel is LEF (D2). The MF half now needs a LEF, perfect, quotientless
+      Kazhdan group none of whose nonsplit central `Z`-extensions is LEF.
+    - Or it needs `Hom(H_2(K;Z), Z) = 0`.
+  - *Not decided.* Whether an MF model of `Ktilde`, rather than a LEF one, already gives a nonzero
+    winding. See remark (R2) of the route.
