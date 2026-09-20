@@ -211,6 +211,54 @@ with finite `n`-skeleton.
     finite modulo automorphisms, has finite `n`-type, by the same collage induction.
 - **Pushouts.** Homotopy pushouts preserve finite `n`-type. `∎`
 
+**Lemma 7, the stabilizers written out** (bh-sz-vdg, 2026-09-19, as the referee bh-ref-q12 asked). This
+replaces the phrase "morphism sets finite modulo automorphisms" above.
+
+**The category.** Let `𝒢_m = E_m ⋊ Γ_m` be the Grothendieck construction of `Γ_m` acting on `E_m` by
+postcomposition.
+- Objects are the elementary arrows `f = (F, α) : c → m` with `c < m`.
+- A morphism `f_1 → f_2` is a pair `(β, g)` with `β ∈ Γ_m` and `g : c_1 → c_2` in `𝒞`, such that
+  `f_2 ∘ g = β ∘ f_1`.
+- By Thomason's theorem and Lemma 3, `(L_m)_{hΓ_m} ≃ B𝒢_m`.
+- `𝒢_m` is EI: an endomorphism has `g ∈ End(c) = Γ_c`.
+
+(a) **Objects.** The isomorphism class of `f` is determined by the number `k` of carets of `F`, with
+`1 ≤ k ≤ ⌊m/d⌋`. The reason is that `S_m ⊆ Γ_m` acts transitively on the `k`-block matchings, and `Γ_I` acts
+simply transitively on `Ω_I`, so on decorations too. So there are finitely many isomorphism classes.
+
+(b) **Automorphisms.** The map `(β, g) ↦ g` is an isomorphism from `Aut_{𝒢_m}(f)` onto
+`Stab_{Γ_c}(F) = {g = (σ; g_1, …, g_c) : σ preserves the caret roots of F} ≅ (B ≀ S_k) × (B ≀ S_{c−k})`.
+- For `g ∈ Γ_c` we have `f ∘ g = (g^*F, α g_*)` and `β ∘ f = (F, βα)`.
+- These are equal iff `g^*F = F` and `β = α g_* α^{−1}`.
+- `g^*F = F` means exactly that `σ` preserves the caret roots, because each `λ_b` permutes the children of a
+  vertex and so carries carets to carets.
+- So `β` is determined by `g`.
+
+(c) **Morphisms.** Let `(β, g) : f_1 → f_2` with `g = (G, γ)`.
+- **Shape.** `G` is elementary with `k_1 − k_2` carets, and `β^{−1}`-transported `F_1 = γ^*F_2 ∘ G`. So the roots
+  `[c_1]` split into three classes:
+  - roots of new carets, the carets of `G`, of size `k_1 − k_2`;
+  - roots of old carets, those coming from `F_2`, of size `k_2`;
+  - trivial roots, of size `c_1 − k_1`.
+- **Orbits.** `Aut(f_1) × Aut(f_2)` acts on `Hom(f_1, f_2)` by `(a_1, a_2)·φ = a_2 φ a_1^{−1}`. There is one orbit
+  for each combinatorial splitting. With `f_1` and `f_2` fixed, this is a choice of which `k_2` of the `k_1` carets
+  are old, and `Aut(f_1) ⊇ B ≀ S_{k_1}` moves these choices transitively. So there are finitely many orbits.
+- **Stabilizers.** Under (b), the stabilizer of `φ` is identified with the subgroup of `Stab_{Γ_{c_1}}(F_1)`
+  preserving the three classes: `(B ≀ S_{k_1−k_2}) × (B ≀ S_{k_2}) × (B ≀ S_{c_1−k_1})`.
+  - Given `a_1` in that subgroup, the `a_2` with `a_2 g = g a_1` is determined: on the leaves of `G` it is the
+    action transported from `a_1`, and elsewhere it equals `a_1`.
+  - This `a_2` lies in `Stab(F_2)`, because it preserves the old caret roots as a set.
+
+(d) **Chains.** A chain of non-isomorphisms `f_0 → f_1 → ⋯ → f_j` has `k_0 > k_1 > ⋯ > k_j`. It splits the roots
+of `c_0` into the trivial roots and the carets, graded by the step at which they were added. Its stabilizer in
+`Aut(f_0)` is the product of `B ≀ S_{(size of class)}` over the classes, and there are finitely many chain types.
+
+So every group appearing in the collage induction of §3 for `𝒢_m` (automorphism groups, stabilizers of morphisms,
+stabilizers of chains) is a finite-index overgroup of a power of `B`, hence of type `F_n`, and there are finitely
+many isomorphism types at each stage. The induction therefore gives `B𝒢_m` finite `n`-type, which is what the
+attaching step of Lemma 7 uses. The earlier count `(BK_1)_{h(B/K_1)} ≃ BB` computes the same homotopy type from the
+`E_m` side, as the referee noted.
+
 **Proof of the Theorem.**
 - Choose `m` with `ν(m) ≥ n`. Then `B𝒞_{≤m} → B𝒞_{[r]} ≃ BV_{d,r}(B, ψ)` is `n`-connected, by §6
   and Lemma 1.

@@ -30,7 +30,7 @@ subgroup. A positive answer through a Grigorchuk group would also answer Kourovk
 - **Mixed rays.** An infinite periodic example needs an orbit whose tails sweep whole level
   segments: `ct-p-z-mixed-ray-torsion-reduces-to-sweeping-orbits`. That node was refereed PASS
   with repairs to its item-2 proof (a3b10b78df).
-- **Germs.** CT(Z) has only positive slopes, so germ groups at points of `Ẑ` are torsion-free,
+- **Germs (heuristic remark, not a theorem).** CT(Z) has only positive slopes, so germ groups at points of `Ẑ` are torsion-free,
   and a periodic subgroup acts with trivial germs at its fixed points.
   - Grigorchuk's and Nekrashevych's periodic groups have a noncyclic germ group at their
     singular point (Klein four for Grigorchuk's first group). So they can only enter CT(Z)

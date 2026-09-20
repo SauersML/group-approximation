@@ -51,6 +51,7 @@ def Acute (i j p q : I) : Prop :=
 def Orth (i j p q : I) : Prop :=
   p ≠ i ∧ p ≠ j ∧ q ≠ i ∧ q ≠ j
 
+omit [Fintype I] [DecidableEq I] in
 theorem Acute.adj {i j p q : I} (hpq : p ≠ q) (h : Acute i j p q) : Adj i j p q := by
   rcases h with ⟨rfl, hq⟩ | ⟨rfl, hp⟩
   · exact ⟨Or.inl rfl, fun h => hq h.2, fun h => hpq h.2.symm⟩

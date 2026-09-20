@@ -9,7 +9,7 @@ distinct_from:
   kms-tops-embed-in-fp-self-similar-metabelian-groups: the Kochloukova–Sidki action has one cycle, and it contracts, so it is consistent with this.
 ---
 
-**ESTABLISHED (lane bh-kd2p, 2026-09-19; lane proof, not independently reviewed).** This answers the partial-contraction question for `K = 2` and for all `K ≥ 2`, in the product Frobenius–Möbius class.
+**ESTABLISHED (lane bh-kd2p, 2026-09-19; **referee PASS**, bh-ref-g, 28f69471d1, with its three minor repairs applied).** This answers the partial-contraction question for `K = 2` and for all `K ≥ 2`, in the product Frobenius–Möbius class.
 
 ## Statement
 
@@ -26,15 +26,22 @@ So in a faithful action, **every** cycle satisfies `Σ_{i∈C} j_i < 0`.
 2. **A principal ideal in `C`'s variables.**
    - Let `Z` be the support of the finite-codimension ideal `M'' = ⋂_{u∈U/U_H} uM ⊆ M`, so that
      `M'' ⊇ ∏_{z∈Z} 𝔪_z^{N'}`.
-   - Let `Z_0 ⊂ P^1(F_{p^r}) \ {0, 1, ∞}` contain every coordinate of every point of `Z`. It is stable under
-     Möbius maps over `F_p`.
+   - Let `Z_0 = P^1(F_{p^r}) \ {0, 1, ∞}`, for `r` large enough that it contains every coordinate of every point
+     of `Z` (repair 1 of bh-ref-g, 28f69471d1). It is stable under Galois and under Möbius maps over `F_p`, so
+     `h^{(i)}` below lies in `F_p[s_i]`.
    - Put `h^{(i)} = ∏_{c∈Z_0} (s_i − c)^{N'}` and `h̃ = ∏_{i∈C} (h^{(i)})^{p^{w_i}}`. Then `h̃ ∈ S`, since
      `w_i ≥ e_i`.
-3. **It lies in the domain.** Fix `z ∈ Z` and some `i ∈ C`. `h̃` has the factor `(s_i − z_i)^{N'}`, which lies
-   in `𝔪_z^{N'}`. So `h̃ ∈ ⋂_z 𝔪_z^{N'}`, and `h̃R ⊆ M'' ⊆ M`.
+3. **It lies in the domain.** Fix `z ∈ Z` and some `i ∈ C`.
+   - Points of `Z` are Galois orbits over `F_p`, so read the factor as `m_{z_i}(s_i)^{N'}`, where `m_{z_i}` is
+     the minimal polynomial of `z_i` over `F_p` (repair 2). It divides `h^{(i)}`, hence `h̃`, and lies in
+     `𝔪_z^{N'}`.
+   - So `h̃ ∈ ⋂_z 𝔪_z^{N'}`, and `h̃R ⊆ M'' ⊆ M`.
 4. **It is invariant.**
    - `σ_i(s_i − c) = μ_i(s_{π(i)}) − c` is a unit times `s_{π(i)} − μ_i^{-1}(c)`, since its pole lies over
      `{0, 1, ∞}`. So `σ_i(h^{(i)})` is a unit times `h^{(π(i))}`.
+   - **The ratio is a unit over `F_p`** (repair 3). It is a unit after base change to `F_{p^r}`, and it lies in
+     `R^{(π(i))}`, since both polynomials are defined over `F_p`. `R^{(π(i))}` is normal, and a unit after the
+     faithfully flat base change is a unit before it.
    - Hence `ψ̃(h̃) = ∏_{i∈C} Frob^{w_i + j_i}(σ_i h^{(i)})`, which is a unit times
      `∏_{i∈C} (h^{(π(i))})^{p^{w_i + j_i}}`.
    - Since `w_i + j_i ≥ w_{π(i)}` and `π` permutes `C`, this is divisible by `h̃`.
