@@ -73,7 +73,7 @@ def SideSuccFaceStatement : Prop :=
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     {cuts : SectionCuts D lambda c Delta.boundaryWord}
     {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
-    {P : OsinLemma94RealizedPolygons S} (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    {P : OsinLemma94RealizedPolygons S} (_ : OsinLemma94ClassPolygons P) (k : Fin P.count)
     (s : ℕ), s < P.sideCount k → ∀ (d t : S.diagram.toCombMap.Dart),
       (P.sideDarts k s).getLast? = some d →
       (P.sideDarts k ((s + 1) % P.sideCount k)).head? = some t →
