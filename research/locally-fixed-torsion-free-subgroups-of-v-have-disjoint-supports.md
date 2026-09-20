@@ -84,3 +84,28 @@ After passing to a power, an infinite-order `w ∈ V` splits `C = P ⊔ F`, with
 - `P ≠ ∅`.
 
 The three-cone test above is the model case of both.
+
+## Attempt: refining the partition to reach Lemma B (bh-scout-bbmz, 09-19)
+
+**Local fixedness survives refinement.** A subset of a piece fixed pointwise by `h` is still fixed pointwise by `h`. So
+refining the partition keeps the "each piece has a nontrivial pointwise fixer" property, with the same fixers.
+
+**What fails is the permuting hypothesis of Lemma B.** Lemma B needs each fixer to map pieces *onto* pieces, since after
+a power it must preserve every piece. Refinement cannot produce that for fixers with contracting dynamics:
+- A north–south element `w` preserves no nontrivial clopen set. If `w(W) = W` and `W` contains a neighborhood of the
+  attractor, then `W ⊇ w^{-n}(that neighborhood)`, which grows to `C ∖ {r}`, so `W = C`.
+- Mapping pieces onto *unions* of pieces is not enough either. The commutator step
+  `Fix[f,g] ⊇ (Fix f ∩ g Fix f) ∪ (Fix g ∩ f Fix g)` needs `g(Fix f) ⊇ Fix f`.
+
+**Where each case now stands.**
+- Fixers without contraction on the pieces: Lemma B.
+- A single north–south element anywhere in `Γ`: the locally-fixed node, item 2.
+- The open case is a fixer, after passing to a power, of the form `C = P ⊔ F` with `P` a nonempty identity region, or
+  with at least two attractors or repellers on `F`. Conjugating by powers of `w` gives a cover of `C` by `P`,
+  neighborhoods of the repellers, and the sets `w^{-n}(A_j)` over the attractors, each piece with a nontrivial pointwise
+  fixer. But these fixers still mix the pieces, and no single element is yet known to fix neighborhoods of two
+  attractors at once.
+
+**Natural next step.** Find, inside `Γ`, an element with a single attractor and a single repeller, as a product of
+elements whose attractor and repeller sets are in general position (in the style of the convergence-group lemma). Or
+show that locally fixed torsion-free groups in `V` cannot have one.
