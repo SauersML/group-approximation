@@ -9,6 +9,7 @@ distinct_from:
   injective-torus-automata-have-regular-degree: that is C2 for every group; this is a finite-dimensional topological statement that implies C2 for sofic groups only.
 artifacts:
   - research/artifacts/sofic-torus-rectangular-small-fibre-2026-09-19.md
+  - research/artifacts/zero-row-slice-count-2026-09-20.md
 ---
 
 **OPEN.**
@@ -105,3 +106,24 @@ fact `l^2`-injective) degree, hence is surjective.
       `rank g^* >= d max{|T| : |N(T)| = |T|}`.
     - This bound is empty on group truncations, where `|TW| > |T|`. So square-restriction
       approaches die on every instance that matters.
+- 2026-09-20 (swarm-0917-w21-w21-gs-pull, reframing): zero-row slice lemma with random shared set. OPEN;
+  the null-homotopic sector is closed.
+  - *Established.* `zero-row-controlled-inputs-are-outnumbered`, proved in
+    `research/artifacts/zero-row-slice-count-2026-09-20.md`.
+    - Inputs controlled by at most `K` null-homotopic outputs number at most `c_K` times those outputs, where
+      `c_K = 1/max_p (1-p)^(K-2)(1+(K-1)p)`: `c_2 = 1/2`, `c_3 = 8/9`, `c_K = 1 - 1/(2(K-1)^2) + O(K^-3)`.
+    - Hence, if `g^* = 0`, the linear form holds with `C = c_(dK)/(1 - c_(dK))` for every `K` and `d`,
+      **without (L)**.
+    - "Locality is necessary" above therefore concerns only unbounded control sets (`K = N` there), not the
+      null-homotopic sector at fixed `K`.
+  - *Method.* Lift the zero rows to `R`.
+    - A control set with at most one private real coordinate kills `pi_i` over every small box of the shared
+      coordinates. The slices are open subsets of `R`.
+    - Covering dimension (`|Z| + 1` colours, relative cup products) bounds such inputs by `|Z|`.
+    - Choose the private set `T` at random with density `1/(K-1)^2`.
+  - *Remaining sector.* This is in terms of w19's reduction (E_K), `|B| <= c * defect`. What is left is `B_1`:
+    inputs outside the span of their control rows, with nonzero but dependent rows. For `K = 3` these are the
+    proportional rows `(v, av, bv)`.
+    - Restricting to the annihilator subtorus gives only `|X_T| <= D + 2 r_P - |T|`, which dies once the row
+      rank `r_P` is proportional (artifact Section 5).
+    - The step that is missing is a slice lemma for circle-valued shared coordinates.
