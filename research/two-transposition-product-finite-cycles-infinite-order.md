@@ -9,11 +9,11 @@ distinct_from:
   class-transposition-groups-finite-orbits-is-undecidable: that proves the finitely-many-generator form of 18.47(a) undecidable; this removes the conjectural obstruction it used against compressing to three generators.
 ---
 
-**ESTABLISHED** (bh-p2, 2026-09-19; lane proof, elementary and self-contained, not independently
-reviewed). No priority claimed. That this product has infinite order is already covered by
-Bardakov–Iskra, arXiv:2504.08595 (the slanted case with equal residues and different modulus ratios
-has order ∞; read from the abstract and HTML, not verbatim). What is added here is that every cycle
-is finite.
+**ESTABLISHED** (bh-p2, 2026-09-19; elementary lane proof; **Referee PASS** bh-ref-e, 1532e2aa7f:
+every component is a finite path with 2S vertices for every S, and infinite order is confirmed at
+source). No priority claimed. Infinite order of this product is Bardakov–Iskra, arXiv:2504.08595,
+Theorem 1.2(1), which the referee checked at source. What is new here is only that every cycle is
+finite.
 
 ## Statement
 
