@@ -277,3 +277,38 @@ swarm-0917-w17-w17-ptm-last1).**
     which sends `z` to `e^(6 i theta) != 1`.  So no argument that restricts
     to the modular subgroup can succeed; it must use the relators that make
     `T̄` perfect.
+- **2026-09-20 (swarm-0917-w23-w23-ptl-pull, transplanter via symbolic-dynamics):
+  twist-and-cut; the residual is full-circle rigidity; the target stays OPEN.**
+  - *Established* `lifted-thompson-t-corona-centre-spectrum-is-full-circle`, an
+    implication.  Assume the T gap `G(eps_0)`, which is equivalent to
+    `thompson-t-has-full-mf-radical`.  Put `alpha_0 = min(pi, 24 arcsin(eps_0/2))`.
+    - *Central twist.*  If `sp(rho(z))` lies in an arc of half-width `alpha < alpha_0`, then
+      untwisting by `u = rho(z)^(1/12)` gives an exact `Z/4 * Z/3` pair with
+      `r_1 = r_2 = 1` and pentagon defect `||u - 1|| <= 2 sin(alpha/24)`.  So `rho` is
+      trivial.
+    - *Short pieces.*  Tensoring a corner with its conjugate kills every clopen piece of
+      `sp(rho(z))` shorter than `alpha_0`.
+    - *Dilation.*  The dilation `lambda` (`t_(k+1)^2 = t_k`) spreads the remaining arcs.
+    - *Result.*  Every nontrivial corona representation has `sp(rho(t_k)) = S^1` at
+      every level `k`, in every commutant corner it moves, and levelwise along every
+      subsequence on which it stays nontrivial.
+  - *Reduction.*  The target is equivalent to `thompson-t-has-full-mf-radical` plus
+    (FC): no nontrivial corona representation has full-circle centre in all of these
+    senses.  This sharpens the "Where it already holds" paragraph of
+    `lifted-thompson-t-centre-has-commutant-eigencorners`, where "perfect away from 1"
+    becomes "the whole circle".
+  - *Class killed: central functional-calculus twists and cuts.*  These are twists or
+    cuts of `rho` made with the functional calculus of `rho(z)`, of `rho(t_k)`, or of
+    tensor powers `rho^(⊗p) ⊗ conj(rho)^(⊗q)`.
+    - *Invariant.*  The degree vector `(1,...,1,-1,...,-1)` of the centre on the joint
+      spectrum `(S^1)^(p+q)` is not divisible by 12.
+    - *Failure step.*  The twelfth root `u` with `u^12 = rho(z)` does not exist.  The
+      residual exponent in `(B'A')^5 = u^(36-35)` is the Euler number 1.
+    - *Where the class dies.*  Exactly on (FC).  A witness for (EC) must come from
+      commutant projections outside `C^*(rho(t_k))` and its tensor powers.
+  - *Next falsifiable step.*  Decide whether an (FC) representation can exist.  A
+    candidate for building one is a sequence of exact pairs in which the spectrum of
+    `(BA)^5` equidistributes on the circle while the defect of `r_1` and `r_2` tends to 0.
+    Such a sequence would refute the T gap and settle `thompson-t-has-full-mf-radical`
+    negatively.  Conversely, no (FC) representation exists at all if the T gap holds with
+    every corner forced to be a scalar.
