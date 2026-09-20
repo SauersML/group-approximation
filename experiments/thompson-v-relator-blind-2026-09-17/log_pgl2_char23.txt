@@ -1,0 +1,80 @@
+char3 U+1 controls: (bc)^5 -> deg 4: y**4 - y**3 - y - 1 | (bc)^7 -> deg 6: y**6 - y**5 + y**3 - y**2 + 1
+    char3 U+1 r5 -> none
+    char3 U+1 r6 -> deg 3: y**3 + y - 1
+    char3 U+1 r7 -> none
+    char3 U+1 r8 -> none
+    char3 U+1 {r5,r6} -> none
+    char3 U+1 {r5,r7} -> none
+    char3 U+1 {r5,r8} -> none
+    char3 U+1 {r6,r7} -> none
+    char3 U+1 {r6,r8} -> none
+    char3 U+1 {r7,r8} -> none
+    char3 U+1 {r5,r6,r7} -> none
+    char3 U+1 {r5,r6,r8} -> none
+    char3 U+1 {r5,r7,r8} -> none
+    char3 U+1 {r6,r7,r8} -> none
+    char3 U+1 {r5,r6,r7,r8} -> none
+char3 U-1 controls: (bc)^5 -> deg 4: y**4 + y**3 + y - 1 | (bc)^7 -> deg 6: y**6 + y**5 - y**3 - y**2 + 1
+    char3 U-1 r5 -> none
+    char3 U-1 r6 -> none
+    char3 U-1 r7 -> none
+    char3 U-1 r8 -> none
+    char3 U-1 {r5,r6} -> none
+    char3 U-1 {r5,r7} -> none
+    char3 U-1 {r5,r8} -> none
+    char3 U-1 {r6,r7} -> none
+    char3 U-1 {r6,r8} -> none
+    char3 U-1 {r7,r8} -> none
+    char3 U-1 {r5,r6,r7} -> none
+    char3 U-1 {r5,r6,r8} -> none
+    char3 U-1 {r5,r7,r8} -> none
+    char3 U-1 {r6,r7,r8} -> none
+    char3 U-1 {r5,r6,r7,r8} -> none
+char3 N1 controls: (bc)^5 -> none | (bc)^7 -> none
+    char3 N1 r5 -> none
+    char3 N1 r6 -> deg 1: y + 1
+    char3 N1 r7 -> none
+    char3 N1 r8 -> none
+    char3 N1 {r5,r6} -> none
+    char3 N1 {r5,r7} -> none
+    char3 N1 {r5,r8} -> none
+    char3 N1 {r6,r7} -> none
+    char3 N1 {r6,r8} -> none
+    char3 N1 {r7,r8} -> none
+    char3 N1 {r5,r6,r7} -> none
+    char3 N1 {r5,r6,r8} -> none
+    char3 N1 {r5,r7,r8} -> none
+    char3 N1 {r6,r7,r8} -> none
+    char3 N1 {r5,r6,r7,r8} -> none
+char3 N2 controls: (bc)^5 -> deg 4: y**4 + 1 | (bc)^7 -> deg 6: y**6 - y**4 + 1
+    char3 N2 r5 -> none
+    char3 N2 r6 -> none
+    char3 N2 r7 -> none
+    char3 N2 r8 -> none
+    char3 N2 {r5,r6} -> none
+    char3 N2 {r5,r7} -> none
+    char3 N2 {r5,r8} -> none
+    char3 N2 {r6,r7} -> none
+    char3 N2 {r6,r8} -> none
+    char3 N2 {r7,r8} -> none
+    char3 N2 {r5,r6,r7} -> none
+    char3 N2 {r5,r6,r8} -> none
+    char3 N2 {r5,r7,r8} -> none
+    char3 N2 {r6,r7,r8} -> none
+    char3 N2 {r5,r6,r7,r8} -> none
+char2 controls: (bc)^5 -> deg 8: y**8 + y**2 + 1 | (bc)^7 -> deg 12: y**12 + y**10 + y**6 + y**4 + 1
+    char2 r5 -> none
+    char2 r6 -> deg 1: y
+    char2 r7 -> none
+    char2 r8 -> none
+    char2 {r5,r6} -> none
+    char2 {r5,r7} -> none
+    char2 {r5,r8} -> none
+    char2 {r6,r7} -> none
+    char2 {r6,r8} -> none
+    char2 {r7,r8} -> none
+    char2 {r5,r6,r7} -> none
+    char2 {r5,r6,r8} -> none
+    char2 {r5,r7,r8} -> none
+    char2 {r6,r7,r8} -> none
+    char2 {r5,r6,r7,r8} -> none

@@ -163,3 +163,42 @@ inside `V` is finite with trivial defect, in every ambient group.
        solutions have finite image, which is impossible for V below 1/2.
    - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
      identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.
+4. **swarm-0917 w21 (nh-break, census-computation), 2026-09-20: which relators can carry the gap.** The hole
+   stays **OPEN**.
+   - **Result (ESTABLISHED, exact computation).** Claim: `thompson-v-single-relator-quotients-have-no-small-images`.
+     Put `Gamma_S = G0/<<S>>` for `S` inside `{r5,...,r8}`.
+     - `eta(r5) = eta(r8) = -1` and `eta(r6) = eta(r7) = +1`, so `Gamma5` and `Gamma8` are perfect.
+     - `Gamma5` and `Gamma8` have no nontrivial homomorphism to `PGL(2,F)` for any field `F`. This is exact
+       in characteristic 0 and in every characteristic `p`, including 2 and 3.
+     - They have no nontrivial action on at most 16 points (9593374 actions at `m = 16`).
+     - They have no nontrivial map to `U3(3)`, `L3(4)`, `U4(2)`, `U3(4)`, `U3(5)`, `J1` or `L3(5)`.
+     - Hence every nontrivial finite quotient has a simple quotient of order at least `|M22| = 443520`.
+     - Files: `experiments/thompson-v-relator-blind-2026-09-17/`.
+   - **Class kill: gap proofs that use only `r6`, `r7`.**
+     - *Invariant:* the sign character `eta`.
+     - *Death step:* `eta` is a nontrivial exact representation with `eta(r6) = eta(r7) = 1`. So no bound on
+       `max(||sigma(r6) - 1||, ||sigma(r7) - 1||)` alone can be uniform.
+     - Every proof of the gap of entry 2 must read `r5` or `r8`, in every dimension.
+     - `r6` and `r7` are individually weak words. In each simple group above they have 20 to 300 times the
+       random-word solution count.
+   - **New decomposition: one-relator strengthenings.**
+     - `Gap(r5)`: there is `epsilon > 0` with `||sigma(r5) - 1|| >= epsilon` for every nontrivial irreducible
+       unitary `sigma` of `G0`. `Gap(r8)` is the same for `r8`.
+     - Each implies this claim.
+     - Every exact obstruction to them tested so far is absent.
+     - If `Gamma5` has no nontrivial finite quotient, entry 3's form (A) gives `Gap(r5)` at `1/2` on the whole
+       virtually solvable-image locus, without using that V is simple.
+   - **Calibration (the evidence is weak).**
+     - `chi(G0) = -7/24`.
+     - `r5` and `r8` hit zero exactly as random words would: about 1 expected solution per simple group.
+     - So the computation does **not** distinguish "`Gamma5 = V`" from "`Gamma5` is a large one-relator group
+       with no small quotients". Do not extend the finite census to larger simple groups expecting it to
+       decide this.
+   - **Next hole.** Decide whether `Gamma5 = V`, that is, whether `r6, r7, r8` lie in `<<r5>>` in `G0`.
+     - If yes, V is a one-relator quotient of `S4 *_Z2 S3`, and this claim is exactly `Gap(r5)` for a single
+       word. That would be the most compressed form of the hole.
+     - If no, look for a nontrivial finite-dimensional unitary representation of `Gamma5`. It would kill `Gap(r5)`
+       but not this claim, and it would show which of `r6`, `r7`, `r8` the gap must read.
+     - A bounded shortlex Knuth--Bendix run (`kb_r5.py`, rule length at most 22, 36244 rules) reduced none of
+       the three words, whose residues kept lengths 28, 26 and 37. The system is not confluent, so this is
+       inconclusive. Do not repeat it at this scale.
