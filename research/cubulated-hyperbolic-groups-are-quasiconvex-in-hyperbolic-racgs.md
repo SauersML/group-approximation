@@ -9,7 +9,10 @@ distinct_from:
   hyperbolic-racgs-are-contracting-rsgs: that settles Question 1.1 inside the class this bridge would transport it from.
 ---
 
-**OPEN.** The question has been asked in print.
+**OPEN.** The gap is raised in print. DFWZ §1.2 state that no procedure is known and no obstruction is known; it is not a
+numbered question there. The framings agree: by Agol, every cocompactly cubulated hyperbolic group is virtually compact
+special. Provenance was checked verbatim at source by bh-ref-e (`research/square-free-typing-criterion-review.md`,
+93f46a050a).
 
 > "However, the Haglund–Wise construction typically yields a quasiconvex embedding of a compact special hyperbolic group
 > Γ into a non-hyperbolic right-angled Coxeter group C, and when this occurs we cannot invoke the results in [13] or [14].
@@ -32,8 +35,9 @@ By `quasiconvex-in-hyperbolic-racgs-iff-square-free-typing`, it is equivalent to
 hyperplanes into a finite square-free graph `Δ`. At every vertex the types must be distinct, and two edges must span a
 square exactly when their types are adjacent.
 
-For a fixed C-special cubulation this is the finite problem **(B\*)**: find a cover `X'` and a type map from the crossing
-graph `Γ(X')` onto a square-free graph that is a full embedding on every vertex link.
+For a fixed C-special cubulation this is the problem **(B\*)**: find a finite cover `X'` and a type map from the crossing
+graph `Γ(X')` onto a square-free graph that is a full embedding on every vertex link. For each fixed cover this is a finite
+search. Over all finite covers it is not.
 
 ## Known cases
 

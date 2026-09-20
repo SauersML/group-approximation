@@ -2,7 +2,7 @@
 rg: 2
 id: quasiconvex-in-hyperbolic-racgs-iff-square-free-typing
 kind: claim
-title: A group is a quasiconvex subgroup of a hyperbolic RACG iff it acts geometrically, freely on vertices, on a CAT(0) cube complex with an invariant hyperplane typing into a finite graph with no induced 4-cycle; so square-free vertex links are necessary, and only commutations or merges between never-co-occurring types can repair a Haglund–Wise ambient
+title: A group is a quasiconvex subgroup of a hyperbolic RACG iff it acts geometrically, freely on vertices, on a CAT(0) cube complex with an invariant hyperplane typing into a finite graph with no induced 4-cycle; so square-free vertex links are necessary, and, keeping the same typing, the only changes of the target graph are commutations or merges of never-co-occurring types
 distinct_from:
   cubulated-hyperbolic-groups-are-quasiconvex-in-hyperbolic-racgs: that is the open bridge question; this is an equivalent reformulation of it, with the local necessary condition and the legal moves.
   convex-cores-inherit-greedy-coding-na: that passes (NA) to convex cores inside a given ambient; this characterizes when a hyperbolic ambient RACG exists at all.
@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `quasiconvex-in-hyperbolic-racgs-iff-square-free-typing-proof` (lane `bh-q11-bridge`, 2026-09-19;
-elementary lane proof, **not independently reviewed**; no priority claimed, and items 1–3 are plausibly folklore).
+elementary lane proof; no priority claimed, and items 1–3 are plausibly folklore). **Referee PASS** (bh-ref-e,
+2026-09-19; `research/square-free-typing-criterion-review.md`, landed 93f46a050a). Both directions and items 2–5 were
+checked; the three wording repairs are applied here.
 Recalled inputs, not re-read at source: Moussong's hyperbolicity criterion, the local-isometry embedding lemma
 (Haglund–Wise, *Special cube complexes*, GAFA 2008, §2), Helly for convex subcomplexes, and cores for quasiconvex
 subgroups (Haglund 2008; Sageev–Wise 2015).
@@ -49,16 +51,19 @@ subgroups (Haglund 2008; Sageev–Wise 2015).
      `W(Δ + ab)`.
    - **(M2) Merge.** Suppose also that no type osculating `a` somewhere (co-occurring with `a` and non-adjacent to it)
      is adjacent to `b`, and symmetrically. Then the merged map is a `Δ/(a=b)`-typing.
-   - **Adding generators is useless.** An induced 4-cycle stays induced when new vertices are added. So only (M1) and (M2)
-     can kill a square while keeping the subgroup convex-cocompact through the same typing.
+   - **Adding generators is useless.** An induced 4-cycle stays induced when new vertices are added. So, among
+     modifications of `Δ` along the **same** typing `τ`, only (M1) and (M2) can kill a square. Changing the typing or the
+     cube complex itself, e.g. passing to a cover or a different cubulation, is not covered by this statement.
 5. **The Haglund–Wise typing is the finest.**
    - If `X = Y/G` is C-special (hyperplanes embedded, no self-osculation, no inter-osculation), then the hyperplanes of
      `X` are a valid typing target: `Δ_HW = Γ(X)`, the crossing graph of `X`. This is the Haglund–Wise embedding
      `G ↪ W(Γ(X))`.
    - Every `G`-invariant typing factors through it, as `φ ∘ τ_HW` for a type map `φ : V(Γ(X)) → V(Δ)` that is a full
-     embedding on every link. So the bridge for a given cubulation is the finite problem
+     embedding on every link. So the bridge for a given cubulation is the problem
      > **(B\*)** Find a finite cover `X'` and a type map `φ` from `Γ(X')` onto a square-free `Δ` that is a full embedding on
      > every vertex link of `X'`.
+
+     For each **fixed** finite cover `X'` this is a finite search. Over all finite covers it is not.
    - Davis–Januszkiewicz doubling cannot help. It puts `A(Γ)` at finite index in some `W(Γ')`, and `A(Γ)` contains `Z²`
      as soon as `Γ` has an edge, so `W(Γ')` is not hyperbolic.
 
