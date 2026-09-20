@@ -36,3 +36,21 @@ for all MF models.
   unipotent `Z^2`.  Matricial stability does not pass to subgroups; whether
   Steinberg relations such as `e_13 = [e_12, e_23]` rigidify the Bott-type
   winding obstruction in the ambient group is open.
+* **Delocalized Dadarlat obstruction (2026-09-17, stability-approximation).**
+  The absence of the obstruction above holds only in the identity sector.
+  - The block-swap involution `g = [[0,I],[I,0]]` has centralizer
+    `Δ = {(X,Y) ∈ GL_2(Z)^2 : X ≡ Y mod 2, det X = det Y}`, with
+    `H^2(Δ;Q) = Q` detected by the commuting unipotents `M_1, M_2`
+    (`sl4z-involution-centralizers-have-rational-h2`, established). So the open
+    `weak-matricial-stability-kills-centralizer-even-cohomology` would refute
+    this claim (`sl4z-instability-from-delocalized-dadarlat`, target
+    `sl4z-is-not-matricially-stable`).
+  - Weyl antisymmetry under `h = diag(1,1,−1,−1)` confines any detecting Bott
+    index to the part where `−I` acts by `−1`, with opposite signs on the two
+    `g`-eigenspaces. Induced models from normal finite-index subgroups avoiding
+    `g` carry none of it, but the normalizer of `⟨g, −I⟩` does
+    (`sl4z-delocalized-bott-lives-in-odd-central-sector`, established).
+  - The explicit refutation is reduced to extending such a model from that
+    normalizer to `SL_4(Z)`: `sl4z-odd-central-sector-bott-is-realizable` (open),
+    via `sl4z-instability-from-odd-sector-bott`. That extension is where this
+    attempt stops.
