@@ -2,14 +2,17 @@
 rg: 2
 id: kms-counter-cocycles-reduce-to-central-lamp-mixing
 kind: claim
-title: If the counter images of a KMS lift contain an element g with g − 1 invertible on T/T_0 (for instance an image counter ã_j^{±p^f}, as in the Kochloukova–Sidki shape), then every counter 1-cocycle is cohomologous to a T_0-valued homomorphism, and a lift that mixes the top into T through the counters is conjugate by an element of T to a central counter twist plus a central lamp mixing F(A_0) = τ·f̄(A_0) with τ in T_0; so route (A) of KD2_p collapses into route (B), and for counter-pair domains both routes die
+title: If the counter images of a KMS lift contain an element g with g − 1 invertible on T/T_0 (for instance an image counter ã_j^{±p^f}, as in the Kochloukova–Sidki shape), then every counter 1-cocycle is cohomologous to a T_0-valued homomorphism, and a lift that mixes the top into T through the counters is conjugate by an element of T to a central counter twist plus a central lamp mixing F(A_0) = τ·f̄(A_0) with τ in T_0; so route (A) of KD2_p collapses into route (B), and for counter-pair domains every domain lamp's T-component vanishes after conjugation (faithfulness still depends on F on the configurations)
 distinct_from:
   kms-lamp-mixing-dies-on-br-relation: that proposes counter cocycles (its Step 3) as the surviving route and kills central lamp mixing for counter-pair domains; this shows the counter route is central lamp mixing in disguise, so its Step 3 route adds nothing new under the hypothesis here.
   kms-top-every-counter-cycle-must-contract: that constrains the top map; this constrains the T-components of a lift over it.
   two-counter-kms-groups-are-self-similar: that is the crux KD2_p; this is an attempt record under it.
 ---
 
-**ESTABLISHED (lane bh-kd2p-2, 2026-09-19): a lane proof. Not independently reviewed.** KD2_p stays **OPEN**.
+**ESTABLISHED (lane bh-kd2p-2, 2026-09-19; **referee PASS with repairs**, bh-ref-g, 941f051f16): the
+`H^1 ≅ Hom(U_H, T_0)` computation, the conjugation step and the central-twist step pass; the corollary is
+extended to every domain lamp, and "both routes die" is withdrawn (it does not follow, since faithfulness also
+depends on `F` on the configurations).** KD2_p stays **OPEN**.
 The hypothesis (V) below is stated explicitly; it holds for the Kochloukova–Sidki shape, and whether it holds
 for every product Frobenius–Möbius map is a remark, not a claim.
 
@@ -73,7 +76,8 @@ So the good single-coordinate images are `ã_j^{±p^f}` and `(ã_j ã_j'^{-1})^{
 
 **Hypothesis (V).** `V_T(ψ) = ∅`. It holds as soon as `ψ(U_H)` contains a good single-coordinate element.
 - **Kochloukova–Sidki shape** (`kms-configuration-lift-needs-non-contracting-counters`, Part 2:
-  `ã_1^p ↦ ã_2 ↦ ⋯ ↦ ã_K ↦ ã_1`): `ψ(ã_2) = ã_1` is good, so (V) holds.
+  `ã_1^p ↦ ã_2 ↦ ⋯ ↦ ã_K ↦ ã_1`): `ψ(ã_K) = ã_1` is good, so (V) holds. (For `K = 2` this reads
+  `ψ(ã_2) = ã_1`; repair per bh-ref-g, 941f051f16.)
 - **Remark, not a claim.** In the product Frobenius–Möbius class of `kms-top-every-counter-cycle-must-contract`,
   the image of a domain generator is a Möbius–Frobenius image of one coordinate. For the sign-free Möbius maps
   `s ↦ s` and `s ↦ s/(s − 1)`, the image of the `ã`-type generator is good. I have not checked this against
@@ -113,12 +117,24 @@ else.
 **Corollary (counter-pair domains).** For domains containing a counter pair `(u, 1 − u)`, as
 Kochloukova–Sidki's does, `kms-lamp-mixing-dies-on-br-relation` Step 1 (refereed PASS with scope repair) forces
 `τ = 0`. Its argument uses only that the counter images conjugate lamps as elements of `B_0` do, which holds for
-`F_B`. So under (V), every counter-mixed lift over such a domain is conjugate to a top-preserving lift plus a
-central counter twist, and it does not separate a torsion core. **Both routes die for counter-pair domains.**
+`F_B`. The same inhomogeneity argument kills the central `T_0`-component of **every** domain lamp, not only of
+`A_0` (extension per bh-ref-g, 941f051f16). So under (V), every counter-mixed lift over such a domain is conjugate
+to a lift whose lamps and counters carry no `T`-components beyond a central counter twist.
+
+**This does not prove the lift unfaithful** (correction per bh-ref-g, 941f051f16). The top core is not normal in
+`G(M)`: since `A_0` acts nontrivially on `T` (G5a), any normal subgroup containing a nonzero lamp ideal `I` also
+contains `[T, I] ⊆ T_0`. So faithfulness also depends on `F` on `H ∩ T`, which this node does not constrain. The
+statement is only that the **lamp and counter** components cannot do the separating; mixing through `F` on the
+configurations may be the live route.
 
 ## What is left for KD2_p
 
-- **Route (B) on power-type domains** (bh-ref-g: not excluded). With `τ` central in `T ⋊ B_0`, a lamp `b` in the
+- **Mixing through `F` on `T ∩ H` (the live route).** Any core of `G(M)` must contain elements of `T`, because
+  `A_0` acts nontrivially on `T`. So a lift can separate the top core through its configuration part alone. This
+  is recorded as the precise live route in `research/artifacts/gq-bh-kd2p-state.md`.
+- **Route (B) on power-type domains** (bh-ref-g: not excluded). Closed at the lamp level by
+  `kms-central-lamp-mixing-cannot-separate-top-core` (bc38115be1, unreviewed); the discussion below is kept as
+  the original record. With `τ` central in `T ⋊ B_0`, a lamp `b` in the
   domain goes to `F(b) = τ^{ε(b)}·f̄(b)`, where `ε` is the `U_H`-invariant character through which the
   augmentation factors in bh-ref-g's criterion (evaluation at a point `z` where all domain counters equal 1).
   At the top level the invariant subspace of the old core is
@@ -134,5 +150,5 @@ central counter twist, and it does not separate a torsion core. **Both routes di
 
 **Counter cocycles are lamp mixing in disguise.** Once some image counter `g` has `g − 1` invertible on the
 configurations below `A_0`, conjugating by `T` moves all of a counter cocycle's `T`-data into one central lamp
-shift `τ ∈ T_0`. So a KMS lift can only separate the top's core through the lamps, and for counter-pair domains
-it cannot.
+shift `τ ∈ T_0`. So the lamp and counter components of a KMS lift add nothing beyond central lamp mixing, and for
+counter-pair domains not even that. Whether a lift is faithful then rests on `F` on the configurations.

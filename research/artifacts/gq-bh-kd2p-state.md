@@ -97,3 +97,19 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
 3. Mixing into grades other than `T_0`, or into `B_1, …, B_K`.
 4. Top maps outside the product Frobenius–Möbius class.
 5. `p = 2`.
+
+## Update 3 (lane bh-kd2p-2, after bh-ref-g's review 941f051f16): the precise live route
+
+- **Corrections.** `kms-counter-cocycles-reduce-to-central-lamp-mixing` passes its computations. But "both
+  routes die" is withdrawn: the top core is not normal in `G(M)`. Since `A_0` acts nontrivially on `T` (G5a), any
+  normal subgroup containing a nonzero lamp ideal `I` also contains `[T, I] ⊆ T_0`. The corollary now covers
+  every domain lamp, and the Kochloukova–Sidki shape reads `ψ(ã_K) = ã_1`.
+- **What is closed.** The lamp and counter components of a lift cannot separate the top core. Counter cocycles
+  reduce to central lamp mixing, under (V). Central lamp mixing vanishes on a refereed-type core ideal inside
+  `𝔪_z`, on every domain (unreviewed).
+- **THE LIVE ROUTE: mixing through `F` on `T ∩ H`.** A hard self-similar KMS lift must separate the top core by
+  its configuration part. Take the invariant ideal `I` (built inside `𝔪_z` if needed). The lift is faithful only
+  if no normal subgroup `N` with `I ⊆ N ≤ I·T` lies in `H` and is `F`-invariant. That comes down to how `F` acts on
+  `[T, I] ⊆ T_0`. The first test: `K = 2`, trivial machine, top map of Kochloukova–Sidki shape made
+  non-contracting on one cycle, and `F|_{T∩H}` any `ψ`-semilinear map compatible with G5a–G6. Does some choice
+  push `[T, I]` out of every `F`-invariant subgroup inside `H`?
