@@ -361,3 +361,27 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
   - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
     refuted, because MF of `N` is unknown.
+- **2026-09-20, swarm-0917-w20-w20-titz-break (breaker, reframing and calibration).  Status: OPEN.**
+  - New ESTABLISHED (unreviewed) claim `mapping-torus-radical-is-pseudo-orbit-recurrence`, with
+    route `-proof`. For `G = <S, t | R_0, t s t^-1 = w_s>` and `g ∈ K`: `g ∉ Rad_MF(G)` iff for
+    some `δ` and every `ε`, the substitution map `W_d(b) = (w_s(b))_s` on `U(d)^S` has, in some
+    dimension `d`, an `ε`-pseudo-orbit of `ε`-quasi-solutions of `R_0` that are `δ`-nontrivial at
+    `g`, of length above the covering number of `U(d)^S`. The chain is closed by pigeonhole and
+    wrapped by the cyclic block shift.
+    - *Witness form.* The obligation is uniform transience of `W_d` on `δ`-nontrivial
+      quasi-solutions, at one scale `ε(g, δ)` for all `d`.
+    - *Correction.* The death of Attempt 1 of `mf-kazhdan-quotientless-mapping-torus-exact-radical`
+      (accuracy on balls of radius `λ^J`) comes from using exact orbits. Re-projected chains need
+      only `R_0`, and they are the universal form of every MF approximation of `G`.
+  - *Screened, no new node.*
+    - (a) Pimsner--Voiculescu `K_0` certificates `n[1 − p] ∈ Im(φ_* − 1)`, with `p` the Kazhdan
+      projection of an infinite `K`. They die at the regular trace of `G`: it is `φ`-invariant,
+      and `τ(1 − p) = 1`. This is subsumed by `kazhdan-mapping-tori-have-proper-stably-finite-radical`.
+    - (b) Degree-4 almost-flat Chern invariants. Already (R4) of
+      `mf-radical-is-blind-to-degree-two-windings`.
+    - (c) Congruence and Minkowski torsion kills. A duplicate of
+      `filtered-torsion-certificates-die-on-perfect-kernels`.
+    - (d) Need `a111e246`. Dead, since its (HH) input is refuted by
+      `automorphic-compressions-have-no-approximable-hilbert-hotel`.
+  - *Next falsifiable step.* Find a candidate `(K, ψ)` for which one can compute
+    `Q_ε ∩ N_δ(g)` in small `d` and test the almost-invariant-set condition (4) numerically.
