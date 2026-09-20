@@ -130,3 +130,26 @@ kind would refute the claim on that group.
   - **Where it dies.** No SI `F_2`-SFT without periodic points was found, so there is still no `F_2` kill-test
     domain. The Farkas certificate alone does not contradict half-tree mixing, so proving that SI forces periodic
     points on `F_2` needs a new idea.
+- **2026-09-20, swarm-0917-w23-w23-gs-pull [reframing]: the pre-injective clause is inert. This is an
+  equivalence and a class kill. The claim stays OPEN.** See `pre-injective-si-cover-pairs-are-conjugacies`
+  (ESTABLISHED, unreviewed, elementary).
+  - **Result.** A pre-injective SFT cover pair splits as `(Z × A^G, pr_2)`, with `Z = F^-1(d^G)`. The splitting
+    comes from a local transport cocycle built out of unique lifts.
+    - On an SI domain, `Z` is an SI SFT with no asymptotic pairs, so it is a single constant. Hence `F` is a
+      conjugacy `X ≅ A^G`, and if `X ⊊ A^G`, then `G` is not surjunctive.
+  - **Equivalence.** This claim at `G` holds iff no proper SI SFT `X ⊊ A^G` carries a strongly post-surjective
+    automaton onto `A^G` with lifts in `X`. Pre-injective pairs exist exactly at non-surjunctive groups, and
+    this claim already implies surjunctivity. So `PSD ⟺ Gottschalk ∧ PSD_col`, and the bijective fragment is
+    exactly Gottschalk, as in the CP split.
+  - **Class kill.**
+    - The approach: derive pre-injectivity from post-surjectivity on an SI domain, by pruning collisions,
+      passing to subsystems or changing the cover.
+    - Invariant: pre-injectivity, which is the same as `F` being a conjugacy.
+    - Where it dies: at any surjunctive group, pre-injectivity is never attained, so every such scheme
+      manufactures a Gottschalk counterexample. Only non-existence proofs survive: entropy, counting, microstates.
+    - The w7 "no such `F` at all" plan is therefore not lossy. It is equivalent to this claim.
+  - **Side data.** `experiments/psd-tree-sft-census-2026-09-17/` checks all 3-symbol nearest-neighbour tree SFTs
+    on `F_2`. There are 84 ordered disjoint-cone pairs, none of them path-mixing, and the witness word is always
+    `ab`. So none is SI, which fits Poirier–Salo. This is a finite census.
+  - **What is left.** Unchanged in substance, restated: show that no proper SI SFT covers `A^G`. On residually
+    finite groups the domain has no periodic point, and on `F_2` no invariant measure.
