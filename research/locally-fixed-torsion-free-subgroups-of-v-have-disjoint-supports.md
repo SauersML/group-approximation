@@ -126,3 +126,24 @@ Landed as `fixers-of-attractor-and-repeller-sets-force-disjoint-supports` (lane 
 
 Lemma B's consequence for (COMP) needs cyclic centralizers, per its review (7ff5a6abf0); that scope is now stated in
 `block-permuting-local-fixers-force-disjoint-supports`.
+
+## State note (bh-q47-comp, 09-19, lane stopped)
+
+**(STAB), exact form.** Let `Γ ≤ V` be torsion-free, one-ended and hyperbolic. (STAB) says: some nontrivial `γ ∈ Γ`,
+with normal-form power `γ'` and data `(P, F, A, R)`, satisfies
+- `Γ_R` (the pointwise stabilizer of the finite set `R`) is not cyclic, and
+- some `b ∈ Γ_A` with `b(P) = P` does not commute with `γ'`,
+
+or the same with `A` and `R` swapped. By `fixers-of-attractor-and-repeller-sets-force-disjoint-supports`, (STAB) gives
+two disjoint supports, so it answers Q4.7 negatively for such `Γ`.
+
+**Why the one-point case holds.** Every one-point stabilizer `Γ_x` is non-cyclic. The orbit Schreier graph of `x` is
+`Γ/Γ_x`, which is a quasi-tree by HSZ Theorem A. `Γ_x ≠ 1`, since otherwise `Γ` is virtually free. `Γ_x` is not
+infinite cyclic, by Lemma L.
+
+**First test: finite tuples.** Is the Schreier graph of `Γ` on the orbit of a finite tuple `(x_1, …, x_k)`, under the
+diagonal action on `C^k`, still a quasi-tree? Equivalently, does HSZ Theorem A extend to diagonal actions?
+- If yes, the one-point argument gives `Γ_X` non-cyclic for every finite `X`.
+- Then (STAB) holds for any `γ` with `P = ∅`, and the remaining work is elements with `P ≠ ∅` (the `Stab(P)` clause).
+- Calibrate on `F_2 ≤ V` (Schottky), where tuple stabilizers are cyclic or trivial and the Schreier graphs are
+  quasi-trees. That is consistent, since free groups aren't one-ended.
