@@ -1,0 +1,164 @@
+---
+rg: 2
+id: piecewise-baker-torus-lifts-monomial-lamp-proof
+kind: route
+title: "Direct proof: tail preservation of nV pieces plus a recurrence lemma gives a column rule, forcing monomial linear parts; piecewise-baker torus lifts give the local side split, and affine spanning gives nondegeneracy"
+target: piecewise-baker-torus-lifts-force-monomial-lamp-linear-parts
+requires: []
+---
+
+Notation is as in the target claim. All function spaces are `F_p`-valued.
+
+## Step 0: two facts about boxes
+
+**(F1) Separation of variables.** Let `Π` be a box. Its free digits (those not fixed by the
+defining prefixes) are independent coordinates of a product space. Let `f : Π → F_p` factor
+through a set `A` of free digits and also through a set `B`. Then `f` factors through `A ∩ B`.
+
+*Proof.* Write a point as `(u, v, w, q)`, with `u ∈ A∩B`, `v ∈ A∖B`, `w ∈ B∖A` and `q` the rest.
+Then `f = F(u,v) = G(u,w)`. Fix `w_0`: `F(u,v) = G(u,w_0)` for all `v`. So `f` depends on `u` only. ∎
+
+**(F2) Tail preservation.** Refine the pieces of `s ∈ nV` by intersecting with the boxes `V_b` and
+with `s^-1 V_(b')`. Each refined piece `Π` is again a box, and `s|Π` is a coordinatewise prefix
+replacement `u_i v_i ↦ u'_i v_i`.
+
+Let `K` be the maximum prefix length over all pieces. Then for `d ≥ K`, the digit of depth `d` of
+coordinate `i` of `s(p)` is a digit of depth `d − |u'_i| + |u_i|` of coordinate `i` of `p`, and this
+depth lies in `[d − K, d + K]`. In particular:
+- `s(p)`'s digits at depth `< L` depend only on `p`'s digits at depth `< L + K`;
+- `s(p)`'s coordinate `i` at depth `≥ D` depends only on `p`'s coordinate `i` at depth `≥ D − K`.
+
+## Step 1: recurrence lemma
+
+**Lemma.** Let `(ξ_m)_(m ∈ Z)` be functions on a set `Π`, let `0 ≠ r = Σ_(j=j0)^(j1) r_j σ^j` be in
+`F_p[σ,σ^-1]` with `r_(j0), r_(j1) ≠ 0`, and set `(rξ)_m = Σ_j r_j ξ_(m+j)`. Suppose that for some
+`m_1`, all `(rξ)_m` with `m ≥ m_1` lie in a finite-dimensional space `F`. Then
+`span{ξ_m : m ≥ 0}` is finite-dimensional.
+
+*Proof.* For `m ≥ m_1`, solve for the top term:
+`ξ_(m+j1) = r_(j1)^-1 ((rξ)_m − Σ_(j<j1) r_j ξ_(m+j))`.
+
+By induction on `M ≥ m_1 + j1`, every `ξ_M` lies in the finite-dimensional space
+`F + span{ξ_(m_1+j0), ..., ξ_(m_1+j1−1)}`. The finitely many `ξ_m` with `0 ≤ m < m_1 + j1` add
+finitely many dimensions. ∎
+
+## Step 2: the column rule (proof of Theorem S'')
+
+Let `φ∘s = a∘φ` with `a(ξ) = A(σ)ξ + v`, where `A = (a_(εε'))` has Laurent-polynomial entries.
+Row `ε` of this equation, at entry `m`, reads
+
+`ξ_(ε,m)∘s = Σ_(ε') (a_(εε') ξ_(ε'))_m + v_(ε,m)`.  (∗)
+
+Fix a refined piece `Π ⊆ V_b ∩ s^-1 V_(b')` as in (F2), and indices `ε, ε'` with
+`Q := S_b(ε') ≠ S_(b')(ε)`. Let `ε''` be the index other than `ε'`, and set
+`T_(ε') = (a_(εε') ξ_(ε'))_m |Π`.
+
+Take `j_- ≤ 0` below the lowest exponent of `σ` in every entry of `A`, and take `m` large enough that
+`D(m') ≥ L + K` for all `m' ≥ m + j_-`. Then, on `Π`:
+
+- **`T_(ε')` reads `Q` only deep.** By the side split on `V_b`, `T_(ε')` reads the digits of `Q` at
+  depth `≥ L + K` and the digits of all coordinates at depth `< L`. Call this set `A`.
+- **Everything else in (∗) reads `Q` only shallow.**
+  - The left side `ξ_(ε,m)∘s` reads coordinate `S_(b')(ε) ≠ Q` at any depth. By (F2), it reads the
+    digits of `Q` only at depth `< L + K`.
+  - The term `T_(ε'')` reads coordinate `S_b(ε'')`, which differs from `S_b(ε') = Q`, at any depth,
+    and reads `Q` only at depth `< L`.
+  - `v_(ε,m)` is a constant.
+
+  So `T_(ε')`, which is the left side minus the other two, factors through
+  `B = {digits of Q at depth < L + K} ∪ {all digits of the other coordinates}`.
+- **So `T_(ε')` is shallow.** By (F1), `T_(ε')` factors through `A ∩ B`, which is a subset of the
+  digits at depth `< L + K`. So for all large `m`, `T_(ε')` lies in the finite-dimensional space
+  `F_Π` of functions of the digits at depth `< L + K` on `Π`.
+
+**Column rule.** Suppose `a_(εε') ≠ 0`. Then, on this `Π`, the Lemma gives
+`dim span{ξ_(ε',m)|Π : m ≥ 0} < ∞`. Contrapositive: if `span{ξ_(ε',m)|Π}` is infinite-dimensional
+and `a_(εε') ≠ 0`, then `S_b(ε') = S_(b')(ε)`.
+
+**Conclusion.** Fix `ε'`. The refined pieces partition `C^n`, so `p_(ε')` lies in some refined piece
+`Π`. This `Π` is a clopen box neighbourhood of `p_(ε')`, so by (ND−) the span
+`span{ξ_(ε',m)|Π}` is infinite-dimensional.
+
+With `b, b'` those of `Π`: `a_(εε') ≠ 0` forces `S_(b')(ε) = S_b(ε')`. Since `S_(b')(α) ≠ S_(b')(β)`,
+this happens for at most one `ε`. So each column of `A` has at most one nonzero entry.
+
+`A` is invertible, since `a` is an affine automorphism. So each column has exactly one nonzero
+entry, in different rows. Hence `A` is monomial, with unit entries, so `γ` is monomial too. The
+transpose of the inverse of a monomial matrix is monomial.
+
+The monomial group `N = (R^×)^2 ⋊ Z/2` is virtually abelian. It does not contain `e_12(1)`, which
+is not monomial. So `EL_2(R) ⊄ N`, even though `EL_2(R)` is generated by elements of `N` together
+with shears. ∎
+
+## Step 3: proof of Lemma W'
+
+**Item 3 (conjugation).** `φ∘s = a∘φ` if and only if `ψ∘(c^-1 s c) = a∘ψ`, where `ψ = φ∘c`.
+Also, `ψ` is affinely spanning because `c` is a bijection. So we may replace `φ` by `ψ` and `g` by
+`f = c^-1 g^N c`. Then `ψ∘f = a_0^N∘ψ` with `a_0^N(ξ) = h^N ξ + v` for some `v ∈ M^`.
+
+**Item 1 (local side split).** In components, `h^N ξ + v` is `(σ^-N α + v_α, σ^N β + v_β)`. So
+`α_(m+N)∘f = α_m + c_m` and `β_m∘f = β_(m+N) + c'_m`, with constants `c_m, c'_m`. By induction on
+`j ≥ 0`, for `m_0 ∈ [0, N)` and on each `V_b`:
+
+`α_(m_0+jN)|V_b = α_(m_0)∘f^-j + const = α_(m_0)∘B^(−j k_b) + const`,
+`β_(m_0+jN)|V_b = β_(m_0)∘f^j + const = β_(m_0)∘B^(j k_b) + const`,
+
+where `B = B_(i_b,i'_b)` acts in the local coordinates of `V_b`.
+
+The finitely many functions `ξ_(ε,m_0)`, with `m_0 ∈ [0, N)`, are continuous into the discrete
+set `F_p`. So they are locally constant, and they depend only on the digits at depth `< L_0` of
+every coordinate, for some `L_0`. Let `P` be the maximum prefix length of the boxes `V_b`, and
+measure depth in local coordinates.
+
+For `K ≥ L_0`, the local digits of `B^K p` at depth `< L_0` are:
+- in coordinate `i`: digits `K, ..., K + L_0 − 1` of `p_i`;
+- in coordinate `i'`: digits `K − 1, ..., K − L_0` of `p_i`, in reverse order;
+- in the other coordinates: their own digits at depth `< L_0`.
+
+So `ξ∘B^K` reads coordinate `i` only at depth `≥ K − L_0`, and all other coordinates only at depth
+`< L_0`. Symmetrically, `ξ∘B^-K` reads coordinate `i'` only at depth `≥ K − L_0`, and all other
+coordinates only at depth `< L_0`.
+
+Hence, with `L = L_0 + P` in global depth:
+- `α_m` with `m = m_0 + jN` has side `i'_b` if `k_b > 0`, and `i_b` if `k_b < 0`;
+- `β_m` has the opposite side;
+- `D(m) = max(0, |k_b|⌊m/N⌋ − L_0)`, minimized over `b`, which tends to infinity.
+
+For `K < L_0` the same list shows that `ξ∘B^(±K)` reads its side at any depth and the other
+coordinates at depth `< L_0`. So the case `D(m) = 0` also holds.
+
+The two sides are distinct because `i_b ≠ i'_b`. So `ψ` is locally side-split.
+
+**Item 2 ((ND−) from affine spanning).** Suppose (ND−) fails for `α`. Then every point has a box
+neighbourhood `O` with `dim span{α_m|O : m ≥ 0} < ∞`. By compactness, finitely many such `O` cover
+`C^n`. Restriction to the cover is injective on functions, so `span{α_m : m ≥ 0}` is
+finite-dimensional on `C^n`.
+
+Infinitely many functions in a finite-dimensional space satisfy a nontrivial finite relation
+`Σ c_m α_m = 0`. So `x ↦ ψ(x)(Σ c_m t^m, 0)` is constant, which contradicts affine spanning. The
+same argument works for `β`. ∎
+
+## Step 4: the two-box example
+
+Local baker on `V_0`: `B(a u, y) = (u, a y)` sends `z = Θ(x', y)` to `z'` with:
+- `z'_d = x'_(d+1) = z_(d+1)` for `d ≥ 0`;
+- `z'_(−1) = a = z_0`;
+- `z'_(−d−1) = y_(d−1) = z_(−d)` for `d ≥ 1`.
+
+So `z' = σz`, and `B^2 z = σ^2 z`. Then:
+- on `V_0`: `α'_m = z_(3−2m) = α_(m−1)`, which is `σ^-1 α`, and `β'_m = z_(2m+2) = β_(m+1)`, which
+  is `σβ`;
+- on `V_1`, with `B^-2` and the swapped reading: `α'_m = z_(2m−2) = α_(m−1)` and
+  `β'_m = z_(−1−2m) = β_(m+1)`.
+
+Both are `h`. `g` preserves `x_0`, so it preserves `V_0` and `V_1`. The flip `s` exchanges the
+readings `φ_0` and `swap∘φ_0`, and so it induces `swap = w` when `p = 2`.
+
+`φ` is surjective, since `φ|V_0` is a homeomorphism onto `M^`. So it is affinely spanning. This is
+the sharpness example. The artifact
+`experiments/lamp-monomial-2026-09-17/check_two_box_baker.py` checks it numerically: 0 mismatches
+in 2000 trials, and the global-baker control fails on half the points.
+
+The theorem also applies here, with sides `V_0: (S(α), S(β)) = (y, x)` and `V_1: (x, y)`. So every
+lift through this `φ` is monomial. In particular no shear lifts, and the example is one more
+realization in which Theorem R's hypothesis fails.

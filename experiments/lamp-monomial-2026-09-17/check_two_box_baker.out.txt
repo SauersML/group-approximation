@@ -1,0 +1,11 @@
+trials=2000 window=|m|<=10
+(1) phi o g = h o phi   mismatches: 0
+(2) phi o s = w o phi   mismatches: 0
+    control: global B^2 fails to lift h on 100/200 points (expect ~100, the V_1 ones)
+(3) side rule at m = +8 (coordinate, digit):
+    box V_0: alpha_8 reads ('y', 14), beta_8 reads ('x', 17)
+    box V_1: alpha_8 reads ('x', 17), beta_8 reads ('y', 14)
+(4) e_12(1): new beta_m = beta_m + alpha_m reads, at m = +8:
+    box V_0: ('x', 17) and ('y', 14)  -> both sides deep, violates the local side split
+    box V_1: ('y', 14) and ('x', 17)  -> both sides deep, violates the local side split
+RESULT: PASS
