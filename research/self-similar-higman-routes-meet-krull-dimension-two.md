@@ -56,21 +56,36 @@ distinct_from:
   Krull dimension of A as ℤQ-module is 1 … and the centralizer C_Q(A) is trivial then G is transitive
   self-similar", for finitely presented `G = A ⋊ Q`. Baumslag's finitely presented overgroup of the lamplighter,
   `F_2[x^(±1), (1+x)^(-1)] ⋊ Z^2`, meets these hypotheses as quoted. So the depth-preserving trick is self-similar
-  in Krull dimension 1. The full hypothesis list behind the ellipsis was not read.
+  in Krull dimension 1. The quotation is complete; there is no hypothesis behind the ellipsis (checked at source by
+  referee bh-ref-c, `self-similar-higman-krull-dimension-two-review`, 6c39124b28). The original is
+  Kochloukova–Sidki, arXiv:1710.04745, Theorem C.
 - **Hardness needs Krull dimension at least 2.**
-  - *Recalled:* one-counter machines have decidable, low-complexity reachability.
+  - *Cited:* one-counter automata have NL-complete reachability for unary updates (Lafourcade–Lugiez–Treinen 2004,
+    as stated in the counter-automata literature), and two counters are Turing complete (Minsky 1967).
   - A KMS-type encoding of a hard machine therefore needs `K ≥ 2` counters.
-  - The counter letters `a_1, …, a_K` act on the configuration module, which by KMS Lemma 4.14 has a basis indexed
-    by all counter values. So it is supported in dimension `≥ K ≥ 2` over the counter ring. That last step is a
-    heuristic reading, not a computed Krull dimension.
+  - **Top factor, computed on main:** `R_K = F_p[s_i^{±1}, (1 − s_i)^{-1} : i ≤ K]` is a localization of
+    `F_p[s_1, …, s_K]`, so it has Krull dimension `K` (`two-counter-kms-top-has-no-affine-self-similar-action`).
+  - **Configuration module, heuristic:** the counter letters `a_1, …, a_K` act on it, and by KMS Lemma 4.14 it has
+    a basis indexed by all counter values. That suggests support in dimension `≥ K ≥ 2` over the counter ring, but
+    no Krull dimension is computed.
 - **In Krull dimension 2 there are two known kills and one hope.**
-  - *Characteristic 0, cited:* Kochloukova–Luiz give finitely presented metabelian `A ⋊ Q` with Krull dimension 2
-    that are **not** self-similar. Their hypotheses need `A` to be `ℤ`-torsion-free, with `A/pA` an infinite
-    domain for every `p`.
+  - *Characteristic 0, cited:* Kochloukova–Luiz (arXiv:2509.05798) give finitely presented metabelian `A ⋊ Q`
+    with Krull dimension 2 that are **not** self-similar. Their Main Theorem assumes, verbatim, `G = A ⋊ Q` with
+    `Q ≅ ℤ^s`, `s ≥ 2`, and:
+    - (1) "A is a cyclic ℤQ-module, say A≃ℤQ/I, A is a ℤ-torsion-free integral domain and Krulldim(A)=2";
+    - (2) "for every prime number p the ring A/pA is an infinite integral domain";
+    - (3) "the image of a non-trivial element of Q in the field of fractions of A is not algebraic over ℚ. In
+      particular C_Q(A)=1_Q";
+    - (4) "G is finitely presented".
   - *Characteristic `p`:* on main, `two-counter-kms-top-has-no-affine-self-similar-action` kills affine
     realizations of the two-counter KMS top.
-  - *The hope, recalled from the Dantas–Santos–Sidki literature:* `C_p ≀ Z^2` is self-similar, of degree `p + 1`.
-    So characteristic-`p` Krull dimension 2 is not excluded as such.
+  - *The hope, cited:* `C_p ≀ Z^2` is self-similar on the `p^2`-adic tree (Dantas–Sidki, arXiv:1505.05165,
+    J. Algebra 2018). For `d ≥ 2` there is none on the `p`-adic tree. It is not finitely presented. So
+    characteristic-`p` Krull dimension 2 is not excluded as such.
+  - *Correction (lane bh-kd2p, 2026-09-19):* the hope is realized, and finitely presented. Kochloukova–Sidki's
+    Theorem D (arXiv:1710.04745) gives finitely presented, transitive self-similar metabelian groups in
+    characteristic `p` and Krull dimension `d`. For `p` odd they contain the KMS tops:
+    `kms-tops-embed-in-fp-self-similar-metabelian-groups`.
 
 ## The precise obstruction
 
@@ -82,8 +97,11 @@ The ascending-HNN (Higman/Baumslag–Remeslennikov) route to
 > affine?
 
 - The characteristic-0 analogue has counterexamples (Kochloukova–Luiz).
-- The affine characteristic-`p` realizations are dead (bh-free-25).
-- Nonlinear realizations are open.
+- The affine characteristic-`p` realizations are dead (bh-free-25), in that node's sense: every counter acts
+  linearly.
+- *Update (bh-kd2p):* for `p` odd the metabelian top is realized, via Kochloukova–Sidki Theorem D, with a domain
+  that moves the root. What stays open is the class-3 group `G(M)`, i.e. the lift through the configuration
+  module. See the Attempts of `two-counter-kms-groups-are-self-similar`.
 - Route 1 is open exactly as (O4) of `decidable-residually-wd-groups-embed-in-lift-presented-hosts`.
 
 ## Lesson for general BH
@@ -91,7 +109,10 @@ The ascending-HNN (Higman/Baumslag–Remeslennikov) route to
 **Self-similar Higman embeddings must deepen nothing, and hardness costs two counters.**
 - Inside `Aut(T_d)`, conjugation preserves every level profile. So the branch-group trick of endomorphic
   presentations, which deepens, cannot be internalized.
-- The Baumslag–Remeslennikov trick, which preserves depth, can be, but it is known to be self-similar only in
-  Krull dimension 1.
-- Hard word problems need two counters, i.e. Krull dimension 2. That is exactly where finitely presented
-  metabelian self-similarity is known to fail in characteristic 0.
+- The Baumslag–Remeslennikov trick, which preserves depth, can be internalized.
+  - It is self-similar in Krull dimension 1 (Kochloukova–Sidki Theorem C).
+  - It is also self-similar in characteristic `p` and any Krull dimension (their Theorem D, using a
+    Frobenius-twisted shift).
+- Hard word problems need two counters, i.e. Krull dimension 2. That is where Kochloukova–Luiz give finitely
+  presented metabelian examples that are not self-similar, under their hypotheses (1)–(4), all in characteristic
+  0. (Wording repaired per bh-ref-c, 6c39124b28.)

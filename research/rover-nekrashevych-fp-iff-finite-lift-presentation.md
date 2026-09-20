@@ -122,3 +122,11 @@ because `G` acts faithfully. `w ∈ K_∞` iff, in addition, the section graph o
   presentation and the normal form. No priority is claimed.
 
 **Verdict: PASS.**
+
+**Referee addendum (bh-ref-q12, 2026-09-19).** The Attempts line "not settled in the sources read: whether some
+finite-state `G` has `V_d(G)` not finitely presented" is settled by Skipper–Witzel–Zaremsky (arXiv:1712.05361,
+Lemma 5.3 and Theorem 5.8 with `n = 2`).
+- The persistent lamplighter `a = ι(σ)(a, b, a)`, `b = (a, b, b)` on `T_3` is finite-state, and `V_3` of it is not
+  finitely presented (`persistent-actions-make-lift-ideals-normal-closures`).
+- So by Theorem A its relator kernel is a normal subgroup that is not finitely normally generated, and every lift
+  ideal is a normal closure.

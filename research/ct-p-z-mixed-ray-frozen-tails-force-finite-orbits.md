@@ -8,7 +8,7 @@ distinct_from:
   ct-z-orbit-transversal-counterexamples-need-unbounded-orbits: that bounds orbits of bounded size in any CT_P(Z); here the orbits of frozen-tail points may be arbitrarily large, but their size is bounded by a function of the frozen degree alone.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). Elementary. No priority claimed.
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-d 2026-09-19, review `research/ct-p-z-mixed-ray-nodes-review.md` at a3b10b78df; the one discussion sentence it flagged is now marked heuristic). Elementary. No priority claimed.
 - **What it settles.** Kourovka 20.44 (S. Kohl) for every finitely generated `G` on a
   mixed-sign ray in which some point has a frozen tail.
 - **What stays open.** The totally consumable case (item 3).
@@ -78,8 +78,9 @@ Notation, tracking and reading are as in `ct-p-z-ray-cocycle-subgroups-satisfy-k
 - **The 2-adic end** (`e_3 < D`). There the configuration is `< 3^D 2^L`. For the anchor
   `n = (0, L)`, `3^L > x`, this is `≤ 2·3^D (x+1)^(log 2/log 3)`: a strict descent for large `x`.
 - **The 3-adic end** (`e_2 < D`). There the only bound is `2^D 3^L`, which gives no descent.
-- **So.** If every integer's anchor tail were read at the 2-adic end, every orbit would meet a
-  fixed finite set, and `G` would have finitely many orbits.
+- **So (heuristic).** If every integer's anchor tail were read at the 2-adic end, then iterating
+  the descent would plausibly make every orbit meet a fixed finite set, and `G` would have finitely
+  many orbits. This is argued in one line only and is not proved here (referee repair, a3b10b78df).
 - The open case is exactly the one where tails escape toward the expanding, 3-adic end: the
   mixed-sign form of the Collatz escape.
 

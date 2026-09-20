@@ -41,23 +41,35 @@ distinct_from:
    item 4(a) of the linear node each label layer is a minimal equicontinuous factor on which the lifts act
    by translations. The lifted group is then abelian.
 
-   So a Robinson/Mozes recursion must be combined with transports that read seam colours of unbounded level.
+   This item is conditional on that 4(a) (repair (a) of bh-ref-e, 022fb2a1aa). 4(a) has since been reviewed:
+   bh-ref-d (6e0fb29940) passed it with one fix to its last step, which is applied to the linear node in the
+   same landing as this repair.
+
+   So a Robinson/Mozes recursion must be combined with transports that read seam colors of unbounded level.
    Minimality forbids recursion *alone*, not recursion.
 3. **The real gain: transports need not be local (design).**
    - In a self-simulating SFT, the level-`k` computation zones can check any computable relation
      `w_(L′) = h(w_L)` between the labels of adjacent level-`k` loops. This works if `h` is computable in the
-     zone's time and space budget, polynomial in `s_k`, and it may read seam colours.
+     zone's time and space budget, polynomial in `s_k`, and it may read seam colors.
    - Let `Y` be the **sofic** factor that forgets the computation layer, as the prefix track `b` was dropped
      in the pointer node.
    - Lifts `φ_γ` act on labels only. If every `h` commutes with the lift action on `O_k`, then `φ_γ`
-     preserves the set of label configurations satisfying all relations. That set is `Y`, so
-     `φ_γ ∈ Aut(Y)`.
+     preserves the set of label configurations satisfying all relations checked in their own skeleton.
+     That set is `Y`, so `φ_γ ∈ Aut(Y)`.
+   - **Degenerate skeletons** (repair (b) of bh-ref-e).
+     - Hierarchical skeletons have configurations with infinite-level seams, and quarter-plane or
+       half-plane supertiles with no top level.
+     - There, relations of unbounded level are checked by no zone. So `Y` also contains label
+       configurations on those skeletons that satisfy only the relations actually checked.
+     - The conclusion `φ_γ ∈ Aut(Y)` is unaffected: every checked relation commutes with `φ_γ`, and `φ_γ`
+       fixes the skeleton.
    - Consequence: **two-sided locality relaxes to one-sided locality.** Only right multiplication must be
      given by bounded-radius rules. Left multiplication (the transports) only needs to be computable.
    - Costs:
      - `Y` is sofic, not SFT, so it refutes (RA_free) at best and gives no finitely presented group (scope
        note of `algebraic-rows-carry-rigid-free-commutants-but-never-minimality`).
-     - Rigidity of the sofic factor and minimality of `Y` must be checked separately.
+     - Rigidity of the sofic factor and minimality of `Y` must be checked separately, **including on the
+       degenerate-skeleton configurations**, where fewer relations constrain the labels.
 4. **The combing obstruction survives the relaxation.** The combing lemma uses only right-multiplication
    locality. So one-sided word codings with bounded end rewriting still force finite presentation, and
    Osajda's infinitely presented groups still have none.
