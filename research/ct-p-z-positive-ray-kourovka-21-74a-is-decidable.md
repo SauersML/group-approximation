@@ -75,6 +75,13 @@ decides YES. ∎
 
 ## The neutral-prime case (open)
 
+- **Settled since (bh-2174-rank2, 2026-09-19; lane proof, not reviewed).**
+  `ct-p-z-neutral-primes-kourovka-21-74a-is-decidable` carries out the repair routes below: a
+  finite test decides whether all holonomies over a component fix one rational center; if not,
+  two conjugate hyperbolic holonomies bound the fibre depth; if so, any permuted partition can be
+  truncated to one core ball around the center. So the positive-ray case is decidable with no
+  divisibility hypothesis. The text below records the gap as it stood.
+
 - **How the pair degenerates.** Let `p ∤ γ` divide a modulus. An attractor and a repeller can lie
   over the same `S_+` point in different neutral slices. This happens when `γ^(κ_a) ≡ 1 (mod p)`,
   so that `C` fixes many residues mod `p^(b_p)`.

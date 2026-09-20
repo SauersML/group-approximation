@@ -2,7 +2,7 @@
 rg: 2
 id: rigid-subshift-amenability-from-coherent-variation-caps
 kind: claim
-title: A quantum-rigid subshift without isolated points has continuous, finitely supported variation caps whose modification clouds are coarsely connected rays; if the scale-averaged caps are asymptotically independent of the centre (cap coherence), the action is topologically amenable — the finite-window form of (RA), plus a flippable-wall test for the wall-orientation case
+title: A quantum-rigid subshift without isolated points has continuous, finitely supported variation caps whose modification supports are coarsely connected and contain coarse rays; if the scale-averaged caps are asymptotically independent of the centre (cap coherence), the action is topologically amenable — the finite-window form of (RA), plus a flippable-wall test for the wall-orientation case
 distinct_from:
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the open question (RA)/(RA′); this reduces (RA) for a given X to one finite-window combinatorial property (cap coherence) and proves the reduction, without settling (RA′).
   rigid-subshifts-without-isolated-points-factor-onto-the-ends: that builds a continuous map to Ends(Λ) from finite cuts, which says nothing over one-ended groups; this builds Reiter functions directly from the nearest variation points, over any group, at the price of a coherence hypothesis.
@@ -38,8 +38,9 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
    takes finitely many values; put `ρ̄(r) = max_x ρ_r^1(x) < ∞`. `Cap_r^1(x)` depends only on
    `x|B_(ρ̄(r)+L)`. Hence `x ↦ ν_R(x)` is locally constant, with support in the fixed finite ball
    `B_(max_(r<2R) ρ̄(r) + L)`.
-3. **Equivariance.** `Cap_r^1(g.x) = g · Cap_r^(g⁻¹)(x)`, so `ν_R(g.x) = g_* ν_R^(g⁻¹)(x)` and
-   `‖ g_* ν_R(x) − ν_R(g.x) ‖_1 = ‖ ν_R^1(x) − ν_R^(g⁻¹)(x) ‖_1`.
+3. **Equivariance.** For all `g, c ∈ Λ`, `Cap_r^(gc)(g.x) = g · Cap_r^c(x)`, so
+   `ν_R^(gc)(g.x) = g_* ν_R^c(x)`. This general-centre form is what item 4 uses. In particular (`c = g⁻¹`)
+   `ν_R(g.x) = g_* ν_R^(g⁻¹)(x)` and `‖ g_* ν_R(x) − ν_R(g.x) ‖_1 = ‖ ν_R^1(x) − ν_R^(g⁻¹)(x) ‖_1`.
 4. **Cap-coherence criterion.** Suppose **(CC)**: for every generator `s`,
    `lim_(R→∞) sup_(x ∈ X) ‖ ν_R^1(x) − ν_R^s(x) ‖_1 = 0`.
    Then `Λ ↷ X` is topologically amenable. So `Λ` is exact (recalled: a group with a topologically
@@ -66,7 +67,9 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
    `x|B_r`. There are finitely many such patterns, and each has a finite value, because `X` has no
    isolated points. Next, `V_r^1(x) ∩ B_M` is the union of `Δ(Q, x|B_M)` over the patterns `Q` on `B_M`
    occurring in `X` with `Q = x` on `B_r`. That depends only on `x|B_M`. Take `M = ρ̄(r)+L`.
-3. `y'` agrees with `g.x` on `B_r` iff `g⁻¹.y'` agrees with `x` on `g⁻¹B_r = B_r(g⁻¹)`. Also
+3. More generally, `y'` agrees with `g.x` on `B_r(gc) = g B_r(c)` iff `g⁻¹.y'` agrees with `x` on `B_r(c)`;
+   with `Δ(g.x, y') = g Δ(x, g⁻¹.y')` this gives `V_r^(gc)(g.x) = g V_r^c(x)` and `ρ_r^(gc)(g.x) = ρ_r^c(x)`.
+   The case `c = g⁻¹`: `y'` agrees with `g.x` on `B_r` iff `g⁻¹.y'` agrees with `x` on `g⁻¹B_r = B_r(g⁻¹)`. Also
    `Δ(g.x, y') = g Δ(x, g⁻¹.y')`. So `V_r^1(g.x) = g V_r^(g⁻¹)(x)`, `ρ_r^1(g.x) = ρ_r^(g⁻¹)(x)`, and
    the caps correspond. Push-forward by `g` is an `ℓ¹`-isometry.
 4. By items 2–3, the maps `m_R : x ↦ ν_R(x)` are continuous into `Prob(Λ)` (they are locally constant
@@ -122,8 +125,9 @@ finite-dimensional cube complexes via Brodzki–Campbell–Guentner–Niblo–Wr
   - if `R(Λ)` has a boundary point with two flippable walls far apart, then it is not rigid (item 5),
     and the test is killed cheaply;
   - if `R(Λ)` is rigid over a non-exact group, then its minimal sets violate (CC) and falsify (RA′).
-  - Flippable walls at `x` are the hyperplanes adjacent to `x` in its Roller component. Two of them
-    are far apart only if they osculate at `x` without coming close in `Λ`. In hyperbolic cube complexes
+  - *(Heuristic, not proved; bh-ref-d repair.)* Flippable walls at `x` are the hyperplanes adjacent to
+    `x` in its Roller component. Two of them are far apart only if they osculate at `x` without coming
+    close in `Λ`. In hyperbolic cube complexes
     osculation at infinity forces asymptotic walls, which are close. For infinite-dimensional
     small-cancellation walls this is unchecked, and it is the first thing to test.
 

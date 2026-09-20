@@ -43,7 +43,10 @@ orbits. The orbits of such a counterexample are infinite, or finite and of unbou
      many orbits, it contains some class `C = r(M)` up to finitely many points.
    - Each orbit meets `C ∩ [1, N]` in at most `s` points. So at least `(N/M − O(1))/s` orbits
      meet `[1, N]`.
-   - Their minima in `N_0` are at most `N` and pairwise distinct. ∎
+   - Their minima in `N_0` are at most `N` and pairwise distinct. The minima lie in `N_0`
+     because `CT(Z)` preserves `N_0`: a class transposition `r_1 + t m_1 ↔ r_2 + t m_2`, with
+     `0 ≤ r_i < m_i`, preserves the sign of `t`. So an orbit through a point of `[1, N]` has its
+     minimum in `[0, N]` (referee repair, bh-ref-d, e64cfcbeeb). ∎
 
 ## How this sharpens the search for a counterexample
 
@@ -58,9 +61,9 @@ must meet three conditions.
   - If `ξ ∈ Q`, every germ is multiplicative about `ξ`. Near `ξ` this preserves the cofactor
     of `q(n − ξ)` prime to the slopes. That points to transversals of positive density (sketch;
     this is the valuation-strata case of the bh-free-58 board).
-- **(iii) Mixing.** Orbits must be glued by translations, as in 3x+1 dynamics. The
-  Terras–Everett count then makes many orbits sparse automatically, so the whole difficulty is
-  to prove that there are infinitely many.
+- **(iii) Mixing (heuristic; referee bh-ref-d).** Orbits must be glued by translations, as in
+  3x+1 dynamics. The Terras–Everett count then makes many orbits sparse automatically, so the
+  whole difficulty is to prove that there are infinitely many.
   - `G_T` meets (i)–(iii) exactly when the 3x+1 map has infinitely many components on Z.
   - No finitely generated example with a *provable* infinite family of glued orbits is known
     to this lane. The obvious symmetries that would copy one orbit infinitely often, such as
