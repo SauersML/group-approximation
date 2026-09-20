@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BHPalomar.GraphProducts.ProductClosure: Definitio
 **OPEN.** Lean module `GroupApproximation/BHPalomar/GraphProducts/ProductClosure.lean` is red on main at 516e496a4a (trusted batched probe, job direct-b1789910605). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-graphprod.
 
-**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
+**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
 
 ```
 error: GroupApproximation/BHPalomar/GraphProducts/ProductClosure.lean:117:0: Definition `GroupApproximation.BHPalomar.GraphProducts.sumProdAction` of class type must be marked with `@[reducible]` or `@[implicit_reducible]`

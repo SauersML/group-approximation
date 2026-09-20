@@ -15,6 +15,7 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 ```
 
 
+
 **Inputs (nearest red imports).** `fix-sk-full-sktfg-word-problem-to-language`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.GrigorchukMedynets` compile under the repository settings without changing any statement.

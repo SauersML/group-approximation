@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShap
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece04/WindowShape/HeadShapeDeps.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
+**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece04/WindowShape/HeadShapeDeps.lean:71:41: Variable name `Q` is not explicitly referenced.

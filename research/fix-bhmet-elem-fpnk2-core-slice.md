@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.ElemFPNK2CoreSlice: Applic
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/ElemFPNK2CoreSlice.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
-**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
+**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
 
 ```
 error: GroupApproximation/BooneHigman/Metabelian/ElemFPNK2CoreSlice.lean:114:4: Application type mismatch: The argument

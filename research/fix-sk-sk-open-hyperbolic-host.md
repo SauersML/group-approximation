@@ -9,7 +9,6 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.HyperbolicHo
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-sk-open.
 
 
-**Repair landed, unprobed.** 3c57ee4c3b: SK SkOpen/HyperbolicHost: route clause (b) of fc84c012b409 through the current NM open sta. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
@@ -17,7 +16,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 (none in this file: it fails only because red imports fail; see Inputs)
 ```
 
-**Inputs (nearest red imports).** `fix-sk-simple-hosts-host`. Fix those first: errors here may be knock-on.
+
+**Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-p01-cell-junction-value-hol`, `fix-ggt-van-kampen-greendlinger-leaf-p05-region-pair-rotation`, `fix-nm-full-gl03-d-kept-walk`, `fix-nm-full-gl06b-outer-side-transport`, `fix-nm-full-gl06d-outer-monogon-diagram`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.HyperbolicHost` compile under the repository settings without changing any statement.
 
