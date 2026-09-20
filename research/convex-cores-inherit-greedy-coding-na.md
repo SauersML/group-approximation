@@ -71,3 +71,28 @@ RSG, and a contracting one exactly when it satisfies (IRR).
      special groups quasiconvexly in RAAGs, and in RACGs through C-special complexes, but those ambients need not be
      hyperbolic, and there (NA) can fail. Whether every cubulated hyperbolic group is virtually a quasiconvex subgroup of
      a *hyperbolic* RACG is the bridge this route needs, and it is not settled here.
+2. **2026-09-19 (lane `bh-q11-beyond`): the bridge, as a literature question, and the local gap stated precisely.**
+   - **Literature: no hyperbolic-ambient version found.** The known embeddings all land in RACGs that need not be
+     hyperbolic:
+     - Haglund–Wise, *Special cube complexes* (GAFA 2008) and *Coxeter groups are virtually special* (Adv. Math. 2010),
+       read as abstract and summary only;
+     - the "hyperbolic cubulated ⇒ virtually convex-cocompact in some RACG" statement, as quoted in arXiv:2309.03695;
+     - Chesebro–DeBlois–Wilton, arXiv:0903.5288, for right-angled ideal polyhedra.
+
+     Web searches found no statement, positive or negative, that the ambient can be chosen **hyperbolic**. So the bridge
+     stays open here:
+
+     > **(Bridge)** Is every hyperbolic, virtually compact special group virtually a quasiconvex subgroup of a
+     > *hyperbolic* right-angled Coxeter group?
+
+     If yes, then together with (IRR) for convex cores, Question 1.1 holds for every cubulated hyperbolic group,
+     including every closed hyperbolic 3-manifold group (Agol). It covers tautologically the groups commensurable with
+     quasiconvex subgroups of hyperbolic RACGs.
+   - **The local gap is one thing: backward steps must stay in `Y`.** In the RACG proof, the predecessor
+     `P(τ) = {u_1} ∪ (τ ∩ lk(u_1))` is automatically a state: it is the state of the *same* point `ω` seen from the
+     neighbour `v'u_1`. Claim A's `ρ` works the same way, one step back along the edge labelled `o`. In the core `Y` both
+     backward edges can leave `Y`. So "realizability" and the "cross-type order" reduce to one statement: for every state
+     `(v', τ)` of `Y` there is a `Y`-edge at `v'` that plays the role of `u_1`, namely one whose star is minimal in
+     `lk_Y(v')`, not in `τ`, and whose far endpoint lies in `Y`. This fails if `v'` is a corner of `Y` where every
+     minimal-star edge exits `Y`, so any proof must exploit the choice of core. A thicker convex hull
+     (`N_R`-hull) has more edges at each vertex, and that is the natural next attempt.
