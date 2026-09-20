@@ -1,0 +1,31 @@
+seeds (9, 80) overfold (215, 58) overfold
+{s} ell = 0: True
+{t} ell = 0: True
+{s,t} ell = 0: False
+lawful pairs not merged in base: 192
+{s,t} single lawful seeds that suffice: 0
+distinct single lawful closures: 12
+{s,t} two-seed lawful witness: ((2, 69), (2, 133))
+VERDICT: ell({s})=ell({t})=0 needed; ell({s,t}) = 2 -> O-STEP FAILS
+seeds (3, 34) overfold (28, 51) overfold
+{s} ell = 0: True
+{t} ell = 0: True
+{s,t} ell = 0: False
+lawful pairs not merged in base: 192
+{s,t} single lawful seeds that suffice: 0
+distinct single lawful closures: 12
+{s,t} two-seed lawful witness: ((0, 23), (0, 49))
+VERDICT: ell({s})=ell({t})=0 needed; ell({s,t}) = 2 -> O-STEP FAILS
+seeds (10, 99) overfold (153, 160) overfold
+{s} ell = 0: True
+{t} ell = 0: True
+{s,t} ell = 0: False
+lawful pairs not merged in base: 192
+{s,t} single lawful seeds that suffice: 0
+distinct single lawful closures: 12
+{s,t} two-seed lawful witness: ((4, 107), (4, 152))
+VERDICT: ell({s})=ell({t})=0 needed; ell({s,t}) = 2 -> O-STEP FAILS
+V 240 base classes 240
+distinct nontrivial lawful single-seed closures 12
+instance lawful reps 12 distinct closures among them 12 covering 12 of 12
+lawful pairs lie in one over-fibre: True

@@ -1,0 +1,64 @@
+V 96 n 12 seeds 144 auts 12 threads 3 ALL SEEDS
+level 1: no goal; 144 extensions tested; 12 new states stored
+level 2: no goal; 1728 extensions tested; 806 new states stored
+level 3: no goal; 116064 extensions tested; 30655 new states stored
+level 4: no goal; 4414320 extensions tested; 795082 new states stored
+level 5: no goal; 114491808 extensions tested; 14630853 new states stored
+  level 6 progress 4096/14630853 states
+  level 6 progress 266240/14630853 states
+  level 6 progress 528384/14630853 states
+  level 6 progress 790528/14630853 states
+  level 6 progress 1052672/14630853 states
+  level 6 progress 1314816/14630853 states
+  level 6 progress 1576960/14630853 states
+  level 6 progress 1839104/14630853 states
+  level 6 progress 2101248/14630853 states
+  level 6 progress 2363392/14630853 states
+  level 6 progress 2625536/14630853 states
+  level 6 progress 2887680/14630853 states
+  level 6 progress 3149824/14630853 states
+  level 6 progress 3411968/14630853 states
+  level 6 progress 3674112/14630853 states
+  level 6 progress 3936256/14630853 states
+  level 6 progress 4198400/14630853 states
+  level 6 progress 4460544/14630853 states
+  level 6 progress 4722688/14630853 states
+  level 6 progress 4984832/14630853 states
+  level 6 progress 5246976/14630853 states
+  level 6 progress 5509120/14630853 states
+  level 6 progress 5771264/14630853 states
+  level 6 progress 6033408/14630853 states
+  level 6 progress 6295552/14630853 states
+  level 6 progress 6557696/14630853 states
+  level 6 progress 6819840/14630853 states
+  level 6 progress 7081984/14630853 states
+  level 6 progress 7344128/14630853 states
+  level 6 progress 7606272/14630853 states
+  level 6 progress 7868416/14630853 states
+  level 6 progress 8130560/14630853 states
+  level 6 progress 8392704/14630853 states
+  level 6 progress 8654848/14630853 states
+  level 6 progress 8916992/14630853 states
+  level 6 progress 9179136/14630853 states
+  level 6 progress 9441280/14630853 states
+  level 6 progress 9703424/14630853 states
+  level 6 progress 9965568/14630853 states
+  level 6 progress 10227712/14630853 states
+  level 6 progress 10489856/14630853 states
+  level 6 progress 10752000/14630853 states
+  level 6 progress 11014144/14630853 states
+  level 6 progress 11276288/14630853 states
+  level 6 progress 11538432/14630853 states
+  level 6 progress 11800576/14630853 states
+  level 6 progress 12062720/14630853 states
+  level 6 progress 12324864/14630853 states
+  level 6 progress 12587008/14630853 states
+  level 6 progress 12849152/14630853 states
+  level 6 progress 13111296/14630853 states
+  level 6 progress 13373440/14630853 states
+  level 6 progress 13635584/14630853 states
+  level 6 progress 13897728/14630853 states
+  level 6 progress 14159872/14630853 states
+  level 6 progress 14422016/14630853 states
+level 6: no goal; 2106842832 extensions tested; 0 new states stored
+no goal within 6 seeds

@@ -186,6 +186,52 @@ artifacts:
   - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/needC_j1_A4.txt
   - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/needC_j2_S3.txt
   - experiments/fpbs-overfold-nonabelian-ri-2026-09-17/searchD_nx6.txt
+  - research/artifacts/fpbs-overfold-cap5-2026-09-19.md
+  - experiments/fpbs-overfold-cap5-2026-09-17/deep5.c
+  - experiments/fpbs-overfold-cap5-2026-09-17/deep5fp.c
+  - experiments/fpbs-overfold-cap5-2026-09-17/beam.c
+  - experiments/fpbs-overfold-cap5-2026-09-17/lcheck.c
+  - experiments/fpbs-overfold-cap5-2026-09-17/ostep_verify.py
+  - experiments/fpbs-overfold-cap5-2026-09-17/repcheck.py
+  - experiments/fpbs-overfold-cap5-2026-09-17/sweep_wide.py
+  - experiments/fpbs-overfold-cap5-2026-09-17/inst12j2_law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/inst12j2_law6a.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/inst12j2_law6b.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/validate_inst12_cap4.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/validate_inst12_law.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/validate_fp_inst12_cap4.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/validate_fp_inst12_law.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/law_j2.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/sweep_wide_B1000.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/force_j2law8_r2.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/force_j2law8_r3.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/force_j2law6a_r1.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/force_j2law6b_r1.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/wit_j2law8_force_r1.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/wit_j2law8_force_r2.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/wit_j2law8_force_r3.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/lcheck_j2law8_force_r1.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/lcheck_j2law8_force_r2.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/lcheck_j2law8_force_r3.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/ostep_verify_j2law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/climb_j2law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/pairs_j2law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/pairs_j2law6a.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/pairs_j2law6b.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/triples_j2law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/triples_j2law6a.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/triples_j2law6b.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run24a_cap5_oomkilled.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run24a_cap5_deep5_stopped.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run24a_cap5.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run24b_cap5.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run24b_fullkey_level4.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/inst12j1_law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/law12j1_law8.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run12j1law8_cap6.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/run12j1law8_fullkey_level5.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/beam12j1law8_B20000_r1.txt
+  - experiments/fpbs-overfold-cap5-2026-09-17/beam12j1law8_B1e6_r2.txt
 ---
 
 **OPEN.** Notation is as in
@@ -712,3 +758,84 @@ quotient test of rank-2 relative inertia. OPEN.**
   - Proposed split into independent pieces: (RI-mal), meaning (RI_B) for
     malnormal rank-2 `B`; and (RI-C), meaning `(RI_B, 2)` for all rank-2 `B`.
 - **Artifact.** `research/artifacts/fpbs-overfold-rank2-relative-inertia-2026-09-19.md`.
+- **2026-09-19, swarm-0917-w19-w19-fp-break (belief breaker,
+  minimal-counterexample): OPEN; (O-step) is REFUTED by an exact
+  counterexample; (O-rel) survives exhaustively for `|P| ≤ 3`; `ℓ` is not
+  subadditive.** Details are in
+  `research/artifacts/fpbs-overfold-cap5-2026-09-19.md`, with code and
+  outputs in `experiments/fpbs-overfold-cap5-2026-09-17/`.
+  - **(O-step) is false.**
+    - Take j2law8, the Cayley level of `(0,2,3,1),(1,2,0,3)` at `j = 2`
+      (`V = 240`, `law = 8`), and the overfold seeds `s = (9,80)` and
+      `t = (215,58)`.
+    - `ℓ({s}) = ℓ({t}) = 0`, by Lemma A.
+    - `ℓ({s,t}) = 2`:
+      - none of the 192 lawful pairs covers `cl({s,t}) ∩ ker m` on its own;
+      - the two lawful seeds `(2,69),(2,133)` do cover it.
+    - So no `x ∈ P` has `ℓ(P) ≤ ℓ(P−x) + 1`.
+    - This is checked exactly by `lcheck.c`, and independently by
+      `ostep_verify.py`, a separate Python fold closure that tests every
+      lawful pair (`ostep_verify_j2law8.txt`). `repcheck.py` confirms that
+      the lawful representatives cover all 12 lawful single-seed closure
+      classes, so `ℓ` is exact.
+    - Exhaustively, 108 of the 544,446 overfold pairs on j2law8 behave this
+      way. (The w17-follow one-step tests used upper bounds on `ℓ` and so
+      could not see this.)
+  - **What this kills.** Any proof of (O-rel) or (O) that adds seeds one at
+    a time with a unit budget per seed fails. This includes exchange or
+    matroid-rank induction through `ℓ`, and anything using subadditivity of
+    `ℓ`: two individually inert overfold seeds can together force a lawful
+    pair that costs two lawful seeds.
+    - There is also synergy of order three: 3219 overfold triples on j2law8
+      and 531 on j2law6b have `ℓ = 2` while every sub-pair has `ℓ = 0`. So
+      `ℓ` is not dominated by a sum of pair terms either.
+  - **Replacement decomposition (O-pair), which survives.** (O-pair) asks
+    for some `s` with `ℓ(P) ≤ ℓ(P−s) + 1`, or some pair `{s,t}` with
+    `ℓ(P) ≤ ℓ(P−s−t) + 2`.
+    - It still gives (O-rel), by induction on `|P|` using `ℓ({s}) ≤ 1`, and
+      hence (O).
+    - 0 violations: all 256 subsets of three forced 8-seed witnesses, and
+      all 47,276,061 overfold triples (first seed up to the lifted
+      automorphisms) on each of the three `V = 240` levels.
+  - **(O-rel) holds exhaustively for `|P| ≤ 2` and for overfold-only
+    `|P| = 3`** on j2law8, j2law6a and j2law6b. For overfold `P` it is
+    strict: `ℓ ≤ |P| − 1`.
+    - It is tight, `ℓ = |P|`, on forced witnesses. `beam ... force`, which
+      bans lawful seeds at level 1, reaches the goal of j2law8 at exactly
+      `8 = law` with 6 overfold + 2 lawful seeds. The 6-overfold part has
+      `ℓ = 6`, splitting into three pairs of `ℓ = 2`.
+    - Observed, not claimed: `ℓ(P) ≤ 2⌊|P|/2⌋` for overfold-only `P`.
+    - Every pair of one lawful and one overfold seed has `ℓ = 1`.
+  - **No counterexample to (O) on the easy targets.**
+    - Heuristic all-seed beam searches (not exhaustive) reach exactly `law`,
+      with lawful witnesses:
+      - on the three j=2, `V = 240` levels (law 8, 6, 6);
+      - on all 21 j=2 Cayley levels with `V > 256` that the w17 census
+        skipped (`sweep_wide_B1000.txt`).
+    - `law` itself is exact on all 21 of those levels (the lawful-only beam
+      never truncated).
+  - **Cap 5 on inst24a and inst24b** (the `j = 1`, `V = 192`, law-6 levels
+    with `deep ∈ {5,6}`): exhaustive, with no goal within 5 seeds on either.
+    So `deep = law = 6` on both, and (O) holds there.
+    - The level-5 extension counts are `8,777,155 × 288` and
+      `8,777,114 × 288`.
+    - The search uses `deep5fp.c`: `deep5` with the last stored level kept
+      as 128-bit fingerprints, and its states regenerated. On each level the
+      fingerprint count equals a full-key `deep5` count, so the fingerprints
+      are injective and the search is exact.
+    - Every `j = 1` census level with `law ≤ 6` now has `deep = law`.
+  - **The `j = 1` law-8 level `(0,2,3,1),(1,2,0,3)`** (`n = 12`, `V = 96`):
+    exhaustive, with no goal within 6 seeds, so `deep ≥ 7` (the census had
+    `≥ 4`).
+    - A beam with `B = 10^6` reaches the goal only at `8`.
+    - Five more `j = 1` census levels with `law ≥ 8` remain at `deep ≥ 4`,
+      as do the three `j = 2`, `V = 240` levels at `deep ≥ 3`.
+  - **Where it dies.**
+    - The claim stays OPEN. The decomposition (O-step) is dead, and so is
+      every unit-increment or subadditive induction on `ℓ`.
+    - What survives is (O-rel), with (O-pair) as the step lemma. The first
+      thing to prove is a two-overfold-seed statement: `ℓ(P) − ℓ(P−A) ≤ |A|`
+      for some `A ⊆ P` with `|A| ≤ 2`.
+    - A counterexample to (O-rel) needs an overfold set whose `ℓ` exceeds
+      its size. None exists for `|P| ≤ 3` on these levels, so a hunt must
+      start at `|P| ≥ 4`.
