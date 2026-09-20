@@ -527,3 +527,28 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     aperiodic points. So a proper-on-`M_n` witness cannot be an invariant-measure wall.
   - **What remains.** (Q_J) (Jacobian transversal), and a non-invariant-measure proper cnd
     function on `[[X]]`, as the first test of "proper on `M_n`".
+- **2026-09-20 (swarm-0917-w23-w23-nv-pull, obstruction-miner / symbolic-dynamics): the
+  Burger-pair negation witnesses need a free locus; a class-kill and a new gate.**
+  - **Established.** `distorted-z2-with-hyperbolic-normalizer-in-nv-has-a-free-locus`, via
+    `distorted-z2-free-locus-proof`. Let `Z^2 ≤ nV` be normalized by an element twisting it by a
+    hyperbolic matrix. Then:
+    - each `x^v` is drift-free, since the Cayley–Hamilton identity `B^k + B^{-k} = tr(B^k) I` makes
+      it exponentially distorted;
+    - `Fix(x^v)` is clopen;
+    - the stabilizer map is lower semicontinuous;
+    - the base acts freely on a nonempty closed invariant set `W`. If `W` were empty, the
+      stabilizer lines would form a finite `A`-invariant set in `P^1(Q)`;
+    - in the Sol case, invariant measures give no mass to rank-one stabilizers.
+  - **Class killed.** Locally non-free bases (`⋃_{v≠0} Fix(x^v) = X`), such as disjoint-support
+    `Z^2`'s and piecewise rigid-stabilizer bases, carry no Sol lattice, no Burger pair and no
+    `GL_3(Z)`, in any `nV`. The invariant is the stabilizer map, and every member dies at (F3). This
+    is independent of the coordinate-shadow kill (S5/S6), which it complements on coordinate-mixing
+    bases.
+  - **Consequence for this node.** It is a negation-side result: it constrains the witnesses for
+    `brin-thompson-2v-is-not-a-t-menable`, and it does not prove a-T-menability. A proof here must
+    in particular exclude Burger pairs. Every Burger pair contains a hyperbolic Sol lattice, which
+    is now the single gate `hyperbolic-sol-lattice-embeds-in-no-brin-thompson-group` (OPEN). That
+    gate also gives `GL_3(Z)` in no `nV` via `some-gl-n-z-in-no-nv-via-sol`, independently of
+    Heisenberg.
+  - **Forced survivor.** A coordinate-mixing, drift-free `Z^2` with clopen fixed sets and a
+    nonempty free locus, e.g. a `Z^2`-odometer with a hyperbolic automorphism.
