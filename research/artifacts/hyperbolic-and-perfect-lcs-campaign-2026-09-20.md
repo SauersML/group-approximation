@@ -158,3 +158,48 @@ new auxiliary claims ESTABLISHED. The two main targets remain OPEN.
 The check took 8.548 seconds on one CPU at low priority on acn112, using
 the existing Cairn kernel. No Lean or local build ran; the report states
 the direct parser/linter/compiler check's deviation from the full CLI.
+
+## Constructive continuation and stronger decoder audit
+
+The next parallel pass supplies a positive intermediate theorem, not a
+solution of either main target.
+
+1. The [weighted conjugacy compiler](lcs-constructive-compiler-2026-09-20.md)
+   converts bounded linear-and-conjugacy constraints on involutions into
+   binary LCS games. It preserves matrix-energy infimum zero as quantum
+   value one, and transfers a uniform positive energy gap to a uniform
+   unrestricted quantum gap. Its exact extensions use dimension 4d.
+   Slofstra's conjugacy gadgets and Culf's quantitative tracial rounding
+   are named inputs, not attributed to this repository. The succinct
+   interface separately checks bounded fair-bit sampling and uniform
+   variable queries. The new OPEN source node is
+   `lcs-weighted-conjugacy-halting-gap-source`: no machine-to-source
+   construction is supplied by the compiler itself.
+2. The [shared-anchor attack](lcs-anchored-attack-2026-09-20.md) gives an
+   exact globally compatible finite-dimensional model for the proposed
+   Pauli splitter repair on K4, including shared marginals and the full
+   local Boolean commutator table. Tensor repetition retains the cheat.
+   This excludes that specific changed test, not all non-affine tests.
+3. The [CE quotient audit](ce-affine-quotient-audit-2026-09-20.md) strengthens
+   the earlier affine-decoder obstruction. One positive CE corner model
+   already supplies a hyperlinear quotient and a canonical character
+   corner with affine context supports. Therefore merely choosing a
+   nonhyperlinear ambient group cannot rescue universally CE-exact
+   affine decoding on an affine-unsafe positive source. The older weaker
+   theorem remains true; its optimistic escape discussion is corrected.
+   Liu's theorem is not used in this new obstruction.
+4. The [five-dimensional detector proof](hrf-breakthrough-2026-09-20.md)
+   excludes every nonzero five-twist of the pinned PSL2(19) triangle when
+   all three vertices are conjugate to Sym4 in characteristic 19. All
+   124 cases have explicit polynomial unit-ideal certificates, so the
+   conclusion holds over the algebraic closure, not just a finite list
+   of fields. This does not control other representations or all finite
+   quotients. A separate Heisenberg countermodel explains why abstract
+   perfect-kernel and minimal-detector conditions cannot eliminate
+   noncentral solvable radicals without using the actual vertex maps.
+
+The compiler and CE argument have independent internal written reviews;
+the detector certificates have exact remote arithmetic verification.
+These checks are not formal proof certification or a literature-priority
+claim. Neither a persistent hyperbolic class nor the required halting
+source family has been constructed. Both main targets remain OPEN.

@@ -66,3 +66,20 @@ The next wave established two sharper obstructions, not a solution:
   seeds, while preserving the sign in a matrix-ultraproduct model on
   halting inputs. The certificates would enumerate coHALT. This blocks
   an implementation by the fixed Liu seed, not all hardness reductions.
+
+The constructive continuation proves
+`lcs-construct-weighted-conjugacy-to-lcs`: a bounded-size weighted
+conjugacy gadget preserves perfect quantum completeness and transfers
+a uniform matrix-energy gap, including to unrestricted quantum
+strategies. The new route
+`lcs-perfect-hardness-from-weighted-conjugacy-source` checks exact
+polynomial-time sampling as well. Its single unresolved source family
+is `lcs-weighted-conjugacy-halting-gap-source`; the existence of that
+family is not inferred from the compiler.
+
+The shared-anchor repair also has an explicit global finite model on
+K4, recorded in `lcs-anchor-shared-pauli-splitters-have-k4-model`.
+And `ce-affine-decoder-positive-model-forces-safe-support` rules out
+using a nonhyperlinear host alone to rescue universally CE-exact affine
+decoding on affine-unsafe positive instances. Non-affine source decoding
+and an actual halting-positive word construction remain live obligations.

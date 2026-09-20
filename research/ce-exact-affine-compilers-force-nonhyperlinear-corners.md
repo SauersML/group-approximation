@@ -17,6 +17,16 @@ independently reviewed. No novelty is claimed: the proof combines (CS1) of
 `group-corner-exact-compilers-force-source-affine-safety` with Thom's
 central-corner criterion.
 
+**2026-09-20 strengthening.**
+`ce-affine-decoder-positive-model-forces-safe-support` removes the need
+to assume the entire host hyperlinear: any one CE corner model supplies
+a hyperlinear image quotient preserving the central character, whose
+canonical corner model has affine context support. Thus an affine-unsafe
+source forces the target corner to have **no CE model**, not just a
+nonhyperlinear ambient group. The theorem below remains valid, but a
+nonhyperlinear host is not an escape compatible with positive CE
+completeness.
+
 ## Setting
 
 Notation as in `group-corner-exact-compilers-force-source-affine-safety`:
@@ -89,11 +99,14 @@ positive-mass term does.
    - On a hyperlinear target, (CE) already implies the conclusion (GC6) of
      (CS2): the only trace (CS2) uses is the canonical corner trace, which is
      Connes-embeddable by Thom's criterion.
-   - On a nonhyperlinear target the canonical corner trace need not be
-     Connes-embeddable. That is the single step where CE-only decoding
-     escapes (CS2).
-   - So a no-go for this decoder class would amount to proving that the
-     compiled halting groups are hyperlinear.
+   - On a nonhyperlinear target the host's own canonical corner trace need
+     not be Connes-embeddable. However, any positive CE model supplies a
+     hyperlinear image quotient and hence a different canonical corner
+     trace to which the decoder applies. The strengthening cited above
+     closes this proposed escape for positive CE completeness.
+   - No hyperlinearity theorem for the whole compiled halting group is
+     needed to rule out this exact affine decoder class on affine-unsafe
+     positive inputs.
 
 ## Scope
 

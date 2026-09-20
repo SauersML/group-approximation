@@ -1,0 +1,1 @@
+PASS {"certificates": 124, "pinned_edges_reconstructed": true, "sym4_matrices_matched": true, "eigenbases_invertible_and_verified": true, "all_3224_equations_reconstructed_and_matched": true, "all_124_nonzero_triples_covered": true, "identity": "sum(h_i*f_i)=1", "arithmetic": "F19[z]/(z^2-4z+1)", "elapsed_seconds": 3.1096113910898566}
