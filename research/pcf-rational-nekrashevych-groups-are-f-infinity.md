@@ -11,11 +11,13 @@ distinct_from:
   contracting-groups-have-dying-kernel-covers-of-type-fn: that asks for dying-kernel F_n covers of every contracting group; this supplies them, of type F_infinity, for IMGs of PCF rational maps.
 ---
 
-**OPEN (proof claimed; referee bh-ref-g PASS with repairs, `pcf-rational-nekrashevych-f-infinity-review`,
-78f3553770, conditional on the transfer theorem).** The lane proof is by bh-sz-vdg, 2026-09-19.
-- It rests on `wreath-recursion-thompson-groups-inherit-fn`, a lane proof that bh-ref-q12 is refereeing.
-- The status flips to ESTABLISHED once that passes.
-- No priority claimed; the referee also found no prior proof.
+**ESTABLISHED (lane proof, bh-sz-vdg, 2026-09-19).** Refereed as follows:
+- **This node:** referee bh-ref-g, PASS with repairs (`pcf-rational-nekrashevych-f-infinity-review`, 78f3553770).
+  The repairs are applied in 25ed3623cb.
+- **Its input:** `wreath-recursion-thompson-groups-inherit-fn`, referee bh-ref-q12, PASS (ca350037cb). Its Lemma 7
+  stabilizers are written out in the proof node.
+- **Priority:** none claimed. The referee found no prior proof.
+- **Recalled inputs:** the standard facts listed below remain recalled.
 
 **Search status.** The result was not found in:
 - Belk–Hyde–Matucci arXiv:2407.03149, which covers bounded automata;

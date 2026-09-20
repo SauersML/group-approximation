@@ -57,7 +57,7 @@ Li arXiv:2110.04505.
 - Sub-hyperbolic maps, with strictly preperiodic critical points. Their natural cover is an
   orbifold group, which has type `F_∞`. But the dying-kernel property needs an orbifold version of
   `pr:expandingpi1`, which was not checked. **Update (09-19):** now supplied, for every PCF rational map, by
-  `pcf-rational-nekrashevych-groups-are-f-infinity` (proof claimed, OPEN until refereed).
+  `pcf-rational-nekrashevych-groups-are-f-infinity` (ESTABLISHED; refereed, 78f3553770 and ca350037cb).
 - Expanding maps of spaces whose `π_1` is not `F_∞`.
 
 ## Lesson for general BH
