@@ -136,3 +136,17 @@ question is Kohl's. New here: Lemma 1 and the transfer.
   in their number. This is an analogue of reachability for one-dimensional piecewise affine maps
   with boundedly many pieces, a well-known open problem (Koiran–Cosnard–Garzon; two dimensions is
   undecidable). The analogy is heuristic; no reduction either way is claimed.
+
+**Update 2026-09-19 (bh-k1847): the (P2) obstruction above is void.**
+- **(P2) is false.** bh-p2 disproved it (`two-transposition-product-finite-cycles-infinite-order`,
+  82aa08a416). The product `τ_{1(12),0(4)}·τ_{0(2),1(4)}` has only finite cycles and has infinite
+  order. I checked this by hand; the argument is below.
+- **The orbit graph.** Here `τ_{0(2),1(4)}` is `n ↔ 2n+1` for even `n`, and `τ_{1(12),0(4)}` is
+  `n ↔ 3n+1` for `n ≡ 0 (4)`.
+  - From a multiple of 4, the component steps `n → 3n/2` one way and `n → 2n/3` the other.
+  - So its multiples of 4 are the `2^{α'}3^{β'}u` with `α'+β'` fixed, `α' ≥ 2` and `β' ≥ 0`.
+  - Both ends reach a vertex of degree 1: `≡ 2 (4)` one way, `≡ 5, 9 (12)` the other.
+  - So every component is a finite path, and the path lengths are unbounded.
+- **Consequence.** Two class transpositions already carry a counter, the exponent pair `(α, β)`.
+  Whether `F_M` is conjugate to a product of two class transpositions is open again, and so is the
+  three-generator case of 18.47(a).
