@@ -8,7 +8,7 @@ distinct_from:
   kourovka-19-45-yes-implies-the-collatz-conjecture: that is about transitivity (19.45, related to 18.47(b)) for Kohl's three-generator Collatz group; this is about finiteness of all orbits for unboundedly many generators.
 ---
 
-**ESTABLISHED** (lane proof, bh-k1847, 2026-09-19; **not independently reviewed**). Inputs: the
+**ESTABLISHED** (lane proof, bh-k1847, 2026-09-19; **referee PASS**, bh-ref-f, `class-transposition-finite-orbits-review` at 6747a7e43d; no repairs needed for correctness). Credit: the question is Kohl's (Kourovka 18.47); the factorization `F_M = s_2 s_1` is bh-free-58's; the undecidability is Kari–Ollinger's (MFCS 2008). Kari–Ollinger Theorem 4 is taken from the source record in `ct-z-finite-cycle-problems-are-undecidable`, not reread here. Inputs: the
 refereed node `ct-z-finite-cycle-problems-are-undecidable` (two referee PASSes, conditional on
 Kari–Ollinger, MFCS 2008, Theorem 3, read at source there; Theorem 4 is used only for property 2, as cited in that node's Remark "Finite order"), plus three elementary lemmas
 proved below. **No priority claimed.** A web and arXiv search found no printed statement. The
