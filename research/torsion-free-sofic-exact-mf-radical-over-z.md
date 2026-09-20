@@ -429,3 +429,39 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
       `automorphic-compressions-have-no-approximable-hilbert-hotel`.
   - *Next falsifiable step.* Find a candidate `(K, ψ)` for which one can compute
     `Q_ε ∩ N_δ(g)` in small `d` and test the almost-invariant-set condition (4) numerically.
+- **2026-09-20, swarm-0917-w20-w20-titz-follow (follow-through on w19, stability-approximation).
+  Status: OPEN.**
+  - *Step taken.* Of the two w19 survivors of
+    `finite-image-exact-kazhdan-torus-models-reduce-to-stage-lifts`, (S1) is killed and (S2) is made
+    quantitative.
+  - *New ESTABLISHED claim.* `locally-mf-stable-kazhdan-kernels-collapse-torus-radicals`, with route
+    `-proof`. Call a finite set `R` of relators of `K` G-complete if it contains `R_Γ` and
+    `<S, t | R, t s t^-1 = w_s> = G`. Such sets exist because `G` is finitely presented.
+  - *Theorem D.* Suppose a corona model of `G` has kernel lifts that are `o(1)`-close to exact
+    representations of `<S | R>`, along the indices where it sees `k ∈ K`. Then Theorem A gives an
+    exact multiplicity-free wrap, and (GC) makes this a genuine finite-dimensional representation of
+    `G`. So `k ∉ Rad_fin(G)` by Mal'cev.
+  - *Corollaries.*
+    - (D1) If `K` is Kazhdan and locally MF-stable, then
+      `Rad_MF(G) = Rad_LEF(G) = Rad_fd(G) = Rad_fin(G)`.
+    - (D2) An MF group that is locally MF-stable is LEF.
+    - (D3) If `K` is Kazhdan, locally MF-stable and quotientless, then `Rad_MF(K ⋊_φ Z) = K` for every
+      `φ` with a finitely presented torus.
+    - (D4) For a witness, every model nontrivial on `K` has stability defect `σ_R > 0` for every
+      G-complete `R`.
+  - *Class killed.* Every rounding construction of MF models of a torus with `Rad_fin(G) = K`, of any
+    image, character field, gap or wrap. The invariant is `dist_R` to `Hom(<S | R>, U(n))`. Every
+    member dies at Theorem A plus (GC).
+  - *What survives.* (S1) and (S2) merge into (S\*): lifts uniformly far from exact representations
+    of every G-complete cover. The surviving part of (S1) is an instability of the finitely presented
+    pair `(<S | R_Γ>, <S | R>)`.
+  - *New decomposition.* A new route, `exact-mf-radical-over-z-via-locally-mf-stable-kernel`, with
+    the single OPEN hole `torsion-free-sofic-quotientless-locally-mf-stable-kazhdan-kernel`. Its
+    conditions are (P1'), (Q), (LS) and (P2).
+    - (Q) is necessary. (LS) is not.
+    - `Rad_MF(K) = K` implies (Q) and (LS), so the route contains the automorphic route.
+    - A solution with an MF kernel would be LEF, so it would also refute (EKL1).
+  - *Next falsifiable step.* Decide whether a Kazhdan group without finite quotients that is MF, for
+    example the LEF group `EL_3(LC(X, F_q) ⋊ Z)` of the EKL2 correction, can be locally MF-stable.
+    Otherwise, prove that (LS) together with (Q) forces `Rad_MF(K) = K`, which would show that the
+    new route is no weaker than the automorphic one.
