@@ -37,6 +37,18 @@ the local sectors.
 
 ## Reading
 
+**Why `M` is a bijection in the "permutation" rows.** The order-5 element fixes `p` and `q` and acts freely on the 5
+edges at each, as a 5-cycle, since no link edge is fixed. `M` is equivariant for these two cycles.
+- If every row of `M` has exactly one nonzero entry, the induced map `f` from edges at `p` to edges at `q` satisfies
+  `f(i+1) = f(i)+1` in the cyclic labelling. So it is a translation, hence a bijection.
+- The same holds in the `2 × permutation` rows.
+
+**Girth check (second run, `girth.py`, 09-19).** A direct BFS gives girth 10 for the `PSL_2(31)` coset graph (5952
+vertices) and girth 8 for the `U_4(5)` coset graph (250 vertices).
+- This settles the discrepancy in CCKW, where p. 37 says 14 for `p = 31` and Proposition 2.16 and p. 3 say 10. The
+  value is 10; 14 is the `p = 109` value.
+- The run was on acn112 under the same envelope, RC 0; the output is in `runs/girth.out`.
+
 - **At every flat passage (angle `π`), and at the slightly bent passages `D = 6, 7` at `A`, the five sectors
   propagate bijectively.** The ray then looks locally like a 5-sided wall.
 - **At the more bent passages the sectors merge.** Every sector at `p` reaches 3 to 5 sectors at `q`.
