@@ -60,3 +60,33 @@ By (RF), `K` is at least `1/(3D)` at every level. The base forces `K >= 5`, and 
     palindromic curve families were tested in `experiments/mod-s2-palindrome-transversal-relations-2026-09-17/palindrome.py`.
     There were four families (standard, random curves, repeated, nine-curve), with 200 random trials in each.
     None of these trials, and none of the controls, gives a trivial class at level 4 (`palindrome-results.json`).
+- **2026-09-20, swarm-0917-w23-w23-deligne-pull (reframing): Lefschetz dictionary; the holomorphic
+  kill covers nothing structural, and the approach is DEAD as a class kill.**
+  - *Dictionary (elementary).* A positive relation of mass `A` at `Gamma'` is the same as a genus-2
+    Lefschetz fibration `X -> Sigma_h` over a closed surface. It has `A` singular fibres, all with
+    separating vanishing cycles, and homological monodromy in `Gamma'`.
+    - A relation `t_(s_1)...t_(s_A) = prod [a_i, b_i]` with `a_i, b_i in Lambda` is exactly such a
+      monodromy factorization.
+    - Conversely, given a surface representation `rho : pi_1 Sigma_h -> Gamma'`, lift it to `Lambda`.
+      The defect `k` lies in `K cap [Lambda, Lambda]`. Its class in `K/[Lambda, K] = Z^O` does not depend
+      on the lift, and it is the step-1 map of the positive-relation floor proof. If that class is `>= 0`,
+      then `k` is congruent mod `[Lambda, K]` to a positive product, and that product is in `[Lambda, Lambda]`.
+    - By Gompf, `X` is symplectic.
+    - So `A_+(Gamma') = 5 min { n > 0, 3 not| n }`, the minimum over separating-only fibrations with
+      monodromy in `Gamma'` of the Maslov number `n = <b, rho_*[Sigma_h]>` (ML1). If Matsumoto's genus-2
+      signature formula (`sigma = -(3/5) n_ns - (1/5) n_s`) holds over higher-genus bases, then the mass is
+      `-5 sigma(X)`. That formula is not imported verbatim here.
+  - *Consequence for the w19 kill.* Every positive relation is a symplectic separating-only fibration, so
+    the class left open by `mod-s2-holomorphic-torelli-certificates-have-unbounded-mass` (not
+    holomorphic) is the whole hole minus its holomorphic part. Two things follow:
+    - A proof of `sup A_+ < infinity` must produce Lefschetz fibrations that cannot be realized
+      algebraically, with bounded signature and monodromy in `Gamma(N)` for every `N`.
+    - A disproof must be a symplectic or combinatorial argument. Siebert-Tian holomorphicity does not
+      apply, because separating singular fibres are reducible and the base has genus `h >= 1`.
+  - *Where it dies.* The period map `Sigma_h -> A_2(Gamma')` of a non-holomorphic fibration is only a
+    continuous map. `lambda` is not positive on arbitrary classes, and nothing in the Humbert
+    intersection numbers `e_o(sigma) >= 0` bounds `sum_o e_o` from below in terms of `N`. The reduction
+    returns to the lattice question `d(H_2(Gamma')) cap Z^O_(>=0)`. So no new invariant appears, and the
+    approach adds no kill beyond w18 (reducible support, `15 | F`), w19 (holomorphic) and w20 (theta
+    balance, `A_+ >= 20` below `Gamma_U`).
+  - **Status.** OPEN; approach DEAD.
