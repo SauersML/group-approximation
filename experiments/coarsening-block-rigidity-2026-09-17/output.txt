@@ -1,0 +1,1 @@
+NMAX=9: (W) 33268 pairs, (R) 54492 edges, (S) 4861 segments: all pass
