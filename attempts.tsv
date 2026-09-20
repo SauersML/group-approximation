@@ -372,3 +372,4 @@
 35471377199	2026-09-19T21:50:40Z	GroupApproximation/Sofic/FinitePacketFullCollapse.lean	rankScaled_normalizedDisplacement_eq
 35476579526	2026-09-19T23:37:23Z	GroupApproximation/Sofic/FinitePacketRankWeight.lean	displacementRank_le_generatorRankWeight
 35481954196	2026-09-20T01:40:34Z	GroupApproximation/Sofic/FinitePacketStarAmalgam.lean	packetAction_orbit
+35495769605	2026-09-20T07:08:56Z	GroupApproximation/Sofic/FinitePacketWordCovariance.lean	chosenWord_letters
