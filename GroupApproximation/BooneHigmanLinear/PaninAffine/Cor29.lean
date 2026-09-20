@@ -369,11 +369,14 @@ theorem omega0_liftHom (p : MvPolynomial (Fin (n + 1)) K) :
 
 variable (w : MvPolynomial (Fin (n + 1)) K)
 
+/-- `C_𝔭[X][s₀] → C_𝔭[X][s₀]_w`. -/
+noncomputable abbrev locW : Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))) →+*
+    Localization.Away (liftHom M φ w) :=
+  algebraMap _ _
+
 /-- `R_w → C_𝔭[X][s₀]_w`. -/
 noncomputable def kappa0 : Localization.Away w →+* Localization.Away (liftHom M φ w) :=
-  IsLocalization.Away.lift w
-    (g := (algebraMap (Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
-      (Localization.Away (liftHom M φ w))).comp (liftHom M φ))
+  IsLocalization.Away.lift w (g := (locW M φ w).comp (liftHom M φ))
     (by
       rw [RingHom.comp_apply]
       exact IsLocalization.Away.algebraMap_isUnit (S := Localization.Away (liftHom M φ w))
@@ -383,9 +386,7 @@ noncomputable def kappa0 : Localization.Away w →+* Localization.Away (liftHom 
 
 /-- `R_w[X] → C_𝔭[X][s₀]_w`, `X ↦ X`. -/
 noncomputable def kappa : Polynomial (Localization.Away w) →+* Localization.Away (liftHom M φ w) :=
-  Polynomial.eval₂RingHom (kappa0 M φ w)
-    (algebraMap (Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
-      (Localization.Away (liftHom M φ w)) (Polynomial.C Polynomial.X))
+  Polynomial.eval₂RingHom (kappa0 M φ w) (locW M φ w (Polynomial.C Polynomial.X))
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.kappa
 
@@ -456,7 +457,8 @@ theorem eq_one_of_monicFibre {r : ℕ}
     exact (Polynomial.map_ne_zero_iff Polynomial.C_injective).mpr hG
   have hab : IsCoprime (liftHom M φ f) (liftHom M φ g) := by
     rw [liftHom_apply, liftHom_apply]
-    exact hFG.map (Polynomial.mapRingHom Polynomial.C)
+    exact hFG.map
+      (Polynomial.mapRingHom (Polynomial.C (R := Localization.AtPrime (fibrePrime M φ))))
   have hunit : IsUnit (((IsLocalization.Away.awayToAwayLeft (liftHom M φ g) (liftHom M φ f) :
       Localization.Away (liftHom M φ g) →+*
         Localization.Away (liftHom M φ f * liftHom M φ g)).comp (kappa M φ g))
@@ -467,7 +469,7 @@ theorem eq_one_of_monicFibre {r : ℕ}
       (S := Localization.Away (liftHom M φ f * liftHom M φ g)) (liftHom M φ f * liftHom M φ g)
     rw [map_mul] at hu
     exact isUnit_of_mul_isUnit_left hu
-  have hκ : ringMap (kappa M φ g) α₁ = 1 := by
+  have hκ : ringMap (S := Localization.Away (liftHom M φ g)) (kappa M φ g) α₁ = 1 := by
     refine eq_one_of_excision (hExc _) (hMon _) ha hb hab _ ?_
     rw [SteinbergBasic.ringMap_ringMap]
     exact hdie _ _ hunit

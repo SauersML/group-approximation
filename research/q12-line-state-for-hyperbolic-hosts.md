@@ -7,6 +7,7 @@ requires:
   - level-set-join-complexes-are-highly-connected
   - countable-sets-never-separate-continua-without-local-cut-points
   - bbmz-singularity-is-a-recurrent-coincidence
+  - racg-generators-are-singular-over-their-wall-trees
 distinct_from:
   hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups: that is Zaremsky's open question; this is the status record of one attack on its F_infinity half (through BBMZ Question 1.2), with grades.
 ---
@@ -44,6 +45,13 @@ distinct_from:
     splitting events;
   - in every hyperbolic group, `sing(g)` is the set of points whose pair-type path in a finite graph visits a finite
     set of types infinitely often, so it is countable or of the size of the continuum.
+- `racg-generators-are-singular-over-their-wall-trees` (bh-q12-kazhdan):
+  - In girth-5 right-angled Coxeter groups, a generator whose link has at least 3 vertices, each with a second
+    neighbor, is singular over the whole Cantor limit set of its wall.
+  - The Petersen-graph group (expected Menger boundary) therefore has an unbounded host, and the pentagon's 4
+    chains are recovered.
+  - The mechanism is wall-based, and (T) forbids walls, so it does not transfer to Kazhdan groups.
+  - The brute-force finite check for `𝓗_31` is infeasible (`gq-bh-q12-kazhdan-finite-check-feasibility.md`).
 - `gq-bh-finf-hyp-pentagon-three-checks.md`. For the pentagon: true `H_0 = Z^5`, defect rank 5, all `Mor(v)`
   trivial, and boundedness modulo depth.
 - `bbmz-hosts-with-higher-dimensional-boundary-are-unbounded`, a sketch. Reflection groups of dimension ≥ 3 have
