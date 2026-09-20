@@ -213,3 +213,34 @@ ESTABLISHED; both targets and the weighted halting source remain OPEN.
 The standard parser/linter/compiler check took 8.175 seconds on one
 low-priority MSI CPU. The report retains the full-CLI and proof-review
 limitations.
+
+## Uniform amplification and global source audits
+
+The [amplified detector proof](hrf-amplified-2026-09-20.md) now excludes
+all positive multiplicities of Sym4, not just the five-dimensional
+case. A legitimate vertex gauge normalizes two multiplicity blocks;
+four linear eliminations and a sixteen-product multiplication table
+then force a linear combination of associators to equal the unit.
+The noncommuting blocks never enter a commutative polynomial certificate.
+All 124 nonzero twists have input-bound certificates. The independent
+MSI arithmetic verifier took 1.2731 seconds; a separate source/proof
+review passed. These are not Lean or external human verification.
+
+The [extension-rigidity proof](hrf-sym4-extension-rigidity-2026-09-20.md)
+proves H1(S,End(Sym4))=0 in characteristic 19 by explicit polarization
+and Sylow-normalizer cohomology. Thus every module with only Sym4
+composition factors splits. Restricting a representation to an
+eigenspace of its central order-five mark combines these results:
+`hrf-sym4-composition-sector-kills-five-mark` eliminates the whole pure
+composition sector without assuming scalar mark or semisimplicity.
+Mixed constituents and other characteristics remain uncontrolled.
+
+For the quantum source, the [controlled-port audit](lcs-auth-controlled-form-audit-2026-09-20.md)
+and [Toffoli audit](../../notes/lcs-source-toffoli-word-semantics-audit-2026-09-20.md)
+show why even completing the entire circuit group's word theory does
+not authenticate the desired nonlinear semantics. Triple tensoring
+preserves all those relations and central characters but creates a
+fixed positive literal-decoder defect. Proper-corner and non-word
+readouts remain possible; neither a uniformly positive retained mass
+nor a complete HALT-positive source has been obtained. Both root
+problems remain OPEN.

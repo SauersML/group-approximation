@@ -1,0 +1,1 @@
+PASS {"triples": 124, "pinned_sym4_inputs_and_eigenbases": true, "linear_elimination_witnesses_bound_to_edge_equations": true, "quadratic_tables_bound_to_all_substituted_equations": true, "associator_unit_identities": 124, "scope": "all multiplicities over all characteristic-19 extension fields", "seconds": 1.2730944049544632}
