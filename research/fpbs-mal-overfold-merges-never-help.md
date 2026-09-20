@@ -284,6 +284,15 @@ artifacts:
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_rand_s42.txt
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_nonmal_s43.txt
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_L1_3_s44.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/eb_family.py
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/family_d4_d10.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/blocks.py
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/cayley_blocks.py
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/blocks_sym4_j2_b2.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/blocks_sym4_j2_b3.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/blocks_sym4_j2_b4.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/blocks_sym5_j3_b2.txt
+  - experiments/fpbs-overfold-embedded-orbits-2026-09-17/spectral_sym_m3_m8.txt
 ---
 
 **OPEN.** Notation is as in
@@ -1058,3 +1067,49 @@ quotient test of rank-2 relative inertia. OPEN.**
     `θ_j` is proved. The next step is to bound `σ_j(X_j)` on the random
     `N`-lift towers. Their levels are locally tree-like, so the savings
     density is a local statistic of the lift.
+- **2026-09-20, swarm-0917-w21-w21-fp-pull (fp-pull fallback worker):
+  OPEN; (O) is reduced, for the floor, to a strictly narrower cross-orbit
+  statement (O|B).**
+  - *New established input.* [[fpbs-mal-sym-levels-embed-orbits-at-every-depth]],
+    proved in its `-proof` route. For `d ≥ 3` and `j ≤ d − 2`, on the
+    Cayley level of `Sym(d)` with `a ↦ (0 1)` and `b ↦ (0 1 ⋯ d−1)`:
+    - `L_j` fixes `j` points and acts as `Sym(d − j)` on the rest;
+    - every component of `Γ_j` embeds in the level, which is (E), and the
+      same holds on every finite cover;
+    - at `d = j + 2`, every `L_j`-orbit is `{g, gα}`, with `a` and `t_j`
+      acting as the same swap.
+    So on covers of `B_j = Cay(Sym(j+2))`, every overfold seed joins two
+    **different** `L_j`-orbits, and the within-orbit overfolds do not occur.
+    The proof uses a restriction lemma `φ^*X_d ≅ X_{d−1} ⊔ {pt}`, and a
+    vertex-type induction on `C_j` in which reducing `φ(t_j)` cancels one
+    pair per junction. `eb_family.py` checks it for `d = 4, …, 10`, and the
+    bound `j ≤ d − 2` is sharp.
+  - *New established input.* [[fpbs-mal-seed-density-towers-over-orbit-gapped-bases]].
+    The random-lift tower of the uniform witness can be started at any
+    transitive base `B` whose orbit-wise top eigenvalue satisfies
+    `μ_j(B) ≤ λ_0`. The key step is that a good lift has invariant functions
+    pulled back from `B`. Since `μ_j(B_j) = −1`, each depth has a tower of
+    transitive covers of `B_j` with density `≥ 1/60`.
+  - *Spectral note.* A single tower through every `B_j` cannot work
+    spectrally. The orbit graphs `Cay(Sym(m), {(0 1), m-cycle})` have gaps
+    `0.75, 0.19, 0.094, 0.054, 0.034, 0.023` for `m = 3, …, 8`
+    (`spectral_sym_m3_m8.txt`). Theorem M allows per-depth witnesses.
+  - *New route.* `fpbs-mal-depth-floor-from-sym-base-overfold-domination`
+    goes to `fpbs-mal-bernoulli-single-stage-floor`. Its only open premise
+    is [[fpbs-mal-overfolds-dominated-on-sym-base-covers]] (O|B):
+    `deep_j ≥ c_1 law_j` on finite transitive covers of `B_j`. This node
+    implies (O|B), not conversely.
+  - *Exact evidence for (O|B), on the bases only.* Under (E), a minimum
+    promoting set splits into blocks of orbits (`blocks.py`,
+    `cayley_blocks.py` with `deep.c`). Every tested block has
+    `deepc = Σ law`:
+    - on `B_2`: all 11 two-blocks, all 55 three-blocks, and 83 of the 165
+      four-blocks;
+    - on `B_3`: all 59 two-blocks.
+    No proper cover of `B_j` has been tested.
+  - *Remark.* `deep_j` and `law_j` are at most `N`-fold along `N`-sheeted
+    covers. So densities along a tower are non-increasing, and one bad cover
+    poisons every tower through it.
+  - *Where it stands.* This node is still OPEN, and so is (O|B). The next
+    test is exact `deep_j` on small random transitive covers of `B_2` and
+    `B_3`, for example 2- and 3-sheeted lifts.
