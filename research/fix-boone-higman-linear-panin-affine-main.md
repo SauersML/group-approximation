@@ -9,15 +9,13 @@ title: "Fix GroupApproximation.BooneHigmanLinear.PaninAffine.Main: fails through
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 
-**Repair landed, unprobed.** 1665cc7ace: K2 program, GEO/Cor 2.9/F.4: compile fixes from batch b1789856358 (unprobed). Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789910605 on main 516e496a4a).**
 
 ```
-(none in this file: it fails only because red imports fail; see Inputs)
+error: GroupApproximation/BooneHigmanLinear/PaninAffine/Main.lean:52:18: This simp argument is unused:
 ```
 
-**Inputs (nearest red imports).** `fix-boone-higman-linear-panin-affine-algebra`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.BooneHigmanLinear.PaninAffine.Main` compile under the repository settings without changing any statement.
 

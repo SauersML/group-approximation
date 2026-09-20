@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.BrownLift: Application type mismatch: The argument"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/LVBrown/BrownLift.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It IS in the root closure: the root build is red until it is fixed (top priority).
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/LVBrown/BrownLift.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It IS in the root closure: the root build is red until it is fixed (top priority).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: unowned.
 
-**Repair landed, unprobed.** 6384020814: SK Full/LVBrown/BrownLift: annotate the stabilizer binder in brown_lifts conclusion (unpro. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

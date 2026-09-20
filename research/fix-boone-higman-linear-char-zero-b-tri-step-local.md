@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigmanLinear.CharZero.BTri.StepLocal: (deterministic) timeout at whnf, maximum number of heartbeats (200000)"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharZero/BTri/StepLocal.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/BooneHigmanLinear/CharZero/BTri/StepLocal.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**Repair landed, unprobed.** 06a2d3140e: Z1-base, K2Found: fix StepLocal and RelPres from batch b1789878900. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

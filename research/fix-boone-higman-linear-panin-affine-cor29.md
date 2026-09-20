@@ -10,15 +10,14 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 
 
 
-**Repair landed, unprobed.** 1665cc7ace: K2 program, GEO/Cor 2.9/F.4: compile fixes from batch b1789856358 (unprobed). Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
+**First errors (verbatim; from probe job direct-b1789910605 on main 516e496a4a).**
 
 ```
-error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:151:20: Application type mismatch: The argument
-error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:154:14: 'GroupApproximation.BooneHigmanLinear.PaninAffine.Cor29FinitaryAt' depends on axioms outside the classical allowlist: [sorryAx]
-error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:374:4: Application type mismatch: The argument
-error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:377:14: 'GroupApproximation.BooneHigmanLinear.PaninAffine.kappa0' depends on axioms outside the classical allowlist: [sorryAx]
+error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:375:2: Type mismatch
+error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:382:6: Type mismatch
+error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:385:14: 'GroupApproximation.BooneHigmanLinear.PaninAffine.kappa0' depends on axioms outside the classical allowlist: [sorryAx]
+error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:391:14: 'GroupApproximation.BooneHigmanLinear.PaninAffine.kappa' depends on axioms outside the classical allowlist: [sorryAx]
 ```
 
 

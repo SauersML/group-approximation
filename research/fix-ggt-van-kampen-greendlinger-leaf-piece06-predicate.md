@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Predicate: failed to synthesize instance of type class"
 ---
 
-**OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Predicate.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Predicate.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**Repair landed, unprobed.** 5b152d0f59: GreendlingerLeaf Piece06/Predicate: open scoped Classical for List.next on darts (unprobed. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
 

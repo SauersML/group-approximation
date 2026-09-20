@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.K2Refinem
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/K2RefinementDescend.lean` is red on main at eae37b23a2 (trusted batched probe, Slurm job direct-b1789842431). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: unowned.
 
-**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
+**First errors (verbatim; from probe job direct-b1789910605 on main 516e496a4a).**
 
 ```
 error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/K2RefinementDescend.lean:84:35: unsolved goals

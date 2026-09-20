@@ -6,7 +6,7 @@ title: "Fix GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOper
 status: OPEN
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/NonMFNotes/Full/TWWSchafhauser/StdOperatorAlgebraComplete.lean` is red on main at 37ed9e00e (trusted batched probe, direct-b1789878900, found by the ms-map root probe). It IS imported by the root `GroupApproximation.lean`, so the root build is red while it is. Owner: ms-map (root wiring).
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/Manuscript/NonMFNotes/Full/TWWSchafhauser/StdOperatorAlgebraComplete.lean` is red on main at 37ed9e00e (trusted batched probe, direct-b1789878900, found by the ms-map root probe). It IS imported by the root `GroupApproximation.lean`, so the root build is red while it is. Owner: ms-map (root wiring).
 
 **First error (verbatim).**
 

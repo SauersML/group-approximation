@@ -7,10 +7,9 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.Wit
 
 Recorded against the non-MF chain (GreendlingerLeaf P07InnerPocket). It is filed as a claim with no prerequisites, not as a route, because the checker would read a route with no prerequisites as a complete proof.
 
-**OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P07InnerPocket/WitnessStepBridgeMirror.lean` failed to build in direct batch b1789850259 (09-19, base 13d4765e1b, empty overlay; union log gq-slurm/batch-b1789850259-all.log). It blocks 11 of the modules touched by the `open scoped List` sweep 9ddeaca04a. Its imports built green, so this is a leaf: its errors are its own.
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P07InnerPocket/WitnessStepBridgeMirror.lean` failed to build in direct batch b1789850259 (09-19, base 13d4765e1b, empty overlay; union log gq-slurm/batch-b1789850259-all.log). It blocks 11 of the modules touched by the `open scoped List` sweep 9ddeaca04a. Its imports built green, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
-**Repair landed, unprobed.** 4b1ff63c66: GreendlingerLeaf P07: fix WitnessStepBridgeMirror and PocketRunArc, which block 11 open-sc. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
