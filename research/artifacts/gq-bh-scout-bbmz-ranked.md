@@ -26,7 +26,7 @@ It also draws on the open-questions list in `$GQ/board/UNOWNED.md`. The wording 
 
 | # | Question | Status on main | Tract. | Tool, and why | Live owner |
 |---|---|---|---|---|---|
-| 1 | Survey Q4.7: one-ended hyperbolic / closed surface groups in V | OPEN (`closed-hyperbolic-surface-groups-embed-in-thompson-v`); new partial `topologically-free-fg-subgroups-of-v-are-virtually-free` (this lane) | 4 | HSZ Thm A (new) + meeting supports (bh-free-41). Such an embedding has no free orbit, is never topologically free, and has K countable with cyclic stabilizers. Left: Lemma L and the compression step | **bh-scout-bbmz** (taken) |
+| 1 | Survey Q4.7: one-ended hyperbolic / closed surface groups in V | OPEN (`closed-hyperbolic-surface-groups-embed-in-thompson-v`). Partials by this lane: `topologically-free-fg-subgroups-of-v-are-virtually-free` (refereed PASS, 6a216bf0dc) and `one-ended-hyperbolic-subgroups-of-v-are-locally-fixed` (Lemma L; unreviewed) | 4 | HSZ Thm A (new) + meeting supports (bh-free-41). Such an embedding is locally fixed at every point, has no two disjoint supports, and (torsion-free) has no north–south element. Left: the compression lemma | **bh-scout-bbmz** (taken) |
 | 2 | Skipper–Zaremsky 1709.06524: V_d(G) is F_∞ for every f.g. contracting G | reduced to `contracting-groups-have-dying-kernel-covers-of-type-fn` (39552185a) | 4 | Level-set lemma (bounded full contracting RSGs with ℤ or finite defect are F_∞) and lift-ideal Thm A for the F_2 step. Check whether V_d(G) is a bounded RSG with interval defect sets | none |
 | 3 | BBMZ-hyp Q1.1: every hyperbolic group in a contracting RSG | done for closed surfaces (0c67e7a290), spread-nerve RACGs (32d05a3242), right-angled reflection groups in H³ (a39f0aa949) | 3 | sing(g) dichotomy (finite-graph test) and the RACG coding machinery. Next: all hyperbolic RACGs, then cubulated hyperbolic groups via special cube complexes | none |
 | 4 | BBMZ-hyp Q1.4: fp RSG ⇒ fp full closure? | OPEN (bh-higman-classic 09-18, stopped) | 3 | Lift-ideal Thm A is a finite-presentation criterion for exactly this kind of full group over V_d | none |
@@ -48,11 +48,118 @@ It also draws on the open-questions list in `$GQ/board/UNOWNED.md`. The wording 
 
 ## Top five unowned, for the coordinator
 
-1. **Q4.7, surface groups in V.** Taken by this lane. The next steps are Lemma L and the compression step
-   (route of `topologically-free-fg-subgroups-of-v-are-virtually-free`).
+1. **Q4.7, surface groups in V.** Taken by this lane. Lemma L is now proved
+   (`one-ended-hyperbolic-subgroups-of-v-are-locally-fixed`); only the compression lemma in its route remains.
 2. **Skipper–Zaremsky F_∞ for all contracting V_d(G)**, via the level-set lemma.
 3. **BBMZ-hyp Q1.1 beyond surfaces and RACGs.**
 4. **BBMZ-hyp Q1.4**, via lift-ideal Theorem A.
 5. **Belk–Zaremsky F_n criterion for SV_G**, via T0-style Morse methods.
 
 Kourovka 21.41 is a close sixth. It sits beside bh-kd2p and could go to it.
+
+## Exact statements and notes for the items being staffed (ranked #2, #3, #4)
+
+### #2. Skipper–Zaremsky: V_d(G) of type F_∞ for every contracting G
+
+**Node.** `contracting-rover-nekrashevych-groups-are-f-infinity` (OPEN).
+
+**Statement, verbatim.** Skipper–Zaremsky, arXiv:1709.06524v2, TeX l.1365–1367, as quoted in the node:
+
+> Is V_d(G) of type F_∞ for every finitely generated, contracting self-similar G?
+
+**State on main.**
+- The whole question has been reduced to `contracting-groups-have-dying-kernel-covers-of-type-fn` (OPEN): for each
+  n, a type-F_n group B with a wreath recursion whose faithful quotient is G, with dying kernel ∪_j K_j.
+- The reduction goes through the transfer theorem `wreath-recursion-thompson-groups-inherit-fn` (lane proof,
+  bh-free-06; not reviewed).
+- **Known cases:**
+  - polynomial activity growth (`rover-nekrashevych-polynomial-activity-tower-sigma-full`);
+  - bounded automata (Belk–Hyde–Matucci arXiv:2407.03149);
+  - IMGs of expanding coverings of compact aspherical spaces;
+  - hyperbolic PCF rational maps;
+  - Röver's group;
+  - n = 2 (Nekrashevych).
+- **Obstruction:** torsion-free covers are impossible when a finite-order germ recurs along a ray, e.g. in the
+  Grigorchuk group.
+
+**Why the level-set lemma may apply.** `bounded-defect-free-full-contracting-rsgs-are-f-infinity` (refereed at
+78857ab1ec; BHM Remark 2.13 attribution) proves that full, bounded, contracting RSGs with defect group finite, or
+ℤ with interval defect sets, are F_∞.
+
+**The concrete test.** Take V_d(G) for contracting G:
+- it is a full RSG over the full d-ary shift;
+- it is contracting, with nucleus N_G;
+- for its elements, "bounded" means finitely many singular points;
+- H_0 = coker(I − A^T) = ℤ/(d−1) for the full shift, which is finite.
+
+So wherever V_d(G) is bounded, the level-set lemma gives F_∞ directly, bypassing covers. Check first:
+- whether bounded-automaton G gives a bounded RSG, which would recover BHM;
+- which contracting G give unbounded V_d(G), e.g. via polynomial versus exponential activity, and whether the
+  sing(g) dichotomy (5af33a077b) classifies them.
+
+**Caveat.** For the full shift the defect group is finite, so the defect hypothesis is automatic, and the real
+condition is boundedness. BHM already prove F_∞ for bounded automata. So the new content would be one of two things:
+- showing that some contracting G with *unbounded* activity still gives a bounded RSG, in the singular-point sense,
+  which is a different notion from automaton boundedness;
+- extending the level-set lemma to the unbounded case.
+
+### #3. BBMZ-hyperbolic Question 1.1: every non-elementary hyperbolic group is a contracting RSG
+
+**Node.** `non-elementary-hyperbolic-groups-are-contracting-rsgs` (OPEN).
+
+**Statement, verbatim.** BBMZ arXiv:2309.06224v3 §1, `ssec:open`:
+
+> Is every non-elementary hyperbolic group isomorphic to a contracting RSG?
+
+**Done on main** (mostly lane proofs, some refereed):
+- `G * Z`, and `A * B` for hyperbolic A, B, not both of order 2 (so every freely decomposable group);
+- finite-index overgroups, and products with finite groups;
+- virtually free groups;
+- closed surface groups (0c67e7a290, refereed);
+- hyperbolic RACGs with spread nerves (32d05a3242, refereed);
+- right-angled reflection groups in H³ and their commensurability classes (a39f0aa949).
+
+**What remains.**
+- one-ended groups: general hyperbolic RACGs, closed hyperbolic 3-manifold groups beyond the reflection cases, and
+  Kazhdan hyperbolic groups;
+- infinitely-ended groups none of whose finite-index subgroups split freely. These are not virtually torsion-free,
+  and their existence is open.
+
+**Notes.**
+- By finite-index closure, it suffices to do one finite-index subgroup.
+- The natural next targets are:
+  - all hyperbolic RACGs, extending the spread-nerve coding;
+  - then cubulated hyperbolic groups, which are virtually special, via Haglund–Wise, so virtually subgroups of
+    RACGs;
+  - but being a contracting RSG does not obviously pass to subgroups, since fullness and the RSG condition are
+    not hereditary. So the step from RACGs to cubulated groups needs a separate argument, e.g. convex cores, as
+    in `convex-cores-inherit-greedy-coding-na`.
+- The Kazhdan case is where 07e20250b (uncountable shear frontiers) may bite. Check whether contracting RSG
+  structure forces anything about boundary local cut points.
+- The sing(g) dichotomy (5af33a077b) is a finite-graph test that may help certify the nucleus finite.
+
+### #4. BBMZ-hyperbolic Question 1.4: full closures of finitely presented RSGs
+
+**Node.** `fp-rsgs-have-fp-full-closures` (OPEN).
+
+**Statement, verbatim.** BBMZ arXiv:2309.06224, TeX l.236:
+
+> If G is a finitely presented RSG, then must the full closure of G also be finitely presented?
+
+**Done on main.**
+- Yes for contracting G (`contracting-rsgs-have-fp-full-closures`, via BBMZ Theorem B).
+- Trivially yes for full G.
+- So any counterexample is non-contracting and non-full.
+
+**First open family** (`v-normalizer-rsgs-contract-iff-finite-outer-order`): Γ_t = ⟨V, t⟩ = V ⋊ ⟨t⟩, for t
+normalizing V with infinite order in Out(V). These are finitely presented, non-contracting and non-full. For outer
+order ≥ 3 the core is asynchronous (`synchronous-cores-in-out-v-have-order-at-most-two`), so neither BBMZ Theorem B
+nor the Scott/SWZ theory applies to [[Γ_t]].
+
+**Why lift-ideal Theorem A may help.** c327ef1ef3 (refereed PASS, both directions) is a finite-presentation
+criterion for V_d-type full groups: V_d(G) is finitely presented iff its relators are finitely lift-generated.
+- Test whether [[Γ_t]] fits that framework. It is a full group containing V, so ask whether it is V_d(G') for
+  some self-similar G' built from t's local actions.
+- If so, decide finite lift-generation from t's transducer.
+- Also note c2bdf2618d: "the action decides, not the group". The same abstract group can have finitely presented
+  and non-finitely-presented V_d, so Q1.4 may fail through a persistent-type action.
