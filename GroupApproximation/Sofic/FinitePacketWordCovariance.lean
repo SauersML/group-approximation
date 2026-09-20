@@ -26,17 +26,20 @@ def chosenWord (S : Finset Γ)
     (g : Γ) : List Γ :=
   Classical.choose (WordMetric.exists_isWord_length_eq hgen g)
 
+lemma chosenWord_isWord (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (g : Γ) : WordMetric.IsWord (S : Set Γ) (chosenWord S hgen g) g :=
+  (Classical.choose_spec (WordMetric.exists_isWord_length_eq hgen g)).1
+
 theorem chosenWord_letters (S : Finset Γ)
     (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
     (g a : Γ) (ha : a ∈ chosenWord S hgen g) : a ∈ S :=
-  Finset.mem_coe.mp
-    ((Classical.choose_spec
-      (WordMetric.exists_isWord_length_eq hgen g)).1.letters a ha)
+  Finset.mem_coe.mp ((chosenWord_isWord S hgen g).letters a ha)
 
 theorem chosenWord_prod (S : Finset Γ)
     (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
     (g : Γ) : (chosenWord S hgen g).prod = g :=
-  (Classical.choose_spec (WordMetric.exists_isWord_length_eq hgen g)).1.prod_eq
+  (chosenWord_isWord S hgen g).prod_eq
 
 /-- Multiply coordinate movers in the order of a word. -/
 def wordMoverList (U : Γ → Matrix.unitaryGroup Y ℂ) :
