@@ -166,3 +166,19 @@ direction is used here.
   same node records a second point: submultiplicative weight tilts pulled back
   from `Q` have infinite tilted susceptibility at `p_c` on unimodular graphs,
   so Hutchcroft-type tilting needs a cocycle.
+* **Quotient group-ring transplant, state level (transplanter via group-rings,
+  2026-09-20, swarm-0917 w24).** The idea was to prove the gap from Q-side
+  structure of the fibre profile `sigma_p`: positive definiteness,
+  `S_p` on `l2(Q)`, Kesten's `rho_Q < 1`, and Harris and infinite-volume
+  Russo--BK for `tau_p`. `fpbs-relative-gap-state-axioms-admit-collapse`
+  (ESTABLISHED) kills this on **every** pair `(G,N)`. The two-point collapse
+  state of `fpbs-two-point-state-axioms-admit-collapse` obeys (T1)--(T8),
+  equals Bernoulli up to `p_c`, and has `f_p >= theta(p)^2`, so its fibre
+  mass is infinite on every coset of every infinite subgroup for all
+  `p > p_c`. **Invariant:** the uniform atom `inf_x g_p(x)`. **Failing
+  step:** the continuation of `chi^N` from `p_c` to `p_c + delta`. On
+  type-(i) pairs the ESTABLISHED implication "critical fibre l2 implies gap"
+  is false for `f`, so its truncated majorant is the load-bearing step. Any
+  proof must use finite-volume or event-level inputs. Open refinement: a
+  state family with `||G_p|| < infinity` just above `p_c` but infinite
+  fibre mass along a nonamenable `N`.
