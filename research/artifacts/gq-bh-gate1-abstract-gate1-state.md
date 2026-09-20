@@ -60,6 +60,16 @@ Lane bh-gate1-abstract, following on from bh-invent-03's state `gq-bh-bh-invent-
 Attack KD2_p, with one of two first tests:
 - **(i) A possible kill.** Transfer the Kochloukova–Luiz ideal-preservation argument to `F_p`-modules of Krull
   dimension 2. Success would kill KD2_p for metabelian tops.
-- **(ii) A possible start.** Take the self-similar `C_p ≀ Z^2` (Dantas–Santos–Sidki) and test whether its virtual
+- **(ii) A possible start.** Take the self-similar `C_p ≀ Z^2` (Dantas–Sidki, arXiv:1505.05165, on the `p^2`-adic tree; not finitely presented) and test whether its virtual
   endomorphism survives adjoining one BR-conjoint letter `x ↦ x(a − 1)`. That is the smallest step toward a
   two-counter configuration module.
+
+## 6. Update (lane bh-kd2p, 2026-09-19)
+
+Both first tests are resolved in the Attempts of `two-counter-kms-groups-are-self-similar`:
+- **(i) The kill does not transfer.** Kochloukova–Sidki Theorem D is a characteristic-`p` counterexample.
+- **(ii) The start is superseded.** For `p` odd the KMS tops embed in finitely presented self-similar groups
+  (`kms-tops-embed-in-fp-self-similar-metabelian-groups`).
+
+The crux moves to the class-3 lift through the configuration module. The attribution in (ii) was repaired per
+bh-ref-c (6c39124b28).
