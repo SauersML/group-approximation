@@ -355,3 +355,27 @@ swarm-0917 w12).**
     complete-block free products. What remains are one-ended graphs
     (`F_2 x F_2` along the diagonal-free normal subgroups, `T x H`) and
     amalgams over infinite amenable `C`.
+* **Green threshold of the pushed DT measure splits E (2026-09-20,
+  swarm-0917-w23-w23-bs-follow, reframing).** Result:
+  `fpbs-relative-dt-green-threshold-splits-identity-e` (ESTABLISHED).
+  - *Object.* `p^G(N;G)`, the sup of the `p` at which some finite `S` has a
+    summable Green function `D_p(S) = sum_k (mu_{S,p}^{*k} * a_S)(e_Q)` of
+    the pushed DT boundary measure. The condition is a return rate, not an
+    operator norm.
+  - *Result.* `p_c <= p^Q <= p^G <= p_c(N;G)`. So E is the conjunction of
+    **(E-a)** `p^G = p_c(N;G)` (`fpbs-relative-dt-sharpness`, OPEN; for
+    `Q` trivial this is DT's `p~_c = p_c`) and **(E-b)** `p^G = p^Q`
+    (`fpbs-finite-volume-no-drift`, OPEN). The set
+    `{p : some S has r_p(S) < 1}` is the open interval `[0, p^G)`, so a
+    critical Green certificate `r_{p_c}(S) < 1` gives `p_c < p_u`. Under (E-a)
+    it is equivalent to the Kesten gap along `N`. Also under (E-a), the type (ii) pairs of C1 are
+    exactly the drift gaps: return rate below one with `l2(Q)` spectral radius
+    at least one, at `p_c`.
+  - *Calibration.* On `T_k` horocycles, `p^G(L) = p_t = p_c(L;T_k)`, by an
+    explicit ball certificate `Phi_R(p) = (p sqrt(k-1))^(R+1)(2 + R(k-2)/(k-1))`.
+    So the known off-Cayley failure of E is purely a failure of (E-b), while
+    (E-a) holds.
+  - *Where each half dies.* (E-a): the invariant is `inf_S r_p(S)`, and DT's
+    one-step inequality controls only total mass. (E-b): the invariant is the gap
+    `r(mu)^2 < r(mu * mu~)`, and the Cayley symmetry of `sigma^N` is not
+    inherited by `mu_{S,p}`.
