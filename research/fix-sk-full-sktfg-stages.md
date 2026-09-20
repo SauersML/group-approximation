@@ -5,14 +5,14 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.Stages: an impossible interval_cases branch and an unreachable tactic"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/Stages.lean` is red on main at 25942699a4 (union log of batch b1789856358). It is not in the root closure.
+**RESOLVED (e7cefdce2b; trusted batched probe job direct-b1789878900, rc 0, no sorry, classical axioms only).** Was: Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/Stages.lean` is red on main at 25942699a4 (union log of batch b1789856358). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: sk-tfg-b.
 
-**Repair landed, unprobed.** e7cefdce2b:
+**Repair (green).** e7cefdce2b:
 - `consSet_four_cases`: `interval_cases i` also produces the case `i = 3`, where the hypothesis `hj : 3 + 1 < 4` is false. It is now closed with `absurd hj (by norm_num)`.
 - `good_left`: the unused alternative `exact (funext hz).symm` in the first `convert` step is removed.
 
-Stays OPEN until a trusted probe builds it green (request 1789863648.40826.sk-tfg-b is queued).
+Built green by request 1789863648.40826.sk-tfg-b (job direct-b1789878900), together with ThreeCycleWitness.
 
 **First errors (verbatim).**
 

@@ -5,11 +5,11 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.SiteRep: simp does not unfold a set variable"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/SiteRep.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job direct-b1789837230). It is not in the root closure.
+**RESOLVED (e7cefdce2b; trusted batched probe job direct-b1789878900, rc 0, no sorry, classical axioms only).** Was: Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/SiteRep.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job direct-b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: sk-tfg-b.
 
 
-**Repair landed, unprobed.** e7cefdce2b: SKTFG: fix the Stages and SiteRep reds (unprobed). Stays OPEN until a trusted probe builds it green.
+**Repair (green).** e7cefdce2b: the hsum simp call in siteRep_towerTable unfolds the set variable T, so rho_monoEval matches. Built green by request 1789863648.40826.sk-tfg-b (job direct-b1789878900).
 
 **First errors (verbatim).** From the union log of batch b1789856358, after its red imports went green:
 
