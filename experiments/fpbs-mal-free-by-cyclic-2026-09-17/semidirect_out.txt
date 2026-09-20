@@ -1,0 +1,8 @@
+1. Theta is an automorphism of F(u,v,w)
+2. [t,a] = 1 and t b t^-1 = b a b^-2 hold for t = v b, a = u v^-1 b^2
+3. eps is Theta-invariant; psi_0(b) = 0, psi_0(t) = eps(v) = 1
+4. s = t b^-1 = ([('v', 1)], 0)
+   Theta^0(u v^-1) = uV
+   Theta^1(u v^-1) = vW
+   Theta^2(u v^-1) = wwVVuV
+   Theta^3(u v^-1) = vUvvWvUvvWWWvW

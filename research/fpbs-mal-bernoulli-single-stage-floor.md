@@ -709,3 +709,29 @@ Scripts in `experiments/fpbs-pushout-fold-group-2026-09-17/`.
   `j`. M. Hall induction loses the factor `[L : H_j]`.
 
   The claim stays OPEN.
+
+### swarm-0917-w22 (fp-pull, cohomology-index): the two sibling boundary kernels of the overgroup have finite cost
+
+- **Result (ESTABLISHED).** `fpbs-mal-overgroup-is-free-by-cyclic`: the
+  overgroup `M` is `F(u,v,w) ⋊_Θ <b>`, with
+  `Θ: u ↦ v, v ↦ w, w ↦ v u^-1 v^2 w^-1`. Here `Gamma_mal = K ⋊ <b>` over
+  `K = [M, M] ≅ F_∞`. The Alexander polygon is the triangle
+  `(0,0), (2,0), (0,1)`, and the non-fibred lines are `(0,1)`, `(1,0)` and
+  `(1,2)`, which is cited.
+- **Result (ESTABLISHED).** `fpbs-mal-sibling-bns-kernels-have-finite-cost`:
+  the other two boundary kernels `N_1 = ker (1,0)` and `N_2 = ker (1,2)` are
+  increasing unions of 3-generated stages. Each step adds one generator that
+  commensurates the stage, so the stage relative cost is `0` and the cost is
+  at most `3` on every free action.
+- **What dies.** Any floor proof that uses only:
+  - the free-by-cyclic or BNS position of `Gamma_mal`;
+  - Alexander or fibre-rank numerics;
+  - the "`R_K` ∨ one normalising map" structure.
+
+  All of these are shared by `N_1` and `N_2`, where the floor analogue is
+  false.
+- **Where it stops.** The only separating feature found is malnormality of
+  `H_n < H_{n+1}`, which forbids the commensurated step. No floor is
+  proved.
+
+  The claim stays OPEN.
