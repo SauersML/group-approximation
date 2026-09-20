@@ -2,14 +2,15 @@
 rg: 2
 id: kourovka-21-44-neumann-a5-group-has-exponential-growth
 kind: claim
-title: "Kourovka 21.44 test group H (P. Neumann's A_5 group) has exponential growth: it contains a finitely generated solvable subgroup that is not virtually nilpotent"
+title: "Kourovka 21.44 test group H (the constant A_5 group of Neumann–Segal type) has exponential growth: it contains a finitely generated solvable subgroup that is not virtually nilpotent"
 distinct_from:
   kourovka-21-44-neumann-a5-group-is-merge-free-at-every-depth: that node rules out merge-only length reduction for H and leaves its growth open; this node settles the growth (exponential), so H and P cannot witness 21.44.
   kourovka-21-44-spinal-groups-over-a5-dense-regime: that node sets up the test objects H ≤ P and asks for their growth; this node answers that question negatively for both.
 ---
 
-**ESTABLISHED as stated (lane proof, not independently reviewed).** Input: the Milnor–Wolf
-theorem, cited below. Kourovka 21.44 itself stays **OPEN**.
+**ESTABLISHED (lane proof, referee PASS: bh-ref-d, e9969f5692).** Input: the Milnor–Wolf
+theorem, cited below. Credit: `H` is the constant-sequence group of Neumann–Segal type.
+Kourovka 21.44 itself stays **OPEN**.
 
 ## Statement
 
@@ -84,7 +85,8 @@ has infinite order, and `F(K) ≅ D_∞`.
   - Any spinal subgroup of `W` containing such a configuration has exponential growth: rooted
     `Stab({i,j})` together with `d_t` for `t` in it, with sections `t` at `i` and `d_t` at `j`.
   - Future candidates for 21.44 must avoid this configuration, and not only merge-freeness.
-- **Credit.** `H` is P. M. Neumann's constant-sequence group; see the companion node for the
-  identification (via Juschenko–Nekrashevych–de la Salle, arXiv:1305.2637, §4.3.2). Whether
+- **Credit.** `H` is the constant-sequence group of Neumann–Segal type (Juschenko–Nekrashevych–de
+  la Salle, arXiv:1305.2637, §4.3.2, "a general version of Segal's construction"); see the
+  companion node. Whether
   its exponential growth is already recorded in the literature was not checked. No priority is
   claimed.
