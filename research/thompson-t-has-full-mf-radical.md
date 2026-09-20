@@ -199,3 +199,26 @@ separate points.  Two remarks limit the search.
       `B` with `(n/3)` spread over all three), with `eta` recorded.
     - A proof of (FC) must use `r_2` and must bound `||[A^2, B] - 1||` from
       the defect.
+- **2026-09-20 (swarm-0917-w20-w20-ptl-follow, finite-models / decomposition): finitary
+  reformulation, target still open.** Recorded in `thompson-t-mf-iff-finite-quotient-corners`.
+  - *Theorem A.* `T` is MF iff, for every `eps > 0`, some finite quotient `F` of `Z/4 * Z/3` has a
+    unitary representation `pi` (which may be taken to be a multiple of the regular one) and a projection
+    `P` with three properties:
+    - `||[P, pi(a)]||, ||[P, pi(b)]|| < eps`;
+    - `||P(pi(r) - 1)P|| < eps` for `r = r_1, r_2, r_P`;
+    - a compressed generator at distance `>= 1` from `1`.
+
+    The proof pads an exact pair by Willett's `R_q`-stability of `K(3,4)`, retwists the central element
+    `x^4 = y^3` by its own fourth and third roots to land in a finite quotient of `Z/4 * Z/3`, and cuts
+    the original block back out. The converse is polar decomposition plus spectral rounding.
+  - *Belief change.* The finite-quotient class that w19 declared dead (whole finite-image
+    representations have `D >= 1/2`) is complete once corners are allowed. The padded-inert kill concerns
+    the absolute defect only; on the corner, the padding carries the witness exactly.
+  - *Theorem B.* Every corner in `F` has level `>= 1/(18 diam F)`. Averaging over `F` rounds a corner to
+    an invariant subrepresentation, and the w19 bound `1/2` applies to it. So witnesses need Cayley
+    diameter `>= 1/(18 eps)`, and in logarithmic-diameter families such as `SL(2, Z/q)` they need
+    exponential size.
+  - *What is left.* The target is now `inf_F c(F) > 0` over finite quotients of large diameter. A proof
+    must use averaging along `r_1, r_2`, which the diameter does not see. It is open whether `F` may be
+    taken to be a quotient of `Delta(4,3,5)`; this would need `R_q`-stability of `Delta(4,3,5)`,
+    conditional on the pentagon winding.
