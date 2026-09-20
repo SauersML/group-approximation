@@ -267,3 +267,24 @@ each fail on their own:
 The pure L2 companion `fpbs-l2-betti-continuous-along-length-canonical-covers` is open. It is equivalent to the second
 input under CB. I could neither prove nor refute it. Artifact:
 `research/artifacts/fpbs-marked-group-cost-limits-2026-09-19.md`.
+**Marked-limit transfer (September 20, 2026, swarm-0917-w23-w23-fp-pull,
+transplanter, logic-computability). Dead as a class.**
+- Tried: the logic toolkit that closed `kk-witness-counterexample-locus-is-marked-closed`.
+  It proves the claim on marked approximants `Γ_n → Γ` (finitely presented covers,
+  hyperbolic or small-cancellation quotients), then passes to the limit by compactness
+  of the space of marked groups.
+- Result: [[fpbs-bernoulli-cost-usc-on-marked-groups]].
+  - `C* = C(s_Γ)` is upper semicontinuous on infinite marked groups. The proof uses
+    cylinder data with an exact repair, and its cost is read off a finite ball.
+  - `C*` is not lower semicontinuous. The groups `⟨a_1, …, a_k | [a_i, a_1^n]⟩` have
+    fixed price one and converge to `F_k`.
+  - `C*` is right-computable for decidable word problem, so the claim is `Π^0_2` and
+    has no finite counterexample witness.
+- Where it dies: in the limit step, at the upper bound for `C*(Γ)`. Both `C*` and
+  `β_1^(2)` (Pichot) are only upper semicontinuous, so the approximants give only
+  `C*(Γ) ≥ 1 + limsup β_1^(2)(Γ_n)`, which Gaboriau and Pichot already give. The needed
+  `C*(Γ) ≤ 1 + β_1^(2)(Γ)` requires lower semicontinuity of `C*`, which fails at `F_k`,
+  where the claim holds. Even with `β_1^(2)(Γ_n) → β_1^(2)(Γ)`, the transfer is
+  equivalent to continuity of `C*`, which is the claim itself.
+- What survives: upper bounds for `C*(Γ)` built inside `Γ`, and non-local topologies
+  (Farber chains and sofic approximations), where no semicontinuity of `C*` is known.
