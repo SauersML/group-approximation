@@ -48,3 +48,29 @@ constituents `sigma_i` with `3` not dividing `n_i`.
     `mod-s2-jones-rectangular-separating-twist-spectrum`, and of their tensor words. That would show which side
     of (SB) the known infinite-image examples fall on. Those points are near `mu_5`, not near `omega`, so they
     calibrate the dimension pattern only.
+- **2026-09-20, swarm-0917-w22-w22-deligne-pull (group-rings): (SB) is equivalent to the Torelli-abelian
+  reduction; it is not weaker.** See `mod-s2-small-constituents-collapse-to-torelli-abelian-reduction`
+  (ESTABLISHED, unreviewed).
+  - *Identity.* Let `W` be an irreducible `H`-subrepresentation of some tensor word `V_ab`. Call it admissible
+    if `3 not| (a - b) dim W`, with weight `(a + b) dim W`.
+    - The tensor-word loss `D(rho)` of `mod-s2-near-scalar-torelli-closure-dichotomy` equals the least weight
+      of an admissible `W`.
+    - Invariant: `Lambda^(dim W) W` is an `S`-invariant line in `V_(a dim W, b dim W)`.
+    - With (CD3) and (TA1), every admissible `W` then has `(a + b) dim W * eps >= 2 sin(pi d_inf)`.
+  - *Collapse.* (SB), its tensor-word version and `mod-s2-near-scalar-reps-reduce-to-torelli-abelian` are
+    equivalent.
+    - So (PC5) "gap iff (TAP) and (SB)" is the tautological split.
+    - The route `mod-s2-opnorm-torelli-gap-via-small-constituents` has the same open content as the
+      finite-index-multiplier route.
+    - The region under "How it can fail on its own" above is exactly the failure region of the reduction.
+    - The implication (SB) implies reduction is filed as route
+      `mod-s2-torelli-abelian-reduction-via-small-constituents`.
+  - *Class killed.* Constituent-dimension arguments, which locate a small admissible constituent in `rho`, a
+    Schur functor, a tensor word, or a sub- or quotient representation of these, die at the step
+    "`D(rho) eps -> 0`". That step is the reduction itself.
+  - *Next test run (calibration).* On Jones' family with `x/pi` irrational, every irreducible `H`-constituent
+    of every tensor word on which `zeta I` acts non-trivially has dimension divisible by 5, while
+    `eps_zeta -> 0`. So the known infinite-image examples lie entirely on the failing side of the fifth-root
+    analogue of (SB). The fifth-root reduction holds only through the external character `chi_zeta`.
+  - *Status.* OPEN. It is now literally the reduction. Surviving attacks are (R-a) by an input that separates
+    `omega` from `mu_5`, (R-b) by non-dimension data, or (TAP).
