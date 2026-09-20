@@ -1013,3 +1013,48 @@ quotient test of rank-2 relative inertia. OPEN.**
     - Their k-pair form, (Int_B):
       `r(≈_S ∩ ker f) + rk(Y:Z_S) ≤ |S|`, has the same shape as (O).
       It is finer, but not easier in kind.
+- **2026-09-20, swarm-0917-w21-w21-fp-last1 (quantifier-shift): OPEN; this
+  hole decides the flagship at `Gamma_mal` in both directions, through one
+  savings density on the witness towers.** Proved from established nodes
+  only. No new census.
+  - **Monotone levels.** Let `X = lim Q_m` be essentially free profinite
+    with transitive levels. By item 3 of
+    [[fpbs-mal-depth-promotion-equals-overfold-merge-number]], `deep_j(Q)`
+    is the least size of a level-`Q` chord set that works. A level-`Q_m`
+    chord set is also a level-`Q_{m+1}` chord set, with the same measure
+    `|Φ| / |Q_m|`. So `deep_j(Q_m)/|Q_m|` and `law_j(Q_m)/|Q_m|` are
+    nonincreasing in `m`, and the infima in item 4 are limits.
+  - **Savings density.** Put `σ_j(X) = Q_j^law(X) − Q_j(X)`, which equals
+    `lim_m (law_j − deep_j)(Q_m) / |Q_m|`. Let `X_j` be the towers of
+    [[fpbs-mal-twisted-level-seed-density-uniform-witness]], so
+    `Q_j^law(X_j) ≥ 1/60`. Theorem M of
+    [[fpbs-mal-promotion-cost-monotone-under-weak-containment]] gives
+    `Q_j(X_j) ≤ Q_j(ρ)`. Hence
+    `σ_j(X_j) ≥ Q_j^law(X_j) − Q_j(ρ)` and
+    `inf_m deep_j(Q_m)/law_j(Q_m) ≤ 60 · Q_j(ρ)`.
+  - **Dichotomy.** Let `θ_j = σ_j(X_j) / Q_j^law(X_j)`, the fraction of the
+    lawful seed density that overfold seeds save.
+    - If `sup_j θ_j < 1`, then `Q_j(X_j) ≥ (1 − sup θ)/60` for all `j`.
+      By the per-depth witness criterion of the Theorem M node, that is the
+      floor. So it gives a counterexample through
+      [[fpbs-mal-floor-gives-fixed-price-counterexample]], without needing
+      (O) on any level outside the `X_j`.
+    - If `Gamma_mal` has fixed price, which `fpbs-fixed-price-universal`
+      asserts, then `Q_j(ρ) → 0`. This uses
+      [[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]] (1 ⇔ 6) and
+      [[fpbs-mal-floor-iff-deep-promotion-floor]], where `Q_j` is
+      nonincreasing. So `θ_j ≥ 1 − 60 · Q_j(ρ) → 1`: at large depth, overfold seeds save
+      almost all of the lawful density. On fine levels,
+      `law_j − deep_j ≥ (1/60 − ε)|Q_m|`.
+  - **What is new.** The route asks for `deep ≥ c · law` on every finite
+    `Q`. Only `sup_j θ_j < 1` on the levels of the `X_j` is needed. For
+    example, any additive bound `law_j − deep_j ≤ o(|Q|)`, uniform in `j`,
+    on those levels gives `θ_j = 0`. Conversely, the flagship predicts
+    *linear* savings on those same levels at every large depth. Savings
+    that are only a finite-size effect cannot rescue it. The census data
+    (`deep = law` on all small levels) bound no `θ_j`, since `θ_j` is a limit
+    over fine levels.
+  - **Where it dies.** This is a sharpened target, not a proof. No bound on
+    `θ_j` is proved. The next step is to bound `σ_j(X_j)` on the random
+    `N`-lift towers. Their levels are locally tree-like, so the savings
+    density is a local statistic of the lift.
