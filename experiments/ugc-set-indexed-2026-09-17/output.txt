@@ -1,0 +1,23 @@
+[1] basic SDP of the odd cycle / blow-up
+  m=   3 max|<u0,u1>|=2.8e-17 max|norm-1|=0.0e+00 sdp>=0.87500000 bound=0.86292216 ok=True
+  m=   5 max|<u0,u1>|=5.6e-17 max|norm-1|=0.0e+00 sdp>=0.95225425 bound=0.95065198 ok=True
+  m=   7 max|<u0,u1>|=2.8e-17 max|norm-1|=0.0e+00 sdp>=0.97524222 bound=0.97482244 ok=True
+  m=  21 max|<u0,u1>|=2.8e-17 max|norm-1|=0.0e+00 sdp>=0.99720771 bound=0.99720249 ok=True
+  m= 101 max|<u0,u1>|=5.6e-17 max|norm-1|=0.0e+00 sdp>=0.99987907 bound=0.99987906 ok=True
+[2] Lemma W: Pr[all R_z mono] vs 6 (3/4)^g
+  m=5 n=40 mono   g=  6 PrW~0.0092 bound=1.0679
+  m=5 n=40 defect g=  1 PrW~0.0003 bound=4.5000
+  m=5 n=40 random g=  4 PrW~0.0000 bound=1.8984
+  m=7 n=70 mono   g=  6 PrW~0.0015 bound=1.0679
+  m=7 n=70 defect g=  7 PrW~0.0003 bound=0.8009
+  m=7 n=70 random g=  6 PrW~0.0000 bound=1.0679
+  m=7 n=140 mono   g=  8 PrW~0.0000 bound=0.6007
+  m=7 n=140 defect g= 15 PrW~0.0000 bound=0.0802
+  m=7 n=140 random g= 16 PrW~0.0000 bound=0.0601
+[3] E[Phi] (upper bound on set-indexed value, natural strategies) vs proved bound
+  m=7 n=  28 E[Phi]~0.2546  m/n=0.2500  proved<=1.0000  ordered>=1-B*0.756
+  m=7 n= 112 E[Phi]~0.0026  m/n=0.0625  proved<=1.0000  ordered>=1-B*1.512
+  m=7 n= 448 E[Phi]~0.0000  m/n=0.0156  proved<=0.0731  ordered>=1-B*3.024
+  m=11 n=  44 E[Phi]~0.2623  m/n=0.2500  proved<=1.0000  ordered>=1-B*0.603
+  m=11 n= 176 E[Phi]~0.0002  m/n=0.0625  proved<=1.0000  ordered>=1-B*1.206
+  m=11 n= 704 E[Phi]~0.0000  m/n=0.0156  proved<=0.0785  ordered>=1-B*2.412
