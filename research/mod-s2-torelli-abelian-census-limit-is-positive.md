@@ -164,3 +164,34 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
     `2^5`. Such subgroups are not run here.
   - No uniform argument is given.
 - **Status.** OPEN.
+
+### 2026-09-20, swarm-0917-w21-w21-deligne-last1 (census-computation): first 3-adic layer below Gamma(3), b_1(M_9) = 24 and the level-three relations survive at every index-three step
+
+- **What was computed.** See `mod-s2-three-adic-first-layer-torelli-census`, established through
+  `mod-s2-three-adic-first-layer-torelli-census-proof`.
+  - The index-three subgroups `Gamma(9) < G_Y < Gamma(3)` are `ker tr(Y .)` for `Y != 0` in
+    `sp_4(F_3)`. There are 29524 of them in 16 adjoint classes.
+  - Hochschild-Serre plus property (T) of `Sp_4(Z)` gives `b_1(M_Y) = 24 + 2 a_Y`, with `a_Y <= n_Y`.
+    Here `n_Y` counts the off-diagonal level-3 splittings, and it is `3, 2, 1` on three classes and 0
+    on the other 13.
+  - For each class, the level-three Fox complex is lifted to a free `(Z/81)[Z/3]`-complex, which is a
+    local ring. It is eliminated by a sparse unit eliminator (`lelim.c`, tested against Python and
+    against no elimination).
+  - The transfer then pins down the 3-part of `W(G_Y)`.
+- **Results.**
+  - `c_m = 26` on all 16 classes, so `a_Y = 0`, `b_1(M_Y) = 24`, and by Shapiro `b_1(M_9) = 24`.
+  - On the 13 classes with `n_Y = 0`, `W(G_Y) = W(Gamma(3))` exactly: rank 21, `gcd aug = 5`,
+    `d = 1/15`, with the mass-5 certificate.
+  - On the 3 classes with `n_Y > 0` (45 + 2 n_Y twist classes), the 3-saturation of `W(G_Y)` is the
+    pull-back of `W(Gamma(3))`. So `3 not | gcd aug` and `d <= 1/15`.
+- **Reading.** The transfer obstruction of this claim (only `3 W(Gamma(3)) <= W(G_Y)` is forced) does
+  not fire at the first 3-adic step. The level-three relations survive unchanged, and `W(Gamma(3))/W(G_Y)`
+  is 0 rather than `F_3^21`. Down to `Gamma(9)`, decay can come only from torsion characters. For
+  `n_Y > 0` it can come only from prime-to-3 torsion of `H_1(M_3; Z[omega]_chi)`.
+- **Where it stops.**
+  - Exactness away from 3 for `n_Y > 0` is open, because Z-coefficient elimination exhausted memory.
+  - `Gamma(9)` itself is the intersection of all the `G_Y`, and only its `b_1` is determined here. Its
+    `W` and `d` are not.
+  - The next rung is the second layer `G_Y cap G_Y'` over `(Z/3^m)[Z/3 x Z/3]`, which is still local.
+  - No uniform argument is given.
+- **Status.** OPEN.
