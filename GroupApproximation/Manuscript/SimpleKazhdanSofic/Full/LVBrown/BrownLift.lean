@@ -90,7 +90,7 @@ theorem brown_lift {G V : Type} [Group G] [MulAction G V]
       t * f a * t⁻¹ = f b)
     (hτ2 : (τ * τ) • v0 = v0) (ht2 : t * t = f ⟨τ * τ, hτ2⟩)
     (hbr : t * f ⟨h, hh0⟩ * t = f ⟨h, hh0⟩ * t * f ⟨h, hh0⟩) :
-    ∃ F : G →* Q, (∀ j, F j = f j) ∧ F τ = t := by
+    ∃ F : G →* Q, (∀ j : MulAction.stabilizer G v0, F j = f j) ∧ F τ = t := by
   -- `h² = 1` and generation are not needed: Brown's theorem supplies the presentation.
   have _ := hhh
   have _ := hgen
