@@ -8,8 +8,9 @@ distinct_from:
   kourovka-21-44-spinal-groups-over-a5-dense-regime: that node sets up the test objects H ≤ P and asks for their growth; this node answers that question negatively for both.
 ---
 
-**ESTABLISHED as stated (lane proof, not independently reviewed).** Input: the Milnor–Wolf
-theorem, cited below. Kourovka 21.44 itself stays **OPEN**.
+**ESTABLISHED (lane proof, referee PASS: bh-ref-d, e9969f5692).** Input: the Milnor–Wolf
+theorem, cited below. Credit: `H` is the constant-sequence group of Neumann–Segal type.
+Kourovka 21.44 itself stays **OPEN**.
 
 ## Statement
 
