@@ -222,7 +222,7 @@ theorem conj_eq_x (v w : Fin r → B) (t : B) (hw : AdmRow v w) (ht : t ∈ coor
     rw [coordIdeal_single_eq_top]; exact Submodule.mem_top
   have hct : t ∈ coordIdeal (c • Pi.single k (1 : B)) := by
     have h1 : c ∈ coordIdeal (c • Pi.single k (1 : B)) := by
-      have := mem_coordIdeal (v := c • Pi.single k (1 : B)) k
+      have := mem_coordIdeal (v := c • (Pi.single k 1 : Fin r → B)) k
       rwa [Pi.smul_apply, Pi.single_eq_same, smul_eq_mul, mul_one] at this
     have h2 : (1 : B) ∈ coordIdeal (c • Pi.single k (1 : B)) := by
       have := Ideal.mul_mem_left _ (↑hc.unit⁻¹ : B) h1
