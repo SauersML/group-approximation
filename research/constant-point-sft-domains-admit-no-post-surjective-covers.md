@@ -200,3 +200,20 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
     model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
     argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.
+- **The colliding fragment is all of CP (swarm-0917-w20-w20-gs-pull, 2026-09-20; calibration, dispatched as
+  stability-approximation). This is an equivalence and a class kill. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cp-is-equivalent-to-its-colliding-fragment`.
+    - Step 4 of `bounded-defect-domain-dual-failure-proof` accepts any base point `y0 ∈ Y`, and every constant
+      lies in `Y`. So the route pair `(X_R, σ)` collides at every constant.
+    - Hence `CP_col(G) ⇒ Gottschalk(G)` and `CP ⟺ CP_col ⟺ CP_col^∃`, per group.
+    - The w15 split `CP ⟺ Gottschalk ∧ CP_col` has a redundant conjunct. Its remark that "CP_col is a surplus
+      the route never uses" is wrong: the route pair is a `CP_col` pair.
+    - Over all groups, `CP ⟺ CP_col(U)` at the fixed tester, with no `Gottschalk(U)` conjunct.
+  - *Correct surplus.* `CP ⟺ Gottschalk ∧ CP_nosec`, where `CP_nosec` forbids sectionless pairs. Sectioned and
+    sectionless pairs both collide at every constant, so section existence is the only separating invariant.
+  - *Class kill.*
+    - Approach: restrict CP by profile data (SI, `D = ∅`, all constants, collisions at every constant,
+      non-pre-injectivity, window size) and hope for something weaker than Gottschalk.
+    - Every such restriction still implies Gottschalk, because `(X_R, σ)` realises that profile.
+    - So collision-counting, Garden-of-Eden and deficiency arguments cannot split CP below Gottschalk. Only
+      section-sensitive data (needs 36774ad3, 06d50d0e) can.
