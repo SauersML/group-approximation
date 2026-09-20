@@ -158,3 +158,26 @@ of the two relators of `F` almost commute, uniformly in the dimension.
     The certified witnesses keep `c ~ I` on about a third of the space. They are not perturbed block copies of
     their seeds: about `0.67` of their normalized mass lies off the seed's block diagonal at `n = 64` and `n = 128`.
     So a doubling map would have to couple the two copies, and a block-diagonal gluing will not do.
+- **Census: tensor-shift ratio profile** (lane swarm-0917-w20-w20-nh-break, 2026-09-20). Recorded as
+  `thompson-f-tensor-shift-pairs-have-bounded-commutator-ratio` (OPEN). Artifact:
+  `experiments/thompson-f-shift-profile-2026-09-17/results.txt`. The claim stays OPEN.
+  - **Question.** Can the tensor shift serve as the doubling map `m -> 2m` that raises the fixed-dimension
+    constant `C = sqrt(e([X,Y]) / max e(R_i))`, as the w19 fixed-dimension-constant census (not yet on main) asks?
+    The pair is `X = a ⊗ 1`, `Y = 1 ⊗ a` in `U(q^(L+1))`.
+  - **Invariant (proved, elementary).** Take `L = 2` and suppose `a = u ⊗ v` is a product, with
+    `u, v in U(q)`. The pair then factors site by
+    site as `(u,1) ⊗ (v,u) ⊗ (1,v)`. Both relators and `[X,Y]` lie in `[F,F]`, so they are trivial on the
+    two abelian factors. Since `tr_n` is multiplicative on tensor products, every `e`-value equals the
+    value on the `U(q)` pair `(v,u)`, so `C ≤ C_q(F)`.
+  - **Numerics (best found, uncertified; q = 2, L = 2..5, n = 8..64).**
+    - The ratio optimum is `C = 2.3803` at every `L`, with `e(c) = 3.4201`.
+    - Neither random restarts nor perturbations of size `eps ≤ 1` beat it by more than 0.6% (best 2.3935
+      at `L = 4`).
+    - The optimum is a product to 0.5% (op-Schmidt `[2, .0106, 0, 0]`). Its `U(2)` factor alone gives
+      `C = 2.3797`.
+    - In the small-commutator regime (`||[X,Y]||_2 = 0.3`), `C = 0.76 / 0.85 / 0.99 / 1.01`.
+    - The generic constants are `C_n ≥ 3.2286` for `n ≥ 4` and `C_128 ≥ 4.45`.
+  - **Where it stops.** Tensor shifts are not the ratio-increasing doubling: the search collapses them onto
+    one-site-product pairs, which are bounded by `C_q`. This leans toward the `L`-uniform bound left open
+    in `thompson-f-exact-shift-covariant-models-force-amenability`. That bound is not proved. The missing
+    step is to control non-product `a`, i.e. operator-Schmidt rank at least 2, uniformly in `L`.

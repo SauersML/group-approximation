@@ -1,0 +1,52 @@
+Tensor-shift ratio profile for Thompson's F  (swarm-0917-w20-w20-nh-break, 2026-09-20)
+==================================================================================
+
+Setting.  a in U(q^L), X = a (x) 1, Y = 1 (x) a = sigma(a) on L+1 sites (honest pair in U(q^(L+1))).
+e(U) = 2 - 2 Re tr_n U.  C = sqrt(e([X,Y]) / max(e(R1), e(R2))) is a lower bound for C_n(F),
+n = q^(L+1);  F hyperlinear iff sup_n C_n(F) = infinity.
+All numbers are best-found by gradient search (Adam + cosine), float64, NOT certified optima;
+each printed triple is an exact evaluation of an explicit matrix pair (so each C is a certified
+lower bound on C_n up to floating point, and says nothing rigorous about the sup).
+
+1. Ratio optimisation  (ratio_shift.py; outputs ratio_q2_t1.8.out, ratio_q2_t1.0.out)
+   q=2, 3 random restarts + warm start from a (x) 1, 1500 iters, constraint e(c) >= tau.
+
+   L  n    e(R1)    e(R2)    e(c)     C
+   2  8    0.60365  0.55651  3.4201   2.3803     (tau=1.0; tau=1.8 found 2.3565 at L=2)
+   3  16   0.60365  0.55651  3.4201   2.3803
+   4  32   0.60365  0.55651  3.4201   2.3803
+   5  64   0.60365  0.55651  3.4201   2.3803
+
+   Random restarts at L=3..5 never beat the warm start; the attractor is the L=2 optimum (x) 1.
+
+2. Perturbation probe  (perturb.py; perturb_L3.out, perturb_L4.out)
+   Seed = L=2 optimum (x) 1^(L-2) + eps * Gaussian, re-optimised (lr .01, 1500 iters).
+   L=3: eps = .05, .2, .5 all return to C=2.3803; eps=1.0 gives 2.0974, 1.4492.
+   L=4: eps = .05, .2 return to 2.3803/2.3804; eps=.5 gives 2.1139 and 2.3935 (best seen, +0.6%).
+
+3. Structure of the optimum  (verify_ratio.py, numpy/scipy re-check)
+   L=2 optimum: operator-Schmidt coefficients across the site cut [2.0000, 0.0106, 0, 0]
+   (normalised so a product has [2,0,0,0]): a is a product u (x) v to 0.5%.
+   For L=2 and a = u (x) v (u, v in U(q)) the shift pair factors as (u,1) (x) (v,u) (x) (1,v); pairs with one
+   generator = 1 satisfy both relators and commute, and e is not multiplicative but
+   1 - e/2 = Re tr is, so every ratio is governed by the single U(2) pair (v,u).
+   U(2) pair (v,u) from the best product approximation: e(R1)=0.60394 e(R2)=0.55604
+   e(c)=3.42021 C=2.37973.  So the whole tensor-shift optimum for q=2, L<=5 is a U(2) phenomenon.
+
+4. Small-commutator regime  (shift_profile.py + verify.py; run_q2.txt, run_q2_c03_long.txt)
+   Minimise the (A)/(B) defects dA + dB at fixed ||[a, sigma a]||_2 = c.
+   c=0.3:  min (A)/(B) defect .7733 / .6070 / .5000 / .4145 at L = 2/3/4/5 (decreasing ~0.83x/site).
+   Direct F-relators of the same models (verify.py, N = L+4 sites, normalised HS norms):
+     L  ||R1-1||  ||R2-1||  ||[X,Y]||  max||R-1||/||[X,Y]||   C
+     2  0.3913    0.3886    0.2990     1.3087                0.764
+     3  0.3513    0.2400    0.2993     1.1736                0.852
+     4  0.2806    0.3011    0.2995     1.0052                0.995
+     5  0.2583    0.2964    0.2996     0.9893                1.011
+   C grows slowly here but stays far below the large-commutator value 2.38.
+   q=3 (run_q3.txt, L=2 only): c=.1/.3/.6 -> defect .4141/.7436/1.0547 (slightly below q=2).
+
+Comparison.  Generic fixed-dimension constants (w19 census,
+local commit, not on main): C_n >= 3.2286 for n >= 4, C_16 >= 3.536, C_128 >= 4.45.  The tensor-shift
+class reaches only 2.38-2.39 at n = 8..64.  So tensor shifts are not the ratio-increasing
+doubling map m -> 2m; the numerics lean to an L-uniform bound (the "Left open" question of
+thompson-f-exact-shift-covariant-models-force-amenability), which is NOT proved.
