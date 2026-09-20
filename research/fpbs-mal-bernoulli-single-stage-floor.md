@@ -20,6 +20,7 @@ artifacts:
   - research/fpbs-mal-pushout-fold-certificates-vanish-on-random-levels-proof.md
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_search.py
   - experiments/fpbs-depth-overfolding-2026-09-17/check_surjective_n12.txt
+  - research/artifacts/fpbs-mal-normal-and-intermediate-class-kills-2026-09-20.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -707,5 +708,39 @@ Scripts in `experiments/fpbs-pushout-fold-group-2026-09-17/`.
   for general subgroup pairs, so a proof must use the rank-2 chain. (W)
   needs a spectral gap or seed density for `<a, t_j>` that is uniform in
   `j`. M. Hall induction loses the factor `[L : H_j]`.
+
+  The claim stays OPEN.
+
+### swarm-0917-w23 (fp-break): normal subgroups and finite-index intermediates are inert
+
+Artifact: `research/artifacts/fpbs-mal-normal-and-intermediate-class-kills-2026-09-20.md`.
+
+- **Result (ESTABLISHED).**
+  [[fpbs-mal-infinite-index-normal-subgroups-cost-infinity]].
+  - `Gamma_mal = <<a>> ⋊ <b_1>`, via `χ(b_k) = (-1)^{k+1}`.
+  - Every nontrivial normal subgroup `Λ` of infinite index has
+    `beta_1(Λ) = infinity` (Gaboriau Théorème 6.8 with `beta_1(Gamma_mal) = 1`).
+    So every free action of `Λ`, and every restriction `α|Λ`, has infinite
+    cost.
+  - Normal-subgroup transfer (Cor. 2.48, Theorem 2.56, the bounded-cost
+    criteria) is therefore inert here in both directions, not just over
+    finitely generated bases.
+- **Result (ESTABLISHED).**
+  [[fpbs-malnormal-intermediates-are-index-one-or-infinite]].
+  - Every relation `T` with `R_n ⊆ T ⊆ E`, or `S_{j+1} ⊆ T ⊆ S_0`, has a.e.
+    class equal to one stage class or to infinitely many, in every free
+    action.
+  - So no promotion argument can pass through a finite-index intermediate,
+    such as a compact-extension step, a bounded-multiplicity absorption, or
+    finitely-many-classes attachment.
+- **Also killed (artifact §4).**
+  - Sufficient routes needing `relC(S_0; S_j) -> 0` are void, because `relC`
+    is antitone in the subrelation, so `relC(S_0; S_j) >= Q_0 >= 2/25`.
+  - Measured free-factor witnesses are impossible: `R_2 = R_1 * S` forces
+    `C(S) = 0`.
+- **Where it stops.** Both lemmas hold in every free action, including the
+  cost-2 odometer products, so neither can separate `beta`. The only
+  remaining floor source is stage malnormality at infinite multiplicity:
+  the (O)/(W) route and P2.
 
   The claim stays OPEN.
