@@ -100,3 +100,24 @@ for each generating set, one parameter with infinitely many infinite clusters.
   infinite clusters at `p_u` of a Cayley graph depends on the generating set.
   No method in the region supplies an infinite cluster at `p_u` for a mixed or
   non-free-basis generating set; this is the open core.
+* **2026-09-20, swarm-0917-w22-w22-bs-last1, minimal-counterexample: can the
+  Choi–Seo supporting-set route give (Gamma1) on products?** **Refuted for
+  every product; the claim stays OPEN.**
+  (`fpbs-cs-set-family-hypothesis-fails-commuting-normal-cross`, ESTABLISHED.)
+  - *Question.* The infinite-centre obstruction left the hypothesis SF of
+    Choi–Seo `thm:hutchcroft1plus2` undecided on centreless products such as
+    `F_2 x F_2`. Could some family built from half-spaces of a hyperbolic
+    factor feed that route?
+  - *Answer.* No, on every generating set of every product `H x K` of two
+    infinite groups, and more generally whenever an infinite normal `K` has a
+    centralizer with infinite image in `G/K`. The reason is the identity
+    `(xy) h (xy)^-1 = [y,h] (x h x^-1)` for `x` in `H` and `y` in `K`.
+  - *Witness.* Take `A = XY ∪ {x h^-1 x^-1} ∪ {[y,h]}` with
+    `#X = #Y = n > 2 #B(R)`. It has `n^2` bad core points and at most
+    `2n #B(R)` good points. The witness is verified by brute force on
+    `F_2 x F_2` (product and mixed generators), `F_2 x D_infinity` and
+    `F_2 x Z`.
+  - *Where it dies.* The named invariant is the commuting cross. The failing
+    step is the hypothesis of `thm:hutchcroft1plus2`, before Appendix A of
+    [CS]. Any proof of (Gamma1) here must count fibres or use a triangle
+    condition, not supporting sets with disjoint short translates.
