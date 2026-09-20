@@ -48,7 +48,8 @@ theorem transl_C (x : Fin (n + 1) → κ) (c : κ) : transl x (C c) = C c := by
 theorem transl_comp_neg (x : Fin (n + 1) → κ) : (transl x).comp (transl (-x)) = AlgHom.id κ _ := by
   apply MvPolynomial.algHom_ext
   intro i
-  simp only [AlgHom.comp_apply, AlgHom.id_apply, transl_X, map_add, transl_C, Pi.neg_apply, C_neg]
+  simp only [AlgHom.comp_apply, AlgHom.id_apply, transl_X, map_add, map_neg, transl_C,
+    Pi.neg_apply, C_neg]
   ring
 
 /-- Translation as an automorphism. -/
@@ -93,16 +94,9 @@ noncomputable def genLine (x : Fin (n + 1) → κ) (g : MvPolynomial (Fin (n + 1
 
 theorem map_genLine (x : Fin (n + 1) → κ) (a : Fin n → K) (g : MvPolynomial (Fin (n + 1)) K) :
     (genLine x g).map (MvPolynomial.eval fun j => algebraMap K κ (a j)) = lineMap x a g := by
-  induction g using MvPolynomial.induction_on with
-  | C r =>
-    simp [genLine, lineMap, transl_C, chart_C, Polynomial.algebraMap_apply]
-  | add p q hp hq =>
-    simp only [genLine, map_add, Polynomial.map_add] at hp hq ⊢
-    rw [hp, hq]
-  | mul_X p i hp =>
-    simp only [genLine, map_mul, Polynomial.map_mul, MvPolynomial.map_X] at hp ⊢
-    rw [hp]
-    congr 1
+  have hXi : ∀ i, (chart κ n (transl x (X i))).map (MvPolynomial.eval fun j => algebraMap K κ (a j)) =
+      lineMap x a (X i) := by
+    intro i
     refine Fin.cases ?_ (fun j => ?_) i
     · simp only [transl_X, map_add, chart_X_zero, chart_C, Polynomial.map_add, Polynomial.map_X,
         Polynomial.map_C, eval_C, lineMap, aeval_X, Fin.cons_zero, map_one, one_mul]
@@ -110,6 +104,15 @@ theorem map_genLine (x : Fin (n + 1) → κ) (a : Fin n → K) (g : MvPolynomial
     · simp only [transl_X, map_add, chart_X_succ, chart_C, Polynomial.map_add, Polynomial.map_mul,
         Polynomial.map_X, Polynomial.map_C, eval_C, eval_X, lineMap, aeval_X, Fin.cons_succ]
       ring
+  induction g using MvPolynomial.induction_on with
+  | C r =>
+    simp [genLine, lineMap, Polynomial.algebraMap_apply]
+  | add p q hp hq =>
+    simp only [genLine, map_add, Polynomial.map_add] at hp hq ⊢
+    rw [hp, hq]
+  | mul_X p i hp =>
+    simp only [genLine, map_mul, Polynomial.map_mul, MvPolynomial.map_X] at hp ⊢
+    rw [hp, hXi]
 
 theorem isRelPrime_genLine {x : Fin (n + 1) → κ} {f f' : MvPolynomial (Fin (n + 1)) K}
     (h : IsRelPrime f f') (hx : eval x (map (algebraMap K κ) f') ≠ 0) :
@@ -125,7 +128,7 @@ theorem isRelPrime_genLine {x : Fin (n + 1) → κ} {f f' : MvPolynomial (Fin (n
 theorem exists_eval_ne_zero {σ : Type*} [Infinite K] {P : MvPolynomial σ K} (hP : P ≠ 0) :
     ∃ a : σ → K, eval a P ≠ 0 := by
   by_contra h
-  push_neg at h
+  simp only [not_exists, not_not] at h
   exact hP (MvPolynomial.funext fun a => by rw [h a, map_zero])
 
 /-- **A good direction exists.** -/
@@ -209,15 +212,9 @@ theorem fibre_eq {K : Type} [Field K] {n : ℕ} (a : Fin n → K)
     intro c
     show Ideal.Quotient.mk M ((shear a).symm (rename Fin.succ (C c))) = _
     rw [rename_C, ← MvPolynomial.algebraMap_eq, AlgEquiv.commutes, Ideal.Quotient.mk_algebraMap]
-  induction g using MvPolynomial.induction_on with
-  | C c =>
-    rw [shear_apply, show shearHom a (C c) = C c by simp [shearHom], finSuccEquiv_C',
-      Polynomial.map_C, hfibC, lineMap, aeval_C, Polynomial.algebraMap_apply, Polynomial.C_comp]
-  | add p q hp hq =>
-    simp only [map_add, Polynomial.map_add, Polynomial.add_comp, hp, hq]
-  | mul_X p i hp =>
-    simp only [map_mul, Polynomial.map_mul, Polynomial.mul_comp, hp]
-    congr 1
+  have hXi : ∀ i, (finSuccEquiv K n (shear a (X i))).map (fibreMap M (shear a)) =
+      (lineMap x a (X i)).comp (Polynomial.X - Polynomial.C (x 0)) := by
+    intro i
     refine Fin.cases ?_ (fun j => ?_) i
     · rw [shear_apply, shearHom_X_zero, finSuccEquiv_X_zero, Polynomial.map_X, lineMap, aeval_X]
       simp only [Fin.cons_zero, map_one, one_mul, Polynomial.add_comp, Polynomial.C_comp,
@@ -229,6 +226,14 @@ theorem fibre_eq {K : Type} [Field K] {n : ℕ} (a : Fin n → K)
       simp only [Fin.cons_succ, Polynomial.add_comp, Polynomial.mul_comp, Polynomial.C_comp,
         Polynomial.X_comp, Polynomial.C_sub, Polynomial.C_mul]
       ring
+  induction g using MvPolynomial.induction_on with
+  | C c =>
+    rw [shear_apply, show shearHom a (C c) = C c by simp [shearHom], finSuccEquiv_C',
+      Polynomial.map_C, hfibC, lineMap, aeval_C, Polynomial.algebraMap_apply, Polynomial.C_comp]
+  | add p q hp hq =>
+    simp only [map_add, Polynomial.map_add, Polynomial.add_comp, hp, hq]
+  | mul_X p i hp =>
+    simp only [map_mul, Polynomial.map_mul, Polynomial.mul_comp, hp, hXi]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.fibre_eq
 

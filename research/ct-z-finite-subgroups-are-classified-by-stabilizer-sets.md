@@ -2,7 +2,7 @@
 rg: 2
 id: ct-z-finite-subgroups-are-classified-by-stabilizer-sets
 kind: claim
-title: Two embeddings of a finite group in Kohl's CT(Z) are conjugate iff they have the same point-stabilizer subgroups on Z; so torsion elements are conjugate iff they have the same cycle lengths, and the conjugacy problem of CT(Z) is decidable whenever one element has finite order (Kourovka 21.73, torsion case)
+title: Two embeddings of a finite group in Kohl's CT(Z) are conjugate iff they have the same point-stabilizer subgroups on Z; so torsion elements are conjugate iff they have the same cycle lengths, and the conjugacy problem of CT(Z) is decidable for pairs in which a given element has finite order (a promise algorithm; Kourovka 21.73, torsion case)
 artifacts:
   - research/artifacts/gq-bh-bh-free-58-salo-source.md
 ---
@@ -39,8 +39,12 @@ artifacts:
 2. **Torsion elements.** Two elements of finite order in `CT(Z)` are conjugate iff they
    have the same set of cycle lengths on `Z`. Every such element is conjugate into
    `CT_∅(Z) ≅ V`.
-3. **Decidability.** An algorithm takes `g, h ∈ CT(Z)`, with `g` of finite order, and
-   decides whether they are conjugate:
+3. **Decidability (promise form).** An algorithm takes `g, h ∈ CT(Z)`, together with the
+   promise that `g` has finite order, and decides whether they are conjugate. It must be told
+   which input has finite order: without the promise the search for `ord(g)` need not halt, and
+   torsion in `CT(Z)` is decided only on the positive-ray class
+   (`ct-p-z-positive-ray-torsion-and-finiteness-are-decidable`). (Referee repair, bh-ref-d,
+   e64cfcbeeb.)
    - Find `n = ord(g)` by testing `g^k = 1` for `k = 1, 2, …`.
    - Answer no unless `h^n = 1`.
    - Otherwise compare the cycle-length sets, which are computable by the proof of Lemma A.
@@ -119,7 +123,9 @@ homeomorphisms. Then there is a clopen `Y` with `X = ⊔_{w∈W} wY`.
 - **Why machines alone do not supply them.** For multiplicative counter-machine
   elements, "finite order" means uniform periodicity, which is decidable (Kari–Ollinger
   Thm 4). This is consistent with `ct-z-finite-cycle-problems-are-undecidable`.
-- **A second obstruction: blind multiplication.** Salo's blinkers are bits stored far from
+- **A second obstruction: blind multiplication (heuristic sketch; referee bh-ref-d).**
+  Multiplication by a rational is not itself a permutation of `Z`, so the steps below are a
+  sketch, not a proof. Salo's blinkers are bits stored far from
   the head. Try the naive transfer of this idea to counter machines. Consider the counter-coded elements of `ct-z-finite-cycle-problems-are-undecidable`,
   where a bit is stored in the unit digits of a counter's `p`-adic coordinate.
   - Multiplying by a rational coprime to the machine primes changes those digits.
