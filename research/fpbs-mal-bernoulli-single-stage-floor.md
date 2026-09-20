@@ -20,6 +20,7 @@ artifacts:
   - research/fpbs-mal-pushout-fold-certificates-vanish-on-random-levels-proof.md
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_search.py
   - experiments/fpbs-depth-overfolding-2026-09-17/check_surjective_n12.txt
+  - research/artifacts/fpbs-mal-bernoulli-height-defect-2026-09-20.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -707,5 +708,50 @@ Scripts in `experiments/fpbs-pushout-fold-group-2026-09-17/`.
   for general subgroup pairs, so a proof must use the rank-2 chain. (W)
   needs a spectral gap or seed density for `<a, t_j>` that is uniform in
   `j`. M. Hall induction loses the factor `[L : H_j]`.
+
+  The claim stays OPEN.
+
+**2026-09-20, swarm-0917-w22-w22-fp-break (belief breaker,
+operator-algebras): OPEN; the approximate-odometer class of refutations is
+killed.** Artifact:
+`research/artifacts/fpbs-mal-bernoulli-height-defect-2026-09-20.md`.
+
+- **Target of the attack.** The only known cheap free actions of
+  `Gamma_mal` are the odometer products
+  ([[fpbs-mal-odometer-product-actions-have-cost-two]]). Their seed set
+  `{z mod N in {0,1,2}}` costs `3/N` and is built on an exactly
+  `chi`-equivariant height. So a natural refutation of this floor is to
+  build near-equivariant heights mod `N` inside `beta`. Then seed on them
+  and control the 2-of-3 closure errors by the defect.
+- **Result (ESTABLISHED,
+  [[fpbs-mal-bernoulli-heights-have-uniform-defect]]).** Take any stage `n`,
+  any countable `H_n`-set `Y` on which `a` or `b_n` has no fixed point, and
+  any Borel `f : X -> Y`. Then
+  `d_a(f) + d_{b_n}(f) >= (2 - sqrt 3)/(4 - sqrt 3) = 0.118`.
+  In general the bound is `(2 - sqrt 3)(1 - sum p_y^2)`.
+  - *Proof.* The graph vector `1[f(x) = y]` in `L^2(X) ⊗ l^2(Y)` has mass
+    `1 - sum p_y^2` off `l^2(Y)`. That part is a multiple of
+    `lambda_{F_2}`, by freeness of stages on the Bernoulli tensor basis and
+    Fell absorption. Kesten's gap `4 - 2 sqrt 3` applies to it, and a
+    concentration bound handles `p* > 1/2`.
+- **Where the class dies.** At step 1, the existence of the height. The
+  defect of any such height is at least `0.118`, uniformly in `N`, `n` and
+  `Y`. The transport needs defect `o(1/N)`.
+  - **Invariant:** the Kesten gap of the Koopman representation of a stage,
+    twisted by `l^2(Y)`.
+  - The qualitative exclusion of compact factors in item 5 of
+    [[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]] would still allow
+    defects `eps_0(N) -> 0`. The uniformity is what kills the class.
+  - It also covers congruence, dihedral, `Z`- and `Z^`-valued heights.
+- **Not killed.**
+  - Seed sets that are not functions of a height, including long-generator
+    corrections of a height's defect region.
+  - The lower-bound route through (O) and (W), which uses finite witnesses
+    legitimately.
+  - For a single generator the bound fails, by Rokhlin for `<a> ≅ Z`. So
+    the obstruction really uses the non-amenability of each stage.
+- **Remark (not established).** Weak-containment witnesses for
+  `C(beta) < infinity` must be tempered. Tempered Gaussian actions
+  `G(pi)`, with `pi ≼ lambda`, should all have cost `C(beta)`.
 
   The claim stays OPEN.
