@@ -1,0 +1,2 @@
+mode 02, U(0,1,2,3) V(0,0,1,2): best defect 9.424e-05 over 48 restarts x 600 iters
+mode 02, U(0,1,2,3) V(1,1,2,2): best defect 4.063e-05 over 48 restarts x 600 iters
