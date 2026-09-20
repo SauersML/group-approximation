@@ -151,7 +151,8 @@ theorem siteRep_towerTable {cB : Cyl A} {B : Set S.carrier}
       ∑ l : Fin 5, Finsupp.single (x, t + ((((σ l : Fin 5) : ℕ) : ℤ) - ((l : ℕ) : ℤ)))
         ((if cylMem cB ((T ^ (t - ((l : ℕ) : ℤ))) x).1 then (1 : ZMod 2) else 0) * c) := by
     rw [towerTable, eval_append, eval_cons, eval_map_finRange S, eval_map_finRange S]
-    simp only [map_add, map_sum, LinearMap.add_apply, LinearMap.sum_apply,
+    -- unfold the `set` variable `T`, so that `rho_monoEval` matches
+    simp only [T, map_add, map_sum, LinearMap.add_apply, LinearMap.sum_apply,
       rho_monoEval, add_zero, cylInd_nil, LocallyConstant.one_apply, one_mul]
     congr 1
     · congr 1
