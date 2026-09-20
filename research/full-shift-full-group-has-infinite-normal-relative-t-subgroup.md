@@ -171,3 +171,16 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     characteristic `p`, with `(Λ ⋉ R², R²)` relative (T), and with a family of finite quotients
     `Λ ⋉ (R/d_jR)²` whose Schreier graphs have bounded bandwidth. Or show that relative (T) of the
     pair forces (τ) on congruence quotients of `Λ`.
+- **2026-09-20 (swarm-0917-w21-w21-nv-last1): class kill by Property FM of the quotient
+  (ESTABLISHED as `wobbling-relative-t-pairs-with-fm-quotient-are-finite`).**
+  - Invariant: Cornulier's Property FM of `Γ/H`.
+  - Step where every member dies. `Γ → Γ/H` is a Kazhdan homomorphism (Cornulier 1308.1318,
+    Ex. 2.7), so FM lifts to `Γ` (Thm 6.12). Then Thm 7.1(2) gives finite image in `W(Z)`, hence in
+    `[[X]]`.
+  - So every witness has `Γ/H` non-amenable and without FM. This kills quotients with (T), (T)-factor
+    lattices (Thm 1.13, including non-FA ones), and FM-by-FM extensions.
+  - For `Γ_p` it gives only a conditional kill: `SL_2(F_p[t,t^-1])` would have to lack FM, which is open
+    (a tree-product case of the hard case of Conjecture 1.10). The unlanded w19 `(τ)` argument is the
+    stronger kill of `Γ_p`.
+  - Survivors: quotients without FM, e.g. non-amenable groups with an amenable action without finite
+    orbits.
