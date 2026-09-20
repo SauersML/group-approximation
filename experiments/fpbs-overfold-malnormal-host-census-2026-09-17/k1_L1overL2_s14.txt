@@ -1,0 +1,15 @@
+progress k1 L1overL2 seed 14 {'inst': 25, 'J': 14061, 'Yneq': 1191, 'YB': 23, 'viol': 0, 'pair': 1191}
+progress k1 L1overL2 seed 14 {'inst': 50, 'J': 23510, 'Yneq': 1983, 'YB': 42, 'viol': 0, 'pair': 1983}
+progress k1 L1overL2 seed 14 {'inst': 75, 'J': 31579, 'Yneq': 2651, 'YB': 69, 'viol': 0, 'pair': 2651}
+progress k1 L1overL2 seed 14 {'inst': 100, 'J': 41974, 'Yneq': 3505, 'YB': 90, 'viol': 0, 'pair': 3505}
+progress k1 L1overL2 seed 14 {'inst': 125, 'J': 48470, 'Yneq': 4030, 'YB': 114, 'viol': 0, 'pair': 4030}
+progress k1 L1overL2 seed 14 {'inst': 150, 'J': 61004, 'Yneq': 5068, 'YB': 132, 'viol': 0, 'pair': 5068}
+progress k1 L1overL2 seed 14 {'inst': 175, 'J': 67699, 'Yneq': 5595, 'YB': 160, 'viol': 0, 'pair': 5595}
+progress k1 L1overL2 seed 14 {'inst': 200, 'J': 74779, 'Yneq': 6190, 'YB': 177, 'viol': 0, 'pair': 6190}
+progress k1 L1overL2 seed 14 {'inst': 225, 'J': 88703, 'Yneq': 7333, 'YB': 202, 'viol': 0, 'pair': 7333}
+progress k1 L1overL2 seed 14 {'inst': 250, 'J': 95610, 'Yneq': 7898, 'YB': 227, 'viol': 0, 'pair': 7898}
+progress k1 L1overL2 seed 14 {'inst': 275, 'J': 102403, 'Yneq': 8446, 'YB': 259, 'viol': 0, 'pair': 8446}
+progress k1 L1overL2 seed 14 {'inst': 300, 'J': 111070, 'Yneq': 9151, 'YB': 276, 'viol': 0, 'pair': 9151}
+progress k1 L1overL2 seed 14 {'inst': 325, 'J': 122978, 'Yneq': 10142, 'YB': 305, 'viol': 0, 'pair': 10142}
+progress k1 L1overL2 seed 14 {'inst': 350, 'J': 128943, 'Yneq': 10591, 'YB': 336, 'viol': 0, 'pair': 10591}
+k1 L1overL2 seed 14 {'inst': 371, 'J': 133491, 'Yneq': 10947, 'YB': 354, 'viol': 0, 'pair': 10947}

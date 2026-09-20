@@ -1,0 +1,4 @@
+progress L1overL2 {'inst': 10, 'Yneq': 416, 'X->Z:pair': 386, 'Z->Y:eq': 410, 'cert<=1': 392, 'X->Z:eq': 6, 'Z->Y:arc': 6, 'X->Z:pair+1': 24, 'cert<=2': 24}
+progress L1overL2 {'inst': 20, 'Yneq': 848, 'X->Z:pair': 765, 'Z->Y:eq': 835, 'cert<=1': 778, 'X->Z:eq': 13, 'Z->Y:arc': 13, 'X->Z:pair+1': 70, 'cert<=2': 70}
+progress L1overL2 {'inst': 30, 'Yneq': 1249, 'X->Z:pair': 1131, 'Z->Y:eq': 1229, 'cert<=1': 1151, 'X->Z:eq': 20, 'Z->Y:arc': 20, 'X->Z:pair+1': 98, 'cert<=2': 98}
+analyze2 L1overL2 seed 41 npairs 2 {'inst': 38, 'Yneq': 1585, 'X->Z:pair': 1444, 'Z->Y:eq': 1563, 'cert<=1': 1466, 'X->Z:eq': 22, 'Z->Y:arc': 22, 'X->Z:pair+1': 119, 'cert<=2': 119}

@@ -1,0 +1,3 @@
+progress nonmal {'inst': 10, 'Yneq': 75, 'X->Z:pair': 75, 'Z->Y:eq': 75, 'cert<=1': 75}
+progress nonmal {'inst': 20, 'Yneq': 211, 'X->Z:pair': 203, 'Z->Y:eq': 211, 'cert<=1': 203, 'X->Z:pair+1': 8, 'cert<=2': 8}
+analyze2 nonmal seed 43 npairs 2 {'inst': 28, 'Yneq': 322, 'X->Z:pair': 304, 'Z->Y:eq': 322, 'cert<=1': 304, 'X->Z:pair+1': 18, 'cert<=2': 18}
