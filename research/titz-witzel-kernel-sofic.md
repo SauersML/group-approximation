@@ -175,3 +175,17 @@ sofic, it would also answer Cornulier's Question 5 positively.
     and pushing loops to the boundary needs geodesic extension.  Branch
     points would have to be planted in cancelling groups.
   * No positive construction is proposed.  Target stays OPEN.
+- 2026-09-20 (swarm-0917-w23-w23-titz-last1, census-computation, gate census): computed
+  the marked two-generator gate `(TW2G2)-(TW2G4)` directly.
+  * Recorded `titz-witzel-gate-small-models-defect-mark-ratio-four-thirds`, an exhaustive
+    enumeration up to conjugacy. For `n <= 11`, every `(e,u)` with `u^8 != 1` has total
+    relator support at least `(4/3)|supp u^8|`. Equality is attained by the S_3 gadget
+    `e = (0 1)`, `u` a 3-cycle, which satisfies `c^2` and `b x u^(-1) d^(-1)` exactly.
+  * Annealing on `n = 32, 64, 128` never beat the gadget, and was weaker than it at `n = 128`.
+    Its controls (each relator dropped in turn) also failed to reach marked exact
+    solutions, so it certifies nothing.
+  * Where this dies. The invariant is `min D/M`, which cannot increase with `n`. Exhaustion
+    costs about `n!` and stops at `n = 11`. Local search is uncalibrated. Long-scale monodromy
+    (`kazhdan-sofic-models-carry-long-scale-monodromy`) predicts exactly this pinning at small
+    `n`, so neither outcome moves belief. Do not repeat small-`n` or local-search censuses of
+    this gate without a calibrated control. Target stays OPEN.
