@@ -261,3 +261,38 @@ direction is used here.
   AN-type derivative domination is therefore itself a critical-l2 / triangle
   method and cannot establish `E` or `E'` outside that regime. No node or
   artifact written; this record is the only output.
+* **Group-rings transplant: positivity of the fibre kernel in the gap window
+  (transplanter, 2026-09-20, swarm-0917 w22).** This treats `sigma^N_p` as an
+  element of the Fourier--Stieltjes algebra `B(Q)` and asks which part of it
+  Claim E of `fpbs-relative-threshold-is-quotient-l2-threshold` really
+  controls.
+  - **Proved** (`fpbs-fibre-mass-positive-definite-in-gap-window`,
+    ESTABLISHED). Whenever `chi^N_p < infinity`, so on the whole window
+    `p_c < p < p_c(N;G)`:
+    - `sigma^N_p` is positive definite on `Q` and maximal at `e`, for every
+      normal `N`;
+    - its finite-cluster part is a coefficient of the regular representation.
+
+    The key identity is a coset mass transport with a probability weight `pi`
+    on `Q`:
+    `sigma(u^(-1)w) = sum_v pi_v E[A(u) A(w) / W_pi]`, with `W_pi = sum_r pi_r A(r)`.
+    This replaces the `1/|K|` root, which does not exist on infinite clusters.
+    Exact enumeration on `D_4` and `D_6` confirms the identity and refutes the
+    naive `A(e)`-normalised root.
+  - **New decomposition.** The chain is
+    E ⇒ E1 (`fpbs-gap-window-fibre-mass-in-fourier-algebra`, OPEN: `sigma_p`
+    in `A(Q)` below `p_c(N;G)`) ⇒ positive definiteness (proved). Each link
+    can fail on its own. On tree products, E1 already forces the pointwise
+    square-root law `beta_fib >= 1/2`, and finite clusters obey that law
+    unconditionally. So a counterexample to Claim E there must come from
+    infinite-cluster fibre mass decaying slower than `(k-1)^(-n/2)`.
+  - **Where it dies.** The step from positive definiteness to boundedness of
+    convolution. Positivity plus the other soft properties proved (maximal at
+    `e`, radial, not summable) are all shared by complementary-series
+    spherical functions `phi_z`, `z < 1/2`, and those violate E1. So this
+    route proves nothing about the premise `p_c < p_c(N;G)` itself.
+  - **Invariant.** The singular mass `dist_B(sigma_p, A(Q)) <= sigma^inf_p(e)`,
+    which is carried entirely by infinite clusters. Any proof of E must
+    produce a `Q`-equivariant square-root vector for the infinite-cluster
+    fibre mass. The positive root found here is not equivariant, and its
+    equivariant version has weight `|C| = infinity`.
