@@ -1,0 +1,21 @@
+# Output of check_fiber_switch_adversary.py, run 2026-09-20 (python3, exact Fractions, about 12 minutes on a shared machine).
+# Columns: case, exact max of N * Pr[A(y) != A(y')] over the edges examined, the proved bound 2 - 1/N, verdict.
+# Exhaustive rows cover every one-point edge of [L]^H; search rows are random starts plus random walks (lower bounds on the max).
+# Checks (P) random-on-primaries and (E) equivariance/constants are assertions run before each row.
+exhaustive q=2 L=2 b=0: max N*Pr = 3/2 (= 1.500000); bound 2-1/N = 7/4; PASS; worst edge ((0, 0, 0, 1), 0, 1)
+exhaustive q=2 L=2 b=1: max N*Pr = 3/2 (= 1.500000); bound 2-1/N = 7/4; PASS; worst edge ((0, 0, 0, 1), 0, 1)
+exhaustive q=2 L=3 b=0: max N*Pr = 7/4 (= 1.750000); bound 2-1/N = 7/4; PASS; worst edge ((0, 1, 0, 2), 0, 2)
+exhaustive q=2 L=3 b=1: max N*Pr = 7/4 (= 1.750000); bound 2-1/N = 7/4; PASS; worst edge ((0, 1, 0, 2), 0, 2)
+exhaustive q=2 L=4 b=0: max N*Pr = 7/4 (= 1.750000); bound 2-1/N = 7/4; PASS; worst edge ((0, 1, 0, 2), 0, 2)
+exhaustive q=2 L=4 b=1: max N*Pr = 7/4 (= 1.750000); bound 2-1/N = 7/4; PASS; worst edge ((0, 1, 0, 2), 0, 2)
+exhaustive q=3 L=3 b=0: max N*Pr = 11/6 (= 1.833333); bound 2-1/N = 17/9; PASS; worst edge ((0, 0, 1, 0, 1, 2, 0, 1, 2), 0, 2)
+exhaustive q=3 L=3 b=1: max N*Pr = 11/6 (= 1.833333); bound 2-1/N = 17/9; PASS; worst edge ((0, 0, 1, 0, 1, 2, 0, 1, 2), 0, 2)
+exhaustive q=3 L=3 b=2: max N*Pr = 11/6 (= 1.833333); bound 2-1/N = 17/9; PASS; worst edge ((0, 0, 1, 0, 1, 2, 0, 1, 2), 0, 2)
+search q=3 L=4 b=1: max N*Pr found = 17/9 (= 1.888889); bound 2-1/N = 17/9 (= 1.888889); PASS
+search q=4 L=4 b=1: max N*Pr found = 23/12 (= 1.916667); bound 2-1/N = 31/16 (= 1.937500); PASS
+search q=5 L=5 b=1: max N*Pr found = 39/20 (= 1.950000); bound 2-1/N = 49/25 (= 1.960000); PASS
+search q=5 L=6 b=1: max N*Pr found = 39/20 (= 1.950000); bound 2-1/N = 49/25 (= 1.960000); PASS
+search q=7 L=7 b=1: max N*Pr found = 193/98 (= 1.969388); bound 2-1/N = 97/49 (= 1.979592); PASS
+ALL PASS
+# Observations (not claims): the bound 2 - 1/N is attained exactly once L > q (q = 2, L = 3, 4 exhaustive; q = 3, L = 4 found).
+# At L = q the exhaustive and found maxima fit 2 - 1/(q(q-1)) for q = 2, 3, 4, 5.
