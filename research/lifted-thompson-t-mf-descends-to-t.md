@@ -73,3 +73,38 @@ are equivalent to (D).
   spectral projections of `rho(t_j)` in the image of `lambda^j`.  A
   single-representation obstruction of the kind recorded for (EC) (arc
   spectrum, no projections in `C^*(rho(z))`) does not block this.
+
+## Attempts
+
+- **2026-09-20, swarm-0917-w21-w21-ptm-follow (stability-approximation).**
+  The goal was to reduce (D) to an approximate statement using a Zassenhaus
+  commutator gap. The result is recorded as the ESTABLISHED node
+  `lifted-thompson-t-central-displacement-gap`.
+  - **Gap.** `T̄` is finitely generated and perfect. So every homomorphism into
+    the unitary group of any unital C\*-algebra satisfies
+    `max_i ||sigma(s_i) - 1|| ∈ {0} ∪ [delta, 2]`, for one fixed `delta > 0`.
+  - **First conjunct.** A diagonal limit then shows that "`T` full" is
+    equivalent to "the set `N` of corona displacements `||rho(z) - 1||` omits
+    some interval `(0, eta)`".
+  - **Reduction of (D).** Combined with the conjugate tensor square, whose
+    displacement is at most `diam sp(rho(z))`, this gives
+    (D) ⟺ **(Small)** ⟺ **(Arc)**.
+    - **(Small)** says that if some `rho` moves `z`, then there are
+      displacements arbitrarily close to `0` but nonzero.
+    - **(Arc)** says that if `T̄` is MF, then for every `eps` some `rho` has
+      `rho(z) != 1` with `sp(rho(z))` in an arc of length `eps`.
+    - Neither form needs an exact scalar or a commutant projection.
+  - **Failure world.** In the failure world, every commutant corner (for `z`,
+    and for each `t_j` over `lambda^j T̄`) on which `rho` is nontrivial has
+    `z`-spectrum of diameter at least `eta`.
+  - **Class kill.** Every homomorphism of `T̄` into `U(C(Y, D))`, with `Y`
+    connected and one scalar fibre, is trivial. This covers cones and
+    suspensions, and in particular the O_2-suspension mechanism.
+  - **Where it stops.** Producing representations with small nonzero central
+    displacement, or with short-arc spectrum, from one representation that
+    moves `z` is open. The conjugate tensor square only shrinks displacement
+    down to `diam sp(rho(z))`. By item 5 of the new node, corners and
+    precomposition with `lambda^j` cannot bring that diameter below `eta` in
+    the failure world. So the step needs a genuinely new operation, for
+    example one that uses the endomorphisms `lambda_n` or the
+    rotation-centralizer quotients.
