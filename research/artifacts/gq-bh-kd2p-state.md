@@ -80,3 +80,20 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
 - **So only route (ii) is live, and for counter-pair domains it dies too.** What is left: route (ii) on
   power-type domains (does `N = {b ∈ 𝔟 : ε(f̄^n b) = 0 ∀n}` still contain a nonzero invariant ideal?), and top
   maps whose image counters share a common unit point `z` (e.g. all of `ã'`-type).
+
+## Update 2 (lane bh-kd2p-2): route (ii) closed at the lamp level
+
+`kms-central-lamp-mixing-cannot-separate-top-core` (lane proof, not reviewed).
+- **Result.** In the product Frobenius–Möbius class, with a non-contracting cycle, the refereed invariant
+  principal ideal of `kms-top-every-counter-cycle-must-contract` can be built, with a larger field `F_{p^r}` and
+  exponent `N'`, inside `𝔪_z`, where `z` is the point the mixing character factors through. On that ideal the
+  lift equals `f̄`, so central lamp mixing never separates the top core, power-type domains included.
+- **Both lamp-level routes are now closed** (route (i) under hypothesis (V)).
+
+**Exact remaining cases for KD2_p:**
+1. `F` on `H ∩ T`: the normal closure `I·[T, I]` of the top core must fail to be `F`-invariant inside `H`. This
+   is the only place separation can still happen, and it is the same check for every lift.
+2. Route (i) without (V): every image counter shares a common unit point `z`.
+3. Mixing into grades other than `T_0`, or into `B_1, …, B_K`.
+4. Top maps outside the product Frobenius–Möbius class.
+5. `p = 2`.
