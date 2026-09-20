@@ -1,0 +1,25 @@
+Run on 2026-09-20 by swarm-0917-w23-w23-gs-pull.
+
+$ python3 search3.py 3
+primitive essential: 139
+pairs with disjoint cones: 84
+of which path criterion holds: 0
+
+The earlier cyc.py run (n = 3) found that, for every one of the 84 ordered disjoint-cone pairs, the first
+non-full persistent cyclic word is 'ab'.
+
+$ python3 search4.py 4 <trials> 0.45   (random sampling, n = 4)
+Counter({'ab': 136, 'aB': 32})   and no PATHOK hits
+
+Meaning of the output:
+- The nearest-neighbour tree SFTs on F_2 = <a, b> with 3 symbols and primitive, essential edge relations E_a, E_b
+  are enumerated exhaustively.
+- "Disjoint cones" means the circulation LP has no solution. Equivalently there is no invariant measure, and so
+  no periodic point: free groups are in class N.
+- The path criterion is necessary for strong irreducibility. It is the acyclicity of the graph of non-full
+  (relation, last letter) states.
+- Result: every 3-symbol nearest-neighbour tree SFT with no periodic point already fails the path criterion. Its
+  failure is witnessed by a periodic word, always 'ab' at n = 3, and 'ab' or 'aB' in the n = 4 sample. So none of
+  them is SI.
+- This is evidence toward Poirier–Salo (arXiv 2401.16774, after Question 6.16) in the smallest case. It is a
+  finite census, not a theorem.
