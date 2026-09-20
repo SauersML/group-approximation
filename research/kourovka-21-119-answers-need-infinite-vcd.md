@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/gq-bh-kourovka-scout-candidates-2026-09-19.md
 ---
 
-**ESTABLISHED** (lane proof, elementary, not independently reviewed). Kourovka 21.119 itself
+**ESTABLISHED** (lane proof, elementary; referee PASS by bh-ref-f, e733763d78, repairs applied). Kourovka 21.119 itself
 stays **OPEN**; this node records what any answer must look like.
 
 ## The problem
@@ -29,8 +29,8 @@ Let `G` answer 21.119. Then:
 1. `G` is of type `F_∞`, and every `f_n` is nonzero.
 2. No finite-index subgroup of `G` is torsion-free of finite cohomological dimension.
 3. `G` is not commensurable with Thompson's group `F`.
-4. **Reduction for groups with only abelian proper quotients.** Let `G_0` be a group in
-   which every proper quotient is abelian and `[G_0, G_0]` is nonabelian. Then a group
+4. **Reduction for groups with only abelian proper quotients.** Let `G_0` be an infinite
+   group in which every proper quotient is abelian and `[G_0, G_0]` is nonabelian. Then a group
    commensurable with `G_0` answers 21.119 iff the characters `G_0 → ℤ` alone have kernels of
    every finite finiteness length. The finite-index subgroups contribute nothing new.
 5. `G` is not commensurable with any generalized Thompson group `F_{n,∞}` (`n ≥ 2`).
@@ -38,7 +38,10 @@ Let `G` answer 21.119. Then:
 **Groups excluded by item 2.** Item 2 excludes every virtually torsion-free group of finite
 vcd. Examples:
 
-- lattices in Lie groups, S-arithmetic groups in characteristic 0 and their subgroups;
+- lattices in linear Lie groups, S-arithmetic groups in characteristic 0 and their
+  subgroups, all virtually torsion-free by Selberg's lemma. Lattices in non-linear Lie groups
+  are not covered: Deligne's non-residually-finite lattices in covers of `Sp_{2n}(ℝ)` need
+  not be virtually torsion-free;
 - virtually torsion-free hyperbolic groups;
 - virtually special groups, and right-angled Artin and Coxeter groups;
 - mapping class groups, Out(F_n) and Aut(F_n);

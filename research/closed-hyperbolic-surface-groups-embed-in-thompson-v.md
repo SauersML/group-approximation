@@ -99,3 +99,6 @@ finite groups is recalled, not checked here.)
     - no two nontrivial elements have disjoint supports;
     - no element has north–south dynamics on `C`.
   - **What a "no" needs now:** only the compression lemma stated in that node's route, for elements with several attractors or a periodic region.
+  - **Compression target stated (09-19):** `locally-fixed-torsion-free-subgroups-of-v-have-disjoint-supports` (OPEN). It says a torsion-free f.g. subgroup of `V` fixing a neighborhood of every point has a disjoint-support pair; with the locally-fixed node this gives a negative answer here.
+    - Calibration: torsion cannot be dropped (`S_3` and `S_3 × Z` permuting three cones are counterexamples). `Z²`, `F_n × F_m`, `F`, `T` and `V` are consistent, and so are the tested free subgroups.
+    - Decisive test: three-cone generators `x_AB`, `x_BC`, `x_AC`; ping-pong is excluded.

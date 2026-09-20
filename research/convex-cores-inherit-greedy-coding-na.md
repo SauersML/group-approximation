@@ -44,3 +44,30 @@ RSG, and a contracting one exactly when it satisfies (IRR).
 - **The combinatorial half does not.** Irreducibility belongs to the new coding.
 - **So in both directions** (finite-index subgroups, quasiconvex subgroups) the obstruction to Question 1.1 is the same
   single object: the recurrent structure of one finite state graph.
+
+## Attempts
+
+1. **2026-09-19 (lane `bh-q11-beyond`): does the RSG structure restrict along a quasiconvex embedding?** (analysis; one
+   small lemma, not reviewed)
+   - **Direct restriction fails.** In the RSG structure of the ambient `G` on `∂X`, the canonical similarities between
+     same-type cones are realized by elements of `G`, not of `Q`. Restricting to `∂Y` keeps the cones but loses the
+     realizing elements. So "contracting RSG" does not pass to subgroups formally; `Q` needs its own coding.
+   - **Greedy paths stay in the core (lemma).** Let `v ∈ Y` and `ω ∈ ∂Y`, and let `e` be an edge at `v` dual to a
+     hyperplane `H` separating `v` from `ω`. Then the other endpoint `v'` of `e` lies in `Y`.
+     - `Y` is the intersection of the halfspaces containing it.
+     - A halfspace omitting `v'` but containing `v` is bounded by `H`.
+     - `H` meets `Y`, since `Y` has vertices on both sides, so neither halfspace of `H` contains `Y`.
+
+     Hence, with the ambient order restricted to `Y`, the greedy itinerary of `ω` in `Y` is its ambient itinerary. The
+     states of `Y`, i.e. an orbit `Qv` together with a set of `Y`-edges at `v`, project onto ambient states, and
+     transitions project onto transitions. But transitions that leave `Y` are missing, so `Y`'s state graph is only a
+     partial cover of the ambient graph.
+   - **For hyperbolic RACG ambients, Lemma K is available at every vertex type.** Since `Y` is convex, each link
+     `lk_Y(v)` is a full subcomplex of the nerve `L`, hence flag with no induced 4-cycle. So the minimal-star argument of
+     `hyperbolic-racgs-contracting-rsg-via-min-star-order` applies inside each link. Two things are missing:
+     - realizability of every simplex of `lk_Y(v)` by a point of `∂Y`: the ray `w_σ(rs)^∞` need not stay in `Y`;
+     - a choice of orders across the finitely many vertex types for which the reachability induction closes.
+   - **Scope.** Even a full proof here covers quasiconvex subgroups of *hyperbolic* RACGs. Haglund–Wise embed virtually
+     special groups quasiconvexly in RAAGs, and in RACGs through C-special complexes, but those ambients need not be
+     hyperbolic, and there (NA) can fail. Whether every cubulated hyperbolic group is virtually a quasiconvex subgroup of
+     a *hyperbolic* RACG is the bridge this route needs, and it is not settled here.

@@ -7,7 +7,8 @@ distinct_from:
   ct-z-torsion-problem-and-the-brin-thompson-transplant: that is about deciding whether an arbitrary element of CT(Z) has finite order; this determines the possible finite orders of a product of two class transpositions when all moduli are powers of one integer.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not independently reviewed). Kourovka 18.48 itself stays
+**ESTABLISHED** (lane proof, elementary; **Referee PASS** bh-ref-c 2026-09-19, 6a7953752c: problem text
+verbatim, proof and the six examples checked, no prior statement found). Kourovka 18.48 itself stays
 **OPEN** for pairs whose moduli are not powers of a common integer. No priority is claimed.
 
 ## The problem
@@ -89,7 +90,7 @@ misses `[y]`; so `x = v x'`, and likewise `y = v y'`, with `x'`, `y'` nonempty. 
     - The chain is such a step with `v3 ≠ v1`. If `|u'| = |v'|` this forces `u' = v'` and `ψ = θ`,
       so `v3 = v1`, which is excluded.
     - If `|u'| < |v'|`, then `v' = u'w` with `w` nonempty, and `(ab)(vθ) = v wθ` for every `θ`. So
-      `(ab)^k(vθ) = v w^k θ`, and these points are pairwise distinct unless `θ` is eventually periodic.
+      `(ab)^k(vθ) = v w^k θ`, and these points are pairwise distinct unless `θ = w^∞`.
     - If `|u'| > |v'|`, then `u' = v'w` with `w` nonempty, and `(ab)(v wθ) = vθ`. So the point
       `v w^k η`, with `η ∉ [w]`, has an `ab`-orbit of at least `k+1` points.
   - **(b) `x ≤ v`, `u < y`.** Write `v = x v'` and `y = u y'` with `y'` nonempty. For `ξ = vθ`,
@@ -155,11 +156,17 @@ Lemma 2 forbids both at once, so `12` does not occur. ∎
   the swaps are prefix replacements that keep the tail. Both fail for mixed moduli: `0(3) ∩ 0(4)`
   is `0(12)`, not one of the two. The horizontal order-12 example has both a three-point path and a
   four-point path, which is exactly what Lemma 2 rules out in the tree case.
-- **The general form (open).**
-  - *Conjecture:* the finite orders of products of two class transpositions are exactly
-    `{1, 2, 3, 4, 6, 12}`.
-  - That would follow from Lemma 1 for arbitrary residue classes, i.e. from "a five-chain forces
-    infinite order": the orbit-graph count above then goes through unchanged.
-  - The tree proof of Lemma 1 compares words by prefixes. For mixed moduli the analogous step
-    compares paths of incomparable degree in the one-vertex k-graph of
-    `ct-p-z-is-a-one-vertex-k-graph-full-group`. That is where a general proof would have to work.
+- **The general case is genuinely different.** Bardakov–Iskra (arXiv:2504.08595, Introduction) quote
+  S. Kohl's computations. Products of two class transpositions can have any order in
+
+      {1, 2, 3, 4, 6, 8, 10, 12, 15, 20, 24, 30, 40, 42, 60, 84, 120, 168, 420},
+
+  and all of these divide 840. So Lemma 1 fails for mixed moduli: longer finite paths and cycles occur.
+  The tree theorem above is exactly the part where it survives.
+- **Open question (Kourovka 18.48 proper).** Is the set of finite orders exactly the divisors of 840
+  that occur above, or some other finite set, or is it unbounded? A proof would have to replace the
+  prefix comparisons of Lemma 1 by comparisons of paths of incomparable degree in the one-vertex
+  k-graph of `ct-p-z-is-a-one-vertex-k-graph-full-group`.
+- **Correction (09-19).** An earlier version of this node conjectured that the general set is
+  `{1, 2, 3, 4, 6, 12}`. That is false by Kohl's data above; referee bh-ref-c pointed this out
+  (6a7953752c).

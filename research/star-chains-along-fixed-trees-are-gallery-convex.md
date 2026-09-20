@@ -64,6 +64,31 @@ graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of 
   - At an outer vertex `u`, the chambers of `star(w)` containing `u` are the 5 chambers around the edge `uw`, and they
     are pairwise adjacent. So moving along the outer boundary of `star(w)` costs one step per outer vertex inside the
     star.
+- **Lemma G0 (restated after bh-ref-d, 15b37f96f8): star chains without `A`–`B` edges are CAT(0)-convex.** The
+  lemma is claimed only for geodesic edge paths `ρ` with no `A`–`B` edge, i.e. rays of `Fix(a)` using only `a`-type
+  (`C`–`A`) edges. It is proved there pending the untreated adjacency cases below.
+  - **Counterexample to the original version (bh-ref-d).** For an `A`–`B` edge of `ρ`, the apex `u` of a chamber on it
+    is `C`-type, with link `K_{5,5}`.
+    - For link vertices `c`–`a`–`b`–`d`, with `a = (uw_i)` and `b = (uw_{i+1})`, the in-union path has length `3π/2`.
+    - But `c` and `d` are joined by a direct `K_{5,5}` edge of length `π/2` that leaves `U_ρ`.
+    - So `U_ρ` is not locally convex at `u`. The two-vertex count below is wrong there: `2π − 3π/2 = π/2 < π`.
+  - **Untreated adjacency cases.** An outer vertex adjacent to three vertices of `ρ` occurs at `C`-type vertices of
+    `ρ`, where entry and exit are at link distance 2. So do other configurations the referee lists. Until they are
+    checked, G0 is a lane claim with a known gap.
+  - Let `ρ` be such a geodesic edge path. `U_ρ` is a closed,
+  connected subcomplex, and it is locally convex. Hence it is convex in `X` (local-to-global for closed connected
+  locally convex subsets of CAT(0) spaces; standard, recalled).
+  - At interior points of outer edges, `U_ρ` occupies a half-plane.
+  - Let `u` be an outer vertex adjacent to one vertex `w` of `ρ`. The directions at `u` into `U_ρ` form the one-edge
+    ball around the link vertex `(uw)` in `L_u`. Two directions at distances `t, t'` from `(uw)` are joined through it by a
+    path of length `t + t'`, while any other path has length at least `2π − (t + t')`, because girth times angle is
+    `2π`. So this set is `π`-convex. Equality occurs only when `t = t'` is `π/2` at a `C`-type `u`, which is allowed.
+  - If `u` is adjacent to two consecutive vertices `w_i, w_{i+1}` of `ρ`, the directions form the union of the
+    one-edge balls around two adjacent link vertices. When `ρ` has no `A`–`B` edge, `u` is `B`-type, with edge `π/4`. The same count gives in-union paths of length at most
+    `t + ε + t'`, where `ε` is one edge, against at least `2π − (t + ε + t') ≥ 5π/4` for any other path, since the in-union length is at most
+    `3π/4`. So the set is again `π`-convex. This fails at `C`-type apexes, which is the counterexample above.
+  - This is CAT(0)-convexity. It does **not** give (G): the chamber-graph metric is not the CAT(0) metric, and
+    nearest-point projection does not map chambers to chambers.
 - **Missing: the curvature count.** A bound on outside excursions by in-star lengths is not proved. It would come
   from Gauss–Bonnet on the reduced disc diagram filling the closed gallery, with flat interior vertices and defect
   `π/20` per triangle. This is not done, even for one `A`- or `B`-type star. So (G) stands as the recorded crux of

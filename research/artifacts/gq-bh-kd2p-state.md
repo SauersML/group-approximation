@@ -15,7 +15,7 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
 | The full top `Q = B_1 × ⋯ × B_K × B_0` embeds in a finitely presented self-similar group for `p` odd; Lemma 1: some counter must move the root (`K ≥ 2`); G6 gives a necessary condition; Part 3 sketch: contracting lifts are too easy | `kms-configuration-lift-needs-non-contracting-counters` (7ee3e78b5c, b24f87cfd1) | Part 0 and Lemma 1 **PASS**; Part 2 remark; Part 3 sketch (bh-ref-q11, b5cae104ff) |
 | Hartogs extension of the lamp map (`K ≥ 2`); uniform non-contracting renormalizations of Frobenius–Möbius type are unfaithful; no unipotent part (sketch) | `kms-top-renormalizations-must-contract` (b24f87cfd1) | unreviewed (queued with bh-ref-q11) |
 | Theorem M: mixed exponents, with no contracting cycle, are unfaithful; the dummy-counter shortcut fails; design constraint `F(A_0) = tA_0` with `t ∈ T_0` | `kms-lift-must-mix-top-core-into-configurations` (c20f9bed2c) | unreviewed (queued) |
-| Every counter cycle must contract, so partial contraction is impossible on the top (`K = 2` and all `K`) | `kms-top-every-counter-cycle-must-contract` (this landing) | unreviewed |
+| Every counter cycle must contract, so partial contraction is impossible on the top (`K = 2` and all `K`) | `kms-top-every-counter-cycle-must-contract` (3860416431) | **referee PASS** (bh-ref-g, 28f69471d1), three minor repairs applied |
 | Referee repairs of bh-ref-c (6c39124b28) | applied in ed3dbbb573's node, the crux node, and the gate-1 artifact (e09c2a9b3f) | done |
 
 ## Where KD2_p lives now
@@ -43,3 +43,27 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
 - Hardness and contraction are incompatible on the counters (sketch).
 - On the KMS top, non-contracting renormalizations are unfaithful (Hartogs).
 - Faithfulness on the top costs contraction on every cycle, and the leftover core must be absorbed by `T_0`.
+
+## Update (same day): the smallest explicit mixing fails
+
+`kms-lamp-mixing-dies-on-br-relation`: `F(A_0) = tA_0` with `t ∈ T_0` is incompatible with G4.
+- **Why.** G4 is inhomogeneous in `A_0`, and `B_0` centralizes `T_0`. This is proved for domains containing a
+  counter pair `(u, 1 − u)`, as Kochloukova–Sidki's does.
+- **Surviving route.** The mixing goes through the counters: `F(ã_i) = t_i α_i`, a 1-cocycle whose lamp
+  components `t_g(A_0 − 1)` land in `T_0`. Only a nontrivial class in `H^1` helps, since coboundaries are inner.
+- **Next step.** Compute `H^1(F̄(H ∩ B_0), T)` on the counters, for the smallest instance: `K = 2` and the
+  trivial machine.
+
+## Referee update (bh-ref-g, 28f69471d1)
+
+- **Every-cycle contraction: PASS.** The repairs are applied: `Z_0 = P^1(F_{p^r}) \ {0, 1, ∞}`, minimal
+  polynomials for Galois orbits, and the unit ratio over `F_p`.
+- **Lamp mixing: PASS, but narrower.**
+  - `t = 1` holds only for domains containing a counter pair `(u, 1 − u)`. For power-type domains `U^n` the
+    augmentation factors through the lamp ring, so **central lamp mixing is not excluded** there.
+  - Step 2's injectivity is unjustified, since `F_p[Q]` has zero divisors.
+  - The `H^1` reduction passes.
+- **So there are two live routes.**
+  - (i) Counter cocycles: a nontrivial `H^1` class.
+  - (ii) Central lamp mixing `F(A_0) = tA_0` with `t ∈ T_0`, on a power-type domain `U_H ⊆ ker(ev_z)`, where
+    every counter in the domain equals 1 at a point `z` whose coordinates `s_i` and `1 − s_i` are roots of unity.

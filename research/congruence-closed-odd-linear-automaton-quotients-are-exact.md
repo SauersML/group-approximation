@@ -12,7 +12,11 @@ distinct_from:
 ---
 
 **CONDITIONAL** (lane bh-ra-t2, 2026-09-19; lane proof, not reviewed; no priority claimed). It holds
-under three recalled inputs, none verified at source here:
+under three inputs. Source status, from bh-ref-d's check (c976a1368e):
+- (HJI) is verified;
+- (S) rests on a cited classification, with hypotheses that exclude characteristic 2;
+- (SA) in quasi-model form matches the use in arXiv:1106.4773, proof of Thm 6.1 (cited as BCLM by
+  bh-ref-d).
 - **(SA) Strong approximation, over the minimal quasi-model** (repaired per bh-ref-d, 0fe7e96aa4).
   - *The first statement was false.* It asked the closure of `F` in `SL_2(Â)` to contain an open product
     over the places of `F_q(t)`. That fails when the trace field is smaller: a Zariski-dense
@@ -34,14 +38,24 @@ under three recalled inputs, none verified at source here:
     to be read with `A`, `Â` and the places `v` replaced by `A_0`, `Â_0` and its places, and with
     `SL_2(O_v)` replaced by the local groups of the quasi-model.
 - **(HJI) Just-infiniteness.** For every `v` and every open `U ≤ SL_2(O_v)`, every closed normal subgroup of
-  `U` not contained in `{±1}` is open. This is recalled for odd residue characteristic.
+  `U` not contained in `{±1}` is open.
+  - **VERIFIED at source by bh-ref-d, for every `q`, including `q = 3` and characteristic 2**:
+    Caprace–Stulemeijer, arXiv:1409.8184, Thm 2.6 (via Riehm). It makes `U/Z(U)` hereditarily just infinite
+    for any simply connected simple group over a local field.
+  - Their counterexample is `PSL_2`, not `SL_2`.
+  - For `U`: a closed normal `N ⊄ Z(U)` has nontrivial image in `U/Z(U)`, hence open image, and `N` is open
+    because `Z(U)` is finite.
 - **(S) Sandwich.** For `v ∉ T` and every `k`, every normal subgroup of `SL_2(O_v/m_v^k)` has the form
   `SL_2(O_v/m_v^k, m_v^j/m_v^k) · Z_0`, with `Z_0 ≤ {±1}`. This is recalled for residue fields with at least
   5 elements in odd characteristic. It fails for `F_3`, where `SL_2(F_3)` has the normal subgroup `Q_8`,
   hence `q ≥ 5`. (bh-ref-d notes that places with residue field `F_3` are finite in number and could go
   into `T`, so `q ≥ 5` may be droppable. This is unchecked.)
-- **Status of the inputs.** bh-ref-d is checking (HJI) and (S) at source. Until that check reports, this
-  node stays CONDITIONAL.
+- **Source of (S)** (checked by bh-ref-d). Knudson, arXiv:math/9801098, Thm 1.3, quoting Klingenberg,
+  requires residue characteristic `≠ 2` and residue field `≠ F_3`.
+  - So characteristic 2 is excluded by (S) alone.
+  - `q = 3` plausibly works by putting its finitely many `F_3`-places into `T`. That is unchecked.
+- **Status.** The node stays CONDITIONAL. Its remaining inputs are (S) as cited and (SA) in quasi-model
+  form. Neither was re-derived here.
 
 **T2 is not built.** This closes one door conditionally; it opens none.
 
@@ -61,8 +75,13 @@ generated and Zariski dense; any non-abelian free subgroup is. Assume (SA), (HJI
    the proof.
 
    So one-sided T2 with such linear lifts is dead, conditionally. The linear route survives only in
-   characteristic 2, where (HJI) and (S) are unknown to us or fail at the small residue fields `F_2`
-   (at `t = 1`) and `F_4`. Otherwise it needs non-linear lifts (Q_per).
+   characteristic 2.
+   - There (HJI) still holds (Caprace–Stulemeijer), so the **only** missing input is (S): a
+     classification of normal subgroups of `SL_2(O_v/m_v^k)` in residue characteristic 2. Klingenberg's
+     sandwich theorem does not cover it.
+   - A characteristic-2 sandwich theorem, or a counterexample to it with non-exact consequences, decides
+     Q_lin for the `F_2` linear pair.
+   - Otherwise T2 needs non-linear lifts (Q_per).
 
 ## Proof
 
@@ -132,5 +151,6 @@ faithfully through `GL_2(A/(t^ℓ − 1))`, so `P_ℓ = F ∩ ker(GL_2(A) → GL
   amenable subgroup, hence exact.
 - So the section loophole of `one-sided-t2-lift-groups-are-periodically-closed-quotients` closes in odd
   characteristic, conditionally.
-- What is left for T2 is characteristic 2, where small residue fields have wild pro-2 normal subgroups, or
-  non-linear lifts, via Q_per and kernel realization.
+- What is left for T2 is characteristic 2, where the gap is exactly the sandwich classification (S) for
+  `SL_2` over finite local rings of residue characteristic 2, since hereditary just-infiniteness holds there
+  too. Otherwise it is non-linear lifts, via Q_per and kernel realization.
