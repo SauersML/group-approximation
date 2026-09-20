@@ -84,7 +84,7 @@ theorem psiD_semi (g : BrownGroup n) (p : ℕ × Cantor (Fin (n + 2))) :
     all_goals rfl
   | inv x _ hx =>
     have h := hx (((theta n x : Equiv.Perm _))⁻¹ p)
-    rw [Equiv.Perm.apply_inv_self] at h
+    rw [perm_apply_inv_self] at h
     rw [map_inv, jperm_inv, map_inv, Equiv.Perm.inv_eq_iff_eq, ← h]
     all_goals rfl
 

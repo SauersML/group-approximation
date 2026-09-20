@@ -111,3 +111,18 @@ unique-games point has deficit ratio `R(c, s) = (1-s)/(1-c) > 2`.
     - output alphabets larger than the source alphabet;
     - source predicates with small information sets, such as Hadamard;
     - global NO-side certificates that are not per gadget.
+* **Per-gadget local gadgets from 3Lin, kLin or quasigroup predicates into
+  `UG_L`, any `L >= q`, any permutations.** **Dead (2026-09-20).** See
+  `gadgets-into-any-unique-games-stay-below-padding-line`,
+  swarm-0917-w20-w20-ugc-break, route
+  `padding-line-via-local-gadgets-from-latin-predicates`.
+  - *Invariant:* the fibre-plurality score `σ` along the free coordinate. It is
+    relabelling-invariant and `1/N`-Lipschitz, `1` on the free primary and
+    `1/q` on the others.
+  - *Step:* soundness certification. A threshold switch on `σ` between two
+    uniform reading points caps `R <= 2 - 1/N`. For 3Lin that is `2 - 1/q^2`,
+    e.g. `49/25` for `UG_5`. The script finds it attained once `L > q`.
+  - This closes survivors 1 and 2 of the entry above (`UG_q` for `q >= 5`, and
+    larger output alphabets with injectively encoded primaries).
+  - Survivors: Hadamard with `k >= 6`; sources below the `1/q` threshold, such
+    as label cover and d-to-1; long-code labels; global certificates.
