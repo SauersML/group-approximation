@@ -7,7 +7,7 @@ distinct_from:
   artin-deligne-boundary-actions-are-topologically-free: that node proves topological freeness of specific boundary actions of Artin/Deligne groups; this one is a general statement for all actions of groups with cyclic centralizers, aimed at Kourovka 20.47.
 ---
 
-**ESTABLISHED (partial answer to Kourovka 20.47).** Theorems 1 and 2 and Corollary 3 are lane
+**ESTABLISHED (partial answer to Kourovka 20.47; Referee PASS bh-ref-q11 2026-09-19; for minimal actions Theorem 2 is attribution to Le Boudec, arXiv:1802.04736 Lemma 4.3).** Theorems 1 and 2 and Corollary 3 are lane
 proofs and have not been independently reviewed. Corollary 4 depends on a structure theorem for
 circle actions that I recalled but did not re-read. Kourovka 20.47 itself stays **OPEN**.
 
@@ -171,3 +171,27 @@ V on the Cantor set and T on S¹. Both groups contain Z², which is consistent w
 
   A candidate needs a Cantor-type space built for the purpose, with no commuting pair of disjointly
   supported elements. No such construction is known to me.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS; priority graded as attribution for the minimal case
+
+**Verbatim problem.** Kourovka Notebook arXiv:1401.0300v46, 20.47 (A. Le Boudec, N. Matte Bon), read at source: "Let G = F_n be a finitely generated free group. Let X be a compact G-space on which the G-action is faithful, minimal, and strongly proximal. Does it follow that the action is topologically free?"
+- There is no asterisk and no comment.
+
+**Priority, checked at source.**
+- **Le Boudec–Matte Bon, arXiv:1605.01651v3.** I read pp. 1–4, 7–10 and 17–27 as page images, plus an ar5iv full-text search. It does **not** state Theorem 2. It supplies the mechanism: the proof of their Thm 3.13(ii) uses `g(C) ⊂ U ⇒ gG_Cg^{-1} ≤ G_U`, and the proof of Prop. 3.8 notes that disjointly supported elements commute.
+- **Le Boudec, arXiv:1802.04736v4, p. 17** (read as page images).
+  - Under "(EP) Γ is a discrete group, Z is a compact Γ-space, and the action of Γ on Z is faithful, minimal and extremely proximal", Lemma 4.3 reads verbatim: "If the action of Γ on Z is not topologically free, then it is micro-supported."
+  - His Lemma 4.1 shows that micro-supported actions contain nontrivial elements with disjoint supports.
+- **Grading.** For **minimal** actions, Theorem 2 is **attribution**: Le Boudec's Lemma 4.3 plus Theorem 1.
+- **What is new.** Theorem 1 itself, which is a short standard observation, and the non-minimal case. The latter holds only under the node's stronger definition of extreme proximality (`hC ⊆ U` for every open `U`). Under the standard "compressible toward a point" definition, minimality is needed to move that point into `int Fix(g)`.
+- The Attribution paragraph (82e540dfe3) credits this correctly.
+
+**The mathematics.**
+- **Theorem 1.**
+  - Supports are invariant, so disjoint supports commute. `C(g) = ⟨c⟩` gives `g = c^a` and `k = c^b`.
+  - `c^(ab)` has empty support, which contradicts torsion-freeness.
+- **Corollary 3.** Minimal general-type tree actions are extremely proximal on `∂T` (also recalled by LB–MB, p. 4). Faithfulness on `∂T` holds because every edge lies on a bi-infinite geodesic.
+- **Corollaries 4 and 4′** are correctly marked conditional, on Ghys–Margulis and on Duchesne–Monod respectively. In Corollary 4 the cover step (kernel `↪ Z/d`) is right.
+- **Proposition 5 (a)–(d)** checks, and so does the convergence-group remark.
+
+20.47 stays OPEN.
