@@ -312,3 +312,28 @@ swarm-0917-w17-w17-ptm-last1).**
     Such a sequence would refute the T gap and settle `thompson-t-has-full-mf-radical`
     negatively.  Conversely, no (FC) representation exists at all if the T gap holds with
     every corner forced to be a scalar.
+- **2026-09-20 (swarm-0917-w23-w23-ptm-pull, transplanter / probability-random): class-kill of
+  bounded-Lie-closure amplification.  Established
+  `lifted-thompson-t-twisted-witnesses-need-unbounded-lie-closure`.  The target stays OPEN.**
+  - *Result.*  Let `σ` be an exact representation of `K(3,4) = <x, y | x^4 = y^3>`, and let
+    `N` be the dimension of the semisimple part of the Lie algebra of the closure of `σ(K)`.
+    Suppose the `T̄` defect satisfies `D < min(1/2, δ_N/2)`, where `δ_N` is the untwisted gap
+    of `T` over `Z4 * Z3` in dimension `<= N`.  Then `σ` is abelian, `x ↦ u^3`, `y ↦ u^4`,
+    and the twist satisfies `||σ(x^4) - 1|| <= 12 D`.  The constant `12` is sharp.
+  - *Device.*  `Ad ∘ σ` on the complexified semisimple part kills the centre.  So it is a
+    `Z4 * Z3`-representation of dimension `N` with `T` defect `<= 2D`.  Below `δ_N` it is
+    trivial, which makes the closure virtually a torus, and the virtually-solvable-image lemma
+    finishes.
+  - *Consequence.*  Every asymptotic representation of `T̄` with defect `→ 0` and scalar twist
+    bounded away from `1` has semisimple Lie closure of unbounded dimension.  So no witness
+    against this claim comes from `Sym^m` or tensor powers of a fixed compact pair, from any
+    finite or virtually solvable quotient of `K(3,4)` or of the Brieskorn lattice, or from
+    random models in a fixed compact group.
+  - *Where it stops.*
+    - The bound is only as strong as `δ_N`.  A disproof must make `T` itself nearly MF at the
+      growing dimension `N` while keeping the twist.
+    - Non-scalar twists need the eigencorner step (EC) first, which is still open.
+  - *Evidence.*  `experiments/lifted-t-lie-closure-gap-2026-09-17/`.
+    - `Sym^1` of an `SU(2)` pair gives a twisted, nonabelian `D = 2 sin(π/24)`.
+    - Its `Sym^2` is an exact `SO(3)` representation of `T`'s free product with
+      `D_T = 2 sin(π/12)`.  So the factor `2` of the adjoint transfer is nearly attained.
