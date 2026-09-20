@@ -97,3 +97,20 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
      host exists for `G` with `2`-torsion: embedding `F_2[G]` forces
      `u_g ≡ 1` in `HH_0(B)`, so `2`-elements of `G` must act with no such
      fixed-point mass.
+8. **Swindle-factor lane: Hochschild invariant for the tensor factor.** The
+   K-gate would be met by any host of the form `B ⊗ A` with `A` finitely presented,
+   central simple, and carrying a Cuntz swindle structure. By
+   `cuntz-swindle-algebras-are-hochschild-acyclic`, such an `A` must have
+   `HH_* = HC_* = 0` in every degree, for itself and for every tensor product with it.
+   Its relative commutant `σ(A)' ∩ A` must also contain no isometry into `s_1 s_1^*`,
+   because such an isometry would make `σ` inner. (Swindle endomorphisms are never inner.)
+   - *Class killed.* Every candidate `A` with some nonzero Hochschild class dies at the
+     additivity step `HH(σ) = HH(id) + HH(σ)`. Conditionally on the cited
+     computations (Ara–Cortiñas, and the Feigin–Tsygan and Nistor splitting), this
+     covers:
+     - Leavitt path algebras and their tensor products;
+     - Cantor crossed products by Poincaré-duality groups, including the Z^2-SFT
+       hosts `B_Ω`;
+     - tensor products of the two families above.
+   - *Open.* Whether a finitely presented central simple HH-acyclic swindle algebra
+     exists. The hole stays OPEN.
