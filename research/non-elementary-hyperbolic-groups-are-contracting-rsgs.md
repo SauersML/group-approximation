@@ -217,3 +217,34 @@ remains:
    - **Lesson.** (IRR) depends on the order. A bad order on a hexagon-disk nerve gives a second recurrent component.
    - **What remains.** Non-right-angled hyperbolic Coxeter groups (via Niblo–Reeves cubulations), virtually special
      groups not commensurable with a RACG, and Kazhdan groups.
+12. **2026-09-19 (lane `bh-q11-beyond`), where right-angledness enters, and the Niblo–Reeves plan (analysis, no new
+   theorem).**
+   - **Right-angled only through the Davis cube complex.** Attempt 11 uses right angles in three places, all in the cube
+     structure:
+     - vertex links are the nerve `L`, so the states are the simplices of `L`;
+     - Tits' commuting-letter criterion for reduced words and left descents;
+     - wall transport in the transition rule: the edge labelled `t` at `s_0` lies on `H_t` because `s_0ts_0 = t`.
+   - **What is combinatorial.** The rest is nerve combinatorics and carries over to any cubulation whose state graph can
+     be computed:
+     - the cone splitting, whose general form splits off the finite irreducible components, since a hyperbolic `W` has at
+       most one infinite component;
+     - Lemma K;
+     - the reachability induction.
+   - **Hexagon disk, rechecked.** The example of attempt 11 checks out by hand: 8 vertices, 15 edges and 8 triangles; a flag
+     disk with hexagonal boundary; no induced square; one-ended; `{a,b}` not spread; `St(y_1)` inclusion-minimal.
+     - An explicit path under the good order is `{c_2} → {y_1,c_1} → {x_1,c_1} → {y_1,a,c_1} → {a,b,c_1}`.
+     - Under the bad order, the only predecessor of each of `{a,b,c_1}` and `{a,b,c_2}` is the other one. The 2-cycle is an
+       extra strongly connected component with a cycle. It is not a sink, since it leaks to `{a,b}`.
+   - **Niblo–Reeves for non-right-angled hyperbolic `W`.**
+     - **What transfers.** The cube complex is cocompact when `W` has no affine reflection subgroup of rank `≥ 3`
+       (Caprace–Mühlherr, recalled), which holds for hyperbolic `W`. Hyperplanes are the walls of `W`, so the (NA) argument
+       of the spread-nerve proof, Step 1, carries over verbatim.
+     - **The blocker.** The vertex action is not free. For `m_{st} = 3` the three pairwise crossing walls of `⟨s,t⟩`
+       span a 3-cube with two non-chamber vertices fixed by the rotation `st`. So no `W`-equivariant edge order exists at
+       those vertices.
+     - **Route.** Pass to a torsion-free finite-index `Γ` (Selberg), which acts freely, and finish with
+       `contracting-rsgs-closed-under-finite-index-overgroups`. The state graph then has `Γ`-orbits of chamber and
+       non-chamber vertices as states. Its (IRR) is a covering question over a "`W`-state graph modulo stabilizers", which
+       is not yet defined.
+     - **Next step.** Compute the Niblo–Reeves state graph for one compact non-right-angled Coxeter polyhedron in `H³`
+       that is not commensurable with a right-angled one. Only then attempt a general (IRR) argument.

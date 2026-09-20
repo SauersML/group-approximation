@@ -10,7 +10,7 @@ distinct_from:
   v-normalizer-rsgs-contract-iff-finite-outer-order: that supplies the asynchronous test family Γ_t; this shows every counterexample over the full shift is asynchronous or yields a finite-state group with a non-finitely-presented Röver–Nekrashevych group.
 ---
 
-**ESTABLISHED (proof in `synchronous-rsg-full-closures-are-rn-groups-proof`; Referee bh-ref-q12 2026-09-19: Theorem S PASS; the "infinite-state" remark about `V_3(L)` is wrong, see the Referee section; lane proof
+**ESTABLISHED (proof in `synchronous-rsg-full-closures-are-rn-groups-proof`; Referee bh-ref-q12 2026-09-19: Theorem S PASS; its false "infinite-state" remark about `V_3(L)` is corrected below; lane proof
 by bh-q14-lift; no priority claimed, and item 1 is probably folklore).**
 
 ## Setting
@@ -61,17 +61,37 @@ finite-state self-similar group.
   - (b) a finitely presented locally synchronous RSG `G` whose table group `H_G` is a finite-state group with
     `V_d(H_G)` **not** finitely presented.
 
-  Case (b) would settle the question left open in `rover-nekrashevych-fp-iff-finite-lift-presentation`,
-  whether some finite-state group has a non-finitely-presented Röver–Nekrashevych group. The known non-finitely-
-  presented example `V_3(L)` under the persistent action (c2bdf2618d) is infinite-state, so it does not give (b).
+  **Inputs for (b) exist.** The persistent lamplighter action gives one (corrected 09-19; the first version of
+  this node wrongly called that action infinite-state). Let `L = Z/2 ≀ Z` act on `T_3` by `a = ι(σ)(a, b, a)`,
+  `b = (a, b, b)`. By Skipper–Witzel–Zaremsky, arXiv:1712.05361 Lemma 5.3, this action is faithful, finite-state
+  and persistent, and by their Theorem 5.8, `V_3(L)` is not finitely presented. See
+  `persistent-actions-make-lift-ideals-normal-closures` (c2bdf2618d, referee PASS).
+
+  So case (b) needs only a finitely presented locally synchronous RSG `G` with `H_G = L_pers`. Such a `G` would
+  answer Question 1.4 **negatively**: `[[G]] = V_3(L)` would not be finitely presented.
 
 ## Open (precise)
 
-- **Realizability.** Given a finite-state `H` with `V_d(H)` not finitely presented, if one exists, is there a
-  finitely presented locally synchronous RSG `G` with `H_G = H`? The group `V_d(H)` itself has table group `H`,
-  but it is then not finitely presented. If every finite-state `H` is realized by a finitely presented `G`,
-  Question 1.4 on this class is **equivalent** to "every finite-state self-similar group has a finitely
-  presented Röver–Nekrashevych group".
+- **Realizability, the concrete target.** Is there a finitely presented locally synchronous RSG `G` over `X^ω`,
+  `|X| = 3`, whose table group is the persistent lamplighter `L_pers`? A yes answers Question 1.4 negatively.
+  More generally the question is the same for any persistent, finite-state, non-finitely-presented `H`.
+  - **What fails.** `V_3(L)` itself is not finitely presented, and neither is `⟨V_3, L_w(a)⟩` for any single cone
+    copy `L_w(a)`.
+    - Conjugating by `V_3` gives every `L_u(a)`.
+    - The splitting `L_u(a) = c · L_{u0}(a) L_{u1}(b) L_{u2}(a)`, with `c ∈ V_3`, then gives every `L_u(b)`.
+    - So the group is `V_3(L)`.
+
+    A realizing `G` therefore cannot contain `V_3` together with a single cone copy of a generator. Whether
+    `⟨V_3, t⟩` can be smaller than `V_3(L)` for a multi-piece `t` is not settled here.
+  - **What a realizing `G` would look like.** Every `h ∈ L_pers` fixes `2^∞` and satisfies `h|_2 = h`. So the
+    germ of `L_u(h)` at `u2^∞` determines `h`, and the germ group of `[[G]] = V_3(L)` at `2^∞` is `L × Z`, the
+    `Z` coming from prefix scaling. A realizing `G` would be finitely presented while its full closure has
+    non-finitely-presented germ groups. The Belk–Hyde–Matucci SingFix condition
+    (`bhm-singfix-condition-forces-fp-germ-groups`) constrains `[[G]]`, not `G`, so it does not immediately
+    forbid this.
+  - **Hyperbolic inputs are no source of (b).** BBMZ realize hyperbolic groups as contracting RSGs, and the
+    contracting case is settled (`contracting-rsgs-have-fp-full-closures`). So hyperbolic `G` cannot give a
+    counterexample of type (b).
 - **Edge shifts.** Over a general edge shift `Σ_Γ`, the analogue of `V_d(H)` is a Nekrashevych-type group of a
   self-similar action over the graph `Γ`. Theorem A is proved only for the full shift, so item 3 does not yet
   extend.

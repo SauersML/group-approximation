@@ -2,14 +2,14 @@
 rg: 2
 id: kms-lamp-mixing-dies-on-br-relation
 kind: claim
-title: The simplest KMS lift that mixes the top into T, F(A_0) = tA_0 with t in T_0 and the counters of B_0 sent into B_0, is incompatible with the BR relation G4, because G4 is inhomogeneous in A_0 while B_0 centralizes T_0; a T-component can instead enter through the counters, F(ã_i) = t_i α_i, where it is a 1-cocycle and induces T_0-components t_i(A_0 − 1) on the lamps
+title: For domains containing a counter pair (u, 1 − u), such as Kochloukova–Sidki's, the simplest KMS lift that mixes the top into T, F(A_0) = tA_0 with t in T_0 and the counters of B_0 sent into B_0, is incompatible with the BR relation G4 (for power-type domains U^n central lamp mixing is not excluded), because G4 is inhomogeneous in A_0 while B_0 centralizes T_0; a T-component can instead enter through the counters, F(ã_i) = t_i α_i, where it is a 1-cocycle and induces T_0-components t_i(A_0 − 1) on the lamps
 distinct_from:
   kms-lift-must-mix-top-core-into-configurations: that proposes F(A_0) = tA_0 with t in T_0 (its Part D); this shows that proposal fails and moves the mixing to the counters.
   kms-top-every-counter-cycle-must-contract: that forces contraction on the top, which is why mixing is needed at all.
   two-counter-kms-groups-are-self-similar: that is the crux KD2_p; this is an attempt record under it.
 ---
 
-**ESTABLISHED (lane bh-kd2p, 2026-09-19): the negative in Step 1 is a lane proof; Steps 2 and 3 are an attempt
+**ESTABLISHED (lane bh-kd2p, 2026-09-19; **referee PASS with scope repair**, bh-ref-g, 28f69471d1): the negative in Step 1 is a lane proof, for domains containing a counter pair; Steps 2 and 3 are an attempt
 record. KD2_p stays OPEN. Not independently reviewed.**
 
 KMS relations as transcribed in `kms-configuration-lift-needs-non-contracting-counters` (arXiv:1204.6506v5 §4.1).
@@ -39,7 +39,7 @@ BR pair `(ã, ã')`. The letter `A_0` has total exponent 0 on the left and 1 on 
 - Applying `F` to the relation gives `A_0^{α^{-1}}A_0^{-1} = t·A_0^{β^{-1}}`, with `α = F(ã)` and `β = F(ã')`.
 - Modulo `T` this is the relation for the induced map `F̄`, so it holds there. What remains is `t = 1`. ∎
 
-**The same holds for every grade of `T` centralized by the image.** A central component of a lamp image
+**The same holds, for domains containing a counter pair `(u, 1 − u)`, for every grade of `T` centralized by the image.** A central component of a lamp image
 contributes to each side of a relation in proportion to its exponent sum. So an inhomogeneous relation kills it.
 
 ## Step 2 (attempt record). Non-central components satisfy a graded linear system
@@ -49,7 +49,7 @@ contributes to each side of a relation in proportion to its exponent sum. So an 
   - For `0 ∈ w`: the image acts trivially there, so `O = −1`, and `t_{w∪0} = −t_w·(A_0 − 1)·(fixed operator)`.
 - On `T_∅ = F_p[Q]·x_{q_j}`, G6 and G5b make `ã` act as `a` and `ã'` as `a − 1`.
   - For `F̄ = id` on a BR pair, `O_∅ = a^{-1} − 1 − (a − 1)^{-1} = −(a^2 − a + 1)/(a(a − 1))`.
-  - That is a nonzero non-unit, injective on the torsion-free grade `T_∅`, so `t_∅ = 0`.
+  - That is a nonzero non-unit. That it is injective on `T_∅` is **not justified**: `F_p[Q]` has zero divisors, since the lamps have order `p` and `(A − 1)^p = 0`. It needs an argument such as `T_∅` being torsion-free over the counter ring (bh-ref-g, 28f69471d1). Until then `t_∅ = 0` is conditional.
 - For renormalized `F̄`, `O_w` is the image of the BR polynomial, again nonzero, and the same conclusion is
   expected. That is not checked for every grade.
 - **Expected outcome.** `F(A_0) ∈ T·A_0` forces `t = 0`, so the lamp image of `A_0` itself stays in the top.
@@ -69,6 +69,6 @@ contributes to each side of a relation in proportion to its exponent sum. So an 
 
 ## Lesson
 
-**Mixing the top into the machine module has to be done by the counters, not the lamps.** The BR relation is
-inhomogeneous in the lamp and so kills lamp-level mixing. Counter-level mixing is a 1-cocycle, and only its
+**For domains containing a counter pair `(u, 1 − u)`, mixing the top into the machine module has to be done by the counters, not the lamps.** The BR relation is
+inhomogeneous in the lamp and so kills central lamp-level mixing there. For power-type domains `U^n` the augmentation factors through the lamp ring, and central lamp mixing is open. Counter-level mixing is a 1-cocycle, and only its
 cohomology class matters.

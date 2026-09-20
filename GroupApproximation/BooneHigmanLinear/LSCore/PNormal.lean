@@ -23,15 +23,19 @@ open Polynomial (X C)
 
 variable {I : Type*} [Fintype I] [DecidableEq I] {A : Type*} [CommRing A] {M : Ideal A}
 
+omit [Fintype I] [DecidableEq I] in
 theorem adj_row_left {i j l : I} (hij : i ≠ j) (hli : l ≠ i) (hlj : l ≠ j) : Adj i j i l :=
   ⟨Or.inl rfl, fun h => hlj h.2, fun h => hij h.1⟩
 
+omit [Fintype I] [DecidableEq I] in
 theorem adj_row_right {i j l : I} (hij : i ≠ j) (hli : l ≠ i) : Adj i j j l :=
   ⟨Or.inr (Or.inl rfl), fun h => hij h.1.symm, fun h => hli h.2⟩
 
+omit [Fintype I] [DecidableEq I] in
 theorem adj_col_left {i j k : I} (hkj : k ≠ j) (hki : k ≠ i) : Adj i j k i :=
   ⟨Or.inr (Or.inr (Or.inl rfl)), fun h => hki h.1, fun h => hkj h.1⟩
 
+omit [Fintype I] [DecidableEq I] in
 theorem adj_col_right {i j k : I} (hij : i ≠ j) (hki : k ≠ i) (hkj : k ≠ j) : Adj i j k j :=
   ⟨Or.inr (Or.inr (Or.inr rfl)), fun h => hki h.1, fun h => hij h.2.symm⟩
 

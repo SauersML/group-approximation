@@ -295,6 +295,16 @@ theorem jperm_jPhi (c : List (Fin d)) (q : higmanVCCommon_Q d) :
 
 #audit_axioms GroupApproximation.BooneHigman.Join.jperm_jPhi
 
+theorem perm_apply_inv_self {α : Type*} (f : Equiv.Perm α) (x : α) : f (f⁻¹ x) = x :=
+  f.apply_symm_apply x
+
+#audit_axioms GroupApproximation.BooneHigman.Join.perm_apply_inv_self
+
+theorem perm_inv_apply_self {α : Type*} (f : Equiv.Perm α) (x : α) : f⁻¹ (f x) = x :=
+  f.symm_apply_apply x
+
+#audit_axioms GroupApproximation.BooneHigman.Join.perm_inv_apply_self
+
 theorem jPhi_nil' (q : higmanVCCommon_Q d) : jPhi d [] q = q := by
   obtain ⟨g, rfl⟩ := mk_surj q
   induction g using FreeGroup.induction_on with

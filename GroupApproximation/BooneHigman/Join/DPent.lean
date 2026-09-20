@@ -202,8 +202,8 @@ theorem mirror_step {p q : List (Fin (n + 2))} (h1 : ¬ p <+: q) (h2 : ¬ q <+: 
       ([kap p (q ++ [fc n 0])]).prod * jL p (q ++ [fc n 0])
     rw [List.prod_nil, List.prod_singleton, mul_one]
   | k + 1, hk => by
-    rw [List.range_succ k, List.map_append, List.prod_append, ← mul_assoc,
-      mirror_step h1 h2 k (by omega), List.range_succ (k + 1), List.map_append, List.prod_append]
+    rw [List.range_succ (n := k), List.map_append, List.prod_append, ← mul_assoc,
+      mirror_step h1 h2 k (by omega), List.range_succ (n := k + 1), List.map_append, List.prod_append]
     simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil, mul_one]
     obtain ⟨ha, hb⟩ := Lam_maps h1 h2 k (by omega)
     have l1 : ¬ q ++ [fc n k] <+: q ++ [fc n (k + 1)] := qinc q (by omega) (by omega) (by omega)

@@ -7,7 +7,8 @@ distinct_from:
   ct-z-torsion-problem-and-the-brin-thompson-transplant: that is about deciding whether an arbitrary element of CT(Z) has finite order; this determines the possible finite orders of a product of two class transpositions when all moduli are powers of one integer.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not independently reviewed). Kourovka 18.48 itself stays
+**ESTABLISHED** (lane proof, elementary; **Referee PASS** bh-ref-c 2026-09-19, 6a7953752c: problem text
+verbatim, proof and the six examples checked, no prior statement found). Kourovka 18.48 itself stays
 **OPEN** for pairs whose moduli are not powers of a common integer. No priority is claimed.
 
 ## The problem
@@ -89,7 +90,7 @@ misses `[y]`; so `x = v x'`, and likewise `y = v y'`, with `x'`, `y'` nonempty. 
     - The chain is such a step with `v3 ≠ v1`. If `|u'| = |v'|` this forces `u' = v'` and `ψ = θ`,
       so `v3 = v1`, which is excluded.
     - If `|u'| < |v'|`, then `v' = u'w` with `w` nonempty, and `(ab)(vθ) = v wθ` for every `θ`. So
-      `(ab)^k(vθ) = v w^k θ`, and these points are pairwise distinct unless `θ` is eventually periodic.
+      `(ab)^k(vθ) = v w^k θ`, and these points are pairwise distinct unless `θ = w^∞`.
     - If `|u'| > |v'|`, then `u' = v'w` with `w` nonempty, and `(ab)(v wθ) = vθ`. So the point
       `v w^k η`, with `η ∉ [w]`, has an `ab`-orbit of at least `k+1` points.
   - **(b) `x ≤ v`, `u < y`.** Write `v = x v'` and `y = u y'` with `y'` nonempty. For `ξ = vθ`,
@@ -149,17 +150,87 @@ Lemma 2 forbids both at once, so `12` does not occur. ∎
 - **Infinite order:** `τ_{0(2),1(4)}·τ_{1(2),0(4)}`. The orbit of 2 is
   `2 → 5 → 8 → 17 → 32 → 65 → …`, which is unbounded.
 
+## Corollary: (P2) for d-adic pairs (addendum 09-19; lane proof, not reviewed)
+
+For `τ1`, `τ2` as in the Statement, the following are equivalent:
+1. `τ1 τ2` has only finite cycles on `Z`;
+2. `τ1 τ2` has finite order;
+3. `(τ1 τ2)^{12} = 1`.
+
+In that case the order lies in `{1, 2, 3, 4, 6}`. So the property is decidable: compute `(τ1τ2)^{12}`,
+a residue-class-wise affine map, and test whether it is the identity.
+
+This is property (P2) of `class-transposition-groups-finite-orbits-is-undecidable` (bh-k1847), in the
+case where all moduli are powers of one integer.
+
+*Proof.* The implications (2) ⇒ (3) and (3) ⇒ (1) follow from the Statement. For (1) ⇒ (2) it
+suffices to show that a five-chain forces an **infinite cycle on `Z`**, not merely unbounded finite
+cycles. Then (1) excludes five-chains, and the proof of the Statement bounds every component by 4
+vertices.
+
+In Lemma 1, Case A and Case B1 are contradictions. In each non-excluded branch of Case B2, one of
+`ab`, `(ab)^{-1}` maps a cylinder `[z]` **into itself** by a prefix insertion `zθ ↦ z w θ`, for all
+`θ`, with `w` nonempty:
+
+| Subcase | Map | Direction |
+|---|---|---|
+| (a), `v' = u'w` | `vθ ↦ v w θ` | forward |
+| (a), `u' = v'w` | `vθ ↦ v w θ` | backward, since `(ab)(v w θ) = vθ` |
+| (b) | `vθ ↦ v (y'v') θ` | forward |
+| (c) | `xθ ↦ x (u'x') θ` | backward, since `(ab)(x u'x' θ) = xθ` |
+| (d), `y' = x'w` | `xθ ↦ x w θ` | forward |
+| (d), `x' = y'w` | `xθ ↦ x w θ` | backward |
+
+Iterating, the orbit of `zθ` contains `z w^k θ` for every `k ≥ 0`. These points are pairwise distinct
+unless `θ = w^∞`. The cylinder `[z]` meets `Z` in a whole residue class, and only one of its points is
+`z w^∞`. So some integer has an infinite `τ1τ2`-cycle. ∎
+
+**(P2) is false for mixed moduli** (bh-p2, 82aa08a416; lane proof, not reviewed; checked by hand here).
+`τ_{1(12),0(4)} · τ_{0(2),1(4)}` has only finite cycles but infinite order.
+- Its orbit graph has edges `4k — 12k+1` and `2j — 4j+1`.
+- Going forward, the component of `x ≡ 0 (mod 4)` follows `x ↦ 3x/2` while `4 | x`.
+- Going backward, it follows `x ↦ 2x/3` while `6 | x`.
+- So each component is a finite path, of length about `2(v_2(x) + v_3(x))`, and these lengths are
+  unbounded.
+
+So the d-adic corollary is sharp in its hypothesis. Kourovka 18.48 is unaffected, since it asks only
+about finite orders.
+
+**What (P2) is in general.** The general statement was stated as the crux
+`two-class-transposition-products-with-finite-cycles-are-periodic` (bh-k1847, 7d048c2e60).
+- **Tame elements satisfy (P2).** This is its Lemma T. It uses Kohl's characterization, quoted there
+  from the RCWA manual, Chapter 2: a mapping is tame iff it permutes a partition of `Z` into finitely
+  many residue classes, being affine on all of them. Elements of CT(Z) preserve order on each class,
+  so a power fixing every class acts on it by a translation, which must be trivial.
+- **So in general (P2) is equivalent to:** every wild product of two class transpositions has an
+  infinite cycle.
+- **Nested loops give infinite cycles.** This is its Lemma S. The proof above establishes its (P2)′
+  for d-adic pairs: a wild pair has a power mapping a class properly into itself.
+- **(P2) does fail for longer products.** bh-k1847's `F_M`, for `M` periodic but not uniformly
+  periodic, is a product of many class transpositions with only finite cycles and infinite order.
+- **Where the d-adic proof breaks down.** It works because every d-adic pair of infinite order has a
+  five-chain, and hence a nested loop: an affine piece of `ab` or `(ab)^{-1}` mapping a class properly
+  into itself. For moduli that meet transversally,
+  a wild pair can instead have transversal loops only, i.e. `σ(R) ∩ R ≠ ∅` without containment.
+  bh-p2's pair shows this really happens.
+
 ## Remarks
 
 - **What the proof uses.** Only two facts: the four cylinders are pairwise nested or disjoint, and
   the swaps are prefix replacements that keep the tail. Both fail for mixed moduli: `0(3) ∩ 0(4)`
   is `0(12)`, not one of the two. The horizontal order-12 example has both a three-point path and a
   four-point path, which is exactly what Lemma 2 rules out in the tree case.
-- **The general form (open).**
-  - *Conjecture:* the finite orders of products of two class transpositions are exactly
-    `{1, 2, 3, 4, 6, 12}`.
-  - That would follow from Lemma 1 for arbitrary residue classes, i.e. from "a five-chain forces
-    infinite order": the orbit-graph count above then goes through unchanged.
-  - The tree proof of Lemma 1 compares words by prefixes. For mixed moduli the analogous step
-    compares paths of incomparable degree in the one-vertex k-graph of
-    `ct-p-z-is-a-one-vertex-k-graph-full-group`. That is where a general proof would have to work.
+- **The general case is genuinely different.** Bardakov–Iskra (arXiv:2504.08595, Introduction) quote
+  S. Kohl's computations. Products of two class transpositions can have any order in
+
+      {1, 2, 3, 4, 6, 8, 10, 12, 15, 20, 24, 30, 40, 42, 60, 84, 120, 168, 420},
+
+  and all of these divide 840. So Lemma 1 fails for mixed moduli: longer finite paths and cycles occur.
+  The tree theorem above is exactly the part where it survives.
+- **Open question (Kourovka 18.48 proper).** Is the set of finite orders exactly the divisors of 840
+  that occur above, or some other finite set, or is it unbounded? A proof would have to replace the
+  prefix comparisons of Lemma 1 by comparisons of paths of incomparable degree in the one-vertex
+  k-graph of `ct-p-z-is-a-one-vertex-k-graph-full-group`.
+- **Correction (09-19).** An earlier version of this node conjectured that the general set is
+  `{1, 2, 3, 4, 6, 12}`. That is false by Kohl's data above; referee bh-ref-c pointed this out
+  (6a7953752c).
