@@ -4,6 +4,9 @@ id: factorwise-complete-composition-returns-the-input-energy
 kind: claim
 title: Clausewise composition with private proofs and factorwise completeness returns at most the input energy on tensor-OR amplified instances, so it cannot meet either quantum PCP reducer claim
 artifacts:
+  - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
+  - research/artifacts/check-qpcp-strengthened-amplification-2026-09-20.py
+  - research/artifacts/qpcp-strengthened-amplification-replay-2026-09-20.json
   - research/factorwise-complete-composition-returns-the-input-energy-proof.md
   - experiments/qpcp-copy-respecting-composition-2026-09-17/check_composition_bound.py
   - experiments/qpcp-copy-respecting-composition-2026-09-17/check_composition_bound_output.txt
@@ -61,6 +64,12 @@ most `k_0` copies) and every `h_e` is a diagonal projector other than `I`, then
 gives `rho=1/n`. `W(n,r)` is one layer of commuting qubit projections with
 `omega_min=1`, so it lies in `L(k_0,g_0,omega_0)` whenever `r<=k_0`.
 
+The September 20 refinement also uses [[regular-graph-parity-has-uniform-single-defects]]:
+for every integer arity `r>=2`, connected `r`-regular graph incidence
+constraints with one odd charge have energy `1/m` and violation probability
+`rho=1/m` at each vertex. Each variable occurs in two constraints. This
+removes the even-arity restriction of the older window examples.
+
 ## Consequences
 
 1. **Dinur-iteration reducer.** Take any FCC family meeting (RED1) of
@@ -71,11 +80,19 @@ gives `rho=1/n`. `W(n,r)` is one layer of commuting qubit projections with
    is the BMVZ constant. If `liminf_n n eta_t(n)<=K` with `K` independent of `t`,
    then `c<=(K+k_0/2) sqrt(log t/t)/eta_B` for every `t`, so `c=0`. The loss
    of FCC reducers grows like `sqrt(t/log t)`.
-2. **Global-walk reducer, at every fixed t.** Take an FCC map meeting
-   `global-walk-reducer-has-net-energy-gain` with `n eta(n)->0` on
-   `W(n,r)`, where `r` is the largest even integer `<=k_0`. Then
-   `L >= (3t+2) r/(8 k_0)`. Since `r>=k_0-1>=k_0/2`, this is at least `(3t+2)/16`,
-   which contradicts `L<(3t+2)/16`. Here `n` runs over primes larger than `k_0`.
+2. **Global-walk reducer, every fixed locality and walk length.** Take
+   the graph parity instances of arity `r=k_0>=2`, with `m` vertices.
+   An FCC map with `m eta_m->0` and soundness loss `L` must satisfy
+   `L>=(t+1)/2` for every integer `t>=2`. Indeed (FCC1) gives
+   `e(H')<=eta_m+1/m`, while the positive-sandwich walk bound gives
+   `e(G_t(H))>=F_t(1/m)`, where
+   `F_t(x)=1-(1-x)(1-x/2)^(t-1)` and `F_t'(0)=(t+1)/2`.
+   Thus `m F_t(1/m)/L<=1+m eta_m`; take the limit.
+   This contradicts the strengthened sufficient condition `L<(t+1)/2`.
+   With `limsup m eta_m<=c`, the bound is `L>=(t+1)/(2(1+c))`.
+   Whole-copy encodings (FCC2) give only `L>=(t+1)/(2k_0)`.
+   The threshold matches the sufficient theorem for this construction
+   class; it does not assert an optimal threshold for all reducers.
 3. **Equality.** The factor average of `unfolding-tensor-clauses-returns-the-original-gap`
    is FCC with `eta=0`, and it attains (FCC1) with `k_0=r`.
 
@@ -107,3 +124,9 @@ with constant loss.
 computes `lambda_min(H')` exactly for random classical FCC testers on
 `W(5,2)`, `W(5,4)`, `W(7,2)` and `W(7,4)` with `T=2,3`. It checks (FCC1) and
 the explicit fake-proof average of the proof in all 18 cases.
+
+The September 20 exact replay additionally checks 27 regular graphs,
+294 single-defect witnesses, scalar amplification inequalities and nine
+noncommuting full-operator bounds. Shared proofs, correlated encodings,
+global completeness, or a proved restricted QMA-hard domain may escape
+this universal obstruction. They still need independent energy proofs.

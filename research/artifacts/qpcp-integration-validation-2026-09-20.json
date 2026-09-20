@@ -1,0 +1,50 @@
+{
+  "scope": "Pinned main graph plus the listed QPCP integration nodes; historical files read in memory only. Artifact existence checked in working tree.",
+  "baseline_revision": "7dff42652655ceb9e2112adc0103dec0ba9673f4",
+  "baseline_node_count": 34271,
+  "integrated_node_count": 34277,
+  "changed_node_ids": [
+    "global-walk-linearly-amplifies-hamiltonian-energy",
+    "global-walk-hamiltonian-amplification-proof",
+    "global-walk-reducer-has-net-energy-gain",
+    "qpcp-from-global-walk-reduction",
+    "factorwise-complete-composition-returns-the-input-energy",
+    "factorwise-complete-composition-returns-the-input-energy-proof",
+    "quantum-pcp-constant-gap-local-hamiltonian",
+    "qpcp-by-dinur-iteration",
+    "regular-graph-parity-has-uniform-single-defects",
+    "regular-graph-parity-single-defect-proof",
+    "tracial-internality-does-not-supply-local-witness-control",
+    "tracial-local-witness-control-counterexamples",
+    "correctable-data-tests-are-logically-blind",
+    "correctable-data-test-compression-proof",
+    "locality-reduction-with-amplifier-independent-loss"
+  ],
+  "errors": [],
+  "duplicate_findings": [],
+  "inherited_warning_count": 47,
+  "integrated_warning_count": 47,
+  "expected_statuses": {
+    "quantum-pcp-constant-gap-local-hamiltonian": "OPEN",
+    "global-walk-reducer-has-net-energy-gain": "OPEN",
+    "locality-reduction-with-amplifier-independent-loss": "OPEN",
+    "global-walk-linearly-amplifies-hamiltonian-energy": "ESTABLISHED",
+    "factorwise-complete-composition-returns-the-input-energy": "ESTABLISHED",
+    "regular-graph-parity-has-uniform-single-defects": "ESTABLISHED",
+    "correctable-data-tests-are-logically-blind": "ESTABLISHED",
+    "tracial-internality-does-not-supply-local-witness-control": "ESTABLISHED",
+    "gap-and-floor-do-not-force-compatible-syndrome-effects": "ESTABLISHED",
+    "combinatorial-gap-and-rounder-give-energy-gap": "ESTABLISHED",
+    "qpcp-from-global-walk-reduction": "OPEN",
+    "qpcp-by-dinur-iteration": "OPEN"
+  },
+  "global_walk_route_remaining": [
+    "global-walk-reducer-has-net-energy-gain"
+  ],
+  "layered_route_remaining": [
+    "locality-reduction-with-amplifier-independent-loss"
+  ],
+  "new_open_claims": [],
+  "all_checks_passed": true,
+  "proof_scope": "Graph consistency and finite regressions are not formal verification of mathematics."
+}

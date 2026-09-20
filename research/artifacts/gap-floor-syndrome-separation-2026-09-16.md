@@ -620,3 +620,12 @@ No SDP is solved and nothing is formalized in Lean.
 
 Titles and identifiers are recorded only from the API listing. None of the
 listed papers was read in full, and none is used in a proof.
+
+## September 20 integration
+
+The [QPCP ledger](qpcp-integration-ledger-2026-09-20.md) includes this
+separation and its graph-existence proof in the current locality audit.
+It remains a counterexample to the generic inference from an energy floor,
+not a refutation of a structured amplifier family. The independent
+strengthened global-walk and private-composition theorems neither assume
+nor construct compatible local syndrome effects.

@@ -167,3 +167,11 @@ Hamiltonian reductions are not formalized here.
   fixed-term-chain and joint-support results stand as proved.
 - The shift is a vacuity witness for requirements stated without the margin.
   It is not a proposed amplifier.
+
+## September 20 integration
+
+The [QPCP ledger](qpcp-integration-ledger-2026-09-20.md) retains this
+positive-shift correction and the separate YES-margin obligation. Its new
+walk criterion requires both soundness and exponentially small completeness
+error, in addition to linear per-round description growth. A constant bare
+rounder and exact gap alone still do not prove quantum PCP.

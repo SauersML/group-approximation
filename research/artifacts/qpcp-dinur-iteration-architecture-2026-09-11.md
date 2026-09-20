@@ -73,7 +73,7 @@ constants `k_0>=5`, `g_0>=36`, `omega_0>=70` and `c>0` such that, for every
 integer `t>=2`, there are constants `S_t`, `A_t` and a deterministic
 polynomial-time map with the following property. Every amplified Hamiltonian
 `H^(2t)`, with `H` in `L(k_0,g_0,omega_0)` on `N` qubits and `M` clauses, maps
-to `H'` in `L(k_0,g_0,omega_0)` on at most `S_t N` qubits with at most
+to `H'` in `L(k_0,g_0,omega_0)` on between `N` and `S_t N` qubits with at most
 `S_t d^(2t) M` clauses, satisfying
 
 ```text
@@ -81,7 +81,13 @@ lambda_min(H') >= c * lambda_min(H^(2t)),                        (RED1)
 lambda_min(H') <= A_t * lambda_min(H^(2t)) + 2^(-N).             (RED2)
 ```
 
-The constant `c` must not depend on `t`. That is the whole difficulty: the
+**Resource correction, 2026-09-20:** take `S_t,A_t>=1` and require
+`B'<=S_t(B+N+M+1)` for the maximum term/support/layer-weight description
+bit length, absorbing fixed walk factors. One-call polynomial size does
+not suffice for iteration. Pad the exponentially complete seed to at least
+the original input length; the reducer's lower site bound preserves this.
+
+The constant `c` must not depend on `t`. The mathematical difficulty is: the
 classical analogue is composition with an assignment tester that encodes each
 clause's local assignment by a code of constant relative distance, and that
 tester's loss does not depend on the alphabet.
@@ -104,13 +110,20 @@ and the layer count, and RED keeps the class.
   YES energy is at most `(2t A_t)^l (2^(-p(n))+l 2^(-n))`, which is negligible.
   Here `(2tA_t)^l=poly(n)` because `t` is fixed.
 - **Size and time.** Qubits multiply by at most `2t S_t` and clauses by at most
-  `d^(2t) S_t` per round, so `O(log n)` rounds give polynomial size and time.
+  `d^(2t) S_t` per round. Together with the explicit linear bit-length bound,
+  this gives a fixed linear recurrence for the description vector, so
+  `O(log n)` rounds give polynomial size and time.
 - **Form.** Every `H_i` is a weighted average of `k_0`-local projections with
-  rational weights `w_chi`. Repeating clauses in proportion to the weights puts
-  it in the uniform form (QPCP1) with polynomial blowup, and projections satisfy
-  `0<=h<=I`.
+  rational weights `w_chi`. **Precision correction, 2026-09-20:** polynomial
+  bit length does not bound the exact common denominator polynomially.
+  At the final constant-gap stage round all `M` term weights to denominator
+  `D>=8M/gamma_t` by largest remainders, then repeat by the integer counts.
+  The operator-norm perturbation is at most `M/D<=gamma_t/8`; the term count
+  is `D=poly(n)`. Projections still satisfy `0<=h<=I`. See
+  [the normalized precision proof](qpcp-strengthened-amplification-2026-09-20.md#1-target-normalization-and-precision).
 
-Thus deciding `lambda_min<=negl(n)` versus `lambda_min>=gamma_t` for constant-locality
+Thus after rounding, deciding `lambda_min<=gamma_t/4` versus
+`lambda_min>=7 gamma_t/8` for sufficiently large constant-locality
 qubit Hamiltonians is QMA-hard, which is the root claim.
 
 ## 4. The natural reducer cancels the amplification

@@ -5,6 +5,9 @@ kind: claim
 root: true
 title: Constant-locality local Hamiltonian is QMA-hard at a constant relative promise gap
 artifacts:
+  - research/artifacts/qpcp-integration-validation-2026-09-20.json
+  - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
+  - research/artifacts/qpcp-integration-ledger-2026-09-20.md
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/qpcp-paired-projector-obstruction-2026-09-07.md
@@ -139,7 +142,39 @@ iterates have negligible YES energy, so they cannot consist of Pauli projectors 
 code-space constraints. The games form is the separate open claim
 `quantum-games-pcp-for-qma`.
 
+**2026-09-20 strengthened global-walk route.**
+[[global-walk-linearly-amplifies-hamiltonian-energy]] now proves
+`e(G_t(H))>=1-(1-e(H))(1-e(H)/2)^(t-1)` at spectral bound `1/2`,
+for all integers `t>=2`, including walks with negative transition eigenvalues.
+Reciprocal iteration makes `L<(t+1)/2` sufficient in
+[[qpcp-from-global-walk-reduction]], with completeness and linear per-round
+numerical growth retained. At `t=10` this replaces `L<2` by `L<5.5`.
+[[factorwise-complete-composition-returns-the-input-energy]] now forces
+`L>=(t+1)/2` for universal independently encoded, clause-private,
+factorwise-complete reducers with `eta_m=o(1/m)`, using regular-graph parity
+at every fixed locality. The reducer remains **OPEN**.
+
+The [integrated proof ledger](artifacts/qpcp-integration-ledger-2026-09-20.md)
+also records the September 16 constant-floor/syndrome separation and the
+September 20 group consequences. [[tracial-internality-does-not-supply-local-witness-control]]
+proves the trace-versus-state and tensor-support distinctions. Liu's accepted
+analytic chain and Thom's normalization strengthen group-approximation
+consequences without discharging a local QMA compiler. The stronger one-model
+normalization statement is still a separate review item. None of these
+changes closes the quantum-PCP root.
+
 ## Attempts
+
+- **Static exact codes with only correctable data views.**
+  [[correctable-data-tests-are-logically-blind]] proves that each test,
+  even with an arbitrary auxiliary proof, compresses to identity on the
+  logical state. A construction must provide a different interface,
+  such as decoding or a changing encoding, with its own soundness proof.
+- **Inferring syndrome ports from an existing constant floor.**
+  [[gap-and-floor-do-not-force-compatible-syndrome-effects]] excludes the
+  generic implication even at bounded degree and locality, with exact gap
+  at least `11/30`, energy at least `1/30`, and bare rounder cost at most
+  `11`. This is separate from the family-specific amplifier obligation.
 
 - **Ordinary energy gap amplification.**  Killed for this target by
   `ordinary-gap-amplification-grows-locality`: the detectability-lemma

@@ -7,6 +7,11 @@ target: factorwise-complete-composition-returns-the-input-energy
 requires:
   - bmvz-iterable-tensor-gap-amplification
   - global-walk-linearly-amplifies-hamiltonian-energy
+  - regular-graph-parity-has-uniform-single-defects
+artifacts:
+  - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
+  - research/artifacts/check-qpcp-strengthened-amplification-2026-09-20.py
+  - research/artifacts/qpcp-strengthened-amplification-replay-2026-09-20.json
 ---
 
 # Factorwise-complete clausewise composition returns the input energy
@@ -185,41 +190,34 @@ contradicts `c > 0`. The completeness hypothesis is mild: (RED2) asks for an add
 error `2^(-N)`, and clausewise constructions that meet it clause by clause
 have `n eta -> 0`.
 
-## 5. Consequence for the global-walk reducer
+## 5. Consequence for the global-walk reducer (strengthened 2026-09-20)
 
-`global-walk-linearly-amplifies-hamiltonian-energy` gives, for spectral bound
-`lambda <= 1/2`, `epsilon = lambda_min(H)` and even `t`,
+Take the graph-incidence parity instances from
+`regular-graph-parity-has-uniform-single-defects` with arity `r=k_0>=2`.
+There are `m` constraints, `k_0 m/2` variables, energy `1/m` and
+violation probability `rho=1/m` at every constraint. The proved (FCC1)
+gives `e(H')<=eta_m+1/m` for any amplified clause list.
 
-```text
-lambda_min(G_t(H)) >= 1 - (1-epsilon)[1-(1-lambda^2) epsilon]^((t-2)/2)
-                    >= 1 - (1-epsilon)(1 - 3 epsilon/4)^s,       s=(t-2)/2.
-```
-
-We use `(1-a)^s <= 1 - s a + s^2 a^2/2` for `0 <= a <= 1`, by alternating Taylor
-bounds for `e^(-as)` and `1-a <= e^(-a)`. With `a = 3 epsilon/4`:
-
-```text
-lambda_min(G_t(H)) >= epsilon + s a - s^2 a^2/2 - epsilon s a
-                    = epsilon (3t+2)/8 - O(t^2 epsilon^2).
-```
-
-Take `H = W(n,r)` with `r` the largest even integer `<= k_0`, and `n` prime and
-larger than `k_0`, so `epsilon = 1/n`. Suppose the reducer's output is FCC
-with `n eta(n) -> 0`. The claim requires `lambda_min(H') >= lambda_min(G_t(H))/L`,
-so
+At spectral bound at most `1/2`, the positive-sandwich theorem gives
+`e(G_t(H))>=F_t(1/m)`, for every integer `t>=2`, with
+`F_t(x)=1-(1-x)(1-x/2)^(t-1)`. Soundness loss `L` therefore requires
 
 ```text
-L >= lambda_min(G_t(H)) / lambda_min(H')
-  >= [(3t+2)/8 - O(t^2/n)] / [n eta(n) + k_0/r]  ->  (3t+2) r/(8 k_0)    (n -> infinity).
+m F_t(1/m)/L <= 1+m eta_m.
 ```
 
-`L` does not depend on `n`, so `L >= (3t+2) r/(8 k_0)`. For `k_0 >= 2`,
-`r >= k_0 - 1 >= k_0/2`, so `L >= (3t+2)/16`, against the requirement
-`L < (3t+2)/16`. This holds at every fixed `t` and every `k_0`. It is stronger
-than excluding loss families `L_t = o(t)`.
+Since `F_t(0)=0` and `F_t'(0)=(t+1)/2`, `m eta_m->0` forces
+`L>=(t+1)/2`. This contradicts the current reducer claim's strict
+threshold at every fixed locality, including odd `k_0`. The even vertex
+counts of the explicit graph family do not restrict the arity.
+If `limsup m eta_m<=c`, the conclusion is `L>=(t+1)/(2(1+c))`.
+The whole-copy lemma (FCC2) yields only `L>=(t+1)/(2k_0)`.
 
-Whole-copy encodings (FCC') give only `L >= (3t+2)/(8k_0)`. That excludes
-`L_t = o(t)` families but not a single `t`.
+Section 4 of `research/artifacts/qpcp-strengthened-amplification-2026-09-20.md`
+gives the explicit circulants, path witnesses and full limiting argument.
+The window instances above remain useful for the independent BMVZ branch
+and its existing finite gadget checks; they are not needed for this sharper
+all-arity global-walk conclusion.
 
 ## 6. Scope, equality and calibration
 

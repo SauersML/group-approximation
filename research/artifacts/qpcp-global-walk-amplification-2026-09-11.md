@@ -1,5 +1,12 @@
 # Positive transfer operators give global tensor amplification
 
+**Quantitative update (2026-09-20):** the
+[positive-sandwich refinement](qpcp-strengthened-amplification-2026-09-20.md)
+supersedes this artifact's weaker sufficient threshold. The canonical graph
+now uses `1-(1-epsilon)(1-(1-lambda)epsilon)^(t-1)` and reducer loss
+`L<(t+1)/2` at spectral bound `1/2`, for every integer `t>=2`.
+The original bounds and exact replay below remain valid historical evidence.
+
 Date checked: 2026-09-11. This is a finite-dimensional proof, with a small
 exact replay. No large computation is involved.
 

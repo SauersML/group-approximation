@@ -321,3 +321,14 @@ annihilates the full-shift rank-invisible K_0 remainder under every iid
 product trace and computes the prime-lamp wreath trace range from the
 host. It does not settle the virtual or odd K-theory remainder. The
 ordinary Baum–Connes counterexample root remains OPEN.
+
+## Quantum PCP boundary (2026-09-20 integration)
+
+The [QPCP proof-development ledger](qpcp-integration-ledger-2026-09-20.md)
+reconstructs the elementary wreath and Leavitt deductions with the analytic
+inputs above retained. Its [trace/local-witness counterexamples](../tracial-internality-does-not-supply-local-witness-control.md)
+show why neither normalized-trace control nor abstract commutants supply
+all-state operator domination or prescribed tensor support. The independent
+positive-sandwich walk theorem improves the sufficient reducer loss to
+`L<(t+1)/2`; no locality reducer or quantum-PCP proof follows from this
+nonhyperlinear integration.

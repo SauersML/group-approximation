@@ -4,13 +4,15 @@ id: global-walk-reducer-has-net-energy-gain
 kind: claim
 title: A constant-locality reducer loses less than the global tensor-walk gain
 artifacts:
+  - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
+  - research/artifacts/qpcp-integration-ledger-2026-09-20.md
   - research/artifacts/qpcp-global-walk-amplification-2026-09-11.md
 distinct_from:
   amplifier-preserves-yes-energy-below-the-floor: that asks for the complete anchored-amplifier YES margin; this asks for a locality-reduction operation on every input from a precisely specified global tensor-walk image, with a numerical loss threshold and closure under iteration.
 ---
 
-There exist a constant `k_0>=5`, a fixed even integer `t>=2`, constants
-`L>=1` and `A,S>0`, and a deterministic polynomial-time map `R_t` with
+There exist a constant `k_0>=5`, a fixed integer `t>=2`, constants
+`L,A,S>=1`, and a deterministic polynomial-time map `R_t` with
 the following properties. For every normalized `k_0`-local qubit
 Hamiltonian `H=(1/m)sum_v h_v`, `0<=h_v<=I`, on `n` qubits with
 polynomial-bit descriptions, use the global walk `G_t(H)` from
@@ -24,19 +26,19 @@ between `n` and `Sn` qubits with at most `Sm` terms, and
 ```text
 lambda_min(H') >= lambda_min(G_t(H))/L,
 lambda_min(H') <= A lambda_min(G_t(H))+2^(-n),
-L < (3t+2)/16.
+L < (t+1)/2.
 ```
 
 The constant `S` absorbs all fixed walk and uniform-duplication factors.
 If `B` is the maximum input term-description length in bits, including
 support labels, every output term-description length is at most
-`S(B+n+m)`. This linear bound is part of the requirement and controls
+`S(B+n+m+1)`. This linear bound is part of the requirement and controls
 bit complexity under iteration.
 Uniform duplication of the input clauses is allowed to realize the
 fixed expander family and changes no Hamiltonian. The map receives the
 explicit clause/tensor-factor description, not a ground state.
 
-This is open. A family of reducers with loss `L_t=o(t)` for even `t`
+This is open. A family of reducers with loss `L_t=o(t)` for integer `t`
 would suffice by choosing one large fixed value of `t`; loss bounded
 independently of `t` is unnecessary.
 
@@ -62,6 +64,18 @@ independently of `t` is unnecessary.
 - A reducer whose outputs are sums of Pauli projectors, or of terms `I-Pi` with
   `Pi` a stabilizer code-space projector, is excluded unless QMA is in NP. Through
   `qpcp-from-global-walk-reduction`, the iterates would be a QMA-hard family of
-  such terms with negligible YES energy and NO energy at least `1/(2L)`.
+  such terms with negligible YES energy and NO energy at least `g=1/[1+L/(1-L/B_t)]`, where `B_t=(t+1)/2`.
   `pauli-projector-hamiltonians-are-stabilizer-approximable` puts that promise
   problem in NP.
+
+- The September 20 parity refinement of
+  [[factorwise-complete-composition-returns-the-input-energy]] excludes
+  universal independent-bit encodings with clause-private proofs and
+  factorwise completeness error `eta_m=o(1/m)`: at every fixed
+  `k_0>=2` and `t>=2` it forces `L>=(t+1)/2`. Shared proofs,
+  correlated encodings and global completeness remain outside its scope.
+- A restricted-domain alternative must start with a QMA-hard seed family
+  and prove an invariant preserved by both operations, with the same
+  all-state soundness, completeness and linear resource bounds. Such a
+  construction would suffice without satisfying this universal claim;
+  none is supplied by the present audit.
