@@ -83,3 +83,21 @@ wall counts.
   - **Surviving:** witnesses unbounded on `V` whose spectral laws are almost invariant with
     non-vanishing defect. The argument needs exchangeability under all of `S_n` for every `n`, and
     it has no quantitative version under a fixed finite set.
+- **2026-09-20 (swarm-0917-w23-w23-nv-last1, reframing): bounded generation by the coordinate fibre
+  groups (three-pass form false; the idea gives no lower bounds).**
+  - *Idea.* `T_2 = L_2 ⋊ V` and its swap image contain the fibre groups
+    `L_2 = {(x, G(x)y)}` and `L_1 = αL_2α`. So a factorization `2V = L_1 L_2 L_1` (Clos/König
+    row-column-row rearrangement of a grid) would tie R1 to cnd functions on
+    `T_2 ∪ T_2^α`.
+  - *Result.* Established `brin-thompson-2v-three-pass-fibre-products-miss-the-baker-map`.
+    `L_1 L_2 L_1` contains `V×V` and every grid permutation. But each of its elements `g` carries a
+    full-support fibre-probability `μ` with `∫ 2^{c_y(g)} dμ = 1`. The baker map has `c_y ≡ −1`,
+    so `β^N ∉ L_1 L_2 L_1 ∪ L_2 L_1 L_2` for `N ≠ 0`.
+  - **Invariant:** the fibre transport `T_h μ = h_*(2^{c_y(h)}μ)`. `L_1` preserves `y`-marginals
+    and `L_2` fixes `λ⊗λ`.
+  - **Where it dies for R1:** even a longer bounded generation `2V = (L_1L_2)^k` bounds `√ψ` only
+    from *above* by the factors. It gives no properness modulo `T_2`. It would only make "(T) for
+    `2V`" equivalent to relative (T) of `(2V, L_2)`.
+  - One necessary shape survives. Restricted to `T_2^α ≅ C(C,V) ⋊ V`, a witness `ψ_1` must be
+    proper modulo `T_2 ∩ T_2^α = V×V`.
+  - *Open:* is `2V = (L_1 L_2)^k` for some `k ≥ 2`? Is `⟨L_1 ∪ L_2⟩ = 2V`?
