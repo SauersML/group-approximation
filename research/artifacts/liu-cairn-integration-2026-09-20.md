@@ -269,6 +269,23 @@ The branch merge exposed unrelated schema errors and a fail-open kernel hazard: 
 
 ### Current validation checkpoint
 
+The [parallel-wave validation record](liu-new-consequences-validation-2026-09-20.json)
+checks the exact source tree of commit `4ff3303911`, using a pre-commit
+snapshot with the identical tree hash. On MSI, 34,229 nodes compiled in
+12.699 seconds on one CPU, with zero schema/artifact errors and zero
+duplicate findings among 61 touched canonical nodes. The new consequences
+derive ESTABLISHED; four former conjectures are REFUTED and their proof
+shortcuts deactivate. The numerical LCS, seed-uniform hyperlinear branch,
+hyperbolic and one-relator targets remain OPEN. The MF-safe seed-uniform construction
+itself is established; its hyperlinear positive-branch hypothesis is not.
+The status delta also activates the existing qc/qa graph-pair and
+non-CE quantum-automorphism consequences through their named old routes.
+Validation uses the standard parser, linter and graph compiler, not a
+Lean check or full application build. The subsequent merge only preserves
+the concurrent builder's separate probe-verdict updates.
+
+### Earlier proof-acceptance validation checkpoint
+
 The [MSI validation record](liu-proof-acceptance-validation-2026-09-20.json) checks pinned commit `3fb72da3f6`: 34,194 nodes, zero schema/artifact errors, and zero duplicate findings among 102 touched canonical nodes. The root, internality, normalization, full-defect theorem and displayed group consequences derive ESTABLISHED without counterfactual assumptions. The stronger one-model normalization claim and compiler positive branch remain OPEN. All 61 schema-hygiene-affected claims preserve their status under the fail-closed kernel, and all four archived documents are byte-identical. The tracked FRONTIER was refreshed. Standard parser, linter, compiler and duplicate checks ran on streamed Git blobs with pinned-tree artifact validation; this was not a full CLI/app build or Lean verification.
 
 ### Historical validation checkpoint

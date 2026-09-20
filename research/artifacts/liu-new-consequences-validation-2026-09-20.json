@@ -1,0 +1,208 @@
+{
+  "revision": "60b1fe52bacc9ef68964db19d85b678d6df14f8a",
+  "seconds": 12.699,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "kt-doubles-are-mf-but-not-hyperlinear": "ESTABLISHED",
+    "fp-surjunctive-mf-nonhyperlinear-group": "ESTABLISHED",
+    "kt-mf-models-have-a-universal-trace-blind-word": "ESTABLISHED",
+    "binary-lcs-perfect-qc-strict-qa-gap-exists": "ESTABLISHED",
+    "leavitt-central-sign-seed-for-lcs": "ESTABLISHED",
+    "nonhyperlinear-surjunctive-stably-finite-witnesses": "ESTABLISHED",
+    "kt-intermediate-wreaths-missing-normal-core-not-hl": "ESTABLISHED",
+    "kt-pair-hyperlinear-floor-below-normal-closure": "REFUTED",
+    "mf-implies-hyperlinear": "REFUTED",
+    "mf-hs-defect-gap-profile": "REFUTED",
+    "mf-trace-gap-defect-ratio-models": "REFUTED",
+    "compiler-branch-hyperlinear-from-mf-implies-hyperlinear": "INVALIDATED",
+    "mf-compiler-is-uniform-in-finite-seeds": "ESTABLISHED",
+    "mf-compiler-positive-branch-is-hyperlinear": "OPEN",
+    "compiler-higman-coset-chain-is-sofic": "OPEN",
+    "nonhyperlinear-hyperbolic-group": "OPEN",
+    "nonhyperlinear-one-relator-group": "OPEN",
+    "leavitt-lcs-game-with-certified-numerical-gap": "OPEN",
+    "non-hyperlinear-group": "ESTABLISHED"
+  },
+  "touched_nodes": [
+    "binary-lcs-gap-from-central-leavitt-seed",
+    "binary-lcs-gap-from-liu-leavitt",
+    "binary-lcs-perfect-qc-strict-qa-gap-exists",
+    "central-hnn-tag-modulus-proof",
+    "central-hnn-tag-transfers-hyperlinear-radical",
+    "centralizing-hnn-perturbed-edge-separation",
+    "centralizing-hnn-quotient-centralizer-no-go-proof",
+    "centralizing-hnn-sofic-via-regular-edge-centralizer",
+    "compiler-branch-hyperlinear-from-mf-implies-hyperlinear",
+    "compiler-higman-coset-chain-is-sofic",
+    "compiler-hyperlinear-from-host-coset-chain",
+    "compiler-rope-is-locally-indicable",
+    "compiler-rope-is-locally-indicable-proof",
+    "finite-image-kt-gluing-collapse-by-profinite-closure",
+    "finite-image-kt-gluings-kill-laurent-differences",
+    "finite-presentation-rice-criterion-proof",
+    "finite-presentation-rice-criterion-via-the-fixed-positive-rope",
+    "fp-mf-nonhyperlinear-via-rank-six-double",
+    "fp-surjunctive-mf-nonhyperlinear-group",
+    "hyperbolic-nonhyperlinear-from-hs-stability",
+    "hyperbolic-nonsofic-from-nonhyperlinear",
+    "hyperlinear-fp-completeness-from-compiler-branch",
+    "hyperlinear-nonsofic-group",
+    "hyperlinear-rf-gluing-failure-by-kt-examples",
+    "hyperlinear-rf-gluing-permanence-fails",
+    "kt-doubles-are-mf-but-not-hyperlinear",
+    "kt-intermediate-wreaths-collapse-by-normalization",
+    "kt-intermediate-wreaths-missing-normal-core-not-hl",
+    "kt-mf-models-have-a-universal-trace-blind-word",
+    "kt-mf-nonhyperlinear-double-separation",
+    "kt-pair-hyperlinear-floor-below-normal-closure",
+    "kt-universal-trace-blind-word-from-separation",
+    "leavitt-central-sign-seed-for-lcs",
+    "leavitt-central-sign-seed-proof",
+    "leavitt-el3-rank-models-over-finite-fields-are-trivial",
+    "leavitt-lcs-game-with-certified-numerical-gap",
+    "mf-compiler-is-uniform-in-finite-seeds",
+    "mf-compiler-positive-branch-is-hyperlinear",
+    "mf-compiler-positive-branch-is-torsion-free",
+    "mf-compiler-positive-branch-torsion-free-proof",
+    "mf-compiler-uniform-seed-parameter-proof",
+    "mf-hs-defect-gap-profile",
+    "mf-implies-hyperlinear",
+    "mf-trace-gap-defect-ratio-models",
+    "non-hyperlinear-group",
+    "nonhyperlinear-hyperbolic-group",
+    "nonhyperlinear-one-relator-group",
+    "nonhyperlinear-stably-finite-by-surjunctivity",
+    "nonhyperlinear-surjunctive-stably-finite-witnesses",
+    "one-relator-nonsofic-from-nonhyperlinear",
+    "perfect-completeness-constant-soundness-lcs-compiler",
+    "perfect-lcs-gap-implies-weak-non-mf",
+    "phung-surjunctivity-stable-finiteness-citation",
+    "qc-isomorphic-not-qa-isomorphic-graph-pair-exists",
+    "qc-qa-graph-gap-from-liu-lcs",
+    "shulman-amalgam-mf-criterion",
+    "surjunctive-group-algebras-are-stably-finite",
+    "symmetric-double-weak-mf",
+    "symmetric-double-weak-mf-proof",
+    "the-mikhailova-rope-object-card",
+    "weak-lcs-compiler-from-fixed-separating-game"
+  ],
+  "duplicates": [],
+  "surviving_status_changes": {
+    "compiler-branch-hyperlinear-from-mf-implies-hyperlinear": [
+      "OPEN",
+      "INVALIDATED"
+    ],
+    "hyperlinear-nonsofic-free-action-from-infranormal-coset-wreath": [
+      "OPEN",
+      "INVALIDATED"
+    ],
+    "kt-pair-hyperlinear-floor-below-normal-closure": [
+      "OPEN",
+      "REFUTED"
+    ],
+    "mf-hs-defect-gap-profile": [
+      "OPEN",
+      "REFUTED"
+    ],
+    "mf-hyperlinear-via-hs-defect-gap-profile": [
+      "OPEN",
+      "INVALIDATED"
+    ],
+    "mf-implies-hyperlinear-via-rank-profile": [
+      "OPEN",
+      "INVALIDATED"
+    ],
+    "mf-implies-hyperlinear": [
+      "OPEN",
+      "REFUTED"
+    ],
+    "mf-trace-gap-defect-ratio-models": [
+      "OPEN",
+      "REFUTED"
+    ],
+    "non-ce-quantum-automorphism-group-from-qc-qa-graph-gap": [
+      "OPEN",
+      "COMPLETE"
+    ],
+    "non-ce-quantum-automorphism-group-of-finite-graph-exists": [
+      "OPEN",
+      "ESTABLISHED"
+    ],
+    "non-hyperlinear-from-perfect-completeness-lcs-compiler": [
+      "OPEN",
+      "COMPLETE"
+    ],
+    "perfect-completeness-constant-soundness-lcs-compiler": [
+      "OPEN",
+      "ESTABLISHED"
+    ],
+    "qc-isomorphic-not-qa-isomorphic-graph-pair-exists": [
+      "OPEN",
+      "ESTABLISHED"
+    ],
+    "qc-qa-graph-gap-from-perfect-completeness-lcs-compiler": [
+      "OPEN",
+      "COMPLETE"
+    ]
+  },
+  "removed_nodes": [],
+  "added_nodes": [
+    "binary-lcs-gap-from-central-leavitt-seed",
+    "binary-lcs-gap-from-liu-leavitt",
+    "binary-lcs-perfect-qc-strict-qa-gap-exists",
+    "central-hnn-tag-modulus-proof",
+    "central-hnn-tag-transfers-hyperlinear-radical",
+    "compiler-higman-coset-chain-is-sofic",
+    "compiler-hyperlinear-from-host-coset-chain",
+    "finite-image-kt-gluing-collapse-by-profinite-closure",
+    "finite-image-kt-gluings-kill-laurent-differences",
+    "fp-mf-nonhyperlinear-via-rank-six-double",
+    "fp-surjunctive-mf-nonhyperlinear-group",
+    "hyperbolic-nonhyperlinear-from-hs-stability",
+    "hyperbolic-nonsofic-from-nonhyperlinear",
+    "hyperlinear-rf-gluing-failure-by-kt-examples",
+    "hyperlinear-rf-gluing-permanence-fails",
+    "kt-doubles-are-mf-but-not-hyperlinear",
+    "kt-intermediate-wreaths-collapse-by-normalization",
+    "kt-intermediate-wreaths-missing-normal-core-not-hl",
+    "kt-mf-models-have-a-universal-trace-blind-word",
+    "kt-mf-nonhyperlinear-double-separation",
+    "kt-universal-trace-blind-word-from-separation",
+    "leavitt-central-sign-seed-for-lcs",
+    "leavitt-central-sign-seed-proof",
+    "leavitt-lcs-game-with-certified-numerical-gap",
+    "mf-compiler-is-uniform-in-finite-seeds",
+    "mf-compiler-uniform-seed-parameter-proof",
+    "nonhyperlinear-hyperbolic-group",
+    "nonhyperlinear-one-relator-group",
+    "nonhyperlinear-stably-finite-by-surjunctivity",
+    "nonhyperlinear-surjunctive-stably-finite-witnesses",
+    "one-relator-nonsofic-from-nonhyperlinear",
+    "phung-surjunctivity-stable-finiteness-citation",
+    "qc-qa-graph-gap-from-liu-lcs",
+    "surjunctive-group-algebras-are-stably-finite",
+    "weak-lcs-compiler-from-fixed-separating-game"
+  ],
+  "archived_route_bytes_identical": {},
+  "schema_hygiene_status_changes": {},
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "frontier_output": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X/liu-wave-FRONTIER.md",
+  "frontier_lock_policy": "empty snapshot lock map; actual pinned Git history, no fabricated baseline",
+  "source_commit": "4ff3303911",
+  "validated_tree": "1e20c8a8221a7a3a8b19364c041a45ab1f46be3a",
+  "source_commit_tree_matches_validation": true,
+  "node_count": 34229,
+  "baseline_revision": "3fb72da3f6"
+}
