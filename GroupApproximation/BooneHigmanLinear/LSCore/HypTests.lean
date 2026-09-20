@@ -97,7 +97,7 @@ theorem cor410_field {K : Type} [Field K] (i₀ j₀ : I) (h₀ : i₀ ≠ j₀)
     rw [eq_bot_iff, Subgroup.closure_le]
     rintro _ ⟨m, η, hm, rfl⟩
     rw [hM, Ideal.mem_bot] at hm
-    rw [hm, map_zero, cElt_eq', x_zero, neg_zero, zElt_zero_left, one_mul]
+    rw [hm, map_zero, cElt_eq, x_zero, neg_zero, zElt_zero_left, one_mul]
     exact one_mem _
   rw [polyKer, hP, hbot, bot_inf_eq, hXP, hbot, hc, sup_bot_eq]
 

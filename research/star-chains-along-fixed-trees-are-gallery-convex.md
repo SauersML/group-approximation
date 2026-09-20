@@ -94,6 +94,23 @@ graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of 
   `π/20` per triangle. This is not done, even for one `A`- or `B`-type star. So (G) stands as the recorded crux of
   the Kazhdan program.
 
+## Attempt (bh-lemmaG, 2026-09-19): one star proved, strong (G) false, target corrected
+
+Details and proofs in `h31-vertex-stars-are-gallery-convex` (177fa061c6; lane proof, not reviewed).
+- **One star (G_star), claimed proved.** Every vertex star is convex in `𝒞` in the strong sense. The proof
+  reduces an excursion to its pivot path (an edge path avoiding `v` with at most `k − 2` edges) and proves that
+  such paths are at least as long as the link distance (combinatorial Gauss–Bonnet with the angles above and the
+  face defect `π/20`; the face term is needed when `v` has type `A` or `B`). Consequence: a geodesic gallery
+  between chambers of `U_ρ` never leaves and re-enters the same star.
+- **(G) as stated is false** whenever `ρ` has an `A`–`B` edge. At a `C`-type apex `u`, the chambers
+  `(u, w_i, x_c)` and `(u, x_d, w_{i+1})` are at distance 2 and are joined by a geodesic gallery through
+  `(u, x_d, x_c) ∉ U_ρ` (and by one through `(u, w_i, w_{i+1}) ∈ U_ρ`). This is the gallery form of the `K_{5,5}`
+  counterexample to G0.
+- **Corrected target.** Either (G_w): `U_ρ` is isometrically embedded in `𝒞`; or (G⁺): the union with the stars
+  of the `C`-type apexes of the `A`–`B` edges is strongly convex. Either suffices for the periodic computation.
+  A curvature case check (sketch) finds positive inner-side curvature only at those apexes. The open step is
+  the junction count between consecutive stars.
+
 ## Which inputs are needed
 
 - **No property-(T) input.** (G), events (A)/(B) and the fiber over a ray's end are statements about the local

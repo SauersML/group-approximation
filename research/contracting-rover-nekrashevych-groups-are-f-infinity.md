@@ -70,7 +70,7 @@ extensions give `F_n` criteria) for a direct answer.
    - **Most concrete next case.** Sub-hyperbolic PCF rational maps, which need an orbifold version of Nekrashevych's `pr:expandingpi1`.
 
 3. **All post-critically finite rational maps (2026-09-19, lane `bh-sz-vdg`).** *New case; the claim stays OPEN.*
-   - See `pcf-rational-nekrashevych-groups-are-f-infinity`. It is OPEN (proof claimed, under review by bh-ref-g), and rests on the transfer theorem, which bh-ref-q12 is reviewing.
+   - See `pcf-rational-nekrashevych-groups-are-f-infinity`. It is ESTABLISHED, refereed by bh-ref-g (78f3553770) together with the transfer theorem (bh-ref-q12, ca350037cb).
    - For every PCF rational map, `V_{d,r}(IMG f)` has type `F_∞`. This includes sub-hyperbolic maps with postcritical points in the Julia set.
    - **The cover.** It is the orbifold fundamental group of Thurston's orbifold.
    - **Why the kernel dies.** Short orbifold loops are elliptic by a displacement lemma, and elliptic elements map injectively to `IMG f`, since cone orders equal Thurston's `ν`.

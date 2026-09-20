@@ -9,11 +9,11 @@ distinct_from:
   class-transposition-groups-finite-orbits-is-undecidable: that proves the finitely-many-generator form of 18.47(a) undecidable; this removes the conjectural obstruction it used against compressing to three generators.
 ---
 
-**ESTABLISHED** (bh-p2, 2026-09-19; lane proof, elementary and self-contained, not independently
-reviewed). No priority claimed. That this product has infinite order is already covered by
-Bardakov–Iskra, arXiv:2504.08595 (the slanted case with equal residues and different modulus ratios
-has order ∞; read from the abstract and HTML, not verbatim). What is added here is that every cycle
-is finite.
+**ESTABLISHED** (bh-p2, 2026-09-19; elementary lane proof; **Referee PASS** bh-ref-e, 1532e2aa7f:
+every component is a finite path with 2S vertices for every S, and infinite order is confirmed at
+source). No priority claimed. Infinite order of this product is Bardakov–Iskra, arXiv:2504.08595,
+Theorem 1.2(1), which the referee checked at source. What is new here is only that every cycle is
+finite.
 
 ## Statement
 
@@ -99,5 +99,28 @@ negative integers too: the argument never uses the sign of `u`. ∎
 - Which transversal pairs give finite cycles with unbounded lengths? The example suggests a
   criterion: a two-step loop with multiplier `p/q`, `p, q > 1` coprime, whose forward and backward
   runs both end at endpoints.
-</content>
-</invoke>
+
+## Attempts
+
+**Attempt 1: compressing 18.47(a) to three generators (bh-p2, 2026-09-19; not achieved, heuristic
+assessment only).** The question: can one of the two disjoint-support families in
+`class-transposition-groups-finite-orbits-is-undecidable` be replaced by a single class
+transposition, with the transversal counter above carrying the machine's periodicity dichotomy?
+- **What the counter gives (proved above).** A pair of class transpositions realizes exactly one
+  reversible counter-transfer instruction `(α, β) ↦ (α + 1, β − 1)` on the points `2^α 3^β u`. The
+  sum `α + β` is conserved, so the runs are finite and their lengths unbounded.
+- **Why three generators are harder (heuristic, not proved).**
+  - Three class transpositions are given by 12 integers and move at most 6 residue classes.
+  - So the orbit graph is subcubic, with 6 affine partial maps whose guards are fixed residue classes.
+  - A reduction from Kari–Ollinger's periodicity problem, which needs machines with unboundedly many
+    states, would have to encode the machine's control in these 12 numbers. The only channel is
+    many-prime slopes `m₂/m₁`, i.e. a reversible FRACTRAN-type system with three fractions, their
+    inverses, and six guards.
+  - The problem also quantifies over all orbits, so a universal machine with its input in the
+    starting point, the Conway/POLYGAME trick, does not transfer.
+  - Undecidability of periodicity for such bounded-guard systems is not known to us. It resembles
+    the open reachability problem for one-dimensional piecewise affine maps with few pieces.
+- **Status.** The (P2) obstruction is gone, but no three-generator construction is known. Kourovka
+  18.47(a) as printed stays open. The natural next test, suggested by bh-k1847, is whether two class
+  transpositions can carry a complete one-counter machine with a zero test.
+
