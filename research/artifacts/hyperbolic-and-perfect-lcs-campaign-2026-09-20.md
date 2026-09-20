@@ -244,3 +244,46 @@ fixed positive literal-decoder defect. Proper-corner and non-word
 readouts remain possible; neither a uniformly positive retained mass
 nor a complete HALT-positive source has been obtained. Both root
 problems remain OPEN.
+
+The [amplification-wave validation report](amplified-detector-source-validation-2026-09-20.json)
+binds commit `e6c57d4ad3` to tree
+`1fd09b13980716fa99de049103a83c6aff7755ff`. Its 34,283-node snapshot
+has zero schema errors and no duplicate findings. Compared with the
+independently checked immediately preceding committed snapshot, six
+nodes were added and no existing node status changed. Both main roots
+and the weighted halting source remain OPEN. Validation took 8.283
+seconds on one low-priority MSI CPU; the report states the exact
+parser/compiler scope and absence of full-CLI or Lean verification.
+
+## Beyond the pure sector: low degrees and common corners
+
+The [mixed spectral reduction](hrf-mixed-spectral-balance-2026-09-20.md)
+uses conjugacy to inverses and one nonzero twist to force uniform
+order-five spectra in every characteristic other than five. In
+characteristic 19 it gives two exact integer equations on arbitrary
+vertex composition factors, without semisimplicity. The first mixed
+types in dimension ten are L0+L8 and L2+L6; neither is claimed to
+extend to a detector.
+
+Combining this with the elementary nine-character orbit of the
+order-nineteen root subgroup proves the
+[all-field degree-nine obstruction](hrf-mixed-nine-dimensional-obstruction-2026-09-20.md):
+every representation of a nonzero pinned twist of dimension at most
+nine kills the mark, in every characteristic. The characteristic-five
+case uses perfectness and Schur's lemma rather than a nonexistent
+nontrivial fifth-root eigenspace. Actual degree-five linear/unitary
+detectors are excluded; abstract projective extensions and larger
+finite detectors are not silently included.
+
+The [proper-corner audit](lcs-auth-proper-corner-audit-2026-09-20.md)
+first proves that a single atom retains a corner of weight at least
+1/4, correcting an overly broad reading of the tensor obstruction.
+It then gives three explicit rational-complex rank-one controls
+whose port group has projective closure PU(4). Scalar-preserving
+exact amplifications of this model force common reducing corners
+with literal controlled-port semantics to have weight tending to zero.
+For finitely many disjoint conjugates the explicit estimate is
+tr(P)<=3/N+9 beta^m, beta<1, with an approximate version as well.
+The density and quantitative arguments passed independent internal
+review. They do not exclude new observables or nonreducing decoders,
+and supply no HALT-positive source. Both main targets remain OPEN.

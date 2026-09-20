@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/lcs-constructive-compiler-2026-09-20.md
   - research/artifacts/lcs-auth-controlled-form-audit-2026-09-20.md
+  - research/artifacts/lcs-auth-proper-corner-audit-2026-09-20.md
   - notes/lcs-source-toffoli-word-semantics-audit-2026-09-20.md
 ---
 
@@ -60,3 +61,15 @@ These exclude specified full-space fixed-port repairs, not this source
 claim. A model-dependent proper corner or genuinely different non-word
 readout remains possible, but needs a global consistency theorem and a
 dimension-independent retained-trace bound. Neither has been supplied.
+
+The proper-corner follow-up makes the boundary sharper. For one atom,
+odd tensor powers actually retain a simultaneous controlled-X/Z corner
+of weight at least 1/4; the full-space countermodel alone cannot exclude
+corner decoding. But three explicitly chosen noncommuting rank-one
+controls have a projectively dense port image in PU(4). Scalar-preserving
+amplifications of that honest model force every common reducing corner
+with the literal controlled-port semantics to have trace tending to zero.
+The linked proof includes a finite-conjugator quantitative bound. This
+rules out that universal common-reducing-corner repair, not arbitrary
+nonreducing compressions or replacement observables, and constructs no
+halting reduction.

@@ -179,3 +179,8 @@ not exclude changing the ports themselves to non-word matrix readouts,
 decoding on a proper model-dependent corner, using a genuinely different
 source encoding, or accepting a controlled positive loss. No soundness
 claim for any of those alternatives was obtained.
+
+Independent review on 2026-09-20: the hardness-audit sibling checked
+(A)--(D), including projections q that mix control branches and the
+complex-conjugated third control. The review passed. This is a mathematical
+review, not a computation or formal verification.
