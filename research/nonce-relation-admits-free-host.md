@@ -64,3 +64,17 @@ nearest tool, but it constrains only the actor's subgroups, and only for Bernoul
   * A surviving `R_T` host needs an actor that is not normally poly-Haagerup. Every infinite (T) group is such an
     actor.
   * The `R_mu` branch is untouched, since `R_mu` is not known to have (T).
+- **The `R_T` branch is subsumed by the `R_mu` branch (decomposition, swarm-0917 w20, 2026-09-20).**
+  `property-t-envelope-hosts-restrict-to-manzoor-hosts` shows that every free host of `R_T`, finite or infinite,
+  restricts and projects to a free host of `R_mu` with the same actor.
+  * *Mechanism:* CDI's proof gives `R_T ⊇ R_mu × Delta_Y`. Restricting the host relation to the preimage of that
+    subrelation and projecting off `Y` keeps class-bijectivity.
+  * *Consequence for this claim:* the statement is equivalent to its `R_mu` disjunct, "`R_mu` has a finite free host".
+    The w19 poly-Haagerup exclusion removes no case of it. It constrains only the stronger `R_T` problem, and whether
+    `R_mu` has a poly-Haagerup host is OPEN.
+  * The same node shows that `R_T` is the orbit relation of the property-(T) group `G ∈ WR(F_3, B)`, through the
+    section `x rho_b b`. Its stabilizers are a.s. `⊕_c Stab_pi(xi_c)`, which contains `Z^(N)`. So the "Parallel input"
+    (a finite-stabilizer generator) fails for the native Kazhdan generator of `R_T`, just as it fails for `F` on `R_mu`.
+  * The converse transfer dies at the intrinsically infinite tails `rho_b`
+    (`cdi-wreath-tail-cocycle-is-intrinsically-nonsplit`). What is left: a free host of `R_mu` itself, or an
+    `R_mu`-level rigidity theorem.
