@@ -149,3 +149,12 @@ work is preserved and excluded from this wave's source snapshot. Graph
 validation is performed on MSI against the pinned staged tree; its
 report records the source revision, statuses, and limitations separately.
 Both requested main targets remain OPEN.
+
+The [MSI validation report](hyperbolic-perfect-lcs-validation-2026-09-20.json)
+checks source commit `4270d69824` through its identical pinned tree
+`691d67618066fb77d7546c09b353bb25706099e3`: 34,237 canonical nodes,
+zero schema errors, no duplicate findings for this wave, and all three
+new auxiliary claims ESTABLISHED. The two main targets remain OPEN.
+The check took 8.548 seconds on one CPU at low priority on acn112, using
+the existing Cairn kernel. No Lean or local build ran; the report states
+the direct parser/linter/compiler check's deviation from the full CLI.

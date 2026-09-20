@@ -1,0 +1,61 @@
+{
+  "revision": "81ceedc9681e35306fcba146525f24eaca03318f",
+  "seconds": 8.548,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "nonhyperlinear-hyperbolic-group": "OPEN",
+    "lcs-perfect-quantum-completeness-re-hardness": "OPEN",
+    "hrf-next-affine-radicals-preserve-detector-image": "ESTABLISHED",
+    "lcs-pc-zero-noise-coloring-cheat": "ESTABLISHED",
+    "lcs-switch-marked-seed-transport-is-re": "ESTABLISHED",
+    "perfect-completeness-constant-soundness-lcs-compiler": "ESTABLISHED",
+    "lcs-strong-hardness-supplies-weak-compiler": "OPEN"
+  },
+  "touched_nodes": [
+    "hrf-next-affine-radicals-preserve-detector-image",
+    "hrf-next-affine-radicals-preserve-detector-image-proof",
+    "lcs-pc-zero-noise-coloring-cheat",
+    "lcs-pc-zero-noise-coloring-cheat-proof",
+    "lcs-perfect-quantum-completeness-re-hardness",
+    "lcs-strong-hardness-supplies-weak-compiler",
+    "lcs-switch-marked-seed-transport-is-re",
+    "lcs-switch-marked-seed-transport-is-re-proof"
+  ],
+  "duplicates": [],
+  "surviving_status_changes": {},
+  "removed_nodes": [],
+  "added_nodes": [
+    "hrf-next-affine-radicals-preserve-detector-image",
+    "hrf-next-affine-radicals-preserve-detector-image-proof",
+    "lcs-pc-zero-noise-coloring-cheat",
+    "lcs-pc-zero-noise-coloring-cheat-proof",
+    "lcs-perfect-quantum-completeness-re-hardness",
+    "lcs-strong-hardness-supplies-weak-compiler",
+    "lcs-switch-marked-seed-transport-is-re",
+    "lcs-switch-marked-seed-transport-is-re-proof"
+  ],
+  "archived_route_bytes_identical": {},
+  "schema_hygiene_status_changes": {},
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "frontier_output": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X/hyperbolic-perfect-lcs-FRONTIER.md",
+  "frontier_lock_policy": "empty snapshot lock map; actual pinned Git history, no fabricated baseline",
+  "node_count": 34237,
+  "baseline_revision": "60b1fe52bacc9ef68964db19d85b678d6df14f8a",
+  "source_commit": "4270d69824",
+  "validated_tree": "691d67618066fb77d7546c09b353bb25706099e3",
+  "source_commit_tree_matches_validation": true,
+  "mathematical_review": "Written proofs with bounded internal cross-review; no Lean or external human certification."
+}
