@@ -585,3 +585,60 @@ must build genuinely Hamming-approximate sofic models.
     - Replace the finite group `F` by the `sigma(L)`-invariant blocks of a Hamming model,
       and bound the order of the block groups by the number of exactly invariant blocks.
     - Test the bound on the lamp calibration of the new node.
+
+24. **What the Lagrange step really consumes: free fibers, not an index dichotomy (2026-09-20,
+    operator-algebra transplant and calibration, swarm-0917-w20-w20-titz-pull).** Numbered 24
+    because another Attempt 23 is in flight on a sibling branch. This targets the second half of
+    the live need 629464fa: "the non-LEF analogue needs a Hamming substitute for the index
+    dichotomy 1 or >= 2".
+    - *The index dichotomy is free.* Let `H <= L` act on a finite set. Let `C` be an `L`-orbit
+      split into `H`-orbits `c_1, ..., c_k`. The trace-preserving expectation from the functions
+      constant on `H`-orbits onto the functions constant on `L`-orbits has Kosaki--Watatani index
+      `sum_i |C|/|c_i|` on `C`. By Cauchy--Schwarz this is `>= k^2`, so its local values lie in
+      `{1} u [4, infinity)`. This holds in every model, exact or not. So a Hamming substitute for
+      the *index* dichotomy exists and says nothing: the budget of Attempt 22 does not use index.
+      It uses *size*, `|Pi_(m+a)| >= 2 |Pi_m|`, that is, log-cluster-size growth `>= log 2` per
+      strict layer.
+    - *The size dichotomy fails for honest finite actions of a Kazhdan group and its compressed
+      copy (calibration, proved).* Take `L = SL_n(F_p[t])` with `n >= 3`, which is Kazhdan (a
+      lattice in `SL_n(F_p((1/t)))`). Take the Frobenius self-embedding `alpha(f) = f^p` with
+      proper image `H = SL_n(F_p[t^p])`, realized by the stable letter of `L *_alpha`. Let `L` act
+      on the unimodular vectors of `(F_p[t]/t^2)^n` through `SL_n(F_p[t]/t^2) = E_n`. This action
+      is transitive, on `p^n (p^n - 1)` points.
+      - `H` acts through the constants `SL_n(F_p)`, since `t^p = 0` mod `t^2`.
+      - Its orbits on `v = v_0 + t v_1` are: the independent pairs `(v_0, v_1)`, one orbit of
+        relative size `1 - p^(1-n)`; and `p` orbits `v_1 = c v_0`.
+      - So `alpha(L)` splits an `L`-orbit with ratio `|C|/|c| = 1/(1 - p^(1-n))`. This is `4/3`
+        for `(p, n) = (2, 3)` and tends to `1` as `n` grows.
+      - `experiments/frobenius-uneven-splits-2026-09-17/split_check.py` computes all the
+        `alpha(L)`-orbits for level `t^N`, `N <= 5`. The largest suborbit stays at exactly `3/4`
+        for `p = 2`, `n = 3`. The fixed-point proportions of `e_12(1)` and `e_12(t)` halve with
+        each level, so these actions are asymptotically free on each fixed element.
+    - *Where the dichotomy comes from.* In the stacked LEF models, each fiber is the regular
+      action of the finite group `F`. So `alpha`-suborbits of a cell are cosets of
+      `c_x(Pi_m) <= Pi_(m+a)`, and Lagrange applies. The calibration shows that "ratio 1 or
+      `>= 2`" is a property of *free fiber actions of the image group*, not of the pair
+      `(L, sLs^-1)`: it fails as soon as the finite image acts with stabilizers.
+    - *Measure caveat (not a refutation of the budget).* Vector-stacked sofic models of
+      `SL_3(F_2[t^(1/2^infinity)]) semidirect_Frob Z` do exist, with the same `L` and compressor
+      `t`. I checked this by hand; it is not written as a node. In them, the uneven `4/3`-splits
+      live only on the vectors with coordinates in the `F_2[u_(m+1)]`-summand, a set of vanishing
+      measure. Generic tuples have trivial stabilizer in the finite image, so they split into
+      cosets. (The defect there is trivial anyway: `C_G(L)` is trivial.)
+    - *Invariant and death.* The invariant is the size ratio `|C|/|c|` of compressed suborbits.
+      Every argument that feeds the Attempt 22 budget with a dichotomy derived from the pair
+      `(sigma|_L, sigma|_(sLs^-1))` alone dies at the orbit-splitting step, as shown by the
+      Frobenius pair.
+    - *Restated need.* A Hamming Lagrange must bound the measure of points whose
+      `sigma(L)`-cluster is acted on with nontrivial stabilizer by the cluster's local image. This
+      is a *cluster-freeness* statement.
+      - Heuristic, not proved: where cluster-freeness holds with loss `delta`, the strict layers
+        should double on measure about `1 - delta`. The chain count of Attempt 22 would then run
+        with `log|Y|` in place of `log|F|`.
+      - That is the shape of the scale hypothesis `(LOG)` of Attempt 21, so I expect no gain
+        beyond `(LOG)`.
+      - Expected reduction of need 629464fa: for non-LEF `K`, to `(LOG)` for sofic models of
+        `K semidirect Z`; for LEF `K`, to `(SUB)`. I see no third route.
+
+    This node stays OPEN. Nothing here is established beyond the calibration lemma and its
+    computation.
