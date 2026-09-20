@@ -89,3 +89,22 @@ are honest `rho_n : M -> U(d_n)` with `||V_n(t_s) - rho_n(t_s)||_op -> 0`.
     "natural test" suggested above cannot refute this node.
   - *Not touched.* The weaker downstream form (maps with `V_n(t_s) -> omega I`) is not addressed; the
     witnesses here send `t_s` to `1`.
+- **2026-09-20, swarm-0917-w23-w23-deligne-last1 (operator-algebras): the Dadarlat obstruction is present on
+  `M`, in the bielliptic sector.** This corrects the Evidence line "the known cohomological obstruction is absent"
+  and the w10 remark that commuting-twist Bott tests are inert. That remark holds only in the trivial sector.
+  - *New established input.* `mod-s2-bielliptic-centralizer-has-rational-h2`: for the bielliptic involution `g`,
+    there are disjoint `g`-invariant curves with `[c] = ±(a_1+a_2)` and `[c'] = ±(b_1-b_2)`. The torus
+    `<T_c, T_c'>` is nonzero in `H_2(Z_M(g);Q)`, and already in `H_2(Z_{Sp_4(Z)}(J);Q)`.
+    - It is detected through `Z_Sp(J) -> {(X,Y) in SL_2(Z)^2 : X = Y mod 2}` (restriction to the `J`-eigenlattices),
+      paired against the `SL_2(F_2)`-invariant form `[[2,1],[1,2]]` on `H_1(Gamma(2))`.
+    - Integer checks: `experiments/mod-s2-bielliptic-sector-2026-09-17/check.py`.
+  - *New split of the negation.* Route `mod-s2-instability-via-bielliptic-delocalized-dadarlat` derives
+    `mod-s2-is-not-point-norm-matricially-stable` from the open general claim
+    `weak-matricial-stability-kills-centralizer-even-cohomology`. The linearity hypothesis comes from
+    `mod-s2-is-linear` (Bigelow–Budney, cited verbatim). So a proof of that general claim kills the strong form of this
+    node, independently of the Torelli-winding route.
+  - *Shape of any witness (remarks).* Granting additivity, `beta_{+1} + beta_{-1} = 0`. Models induced from a
+    finite-index normal subgroup that misses `g` give `beta_{+1} = beta_{-1} = 0`. So a witness is non-induced. Direct
+    realization, (P1)–(P3) of the `SL_4` delocalized-Bott artifact, is open.
+  - *Not touched.* The weak downstream form (`V_n(t_s) -> omega I`). The route gives no control on `V_n(t_s)`.
+    The flagship route should be read with the weak form only.
