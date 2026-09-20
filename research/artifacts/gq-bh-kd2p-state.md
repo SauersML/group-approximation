@@ -67,3 +67,16 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
   - (i) Counter cocycles: a nontrivial `H^1` class.
   - (ii) Central lamp mixing `F(A_0) = tA_0` with `t ∈ T_0`, on a power-type domain `U_H ⊆ ker(ev_z)`, where
     every counter in the domain equals 1 at a point `z` whose coordinates `s_i` and `1 − s_i` are roots of unity.
+
+## Update (lane bh-kd2p-2, same day): route (i) collapses into route (ii)
+
+`kms-counter-cocycles-reduce-to-central-lamp-mixing` (lane proof, not reviewed).
+- **Module facts.** `B_0` fixes `T_0`. On `T/T_0` every counter satisfies `ã_i − 1 = ã_i'` (G5a, G5b, G6, G2),
+  so `T/T_0` is a module over `F_p[v_i^{±1}, (v_i − 1)^{-1}]`.
+- **Vanishing.** If some image counter `g` has `g − 1` invertible there (for instance `ã_j^{±p^f}`, as in the
+  Kochloukova–Sidki shape), then `H^*(U_H, T/T_0) = 0` and `H^1(U_H, T) ≅ Hom(U_H, T_0)`.
+- **Consequence.** A counter-mixed lift is conjugate by `s ∈ T` to a central counter twist (invisible on the
+  torsion part) plus the central lamp mixing `F(A_0) = τ·f̄(A_0)`, `τ = s(f̄(A_0) − 1) ∈ T_0`.
+- **So only route (ii) is live, and for counter-pair domains it dies too.** What is left: route (ii) on
+  power-type domains (does `N = {b ∈ 𝔟 : ε(f̄^n b) = 0 ∀n}` still contain a nonzero invariant ideal?), and top
+  maps whose image counters share a common unit point `z` (e.g. all of `ã'`-type).
