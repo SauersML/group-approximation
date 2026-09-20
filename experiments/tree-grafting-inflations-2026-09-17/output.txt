@@ -1,0 +1,26 @@
+equivariance delta^1 (120, 0)
+equivariance delta^{n} (120, 0)
+equivariance delta^{n mod 3} (non-monotone) (120, 0)
+equivariance graft 01-cherry at leaf 1 (120, 0)
+inflation lemma worst ratio bd(nu)/bd(mu) delta^{n} 1.6101
+inflation lemma worst ratio bd(nu)/bd(mu) delta^{n mod 3} 1.5451
+phi=max(2x,x^2) n=1 j=7 trees=1 with-U=0
+phi=max(2x,x^2) n=2 j=8 trees=1 with-U=0
+phi=max(2x,x^2) n=3 j=8 trees=2 with-U=0
+phi=max(2x,x^2) n=4 j=9 trees=5 with-U=0
+phi=max(2x,x^2) n=5 j=9 trees=14 with-U=0
+phi=2x n=1 j=3 trees=1 with-U=0
+phi=2x n=1 j=5 trees=1 with-U=0
+phi=2x n=1 j=7 trees=1 with-U=0
+phi=2x n=2 j=3 trees=1 with-U=0
+phi=2x n=2 j=5 trees=1 with-U=0
+phi=2x n=2 j=7 trees=1 with-U=0
+phi=2x n=3 j=3 trees=2 with-U=0
+phi=2x n=3 j=5 trees=2 with-U=0
+phi=2x n=3 j=7 trees=2 with-U=0
+phi=2x n=4 j=3 trees=5 with-U=0
+phi=2x n=4 j=5 trees=5 with-U=0
+phi=2x n=4 j=7 trees=5 with-U=0
+phi=2x n=5 j=3 trees=14 with-U=1
+phi=2x n=5 j=5 trees=14 with-U=1
+phi=2x n=5 j=7 trees=14 with-U=1
