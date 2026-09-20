@@ -27,3 +27,27 @@ it here one still needs a point-norm theorem at one generator (or full
 matricial stability); exact finite-dimensional sterility alone does not imply
 `(TFS1)`.  The four Baumslag--Solitar occurrence seams are the currently
 identified stability obstruction.
+
+## Attempts
+
+- **2026-09-20: congruence carriers over separated rings, including the
+  integral Leavitt level-4 carriers.  The class is DEAD; the target stays
+  OPEN.**  See
+  `separated-ring-linear-seeds-reduce-to-char-p-or-deep-radical`.
+  - **Where it dies.**  Let `R` be any m-adically separated ring
+    (`intersection_j m^j R = 0`), for example `L_Z(1,2)`, `Z[G]`, the
+    integral Jacobson algebra or a free algebra.  Every finitely generated
+    subgroup of a congruence kernel `Gamma(m) <= GL_n(R)` is residually
+    finite, hence MF.  So is every finitely generated group containing such
+    a kernel with finite index.  So no `(TFS1)` seed lies in a congruence
+    subgroup, or has one of finite index.
+  - **What survives for linear seeds.**  Any `(TFS1)` seed `E <= GL_n(R)`
+    satisfies one of two conditions:
+    - (A) `E cap Gamma(p) = 1` for some prime `p | m`.  Then `E` is linear
+      over the `F_p`-algebra `R/pR`.  For Leavitt coefficients this means
+      `E <= L_(F_p)(1,2)^x`.  Torsion-freeness must then be proved without
+      a congruence certificate.
+    - (B) `Rad_MF(E) cap Gamma(m^j) != 1` for every `j`.  Then the radical
+      contains locally residually finite normal subgroups at every depth.
+      This is the kernel-descent gate.
+  - Commutative coefficient rings die in both branches, by Mal'cev.
