@@ -44,7 +44,7 @@ theorem real_bubbleR (E : Box) (l' : List Box) : ∀ (c l : List Box),
       show swapAt (l ++ E :: x :: (c ++ l')) l.length = _
       rw [swapAt_mid]
       simp
-    rw [e, show l.length + 1 = (l ++ [x]).length by simp, real_bubbleR c (l ++ [x])]
+    rw [e, show l.length + 1 = (l ++ [x]).length by simp, real_bubbleR E l' c (l ++ [x])]
     simp
 
 /-- Moving a box to the left past a block. -/
@@ -117,7 +117,7 @@ theorem real_layer (q : ℕ) (l' : List Box) : ∀ (c l : List Box),
       show splitAt (l ++ x :: c ++ l') l.length q = _
       rw [show l ++ x :: c ++ l' = l ++ x :: (c ++ l') by simp, splitAt_mid]
       simp
-    rw [e, show l.length + q = (l ++ kids x q).length by simp, real_layer c (l ++ kids x q)]
+    rw [e, show l.length + q = (l ++ kids x q).length by simp, real_layer q l' c (l ++ kids x q)]
     simp
 
 end GroupApproximation.ClassTransposition.Presentation
