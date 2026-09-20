@@ -70,7 +70,7 @@ on a cylinder does not control the coarse algebra.
 
 - **Where the hardness must sit.** By Theorem R and Proposition 2, an undecidable family must have
   base splittings whose indecomposability has no finite certificate. Fibre coding, neutral primes on
-  a positive ray, and saddle dynamics alone are all excluded.
+  a positive ray are excluded, and saddle dynamics alone does not suffice (Conway's `α`).
 - **A source of undecidable torsion.** This would be a computable embedding into `CT(Z)` of a
   finitely generated group with undecidable torsion problem. Candidates are the elementary
   Turing-machine group, or finitely generated subgroups of `[[σ_{Z²}]]` (Barbieri–Kari–Salo), or
@@ -84,7 +84,7 @@ on a cylinder does not control the coarse algebra.
 ## Lesson for general BH
 
 **For residue-class questions in `CT(Z)`, the only nonconstructive ingredient is indecomposability
-of the base components.** YES is always certifiable. NO is certifiable exactly where
+of the base components.** YES is always certifiable. NO is certifiable wherever
 indecomposability is, as it is for revealing pairs and for explicit full-shift conjugacies. So
 decidability of 21.74(a) on a class is a question about certifying mixing-type properties of the
 base action. Torsion-hardness of that base does not by itself make 21.74(a) hard.
