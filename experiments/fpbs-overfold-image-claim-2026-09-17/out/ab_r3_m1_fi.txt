@@ -1,0 +1,1 @@
+ab_split seed=7 r=3 mal=1 xmode=fi {'inst': 522, 'Yneq': 1086, 'A_fail': 0, 'B_fail': 0, 'viol': 0, 'viol_Aok': 0, 'viol_Bok': 0}

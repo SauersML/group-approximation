@@ -284,6 +284,23 @@ artifacts:
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_rand_s42.txt
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_nonmal_s43.txt
   - experiments/fpbs-overfold-malnormal-host-census-2026-09-17/analyze2_L1_3_s44.txt
+  - research/artifacts/fpbs-overfold-free-factor-shn-2026-09-20.md
+  - experiments/fpbs-overfold-image-claim-2026-09-17/ab_split.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/dichotomy.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/mix_check.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/surj_check.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/a_refute.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/kern.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/kviol_check.py
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/ab_r2_m1_sub.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/ab_r3_m1_sub.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/dich_mal2_sub_k1.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/dich_mal2_sub_k2.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/dich_mal3_sub_k1.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/dich_L1overL2_fi_k2.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_mal3_s21.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_nonmal2_s33_small.txt
+  - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_mal2_s32_small.txt
 ---
 
 **OPEN.** Notation is as in
@@ -1058,3 +1075,38 @@ quotient test of rank-2 relative inertia. OPEN.**
     `θ_j` is proved. The next step is to bound `σ_j(X_j)` on the random
     `N`-lift towers. Their levels are locally tree-like, so the savings
     density is a local statistic of the lift.
+- **2026-09-20, swarm-0917-w21-w21-fp-follow (host-geometry): OPEN. The
+  image subgraph is a free factor. With Hanna Neumann this proves the
+  Z = X branch of (RI_B) and reduces (RI,2) to one fibre statement. The
+  image claim (A) is refuted.** Artifact:
+  `research/artifacts/fpbs-overfold-free-factor-shn-2026-09-20.md`.
+  Code: `experiments/fpbs-overfold-image-claim-2026-09-17/`.
+  - **Lemma (proved).** `Z = π_1(m Γ_X)` is a free factor of
+    `Y = J ∩ B`, because `m Γ_X` is a connected based subgraph of `P`.
+  - **Theorem (proved).** If `rk B = 2`, then for every k-pair join,
+    `rk(Y:X) ≤ rk(Z:X) + rk J − rk Z`. Proof: `rk(Y:Z) ≤ rk Y − rk Z`
+    (free factor), and `rk Y ≤ rk J` (HNC, Friedman–Mineyev, background).
+  - **Corollaries (proved).**
+    - If `Z = X`, then `rk(Y:X) ≤ rk J − rk X ≤ k`. This is (RI_B) on the
+      whole ZX branch, at every k, with no malnormality assumption.
+    - Put (Fib): `rk(Z:X) ≤ rk(J:X)`. Then (RI_B) ⇒ (Fib), by the
+      free-factor retraction, and (Fib) ⇒ (RI,2)_B for rank-2 `B`. By
+      w17 Prop 3, (RI,2)_{L_j} is enough for `deep ≥ law/2` and the floor.
+    - At k = 1 a mixed case `X < Z < Y` forces `rk Y = rk J = rk Z + 1`.
+  - **(A) refuted (exact).** `B = <bab, b²a⁻²b⁻¹a⁻¹>` is malnormal. With
+    `X = <b⁻¹a⁻¹b⁻¹>` and pair (0,1), `Y = B` but `Z = X`. It also fails
+    on an onto malnormal host. (A) does hold when `[B:X] < ∞`: a proper
+    free factor has infinite index. That explains the earlier k = 1 data.
+    Every rank-2 k = 1 failure of (A) sampled is ZX, so the theorem covers
+    it. w20 step 1 is dead as stated, and its ZX job is done.
+  - **Where it dies.** On the ZY branch, (Fib) is (RI) itself, and it
+    needs rank 2 and malnormality together.
+    - Malnormal rank-3 hosts with `X = ker(B → S_3)` violate it at k = 1,
+      with `Y = B`.
+    - So do non-malnormal rank-2 hosts (10 of 1305 joins, `|G|` = 6, 12
+      or 24).
+    - Malnormal rank-2 hosts showed 0 violations in 872 joins.
+    - Sharpest open instance: for malnormal rank-2 `B` and
+      `X = ker(B → G)`, the image of `<X, g> ∩ B` in `G` is cyclic.
+      `⟨⟨X⟩⟩_J ∩ Y = X` suffices. Dehn filling gives this for fixed `J` and
+      deep enough `X`, but not uniformly over `J = <X, g>`.

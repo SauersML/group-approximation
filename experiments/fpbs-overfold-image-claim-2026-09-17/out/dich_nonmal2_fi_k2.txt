@@ -1,0 +1,1 @@
+dichotomy seed=11 host=nonmal2 xmode=fi k=2 {'inst': 1500, 'Yneq': 8588, 'ZX': 0, 'ZY': 8588, 'MIX': 0, 'shn_fail': 0, 'viol1': 0, 'mix_viol1': 0}
