@@ -118,3 +118,30 @@ Hilbert space and 1-cocycles `b_1, b_2` into `π` such that
   - *What survives.* Fock or Gaussian models over a complex structure `J` that no non-amenable
     subgroup of `T` preserves with a tempered one-particle representation. Any other circle model
     in which a non-amenable subgroup of `T` acts through a lattice of `PSU(1,1)` dies the same way.
+- **2026-09-20 (swarm-0917-w20-w20-nv-break, cohomology-index): the dilation dichotomy; (K)
+  reduces to one cup product off the Godbillon–Vey line. (K) stays OPEN.**
+  - *Established.* `thompson-t-cup-classes-split-along-dilation-eigenlines`.
+    - The realizable classes `K` form a linear subspace, closed under direct sums and scalings.
+    - `K` is invariant under the transfer `J = (p^*)^{-1} i^*` through the half-rotation
+      centralizer `C_T(x ↦ x + 1/2)`, whose descent `p` has central kernel `Z/2`. This works
+      because cup products average onto `H^A` and descend.
+    - `J(e_R) = e_R/2`: translation numbers double under the descent.
+    - `J(gv) = 2 gv`: discrete Godbillon–Vey sums halve. Here `gv` is checked nonzero on an
+      explicit torus, `⟨gv, σ_t⟩ = 2`, with exact checks in
+      `experiments/kahler-dilation-2026-09-17/check_gv_dilation.py`.
+  - *Consequences for this node, with [GS] `H²(T; R) = R²`.*
+    - `K ∈ {0, R e_R, R gv, H²}`.
+    - So (K) ⇔ some cup product is not a multiple of `gv`. Equivalently, some non-exact cup
+      product vanishes on the one torus `(g_0, h_0)`.
+    - From any `c = λe_R + μ gv ∈ K` with `λ ≠ 0`, the witness is `2c − J(c) = (3/2)λ e_R`.
+      So the Godbillon–Vey component of a candidate never has to be cancelled.
+  - *Growth test.* `|μ| ≤ 2^{-n-1}(‖b_1(g_n)‖‖b_2(h_n)‖ + ‖b_1(h_n)‖‖b_2(g_n)‖)` on the dyadic
+    towers `g_n, h_n`.
+    - So every non-exact cup product with `o(2^{n/2})` cocycle growth on the towers gives (K).
+    - `gv` can only be carried at the `ℓ²`-additive rate of the breakpoint-jump cocycle.
+  - *Next falsifiable steps.*
+    - Is `gv ∈ K`? Test the jump cocycle in `ℓ²(Z[1/2]/Z)` against a second local cocycle.
+    - Does some Farley cube-complex cocycle have sub-`2^{n/2}` growth on the towers? Such
+      cocycles have exact cup products (w13 kill), so the test there is only a consistency
+      check.
+    - A genuine witness must pair nontrivially with the `1/2`-eigencycle `σ_e` of `J_*`.
