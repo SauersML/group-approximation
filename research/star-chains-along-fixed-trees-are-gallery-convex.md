@@ -50,6 +50,25 @@ graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of 
 - **A model case.** In Euclidean buildings the analogous statement is the convexity of residues (Tits). Its proof
   uses walls, which are absent here. So the building proof does not apply, and a wall-free argument is needed.
 
+## Checks and partial steps (bh-q12-kazhdan, 2026-09-19)
+
+- **Not systolic.** `X` is not 6-large: the link at `C`-type vertices is `K_{5,5}`, of girth 4, and its 4-cycles have
+  no diagonals because the link is bipartite. So the Januszkiewicz–Świątkowski convexity theory does not apply.
+  Nonpositive curvature here comes from the unequal angles `π/5, π/4, π/2`, not from girth 6.
+- **Facts about a single star (proved).** Let `w` be a vertex and `L = L_w`.
+  - Two distinct chambers of `star(w)` that are not adjacent share only `w`. If they shared a second vertex `u`, both
+    would contain the unique edge `wu`, and so would be adjacent.
+  - Inside `star(w)` the adjacency is that of the line graph of `L`, so `d_star(e, e') = min d_L(p, q) + 1` over
+    endpoints. Two chambers containing `w` cannot share the edge opposite `w`, since `X` is simplicial.
+  - An excursion of a gallery out of `star(w)` leaves and re-enters through outer edges, the edges opposite `w`.
+  - At an outer vertex `u`, the chambers of `star(w)` containing `u` are the 5 chambers around the edge `uw`, and they
+    are pairwise adjacent. So moving along the outer boundary of `star(w)` costs one step per outer vertex inside the
+    star.
+- **Missing: the curvature count.** A bound on outside excursions by in-star lengths is not proved. It would come
+  from Gauss–Bonnet on the reduced disc diagram filling the closed gallery, with flat interior vertices and defect
+  `π/20` per triangle. This is not done, even for one `A`- or `B`-type star. So (G) stands as the recorded crux of
+  the Kazhdan program.
+
 ## Which inputs are needed
 
 - **No property-(T) input.** (G), events (A)/(B) and the fiber over a ray's end are statements about the local

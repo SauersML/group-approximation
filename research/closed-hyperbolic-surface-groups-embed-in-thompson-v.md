@@ -93,3 +93,9 @@ finite groups is recalled, not checked here.)
     - gives each point of `K` an infinite cyclic stabilizer `⟨c⟩`, with `Γ/⟨c⟩` quasi-isometric to a tree.
   - **Why it matters:** this is the first invariant used here that separates `V` from the rational group `R`, which the remark above says any negative answer needs.
   - **Open:** Lemma L (`Γ/⟨c⟩` is not a quasi-tree, which would give `K = ∅`) and a compression step for the case `K = ∅`. Both are stated in that node's route.
+  - **Refereed.** bh-ref-t0 passed the partial at 6a216bf0dc.
+  - **Lemma L proved (later, 09-19; lane proof, not reviewed):** `one-ended-hyperbolic-subgroups-of-v-are-locally-fixed`. The argument is a bottleneck argument, using high paths over an arc in `∂Γ ∖ {c^±}`. So if `π_1(Σ_2) ≤ V`:
+    - every point of `C` has a neighborhood fixed pointwise by a nontrivial element;
+    - no two nontrivial elements have disjoint supports;
+    - no element has north–south dynamics on `C`.
+  - **What a "no" needs now:** only the compression lemma stated in that node's route, for elements with several attractors or a periodic region.

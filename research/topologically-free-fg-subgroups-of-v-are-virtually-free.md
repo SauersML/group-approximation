@@ -11,9 +11,13 @@ artifacts:
   - research/artifacts/gq-bh-scout-bbmz-ranked.md
 ---
 
-**ESTABLISHED** by `topologically-free-fg-subgroups-of-v-virtually-free-proof` (lane proof, not reviewed).
-It is a short corollary of Hyde–Skipper–Zaremsky, arXiv:2605.20564v2 (29 May 2026), Theorem A, and all
-credit for the key input is theirs. No priority is claimed; they may well regard it as known.
+**ESTABLISHED** by `topologically-free-fg-subgroups-of-v-virtually-free-proof` (lane proof). It was refereed PASS by
+bh-ref-t0 at 6a216bf0dc: HSZ Theorem A is checked verbatim at source, and (F1), (F2), items 1, 2 and 3(a)–(c) are
+correct.
+- It is a short corollary of Hyde–Skipper–Zaremsky, arXiv:2605.20564v2 (29 May 2026), Theorem A, and all credit
+  for the key input is theirs.
+- Item 1 is HSZ's own argument for their Corollary 1.7, which uses that a free orbit would make the Cayley graph a
+  quasi-tree, in general form. No priority is claimed.
 
 Let `G ≤ V` be finitely generated, acting on the Cantor space `C = {0,1}^ℕ` by prefix replacements.
 For `g ∈ G` write `Fix(g)` for its fixed set.
@@ -36,7 +40,9 @@ constraint on the question that uses a property of `V` that the rational group `
 hyperbolic group in `R`, with free orbits on the horofunction boundary; the node's own remark says a
 negative answer must see exactly this difference.
 
-**What remains for a negative answer** (open; see the route's last section):
+**Update, 09-19, later.** Lemma L below is now proved (`one-ended-hyperbolic-subgroups-of-v-are-locally-fixed`, lane
+proof). So `K = ∅` for every one-ended hyperbolic subgroup of `V`, and torsion-free ones contain no element with
+north–south dynamics. What was listed as remaining, as first written:
 - **Lemma L:** for a one-ended hyperbolic `Γ` and `c ≠ 1`, the Schreier graph `Γ/⟨c⟩` is not quasi-isometric
   to a tree. With this, `K = ∅`.
 - **The case `K = ∅`:** then, by compactness, `C` is a finite union of clopen sets each fixed pointwise by a

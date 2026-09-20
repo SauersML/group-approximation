@@ -44,9 +44,10 @@ presented simple group.
 **Proof.** Zaremsky's proof of Theorem 1.1 (arXiv:2405.09722) uses finite presentation of `G` exactly once: to
 get `V_(md)(G)` finitely presented through Scott's theorem (his Citation 2.3). The other ingredients hold for
 every finitely generated self-similar `G`:
-- Nekrashevych's abelianization formula (Citation 2.4);
-- the choice of an even `m` with `1/m` not an eigenvalue of `A`;
-- simplicity of `[V, V]`;
+- simplicity of `[V, V]` (his Citation 2.4, Nekrashevych 2018);
+- his own abelianization computation inside the proof: the relation `ḡ = m(ḡ_1 + ⋯ + ḡ_d)` in `V_(md)(G)^ab`,
+  plus the choice of an even `m` with `1/m` not an eigenvalue of `A`. It uses only the generators and their
+  word-level sections (attribution corrected per bh-ref-c, ab22b01462);
 - his Proposition 2.5, stated for any self-similar `G`;
 - the Kaloujnine–Krasner embedding `G ↪ (G/H) ≀ H` with `H = G ∩ [V, V]`.
 
@@ -95,28 +96,62 @@ Bartholdi–Mitrofanov, arXiv:1710.10109 (Groups Geom. Dyn. 2020), §2, read in 
 
 Lane computations by hand, not independently reviewed.
 
+**Correction (2026-09-19).** An earlier version of these tests missed Bartholdi–Mitrofanov's explicit rule
+"for all g∈S∖{u} we put Φ_M(1,g)=(ϵ,1)" (§2.1). So the letter `1` is a **wall**, not transparent: every
+generator except `u` fixes it with trivial section. The recursions below are corrected. Test 1's conclusion and
+Test 2's non-contraction survive. The earlier "crux", that every relator of `P` is its own section at `1`, was
+false and is withdrawn.
+
 1. **Calibration: the machine with `s_* = s_†` and no instructions. (c) holds.** Here `A = {0,1,†₁,†₂}`.
-   - Every rule for `x` and `y` is the default, so both act trivially.
-   - In left wreath notation: `u = (0 1)(u,u,u,u)`, `t = (†₁ †₂)(t,t,1,1)`, and `s = s_† = (0 †₁)(1,s,1,1)`,
-     with sections listed at `0, 1, †₁, †₂`.
-   - Put `s' = usu = (1 †₁)(s',1,1,1)`. Then `u` normalizes `K = ⟨s, s', t⟩`.
-   - **At least one letter dies.** Take a word in `K` containing both `s` and `s'`. At every vertex of level 1,
-     some letter of it has trivial section: for every letter to survive, the letter being read could never
-     change, yet `s` must read `1` and `s'` must read `0`.
-   - **The survivors lie in finite groups.** Words in `{s, t}` or `{s', t}` land in finite groups. For
-     `⟨s, t⟩`: both skip leading `1`s; `s` acts only on the first letter `a ≠ 1`, and `t` acts on `a` if it is a
-     `†`, and otherwise on the first `†` after it. So `⟨s, t⟩` acts faithfully on a set of at most 9 states.
-   - **Conclusion.** Sections at level `|g|` lie in the finite set `(⟨s,t⟩ ∪ ⟨s',t⟩)·{1, u}`, so `G` is
-     contracting.
+   - `x` and `y` preserve every letter, so both act trivially.
+   - In left wreath notation, with sections listed at `0, 1, †₁, †₂`:
+     - `u = (0 1)(u,u,u,u)`;
+     - `t = (†₁ †₂)(t,1,1,1)`, which is bounded;
+     - `s = s_† = (0 †₁)(1,1,1,1)`, which is finitary.
+   - `u` normalizes `K = ⟨s, s^u, t, t^u⟩`, where `t^u = (†₁ †₂)(1, t^u, 1, 1)` is bounded.
+   - `K` is a bounded automaton group, hence contracting (Bondarenko–Nekrashevych). Since `u|_a = u`, `G = K⟨u⟩`
+     is contracting too.
    - Nekrashevych's FP2 and the necessity half of `rover-nekrashevych-fp-iff-finite-lift-presentation` then give
-     (c), with `x, y ∈ R`, since `x ∉ K_∞`.
+     (c), with `x, y ∈ R`, since `x|_0 = x` puts `x ∉ K_∞`.
    - As expected, this calibration says nothing about hardness.
 2. **Increment-only machines: FP2 no longer applies.** Take the one-state loop `s_* -> s_*` that increments
-   forever.
-   - `x` and `y` again act trivially, since their only non-default rules preserve the letter.
-   - `s_*` passes `1, †₁, †₂` with section `s_*`, and acts as an odometer on the `{0, 𝐢₁}` letters.
-   - So `s_*^k|_1 = s_*^k` for all `k`: `⟨s_*⟩ ≅ Z` lies in the nucleus, and `G` is **not contracting**.
-   - Hence (c) is decided here only by the lift-ideal criterion. **Open**: this is the first informative case.
+   forever. `A = {0,1,†₁,†₂,𝐢₁}`, with sections listed at `0, 1, †₁, †₂, 𝐢₁`.
+   - **Recursions.**
+     - `s_* = (0 𝐢₁)(s_*, 1, s_*, s_*, 1)`: an odometer on the digit letters `𝐢₁ = 0-bit`, `0 = 1-bit`. It skips
+       the markers `†₁, †₂` and stops at the wall `1`.
+     - `s_† = (0 †₁)(1,1,1,1,s_†)`.
+     - `t = (†₁ †₂)(t,1,1,1,t)`.
+     - `u = (0 1)(u,u,u,u,u)`.
+     - `x` and `y` preserve every letter, so both act trivially.
+   - **Not contracting.** `s_*` fixes `†₁` with section `s_*`, so `s_*^k|_(†₁) = s_*^k`. Then `⟨s_*⟩ ≅ Z` lies
+     in the nucleus.
+   - Hence (c) is decided here only by the lift-ideal criterion. By Theorem A (finite-state, both directions),
+     (c) is equivalent to `V_5(G_1)` being finitely presented, and it holds if `G_1` is finitely presented (Scott).
+     **Open**: this is the first informative case.
+   - **Relations** (lane, by hand).
+     - `[s_*, t] = 1`: before the first wall `1`, each preserves every letter's class (digit or marker) and reads
+       only its own class.
+     - `⟨s_†, t⟩` is dihedral of order 12, acting on 9 head states.
+   - **The core as a ternary automaton group.** On the subtree over `{d0 = 𝐢₁, d1 = 0, m1 = †₁}`, which avoids
+     the wall and `†₂`, with sections at `d0, d1, m1`:
+     - `a = s_* = (d0 d1)(1, a, a)` and `b = s_† = (d1 m1)(b, 1, 1)`.
+     - `a² = (a, a, a²)` and `ab = (d0 d1 m1)(b, a, a)`, so `(ab)^3` has sections conjugate to `a²b`.
+     - `a²b = (d1 m1)(ab, a², a)` fixes `d0` with section `ab` there. So `ord(a²b) ≥ ord(ab) = 3·ord(a²b)`,
+       and `ab` has infinite order.
+     - **On the number–hole pair.** On this subtree, `⟨a, b⟩` acts on pairs `(n, H)`, with `n` the 2-adic
+       digit number and `H` the multiset of hole gaps, by piecewise-affine maps of slope `2^(±1)`: `a` is
+       `n ↦ n + 1`. With `k = v_2(n)` and `h_0 = min H`, `b` acts by
+       - `(n, H) ↦ ((n − 2^k)/2, {k} ∪ (H − 1))` if `k < h_0`;
+       - `(n, H) ↦ (2n + 2^(h_0), (H ∖ {h_0}) + 1)` if `h_0 ≤ k`.
+     - **Self-replicating but not contracting.** The virtual endomorphism at `d0` is `a² ↦ a`, `b ↦ b`, so
+       `Q = ⟨a, b⟩` is self-replicating at `d0`. At `m1` it is isometric (`a ↦ a`), which is why `Q` is not
+       contracting.
+     - `([a, bab], 1, 1) ∈ Q` is nontrivial, since `a·bab` and `bab·a` differ at `d0^∞`. So `Q` has nontrivial rigid
+       vertex stabilizers. Bartholdi's non-finite-presentation theorem for branch groups needs contraction, so it
+       does not apply.
+     - The clean sub-question: **is the relator kernel of `Q = ⟨(d0 d1)(1,a,a), (d1 m1)(b,1,1)⟩` a finitely
+       generated lift ideal, equivalently is `V_3(Q)` finitely presented?** How `Q` sits in `G_1` is not
+       checked.
 3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a

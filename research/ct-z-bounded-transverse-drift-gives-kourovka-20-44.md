@@ -2,15 +2,16 @@
 rg: 2
 id: ct-z-bounded-transverse-drift-gives-kourovka-20-44
 kind: claim
-title: "Kourovka 20.44 holds wherever the slope drift stays within bounded distance of a positive ray: in a totally consumable subgroup of CT(Z), orbits whose drift lies within distance f of some positive ray meet [−Π^(D+2f), Π^(D+2f)); so 20.44 holds for every finitely generated G ≤ CT(Z) whose slope cocycle is cohomologous, through a locally constant transfer, to a positive-ray cocycle (for example every rcwa-conjugate of an integer-ray group), and every counterexample needs infinitely many orbits whose drift is unbounded transverse to every positive ray, the one phenomenon behind both the trapped (Mahler-type) sweeping and the 3x+1 group G_T"
+title: "Kourovka 20.44 holds wherever the slope drift stays within bounded distance of a positive ray: in a totally consumable subgroup of CT(Z), orbits whose drift lies within distance f of some positive ray meet [−Π^(D+2f), Π^(D+2f)); so 20.44 holds for every finitely generated G ≤ CT(Z) whose slope cocycle is cohomologous, through a locally constant transfer, to a positive-ray cocycle (for example every rcwa-conjugate of an integer-ray group), and every counterexample has, for every f, infinitely many orbits whose transverse drift exceeds f (transverse drift unbounded across orbits), the condition met by both the trapped (Mahler-type) sweeping and the 3x+1 group G_T"
 distinct_from:
   ct-z-kourovka-20-44-is-graded-by-orbit-slope-groups: that is the case f = 0 (drift exactly on a ray) plus the join monotonicity; this allows bounded transverse drift and gives the cohomological form.
   ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44: that needs every slope in one γ^Z; this needs the cocycle only up to a bounded coboundary.
-  ct-p-z-cone-avoiding-slope-lattices-trap-frozen-tails: that handles trapped groups with a frozen tail; this shows that bounded transverse drift never occurs in a totally consumable trapped orbit, so trapped hardness is exactly unbounded drift.
+  ct-p-z-cone-avoiding-slope-lattices-trap-frozen-tails: that handles trapped groups with a frozen tail; this shows that bounded transverse drift never occurs in a totally consumable trapped orbit.
 ---
 
-**ESTABLISHED** (lane proof, bh-2044-tc, 2026-09-19; **not reviewed**). Elementary. No priority
-claimed. Kourovka 20.44 (S. Kohl) stays **OPEN**.
+**ESTABLISHED** (lane proof, bh-2044-tc, 2026-09-19; **Referee PASS with repairs** bh-ref-c,
+review `research/ct-z-bounded-transverse-drift-review.md` at a64001bd64; the three repairs are
+applied below). Elementary. No priority claimed. Kourovka 20.44 (S. Kohl) stays **OPEN**.
 - **Credit.** The tail and corner framework is bh-free-58's; the orbit-local form is
   `ct-z-kourovka-20-44-is-graded-by-orbit-slope-groups`.
 - **Scope.** Aimed at the slope lattices with `dim C_Λ ≤ 1`, which Kohl's `G_T` does not reach.
@@ -76,9 +77,17 @@ generated subgroup of CT(Z).
 - The slope of `φhφ^(−1)` at `x` is the slope of `h` at `φ^(−1)x`, times `β(φhφ^(−1)x)/β(x)`,
   where `β(y)` is the slope of `φ` at `φ^(−1)y`. This `β` is locally constant, since `φ` has
   finitely many affine pieces.
+- **Projection (repair).** The slopes of `φ` and of `H` may involve primes outside `P ∪ {2}`.
+  - Apply the relation after projecting all exponent vectors onto the `P ∪ {2}` coordinates, where
+    the degrees of `G` live.
+  - `ν` of `G`'s own slopes is unchanged. `Z ν(γ)` projects to `Z v` with `v ∈ N^k`, and `ν∘β`
+    projects to a locally constant `Z^k`-valued transfer.
+  - If the projected `v` is `0`, the drift is bounded, so `G` is not TC and the frozen-tails node
+    applies.
 - So Corollary C1 gives 20.44 for `G`.
-- The global slope lattice of `G` can be large, since `β` may take any values. It can even contain
-  `Z e_2 ⊕ Z e_3`, the lattice of `G_T`.
+- **Illustration (not a claim).** The global slope lattice of `G` can be large, since `β` may take
+  many values. For instance it can plausibly contain `Z e_2 ⊕ Z e_3`, the lattice of `G_T`. No
+  specific such `G` is constructed here.
 - This fits the Lesson of the orbit-slope node: hardness is not a property of the lattice.
 
 ## Corollary C2 (the class dim C_Λ ≤ 1)
@@ -94,14 +103,19 @@ generated subgroup of CT(Z).
   - Bounded transverse drift never occurs in a TC orbit.
   - If `c = t v + e` stays in a cone-avoiding `Λ` with `t` unbounded, then `v` lies in
     `span(Λ) ∩ R^k_(≥0) = 0`. So the drift is bounded, and the tail at `(D+f)·1` is frozen.
-  - So Theorem C says nothing new for trapped groups. Their totally consumable orbits are exactly
-    the orbits with unbounded trapped drift.
+  - So Theorem C says nothing new for trapped groups. Every orbit of a TC trapped group has
+    unbounded drift; the converse is not claimed.
 
 ## Where 20.44 stays open: one phenomenon
 
-Every counterexample to 20.44 is TC (frozen-tails node) and has infinitely many orbits with
-unbounded transverse drift (Theorem C, for every `f`). This single condition covers all three
-known sources of difficulty:
+**What is proved (repaired wording).** Every counterexample `G` to 20.44 is TC (frozen-tails node).
+And for every `f ∈ N`, it has infinitely many orbits all of whose points have `δ(x) > f`
+(Theorem C).
+- So transverse drift is unbounded *across orbits*.
+- Each single orbit may still have finite transverse drift: the bound `f` is uniform in Theorem C,
+  and the orbits need not share one.
+
+This condition covers all three known sources of difficulty:
 - **trapped sweeping**, where tails walk across ever larger level sets (the Mahler-type analogy of
   `ct-z-totally-consumable-core-of-kourovka-20-44`);
 - **tube sweeping**, which is unbounded trapped drift inside a tube;
@@ -111,8 +125,9 @@ known sources of difficulty:
   If `G_T` had bounded transverse drift, Theorem C would force finitely many orbits, which is the
   open 3x+1 finiteness statement. So nothing here proves or refutes it.
 
-The part of `dim C_Λ ≤ 1` that avoids Mahler-type questions is exactly bounded trapped drift. The
-rest of the class is the trapped sweeping phenomenon, in pure or tube form.
+Within `dim C_Λ ≤ 1`, the part this method settles is bounded trapped drift, uniformly over
+orbits. What remains is trapped drift that is unbounded across orbits, in pure or tube form; this is
+where the Mahler-type analogy sits.
 
 **Next steps (open).**
 - A positive theorem for unbounded trapped drift would need a new mechanism. Descent works in the
@@ -129,7 +144,7 @@ rest of the class is the trapped sweeping phenomenon, in pure or tube form.
 every positive ray, and it is a cohomological invariant, not a lattice one.**
 - Bounded coboundaries, and so rcwa conjugation, never create it.
 - Positive-ray drift, even up to bounded error, gives a finite window of orbit representatives.
-- The Mahler-type sweeping of trapped lattices and the 3x+1 group are two faces of the same
-  unbounded transverse drift.
+- The Mahler-type sweeping of trapped lattices and the 3x+1 group both sit inside the one remaining
+  condition: transverse drift unbounded across orbits.
 - For hosts: if the slope cocycle of an embedded subgroup can be cobounded onto a positive ray,
   its orbits are tame, whatever slopes the host uses.

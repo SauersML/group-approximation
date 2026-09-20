@@ -9,7 +9,8 @@ distinct_from:
   ct-z-21-74a-reductions-must-move-coarse-components: that says a reduction must use neutral primes, mixed-sign or rank-two slopes; this removes neutral primes from that list.
 ---
 
-**ESTABLISHED** (lane proof, bh-2174-rank2, 2026-09-19; not reviewed). No priority claimed.
+**ESTABLISHED** (lane proof, bh-2174-rank2, 2026-09-19; **referee PASS**, bh-ref-e,
+`ct-p-z-neutral-primes-21-74a-review` at 41b91ef912, clarity repairs applied). No priority claimed.
 - **The problem.** Kourovka 21.74(a) (S. Kohl): is it decidable whether a given `g ∈ CT(Z)`
   permutes a nontrivial partition of `Z` into residue classes? (Verbatim check: bh-ref-q11 in
   `ct-empty-z-kourovka-21-74a-is-decidable`.)
@@ -32,7 +33,9 @@ distinct_from:
 - **Fibre maps are coordinatewise rational affine.** On every `Z_ℓ`, `ℓ ∉ S`, the block at `x` is
   the piece's own formula `y ↦ αy + β` (`α ∈ γ^Z`, `β ∈ Z[1/S]`), the same map for all `ℓ`. On a
   neutral deep coordinate (`y = r + p^b z`) it is `z ↦ αz + t` with `t = (αr + β − s)/p^b ∈ Q`.
-  All slopes are units at every fibre coordinate. Compositions and inverses stay of this form, so
+  A neutral piece maps `r + p^b Z_p` onto `(αr + β) + p^b Z_p`, so `t ∈ Z_p`, and the neutral fibre
+  maps are isometries of `Z_p` (clarity repair, bh-ref-e). All slopes are units at every fibre
+  coordinate. Compositions and inverses stay of this form, so
   every holonomy below is a tuple of rational affine maps, one per *coordinate type*: the type `S′`
   (one map, acting diagonally on all `Z_ℓ`, `ℓ ∉ S`) and one type per neutral prime.
 - **Flow components** `R_1, …, R_s` (clopen, computable, `g^M`-invariant, indecomposable: Lemma
@@ -122,7 +125,10 @@ non-deep onto non-deep. For a deep part `A` and every `x ∈ b_A`, `β_x(c_K(q))
 *Proof.* Depth `≥ K > E_ℓ` excludes nondegenerate components, D1, D2, and D3 components with a
 different center `q′`: for those, `q′ ∉ D_A` and `v_ℓ(c − q′) = v_ℓ(q − q′)` give depth
 `≤ v_ℓ(q − q′) + μ_ℓ < K`. For `x ∈ R_j ⊆ b_A`, `β_x(q) = q_(σj)` (Lemma 1.1) and `β_x` is an
-isometry, so `β_x(D_A) ⊆ c_K(q_(σj))` and the image part is deep; it is deep-core when `A` is. For
+isometry, so `β_x(D_A) ⊆ c_K(q_(σj))` and the image part is deep; it is deep-core when `A` is.
+Here `q_(σj)` is itself a D3 center at `ℓ` (clarity repair, bh-ref-e): `q_(σj) = β_x(q) ∈ Z_ℓ` by
+isometry, which rules out D2; degeneracy is a property of the cycle, which rules out the
+nondegenerate case; and the image part has depth `≥ K ≥ 1`, which rules out D1. For
 any `x ∈ b_A`, `β_x(c_K(q))` is a ball of radius `ℓ^(−K)` containing `β_x(D_A)`, which is the same
 ball `D_(ĝA)` for all `x ∈ b_A`; so it equals `c_K(q_(σj))`. The same argument for `ĝ^(−1)` shows
 non-deep parts map to non-deep parts. ∎
@@ -201,7 +207,9 @@ amusical permutation (conjugate to the full 3-shift), and for Collatz-type compo
 **Degenerate holonomy is radial, and radial structure truncates.** When every holonomy over a
 component fixes one rational center, the dynamics commutes with scaling about that center, so the
 deep part of any invariant structure can be collapsed to a single core ball without breaking
-invariance. Combined with the two-center bound, fibre (coordinate) structure is always decidable.
+invariance. Combined with the two-center bound, fibre (coordinate) structure is decidable once
+the base admits the computable flow decomposition used here (clarity repair, bh-ref-e; for any
+slopes see `ct-z-kourovka-21-74a-reduces-to-base-coarse-structure`).
 Whatever is hard about residue-class questions in `CT(Z)` lives in the base dynamics, i.e. in
 elements whose slopes pull primes in opposite directions. In particular a reduction for 21.74(a)
 (`ct-z-21-74a-reductions-must-move-coarse-components`) can no longer use neutral primes on a

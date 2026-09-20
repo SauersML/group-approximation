@@ -2,7 +2,7 @@
 rg: 2
 id: kms-configuration-lift-needs-non-contracting-counters
 kind: claim
-title: Lifting a self-similar structure from the KMS top to G(M) = T semidirect Q - the full top is fine for p odd, every faithful transitive self-similar action of B_K (K >= 2) must let some counter move the root, the relations G6 force one coherent counter renormalization, and a renormalization that contracts the counters (like Kochloukova–Sidki's Frobenius shift) would make configuration equality polynomial, so a hard lift needs non-contracting counters
+title: Lifting a self-similar structure from the KMS top to G(M) = T semidirect Q - the full top embeds in a finitely presented self-similar group for p odd (it is not shown to be self-similar itself), every faithful transitive self-similar action of B_K (K >= 2) must let some counter move the root, the relations G6 suggest (informally) one coherent counter renormalization, and a renormalization that contracts the counters (like Kochloukova–Sidki's Frobenius shift) would, by a sketch, make configuration equality polynomial, so a hard lift should need non-contracting counters
 distinct_from:
   kms-tops-embed-in-fp-self-similar-metabelian-groups: that settles the K-variable top factor B_0 for p odd; this records what happens when one tries to lift through the configuration module T.
   two-counter-kms-top-has-no-affine-self-similar-action: that kills affine realizations with every counter linear; Lemma 1 here removes the affine hypothesis, keeping only that the counters lie in the domain of the virtual endomorphism.
@@ -29,7 +29,9 @@ lines 970–1062).
   `f·D(a)`, where `D(a) = a − 1 − a^{-1} + (a − 1)^{-1}`. By their Theorem 4.3(b), configuration equality is the
   equality of the elements `x_{q A_0}·D(a_1)^{m_1} ⋯ D(a_K)^{m_K}`.
 
-## Part 0. The full top is fine for `p` odd
+## Part 0. The full top embeds in an fp self-similar group for `p` odd (repaired per bh-ref-q11, b5cae104ff)
+
+*Statement, repaired.* The top `Q` is finitely presented and embeds, with index 2, in the finitely presented self-similar group `B_1 × ⋯ × B_K × E_K`. That `Q` is itself self-similar is **not** shown, since it would need `B_0` itself to be self-similar.
 
 - Each `B_i`, for `i ≥ 1`, is `R_1 ⋊ ⟨a_i, a_i'⟩`, with `R_1 = F_p[a^{±1}, (a^{-1} − 1)^{-1}]` of Krull dimension 1
   and trivial centralizer. So it is transitive self-similar by Kochloukova–Sidki Theorem C (arXiv:1710.04745). It
@@ -64,7 +66,9 @@ self-similar action of `B_K = R_K ⋊ U_K`. Then `U_K ⊄ H`.
 So the affine hypothesis in bh-free-25's node was not needed. What matters is only whether all counters lie in
 the domain. Kochloukova–Sidki's domain meets the counters in index `p^2`, which is consistent with this.
 
-## Part 2 (remark). G6 forces one coherent renormalization
+## Part 2 (remark, informal). G6 suggests one coherent renormalization
+
+*Status (per bh-ref-q11, b5cae104ff).* G6 gives a correct **necessary condition**: `F(a_i)` and `F(ã_i)` must act identically on `F(x_{q_j})`. The reading "one shared renormalization" is informal and not a theorem.
 
 - On `x_{q_j}`, the letters `a_i ∈ B_i` and `ã_i ∈ B_0` act identically.
 - A lift `F` of a virtual endomorphism `f_Q` of `Q` to `T ⋊ Q` must be `f_Q`-semilinear on its domain in `T`. So
@@ -82,6 +86,8 @@ the domain. Kochloukova–Sidki's domain meets the counters in index `p^2`, whic
   - only finitely many such machines may appear, since the recursion is finite.
 
 ## Part 3 (sketch). Contracting renormalization is too easy for hard machines
+
+*Status (per bh-ref-q11, b5cae104ff).* This is a **sketch**. It assumes a lift that has not been constructed, and its bounded-coefficient step is unproved. The conclusion below is conditional on both.
 
 **Hypotheses.** A lift as in Part 2 whose counter renormalization contracts: over one full rotation every counter
 is divided by `p`, as in Kochloukova–Sidki.
