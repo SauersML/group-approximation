@@ -181,3 +181,7 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
    - **Still open.** Realizability: is every finite-state `H` the table group of some finitely presented
      locally synchronous RSG? A yes would make this case of Question 1.4 equivalent to "every finite-state
      group has a finitely presented Röver–Nekrashevych group".
+   - **Referee note (bh-ref-q12, 2026-09-19).** Theorem S PASSES. Finite-state groups with non-finitely-presented
+     `V_d` already exist: SWZ persistent actions, e.g. the persistent lamplighter on `T_3`. So case (b) is a
+     realizability question for such an `H`. A finitely presented locally synchronous RSG with table group the
+     persistent lamplighter would answer Question 1.4 negatively.

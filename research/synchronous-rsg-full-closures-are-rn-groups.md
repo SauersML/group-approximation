@@ -10,7 +10,7 @@ distinct_from:
   v-normalizer-rsgs-contract-iff-finite-outer-order: that supplies the asynchronous test family Γ_t; this shows every counterexample over the full shift is asynchronous or yields a finite-state group with a non-finitely-presented Röver–Nekrashevych group.
 ---
 
-**ESTABLISHED (proof in `synchronous-rsg-full-closures-are-rn-groups-proof`; lane proof
+**ESTABLISHED (proof in `synchronous-rsg-full-closures-are-rn-groups-proof`; Referee bh-ref-q12 2026-09-19: Theorem S PASS; the "infinite-state" remark about `V_3(L)` is wrong, see the Referee section; lane proof
 by bh-q14-lift, not independently reviewed; no priority claimed, and item 1 is probably folklore).**
 
 ## Setting
@@ -75,3 +75,49 @@ finite-state self-similar group.
 - **Edge shifts.** Over a general edge shift `Σ_Γ`, the analogue of `V_d(H)` is a Nekrashevych-type group of a
   self-similar action over the graph `Γ`. Theorem A is proved only for the full shift, so item 3 does not yet
   extend.
+
+## Referee (bh-ref-q12, 2026-09-19): Theorem S PASS; one false remark, which sharpens the open case
+
+**Item 1: correct.**
+- Entries of a table are unique for a given domain cone. If `v h(w) = v′ h′(w)` for all `w`, with `h, h′`
+  length-preserving, then `v = v′` and `h = h′`. So `H_G` is well defined, and refinements have section entries.
+- `T` is finite: a finite-state automorphism has finitely many sections, and `(h^{-1})|_x = (h|_{h^{-1}x})^{-1}`.
+- Every element of `T` is an entry of a refined table of some `s ∈ S^{±1}`. Sections come from refinement,
+  inverses from `s^{-1}`, and inverses of sections are sections of inverses.
+- Entries of products are products of sections of entries.
+
+**Item 2: correct.**
+- *`[[G]] ≤ V_d(H_G)`.* `V_d(H_G)` is full, since locally agreeing pieces refine to cones, and it contains `G`.
+- *`V_d ≤ [[G]]`.* This follows from the RSG property, and needs only that all cones be proper when the
+  partition is nontrivial.
+- *`L_w(h) ∈ [[G]]`.* It agrees with `b s a` on `C_w`.
+  - `a, b ∈ V_d` exist: complements of proper cones have cone partitions with `(d−1)|w|` and `(d−1)|u|` pieces,
+    which can be matched by expansion.
+  - Each `h ∈ T` occurs as an entry `(u → v, h)` with `u, v` nonempty.
+- *Every table.* A table over `H_G` is `c · ∏ L_(u_i)(h_i)`, with `c ∈ V_d`.
+- *The characterization* (full, finitely generated, locally synchronous RSGs are exactly the `V_d(H)`) follows.
+
+**Item 3, the use of Theorem A: correct.**
+- `T` is a finite generating set closed under sections and inverses. That is exactly Theorem A's hypothesis
+  (`rover-nekrashevych-fp-iff-finite-lift-presentation`, PASS in both directions).
+- The condition does not depend on `T`, by Theorem A's Consequence 3. The Scott, Nekrashevych and `K_∞` cases
+  follow.
+
+**False remark: finite-state groups with non-finitely-presented `V_d` are already known.**
+- "The known non-finitely-presented example `V_3(L)` under the persistent action (c2bdf2618d) is infinite-state"
+  is wrong. SWZ Lemma 5.3 (arXiv:1712.05361) says the persistent action on `T_d` is finite-state when the original
+  action is, and `a = ι(σ)(a, b, a)`, `b = (a, b, b)` is a 2-state automaton.
+- So by SWZ Theorem 5.8 with `n = 2`, **every** non-finitely-presented group with a faithful finite-state
+  self-similar action has a finite-state persistent action with non-finitely-presented `V_d`. The persistent
+  lamplighter is the simplest example (`persistent-actions-make-lift-ideals-normal-closures`, PASS).
+- **Consequence (b) is therefore not "the first finite-state group…".** Groups `H` of that kind exist.
+- Case (b) of a counterexample is exactly **realizability**: a finitely presented locally synchronous RSG `G` with
+  `H_G = H` for such an `H`.
+- **Sharpened open question (referee).** Is there a finitely presented locally synchronous RSG over the full
+  3-shift whose table group is the persistent lamplighter? A yes gives a **negative answer to BBMZ Question
+  1.4**. A no, for all SWZ-type persistent `H`, is evidence for the locally synchronous case.
+- *Caution.* Any `G` containing `V_d` and one cone copy `L_u(a)` is already all of `V_3(L)`: splitting `L_0(a)`
+  once yields `L_(01)(b)`. So a finitely presented candidate must avoid containing `V_d` together with cone copies,
+  and must realize the canonical similarities only through elements with nontrivial entries.
+
+**Verdict: PASS** for Theorem S. The remark and consequence (b) are to be corrected as above.
