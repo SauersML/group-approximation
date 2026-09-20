@@ -1,0 +1,152 @@
+n=3 k=0 markedpairs=2 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2 u=2,0,1
+argratio e=0,1,2 u=2,0,1
+argquarter e=0,1,2 u=2,0,1
+n=3 k=1 markedpairs=2 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2 u=2,0,1
+argratio e=1,0,2 u=2,0,1
+argquarter e=1,0,2 u=2,0,1
+n=4 k=0 markedpairs=8 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3 u=2,0,1,3
+argratio e=0,1,2,3 u=2,0,1,3
+argquarter e=0,1,2,3 u=2,0,1,3
+n=4 k=1 markedpairs=8 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3 u=2,0,1,3
+argratio e=1,0,2,3 u=2,0,1,3
+argquarter e=1,0,2,3 u=2,0,1,3
+n=4 k=2 markedpairs=8 minD=10 ratio=10/3 minD_quarter=10
+argminD e=1,0,3,2 u=2,0,1,3
+argratio e=1,0,3,2 u=2,0,1,3
+argquarter e=1,0,3,2 u=2,0,1,3
+n=5 k=0 markedpairs=64 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4 u=2,0,1,3,4
+argratio e=0,1,2,3,4 u=2,0,1,3,4
+argquarter e=0,1,2,3,4 u=2,0,1,3,4
+n=5 k=1 markedpairs=64 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4 u=2,0,1,3,4
+argratio e=1,0,2,3,4 u=2,0,1,3,4
+argquarter e=1,0,2,3,4 u=2,0,1,3,4
+n=5 k=2 markedpairs=64 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4 u=4,0,3,2,1
+argratio e=1,0,3,2,4 u=4,0,3,2,1
+argquarter e=1,0,3,2,4 u=4,0,3,2,1
+n=6 k=0 markedpairs=464 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5 u=2,0,1,3,4,5
+argratio e=0,1,2,3,4,5 u=2,0,1,3,4,5
+argquarter e=0,1,2,3,4,5 u=2,0,1,3,4,5
+n=6 k=1 markedpairs=464 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5 u=2,0,1,3,4,5
+argratio e=1,0,2,3,4,5 u=2,0,1,3,4,5
+argquarter e=1,0,2,3,4,5 u=2,0,1,3,4,5
+n=6 k=2 markedpairs=464 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5 u=4,0,3,2,1,5
+argratio e=1,0,3,2,4,5 u=4,0,3,2,1,5
+argquarter e=1,0,3,2,4,5 u=4,0,3,2,1,5
+n=6 k=3 markedpairs=464 minD=8 ratio=8/6 minD_quarter=8
+argminD e=1,0,3,2,5,4 u=3,5,1,2,0,4
+argratio e=1,0,3,2,5,4 u=3,5,1,2,0,4
+argquarter e=1,0,3,2,5,4 u=3,5,1,2,0,4
+n=7 k=0 markedpairs=3968 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5,6 u=2,0,1,3,4,5,6
+argratio e=0,1,2,3,4,5,6 u=2,0,1,3,4,5,6
+argquarter e=0,1,2,3,4,5,6 u=2,0,1,3,4,5,6
+n=7 k=1 markedpairs=3968 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5,6 u=2,0,1,3,4,5,6
+argratio e=1,0,2,3,4,5,6 u=2,0,1,3,4,5,6
+argquarter e=1,0,2,3,4,5,6 u=2,0,1,3,4,5,6
+n=7 k=2 markedpairs=3968 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5,6 u=4,0,3,2,1,5,6
+argratio e=1,0,3,2,4,5,6 u=4,0,3,2,1,5,6
+argquarter e=1,0,3,2,4,5,6 u=4,0,3,2,1,5,6
+n=7 k=3 markedpairs=3968 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,6 u=1,0,6,2,5,4,3
+argratio e=1,0,3,2,5,4,6 u=3,5,1,2,0,4,6
+argquarter e=1,0,3,2,5,4,6 u=1,0,6,2,5,4,3
+n=8 k=0 markedpairs=29056 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+argratio e=0,1,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+argquarter e=0,1,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+n=8 k=1 markedpairs=29056 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+argratio e=1,0,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+argquarter e=1,0,2,3,4,5,6,7 u=2,0,1,3,4,5,6,7
+n=8 k=2 markedpairs=29056 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5,6,7 u=4,0,3,2,1,5,6,7
+argratio e=1,0,3,2,4,5,6,7 u=4,0,3,2,1,5,6,7
+argquarter e=1,0,3,2,4,5,6,7 u=4,0,3,2,1,5,6,7
+n=8 k=3 markedpairs=29056 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,6,7 u=1,0,6,2,5,4,3,7
+argratio e=1,0,3,2,5,4,6,7 u=3,5,1,2,0,4,6,7
+argquarter e=1,0,3,2,5,4,6,7 u=1,0,6,2,5,4,3,7
+n=8 k=4 markedpairs=29056 minD=8 ratio=8/6 minD_quarter=8
+argminD e=1,0,3,2,5,4,7,6 u=5,7,3,2,1,4,0,6
+argratio e=1,0,3,2,5,4,7,6 u=5,7,3,2,1,4,0,6
+argquarter e=1,0,3,2,5,4,7,6 u=5,7,3,2,1,4,0,6
+n=9 k=0 markedpairs=283904 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+argratio e=0,1,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+argquarter e=0,1,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+n=9 k=1 markedpairs=283904 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+argratio e=1,0,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+argquarter e=1,0,2,3,4,5,6,7,8 u=2,0,1,3,4,5,6,7,8
+n=9 k=2 markedpairs=283904 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5,6,7,8 u=4,0,3,2,1,5,6,7,8
+argratio e=1,0,3,2,4,5,6,7,8 u=4,0,3,2,1,5,6,7,8
+argquarter e=1,0,3,2,4,5,6,7,8 u=4,0,3,2,1,5,6,7,8
+n=9 k=3 markedpairs=283904 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,6,7,8 u=1,0,6,2,5,4,3,7,8
+argratio e=1,0,3,2,5,4,6,7,8 u=3,5,1,2,0,4,6,7,8
+argquarter e=1,0,3,2,5,4,6,7,8 u=1,0,6,2,5,4,3,7,8
+n=9 k=4 markedpairs=283904 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,7,6,8 u=1,0,3,2,8,4,7,6,5
+argratio e=1,0,3,2,5,4,7,6,8 u=5,7,3,2,1,4,0,6,8
+argquarter e=1,0,3,2,5,4,7,6,8 u=1,0,3,2,8,4,7,6,5
+n=10 k=0 markedpairs=2956544 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+argratio e=0,1,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+argquarter e=0,1,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+n=10 k=1 markedpairs=2956544 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+argratio e=1,0,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+argquarter e=1,0,2,3,4,5,6,7,8,9 u=2,0,1,3,4,5,6,7,8,9
+n=10 k=2 markedpairs=2956544 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5,6,7,8,9 u=4,0,3,2,1,5,6,7,8,9
+argratio e=1,0,3,2,4,5,6,7,8,9 u=4,0,3,2,1,5,6,7,8,9
+argquarter e=1,0,3,2,4,5,6,7,8,9 u=4,0,3,2,1,5,6,7,8,9
+n=10 k=3 markedpairs=2956544 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,6,7,8,9 u=1,0,6,2,5,4,3,7,8,9
+argratio e=1,0,3,2,5,4,6,7,8,9 u=3,5,1,2,0,4,6,7,8,9
+argquarter e=1,0,3,2,5,4,6,7,8,9 u=1,0,6,2,5,4,3,7,8,9
+n=10 k=4 markedpairs=2956544 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,7,6,8,9 u=1,0,3,2,8,4,7,6,5,9
+argratio e=1,0,3,2,5,4,7,6,8,9 u=5,7,3,2,1,4,0,6,8,9
+argquarter e=1,0,3,2,5,4,7,6,8,9 u=1,0,3,2,8,4,7,6,5,9
+n=10 k=5 markedpairs=2956544 minD=8 ratio=8/6 minD_quarter=8
+argminD e=1,0,3,2,5,4,7,6,9,8 u=7,9,3,2,5,4,1,6,0,8
+argratio e=1,0,3,2,5,4,7,6,9,8 u=7,9,3,2,5,4,1,6,0,8
+argquarter e=1,0,3,2,5,4,7,6,9,8 u=7,9,3,2,5,4,1,6,0,8
+n=11 k=0 markedpairs=35263744 minD=6 ratio=6/3 minD_quarter=6
+argminD e=0,1,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+argratio e=0,1,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+argquarter e=0,1,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+n=11 k=1 markedpairs=35263744 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+argratio e=1,0,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+argquarter e=1,0,2,3,4,5,6,7,8,9,10 u=2,0,1,3,4,5,6,7,8,9,10
+n=11 k=2 markedpairs=35263744 minD=4 ratio=4/3 minD_quarter=4
+argminD e=1,0,3,2,4,5,6,7,8,9,10 u=4,0,3,2,1,5,6,7,8,9,10
+argratio e=1,0,3,2,4,5,6,7,8,9,10 u=4,0,3,2,1,5,6,7,8,9,10
+argquarter e=1,0,3,2,4,5,6,7,8,9,10 u=4,0,3,2,1,5,6,7,8,9,10
+n=11 k=3 markedpairs=35263744 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,6,7,8,9,10 u=1,0,6,2,5,4,3,7,8,9,10
+argratio e=1,0,3,2,5,4,6,7,8,9,10 u=3,5,1,2,0,4,6,7,8,9,10
+argquarter e=1,0,3,2,5,4,6,7,8,9,10 u=1,0,6,2,5,4,3,7,8,9,10
+n=11 k=4 markedpairs=35263744 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,7,6,8,9,10 u=1,0,3,2,8,4,7,6,5,9,10
+argratio e=1,0,3,2,5,4,7,6,8,9,10 u=5,7,3,2,1,4,0,6,8,9,10
+argquarter e=1,0,3,2,5,4,7,6,8,9,10 u=1,0,3,2,8,4,7,6,5,9,10
+n=11 k=5 markedpairs=35263744 minD=4 ratio=8/6 minD_quarter=4
+argminD e=1,0,3,2,5,4,7,6,9,8,10 u=1,0,3,2,5,4,10,6,9,8,7
+argratio e=1,0,3,2,5,4,7,6,9,8,10 u=7,9,3,2,5,4,1,6,0,8,10
+argquarter e=1,0,3,2,5,4,7,6,9,8,10 u=1,0,3,2,5,4,10,6,9,8,7
