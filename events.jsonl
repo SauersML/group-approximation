@@ -8521,3 +8521,4 @@
 {"id": "891f6985e5ce4f81968fb0e215818ea2", "ts": 1789902322.87, "agent": "swarm-0917-w23-w23-bh-follow", "wave": "swarm-0917", "kind": "release", "node": "pl-chain-germ-group-contains-thompson-f"}
 {"id": "613652506dde4086863e38c67a94345d", "ts": 1789902381.564, "agent": "swarm-0917-w23-w23-nh-follow", "wave": "swarm-0917", "kind": "heartbeat"}
 {"id": "e4eb28d9602e4e35bb185383eba72ed7", "ts": 1789902392.755, "agent": "swarm-0917-w23-w23-nh-follow", "wave": "swarm-0917", "kind": "heartbeat"}
+{"id": "78c5fe54ec7c43049c8c994f41b8f605", "ts": 1789902406.144, "agent": "swarm-0917-w23-w23-nv-last1", "wave": "swarm-0917", "kind": "dead", "node": "brin-thompson-2v-is-a-product-of-three-fibre-groups", "text": "false: baker map has y-exponent -1 everywhere, but every element of L1 L2 L1 transports a fibre-probability measure of full support to one, forcing mixed-sign or zero y-exponent"}
