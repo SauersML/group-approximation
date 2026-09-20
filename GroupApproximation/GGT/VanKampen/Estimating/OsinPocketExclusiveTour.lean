@@ -61,7 +61,7 @@ theorem isChain_filter_of_skip {α : Type*} {R : α → α → Prop} (B : α →
       by_cases hc : B c
       · have hc' : decide (B c) = true := by simpa using hc
         rw [List.filter_cons_of_pos (p := fun a => decide (B a)) (a := c) hc'] at hb
-        obtain rfl : b = c := by simpa using hb
+        obtain rfl : c = b := by simpa using hb
         exact hac
       · have hc' : ¬ decide (B c) = true := by simpa using hc
         rw [List.filter_cons_of_neg (p := fun a => decide (B a)) (a := c) hc'] at hb
@@ -99,9 +99,10 @@ variable {M : CombMap.{u}}
 /-- A boundary walk of a subset of `U` is a boundary walk of `U`. -/
 theorem boundaryWalk_mono {R U : Finset M.Face} (hRU : R ⊆ U) {a b : M.Dart}
     (h : BoundaryWalk M R a b) : BoundaryWalk M U a b := by
-  refine Relation.ReflTransGen.mono ?_ h
-  rintro x y ⟨⟨h1, h2⟩, hs⟩
-  exact ⟨⟨hRU h1, hRU h2⟩, hs⟩
+  unfold BoundaryWalk at h ⊢
+  induction h with
+  | refl => exact Relation.ReflTransGen.refl
+  | tail _ hxy ih => exact ih.tail ⟨⟨hRU hxy.1.1, hRU hxy.1.2⟩, hxy.2⟩
 
 /-- A face step is a boundary walk. -/
 theorem boundaryWalk_of_facePerm {U : Finset M.Face} {a b : M.Dart} (h : M.facePerm a = b) :
@@ -138,8 +139,8 @@ theorem hop_skip {U : Finset M.Face} {B : M.Dart → Prop} {p q r : M.Dart} (h�
 theorem isChain_filter_hop {U : Finset M.Face} (B : M.Dart → Prop) [DecidablePred B]
     {l : List M.Dart} (hl : l.IsChain (Hop U B)) :
     (l.filter fun a => decide (B a)).IsChain (BoundaryWalk M U) := by
-  refine (isChain_filter_of_skip B (fun _ _ _ h₁ hq h₂ => hop_skip h₁ hq h₂) l hl).imp_of_mem_imp
-    fun a b _ hb h => ?_
+  have hf := isChain_filter_of_skip (R := Hop U B) B (fun _ _ _ h₁ hq h₂ => hop_skip h₁ hq h₂) l hl
+  refine hf.imp_of_mem_imp fun a b _ hb h => ?_
   have hBb : B b := by simpa using (List.mem_filter.mp hb).2
   rcases h with ⟨h, -⟩ | ⟨-, -, -, -, hnb⟩
   · exact h
@@ -168,8 +169,8 @@ theorem isChain_append_overlap {α : Type*} {R : α → α → Prop} {l l' : Lis
     (h₁ : (l ++ [m]).IsChain R) (h₂ : (m :: l').IsChain R) : (l ++ m :: l').IsChain R := by
   obtain ⟨hl, -, hlm⟩ := List.isChain_append.mp h₁
   refine List.isChain_append.mpr ⟨hl, h₂, fun x hx y hy => ?_⟩
-  obtain rfl : y = m := by simpa using hy
-  exact hlm x hx m (by simp)
+  obtain rfl : m = y := by simpa using hy
+  exact hlm x hx _ (by simp)
 
 /-- **A closed tour gives a closed chain of first turns** on its kept darts.  If the tour `P` is a
 chain of hops and hops from its last element to its first, and kept darts are boundary darts of

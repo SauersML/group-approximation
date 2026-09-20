@@ -89,6 +89,7 @@ theorem smulPair_dot (g : (Matrix I I A)ˣ) (w v : I → A) :
 
 #audit_axioms smulPair_dot
 
+omit [DecidableEq I] in
 theorem vecMul_mem (M : Matrix I I A) {w : I → A} (hw : ∀ k, w k ∈ 𝔄) (k : I) :
     (w ᵥ* M) k ∈ 𝔄 := by
   simp only [vecMul, dotProduct]

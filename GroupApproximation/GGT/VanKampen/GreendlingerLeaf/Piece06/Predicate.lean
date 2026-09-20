@@ -83,6 +83,7 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides OuterPinchIsolated
+open scoped Classical
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}

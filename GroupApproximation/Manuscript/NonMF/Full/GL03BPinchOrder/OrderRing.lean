@@ -93,7 +93,7 @@ theorem ordRing_facePerm_val_of_getElem (hw : IsNoncrossingClosedWalk M w) (hM :
   have hkeep : walkKeep M w ((ordInner hw hM).facePerm x.1).1 := by
     refine Or.inl ?_
     rw [hΓ]
-    exact List.next_mem hmem
+    exact List.next_mem _ _ hmem
   have h2 := predRestr_facePerm_val_of_keep (ordInner hw hM) (fun d => walkKeep M w d.1)
     (ordInner_keep_alpha hw hM) x hkeep
   exact (congrArg Subtype.val h2).trans (hΓ.trans (hnext _ hmem hx))
@@ -116,10 +116,10 @@ theorem ordRing_facePerm_val_of_alpha_mem (hw : IsNoncrossingClosedWalk M w) (hM
     · rw [pow_zero, Perm.one_apply]
       exact hw.alpha_not_mem _ hX
     · exact fun h => hskipM j hj0 hj (Or.inr h)
-  have hval : ∀ j, j ≤ m → ((((ordInner hw hM).sigma ^ j) ((ordRing hw hM).alpha X).1).1 =
+  have hval : ∀ j, j ≤ m → (((ordInner hw hM).sigma ^ j) ((ordRing hw hM).alpha X).1).1 =
       (M.sigma ^ j) (M.alpha X.1.1) := fun j hj =>
     hw.innerSigma_pow_val hM ((ordRing hw hM).alpha X).1 j (fun t ht => hmin t (by omega))
-  have hyk : walkKeep M w ((((ordInner hw hM).sigma ^ m) ((ordRing hw hM).alpha X).1).1 := by
+  have hyk : walkKeep M w (((ordInner hw hM).sigma ^ m) ((ordRing hw hM).alpha X).1).1 := by
     rw [hval m le_rfl, hpm']
     exact ((walkMap M w).sigma ⟨M.alpha X.1.1, Or.inl hX⟩).2
   have hstep := predRestr_sigma_val_of_firstHit (ordInner hw hM) (fun d => walkKeep M w d.1)

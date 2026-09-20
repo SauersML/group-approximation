@@ -36,7 +36,7 @@ def Lemma47Statement : Prop :=
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.RelGen.Lemma47Statement
 
-section Aux
+noncomputable section Aux
 
 variable (I : Type*) [Fintype I] [DecidableEq I] {A : Type*} [CommRing A] (M : Ideal A)
 

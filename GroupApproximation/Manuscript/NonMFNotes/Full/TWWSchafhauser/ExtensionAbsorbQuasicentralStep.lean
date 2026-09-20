@@ -94,10 +94,12 @@ section Step
 variable {A B : Type*} [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
   [NonUnitalCStarAlgebra B]
 
+omit [PartialOrder A] [StarOrderedRing A] in
 /-- A `⋆`-homomorphism commutes with real scalars. -/
 theorem quasiUnit_map_real_smul (ι : A →⋆ₙₐ[ℂ] B) (r : ℝ) (x : A) : ι (r • x) = r • ι x := by
   rw [← Complex.coe_smul, map_smul, Complex.coe_smul]
 
+omit [PartialOrder A] [StarOrderedRing A] in
 /-- A commutator defect `[ι a, y]` lies in the range of `ι`. -/
 theorem quasiUnit_defect_mem (ι : A →⋆ₙₐ[ℂ] B) (hL : ∀ (a : A) (y : B), ∃ c : A, ι c = ι a * y)
     (hR : ∀ (a : A) (y : B), ∃ c : A, ι c = y * ι a) (a : A) (y : B) :

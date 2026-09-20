@@ -203,7 +203,7 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
       towerPerm_eq_of_sub hd2 hd4 (Fin.castLE (by norm_num)) 0
         (fun t => by rw [towerLevels_val, towerLevels_val, Fin.val_castLE, add_zero])
         (fun z => by rw [zpow_zero, Equiv.Perm.one_apply]) c3' _
-        (by rw [hc3']; decide +kernel) (by rw [hc3']; decide +kernel)
+        (by rw [hc3']; decide +kernel) (by decide +kernel)
     rw [← hsub3, hsub4]
     exact hgood _ _ _ (by omega) (by omega) hd4 _
       (closure_consSet_le_alternatingGroup 4

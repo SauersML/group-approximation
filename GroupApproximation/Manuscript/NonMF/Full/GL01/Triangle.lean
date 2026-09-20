@@ -75,7 +75,7 @@ theorem exists_section_of_lt {G : Type u} [Group G] {Lambda : Type w} {D : RelGe
   obtain ⟨hn, hpn⟩ := Nat.find_spec hex
   have hn0 : Nat.find hex ≠ 0 := by
     intro h0
-    have e : (⟨Nat.find hex, hn⟩ : Fin (cs.count + 1)) = 0 := Fin.ext (by simp [h0])
+    have e : (⟨Nat.find hex, hn⟩ : Fin (cs.count + 1)) = 0 := Fin.ext h0
     rw [e, cs.cut_zero] at hpn
     exact Nat.not_lt_zero _ hpn
   have hlt : Nat.find hex - 1 < cs.count := by omega

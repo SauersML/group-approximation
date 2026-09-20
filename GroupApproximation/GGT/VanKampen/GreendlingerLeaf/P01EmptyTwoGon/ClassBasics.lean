@@ -89,6 +89,7 @@ theorem facePerm_alpha_eq_sigma (M : CombMap.{u}) (d : M.Dart) :
 theorem dual_facePerm_apply_eq (M : CombMap.{u}) (x : M.Dart) :
     M.dual.facePerm x = M.sigma x := by
   rw [CombMap.dual_facePerm]
+  rfl
 
 /-- A class step of the dual: the vertex rotation. -/
 theorem faceClass_dual_sigma (M : CombMap.{u}) (keep : M.Dart → Prop) (x : M.Dart) :

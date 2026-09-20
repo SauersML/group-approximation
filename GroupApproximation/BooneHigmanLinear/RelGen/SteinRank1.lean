@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.K2Poly.SymbolCentral
+import Mathlib.Tactic.LinearCombination
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

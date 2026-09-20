@@ -47,7 +47,7 @@ theorem isChain_middle {α : Type*} {R : α → α → Prop} {A G B : List α} (
     (A.getLast hA :: G ++ [B.head hB]).IsChain R := by
   have heq : A ++ G ++ B = A.dropLast ++ ((A.getLast hA :: G ++ [B.head hB]) ++ B.tail) := by
     conv_lhs => rw [← List.dropLast_append_getLast hA, ← List.cons_head_tail hB]
-    simp only [List.append_assoc, List.singleton_append, List.cons_append]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
   rw [heq] at h
   exact (List.isChain_append.mp (List.isChain_append.mp h).2.1).1
 
@@ -86,7 +86,7 @@ theorem isChain_leftStretch (H : ContiguityGeometry D eps X faces) {s t : List X
     (List.isChain_append.mp hchain).2.1
   refine (List.isChain_append.mpr ⟨hL, List.isChain_singleton _, fun a ha b hb => ?_⟩).imp
     fun _ _ h => boundaryWalk_of_boundaryStep h
-  obtain rfl : b = s.head hsne := by simpa using hb
+  obtain rfl : s.head hsne = b := by simpa using hb
   exact hclose a (List.mem_getLast?_append_of_mem_getLast? ha) _
     (List.mem_head?_append_of_mem_head? (List.mem_head?_append_of_mem_head?
       (List.mem_head?_append_of_mem_head? (Option.mem_def.mpr (List.head?_eq_some_head hsne)))))
@@ -148,7 +148,9 @@ theorem isChain_outerStretch {A G B : List M.Dart} (hA : A ≠ []) (hB : B ≠ [
     (M.alpha (B.head hB) :: G.reverse.map M.alpha ++ [M.alpha (A.getLast hA)]).IsChain
       fun a b => M.facePerm a = b := by
   have hm := isChain_middle hA hB h
-  have hr := (List.isChain_map M.alpha).2 (List.isChain_reverse.2 (hm.imp fun _ _ h => h))
+  have hr : ((A.getLast hA :: G ++ [B.head hB]).reverse.map M.alpha).IsChain
+      fun a b => M.facePerm a = b :=
+    (List.isChain_map M.alpha).2 (List.isChain_reverse.2 (hm.imp fun _ _ h => h))
   have heq : ((A.getLast hA :: G ++ [B.head hB]).reverse.map M.alpha) =
       M.alpha (B.head hB) :: G.reverse.map M.alpha ++ [M.alpha (A.getLast hA)] := by
     simp [List.reverse_append]
@@ -156,6 +158,81 @@ theorem isChain_outerStretch {A G B : List M.Dart} (hA : A ≠ []) (hB : B ≠ [
   exact hr
 
 end Cell
+
+/-! ## The stretches, with the ends named by decompositions -/
+
+/-- **The middle of a chain, by decomposition**: `a`, then `G`, then `b`, out of
+`A ++ [a] ++ G ++ b :: B`. -/
+theorem isChain_middle' {α : Type*} {R : α → α → Prop} {A G B : List α} {a b : α}
+    (h : (A ++ [a] ++ G ++ (b :: B)).IsChain R) : (a :: G ++ [b]).IsChain R := by
+  have heq : A ++ [a] ++ G ++ (b :: B) = A ++ ((a :: G ++ [b]) ++ B) := by simp
+  rw [heq] at h
+  exact (List.isChain_append.mp (List.isChain_append.mp h).2.1).1
+
+section Regions'
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W}
+  {faces : Finset X.toCombMap.Face}
+
+/-- **The left stretch, by decomposition**: the reversed source darts start with `b`, the target
+darts end with `a`; then `a`, the left side, `b` is a chain of boundary walks. -/
+theorem isChain_leftStretch' (H : ContiguityGeometry D eps X faces) {s t : List X.toCombMap.Dart}
+    {a b : X.toCombMap.Dart} (hs : H.sourceArc.reverseDarts = b :: s)
+    (ht : targetBoundaryDarts X H.target H.targetArc = t ++ [a]) :
+    (a :: H.leftSide ++ [b]).IsChain (Surgery.MapCollapse.BoundaryWalk X.toCombMap faces) := by
+  have hchain := H.boundary.cycle_chain
+  have hclose := close_of_getLast_head H.boundary.cycle_nonempty H.boundary.cycle_closes
+  rw [H.boundary_decomposition, hs, ht] at hchain hclose
+  have heq : (b :: s) ++ H.rightSide ++ (t ++ [a]) ++ H.leftSide =
+      ((b :: s) ++ H.rightSide ++ t) ++ (a :: H.leftSide) := by simp
+  rw [heq] at hchain hclose
+  have hL : (a :: H.leftSide).IsChain (BoundaryStep X faces) := (List.isChain_append.mp hchain).2.1
+  refine (List.isChain_append.mpr ⟨hL, List.isChain_singleton _, fun p hp q hq => ?_⟩).imp
+    fun _ _ h => boundaryWalk_of_boundaryStep h
+  obtain rfl : b = q := by simpa using hq
+  exact hclose p (List.mem_getLast?_append_of_mem_getLast? hp) q (by simp)
+
+/-- **The right stretch, by decomposition**: the reversed source darts end with `a`, the target
+darts start with `b`; then `a`, the right side, `b` is a chain of boundary walks. -/
+theorem isChain_rightStretch' (H : ContiguityGeometry D eps X faces) {s t : List X.toCombMap.Dart}
+    {a b : X.toCombMap.Dart} (hs : H.sourceArc.reverseDarts = s ++ [a])
+    (ht : targetBoundaryDarts X H.target H.targetArc = b :: t) :
+    (a :: H.rightSide ++ [b]).IsChain (Surgery.MapCollapse.BoundaryWalk X.toCombMap faces) := by
+  have hchain := H.boundary.cycle_chain
+  rw [H.boundary_decomposition, hs, ht] at hchain
+  have h := isChain_middle' (List.isChain_append.mp hchain).1
+  exact h.imp fun _ _ h => boundaryWalk_of_boundaryStep h
+
+end Regions'
+
+section Cell'
+
+variable {M : CombMap.{u}}
+
+/-- **The cell stretch, by decomposition.** -/
+theorem isChain_cellStretch' {f : M.Face} (B : FaceBoundary M f) {T : CyclicArc B.darts}
+    {Xd Gap Yd : List M.Dart} {p q : M.Dart} (hT : T.darts = Xd ++ [p] ++ Gap ++ (q :: Yd)) :
+    (p :: Gap ++ [q]).IsChain fun a b => M.facePerm a = b := by
+  have h := CyclicArc.isChain_darts T B.chain (close_of_faceBoundary B)
+  rw [hT] at h
+  exact isChain_middle' h
+
+/-- **The outer stretch, by decomposition**: a backward chain `A ++ [a] ++ G ++ b :: B` gives the
+face walk `alpha b`, `G` read backwards, `alpha a`. -/
+theorem isChain_outerStretch' {A G B : List M.Dart} {a b : M.Dart}
+    (h : (A ++ [a] ++ G ++ (b :: B)).IsChain fun d e => M.facePerm (M.alpha e) = M.alpha d) :
+    (M.alpha b :: G.reverse.map M.alpha ++ [M.alpha a]).IsChain fun a b => M.facePerm a = b := by
+  have hm := isChain_middle' h
+  have hr : ((a :: G ++ [b]).reverse.map M.alpha).IsChain fun a b => M.facePerm a = b :=
+    (List.isChain_map M.alpha).2 (List.isChain_reverse.2 (hm.imp fun _ _ h => h))
+  have heq : ((a :: G ++ [b]).reverse.map M.alpha) =
+      M.alpha b :: G.reverse.map M.alpha ++ [M.alpha a] := by
+    simp [List.reverse_append]
+  rw [heq] at hr
+  exact hr
+
+end Cell'
 
 end ExclusiveStretch
 
@@ -168,3 +245,7 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_reverse_map_alpha_face
 #audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_window
 #audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_outerStretch
+#audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_leftStretch'
+#audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_rightStretch'
+#audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_cellStretch'
+#audit_axioms GroupApproximation.GGT.VanKampen.ExclusiveStretch.isChain_outerStretch'

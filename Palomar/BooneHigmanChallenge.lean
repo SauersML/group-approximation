@@ -5,6 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import Mathlib.Algebra.FreeAlgebra
 import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.RingQuot
+import Mathlib.AlgebraicTopology.SimplexCategory.Basic
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
@@ -32,6 +33,12 @@ Each theorem below answers a printed open question.
 Everything outside the shared block is Mathlib's vocabulary: `Group.IsFinitelyPresented`,
 `PresentedGroup`, `RingQuot`, `FreeAlgebra`, `Matrix.GeneralLinearGroup`, `Equiv.Perm`,
 `Subgroup.closure` and `Nat.Prime`.
+
+The import of `Mathlib.AlgebraicTopology.SimplexCategory.Basic` is deliberate. That module
+declares an `OfNat (ToType x) n` instance which instance search also finds for `Fin 6`, so the
+numerals of `leavittResolventRelation` elaborate through it in any environment that imports the
+module, as the solution's does. Importing it here makes both environments elaborate the shared
+block to the same terms.
 
 The permitted axioms are `propext`, `Classical.choice` and `Quot.sound`. The prose of this
 module was written by Claude (Anthropic), under the user's direction.

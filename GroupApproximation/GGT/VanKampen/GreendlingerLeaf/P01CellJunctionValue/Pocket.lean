@@ -92,9 +92,6 @@ theorem invDarts_gapSeg (X : DiscDiagram.{u, w, v} W) (a : X.toCombMap.Dart) (m 
   unfold invDarts seg
   rw [List.map_reverse, List.map_map]
   congr 1
-  refine List.map_congr_left fun t _ => ?_
-  simp only [Function.comp_apply]
-  rw [pow_succ_apply']
 
 /-- **No relator cell inside a pocket along a cell.**  An enclosed face set whose outside walk is an
 arc of a relator cell that is not enclosed holds no relator cell.  Discharged in `Proof.lean`

@@ -99,7 +99,9 @@ theorem exists_digon_sector {z : X.toCombMap.Dart}
     refine ⟨p, 0, hp, hpz, fun t ht htp w hw => ?_, ?_⟩
     · rcases hpmid t ht htp with h | h
       · exact absurd (h.symm.trans hw) (by simp [EdgeInsertion.embed])
-      · exact absurd (h.symm.trans hw) (by simp [EdgeInsertion.embed])
+      · have h' : (some none : Option (Option X.toCombMap.Dart)) = some (some w) :=
+          h.symm.trans hw
+        exact Option.some_ne_none w (Option.some.inj h').symm
     · rw [pow_zero, Equiv.Perm.one_apply]
       change (FaceEdgeDoubling.map X f k hlen).faceOf
         (EdgeInsertion.embed X.toCombMap (X.toCombMap.alpha z)) = _
@@ -116,7 +118,8 @@ theorem exists_digon_sector {z : X.toCombMap.Dart}
         (congrArg (EdgeInsertion.embed X.toCombMap) hσ'.symm)
     · obtain rfl : t = 1 := by omega
       rw [pow_one, h1] at hw
-      simp [EdgeInsertion.embed] at hw
+      have hw' : (some none : Option (Option X.toCombMap.Dart)) = some (some w) := hw
+      exact Option.some_ne_none w (Option.some.inj hw').symm
     · rw [pow_one, h1]
       change (FaceEdgeDoubling.map X f k hlen).faceOf none = _
       exact FaceEdgeDoubling.faceOf_none_digon X f k hlen

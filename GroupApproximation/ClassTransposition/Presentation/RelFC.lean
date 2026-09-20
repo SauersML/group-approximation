@@ -177,31 +177,35 @@ theorem fc_base : ∀ τ ∈ finT P, ∀ i, (i = 1 ∨ i = 2) → ∀ υ k, k < 
     · have hqS := le_sSup_P' hB hq
       have h := inst_small (P := P) (x := .fsp (j + 2) i j p q)
         (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hp, hq⟩)
-        (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+        (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
       exact (fsp_front (n := j + 2) (by omega) (by omega) hp hq (by omega)).1 h
     · have hq' := mem_P'_of_mem hq
       have hqS := le_sSup_P' hB hq'
       have h := inst_small (P := P) (x := .fsp (j + 1) i j p q)
         (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hp, hq'⟩)
-        (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+        (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
       exact (fsp_tail (n := j + 1) (by omega) rfl hp hq (ne_two_of_mem hP2 hq) (by omega)
         (by have := hpos q hq'; omega)).1 h
     · cases b
       · have h := inst_small (P := P) (x := .dl (j + 3) j i p)
           (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hp⟩)
-          (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+          (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
         exact (dl_front (n := j + 3) (by omega) (by omega) hp (by omega)).1 h
       · have h := inst_small (P := P) (x := .dl (j + 2) j i p)
           (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hp⟩)
-          (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+          (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
         exact (dl_tail (n := j + 2) (by omega) rfl hp (by omega)).1 h
   · -- `τ = π`
     obtain ⟨j, hj⟩ : ∃ j, j = i + 2 + k := ⟨_, rfl⟩
@@ -210,31 +214,35 @@ theorem fc_base : ∀ τ ∈ finT P, ∀ i, (i = 1 ∨ i = 2) → ∀ υ k, k < 
     · have hqS := le_sSup_P' hB hq
       have h := inst_small (P := P) (x := .dr (j + 2) i j q)
         (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hq⟩)
-        (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+        (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
       exact (dr_front (n := j + 2) (by omega) (by omega) hq (by have := hpos q hq; omega)).1 h
     · have hq' := mem_P'_of_mem hq
       have hqS := le_sSup_P' hB hq'
       have h := inst_small (P := P) (x := .dr (j + 1) i j q)
         (by simp only [Inst.Valid]; exact ⟨by omega, by omega, hq'⟩)
-        (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+        (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
       exact (dr_tail (n := j + 1) (by omega) rfl hq (ne_two_of_mem hP2 hq)
         (by have := hpos q hq'; omega)).1 h
     · cases b
       · have h := inst_small (P := P) (x := .fsw (j + 3) i j)
           (by simp only [Inst.Valid]; exact ⟨by omega, by omega⟩)
-          (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+          (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
         exact (fsw_front (n := j + 3) (by omega) (by omega)).1 h
       · have h := inst_small (P := P) (x := .fsw (j + 2) i j)
           (by simp only [Inst.Valid]; exact ⟨by omega, by omega⟩)
-          (by intro c hc
-            simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
-            rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
+          (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega)
         exact (fsw_tail (n := j + 2) (by omega) rfl).1 h
 
 /-- **Lemma FC** in `H P`: all far-commutation relations. -/
