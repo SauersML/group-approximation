@@ -106,3 +106,35 @@ so this says the transitivity degree of `F` is 1.
     of the left and right parts.
   - Missing: a proof that `F = H·F_y`, with `F_y = A_y × B_y`, is incompatible
     with two double cosets, or that it is forced.
+- 2026-09-20 (swarm-0917-w23-w23-z-break, calibration: known maximal
+  subgroups carry invariant orders). **Partial; the node stays open.**
+  - Proved `jones-subgroup-coset-spaces-carry-invariant-orders` (unreviewed,
+    elementary). For every `n ≥ 2` and every endomorphism `ψ` of `F`, the
+    coset space `F/ψ^{-1}(\vec F_n)` has an `F`-invariant total order. Two
+    distinct translates of the digit-sum colouring `c_n` differ on a finite
+    union of standard dyadic intervals `[a,b)`, so there is a least point of
+    disagreement. Comparing the two colours at that point gives the order.
+  - With `thompson-f-known-maximal-subgroups-are-jones-pullbacks` (a citation
+    of Golan–Sapir arXiv:1508.00493 and Golan arXiv:2209.03244), this rules
+    out as point stabilizers of a 2-transitive action:
+    - the Golan–Sapir maximal subgroup `Ψ^{-1}(\vec F)`;
+    - Golan's maximal subgroups `ν(\vec F_p)`;
+    - all parabolic `Stab(α)`.
+
+    So every explicitly described maximal subgroup of infinite index fails.
+    It also corrects the remark under
+    `thompson-f-admits-a-faithful-2-transitive-action` that `Δ` accumulates at
+    its extreme points for the odd-digit-sum set. The minimum of `Δ` is always
+    attained, so test T1 applies.
+  - New route `thompson-f-no-two-transitive-via-square-root-closure`.
+    A 2-transitive point stabilizer `H` is maximal of infinite index and
+    contains `x²` for any `x` swapping two points. So the node follows from
+    the OPEN conjecture `thompson-f-maximal-subgroups-are-square-root-closed`
+    (`x² ∈ H ⇒ x ∈ H`), which is equivalent to "no self-paired non-diagonal
+    orbital" for `F/H`.
+  - Not covered:
+    - Golan's maximal subgroups with `n` orbits on the dyadics ([G23]);
+    - maximal subgroups obtained by Zorn's lemma above finitely generated
+      `H_0` with `H_0[F,F] = F`.
+
+    One square root outside such an `H` kills the route.
