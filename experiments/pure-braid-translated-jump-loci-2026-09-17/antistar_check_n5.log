@@ -1,0 +1,16 @@
+cell type [[0, 1, 2, 3, 4]] dim 4 proper faces 540 vertices checked 1 antistar size 525 all antistars 1-connected 26.7 s
+cell type [[0, 1, 2, 3], [4]] dim 3 proper faces 74 vertices checked 1 antistar size 67 all antistars 1-connected 0.0 s
+cell type [[0, 1, 2], [3, 4]] dim 3 proper faces 38 vertices checked 1 antistar size 31 all antistars 1-connected 0.0 s
+cell type [[0, 1, 2], [3], [4]] dim 2 proper faces 12 vertices checked 1 antistar size 9 all antistars 1-connected 0.0 s
+cell type [[0, 1], [2, 3, 4]] dim 3 proper faces 38 vertices checked 1 antistar size 31 all antistars 1-connected 0.0 s
+cell type [[0, 1], [2, 3], [4]] dim 2 proper faces 8 vertices checked 1 antistar size 5 all antistars 1-connected 0.0 s
+cell type [[0, 1], [2], [3, 4]] dim 2 proper faces 8 vertices checked 1 antistar size 5 all antistars 1-connected 0.0 s
+cell type [[0, 1], [2], [3], [4]] dim 1 proper faces 2 vertices checked 1 antistar size 1 all antistars 1-connected 0.0 s
+cell type [[0], [1, 2, 3, 4]] dim 3 proper faces 74 vertices checked 1 antistar size 67 all antistars 1-connected 0.0 s
+cell type [[0], [1, 2, 3], [4]] dim 2 proper faces 12 vertices checked 1 antistar size 9 all antistars 1-connected 0.0 s
+cell type [[0], [1, 2], [3, 4]] dim 2 proper faces 8 vertices checked 1 antistar size 5 all antistars 1-connected 0.0 s
+cell type [[0], [1, 2], [3], [4]] dim 1 proper faces 2 vertices checked 1 antistar size 1 all antistars 1-connected 0.0 s
+cell type [[0], [1], [2, 3, 4]] dim 2 proper faces 12 vertices checked 1 antistar size 9 all antistars 1-connected 0.0 s
+cell type [[0], [1], [2, 3], [4]] dim 1 proper faces 2 vertices checked 1 antistar size 1 all antistars 1-connected 0.0 s
+cell type [[0], [1], [2], [3, 4]] dim 1 proper faces 2 vertices checked 1 antistar size 1 all antistars 1-connected 0.0 s
+ANTISTARS OK
