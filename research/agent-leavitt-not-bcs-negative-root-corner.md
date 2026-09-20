@@ -1275,3 +1275,29 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   lane.
 - **Recommendation.** When the w18-ptl-pull nodes land, mark `leavitt-cone-half-carries-rigid-compression-defect`
   REFUTED, and mark the route `(QC) <= (HEC)` dead, citing this node.
+### swarm-0917-w20-w20-nh-last1 (decomposition): uniform Leavitt reduction and a head bound linear in shadow dimension
+
+- **Hole attacked.** `(QC)` of `leavitt-st20-nonhyperlinear-iff-cone-bound-and-half-rounding`. The mixed-block
+  coherence `(MW)` of `leavitt-cone-cover-far-cross-relators-are-uniformly-small` was recorded as open "even for
+  `m = 1`", because Leavitt reductions cost normal generators.
+- **Result (ESTABLISHED as `leavitt-cone-head-bound-is-linear-in-shadow-dimension`).**
+  - **(LR).** One Leavitt letter inside a mixed commutator reduces at a fixed cost:
+    `rho(P^b(u t_j, s_j' v)) ~ rho(g) rho(P^a(delta_jj' u, v)) rho(g)^(-1)`, with error `(6 C_1 + 4 c_0) delta`,
+    uniformly in `u in R_-` and `v in R_+`.
+  - The proof uses two far cross relators from `(U2)`, one generator-level Leavitt defect, and exact half relations.
+    The word identities are machine-checked by `experiments/leavitt-reduction-cost-2026-09-17/verify_leavitt_reduction.py`.
+  - **Chain.** Start from `z = P^4(q, 1)`, which is exact in `Delta_0`. Run `L` backward reductions, then an exact
+    swap of `s_omega` for a word `s_omega'` colliding with it modulo the shadow ideal `J_+`. Forward reductions end
+    at the first mismatch, where `eps = 0`. This gives `||rho(z) - 1||_2 <= 2 L*(J_+) c_L delta <= 2(d + 1) c_L delta`.
+- **Class killed.** Every `(QC)` counterexample with bounded shadow dimension, or bounded Cuntz-word collision depth,
+  on either half, whatever its dimension, multiplicity or twist. The suggested `M_2(F_2)` twisted-gluing test is
+  covered, with `D <= 4`.
+  - *Invariant:* the collision depth `L*(J_+-)`.
+  - *Death step:* the `(LR)` chain ending on an exactly killed root element.
+- **Belief change.** `(QC)` now has an explicit rate in each dimension, `delta = eps / (2(d + 1) c_L)`. A
+  counterexample needs `D_+-, d >= eps / (2 c_L delta) - 1`. The only remaining obstruction is linear accumulation
+  along reduction chains.
+- **New decomposition (OPEN).** `(QC) <= (LD)`, recorded as `leavitt-cone-long-leavitt-defects-are-uniformly-small`.
+  `(LD)` asks that the long Leavitt defects `[x_ab(s_omega^*), x_bc(s_omega')] x_ac(delta)^(-1)` be uniformly
+  `C delta`-small. Under `(LD)`, the chain has two steps.
+- **Target stays OPEN.**
