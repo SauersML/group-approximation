@@ -18,6 +18,8 @@ define a group `⟨Φ⟩` acting faithfully and self-similarly on `A^*` by (1.1)
 `{ f ∈ F_S : f = 1 in ⟨Φ⟩ }` is not recursive. Here `⟨Φ⟩` is the quotient of `F_S` acting on
 `A^*`.
 
+**Correction (2026-09-19).** As printed in the arXiv versions, Bartholdi–Mitrofanov's Theorem A″ rests on their Proposition 2.4, whose proof has a gap. There `[g,u] ≠ 1` for every machine. It is repaired by replacing `u` with a partner `p` supported on `0^*1A^ω`; see `bartholdi-mitrofanov-proposition-2-4-gap-and-repair` (referee bh-ref-f PASS, 6747a7e43d). Theorem A″ holds for the repaired table `G′_M = ⟨Φ_M, p, p′⟩`. Read `Φ` below as the repaired table, whose generators include `p` and `p′`. Steps 0–3 go through unchanged, and the kernel `N` is the repaired table's, which is not recursive.
+
 ## Step 0. A left recursion with the same kernel
 
 Put `d = |A|` and identify `A = {1, ..., d}`.

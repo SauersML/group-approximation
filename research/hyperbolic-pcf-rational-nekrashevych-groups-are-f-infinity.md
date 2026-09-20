@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof `bh-free-06`; it applies `wreath-recursion-thompson-groups-inherit-fn`
-to imports read at source; not independently reviewed). No priority claimed. Not found in
+to imports read at source; Referee bh-ref-q12 2026-09-19: PASS, see the Referee section). No priority claimed. Not found in
 Belk–Hyde–Matucci arXiv:2407.03149 (bounded automata only), Skipper–Zaremsky arXiv:1709.06524, or
 Li arXiv:2110.04505.
 
@@ -56,7 +56,8 @@ Li arXiv:2110.04505.
 **Not covered here.**
 - Sub-hyperbolic maps, with strictly preperiodic critical points. Their natural cover is an
   orbifold group, which has type `F_∞`. But the dying-kernel property needs an orbifold version of
-  `pr:expandingpi1`, which was not checked.
+  `pr:expandingpi1`, which was not checked. **Update (09-19):** now supplied, for every PCF rational map, by
+  `pcf-rational-nekrashevych-groups-are-f-infinity` (ESTABLISHED; refereed, 78f3553770 and ca350037cb).
 - Expanding maps of spaces whose `π_1` is not `F_∞`.
 
 ## Lesson for general BH
@@ -68,3 +69,39 @@ typically infinitely presented.**
   free. Examples are the fp simple commutator subgroups and Boone–Higman envelopes of the
   self-similar groups of rational maps.
 - The general pattern: replace a self-similar input by a nice cover with dying kernel.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS
+
+**Item 1: correct, and a direct application of the transfer theorem** (`wreath-recursion-thompson-groups-inherit-fn`,
+PASS, ca350037cb).
+- *The cover.* `B = π_1(M)` with the covering-biset recursion `ψ` given by connecting paths. `ψ` is a homomorphism
+  `B → B ≀ S_d` (standard), and `G = B/K = IMG(f)`.
+- *Dying kernel.* Nekrashevych's `pr:expandingpi1`, as quoted, says: `g` trivial in `IMG(f)` implies that `g` acts
+  trivially on `Φ^{⊗n}` for some `n`. That is exactly `ψ^n(g) = 1`, i.e. `g ∈ K_n`. So `K ⊆ J`, and `J ⊆ K` always
+  holds. Hence `J = K`.
+- *The transfer.* Transfer part 1 (`B` of type `F_n`) gives `V_{d,r}(B, ψ)` of type `F_n`. Part 2 (`J = K`) gives
+  `V_{d,r}(B, ψ) ≅ V_{d,r}(IMG f)`.
+  - The node cites "part 2" for both. Part 1 is the finiteness statement, part 2 the identification.
+- *`V_Φ ≅ V_f`* is Nekrashevych's corollary (TeX l.1729). It was not re-read by me.
+- *Hypotheses.* The only hypothesis beyond Nekrashevych's setting (compact, path-connected, semi-locally simply
+  connected, expanding) is that `π_1(M)` has type `F_n`.
+  - "Expanding coverings of compact **aspherical** spaces", the wording in `gq-bh-sz-vdg-skipper-zaremsky-state.md`,
+    is a sufficient special case only when `M` has the homotopy type of a finite CW complex. The node's own
+    hypothesis, `π_1(M)` of type `F_n`, is the right one.
+
+**Item 2: correct.**
+- *Hyperbolicity.* For PCF maps, "every cycle of `P_f` contains a critical point" is equivalent to hyperbolicity:
+  every critical orbit lands in a superattracting cycle.
+- *The space.* Removing equipotential discs around `P_f` gives a compact planar surface `M` with `|P_f| ≥ 2`
+  boundary circles. `M` contains no critical value, so `f : f^{-1}(M) → M` is a degree-`d` covering, and
+  `f^{-1}(M) ⊂ M`.
+- *The group.* `π_1(M)` is free of rank `|P_f| − 1`, hence of type `F_∞`.
+- *The example.* `f(z) = z² − 1/(16z²)`, rechecked by hand.
+  - Its critical points are `c⁴ = −1/16`, and `0, ∞`.
+  - The orbits are `c ↦ ±i/2 ↦ 0 ↦ ∞ ↦ ∞`.
+  - So `P_f = {±i/2, 0, ∞}` and `π_1(M) = F_3`.
+  - The Sierpiński-carpet Julia set is recalled (McMullen family), not rechecked.
+- *Novelty.* "Not finitely ramified, hence not bounded automata" rests on the Bondarenko–Nekrashevych
+  characterization, recalled through BHM. It is now subsumed by `pcf-rational-nekrashevych-groups-are-f-infinity`.
+
+**Verdict: PASS.**
