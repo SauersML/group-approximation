@@ -4,6 +4,9 @@ id: baum-connes-counterexample-group-exists
 kind: claim
 title: Some countable group violates the Baum--Connes conjecture with trivial coefficients
 root: true
+artifacts:
+  - research/artifacts/bc-nonhyperlinearity-integration-2026-09-20.md
+  - research/artifacts/bc-nonhyperlinearity-validation-2026-09-20.json
 distinct_from:
   hyperbolic-bcc-finite-wreath-products: that is an established positive theorem, Baum--Connes with coefficients for hyperbolic groups after finite wreath products; this asks for a group whose reduced assembly map with trivial coefficients is not an isomorphism.
 ---
@@ -25,6 +28,40 @@ coefficients. Literature context, not imported here:
 - the version with coefficients fails for Gromov monster groups containing
   expanders (Higson--Lafforgue--Skandalis, GAFA 2002);
 - it is open for `SL_3(Z)`.
+
+## September 20 integration: deductions and exact open interfaces
+
+The [report integration ledger](artifacts/bc-nonhyperlinearity-integration-2026-09-20.md)
+records proofs, dependencies and source checks. **This root remains OPEN:**
+no ordinary reduced assembly kernel or cokernel witness is supplied.
+
+- **Rips double excluded as a negative candidate.**
+  `rips-doubles-satisfy-bc-with-coefficients` applies independently of
+  nonhyperlinearity. With the native strict Leavitt pair and the named
+  Liu–Thom/Khanh inputs, the very same finitely presented torsion-free
+  double has cd_Z<=3, is nonhyperlinear, and satisfies coefficient assembly
+  (`fp-torsion-free-nonhyperlinear-bcc-group-exists`).
+- **Product traces close the new Haar-detector proposal.**
+  `bernoulli-product-traces-kill-rank-invisible-k0` and locality give a
+  finite cylinder trace formula. For infinite torsion-free G,
+  `tau_(C_p wr G)(K_0)=tau_G(K_0)+Z[1/p]`. This is not a K-theory
+  vanishing result.
+- **Exact Bernoulli remainder.** `bernoulli-assembly-defects-split-into-host-and-tail`
+  identifies the additional ordinary cokernels with K_0^inv of the
+  punctured-shift crossed product and its K_1. Finite ranks, independent
+  product traces, and (under the stated host hypotheses) CND restriction
+  do not detect these possible classes. The HLS lift under (M) is already
+  ruled out; no nonzero surviving class is known here.
+- **Module route still needs a class.** An actual middle-term K-theory
+  defect for a dual module quotient suffices. Nonexactness or an algebra
+  kernel alone does not supply it.
+- **Spectral route still needs a reduced projection.** A genuine spectral
+  gap and trace outside the finite-subgroup ring must occur together.
+  Algebraic idempotents and good-subgroup-supported operators remain excluded.
+- **Exact-completion scope repaired.** Exact groups have agreement of
+  the two completions. This excludes exact groups only as witnesses to
+  failure of that agreement; it does not establish ordinary assembly for
+  every exact group (`bgw-trivial-coefficient-agreement-is-open`).
 
 **Test hosts in this graph.**
 - The binary Leavitt unit group `L^x = L_(F_2)(1,2)^x`: finitely presented,
@@ -94,8 +131,9 @@ Property (T) closes the Higson--Kasparov route for both.
   - Its trace is the limit, over large primes `p'`, of the eigenvalue fractions
     of `a` in the congruence quotients `G/N_(p')` below the gap
     (`bc-kun-thom-gap-label-is-congruence-eigenvalue-limit`, established).
-    That claim is a reduction only. The artifact's Section 4 display carries an
-    extra factor `1/n`.
+    That claim is a reduction only. The artifact's Section 4 display was corrected
+    on 2026-09-20: the unnormalized matrix pairing divides the full eigenvalue
+    count by the quotient order alone, with no extra factor `1/n`.
   - A refutation needs this limit to leave `Z[1/P]`. Nothing in the graph
     controls such limits.
 - **Supports inside a-T-menable subgroups.** Dead.
@@ -167,4 +205,5 @@ Property (T) closes the Higson--Kasparov route for both.
     (`hls-ghost-class-never-lifts-to-the-bernoulli-full-shift`) then makes it invertible at `x_n` for large `n`.
   - Forced property for any surviving gapped witness: kernels at the marked expanders are eventually zero, or localized
     with diagonal bounded below and seen by `∂Y ⊆ T_cnd`, where Baum--Connes holds. A Haar-trace defect needs a
-    rank-invisible class instead.
+    rank-invisible virtual class, but the September 20 product-trace theorem
+    rules out Haar detection of that remainder too.

@@ -133,12 +133,23 @@ C*-algebras that are not quotients of `C*_r G`. Their spectral projections are n
   - The gap has `mu_a`-measure 0, so the quotient mass of the gap tends to 0, and
 
     ```text
-    tau(chi(a)) = lim_(p') #{eigenvalues of pi_(p')(a) below c} / (n [G : N_(p')]).
+    tau(chi(a)) = lim_(p') #{eigenvalues of pi_(p')(a) below c} / [G : N_(p')].
     ```
 
+  - **Normalization corrected 2026-09-20.** Count eigenvalues with multiplicity
+    in the full `n [G:N_(p')]` dimensional matrix and divide by the quotient
+    order alone. This is the unnormalized matrix trace used in K-theory;
+    dividing also by n would give `tau/n` (and send the matrix identity to 1
+    instead of n). The measures have total mass n and a common bounded
+    spectral support from the algebraic coefficient norm bound.
   - For `l` outside `P`, Lemma B keeps the denominators coprime to `l` along a subsequence.
 - **What a refutation needs.** The limit must leave `Z[1/P]`: it must be irrational, or have an
   `l`-adic defect that no single finite quotient shows.
 - **No mechanism yet.** Nothing in the graph controls such limits for a gapped element. The finite
   quotients are not tempered: they contain the trivial representation and other non-tempered
   representations, whose eigenvalues may sit in the gap with vanishing weight.
+
+Prime avoidance in the approximating denominators does not constrain a
+real limit to the localization ring: it is not closed in the real
+topology. An actual reduced spectral gap and a limiting trace outside
+that ring are both still required.

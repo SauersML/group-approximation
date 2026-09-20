@@ -40,7 +40,15 @@ Multiplication uses e+set+s^2et^2+s^3t^3=1 (a telescoping sum) and te=es=0. For 
 u x_ij(r) u^-1=x_ij(srt).
 ```
 
-Thus uLu^-1<=L. Define
+Thus uLu^-1<=L, and the inclusion is strict. For A in EL_3(R), the
+upper-left block of u diag(A,1) u^-1 is entrywise sAt+eI_3. Its
+off-diagonal entries lie in sRt. But e is not in sRt: if e=srt,
+multiplying by t on the left and s on the right gives r=tes=0,
+contradicting e!=0. Hence x_12(e) lies in L but not in uLu^-1.
+This uses the actual block formula, not an inverse for s. The named
+claim is `leavitt-native-strict-kazhdan-compression-pair`.
+
+Define
 
 ```
 k_+=diag(I_3,1+a t^3),   k_-=diag(I_3,1+s^3 b).
@@ -91,7 +99,22 @@ pi(x_13(e))=pi([x_12(e),x_23(1)])=1.
 
 But x_13(e)!=1 because e!=0. An injective matrix-ultraproduct homomorphism is impossible. In particular no canonical-trace model exists, and H, hence R^x, is not hyperlinear.
 
-If one additionally uses the separately established simplicity of H, every such homomorphism is trivial: its kernel is normal and contains x_13(e). Simplicity is not needed for the nonhyperlinearity statement above.
+In fact every such homomorphism is trivial without a simplicity input.
+Its normal kernel contains x_13(e). Since be=b and ba=1, it contains
+
+```
+[x_41(b),x_13(e)]=x_43(b),
+[x_43(b),x_32(a)]=x_42(1),
+[x_14(r),x_42(1)]=x_12(r)  for every r in R.
+```
+
+Elementary permutation conjugations carry this to all root subgroups;
+they generate H. This proves the existing claim
+`binary-leavitt-tracial-ultraproduct-images-are-trivial` through the
+new native route `leavitt-trivial-images-via-native-commutators`.
+It is the supplied September 20 report's explicit normal-generation
+argument, consistent with the separate full-defect-ring proof; it
+claims neither an independent analytic theorem nor an assembly defect.
 
 ## 4. What this improves, and what it does not
 

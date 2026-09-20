@@ -147,7 +147,7 @@ dependencies, not conclusions of Liu's paper.
 
 **A shorter internality-only proof is now wired.** The [direct bounded-Poincare route](../leavitt-nonhyperlinear-from-internal-commutants.md) transfers the quotient inequality to uniform coordinate slack, then selects one physical-weight component with small gap, relation and trace defects. This obtains the scalar full commutant directly. Applying internality to the native subgroup gives the forward and reverse expectation defects directly, so the existing finite central-height contradiction applies. It removes heat, SOS certificates, time schedules, and the separate Proposition 3.1 interface from the downstream argument. [Independent cross-review](liu-leavitt-direct-internality-cross-review-2026-09-20.md) checked those replacements.
 
-**A shorter group-side proof uses normalization.** The [native compressor route](../leavitt-nonhyperlinear-from-compressor-normalization.md) verifies H=<L,u,k_+,k_-> with three actual compressors. Normalization kills x_13(e), a nonidentity elementary matrix. It needs no scalar-commutant selection, character classification, simplicity, finite presentation, or central-height lemma. With simplicity added, every tracial-matrix-ultraproduct homomorphism of the F_2 unit group is trivial.
+**A shorter group-side proof uses normalization.** The [native compressor route](../leavitt-nonhyperlinear-from-compressor-normalization.md) verifies H=<L,u,k_+,k_-> with three actual compressors. Normalization kills x_13(e), a nonidentity elementary matrix. It needs no scalar-commutant selection, character classification, simplicity, finite presentation, or central-height lemma. The explicit normal-generation chain now kills every tracial-matrix-ultraproduct image of the F_2 unit group without simplicity; see `leavitt-trivial-images-via-native-commutators`.
 
 The [every-field extension](../binary-leavitt-units-over-any-field-are-not-hyperlinear.md) descends the required elementary factorizations to a finitely generated subring and uses k_+ to kill x_24(a). It reaches characteristic zero and uncountable fields through a countable finitely generated witness; it does not assert property (T), simplicity or finite presentation for each full unit group.
 
@@ -305,3 +305,19 @@ The reduced-C-star obstruction is used through the positive node's source-owned
 edge, so its detached label is not evidence that the obstruction is unused.
 No false implication from reduced non-MF alone to nonhyperlinearity was added
 merely to alter its layout or reachability score.
+
+## Baum–Connes separation and product-trace integration (2026-09-20)
+
+The [Baum–Connes integration ledger](bc-nonhyperlinearity-integration-2026-09-20.md)
+wires the supplied report into the existing research graph. The native
+four-by-four strict pair now feeds the torsion-free Rips double directly.
+The same double satisfies Baum–Connes with coefficients through hyperbolic
+vertices and Oyono-Oyono's tree theorem, independently of normalization.
+Thus the combined [nonhyperlinear BCC witness](../fp-torsion-free-nonhyperlinear-bcc-group-exists.md)
+separates approximation failure from assembly failure.
+
+The [product-trace proof](bc-bernoulli-product-traces-2026-09-20.md)
+annihilates the full-shift rank-invisible K_0 remainder under every iid
+product trace and computes the prime-lamp wreath trace range from the
+host. It does not settle the virtual or odd K-theory remainder. The
+ordinary Baum–Connes counterexample root remains OPEN.

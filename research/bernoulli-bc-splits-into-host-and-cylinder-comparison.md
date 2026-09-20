@@ -6,7 +6,7 @@ title: Baum--Connes at a Bernoulli coefficient is the host's trivial-coefficient
 distinct_from:
   monster-bc-failure-at-measured-coefficient-is-the-module-crux: that poses question (Q), failure of Baum--Connes at a measured dual-module coefficient; this proves that at the Bernoulli coefficient (Q) splits into the host's own trivial-coefficient conjecture and one explicit comparison map on reduced K-theory.
   amenable-kernel-bc-transfer-and-ktop-half-exactness: that transfers Baum--Connes along amenable kernels; this computes the topological side of a Bernoulli coefficient for every host and isolates what remains on the reduced side.
-  lueck-surjective-assembly-traces-lie-in-lambda-g: that imports Lück's trace theorem; this applies it to F_p wr_Z G, where the Haar trace becomes a detector for (Q) with target ring Z[1/p].
+  lueck-surjective-assembly-traces-lie-in-lambda-g: that imports Lück's trace theorem; this splits host and punctured-shift assembly; a trace outside Z[1/p] is sufficient, but for the torsion-free regular full shift its trace source is now confined to the host.
 ---
 
 **ESTABLISHED** by `bernoulli-bc-splits-into-host-and-cylinder-comparison-proof`. Full statement and
@@ -23,7 +23,9 @@ proofs: `research/artifacts/bc-bernoulli-cylinder-comparison-2026-09-13.md`.
 2. **Going-down, for every `G`.** There is a weak K-equivalence `T ∈ KK^G(c_0(S), I_1)`. So
    `K^top_*(G; I_1) ≅ ⊕_([s] ∈ G\S) K_*(C*(G_s))`.
 3. **Reduction.** `mu_(G, I_1)` is surjective (resp. injective) iff `T_r = K_*(T ⋊_r G)` is.
-4. **Cylinder form (torsion-free `G`).** `T` may be taken to send `delta_s ↦ 1_(C_s)`. Then `mu_(G, I_1)` is an
+4. **Cylinder form (torsion-free `G`).** Represent `T` by the stabilized equivariant *-homomorphism
+   `delta_s ↦ e_ss ⊗ 1_(C_s)` into `K(l^2 S) ⊗ I_1`, with the permutation action on the compact factor.
+   The induced K-class is `[1_(C_s)]`; the overlapping cylinders alone do not define a *-homomorphism. Then `mu_(G, I_1)` is an
    isomorphism iff the cylinder classes `[1_(C_s)]`, one per orbit, form a `Z`-basis of `K_0(I_1 ⋊_r G)` and
    `K_1(I_1 ⋊_r G) = 0`.
 5. **Tail (torsion-free `G`).** For each `k >= 1`, `T_r` is an isomorphism iff its restriction
@@ -40,9 +42,12 @@ proofs: `research/artifacts/bc-bernoulli-cylinder-comparison-2026-09-13.md`.
 - A failure of `T_r` persists in `I_k ⋊_r G` for every `k`, so it is carried by configurations of unbounded support.
   The indicator configurations of a monster's embedded expanders are of this kind. The proper finite-support strata are
   always fine.
-- The Haar trace is a live detector for (Q) at this coefficient, through Lück's ring `Z[1/p]`. The crux node's
-  exclusion of traces concerns separating `ker q_*` from `im i_*` in a module triple. A failure of `T_r` whose classes
-  have traces in `Z[1/p]` is invisible to the trace.
+- **2026-09-20, regular full shift `Z=G`, torsion-free host:** every independent product trace
+  kills the rank-invisible remainder (`bernoulli-product-traces-kill-rank-invisible-k0`).
+  For infinite G the canonical wreath trace range is exactly the host range plus `Z[1/p]`
+  (`prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p`). Haar trace therefore cannot
+  detect a new cylinder defect beyond the host. This does not extend the theorem to every
+  permutational index set Z or to correlated invariant measures.
 
 **Model tests.**
 - `n = 0` gives `S = ∅`, `I_1 = 0` and `mu_(G, C(X)) = mu_G`.
@@ -55,3 +60,7 @@ proofs: `research/artifacts/bc-bernoulli-cylinder-comparison-2026-09-13.md`.
   `research/artifacts/bc-bernoulli-rank-functionals-torsion-2026-09-13.md`.
 - The extension to permutational coefficients `C((Z/p)^(G/H))` with `H` infinite amenable, as in the module-triple
   survivors, is not written.
+
+The exact kernels and cokernels for torsion-free regular hosts are recorded in
+`bernoulli-assembly-defects-split-into-host-and-tail`; the two extra analytic
+groups remain unresolved.

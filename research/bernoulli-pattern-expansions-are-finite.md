@@ -21,7 +21,7 @@ distinct_from:
    with `d(u, v) >= d_0`, and any symbol changes at `u` and `v`.
 2. **Finite expansions.** For each `y ∈ K_0(I_1 ⋊_r G)`, `n(y)` vanishes on patterns of diameter at least `d_0(y)`. So
    it is supported on finitely many orbits, and `r_x(y) = r_x(T_r(n(y)))` for every `x`.
-3. **No shape (a).** Over every countable torsion-free host, `T_r` fails to be surjective iff there is a nonzero
+3. **No shape (a).** Over every countable torsion-free host, the **graded** cylinder comparison fails to be surjective iff there is a nonzero
    rank-invisible tail class (shape (b)) or `K_1(I_1 ⋊_r G) ≠ 0` (shape (c)).
 4. **Gapped local operators.** A self-adjoint configuration-local operator with a spectral gap uniform over all
    finite-support configurations has, above the gap, ranks that form a finite combination of pattern counts.
@@ -50,3 +50,11 @@ representations.
 - Torsion-free hosts, with `Z = G`.
 - The estimates are the standard Combes--Thomas bound and integrality of relative traces of projections, proved inline.
 - Bounded novelty check: not in the predecessor artifacts or CEKN Sections 1--2. No web search was done.
+
+**Downstream deductions, 2026-09-20.** The finite coefficients define an
+integer retraction N of T, with kernel exactly the rank-invisible K_0
+subgroup. See `bernoulli-assembly-defects-split-into-host-and-tail` for
+the ordinary wreath kernels and cokernels. Every independent product
+trace of that subgroup vanishes, and all product traces are finite
+cylinder formulas (`bernoulli-product-traces-have-finite-cylinder-form`).
+Neither conclusion proves that the virtual subgroup or K_1 vanishes.

@@ -38,14 +38,12 @@ distinct_from:
   group ring `C[F_p wr_G G]`, for any torsion-free host (large-girth monsters included), has trace outside `Z[1/p]`
   only if its augmentation already has a non-`Z[1/p]` trace over `C[G]`. That includes every spectral projection of a
   finite-spectrum self-adjoint element of `M_k(C[H])`.
-- **Forced property of a surviving Bernoulli trace witness.** It is a class of `K_0(C*_r H)` not in the image of
-  `K_0(C[H]) + K_0(C*_r G)`, for instance a spectral projection of a gapped group-ring element with infinite spectrum.
-  Its diagonal `tr E(P)` is not a window function, and the proof breaks exactly at the window approximation: orbit sums
-  of the approximation error `Σ_h |F - F_W|(h·x)` need not tend to `0` when the decay of `F - F_W` in `W` is slower than
-  the growth of `G`. This is a diagnosis, not a theorem.
-- Combined with `bernoulli-pattern-expansions-are-finite` (no shape (a)) and Theorem K of
-  `delocalized-gapped-bernoulli-kernels-vanish-at-marked-expanders`, a Haar-trace refutation of trivial-coefficient
-  Baum--Connes for `F_p wr_G G` needs a non-algebraic class whose trace differs from that of its own rank expansion.
+- **September 20 extension to all analytic classes, for iid product measures.**
+  `bernoulli-product-traces-have-finite-cylinder-form` proves the same finite
+  trace formula for all reduced K-classes. In the regular full shift a new
+  Haar-trace witness beyond the host is excluded, including nonalgebraic
+  spectral projections. The algebraic theorem above still has the distinct
+  advantage of covering every invariant measure, including correlated ones.
 
 **Model tests.**
 - Cylinder `1_(C_s)`: `F = 1_(C_s)`, `n = δ_([s])`, trace `p^(-|F_s|)`.
@@ -61,3 +59,11 @@ distinct_from:
   is `Tr(P - Q)`.
 - Bounded novelty check: the graph has the Kun--Thom congruence argument only; Farrell--Linnell (Whitehead groups and
   the Bass conjecture) not re-read for lamplighters over arbitrary hosts. No web search.
+
+**2026-09-20 superseding trace boundary.** The stronger statement
+`bernoulli-product-traces-kill-rank-invisible-k0` excludes a Haar-trace
+defect even on rank-invisible virtual classes of the regular full shift.
+`prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p` computes the
+entire trace range for infinite torsion-free hosts. Earlier descriptions
+of a rank-invisible Haar candidate are historical; such a detector is
+now ruled out. The narrower theorem in this node remains valid.

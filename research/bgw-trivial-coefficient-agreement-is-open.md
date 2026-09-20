@@ -24,14 +24,19 @@ for every discrete group `G`. The published claim that it always does
 authors' erratum withdraws Proposition 4.4 and Corollaries 4.5--4.8.
 
 **Consequences for `baum-connes-counterexample-group-exists`.**
-- For exact `G` the two group algebras agree, so a counterexample group must be
-  non-exact, as the Higson--Lafforgue--Skandalis monsters are.
+- For exact `G` the two group algebras agree. Thus a counterexample to
+  **agreement of these completions** must be nonexact. This does not prove
+  that every ordinary Baum–Connes counterexample must be nonexact:
+  equality of targets establishes neither assembly isomorphism.
+  (Scope correction, supplied report, 2026-09-20.)
 - The statement "no counterexample to the reformulated conjecture is known"
   does not bear on the classical conjecture with trivial coefficients.
 - `mu_r = q_* ∘ mu_E` with `q : C*_(E_M)(G) -> C*_r(G)` the canonical quotient.
   So if `q_*` is not an isomorphism in K-theory, then the reformulated or the
   classical conjecture fails at trivial coefficients for `G`. No mechanism is
-  known that decides either `q = id` or `q_*` for a non-exact group.
+  known here that decides either `q = id` or `q_*` for a non-exact group.
+  A `q_*` defect selects ordinary failure if `mu_E` is additionally known
+  to be an isomorphism for that group; that extra theorem is essential.
 - **Surviving positive fact** (erratum, Lemma A.1, due to Ozawa). If a
   crossed-product functor has the ideal property, which the reduced one has,
   then every short exact sequence `0 -> I -> A -> ℂ -> 0` of `G`-algebras, with
@@ -44,3 +49,10 @@ authors' erratum withdraws Proposition 4.4 and Corollaries 4.5--4.8.
 
 **Bounded literature check.** One web search (2026-09-12) for a later
 resolution found only the erratum.
+
+**2026-09-20 recheck.** Appendix A of
+[arXiv:1804.02725v3](https://arxiv.org/pdf/1804.02725v3) still explicitly
+leaves this completion comparison open. This bounded check is not a
+claim that every subsequent manuscript has been searched. The separate
+module K-inexactness route requires a non-K-exact host; that is a
+restriction on its mechanism, not on every ordinary counterexample.

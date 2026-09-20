@@ -14,8 +14,8 @@ hyperlinear and satisfies `cd_Z(P)<=3`.
 
 One witness is the double `P=G *_H G`, where G is the Ollivier–Wise
 torsion-free graphical Rips cover of `L_(F_2)(1,2)^x` and H is the
-preimage of the nine-leaf configuration's infranormal nonnormal
-Kazhdan subgroup. The cover has `cd_Z(G)<=2`; H is finitely generated,
+preimage of the native four-by-four strict Kazhdan compression
+subgroup diag(EL_3(R),1). The cover has `cd_Z(G)<=2`; H is finitely generated,
 which suffices for finite presentation of the double. No exact
 dimension-three assertion is included.
 
@@ -29,3 +29,8 @@ Wise, [Theorem 1.1 and Section 2.1](https://arxiv.org/pdf/math/0409203v1).
 The artifact and proof route retain the existing Leavitt algebra and
 finite-presentation inputs explicitly. No independent analytic
 discovery or novelty claim is made.
+
+The same witness satisfies Baum–Connes with coefficients, by
+`fp-torsion-free-nonhyperlinear-bcc-group-exists`. The assembly proof is
+independent of the nonhyperlinearity input. Thus this double is excluded
+as a candidate for the ordinary Baum–Connes counterexample root.

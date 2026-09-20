@@ -48,3 +48,12 @@ finitely generated.
     needs a non-exact `G`.
 - **Which failure occurs.** The theorem does not say. Nothing in the graph proves injectivity
   of assembly for the quotient groups.
+
+**Integration boundary, 2026-09-20.** The sufficient implication is
+complete; `some-nonexact-group-has-a-k-inexact-module-triple` is still
+the missing existential input. It requires an actual middle-term
+K-class y with q_*(y)=0 and y outside im i_*, not merely a nonzero
+C*-kernel. The passage to ordinary assembly uses amenable-kernel
+partial assembly with its finite-subgroup preimage hypotheses; it
+does not assert permanence from a positive normal subgroup alone.
+See the [integration ledger](artifacts/bc-nonhyperlinearity-integration-2026-09-20.md).

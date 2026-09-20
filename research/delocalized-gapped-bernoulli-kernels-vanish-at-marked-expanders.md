@@ -54,11 +54,12 @@ By Theorem K (b) and (a), no such `a` exists. Its kernel at `x_n` has diagonal `
   its kernel has diagonal bounded below and is seen by the boundary `∂Y \ {0} ⊆ T_cnd`. There Baum--Connes holds
   (`cnd-support-shift-bc-and-k-amenability`), and ranks are local finite pattern combinations
   (`bernoulli-pattern-expansions-are-finite`).
-- **Where a trace defect must live.**
-  - `bernoulli-pattern-expansions-are-finite`, item 2, makes `n(y)` finite. So `τ(T_r(n(y))) ∈ Z[1/p]`, and a
-    Haar-trace defect in the ideal part `C_0(X^0) ⋊_r G` needs a rank-invisible class, shape (b) of
-    `bernoulli-assembly-injective-beyond-the-host`, with trace outside `Z[1/p]`.
-  - Theorem K adds that isolated expander clusters cannot supply that trace through a gapped kernel.
+- **The remaining Haar proposal is now excluded (2026-09-20).**
+  Locality makes the cylinder trace lie in `Z[1/p]`; the new
+  `bernoulli-product-traces-kill-rank-invisible-k0` annihilates the
+  complementary virtual class. Thus no Haar-trace defect remains in the
+  punctured regular full shift. Theorem K retains its separate spectral
+  no-go statement on marked expanders, without deciding virtual or odd K-theory.
 
 **Why it holds.**
 - `E(P)` is continuous on `X`.
@@ -84,3 +85,11 @@ By Theorem K (b) and (a), no such `a` exists. Its kernel at `x_n` has diagonal `
   full Bernoulli crossed product.
 - It says nothing about rank-invisible classes, which have no kernel at `x_n`, nor about `K_1`. Those are shapes (b) and
   (c) of `bernoulli-assembly-injective-beyond-the-host`, and they stay open.
+
+**2026-09-20 superseding trace boundary.** The stronger statement
+`bernoulli-product-traces-kill-rank-invisible-k0` excludes a Haar-trace
+defect even on rank-invisible virtual classes of the regular full shift.
+`prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p` computes the
+entire trace range for infinite torsion-free hosts. Earlier descriptions
+of a rank-invisible Haar candidate are historical; such a detector is
+now ruled out. The narrower theorem in this node remains valid.

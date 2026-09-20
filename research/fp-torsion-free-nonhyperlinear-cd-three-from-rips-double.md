@@ -7,9 +7,7 @@ target: fp-torsion-free-nonhyperlinear-group-of-cd-at-most-three
 requires:
   - ollivier-wise-kazhdan-rips-construction
   - leavitt-unit-group-finitely-presented
-  - leavitt-unit-group-carries-nontrivial-rigid-defect
-  - openai-nine-leaf-leavitt-configuration
-  - leavitt-gl-equals-el-and-perfect-unit-group
+  - leavitt-native-strict-kazhdan-compression-pair
   - kazhdan-compression-pairs-normalize-all-tracial-models
 artifacts:
   - research/artifacts/torsion-free-nonhyperlinear-rips-double-2026-09-20.md
@@ -29,14 +27,13 @@ Theorem 1.1 and Section 2.1](https://arxiv.org/pdf/math/0409203v1).
 The existing Leavitt and finite-presentation prerequisites retain their
 own original credits; no new analytic mechanism is asserted here.
 
-The complete nine-leaf code and GL_9=EL_9 identify the ambient Leavitt
-pair group with the whole finitely presented unit group Q. Apply
+The native four-by-four strict compression pair identifies its ambient
+EL_4(R) with the whole finitely presented unit group Q=R^x. Apply
 Ollivier–Wise to get `1->N->G->Q->1` with G finitely presented,
 torsion-free, `cd_Z G<=2`, and N Kazhdan. The preimage H of the
 Leavitt subgroup is Kazhdan, as is G, by extension stability of
-property (T). Therefore H is finitely generated. The two compressors
-lift, generate G together with H, and preserve the strict nonnormal
-infranormal configuration.
+property (T). Therefore H is finitely generated. The three native compressors
+lift, generate G together with H, and preserve strict compression.
 
 In `P=G *_H G`, choose a strict compressor t and `h in H\tHt^-1`.
 For any tracial matrix-ultraproduct homomorphism sigma, the normalization
@@ -59,3 +56,8 @@ gives `cd_Z H<=2`, and the tree's induced-module exact sequence gives
 arguments without assuming that H is finitely presented, without
 inferring anything from a nonhyperlinear quotient alone, and without
 claiming the lower bound `cd_Z P>=3`.
+
+The same double satisfies Baum–Connes with coefficients by
+`rips-doubles-satisfy-bc-with-coefficients`. The combined witness is
+`fp-torsion-free-nonhyperlinear-bcc-group-exists`; its positive assembly
+proof does not depend on the normalization premise.

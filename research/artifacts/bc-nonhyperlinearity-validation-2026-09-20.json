@@ -1,0 +1,193 @@
+{
+  "date": "2026-09-20",
+  "baseline_commit": "3197a9dbd456369b953515d516c3fb594b75a41b",
+  "scope": "Exact tracked main graph in memory plus the explicitly listed integration paths; unrelated working changes excluded. Historical source reads do not modify files.",
+  "baseline_errors": [],
+  "candidate_errors": [],
+  "duplicates": [],
+  "status_mismatches": [],
+  "missing_links": [],
+  "positive_assembly_analytic_dependency_overlap": [],
+  "statuses": {
+    "baum-connes-counterexample-group-exists": "OPEN",
+    "some-nonexact-group-has-a-k-inexact-module-triple": "OPEN",
+    "bernoulli-cylinder-comparison-fails-for-some-group": "OPEN",
+    "hls-ghost-class-lifts-to-the-bernoulli-full-shift": "REFUTED",
+    "leavitt-native-strict-kazhdan-compression-pair": "ESTABLISHED",
+    "leavitt-native-strict-compression-proof": "COMPLETE",
+    "leavitt-trivial-images-via-native-commutators": "COMPLETE",
+    "bcc-passes-from-tree-vertex-stabilizers": "ESTABLISHED",
+    "bcc-tree-vertex-stabilizers-citation": "COMPLETE",
+    "rips-doubles-satisfy-bc-with-coefficients": "ESTABLISHED",
+    "rips-doubles-bcc-via-tree-action": "COMPLETE",
+    "fp-torsion-free-nonhyperlinear-bcc-group-exists": "ESTABLISHED",
+    "nonhyperlinear-bcc-group-via-native-rips-double": "COMPLETE",
+    "bernoulli-product-traces-kill-rank-invisible-k0": "ESTABLISHED",
+    "bernoulli-product-trace-invisibility-proof": "COMPLETE",
+    "bernoulli-product-traces-have-finite-cylinder-form": "ESTABLISHED",
+    "bernoulli-finite-product-trace-formula-proof": "COMPLETE",
+    "prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p": "ESTABLISHED",
+    "prime-lamp-wreath-trace-range-proof": "COMPLETE",
+    "bernoulli-assembly-defects-split-into-host-and-tail": "ESTABLISHED",
+    "bernoulli-host-and-tail-defect-splitting-proof": "COMPLETE",
+    "fp-nonhyperlinear-cd-three-from-bcc-witness": "COMPLETE",
+    "fp-torsion-free-nonhyperlinear-cd-three-from-rips-double": "COMPLETE",
+    "binary-leavitt-tracial-ultraproduct-images-are-trivial": "ESTABLISHED"
+  },
+  "changed_graph_ids": [
+    "baum-connes-counterexample-group-exists",
+    "bgw-trivial-coefficient-agreement-is-open",
+    "fp-torsion-free-nonhyperlinear-cd-three-from-rips-double",
+    "fp-torsion-free-nonhyperlinear-group-of-cd-at-most-three",
+    "bernoulli-bc-splits-into-host-and-cylinder-comparison",
+    "bernoulli-cylinder-comparison-fails-for-some-group",
+    "bernoulli-pattern-expansions-are-finite",
+    "bernoulli-algebraic-idempotent-traces-reduce-to-the-host",
+    "delocalized-gapped-bernoulli-kernels-vanish-at-marked-expanders",
+    "non-hyperlinear-group",
+    "binary-leavitt-tracial-ultraproduct-images-are-trivial",
+    "k-inexact-module-triple-refutes-trivial-coefficient-bc",
+    "leavitt-native-strict-kazhdan-compression-pair",
+    "leavitt-native-strict-compression-proof",
+    "leavitt-trivial-images-via-native-commutators",
+    "bcc-passes-from-tree-vertex-stabilizers",
+    "bcc-tree-vertex-stabilizers-citation",
+    "rips-doubles-satisfy-bc-with-coefficients",
+    "rips-doubles-bcc-via-tree-action",
+    "fp-torsion-free-nonhyperlinear-bcc-group-exists",
+    "nonhyperlinear-bcc-group-via-native-rips-double",
+    "bernoulli-product-traces-kill-rank-invisible-k0",
+    "bernoulli-product-trace-invisibility-proof",
+    "bernoulli-product-traces-have-finite-cylinder-form",
+    "bernoulli-finite-product-trace-formula-proof",
+    "prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p",
+    "prime-lamp-wreath-trace-range-proof",
+    "bernoulli-assembly-defects-split-into-host-and-tail",
+    "bernoulli-host-and-tail-defect-splitting-proof",
+    "bc-kun-thom-gap-label-is-congruence-eigenvalue-limit",
+    "fp-nonhyperlinear-cd-three-from-bcc-witness"
+  ],
+  "new_claims": 8,
+  "new_routes": 10,
+  "paths": [
+    "research/baum-connes-counterexample-group-exists.md",
+    "research/bgw-trivial-coefficient-agreement-is-open.md",
+    "research/artifacts/bc-kun-thom-trace-test-2026-09-12.md",
+    "research/artifacts/leavitt-direct-normalization-obstruction-2026-09-20.md",
+    "research/fp-torsion-free-nonhyperlinear-cd-three-from-rips-double.md",
+    "research/fp-torsion-free-nonhyperlinear-group-of-cd-at-most-three.md",
+    "research/artifacts/torsion-free-nonhyperlinear-rips-double-2026-09-20.md",
+    "research/bernoulli-bc-splits-into-host-and-cylinder-comparison.md",
+    "research/bernoulli-cylinder-comparison-fails-for-some-group.md",
+    "research/bernoulli-pattern-expansions-are-finite.md",
+    "research/bernoulli-algebraic-idempotent-traces-reduce-to-the-host.md",
+    "research/delocalized-gapped-bernoulli-kernels-vanish-at-marked-expanders.md",
+    "research/artifacts/liu-cairn-integration-2026-09-20.md",
+    "research/non-hyperlinear-group.md",
+    "research/binary-leavitt-tracial-ultraproduct-images-are-trivial.md",
+    "research/k-inexact-module-triple-refutes-trivial-coefficient-bc.md",
+    "research/leavitt-native-strict-kazhdan-compression-pair.md",
+    "research/leavitt-native-strict-compression-proof.md",
+    "research/leavitt-trivial-images-via-native-commutators.md",
+    "research/bcc-passes-from-tree-vertex-stabilizers.md",
+    "research/bcc-tree-vertex-stabilizers-citation.md",
+    "research/rips-doubles-satisfy-bc-with-coefficients.md",
+    "research/rips-doubles-bcc-via-tree-action.md",
+    "research/fp-torsion-free-nonhyperlinear-bcc-group-exists.md",
+    "research/nonhyperlinear-bcc-group-via-native-rips-double.md",
+    "research/bernoulli-product-traces-kill-rank-invisible-k0.md",
+    "research/bernoulli-product-trace-invisibility-proof.md",
+    "research/bernoulli-product-traces-have-finite-cylinder-form.md",
+    "research/bernoulli-finite-product-trace-formula-proof.md",
+    "research/prime-lamp-wreath-trace-range-is-host-plus-z-inverted-p.md",
+    "research/prime-lamp-wreath-trace-range-proof.md",
+    "research/bernoulli-assembly-defects-split-into-host-and-tail.md",
+    "research/bernoulli-host-and-tail-defect-splitting-proof.md",
+    "research/artifacts/bc-bernoulli-product-traces-2026-09-20.md",
+    "research/artifacts/bc-nonhyperlinearity-integration-2026-09-20.md",
+    "research/bc-kun-thom-gap-label-is-congruence-eigenvalue-limit.md",
+    "research/fp-nonhyperlinear-cd-three-from-bcc-witness.md",
+    "research/artifacts/bc-nonhyperlinearity-validation-2026-09-20.json",
+    "research/FRONTIER.md"
+  ],
+  "limits": "Written mathematical arguments and imported theorems; no Lean formalization, independent referee verification, or whole-corpus proof audit.",
+  "passed": true,
+  "standard_cli": {
+    "bin/cairn check --changed --json": {
+      "exit_code": 4,
+      "findings": [
+        {
+          "severity": "error",
+          "rule": "id",
+          "message": "research/affine-nilpotent-rover-groups-have-f-infinity-rational-stabilizers.md: missing or malformed id (want a kebab-case slug), got 'affine-nilpotent-rover-groups-have-f-infinity-rational-stabilizers'"
+        },
+        {
+          "severity": "error",
+          "rule": "id",
+          "message": "research/polynomial-germ-clopen-actions-have-required-orbits-and-stabilizers.md: missing or malformed id (want a kebab-case slug), got 'polynomial-germ-clopen-actions-have-required-orbits-and-stabilizers'"
+        },
+        {
+          "severity": "error",
+          "rule": "id",
+          "message": "research/polynomially-twisted-unitriangular-lamps-have-simple-f-infinity-envelopes.md: missing or malformed id (want a kebab-case slug), got 'polynomially-twisted-unitriangular-lamps-have-simple-f-infinity-envelopes'"
+        },
+        {
+          "severity": "error",
+          "rule": "id",
+          "message": "research/unsolvable-relative-simple-quotient-from-direct-padded-rn-witness.md: missing or malformed id (want a kebab-case slug), got 'unsolvable-relative-simple-quotient-from-direct-padded-rn-witness'"
+        },
+        {
+          "severity": "error",
+          "rule": "artifact",
+          "message": "research/global-walk-reducer-has-net-energy-gain.md: artifact not found: research/artifacts/qpcp-integration-ledger-2026-09-20.md (want a working-tree path or a <rev>:<path> pin)"
+        },
+        {
+          "severity": "error",
+          "rule": "target",
+          "message": "research/polynomial-unitriangular-envelopes-via-germ-towers.md: target must name an existing claim, got 'polynomially-twisted-unitriangular-lamps-have-simple-f-infinity-envelopes'"
+        },
+        {
+          "severity": "error",
+          "rule": "ref",
+          "message": "research/polynomial-unitriangular-envelopes-via-germ-towers.md: requires: malformed id 'polynomial-germ-clopen-actions-have-required-orbits-and-stabilizers'"
+        },
+        {
+          "severity": "error",
+          "rule": "ref",
+          "message": "research/polynomial-valuation-germ-towers-via-marked-induction.md: requires: malformed id 'affine-nilpotent-rover-groups-have-f-infinity-rational-stabilizers'"
+        },
+        {
+          "severity": "error",
+          "rule": "ref",
+          "message": "research/q-difference-lamplighter-via-polynomial-germ-envelope.md: requires: malformed id 'polynomially-twisted-unitriangular-lamps-have-simple-f-infinity-envelopes'"
+        },
+        {
+          "severity": "error",
+          "rule": "artifact",
+          "message": "research/quantum-pcp-constant-gap-local-hamiltonian.md: artifact not found: research/artifacts/qpcp-integration-ledger-2026-09-20.md (want a working-tree path or a <rev>:<path> pin)"
+        },
+        {
+          "severity": "error",
+          "rule": "artifact",
+          "message": "research/tracial-internality-does-not-supply-local-witness-control.md: artifact not found: research/artifacts/qpcp-integration-ledger-2026-09-20.md (want a working-tree path or a <rev>:<path> pin)"
+        },
+        {
+          "severity": "error",
+          "rule": "artifact",
+          "message": "research/tracial-local-witness-control-counterexamples.md: artifact not found: research/artifacts/qpcp-integration-ledger-2026-09-20.md (want a working-tree path or a <rev>:<path> pin)"
+        }
+      ]
+    },
+    "bin/cairn preview --json": {
+      "exit_code": 1,
+      "error": "incomplete Cairn baseline read at 3197a9dbd456369b953515d516c3fb594b75a41b"
+    },
+    "initial baseline check": {
+      "exit_code": 1,
+      "error": "incomplete Cairn baseline read at ea0a87652964cbad4d07cf7a6cea2bf1b6277449"
+    }
+  },
+  "candidate_validation_method": "Read the pinned tracked HEAD graph into memory with git show for dirty paths, overlay only the manifest canonical nodes, then run cairn.load_node_text, lint_nodes, Graph, duplicate_findings scoped to changed IDs, exact status assertions, relative Markdown link checks outside code, and positive-assembly dependency traversal. No historical files restored or working source files edited with Git.",
+  "frontier": "Generated from this exact candidate graph by cairn.generate_frontier_md(g, {}); no concurrent uncommitted research included.",
+  "staging_boundary": "Only integration manifest paths are included. A concurrent Quantum PCP appendix in the shared Liu guide is excluded from this commit while left in the working file."
+}

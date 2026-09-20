@@ -40,15 +40,16 @@ witness is disposed of, so a projection able to refute the trace test must be a
 gapped spectral projection of an infinite-spectrum `a`. This claim pins the only
 quantity in play, `tau(chi)`, to an explicit limit of rationals. It is a
 reduction, **not** an integrality statement: whether the limit lies in
-`Z/[1/P]` is exactly the open question recorded on
+`Z[1/P]` is exactly the open question recorded on
 `baum-connes-counterexample-group-exists`, and this claim asserts nothing about
-it. Since `tau(chi) = n · taubar(chi)`, the limit leaves `Z[1/P]` iff `tau(chi)`
-does.
+it. The assembly test uses the **unnormalized** limit `tau(chi)`. Multiplication
+by n need not preserve nonmembership in `Z[1/P]` if n has other prime
+factors; a normalized trace alone is not a K-theory obstruction.
 
-**Scope and correction.** The displayed identity uses the tracial STATE
-`taubar = tau/n`. The Section 4 display of
-`research/artifacts/bc-kun-thom-trace-test-2026-09-12.md` writes the
-right-hand fraction `#{...}/(n[G:N])` against the unnormalized `tau(x) = sum_i
-x_ii(1)`; under that convention the fraction equals `taubar(chi)`, not
-`tau(chi)`, i.e. it carries one extra factor `1/n`. The two forms above are the
-consistent statements.
+**Scope and correction (2026-09-20).** Both conventions above are explicit.
+The Section 4 display of
+`research/artifacts/bc-kun-thom-trace-test-2026-09-12.md` has now been
+corrected to the unnormalized convention: full eigenvalue count divided
+by quotient order, without the extra factor n. The original normalized
+fraction equals taubar, not tau. Prime avoidance of the finite-quotient
+denominators alone gives no restriction on their real limit.

@@ -74,11 +74,13 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
     cannot produce a witness through ranks.
   - Where it stops: a witness is invisible to every finite-support orbit representation. It is either a rank-zero class
     in `∩_k im K_0(I_k ⋊_r G)` (shape (b)) or an odd class (shape (c)).
-  - Its detector must use infinite-support configurations. One candidate is a restriction to a closed invariant subset
-    such as the expander-marking subshift. Another is the Haar trace with Lück's ring `Z[1/p]`.
-  - A sharp open sub-question: does the marking-subshift ghost class lift along
-    `I_1 ⋊_r G -> C_0(Y_A \ {0}) ⋊_r G`?
-- **HLS ghost lift (2026-09-13, `hls-ghost-lift-needs-forest-shift-failure`, established, unreviewed).**
+  - Every independent product trace now annihilates the rank-invisible virtual remainder
+    (`bernoulli-product-traces-kill-rank-invisible-k0`, 2026-09-20). Haar trace cannot
+    detect that remainder. The exact host-and-tail cokernels are
+    `bernoulli-assembly-defects-split-into-host-and-tail`.
+  - The marking-subshift HLS lift under hypothesis (M) is ruled out by the newer
+    `hls-ghost-class-never-lifts-to-the-bernoulli-full-shift`; it is not an open lift question.
+- **Historical HLS ghost-lift proposal (2026-09-13, `hls-ghost-lift-needs-forest-shift-failure`, established, unreviewed).**
   - HLS Section 7's projection is a Bernoulli coefficient on the marking subshift of isometrically embedded expanders.
     It has rank `1` at each marked expander and vanishes on the tree boundary (`hls-ghost-projection-breaks-k-exactness`).
   - Assume max-to-reduced K_0 injectivity at the tree boundary (`expander-tree-boundary-k0-max-reduced-injective`). A
@@ -86,6 +88,11 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
     witness here (route `bc-bernoulli-defect-via-hls-ghost-lift`, via `hls-ghost-class-lifts-to-the-bernoulli-full-shift`).
   - It also forces Baum--Connes surjectivity to fail at the forest coefficient
     (`forest-shift-bernoulli-comparison-is-surjective`).
-  - Where it stops: whether the ghost lifts is now a question about forest configurations. If the forest comparison is
-    surjective, the ghost never lifts.
-  - The Haar trace door (`μ(T) = μ(Ŷ) = 0`) and `K_1` stay independent.
+  - **Resolved against this lift, 2026-09-16–17:** CND-support coefficient assembly and rank locality
+    imply eventually zero marked-expander ranks for every full-shift class vanishing on the boundary.
+    The HLS class has rank one at every expander and zero boundary restriction, so cannot lift.
+    This keeps the stated isometric large-girth hypothesis (M) and the Tu/going-down imports.
+  - The remaining degree-zero virtual classes have zero finite ranks, zero CND-support restriction
+    (for finitely generated torsion-free hosts), and zero independent product traces.
+    Odd classes also have zero CND restriction. No general vanishing theorem for either group
+    is supplied, and no unproved reduced-exactness inference from zero restriction is made.
