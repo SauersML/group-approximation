@@ -2,7 +2,7 @@
 rg: 2
 id: birget-question-via-decidable-bartholdi-mitrofanov-hosts
 kind: claim
-title: A hard Bartholdi–Mitrofanov group whose relator kernel is a finitely generated lift ideal would answer Birget's cap question negatively (no cap), since Zaremsky's embedding transfers verbatim to lift-ideal kernels; the route needs no finitely presented self-similar group, and the only open item is the lift-ideal condition
+title: A hard Bartholdi–Mitrofanov group whose relator kernel is a finitely generated lift ideal would answer Birget's cap question negatively (no cap), since Zaremsky's embedding transfers verbatim to lift-ideal kernels; the route needs no finitely presented self-similar group; item (a) uses the repaired family G′_M, after a gap in the printed proof of Bartholdi–Mitrofanov Proposition 2.4
 distinct_from:
   fp-simple-groups-with-arbitrarily-complex-word-problem: that is the "no cap" form of Birget's question; this is a sufficient condition for it, through V_d(G) for a functionally recursive G, and never needs a finitely presented self-similar group.
   fp-self-similar-groups-with-arbitrarily-hard-word-problem: that asks for finitely presented self-similar (hence residually finite) hard groups; this asks only for functionally recursive hard groups with a finitely generated lift ideal, a strictly weaker hypothesis on the input.
@@ -81,8 +81,8 @@ Bartholdi–Mitrofanov, arXiv:1710.10109 (Groups Geom. Dyn. 2020), §2, read in 
 - **Rules for a type I (increment) state `s_i -> s_j`.** `Φ(0,sᵢ)=(sⱼ,𝐢₁)`, `Φ(𝐢₁,sᵢ)=(ϵ,0)`,
   `Φ(𝐢₁,x)=(x²,𝐢₁)`, `Φ(𝐢₁,y)=(y,𝐢₁)`.
 - **Proposition 2.4.** "The Minsky machine 𝐌 halts if and only if [(s*xy)t(s*xy)^-1,u]≠1 in ⟨Φ𝐌⟩". So `w_n` is
-  **nontrivial iff `M` halts** from `(s_*, 0, n)`, as the proof of Theorem A″ applies it (bh-ref-e confirmed this
-  at source).
+  **nontrivial iff `M` halts** from `(s_*, 0, n)`, as printed. Its printed proof has a gap, repaired below by
+  replacing `u` with `p`; see `bartholdi-mitrofanov-proposition-2-4-gap-and-repair`.
 
 **(a), repaired as bh-ref-e showed.** A two-counter machine cannot read its input directly as a counter value
 (Schroeppel). So:
@@ -92,36 +92,30 @@ Bartholdi–Mitrofanov, arXiv:1710.10109 (Groups Geom. Dyn. 2020), §2, read in 
 - An algorithm for `WP(⟨Φ_M⟩)` in time `T(l)` therefore decides `X` in time `T(C·2^(2^x)) + O(2^(2^x))`.
 - By the time hierarchy theorem, some decidable `X` beats every such bound, so (a) holds for that `M`.
 
-**Caution: an apparent inconsistency to check at source** (lane, 2026-09-19; not a claimed refutation).
-Take the rules quoted above: `u` flips the `{0,1}`-prefix and stops, `x` and `y` stop at `†`, the state
-generators pass `†` by default, and `t` passes instruction letters by default. Put
-`g = (s_* x y) t (s_* x y)^(-1)`, and let `v = 0^j †₁ w` with `j ≥ 1` and `j` below the halting time, or any `j`
-if `M` never halts.
-- **`g` toggles the marker.** The forward run turns `0^j` into a trace and passes `†₁`. Then `t` toggles it to
-  `†₂`, and the reverse run restores the trace, so `g(v) = 0^j †₂ w`.
-- **`u` moves `v`, and `g` fixes its image.** `u(v) = 1^j †₁ w`, and `g` fixes every word starting with `1`.
-- **So they don't commute:** `gu(v) = 1^j †₁ w ≠ 1^j †₂ w = ug(v)`, and `[g, u] ≠ 1` even when `M` never halts.
-- **Consequence.** Read literally, that contradicts the "only if" half of Proposition 2.4, which says
-  `[g, u] = 1` for non-halting `M`. So either a rule in §2.1 is misread here, for instance `t`'s action on
-  instruction letters or the state generators' action on `†`, or the proof of Proposition 2.4 uses more than its
-  statement.
-- **Stakes.** (a) rests on Proposition 2.4, so a referee should re-derive it from the full §2.1 table. If `g`
-  really does move such `v`, a word encoding needs a commutator partner supported away from words that
-  already carry a marker.
+**(a) uses the repaired family `G′_M`.** In the arXiv versions, the printed proof of Proposition 2.4 has a gap:
+`[g,u] ≠ 1` for every machine. See `bartholdi-mitrofanov-proposition-2-4-gap-and-repair`, confirmed at source
+by bh-ref-f (6747a7e43d).
+- Replacing `u` by the partner `p`, which is supported on `0^* 1 A^ω`, gives Proposition 2.4′: `M` halts from
+  `(s_*, 0, n)` iff `[g_n, p] ≠ 1`.
+- The argument for (a) above then runs verbatim for `G′_M = ⟨Φ_M, p, p′⟩`, and the route uses `G′_M`
+  throughout.
 
 ## Tests on (c), smallest first
 
 **Rules used** (at source, confirmed by bh-ref-f, e733763d78):
 - the letter `1` is a wall for every generator except `u` ("for all g∈S∖{u} we put Φ_M(1,g)=(ϵ,1)");
 - `u` stops at every letter outside `{0, 1}`: "for all a ∈ A∖{0,1} we put Φ_M(a,u)=(ϵ,a)";
-- `x` and `y` stop at `†₁, †₂`.
+- `x` and `y` stop at `†₁, †₂`;
+- `s_†` has no rule at `𝐢₁`, so by the default it passes `𝐢₁` with section `s_†`. The rule
+  "Φ_M(a,s†)=(ϵ,a)" that an earlier version quoted belongs to the paper's §3 construction, not §2.1 (bh-ref-f,
+  6747a7e43d).
 
-Earlier versions of this section got `u` and the letter `1` wrong. The corrections are folded in below, with
-credit to bh-ref-f.
+Earlier versions of this section got `u` and the letter `1` wrong, and briefly misread `s_†` as finitary. All
+three are corrected here, with credit to bh-ref-f.
 
 ### The survival criterion
 
-Lane proof; it generalizes the core argument that bh-ref-f passed.
+Lane proof; referee bh-ref-f PASS, including the weighted version (6747a7e43d). It generalizes the core argument.
 
 **Lemma.** Let `G ≤ Aut(A^*)` be generated by a finite, inverse-closed `S` such that every section of every
 generator is either the generator itself or trivial (a *self-or-trivial* recursion).
@@ -154,7 +148,8 @@ The ternary core `Q` is the case where `Σ` has loop images `⟨b⟩ ≅ Z/2` an
      necessity half gives (c).
    - `x` and `y` are trivial and go into `R`, since `x|_0 = x`. Equivalently, drop them from `S`.
    - This calibration says nothing about hardness.
-2. **The full increment loop `G_1`. (c) HOLDS** (lane proof by the survival criterion, unreviewed).
+2. **The full increment loop `G_1`, and the repaired `G′_1`. (c) holds for both** (lane proof by the survival
+   criterion; referee bh-ref-f PASS, 6747a7e43d, with the `s_†` correction applied).
    - **Recursions.** `A = {0,1,†₁,†₂,𝐢₁}`, with sections listed at `0, 1, †₁, †₂, 𝐢₁`, and
      `S = {α, b, t, u}^(±1)`. The generators `x` and `y` are trivial and dropped, which Theorem A's invariance
      allows.
@@ -168,32 +163,33 @@ The ternary core `Q` is the case where `Σ` has loop images `⟨b⟩ ≅ Z/2` an
      - At `1`: `u` goes back to `0`.
      - At `𝐢₁`: `b` and `t` loop, and `α^(-1)` goes to `0`.
      - At `†₁` and `†₂`: `α` loops.
-     - Every other pair dies.
    - **Loop images.**
-     - At `†₁` and `†₂` the image is `⟨α⟩ ≅ Z`.
-     - At `0` the loop group is free on `t`, `u²`, `α^(-1)bα` and `α^(-1)tα`.
-       - Its image is `⟨t, α^(-1)bα⟩ = ⟨t, b⟩^α`, using `[α, t] = 1`.
-       - `⟨t, b⟩` is the finite dihedral head group.
-     - At `1` and `𝐢₁` the loop groups are conjugates of that one.
-   - **Relators.** All loop images are finitely presented, so the lemma applies with
-     `R = {t², b², u², (tb)^6, [α, t]}`. Here `(tb)^6` stands for the dihedral relation, of whatever order the
-     head group has.
-   - **Result.** `N_(G_1)` is a finitely generated lift ideal, so `V_5(G_1)` is finitely presented, even though
-     `G_1` is not contracting (`α^k|_(†₁) = α^k`).
-   - **Withdrawn.** The "two-odometer obstruction" (b68455967d) is withdrawn. bh-ref-f showed
-     `β = s_*^u = (1 𝐢₁)(1, αu, α, α, u)`, so `β|_(†₁) = α`, and relators of `⟨α, β⟩` die at `†₁`. It is also
-     moot, because `S` above does not contain `β`.
-   - **The ternary core.** `Q = ⟨(0 1)(1,a,a), (1 h)(b,1,1)⟩` satisfies `N_Q = ⟨⟨b²⟩⟩_lift`. This is
-     **ESTABLISHED** (lane proof aecdf34e2f; referee bh-ref-f PASS, e733763d78), and it is the lemma's simplest
-     case.
-   - **What it means.** `G_1` never halts, so it carries no hardness. But it shows that the marker, hole and
-     wall dynamics of Bartholdi–Mitrofanov groups are compatible with (c).
-   - **What remains for a hard machine** is the counter generators. In a machine with zero tests, `x` and `y`
-     act nontrivially, and an increment gives the section `x|_(𝐢₁) = x²`. That recursion is not
-     self-or-trivial and grows word length, so the lemma needs a weighted version, in which doubling at
-     increments is paid for by halving at decrements. This is the next test: a two-instruction
-     increment/decrement loop.
-3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
+     - At `𝐢₁` the image is `⟨t, b⟩ ≅ D₁₂`, the dihedral head group.
+     - At `0` it is `α⟨t, b⟩α^(-1)`, since `[α, t] = 1`.
+     - At `1` it is a conjugate of these.
+     - At `†` it is `⟨α⟩ ≅ Z`.
+   - **For `G_1`.** Take `R = {t², u², b², (bt)^6, [α, t]}`, conjugated as needed. Then `N_(G_1)` is a finitely
+     generated lift ideal and `V_5(G_1)` is finitely presented, although `G_1` is not contracting
+     (`α^k|_(†₁) = α^k`).
+   - **For `G′_1 = ⟨α, b, t, p, p′⟩`,** with `p = (p, p′, 1, 1, 1)` and `p′ = (0 1)(1,1,1,1,1)`, use the
+     weighted survival criterion with `p` of weight 2.
+     - `p` loops at `0`.
+     - The loop image at `0` is `⟨p⟩ × α⟨t,b⟩α^(-1) ≅ Z/2 × D₁₂`. Here `p` commutes with `αbα^(-1)` and with `t`
+       by disjoint supports.
+     - Take `R = {t², b², p², (bt)^6, [α, t], [t, p], [p, αbα^(-1)]}`. Then (c) holds for `G′_1`.
+   - **Withdrawn.** The two-odometer obstruction (b68455967d) is withdrawn: `β|_(†₁) = α`, and `β ∉ S`.
+   - **The ternary core.** `Q = ⟨(0 1)(1,a,a), (1 h)(b,1,1)⟩` is the restriction of `⟨s_*, s_†⟩` to the
+     invariant subtree over `{𝐢₁, 0, †₁}`.
+     - `N_Q = ⟨⟨b²⟩⟩_lift` is **ESTABLISHED** (lane proof aecdf34e2f; referee bh-ref-f PASS, e733763d78). It is
+       the survival lemma's first nontrivial case.
+     - The hole dynamics `(n, H)` above are those of `Q`.
+   - **What it means.** `G_1` never halts, so it carries no hardness. But it shows that markers, holes and
+     walls are compatible with (c).
+   - **What remains for a hard machine** is the counter generators of `G′_M`. In a machine with zero tests, `x`
+     and `y` act nontrivially, and an increment gives `x|_(𝐢₁) = x²`. That recursion is not self-or-trivial and
+     grows word length, so the lemma needs a weighted version, in which doubling at increments is paid for by
+     halving at decrements. The first test is an increment/decrement loop.
+3. **The universal machine of Theorem A″, for the repaired table `G′_M`: (c) fails.** Its word problem is undecidable, by Theorem A″ for `G′_M`. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
    finitely generated lift ideal.

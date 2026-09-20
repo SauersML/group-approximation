@@ -10,8 +10,8 @@ artifacts:
   - research/artifacts/gq-bh-scout-bbmz-ranked.md
 ---
 
-**ESTABLISHED** by `block-permuting-local-fixers-disjoint-supports-proof` (lane proof, bh-scout-bbmz, 09-19, not
-reviewed). It is elementary, and nothing about `V` is used.
+**ESTABLISHED** by `block-permuting-local-fixers-disjoint-supports-proof` (lane proof, bh-scout-bbmz, 09-19; referee PASS
+at 7ff5a6abf0, `block-permuting-local-fixers-review`). It is elementary, and nothing about `V` is used.
 
 **Lemma B.** Let `Γ` be a torsion-free group acting faithfully on a set `C`, in which commuting nontrivial elements lie in
 a common cyclic subgroup. Torsion-free hyperbolic groups are an example. Suppose `C = W_1 ⊔ … ⊔ W_m` with `m ≥ 2`, and
@@ -26,6 +26,6 @@ Let `x_AB, x_BC, x_AC ∈ V` each fix the third cone pointwise and map cones ont
 transpositions" swapping two cones through elements of `V`, the torsion-free analogue of the `S_3` counterexample.
 Then `⟨x_AB, x_BC, x_AC⟩` is never torsion-free with cyclic centralizers, and in particular never free.
 
-**Consequence for (COMP).** (COMP) holds for every `Γ ≤ V` whose local fixers can be chosen to permute a common finite
+**Consequence for (COMP).** (COMP) holds for every torsion-free `Γ ≤ V` with cyclic centralizers whose local fixers can be chosen to permute a common finite
 partition by their fixed pieces. What is left open is only local fixers that mix pieces, e.g. `x_AB` mapping `A` onto a
-proper part of `A ∪ B` that is neither `A` nor `B`.
+proper part of `A ∪ B` that is neither `A` nor `B`. (Scope per the review: the cyclic-centralizer hypothesis is used in the `c = 1` branch of the proof, so the consequence needs it; it is exactly the case Q4.7 uses.)

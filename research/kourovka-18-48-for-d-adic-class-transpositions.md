@@ -185,7 +185,18 @@ Iterating, the orbit of `zθ` contains `z w^k θ` for every `k ≥ 0`. These poi
 unless `θ = w^∞`. The cylinder `[z]` meets `Z` in a whole residue class, and only one of its points is
 `z w^∞`. So some integer has an infinite `τ1τ2`-cycle. ∎
 
-**What (P2) is in general.** The general statement is now the OPEN crux
+**(P2) is false for mixed moduli** (bh-p2, 82aa08a416; lane proof, not reviewed; checked by hand here).
+`τ_{1(12),0(4)} · τ_{0(2),1(4)}` has only finite cycles but infinite order.
+- Its orbit graph has edges `4k — 12k+1` and `2j — 4j+1`.
+- Going forward, the component of `x ≡ 0 (mod 4)` follows `x ↦ 3x/2` while `4 | x`.
+- Going backward, it follows `x ↦ 2x/3` while `6 | x`.
+- So each component is a finite path, of length about `2(v_2(x) + v_3(x))`, and these lengths are
+  unbounded.
+
+So the d-adic corollary is sharp in its hypothesis. Kourovka 18.48 is unaffected, since it asks only
+about finite orders.
+
+**What (P2) is in general.** The general statement was stated as the crux
 `two-class-transposition-products-with-finite-cycles-are-periodic` (bh-k1847, 7d048c2e60).
 - **Tame elements satisfy (P2).** This is its Lemma T. It uses Kohl's characterization, quoted there
   from the RCWA manual, Chapter 2: a mapping is tame iff it permutes a partition of `Z` into finitely
@@ -200,8 +211,8 @@ unless `θ = w^∞`. The cylinder `[z]` meets `Z` in a whole residue class, and 
 - **Where the d-adic proof breaks down.** It works because every d-adic pair of infinite order has a
   five-chain, and hence a nested loop: an affine piece of `ab` or `(ab)^{-1}` mapping a class properly
   into itself. For moduli that meet transversally,
-  loops can be transversal, i.e. `σ(R) ∩ R ≠ ∅` without containment. The open part of (P2) is
-  exactly there.
+  a wild pair can instead have transversal loops only, i.e. `σ(R) ∩ R ≠ ∅` without containment.
+  bh-p2's pair shows this really happens.
 
 ## Remarks
 

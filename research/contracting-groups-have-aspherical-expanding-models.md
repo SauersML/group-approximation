@@ -23,8 +23,8 @@ An **expanding model** for a self-similar group `G ≤ Aut(T_d)` is a tuple `(M,
 - **(T):** every finite subgroup of `B` meets the kernel `K` trivially.
 
 **Criterion.** If `G` has an expanding model, the recursion on `B` has dying kernel. If moreover `Y` is contractible,
-then `B` has type `F_∞`, and `V_{d,r}(G)` has type `F_∞` for every `r`. The second part is conditional on
-`wreath-recursion-thompson-groups-inherit-fn`.
+then `B` has type `F_∞`, and `V_{d,r}(G)` has type `F_∞` for every `r`. The second part uses
+`wreath-recursion-thompson-groups-inherit-fn` (refereed PASS, ca350037cb).
 
 **Proof.**
 - **Dying kernel.** This is Lemmas 1 and 2 of `pcf-rational-nekrashevych-groups-are-f-infinity`, whose proofs use
