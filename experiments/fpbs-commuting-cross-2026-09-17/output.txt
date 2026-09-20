@@ -1,0 +1,6 @@
+F2xF2 product gens: R=1 #B(R)=9 n=20 #core=400 #A=468 core_bad=400/400 #good=68 #A/2=234.0 SF_fails=True
+F2xF2 product gens, larger n: R=1 #B(R)=9 n=40 #core=1600 #A=1743 core_bad=1600/1600 #good=143 #A/2=871.5 SF_fails=True
+F2xF2 mixed gens: R=1 #B(R)=9 n=20 #core=400 #A=492 core_bad=400/400 #good=92 #A/2=246.0 SF_fails=True
+F2xDinf mixed gens: R=1 #B(R)=9 n=20 #core=400 #A=464 core_bad=400/400 #good=62 #A/2=232.0 SF_fails=True
+F2xZ product gens: R=1 #B(R)=7 n=16 #core=256 #A=286 core_bad=256/256 #good=30 #A/2=143.0 SF_fails=True
+all assertions passed
