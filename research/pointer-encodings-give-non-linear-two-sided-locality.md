@@ -15,7 +15,7 @@ distinct_from:
 - Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; no priority claimed; Referee bh-ref-q12 2026-09-19: items 1, 3 and 4 PASS, item 2 PASS with a repair to the padding argument, and the Caveat to item 4 is wrong as stated; see the Referee section). All three repairs are applied: common
   loop-length indexing, the Caveat withdrawn and replaced by a scope note, and the not-finite-type claim
   proved.
-- Item 5 is the sharpened open crux. Item 6 is heuristic and labelled so.
+- Item 5 is the sharpened open crux. Item 6 is heuristic and labeled so.
 - Recalled inputs, not re-proved:
   - linear groups over fields satisfy the minimal condition on centralizers (Wehrfritz);
   - countable linear groups over fields are exact (Guentner–Higson–Weinberger);
@@ -87,9 +87,12 @@ A group `Γ` has a **two-sided cellular encoding** if all of the following hold:
      alphabet, possibly with skeleton decorations. The lifted group on `Y` is the image of `Γ̃ = ⟨ρ̃_s⟩`
      restricted to the admissible data. It is a quotient of `Γ̃`, and can be a proper one: in item 1, `Γ̃` on
      multi-pointer data is Salo's larger variant, while the lift group is `F wr Z`.
-   - So T2 does **not** need a non-exact subgroup of `Aut(B^Z)`. By Salo's universality theorem, that would
-     be the open question of whether one explicit three-involution group is non-exact. Every finitely
-     generated group is a quotient of a free group, and free groups lie in `Aut(B^Z)`. The obstruction to
+   - So T2 does **not** need a non-exact subgroup of `Aut(B^(Z²))`, the ambient group for the
+     two-dimensional loop skeleton, or of `Aut(B^Z)` after coding the loops as bi-infinite or cyclic words
+     (wording repair from 54a06008fb, via bh-ref-e). By Salo's universality theorem, which is
+     one-dimensional, the one-dimensional version would be the open question of whether one explicit
+     three-involution group is non-exact. Every finitely generated group is a quotient of a free group, and
+     free groups lie in both. The obstruction to
      T2 lies in two-sidedness on the admissible data, not in the ambient group of cellular automata.
 4. **Linear transports force linear, hence exact, lifts (regular designs).**
    - Suppose a design is regular and its transport groups are uniformly linear:
@@ -241,7 +244,7 @@ restriction to single-pointer data does.
     - So an embedding in `∏_i GL_d(K_i)` would have some faithful factor.
   - Hence the quotients `A_5 ≀ Z/ℓ_n` are not uniformly linear over commutative rings. This is consistent with
     "non-linear on both sides".
-- *Soficity: correct.* The prefix-OR track uses only nearest-neighbour constraints along the loop, and the origin
+- *Soficity: correct.* The prefix-OR track uses only nearest-neighbor constraints along the loop, and the origin
   and last-cell marks that the skeleton provides. It enforces "at most one pointer" by `p(i) ⇒ ¬b(i−1)`, and "at
   least one" by `b = 1` at the last cell. Forgetting `b` is a factor map, so the single-pointer layer is sofic.
   - The rules preserve it and have local inverses, so they are automorphisms of it.
@@ -303,7 +306,7 @@ restriction to single-pointer data does.
   of uniformly linear groups that are not uniformly linear over commutative rings.
 
 **Item 6(b).** "Linear growth of the Schreier graphs, hence virtually cyclic lifts" is an unproved step inside a
-heuristic; keep it labelled as such.
+heuristic; keep it labeled as such.
 
 **Verdict.**
 - Items 1, 3 and 4: PASS.
