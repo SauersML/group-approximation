@@ -186,3 +186,33 @@ same diagonal, tensor and conjugate argument as (U2).
     this claim.
   - *Where it stops.* Representations where `rho(t_s)` is not central and that are not Torelli-abelian monomial are
     untouched. This includes every representation with nonabelian Torelli image.
+- **2026-09-19, swarm-0917-w20-w20-deligne-break (calibration): gap and zero windings on fixed closures and on
+  bounded-dimension tensor-sum closures; class kill.** See `mod-s2-fixed-closure-torelli-gap-and-zero-windings`
+  (ESTABLISHED).
+  - *Bounded tensor-sum closure (FC2).* Let `W` be a direct sum of tensor words in arbitrary, unrelated honest
+    representations of dimension at most `n0` and their conjugates. Then `W` has
+    `||W(t_s) - omega^(+-1)|| >= c(n0) > 0`.
+    - Invariant: the mean eigenphase of each factor. It sits on the determinant grid `mu_(10 n)`, and
+      compactness of `Hom(M, U(n))` pins it to the exact-value group, which misses `omega` by (ST5).
+      Spreads add along words.
+    - The same argument gives near-identity windings equal to `0` below an explicit threshold (`L = 10 lcm(1..n0)`).
+  - *Fixed closure (FC3).* For each honest `rho0` there is `c(rho0) > 0` bounding `||pi(rho0(t_s)) - omega^(+-1)||`
+    from below over all continuous representations `pi` of `cl rho0(M)`. These include subrepresentations and
+    Schur functors of tensor words, so this closes the (J5) "not covered" case for each fixed Jones parameter.
+    The same `c(rho0)` makes `kappa = 0` near the identity.
+    - Proof: kill the commutator part `N` of `G^0` for `Ad g`, which the elements `h g h^-1 g^-1` fill in
+      boundedly many steps.
+    - Then replace the rest by an induced representation of bounded dimension with the same Torelli-part
+      spectrum.
+    - Finish with (ST5) and compactness in bounded dimension.
+  - *Class kill (FC4).* A counterexample to this claim, or a witness against
+    `mod-s2-near-identity-torelli-windings-vanish`, has only finitely many members in each `R_(n0)`. It also has
+    only finitely many members factoring continuously through any one closure. So "mix unrelated families" by
+    `(+)`/`(x)` in bounded dimension is dead, and so is anything continuous in finitely many fixed
+    representations. Each dies at the step "a fixed compact group has near-omega irreducibles", which yields a
+    bounded-dimension honest near-omega representation.
+  - *Calibration (FC5).* In `T^2 x| C_3`, which has finite abelianization and no exact omega, 3-dimensional
+    irreducibles come within `0.0021` of `omega`. So the M-input (ST5 plus finite generation) is essential.
+  - *Where it stops.* This is not uniform in `rho0`. Sequences whose closures vary, with unbounded `m0`,
+    component group, or semisimple part, are untouched; examples are growing-level quantum representations and
+    residual (R-a). The claim stays OPEN.
