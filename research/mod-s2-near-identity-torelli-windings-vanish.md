@@ -43,3 +43,21 @@ condition for that route.
   non-uniform floor as (E4) in `mod-s2-exact-models-are-fd-character-limits-of-deligne-sectors`. It does not
   prove (Z), and it says nothing about representations with infinite image (quantum representations and
   their relatives).
+- **2026-09-20, swarm-0917-w23-w23-deligne-break: at normal levels the winding floor is locked to the
+  cube-root floor (established side result, not a proof of (Z)).** See
+  `mod-s2-normal-level-torelli-floors-are-coupled`.
+  - *The mechanism.* At a normal level, averaging one relation `w` over `M/M'` gives
+    `chi(w) mult`. So `e(Gamma') >= 1/||w||_1` for any single `w in W` with `chi(w) != 0`, with no span
+    hypothesis. Constant vectors give `e <= 1/g` and `d <= 1/(3g)`.
+  - *New exact values.* `e(Gamma(3)) = 1/5` and `e(Gamma(4)) = 1/10`, both read from existing census data.
+    With `N = 1, 2`, every principal level known has `e = 3d = 1/g`.
+  - *The census reading.* The `1/7` values in `mod-s2-monomial-torelli-windings-census` come from
+    non-normal levels. They say nothing about `e_inf`, which is a limit along `Gamma(N)`.
+  - *What would decide it.* A uniform bound `L` on sparse relations with `3 not| chi` at principal levels
+    would give (TAP) and also (Z) on all Torelli-abelian representations, hence on all finite-image ones,
+    with `eta_0 = min(1/2, 2 sin(pi/L))`.
+  - *What it means for the (Z)-failure route.* A counterexample to (Z) keeps the matricial-stability gate
+    route alive. If (TAP) falls to that mechanism, such a counterexample needs infinite image and
+    nonabelian Torelli image.
+  - *Where it dies.* No bound on `L` or on `g(Gamma(N))` beyond `N = 4`. Nothing about
+    non-Torelli-abelian representations.
