@@ -185,15 +185,16 @@ Iterating, the orbit of `zθ` contains `z w^k θ` for every `k ≥ 0`. These poi
 unless `θ = w^∞`. The cylinder `[z]` meets `Z` in a whole residue class, and only one of its points is
 `z w^∞`. So some integer has an infinite `τ1τ2`-cycle. ∎
 
-**What (P2) is in general.** The following reduction is a lane remark. It uses Kohl's
-characterization of tame rcwa permutations, recalled and not re-read at source: σ is tame iff it
-permutes a partition of `Z` into finitely many residue classes, being affine on each class.
-- **Tame elements satisfy (P2).** Let σ be tame with only finite cycles. Some power `σ^m` fixes
-  every class of such a partition setwise, and acts on each class `r(M)` as an affine bijection of
-  that class. Such a bijection is either a translation `n ↦ n + kM` or a reflection `n ↦ c − n`. A
-  translation with `k ≠ 0` has infinite cycles. So `σ^{2m} = 1`.
+**What (P2) is in general.** The general statement is now the OPEN crux
+`two-class-transposition-products-with-finite-cycles-are-periodic` (bh-k1847, 7d048c2e60).
+- **Tame elements satisfy (P2).** This is its Lemma T. It uses Kohl's characterization, quoted there
+  from the RCWA manual, Chapter 2: a mapping is tame iff it permutes a partition of `Z` into finitely
+  many residue classes, being affine on all of them. Elements of CT(Z) preserve order on each class,
+  so a power fixing every class acts on it by a translation, which must be trivial.
 - **So in general (P2) is equivalent to:** every wild product of two class transpositions has an
   infinite cycle.
+- **Nested loops give infinite cycles.** This is its Lemma S. The proof above establishes its (P2)′
+  for d-adic pairs: a wild pair has a power mapping a class properly into itself.
 - **(P2) does fail for longer products.** bh-k1847's `F_M`, for `M` periodic but not uniformly
   periodic, is a product of many class transpositions with only finite cycles and infinite order.
 - **Where the d-adic proof breaks down.** It works because every d-adic pair of infinite order has a
