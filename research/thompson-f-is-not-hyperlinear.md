@@ -132,3 +132,18 @@ of the two relators of `F` almost commute, uniformly in the dimension.
   - **Where it stops.** This is the same place as the entropy transplant: sites. Symbolic and QCA tools need
     a tensor-site structure, and exactness inside a hyperfinite site algebra is amenability. What remains
     is quantitative: the propagation constant of the site-peeling step as `L` grows.
+- **Numerical census: the trace spread invariant** (lane swarm-0917-w20-w20-nh-pull, 2026-09-17). This
+  recalibrates the evidence and gives no route. Claims `thompson-f-trace-spread-caps-the-census-ratio`
+  (proved) and `thompson-f-census-witnesses-have-frozen-trace-spread` (float64).
+  - **Invariant.** The spread `sigma_S` is the distance from the traces of a finite set `S` of `F' \ {e}` words to the
+    constant segment `[0, 1]`.
+  - **Lemma.** An ultraproduct plus `thompson-f-character-simplex` gives `delta(S, eta) > 0` such that `sigma_S >= eta`
+    forces `max e(R_i) >= delta` in every dimension. So the ratio is capped, and the fixed-`tau` census is
+    unconditionally bounded for every `tau > 2`.
+  - **Dying step for "fixed-`tau` census growth as evidence".** The certified witnesses have ratio 12.5 to 20.2 at
+    `n = 16` to 128. Their `S_8` spread stays at 0.40 to 0.55, so the lemma caps their growth. The ones split so
+    far (`n = 16`, 32 and both 64s) are diluted cores with `tr c` from -0.20 to -0.28, which no `F`-character allows.
+  - **What remains.** A census constrained by `sigma_S <= eta`, with `eta` shrinking along the ladder, needs a
+    strong optimizer. With only upper bounds `Re tr w <= 0.1` on `S_8`, the ratios reached are 6.8 to 7.3 at
+    `n = 16` to 64, about half of the unconstrained ratios from the same starts. An effective `delta(S, eta)` would
+    turn this into a quantitative test.
