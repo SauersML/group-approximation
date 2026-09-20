@@ -7,7 +7,8 @@ target: quasiconvex-in-hyperbolic-racgs-iff-square-free-typing
 requires: []
 ---
 
-**Lane proof** (lane `bh-q11-bridge`, 2026-09-19), elementary, **not independently reviewed**. Notation as in the claim.
+**Lane proof** (lane `bh-q11-bridge`, 2026-09-19), elementary. **Referee PASS** (bh-ref-e, 93f46a050a; wording
+repairs applied). Notation as in the claim.
 Recalled standard inputs, not re-read at source:
 - **(Mou)** Moussong: `W(Δ)` is hyperbolic iff `Δ` has no induced 4-cycle.
 - **(LI)** A local isometry of CAT(0) cube complexes (a cubical map injective on links, with full image) is injective
@@ -81,9 +82,9 @@ which has no induced 4-cycle, and full subgraphs of such graphs have none either
   - Such a `c` co-occurs with `a` at `y` and is non-adjacent to it, i.e. osculates `a`. The hypothesis excludes it.
   - `a ≁ b` guarantees the merged graph has no loop. ∎
 - **Adding vertices.** Whether a 4-cycle is induced depends only on its four vertices, so new vertices kill no square.
-  Any `Δ' ⊇ Δ` that keeps `τ` a typing agrees with `Δ` on co-occurring pairs, by (T2). So the only changes available are
-  new edges between never-co-occurring pairs, which is (M1), and identifications of never-co-occurring types, which is
-  (M2).
+  Any `Δ' ⊇ Δ` that keeps `τ` a typing agrees with `Δ` on co-occurring pairs, by (T2). So, as long as the typing `τ` is
+  kept and only the target graph changes, the only changes available are new edges between never-co-occurring pairs,
+  which is (M1), and identifications of never-co-occurring types, which is (M2).
 
 ## Item 5
 
