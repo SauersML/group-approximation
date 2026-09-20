@@ -87,6 +87,26 @@ hard as the halting problem for `M`.
 
 ## Attempts
 
+- **Both first tests, lane bh-kd2p, 2026-09-19** (`kms-tops-embed-in-fp-self-similar-metabelian-groups`; lane proof
+  resting on Kochloukova–Sidki Theorem D, not independently reviewed). The crux stays **OPEN** for the whole group
+  `G(M)`, but its metabelian top is not an obstruction.
+  - **Test 1, kill: negative.** The Kochloukova–Luiz ideal-preservation argument uses characteristic 0 in
+    hypotheses (1)–(2) and in Step 5 of its proof. It does not transfer to characteristic `p`: Kochloukova–Sidki
+    Theorem D (arXiv:1710.04745) gives finitely presented, characteristic-`p`, Krull-dimension-`d`, transitive
+    self-similar metabelian groups `⊗ F_p[x_i^{±1}, 1/g(x_i)] ⋊ ℤ^{2d}`. K–L flag this themselves.
+  - **Test 2, start: superseded, and positive.** No need to grow `C_p ≀ Z^2` one letter at a time.
+    - For `p` odd, `s_i ↦ −x_i` identifies the KMS top `B_K` with an index-2 subgroup of Theorem D's group for
+      `g = 1 + x`, extended by the central scalar `−1`. That extension is finitely presented and transitive
+      self-similar.
+    - The KMS choice `g = x − 1` is exactly the case Theorem D excludes. The substitution moves the relevant point
+      from `1` to `−1`.
+    - The affine kill (bh-free-25) assumes all of `U_K` acts linearly. Theorem D's domain meets the counters in a
+      subgroup of index `p^2`, a Frobenius-twisted cyclic shift of the counters.
+  - **Remaining crux, sharpened.** Lift a Kochloukova–Sidki-type structure from `B_0` to the full top `Q` and
+    through the exponent-`p` configuration module `T` of `G(M) = T ⋊ Q`. The coinvariants kill applies only to
+    lamp-digit shapes, not to actions that mix lamps with positions. For `p = 2` the KMS top is not covered by
+    this route.
+
 **Attempt 1 (2026-09-19, lane paradigm/decomposition, family linear-characteristic): both first tests are
 resolved, and the crux is localized to `T`.** See `kms-tops-are-fp-transitive-self-similar-for-odd-p`
 (ESTABLISHED).
