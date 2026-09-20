@@ -146,3 +146,20 @@ val_(Phi_k)(lambda) >= 15/16      and      d_kappa(lambda) <= 1/64.
     exactly at six tiny `(k,l,beta)`, checking `E rho = 1`, `rho >= phi` and
     `E rho^2 >= E phi^2`, and it tabulates `S` on the window for
     `l = 20, 25, 30, 40, 60`.
+* **Quotient covering (2026-09-20).** Route
+  `dkkms-local-rigidity-via-quotient-covering` through
+  `dkkms-quotient-covering-proves-99-percent-rigidity` proves this claim, and
+  so `T2`, with `eta_1 = 10^(-5)`, `zeta_1 = 1/128` and `l_0 = 66`. This holds
+  for every `q >= 1`, both log readings and every smoothing law. The **OPEN**
+  line above is superseded by that route.
+  - Every event of the per-tuple argument is `H_U`-invariant: the rejection of
+    two extensions and the disagreement with `lambda_U`. So the class labels
+    descend to a linear table on `Gr(X_U/H_U, l)`.
+  - There the image of the seed law has
+    `chi^2 <= (1 - 2^(l-1-k))^(-2) exp(k beta^2 (2^(l-1) - 1)) - 1`.
+    That goes to `0` on the whole window, because `k_A ~ e^l` beats `2^l`.
+  - The "no covering transfer" conclusion of the previous entry holds only
+    for transitive tests on `Gr(X_U, .)`. The class kill of the seed-law node
+    is exactly that class, and the quotient test lies outside it.
+  - Still not covered: `3 <= l <= 65` at the admissible points with
+    `SD^cl > 10^(-5)`.
