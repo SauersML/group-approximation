@@ -1,0 +1,44 @@
+digraph CairnLiu {
+  graph [rankdir=TB, newrank=true, bgcolor="#ffffff", pad="0.35", nodesep="0.38", ranksep="0.52", splines=polyline, fontname="Helvetica", fontsize=22, labelloc=t, label="Cairn: two routes to nonhyperlinearity\nLiu's claimed bridge into the existing program", compound=true];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=13, margin="0.19,0.13", penwidth=1.2, color="#c4cbd3", fillcolor="#f7f8fa", fontcolor="#17212b"];
+  edge [fontname="Helvetica", fontsize=11, color="#687684", fontcolor="#465462", arrowsize=0.7, penwidth=1.2];
+
+  subgraph cluster_liu {
+    label="LIU PAPER  /  PROOF CLAIMED, UNDER REVIEW"; fontsize=13; fontcolor="#65429a"; color="#d5c7e7"; style=rounded; margin=20;
+    {rank=same;
+      repair [label="§§3–4\nSpectral-gap repair +\nequivariant projection rounding", fillcolor="#f4eefb"];
+      blocks [label="§5\nResolvent assembly + pruning\nPhysical expanding blocks", fillcolor="#f4eefb"];
+      matching [label="§6\nMatch unequal blocks\nRecover multiplicity algebras", fillcolor="#f4eefb"];
+    }
+    repair -> blocks -> matching;
+    internal [label="THEOREM 1.2 / 6.7 — CLAIMED\nEvery Kazhdan commutant is internal\nFinite algebras in the original matrix dimensions", fillcolor="#ece2f7", color="#9472bc", penwidth=1.6];
+    matching -> internal;
+  }
+
+  subgraph cluster_kt {
+    label="EXISTING CAIRN  /  KUN–THOM WREATH"; fontsize=13; fontcolor="#465462"; color="#d7dde4"; style=rounded; margin=20;
+    norm [label="OPEN\nHilbert–Schmidt\ncommutant normalization", fillcolor="#fff3df", color="#c8984d"];
+    lamp [label="RECORDED IMPLICATION\nNormalization identifies\ntwo distinct lamps", shape=hexagon, fillcolor="#edf6f0", color="#82a68c"];
+    wreath [label="OPEN / LIU CLAIM UNDER REVIEW\nKun–Thom wreath W\nis nonhyperlinear", fillcolor="#fff3df", color="#c8984d"];
+    norm -> lamp -> wreath;
+  }
+
+  subgraph cluster_leavitt {
+    label="EXISTING CAIRN  /  LEAVITT HEAT ROUNDING"; fontsize=13; fontcolor="#465462"; color="#d7dde4"; style=rounded; margin=20;
+    heat [label="OPEN PREMISE\nRequired Kazhdan heat maps\nround to algebra expectations", fillcolor="#fff3df", color="#c8984d"];
+    twouse [label="CONDITIONAL THEOREM — PROVED IN CAIRN\nGlobal rounding: scalar commutant\nNative rounding: non-scalar center", shape=hexagon, fillcolor="#edf6f0", color="#82a68c"];
+    leavitt [label="OPEN\nBinary Leavitt unit group H\nis nonhyperlinear", fillcolor="#fff3df", color="#c8984d"];
+    heat -> twouse -> leavitt;
+  }
+
+  internal -> norm [style=dashed, color="#9472bc", label="Thom's normalization bridge\nLiu §7 / Theorem 1.3"];
+  internal -> heat [style=dashed, color="#9472bc", label="Proposed application\nInterface still to be checked"];
+  {rank=same; norm; heat;}
+  {rank=same; lamp; twouse;}
+  {rank=same; wreath; leavitt;}
+  root [label="CAIRN ROOT — OPEN\nnon-hyperlinear-group\nExhibit an explicit nonhyperlinear group", fillcolor="#20394d", fontcolor="#ffffff", color="#20394d", fontsize=16, margin="0.28,0.18"];
+  wreath -> root;
+  leavitt -> root;
+  legend [shape=plaintext, style="", fontsize=11, fontcolor="#556370", label="Solid arrows: proof sequence / recorded implications.  Dashed arrows: proposed Liu connections.\nA proved conditional does not establish its open premise. No Cairn statuses have been changed.\nFocused explanatory subgraph; intermediate steps are condensed. Source snapshot: 20 September 2026."];
+  root -> legend [style=invis];
+}
