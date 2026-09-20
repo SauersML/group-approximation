@@ -23,15 +23,17 @@ explicit. No priority is claimed.
 - **Hypothesis.** Every slope of every piece lies in `γ^Z` for one integer `γ ≥ 2`. Equivalently,
   the degree cocycle lies in `Zv` with `v ∈ N^k ∖ {0}`. This covers `V = CT_∅(Z)`, and slopes in
   `2^Z` or `6^Z` in `CT_{{3}}(Z)`.
-- **The bound.** Put:
-  - `D` = the depth, so that every piece has degree `≤ D·1`;
-  - `K = max |κ|` over pieces, where the piece has slope `γ^κ`;
+- **The bound.** The input theorem fixes a **symmetric** generating set, so the constants are taken
+  over the tables of `S ∪ S^(−1)` (referee repair, bh-ref-d, e64cfcbeeb). Put:
+  - `D` = the depth, so that every piece of every element of `S ∪ S^(−1)` has degree `≤ D·1`;
+  - `K = max |κ|` over the pieces of `S ∪ S^(−1)`, where the piece has slope `γ^κ`;
   - `E = (D + K‖v‖_∞)·1`, `C = m_E`, `B = K·C`, and `n = D + 2B‖v‖_∞`;
   - `N(S) = (2B + 1)·m_(n·1 + Bv)`, where `m_d = ∏ p^(d_p)`.
 - **Conclusions.**
   1. **Orders are computably bounded.** If `g ∈ ⟨S⟩` has finite order, its order divides
      `e(S) = lcm(1, …, N(S))`. If `⟨S⟩` is finite, `|⟨S⟩| ≤ N(S)!`.
-  2. **Torsion is decidable.** `g` has finite order iff `g^(e({g}))` is the identity.
+  2. **Torsion is decidable.** `g` has finite order iff `g^(e({g}))` is the identity. Here the
+     constants in `e({g})` are computed from the tables of both `g` and `g^(−1)`.
   3. **Finiteness is decidable.** Enumerate balls of `⟨S⟩` using the word problem. If a ball stops
      growing, the group is finite. If some ball exceeds `N(S)!` elements, it is infinite.
      Exactly one of the two happens.

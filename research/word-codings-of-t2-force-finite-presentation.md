@@ -13,10 +13,10 @@ distinct_from:
 - Items 1–2 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; Referee bh-ref-q12 2026-09-19: items 1 and 2(a)–(b) PASS; the "open problem" wording and item 3's classification need repairs; see the Referee section).
 - Item 1 is the classical combing argument that automatic and combable groups are finitely presented
   (Epstein et al., *Word Processing in Groups*, Thm 2.3.12), credited, with no priority claimed.
-- Item 3 is heuristic and labelled so.
-- Recalled, not re-proved: Osajda's residually finite non-exact groups (Acta Math. 2020) are graphical
-  C′(1/6) quotients whose relator graphs have girth tending to infinity and embed isometrically. They are
-  not finitely presented, being direct limits of virtually special groups.
+- Item 3 is heuristic and labeled so.
+- Osajda's residually finite non-exact groups (arXiv:1703.03791, read at source) are defined by infinite
+  graphical C′(1/6) presentations, and are limits of hyperbolic groups acting geometrically on CAT(0) cube
+  complexes. Their relator graphs embed isometrically (Gromov's lemma, quoted there).
 - **Repairs applied** (both from the Referee section).
   - Finitely presented non-exact groups exist: recursively presented non-exact groups embed in finitely
     presented ones by Higman's theorem. The target is a **finitely presented, residually finite,
@@ -45,7 +45,9 @@ with Dehn-type reductions carried out at the two ends.
 2. **Word codings.**
    - (a) **Finite quotients.** No word coding with fixed `r` has the property of item 1 on the whole of
      infinitely many `Q_n`, when the `Q_n` are the quotients along a residual chain of an infinite group.
-     The loop closure always breaks end-locality somewhere in `Q_n`.
+     The loop closure always breaks end-locality somewhere in `Q_n`. So the strict notion of a word coding
+     (item 1 on all of every `Q_n`) is **empty** for infinite residually finite groups, and 2(b) is the
+     operative notion (wording repair from b8aa255019, via bh-ref-e).
    - (b) **The lift group.** Suppose the normal forms of `Q_n` restrict to `Γ`-balls of radius `R_n → ∞`,
      with lengths bounded by a function of word length, and satisfy item 1 there. Then `Γ` is finitely
      presented. So a T2 lift group given by such a coding, being residually finite, would be a
@@ -64,7 +66,7 @@ with Dehn-type reductions carried out at the two ends.
        via the referee).
    - Mechanism (iv) is excluded for T2 by item 4 of `pointer-encodings-give-non-linear-two-sided-locality`:
      linear regular transports force exact lifts.
-   - Osajda's long relators are labelled cycles of expanders. They are neither local, nor commutators of
+   - Osajda's long relators are labeled cycles of expanders. They are neither local, nor commutators of
      separated operations, nor periodic, and they cannot come from (iv) in a non-exact lift group.
    - **The obstruction T2 must beat:** an Osajda-type lift group needs a **fifth, non-linear** way to realize
      relators between bounded-radius operations. Candidates are seam-driven non-local transport, or relators
@@ -97,7 +99,9 @@ with Dehn-type reductions carried out at the two ends.
 - *Conclusion.* Apply item 1.
 
 **2(c).**
-- Osajda's groups are infinitely presented (recalled), so item 2(b) excludes them.
+- Osajda's groups are infinitely presented: they are "defined by infinite graphical small cancellation
+  presentations" and are limits of hyperbolic CAT(0)-cubical groups (arXiv:1703.03791, pp. 1–2, read at
+  source). So item 2(b) excludes them.
 - Heuristically: in a C′(1/6) graphical presentation, reducing a word needs more than half of a relator cycle,
   and those have unbounded length. ∎
 
@@ -135,7 +139,7 @@ with Dehn-type reductions carried out at the two ends.
 **Repair 1 (substantive): "a finitely presented non-exact group, which is an open problem" is wrong as stated.**
 - Non-exactness passes to overgroups, since exactness passes to subgroups.
 - The Gromov-monster and graphical small-cancellation non-exact groups can be taken **recursively presented**,
-  because the expander families and their labellings can be chosen computably. By Higman's embedding theorem they
+  because the expander families and their labelings can be chosen computably. By Higman's embedding theorem they
   embed in finitely presented groups, which are then non-exact. So finitely presented non-exact groups exist.
 - These are standard consequences of Higman embedding. The overgroup's source was not re-checked, but the argument
   is two lines.
@@ -161,7 +165,7 @@ with Dehn-type reductions carried out at the two ends.
   transports force exact lifts.
 - The parent's heuristic 6(a) already lists convolution. So the "fourth mechanism" T2 needs is really a **fifth**:
   one that is not linear.
-- The rest of item 3 is heuristic and correctly labelled.
+- The rest of item 3 is heuristic and correctly labeled.
 
 **Verdict.**
 - Items 1 and 2(a)–(b): PASS.

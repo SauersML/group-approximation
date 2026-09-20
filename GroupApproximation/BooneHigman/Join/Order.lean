@@ -66,8 +66,7 @@ theorem clt_total {x y : Cantor (Fin 2)} (h : x ≠ y) : CLt x y ∨ CLt y x := 
   classical
   have hex : ∃ n, x n ≠ y n := by
     by_contra hc
-    push_neg at hc
-    exact h (funext hc)
+    exact h (funext fun k => by_contra fun hk => hc ⟨k, hk⟩)
   let n := Nat.find hex
   have hne : x n ≠ y n := Nat.find_spec hex
   have hlt : ∀ i < n, x i = y i := fun i hi => by
@@ -195,7 +194,7 @@ theorem IsMono.inv {f : Equiv.Perm (Cantor (Fin 2))} (hf : IsMono f) : IsMono f�
   rcases clt_total hne with h' | h'
   · exact h'
   · have h'' := hf _ _ h'
-    simp only [Equiv.Perm.apply_inv_self] at h''
+    simp only [perm_apply_inv_self] at h''
     exact (clt_asymm h h'').elim
 
 #audit_axioms GroupApproximation.BooneHigman.Join.IsMono.inv
