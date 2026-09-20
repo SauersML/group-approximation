@@ -198,3 +198,24 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      of piecewise-projective maps of an interval, circle or line, with arbitrary real data, is
      isomorphic to one over a real number field and has polynomial-time word problem. This settles
      the piecewise-projective part of Attempt 8's "still open" item; germ-type hosts remain.
+10. **Twisted Brin--Thompson towers climb the polynomial hierarchy, exactly** (swarm-0917-w23
+    bh-break, 2026-09-20; lane proof, unreviewed): `twisted-bt-towers-climb-the-polynomial-hierarchy`.
+    - *The tower.* Start from `G_0 = F` acting on the dyadics, and put
+      `G_(k+1) = SV_(G_k)`, acting on the clopen sets of its cube.
+    - *The result.* Each `G_k` is finitely presented and simple, with a
+      `Π^p_k`-complete word problem. This holds unconditionally, under deterministic
+      many-one reductions.
+    - *The engine, Lemma Q.* A labelled branch `τ_t` controlled by the workspace
+      digits of two coordinates `a, b` fixed by `t` is an element of `SV_G`, and it
+      leaves the workspace in place. So a universally quantified `y`, written in
+      those digits, selects one letter of an actor word per Birget-style reversible
+      circuit. The fiber over `y` then carries the actor word `Φ(z,y)`, and a single
+      coordinate `r` reads off `∀y Φ(z,y) r != r`.
+    - *The layer count.* Each layer adds exactly one alternation. This replaces the
+      heuristic "iteration stays elementary", which is an upper bound only.
+    - *The cap.* Towers over `PSPACE` actors stay in `PSPACE`, since
+      `coNP^PSPACE = PSPACE`, and infinite towers are not finitely presented. So this
+      closes the whole twisted-BT-iteration family below `PSPACE`, from both sides.
+    - *Status.* The root stays OPEN. The first open rung is now a single finitely
+      presented simple group with `PSPACE`-hard word problem, which needs unbounded
+      alternation inside one finitely presented group.
