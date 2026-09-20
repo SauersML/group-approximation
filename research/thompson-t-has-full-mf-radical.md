@@ -98,3 +98,32 @@ separate points.  Two remarks limit the search.
     step is PW. A refutation of PW is a sequence of low-defect pairs with
     `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
     must use `r_2`.
+
+- **2026-09-20 (swarm-0917-w22-w22-ptl-break, belief breaker,
+  census-computation): the target is still OPEN; there is a new structural
+  constraint and a census.**
+  - *Constraint* (`thompson-t-low-defect-pairs-are-spectrally-balanced`,
+    ESTABLISHED).
+    - Every low-defect sequence of `Z/4 * Z/3` pairs has tracial limit
+      `a 1 + (1-a) delta_e` on `T`. This comes from the character simplex
+      of `T`.
+    - So its eigenvalue fractions converge to the "T-line", with
+      `f_A(0) = (1+3a)/4` and every other fraction equal to `(1-a)/4`.
+    - Nontrivial irreducible sequences have `a <= sqrt(5/17)`.
+      Irreducible exact `Delta(4,3,5)` representations have
+      `a <= sqrt(13/133)`.
+    - Near-central and trivial-heavy families force `a = 1`, so they are
+      dead as irreducible witnesses.
+    - Tensor powers sharpen the criterion. `T` is MF iff some `D -> 0`
+      sequence has trace tending to `delta_e`, which forces balanced
+      spectra.
+  - *Census* (`experiments/thompson-t-far-sector-census-2026-09-17/`,
+    `census2.py`). A local search over exact irreducible `Delta(4,3,5)`
+    representations in the far sector (`||[A^2,B]|| > 0.9`) found nothing
+    with `D12 < 0.89` for `4 <= n <= 12` (`n = 9, 11` not run). The best
+    value was `0.8946` at `n = 6`, and a critical value `0.9606` recurs at
+    `n = 5, 6, 7, 10`. The restarts were few, so this is
+    evidence and not a bound.
+  - *Next falsifiable step.* Search only on the T-line with `a` near `0`,
+    that is balanced types, at `n = 8, 16, 24`. Alternatively, prove an
+    effective version of item 3 of the constraint that is uniform in `n`.
