@@ -70,9 +70,15 @@ extensions give `F_n` criteria) for a direct answer.
    - **Most concrete next case.** Sub-hyperbolic PCF rational maps, which need an orbifold version of Nekrashevych's `pr:expandingpi1`.
 
 3. **All post-critically finite rational maps (2026-09-19, lane `bh-sz-vdg`).** *New case; the claim stays OPEN.*
-   - See `pcf-rational-nekrashevych-groups-are-f-infinity`. It is a lane proof, unreviewed, and rests on the unreviewed transfer theorem.
+   - See `pcf-rational-nekrashevych-groups-are-f-infinity`. It is OPEN (proof claimed, under review by bh-ref-g), and rests on the transfer theorem, which bh-ref-q12 is reviewing.
    - For every PCF rational map, `V_{d,r}(IMG f)` has type `F_∞`. This includes sub-hyperbolic maps with postcritical points in the Julia set.
    - **The cover.** It is the orbifold fundamental group of Thurston's orbifold.
    - **Why the kernel dies.** Short orbifold loops are elliptic by a displacement lemma, and elliptic elements map injectively to `IMG f`, since cone orders equal Thurston's `ν`.
    - **Credits.** Bounded automata are BHM's. The (P) row is BHM Remark 2.14 made complete, and uses Sidki's circuit theorem.
    - **What is left of case (E).** Contracting groups not of dynamical origin. They need a geometric dying-kernel cover.
+
+4. **Geometric form of the rest of case (E) (2026-09-19, lane `bh-sz-vdg`).** *Reformulation; the claim stays OPEN.*
+   - See `contracting-groups-have-aspherical-expanding-models`.
+   - An expanding self-covering of a compact orbi-complex with contractible universal cover, whose finite local groups inject into `G`, gives `F_∞` by the same displacement argument.
+   - The limit orbispace itself fails as a model whenever it is not semi-locally simply connected. Examples are the basilica Julia set and the Sierpiński gasket.
+   - Hence the open ingredient is an aspherical thickening of the limit orbispace.

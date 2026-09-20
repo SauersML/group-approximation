@@ -81,7 +81,7 @@ under sections, containing `1`). `Γ = V_{d,r}(G)`. By BBMZ, Γ is a full contra
 |---|---|
 | (B) bounded | `F_∞`: Belk–Hyde–Matucci. Röver's group is also re-proved on main by `wreath-recursion-thompson-groups-inherit-fn` |
 | (P) polynomial | `F_∞`: **BHM Remark 2.14** (their sketch). The complete proof is item 1 of `rover-nekrashevych-polynomial-activity-tower-sigma-full`, refereed PASS twice (`rover-nekrashevych-polynomial-activity-tower-review`, `rover-nekrashevych-activity-and-level-set-scope-review`) via BHM's main finiteness theorem along the activity tower. Its Σ items are unreviewed |
-| (E) exponential | **open** in general. `F_∞` via dying-kernel covers holds for IMGs of every PCF rational map (`pcf-rational-nekrashevych-groups-are-f-infinity`, via orbifold covers; unreviewed) and of expanding coverings of compact aspherical spaces (`hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity`) |
+| (E) exponential | **open** in general. `F_∞` via dying-kernel covers is claimed for IMGs of every PCF rational map (`pcf-rational-nekrashevych-groups-are-f-infinity`, via orbifold covers; OPEN, under review) and of expanding coverings of compact aspherical spaces (`hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity`) |
 
 - (B) ∪ (P) is exactly polynomial activity growth in that node's sense, one degree for all elements. This is
   Sidki's circuit theorem (S. Sidki, *Automorphisms of one-rooted trees: growth, circuit structure, and acyclicity*,
@@ -91,8 +91,8 @@ under sections, containing `1`). `Γ = V_{d,r}(G)`. By BBMZ, Γ is a full contra
 - **Lesson.** For Röver–Nekrashevych groups the singular-set trichotomy is the activity trichotomy. Defect is
   always zero, so the question is purely about the cardinality of singular sets. The BBMZ-host phenomenon of
   nonzero defect at branch points does not arise.
-- **Next case in (E), now done.** Sub-hyperbolic PCF rational maps are handled by
-  `pcf-rational-nekrashevych-groups-are-f-infinity`, with the orbifold group as a dying-kernel cover (lane proof,
-  unreviewed). The torsion obstruction in `contracting-groups-have-dying-kernel-covers-of-type-fn` is consistent with
+- **Next case in (E), claimed.** Sub-hyperbolic PCF rational maps are claimed by
+  `pcf-rational-nekrashevych-groups-are-f-infinity`, with the orbifold group as a dying-kernel cover (proof claimed,
+  under review). The torsion obstruction in `contracting-groups-have-dying-kernel-covers-of-type-fn` is consistent with
   it, since the orbifold group's torsion is exactly the recurrent branching.
 - **Remaining in (E).** Contracting groups not of dynamical origin.
