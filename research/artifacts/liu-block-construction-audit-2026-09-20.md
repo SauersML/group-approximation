@@ -6,7 +6,13 @@ Proposition 3.1, Theorems 3.2, 4.3, 5.1, and Lemmas 5.2-5.4 (printed
 pages 5-29). It is not a certification of the full paper, an independent
 proof of nonhyperlinearity, or an instruction to promote Cairn status.
 
-Source examined:
+The mathematical results and construction audited in Sections 1-3 are
+Jihao Liu's, from [*Nonhyperlinear groups exist*, September 20, 2026](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Proposition 3.1, Theorems 3.2, 4.3 and 5.1, and Lemmas 5.2-5.4.
+Rechecking, restating, and encoding these arguments in Cairn does not
+constitute a new discovery of those results or their proof mechanisms.
+
+Local source examined:
 `/private/tmp/claude-501/-Users-user-nonsofic-existence/e0e77c89-2a2c-477e-b91b-65bc2f656857/scratchpad/gq/lit/liu-nonhyperlinear-2026-09-20.pdf`.
 The PDF metadata records creation on September 20, 2026. Equations were
 read from the PDF text; pages 18 and 23 were also rendered and inspected
@@ -528,7 +534,7 @@ so that `F(t)<=epsilon`; then `c=beta^2/256>0` is fixed while all
 coordinate limits are taken. Sending `t=t_n->0` inside these estimates
 would require a new argument and is not asserted.
 
-## 4. Reusable Cairn material and the exact new work
+## 4. Reusable Cairn material and Liu's additional construction
 
 The canonical files and their cited September 8 artifacts were searched
 and read before proposing new interfaces. Relevant existing claims are:
@@ -556,28 +562,36 @@ No complete version of this assembly was found in the inspected
 canonical nodes or the three supplied September 8 artifacts. This is a
 bounded repository comparison, not a priority or provenance judgment.
 
-## 5. Proposed shared claim interfaces and routes
+## 5. Shared claim interfaces and routes
 
-These are proposed names, not canonical edits. Every claim id below is
-at most 58 characters, leaving room for a `-proof` route. Statements
-should retain exactly the quantifiers in Section 1.
+The names below were synchronized with the integration editor's canonical
+nodes after their creation. This artifact did not create those nodes.
+Every claim id is at most 58 characters. Statements should retain exactly
+the quantifiers in Section 1.
 
-| Proposed claim id | Length | Statement / sufficient route inputs |
+| Claim id | Length | Statement / sufficient route inputs |
 | --- | ---: | --- |
 | `quotient-gap-gives-uniform-relative-projection-repair` | 53 | OPEN audit leaf: Theorem 3.2, with its exact all-rank quantifiers above. Its proposed proof uses uniform witness transfer, word-neighborhood packing, and coarea, with no internality prerequisite. |
 | `low-energy-povms-round-equivariantly-in-place` | 45 | OPEN audit leaf: Theorem 4.3. Existing flexible-cut material supplies the initial cut construction; the remaining proof must include finite-algebra projection comparison and full-label pinching. |
-| `monotone-resolvents-control-covariance-and-range-leakage` | 56 | OPEN audit leaf combining all of Lemma 5.2 and Lemma 5.3. The two exact statements above are a conjunction: summed/localized covariance for projection-sum resolvents, and fixed-continuous-function leakage for arbitrary decreasing positive-contraction chains. |
+| `resolvent-assembly-controls-covariance-and-leakage` | 50 | OPEN audit leaf combining all of Lemma 5.2 and Lemma 5.3. The two exact statements above are a conjunction: summed/localized covariance for projection-sum resolvents, and fixed-continuous-function leakage for arbitrary decreasing positive-contraction chains. |
 | `defective-block-expansion-prunes-to-doubled-gaps` | 48 | OPEN audit leaf: Lemma 5.4 with all-test hypotheses, ambient defects, and doubled-list output. Its proposed proof is finite pruning, Cheeger, and two-unitary realization. |
 | `quotient-gap-gives-large-scalar-expanding-blocks` | 48 | Conditional assembly target: Theorem 5.1. Its route requires the four preceding leaves and supplies the minimum-rank/resolvent/coverage/transport argument of Section 3.6. |
-| `quotient-gap-expectations-have-uniform-coordinate-lifts` | 55 | Separate OPEN interface for Proposition 3.1, needed for Section 6 expectation exhaustion. Preserve the fixed-model quantifier order stated above. It is not an extra prerequisite of the Theorem 5.1 assembly when the relative-repair leaf already contains its full statement. |
+| `quotient-gap-expectations-have-coordinate-lifts` | 47 | Separate interface for Liu's Proposition 3.1, needed for Section 6 expectation exhaustion. The integration editor supplied `quotient-gap-expectation-lift-proof` as an independent verification and restatement of Liu's argument, not a novel proof. Preserve the fixed-model quantifier order stated above. It is not an extra prerequisite of the Theorem 5.1 assembly when the relative-repair leaf already contains its full statement. |
 
-For the current integration, keep the analytic leaves OPEN and attach
-this audit as evidence. No no-premise literature imports are proposed.
+For the current integration, keep the four long analytic leaves OPEN
+and attach this audit as evidence. No no-premise literature imports of
+those leaves are proposed. The expectation-lift route records an
+independent verification of Liu's Proposition 3.1, following Liu's
+witness-transfer identity, diagonal construction and algebra criterion.
+It is not a claim of a new theorem or proof. The steps were checked
+against the exact interface here. Normalize the
+supplied gap to a number in `(0,1)` before setting `r=1-a`.
+
 A route with `requires: []` asserts a complete proof; “the paper says
 so” plus this bounded audit must not silently acquire that meaning.
 The conditional Theorem 5.1 route makes a separate, reviewable claim:
 the four precisely stated interfaces suffice by the assembly checked
-in Section 3.6. The expectation-lift leaf remains separately visible
+in Section 3.6. The expectation-lift claim remains separately visible
 for the Section 6 consumer.
 
 Do **not** route Theorem 5.1 directly to

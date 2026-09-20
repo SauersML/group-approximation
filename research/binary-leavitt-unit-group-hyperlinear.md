@@ -3,6 +3,8 @@ rg: 2
 id: binary-leavitt-unit-group-hyperlinear
 kind: claim
 title: The binary Leavitt unit group, the first nonsofic group, is hyperlinear
+refuted_by:
+  - binary-leavitt-unit-group-is-not-hyperlinear
 distinct_from:
   leavitt-steinberg-hs-unstable: that is a normalized-HS *stability* statement about the Steinberg cover St_5(L), which yields a hyperlinear nonsofic *central quotient* only through the stability fork; this asks directly whether the nonsofic group itself has Hilbert--Schmidt models, with no stability hypothesis and no cover
   openai-leavitt-unit-nonsofic: that is the established nonsoficity theorem for this group; this is the orthogonal approximation question about the same group, and the two are compatible -- their conjunction is exactly the Q3.4 separation
@@ -40,6 +42,18 @@ artifacts:
 OPEN.  Does `L_{F_2}(1,2)^x` -- or its finitely generated nonsofic subgroup
 `G = EL_D(R)` from `openai-leavitt-unit-nonsofic` -- admit normalized
 Hilbert--Schmidt models?  Equivalently, is `L(G)` Connes embeddable?
+
+**2026-09-20 integrated conditional route.** Jihao Liu,
+[*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Theorem 1.2/6.7, supplies the proposed analytic input to
+`kazhdan-heat-maps-round-to-finite-algebras`. The separately audited earlier
+Cairn two-use argument is now wired through
+`leavitt-nonhyperlinear-from-kazhdan-heat-rounding` to the explicit negative
+claim. This is a conditional application of Liu's internality theorem, not a
+Leavitt theorem asserted in his paper. The analytic imports and negative
+claim remain OPEN; the new refutation edge activates only if that negative
+claim is established. Arbitrary bistochastic-channel rounding is not assumed
+proved by this connection. See `research/artifacts/liu-cairn-integration-2026-09-20.md`.
 
 **Manuscript consequence, checked 2026-09-08.** A positive answer would
 give a hyperlinear nonsofic group and a canonical hyperlinear non-MF

@@ -3,6 +3,8 @@ rg: 2
 id: kt-double-reduced-cstar-is-mf
 kind: claim
 title: The reduced C-star algebra of the q=2 Kun--Thom double is MF
+refuted_by:
+  - kt-double-reduced-cstar-is-not-mf
 distinct_from:
   reduced-amalgam-canonical-trace-is-mf: that asks for an MF trace on the full group C-star algebra without asymptotic isometry; this asks for a faithful norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
   symmetric-double-weak-mf: that embeds the abstract group, and in the proof a full auxiliary symmetric amalgam, into a norm matrix corona; neither conclusion says that the regular representation norm is approximated.
@@ -20,6 +22,15 @@ Gamma < G,                 D=G *_Gamma G.
 ```
 
 Prove that `C*_r(D)` embeds into a norm matrix corona.
+
+**2026-09-20 conditional opposite branch.** The matching negative statement
+for q=2 and all r,d>=3 is `kt-double-reduced-cstar-is-not-mf`. It uses
+nonhyperlinearity of the double plus the unique-trace input, not a claim
+about abstract-group weak MF. The analytic prerequisite is Jihao Liu,
+[*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Theorem 1.2/6.7, through the attributed Thom/Kun–Thom normalization and lamp
+chain. This negative statement remains OPEN pending the analytic review;
+the refutation edge is therefore conditional, not a current verdict.
 
 The target is stronger than hyperlinearity of `D`.  Its value is that the
 reduced algebra has a unique tracial state.  This input is now named and

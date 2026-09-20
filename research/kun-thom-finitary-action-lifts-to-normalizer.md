@@ -3,6 +3,8 @@ rg: 2
 id: kun-thom-finitary-action-lifts-to-normalizer
 kind: claim
 title: The explicit Kun--Thom action on the finitary symmetric factor has a trace-correct homomorphic lift to the normalizer of R in its ultrapower
+refuted_by:
+  - kun-thom-wreath-family-is-not-hyperlinear
 invalidates:
   - nonhyperlinear-from-kun-thom-finitary-normalizer-obstruction
 artifacts:
@@ -53,6 +55,18 @@ subgroup is incompatible with the compressor relations, so a proof needs a
 genuinely exotic simultaneous lift for the two named compressors.
 
 Two exact reductions now remove possible ambiguity in that last sentence.
+
+**2026-09-20 conditional connection.** The family-wide negative claim
+`kun-thom-wreath-family-is-not-hyperlinear` refutes this lifting proposal
+through the existing `kun-thom-finitary-normalizer-lift-proves-hyperlinear-wreath`
+route: a lift would make the same parameter-matched wreath hyperlinear.
+The proposed analytic input is Jihao Liu,
+[*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Theorem 1.2/6.7, with Thom's conditional normalization and Kun–Thom's lamp
+construction. The negative prerequisite is still OPEN, so no current
+refutation or failure of the established one-compressor constructions is
+being claimed.
+
 First, `kt-finitary-action-is-outer-mod-scalar-core` proves that for the
 valid specialization `q=2` every nonidentity actor automorphism is outer, so
 `(KFL1)` is automatic and only cocycle splitting remains.  Second,

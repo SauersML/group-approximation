@@ -3,6 +3,8 @@ rg: 2
 id: hyperlinear-wreath-model
 kind: claim
 title: Construct a hyperlinear model of the wreath candidate
+refuted_by:
+  - kun-thom-wreath-family-is-not-hyperlinear
 distinct_from:
   wreath-not-sofic: same candidate group, opposite directions — this asks to CONSTRUCT microstates; that asks to REFUTE soficity
   fiber-masa-free-cocycle: that is one ingredient of one architecture (a fiber cocycle with no invariant MASA); this is the whole goal, by any means
@@ -13,6 +15,14 @@ artifacts:
 Construct microstates for the wreath candidate in which the `Γ`-pieces
 genuinely have no consistent size — a model witnessing the compression
 inside `R^𝒰` (notes/OBSTRUCTIONS.md §5, "Flexibility").
+
+**2026-09-20 conditional refuter.** The full parameter-matched negative
+family is now named in `kun-thom-wreath-family-is-not-hyperlinear`, from
+all-trace normalization and Kun–Thom Theorem E. Its proposed analytic input
+is Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Theorem 1.2/6.7, with the conditional normalization bridge credited to Thom.
+It remains OPEN, so this refutation edge is not yet active. This is not an
+extrapolation from only Liu's q=2,r=d=3 displayed example.
 
 All *represented* constructive approaches are ruled out (see the approach
 list), but **no exhaustiveness finding exists**: the no-gos kill

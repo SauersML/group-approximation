@@ -1,0 +1,570 @@
+{
+  "checked_on": "2026-09-20",
+  "baseline_revision": "4067aaa68654fbbf2fff240e076a5c27b60375e9",
+  "scope": "Graph bookkeeping and conditional propagation, not mathematical certification.",
+  "new_node_count": 37,
+  "baseline_schema_error_count": 70,
+  "current_schema_error_count": 70,
+  "new_schema_errors": [],
+  "duplicate_findings": [],
+  "nodes": {
+    "all-trace-normalization-from-kazhdan-internality": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "binary-leavitt-is-fp-simple-kazhdan-nonhyperlinear": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "binary-leavitt-unit-group-is-not-hyperlinear": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "boundary-char-two-nonhyperlinear-from-leavitt": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "boundary-char-two-simple-kazhdan-is-not-hyperlinear": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "defective-block-expansion-prunes-to-doubled-gaps": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "heat-rounding-from-internal-commutants": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "hs-finitary-compression-from-all-trace-normalization": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "hs-normalization-from-all-trace-compression": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "internal-corners-exhaust-kazhdan-commutants": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "internal-kazhdan-commutants-normalize-under-compressors": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kazhdan-commutants-are-internal": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kazhdan-compression-pairs-normalize-all-tracial-models": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kazhdan-heat-maps-round-to-finite-algebras": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kazhdan-internality-from-blocks-and-exhaustion": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kt-double-reduced-cstar-is-not-mf": {
+      "status": "OPEN",
+      "reachable": false
+    },
+    "kt-double-reduced-not-mf-from-nonhyperlinearity": {
+      "status": "OPEN",
+      "reachable": false
+    },
+    "kt-q2-double-is-not-hyperlinear": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kt-q2-double-nonhyperlinear-from-wreath": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kun-thom-lamp-collapse-from-tracial-normalization": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kun-thom-wreath-family-from-tracial-normalization": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "kun-thom-wreath-family-is-not-hyperlinear": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "large-scalar-blocks-from-repair-and-resolvents": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "leavitt-fp-simple-kazhdan-from-nonhyperlinearity": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "leavitt-hs-stable-from-heat-rounding": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "leavitt-nonhyperlinear-from-kazhdan-heat-rounding": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "low-energy-povms-round-equivariantly-in-place": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "non-hyperlinear-from-char-two-boundary-group": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "non-hyperlinear-from-fp-simple-leavitt": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "non-hyperlinear-from-kun-thom-double": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "non-hyperlinear-from-kun-thom-lamp-wreath": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "quotient-gap-expectation-lift-proof": {
+      "status": "COMPLETE",
+      "reachable": true
+    },
+    "quotient-gap-expectations-have-coordinate-lifts": {
+      "status": "ESTABLISHED",
+      "reachable": true
+    },
+    "quotient-gap-gives-large-scalar-expanding-blocks": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "quotient-gap-gives-uniform-relative-projection-repair": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "resolvent-assembly-controls-covariance-and-leakage": {
+      "status": "OPEN",
+      "reachable": true
+    },
+    "scalar-expanding-kazhdan-blocks-give-internality": {
+      "status": "OPEN",
+      "reachable": true
+    }
+  },
+  "counterfactual_scenarios": {
+    "internality_only": {
+      "stable": true,
+      "established": [
+        "binary-leavitt-is-fp-simple-kazhdan-nonhyperlinear",
+        "binary-leavitt-unit-group-is-not-hyperlinear",
+        "boundary-char-two-simple-kazhdan-is-not-hyperlinear",
+        "kazhdan-commutants-are-internal",
+        "kazhdan-heat-maps-round-to-finite-algebras",
+        "leavitt-steinberg-hs-stable",
+        "non-hyperlinear-group",
+        "quotient-gap-expectations-have-coordinate-lifts"
+      ],
+      "refuted": [
+        "binary-leavitt-unit-group-hyperlinear"
+      ]
+    },
+    "full_liu_chain": {
+      "stable": true,
+      "established": [
+        "binary-leavitt-is-fp-simple-kazhdan-nonhyperlinear",
+        "binary-leavitt-unit-group-is-not-hyperlinear",
+        "boundary-char-two-simple-kazhdan-is-not-hyperlinear",
+        "internal-kazhdan-commutants-normalize-under-compressors",
+        "kazhdan-commutants-are-internal",
+        "kazhdan-compression-pairs-normalize-all-tracial-models",
+        "kazhdan-heat-maps-round-to-finite-algebras",
+        "kt-double-reduced-cstar-is-not-mf",
+        "kt-q2-double-is-not-hyperlinear",
+        "kun-thom-wreath-family-is-not-hyperlinear",
+        "leavitt-steinberg-hs-stable",
+        "non-hyperlinear-group",
+        "quotient-gap-expectations-have-coordinate-lifts"
+      ],
+      "refuted": [
+        "binary-leavitt-unit-group-hyperlinear",
+        "hs-compression-stability-fails-at-the-theorem-e-pair",
+        "hyperlinear-wreath-model",
+        "kt-canonical-hs-normalization-fails",
+        "kt-double-reduced-cstar-is-mf",
+        "kun-thom-finitary-action-lifts-to-normalizer"
+      ]
+    },
+    "single_wreath_only": {
+      "stable": true,
+      "established": [
+        "non-hyperlinear-group",
+        "quotient-gap-expectations-have-coordinate-lifts"
+      ],
+      "refuted": []
+    }
+  },
+  "obstruction_only_nodes": [
+    "kt-double-reduced-cstar-is-not-mf",
+    "kt-double-reduced-not-mf-from-nonhyperlinearity"
+  ],
+  "obstruction_scope": "The reduced-C*-algebra negative claim is consumed by a source-owned refuted_by edge. Cairn's dependency-only root reachability does not count refutation edges; no spurious route from non-MF to nonhyperlinearity was added.",
+  "caveat": "The full graph is not a clean compile; FRONTIER regeneration is refused while inherited schema errors remain.",
+  "inherited_schema_errors": [
+    [
+      "error",
+      "unknown-key",
+      "research/algebraic-rows-carry-rigid-free-commutants-but-never-minimality.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/algebraic-t1-needs-failure-of-char-p-measure-rigidity.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/algebraic-t1-sets-carry-free-distal-commutator-actions.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/bartholdi-mitrofanov-proposition-2-4-gap-and-repair.md: distinct_from: unknown claim 'nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups'"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/bbmz-hosts-with-higher-dimensional-boundary-are-unbounded.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/bbmz-singularity-is-a-recurrent-coincidence.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/birget-question-via-decidable-bartholdi-mitrofanov-hosts.md: distinct_from: unknown claim 'nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups'"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/bounded-defect-free-full-contracting-rsgs-are-f-infinity.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/busemann-frontiers-separate-the-boundary.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/char-2-benoist-quint-for-free-groups-on-ledrappier-rows.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/char-2-benoist-quint-needs-the-homogeneous-form.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/clique-union-raag-roller-hosts-are-f-infinity.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/cohen-rope-reader-is-not-quantum-rigid.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/commutator-squeeze-bounds-lifted-lie-translations.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/congruence-closed-odd-linear-automaton-quotients-are-exact.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/countable-sets-never-separate-continua-without-local-cut-points.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/ct-p-z-order-is-decided-by-elliptic-reduction.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/dickson-returns-force-compressions-in-canonical-full-groups.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/elliptic-singularity-is-a-marker-mismatch.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/euler-lamplighter-automorphisms-admit-no-fp-sandwich.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/fix-classtransposition-presentation.md: unknown keys for route: ['status']"
+    ],
+    [
+      "error",
+      "requires",
+      "research/fix-classtransposition-presentation.md: requires is mandatory (requires: [] asserts a complete direct proof)"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/fix-nmn-tww-extension-absorb-quasicentral-step.md: unknown keys for route: ['status']"
+    ],
+    [
+      "error",
+      "target",
+      "research/fix-nmn-tww-extension-absorb-quasicentral-step.md: target must name an existing claim, got None"
+    ],
+    [
+      "error",
+      "requires",
+      "research/fix-nmn-tww-extension-absorb-quasicentral-step.md: requires is mandatory (requires: [] asserts a complete direct proof)"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/fix-nmn-tww-std-operator-algebra-complete.md: unknown keys for route: ['status']"
+    ],
+    [
+      "error",
+      "target",
+      "research/fix-nmn-tww-std-operator-algebra-complete.md: target must name an existing claim, got None"
+    ],
+    [
+      "error",
+      "requires",
+      "research/fix-nmn-tww-std-operator-algebra-complete.md: requires is mandatory (requires: [] asserts a complete direct proof)"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/forced-descent-seeds-pass-the-separability-test.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/free-bit-components-are-central-iff-they-see-the-base.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/free-z-factor-transfers-singularity.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/generalized-triangle-group-hosts-reduce-to-fixed-trees.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/halting-core-mark-is-forced-at-pointer-exits.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/hierarchical-recursion-relaxes-t2-to-one-sided-locality.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/hierarchical-tilings-fail-the-free-commutant-test.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/higman-envelope-port-actions-are-absorbed-over-the-double.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/hyperbolic-racgs-min-star-order-review.md: distinct_from: unknown claim 'hyperbolic-racgs-contracting-rsg-via-min-star-order'"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/hyperbolic-racgs-min-star-order-review.md: distinct_from: unknown claim 'hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof'"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/kourovka-19-46-subshift-route-review.md: distinct_from: unknown claim 'ct-z-periodic-groups-via-subshift-factors-of-elements'"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/ledrappier-shift-has-infinite-toeplitz-minimal-subsets.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/ledrappier-shift-has-only-finite-minimal-subsets.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/level-set-join-complexes-are-highly-connected.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/level-set-route-reaches-only-bounded-rover-nekrashevych-groups.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/loop-labels-reduce-t2-to-two-sided-locality.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/mapping-class-ports-are-dehn-thurston-translations-not-twists.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/nm-exclusive-pocket-first-turns-review.md: distinct_from: unknown claim 'nm-exclusive-pocket-first-turns'"
+    ],
+    [
+      "error",
+      "target",
+      "research/nm-exclusive-pocket-first-turns.md: target must name an existing claim, got None"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/one-sided-t2-lift-groups-are-periodically-closed-quotients.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/pcf-rational-nekrashevych-groups-are-f-infinity.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/permutational-ports-need-stabilizers-crossing-every-splitting.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/pointer-encodings-give-non-linear-two-sided-locality.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/polygonal-anzai-codings-lift-only-finitely-many-rotations.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/products-of-trees-refute-cap-coherence-join-caps-restore-it.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/profinite-skew-layers-collapse-into-the-equicontinuous-factor.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/q12-line-state-for-hyperbolic-hosts.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/racg-generators-are-singular-over-their-wall-trees.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/residual-towers-constrain-non-lie-commutant-layers.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/separable-subgroups-are-z-semilocal-root-closed.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/shortlex-adjacent-refinement-fails-for-a-virtually-free-racg.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/shortlex-cone-tiles-certify-upstream-leaving-crossing.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/shortlex-far-base-finiteness-is-the-contracting-lemma.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/star-chains-along-fixed-trees-are-gallery-convex.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/torsion-defect-costs-nothing-in-bhm-germ-complexes.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/two-sided-locality-holds-for-matrix-linear-automata.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "distinct-from",
+      "research/typed-core-backward-half-review.md: distinct_from: unknown claim 'hyperbolic-racgs-contracting-rsg-via-min-star-order'"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/vector-level-set-complexes-need-a-bounded-family.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/wall-flux-is-not-a-houghton-obstruction.md: unknown keys for claim: ['requires']"
+    ],
+    [
+      "error",
+      "unknown-key",
+      "research/word-codings-of-t2-force-finite-presentation.md: unknown keys for claim: ['requires']"
+    ]
+  ]
+}

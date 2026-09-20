@@ -6,6 +6,7 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/liu-cairn-integration-2026-09-20.md
   - research/artifacts/leavitt-full-character-classification-2026-09-08.md
   - research/artifacts/leavitt-packet-perfect-kernel-and-finite-amalgam-obstruction-2026-09-08.md
   - research/artifacts/commutation-stabilizer-relative-embedding-2026-09-07.md
@@ -51,6 +52,16 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+**Integrated Liu connection, 2026-09-20.** The proposed analytic input is
+Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
+Theorem 1.2/6.7 (`kazhdan-commutants-are-internal`). Its conditional graph now
+reaches this root through the Kun–Thom lamp obstruction and, separately,
+through the earlier Cairn Leavitt two-use heat argument. Thom retains credit
+for the conditional normalization/construction bridge. Audits, exact scopes,
+consequences and non-consequences are in the linked integration guide. The
+long analytic imports remain OPEN; this update does not declare the root
+established or claim a new Lean verification.
 
 **September 8, full Leavitt character classification.** The written
 proof `binary-leavitt-full-character-simplex` establishes that every

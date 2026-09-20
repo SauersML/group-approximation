@@ -6,7 +6,7 @@ title: The binary Kun--Thom lamp wreath over the q = 2, r = d = 3 Theorem E pair
 distinct_from:
   non-hyperlinear-group: that is the program root, which asks for some explicit non-hyperlinear group; this is one specific group with one specific claimed proof, recorded so that the root can follow its review.
   kun-thom-nonsofic-wreath: that is nonsoficity (permutation models, normalized Hamming metric) of the same family of wreath products, established by citation of Kun--Thom; this is the strictly stronger statement in the normalized Hilbert--Schmidt metric.
-  wreath-not-sofic: that is nonsoficity of the same wreath candidate; nonhyperlinearity implies it, and the converse fails in general.
+  wreath-not-sofic: that is nonsoficity of the same wreath candidate; nonhyperlinearity implies it, but no converse is supplied here.
   kt-centralizer-normalization-hs: that asks whether trace-preserving representations into a tracial matrix ultraproduct normalize the Gamma-commutant; the claimed proof answers it for arbitrary homomorphisms (internality, then normalization) and draws the group conclusion recorded here.
   kt-canonical-hs-normalization-fails: that is the opposite branch of the same fork, a Connes-embeddable model with a non-normalized Gamma-commutant; this claim, if its proof stands, refutes it.
   kt-wreath-hyperlinear-iff-double-hyperlinear: that is an established equivalence between the wreath, the double and relative embeddability, and it decides neither side; this claim decides the wreath side negatively.
@@ -14,6 +14,9 @@ distinct_from:
   kun-thom-wreath-weak-mf: that concerns operator-norm (weak MF) approximation of the same wreath; this concerns normalized Hilbert--Schmidt approximation.
 artifacts:
   - research/artifacts/gq-nh-record-consistency-sweep.md
+  - research/artifacts/liu-cairn-integration-2026-09-20.md
+  - research/artifacts/liu-block-construction-audit-2026-09-20.md
+  - research/artifacts/liu-internality-normalization-audit-2026-09-20.md
 ---
 
 **OPEN (proof claimed, under review).**
@@ -30,6 +33,15 @@ unconditional theorem below.
 
 This node records the claim. It stays OPEN until independent reviews of the proof are
 complete: §§3–5, and §§6–8 checked against Thom's preprint.
+
+**Integrated review update, 2026-09-20.** Three targeted audits now cover the
+block construction, internality/normalization (including Thom comparison), and
+the separate Leavitt application. They found no concrete gap in the inspected
+steps but do not certify the entire paper or all imported inputs. The shared
+analytic claim is `kazhdan-commutants-are-internal`, explicitly credited to
+Jihao Liu. Conditional routes now connect it through all-trace normalization
+to this exact marked-lamp statement and the existing root. The long imports
+remain OPEN rather than being accepted by a blanket citation route.
 
 ## Statement
 
@@ -129,7 +141,14 @@ The group-level step transcribes Kun--Thom's Theorem A argument to tracial ultra
 same reduction is recorded in `kt-centralizer-normalization-hs`. The weight of the claim is on
 step 1.
 
-## Graph consequences if the claim stands (lane reading, not independently reviewed)
+## Graph consequences of the full claimed chain (not of this group statement alone)
+
+The distinctions here matter. General internality and all-trace normalization,
+not the displayed one-wreath statement alone, feed the uniform compression and
+normalization-countermodel conclusions below. The integrated routes enforce
+that stronger prerequisite. The Leavitt conclusion is a separately checked
+Cairn conditional application of Jihao Liu's Theorem 1.2/6.7; it does not use
+the wreath theorem and does not assert arbitrary-channel rounding.
 
 Artifact `gq-nh-record-consistency-sweep` has the details. No established node was found to
 contradict the claim.

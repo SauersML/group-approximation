@@ -6,7 +6,9 @@ Lean verification was run. Theorem 6.7 remains a hypothesis throughout.
 
 ## 1. Result and trust boundary
 
-Assume the statement of Liu, *Nonhyperlinear groups exist*, Theorem 6.7:
+Assume the statement of Jihao Liu,
+[*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf)
+(2026-09-20), Theorem 1.2/6.7:
 for every finitely generated Kazhdan group G, every specified free ultrafilter
 omega, every sequence d_n, and every homomorphism into
 M = prod_omega (M_(d_n), tr_(d_n)), its full relative commutant is [A_n]_omega
