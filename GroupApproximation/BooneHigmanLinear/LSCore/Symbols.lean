@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Conjugation
+import GroupApproximation.Steinberg.Functoriality
 import Mathlib.Tactic.Group
 import Mathlib.Tactic.Ring
 import GroupApproximation.Meta.AxiomGuard
@@ -22,6 +23,10 @@ A. Lavrenov, S. Sinchuk, *A Horrocks-type theorem for even orthogonal K₂*, Doc
   then follows from the commutator identities, as in `Metabelian/ElemFPFieldK2Bimul` over a field.
 * `dsym_scale`: `⟨a t⁻¹, m t⟩_α = ⟨a, m⟩_α {t⁻¹, 1 + am}_α`, which is L–S (5.12) with the
   conjugation by `h_γ(X)`, and its corollary `dsym_scale_mul` used for L–S Lemma 5.28.
+* Naturality under ring maps: `ringMap_w`, `ringMap_h`, `ringMap_dsym`.
+* `DsymRootIndep`: `⟨a, b⟩_α = ⟨a, b⟩_γ` for disjoint index pairs `α, γ` (L–S §2.2: symbols do
+  not depend on the root in the simply-laced case). It follows from centrality by conjugating with
+  a Weyl element that moves `γ` to `α`; it is stated as a named hypothesis until that is written.
 -/
 
 namespace GroupApproximation
@@ -189,6 +194,40 @@ theorem dsym_scale_mul {i j l : I} {hij : i ≠ j} (hF : SymbolFacts R i j hij) 
     ssym_one_left, mul_one]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.LSCore.dsym_scale_mul
+
+variable (I R) in
+/-- Root independence of Dennis–Stein symbols for disjoint index pairs. -/
+def DsymRootIndep : Prop :=
+  ∀ (i j k l : I) (hij : i ≠ j) (hkl : k ≠ l), i ≠ k → i ≠ l → j ≠ k → j ≠ l →
+    ∀ (a b : R) (u : Rˣ), (u : R) = 1 + a * b → dsym i j hij a b u = dsym k l hkl a b u
+
+section Naturality
+
+variable {S : Type*} [CommRing S]
+
+theorem ringMap_w (f : R →+* S) (i j : I) (hij : i ≠ j) (u : Rˣ) :
+    ringMap f (w i j hij u) = w i j hij (Units.map (f : R →* S) u) := by
+  simp only [w, map_mul, ringMap_x, map_neg]
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.LSCore.ringMap_w
+
+theorem ringMap_h (f : R →+* S) (i j : I) (hij : i ≠ j) (u : Rˣ) :
+    ringMap f (h i j hij u) = h i j hij (Units.map (f : R →* S) u) := by
+  have hneg : Units.map (f : R →* S) (-1) = -1 :=
+    Units.ext (show f (-1) = -1 by rw [map_neg, map_one])
+  rw [h_def, h_def, map_mul, ringMap_w, ringMap_w, hneg]
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.LSCore.ringMap_h
+
+theorem ringMap_dsym (f : R →+* S) (i j : I) (hij : i ≠ j) (a b : R) (u : Rˣ) :
+    ringMap f (dsym i j hij a b u) = dsym i j hij (f a) (f b) (Units.map (f : R →* S) u) := by
+  simp only [dsym, map_mul, map_inv, ringMap_x, ringMap_h, map_neg]
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.LSCore.ringMap_dsym
+
+end Naturality
 
 end LSCore
 end BooneHigmanLinear

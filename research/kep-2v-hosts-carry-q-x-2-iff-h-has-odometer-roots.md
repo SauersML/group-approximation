@@ -47,14 +47,73 @@ distinct_from:
 - **Distortion:** the baker map `u`, which conjugates `s` to `s^2`, as in `2V_τ`.
 - **`SL_3(Z)`:** not addressed; this is the first rung `Q ⋊ ⟨2⟩` of the `Aff(Q)` ladder only.
 
-## Not claimed
+## Finite presentation and simplicity (after the review `kep-2v-hosts-odometer-roots-review`, bh-ref-d)
 
-Finite presentation and simplicity of `2V_H` for general `H`. For `H = ⟨τ⟩` both come from Li's and Matui's
-theorems (`odometer-2v-is-fp-simple-and-contains-bs12`). For a larger `H` they need those theorems' hypotheses
-re-checked. The one-coordinate group `V_2(H)` is finitely presented when `H` is a finitely presented self-similar
-group (Scott), and its commutator subgroup is simple (`rover-nekrashevych-finite-presentation-criteria`).
-There, however, no element conjugates `τ` to `τ^2`: `τ` is minimal on `C` and `τ^2` is not, which is why the host
-needs the second coordinate.
+**What the sources give** (wording of the review, sources read at `arXiv` LaTeX).
+- Li's Example `ex:ZS` (III), arXiv:2110.04505v2, covers self-similar actions on higher-rank graphs.
+- With `𝔇^*(v, v) = St(H, v) = H` (Remark `rem:ZS-Stab`, one vertex), a finitely presented (`F_2`) `H` gives a
+  finitely presented `2V_H` provided four conditions hold:
+  - right cancellation up to `=^*`;
+  - (Inv);
+  - (F);
+  - effectiveness, which identifies Li's full group with `2V_H`.
+- Matui's `simple2` (arXiv:1210.5800v3) gives `D(2V_H)` simple when the groupoid is Hausdorff, effective,
+  purely infinite and minimal.
+
+**Two of the conditions are automatic, and two follow from local faithfulness** (this addendum, lane proof,
+not reviewed).
+5. **Right cancellation.** Li, `ex:ZS`: if `𝔡(g.a) = 𝔡(a)` for all `g, a`, and `P` is right cancellative,
+   then "`𝔇 ≔ 𝔆 ⋈ 𝔊` is automatically right cancellative up to `=^*`". Here `P = Z_(≥0)^2`, and `H` preserves
+   colours.
+6. **Local faithfulness.** Suppose no nontrivial `η ∈ H` is the identity on a nonempty open subset of `C`.
+   Then the groupoid of `2V_H` on `X` is Hausdorff and effective, and (F) holds. Minimality and pure
+   infiniteness come from `2V ≤ 2V_H`, as for `H = ⟨τ⟩`.
+   - Translations are locally faithful, and so is every group of maps each given on all of `Z_2` by one
+     rational function or one convergent power series (zeros of such a function are isolated). For example, the
+     rational Iwahori group `Γ_2 = PGL_2(Q) ∩ I_2` of `pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori`
+     is self-similar, not finite-state, locally faithful, and contains the translations by `Z_(2)`.
+   - So **Hausdorffness is not the obstruction** for non-finite-state `H`; finite generation is. By
+     `fg-linear-groups-have-roots-at-finitely-many-primes`, a finitely generated linear group, affine or
+     Möbius over any field, gives `τ` roots at only finitely many primes. For Möbius pieces see also
+     `finite-state-mobius-pieces-see-finitely-many-primes`. So the `H` needed is finitely presented, locally
+     faithful and not linear.
+7. **Perfectness, hence simplicity of `2V_H` itself.** `2V_H` is perfect. So under the hypotheses of item 6,
+   `2V_H = D(2V_H)` is simple, and the copy `Q ⋊ ⟨2⟩` of item 3 lies in it. Moreover every `a = τ_c × id`
+   satisfies `a = [u, a]`, since `u a u^-1 = a^2`.
+
+8. **(Inv) is automatic too.** Li defines (Inv) at l.2332 of the e-print: "`𝔊.𝔖 ⊆ 𝔖𝔆^*`", `X(g.𝔳; g.𝔢) ∈ 𝔛`
+   whenever `X(𝔳; 𝔢) ∈ 𝔛`, and `g.γ ∈ Γ 𝔆^*`. Example `ex:ZS` (l.2372) proves exactly these three
+   properties for every degree-preserving self-similar action in the degree setting: "we have
+   `𝔊.𝔖 ⊆ 𝔖𝔆^*`. Moreover, if `𝔛` and `Γ` are constructed as in §`s:Gars-deg`, then … `X(g.𝔳;g.𝔢) ∈ 𝔛`,
+   and … `g.γ ∈ Γ𝔆^*`." So (Inv) holds for every `H` here, including the rational Iwahori group.
+
+**Conditional corollary.** Let `H ≤ Aut(T_2)` be self-similar, with `τ ∈ H` and `T_H ⊇ Z_(2)`, and let `H`
+be finitely presented and locally faithful. Then `2V_H` is a finitely presented simple group containing
+`Q ⋊ ⟨2⟩`. Every condition of Li and Matui is now accounted for (items 5–8). What remains is the existence
+of such an `H`.
+
+## The remaining gap: a finitely presented, locally faithful, non-linear `H`
+
+9. **Conjugators between odometer roots are affine.** Let `σ ∈ Aut(T_2)` and `σ τ_a σ^-1 = τ_b` with
+   `a ∈ Z_2^×`. Then `σ(x) = σ(0) + (b/a) x`. So inside `Aut(T_2)`, an element carrying a root `τ_(1/ℓ)` to a
+   root `τ_(1/ℓ')` is the affine map `x ↦ (ℓ/ℓ') x + z`, and it rescales all translations by the same
+   factor.
+10. **Consequence for amalgams of Iwahori-type pieces.** Build `H` from finitely generated Möbius pieces,
+    each seeing finitely many primes, glued along elements that carry roots of one piece to roots of
+    another. By item 9 every such gluing element is a Möbius map (affine) over `Q_2`. So the glued group lies
+    in `PGL_2(Q_2)`, it is linear, and by `fg-linear-groups-have-roots-at-finitely-many-primes` it has roots
+    at only finitely many primes. **Realized inside `Aut(T_2)`, prime-moving amalgams collapse to linear
+    groups.**
+    - An abstract amalgam or HNN extension is not residually finite in general, so it does not act faithfully
+      on `T_2`.
+    - The translations `τ_(1/ℓ)` of a working `H` must therefore arise from **non-conjugation words**:
+      products of non-affine elements that happen to equal a translation.
+    - The `Q ⋊ ⟨2⟩` rung of the `GL_n(Q)` programme now comes down to exactly this one construction problem.
+
+The one-coordinate group `V_2(H)` is finitely presented when `H` is a finitely presented self-similar group
+(Scott), and its commutator subgroup is simple (`rover-nekrashevych-finite-presentation-criteria`). But no
+element of it conjugates `τ` to `τ^2`: `τ` is minimal on `C` and `τ^2` is not. That is why the host needs the
+second coordinate.
 
 ## Lesson
 

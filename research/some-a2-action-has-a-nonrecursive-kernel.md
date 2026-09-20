@@ -49,6 +49,8 @@ this claim is ESTABLISHED.
   `non-removable-a2-kernel-from-nonrecursive-mixed-identities`). No route from it to
   this claim is recorded here.
 
+**Correction (2026-09-19).** As printed in the arXiv versions, Bartholdi–Mitrofanov's Theorem A″ rests on their Proposition 2.4, whose proof has a gap. There `[g,u] ≠ 1` for every machine. It is repaired by replacing `u` with a partner `p` supported on `0^*1A^ω`; see `bartholdi-mitrofanov-proposition-2-4-gap-and-repair` (referee bh-ref-f PASS, 6747a7e43d). Theorem A″ holds for the repaired table `G′_M = ⟨Φ_M, p, p′⟩`. The witness uses the repaired recursion table, which includes `p` and `p′`.
+
 ## Attempts
 
 **Attempt 1 (2026-09-16): normalizer covers.** Take the actors

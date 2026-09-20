@@ -150,6 +150,70 @@ Lemma 2 forbids both at once, so `12` does not occur. ∎
 - **Infinite order:** `τ_{0(2),1(4)}·τ_{1(2),0(4)}`. The orbit of 2 is
   `2 → 5 → 8 → 17 → 32 → 65 → …`, which is unbounded.
 
+## Corollary: (P2) for d-adic pairs (addendum 09-19; lane proof, not reviewed)
+
+For `τ1`, `τ2` as in the Statement, the following are equivalent:
+1. `τ1 τ2` has only finite cycles on `Z`;
+2. `τ1 τ2` has finite order;
+3. `(τ1 τ2)^{12} = 1`.
+
+In that case the order lies in `{1, 2, 3, 4, 6}`. So the property is decidable: compute `(τ1τ2)^{12}`,
+a residue-class-wise affine map, and test whether it is the identity.
+
+This is property (P2) of `class-transposition-groups-finite-orbits-is-undecidable` (bh-k1847), in the
+case where all moduli are powers of one integer.
+
+*Proof.* The implications (2) ⇒ (3) and (3) ⇒ (1) follow from the Statement. For (1) ⇒ (2) it
+suffices to show that a five-chain forces an **infinite cycle on `Z`**, not merely unbounded finite
+cycles. Then (1) excludes five-chains, and the proof of the Statement bounds every component by 4
+vertices.
+
+In Lemma 1, Case A and Case B1 are contradictions. In each non-excluded branch of Case B2, one of
+`ab`, `(ab)^{-1}` maps a cylinder `[z]` **into itself** by a prefix insertion `zθ ↦ z w θ`, for all
+`θ`, with `w` nonempty:
+
+| Subcase | Map | Direction |
+|---|---|---|
+| (a), `v' = u'w` | `vθ ↦ v w θ` | forward |
+| (a), `u' = v'w` | `vθ ↦ v w θ` | backward, since `(ab)(v w θ) = vθ` |
+| (b) | `vθ ↦ v (y'v') θ` | forward |
+| (c) | `xθ ↦ x (u'x') θ` | backward, since `(ab)(x u'x' θ) = xθ` |
+| (d), `y' = x'w` | `xθ ↦ x w θ` | forward |
+| (d), `x' = y'w` | `xθ ↦ x w θ` | backward |
+
+Iterating, the orbit of `zθ` contains `z w^k θ` for every `k ≥ 0`. These points are pairwise distinct
+unless `θ = w^∞`. The cylinder `[z]` meets `Z` in a whole residue class, and only one of its points is
+`z w^∞`. So some integer has an infinite `τ1τ2`-cycle. ∎
+
+**(P2) is false for mixed moduli** (bh-p2, 82aa08a416; lane proof, not reviewed; checked by hand here).
+`τ_{1(12),0(4)} · τ_{0(2),1(4)}` has only finite cycles but infinite order.
+- Its orbit graph has edges `4k — 12k+1` and `2j — 4j+1`.
+- Going forward, the component of `x ≡ 0 (mod 4)` follows `x ↦ 3x/2` while `4 | x`.
+- Going backward, it follows `x ↦ 2x/3` while `6 | x`.
+- So each component is a finite path, of length about `2(v_2(x) + v_3(x))`, and these lengths are
+  unbounded.
+
+So the d-adic corollary is sharp in its hypothesis. Kourovka 18.48 is unaffected, since it asks only
+about finite orders.
+
+**What (P2) is in general.** The general statement was stated as the crux
+`two-class-transposition-products-with-finite-cycles-are-periodic` (bh-k1847, 7d048c2e60).
+- **Tame elements satisfy (P2).** This is its Lemma T. It uses Kohl's characterization, quoted there
+  from the RCWA manual, Chapter 2: a mapping is tame iff it permutes a partition of `Z` into finitely
+  many residue classes, being affine on all of them. Elements of CT(Z) preserve order on each class,
+  so a power fixing every class acts on it by a translation, which must be trivial.
+- **So in general (P2) is equivalent to:** every wild product of two class transpositions has an
+  infinite cycle.
+- **Nested loops give infinite cycles.** This is its Lemma S. The proof above establishes its (P2)′
+  for d-adic pairs: a wild pair has a power mapping a class properly into itself.
+- **(P2) does fail for longer products.** bh-k1847's `F_M`, for `M` periodic but not uniformly
+  periodic, is a product of many class transpositions with only finite cycles and infinite order.
+- **Where the d-adic proof breaks down.** It works because every d-adic pair of infinite order has a
+  five-chain, and hence a nested loop: an affine piece of `ab` or `(ab)^{-1}` mapping a class properly
+  into itself. For moduli that meet transversally,
+  a wild pair can instead have transversal loops only, i.e. `σ(R) ∩ R ≠ ∅` without containment.
+  bh-p2's pair shows this really happens.
+
 ## Remarks
 
 - **What the proof uses.** Only two facts: the four cylinders are pairwise nested or disjoint, and

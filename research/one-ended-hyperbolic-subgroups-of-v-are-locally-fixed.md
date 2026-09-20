@@ -11,8 +11,10 @@ artifacts:
   - research/artifacts/gq-bh-scout-bbmz-ranked.md
 ---
 
-**ESTABLISHED** by `one-ended-hyperbolic-subgroups-of-v-locally-fixed-proof` (lane proof, bh-scout-bbmz, 09-19,
-not reviewed). It builds on `topologically-free-fg-subgroups-of-v-are-virtually-free`, which rests on
+**ESTABLISHED** by `one-ended-hyperbolic-subgroups-of-v-locally-fixed-proof` (lane proof, bh-scout-bbmz, 09-19).
+Refereed PASS by bh-ref-t0 after an adversarial check, at 020fc76108
+(`research/one-ended-hyperbolic-v-locally-fixed-review.md`). Every step passes: the Schreier-graph identification,
+the lifted geodesics, the (E3) height argument (the use of `ξ ∉ Hη` is essential), and items 1–2. It builds on `topologically-free-fg-subgroups-of-v-are-virtually-free`, which rests on
 Hyde–Skipper–Zaremsky arXiv:2605.20564v2, Theorem A.
 
 **Lemma L.** Let `Γ` be a hyperbolic group, `c ∈ Γ` of infinite order with fixed points `c^±` in `∂Γ`, and suppose

@@ -57,7 +57,7 @@ def lemma47Aux (H : Subgroup (SteinbergGroup I (Polynomial A)))
   carrier := {g | g ∈ relKer I (polyIdeal M) ∧
     g * (ringMap (Polynomial.C : A →+* Polynomial A)
       (ringMap (Polynomial.evalRingHom 0 : Polynomial A →+* A) g))⁻¹ ∈ H}
-  one_mem' := And.intro (relKer I (polyIdeal M)).one_mem (by simpa using H.one_mem)
+  one_mem' := And.intro (relKer I (polyIdeal M)).one_mem (by simp)
   mul_mem' := by
     rintro a b ⟨ha, ha'⟩ ⟨hb, hb'⟩
     refine And.intro ((relKer I (polyIdeal M)).mul_mem ha hb) ?_

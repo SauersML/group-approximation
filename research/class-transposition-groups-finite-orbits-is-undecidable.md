@@ -8,7 +8,7 @@ distinct_from:
   kourovka-19-45-yes-implies-the-collatz-conjecture: that is about transitivity (19.45, related to 18.47(b)) for Kohl's three-generator Collatz group; this is about finiteness of all orbits for unboundedly many generators.
 ---
 
-**ESTABLISHED** (lane proof, bh-k1847, 2026-09-19; **not independently reviewed**). Inputs: the
+**ESTABLISHED** (lane proof, bh-k1847, 2026-09-19; **referee PASS**, bh-ref-f, `class-transposition-finite-orbits-review` at 6747a7e43d; no repairs needed for correctness). Credit: the question is Kohl's (Kourovka 18.47); the factorization `F_M = s_2 s_1` is bh-free-58's; the undecidability is Kari–Ollinger's (MFCS 2008). Kari–Ollinger Theorem 4 is taken from the source record in `ct-z-finite-cycle-problems-are-undecidable`, not reread here. Inputs: the
 refereed node `ct-z-finite-cycle-problems-are-undecidable` (two referee PASSes, conditional on
 Kari–Ollinger, MFCS 2008, Theorem 3, read at source there; Theorem 4 is used only for property 2, as cited in that node's Remark "Finite order"), plus three elementary lemmas
 proved below. **No priority claimed.** A web and arXiv search found no printed statement. The
@@ -111,3 +111,42 @@ odd codes, the bijection `f : X → X`, the modulus `L = 2·3²·5²·7^{N+1}·1
 The two-involution factorization `F_M = s_2 s_1` is bh-free-58's construction
 (`ct-z-finite-cycle-problems-are-undecidable`). The undecidability input is Kari–Ollinger's. The
 question is Kohl's. New here: Lemma 1 and the transfer.
+
+## Attempts: compressing to three generators (bh-k1847, 2026-09-19; not reviewed)
+
+- **Family 1 compresses to one class transposition.** Remark 1: `S_1` can be replaced by
+  `τ_{1(2),2(4)}`.
+- **Family 2 cannot become a single class transposition by any simultaneous conjugation, if (P2)
+  holds.** Suppose some bijection `h` of `Z` made both `h s_1 h⁻¹` and `h s_2 h⁻¹` class
+  transpositions. Then `F_M` would be conjugate to a product of two class transpositions. Take `M`
+  periodic but not uniformly periodic. Then `F_M` has infinite order and only finite cycles
+  (Remark 4). So the compression is impossible whenever:
+  - **(P2)** a product of two class transpositions with only finite cycles has finite order.
+
+  (P2) is **conjectural**. It fits the finite order sets known for horizontal and `d`-adic pairs
+  (`kourovka-18-48-for-d-adic-class-transpositions`). Proving (P2) would show that any
+  three-generator undecidability must use a third generator in an essential way.
+- **Shape of a three-generator reduction.** By Remark 2, a triple containing a disjoint pair is
+  21.74(b) for the three-letter word `τ_k τ_i τ_j`. So a new three-generator result needs one of:
+  - 21.74(b) undecidable already for products of three class transpositions;
+  - the pairwise-overlapping shape of Kohl's Collatz triple.
+- **Obstruction in general.** Three class transpositions are given by 12 integers and move at most
+  six residue classes, each by one canonical affine map. So a uniformly undecidable family would
+  have to encode the machine program in the arithmetic of a bounded number of affine pieces, not
+  in their number. This is an analogue of reachability for one-dimensional piecewise affine maps
+  with boundedly many pieces, a well-known open problem (Koiran–Cosnard–Garzon; two dimensions is
+  undecidable). The analogy is heuristic; no reduction either way is claimed.
+
+**Update 2026-09-19 (bh-k1847): the (P2) obstruction above is void.**
+- **(P2) is false.** bh-p2 disproved it (`two-transposition-product-finite-cycles-infinite-order`,
+  82aa08a416). The product `τ_{1(12),0(4)}·τ_{0(2),1(4)}` has only finite cycles and has infinite
+  order. I checked this by hand; the argument is below.
+- **The orbit graph.** Here `τ_{0(2),1(4)}` is `n ↔ 2n+1` for even `n`, and `τ_{1(12),0(4)}` is
+  `n ↔ 3n+1` for `n ≡ 0 (4)`.
+  - From a multiple of 4, the component steps `n → 3n/2` one way and `n → 2n/3` the other.
+  - So its multiples of 4 are the `2^{α'}3^{β'}u` with `α'+β'` fixed, `α' ≥ 2` and `β' ≥ 0`.
+  - Both ends reach a vertex of degree 1: `≡ 2 (4)` one way, `≡ 5, 9 (12)` the other.
+  - So every component is a finite path, and the path lengths are unbounded.
+- **Consequence.** Two class transpositions already carry a counter, the exponent pair `(α, β)`.
+  Whether `F_M` is conjugate to a product of two class transpositions is open again, and so is the
+  three-generator case of 18.47(a).

@@ -48,8 +48,11 @@ Then `G` has type `F_∞`.
   - **Hypothesis 3.** (H3) of the route.
   - So `E_M` has type `F_∞`, which is `(A_{i+1})`.
 
-At `i = n` and `M = ∅`, `Γ` has type `F_∞`. This is exactly the induction BHM's remark after `thm:RoverNek` sketches.
-It needs no localization (Lemma L) and no (H4).
+At `i = n` and `M = ∅`, `Γ` has type `F_∞`. It needs no localization (Lemma L) and no (H4).
+
+**Credit.** The statement and this induction are **BHM Remark 2.14**, which BHM sketch. The route supplies the
+complete verification of its hypotheses. Second review: `rover-nekrashevych-activity-and-level-set-scope-review`
+(bh-ref-e), PASS, which confirms Remark 2.14 at source.
 
 ## Line-by-line check of what item 1 uses
 
@@ -81,6 +84,12 @@ It needs no localization (Lemma L) and no (H4).
 Lemma L and (H4) are also correct as written, but item 1 does not need them.
 
 ## Polynomial activity in terms of the nucleus graph
+
+**Credit.** This is **Sidki's circuit theorem**: polynomial activity means disjoint simple circuits, and the degree
+is the number of circuits on a path minus one (S. Sidki, *Automorphisms of one-rooted trees: growth, circuit
+structure, and acyclicity*, J. Math. Sci. 100, 2000; recalled). Here it is applied to the nucleus automaton, together
+with contraction. The proof below is an independent check, and the route's §4(a) gives a separate proof via
+Lyndon–Schützenberger.
 
 Let `G` be finitely generated and contracting with nucleus `N`, and let `𝒩` be the graph on `N ∖ {1}` with edges
 `n → n|_x ≠ 1`, as in `level-set-route-reaches-only-bounded-rover-nekrashevych-groups`. Then:
