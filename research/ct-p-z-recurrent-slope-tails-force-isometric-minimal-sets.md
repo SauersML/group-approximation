@@ -58,15 +58,20 @@ Kourovka 19.46 and 17.58 (S. Kohl) stay **OPEN**; this node constrains one route
    some `B`, then `U` contains a nonempty closed `ĝ`-invariant set on which `{ĝ^n}` is
    equicontinuous. In particular `ĝ|_U` has an equicontinuous minimal subset. The same holds
    for `g^{-1}`, i.e. with `n ≤ 0` and `j ≤ n`.
+   - **Record lows (added 09-19).** The same conclusion holds if, instead, infinitely many
+     `n ≥ 0` are *`B`-record lows*: `t_x(j) ≥ t_x(n) − B·1` for all `0 ≤ j ≤ n`. The
+     backward version also holds.
+   - **Positive rays never pass.** If every slope of `g` lies in `γ^Z`, `γ ≥ 2` an integer,
+     then every nonempty clopen `ĝ`-invariant `U` contains an equicontinuous minimal set.
 5. **Consequence for subshift factors.** If `(U, ĝ)` factors onto a minimal system that is not
-   equicontinuous (for instance an infinite minimal subshift), then `N_B(x)` is finite for
-   every `x ∈ U` and every `B`, for `g` and for `g^{-1}`. In particular:
+   equicontinuous (for instance an infinite minimal subshift), then `N_B(x)` and the set of
+   `B`-record lows are finite for every `x ∈ U` and every `B`, for `g` and for `g^{-1}`. In
+   particular:
    - no forward or backward orbit in `U` has bounded potential;
    - if every slope of `g` lies in `γ^Z` with `d(γ) = v` of mixed sign (a mixed ray, e.g.
      `γ = 3/2`), the condition says exactly that every forward and every backward potential in
      `U` is unbounded;
-   - if `v ≥ 0` (a positive ray, `γ` an integer), it says that `liminf τ = −∞` along every
-     forward and every backward orbit, where `t = τ v`.
+   - if `v ≥ 0` (a positive ray, `γ` an integer), it never holds, by item 4.
 6. **Aperiodicity is cheap.** The north-south element `ψ ∈ CT_∅(Z)` of
    `ct-z-north-south-element-has-no-finite-cycles` acts on the profinite integers
    `Z_2 × Z_3` of `CT_{3}(Z)` with no periodic points. It is not equicontinuous there. Its
@@ -103,9 +108,11 @@ Kourovka 19.46 and 17.58 (S. Kohl) stay **OPEN**; this node constrains one route
 
 **3.** Let `ĝ^L x = x` with `L ≥ 1`.
 - **A return.** Take `E ≥ D + max(0, −min_{j<L} t_x(j))·1`. By 1, `g^L` maps the degree-`E`
-  class `C ∋ x` canonically onto a class `C' ∋ x`.
+  class `C ∋ x` canonically onto a class `C' ∋ x`. When `x` lies in a clopen invariant `U`,
+  also take `E` so large that `C̄ ⊆ U`; this is possible since `U` is a finite union of class
+  closures.
 - **Case (a) of 2.** `g^L = id` on `C̄`. Every class contains integers, and they all lie in
-  cycles of length dividing `L`.
+  cycles of length dividing `L`. With `C̄ ⊆ U`, these integers lie in `U`.
 - **Case (b) of 2.** For `p ∈ H`, `x_p` is the unique fixed point `q`. For `p ∈ I`, `x_p` is
   fixed by `φ_p(y) = s + (n/m)(y − r)`. Since `n ≠ m`, `n/m ≠ 1` in `Q_p`, and the only fixed
   point of `φ_p` in `Q_p` is again `q`. So `x = q` diagonally, and `q ∈ Ẑ` forces its
@@ -133,7 +140,19 @@ Kourovka 19.46 and 17.58 (S. Kohl) stay **OPEN**; this node constrains one route
     isometries.
 - **Minimal subsets.** A minimal subset of an equicontinuous system is equicontinuous.
 - **For `g^{-1}`.** Apply the argument to `g^{-1} ∈ CT_P(Z)`, whose potential at `x` is
-  `n ↦ t_x(−n)`. ∎
+  `n ↦ t_x(−n)`.
+- **Record lows.** Take `D` to serve for both `g` and `g^{-1}`.
+  - Choose `B`-record lows `n_1 < n_2` with `ĝ^{n_1}x`, `ĝ^{n_2}x` in one degree-`E_0` class
+    `C_0`, and put `y' = ĝ^{n_2}x`.
+  - The potential of `g^{-1}` from `y'` is `j ↦ t_x(n_2 − j) − t_x(n_2) ≥ −B·1` for
+    `0 ≤ j ≤ n_2`.
+  - So by 1, applied to `g^{-1}`, `g^{-(n_2 − n_1)}` maps `C_0` canonically onto a class
+    containing `ĝ^{n_1}x ∈ C_0`. This is a return for `g^{-1}`, and the rest is as above.
+- **Positive rays.** Here `t = τ v` with `v ≥ 0`. Take any `x ∈ U`.
+  - If `liminf_{n→∞} τ_x(n) = −∞`, the times of new minima of `τ` are infinitely many `0`-record
+    lows.
+  - Otherwise `N_B(x)` is infinite for some `B`, by the argument in 5.
+  - Either way, 4 applies. ∎
 
 **5.**
 - **The factor argument.** Let `π : U → X` be a factor map onto a minimal `X`, and let
@@ -148,6 +167,8 @@ Kourovka 19.46 and 17.58 (S. Kohl) stay **OPEN**; this node constrains one route
   forces `τ` to stay within `B` of `τ(n)` on `[n, ∞)`, from both sides, and conversely.
   - If some forward potential is bounded, every `n` lies in `N_B(x)` for large `B`.
   - If every forward potential is unbounded, no `n` does.
+  - Likewise a `B`-record low `n` forces `|τ(j) − τ(n)| ≤ B'` for `0 ≤ j ≤ n`, so `|τ| ≤ 2B'`
+    on `[0, n]`. Infinitely many of them force `τ` to be bounded on `[0, ∞)`.
 - **Positive ray.** Here `n ∈ N_B(x)` iff `τ(j) ≥ τ(n) − B'` for `j ≥ n`, with `B'`
   depending only on `B` and `v`.
   - If `liminf τ = −∞`, this never holds.
@@ -165,6 +186,13 @@ Kourovka 19.46 and 17.58 (S. Kohl) stay **OPEN**; this node constrains one route
     `3(4)` in two, and `9(16)` lands in `6(16) ⊆ 2(4)`.
   - So every `x ≠ r` has `ψ^n x → a`. A periodic point other than `r` is therefore `a`.
     Both `a` and `r` are fixed.
+  - **Backward convergence.** `ψ^{-1}(y) = 4y + 1` off `2 + 4Z_2`, `y + 3` on `6 + 16Z_2`,
+    and `(y − 2)/4` on `2`, `10` and `14 + 16Z_2`.
+    - On `1 + 4Z_2`, which is invariant, `ψ^{-1}(y) − r = 4(y − r)`.
+    - On `10 + 16Z_2`, `ψ^{-1}(y) − a = (y − a)/4`, so `y ≠ a` leaves it.
+    - `2(16)` and `14(16)` reach `1(4)` via `0(4)` and `3(4)`, and `6(16)` lands in
+      `9(16) ⊆ 1(4)`.
+    - So every `y ≠ a` has `ψ^{-n} y → r`.
   - This re-checks the dynamical part of item 2 of `ct-z-north-south-element-has-no-finite-cycles`,
     which was not reviewed there.
 - **No periodic points on `Z_2 × Z_3`.** The pieces have 2-power moduli, so the projection to
@@ -223,7 +251,7 @@ points.**
 - **What arithmetic can buy.** A second prime turns fixed points into isometric fibers.
   Periodic points are arithmetic and cheap to remove.
 - **What it cannot buy.** Recurrence of the cocycle at a bounded scale always closes up into
-  an odometer, and odometer full groups are torsion locally finite.
+  an odometer, and every finitely generated periodic subgroup of an odometer full group is finite.
 - **The general principle.** In any Thompson-like host whose germs are affine (`nV`,
   `CT_P(Z)`, Röver–Nekrashevych-type hosts), the only way to realize Grigorchuk or
   Nekrashevych periodic groups is a cocycle that is recurrent at no bounded scale, i.e. a
