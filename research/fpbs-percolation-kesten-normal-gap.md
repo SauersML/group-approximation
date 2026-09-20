@@ -166,3 +166,21 @@ direction is used here.
   same node records a second point: submultiplicative weight tilts pulled back
   from `Q` have infinite tilted susceptibility at `p_c` on unimodular graphs,
   so Hutchcroft-type tilting needs a cocycle.
+
+* **Radial pointwise certificates and the half-growth floor (swarm-0917 w23,
+  group-rings dispatch pivoted to host-geometry).** The idea was to bound
+  `chi^N_p <= sum_(n ∈ N) C e^(-a|n|)` using a radial two-point bound, which
+  would give the gap for normal subgroups of relative growth `v_N < e^a`.
+  The candidate rate was the half-growth rate `a = (1/2) log gr`.
+  **Where it dies:** conjugation counting gives
+  `v_N >= sqrt(gr) / growth(C_Gamma(n0))` for every `n0 ∈ N \ {e}`
+  (`fpbs-normal-subgroup-half-growth-floor`, ESTABLISHED). Moreover
+  `sum_(n ∈ N) gr^(-|n|/2) = infinity` once some `n0 ∈ N` has a centralizer of
+  linear growth. So the half-growth route fails already at `p_c`, for every
+  infinite normal `N` of an acylindrically hyperbolic `Gamma`.
+  **Invariant:** the growth of centralizers of elements of `N`.
+  What survives is essentially the product case, which tree products already
+  cover. The method also stalls on two further points: the pointwise
+  half-growth bound itself is unproved (Hutchcroft's bound controls only the
+  worst pair `kappa`), and so is right-continuity of the rate above `p_c`.
+  Radial rates close to `log gr`, as on trees, are not excluded.
