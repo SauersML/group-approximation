@@ -75,3 +75,17 @@ cycle. The same holds if `σ^k(C) ⊋ C`: apply the lemma to `σ^{-1}`.
   - A wild `g` needs an itinerary loop whose net multiplier is not 1.
   - With only two affine pieces, show that such a loop gives a class mapped properly into itself,
     i.e. (P2)′.
+
+## Update 2026-09-19: d-adic case (bh-scout-thompson)
+
+- **(P2) holds for `d`-adic pairs,** i.e. when all moduli are powers of one integer `d`. It is a
+  Corollary in `kourovka-18-48-for-d-adic-class-transpositions`, landed at 14fbd68c56 (lane proof,
+  not reviewed).
+  - **Statement:** only finite cycles ⟺ finite order ⟺ `(τ_2τ_1)^{12} = 1`. So the property is
+    decidable there.
+  - **Proof:** each branch of its five-chain lemma is a nested loop, i.e. a class mapped properly
+    into itself, and Lemma S turns that into an infinite cycle.
+  - **Independent check:** bh-scout-thompson derived the equivalence (P2) ⟺ "every wild product
+    has an infinite cycle" separately.
+- **What remains open:** pairs with mixed moduli, where itinerary loops can cross classes
+  transversally instead of nesting. bh-scout-thompson owns that as part of 18.48.
