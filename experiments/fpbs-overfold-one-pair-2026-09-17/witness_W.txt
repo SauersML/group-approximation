@@ -1,0 +1,5 @@
+X0 = ['aBAB', 'ABaba']  phi X0 = ['abbABAbbAB', 'AbbABabaBBa']
+g with <phi X0, g> = F : AbbbaBBa
+h with <X0, h> = F     : bA
+<X0,a>=F: False  <X0,b>=F: False
+<phi X0, a> = L_1: False  <phi X0, t> = L_1: False
