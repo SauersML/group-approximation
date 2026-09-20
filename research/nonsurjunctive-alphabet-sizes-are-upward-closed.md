@@ -192,3 +192,31 @@ artifacts:
   - What survives. The theorem constructs no injective extension. Two kinds of ascent are still untouched:
     - ascents that write new letters at old sites;
     - ascents whose digraph is a disjoint union of strongly connected pieces.
+- **Where a never-created letter can be destroyed** (swarm-0917-w21-w21-gs-follow, 2026-09-20). The aim was to
+  decide the cofinite branch left by w20: does some injective automaton destroy a letter it never creates?
+  The result is `non-exact-transitions-of-injective-automata-are-wandering`, established by route
+  `wandering-destruction-cylinder-proof`. The branch itself stays undecided.
+  - Invariant. The cylinder of a non-exact pattern `P` for an upset `U`. Its `g`-letter is outside `U`,
+    and every later image has it inside `U`. So the cylinder is wandering.
+  - Consequences.
+    - It has measure `0` for every invariant measure, including Cesàro limits of the orbit of the uniform
+      measure.
+    - It meets no `H`-periodic configuration with `[G:H] < ∞`, and no point of `NW(Φ)`.
+    - An injective automaton is onto iff it is nonwandering. So the conjecture reads: every injective
+      automaton is nonwandering.
+  - Kill. Pushing the w20 measure argument from bijective to injective automata cannot decide the branch.
+    Neither can finite-quotient or periodic-point searches. Their data coincide with those of a bijective
+    automaton. The step where this dies: one needs an invariant measure, or a periodic point, that meets
+    `[P]_1`, and none exists.
+  - Reformulation. A never-created letter `c` is quiescent (`Φ(c^G) = c^G`), and its destruction shows up on a
+    finite configuration over a `c`-background, where the count of non-`c` sites rises strictly.
+    - So a witness is exactly a *charge-creating* injective automaton. It is the open reverse of
+      `finite-injective-charge-noncreation-forces-surjectivity`.
+    - For an ascent over a strict core `τ`, each configuration whose holes all fill in one step is sent
+      into the Garden of Eden `A^G \ τ(A^G)`.
+  - What survives.
+    - Garden-of-Eden-type counting of the finite configurations of such an automaton, which would give the
+      dual charge theorem.
+    - Hole-filling constructions that spend the core's Garden of Eden.
+    - Any argument that tracks the non-invariant orbit `Φ^k_* λ`. The uniform measure `λ` itself does
+      charge the destruction cylinder.
