@@ -60,6 +60,6 @@ theorem retractAmalgamClosure_of_inputs (hE : EnvelopeInput) (hP : ProductInput)
     congr 2
     ext <;> simp
   obtain ⟨g, hg⟩ := retractAmalgam_embeds_in_relAut ι r hr _ hφ _ hψ comm
-  exact hH.of_injective ((relAut H 2).subtype.comp g) (Subtype.coe_injective.comp hg)
+  exact hH.of_injective g hg
 
 end GroupApproximation.BHPalomar.GraphProducts
