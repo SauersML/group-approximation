@@ -1,0 +1,5 @@
+ADVANCE from=9 target=10
+PHASE define generators
+PHASE compute tails
+PHASE consistency
+PHASE lift epimorphism

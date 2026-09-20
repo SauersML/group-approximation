@@ -1,0 +1,16 @@
+ADVANCE from=10 target=11 stage=lift
+PHASE lift epimorphism
+PHASE inverse tails
+RELATOR 1 of 24
+RELATOR 2 of 24
+RELATOR 3 of 24
+RELATOR 4 of 24
+RELATOR 5 of 24
+RELATOR 6 of 24
+RELATOR 7 of 24
+RELATOR 8 of 24
+RELATOR 9 of 24
+RELATOR 10 of 24
+RELATOR 11 of 24
+RELATOR 12 of 24
+CHECKPOINT next relator 13

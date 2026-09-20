@@ -1,0 +1,19 @@
+{
+  "field": 7,
+  "class_bound": 2,
+  "free_generators": 4,
+  "ambient_witt_dimension": 10,
+  "elimination_steps": [
+    {
+      "iteration": 1,
+      "input_residual_min_degree": 2
+    }
+  ],
+  "eliminated_face_equations_exact": true,
+  "ideal_dimension": 3,
+  "quotient_dimension": 7,
+  "mark_survives": false,
+  "mark_remainder": {},
+  "closure_checked": true,
+  "interpretation": "Exact universal marked class-C F7 Lie quotient after proved filtered elimination."
+}

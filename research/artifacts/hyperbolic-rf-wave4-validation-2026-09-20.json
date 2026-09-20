@@ -1,0 +1,44 @@
+{
+  "check": "canonical compile_graph(use_cache=False); not full duplicate/policy pass",
+  "counts": {
+    "warning": 44,
+    "error": 1
+  },
+  "wave4_findings": [],
+  "states": {
+    "wave4-audit-h31-retraction-abelianization-proof": "COMPLETE",
+    "wave4-audit-h31-retraction-kernel-abelianization": "ESTABLISHED",
+    "wave4-canonical-centre-dies-in-class-four-quotients": "ESTABLISHED",
+    "wave4-canonical-class-five-finite-detector-proof": "COMPLETE",
+    "wave4-canonical-class-four-lie-ideal-proof": "COMPLETE",
+    "wave4-canonical-prime-seven-class-virtually-splits": "ESTABLISHED",
+    "wave4-detector-psl19-borel-a4-sector-proof": "COMPLETE",
+    "wave4-detector-psl19-borel-a4-sector-vanishes": "ESTABLISHED",
+    "wave4-detector-psl19-square-kernel-mod-five-acyclicity": "ESTABLISHED",
+    "wave4-detector-psl19-square-kernel-mod-five-proof": "COMPLETE",
+    "wave4-h31-first-product-kernel-is-perfect": "ESTABLISHED",
+    "wave4-h31-perfect-product-kernel-proof": "COMPLETE",
+    "wave4-visibility-class-three-polynomial-obstruction-proof": "COMPLETE",
+    "wave4-visibility-degenerate-dual-number-image": "ESTABLISHED",
+    "wave4-visibility-degenerate-image-proof": "COMPLETE",
+    "wave4-visibility-dual-number-image-is-centrally-closed": "ESTABLISHED",
+    "wave4-visibility-dual-number-schur-vanishing-proof": "COMPLETE",
+    "wave4-visibility-filtered-elimination-proof": "COMPLETE",
+    "wave4-visibility-k7-marked-face-presentation": "ESTABLISHED",
+    "wave4-visibility-marked-face-presentation-proof": "COMPLETE",
+    "wave4-visibility-marked-lie-four-generator-elimination": "ESTABLISHED",
+    "wave4-visibility-no-class-three-canonical-centre-detector": "ESTABLISHED"
+  },
+  "open_frontier_states": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "ghb7-finite-index-z-extension-center-survives": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN",
+    "h31-finite-quotients-have-no-seven-schur-class": "OPEN"
+  },
+  "global_errors": [
+    {
+      "rule": "distinct-from",
+      "message": "research/compact-core-singfix-finiteness.md: distinct_from: unknown claim 'dynamically-v-separated-host-singfix-proof'"
+    }
+  ]
+}

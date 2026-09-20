@@ -1,0 +1,13 @@
+{
+  "coefficient_prime": 5,
+  "group_order": 3420,
+  "subgroup_order": 12,
+  "ideal_ranks": [
+    285,
+    853,
+    1969,
+    3012,
+    3420
+  ],
+  "full_group_algebra": true
+}

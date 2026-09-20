@@ -1,0 +1,15 @@
+{
+  "check": "compile_graph(use_cache=False): canonical loader, schema, artifacts, dependency states; not full cairn check",
+  "counts": {
+    "warning": 45
+  },
+  "visibility_findings": [],
+  "states": {
+    "wave5-visibility-canonical-cover-has-explicit-group-words": "ESTABLISHED",
+    "wave5-visibility-explicit-group-word-proof": "COMPLETE"
+  },
+  "open_frontier_states": {
+    "ghb7-finite-index-z-extension-center-survives": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN"
+  }
+}

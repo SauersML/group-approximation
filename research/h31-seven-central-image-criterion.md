@@ -30,3 +30,9 @@ Moreover, setting `c=1` in the presentation gives a retraction onto
 This claim establishes the equivalence and the first-kernel vanishing.
 It does not assert any of statements 1--3. Statement 3 is isolated as
 the open input [[h31-finite-quotients-have-no-seven-schur-class]].
+
+The subsequent exact computation
+[[wave4-h31-first-product-kernel-is-perfect]] proves K_ab=C5 and that
+the next kernel N=ker(H31->PSL2(31) x C5) is perfect. Thus every solvable
+refinement of that specified product quotient is trivial. Nonsolvable
+refinements remain, and none of statements 1--3 is established by this.

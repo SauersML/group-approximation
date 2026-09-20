@@ -1,0 +1,31 @@
+{
+  "method": "Cairn compile_graph(use_cache=False): canonical loading, schema/artifact lint and dependency computation",
+  "counts": {
+    "errors": 0,
+    "warnings": 48
+  },
+  "wave2_findings": [],
+  "states": {
+    "wave2-audit-cyclotomic-kazhdan-cover-proof": "COMPLETE",
+    "wave2-audit-ghb7-cyclotomic-kazhdan-cover": "ESTABLISHED",
+    "wave2-detector-psl19-has-second-simple-quotient": "ESTABLISHED",
+    "wave2-detector-psl19-no-solvable-refinements": "ESTABLISHED",
+    "wave2-detector-psl19-no-solvable-refinements-proof": "COMPLETE",
+    "wave2-detector-psl19-perfect-first-kernel": "ESTABLISHED",
+    "wave2-detector-psl19-perfect-first-kernel-proof": "COMPLETE",
+    "wave2-detector-psl19-second-simple-quotient-proof": "COMPLETE",
+    "wave2-finite-lamp-wreath-hyperbolic-subgroups-are-rf": "ESTABLISHED",
+    "wave2-finite-lamp-wreath-subgroup-proof": "COMPLETE",
+    "wave2-ghb7-phase-normalization-proof": "COMPLETE",
+    "wave2-ghb7-phase-normalized-defect-is-controlled-by-centrality": "ESTABLISHED",
+    "wave2-ghb7-raw-supercentrality-does-not-reduce-stability": "ESTABLISHED",
+    "wave2-ghb7-scalar-phase-camouflage-proof": "COMPLETE",
+    "wave2-split-locally-finite-residual-proof": "COMPLETE",
+    "wave2-split-locally-finite-residuals-coincide": "ESTABLISHED",
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "ghb7-one-edge-holonomy-absorption": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN",
+    "hrf-ghb7-scalar-expander-rounding": "OPEN"
+  },
+  "limitations": "Graph state is not proof verification. Full duplicate/policy check was not rerun; previous full runs terminated with exit143."
+}

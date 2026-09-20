@@ -1,0 +1,20 @@
+{
+  "verified": true,
+  "field": 7,
+  "dimension": 28,
+  "jacobi_distinct_basis_triples": 3276,
+  "lower_central_dimensions": [
+    28,
+    24,
+    21,
+    17,
+    11,
+    0
+  ],
+  "vertex_generated_dimension": 28,
+  "marked_face_relations": 6,
+  "mark_nonzero_and_central": true,
+  "group_order": 459986536544739960976801,
+  "mark_order": 7,
+  "virtual_splitting_index": 65712362363534280139543
+}

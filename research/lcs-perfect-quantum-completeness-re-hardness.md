@@ -9,6 +9,11 @@ distinct_from:
   taller-vidick-lcs-re-hardness: That gives completeness 1 minus epsilon for each fixed positive epsilon; this requires completeness exactly one.
   leavitt-lcs-game-with-certified-numerical-gap: That asks for one explicit commuting versus quantum separating game; this asks for a halting-sensitive family with positive quantum models on the halting side.
 artifacts:
+  - research/artifacts/final-research-handoff-2026-09-20.md
+  - notes/lcs-existential-frame-signed-six-sector-2026-09-20.md
+  - notes/lcs-existential-frame-approximate-anchor-2026-09-20.md
+  - notes/lcs-existential-frame-natural-corner-2026-09-20.md
+  - notes/liu-internality-current-audit-2026-09-20.md
   - research/artifacts/hyperbolic-and-perfect-lcs-campaign-2026-09-20.md
   - research/artifacts/lcs-perfect-completeness-attack-2026-09-20.md
   - research/artifacts/lcs-halting-switch-audit-2026-09-20.md

@@ -1,0 +1,20 @@
+BEGIN class=11 relators=24
+#I  Class 1 quotient
+#I    rank of this layer: 4 (runtime: 0 msec)
+#I  Class 2 quotient
+#I    rank of this layer: 3 (runtime: 1 msec)
+#I  Class 3 quotient
+#I    rank of this layer: 4 (runtime: 3 msec)
+#I  Class 4 quotient
+#I    rank of this layer: 6 (runtime: 4 msec)
+#I  Class 5 quotient
+#I    rank of this layer: 11 (runtime: 16 msec)
+#I  Class 6 quotient
+#I    rank of this layer: 17 (runtime: 72 msec)
+#I  Class 7 quotient
+#I    rank of this layer: 30 (runtime: 313 msec)
+#I  Class 8 quotient
+#I    rank of this layer: 51 (runtime: 2038 msec)
+#I  Class 9 quotient
+#I    rank of this layer: 93 (runtime: 11782 msec)
+#I  Class 10 quotient

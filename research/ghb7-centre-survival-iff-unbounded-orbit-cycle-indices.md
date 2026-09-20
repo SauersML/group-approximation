@@ -36,3 +36,8 @@ and integer linear algebra on the complexes `N\Y`, with no group homology left.
 
 DERIVATION
 ghb7-centre-survival-orbit-cycle-index-proof
+
+For the specified index-seven subgroup K7 and its face-zero cochain,
+[[wave3-canonical-k7-class-has-primitive-evaluation]] now proves the
+initial integral evaluation index e(K7)=1. It does not bound, or show
+unboundedness of, the indices e(N) at deeper finite-index subgroups.

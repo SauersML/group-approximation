@@ -25,9 +25,11 @@ there are genuine representations `π_n : G → U(D_n)`, `D_n ≥ d_n`, `D_n/d_n
 (SPLIT) holds by `ghb7-triangle-vertex-groups-split-abelianizations`, (HA) is equivalent to (EM) for
 this triangle, hence to `ghb7-flexibly-hs-stable`.
 
-**What (HA) asks, concretely.** After `b` and `a` agree exactly, the remaining freedom is
+**What (HA) asks, concretely.** After `b` and `a` agree exactly, a useful restricted search is
 conjugating `ρ_1` by unitaries in the commutant of `ρ_0(b)`, conjugating `ρ_2` by unitaries in the
-commutant of `ρ_0(a)`, and `o(d_n)` flexible padding. The mismatch on `c` has to be removed with
+commutant of `ρ_0(a)`, and adding `o(d_n)` flexible padding. The actual (HA) statement also allows
+perturbing `ρ_0` and changing vertex representation multiplicities; equivalence to the restricted
+search with fixed vertex equivalence classes has not been proved. The mismatch on `c` has to be removed with
 corrections tending to `0` in normalized HS norm. The vertex group data that constrain this are in
 `ghb7-triangle-vertex-groups-split-abelianizations`: `a` and `b` have centralizers of order 49 in
 every vertex group containing them, while `c` has centralizers of order 343 in `X_1` and `X_2`.
@@ -67,3 +69,31 @@ every vertex group containing them, while `c` has centralizers of order 343 in `
 
 ROUTES
 ghb7-stability-via-one-edge-holonomy
+
+
+**2026-09-20 campaign.** The preprocessing estimates are now quadratic in padding
+and linear in error (`hrf-cyclic-edge-quadratic-padding`). Liu's fixed-tolerance
+block theorem gives the equivalent open scalar-expander rounding frontier
+`hrf-ghb7-scalar-expander-rounding`, with doubled generators. Neither the
+preprocessing nor that localization proves (HA). Expanding projective examples
+for other Kazhdan groups rule out deriving rounding from expansion alone
+(`hrf-audit-projective-internality-does-not-round`).
+
+
+The same campaign proves same-dimension rounding for exact scalar relators,
+and more generally exactly central relator matrices, via
+`hrf-ghb7-scalar-relator-models-round-strictly` and
+`hrf-ghb7-central-relator-models-round-strictly`. Neither hypothesis is
+known for general (HA) data; approximate centrality does not satisfy the
+proved exact-central hypothesis.
+
+
+**Wave 2 (2026-09-20).** The phase-normalized defect bound in
+`wave2-ghb7-phase-normalized-defect-is-controlled-by-centrality` and the
+camouflage theorem `wave2-ghb7-raw-supercentrality-does-not-reduce-stability`
+show why a small centrality-to-raw-defect ratio does not prove this claim:
+scalar phases can manufacture that ratio while leaving rounding difficulty
+unchanged. The rank-six cover
+`wave2-audit-ghb7-cyclotomic-kazhdan-cover` specifies a possible noncentral
+obstruction with exact order-seven generator lifts, conditional on the
+still-unproved unbounded finite visibility of a central subgroup.

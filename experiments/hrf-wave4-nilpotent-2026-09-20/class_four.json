@@ -1,0 +1,11 @@
+{
+  "field": 7,
+  "nilpotency_class_bound": 4,
+  "ambient_free_lie_dimension": 406,
+  "ambient_dimension_check": "enumerated and Witt",
+  "ideal_dimension": 389,
+  "quotient_dimension": 17,
+  "mark_survives": false,
+  "mark_remainder": {},
+  "interpretation": "Specified marked presentation only; no universal finite-quotient assertion."
+}

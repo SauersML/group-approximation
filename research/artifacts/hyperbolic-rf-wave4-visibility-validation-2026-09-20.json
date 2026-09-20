@@ -1,0 +1,23 @@
+{
+  "check": "compile_graph(use_cache=False): canonical loader, schema, artifacts, dependency states; not full cairn check",
+  "counts": {
+    "warning": 46
+  },
+  "visibility_findings": [],
+  "states": {
+    "wave4-visibility-class-three-polynomial-obstruction-proof": "COMPLETE",
+    "wave4-visibility-degenerate-dual-number-image": "ESTABLISHED",
+    "wave4-visibility-degenerate-image-proof": "COMPLETE",
+    "wave4-visibility-dual-number-image-is-centrally-closed": "ESTABLISHED",
+    "wave4-visibility-dual-number-schur-vanishing-proof": "COMPLETE",
+    "wave4-visibility-filtered-elimination-proof": "COMPLETE",
+    "wave4-visibility-k7-marked-face-presentation": "ESTABLISHED",
+    "wave4-visibility-marked-face-presentation-proof": "COMPLETE",
+    "wave4-visibility-marked-lie-four-generator-elimination": "ESTABLISHED",
+    "wave4-visibility-no-class-three-canonical-centre-detector": "ESTABLISHED"
+  },
+  "open_frontier_states": {
+    "ghb7-finite-index-z-extension-center-survives": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN"
+  }
+}

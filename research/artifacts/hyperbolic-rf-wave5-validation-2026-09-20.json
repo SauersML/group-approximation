@@ -1,0 +1,32 @@
+{
+  "scope": "Canonical Cairn loader/dependency check; not a full mathematical or Lean certificate",
+  "counts": {
+    "warning": 45
+  },
+  "wave5_findings": [],
+  "errors": [],
+  "nodes": {
+    "wave5-audit-k7-abelian-cover-cohomology-proof": "COMPLETE",
+    "wave5-audit-k7-abelian-covers-have-only-seven-h1": "ESTABLISHED",
+    "wave5-audit-two-heisenberg-sector-rank-proof": "COMPLETE",
+    "wave5-audit-two-heisenberg-sectors-have-zero-h1": "ESTABLISHED",
+    "wave5-canonical-central-powers-have-linear-depth": "ESTABLISHED",
+    "wave5-central-power-collection-proof": "COMPLETE",
+    "wave5-detector-psl19-square-kernel-mod-three-acyclicity": "ESTABLISHED",
+    "wave5-detector-psl19-square-kernel-mod-three-proof": "COMPLETE",
+    "wave5-visibility-canonical-cover-has-explicit-group-words": "ESTABLISHED",
+    "wave5-visibility-explicit-group-word-proof": "COMPLETE"
+  },
+  "root_status": "OPEN",
+  "independent_root_checks": [
+    "Collection theorem proof and primary-source review; independent matching-agent review passed",
+    "Quadratic-phase/abelian-cover proof reviewed",
+    "F8 seven- and 49-dimensional sector code reviewed and replayed",
+    "PSL19 finite-group input and projective-module certificates replayed",
+    "PSL19 full averaging ideal replay completed with quotient-rank optimization"
+  ],
+  "peer_checks": [
+    "PSL19 largest tensor replay completed with all edge independence checks",
+    "GAP checkpoint phases and per-relator continuation reviewed against installed core implementation"
+  ]
+}

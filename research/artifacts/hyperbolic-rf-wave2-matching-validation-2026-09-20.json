@@ -1,0 +1,15 @@
+{
+  "check": "compile_graph(use_cache=False), loader/schema/artifacts/dependency states",
+  "counts": {
+    "warning": 44
+  },
+  "wave2_matching_findings": [],
+  "states": {
+    "wave2-ghb7-phase-normalization-proof": "COMPLETE",
+    "wave2-ghb7-phase-normalized-defect-is-controlled-by-centrality": "ESTABLISHED",
+    "wave2-ghb7-raw-supercentrality-does-not-reduce-stability": "ESTABLISHED",
+    "wave2-ghb7-scalar-phase-camouflage-proof": "COMPLETE"
+  },
+  "root_state": "OPEN",
+  "ebr_state": "OPEN"
+}

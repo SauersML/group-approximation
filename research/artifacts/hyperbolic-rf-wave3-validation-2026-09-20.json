@@ -1,0 +1,29 @@
+{
+  "check": "compile_graph(use_cache=False): canonical loading, schema/artifacts, dependency states; not full duplicate/policy validation",
+  "counts": {
+    "warning": 46
+  },
+  "wave3_findings": [],
+  "states": {
+    "wave3-audit-h31-abelian-sylow-images": "ESTABLISHED",
+    "wave3-audit-h31-abelian-sylow-proof": "COMPLETE",
+    "wave3-audit-symplectic-root-lift": "ESTABLISHED",
+    "wave3-audit-symplectic-root-lift-proof": "COMPLETE",
+    "wave3-canonical-k7-class-has-primitive-evaluation": "ESTABLISHED",
+    "wave3-canonical-k7-primitive-evaluation-proof": "COMPLETE",
+    "wave3-detector-psl19-square-kernel-retains-five-twists": "ESTABLISHED",
+    "wave3-detector-psl19-square-kernel-retention-proof": "COMPLETE",
+    "wave3-visibility-canonical-centre-blind-to-steinberg-and-sp4": "ESTABLISHED",
+    "wave3-visibility-canonical-centre-blindness-proof": "COMPLETE",
+    "wave3-visibility-cckw-matrix-maps-lift-to-steinberg": "ESTABLISHED",
+    "wave3-visibility-cckw-steinberg-lifting-proof": "COMPLETE",
+    "wave3-visibility-unit-commuting-parameters-collapse": "ESTABLISHED",
+    "wave3-visibility-unit-parameter-collapse-proof": "COMPLETE"
+  },
+  "open_frontier_states": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "ghb7-finite-index-z-extension-center-survives": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN",
+    "h31-finite-quotients-have-no-seven-schur-class": "OPEN"
+  }
+}

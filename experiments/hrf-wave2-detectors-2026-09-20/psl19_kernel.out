@@ -1,0 +1,12 @@
+SEED {"trial": 13, "matrices": [[2, 11, 16, 3], [5, 11, 4, 9], [6, 15, 12, 8]], "girths": [6, 8, 6]}
+ELIM 200 rows 1850 cols 3220 nnz 10408
+ELIM 400 rows 1650 cols 3020 nnz 10608
+ELIM 600 rows 1450 cols 2820 nnz 10808
+ELIM 800 rows 1250 cols 2620 nnz 11272
+ELIM 1000 rows 1050 cols 2420 nnz 12072
+ELIM 1200 rows 850 cols 2220 nnz 13370
+ELIM 1400 rows 650 cols 2020 nnz 15546
+ELIM 1600 rows 450 cols 1820 nnz 20681
+ELIM 1800 rows 250 cols 1620 nnz 45695
+RESIDUAL 1962 88 1458 128304
+RESULT {"field": 19, "prime": 5, "group_order": 3420, "trial": 13, "matrices": [[2, 11, 16, 3], [5, 11, 4, 9], [6, 15, 12, 8]], "girths": [6, 8, 6], "vertices": 3, "edges": 2052, "faces": 3420, "unit_eliminations": 1962, "residual_rows": 88, "residual_columns": 1458, "boundary_rank": 2050, "h1_free_rank": 0, "h1_torsion_invariants": [], "transpose_hnf_is_identity_above_zero": true}

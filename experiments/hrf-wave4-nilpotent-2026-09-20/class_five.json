@@ -1,0 +1,29 @@
+{
+  "field": 7,
+  "nilpotency_class_bound": 5,
+  "ambient_free_lie_dimension": 1960,
+  "ambient_dimension_check": "Witt formula",
+  "ideal_dimension": 1932,
+  "quotient_dimension": 28,
+  "mark_survives": true,
+  "mark_remainder": {
+    "5 2 4 4 4": 1,
+    "4 4 4 2 5": 1,
+    "4 4 2 4 5": 6,
+    "5 4 2 4 4": 6,
+    "3 4 4 4 4": 3,
+    "4 3 4 4 4": 2,
+    "4 4 3 4 4": 4,
+    "4 4 4 3 4": 2,
+    "4 4 4 4 3": 3,
+    "4 4 2 5 4": 5,
+    "4 5 2 4 4": 5,
+    "2 4 5 4 4": 6,
+    "4 4 5 4 2": 6,
+    "4 5 4 2 4": 2,
+    "4 2 4 5 4": 2,
+    "4 2 5 4 4": 1,
+    "4 4 5 2 4": 1
+  },
+  "interpretation": "Specified marked presentation only; no universal finite-quotient assertion."
+}

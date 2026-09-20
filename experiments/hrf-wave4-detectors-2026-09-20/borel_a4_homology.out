@@ -1,0 +1,9 @@
+SETUP {"degree": 5700, "vertices": 9, "vertex_orbits": [[3420, 1140, 1140], [3420, 1140, 1140], [1140, 3420, 1140]], "edges": 3420, "tree_edges": 8, "a4_generators": [[0, 1, 18, 0], [1, 6, 6, 18], [3, 3, 2, 15]]}
+ELIM 400 rows 3012 cols 5300 nnz 17316
+ELIM 800 rows 2612 cols 4900 nnz 17695
+ELIM 1200 rows 2212 cols 4500 nnz 18082
+ELIM 1600 rows 1812 cols 4100 nnz 19624
+ELIM 2000 rows 1412 cols 3700 nnz 21424
+ELIM 2400 rows 1012 cols 3300 nnz 27219
+ELIM 2800 rows 612 cols 2900 nnz 48069
+RESULT {"field": 19, "coefficient_prime": 5, "cover_degree": 5700, "vertices": 9, "edges": 3420, "faces": 5700, "sparse_pivots": 2912, "residual_shape": [500, 2788], "residual_rank": 500, "boundary_rank": 3412, "h1_dimension": 0, "h2_dimension": 2288, "subgroup_order": 2052}

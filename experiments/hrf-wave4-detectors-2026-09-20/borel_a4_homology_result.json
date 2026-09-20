@@ -1,0 +1,18 @@
+{
+  "field": 19,
+  "coefficient_prime": 5,
+  "cover_degree": 5700,
+  "vertices": 9,
+  "edges": 3420,
+  "faces": 5700,
+  "sparse_pivots": 2912,
+  "residual_shape": [
+    500,
+    2788
+  ],
+  "residual_rank": 500,
+  "boundary_rank": 3412,
+  "h1_dimension": 0,
+  "h2_dimension": 2288,
+  "subgroup_order": 2052
+}

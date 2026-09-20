@@ -41,9 +41,12 @@ remains open. They do not cover a counterexample whose residual is infinite.
   non-residually-finite finite central extensions of arithmetic groups whose
   congruence kernel is finite.  A cocompact arithmetic lattice in a rank-one
   group is hyperbolic, so a finite congruence kernel there would finish the
-  problem immediately.  That input is exactly what rank one does not supply:
-  the congruence subgroup property fails badly for rank-one lattices, which is
-  the same reason they have many finite-index subgroups.  The 2026 work of
+  problem immediately. The required finite congruence kernel is not established
+  for the quaternionic rank-one candidates used here; the Sp(2,1) nodes keep
+  it open. Failure of the congruence subgroup property in other rank-one
+  families is not a theorem for every rank-one arithmetic lattice. Hill
+  explicitly formulates general rank-one infinitude conjecturally; see the
+  source audit in `research/artifacts/hyperbolic-rf-alternatives-2026-09-20.md`.  The 2026 work of
   Rapinchuk on `S`-arithmetic groups with `S` of positive Dirichlet density
   does not reach cocompact rank-one lattices.
 - **Ball quotients.**  The natural rank-one candidates are cocompact lattices

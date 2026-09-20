@@ -1,0 +1,5 @@
+ADVANCE from=10 target=11 stage=prepare
+PHASE define generators
+PHASE compute tails
+PHASE consistency
+CHECKPOINT before lift epimorphism

@@ -1,0 +1,442 @@
+[
+  {
+    "summands": [
+      0,
+      0
+    ],
+    "dimension": 324,
+    "edge_dimensions": [
+      68,
+      68,
+      68
+    ],
+    "pair_ranks": [
+      134,
+      134,
+      134
+    ],
+    "triple_rank": 198,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      0,
+      1
+    ],
+    "dimension": 648,
+    "edge_dimensions": [
+      128,
+      128,
+      128
+    ],
+    "pair_ranks": [
+      256,
+      256,
+      256
+    ],
+    "triple_rank": 384,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      0,
+      2
+    ],
+    "dimension": 1458,
+    "edge_dimensions": [
+      290,
+      290,
+      290
+    ],
+    "pair_ranks": [
+      580,
+      580,
+      580
+    ],
+    "triple_rank": 870,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      0,
+      3
+    ],
+    "dimension": 648,
+    "edge_dimensions": [
+      128,
+      128,
+      128
+    ],
+    "pair_ranks": [
+      256,
+      256,
+      256
+    ],
+    "triple_rank": 384,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      0,
+      4
+    ],
+    "dimension": 1782,
+    "edge_dimensions": [
+      358,
+      358,
+      358
+    ],
+    "pair_ranks": [
+      716,
+      716,
+      716
+    ],
+    "triple_rank": 1074,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      1,
+      0
+    ],
+    "dimension": 648,
+    "edge_dimensions": [
+      128,
+      128,
+      128
+    ],
+    "pair_ranks": [
+      256,
+      256,
+      256
+    ],
+    "triple_rank": 384,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      1,
+      1
+    ],
+    "dimension": 1296,
+    "edge_dimensions": [
+      260,
+      260,
+      260
+    ],
+    "pair_ranks": [
+      518,
+      518,
+      518
+    ],
+    "triple_rank": 774,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      1,
+      2
+    ],
+    "dimension": 2916,
+    "edge_dimensions": [
+      584,
+      584,
+      584
+    ],
+    "pair_ranks": [
+      1168,
+      1168,
+      1168
+    ],
+    "triple_rank": 1752,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      1,
+      3
+    ],
+    "dimension": 1296,
+    "edge_dimensions": [
+      260,
+      260,
+      260
+    ],
+    "pair_ranks": [
+      520,
+      520,
+      520
+    ],
+    "triple_rank": 780,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      1,
+      4
+    ],
+    "dimension": 3564,
+    "edge_dimensions": [
+      712,
+      712,
+      712
+    ],
+    "pair_ranks": [
+      1424,
+      1424,
+      1424
+    ],
+    "triple_rank": 2136,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      2,
+      0
+    ],
+    "dimension": 1458,
+    "edge_dimensions": [
+      290,
+      290,
+      290
+    ],
+    "pair_ranks": [
+      580,
+      580,
+      580
+    ],
+    "triple_rank": 870,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      2,
+      1
+    ],
+    "dimension": 2916,
+    "edge_dimensions": [
+      584,
+      584,
+      584
+    ],
+    "pair_ranks": [
+      1168,
+      1168,
+      1168
+    ],
+    "triple_rank": 1752,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      2,
+      2
+    ],
+    "dimension": 6561,
+    "edge_dimensions": [
+      1313,
+      1313,
+      1313
+    ],
+    "pair_ranks": [
+      2621,
+      2621,
+      2621
+    ],
+    "triple_rank": 3925,
+    "global_fixed": 1,
+    "h1": 0
+  },
+  {
+    "summands": [
+      2,
+      3
+    ],
+    "dimension": 2916,
+    "edge_dimensions": [
+      584,
+      584,
+      584
+    ],
+    "pair_ranks": [
+      1168,
+      1168,
+      1168
+    ],
+    "triple_rank": 1752,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      2,
+      4
+    ],
+    "dimension": 8019,
+    "edge_dimensions": [
+      1603,
+      1603,
+      1603
+    ],
+    "pair_ranks": [
+      3202,
+      3202,
+      3202
+    ],
+    "triple_rank": 4797,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      3,
+      0
+    ],
+    "dimension": 648,
+    "edge_dimensions": [
+      128,
+      128,
+      128
+    ],
+    "pair_ranks": [
+      256,
+      256,
+      256
+    ],
+    "triple_rank": 384,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      3,
+      1
+    ],
+    "dimension": 1296,
+    "edge_dimensions": [
+      260,
+      260,
+      260
+    ],
+    "pair_ranks": [
+      520,
+      520,
+      520
+    ],
+    "triple_rank": 780,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      3,
+      2
+    ],
+    "dimension": 2916,
+    "edge_dimensions": [
+      584,
+      584,
+      584
+    ],
+    "pair_ranks": [
+      1168,
+      1168,
+      1168
+    ],
+    "triple_rank": 1752,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      3,
+      3
+    ],
+    "dimension": 1296,
+    "edge_dimensions": [
+      260,
+      260,
+      260
+    ],
+    "pair_ranks": [
+      518,
+      518,
+      518
+    ],
+    "triple_rank": 774,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      3,
+      4
+    ],
+    "dimension": 3564,
+    "edge_dimensions": [
+      712,
+      712,
+      712
+    ],
+    "pair_ranks": [
+      1424,
+      1424,
+      1424
+    ],
+    "triple_rank": 2136,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      4,
+      0
+    ],
+    "dimension": 1782,
+    "edge_dimensions": [
+      358,
+      358,
+      358
+    ],
+    "pair_ranks": [
+      716,
+      716,
+      716
+    ],
+    "triple_rank": 1074,
+    "global_fixed": 0,
+    "h1": 0
+  },
+  {
+    "summands": [
+      4,
+      1
+    ],
+    "dimension": 3564,
+    "edge_dimensions": [
+      712,
+      712,
+      712
+    ],
+    "pair_ranks": [
+      1424,
+      1424,
+      1424
+    ],
+    "triple_rank": 2136,
+    "global_fixed": 0,
+    "h1": 0
+  }
+]

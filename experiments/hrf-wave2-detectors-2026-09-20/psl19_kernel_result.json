@@ -1,0 +1,41 @@
+{
+  "field": 19,
+  "prime": 5,
+  "group_order": 3420,
+  "trial": 13,
+  "matrices": [
+    [
+      2,
+      11,
+      16,
+      3
+    ],
+    [
+      5,
+      11,
+      4,
+      9
+    ],
+    [
+      6,
+      15,
+      12,
+      8
+    ]
+  ],
+  "girths": [
+    6,
+    8,
+    6
+  ],
+  "vertices": 3,
+  "edges": 2052,
+  "faces": 3420,
+  "unit_eliminations": 1962,
+  "residual_rows": 88,
+  "residual_columns": 1458,
+  "boundary_rank": 2050,
+  "h1_free_rank": 0,
+  "h1_torsion_invariants": [],
+  "transpose_hnf_is_identity_above_zero": true
+}

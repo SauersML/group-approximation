@@ -1,0 +1,45 @@
+{
+  "pgl_order": 6840,
+  "centralizer_orders": [
+    20,
+    20,
+    20
+  ],
+  "normalized_pgl_conjugation_configurations": 2,
+  "conjugator_pairs": [
+    [
+      [
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        1
+      ]
+    ],
+    [
+      [
+        1,
+        5,
+        9,
+        17
+      ],
+      [
+        1,
+        14,
+        12,
+        13
+      ]
+    ]
+  ],
+  "second_common_edge_image": [
+    1,
+    8,
+    12,
+    6
+  ]
+}

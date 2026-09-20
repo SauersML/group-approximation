@@ -1,0 +1,20 @@
+{
+  "check": "compile_graph(use_cache=False): canonical loader, schema, artifacts, dependency states; not full cairn check",
+  "counts": {
+    "warning": 45
+  },
+  "visibility_findings": [],
+  "states": {
+    "wave3-visibility-canonical-centre-blind-to-steinberg-and-sp4": "ESTABLISHED",
+    "wave3-visibility-canonical-centre-blindness-proof": "COMPLETE",
+    "wave3-visibility-cckw-matrix-maps-lift-to-steinberg": "ESTABLISHED",
+    "wave3-visibility-cckw-steinberg-lifting-proof": "COMPLETE",
+    "wave3-visibility-unit-commuting-parameters-collapse": "ESTABLISHED",
+    "wave3-visibility-unit-parameter-collapse-proof": "COMPLETE"
+  },
+  "canonical_state": "ESTABLISHED",
+  "open_frontier_states": {
+    "ghb7-finite-index-z-extension-center-survives": "OPEN",
+    "ghb7-flexibly-hs-stable": "OPEN"
+  }
+}

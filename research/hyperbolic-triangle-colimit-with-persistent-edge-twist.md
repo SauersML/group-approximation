@@ -19,9 +19,13 @@ residually finite.
 
 ## Attempts
 
-- **Only `p`-covers can kill a moment** (M5). Transfer shows that covers of index prime
-  to `p` do not change `I_N`. A persistence proof must therefore control the pro-`p`
-  part of the finite-index subgroup lattice of one torsion-free `N`.
+- **Prime-to-`p` covers preserve moments** (M5). Transfer shows that covers of index prime
+  to `p` do not change `I_N`. This does not reduce persistence to the ordinary
+  pro-`p` completion of one torsion-free `N`: such a cover can create new
+  mod-`p` first cohomology and enable a later `p`-tower. The reviewed theorem
+  [[hrf-alt-persistence-needs-sylow-detours]] shows that every finite-cover
+  vanishing test factors through a prime-to-`p` subgroup detour followed
+  by normal index-`p` descents.
 - **Where persistent classes must live.** The class must lie outside the image of
   continuous cohomology of the profinite completion
   (`finite-central-extension-rf-iff-virtually-splits`). So `N` must fail degree-2
@@ -94,3 +98,62 @@ residually finite.
     `18 = dim_{F_2} sl_2(F_64)` suggests an adjoint congruence 2-cover. Elementary abelian quotients of rank
     at least 2 have 2-torsion in `H_2`, so that cover is where the Cartan–Leray filter first allows a
     moment to die.
+- **Finite central detector test and first-level audit (2026-09-20).**
+  [[hrf-alt-edge-twist-finite-detector-spectrum]] gives a reviewed,
+  explicit criterion when the vertices are perfect with
+  `H^2(A_v;F_p)=0`: lift the vertices uniquely into a central extension
+  of a finite quotient and compute their edge discrepancies. A twist
+  has a finite central detector exactly when it occurs as such a
+  discrepancy for some finite quotient. In the `p>=5` table, the recorded
+  vanishing `H^1(N;F_p)=0`, together with `H^2(PSL_2(q);F_p)=0`, already
+  forces full first-level moment rank. That rank is a consistency check,
+  not independent evidence for persistence. The finite-quotient spectrum
+  remains uncontrolled; these theorems do not establish this open claim.
+  The additional independently reviewed obstruction
+  [[hrf-alt-psl2-detectors-need-new-composition-factors]] excludes detector
+  quotients assembled solely from arbitrary `PSL_2(q)` simple groups and
+  cyclic composition factors of prime order different from `p`, for
+  every prime `p>=5`.
+- **Pinned integral first kernel and an actual second quotient (2026-09-20).**
+  [[wave2-detector-psl19-perfect-first-kernel]] specifies three matrices
+  in `PSL_2(19)` with link girths `(6,8,6)` and computes
+  `H_1(N;Z)=0` by exact integral boundary reduction. The computation and
+  its topological interpretation were independently reproduced and
+  reviewed. [[wave2-detector-psl19-no-solvable-refinements]] consequently
+  rules out every solvable-kernel refinement of that canonical quotient,
+  including for each nonzero central five-twist. The limitation is
+  concrete: [[wave2-detector-psl19-has-second-simple-quotient]] constructs
+  a surjection onto `PSL_2(19)^2`, so `N` itself has a nontrivial simple
+  quotient. That calculation does not determine the product kernel's
+  first homology, and these results do not establish persistence.
+- **Specified square-cover retention (2026-09-20).**
+  [[wave3-detector-psl19-square-kernel-retains-five-twists]] proves that
+  all three twist directions survive the particular `PSL_2(19)^2`
+  cover just constructed. Prime-to-five transfer reduces the test to
+  a400-point Borel-square permutation module, and three explicit
+  orbit-moment cycles certify the result. The written proof and plain
+  integer checker were independently reviewed and replayed. This does
+  not compute the deeper kernel's first homology or control further
+  covers, so the all-covers persistence target remains open.
+
+- **Full mod-five homology of the square kernel (2026-09-20).**
+  [[wave4-detector-psl19-square-kernel-mod-five-acyclicity]] proves
+  `H_1(M;F_5)=0` for the specified square kernel, using a verified
+  projective generator and64 exact tensor computations. The complete
+  proof and computations were independently reviewed and replayed.
+  Each nonzero twisted preimage also has zero first mod-five homology.
+  Thus further five-group refinements over this quotient are excluded.
+  Integral perfectness, mixed-prime solvable refinements, and additional
+  nonsolvable quotients remain uncontrolled; this does not establish
+  persistence through every finite cover.
+- **Mixed three-and-five refinements excluded (2026-09-20).**
+  [[wave5-detector-psl19-square-kernel-mod-three-acyclicity]] proves
+  `H_1(M;F_3)=0` for the same specified square kernel. Its complete
+  projective-generator calculation covers all coefficient-three
+  components, including those missed by a smaller normalizer module.
+  Combining this with mod-five vanishing excludes every refinement
+  kernel whose prime divisors lie in `{3,5}`, using Burnside's
+  two-prime solvability theorem. The same holds for nonzero twisted
+  preimages. The proof and exact computation were independently
+  reviewed, with the full generator and largest tensor replayed.
+  Other-prime and arbitrary nonsolvable refinements remain open.

@@ -1,0 +1,49 @@
+{
+  "snapshot_revision": "daaf2004e505f5172f1dc4aa0e7c5e68a45b2962",
+  "host": "acn112",
+  "python": "3.11.13",
+  "cpu_affinity": [
+    127
+  ],
+  "timeout_seconds_per_check": 40,
+  "scope": "Three exact certificate replays, not all archived computations or a Lean proof.",
+  "checks": [
+    {
+      "return_code": 0,
+      "timed_out": false,
+      "stdout": "{\n  \"verified\": true,\n  \"field\": 7,\n  \"dimension\": 28,\n  \"jacobi_distinct_basis_triples\": 3276,\n  \"lower_central_dimensions\": [\n    28,\n    24,\n    21,\n    17,\n    11,\n    0\n  ],\n  \"vertex_generated_dimension\": 28,\n  \"marked_face_relations\": 6,\n  \"mark_nonzero_and_central\": true,\n  \"group_order\": 459986536544739960976801,\n  \"mark_order\": 7,\n  \"virtual_splitting_index\": 65712362363534280139543\n}\n",
+      "stderr": "",
+      "script": "experiments/hrf-wave4-four-generator-2026-09-20/verify_finite_witness.py",
+      "seconds": 0.539,
+      "hashes": {
+        "experiments/hrf-wave4-four-generator-2026-09-20/verify_finite_witness.py": "db195e5641b24c89bd1af8fbdef00745d9a3ad4661596e35e5af17714260ddb6",
+        "experiments/hrf-wave4-four-generator-2026-09-20/class_five_lie_witness.json": "93cf0c54afaa6a74210d64b2a1882b65d8a8ce323162299cfc453a2e78f41c3d"
+      }
+    },
+    {
+      "return_code": 0,
+      "timed_out": false,
+      "stdout": "pivots 500 seconds 0.026\npivots 1000 seconds 0.057\npivots 1500 seconds 0.104\npivots 2000 seconds 0.149\npivots 2500 seconds 0.277\nPASS:2975independentpivots;nullity1;all14880rowseliminated\n",
+      "stderr": "",
+      "script": "experiments/hrf-wave4-h31-2026-09-20/verify_module_rank.py",
+      "seconds": 5.846,
+      "hashes": {
+        "experiments/hrf-wave4-h31-2026-09-20/verify_module_rank.py": "0e3e7022b9f588302775d847eb9fdc9854e34a7f51e2302e7f203f2459d6ad2c",
+        "experiments/hrf-wave4-h31-2026-09-20/retraction_module_rows.json": "84d916f49097f2244bb4689a576cc9fbdbb40683fbcf507c366c54a6a2c30a2d"
+      }
+    },
+    {
+      "return_code": 0,
+      "timed_out": false,
+      "stdout": "PASS: all240 orbit sums vanish; the3 by3 moment matrix is identity modulo5.\n",
+      "stderr": "",
+      "script": "experiments/hrf-wave3-detectors-2026-09-20/verify_cycles.py",
+      "seconds": 0.029,
+      "hashes": {
+        "experiments/hrf-wave3-detectors-2026-09-20/verify_cycles.py": "52cac04f7466ff6278856e2de9a4382fc0786d3ea39262374345c4b59572cbc9",
+        "experiments/hrf-wave3-detectors-2026-09-20/borel_square_cycles.json": "215cd086bc8ecc5b91920280a7682cf0dbd3ec8da28bbb628a184ed70fb8a820"
+      }
+    }
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,10 @@
+ADVANCE from=9 target=10 stage=prepare
+PHASE define generators
+PHASE compute tails
+PHASE consistency
+CHECKPOINT before lift epimorphism
+Syntax error: 'QUIT;' cannot be used in this context in /Users/user/nonsofic_e\
+xistence/experiments/hrf-wave5-pquotient-2026-09-20/advance.g:13
+    SaveWorkspace(HRF_SAVE);Print("CHECKPOINT before lift epimorphism\n");QUIT\
+;
+                                                                          ^^^^

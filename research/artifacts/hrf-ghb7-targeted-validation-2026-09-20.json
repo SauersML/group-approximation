@@ -1,0 +1,309 @@
+{
+  "check": "Cairn compile_graph(use_cache=False): canonical loader, schema lint, artifact checks, dependency state derivation",
+  "command": "python3 importlib loader for tools/cairn.py; g, findings = compile_graph(use_cache=False); campaign = all hrf-* plus named matching and root nodes",
+  "full_check": {
+    "command": "python3 tools/cairn.py check --json",
+    "outcome": "process exited 143; output empty; full duplicate/policy pass incomplete; agent did not terminate process"
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 47,
+    "rules": {
+      "restatement": 10,
+      "cycle": 37
+    }
+  },
+  "baseline_counts": {
+    "warning": 96,
+    "error": 4
+  },
+  "new_noncycle_findings": [],
+  "cycle_comparison_note": "Cycle witness paths can vary with traversal order; raw cycle-path text is not treated as evidence of a new graph change. Campaign findings below cover campaign ids.",
+  "campaign_findings": [
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: hyperbolic-group-trivial-radical-residual-prime-torsion -> non-virtually-torsion-free-hyperbolic-group -> non-residually-finite-hyperbolic-group -> hyperbolic-group-trivial-radical-residual-prime-torsion"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: non-residually-finite-hyperbolic-group -> hyperbolic-group-without-finite-quotients -> kazhdan-hyperbolic-group-without-finite-quotients -> sp21-lattice-hyperbolic-quotient-without-finite-quotients -> non-residually-finite-hyperbolic-group"
+    ]
+  ],
+  "states": {
+    "ghb7-flexibly-hs-stable": "OPEN",
+    "ghb7-one-edge-holonomy-absorption": "OPEN",
+    "hrf-alt-edge-twist-finite-detector-spectrum": "ESTABLISHED",
+    "hrf-alt-edge-twist-finite-detector-spectrum-proof": "COMPLETE",
+    "hrf-alt-persistence-needs-sylow-detours": "ESTABLISHED",
+    "hrf-alt-persistence-needs-sylow-detours-proof": "COMPLETE",
+    "hrf-alt-psl2-detector-composition-obstruction-proof": "COMPLETE",
+    "hrf-alt-psl2-detectors-need-new-composition-factors": "ESTABLISHED",
+    "hrf-audit-projective-internality-does-not-round": "ESTABLISHED",
+    "hrf-audit-projective-internality-proof": "COMPLETE",
+    "hrf-audit-stability-forces-prime-central-finite-residuals": "ESTABLISHED",
+    "hrf-audit-stability-prime-central-finite-residuals-proof": "COMPLETE",
+    "hrf-cyclic-edge-quadratic-padding": "ESTABLISHED",
+    "hrf-cyclic-edge-quadratic-padding-proof": "COMPLETE",
+    "hrf-ghb7-central-relator-models-round-strictly": "ESTABLISHED",
+    "hrf-ghb7-central-relator-rounding-proof": "COMPLETE",
+    "hrf-ghb7-expander-rounding-from-stability": "OPEN",
+    "hrf-ghb7-expanding-block-localization": "ESTABLISHED",
+    "hrf-ghb7-expanding-block-localization-proof": "COMPLETE",
+    "hrf-ghb7-scalar-expander-rounding": "OPEN",
+    "hrf-ghb7-scalar-relator-models-round-strictly": "ESTABLISHED",
+    "hrf-ghb7-scalar-relator-rounding-proof": "COMPLETE",
+    "hrf-ghb7-stability-from-expander-rounding": "OPEN",
+    "hrf-nonrf-via-stable-kazhdan-central-prime": "OPEN",
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "triangle-edge-matching-one-edge-holonomy-proof": "COMPLETE",
+    "triangle-edge-matching-reduces-to-one-edge-holonomy": "ESTABLISHED"
+  },
+  "all_findings": [
+    [
+      "warning",
+      "restatement",
+      "research/artin-twisted-bt-fp-host-via-own-finite-presentation.md: prerequisite every-artin-self-twisted-bt-group-is-finitely-presented reads like a restatement of target every-artin-twisted-brin-thompson-group-embeds-in-fp-group; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-cloning-group-not-in-v-by-period-growth.md: prerequisite some-finite-cloning-system-group-is-not-locally-cocf reads like a restatement of target some-finite-cloning-system-group-does-not-embed-in-v; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-simple-rr0-sr1-via-weak-cancellation.md: prerequisite finite-simple-rr0-algebras-have-weak-cancellation reads like a restatement of target finite-simple-rr0-algebras-have-stable-rank-one; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-simple-rr0-weak-cancellation-via-stable-rank-one.md: prerequisite finite-simple-rr0-algebras-have-stable-rank-one reads like a restatement of target finite-simple-rr0-algebras-have-weak-cancellation; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/quantum-rigidity-passes-to-sub-sfts-proof.md: prerequisite sft-crossed-product-fp-iff-quantum-rigid reads like a restatement of target quantum-rigidity-passes-to-sub-sfts; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/some-gl-n-z-in-no-nv-via-heisenberg.md: prerequisite heisenberg-group-embeds-in-no-brin-thompson-group reads like a restatement of target some-gl-n-z-embeds-in-no-brin-thompson-group; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-1-03-by-yes.md: prerequisite fg-group-qi-to-n-connected-geodesic-space-is-type-fn reads like a restatement of target zaremsky-1-03-qi-to-connected-space-implies-type-fn; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-1-19-by-yes.md: prerequisite raag-virtual-fn-kernel-implies-raag-fn-kernel reads like a restatement of target zaremsky-1-19-raag-virtual-fn-kernel-conjecture; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-2-06-by-hyde-skipper-zaremsky.md: prerequisite stein-group-f23-does-not-embed-in-thompson-v reads like a restatement of target zaremsky-2-06-stein-f23-does-not-embed-in-v; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-4-06-by-yes.md: prerequisite f-infinity-finite-cd-groups-have-contractible-rips reads like a restatement of target zaremsky-4-06-f-infinity-finite-cd-contractible-rips; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: boone-higman-conjecture -> permutational-boone-higman-conjecture -> boone-higman-conjecture"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: permutational-boone-higman-conjecture -> fp-simple-groups-embed-in-fp-simple-mif-groups -> permutational-boone-higman-conjecture"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: boone-higman-conjecture -> every-decidable-group-embeds-in-an-isolated-group -> boone-higman-conjecture"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: leavitt-refinement-identifies-unstable-k2-levels -> leavitt-resolvent-stable-k2-class-is-computable -> st-n-leavitt-resolvent-word-problem-reduces-to-k2 -> leavitt-stabilization-kernels-are-one-step -> leavitt-refinement-identifies-unstable-k2-levels"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: leavitt-resolvent-stable-k2-class-is-computable -> st-n-leavitt-resolvent-word-problem-reduces-to-k2 -> leavitt-k1-stability-is-one-step -> leavitt-surjective-k2-stability-implies-injective -> leavitt-resolvent-stable-k2-class-is-computable"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: leavitt-refinement-identifies-unstable-k2-levels -> leavitt-resolvent-stable-k2-class-is-computable -> st-n-leavitt-resolvent-word-problem-reduces-to-k2 -> leavitt-k1-stability-is-one-step -> leavitt-refinement-identifies-unstable-k2-levels"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: determinant-conjecture -> integral-group-ring-spectra-are-integer-root-limits -> determinant-conjecture"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: integral-group-ring-spectra-are-integer-root-limits -> integral-group-ring-eigenvalues-are-galois-balanced -> integral-group-ring-spectra-are-integer-root-limits"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: amenable-automatic-groups-are-virtually-abelian -> soluble-automatic-groups-are-virtually-abelian -> amenable-automatic-groups-are-virtually-abelian"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: amenable-automatic-groups-are-elementary-amenable -> amenable-automatic-groups-are-virtually-abelian -> amenable-automatic-groups-are-elementary-amenable"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: amplifier-preserves-yes-energy-below-the-floor -> quantum-pcp-constant-gap-local-hamiltonian -> amplifier-preserves-yes-energy-below-the-floor"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: bernoulli-rokhlin-entropy-maximal-for-every-group -> bernoulli-rokhlin-entropy-maximal-on-fixed-tester -> tester-host-has-positive-rokhlin-entropy-action -> every-group-has-positive-rokhlin-entropy-action -> bernoulli-rokhlin-entropy-maximal-for-every-group"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: every-group-has-positive-rokhlin-entropy-action -> bernoulli-shift-entropy-classifies-for-every-group -> every-group-has-positive-rokhlin-entropy-action"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: thompson-f-is-not-hyperlinear -> thompson-f-is-not-sofic -> thompson-f-is-not-hyperlinear"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: every-type-fn-group-embeds-in-a-type-fn-plus-1-group -> every-finitely-presented-group-embeds-in-an-f-infinity-group -> every-type-fn-group-embeds-in-a-type-fn-plus-1-group"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: every-hyperbolic-group-is-good -> hyperbolic-finite-residual-is-torsion-free -> every-hyperbolic-group-is-good"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: every-type-f-group-has-a-contractible-rips-complex -> f-infinity-finite-cd-groups-have-contractible-rips -> every-type-f-group-has-a-contractible-rips-complex"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: f-infinity-finite-cd-groups-have-contractible-rips -> f-infinity-groups-of-finite-cd-are-of-type-f -> f-infinity-finite-cd-groups-have-contractible-rips"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one -> thompson-v-ternary-rank-functions-are-augmentation -> sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: ternary-anti-central-unit-class-is-nonpositive -> sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one -> ternary-anti-central-disjoint-defects-have-a-strict-deficit -> ternary-anti-central-matrix-state-defects-have-a-strict-deficit -> ternary-anti-central-unit-class-is-nonpositive"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: f9-hadamard-spectral-idempotent-is-full -> ternary-anti-invariant-swap-corner-is-full -> ternary-anti-central-summand-has-cohn-family -> ternary-anti-central-cohn-family-over-f9 -> f9-hadamard-spectral-idempotent-is-full"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: finite-moment-pairing-2to1-hardness -> smooth-design-rich-2to1-hardness -> unique-games-conjecture -> finite-moment-pairing-2to1-hardness"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: rr0-c-star-algebras-are-separative -> rr0-algebras-are-k1-bijective -> rr0-c-star-algebras-are-separative"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: fpbs-replica-meet-threshold-gap-universal -> fpbs-pc-below-exp-decay-threshold-universal -> fpbs-replica-meet-threshold-gap-universal"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: hs-expander-block-decomposition -> leavitt-hs-block-compatibility -> leavitt-steinberg-hs-stable -> tracial-median-concentration -> hs-expander-block-decomposition"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: hs-expander-block-decomposition -> leavitt-hs-block-compatibility -> leavitt-steinberg-hs-stable -> hs-expander-block-decomposition"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: hyperbolic-group-trivial-radical-residual-prime-torsion -> non-virtually-torsion-free-hyperbolic-group -> non-residually-finite-hyperbolic-group -> hyperbolic-group-trivial-radical-residual-prime-torsion"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: titz-witzel-flat-hitting-sparse-branched-covers -> titz-witzel-kernel-sofic -> titz-witzel-flat-hitting-sparse-branched-covers"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: non-residually-finite-hyperbolic-group -> hyperbolic-group-without-finite-quotients -> kazhdan-hyperbolic-group-without-finite-quotients -> sp21-lattice-hyperbolic-quotient-without-finite-quotients -> non-residually-finite-hyperbolic-group"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: kervaire-laudenbach-nonsingular-conjecture -> universal-schur-injectivity-for-nonsingular-adjunctions -> kervaire-laudenbach-nonsingular-conjecture"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: leavitt-evaluation-kernel-unitization-directly-finite -> leavitt-unit-group-algebra-is-directly-finite -> no-left-invertible-lift-of-s0-in-leavitt-group-algebra -> leavitt-evaluation-kernel-unitization-directly-finite"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: stw99-problem-lxi-properly-infinite-k1-injective -> toeplitz-defect-ideal-unitization-k1-injective -> stw99-problem-lxi-properly-infinite-k1-injective"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: o2-free-circle-halving-homotopy -> stw99-problem-lxi-properly-infinite-k1-injective -> o2-free-circle-halving-homotopy"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: stw99-problem-lxi-properly-infinite-k1-injective -> prime-quotient-minimal-k1-trivial-unitaries-are-null -> stw99-problem-lxi-properly-infinite-k1-injective"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: stw99-problem-lxi-properly-infinite-k1-injective -> properly-infinite-unitary-loops-detected-by-k1-suspension -> stw99-problem-lxi-properly-infinite-k1-injective"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: products-with-a-sofic-factor-are-surjunctive -> surjunctive-groups-are-quantitatively-surjunctive -> products-with-a-sofic-factor-are-surjunctive"
+    ]
+  ],
+  "new_hrf_node_findings": [],
+  "legacy_root_cycle_baseline_matches": {
+    "dependency cycle through claims: hyperbolic-group-trivial-radical-residual-prime-torsion -> non-virtually-torsion-free-hyperbolic-group -> non-residually-finite-hyperbolic-group -> hyperbolic-group-trivial-radical-residual-prime-torsion": [
+      "dependency cycle through claims: hyperbolic-group-trivial-radical-residual-prime-torsion -> non-virtually-torsion-free-hyperbolic-group -> non-residually-finite-hyperbolic-group -> hyperbolic-group-trivial-radical-residual-prime-torsion"
+    ],
+    "dependency cycle through claims: non-residually-finite-hyperbolic-group -> hyperbolic-group-without-finite-quotients -> kazhdan-hyperbolic-group-without-finite-quotients -> sp21-lattice-hyperbolic-quotient-without-finite-quotients -> non-residually-finite-hyperbolic-group": [
+      "dependency cycle through claims: non-residually-finite-hyperbolic-group -> hyperbolic-group-without-finite-quotients -> kazhdan-hyperbolic-group-without-finite-quotients -> sp21-lattice-hyperbolic-quotient-without-finite-quotients -> non-residually-finite-hyperbolic-group"
+    ]
+  }
+}

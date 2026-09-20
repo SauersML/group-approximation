@@ -1,0 +1,22 @@
+[
+  {
+    "summands": [
+      4,
+      4
+    ],
+    "dimension": 9801,
+    "edge_dimensions": [
+      1961,
+      1961,
+      1961
+    ],
+    "pair_ranks": [
+      3917,
+      3917,
+      3917
+    ],
+    "triple_rank": 5868,
+    "global_fixed": 0,
+    "h1": 0
+  }
+]

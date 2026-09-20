@@ -1,0 +1,40 @@
+[
+  {
+    "label": "rank_four_heisenberg",
+    "central_character": [
+      0,
+      6,
+      0
+    ],
+    "dimension": 49,
+    "symplectic_rank": 4,
+    "face_constraint_rank": 96,
+    "vertex_fixed_dimensions": [
+      1,
+      1,
+      0
+    ],
+    "global_fixed_dimension": 0,
+    "h1_dimension": 0,
+    "representation_relations_checked": true
+  },
+  {
+    "label": "rank_two_heisenberg",
+    "central_character": [
+      1,
+      0,
+      0
+    ],
+    "dimension": 7,
+    "symplectic_rank": 2,
+    "face_constraint_rank": 12,
+    "vertex_fixed_dimensions": [
+      1,
+      1,
+      0
+    ],
+    "global_fixed_dimension": 0,
+    "h1_dimension": 0,
+    "representation_relations_checked": true
+  }
+]

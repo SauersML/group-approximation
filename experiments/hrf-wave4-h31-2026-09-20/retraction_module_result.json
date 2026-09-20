@@ -1,0 +1,22 @@
+{
+  "field": 5,
+  "simple_vertex_order": 14880,
+  "module_generators": 2976,
+  "relation_rows": 14880,
+  "rank": 2975,
+  "module_dimension": 1,
+  "matrices": {
+    "a": [
+      8,
+      14,
+      4,
+      11
+    ],
+    "b": [
+      8,
+      0,
+      17,
+      4
+    ]
+  }
+}

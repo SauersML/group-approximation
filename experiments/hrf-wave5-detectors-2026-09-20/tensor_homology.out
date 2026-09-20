@@ -1,0 +1,17 @@
+SUMMAND_CERTIFICATE_PASS
+{"summands": [0, 0], "dimension": 324, "edge_dimensions": [68, 68, 68], "pair_ranks": [134, 134, 134], "triple_rank": 198, "global_fixed": 0, "h1": 0} seconds 0.03
+{"summands": [0, 1], "dimension": 648, "edge_dimensions": [128, 128, 128], "pair_ranks": [256, 256, 256], "triple_rank": 384, "global_fixed": 0, "h1": 0} seconds 0.16
+{"summands": [0, 2], "dimension": 648, "edge_dimensions": [128, 128, 128], "pair_ranks": [256, 256, 256], "triple_rank": 384, "global_fixed": 0, "h1": 0} seconds 0.29
+{"summands": [0, 3], "dimension": 1458, "edge_dimensions": [290, 290, 290], "pair_ranks": [580, 580, 580], "triple_rank": 870, "global_fixed": 0, "h1": 0} seconds 0.99
+{"summands": [1, 0], "dimension": 648, "edge_dimensions": [128, 128, 128], "pair_ranks": [256, 256, 256], "triple_rank": 384, "global_fixed": 0, "h1": 0} seconds 1.11
+{"summands": [1, 1], "dimension": 1296, "edge_dimensions": [260, 260, 260], "pair_ranks": [518, 518, 518], "triple_rank": 774, "global_fixed": 0, "h1": 0} seconds 1.63
+{"summands": [1, 2], "dimension": 1296, "edge_dimensions": [260, 260, 260], "pair_ranks": [518, 518, 518], "triple_rank": 774, "global_fixed": 0, "h1": 0} seconds 2.15
+{"summands": [1, 3], "dimension": 2916, "edge_dimensions": [584, 584, 584], "pair_ranks": [1168, 1168, 1168], "triple_rank": 1752, "global_fixed": 0, "h1": 0} seconds 5.33
+{"summands": [2, 0], "dimension": 648, "edge_dimensions": [128, 128, 128], "pair_ranks": [256, 256, 256], "triple_rank": 384, "global_fixed": 0, "h1": 0} seconds 5.46
+{"summands": [2, 1], "dimension": 1296, "edge_dimensions": [260, 260, 260], "pair_ranks": [518, 518, 518], "triple_rank": 774, "global_fixed": 0, "h1": 0} seconds 6.0
+{"summands": [2, 2], "dimension": 1296, "edge_dimensions": [260, 260, 260], "pair_ranks": [518, 518, 518], "triple_rank": 774, "global_fixed": 0, "h1": 0} seconds 6.54
+{"summands": [2, 3], "dimension": 2916, "edge_dimensions": [584, 584, 584], "pair_ranks": [1168, 1168, 1168], "triple_rank": 1752, "global_fixed": 0, "h1": 0} seconds 9.74
+{"summands": [3, 0], "dimension": 1458, "edge_dimensions": [290, 290, 290], "pair_ranks": [580, 580, 580], "triple_rank": 870, "global_fixed": 0, "h1": 0} seconds 10.44
+{"summands": [3, 1], "dimension": 2916, "edge_dimensions": [584, 584, 584], "pair_ranks": [1168, 1168, 1168], "triple_rank": 1752, "global_fixed": 0, "h1": 0} seconds 13.77
+{"summands": [3, 2], "dimension": 2916, "edge_dimensions": [584, 584, 584], "pair_ranks": [1168, 1168, 1168], "triple_rank": 1752, "global_fixed": 0, "h1": 0} seconds 17.15
+{"summands": [3, 3], "dimension": 6561, "edge_dimensions": [1313, 1313, 1313], "pair_ranks": [2621, 2621, 2621], "triple_rank": 3925, "global_fixed": 1, "h1": 0} seconds 38.96

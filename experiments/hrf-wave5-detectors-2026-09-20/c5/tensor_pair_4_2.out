@@ -1,0 +1,3 @@
+SUMMAND_CERTIFICATE_PASS
+ISOMORPHISM_CERTIFICATES_PASS [0, 1, 3, 4, 5]
+{"summands": [4, 2], "dimension": 8019, "edge_dimensions": [1603, 1603, 1603], "pair_ranks": [3202, 3202, 3202], "triple_rank": 4797, "global_fixed": 0, "h1": 0} seconds 54.85

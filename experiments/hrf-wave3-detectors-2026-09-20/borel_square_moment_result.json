@@ -1,0 +1,38 @@
+{
+  "field": 19,
+  "prime": 5,
+  "cover_degree": 400,
+  "edge_orbits": [
+    80,
+    80,
+    80
+  ],
+  "incidence_rank": 235,
+  "augmented_rank": 238,
+  "moment_rank": 3,
+  "vertex_orbit_sizes": [
+    [
+      20,
+      380
+    ],
+    [
+      20,
+      380
+    ],
+    [
+      20,
+      380
+    ]
+  ],
+  "cycle_nonzero_entries": [
+    158,
+    159,
+    154
+  ],
+  "single_borel_cover": {
+    "degree": 20,
+    "incidence_rank": 10,
+    "augmented_rank": 13,
+    "moment_rank": 3
+  }
+}

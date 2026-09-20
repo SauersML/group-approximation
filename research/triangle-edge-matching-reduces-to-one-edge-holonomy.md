@@ -38,16 +38,21 @@ there are genuine `π_n : G → U(D_n)`, `D_n ≥ d_n`, `D_n/d_n → 1`, with
 and only if (HA) holds.
 
 **What it isolates.** Two of the three edge disagreements can always be removed exactly, at the cost
-of `O(ε d)` padding by linear characters and a conjugation within `O(ε^(1/2))` of the identity. What
+of `O(ε² d)` padding by linear characters and a conjugation within `O(ε)` of the identity. What
 remains is the holonomy around the triangle: after `b` and `a` agree exactly, the mismatch on `c`
 must be absorbable, up to `o(d)` padding.
 
-**Quantitative lemmas (in the route).**
-- **(L1) Padding.** If the three edge mismatches are at most `ε` in normalized HS norm, sums of linear
-  characters `S_i` of total dimension `m ≤ p(p^2 − 1)ε d/2` make the eigenvalue multiplicity vectors
-  of `ρ_i ⊕ S_i` agree on every edge.
-- **(L2) Alignment.** Two genuine representations of `Z/p` on `C^D` with equal multiplicities and
-  distance `η` are conjugate by a unitary `w` with `||w − I||_2 ≤ 3.24 (p − 1) η / 2`.
+**Quantitative lemmas.** Write `s_p = 2 sin(π/p)`. The independently reviewed
+`hrf-cyclic-edge-quadratic-padding` proof gives:
+- **(L1) Padding.** If all edge errors are at most `ε`, linear-character sums of
+  common dimension `m ≤ p ε² d/s_p²` equalize all three spectral multiplicity vectors.
+- **(L2) Alignment.** Equal-multiplicity order-`p` unitaries at normalized HS
+  distance `η` admit an intertwiner `w` with `||w − I||₂ ≤ 2η/s_p`.
+- After padding, each error is at most `η ≤ sqrt(1+4p/s_p²) ε`; aligning two
+  edges leaves the third error at most `(1+8/s_p)η`.
+
+These estimates improve preprocessing only; the (HA) assertion is still a
+separate simultaneous rounding problem.
 
 **Credit.** Elementary. No priority is claimed.
 

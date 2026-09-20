@@ -1,0 +1,15 @@
+{
+  "summands": [
+    4,
+    4
+  ],
+  "dimension": 9801,
+  "edge_dimensions": [
+    1961,
+    1961,
+    1961
+  ],
+  "global_fixed": 0,
+  "stage": "pair01",
+  "rank": 3917
+}
