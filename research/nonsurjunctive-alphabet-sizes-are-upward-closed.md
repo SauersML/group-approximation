@@ -134,3 +134,21 @@ artifacts:
     - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
       compared with a measure-preserving base.
     - Designs whose three sizes already fail, which the theorem cannot touch.
+- **Dual charge theorem by finite differences is dead at every non-amenable host** (swarm-0917-w23-w23-gs-break,
+  2026-09-17). This is for need `ebb50f1d`. By `pre-injective-count-raising-characterizes-nonamenability` (established,
+  route `pre-injective-count-raising-nonamenability-proof`), `G` is amenable iff every pre-injective automaton with a
+  quiescent never-created letter `0` preserves supports pointwise.
+  - The construction at non-amenable `G`. Take Bartholdi's linear automaton `Θ`, which is injective on finite
+    configurations and has values in `K^{∪X_s} ⫋ K^Y`, and add the support flag `[φ(g) ≠ 0] e_{y0}` in a free
+    coordinate. The result is pre-injective and never creates `0`, and it raises the count of a single-site
+    configuration.
+  - Invariant of the dead class: injectivity used only on pairs differing at finitely many sites. This covers counting,
+    wandering finite supports and Moore--Myhill arguments.
+  - The step where every member dies is the first appeal to injectivity, since pre-injectivity already gives a false
+    conclusion at each possible failing host. Dual failures live only at non-sofic, hence non-amenable, groups.
+  - The kill covers torsion hosts with no `F_2`, which the w23 free-subgroup calibration does not reach.
+  - At amenable groups the pre-injective form is true, by Garden of Eden and Meyerovitch's Bernoulli preservation. So
+    the class is not killed by an amenable obstruction, only by non-amenability.
+  - What survives. Arguments that use injectivity on pairs differing at infinitely many sites, for instance on
+    `0`-seas with infinitely many non-`0` islands, or on the whole `τ^{-1}`. The flag automaton is injective exactly when
+    Bartholdi's `Θ` is, so it gives no dual counterexample beyond a Gottschalk one.
