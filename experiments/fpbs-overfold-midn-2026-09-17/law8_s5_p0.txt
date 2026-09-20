@@ -1,0 +1,6 @@
+V 96 n 12 seeds 144 lawful 12 overfold 132 auts 12 law 8
+overfold orbit reps 11
+s 1 tested 4 saving-hist: 0:4
+s 2 tested 524 saving-hist: 0:524
+s 3 tested 34060 saving-hist: 0:34060
+s 4 tested 1464580 saving-hist: 0:1464580
