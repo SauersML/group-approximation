@@ -142,9 +142,14 @@ whose sections are supported on coordinate 5.
   `W_{n-1}^5`, and so `π_n(G_ω) = W_n`. ∎
 
 **What this says about 21.44.**
-- Spinal groups with directed sections at a single spine are the family behind Grigorchuk's
-  and Šunić's dense intermediate-growth subgroups of iterated wreath products of cyclic groups.
-- Over `A_5` they are dense essentially exactly when every level map is onto (by (a) and (c)).
+- Spinal groups with directed sections along a single spine are the family behind Grigorchuk's
+  and Šunić's intermediate-growth groups. Correction to the landed version: those groups are
+  not dense in the iterated wreath products of cyclic groups, and nothing finitely generated
+  is. `(ℤ/p) ≀ ··· ≀ (ℤ/p)` with `m` factors has abelianization `(ℤ/p)^m`, so a dense
+  `Γ` would surject onto `(ℤ/p)^m` for every `m`. That is why 21.44 needs a perfect vertex
+  group.
+- Over `A_5`, spinal groups are dense essentially exactly when every level map is onto (by (a),
+  and by (c) or Proposition D below).
 - In that regime there is always a "mixed" directed letter whose section is nontrivial at
   every level (by (b)). The η-contraction of Bartholdi–Šunić §6 uses letters that vanish, and
   so gives no bound there.
@@ -165,6 +170,53 @@ alternating. Then `K_1 = 1 × A_5` and `K_2 = A_5 × 1`, so `P` is dense by (c).
 **Question.** Does `P` have subexponential growth? If it does, Kourovka 21.44 has answer YES.
 If it has exponential growth, then so does every dense spinal group over `A_5` with periodic
 `ω`, and the spinal route is closed. The second claim is a conjecture, not proved here.
+
+## Proposition D (a smaller dense test object inside `P`)
+
+For `s ∈ A_5`, let `d_s` be the automorphism with `d_s = (s, 1, 1, 1, d_s)`. It fixes level 1,
+its section at vertex 1 is the rooted `s`, and its section at vertex 5 is `d_s`.
+- `s ↦ d_s` is an injective homomorphism. Both `d_s d_t` and `d_{st}` solve `x = (st,1,1,1,x)`,
+  whose solution in `Aut(T_5)` is unique. So `D := {d_s}` is isomorphic to `A_5`.
+- Put `H := ⟨A_5, D⟩`, the spinal group with `G_B = A_5` and constant `ω = id`. It is the
+  `A_5`-on-5-points analogue of the Fabrykowski–Gupta group `b = (a, 1, b)`.
+- `H ≤ P`: the diagonal letter `(s, s)` of `P` satisfies the same recursion
+  `(s,s)_ω = (s,1,1,1,(s,s)_{σω})`, and so does `(s,s)_{σω}`. So both equal `d_s`.
+- Every kernel is trivial, so **no letter of `H` ever vanishes**.
+
+**Claim: `H` is dense in `W`.** `H` is self-similar, since all sections of generators lie in `H`.
+We prove `π_n(H) = W_n` by induction on `n`. The cases `n = 1, 2` are as in S(c): the rooted
+conjugates of `d_s` act on level 2 as `s` in any single coordinate.
+
+*Case `n ≥ 3`.* Let `ψ` be the section map on `St_H(1)`.
+- The coordinate-5 projection of `ψ(St_H(1))` is all of `H`. It contains `d_s`, and it contains
+  the rooted `s` from `d_s^h` with `h(1) = 5`.
+- Let `L ⊴ St_H(1)` be the elements whose sections are supported on coordinate 5, and let `L_5`
+  be its coordinate-5 projection. Then `L_5 ⊴ H`.
+- Take `h = (1 2 3) ∈ A_5`, which fixes 5. Then `d_t^h = (1, t, 1, 1, d_t)`, so
+  `[d_s, d_t^h] = (1, 1, 1, 1, d_{[s,t]})`. Since `A_5` is perfect, `D ⊆ L_5`.
+- For `u ≠ 1`, `π_{n-1}(d_u) ∈ St(1) ∖ St(2)` in `W_{n-1}`. By induction and Proposition N,
+  `π_{n-1}(L_5) ⊇ St_{W_{n-1}}(1)`.
+- Conjugating `L` by rooted elements gives the same in every coordinate. So
+  `π_{n-1}^{×5}ψ(St_H(1))` contains `∏_j St_{W_{n-1}}(1)`, and it maps onto `A_5^5` modulo that
+  product by the case `n = 2`. Hence it is `W_{n-1}^5`, and `π_n(H) = W_n`. ∎
+
+This proof does not need `K_i ⊄ K_{i+1}`. The commutator with a rooted conjugate does the job
+that a vanishing letter did in S(c).
+
+**Consequence.**
+- `P`'s growth is at least `H`'s. So if `H` has exponential growth, so does `P`, and if `P` is
+  subexponential, so is `H`.
+- `H`, a 4-generated dense subgroup with **no vanishing letters at all**, is therefore the
+  minimal spinal test object for 21.44. Kourovka 21.44 is YES if `H` has subexponential growth.
+- **Status: the growth of `H` and of `P` is not decided here.**
+  - The known intermediate-growth proofs for directed letters that never vanish are all on the
+    ternary tree with cyclic rooted group ℤ/3. They are Fabrykowski–Gupta, Bartholdi–Pochon,
+    and Francoeur (arXiv:1702.08047, whose abstract restricts to the ternary tree).
+  - I know of no version for a 5-ary tree with rooted `A_5`.
+  - In the ternary case the length contraction comes from merging the powers of a single
+    3-cycle between consecutive directed letters. With rooted `A_5`, the rooted letters between
+    directed letters range over a nonabelian group, and whether an analogous contraction
+    exists is exactly the open point.
 
 ## Attempts
 
