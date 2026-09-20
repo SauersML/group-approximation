@@ -13,6 +13,8 @@ distinct_from:
 Referee bh-ref-t0 PASS (14b9c876b6). One wording fix is applied: a uniform bound *implies* the negation of the
 hard-WP target and is not equivalent to it.
 
+**Correction (2026-09-19).** As printed in the arXiv versions, Bartholdi–Mitrofanov's Theorem A″ rests on their Proposition 2.4, whose proof has a gap. There `[g,u] ≠ 1` for every machine. It is repaired by replacing `u` with a partner `p` supported on `0^*1A^ω`; see `bartholdi-mitrofanov-proposition-2-4-gap-and-repair` (referee bh-ref-f PASS, 6747a7e43d). Theorem A″ holds for the repaired table `G′_M = ⟨Φ_M, p, p′⟩`. This node uses only that some faithful functionally recursive group has a non-recursive word problem. The repaired group is one, so every conclusion here stands.
+
 ## Setting
 
 - **Functionally recursive groups.** A finite map `Φ: A × S → F_S × A` defines a group `G = ⟨Φ⟩`, where `S` is a
