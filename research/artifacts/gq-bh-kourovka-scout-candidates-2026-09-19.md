@@ -8,49 +8,81 @@
   not re-scanned here.
 - **Checks.** For each problem below, main was searched with `git grep` on `research/` for an
   existing node. The arXiv checks are noted per item.
+- **Problem texts** are quoted verbatim from the PDF pages.
 
-## Result of this lane
+## Results of this lane
 
 | No. | Problem | Result |
 |---|---|---|
-| 20.33 (A. Bauer, via J. Grochow) | Relativized Higman embedding theorem: a universal f.g. `G_X` for every oracle `X` | **Yes**, as a literature answer via Ziegler's generalized Higman embedding theorem (Scott arXiv:2404.11524v1, Thm 5.2.2, citing Ziegler 1980 Thm II.3.10). Node `kourovka-20-33-higman-relativizes-by-ziegler`; the deduction is a lane proof, not reviewed. |
+| 20.33 (A. Bauer; signed J. Grochow) | Relativized Higman embedding theorem: a universal f.g. `G_X` for every oracle `X` | **Yes.** Literature answer credited to Ziegler 1980, via Scott arXiv:2404.11524v1 Thm 5.2.2. Node `kourovka-20-33-higman-relativizes-by-ziegler`; referee PASS `kourovka-20-33-ziegler-answer-review` (279d915221). |
+| 21.119 (E. Schesler) | Kernels of type F_n, not F_{n+1}, on finite-index subgroups | **Open, constraints proved.** Node `kourovka-21-119-answers-need-infinite-vcd` (lane proof, unreviewed). Any answer is `F_∞`, has no torsion-free finite-index subgroup of finite cd, and is not commensurable with Thompson's `F`. Owned by this lane. |
 
-## Ranked candidates (no node on main unless stated)
+## Candidates for fresh lanes (no node on main)
 
-1. **21.119 (E. Schesler).** Is there a group `G` with finite-index subgroups `G_n` and maps
-   `f_n : G_n → ℤ` whose kernels are of type `F_n` but not `F_{n+1}`?
-   - **Constraints.** Every `G_n` is then `F_n`, so `G` is `F_∞`.
-   - **Expected obstruction (not checked at source).** Finite cohomological dimension should
-     cap the finiteness length of such kernels, via Bieri's theorems on normal subgroups with
-     quotient ℤ. So `G` needs infinite cd, or torsion.
-   - **Test groups.** `F_∞` groups of infinite cd with many virtual characters, attacked with
-     the Witzel–Zaremsky Morse method for Σ^m, the same machinery as the T0 proof.
-   - Not in main.
-2. **20.47 (A. Le Boudec, N. Matte Bon).** Is every faithful, minimal, strongly proximal
-   `F_n`-action on a compact space topologically free?
-   - **Lane observation (unreviewed): yes when the action is extremely proximal.**
-     - Suppose `g ≠ 1` fixes an open `U` pointwise.
-     - Push `supp(g)` into `U` by some `h`. Then `k = hgh⁻¹` has support inside `Fix(g)`, so
-       `k` commutes with `g`.
-     - In `F_n`, maximal cyclic subgroups are malnormal, which puts `h` in the maximal cyclic subgroup containing `g`, so `k = g` and
-       `supp(g) ⊆ Fix(g)`, a contradiction.
-   - So a counterexample must be strongly proximal but not extremely proximal. This is
-     probably known to the proposers.
-   - Related to the (RA) work: topologically free versus free, bh-ra-*.
-3. **21.44 (S. Eberhard).** Does the infinite iterated wreath product of `A_5` contain a
-   finitely generated dense subgroup of subexponential growth?
-   - A web search summary says arXiv:2604.15303 rules out growth `≤ exp(n^{1/40})`. It was
-     not read.
-   - The tools would be contracting branch groups. Hard.
-4. **20.110, 20.111 (M. Vannacci).** Are there residually finite hereditarily just-infinite
-   groups that are:
-   - amenable but not elementary amenable;
-   - of intermediate growth;
-   - self-similar but not linear?
+### 20.47 (A. Le Boudec, N. Matte Bon), p. 154
 
-   Hard.
-5. **21.116 (E. Schesler).** Is every branch group boundedly acyclic? This needs
-   bounded-cohomology tools that no lane has.
+> Let G = F_n be a finitely generated free group. Let X be a compact G-space on which the
+> G-action is faithful, minimal, and strongly proximal. Does it follow that the action is
+> topologically free?
+
+The definition in 20.46 on the same page: "A group action on a compact space is said to be
+*topologically free* if the set of points with trivial stabilizer is dense."
+
+**Notes.**
+- **Lane observation (unreviewed): yes when the action is extremely proximal.**
+  - Suppose `g ≠ 1` fixes an open `U` pointwise. Then `supp(g)` is a proper closed set.
+  - Extreme proximality gives `h` with `h(supp g) ⊆ U`. Then `k = hgh⁻¹` has support inside
+    `Fix(g)`, so `k` commutes with `g`.
+  - In `F_n`, maximal cyclic subgroups are malnormal. So `h` lies in the maximal cyclic
+    subgroup containing `g`, and `k = g`. Then `supp(g) ⊆ Fix(g)`, a contradiction.
+  - So a counterexample needs a strongly proximal action that is not extremely proximal.
+- **Free boundary.** The action on the Furstenberg boundary is free, since `F_n` is
+  C*-simple (Kalantar–Kennedy, Breuillard–Kalantar–Kennedy–Ozawa). The question concerns its
+  other boundary factors.
+- **First step for a lane:** read Le Boudec–Matte Bon's papers on confined subgroups and
+  micro-supported actions for what is already proved.
+- **Related work:** the (RA) topologically-free versus free results on main (bh-ra-*).
+
+### 21.44 (S. Eberhard), p. 174
+
+> Let W_n = A_5 ≀ ⋯ ≀ A_5 be the n-times iterated permutational wreath product of A_5 in its
+> natural action (so W_n acts on 5^n points), and let W = lim← W_n be the inverse limit
+> (infinite iterated wreath product of A_5). Does W contain a finitely generated dense
+> subgroup of subexponential growth?
+
+**Notes.**
+- A web search summary says arXiv:2604.15303 (*Diameter bounds for arbitrary finite groups
+  and applications*) proves that no such subgroup has growth `≤ exp(n^{1/40})`. Not read;
+  read it first.
+- **Candidate tools:** Grigorchuk-type or Šunić-type branch groups with `A_5` labels, and
+  Nekrashevych's fragmentations. The difficulty is that density needs the whole of `A_5` at
+  every vertex, while every known intermediate-growth mechanism uses 2-groups or solvable
+  labels.
+
+### 20.110 and 20.111 (M. Vannacci), p. 163
+
+> 20.110. Are there residually finite hereditarily just infinite groups that are
+> a) amenable but not solvable?
+> b) amenable but not elementary amenable?
+> c) of intermediate word growth?
+> d) of intermediate subgroup growth?
+> All examples that we know are either linear (hence Tits Alternative applies), or have a
+> quotient with property (T) (hence cannot be amenable).
+
+> 20.111. Are there residually finite hereditarily just infinite groups admitting a
+> self-similar action on a rooted tree that are not linear?
+
+**Notes.**
+- By Wilson's trichotomy, just-infinite groups are branch or virtually a direct power of a
+  simple or hereditarily just-infinite group. Branch groups are never hereditarily
+  just-infinite, so the Grigorchuk-group examples do not apply.
+- A lane should look for non-branch, non-linear residually finite groups without property
+  (T), e.g. suitable self-similar groups that are not weakly branch.
+
+### Lower priority
+
+- **21.116 (E. Schesler):** "Is every branch group boundedly acyclic?" It needs
+  bounded-cohomology tools that no lane has.
 
 ## Already owned or on main (do not reassign)
 
