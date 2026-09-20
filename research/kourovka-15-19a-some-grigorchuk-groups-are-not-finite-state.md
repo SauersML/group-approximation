@@ -136,6 +136,28 @@ automorphisms of a d-regular rooted tree, and let s be the maximal number of sta
   Grigorchuk 1984.
 - The scope caveat about p = 2 and the 1986 paper.
 
+## Priority (unresolved)
+
+Referee bh-ref-e passed the mathematics (b2679f2613). Priority is still open, so the node stays
+OPEN.
+
+The likely prior source is M. Garzon and Y. Zalcstein, "The complexity of Grigorchuk groups with
+application to cryptography", Theoret. Comput. Sci. 88 (1991) 83–98, doi:10.1016/0304-3975(91)90074-C.
+- **Abstract** (verbatim, from the University of Memphis Digital Commons record): "The Turing
+  complexity of the word problems of a class of groups introduced by Grigorchuk (1985) is
+  examined. In particular, it is shown that such problems of permutation groups of the infinite
+  complete binary tree yield natural complete sets that separate time and space complexity classes
+  if they are distinct."
+- **What that suggests:** they show that WP(G_ω) has the complexity of ω. If so, the hard
+  computable ω of steps 5–7 is already theirs.
+- **Consequence:** 15.19(a) in "some" form would then follow at once from their theorem together
+  with the exponential bound for finite-state groups stated in the problem itself. This node would
+  then grade as attribution to Garzon–Zalcstein, with only the explicit combination as the lane's
+  part.
+- **Not read at source.** Elsevier's pages sit behind a bot wall from MSI. The open-archive PDF,
+  the Elsevier API full-text view without a key, CORE and Unpaywall all returned no text on
+  2026-09-19. Reading their §§2–4 needs the PDF supplied by hand.
+
 ## Sources
 
 - Kourovka Notebook, arXiv:1401.0300v46, problem 15.19, read at source (LaTeX).
