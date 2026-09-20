@@ -125,7 +125,33 @@ HTML; bh-ref-f is re-deriving it; not a claimed refutation).
   - Proposition 2.3 (fixed rays, Theorem A′) is unaffected.
   - A repair needs a commutator partner for `g` whose support avoids the words that `g` moves when `M` does
     not halt. Those are the words carrying a marker after a `0`-prefix.
-- **Status.** (a), and every use of A″, are **conditional** on this being resolved.
+- **Status.** (a) for the original family `⟨Φ_M⟩`, and every use of A″ with BM's `u`, are **conditional** on
+  this being resolved.
+
+**Repair: a partner supported on `0^* 1 A^ω`** (lane proof, unreviewed; credit for everything except the
+partner is Bartholdi–Mitrofanov's).
+- **The partner `p`.** Add the finite-state involution `p` to `S`, replacing `u`:
+  - `Φ(0,p) = (p,0)` and `Φ(1,p) = (p′,1)`, with `Φ(a,p) = (ε,a)` otherwise;
+  - `p′` flips `0 ↔ 1` with trivial section and fixes the other letters.
+
+  So `p(0^m 1 z Y) = 0^m 1 z̄ Y` for `z ∈ {0,1}`, `p` fixes every other word, and `supp(p) ⊆ 0^* 1 A^ω`.
+  Call the modified family `G′_M = ⟨Φ_M, p⟩`.
+- **Proposition 2.4′.** `M` halts from `(s_*, 0, n)` iff `[g_n, p] ≠ 1`, where
+  `g_n = (s_* x y^(2^n)) t (s_* x y^(2^n))^(-1)`.
+  - *Does not halt ⇒ `[g_n, p] = 1`.* On `0^m 1 Y` the forward run simulates `M` on the `0`s and stops at the
+    wall `1`. No `†` is written, so `t` passes the trace, stops at `1`, and `g_n` fixes `0^m 1 Y`. So `g_n`
+    fixes `0^* 1 A^ω` pointwise, which contains `supp(p)`.
+  - *Halts ⇒ `[g_n, p] ≠ 1`.* Let `K` be the depth at which `s_†` reads a `0`, and `X = 0^m 1 0 Z` with
+    `m ≥ K + 1`.
+    - `s_†` writes `†₁`, and `x`, `y` stop on it. Then `t` makes it `†₂`, the reverse run restores `0^K` and
+      keeps `†₂`, and all later sections are trivial. So `g_n(X) = 0^K †₂ 0^(m−K−1) 1 0 Z`.
+    - `p` fixes that word, since its first non-`0` letter is `†₂`.
+    - But `g_n(p(X)) = 0^K †₂ 0^(m−K−1) 1 1 Z ≠ p(g_n(X))`.
+- **Consequences.**
+  - Theorem A″ holds for the modified family, with the universal machine and words of length `O(2^n)`.
+  - Item (a) holds for `G′_M` exactly as argued above, with the encoded-input repair.
+  - Nothing else in Bartholdi–Mitrofanov's construction changes.
+- **The route now uses `G′_M`.** Test 2 below is redone for it.
 
 ## Tests on (c), smallest first
 
@@ -200,6 +226,25 @@ The ternary core `Q` is the case where `Σ` has loop images `⟨b⟩ ≅ Z/2` an
      `G_1` is not contracting (`α^k|_(†₁) = α^k`).
    - **Withdrawn.** The two-odometer obstruction (b68455967d) is withdrawn. bh-ref-f showed `β|_(†₁) = α`, and
      `β ∉ S` anyway.
+   - **The repaired increment loop `G′_1 = ⟨α, b, t, p, p′⟩` (u replaced by p). (c) holds** (lane proof,
+     unreviewed; conditional on the rule table).
+     - **Recursions.** Sections are listed at `0, 1, †₁, †₂, 𝐢₁`.
+       - `p = (p, p′, 1, 1, 1)`, with trivial root permutation.
+       - `p′ = (0 1)(1,1,1,1,1)`, which is finitary.
+     - **Weighted survival criterion.** The lemma extends to recursions where each section of `s` is `s`, a
+       generator of smaller weight, or trivial. Weigh `p` as 2 and every other generator as 1. Weighted length
+       never increases, and it is preserved only along survival edges, so the same induction runs on weighted
+       length.
+     - **Survival graph.**
+       - `p` loops at `0`.
+       - At `1`, `p` drops to `p′`, so it is not an edge.
+       - Otherwise the graph is as before: `t` at `0` and `𝐢₁`, `α` from `0` to `𝐢₁` and at `†`.
+     - **Loop images.**
+       - At `0`: `⟨t, p⟩`, since `α^(-1)tα = t`.
+       - `t` and `p` have disjoint supports: `p` stops at `†` and `𝐢₁`, and `t` stops at `1`. So they commute
+         and the image is `(Z/2)²`.
+       - At `†`: `⟨α⟩ ≅ Z`.
+     - **Relators.** `R = {t², p², [t,p], [α,t]}`. So (c) holds for `G′_1`.
    - **The ternary core, re-scoped.**
      - `Q = ⟨(0 1)(1,a,a), (1 h)(b,1,1)⟩` satisfies `N_Q = ⟨⟨b²⟩⟩_lift`. This is **ESTABLISHED** as a theorem
        about that automaton (lane proof aecdf34e2f; referee bh-ref-f PASS, e733763d78). It is the lemma's first
