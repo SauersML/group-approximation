@@ -105,3 +105,14 @@ rotation `r` has order 3, and `D(Gamma)` is at most 2. So the obstruction sees p
 - Part (b) assumes the congruence subgroup property for the relevant `k`-forms. Kneser's centrality theorem for
   `Spin(f)` with `dim f >= 5` would give it through `B_2 = C_2`, but that identification is not imported
   verbatim here.
+
+## Attempts
+
+- 2026-09-20 (swarm-0917-w21-w21-deligne-follow): **the CSP hypothesis of (b) is discharged.** Rapinchuk
+  (Astérisque 209, 1992), Theorem 1, read from the scan, gives centrality of `C^S(G)` for simply connected
+  `G` of types `B_n, C_n (n ≥ 2)` with `rang_S G ≥ 2`. It needs no isotropy hypothesis, and no identification
+  with `Spin(f)` is needed.
+  - This is imported in `sp4-forms-have-central-congruence-kernel`.
+  - The unconditional statement over every lattice, cocompact included, is
+    `deligne-homogeneous-bundle-models-die-over-every-lattice`.
+  - This node's statement is unchanged.
