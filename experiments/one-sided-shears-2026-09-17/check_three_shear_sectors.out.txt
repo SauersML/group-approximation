@@ -1,0 +1,13 @@
+p=2: (A) dual action = K-linear on U_2: mismatches 0
+p=2: (B) sector inclusions tested {'d<=0': 1029, 'd>=0': 1077, 'd=1': 109}: failures 0
+p=2: (C) general-degree inclusions tested 719: failures 0
+p=2: (D) t^k e_i, k<12, from Gamma_0-differences: failures 0
+p=3: (A) dual action = K-linear on U_2: mismatches 0
+p=3: (B) sector inclusions tested {'d<=0': 1019, 'd>=0': 1093, 'd=1': 117}: failures 0
+p=3: (C) general-degree inclusions tested 731: failures 0
+p=3: (D) t^k e_i, k<12, from Gamma_0-differences: failures 0
+p=5: (A) dual action = K-linear on U_2: mismatches 0
+p=5: (B) sector inclusions tested {'d<=0': 1017, 'd>=0': 1093, 'd=1': 135}: failures 0
+p=5: (C) general-degree inclusions tested 726: failures 0
+p=5: (D) t^k e_i, k<12, from Gamma_0-differences: failures 0
+control: chi = (0, t^-1) outside U_2, K-linear image has polynomial part: True
