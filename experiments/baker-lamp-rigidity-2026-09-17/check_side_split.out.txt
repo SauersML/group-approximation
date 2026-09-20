@@ -1,0 +1,20 @@
+== 1. side split of the Proposition B map ==
+(p,k)=(2,2) ends: {('a', '+'): ['y'], ('a', '-'): ['x'], ('b', '+'): ['x'], ('b', '-'): ['y']}
+  matches alpha_+:y alpha_-:x beta_+:x beta_-:y -> True
+(p,k)=(3,4) ends: {('a', '+'): ['y'], ('a', '-'): ['x'], ('b', '+'): ['x'], ('b', '-'): ['y']}
+  matches alpha_+:y alpha_-:x beta_+:x beta_-:y -> True
+== 2. side rule on generators (A = (gamma^-1)^T, entries in F_p[t,t^-1]) ==
+  e12(1)         liftable by side rule: False
+  e12(t)         liftable by side rule: False
+  e21(1)         liftable by side rule: False
+  e21(t)         liftable by side rule: False
+  h=diag(t,1/t)  liftable by side rule: True
+  w              liftable by side rule: False
+== 3. p=2,k=2 witness: conjugated e12(1) couples deep y-digits into deep x-digits ==
+  v=0 m=4: flipping y-digit at depth 7 flips x-digit at depth 9: True
+  v=0 m=7: flipping y-digit at depth 13 flips x-digit at depth 15: True
+  v=0 m=11: flipping y-digit at depth 21 flips x-digit at depth 23: True
+  v=1 m=4: flipping y-digit at depth 7 flips x-digit at depth 9: True
+  v=1 m=7: flipping y-digit at depth 13 flips x-digit at depth 15: True
+  v=1 m=11: flipping y-digit at depth 21 flips x-digit at depth 23: True
+ALL OK
