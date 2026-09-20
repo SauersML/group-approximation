@@ -95,7 +95,7 @@ variable {N : ℕ}
 
 theorem exists_fresh (s : Finset (Fin N)) (hs : s.card < N) : ∃ x, x ∉ s := by
   by_contra hc
-  push_neg at hc
+  simp only [not_exists, not_not] at hc
   have hsub : (Finset.univ : Finset (Fin N)) ⊆ s := fun x _ => hc x
   have hle := Finset.card_le_card hsub
   rw [Finset.card_univ, Fintype.card_fin] at hle
@@ -422,12 +422,13 @@ theorem Rels.zElt_r2_left (h : Rels 𝔄 Y m) (hm : 1 ≤ m) (hN : 3 ≤ N) (hN5
   have hhj : h' ≠ j := h2
   have hhk : h' ≠ k := h3
   have hc'1 : Allowed 𝔄 (1 + e) c' := fun h1 => hc' (by omega)
-  have hW_neg : ∀ x : A, extend hN Y m i k hik (m + 1 + e) (-x) =
+  have hmx : ∀ x : A, Allowed 𝔄 (m + 1 + e) (x * c') := fun x =>
+    (allowed_of_nonneg (by omega : (0 : ℤ) ≤ m + 1) x).mul hc'
+  have hW_neg : ∀ x : A, Allowed 𝔄 (m + 1 + e) x → extend hN Y m i k hik (m + 1 + e) (-x) =
       (extend hN Y m i k hik (m + 1 + e) x)⁻¹ := by
-    intro x
+    intro x hx
     refine eq_inv_of_mul_eq_one_left ?_
-    rw [h.extend_add hm hN hN5 i k hik (m + 1 + e) (-x) x (by omega)
-      (allowed_of_nonneg (by omega) _) (allowed_of_nonneg (by omega) _), neg_add_cancel]
+    rw [h.extend_add hm hN hN5 i k hik (m + 1 + e) (-x) x (by omega) hx.neg hx, neg_add_cancel]
     rcases lt_or_eq_of_le he with helt | rfl
     · rw [extend_of_le (m := m) hN hik (d := m + 1 + e) (by omega), h.one hik (d := m + 1 + e) (by omega)]
     · rw [show m + 1 + 0 = m + 1 by ring, extend_top, h.zElt_zero hN]
@@ -454,7 +455,7 @@ theorem Rels.zElt_r2_left (h : Rels 𝔄 Y m) (hm : 1 ≤ m) (hN : 3 ≤ N) (hN5
       h.comm_top_eq_extend hm hN hN5 hih hhk hik he hc' x
     have hvW : Commute (Y h' k hhk (1 + e) c') (extend hN Y m i k hik (m + 1 + e) (x * c')) := by
       have hc := h.extend_commute hm hN hN5 hhk hik hik.symm hhk (d := 1 + e) (e := m + 1 + e)
-        (by omega) (by omega) (c := c') (c' := x * c') hc'1 (allowed_of_nonneg (by omega) _)
+        (by omega) (by omega) (c := c') (c' := x * c') hc'1 (hmx x)
       rw [extend_of_le (m := m) hN hhk (d := 1 + e) (by omega)] at hc
       exact hc
     have hv2 : ⁅(Y h' k hhk (1 + e) c')⁻¹, Y i h' hih m x⁆ =
@@ -462,14 +463,13 @@ theorem Rels.zElt_r2_left (h : Rels 𝔄 Y m) (hm : 1 ≤ m) (hN : 3 ≤ N) (hN5
       rw [commutatorElement_inv_left, hav, hvW.inv_left.eq, inv_mul_cancel_right]
     have hZW : Commute (zElt hN Y m i j x) (extend hN Y m i k hik (m + 1 + e) (x * c')) := by
       have hc := h.extend_commute hm hN hN5 hij hik hij.symm hik (d := m + 1) (e := m + 1 + e)
-        le_rfl (by omega) (c := x) (c' := x * c') (allowed_of_nonneg (by omega) _)
-        (allowed_of_nonneg (by omega) _)
+        le_rfl (by omega) (c := x) (c' := x * c') (allowed_of_nonneg (by omega) _) (hmx x)
       rw [extend_top] at hc
       exact hc
     rw [hv1, one_mul, hv2, inv_inv, hZW.inv_left.eq, inv_mul_cancel_right]
   -- conclude
   have hneg := key (-c)
-  rw [h.zElt_neg hm hN hN5 hij, inv_inv, neg_mul, hW_neg] at hneg
+  rw [h.zElt_neg hm hN hN5 hij, inv_inv, neg_mul, hW_neg (c * c') (hmx c)] at hneg
   rw [← commutatorElement_inv (Y j k hjk e c') (zElt hN Y m i j c), hneg, inv_inv]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Graded.Rels.zElt_r2_left
@@ -506,7 +506,7 @@ theorem Rels.zElt_r2_right (h : Rels 𝔄 Y m) (hm : 1 ≤ m) (hN : 3 ≤ N) (hN
   have hZW : Commute (zElt hN Y m j k c') (extend hN Y m i k hik (d + (m + 1)) (c * c')) := by
     have := h.extend_commute hm hN hN5 hjk hik hik.symm hjk (d := m + 1) (e := d + (m + 1))
       le_rfl (by omega) (c := c') (c' := c * c') (allowed_of_nonneg (by omega) _)
-      (allowed_of_nonneg (by omega) _)
+      (hc.mul (allowed_of_nonneg (by omega : (0 : ℤ) ≤ m + 1) c'))
     rwa [extend_top] at this
   rw [hwZ, one_mul, hwz, conj_eq_of_commute hZW]
 

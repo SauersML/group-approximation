@@ -51,9 +51,11 @@ noncomputable def iter (hN : 3 ≤ N) (Y : Fam G A N) : ℕ → Fam G A N
   | n + 1 => extend hN (iter hN Y n) (1 + (n : ℤ))
 
 theorem Rels.iter {Y : Fam G A N} (h : Rels 𝔄 Y 1) (hN : 3 ≤ N) (hN5 : 5 ≤ N) (n : ℕ) :
-    Rels 𝔄 (iter hN Y n) (1 + (n : ℤ)) := by
+    Rels 𝔄 (Graded.iter hN Y n) (1 + (n : ℤ)) := by
   induction n with
-  | zero => simpa using h
+  | zero =>
+    rw [Nat.cast_zero, add_zero]
+    exact h
   | succ n ih =>
     have h' := ih.rels_extend (by omega) hN hN5
     rw [show 1 + ((n + 1 : ℕ) : ℤ) = 1 + (n : ℤ) + 1 by push_cast; ring]
@@ -68,7 +70,9 @@ theorem iter_add_of_le (hN : 3 ≤ N) (Y : Fam G A N) (n k : ℕ) {i j : Fin N} 
   induction k with
   | zero => rfl
   | succ k ih =>
-    rw [← ih, ← Nat.add_assoc, iter]
+    rw [← ih, ← Nat.add_assoc]
+    show extend hN (iter hN Y (n + k)) (1 + ((n + k : ℕ) : ℤ)) i j hij d c =
+      iter hN Y (n + k) i j hij d c
     exact extend_of_le (m := 1 + ((n + k : ℕ) : ℤ)) hN hij (d := d) (by push_cast; omega) c
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Graded.iter_add_of_le
@@ -92,7 +96,7 @@ theorem limit_eq_iter (hN : 3 ≤ N) (Y : Fam G A N) {n : ℕ} {i j : Fin N} (hi
 
 theorem limit_of_le_one (hN : 3 ≤ N) (Y : Fam G A N) {i j : Fin N} (hij : i ≠ j) {d : ℤ}
     (hd : d ≤ 1) (c : A) : limit hN Y i j hij d c = Y i j hij d c :=
-  limit_eq_iter hN Y (n := 0) hij (by simpa using hd) c
+  limit_eq_iter hN Y (n := 0) hij (by omega) c
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Graded.limit_of_le_one
 
@@ -100,10 +104,11 @@ theorem limit_of_le_one (hN : 3 ≤ N) (Y : Fam G A N) {i j : Fin N} (hij : i �
 Steinberg relations of degree `≤ 1` has a limit satisfying those of every degree. -/
 theorem Rels.limit {Y : Fam G A N} (h : Rels 𝔄 Y 1) (hN : 3 ≤ N) (hN5 : 5 ≤ N) (m : ℤ) :
     Rels 𝔄 (Graded.limit hN Y) m := by
-  have hn := (h.iter hN hN5 (m - 1).toNat)
-  refine (hn.mono (m' := max m 1) (by omega)).congr ?_ |>.mono (le_max_left m 1)
-  intro i j hij d c hd
-  exact limit_eq_iter hN Y hij (by omega) c
+  have h1 : Rels 𝔄 (Graded.iter hN Y (m - 1).toNat) (max m 1) :=
+    (h.iter hN hN5 (m - 1).toNat).mono (by omega)
+  have h2 : Rels 𝔄 (Graded.limit hN Y) (max m 1) :=
+    h1.congr fun i j hij d c hd => limit_eq_iter hN Y (n := (m - 1).toNat) hij (by omega) c
+  exact h2.mono (le_max_left m 1)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Graded.Rels.limit
 

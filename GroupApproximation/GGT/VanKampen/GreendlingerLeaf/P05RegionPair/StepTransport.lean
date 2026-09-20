@@ -139,8 +139,9 @@ theorem carried_targetArc (a : FaceEdgeDoubling.ArcAvoiding X f j D eps) :
 theorem avoid_of_ne (T : RegionPairThickening.StepData X f j family) (a : family)
     (h : a.val ≠ T.holder) :
     f ∉ a.val.1 ∧ FaceEdgeDoubling.dart X f j ∉ a.val.2.sourceArc.darts ∧
-      FaceEdgeDoubling.dart X f j ∉ a.val.2.targetArc.darts :=
-  T.avoid a.val (Finset.mem_erase.mpr ⟨h, a.property⟩)
+      FaceEdgeDoubling.dart X f j ∉ a.val.2.targetArc.darts := by
+  classical
+  exact T.avoid a.val (Finset.mem_erase.mpr ⟨h, a.property⟩)
 
 theorem stepMap_crossO (T : RegionPairThickening.StepData X f j family) (a : family) (s o : Bool) :
     crossO (RegionPairThickening.stepMap X f j hlen hf T a).val s o =

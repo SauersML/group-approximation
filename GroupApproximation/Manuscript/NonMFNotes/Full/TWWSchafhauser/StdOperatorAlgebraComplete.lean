@@ -121,7 +121,7 @@ instance StdBdd.instCompleteSpace : CompleteSpace (StdBdd J) := by
       have hdec : (standardModule ℕ J).inner (S x) y - (standardModule ℕ J).inner x (S' y)
           = (standardModule ℕ J).inner x ((T (max N1 N2)).1.adj y - S' y)
             - (standardModule ℕ J).inner ((T (max N1 N2)).1.toFun x - S x) y := by
-        rw [CStarModule.inner_sub_right, CStarModule.inner_sub_left, ← hrel]
+        rw [(standardModule ℕ J).inner_sub_right, (standardModule ℕ J).inner_sub_left, ← hrel]
         abel
       rw [hdec]
       have h3 := norm_sub_le ((standardModule ℕ J).inner x ((T (max N1 N2)).1.adj y - S' y))

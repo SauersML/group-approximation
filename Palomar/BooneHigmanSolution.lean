@@ -5,6 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import Mathlib.Algebra.FreeAlgebra
 import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.RingQuot
+import Mathlib.AlgebraicTopology.SimplexCategory.Basic
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
