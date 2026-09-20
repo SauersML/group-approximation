@@ -9,7 +9,9 @@ distinct_from:
   conway-amusical-permutation-is-the-full-three-shift: that conjugates Conway's map to the full 3-shift; this uses it to decide 21.74(a) for that map.
 ---
 
-**ESTABLISHED** (lane proof, bh-2174-rank2, 2026-09-19; not reviewed). No priority claimed.
+**ESTABLISHED** (lane proof, bh-2174-rank2, 2026-09-19; **referee PASS**, bh-ref-e,
+`ct-z-21-74a-base-reduction-review` at 38687f1d6c, clarity repairs applied; the review also checks
+item 2 of the Conway node, which the Corollary uses). No priority claimed.
 Kourovka 21.74(a) (S. Kohl) stays **OPEN** for rank-two and mixed-sign slopes. This node proves
 that the whole difficulty there is in the base.
 
@@ -58,9 +60,13 @@ in place of the tree decomposition; only three points need new arguments.
   there, with `q_i` defined as the fixed point of `ψ_i` instead of an attractor's formula. The proof
   of ⇐ is unchanged. For ⇒, a degenerate center is fixed by the hyperbolic `ψ_i`, so it is `q_i`.
   Then either a moving holonomy gives the two-center bound, or the component is degenerate and D1–D3
-  hold.
+  hold. If some component of a `σ`-cycle yields a nonzero translation holonomy, the whole cycle is
+  nondegenerate: degeneracy is a cycle property (Lemma 1.1), and a nonzero translation fixes no
+  point. So the centers `q_i` are needed only for cycles all of whose found holonomies are
+  hyperbolic (clarity repair, bh-ref-e).
 - **(3) Radial truncation and search.** Lemmas 2–3 used only conditions 1–3, B.1, B.3 and
-  coordinatewise unit-slope rational affine fibre maps, so they hold verbatim. The finite search and
+  coordinatewise unit-slope rational affine fibre maps, so they hold verbatim. In Step 3, `E_ℓ`
+  also includes the translation bounds `v_ℓ(τ)` (clarity repair, bh-ref-e). The finite search and
   its ⇐ direction are unchanged, with `ĝ^N = id` on `U × Φ` by the first bullet of Σ. ∎
 
 ## Corollary (Conway's amusical permutation)
