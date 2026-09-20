@@ -12,6 +12,7 @@ artifacts:
   - research/locally-mf-stable-kazhdan-kernels-collapse-torus-radicals.md
   - research/fp-mapping-torus-iff-finite-automorphic-presentation.md
   - research/mapping-torus-mf-radical-lies-in-finite-residual.md
+  - research/local-mf-stability-splits-into-rounding-gap-and-path-connection.md
 ---
 
 **OPEN.** There exist a finitely generated group `K`, with finite generating set `S`, and
@@ -56,3 +57,25 @@ Intermediate kernels, with `1 ≠ Rad_MF(K) ≠ K`, are also allowed.
   torus model that sees `K`.
 - It is not known whether a Kazhdan group with (Q) that is MF can satisfy (LS). This is the MF half of
   this hole.
+
+## Attempts
+
+- **2026-09-20, LS splits into gap and paths (stability-approximation, swarm-0917-w21-w21-titz-follow).**
+  Node: `local-mf-stability-splits-into-rounding-gap-and-path-connection` (ESTABLISHED). The hole stays OPEN.
+  - *Decomposition.* `(LS_R) ⟺ (Gap_R,θ) ∧ (Conn_R)` (Theorem S, no (T) needed). (Gap) is local: a
+    sequence that stays within `θ` of `Hom(P_R)` must converge to it. (Conn) is global: every asymptotic
+    K-representation is joined to `Hom(P_R)` by a uniform path.
+  - *Consequences for a Kazhdan kernel with (Q).* Nearby exact representations of `P_R`, `R ⊇ R_0`, have
+    the same constituents (Lemma R). Under (Gap) the constituents are therefore a homotopy invariant
+    (Theorem H). Every finite approximation is eventually `D`-quasirandom and perfect (Corollary E1). Under
+    (LS) the constituents of any rounding escape every finite set (Corollary E2).
+  - *Tried: (T) + (Q) + (LS) ⇒ `Rad_MF(K) = K`, i.e. refute the MF half.* It dies at (Gap). Rounding is
+    two-sided, `X ↦ b(g) X c(g)*`. The only available Kazhdan argument for it runs in Hilbert--Schmidt
+    norm and loses `sqrt(dim σ)` per constituent. By E2 those dimensions go to infinity. Lemma R controls
+    supports, not multiplicities.
+  - *Neither known Kazhdan instability mechanism applies.* FFGS dimension deletion costs `O(1)` in
+    operator norm. The Ozawa--Thom weak-QD argument needs an asymptotically multiplicative ucp lift on
+    `C*(K)`, and Remark W shows that no nontrivial model has one. (LS) gives lifts only on `C*(P_R)`.
+  - *Next falsifiable step.* For `EL_3(LC(X,F_q) ⋊ Z)`, build a uniform K-path family between two
+    LEF-derived exact representations of some `P_R` with different supports. By Test (T-Gap) that kills
+    (LS) for this kernel. Alternatively, prove (Gap) for it.
