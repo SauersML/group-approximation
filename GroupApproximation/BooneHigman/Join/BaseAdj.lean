@@ -82,13 +82,13 @@ theorem baseR_transport {p q p' q' : List (Fin 2)} (h1 : ¬ p <+: q) (h2 : ¬ q 
       obtain ⟨y, hy⟩ := mem_cone_iff.mp (mem_cone.mpr hc)
       apply hz'
       have ez : z = prepend c' y := by
-        rw [← hm y, ← hy, Equiv.Perm.apply_inv_self]
+        rw [← hm y, ← hy, perm_apply_inv_self]
       rw [ez]
       exact isStreamPrefix_prepend c' y
     have hz := hfix _ (hn hp hz1) (hn hq hz2)
     rw [jperm_mul, jperm_mul, jperm_inv]
     simp only [Equiv.Perm.mul_apply]
-    rw [hz, Equiv.Perm.apply_inv_self]
+    rw [hz, perm_apply_inv_self]
 
 #audit_axioms GroupApproximation.BooneHigman.Join.baseR_transport
 

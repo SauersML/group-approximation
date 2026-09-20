@@ -66,7 +66,7 @@ theorem RMono.inv {g : Equiv.Perm (ℕ × Cantor (Fin (n + 2)))} (hg : RMono g) 
   rcases rlt_total hne with h' | h'
   · exact h'
   · have h'' := hg _ _ h'
-    simp only [Equiv.Perm.apply_inv_self] at h''
+    simp only [perm_apply_inv_self] at h''
     exact (rlt_irrefl _ (rlt_trans h h'')).elim
 
 #audit_axioms GroupApproximation.BooneHigman.Join.RMono.inv
@@ -215,8 +215,7 @@ theorem exists_first_ne {z : Cantor (Fin (n + 2))} (h : z ≠ tom n) :
   classical
   have hex : ∃ k, z k ≠ tl n := by
     by_contra hc
-    push_neg at hc
-    exact h (funext hc)
+    exact h (funext fun k => by_contra fun hk => hc ⟨k, hk⟩)
   exact ⟨Nat.find hex, fun i hi => by
     by_contra hc
     exact Nat.find_min hex hi hc, Nat.find_spec hex⟩
@@ -257,7 +256,7 @@ theorem psiD_fix_tom (g : BrownGroup n) : jperm (n + 2) (psiD n g) (tom n) = tom
   by_contra h
   obtain ⟨p, hp⟩ := up_surj h
   have h2 := psiD_semi g (((theta n g : Equiv.Perm _))⁻¹ p)
-  rw [Equiv.Perm.apply_inv_self, hp] at h2
+  rw [perm_apply_inv_self, hp] at h2
   exact up_ne_tom _ ((jperm (n + 2) (psiD n g)).injective h2)
 
 #audit_axioms GroupApproximation.BooneHigman.Join.psiD_fix_tom
