@@ -2,9 +2,9 @@
 rg: 2
 id: monster-bc-failure-at-measured-coefficient-is-the-module-crux
 kind: claim
-title: The module route reduces to whether an expander monster fails Baum--Connes at a measured module-dual coefficient; for a triple defect the proper-orbit and tracial detectors are excluded and the maximal-versus-reduced comparison survives
+title: The module route reduces to whether an expander monster fails Baum--Connes at a measured module-dual coefficient; for a triple defect the proper-orbit and tracial detectors are excluded and the maximal-versus-reduced comparison remains a conditional approach
 distinct_from:
-  some-nonexact-group-has-a-k-inexact-module-triple: that is the open existence of the K-defect; this isolates the single enabling question behind it and identifies the one detector not yet excluded.
+  some-nonexact-group-has-a-k-inexact-module-triple: that is the open existence of the K-defect; this isolates the single enabling question behind it and records detector restrictions without claiming they exhaust the possible approaches.
   module-defect-needs-non-k-exact-host: that is the established necessary condition on the host (fails Baum--Connes with coefficients); this is the open sufficient-direction crux, once such a host is fixed.
   module-dual-actions-have-no-wandering-open-sets: that excludes the proper-orbit (ghost) detector; this records what detector remains after that exclusion and the tracial one.
 ---
@@ -40,21 +40,36 @@ satisfy Baum--Connes would kill the route.
 - *Proper-orbit rank at infinity* (Higson--Lafforgue--Skandalis, Spakula arXiv:0907.2249). Dead
   for module duals: no wandering open set, no proper orbit
   (`module-dual-actions-have-no-wandering-open-sets`).
-- *Traces / invariant measures.* Dead as detectors. A trace induced by an invariant measure
-  supported on `Z` factors through `q`, so it annihilates `ker q_*` and sees no defect; the
-  faithful Haar trace charges the ideal `C_0(U) ⋊_r G` too, so it never certifies a class to lie
-  outside the ideal image. Either way an invariant-measure trace cannot separate `ker q_*` from
-  `im i_*`. This exclusion is about the triple. For (Q) itself the Haar trace still detects
-  surjectivity failures of `mu_(G, C(V^))` through Lück's ring `Λ^(V ⋊ G)`. At the Bernoulli
-  coefficient over a torsion-free host that ring is `Z[1/p]`
-  (`bernoulli-bc-splits-into-host-and-cylinder-comparison`, item 7).
-- *Maximal-versus-reduced comparison.* Not excluded, and the natural home of the defect. The
-  maximal crossed product is exact, so
-  `0 -> C_0(U) ⋊_max G -> C(X) ⋊_max G -> C(Z) ⋊_max G -> 0` yields a genuine six-term exact
-  sequence in K-theory. The reduced defect is the failure of the comparison maps
-  `lambda_* : K_*((-) ⋊_max G) -> K_*((-) ⋊_r G)` to carry that exactness down. Equivalently, the
-  defect is a Kazhdan-type class: an element of `K_0(C(X) ⋊_max G)` whose reduced image lies in
-  `ker q_*^r` but not in `im i_*^r`.
+- *All bounded positive traces on the module quotient.* The
+  [factorization theorem](amenable-kernel-quotient-traces-factor-reduced.md)
+  and [relation-ideal identification](module-evident-ideal-is-kernel-relation-ideal.md)
+  make every trace on D=C/J descend to B. Thus
+  [all bounded positive traces](module-quotient-k0-defects-are-trace-invisible.md)
+  kill the prospective degree-zero quotient defect, not only traces
+  initially obtained from invariant measures. For torsion V a trace on C
+  annihilating the ideal K_0 image also factors through B. This does not
+  assert that every trace on C factors through B. Nor does it exclude
+  index pairings, cyclic cocycles or unbounded semifinite traces.
+  [The torus example](torus-has-nonzero-k0-class-invisible-to-every-trace.md)
+  prevents a trace-to-K-theory vanishing conclusion. Haar trace can still
+  test other assembly surjectivity proposals, but at the Bernoulli
+  coefficient the [product-trace theorem](bernoulli-product-traces-kill-rank-invisible-k0.md)
+  kills the rank-invisible remainder.
+- *Maximal-versus-reduced comparison.* The maximal coefficient sequence
+  is exact, so comparison of its six-term sequence with the reduced maps
+  remains a possible approach. It is not equivalent to finding a maximal
+  degree-zero class unless a maximal-to-reduced K-theory lift is supplied;
+  that lift is additional data, and the original defect may be in degree
+  one. The unconditional equivalent formulation is instead
+  [a nonzero liftable quotient-kernel class](some-module-quotient-has-a-nonzero-liftable-kernel-class.md)
+  in K_j(C/J), with zero six-term boundary in K_(j−1)(J).
+- *Unital coefficient embeddings.* The
+  [faithful-trace embedding restriction](equivariant-faithful-trace-embeddings-force-measure.md)
+  requires an invariant full-support probability measure. It excludes
+  an infinite family of disjoint translates of a nonempty open set for
+  embeddings into faithfully traced algebras with trace-preserving action,
+  including reduced group algebras under conjugation. This is not a
+  blanket exclusion of multiplier or semifinite constructions.
 
 ## Attempts
 

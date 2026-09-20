@@ -30,3 +30,14 @@ assembly map `mu : K^top_*(G; B) -> K_*(B ⋊_r G)`.
 
 Items 1, 3 and 4 are quoted from the source. Item 2 is the split case, with the
 identification Chabert--Echterhoff themselves use for `K^n ⋊ SL_n(K)`.
+
+**Further extension check, 2026-09-20.** Zhang,
+[arXiv:2601.09615v1, Theorem 1.2](https://arxiv.org/html/2601.09615v1#S1),
+requires BCC with A for each preimage of a finite quotient subgroup and
+the respective assembly assertion for the quotient with transformed
+coefficient `C_0(Γ/N,A)⋊_rΓ`. Substitution A=ℂ retains this coefficient.
+Theorem 1.5 also retains its isometric and partial-assembly hypotheses.
+[Meyer's example](https://arxiv.org/html/2508.05726v2) obstructs weakening
+to normal-subgroup-only hypotheses; it is a coefficient counterexample.
+Neither source closes ordinary assembly for every group. See the
+[follow-up source ledger](artifacts/Cairn_Baum_Connes_General_Attempt.md#7-extension-and-completion-source-checks).

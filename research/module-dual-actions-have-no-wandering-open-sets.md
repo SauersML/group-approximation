@@ -30,3 +30,11 @@ for example `X = V^` for a countable `Z[G]`-module `V`. Then for every nonempty 
   (item 2).
 - So the Higson--Lafforgue--Skandalis detection has no module version. A module defect must be
   detected by a different invariant.
+
+The [faithfully traced embedding theorem](equivariant-faithful-trace-embeddings-force-measure.md)
+extends the full-support measure obstruction beyond compact group duals:
+an injective unital equivariant C(Y) embedding into any faithfully traced
+algebra with trace-preserving action excludes infinitely many disjoint
+translates of a nonempty open set. Its invariant finite-trace-corner
+version has the same scope; a semifinite multiplier embedding needs a
+separate argument.

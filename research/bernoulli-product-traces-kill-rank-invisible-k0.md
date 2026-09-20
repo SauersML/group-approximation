@@ -23,3 +23,10 @@ for this assertion. Full-shift density and independence are essential
 to the proof given here; no assertion is made for correlated invariant
 measures or arbitrary subshifts. Trace invisibility is not vanishing
 of the virtual class. Nothing here decides K_1(A).
+
+The [torus line-bundle example](torus-has-nonzero-k0-class-invisible-to-every-trace.md)
+is a concrete nonzero virtual class invisible even to all tracial states.
+The [module quotient all-trace theorem](module-quotient-k0-defects-are-trace-invisible.md)
+concerns a different quotient setting and does not extend this Bernoulli
+product-measure result to arbitrary correlated measures. Neither result
+proves that the respective K-theory remainder vanishes.

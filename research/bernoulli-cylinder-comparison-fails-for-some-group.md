@@ -40,6 +40,13 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
 
 ## Attempts
 
+The [further general-closure attempt](artifacts/Cairn_Baum_Connes_General_Attempt.md#21-reduced-descent-is-not-formal)
+leaves this input OPEN. Weak equivalence on compact-subgroup tests computes
+the topological domain, not reduced descent. Locality and product-trace
+invisibility leave the virtual degree-zero complement and odd K-theory
+unresolved. Even their vanishing for every torsion-free host would leave
+the host assembly summand, not prove general Baum–Connes.
+
 - **Hosts with coefficients.** If `G` satisfies Baum--Connes with coefficients, `T_r` is an isomorphism (CEKN
   arXiv:2210.09209, Theorem 2.8, second sentence). So a witness fails Baum--Connes with coefficients. Among known groups
   that means a large-girth expander monster (`osajda-monster-hosts-for-bc-module-route`), whose known failure is

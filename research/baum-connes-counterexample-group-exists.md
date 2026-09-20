@@ -5,6 +5,8 @@ kind: claim
 title: Some countable group violates the Baum--Connes conjecture with trivial coefficients
 root: true
 artifacts:
+  - research/artifacts/Cairn_Baum_Connes_General_Attempt.md
+  - research/artifacts/bc-general-closure-validation-2026-09-20.json
   - research/artifacts/bc-nonhyperlinearity-integration-2026-09-20.md
   - research/artifacts/bc-nonhyperlinearity-validation-2026-09-20.json
 distinct_from:
@@ -70,6 +72,30 @@ no ordinary reduced assembly kernel or cokernel witness is supplied.
 - The residually finite Kazhdan groups of the Kun--Thom Theorem E pairs.
 
 Property (T) closes the Higson--Kasparov route for both.
+
+## Further general-closure attempt, 2026-09-20
+
+The [complete follow-up proofs](artifacts/Cairn_Baum_Connes_General_Attempt.md)
+are integrated as claims and proof routes. This root remains **OPEN**.
+
+- [Amenable-kernel trace factorization](amenable-kernel-quotient-traces-factor-reduced.md)
+  makes every trace on the quotient by the kernel-relation ideal descend
+  to the reduced quotient group algebra. Its extra kernel is exactly the
+  [tracial GNS radical](amenable-kernel-extra-kernel-is-tracial-gns-radical.md).
+- The missing module object is exactly a
+  [nonzero liftable quotient-kernel K-class](some-module-quotient-has-a-nonzero-liftable-kernel-class.md).
+  Both directions of equivalence with the existing module-triple input are
+  wired. [All bounded positive traces](module-quotient-k0-defects-are-trace-invisible.md)
+  miss its degree-zero candidates; the
+  [torus virtual class](torus-has-nonzero-k0-class-invisible-to-every-trace.md)
+  shows why this does not imply K-theory vanishing.
+- The [faithful-trace embedding restriction](equivariant-faithful-trace-embeddings-force-measure.md)
+  excludes the specified unital equivariant coefficient realizations with
+  wandering open sets in faithfully traced algebras.
+- Zhang's January 2026 extension theorem retains transformed coefficients;
+  the [source check](artifacts/Cairn_Baum_Connes_General_Attempt.md#7-extension-and-completion-source-checks)
+  provides no general assembly inverse. The Bernoulli complements and
+  host summand remain unresolved. No ordinary counterexample follows.
 
 ## Attempts
 

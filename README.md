@@ -28,6 +28,18 @@ Each entry identifies the question, the new argument, and its precise scope.
 | **Guba's Ore equation — Question 1 / survey Question 3.20.** [Original question](https://arxiv.org/abs/2201.02308); [survey](https://gcc.episciences.org/11315/pdf). | **Positive.** For every field `K` and nonzero `b ∈ K[F]`, `(1 − x₁)u = bv` has a nonzero solution. An induction through the nested supports of conjugates of `x₁` extends Guba's `x₀` theorem. This settles the specified equation, not amenability of Thompson's group `F`. | [Complete proof](research/thompson-f-one-minus-x1-is-ore-with-every-element-proof.md); [source and priority check](research/artifacts/guba-q1-novelty-2026-09-12.md). |
 | **A type [A₂] action with non-finitely-presented image — Fournier-Facio–Wu–Zaremsky Question 5.8.** [Problem statement](https://arxiv.org/html/2603.24687v2#S5). | **Positive.** A diagonal Thompson-group normalizer produces a type `[A₂]` action of a finitely presented group whose faithful image is not finitely presented. The construction verifies the stabilizer conditions and computes the action kernel; it answers this question without resolving Boone–Higman. | [Construction and proof](research/a2-non-fp-image-via-diagonal-normalizer-proof.md); [question and scope](research/a2-action-with-non-finitely-presented-image.md). |
 
+## Baum–Connes: integrated further attempt
+
+The [further attempt and proofs](research/artifacts/Cairn_Baum_Connes_General_Attempt.md)
+are integrated into Cairn with dependency routes. They prove trace
+factorization for amenable-kernel relation quotients and locate the
+missing module obstruction as a nonzero liftable quotient K-class.
+All bounded positive traces miss its degree-zero candidates; the torus
+example explains why that does not prove vanishing. **General reduced
+Baum–Connes with trivial coefficients remains unresolved in this
+development.** This integration supplies no counterexample or general
+assembly inverse.
+
 ## A simple C*-algebra that is not K1-injective
 
 Blackadar's *K-Theory for Operator Algebras* (1998, §8.1) records as open whether every unital simple C*-algebra is K1-injective, and Schafhauser, Tikuisis and White pose the question as Problem LIX of [Nuclear C*-algebras: 99 problems](https://arxiv.org/abs/2506.10902). The answer is no. [`k1_injectivity_counterexample.tex`](k1_injectivity_counterexample.tex) constructs a separable simple unital C*-algebra `A` with a unitary `u ∉ U₀(A)` such that `diag(u, 1) ∈ U₀(M₂(A))`. The Lean theorems are `NinetyNineProblems.not_problemLIX` and `exists_separable_simple_unital_not_k1Inj` in `GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIX.lean`; the bundle obstruction they rest on is `CharClass.lemmaTwoHolds`. The Palomar registry surface is `Palomar/LIXChallenge.lean`, `Palomar/LIXSolution.lean` and `Palomar/comparator-lix.json`. The mod-2 singular cohomology under `GroupApproximation/CharClass/` is built on a port of [akopjan/HamSandwich](https://github.com/akopjan/HamSandwich); see `GroupApproximation/ThirdParty/HamSandwich/UPSTREAM.md`.

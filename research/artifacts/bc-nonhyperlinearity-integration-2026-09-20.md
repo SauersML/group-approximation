@@ -199,3 +199,14 @@ Standard working-tree `check --changed` encountered unrelated concurrent
 source errors; `preview` hit the existing incomplete-baseline reader error.
 The receipt distinguishes those failures from the passing candidate check.
 The frontier was generated from the validated candidate graph.
+
+## Further attempt integrated
+
+The subsequent [general-closure attempt](Cairn_Baum_Connes_General_Attempt.md)
+adds amenable-kernel trace factorization, the tracial GNS radical, exact
+localization of a module defect in the liftable quotient kernel, the
+all-bounded-positive-trace obstruction, a torus counterexample to
+trace-to-K-theory vanishing, and the faithful-trace embedding restriction.
+Its proof nodes and equivalent open input are connected to the module
+route; its [separate receipt](bc-general-closure-validation-2026-09-20.json)
+records their checks. The original ordinary root stays OPEN.

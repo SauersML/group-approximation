@@ -57,3 +57,12 @@ C*-kernel. The passage to ordinary assembly uses amenable-kernel
 partial assembly with its finite-subgroup preimage hypotheses; it
 does not assert permanence from a positive normal subgroup alone.
 See the [integration ledger](artifacts/bc-nonhyperlinearity-integration-2026-09-20.md).
+
+The [further attempt](artifacts/Cairn_Baum_Connes_General_Attempt.md)
+identifies the required defect exactly with `im p_* ∩ ker q̄_*` in
+`K_j(C/J)` via
+[quotient localization](module-k-defect-is-liftable-quotient-kernel.md).
+The [equivalent existential input](some-module-quotient-has-a-nonzero-liftable-kernel-class.md)
+remains OPEN. All bounded positive traces on C/J kill candidate
+degree-zero classes; this restricts detection and does not prove that
+the sufficient hypothesis fails.
