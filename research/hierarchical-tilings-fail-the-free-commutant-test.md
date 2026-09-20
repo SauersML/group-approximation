@@ -12,7 +12,7 @@ distinct_from:
   polygonal-anzai-codings-lift-only-finitely-many-rotations: that excludes geometric (polygonal) codings of a twisted base; this excludes the hierarchical skeletons themselves as the source of F_2.
 ---
 
-**Status.** Item 1 cites a source that was read. Item 2 is a lane proof, elementary and unreviewed. Item 3 is a
+**Status.** Item 1 cites a source that was read. Item 2 is a lane proof, elementary; referee bh-ref-d (6e0fb29940) PASS with one repair (existential form of (a)), applied by bh-ra-t2 as the (RA_free) owner. Item 3 is a
 heuristic design conclusion. No priority is claimed.
 
 This is a test of the coordinator's candidate for T1: hierarchical, Robinson/Mozes-style simulation
@@ -23,7 +23,7 @@ boundaries. T1 needs minimality, freeness and `F_2 ≤ Aut`. **T1 is not built.*
 1. **The hierarchical skeleton gives only locally finite automorphisms.** Hochman studies the
    nested-square-path `Z^2`-SFTs (*On the automorphism groups of multidimensional shifts of finite type*,
    ETDS 2010; preprint read at source, §6, pp. 17–32), which are Robinson-type hierarchical tilings.
-   - For the coloured square tiling `X̂` (Theorem 30), `aut X̂ = Z^2 ⊕ G` with `G` locally finite.
+   - For the colored square tiling `X̂` (Theorem 30), `aut X̂ = Z^2 ⊕ G` with `G` locally finite.
    - For its rectangle variant `X_*` (Theorems 38–39), every automorphism is a shift composed with an
      element that eventually fixes the boundary of every level-`n` rectangle and permutes their
      interiors. So `aut X_* = Z^2 ⊕ G` with `G` locally finite.
@@ -33,10 +33,12 @@ boundaries. T1 needs minimality, freeness and `F_2 ≤ Aut`. **T1 is not built.*
      recognizable levels: a cellular automaton of bounded radius cannot move high-level boundaries, so it
      permutes completions inside finitely many shapes per level.
    - This is the combinatorial face of `profinite-skew-layers-collapse-into-the-equicontinuous-factor`.
-2. **Lifting is an expansive-direction problem.** Let `Z` carry commuting homeomorphisms `T` and `R`, and
-   let `ρ : Y → Z` be a `Z`-subshift that is an almost 1-1 extension of `(Z, T)`. The following are
-   equivalent:
-   - (a) `R` lifts to an automorphism `φ` of `Y` (`ρφ = Rρ`);
+2. **Lifting is an expansive-direction problem.** Let `Z` carry commuting homeomorphisms `T` and `R`. The
+   following are equivalent:
+   - (a) `R` lifts to an automorphism `φ` of **some** almost 1-1 symbolic extension `ρ : Y → Z` of
+     `(Z, T)` (`ρφ = Rρ`). This existential form is repair (§1) of bh-ref-d, 6e0fb29940. The form for a
+     *given* `Y` is false: lifts must preserve fibre cardinalities, so blowing up one `T`-orbit breaks it.
+     The time-lift use needs only the existential form.
    - (b) the `Z^2`-system `(Z, T, R)` has an almost 1-1 symbolic extension `Ỹ ⊆ B^(Z^2)` in which the
      horizontal direction is expansive, in the sense of Boyle–Lind (a strip of bounded width around the
      horizontal axis determines the configuration).
@@ -65,7 +67,8 @@ boundaries. T1 needs minimality, freeness and `F_2 ≤ Aut`. **T1 is not built.*
 - *(b) ⇒ (a).* If a strip `S_w` of width `w` determines each configuration, then by compactness the
   entry at `(n, m+1)` is a continuous function of the strip restricted to a bounded window around `n`.
   - So the vertical shift acts on the `Z`-subshift `Y = {strip restrictions}`, with alphabet `B^w`, as a
-    cellular automaton.
+    cellular automaton. This `Y` is *some* almost 1-1 extension, not a given one. The strip also determines
+    the row below it, so the inverse is a cellular automaton too, and the lift is an automorphism (bh-ref-d).
   - `Y → Z` is almost 1-1 as a `Z`-system: its fibres are those of `Ỹ → Z`, because the strip determines
     the configuration.
 - The `Z × G` version is identical, with the horizontal strip replaced by the slab `Z × B` for a finite
