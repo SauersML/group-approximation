@@ -141,6 +141,17 @@ Lane computations by hand, not independently reviewed.
        presented. It holds if `G_1` is finitely presented (Scott).
      - Whether `P`, and hence `G_1`, is finitely presented is **open**. The slope-`2^(±1)` hole dynamics
        suggests a Thompson- or Baumslag–Solitar-like group. Deciding this is the next step.
+   - **The core as a ternary automaton group.** On the subtree over `{d0 = 𝐢₁, d1 = 0, m1 = †₁}`, in left
+     wreath notation with sections at `d0, d1, m1`:
+     - `a = s_* = (d0 d1)(1, a, a)` and `b = s_† = (d1 m1)(b, 1, 1)`.
+     - `a² = (a, a, a²)` and `ab = (d0 d1 m1)(b, a, a)`, so `(ab)^3` has sections conjugate to `a²b`.
+     - `a²b = (d1 m1)(ab, a², a)` fixes `d0` with section `ab` there. So `ord(a²b) ≥ ord(ab) = 3·ord(a²b)`,
+       and `ab` has infinite order.
+     - The virtual endomorphism at `d0` is `a² ↦ a`, `b ↦ b`, so `Q = ⟨a, b⟩` is self-replicating at `d0`.
+       At `m1` it is isometric (`a ↦ a`), which is why `Q` is not contracting.
+     - The clean sub-question: **is `Q = ⟨(d0 d1)(1,a,a), (d1 m1)(b,1,1)⟩` finitely presented, and is its
+       relator kernel a finitely generated lift ideal?** Faithfulness of `P` on this subtree, with the
+       transparent `1` and the blocking `†₂` removed, is not checked.
 3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
