@@ -1,0 +1,17 @@
+n=2 perron |S_n|=     3 quotient=1.414214 delta=2.5858 ||f-f.merge||^2=0.5429 ||f-f.right||^2=0.5429 P(s=1)=0.7500 P(min<=2)=1.0000  OK
+n=2 random |S_n|=     3 quotient=0.860620 delta=3.1394 ||f-f.merge||^2=0.9950 ||f-f.right||^2=0.9031 P(s=1)=1.0000 P(min<=2)=1.0000  OK
+n=3 perron |S_n|=     9 quotient=2.060820 delta=1.9392 ||f-f.merge||^2=0.3786 ||f-f.right||^2=0.4327 P(s=1)=0.6380 P(min<=2)=1.0000  OK
+n=3 random |S_n|=     9 quotient=0.957337 delta=3.0427 ||f-f.merge||^2=0.8034 ||f-f.right||^2=0.8803 P(s=1)=0.3741 P(min<=2)=1.0000  OK
+n=4 perron |S_n|=    28 quotient=2.432552 delta=1.5674 ||f-f.merge||^2=0.2987 ||f-f.right||^2=0.4077 P(s=1)=0.5534 P(min<=2)=1.0000  OK
+n=4 random |S_n|=    28 quotient=0.488388 delta=3.5116 ||f-f.merge||^2=1.1658 ||f-f.right||^2=0.9641 P(s=1)=0.4970 P(min<=2)=1.0000  OK
+n=5 perron |S_n|=    90 quotient=2.667607 delta=1.3324 ||f-f.merge||^2=0.2498 ||f-f.right||^2=0.3767 P(s=1)=0.4931 P(min<=2)=1.0000  OK
+n=5 random |S_n|=    90 quotient=0.755697 delta=3.2443 ||f-f.merge||^2=1.2051 ||f-f.right||^2=1.0821 P(s=1)=0.4649 P(min<=2)=1.0000  OK
+n=6 perron |S_n|=   297 quotient=2.829892 delta=1.1701 ||f-f.merge||^2=0.2207 ||f-f.right||^2=0.3478 P(s=1)=0.4460 P(min<=2)=0.9985  OK
+n=6 random |S_n|=   297 quotient=0.913611 delta=3.0864 ||f-f.merge||^2=1.1773 ||f-f.right||^2=1.0978 P(s=1)=0.4489 P(min<=2)=0.9646  OK
+n=7 perron |S_n|=  1001 quotient=2.948744 delta=1.0513 ||f-f.merge||^2=0.2013 ||f-f.right||^2=0.3226 P(s=1)=0.4084 P(min<=2)=0.9932  OK
+n=7 random |S_n|=  1001 quotient=0.904288 delta=3.0957 ||f-f.merge||^2=1.1366 ||f-f.right||^2=1.1532 P(s=1)=0.4006 P(min<=2)=0.9723  OK
+n=8 perron |S_n|=  3432 quotient=3.039690 delta=0.9603 ||f-f.merge||^2=0.1879 ||f-f.right||^2=0.3008 P(s=1)=0.3776 P(min<=2)=0.9839  OK
+n=8 random |S_n|=  3432 quotient=1.111217 delta=2.8888 ||f-f.merge||^2=1.0412 ||f-f.right||^2=1.0436 P(s=1)=0.3958 P(min<=2)=0.9565  OK
+n=9 perron |S_n|= 11934 quotient=3.111653 delta=0.8883 ||f-f.merge||^2=0.1781 ||f-f.right||^2=0.2821 P(s=1)=0.3519 P(min<=2)=0.9721  OK
+n=9 random |S_n|= 11934 quotient=1.052118 delta=2.9479 ||f-f.merge||^2=1.0657 ||f-f.right||^2=1.0677 P(s=1)=0.4176 P(min<=2)=0.9499  OK
+ALL OK
