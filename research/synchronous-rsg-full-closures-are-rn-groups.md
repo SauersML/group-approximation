@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED (proof in `synchronous-rsg-full-closures-are-rn-groups-proof`; Referee bh-ref-q12 2026-09-19: Theorem S PASS; the "infinite-state" remark about `V_3(L)` is wrong, see the Referee section; lane proof
-by bh-q14-lift, not independently reviewed; no priority claimed, and item 1 is probably folklore).**
+by bh-q14-lift; no priority claimed, and item 1 is probably folklore).**
 
 ## Setting
 
