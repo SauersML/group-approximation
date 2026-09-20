@@ -94,3 +94,26 @@ constant-bias kill of H1 on DKKMS under NP not in RP (route
   Corollary M of `robust-uniqueness-bounds-robust-kernel-rank`. Recorded the
   gadget obstruction and the testability sufficient condition. No hardness
   was attempted.
+* **2026-09-20, swarm-0917-w21-w21-ugc-follow (probability-random).**
+  Settled the average-case side, but not the NP-hardness. See
+  `planted-regular-3lin-inputs-are-robustly-unique` (ESTABLISHED). Planted noisy
+  3LIN on `D >= max(2*10^4 k^2, 20/eps^2)` random triangle factors is, with
+  probability `1 - exp(-Omega(n))`, a regular YES input satisfying
+  (RU_(eps + gamma'/(4k), 0.061/k, 0)) with `C = 0`. The same model with
+  uniform right-hand sides is a NO input. The proof uses a threshold expansion
+  (every set of density `>= 0.06/k` has odd-equation fraction `>= 0.09/k`, by
+  Azuma over the permutations), and the fact that `a + x*` is odd only on
+  equations violated by `a` or by `x*`. Consequences for this node:
+  * Falsifier 1 (`(RU-YES, NO) in BPP`) would refute sparse LPN for regular
+    random 3XOR at constant density (Corollary PR). So robust uniqueness at
+    scale `1/k` does not make Gap3Lin easy unless planted sparse 3XOR is easy.
+  * RU-YES is non-empty at every DKKMS parameter, with `r0 = 0`.
+  * For the downstream kill, this node can be bypassed.
+    `constant-bias-dkkms-selectors-break-planted-sparse-3lin` (OPEN, only
+    (P2^RU) missing) gets `sel => planted sparse 3LIN is distinguishable`
+    with no hardness prerequisite, because Corollary D's proof shows
+    `(P_0, NO) in RP` before the Karp step.
+  The worst-case NP-hardness asked here is untouched. Random planted
+  instances are not produced by a Karp reduction, and the Håstad images are
+  not robustly unique (`hastad-images-are-never-robustly-unique`). A
+  reduction whose YES images are random-like expanders is still needed.
