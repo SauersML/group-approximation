@@ -7,7 +7,6 @@ distinct_from:
   elementary-linear-semidir-pair-relative-t: that gives relative (T) for the full group EL_2(R) ⋉ R^2 of a finitely generated ring (bounded generation / Shalom); this allows any non-amenable subgroup Λ of SL_2(F_p[t]), including virtually free ones with no (τ), and is proved by a Burger-type mean argument on the Bruhat-Tits tree
   char-p-burger-lamp-realizations-refute-haagerup: that is a lifting criterion whose linear part must contain EL_2(F_p[t,t^-1]); this theorem lets the linear part be any non-amenable subgroup of SL_2(F_p[t]), so two order-p shears suffice
   full-shift-full-group-has-infinite-normal-relative-t-subgroup: that asks for an infinite normal relative-(T) subgroup inside [[X]]; this supplies a new witness family whose linear part fails (τ), so it is not killed by the (τ)-based kills of wave 19
-  braid-no-haagerup-via-burger-pair: that is a dead route using Burger's characteristic-zero pair (SL_2(Z) acting on Z^2); this is the characteristic-p analogue with the ring F_p[t], proved in full here
 ---
 
 **ESTABLISHED** by `free-linear-part-char-p-affine-relative-t-proof` (self-contained; uses only the
