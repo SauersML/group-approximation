@@ -211,3 +211,26 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     bound for the reduction's own tagged instances at `n ~ eps'/eta` and
     `gamma = o(sqrt eta)`. This is the first independently failable
     prerequisite.
+* **Keyed hosts for set-indexed repetition** (2026-09-20, swarm-0917, w23,
+  `swarm-0917-w23-w23-ugc-follow`). The hole stays OPEN. The new node is
+  `set-indexed-repetition-obeys-the-base-sdp-bound-on-keyed-hosts`, which is
+  ESTABLISHED.
+  - *Result.* A key `κ` on the host `G` gives a public order. With key cost
+    `z_n(G) = min_κ [n θ(κ) + C(n,2) q_A(κ)]` (cut plus collision), the set
+    value of `G^{{n}}` and of every tagged blow-up is at least
+    `opt(G^n) - z_n(G)`, uniformly in the tag count `M` (Theorem K). So
+    Steurer's base-SDP bound returns on keyed hosts:
+    `val >= 1 - C_+ sqrt(n ln k (1 - sdp)) - z_n`.
+  - *Where it dies.* A set-indexed route whose NO hosts satisfy
+    `z_n <= ζ < Γ - C_+ sqrt(1.5 η_Σ ln K)` is decided by the base SDP alone
+    (Theorem D). Tagging is inert, since it changes the set value by at most
+    the collision mass `c_n(G)` (Proposition T). The tagged-odd-cycle
+    anonymity mechanism of w21 therefore lives only in repeated vertices, and
+    the odd cycle is keyless for `n^3 >= 4m` (Lemma C), which is consistent
+    with w21 (A).
+  - *Survivor.* The w21 prerequisite splits in two, each able to fail on its
+    own. (P1) is keyless NO hosts, `z_n > 1 - δ' - C_+ sqrt(3 ε' ln k)` at
+    `n ~ ε'/η`. This is a small-set-expansion condition at measure
+    `(η/ε')^2` (Lemma S). On noisy cubes, subcube keys show it needs
+    `η <= ε' 2^(-Ω(1/ε'))`. (P2) is set soundness on those keyless hosts, by
+    expansion rather than by tags.

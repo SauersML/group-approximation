@@ -1,0 +1,32 @@
+[1] n=2, untagged, all 203 keys, exact opt(G^2), exact set value
+  game0: keys=203 ordered=1.0000 best(opt-cost)=0.3047 set_val=1.0000 min(sim-(opt-cost))=0.6953  OK
+  game1: keys=203 ordered=0.8033 best(opt-cost)=-0.1967 set_val=0.8788 min(sim-(opt-cost))=0.8330  OK
+  game2: keys=203 ordered=0.8264 best(opt-cost)=0.1240 set_val=0.8571 min(sim-(opt-cost))=0.7332  OK
+  game3: keys=203 ordered=1.0000 best(opt-cost)=0.0000 set_val=1.0000 min(sim-(opt-cost))=1.0000  OK
+[2] n=2, tagged M=2 (key ignores tags), all keys, ordered = opt(G^2)
+  tagged0: keys=203 ordered=0.7785 best(opt-cost)=0.1384 min(sim-(opt-cost))=0.6281  OK
+  tagged1: keys=203 ordered=1.0000 best(opt-cost)=0.3195 min(sim-(opt-cost))=0.6805  OK
+[3] n=3, tagged M=2, random ordered strategies, 6 random keys each
+  tagged-n3-0: keys=6 ordered=0.1277 best(opt-cost)=-2.3764 min(sim-(opt-cost))=2.5603  OK
+  tagged-n3-1: keys=6 ordered=0.1232 best(opt-cost)=-2.9380 min(sim-(opt-cost))=3.0863  OK
+[4] odd cycle C_m: exact key cost z_n over all partitions of the 2m-cycle
+    host of the w21 node: y = x + d, d = 0 w.p. 1/2, d = +-1 w.p. 1/4 each
+    claim: z_n(C_m) >= min(n^2/4, n^{3/2}/(2 sqrt m))  (Lemma C of the route)
+    m=3 n=  2  z_n=   1.0000  lower=   0.8165
+    m=3 n=  3  z_n=   2.5000  lower=   1.5000
+    m=3 n=  5  z_n=   5.8333  lower=   3.2275
+    m=3 n= 10  z_n=  20.0000  lower=   9.1287
+    m=3 n= 20  z_n=  73.3333  lower=  25.8199
+    m=3 n= 40  z_n= 280.0000  lower=  73.0297
+    m=5 n=  2  z_n=   0.9200  lower=   0.6325
+    m=5 n=  3  z_n=   1.9800  lower=   1.1619
+    m=5 n=  5  z_n=   4.5000  lower=   2.5000
+    m=5 n= 10  z_n=  14.0000  lower=   7.0711
+    m=5 n= 20  z_n=  48.0000  lower=  20.0000
+    m=5 n= 40  z_n= 176.0000  lower=  56.5685
+[5] noisy-hypercube host, subcube keys (codim t): cost <= n t eta + C(n,2) 2^-t,
+    n = eps'/eta; smallest cost over t (keyed iff well below 1 - delta')
+    eps'=0.1: eps'/eta=2^5: 1.321, eps'/eta=2^10: 2.325, eps'/eta=2^20: 4.325, eps'/eta=2^40: 8.325, eps'/eta=2^80: 16.325
+    eps'=0.05: eps'/eta=2^5: 0.711, eps'/eta=2^10: 1.212, eps'/eta=2^20: 2.212, eps'/eta=2^40: 4.212, eps'/eta=2^80: 8.213
+    eps'=0.02: eps'/eta=2^5: 0.310, eps'/eta=2^10: 0.511, eps'/eta=2^20: 0.911, eps'/eta=2^40: 1.711, eps'/eta=2^80: 3.311
+ALL CHECKS PASSED
