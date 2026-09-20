@@ -98,3 +98,58 @@ separate points.  Two remarks limit the search.
     step is PW. A refutation of PW is a sequence of low-defect pairs with
     `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
     must use `r_2`.
+
+- **2026-09-20 (swarm-0917-w20-w20-ptl-last1, census-computation): the
+  near-central sector is closed with a sharp constant; the far sector is
+  where the gap falls.  Target still open.**
+  - *Established* (`thompson-t-near-central-pairs-have-golden-defect-gap`,
+    route `thompson-t-near-central-golden-defect-gap-proof`).
+    - Killing `[a^2, b]` in `Delta(4,3,5)` gives `2I = SL(2,5)`, order 120.
+      In `2I`, `r_1 -> 1` and `r_2 -> [bab, ab^2]`, an element of order 10.
+    - Over the 9 irreducibles of `2I`, `D_12 = max ||r_i - 1||` takes the values
+      `2 sin(j pi/10)`. The minimum over nontrivial irreducibles is `m = (sqrt5-1)/2`,
+      attained only at the 2-dimensional representation. This is checked exactly
+      by `two_i_table.py`.
+    - By a corona argument and `finite-group-corona-tail-exactification`: every
+      nontrivial exact pair with `||[A^2,B] - 1||` and `||(BA)^5 - 1||` below
+      `eta(delta)` has `D_12 > m - delta`. The constant `m` is sharp.
+    - Consequently the target is equivalent to (FC): small defect forces
+      `||[A^2, B] - 1|| -> 0`. Any refuting sequence keeps `J = A^2`
+      uniformly non-central. Qualitatively this also follows from simplicity
+      of `T`; the new content is the sharp value `m` on this sector.
+  - *Census.* Honest representations of `Delta(4,3,5)`, with `(BA)^5 = 1` to
+    `1e-10`, were searched in `U(n)` for `n <= 6`.
+    - Coverage: every eigenvalue type that passes the Deligne--Simpson filter,
+      up to conjugation. Each type had 96 to 128 batched Adam starts, followed by an
+      exact Levenberg--Marquardt projection onto `(BA)^5 = 1`.
+    - Files: `experiments/thompson-t-triangle-rep-census-2026-09-17/`
+      `t3.out`--`t6.out` and `eta_table.out`.
+    - Planted controls are recovered to `0.002`: `rho_2 (+) 1` at `m`, and the
+      3-dimensional representation of `A_5` at `2 sin(pi/5)`. This is unlike the
+      wave-17 `Z/4 * Z/3` census.
+    - No honest representation with `D_12 < m` was found.
+    - Every point with `D_12 < 0.65` has `eta = ||[A^2,B]|| <= 0.43`. These
+      points lie within `0.03` of `m` and are explained by the theorem above.
+    - Far sector (`eta >= 0.9`, irreducible): the minimum of `D_12` falls with
+      `n`, but slower each step.
+
+      | n | min D_12 | minimizer type | eta |
+      |---|---|---|---|
+      | 3 | 1.926 | `112/012` | 1.80 |
+      | 4 | 1.618 | `0013/1122` | 1.41 |
+      | 5 | 1.078 | `01223/01122` | 1.19 |
+      | 6 | 0.9995 | `001223/001122` | 1.08 |
+
+      From `n >= 5` on, the rotation angles of `r_2` at the minimizers are not
+      roots of unity, so these are not finite-image points.
+  - *What is left.* The single hole is (FC), the far sector. The census makes a
+    falsifiable prediction. If the far-sector minimum keeps falling at the
+    `n = 5 -> 6` rate, it crosses `m` near `n ~ 10-12`. A far-sector honest
+    representation with `D_12 < m` would be the first evidence that honest
+    `Delta` representations beat `2I`. It would not by itself refute the
+    target, which needs `D -> 0`.
+    - Next step: a far-sector census at `n = 8-12`, restricted to balanced
+      types (`A` with multiplicities `(n/4)` spread over all four eigenvalues,
+      `B` with `(n/3)` spread over all three), with `eta` recorded.
+    - A proof of (FC) must use `r_2` and must bound `||[A^2, B] - 1||` from
+      the defect.

@@ -1,0 +1,4 @@
+4 0013 0012 genuine=12 best=0.619338 d1=0.028482 d2=0.619338 res=5.8e-14 commutant=2 Ctype=0023 next=0.6194,0.6195,0.6202,0.6204
+4 0013 0111 no-genuine-candidate
+4 0013 0222 no-genuine-candidate
+4 0013 1122 genuine=12 best=1.618034 d1=1.414214 d2=1.618034 res=2.3e-14 commutant=1 Ctype=1234 next=1.6180,1.6180,1.6180,1.6180
