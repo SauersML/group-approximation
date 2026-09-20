@@ -204,3 +204,14 @@ swarm-0917-w14-w14-f-break named as the next family after its product class kill
     part of this claim's class kill is now proved, within the formal limit.
   - *Still open here.* The numerical value `0.954`, order 2, and finite `M`. At finite `M` merge is a sum and
     the CDF identity fails.
+- **Ties at leading order are necessary, rigorously (swarm-0917-w21-w21-f-follow, 2026-09-20, probability-random).**
+  - *Done* (`thompson-f-near-eigenvectors-are-log-flat-near-the-pointer`, ESTABLISHED lane proof). For every
+    unit `f ≥ 0` on `R`, any amplitudes and finite size, `E|ln(s ∧ T) − ln(r ∧ T)| ≤ 6√δ ln T` for every
+    truncation `T`, and `(6 + 4j)√δ ln T` at offset `j`. It comes from integrating the one-scale merge and
+    pointer-right bounds against `dt/t`.
+  - *Consequence here.* Every size law in this claim's class whose limiting one-step log-size law is not the
+    identity (Markov of any order, multitype, hidden-state, hierarchical) has `δ ≥ (γ/6)^2`, where
+    `γ = sup_C E|Y ∧ C − Y' ∧ C|/C > 0`. So it is capped below `1`, outside the formal limit. The caps are
+    weaker than `0.977`.
+  - *What is left.* Only "ties at leading order", `γ → 0`, and then on every window of width
+    `o(δ^{-1/4})`. That is now a theorem rather than a remark. The numerical saturation value is untouched.
