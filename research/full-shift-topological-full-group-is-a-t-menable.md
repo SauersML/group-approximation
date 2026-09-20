@@ -95,3 +95,24 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
     The permutation representation on them therefore has almost invariant vectors and no
     base-invariant vector. So that module fails relative (T) directly.
+- **2026-09-20 (swarm-0917-w20-w20-nv-last1, host-geometry): witnesses extended from the orbit
+  wobbling group (die; class-kill).**
+  - *Class.* `ψ = ψ̃ ∘ ι`, where `ι: [[X]] → W(Y)` restricts to any σ-invariant set `Y` of aperiodic
+    points (one dense orbit, several, or all of them), and `ψ̃` is any cnd function on the whole
+    orbit wobbling group `W(Y)`. This includes half-line commensurating actions, wall sums over
+    orbit cuts, and finite sums of pullbacks along several orbits. It also answers the Known remark
+    that "Haagerup for `W(Z)` would imply this claim": that hypothesis is not merely unproved, it
+    is false in the strongest sense.
+  - **Result.** `wobbling-group-cnd-functions-are-bounded-on-displacement-balls` is ESTABLISHED,
+    with Cornulier 2006 imported verbatim. Every cnd function on `W(Y)` is bounded on each
+    displacement ball of constant flux. The flux of `ι(g)` is a continuous σ-invariant function,
+    hence constant.
+  - **Invariant.** The displacement bornology is bounded for every Hilbert action. The route is
+    flux, then a factorisation as a product of two block permutations, then `S_L^J ⊆ A_L^J · A_{2L}^J · A_{2L}^J`
+    with each factor strongly bounded.
+  - **Where every member dies.** On the involutions `g_m ∈ B_1` above, which have
+    `‖k_{g_m}‖_∞ = 1`.
+  - **Surviving.** Cnd functions on `[[X]]` that do not extend to `W(Y)`, such as countable orbit
+    sums `Σ_i ψ_i ∘ ι_i` whose bounds on `B_r` diverge but which are finite on `[[X]]`. Any proper
+    witness must use the continuity of the local rules `k_g`, that is, the coherence of the action
+    across orbits, and not only bounded displacement along each orbit.
