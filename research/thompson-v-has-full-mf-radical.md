@@ -70,3 +70,49 @@ would survive, since it is already a theorem through property (T).
   dyadic permutation groups `W_N`. **Survivors:** arguments using
   infinite-order elements of `V`, or the relative position of the
   eigenspaces of non-commuting finite subgroups.
+- **swarm-0917-w21-w21-ptm-pull (2026-09-20), self-similar copying in
+  operator norm (reframing), dead as a class; target stays OPEN.**
+  *The idea.* Take the norm version of
+  `conjugate-commuting-perfect-copies-force-exponential-dimension`. The
+  depth-`k` cylinder copies `V_x` (`|x|=k`) commute pairwise, are
+  conjugate, and are isomorphic to `V`. The plan was to split an
+  `eps`-model `sigma: V -> U(n)` along `V_[0] x V_[1]`, with a nontrivial
+  `V`-model in the approximate commutant of `sigma(V_[0])`, and descend in
+  dimension until reaching a contradiction.
+  *Where it dies.* The step from approximate commutant to exact commutant
+  (the block or tensor decomposition). It needs a uniform spectral gap of
+  `Ad sigma(V_[0])` on the complement of its commutant, i.e. a Kazhdan
+  constant for `V_[0] ~= V`, which the Haagerup property rules out.
+  Even granting a uniform gap, the descent gives only
+  `n(eps) >= 2 n(C eps)`, a polynomial lower bound on the witness
+  dimension and not a contradiction.
+  *Calibration (kills every argument that uses only the copy structure).*
+  Let `L = union_N Sym(2^N)` be the rigid dyadic permutations
+  (`wu -> pi(w)u`, `|w|=N`), a subgroup of `V`. For `N>=1` each
+  `Sym(2^N)` embeds in `Alt(2^(N+1))`, since every cycle is doubled. So
+  `L` is the union of the chain of simple groups `Alt(2^N)`, `N>=3`, and
+  hence infinite and simple. `L` is locally finite, so it is MF: a finite
+  subset lies in some `Alt(2^N)`, whose regular representation is exact
+  with `||lambda(g)-1|| >= sqrt3` for `g != e`. `L` has exactly the copy
+  structure used above:
+  - `L_[0] x L_[1] <= L` with `L_[x] ~= L`;
+  - the copies are conjugate by the level-1 swap, which lies in `L`;
+  - the same holds at every depth;
+  - `L` is perfect and has no nontrivial finite-dimensional unitary
+    representation, since it contains every `Alt(m)`.
+
+  So no argument that uses only the following can prove `(VMF1)`:
+  - commuting conjugate self-copies at every depth;
+  - perfectness or simplicity;
+  - the absence of finite-dimensional representations;
+  - conjugation-invariant mark densities.
+
+  A surviving copy argument must use the infinite-order elements of the
+  copies `V_x`. This is the same survivor class as above.
+  *Companion calibration (target-side structure).* `V` embeds exactly in
+  `U(L(V))`. `L(V)` is a `II_1` factor with stable rank one, real rank
+  zero and a connected unitary group. The corona `Q = prod M_n / sum M_n`
+  has the same three properties. Its unitaries lift to `exp(ih)` with
+  `||h|| <= pi`, so its unitary group is connected. An argument that uses
+  only these properties of `Q` would therefore also exclude `V <= U(L(V))`,
+  so it cannot prove `(VMF1)`.
