@@ -1,0 +1,18 @@
+optsym L=1 start 0  Psi=0.942809
+optsym L=1 start 1  Psi=0.942809
+optsym L=1 start 2  Psi=0.942809
+optsym L=1 best Psi=0.942809
+optsym L=2 start 0  Psi=0.951363
+optsym L=2 start 1  Psi=0.951363
+optsym L=2 start 2  Psi=0.951363
+optsym L=2 best Psi=0.951363
+optsym L=4 start 0  Psi=0.960860
+optsym L=4 start 1  Psi=0.960860
+optsym L=4 start 2  Psi=0.960860
+optsym L=4 best Psi=0.960860
+optsym L=8 start 0  Psi=0.965187
+optsym L=8 start 1  Psi=0.965187
+optsym L=8 start 2  Psi=0.942809
+optsym L=8 best Psi=0.965187
+optsym L=16 start 0  Psi=0.966919
+optsym L=16: stopped for time after start 0 (best so far Psi=0.966919)
