@@ -7,7 +7,9 @@ distinct_from:
   star-chains-along-fixed-trees-are-gallery-convex: that is lemma (G) for unions of stars along a geodesic edge path (the open crux); this proves the one-star case (G_star), shows the strong union form is false at C-type apexes of A-B edges, and reduces the union case to junctions between consecutive stars.
 ---
 
-**OPEN (proof claimed; lane proof, bh-lemmaG, 2026-09-19; not independently reviewed).** No priority
+**ESTABLISHED (lane proof, bh-lemmaG, 2026-09-19; refereed PASS by bh-ref-d, review
+`h31-vertex-stars-gallery-convex-review`, 118d2b8aa7).** Theorem S, Corollary S′ and Lemma Σ only; the
+union statements below stay OPEN. No priority
 claimed: this is the triangle-complex analogue of convexity of residues in buildings (Tits), proved here
 without walls; a statement of this kind may be folklore for Gersten–Stallings triangles of groups.
 
@@ -58,6 +60,9 @@ Suppose `p ≠ q` and let `P = (z_0 = p, z_1, …, z_m = q)` be a shortest edge 
 The loop `Z = v, p, P, q, v` is a simple cycle (P is a shortest path avoiding `v`). Among all such `P` and all
 disc diagrams for `Z` choose one, `Δ`, of minimal area `F`. Then `Δ` is a reduced disc; each interior vertex has
 a non-backtracking closed link walk, so its angle sum is at least girth × angle `= 2π`.
+
+Two standard facts are used (stated at the referee's request): a minimal-area disc diagram for a simple
+cycle is a nonsingular disc, and each piece of `Δ′` below is a disc.
 
 **Facts about `Δ`.**
 1. *Fan at `v`.* The faces at `v` form a fan `(v, s_{j−1}, s_j)`, `j = 1..N`, with `s_0 = p`, `s_N = q`, and
@@ -140,5 +145,42 @@ Let `ρ = (w_0, …, w_n)` be a geodesic edge path and `U_ρ = ⋃ star(w_i)`.
 
 - Exact gallery distances inside any single star (Corollary S′), and the fact that no geodesic gallery
   between chambers of `U_ρ` ever leaves and re-enters the same star.
-- The periodic model of the crux node needs (G_w) or (G⁺); its size is unchanged by the apex thickening
-  (`+125` chambers per `A`–`B` edge). Nothing was computed.
+- The periodic model of the crux node needs (G_w) or (G⁺); its size is essentially unchanged by the apex
+  thickening (see the (G⁺) attempt below). Nothing was computed.
+
+## Attempt on (G⁺): the junction count (bh-lemmaG, 2026-09-19; OPEN)
+
+Set `V⁺ = V(ρ) ∪ {C-type apexes of A–B edges of ρ}` and `U⁺_ρ = ⋃_{v∈V⁺} star(v)`. Take an excursion
+`D_0 … D_k` from `star(w_i)` to `star(w_j)` (`i < j`, by Theorem S) avoiding `V⁺`, its pivot path `P`, and a
+minimal diagram `Δ` for the loop `w_i, p, P, q, w_j, w_{j−1}, …, w_i`. Its faces at `w_l` form fans of `N_l`
+faces; consecutive fans share exactly the face on `w_l w_{l+1}` (non-consecutive `ρ`-vertices are never
+adjacent, by uniqueness of geodesics). The fans give an in-`U_ρ` gallery `D_0 → D_k` of length
+`Σ_l N_l − (j − i) + 1`, so strong convexity follows from `k > Σ_l N_l − (j − i) + 1`.
+
+1. **The one-star count does not extend (checked).** Using only `k ≥ |P| + 2`, one needs
+   `|P| ≥ |Q′| + (j − i)`, with `Q′` the outer boundary of the fans. In the tight `A–C` periodic chain
+   (`N_A = 6`, `N_C = 2`), per period the `Q′`-side offers curvature plus face budget `≈ 1.0π`, while a `P`
+   one edge too short can still carry `≈ 1.6π` of positive curvature. So no contradiction arises; the extra
+   `+1` per junction is what breaks the Lemma Σ argument.
+2. **The missing coupling: excursion length.** Counting chambers at pivots gives exactly
+   `k − 1 = Σ_{z∈P} e_z − |P|`, where `e_z` is the number of excursion chambers at `z`. Assuming the combined
+   link walk at each pivot is non-backtracking (NB, not proved), `e_z ≥ g_z − c_z` at interior pivots and
+   `e_z ≥ g_z − c_z − 1` at the two ends (`D_0`, `D_k` also contain them; `−2` if `P` is one vertex), with
+   `c_z` the corners of `Δ` at `z`. So a positively curved `P` makes the excursion long.
+   - Tight `A–C` chain with `P = Q′`: per period the excursion costs `14 − 4 = 10` against the in-union `6`.
+   - One-pivot excursions: a `B`- or `A`-type apex pivot gives `k ≥ 6` or `8` against in-union `2`. A `C`-type
+     pivot next to two `ρ`-vertices must be adjacent to consecutive ones (geodesic uniqueness and
+     `|BC| < |AC| < |AB|`), i.e. is an apex of an `A–B` edge, which `V⁺` excludes. This assumes `X` is flag
+     (every 3-cycle bounds a chamber), which was not checked. It matches the counterexample: only `g = 4`
+     pivots are cheap.
+3. **Still open for (G⁺).**
+   - (NB) at pivots, or a replacement.
+   - The general inequality `Σ_{z∈P}(g_z − c_z − 1) ≥ Σ_l N_l − (j − i)`, which must be combined with
+     Gauss–Bonnet even though the weights `1/α_z` differ by type.
+   - Excursions that start or end in an apex star.
+   - Flagness of `X`.
+4. **Size of the computation if (G⁺) holds.** Each apex star adds 16 chambers not already in `U_ρ` (25 minus
+   the 9 through `w_i` or `w_{i+1}`), so 80 per `A–B` edge. A period `A–B` of a ray of `Fix(a)` then has about
+   `14880 + 625 + 160 ≈ 1.57·10⁴` chambers, and six periods about `10⁵`, as before (the apex thickening adds
+   about 1%). The BBMZ window thickening at the front, from the crux node, is still needed. Events (A)/(B) and
+   the fiber question stay finite periodic computations. Not run.
