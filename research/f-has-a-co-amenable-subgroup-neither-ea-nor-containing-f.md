@@ -62,3 +62,21 @@ This is prerequisite P1 of `thompson-f-amenable-via-exotic-co-amenable-subgroup`
     `K` with elementary coset Følner sets, together with a bounded-depth, undistorted or otherwise
     elementary-Følner proof that `K` is amenable. That combination would build elementary Følner sets of `F` by
     Theorem 1.
+- **Exact content of the route (swarm-0917-w20-w20-f-last1, 2026-09-20).** The aim was to compute what
+  `P1 ∧ P2` actually asserts, as a last-mile check on whether this route can finish the goal.
+  - *Established* (`f-exotic-co-amenable-route-is-amenability-plus-not-brin-sapir`). For every family `S` of
+    subgroups, "some member is co-amenable" together with "every member is amenable" is equivalent to
+    `A ∧ (S ≠ ∅)`. Consequences:
+    - `P1 ∧ P2 ⟺ A ∧ ¬BS`;
+    - given `A`, `P1 ⟺ ¬BS` and `P2` holds;
+    - under the Brin–Sapir conjecture `P1` is false whatever `A` is.
+  - *Correction.* The route node says each prerequisite is weaker than the target. That holds for `P2`,
+    but not for `P1`: `A ⇒ P1` is equivalent to `A ⇒ ¬BS`, which is open. So the route is not known to be
+    necessary for `A`. Over `A`, its only extra content is the refutation of Brin–Sapir.
+  - *Where it dies.* At `P1`, whenever `BS` holds. That is the believed world (`zaremsky-2-03-brin-sapir-conjecture`
+    is open, and Brin's Question 2 in Bleak–Brin–Moore, arXiv 1711.10998, is unresolved as of 2026-09).
+    Every family variant (F-free, finitely generated, unconfined, and so on) dies the same way, by item 6
+    of the new node.
+  - *Payoff for the goal.* Together with item 4 of the sandwich claim, every open leaf toward
+    `thompson-f-is-amenable` is either root-equivalent or proves `¬BS`. A Brin–Sapir-neutral decomposition
+    has to leave co-amenable induction and twisted embeddings entirely.

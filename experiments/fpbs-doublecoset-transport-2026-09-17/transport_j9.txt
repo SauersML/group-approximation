@@ -1,0 +1,11 @@
+j 0 |C_j| 1  link{b,B} 0  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 1 |C_j| 3  link{b,B} 0  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 2 |C_j| 8  link{b,B} 1  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 3 |C_j| 20  link{b,B} 3  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 4 |C_j| 49  link{b,B} 8  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 5 |C_j| 119  link{b,B} 20  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 6 |C_j| 288  link{b,B} 49  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 7 |C_j| 696  link{b,B} 119  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 8 |C_j| 1681  link{b,B} 288  link{a,A} 0  leaves 0  Exp(C_j)=C_{j+1}: True
+j 9 |C_j| 4059  link{b,B} 696  link{a,A} 0  leaves 0
+ALL OK

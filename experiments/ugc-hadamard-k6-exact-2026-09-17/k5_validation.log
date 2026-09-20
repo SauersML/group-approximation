@@ -1,0 +1,36 @@
+n=4 (k=5) full P: 11 free bits, 2048 classes, 8 orbits under AGL(4), covered 2048
+  orbit   0 rep 00000000 size          1  sum_f1 max = 1254496  (mean 19.142090)
+  orbit   1 rep 00000008 size         16  sum_f1 max = 1123544  (mean 17.143921)
+  orbit   2 rep 00000028 size        120  sum_f1 max = 997008  (mean 15.213135)
+  orbit   3 rep 00000068 size        560  sum_f1 max = 902248  (mean 13.767212)
+  orbit   4 rep 000000e8 size        840  sum_f1 max = 861024  (mean 13.138184)
+  orbit   5 rep 000002e8 size        448  sum_f1 max = 841296  (mean 12.837158)
+  orbit   6 rep 00000660 size         35  sum_f1 max = 900736  (mean 13.744141)
+  orbit   7 rep 000018e8 size         28  sum_f1 max = 808704  (mean 12.339844)
+T = sum |orbit| F = 1798461280
+D = 134217728
+E max|W| = T/D = 13.399580717087
+delta = 78015813 / 268435456 = 0.290631551296
+bound 1 + delta(3 - 4/K) = 1.835565709975 ; threshold K/(3K-4) = 32/92 = 0.347826086957 ; delta < threshold: YES
+n=4 (k=5) punctured P': 10 free bits, 1024 classes, 7 orbits under GL(4), covered 1024
+  orbit   0 rep 00000000 size          1  sum_f1 max = 1189020  (mean 18.143005)
+  orbit   1 rep 00000020 size         15  sum_f1 max = 1060276  (mean 16.178528)
+  orbit   2 rep 00000060 size        105  sum_f1 max = 949628  (mean 14.490173)
+  orbit   3 rep 000000e0 size        420  sum_f1 max = 881636  (mean 13.452698)
+  orbit   4 rep 000002e0 size        420  sum_f1 max = 851160  (mean 12.987671)
+  orbit   5 rep 00000660 size         35  sum_f1 max = 901492  (mean 13.755676)
+  orbit   6 rep 000022e0 size         28  sum_f1 max = 825000  (mean 12.588501)
+T = sum |orbit| F = 899230640
+D = 67108864
+E max|W| = T/D = 13.399580717087
+delta = 2381339 / 8388608 = 0.283877730370
+bound 1 + delta(3 - 4/K) = 1.816148474813 ; threshold K/(3K-4) = 32/92 = 0.347826086957 ; delta < threshold: YES
+n=3 (k=4) full P: 4 free bits, 16 classes, 3 orbits under AGL(3), covered 16
+  orbit   0 rep 00000000 size          1  sum_f1 max = 2608  (mean 10.187500)
+  orbit   1 rep 00000008 size          8  sum_f1 max = 2152  (mean 8.406250)
+  orbit   2 rep 00000028 size          7  sum_f1 max = 2048  (mean 8.000000)
+T = sum |orbit| F = 34160
+D = 4096
+E max|W| = T/D = 8.339843750000
+delta = 1961 / 8192 = 0.239379882812
+bound 1 + delta(3 - 4/K) = 1.658294677734 ; threshold K/(3K-4) = 16/44 = 0.363636363636 ; delta < threshold: YES

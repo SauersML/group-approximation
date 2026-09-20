@@ -233,3 +233,21 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
      substitution realizes (HH) locally.  Every completion dies, because it
      would put `G*_sigma` inside a residually finite group.
    - *Next test.*  `Z wr_(Z[1/2]) BS(1,2)` with `Gamma_0 = Z wr Z`.
+9. **Lamp-preserving twists of tensor-lamp rings (2026-09-19,
+   swarm-0917-w19-w19-titz-last1, operator-algebras, dead class).**
+   `lamp-preserving-automorphisms-never-compress-tensor-lamp-roots`
+   (established, building on the Lemma+ of
+   `automorphic-compressions-have-no-approximable-hilbert-hotel`) removes the
+   site-permutation hypothesis from the tensor-lamp Corollary.
+   - *Setting.*  `R = M_d(k)^(tensor X) x| Gamma`, `X` approximable,
+     `psi(B) = B`, `psi(u_gamma) = u_(alpha(gamma))`, and `z` a unit in `B`.
+     The lamp automorphism `beta = psi|_B` is arbitrary: twisted quantum
+     cellular automata and recodings that spread supports are all included.
+   - *Invariant.*  The finite-orbit site algebra `B_(Y_f)`.
+   - *Death step.*  Profinite density maps finite-orbit elements to
+     finite-orbit elements, so `beta(B_(Y_f)) <= B_(Y_f)`.  A dimension count
+     makes this an equality.  Then `psi(z)` centralizes `R_0`, and `I = 0`.
+   - *Survivors.*  At least one of the following: a lamp cocycle
+     `psi(u_gamma) = w_gamma u_(alpha(gamma))` that is not a coboundary on
+     `Gamma_0`; `psi(B) != B`; a root outside `B`; an `R_0` without full site
+     algebras; or a non-approximable `X`.

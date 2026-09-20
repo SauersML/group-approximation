@@ -72,3 +72,20 @@ form the closed-class transplant and the Baire kernel consume.
    `lambda_1 = 1 - rho >= eta`, the girth bound, `q < 1/2`) and found no
    unfilled step. Restore the route once the dichotomy claim is repaired and a
    full referee pass survives.
+2. **Dichotomy-free direct route (2026-09-19, swarm-0917 w18, reframing).**
+   `fpbs-high-girth-uniform-l2-patch-direct-proof` (`requires: []`). It checks
+   that the quantitative statement uses no input of
+   `fpbs-l2-gap-baire-dichotomy`: no Baire dichotomy, no transfinite kernel
+   theorem, no compactness and no isolated-point claim. The clopen and kernel
+   sentences use only the definitions of `X_(k,eta)` and `D`.
+   - The two external inputs are quoted verbatim: BNP Theorem 1 and the NP
+     path-count lemma.
+   - The auxiliary facts are proved in the route: domination, monotonicity,
+     `||P|| = rho`, and `lambda_1 >= 1 - rho`.
+   - The route adds a proof of `p_(2->2) <= p_u`, from uniqueness
+     monotonicity and Harris–FKG.
+   - The proof steps are those already checked by lenses 2 and 3.
+
+   **What it gives:** the target stands independently of the refuted claim.
+   `fpbs-uniform-l2-gap-from-relator-cylinders` now waits only on
+   `fpbs-uniform-l2-gap-short-relator-cylinders`.

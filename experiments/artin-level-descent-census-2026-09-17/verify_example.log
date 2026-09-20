@@ -1,0 +1,6 @@
+halves (2, 3, 2, 4): Artin relations hold over F_5; sigma's = [[[2, 2], [0, 0]], [[0, 0], [0, 0]], [[-2, -2], [-1, -1]], [[0, 0], [0, 0]]]
+   rank of stacked sigma = 1  => c0 = 1; common kernel [[-2, 2]]
+   nonzero 2x2 minors of twisted stack: 2; gcd = t**2 - t  => ct = 0
+halves (2, 3, 2, 5): Artin relations hold over F_5; sigma's = [[[0, 2], [0, 2]], [[0, 0], [0, 0]], [[0, -2], [0, 2]], [[0, 0], [0, 0]]]
+   rank of stacked sigma = 1  => c0 = 1; common kernel [[2, 0]]
+   nonzero 2x2 minors of twisted stack: 4; gcd = t**2  => ct = 0

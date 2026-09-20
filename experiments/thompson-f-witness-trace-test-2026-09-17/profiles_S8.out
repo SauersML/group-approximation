@@ -1,0 +1,18 @@
+wit_L4_n16.npy: n=16 tr(c)=0.0992  max|tr(w)-tr(c)| over 17 classes = 0.4319
+   ABab:+0.099  AABaab:+0.195  ABBabb:+0.531  AAABaaab:+0.268  AABBaabb:+0.471  AABBabab:+0.193  AABaBabb:+0.159  AABabbaB:+0.383  AAbaBBab:+0.150  AAbabaBB:+0.347  AAbbaBaB:+0.318  ABABabab:+0.361  ABAbaBab:+0.526  ABBBabbb:+0.328  ABaBAbab:+0.151  ABaBabAb:+0.530  ABabABab:+0.193
+wit_L4_n32.npy: n=32 tr(c)=0.0994  max|tr(w)-tr(c)| over 17 classes = 0.3882
+   ABab:+0.099  AABaab:+0.178  ABBabb:+0.439  AAABaaab:+0.233  AABBaabb:+0.348  AABBabab:+0.189  AABaBabb:-0.098  AABabbaB:+0.220  AAbaBBab:+0.116  AAbabaBB:+0.269  AAbbaBaB:+0.086  ABABabab:+0.298  ABAbaBab:+0.366  ABBBabbb:+0.222  ABaBAbab:+0.106  ABaBabAb:+0.488  ABabABab:-0.132
+wit_L8_n16.npy: n=16 tr(c)=0.0730  max|tr(w)-tr(c)| over 17 classes = 0.2270
+   ABab:+0.073  AABaab:+0.086  ABBabb:+0.089  AAABaaab:+0.093  AABBaabb:+0.093  AABBabab:+0.054  AABaBabb:-0.103  AABabbaB:+0.013  AAbaBBab:+0.092  AAbabaBB:+0.058  AAbbaBaB:+0.001  ABABabab:+0.094  ABAbaBab:+0.094  ABBBabbb:+0.061  ABaBAbab:+0.091  ABaBabAb:+0.058  ABabABab:-0.154
+wit_L8_n32.npy: n=32 tr(c)=0.0796  max|tr(w)-tr(c)| over 17 classes = 0.1185
+   ABab:+0.080  AABaab:+0.072  ABBabb:+0.085  AAABaaab:+0.074  AABBaabb:+0.058  AABBabab:+0.059  AABaBabb:-0.015  AABabbaB:-0.019  AAbaBBab:+0.049  AAbabaBB:-0.000  AAbbaBaB:-0.016  ABABabab:+0.081  ABAbaBab:+0.088  ABBBabbb:+0.084  ABaBAbab:+0.075  ABaBabAb:+0.089  ABabABab:-0.039
+wit_L8_n64_warm.npy: n=64 tr(c)=0.0955  max|tr(w)-tr(c)| over 17 classes = 0.2157
+   ABab:+0.095  AABaab:+0.082  ABBabb:+0.096  AAABaaab:+0.070  AABBaabb:+0.048  AABBabab:+0.068  AABaBabb:-0.081  AABabbaB:+0.011  AAbaBBab:+0.078  AAbabaBB:+0.023  AAbbaBaB:-0.008  ABABabab:+0.067  ABAbaBab:+0.084  ABBBabbb:+0.075  ABaBAbab:+0.079  ABaBabAb:+0.091  ABabABab:-0.120
+wit_F_n16.npy: n=16 tr(c)=0.0998  max|tr(w)-tr(c)| over 17 classes = 0.4534
+   ABab:+0.100  AABaab:+0.190  ABBabb:+0.553  AAABaaab:+0.274  AABBaabb:+0.488  AABBabab:+0.179  AABaBabb:+0.140  AABabbaB:+0.372  AAbaBBab:+0.153  AAbabaBB:+0.340  AAbbaBaB:+0.290  ABABabab:+0.367  ABAbaBab:+0.549  ABBBabbb:+0.299  ABaBAbab:+0.148  ABaBabAb:+0.546  ABabABab:+0.178
+wit_F_n32.npy: n=32 tr(c)=0.0995  max|tr(w)-tr(c)| over 17 classes = 0.4266
+   ABab:+0.099  AABaab:+0.196  ABBabb:+0.526  AAABaaab:+0.268  AABBaabb:+0.467  AABBabab:+0.193  AABaBabb:+0.166  AABabbaB:+0.385  AAbaBBab:+0.154  AAbabaBB:+0.355  AAbbaBaB:+0.321  ABABabab:+0.358  ABAbaBab:+0.521  ABBBabbb:+0.313  ABaBAbab:+0.154  ABaBabAb:+0.526  ABabABab:+0.204
+wit_F_n64b.npy: n=64 tr(c)=0.0361  max|tr(w)-tr(c)| over 17 classes = 0.3957
+   ABab:+0.036  AABaab:+0.126  ABBabb:+0.400  AAABaaab:+0.182  AABBaabb:+0.340  AABBabab:+0.148  AABaBabb:-0.059  AABabbaB:+0.290  AAbaBBab:+0.062  AAbabaBB:+0.284  AAbbaBaB:+0.184  ABABabab:+0.234  ABAbaBab:+0.414  ABBBabbb:+0.225  ABaBAbab:+0.077  ABaBabAb:+0.432  ABabABab:-0.088
+wit_F_n128.npy: n=128 tr(c)=0.0795  max|tr(w)-tr(c)| over 17 classes = 0.5534
+   ABab:+0.079  AABaab:+0.184  ABBabb:+0.614  AAABaaab:+0.255  AABBaabb:+0.504  AABBabab:+0.211  AABaBabb:-0.130  AABabbaB:+0.375  AAbaBBab:+0.090  AAbabaBB:+0.425  AAbbaBaB:+0.230  ABABabab:+0.347  ABAbaBab:+0.534  ABBBabbb:+0.127  ABaBAbab:+0.093  ABaBabAb:+0.633  ABabABab:-0.129

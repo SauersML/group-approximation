@@ -20,6 +20,8 @@ artifacts:
   - research/fpbs-mal-pushout-fold-certificates-vanish-on-random-levels-proof.md
   - experiments/fpbs-depth-overfolding-2026-09-17/exact_search.py
   - experiments/fpbs-depth-overfolding-2026-09-17/check_surjective_n12.txt
+  - research/artifacts/fpbs-mal-bernoulli-height-defect-2026-09-20.md
+  - research/artifacts/fpbs-mal-normal-and-intermediate-class-kills-2026-09-20.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -707,5 +709,104 @@ Scripts in `experiments/fpbs-pushout-fold-group-2026-09-17/`.
   for general subgroup pairs, so a proof must use the rank-2 chain. (W)
   needs a spectral gap or seed density for `<a, t_j>` that is uniform in
   `j`. M. Hall induction loses the factor `[L : H_j]`.
+
+  The claim stays OPEN.
+
+**2026-09-20, swarm-0917-w22-w22-fp-break (belief breaker,
+operator-algebras): OPEN; the approximate-odometer class of refutations is
+killed.** Artifact:
+`research/artifacts/fpbs-mal-bernoulli-height-defect-2026-09-20.md`.
+
+- **Target of the attack.** The only known cheap free actions of
+  `Gamma_mal` are the odometer products
+  ([[fpbs-mal-odometer-product-actions-have-cost-two]]). Their seed set
+  `{z mod N in {0,1,2}}` costs `3/N` and is built on an exactly
+  `chi`-equivariant height. So a natural refutation of this floor is to
+  build near-equivariant heights mod `N` inside `beta`. Then seed on them
+  and control the 2-of-3 closure errors by the defect.
+- **Result (ESTABLISHED,
+  [[fpbs-mal-bernoulli-heights-have-uniform-defect]]).** Take any stage `n`,
+  any countable `H_n`-set `Y` on which `a` or `b_n` has no fixed point, and
+  any Borel `f : X -> Y`. Then
+  `d_a(f) + d_{b_n}(f) >= (2 - sqrt 3)/(4 - sqrt 3) = 0.118`.
+  In general the bound is `(2 - sqrt 3)(1 - sum p_y^2)`.
+  - *Proof.* The graph vector `1[f(x) = y]` in `L^2(X) ⊗ l^2(Y)` has mass
+    `1 - sum p_y^2` off `l^2(Y)`. That part is a multiple of
+    `lambda_{F_2}`, by freeness of stages on the Bernoulli tensor basis and
+    Fell absorption. Kesten's gap `4 - 2 sqrt 3` applies to it, and a
+    concentration bound handles `p* > 1/2`.
+- **Where the class dies.** At step 1, the existence of the height. The
+  defect of any such height is at least `0.118`, uniformly in `N`, `n` and
+  `Y`. The transport needs defect `o(1/N)`.
+  - **Invariant:** the Kesten gap of the Koopman representation of a stage,
+    twisted by `l^2(Y)`.
+  - The qualitative exclusion of compact factors in item 5 of
+    [[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]] would still allow
+    defects `eps_0(N) -> 0`. The uniformity is what kills the class.
+  - It also covers congruence, dihedral, `Z`- and `Z^`-valued heights.
+- **Not killed.**
+  - Seed sets that are not functions of a height, including long-generator
+    corrections of a height's defect region.
+  - The lower-bound route through (O) and (W), which uses finite witnesses
+    legitimately.
+  - For a single generator the bound fails, by Rokhlin for `<a> ≅ Z`. So
+    the obstruction really uses the non-amenability of each stage.
+- **Remark (not established).** Weak-containment witnesses for
+  `C(beta) < infinity` must be tempered. Tempered Gaussian actions
+  `G(pi)`, with `pi ≼ lambda`, should all have cost `C(beta)`.
+### swarm-0917-w22 (fp-pull, cohomology-index): the two sibling boundary kernels of the overgroup have finite cost
+
+- **Result (ESTABLISHED).** `fpbs-mal-overgroup-is-free-by-cyclic`: the
+  overgroup `M` is `F(u,v,w) ⋊_Θ <b>`, with
+  `Θ: u ↦ v, v ↦ w, w ↦ v u^-1 v^2 w^-1`. Here `Gamma_mal = K ⋊ <b>` over
+  `K = [M, M] ≅ F_∞`. The Alexander polygon is the triangle
+  `(0,0), (2,0), (0,1)`, and the non-fibred lines are `(0,1)`, `(1,0)` and
+  `(1,2)`, which is cited.
+- **Result (ESTABLISHED).** `fpbs-mal-sibling-bns-kernels-have-finite-cost`:
+  the other two boundary kernels `N_1 = ker (1,0)` and `N_2 = ker (1,2)` are
+  increasing unions of 3-generated stages. Each step adds one generator that
+  commensurates the stage, so the stage relative cost is `0` and the cost is
+  at most `3` on every free action.
+- **What dies.** Any floor proof that uses only:
+  - the free-by-cyclic or BNS position of `Gamma_mal`;
+  - Alexander or fibre-rank numerics;
+  - the "`R_K` ∨ one normalising map" structure.
+
+  All of these are shared by `N_1` and `N_2`, where the floor analogue is
+  false.
+- **Where it stops.** The only separating feature found is malnormality of
+  `H_n < H_{n+1}`, which forbids the commensurated step. No floor is
+  proved.
+### swarm-0917-w23 (fp-break): normal subgroups and finite-index intermediates are inert
+
+Artifact: `research/artifacts/fpbs-mal-normal-and-intermediate-class-kills-2026-09-20.md`.
+
+- **Result (ESTABLISHED).**
+  [[fpbs-mal-infinite-index-normal-subgroups-cost-infinity]].
+  - `Gamma_mal = <<a>> ⋊ <b_1>`, via `χ(b_k) = (-1)^{k+1}`.
+  - Every nontrivial normal subgroup `Λ` of infinite index has
+    `beta_1(Λ) = infinity` (Gaboriau Théorème 6.8 with `beta_1(Gamma_mal) = 1`).
+    So every free action of `Λ`, and every restriction `α|Λ`, has infinite
+    cost.
+  - Normal-subgroup transfer (Cor. 2.48, Theorem 2.56, the bounded-cost
+    criteria) is therefore inert here in both directions, not just over
+    finitely generated bases.
+- **Result (ESTABLISHED).**
+  [[fpbs-malnormal-intermediates-are-index-one-or-infinite]].
+  - Every relation `T` with `R_n ⊆ T ⊆ E`, or `S_{j+1} ⊆ T ⊆ S_0`, has a.e.
+    class equal to one stage class or to infinitely many, in every free
+    action.
+  - So no promotion argument can pass through a finite-index intermediate,
+    such as a compact-extension step, a bounded-multiplicity absorption, or
+    finitely-many-classes attachment.
+- **Also killed (artifact §4).**
+  - Sufficient routes needing `relC(S_0; S_j) -> 0` are void, because `relC`
+    is antitone in the subrelation, so `relC(S_0; S_j) >= Q_0 >= 2/25`.
+  - Measured free-factor witnesses are impossible: `R_2 = R_1 * S` forces
+    `C(S) = 0`.
+- **Where it stops.** Both lemmas hold in every free action, including the
+  cost-2 odometer products, so neither can separate `beta`. The only
+  remaining floor source is stage malnormality at infinite multiplicity:
+  the (O)/(W) route and P2.
 
   The claim stays OPEN.

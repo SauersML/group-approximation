@@ -57,6 +57,73 @@ symmetry there are two of them: `c_12 = 0` (split `2|4`) and `c_123 = 0` (split
   - Untried alternatives: the complex with the zero vertices removed (links
     `C(S_{0,n})` are only `(n-5)`-connected); Morse theory with `chi` on a
     Salvetti or Brady-type complex, as in Zaremsky's proof of Proposition 5.6.
+- 2026-09-17 (swarm-0917 worker w20-z-last1; experiments in
+  `experiments/pure-braid-translated-jump-loci-2026-09-17/`). **`n = 5`, `m = 2`,
+  open cones on both twist-hyperplane types, but not the full statement.**
+  - **Salvetti Morse method.** This works, and it is the first method in the graph
+    that reaches `Sigma^{n-3}` on a twist hyperplane.
+    - It is Bestvina–Brady Morse theory on the universal cover of the Salvetti complex
+      of the braid arrangement. The heights are `K·(cocycle of chi) + eta`, with an
+      integer tie-break `eta` on the 120 chambers.
+    - Ascending links at barycentres are antistar joins, and these are 1-connected
+      (`antistar_check_n5.log`). So `[chi] ∈ Sigma^2(P_5)` as soon as each of the 120
+      posets `Asc(C)` is 1-connected.
+    - An annealing search over `eta` (`climb3.py`) finds certificates. An independent
+      exact verifier (`verify_cert.py`) checks them.
+    - Control: a generic character with all twist values nonzero is VERIFIED
+      (`verify_cert_n5_m2_t5gen.log`).
+    - `c_12 = 0`: `chi_1 = (0,25,19,-34,-3,27,10,30,24,-98)` is VERIFIED.
+    - `c_123 = 0`: `chi_2 = (5,-12,19,-33,7,27,10,30,24,-77)` is VERIFIED.
+    - `margin.py` gives explicit sup-norm radii, 0.0149 and 0.0422.
+    - Result: `pure-braid-open-zero-twist-cones-lie-in-sigma-two-of-p5` (route
+      `pure-braid-zero-twist-cones-p5-salvetti-morse-certificates`). It is
+      computer-assisted and unreviewed.
+    - Up to `S_5`, the two cones meet every hyperplane `c_A = 0` in a relatively open
+      set. They do not cover the non-resonant part of any hyperplane.
+  - **Why finitely many certificates cannot finish the job.** The certified set for
+    one `eta` is an open polyhedral cone cut out by the lowest-vertex inequalities.
+    - Continuation of a generic certificate toward `c_12 = 0` (`continuation.py`,
+      `continuation_cont01.log`) follows `a(t) = base + t·dir`, which reaches the
+      hyperplane at `t = 0`.
+      - The certificate is inherited at `t = 7` and `t = 5`.
+      - It gets stuck at `t = 3`, with defects at 4 chambers, and at `t = 2`.
+      - The `c_12 = 0` certificate was found instead by annealing directly on the
+        hyperplane.
+      - So a certified cone is not stable under deformation toward the hyperplane.
+    - The non-resonant set is not bounded away from `R^{<=2}` inside the hyperplane.
+      So any cover by finitely many certificates must be refined without bound near
+      the resonance variety. A uniform, structural choice of `eta` is needed.
+  - **Where the certificates break (elastic LP, `lp_elastic.py`).** On `c_12 = 0`,
+    every violated lowest-vertex inequality of the relaxed LP lies in a cell with `1`
+    and `2` in a common block.
+    - Take two chambers related by the swap `(12)` inside such a cell. At `a_12 = 0`
+      they get equal `K`-parts, so only `eta` decides between them.
+    - The one with the larger `eta` is never lowest in a cell containing both. So in
+      the `{1,2}`-cells `Asc(C)` is decided by `eta` alone, and not by `chi`.
+    - So the hard part of `Asc(C)` is concentrated in the sub-Salvetti complexes of
+      the `{1,2}`-flats.
+    - Suggested decomposition: write `Asc(C)` as a join or union of ascending links of
+      the restricted arrangement (strands `{1,2}` merged) and of the localized
+      arrangement. Then prove the connectivity by induction on `n`. This matches the
+      cabling picture `Stab(c) = <T_c> x P_{n-1}` from the 2026-09-16 attempt.
+      Untried.
+  - **Kohno–Pajitnov positive charts cannot help.**
+    `pure-braid-kohno-pajitnov-cones-miss-twist-hyperplanes` (route
+    `...-proof`) shows that every positive chart of `M_{0,n+1}` forces `c_S != 0` on
+    every boundary divisor. So cones from positive charts never meet a twist
+    hyperplane. This rules out the positivity-and-Novikov route to this claim.
+  - **No translated-component obstruction was found.** `scan_tori.py` computed
+    twisted Betti numbers with rank-1 local systems on 45 translated subtori
+    `prod_{A} t = zeta`, including pairs of twist conditions.
+    - `P_5`: generically `[0,0,0,6,6]` on all of them (`scan_tori_n5.json`).
+    - `P_4`: `[0,0,2,2]` (`scan_tori_n4.json`).
+    - So `V^{<=2}(P_5)` has no translated component along the twist tori, and the
+      exponential-tangent-cone upper bound for `Sigma^2` does not obstruct the claim.
+  - **Comparison.** The Brady-complex attempt of 2026-09-16 and the curve-complex
+    criterion fail at twist zeros. The Salvetti Morse function succeeds on open sets
+    because `eta` can break the `(12)`-ties chamber by chamber.
+  - Status stays OPEN. The missing piece is a uniform `eta`, or an inductive
+    connectivity argument for `Asc(C)` near `R^{<=2}`.
 - Known outside this range. `m = 1` is Koban–McCammond–Meier with Cohen–Suciu
   (`pure-braid-bns-invariant-is-circle-complement`). For `m >= n - 2` every
   zero-sum character is resonant (Euler characteristic), so the statement is

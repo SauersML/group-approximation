@@ -1,0 +1,22 @@
+OM(K_4) sizes={0: 12, 1: 12} p=2: reduced betti {0: 2, 1: 3}
+OM(K_4) sizes={0: 12, 1: 12} p=3: reduced betti {0: 2, 1: 3}
+OM(K_4) sizes={0: 12, 1: 12} p=5: reduced betti {0: 2, 1: 3}
+OM(K_4) sizes={0: 12, 1: 12} p=1000003: reduced betti {0: 2, 1: 3}
+OM(K_5) sizes={0: 20, 1: 60} p=2: reduced betti {0: 0, 1: 41}
+OM(K_5) sizes={0: 20, 1: 60} p=3: reduced betti {0: 0, 1: 41}
+OM(K_5) sizes={0: 20, 1: 60} p=5: reduced betti {0: 0, 1: 41}
+OM(K_5) sizes={0: 20, 1: 60} p=1000003: reduced betti {0: 0, 1: 41}
+OM(K_6) sizes={0: 30, 1: 180, 2: 120} p=2: reduced betti {0: 0, 1: 46, 2: 15}
+OM(K_6) sizes={0: 30, 1: 180, 2: 120} p=3: reduced betti {0: 0, 1: 46, 2: 15}
+OM(K_6) sizes={0: 30, 1: 180, 2: 120} p=5: reduced betti {0: 0, 1: 46, 2: 15}
+OM(K_6) sizes={0: 30, 1: 180, 2: 120} p=1000003: reduced betti {0: 0, 1: 46, 2: 15}
+OM(K_7) sizes={0: 42, 1: 420, 2: 840} p=2: reduced betti {0: 0, 1: 0, 2: 461}
+OM(K_7) sizes={0: 42, 1: 420, 2: 840} p=3: reduced betti {0: 0, 1: 1, 2: 462}
+OM(K_7) sizes={0: 42, 1: 420, 2: 840} p=5: reduced betti {0: 0, 1: 0, 2: 461}
+OM(K_7) sizes={0: 42, 1: 420, 2: 840} p=1000003: reduced betti {0: 0, 1: 0, 2: 461}
+OM(K_8) sizes={0: 56, 1: 840, 2: 3360, 3: 1680} p=2: reduced betti {0: 0, 1: 0, 2: 1000, 3: 105}
+OM(K_8) sizes={0: 56, 1: 840, 2: 3360, 3: 1680} p=3: reduced betti {0: 0, 1: 0, 2: 1000, 3: 105}
+OM(K_8) sizes={0: 56, 1: 840, 2: 3360, 3: 1680} p=5: reduced betti {0: 0, 1: 0, 2: 1000, 3: 105}
+OM(K_8) sizes={0: 56, 1: 840, 2: 3360, 3: 1680} p=1000003: reduced betti {0: 0, 1: 0, 2: 1000, 3: 105}
+# separate run: o.reduced_betti(9, 3)
+OM(K_9) sizes={0: 72, 1: 1512, 2: 10080, 3: 15120} p=3: reduced betti {0: 0, 1: 0, 2: 86, 3: 6567}

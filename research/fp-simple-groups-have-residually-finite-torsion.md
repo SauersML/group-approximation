@@ -7,6 +7,7 @@ distinct_from:
   some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup: that is the bounded-exponent separator P_n for a single exponent n; (RT) implies P_n for every n at once (Zelmanov), and it also covers unbounded-exponent torsion. So (RT) is the stronger, uniform statement, and it is the one the host-class proofs on main actually establish.
   brin-thompson-2v-is-torsion-locally-finite: that is the question for the single host 2V, in its strongest (locally finite) form; this is the claim for all finitely presented simple groups, in the residually finite form that the Röver–Nekrashevych hosts force.
   bh-separators-must-omit-nested-decidable-hosts: that classifies decision-problem separators and shows which die; (RT) is a hereditary group-theoretic separator, not a decision problem, so it is outside those tables.
+refuted_by: [golden-mean-periodic-group-lies-in-a-contracting-rsg]
 artifacts:
   - research/artifacts/gq-bh-bh-lit-survey.md
 ---
@@ -105,3 +106,36 @@ Boone–Higman survives its Burnside test.
 
 1. **bh-free-12, 2026-09-18.** Stated the claim and collected the census above from the landed host theorems. No new
    family decided.
+2. **REFUTED: the golden-mean group (swarm-0917 w21 belief breaker, 2026-09-20).** (RT) is false.
+   - **Counterexample.** `golden-mean-periodic-group-lies-in-a-contracting-rsg` (landed by w12, marked unreviewed)
+     puts `P = [F,F]` inside a finitely presented simple group `Q = SV_G`. Here `F` is Nekrashevych's golden-mean
+     fragmentation group (arXiv:1601.01033, §7). `P` is infinite, finitely generated, simple and periodic. An
+     infinite simple group is not residually finite. So `Q` violates (RT).
+   - **Independent review of the chain.** Done for this attempt.
+     - *Nekrashevych side.* I re-read the arXiv TeX (`burnside.tex`, l.1405–1439). The defining equations of
+       `a_0, b_0, c_0, d_0` and `x_1, x_2` match the proof node's quotations verbatim. So does Theorem `th:F`:
+       "periodic and of intermediate growth. Its derived subgroup $[F, F]$ is simple and has finite index in $F$".
+       The typo `g_0` at l.1420 is harmless, because the proof covers every reading in `{a_0,b_0,c_0,d_0}`.
+     - *RSG side.* I rechecked every case of Lemmas 3–6 of the proof node by hand: the phase lemma (both cases,
+       dangling `1` absorbed after one block) and closure under products and inverses. Every local action of a
+       K-map lies in the 7-element `N_0`. No gap was found.
+     - *Import.* The BBMZ side is the established `contracting-rsgs-embed-in-fp-simple-groups`. Its item 1 makes
+       `<V_2, F>` an RSG, and items 3 and 5 embed the full group `G_N` in `SV_G`.
+     - *Computation.* `check_golden_mean_rsg.py` reruns clean: 2000 deep local actions, none outside `N_0`.
+   - **What survives.** `P` has unbounded exponent (`bounded-exponent-groups-omit-alt-of-unbounded-orbits`), so the
+     bounded-exponent separator `some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup` (P_n) is untouched.
+     The Burnside test of Boone–Higman now runs only through bounded exponent.
+   - **Class of separators killed.** A separator of the form "every finitely generated subgroup of a finitely
+     presented simple group with property Π is residually finite" is false whenever `P` has Π. Such Π include:
+     - periodic;
+     - amenable;
+     - subexponential growth;
+     - simple and periodic.
+
+     So a hereditary torsion separator that could still refute BH must use bounded exponent. By Zelmanov
+     (`restricted-burnside-finiteness`), it is then exactly ¬P_n.
+   - **Host mechanisms.** In the Lesson list above, item 2, length-changing (asynchronous) local maps, is now
+     realized: the generators `b_i, c_i, d_i` are asynchronous. Every census row stays true as stated, since those
+     rows are specific host families.
+   - **Collateral.** The main clause of `contracting-rsg-torsion-subgroups-are-residually-finite` fails for the same
+     `G`. That node is not edited here; the finding goes to the bus as a spark.

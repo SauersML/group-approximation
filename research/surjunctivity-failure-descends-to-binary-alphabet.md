@@ -137,3 +137,20 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
     `hN`, since `ν(a0^N) = a0`. Upgrading this to (R3) needs multiplicities and control of infinite configurations.
   - Checked: `experiments/affine-relay-lifts-2026-09-17/check.py`, exhaustive over `C_n`. Lifts commute with both
     actions, and `θ` is injective exactly when every `A_ℓ` is injective mod `q`.
+- **Same-table descent along upsets; it stops at primitive transition digraphs** (swarm-0917-w18-w18-gs-last1,
+  2026-09-19). Family: symbolic-dynamics.
+  - ESTABLISHED `strict-automaton-upsets-give-smaller-nonsurjunctive-sizes` (route
+    `upset-restriction-pinned-particle-count`, no imports). If `τ` is injective and `U` is a nonempty upset of
+    its transition digraph `R(τ)` (`x(g) ∈ U` implies `τ(x)(g) ∈ U`), and `τ|_(U^G)` is onto, then `τ` is onto.
+    Proof: sites outside `U` are never created, so configurations with finitely many of them form compact
+    invariant pieces `D_F`; bijectivity on `U^G` fixes the fibre sizes of the far output map, and a count shows
+    `τ(D_F) = D_F`.
+  - So a strict `τ` restricts to a strict automaton on every proper upset, with the same group, memory and table.
+    This is the first descent that keeps the table. Applied to powers `τ^p`, the same holds for every set closed
+    under `R(τ)^p`, e.g. each cyclic class of a periodic sink class.
+  - Where it stops (precise): at `n0 = min NS(G)` every strict automaton has `R(τ^p)` strongly connected for all
+    `p`, hence `R(τ)` primitive. So descent by sitewise-closed sub-alphabets reaches two symbols only if
+    `min NS(G) = 2` already. It cannot move below a primitive digraph. Sub-alphabets closed only on configurations
+    carry nothing: every strict automaton has a strict power fixing each constant `a^G`, and `{a}` is then invariant.
+  - Remaining freedom for this claim: codes that are not sub-alphabet restrictions. The factor-map lifts
+    and label lifts recorded above are such codes.

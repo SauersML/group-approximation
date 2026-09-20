@@ -1,0 +1,17 @@
+[U] stage 1: 2881 Schreier gens of M_U, 11520 relators, 3200 twist words [2s]
+  tietze: 200 eliminated, 2681 gens, 11320 rels, total length 70289, max twist word 6 [0s]
+  tietze: 400 eliminated, 2481 gens, 11119 rels, total length 70214, max twist word 8 [0s]
+  tietze: 600 eliminated, 2281 gens, 10919 rels, total length 72507, max twist word 11 [0s]
+  tietze: 800 eliminated, 2081 gens, 10719 rels, total length 75609, max twist word 11 [0s]
+  tietze: 1000 eliminated, 1881 gens, 10517 rels, total length 81099, max twist word 14 [1s]
+  tietze: 1200 eliminated, 1681 gens, 10314 rels, total length 87509, max twist word 16 [1s]
+  tietze: 1400 eliminated, 1481 gens, 10113 rels, total length 95011, max twist word 17 [1s]
+  tietze: 1600 eliminated, 1281 gens, 9911 rels, total length 106432, max twist word 24 [2s]
+[U] Tietze: 1161 gens, 9787 relators, total length 115082, twist word lengths up to 27 [4s]
+[tz-U] stage 2: 1 cosets of M_V' in M_U, 1161 Schreier gens, 9399 relator rows, 3200 twist vectors
+[tz-U] after unit elimination 21 gens, 6256 relators [9s]
+[tz-U] H_1 = Z^16 + [3, 3, 3, 3, 3] [9s]
+[tz-U] classes 50, W rank 34, gcd aug 10 [9s]
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+[tz-U] {"label": "tz-U", "cosets": 320, "schreier_gens": 1161, "gens_after_unit_elim": 21, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [32, 64, 96], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 12, "A_plus_multiplicities": [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2], "seconds": 12}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/tz-U.json

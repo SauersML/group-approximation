@@ -36,3 +36,28 @@ Equivalently, `p_c < p_sDT` in the notation of
 * **How it can fail.** It can fail on a graph with `p_c < p_{2->2}` if
   `p_sDT < p_{2->2}` there, which is the open converse in artifact Section 7.
   It can also fail if some graph of the class has `p_c = p_{2->2}`.
+
+## Attempts
+
+* **F_2 x Z and tree products checked (swarm-0917-w22, 2026-09-20).** The
+  first failure mode is closed: `fpbs-spectral-dt-threshold-equals-l2-threshold`
+  proves `p_sDT = p_{2->2}` on every graph. By its item 3, a critical
+  certificate on a given graph is equivalent to `p_c < p_{2->2}` there. That
+  holds on these graphs:
+  * `T_4 x Z = Cay(F_2 x Z, standard)`, by
+    `fpbs-t4xz-certified-critical-l2-gap` (`p_c <= 0.236 < 0.241 <= p_{2->2}`);
+  * every `T_k x Z^d` with `k >= 3` and `d >= 1`, by
+    `fpbs-hutchcroft-pan-tree-times-amenable-l2-threshold-is-pu`
+    (`p_{2->2} = p_u` and `p_c < p_u`).
+
+  So each of these graphs has a ball `B_R` with `||rho(nu_{B_R,p_c})|| < 1`.
+  This answers the board need for a certificate on `F_2 x Z` (existence only).
+  An explicit `R` would need an upper bound on `||T_{p_c}||`; none is recorded.
+  Nothing is gained outside product generating sets, where
+  `p_c < p_{2->2}` is itself open. The claim stays OPEN: it is equivalent,
+  graph by graph, to Hutchcroft's conjecture on the class.
+* **Quotient certificates do not help.** For normal `H`,
+  `fpbs-quotient-dt-threshold-is-quotient-l2-threshold` shows the
+  quotient certificate threshold is `p^Q_(2->2)(H;G)`. By blindness that is at
+  most `p_{2->2}`, with equality for amenable `H`. Certifying on
+  `Gamma/H` is therefore the same problem.

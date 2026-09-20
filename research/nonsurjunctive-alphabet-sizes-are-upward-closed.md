@@ -134,3 +134,126 @@ artifacts:
     - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
       compared with a measure-preserving base.
     - Designs whose three sizes already fail, which the theorem cannot touch.
+- **Non-injective base, by fiber square** (swarm-0917-w18-w18-gs-break, 2026-09-19). This kills the survivor
+  "lifts over a non-injective base". By `noninjective-letter-factors-force-squared-fiber-sizes` (established,
+  route `noninjective-letter-factor-fiber-square-proof`), suppose `Φ` is injective with `r ∘ Φ = τ ∘ r` and `τ`
+  is not injective. Then one of `q`, `qm`, `q^2 m` lies in `NS(G)`, where `m` is the number of largest fibers.
+  - How it works. `Ψ = Φ × Φ` on the fiber square `(B ×_A B)^G` is injective. It is never onto, because two
+    lifts of a `τ`-collision have an image pair whose only preimage leaves the fiber square.
+  - The reduction. `Ψ` is itself a lift of the injective `Φ` through the first projection. That collapse has
+    fibers `Q_{r b}`, so its largest-fiber count is `qm`, and the w17 theorem applies to the pair `(Ψ, Φ)`.
+  - Invariant. The w17 sea charge of the first projection, `W(u) = Σ_g log(q / q_{r u(g)})` on `B`-configurations.
+  - Combined with w17. Every injective automaton commuting with a letter collapse is bijective over a
+    bijective base, or one of `q`, `m`, `qm`, `q^2 m` fails. Single-letter doubling `k -> k+1` needs
+    `4 ∈ NS(G)`, whatever the base.
+  - At the least failing size `n_0`, a strict automaton with a non-uniform letter factor has a non-injective
+    factor, with `q^2 m ∈ NS(G)`.
+  - By-products.
+    - `Σ_a q_a^2 ∈ NS(G)`.
+    - Fiber products of lifts multiply profiles pointwise: `Σ_a q_a c_a ∈ NS(G)`.
+  - What survives.
+    - Uniform profiles.
+    - Block-code factors that are not letter maps.
+    - Coupled dynamics with no letter factor at all.
+    - Designs over groups where one of the four sizes already fails. For doubling, this means `4 ∈ NS(G)`.
+      That is exactly the binary-power size excluded by the other premise of
+      `gottschalk-via-upward-closed-nonsurjunctive-sizes`.
+- **The first step `n0 -> n0 + 1`, by sink classes** (swarm-0917-w19-gs-follow, 2026-09-19, family
+  minimal-counterexample). New ESTABLISHED `strict-automata-below-twice-the-minimum-have-one-sink-class`, with a
+  self-contained reproof of upset descent. It does not prove the step. It classifies what a witness can look like, over
+  any group `G` with `n0 = min NS(G)`.
+  - Every proper upset of every `R(Ψ^p)` has at least `n0` letters. So below `2 n0` a strict automaton has one
+    primitive sink class, and no exact sub-alphabet.
+  - At `n0 + 1`, a strict `Ψ` is either robustly primitive (every `R(Ψ^p)` strongly connected) or has a power with a
+    never-created letter. That letter is a singleton class, which gives `g = 1` and every `n >= n0^2 + 1` in `NS(G)`.
+  - The invariant is the upset lattice of the powers.
+  - Where ascent designs die.
+    - A never-destroyed letter, including an exact one, dies at upset descent.
+    - A design that keeps the old `n0` letters sitewise old is strict only if it already proves
+      `some-nonsurjunctive-group-gives-a-binary-power-one`.
+    - Under `every-group-is-surjunctive-over-binary-power-alphabets`, only robustly primitive witnesses remain, and
+      the same holds at a second failing size `m2 < 2 n0` with `gcd(n0, m2)` a power of two.
+  - What survives. Robustly primitive strict automata at `n0 + 1`, which carry the whole first step. Above `2 n0`
+    several sinks are allowed.
+- **Never-created ascents need only injectivity** (swarm-0917-w20-w20-gs-follow, 2026-09-20). By
+  `injective-automata-with-inter-class-transitions-are-strict` (established, route
+  `inter-class-arc-strictness-bernoulli-proof`), let `τ` be strict on `A^G` and `Φ` an injective automaton on
+  `(A ⊔ D)^G` extending `τ` that never writes a `D`-letter at an `A`-site. Then `Φ` is strict, so
+  `|A| + |D| ∈ NS(G)`.
+  - Invariant. The clopen set `{x : x(1) ∈ U}` for an upset `U` of the transition digraph. Every automaton
+    maps it into itself, and a bijective one preserves the uniform product measure. So a bijective automaton
+    has only exact upsets, meaning no arc of its digraph joins two classes.
+  - What it removes. For this class of ascents, strictness no longer needs its own proof. Every design where
+    `A` is an upset reduces to building an injective extension. By the passive-fixing theorem, that extension
+    must move or destroy `D`-letters.
+  - Stronger form. An injective automaton over `G` with a letter that is never created but sometimes destroyed
+    makes `NS(G)` cofinite. More generally, so does one with a class of size `1` and any arc between two
+    classes. That gives ascent above every failing size at once.
+  - What survives. The theorem constructs no injective extension. Two kinds of ascent are still untouched:
+    - ascents that write new letters at old sites;
+    - ascents whose digraph is a disjoint union of strongly connected pieces.
+- **Where a never-created letter can be destroyed** (swarm-0917-w21-w21-gs-follow, 2026-09-20). The aim was to
+  decide the cofinite branch left by w20: does some injective automaton destroy a letter it never creates?
+  The result is `non-exact-transitions-of-injective-automata-are-wandering`, established by route
+  `wandering-destruction-cylinder-proof`. The branch itself stays undecided.
+  - Invariant. The cylinder of a non-exact pattern `P` for an upset `U`. Its `g`-letter is outside `U`,
+    and every later image has it inside `U`. So the cylinder is wandering.
+  - Consequences.
+    - It has measure `0` for every invariant measure, including Cesàro limits of the orbit of the uniform
+      measure.
+    - It meets no `H`-periodic configuration with `[G:H] < ∞`, and no point of `NW(Φ)`.
+    - An injective automaton is onto iff it is nonwandering. So the conjecture reads: every injective
+      automaton is nonwandering.
+  - Kill. Pushing the w20 measure argument from bijective to injective automata cannot decide the branch.
+    Neither can finite-quotient or periodic-point searches. Their data coincide with those of a bijective
+    automaton. The step where this dies: one needs an invariant measure, or a periodic point, that meets
+    `[P]_1`, and none exists.
+  - Reformulation. A never-created letter `c` is quiescent (`Φ(c^G) = c^G`), and its destruction shows up on a
+    finite configuration over a `c`-background, where the count of non-`c` sites rises strictly.
+    - So a witness is exactly a *charge-creating* injective automaton. It is the open reverse of
+      `finite-injective-charge-noncreation-forces-surjectivity`.
+    - For an ascent over a strict core `τ`, each configuration whose holes all fill in one step is sent
+      into the Garden of Eden `A^G \ τ(A^G)`.
+  - What survives.
+    - Garden-of-Eden-type counting of the finite configurations of such an automaton, which would give the
+      dual charge theorem.
+    - Hole-filling constructions that spend the core's Garden of Eden.
+    - Any argument that tracks the non-invariant orbit `Φ^k_* λ`. The uniform measure `λ` itself does
+      charge the destruction cylinder.
+- **Dual charge theorem, finite methods** (swarm-0917-w23-w23-gs-last1, 2026-09-20). This calibrates need `ebb50f1d`:
+  an injective automaton with a quiescent, never-created letter `c` never raises the number of non-`c` sites.
+  Proving that would empty the cofinite branch.
+  - Result. `pre-injective-automata-can-destroy-never-created-letters` (established, route
+    `pre-injective-automata-can-destroy-never-created-letters-proof`) has two parts.
+    - Two letters: the need holds over every group, from finite injectivity alone, by charge noncreation over the
+      dual background.
+    - Three or more letters, over any group containing `F_2`: the need fails for pre-injective automata. On
+      `{c} ⊔ Z/m`, the four tree slots `a, b` and `a^-1, b^-1` carry an injective pair `(α, β)`. A `c`-site with a
+      non-`c` neighbour turns into the slot sum. One letter grows into five, and a leaf of the tree hull of any
+      finite difference is read, in a separating slot type, by a neighbour whose other inputs agree.
+  - Invariant and dying step. The invariant is injectivity on asymptotic pairs over every background. It is blind
+    at `|A| >= 3`. The step that dies is the collision step of the charge-level induction: in the dual, images go up
+    into levels not yet filled.
+  - Consequence. A proof of `ebb50f1d` at `|A| >= 3` must use injectivity on pairs that differ at infinitely many
+    sites. With lemma `2a3fa45c`, those pairs must also be neither periodic nor measure-typical. The example itself
+    is not injective, by soficity of `F_2` and `reversible-automata-that-never-lower-rest-counts-preserve-them`.
+  - Check. `experiments/dual-charge-calibration-2026-09-17/`. A binary search there finds no growth rule injective
+    on subsets of the 2-ball in `F_2`, in line with the two-letter part.
+- **Dual charge theorem by finite differences is dead at every non-amenable host** (swarm-0917-w23-w23-gs-break,
+  2026-09-17). This is for need `ebb50f1d`. By `pre-injective-count-raising-characterizes-nonamenability` (established,
+  route `pre-injective-count-raising-nonamenability-proof`), `G` is amenable iff every pre-injective automaton with a
+  quiescent never-created letter `0` preserves supports pointwise.
+  - The construction at non-amenable `G`. Take Bartholdi's linear automaton `Θ`, which is injective on finite
+    configurations and has values in `K^{∪X_s} ⫋ K^Y`, and add the support flag `[φ(g) ≠ 0] e_{y0}` in a free
+    coordinate. The result is pre-injective and never creates `0`, and it raises the count of a single-site
+    configuration.
+  - Invariant of the dead class: injectivity used only on pairs differing at finitely many sites. This covers counting,
+    wandering finite supports and Moore--Myhill arguments.
+  - The step where every member dies is the first appeal to injectivity, since pre-injectivity already gives a false
+    conclusion at each possible failing host. Dual failures live only at non-sofic, hence non-amenable, groups.
+  - The kill covers torsion hosts with no `F_2`, which the w23 free-subgroup calibration does not reach.
+  - At amenable groups the pre-injective form is true, by Garden of Eden and Meyerovitch's Bernoulli preservation. So
+    the class is not killed by an amenable obstruction, only by non-amenability.
+  - What survives. Arguments that use injectivity on pairs differing at infinitely many sites, for instance on
+    `0`-seas with infinitely many non-`0` islands, or on the whole `τ^{-1}`. The flag automaton is injective exactly when
+    Bartholdi's `Θ` is, so it gives no dual counterexample beyond a Gottschalk one.

@@ -1,0 +1,48 @@
+Brieskorn gauge pairs: X = M_a L(alpha), Y = M_b L(beta) on l^2(PSL_2(F_p))
+
+Scalar ansatz X = D^a alpha, Y = D^b beta: X^4 ~ D^12, Y^3 ~ D^12, (YX)^5 ~ D^35 versus X^12 ~ D^36: equal? False
+  (5(a+b) = 35m/12 != 36m/12 = 3m for m != 0; the gap m/12 is the Euler number -1/60 times -5m.)
+
+=== p = 31: G = PSL_2(F_31), N = 14880, diameter = 15
+  orders: alpha 4, beta 3, beta*alpha 5
+  faces: a 3720 (=N/4: True), b 4960 (=N/3: True), P 2976 (=N/5: True)
+  dim ker F^T = 1 (face components 1); sign vector (+1,+1,-1) in ker F^T: True
+  Thompson relator [bab, a^2 baba^2] trivial in G? False (reversed convention: False)
+  Markov top eigenvalues [1.       0.948881 0.948881]; lambda_2 = 0.948881; kappa >= 0.3197
+  R =  3: |delta| = 1.047, lsqr residual 1.3e-14; ||X^4-Y^3|| = 1.7321 (bound 3.1421), ||(YX)^5-X^12|| = 2.0000 (bound 18.8506), ||X^4-D|| = 1.7321 (bound 2.0947), ||X^4-1|| = 2.0000, tau(w) = 1.68e-03
+  R =  4: |delta| = 3.142, lsqr residual 2.5e-14; ||X^4-Y^3|| = 1.4142 (bound 2.3567), ||(YX)^5-X^12|| = 2.0000 (bound 14.1382), ||X^4-D|| = 1.4144 (bound 1.5711), ||X^4-1|| = 2.0000, tau(w) = 3.18e-03
+  R =  8: |delta| = 1.571, lsqr residual 3.6e-13; ||X^4-Y^3|| = 0.7654 (bound 1.1786), ||(YX)^5-X^12|| = 1.9615 (bound 7.0697), ||X^4-D|| = 0.7652 (bound 0.7857), ||X^4-1|| = 2.0000, tau(w) = 3.35e-02
+  R = 12: |delta| = 2.618, lsqr residual 1.5e-12; ||X^4-Y^3|| = 0.5176 (bound 0.7859), ||(YX)^5-X^12|| = 2.0000 (bound 4.7135), ||X^4-D|| = 0.5174 (bound 0.5239), ||X^4-1|| = 2.0000, tau(w) = 2.98e-01
+
+=== p = 41: G = PSL_2(F_41), N = 34440, diameter = 17
+  orders: alpha 4, beta 3, beta*alpha 5
+  faces: a 8610 (=N/4: True), b 11480 (=N/3: True), P 6888 (=N/5: True)
+  dim ker F^T = 1 (face components 1); sign vector (+1,+1,-1) in ker F^T: True
+  Thompson relator [bab, a^2 baba^2] trivial in G? False (reversed convention: False)
+  Markov top eigenvalues [1.       0.939066 0.934501]; lambda_2 = 0.939066; kappa >= 0.3491
+  R =  3: |delta| = 1.047, lsqr residual 5.3e-15; ||X^4-Y^3|| = 1.7321 (bound 3.1418), ||(YX)^5-X^12|| = 2.0000 (bound 18.8500), ||X^4-D|| = 1.7321 (bound 2.0945), ||X^4-1|| = 2.0000, tau(w) = 7.26e-04
+  R =  4: |delta| = 3.142, lsqr residual 8.1e-15; ||X^4-Y^3|| = 1.4142 (bound 2.3564), ||(YX)^5-X^12|| = 2.0000 (bound 14.1376), ||X^4-D|| = 1.4143 (bound 1.5709), ||X^4-1|| = 2.0000, tau(w) = 1.38e-03
+  R =  8: |delta| = 0.785, lsqr residual 1.1e-13; ||X^4-Y^3|| = 0.7654 (bound 1.1783), ||(YX)^5-X^12|| = 1.9615 (bound 7.0690), ||X^4-D|| = 0.7653 (bound 0.7855), ||X^4-1|| = 2.0000, tau(w) = 1.45e-02
+  R = 12: |delta| = 2.618, lsqr residual 7.7e-13; ||X^4-Y^3|| = 0.5176 (bound 0.7856), ||(YX)^5-X^12|| = 2.0000 (bound 4.7129), ||X^4-D|| = 0.5177 (bound 0.5237), ||X^4-1|| = 2.0000, tau(w) = 1.44e-01
+
+=== p = 71: G = PSL_2(F_71), N = 178920, diameter = 18
+  orders: alpha 4, beta 3, beta*alpha 5
+  faces: a 44730 (=N/4: True), b 59640 (=N/3: True), P 35784 (=N/5: True)
+  dim ker F^T = 1 (face components 1); sign vector (+1,+1,-1) in ker F^T: True
+  Thompson relator [bab, a^2 baba^2] trivial in G? False (reversed convention: False)
+  Markov top eigenvalues [1.       0.942017 0.941385]; lambda_2 = 0.942017; kappa >= 0.3405
+  R =  4: |delta| = 3.142, lsqr residual 1.4e-14; ||X^4-Y^3|| = 1.4142 (bound 2.3562), ||(YX)^5-X^12|| = 2.0000 (bound 14.1373), ||X^4-D|| = 1.4142 (bound 1.5708), ||X^4-1|| = 2.0000, tau(w) = 2.65e-04
+  R =  8: |delta| = 1.571, lsqr residual 1.2e-13; ||X^4-Y^3|| = 0.7654 (bound 1.1781), ||(YX)^5-X^12|| = 1.9616 (bound 7.0687), ||X^4-D|| = 0.7654 (bound 0.7854), ||X^4-1|| = 2.0000, tau(w) = 2.79e-03
+  R = 12: |delta| = 0.524, lsqr residual 1.8e-12; ||X^4-Y^3|| = 0.5176 (bound 0.7854), ||(YX)^5-X^12|| = 2.0000 (bound 4.7125), ||X^4-D|| = 0.5176 (bound 0.5236), ||X^4-1|| = 2.0000, tau(w) = 3.06e-02
+
+=== p = 79: G = PSL_2(F_79), N = 246480, diameter = 19
+  orders: alpha 4, beta 3, beta*alpha 5
+  faces: a 61620 (=N/4: True), b 82160 (=N/3: True), P 49296 (=N/5: True)
+  dim ker F^T = 1 (face components 1); sign vector (+1,+1,-1) in ker F^T: True
+  Thompson relator [bab, a^2 baba^2] trivial in G? False (reversed convention: False)
+  Markov top eigenvalues [1.      0.94503 0.94503]; lambda_2 = 0.945030; kappa >= 0.3316
+  R =  4: |delta| = 3.142, lsqr residual 7.1e-15; ||X^4-Y^3|| = 1.4142 (bound 2.3562), ||(YX)^5-X^12|| = 2.0000 (bound 14.1372), ||X^4-D|| = 1.4142 (bound 1.5708), ||X^4-1|| = 2.0000, tau(w) = 1.92e-04
+  R =  8: |delta| = 1.571, lsqr residual 7.1e-14; ||X^4-Y^3|| = 0.7654 (bound 1.1781), ||(YX)^5-X^12|| = 1.9616 (bound 7.0686), ||X^4-D|| = 0.7654 (bound 0.7854), ||X^4-1|| = 2.0000, tau(w) = 2.02e-03
+  R = 12: |delta| = 2.094, lsqr residual 9.5e-13; ||X^4-Y^3|| = 0.5176 (bound 0.7854), ||(YX)^5-X^12|| = 2.0000 (bound 4.7125), ||X^4-D|| = 0.5176 (bound 0.5236), ||X^4-1|| = 2.0000, tau(w) = 2.19e-02
+
+all assertions passed

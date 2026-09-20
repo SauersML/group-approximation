@@ -1,0 +1,20 @@
+BEAM V 96 n 12 seeds 144 auts 12 B 20000 rng 1 ALL SEEDS
+level 0 defect 60
+level 1: 144 extensions; min defect 53; kept 12 states (defect 53..60)
+level 2: 1728 extensions; min defect 45; kept 806 states (defect 45..60)
+level 3: 116064 extensions; min defect 38; kept 20000 states (defect 38..60)
+level 4: 2880000 extensions; min defect 30; kept 20000 states (defect 30..53)
+level 5: 2880000 extensions; min defect 23; kept 20000 states (defect 23..39)
+level 6: 2880000 extensions; min defect 15; kept 20000 states (defect 15..32)
+level 7: 2880000 extensions; min defect 8; kept 20000 states (defect 8..31)
+level 8 GOAL reached (beam)
+WITNESS 8 seeds (original vertex pairs, lawful flag):
+  49 82 overfold
+  23 29 overfold
+  19 27 lawful
+  4 47 lawful
+  0 25 lawful
+  62 43 lawful
+  69 30 overfold
+  21 80 overfold
+RECHECK goal on literal seed set: YES

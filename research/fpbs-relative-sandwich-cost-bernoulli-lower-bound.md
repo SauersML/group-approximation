@@ -83,3 +83,25 @@ census-computation).**
   (artifact §5 example). Equivariant copies inside `E_a` are identities
   (artifact Lemma 5). So a counterexample needs a twisted, non-group
   sandwich.
+
+**All finitely generated free groups: exact value via the L2-closure rank
+(September 19, 2026, swarm-0917-w18-w18-fp-break, group-rings).**
+- Proved (`fpbs-free-group-sandwich-cost-is-minimal-overgroup-rank`,
+  ESTABLISHED): for free `Δ` of finite rank, every finite `F` and every free
+  `a`, `p^Δ_F(a) = π̄(⟨F⟩ ≤ Δ) = min{rk L : ⟨F⟩ ≤ L ≤ Δ}`. The minimum is
+  attained by `E_{a|L}`. So RBL holds for every finitely generated free
+  group, including non-compressed `⟨F⟩`, for example the index-2 subgroup
+  `⟨x, yxy^{-1}, y^2⟩` of `⟨x, y⟩ ≤ F_3`, with value `2 < 3 = rk`.
+- Input: the Fox-rank bound `C(E) ≥ rk(A)` of
+  `fpbs-sandwich-cost-fox-rank-lower-bound`, together with Jaikin-Zapirain's
+  Theorem 3.12 (arXiv:2403.09515v2), imported as
+  `free-group-minimal-overgroup-rank-is-fox-rank`. That theorem gives
+  `rk(A) = π̄` for every finitely generated `H`, not only compressed `H`.
+- Where it stops (the invariant): the Fox cocycle needs a derivation
+  `δ: Δ → (ZΔ)^q` with `δ(f_k) = e_k`. Such a `δ` makes `I_Δ` free on the
+  `f_k − 1`, so `Δ` is free. Every non-free `Δ` is outside this method. The
+  remaining RBL is for non-free `Δ`, where no action-independent formula for
+  `p_F` is known. A natural next case is surface groups. There an L2
+  analogue of compressed-implies-independent is known from Antolín and
+  Jaikin-Zapirain (not imported, not checked here), but the Fox cocycle on
+  `[[E_a]]` has no analogue.

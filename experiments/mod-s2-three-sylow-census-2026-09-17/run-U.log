@@ -1,0 +1,7 @@
+[U] |V| = 81, cosets 38400 [44s]
+[U] cosets 38400, Schreier gens 115201, relators 268800 [13s]
+[U] after unit elimination 26 gens, 119045 relators [762s]
+[U] H_1 = Z^16 + [3, 3, 3, 3, 3] [779s]
+[U] classes 50, W rank 34, gcd aug 10 [786s]
+[U] {"label": "U", "cosets": 38400, "schreier_gens": 115201, "gens_after_unit_elim": 26, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [384, 768, 1152], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 13, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2], "seconds": 802}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/sylow-U.json

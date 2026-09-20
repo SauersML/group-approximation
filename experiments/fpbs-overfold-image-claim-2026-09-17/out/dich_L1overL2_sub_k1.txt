@@ -1,0 +1,1 @@
+dichotomy seed=11 host=L1overL2 xmode=sub k=1 {'inst': 1500, 'Yneq': 13062, 'ZX': 0, 'ZY': 13062, 'MIX': 0, 'shn_fail': 0, 'viol1': 0, 'mix_viol1': 0}

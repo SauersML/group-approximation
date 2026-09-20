@@ -67,3 +67,31 @@ arithmetic intermediate.
   finite-dimensional nontrivial Maslov-sector representation, with an error
   bound depending on `k_n` but not on the ambient multiplicities.  No such
   blockwise arithmetic correction theorem is presently proved.
+- (swarm-0917-w21, reframer; recorded dead end) Tried a finite-subgroup
+  rounding reframing: replace the range algebra of the lifts by exact
+  vertex representations of finite subgroups of `Sp_4(Z)` and their
+  preimages in `E_3`, so that `(MH1)` becomes an edge-matching condition over
+  a complex of finite groups.  It dies at the vertex/edge stage, because that
+  data is already fully satisfiable.
+  - `corona-representations-are-exact-on-locally-finite-subgroups` already
+    gives coordinatewise exact lifts on every finite subgroup, with exact
+    intertwiners.  It also gives regular satisfiability of every
+    conjugation constraint.
+  - In the tracial setting of `(MH1)`, the central-regular trace forces each
+    vertex restriction to be the `omega`-regular representation.  That is
+    canonical up to unitary conjugacy.  The restrictions to a common edge
+    group are then exactly conjugate, so multiplicity matching and edge
+    matching never obstruct.
+  - Every irreducible block of such a vertex representation has degree at
+    most `|F|`.  Once `k_n >= max|F|`, the vertex algebras never contribute
+    supercritical mass, so `(MH1)` gets no information from them.
+  - The only remaining constraint is the holonomy around 2-cells of a
+    complex of finite groups whose colimit is `Sp_4(Z)`.  No such colimit
+    presentation of `Sp_4(Z)` is verified in the graph.  Even granted one,
+    approximate 2-cell holonomy for `omega`-regular vertices is a restatement
+    of an approximate model of `E_3`, i.e. of the flagship.  It is not a
+    weaker prerequisite.
+  - Invariant: finite-group data (vertex and edge representations) is
+    regular-satisfiable and carries no degree information above `max|F|`.
+    Every argument that uses only finite-subgroup restrictions dies at the
+    2-cell holonomy step.

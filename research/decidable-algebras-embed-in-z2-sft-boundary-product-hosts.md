@@ -410,3 +410,99 @@ OPEN.
     is not recorded as a prerequisite.
   - The remaining NO obstruction must say which singular element can sit in a trdeg-2 domain. Grading, leading
     forms and Hochschild dimension give no handle on that.
+
+**w17-z-pull obstruction-miner (linear-characteristic), 2026-09-19: mechanism (i) is dead for every field; the firewall Q_2 is answered NO, and with it Ara–Cortiñas Question 5.7 over F_2.**
+- **New theorem.** `quasi-free-algebras-contain-no-two-variable-polynomial-ring` is ESTABLISHED (unreviewed) by
+  `polynomial-subring-bound-via-fraction-field-koszul-ext`. If `k[a_1, ..., a_n] ⊆ A'`, then
+  `l.gl.dim(A' ⊗ k(y_1, ..., y_n)) >= n`, with no flatness of `A'` over the subring.
+  - The trick is to resolve `Q = (A' ⊗ K) ⊗_S S/I` with `S/I ≅ Frac(C)`. The induced Koszul complex stays exact
+    because `Tor^S(A' ⊗ K, S/I) = Tor^C(A', Frac C) = 0`. The top Ext is `Frac(C) ⊗_C A' ≠ 0`.
+  - This answers live need `03f81334`. The subfield route (`quasi-free-subfield-bound-via-koszul-ext`) stopped
+    exactly because it put flatness on the `A'` side.
+- **Cascade** (compiled by `cairn check`, through existing routes):
+  - `leavitt-algebras-contain-no-two-variable-polynomial-ring` holds for every field, by the new route
+    `leavitt-plane-freeness-from-quasi-free-polynomial-bound`;
+  - then `leavitt-commuting-units-are-algebraically-dependent` and
+    `no-unital-map-from-leavitt-tensor-square-to-leavitt-over-f2`, which is Question 5.7 at `k = F_2`;
+  - and `leavitt-unit-group-has-no-integer-heisenberg-subgroup` and
+    `kun-thom-wreath-does-not-embed-in-leavitt-unit-group`.
+- **For this claim.**
+  - At `k = F_2(x, y)` it kills mechanism (i) of the `F_2[Z^4]` test case.
+  - With `laurent-tensors-reduce-leavitt-rank-to-function-fields`, it kills every `Z^4` embedding supported on
+    the equicontinuous-factor part of `B_Ω ⊗ L_2`.
+  - With w16-z's closure of mechanism (ii), the `Z^4` fork now rests only on mechanism (iii), the entangled
+    embeddings.
+- **Where it stops.** `B_Ω ⊗ L_2` is not quasi-free, because `B_Ω ⊇ F_2[Z^2]`. The same Koszul argument only gives
+  `l.gl.dim` lower bounds there, and the upper bound `leavitt-tensor-global-dimension-bound` is
+  `gl.dim B_Ω + 1`. `F_2[Z^4]` contains a polynomial ring in 4 variables. So the method refutes the entangled case as
+  soon as `l.gl.dim(B_Ω ⊗ K) <= 2` for `K = F_2(y_1, ..., y_4)`.
+  - Whether that holds is unclear. `LC(Ω, F_2)` is a countable union of separable algebras, which can have
+    Hochschild dimension `1` rather than `0`, so the naive bound for `B_Ω` is `3`, one too many.
+  - Sharpest next target: bound `l.gl.dim(B_Ω ⊗ K)` by `2`, or find a module of projective dimension `3`.
+**w18 obstruction-miner (linear-characteristic), 2026-09-19: a one-isometry linear criterion for mechanism (i), and a Toeplitz rung between Q5.7 and Q_2.**
+- **Established.** `toeplitz-commutant-compression-detects-polynomial-pairs`, by
+  `toeplitz-commutant-compression-detects-polynomial-pairs-proof` (unreviewed, elementary, any field `k`, any
+  unital `k`-algebra `A`). Let `S'S = 1`, `P = 1 - SS'` and `Φ(a) = S a S'`.
+  - `C(S,S') = { T : T - Φ(T) ∈ PAP }`, and `κ(T) = PTP` is a unital homomorphism `C(S,S') -> PAP` with image
+    `PAP ∩ (1 - Φ)(A)`.
+  - If `κ(T)` is transcendental, then `S` and `T` are commuting and algebraically independent. Proof: take the
+    lowest `S`-degree, multiply by `S'^(i_0)` and then by `P`; since `PS = 0`, this leaves `p_(i_0)(κ(T)) = 0`.
+  - Doubly commuting isometries with `(1 - SS')(1 - RR') ≠ 0` are exactly unital embeddings of `J ⊗ J`, where
+    `J = k⟨x, y | yx = 1⟩`. Every nonzero ideal of `J ⊗ J` contains `p ⊗ p`.
+  - The chain is `Q5.7 YES => J ⊗ J embeds in L => (transcendental κ for some S) => Q_2 fails at k`. A
+    transcendental element of any `C_u` also gives the third condition, with `S = u s_0`.
+- **Posed (OPEN).** `toeplitz-tensor-square-embeds-in-binary-leavitt`, at `F_2`. A NO answers Q5.7 negatively over
+  `F_2`, and it follows from Q_2. A YES refutes Q_2 at `F_2`, the no-polynomial-pair form of mechanism (i).
+- **Killed.** Every monomial, or conjugate-to-monomial, first isometry `S = s_w`.
+  - `C(S,S') ⊆ F_2[s_v]` by `leavitt-isometry-centralizers-are-monogenic`.
+  - `κ(s_v)` is nilpotent, since `κ(s_v)^m = P s_w P = 0`, so the compressed commutant is algebraic.
+  - The invariant is the compressed commutant `κ(C(S,S'))`. It dies at the step where `κ` must be transcendental.
+- **Screen.** Take `S = u s_0` for eight transvection and permutation units, in the boxes `(2,3)` and `(3,4)`. Each
+  gives `C(S,S') = F_2`, while the flip control gives `M_2(F_2)`
+  (`experiments/leavitt-toeplitz-commutant-2026-09-17/results.txt`).
+- **Where it stops.**
+  - For `F_2[Z^4]` the pair is polynomial, not Laurent, since `R` is a proper isometry and not a unit. So a YES
+    here does not yet give units for the test case.
+  - No non-monomial `S` with a nonscalar `C(S,S')` beyond the `M_2` controls is known.
+**w20-z obstruction-miner (linear-characteristic), 2026-09-20: referee PASS on the w18 refutation. (E) is false.**
+- **Result.** The chain in commit `20e819b457` is refereed and passes: `f2-z4-has-no-embedding-in-z2-sft-boundary-product-hosts`,
+  via `polynomial-subrings-bound-transcendental-flat-dimension` and `cantor-crossed-products-bound-commuting-rank-by-cd`.
+  That commit is on `claude/scale-agents-high-impact-erol9w` and is not on `main`. The full report is
+  `crossed-product-commuting-rank-refutation-review`.
+  - The invariant is universal weak dimension, `uwd(A) = sup_K w.gl.dim(A ⊗ K)`.
+  - Commuting rank is at most `uwd`, and `uwd(B_Ω ⊗ L_∂) <= cd(Z^2 × F_d) = 3`. So `F_2[Z^4]` embeds in no matrix
+    ring over the host, unital or not, for every `Z^2`-Cantor system Ω.
+- **Where every member of the class dies.** An approach that bounds rank by a dimension of the host alone dies on
+  `k(x) ⊗ k(y)`. That ring is hereditary and has commuting rank 2.
+  - The w17 localization attempt died at universally singular elements, because it inverted `Σ` inside an overring
+    of `A`.
+  - The w18 step inverts `Σ` only in the coefficient field, through the graph `a_i ↦ y_i`. That is the step that
+    passes.
+- **Maintainer action on landing.** Add `refuted_by: [f2-z4-has-no-embedding-in-z2-sft-boundary-product-hosts]`
+  to this node's frontmatter. That id is absent from this worktree's base, so it was not added here.
+- **Side consequence (needs a second referee).** Ara–Cortiñas Q5.7 has a negative answer over every field. The
+  proof uses `gl.dim L_K(1,2) = 1` (arXiv:1605.03841) and `k[s, t] ⊆ L_2 ⊗ L_2`.
+**w21-z obstruction-miner (linear-characteristic), 2026-09-20: the grading hole is now the whole problem; no new kill.** OPEN.
+- **Calibration (from established nodes only).** `leavitt-nonnegative-part-is-matrix-union-over-free-algebra` and
+  `matrices-over-free-fields-have-no-trdeg-two-subfields` are both ESTABLISHED. Together they say `L_(>=0)` (and, by the
+  involution, `L_(<=0)`) contains no two commuting independent elements over any field. So the conclusion of
+  `leavitt-polynomial-pairs-move-to-the-nonnegative-part` is always false. That claim is now *equivalent* to
+  `leavitt-algebras-contain-no-two-variable-polynomial-ring`, not a step towards it. The route
+  `leavitt-rank-one-from-free-field-matrices-and-degree-reduction` has stopped being a decomposition: its only open
+  prerequisite is its target, restated. Work on mechanism (i) should attack Q_2 directly. The "grading half" is not
+  easier, and the w17 isotropy-lag kill of regradings already covers all residual pairs.
+- **Thompson-unit YES witnesses: dead, with an explicit relation.** Take `Z^2 = <a, b> <= V ⊂ L^x`. Every point of
+  `{0,1}^ω` lies in `int Fix(h)` for some `h ≠ 1` in `Z^2`:
+  - on the torsion part a power of `a` is locally trivial;
+  - at an attracting or repelling periodic point, the germ group is `Z`, so `Z^2` has a germ-trivial element;
+  - that element fixes a neighbourhood of the periodic point, and by commutation it fixes the whole basin.
+  By compactness finitely many `h_i` suffice, and then `Π_i (1 - h_i)` vanishes at every groupoid arrow (pair
+  `S` with `S Δ {i}`). So `F_2[Z^2] -> L` is never injective. This is subsumed by
+  `leavitt-thompson-units-have-finite-centralizer-rank` and is recorded only as a check on it.
+- **Saturation of w17's singular set.** For any nonzero ring `B` receiving `L`, the set of elements of `k[a, b]`
+  invertible in `B` is a saturated multiplicative set, because `qr` invertible and `qr = rq` give two-sided inverses
+  of `q` and `r`. Hence the universally singular set `S` of `leavitt-polynomial-pairs-contain-a-universally-singular-element`
+  satisfies `S·k[a, b] ⊆ S ∪ 0`, and `S ∪ 0` is an intersection of unions of primes.
+- **Where it dies.** A local-Koszul upgrade would localize at `k[a, b] ∖ m` and run the Koszul resolution of
+  `R/m` through `B ⊗_R -`. That needs `B` flat over `R = k[a, b]_m`, which fails at zero divisors, and
+  zero divisors are exactly what `S` may contain. Nothing here selects which prime carries `S`.

@@ -1,0 +1,102 @@
+seed=['O3', 'E3', 'E3'] tensor=[] load=None n=12 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-2.0), np.float64(2.0))
+  adam p=8 delta=0.184896
+  adam p=32 delta=0.174312
+  adam p=128 delta=0.174312
+  adam p=256 delta=0.174311
+  p=8 regressed (0.185); restored
+ restart 0: delta=0.174311 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=77
+  adam p=8 delta=0.146796
+  adam p=32 delta=0.138361
+  adam p=128 delta=0.137530
+  adam p=256 delta=0.136153
+  p=8 regressed (0.147); restored
+ restart 1: delta=0.136153 rel=2.4e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=81
+  adam p=8 delta=0.233198
+  adam p=32 delta=0.204700
+  adam p=128 delta=0.201244
+  adam p=256 delta=0.200547
+  p=8 regressed (0.22); restored
+ restart 2: delta=0.200547 rel=1.5e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=87
+  adam p=8 delta=0.228587
+  adam p=32 delta=0.210955
+  adam p=128 delta=0.206991
+  adam p=256 delta=0.206342
+  p=8 regressed (0.229); restored
+ restart 3: delta=0.206342 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=58
+  adam p=8 delta=0.161400
+  adam p=32 delta=0.145998
+  adam p=128 delta=0.144514
+  adam p=256 delta=0.141918
+  p=8 regressed (0.16); restored
+ restart 4: delta=0.141918 rel=1.8e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=47
+  adam p=8 delta=0.165094
+  adam p=32 delta=0.155076
+  adam p=128 delta=0.153050
+  adam p=256 delta=0.152377
+  p=8 regressed (0.163); restored
+ restart 5: delta=0.152377 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=43
+  adam p=8 delta=0.199809
+  adam p=32 delta=0.186680
+  adam p=128 delta=0.183793
+  adam p=256 delta=0.183266
+  p=8 regressed (0.2); restored
+ restart 6: delta=0.183266 rel=2.8e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=59
+  adam p=8 delta=0.219910
+  adam p=32 delta=0.208724
+  adam p=128 delta=0.206711
+  adam p=256 delta=0.206252
+  p=8 regressed (0.22); restored
+ restart 7: delta=0.206252 rel=2.2e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=74
+  adam p=8 delta=0.203906
+  adam p=32 delta=0.188759
+  adam p=128 delta=0.185353
+  adam p=256 delta=0.184783
+  p=8 regressed (0.204); restored
+ restart 8: delta=0.184783 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=50
+  adam p=8 delta=0.219904
+  adam p=32 delta=0.208720
+  adam p=128 delta=0.206682
+  adam p=256 delta=0.206246
+  p=8 regressed (0.22); restored
+ restart 9: delta=0.206246 rel=1.8e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=44
+  adam p=8 delta=0.147876
+  adam p=32 delta=0.139987
+  adam p=128 delta=0.138841
+  adam p=256 delta=0.137819
+  p=8 regressed (0.148); restored
+ restart 10: delta=0.137819 rel=2.2e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=60
+  adam p=8 delta=1.414422
+  adam p=32 delta=1.414214
+  adam p=128 delta=1.414214
+  adam p=256 delta=1.414214
+  p=8 regressed (1.41); restored
+ restart 11: delta=1.414214 rel=3.6e-14 w=(np.float64(4.0), np.float64(2.0)) secs=74
+  adam p=8 delta=0.239426
+  adam p=32 delta=0.221873
+  adam p=128 delta=0.218085
+  adam p=256 delta=0.217382
+  p=8 regressed (0.239); restored
+ restart 12: delta=0.217382 rel=2.7e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=35
+  adam p=8 delta=0.235384
+  adam p=32 delta=0.220356
+  adam p=128 delta=0.216151
+  adam p=256 delta=0.214224
+  p=8 regressed (0.235); restored
+ restart 13: delta=0.214224 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=37
+  adam p=8 delta=0.213418
+  adam p=32 delta=0.196574
+  adam p=128 delta=0.192941
+  adam p=256 delta=0.192250
+  p=8 regressed (0.213); restored
+ restart 14: delta=0.192250 rel=1.6e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=18
+  adam p=8 delta=0.270505
+  adam p=32 delta=0.252125
+  adam p=128 delta=0.248223
+  adam p=256 delta=0.247465
+  p=8 delta=0.246199 rel=2.2e-14
+  p=32 delta=0.202377 rel=4.3e-14
+  p=128 delta=0.198341 rel=2.2e-14
+  p=512 delta=0.197437 rel=3.3e-14
+  p=2048 delta=0.197213 rel=2.1e-14
+ restart 15: delta=0.197213 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=15
+BEST n=12 delta=0.136153 profile 2sin(pi/36)=0.174311

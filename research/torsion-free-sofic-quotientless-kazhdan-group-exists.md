@@ -103,3 +103,20 @@ action.
   - The monster is not a goal witness. MF-ness, `Rad_MF` of its mapping tori and finite
     presentation are all unknown. It is not expected to be finitely presented, since it is
     lacunary hyperbolic but not hyperbolic.
+
+- **2026-09-20, swarm-0917-w20-w20-titz-last1 (cohomology-index).** Torsion-killing covers of the
+  elementary sources. Dead for this class; (SQK) stays OPEN.
+  - **The class.** Obtain a witness `E` as a cover `E ->> Q` of a known LEF quotientless Kazhdan
+    group with torsion, such as `Q_0 = EL_3(LC(X,Z) ⋊ Z)`, with a small kernel `N` so that soficity
+    might lift. Small means finitely generated residually finite, or finite-rank abelian or nilpotent.
+    The class includes central `Z^k`-covers with relative (T) (Euler-class or Deligne type).
+  - **Death step** (`quotientless-rf-kernel-covers-are-central`, ESTABLISHED).
+    - A quotientless `E` acts trivially on any such `N`, since the image in `Aut(N)` is residually
+      finite by Baumslag or Mal'cev. So the cover is central.
+    - Schur, via `torsion-free-central-cover-forces-abelian-finite-subgroups`, then forces every finite
+      subgroup of `Q` to be abelian, with at most `rk N` generators.
+    - Every `EL_n(R)/Z`, `n >= 3`, contains a finite subgroup mapping onto `S_n`.
+  - **Survivors.** Kernels with a nontrivial outer action by a quotientless image. They include the
+    infinite-rank relation-module kernels, whose envelope soficity already dies by
+    `relation-cover-sofic-envelope-forces-trivial-kernel`, and finitely generated kernels with
+    non-residually-finite `Aut` and `Out`.

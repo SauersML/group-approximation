@@ -1,0 +1,36 @@
+# exact s=5 run of rel on a law-6 double cover of B_1, j = 1
+# (run_law6.sh: ./rel inst 5 0 fast part 4, parts 0..3)
+# PA [2, 3, 0, 1, 8, 9, 10, 11, 5, 4, 7, 6] PB [4, 5, 6, 7, 10, 11, 8, 9, 2, 3, 0, 1]
+## part 0
+V 96 n 12 seeds 142 lawful 10 overfold 132 auts 4 law 6
+overfold orbit reps 33
+s 1 tested 11 saving-hist: 0:11
+s 2 tested 1441 saving-hist: 0:1441
+s 3 tested 93665 saving-hist: 0:93665
+s 4 tested 4027595 saving-hist: 0:4027595
+s 5 tested 128883040 saving-hist: 0:128883040
+## part 1
+V 96 n 12 seeds 142 lawful 10 overfold 132 auts 4 law 6
+overfold orbit reps 33
+s 1 tested 7 saving-hist: 0:7
+s 2 tested 917 saving-hist: 0:917
+s 3 tested 59605 saving-hist: 0:59605
+s 4 tested 2563015 saving-hist: 0:2563015
+s 5 tested 82016480 saving-hist: 0:82016480
+## part 2
+V 96 n 12 seeds 142 lawful 10 overfold 132 auts 4 law 6
+overfold orbit reps 33
+s 1 tested 9 saving-hist: 0:9
+s 2 tested 1179 saving-hist: 0:1179
+s 3 tested 76635 saving-hist: 0:76635
+s 4 tested 3295305 saving-hist: 0:3295305
+s 5 tested 105449760 saving-hist: 0:105449760
+## part 3
+V 96 n 12 seeds 142 lawful 10 overfold 132 auts 4 law 6
+overfold orbit reps 33
+s 1 tested 6 saving-hist: 0:6
+s 2 tested 786 saving-hist: 0:786
+s 3 tested 51090 saving-hist: 0:51090
+s 4 tested 2196870 saving-hist: 0:2196870
+s 5 tested 70299840 saving-hist: 0:70299840
+# total s=5 sets tested 386649120; VIOLATION lines: 0

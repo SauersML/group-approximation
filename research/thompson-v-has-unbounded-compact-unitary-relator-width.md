@@ -95,3 +95,39 @@ The statement does not depend on the presentation or on `a`.
      - arguments that use the joint structure of the words, since realizability of the data by words of `V` is not claimed;
      - Schur-functor replicas (`Lambda^k`, `Sym^k`) and compressions;
      - model-dependent lengths.
+6. **Unitarily invariant norms through exterior-power replicas** (2026-09-19, swarm-0917-w19-w19-nh-last1,
+   operator-algebras). Dead as a class whenever the relator Ky Fan mass vanishes; the node stays OPEN.
+   - `exterior-replica-converts-kyfan-witnesses-to-opnorm` (ESTABLISHED) proves two reductions.
+     - A ratio witness in any unitarily invariant norm of `g - I` yields a Ky Fan-`k` ratio witness, with loss `|R_0|`, by
+       Abel summation of the dual vector. The norm may depend on the dimension and the witness, and includes every
+       Schatten norm.
+     - The exterior replica `Lambda^1 (+) ... (+) Lambda^j` then turns it into an operator-norm ratio witness with ratio
+       `<= pi rho / min(A, 1)`. Here `rho` is the relator Ky Fan mass and `A` the Ky Fan length of `a(U)`.
+   - So "Schur-functor replicas" from Attempt 5 do strictly more than tensor powers. They convert Ky Fan data that no
+     classical length sees at the identity (worked data: op, HS, rank ratios `k^(1/2)`, `sqrt 2`, `k^2`) into MF data.
+   - **Invariant.** The relator Ky Fan mass `rho = max_r KF_k(r(U))`.
+   - **Death step.** One exterior replica, then the op amplification of Attempt 4. For `V`, "mass-ratio -> 0" is equivalent
+     to `V` MF.
+   - What survives: witnesses with relator Ky Fan mass bounded below at every usable index. These force
+     `KF_k(a(U)) -> infinity`, and they include all finite realizations of the Schatten-`p` data of Attempt 5, whose
+     relators have an eigenvalue `-1`. Non-norm lengths also survive, as do joint word structure and higher Schur functors
+     with non-exterior weights.
+6. **Every unitarily invariant norm length, through the involution's far mass** (2026-09-20,
+   swarm-0917-w22-w22-nh-pull, reframing). Dead as a route independent of `thompson-v-hyperlinear`. This settles the
+   first surviving item of Attempt 5.
+   - `invariant-norm-ratio-witnesses-localize-hyperlinear` (ESTABLISHED) shows the following. A ratio
+     witness in `l(x) = N_d(x - I)`, for **any** unitarily invariant norms `N_d`, makes `V` hyperlinear. This covers every
+     Schatten `p`, normalized or not, and Ky Fan norms. For normalized Schatten `p < infinity` the witness is equivalent to
+     hyperlinearity.
+   - It uses the joint structure of the words, and no amplification.
+     - `sigma^2` is a product of relators, so the involution `0w <-> 1w` has spectrum at `+-1` up to `o(eta)`.
+     - Normal generation bounds every generator's far mass by `N eta` at every threshold.
+     - Cutting each generator down to its far spectral part on their span `E`, with `dim E <= K eta d`, gives a
+       normalized Hilbert--Schmidt model.
+   - **Invariant.** The far mass `eta` of the involution.
+   - **Death step.** The localization to `E` (Step 4 of the proof route). There the relator far mass `o(eta d)` becomes a
+     vanishing fraction of `dim E`, while `sigma` keeps `l_2^2 >= 1/K`.
+   - The Schatten data (S>) and (S<) of Attempt 5 are therefore realized by words of `V` only in models that already
+     yield a hyperlinear model of `V`.
+   - What survives: lengths not of the form `N(x - I)`, such as model-dependent lengths, and non-metric certificates of
+     `Rad_cw(V) = 1`.

@@ -1,0 +1,8 @@
+B ['ABBA', 'baB', 'BaBab'] HIT ([(0, 2, 1), (1, 0, 2), (0, 1, 2)], 'b', 2)
+B ['BAAAA', 'bbaB', 'AABaB'] HIT ([(1, 0, 2), (2, 1, 0), (2, 1, 0)], 'a', 2)
+B ['Babbb', 'aaaba', 'aaBaa'] HIT ([(0, 1, 2), (2, 0, 1), (2, 1, 0)], 'b', 2)
+B ['BBAAb', 'abba', 'bbABA'] HIT ([(1, 2, 0), (0, 1, 2), (0, 2, 1)], 'a', 2)
+B ['abaaa', 'bAb', 'ababb'] HIT ([(0, 1, 2), (1, 2, 0), (2, 1, 0)], 'a', 2)
+B ['BAbAA', 'babb', 'ABaba'] HIT ([(1, 2, 0), (1, 0, 2), (1, 0, 2)], 'AB', 2)
+B ['ABBaa', 'BBAA', 'BAbAB'] HIT ([(0, 2, 1), (1, 0, 2), (0, 1, 2)], 'AB', 2)
+malrandom S3 rank 3 subgroups 7 with hits 7

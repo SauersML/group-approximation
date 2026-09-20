@@ -68,6 +68,82 @@ thompson-t-has-full-mf-radical  ==>  (PW)  ==>  T is not a quasidiagonal group.
     necessary condition that has been found.
   - *Small dimensions.* Each fixed dimension is gapped (`delta_n > 0`), so a finite-dimensional search
     can refute (PW) only through a sequence with dimension going to infinity. It cannot prove (PW).
+- **2026-09-19 (swarm-0917-w19-w19-ptl-last1, reframing): (PW) is equivalent to T not MF, so it is not a
+  weaker intermediate.** See `thompson-t-pentagon-winding-rigidity-equals-full-radical`, which is
+  ESTABLISHED.
+  - *Obstruction.* The obstructing invariant is the twisted spectrum `Lambda`. It is the set of
+    `lambda in S^1` for which there are pairs with
+    - `U^4 ≈ V^3 ≈ lambda` and `(VU)^5 ≈ lambda^3`;
+    - `r_1, r_2 ≈ 1`.
+
+    `Lambda` is a closed subgroup of `S^1`.
+  - *Death step.* Suppose `T` is MF. From a corona model `rho`, the dilation maps
+    `T̄ -> C_T(t_k)` together with the exact spectral projections of the finite-order unitary
+    `rho(t_k)` put `e^(2 pi i/2^k)` in `Lambda`. So `Lambda = S^1`.
+  - *Rescaling.* The rescaling `(e^(-i theta/4) U, e^(-i theta/3) V)`, rounded, leaves `r_1` and `r_2`
+    unchanged, because they are commutators. It sends `(BA)^5` to about `e^(i theta/12)`. So
+    `kappa_P != 0` at defect about `|theta|/12`.
+
+  Hence (PW) implies T not MF, and the sandwich collapses. The same argument kills every "arc-detecting"
+  vanishing statement for `(BA)^5`. Status of this node: still OPEN, and now equivalent to
+  `thompson-t-has-full-mf-radical`.
+  - *Relator-drop census (experiments/thompson-t-relator-drop-2026-09-17).* No `SL_2(C)` lift of a rigid
+    `Delta(4,3,5)` character satisfies `r_1` or `r_2`. `Delta/<<r_1>>` maps onto `A_5` and `Delta/<<r_2>>`
+    maps onto `A_6`. These are finite images only, so there is no non-torsion `H_2` class that separates
+    `r_2`. The "must use `r_2`" constraint above is confirmed but gives no handle.
+- **2026-09-20 (swarm-0917-w20-w20-ptm-pull, cohomology-index): windings pulled back from `V` vanish, so
+  the winding lane is blind to every witness that extends to `V`. Lane DEAD for `thompson-v-is-not-mf`.**
+  - *Lemma (pullback vanishing).* Let `phi: T -> Lambda` be a homomorphism into a finitely presented group
+    `Lambda = <S | R_Lambda>` with `H_2(Lambda; Q) = 0`. The case of interest is the inclusion `T <= V`, where
+    `H_2(V; Q) = 0` (`thompson-v-k-shadow-cannot-detect-mf`). Let `S_m` be unitary tuples whose `R_Lambda`-defect
+    tends to `0` in operator norm. Let `(A_m, B_m)` be the spectral roundings of `phi(a)(S_m)` and
+    `phi(b)(S_m)` to exact orders 4 and 3. Then eventually `12 kappa_P(A_m, B_m) = 0` and
+    `kappa(r_2)(A_m, B_m) = 0`.
+  - *Proof, and why it is dimension-free.*
+    - Put `tl(X) = Tr log X / 2 pi i` (principal branch) for `||X - 1|| < 1/2`. Three facts hold uniformly in
+      the dimension, because each discrepancy lies in `Z` and varies continuously along the path
+      `s -> exp(s log X)`:
+      - `tl(XY) = tl(X) + tl(Y)` when `X`, `Y` and `XY` are small;
+      - `tl(F X F^*) = tl(X)`;
+      - `tl(X^*) = -tl(X)`.
+
+      Hence `tl([F, R]) = 0` whenever `R` is small.
+    - `c_0 = r_P^12 a^-60 b^-60` and `r_2` lie in `R_T ∩ [F_2, F_2]`. So `w = c_0(phi(a), phi(b))` lies in
+      `R_Lambda ∩ [F_S, F_S]`, and some power `w^N` lies in `[F_S, R_Lambda]` (Hopf, since `H_2` is torsion).
+      Writing `w^N` as a fixed product of commutators `[f_i, r_i]^(±1)` gives `N tl(w(S_m)) = 0`.
+    - Move from `(phi(a)(S_m), phi(b)(S_m))` to `(A_m, B_m)` along a unitary path of length `o(1)`. On this
+      path `det c_0 = 1` (it is a commutator word) and `c_0` stays small, so `tl(c_0)` is an integer that
+      varies continuously and is therefore constant.
+    - Finally `tl(c_0(A_m, B_m)) = tl(P^12) = 12 kappa_P`. The same argument applies to `r_2`.
+  - *Consequences.*
+    1. (PW) holds automatically on every witness that is close to a restriction from `V`, and so on any
+       witness factoring through an `H_2`-rationally trivial finitely presented group. Any refutation of (PW)
+       is therefore a family of `T`-witnesses that stays a bounded distance away from every `V`-extendable
+       family.
+    2. For `V`-extendable witnesses, `kappa_P = 0` forces `(det A det B)^5 = 1`, hence `det A = det B = 1`
+       (fifth powers are bijective on `mu_12`). In terms of multiplicities, where `m_k` is the multiplicity of
+       the eigenvalue `i^k` of `A` and `n_j` that of `omega^j` of `B`:
+       ```text
+       m_1 + 2 m_2 + 3 m_3 = 0 (mod 4),        n_1 + 2 n_2 = 0 (mod 3).
+       ```
+       A census of `V`-relevant witnesses may restrict to these spectral types.
+  - *Kill.* This is the class of arguments "prove `V` not MF by exhibiting a nonzero Exel--Loring or
+    Dadarlat winding on the restriction of a `V`-witness to `T`", and more generally to any subgroup of `V`.
+    - Invariant: the pairing `H_2(T) -> Z` is natural along `T -> V`, and it factors through
+      `H_2(V; Q) = 0`.
+    - Death step: the first one, since every such winding is `0`.
+  - *Relation to the other nodes.* By the attempt above (Z), not (PW), is the whole content for `V`.
+    This is consistent with the live result that (PW) is equivalent to `T` not MF, since `V` MF would give
+    zero-winding witnesses of `T` only, and (Z) is what would rule those out.
+  - *Census* (`experiments/thompson-t-defect-census-2026-09-17/planted_census.py`, outputs `out_*.txt`). This is
+    weak, upper-bound-only evidence.
+    - Planted direct sums of characters, perturbed and minimized with Adam on logsumexp operator-norm
+      defects.
+    - Pentagon-only control (`n = 6`): it finds `D = 0.25` with `12 kappa_P = 2`, and `D = 0.32` with
+      `12 kappa_P = -3`, so the method does detect windings.
+    - Full relators, `n = 4, 6, 8`: every local minimum found has `D >= 1`.
+    - An earlier random-start run reached `D = 0.552` at `n = 4`. No pair below `delta_1 = 2 sin(pi/12)` was
+      found for `n <= 12`.
 
 ## What a computation should look for
 

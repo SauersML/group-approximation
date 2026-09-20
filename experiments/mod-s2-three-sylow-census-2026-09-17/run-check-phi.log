@@ -1,0 +1,6 @@
+[phi] short generation (SG): False, general (SG*): False; row types [(0, 6), (0, 8), (0, 10), (0, 12), (0, 14), (0, 16), (0, 18), (0, 20), (0, 22), (0, 24), (10, 16), (10, 18), (10, 22)]
+[phi] SG via W_0 + Z w1: {'w1_l1': 16, 'w1_nonneg': False, 'W0_rank': 149, 'W0_max_l1': 24, 'SG': True}
+  box: {'rows': 150, 'max_row_l1': 24, 'box_size': 2, 'row_option_counts': [1, 2]}
+[phi] distance: {'rows': 150, 'max_row_l1': 24, 'box_size': 2, 'row_option_counts': [1, 2], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[phi] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/exact-phi.json

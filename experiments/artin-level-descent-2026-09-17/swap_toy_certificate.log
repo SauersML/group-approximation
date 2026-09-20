@@ -1,0 +1,21 @@
+(A) a=-1, b=2 over F_7 kills 1+a and 1+b+b^2: J_0 != Z[H], L_0(chi) not onto
+== chi ==
+g1 levels [0, 1] level-0 part {(1, 0, 0): -1, (0, 0, 0): -1}
+g2 levels [0, 1] level-0 part {(0, 2, 0): -1, (0, 1, 0): -1, (0, 0, 0): -1}
+nu-part below level 0 (must be empty): {}
+mu1 = -1 * {(0, 0, 0): 1} * a**2*b + a**2 + a*b + b + 1
+mu2 = -1 * a**3*b**2 - a**3 + a**2*b**2 - a**2*b - a**2 + a*b**2 - a*b - a - b
+sum lambda g: levels [0, 1]  level-0 part {(0, 0, 0): 1}
+chi: sum lambda_rho g_rho = 1 + M with M at level 1, 1+M a unit -> Novikov onto at depth 1
+(C) b=-1, a=2 over F_7 kills 1+b and 1+a+a^2: theta(J_0) != Z[H], L_0(-chi) not onto
+== -chi ==
+g1 levels [0, 1] level-0 part {(1, 2, 0): 1, (1, 1, 0): 1}
+g2 levels [0, 1] level-0 part {(2, 0, 0): 1, (1, 0, 0): 1, (0, 0, 0): 1}
+nu-part below level 0 (must be empty): {}
+mu1 = 1 * {(-1, -1, 0): 1} * a*b**2 + a*b + a + b**2 + 1
+mu2 = 1 * a**2*b**3 + a**2*b**2 + a**2*b - a*b**2 - a*b - a - b**3 - b**2 - b
+sum lambda g: levels [0, 1]  level-0 part {(0, 0, 0): 1}
+-chi: sum lambda_rho g_rho = 1 + M with M at level 1, 1+M a unit -> Novikov onto at depth 1
+(D) 1 = (1+b+b^2) - b(1+b) lies in J_0 + theta(J_0): T(J_0) = Z[H]; ring obstruction vanishes
+(E) p_1 a^2 p_1^-1 = {(0, 2, 0): 1} != a^2: the Artin constraint [p, x^k] = 1 is violated
+ALL CHECKS PASSED

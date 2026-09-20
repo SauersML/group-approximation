@@ -68,3 +68,24 @@ surjunctive.
 - **Decoder arithmetic.** On hosts with stably finite prime-field matrix algebras, a left inverse must
   use `x^q = x` (`formal-polynomial-strict-pairs-need-unstable-linearization`). In reduced form the
   indicator term has degree `(q-1)|M|`.
+- **Kemperman-matched backgrounds (swarm-0917-w20-w20-gs-break, 2026-09-19).** This kills the
+  torsion-free class and leaves this node OPEN.
+  - *Established.* `torsion-free-single-defect-rules-need-strict-linear-parts`: on a torsion-free `G` with
+    `q >= 3`, an injective rule forces `L` to be injective and not surjective, so it is a linear strict
+    automaton. The unit branch of "Where it stops" is empty on torsion-free hosts, whatever the units of
+    `F_q[G]` are.
+  - *The witness.* Take `x` with `x|_M = p`, and let `x' = x + t w` with `Lw = delta_e`. The background
+    off `M` is chosen so that no translate `gM` with `g != e` shows `p` in `x` or in `x'`. Each such
+    translate forbids one assignment on `gM \ M`. A capacity `q - 1` Hall matching of translates to
+    coordinates, followed by compactness, avoids all of them.
+  - *Where it dies.* Hall's condition is `(q-1)|Gamma M \ M| >= 2|Gamma|`. Kemperman's inequality
+    `|Gamma M \ M| >= |Gamma|` (`kemperman-torsion-free-product-sets-grow`) supplies it.
+  - *Any host, large field.* The same claim, part (b), covers every group when `q >= 2|M| + 1` and no
+    `g != e` has `gM = M`. There each coordinate meets at most `2|M|` events, so no matching is needed.
+  - *What is left.* The invariant that must fail is the expansion `(q-1)|Gamma M \ M| >= 2|Gamma|`. A
+    nonlinear answer needs one of three things:
+    - torsion together with `3 <= q <= 2|M|`;
+    - a memory that is a union of cosets of a nontrivial finite subgroup;
+    - `q = 2`.
+
+    The correction-witness question above is now open only in these cases.

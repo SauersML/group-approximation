@@ -1,0 +1,8 @@
+j 0 r 1 |B_r| 5  F(B_r x types) 1  |A| 5  ratio 0.2000  lawful F_LLL/|B_r| 0.2000
+j 0 r 2 |B_r| 17  F(B_r x types) 5  |A| 17  ratio 0.2941  lawful F_LLL/|B_r| 0.2941
+j 0 r 3 |B_r| 53  F(B_r x types) 17  |A| 53  ratio 0.3208  lawful F_LLL/|B_r| 0.3208
+j 0 r 4 |B_r| 161  F(B_r x types) 53  |A| 161  ratio 0.3292  lawful F_LLL/|B_r| 0.3292
+j 1 r 1 |B_r| 5  F(B_r x types) 50  |A| 60  ratio 0.8333  lawful F_LLL/|B_r| 0.0000
+j 1 r 2 |B_r| 17  F(B_r x types) 226  |A| 204  ratio 1.1078  lawful F_LLL/|B_r| 0.0000
+j 1 r 3 |B_r| 53  F(B_r x types) 761  |A| 636  ratio 1.1965  lawful F_LLL/|B_r| 0.0377
+j 1 r 4 |B_r| 161  F(B_r x types) 2367  |A| 1932  ratio 1.2252  lawful F_LLL/|B_r| 0.0497

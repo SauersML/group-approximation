@@ -1,0 +1,8 @@
+[U] |V| = 81, Pbar cosets 320 [8s]
+[U] Schreier gens 2881, relators 11400, twist vectors 3200 [8s]
+[pbar-U] after unit elimination 68 gens, 6296 relators [36s]
+[pbar-U] H_1 = Z^16 + [3, 3, 3, 3, 3] [42s]
+[pbar-U] classes 50, W rank 34, gcd aug 10 [46s]
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+[pbar-U] {"label": "pbar-U", "cosets": 320, "schreier_gens": 2881, "gens_after_unit_elim": 68, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [32, 64, 96], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 12, "A_plus_multiplicities": [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2], "seconds": 62}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/pbar-U.json

@@ -11,7 +11,9 @@ distinct_from:
 artifacts: [research/artifacts/decidable-edge-tower-premise-bh-equivalence-proof-2026-09-17.md]
 ---
 
-**OPEN.** A route is drafted as an artifact but not yet fully refereed.
+**ESTABLISHED** through `decidable-edge-tower-premise-bh-equivalence-proof`
+(route restored after a full re-check, swarm-0917 w23; see Attempt 2). In (c),
+read "some member of `C` contains a copy of every `S wr C_2`".
 
 Say a class `C` of groups is **tree-universal for decidable groups** if every
 finitely generated group with solvable word problem embeds in a graph tower, in
@@ -62,3 +64,21 @@ a single term of any ascending union containing it.
 ## Attempts
 
 1. **Push the decidable FA envelope into a base piece (2026-09-17).** See `research/artifacts/decidable-edge-tower-premise-bh-equivalence-proof-2026-09-17.md`. It requires `decidable-groups-have-decidable-fa-envelopes` and `fa-subgroups-of-graph-towers-lie-in-base-pieces`, and takes `B = G`, `n = 0` for the converse. Lens 2 of the referee panel lost its vote, so the result is recorded as an attempt, not established. Lenses 1 and 3 both returned *survives* and found no mathematical gap. Wording flag from both returned votes: part (c) should say that *some member* of `C` contains a copy of each `S wr C_2`, not that `C` contains every one. *Pending referee.*
+2. **Referee pass and route restored (swarm-0917 w23, 2026-09-20).** *Settles the claim.*
+   - Re-checked the artifact line by line, with both imports
+     (`decidable-groups-have-decidable-fa-envelopes` via the swap square of a decidable simple FA host;
+     `fa-subgroups-of-graph-towers-lie-in-base-pieces` via Serre's fixed vertex, descended down the tower).
+     An independent FA proof of `S wr C_2` from perfectness alone (a hyperbolic element of one factor
+     forces the perfect other factor to fix its axis through `D_∞`, contradicting the swap) was added
+     to the route. No gap found; the only repair is the wording of (c) flagged by both earlier votes.
+   - Cross-check: (a) is also the tree-only special case of the later ESTABLISHED
+     `mixed-permanence-closures-collapse-boone-higman-to-base`, since every graph tower over `C` lies in
+     `All(C)`. So the statement now has a second established derivation.
+   - Restored as route `decidable-edge-tower-premise-bh-equivalence-proof`.
+   - **Consequence for the frontier.** `bh-embeddability-survives-decidable-edge-hnn` reaches
+     `boone-higman-conjecture` only through `boone-higman-via-decidable-edge-towers`, whose other premise
+     is now proved equivalent to the goal. So that hole, ranked first on
+     `cairn frontier --goal boone-higman-conjecture` (impact 4), has **zero** leverage on the
+     conjecture: establishing it would move the goal nowhere. It stays meaningful only for the
+     one-relator lane (`magnus-hnn-permanence-from-decidable-edge-permanence`). Waves aiming at the
+     conjecture itself should not dispatch to it.

@@ -114,3 +114,60 @@ the reduced Li--Nowak--Pooya projections (for example `F_m`) do not
 transport into corona models.  Euler relations in `K_0` reach degree-zero
 corners only through `p_0` or `p_1`.  Degree `>= 2` Laplacians control only
 the upper half of the next lower Laplacian and are not decided.
+
+**At finite compression index the lamp collapse's only (T) input is one
+model spectral gap (2026-09-19, swarm-0917-w19-w19-ptm-break).**
+`finite-index-compression-collapse-needs-only-model-gap` proves that when
+`[Lambda : s Lambda s^-1]` is finite, the torsion compression collapse of
+`notes/COMPRESSION_COLLAPSE_MF_RADICAL.md` needs neither FH nor Kazhdan
+finite generation.
+
+- The rank cocycle vanishes exactly on the compressed copy `H`, so it is
+  constant on the finitely many cosets of `H`.  The coset average is
+  then an `H`-fixed primitive.
+- The transport is `P <= sigma~(s) P sigma~(s)^*` for the Kesten
+  eigenprojection `P` in the adjoint corona `B`.  Since `B` is finite,
+  the two are equal.
+
+This covers the manuscript's index-8 seed and every
+`sign-free-compression-amalgam` instance.  It corrects the note's claim
+that none of the three (T) uses is removable.  At finite index the
+goal's lamp endpoint is therefore exactly a (T)-free proof of (MSG) along
+every corona model.  Cohomological substitutes (relative FH, `H^1`
+vanishing) are irrelevant there.
+
+A sub-route dies.  Relative (T) of `(Z^2 x| SL_2(Z), Z^2)`, with the
+index-4 doubling as `s`, was meant to supply (MSG).  It dies at the step
+where `P_{Z^2}` should lie in `B`: a universal `N`-fixed projection forces
+(T) for `N` (`universal-fixed-projection-forces-kazhdan-subgroup`).
+Relative (T) leaves eigenvectors of the nontrivial characters of
+`Z^2/2Z^2` unexcluded, exactly the `(Z^d, 2Z^d)` failure mode of the
+note's section 7.
+**Chromatic certificates overshoot to non-weak-soficity and
+non-hyperlinearity (2026-09-20, swarm-0917-w20-w20-ptm-break).**
+`chromatic-codes-kill-marks-in-every-bi-invariant-approximation` (direct
+proof `chromatic-code-bi-invariant-pigeonhole-proof`) shows that the
+pigeonhole behind the three chromatic engines uses only two things: a
+bi-invariant metric and finitely many colours at each scale.  The engines are
+the commutator code, the conjugacy-difference code and the Carmichael
+section.
+
+- **All radicals at once.**  A bounded-area certificate at `z` puts `z` in
+  the weakly sofic, sofic, finite-field linear-sofic, hyperlinear and MF
+  radicals simultaneously.  So a certificate at a nontrivial mark proves the
+  open roots `non-weakly-sofic-group-exists` (Glebsky--Rivera Conjecture 4.5)
+  and `non-hyperlinear-group`.
+  - For the Leavitt route `property-t-free-leavitt-via-chromatic-code` this is
+    recorded as two bridge routes, `non-weakly-sofic-via-leavitt-chromatic-commutator-code`
+    and `nonhyperlinear-via-leavitt-chromatic-commutator-code`.
+  - The same applies to the lifted-Thompson-`T` code leaf (bounty 60).
+- **No MF-only certificate.**  No chromatic certificate can separate MF from
+  hyperlinear, sofic or weakly sofic approximation.
+- **Where certificates cannot exist.**  None exists at a mark that survives in
+  some finite bi-invariant model.  In particular none exists at the sofic
+  non-MF group `E`'s mark, in any finitely presented cover.
+- **What stays open.**  The goal is not decided.  Chromatic routes are
+  calibrated as at least as hard as both roots.  Any Kazhdan-free
+  reproof that separates MF from the finite-group approximation classes must
+  use a mechanism that is specific to the operator norm (not a bi-invariant
+  pigeonhole).

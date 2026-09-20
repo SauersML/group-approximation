@@ -186,3 +186,53 @@ same diagonal, tensor and conjugate argument as (U2).
     this claim.
   - *Where it stops.* Representations where `rho(t_s)` is not central and that are not Torelli-abelian monomial are
     untouched. This includes every representation with nonabelian Torelli image.
+- **2026-09-19, swarm-0917-w20-w20-deligne-break (calibration): gap and zero windings on fixed closures and on
+  bounded-dimension tensor-sum closures; class kill.** See `mod-s2-fixed-closure-torelli-gap-and-zero-windings`
+  (ESTABLISHED).
+  - *Bounded tensor-sum closure (FC2).* Let `W` be a direct sum of tensor words in arbitrary, unrelated honest
+    representations of dimension at most `n0` and their conjugates. Then `W` has
+    `||W(t_s) - omega^(+-1)|| >= c(n0) > 0`.
+    - Invariant: the mean eigenphase of each factor. It sits on the determinant grid `mu_(10 n)`, and
+      compactness of `Hom(M, U(n))` pins it to the exact-value group, which misses `omega` by (ST5).
+      Spreads add along words.
+    - The same argument gives near-identity windings equal to `0` below an explicit threshold (`L = 10 lcm(1..n0)`).
+  - *Fixed closure (FC3).* For each honest `rho0` there is `c(rho0) > 0` bounding `||pi(rho0(t_s)) - omega^(+-1)||`
+    from below over all continuous representations `pi` of `cl rho0(M)`. These include subrepresentations and
+    Schur functors of tensor words, so this closes the (J5) "not covered" case for each fixed Jones parameter.
+    The same `c(rho0)` makes `kappa = 0` near the identity.
+    - Proof: kill the commutator part `N` of `G^0` for `Ad g`, which the elements `h g h^-1 g^-1` fill in
+      boundedly many steps.
+    - Then replace the rest by an induced representation of bounded dimension with the same Torelli-part
+      spectrum.
+    - Finish with (ST5) and compactness in bounded dimension.
+  - *Class kill (FC4).* A counterexample to this claim, or a witness against
+    `mod-s2-near-identity-torelli-windings-vanish`, has only finitely many members in each `R_(n0)`. It also has
+    only finitely many members factoring continuously through any one closure. So "mix unrelated families" by
+    `(+)`/`(x)` in bounded dimension is dead, and so is anything continuous in finitely many fixed
+    representations. Each dies at the step "a fixed compact group has near-omega irreducibles", which yields a
+    bounded-dimension honest near-omega representation.
+  - *Calibration (FC5).* In `T^2 x| C_3`, which has finite abelianization and no exact omega, 3-dimensional
+    irreducibles come within `0.0021` of `omega`. So the M-input (ST5 plus finite generation) is essential.
+  - *Where it stops.* This is not uniform in `rho0`. Sequences whose closures vary, with unbounded `m0`,
+    component group, or semisimple part, are untouched; examples are growing-level quantum representations and
+    residual (R-a). The claim stays OPEN.
+- **2026-09-20, swarm-0917-w21-w21-deligne-break (reframing): TQFT/Galois class kill.** See
+  `mod-s2-tqft-twist-spectra-obey-the-cube-root-gap` (ESTABLISHED for (T1)--(T4), unreviewed).
+  - *Result.* Suppose the spectrum of `rho(t_s)` is `lambda {theta_a : a in L}`, where `L` is a Galois-stable set of
+    labels of a modular category. Then `rho(t_s)` is scalar, or `||rho(t_s) - mu I|| >= sin(pi/24)` for every `mu`.
+    - The constant comes from the sharp bound `max_j ||k j^2/n|| >= 1/24` over units `j`.
+    - The proof uses the Dong--Lin--Ng relation `theta_(sigma^ a)/theta_(sigma^ b) = sigma^2(theta_a/theta_b)`.
+  - *Scope.* Closing under characters, tensor products and finite direct sums, and applying (ML3) to the scalar
+    summands, gives the cube-root gap `sin(pi/24) ~ 0.1305` for this whole class.
+  - *Galois-stable labels.* `Irr(C_ad)` is Galois-stable for pseudounitary `C`, by Gelaki--Nikshych `C_ad = (C_pt)'`.
+  - *Invariant.* The `sigma^2` action on eigenvalue ratios.
+  - *Where every member dies.* "Spectrum near a point" forces "spectrum exactly a point", and that point lies in
+    `mu_10`.
+  - *Survivors.* A witness must have a separating-twist spectrum that is not a Galois-stable set of modular twists. The
+    options are:
+    - transcendental eigenvalues, as in the Jones deformation;
+    - irreducible RT summands that see only part of the channels;
+    - non-modular origin.
+  - *Open point.* The RT reading needs the channel set `{a <= x tensor x*}` to equal `Irr(C_ad)`. This is checked for
+    `SU(2)_k`, pointed and Ising-type categories, but it is not proved in general.
+  - *Status.* This node stays OPEN.

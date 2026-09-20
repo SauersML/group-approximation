@@ -1,0 +1,15 @@
+Frattini quotient of U: F_3^2; 4 maximal subgroups
+[max2] |V| = 27, Pbar cosets 960 [4s]
+[max2] Schreier gens 8641, relators 34560, twist vectors 330 [4s]
+[max2] twist reduction {'centralizer_sizes': [5, 4, 5, 4, 4, 5, 5, 4, 4, 5], 'twist_vectors': 330}
+[pbar-max2] after unit elimination 21 gens, 22159 relators [181s]
+[pbar-max2] H_1 = Z^16 + [3, 3, 3, 3, 3] [183s]
+[pbar-max2] classes 50, W rank 34, gcd aug 10 [183s]
+[pbar-max2] {"label": "pbar-max2", "cosets": 960, "schreier_gens": 8641, "gens_after_unit_elim": 21, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [2, 4, 8, 12], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 14, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], "seconds": 187}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/.pbar-max2-tmp.json
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/w-max2.json
+[max2] short generation (SG): True, general (SG*): True; row types [(0, 8), (0, 10), (0, 12), (10, 12)]
+  box: {'rows': 34, 'max_row_l1': 12, 'box_size': 1, 'row_option_counts': [1]}
+[max2] distance: {'rows': 34, 'max_row_l1': 12, 'box_size': 1, 'row_option_counts': [1], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[max2] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/exact-max2.json

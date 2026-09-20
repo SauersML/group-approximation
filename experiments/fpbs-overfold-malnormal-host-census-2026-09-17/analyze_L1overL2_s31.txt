@@ -1,0 +1,3 @@
+progress L1overL2 {'inst': 25, 'Yneq': 654, 'A_fail': 0, 'B_fail': 0, 'both_ok': 654, 'fibre_pairs_max': 64}
+progress L1overL2 {'inst': 50, 'Yneq': 1247, 'A_fail': 0, 'B_fail': 0, 'both_ok': 1247, 'fibre_pairs_max': 64}
+analyze L1overL2 seed 31 {'inst': 54, 'Yneq': 1331, 'A_fail': 0, 'B_fail': 0, 'both_ok': 1331, 'fibre_pairs_max': 64}

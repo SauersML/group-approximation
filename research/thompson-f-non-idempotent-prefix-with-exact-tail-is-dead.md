@@ -73,3 +73,16 @@ the conclusion "the residue is exactly `π_K`" does not follow.
 - **Coarsening from a dead observation.** *Dies immediately:* by Lemma A.4 of the gate the dead
   observations form a down-set, and `Ξ_(K,Q)` for a non-idempotent `Q` is a coarsening of no observation
   yet known dead — that is precisely the content of the referee's counterexample class.
+- **Tower law with depth-`(d + r)` tops (2026-09-20, swarm-0917-w21-w21-f-break).**
+  - *Settles every bounded-depth invariant.* See
+    `thompson-f-bounded-depth-subtree-profiles-have-zero-defect`. For every Guba set and every `r`, the
+    observation that reads each prefix tree to depth `r`, the size and depth of every subtree rooted at
+    depth `<= r`, and the exact tail, has `δ_1 = 0`. So every `Q` computed from a bounded-depth profile
+    is dead: sizes, depths, root splits, and size tables to any fixed depth.
+  - *Dies at unbounded depth, and must.* Exact shape (`δ = ∧`) is in this node's own class, as the
+    third bullet above notes. So the statement "for every such `Q`" contains `δ_1(π_K) = 0`. By
+    `thompson-f-prefix-observation-is-lossless`, that is amenability of `F`. As titled, the node is
+    therefore equivalent to `thompson-f-is-amenable`.
+  - *The live residue* is the invariants strictly coarser than shape that no bounded-depth profile
+    computes. Arm lengths are the first example: they are cheap by an i.i.d. arm law, sketched but not
+    claimed in the Scope of the new node.

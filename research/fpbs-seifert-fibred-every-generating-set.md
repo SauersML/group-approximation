@@ -41,3 +41,16 @@ subgroup.
   the `{4g,4g}` tiling. It gives nothing for genus two, for nontrivial bundles
   (central extensions have no product generating set), or for non-product
   generating sets.
+* **Choi–Seo abstract L2 criteria (obstruction, 2026-09-19, swarm-0917
+  w19).** The idea was to verify the hypotheses of Choi–Seo Theorems 2.9 and
+  2.17 (arXiv:2508.08932v2), which give `p_c < p_(2->2)`.
+  `fpbs-cs-barrier-hypothesis-fails-normal-cyclic` (ESTABLISHED) shows that
+  both hypotheses fail on every Cayley graph of every group with an infinite
+  cyclic normal subgroup. That includes every `pi_1(M)` here, via the regular
+  fibre. **Where it dies:** the nested-barrier step. The core of an
+  `r`-roughly branching set meets each coset of the fibre at most once, because
+  two points collide at length 2. So at most `#B(r)#B(r+|z|)` disjoint
+  barriers can separate `id` from any set meeting the fibre. **Invariant:**
+  the fibre-coset multiplicity of branching cores. Any route through
+  `p_c < p_(2->2)` here must count fibres instead, for example through
+  `fpbs-fibre-bubble-forces-mean-field-susceptibility`.

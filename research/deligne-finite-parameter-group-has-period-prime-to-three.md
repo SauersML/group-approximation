@@ -132,3 +132,62 @@ arithmetic half of that split, and it involves no winding estimate.
     `deligne-schreier-complexes-have-a-uniform-third-cellular-floor` (OPEN). It is *necessary* for the flagship:
     its failure gives `1/3 in P_op` through permutation-with-phase matrices. It is sufficient for the monomial
     part of this hole.
+- **2026-09-19, swarm-0917-w18-w18-deligne-last1 (calibration): residual-blind arguments are self-defeating.**
+  Recorded as `deligne-period-hole-needs-non-residuality-at-three` (ESTABLISHED).
+  - *Calibrator.* `M_n = W_n (x) D_n` is a `1/2`-model, which exists unconditionally. `W_n` is the exact
+    metaplectic model cut from regular representations along a separating tower of `E_2`; `D_n` is Dadarlat's
+    asymptotic homomorphism with `kappa_r != 0`. `M` has every recorded one-third invariant:
+    - untwisted power;
+    - central-regular traces, hence all w12 tensor-functor bounds;
+    - unbounded dimension;
+    - distance `>= 1/(2g) - o(1)` from every exact half-representation on the letters of `r`, proved by
+      `kappa_r(conj W_n (x) M_n) = (dim W_n)^2 kappa_r(D_n) != 0`;
+    - winding after untwisting.
+  - *Kill.* Any argument for "`1/l in P_op` implies `P_op = R/Z`" that reads only these properties, run at `l = 2`,
+    proves `P_op = R/Z`. That refutes the flagship and `sp4-quasirep-windings-are-sublinear`.
+    - Invariant: exact untwistability, i.e. whether `theta b` is a residual class. By Deligne, `b mod 2` is and
+      `b mod 3` is not.
+    - Step where members die: the substitution `l = 2`.
+    - The w12 bounded-level obstruction holds for `M` as for `1/3`-models. w8 virtual descent is not
+      residual-blind, and it died at the three-adic step itself.
+  - *What a proof must contain.* A step that uses the failure of exact untwistability at `3` (Deligne's residual
+    `2Z`), in a quantitative asymptotic form. An example is a uniform lower bound on the distance from every
+    `1/3`-model to every `E (x) V` with `E` exact and `V` untwisted; such a bound is false at `1/2` by `M`.
+  - Hole stays OPEN.
+- **2026-09-20, swarm-0917-w22-w22-deligne-break (quantifier-shift): the uniform conditional is closed
+  level-free, the uniform residue of w13 is empty, and the hole stays OPEN.**
+  - *New lemmas (ESTABLISHED).*
+    - `sp4-lattice-bounded-cohomology-is-the-kahler-line` (by citation): `H^2_b(Lambda;R) = R[b]` for every
+      finite-index `Lambda <= Sp_4(Z)`. Sources: Monod, arXiv:0710.5361, Corollary 1.4 (no cocompactness
+      hypothesis), and Burger--Monod GAFA 2002, proof of Corollary 24, Corollary 9 and Theorem 21. The Gromov norm
+      `nu_b` is the same on every level, by an explicit transfer argument.
+    - `deligne-uniform-scalar-models-have-a-level-free-third-floor`: uniform scalar `theta`-models on any
+      finite-index `Lambda` have defect `>= 4 dist(theta, Z/2) nu_b`. Uniform monomial `1/3`-models over any finite
+      `Gamma`-set have defect `>= min(1, (2/3) nu_b)`, and so do block-monomial ones with blocks of size prime to 3
+      (with a `1/r` loss).
+  - *What this closes.* The need in the route remark of `deligne-maslov-tensor-functors-are-asymptotically-regular-proof`,
+    which asked for non-cocompact Burger--Monod.
+  - *Class killed.* All uniform (all-pairs sup-defect) monomial and prime-to-3 block-monomial `1/3`-models,
+    uniformly in the stabilizer index.
+    - *Invariant:* `dim H^2_b(Lambda) = 1` together with the divisibility set `{1, 2}`.
+    - *Where every member dies:* the rounded error `s` is a bounded cocycle, so `[s] = mu [b]` with
+      `|mu| >= 1/6`.
+  - *Diagnosis of the point-norm residue.* The non-Kahler classes `u = kappa mod 3` left by w13 are exactly the
+    classes outside `image(H^2_b -> H^2) = R kappa`. They can occur only when the error cocycle is small on a
+    finite window but not bounded-small on all pairs. So the survivor of this hole lives in the gap between the
+    cellular finite-window norm and the bar sup norm, and in blocks of size divisible by 3.
+  - *Reduction posed, not proved (uniform full models).*
+    - *Claim.* `E_3` has no uniform `1/3`-model of small defect, of any shape.
+    - *Proposed argument (BOT, Burger--Ozawa--Thom, Section 5).*
+      1. Lift the Siegel radical `N = Sym_2(Z)` to an abelian `N_0 <= E_3`.
+      2. By Kazhdan's theorem for amenable groups, `pi|N_0` is uniformly close to a representation.
+      3. Show `pi` is close to `I` on `qN_0` for some `q`, via Levi invariance and rationality of finite
+         `SL_2(Z)`-orbits on the dual torus `T^3`.
+      4. The normal closure `E(q)` has finite index, so it contains `z` by Deligne, and `pi(z) = omega` would then
+         be close to `I`.
+    - *Named prerequisite (BG).* The normal closure of `qN` in `Sp_4(Z)` must be a product of at most `R`
+      conjugates of elements of `qN`, with `R` independent of `q`. This is the `Sp_4` analogue of
+      Carter--Keller--Paige/Morris for `SL_n`, `n >= 3`. No verbatim source was found; Tavgen and Trost are
+      candidates.
+    - *Scope.* Steps 1 to 3 have not been checked beyond a sketch. Even if all of this holds, it reaches only
+      uniform models, not point-norm ones.

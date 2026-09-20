@@ -1,0 +1,31 @@
+stats {'reps': 600, 'c0pos': 52, 'ctpos': 0, 'c0_not_ct': 52} cross [('a', 'b', 3), ('a', 'c', 2), ('a', 'e', 5), ('d', 'b', 2)]
+rep {'a': [[0, 1], [1, 1]], 'b': [[0, 4], [4, 1]], 'c': [[0, 1], [1, 1]], 'd': [[3, 4], [1, 0]], 'e': [[2, 0], [0, 2]]} c0 1
+  ab k=3: rank sigma=0 ord(pq)=3 trace(pq)=4 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  ac k=2: rank sigma=1 ord(pq)=10 trace(pq)=3 det(pq)=1 sigma=[[2, 1], [1, 3]]
+  ae k=5: rank sigma=0 ord(pq)=5 trace(pq)=2 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  db k=2: rank sigma=1 ord(pq)=2 trace(pq)=0 det(pq)=4 sigma=[[2, 1], [0, 0]]
+  [a,d]=1? False
+  [b,c]=1? False
+  [b,e]=1? True
+  [c,e]=1? True
+  [a,b]=1? False
+rep {'a': [[0, 1], [1, 1]], 'b': [[2, 1], [4, 4]], 'c': [[0, 1], [1, 1]], 'd': [[1, 4], [4, 2]], 'e': [[2, 0], [0, 2]]} c0 1
+  ab k=3: rank sigma=0 ord(pq)=3 trace(pq)=4 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  ac k=2: rank sigma=1 ord(pq)=10 trace(pq)=3 det(pq)=1 sigma=[[2, 1], [1, 3]]
+  ae k=5: rank sigma=0 ord(pq)=5 trace(pq)=2 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  db k=2: rank sigma=1 ord(pq)=2 trace(pq)=0 det(pq)=4 sigma=[[4, 2], [1, 3]]
+  [a,d]=1? False
+  [b,c]=1? False
+  [b,e]=1? True
+  [c,e]=1? True
+  [a,b]=1? False
+rep {'a': [[0, 1], [1, 1]], 'b': [[2, 4], [1, 4]], 'c': [[0, 1], [1, 1]], 'd': [[4, 1], [0, 4]], 'e': [[2, 0], [0, 2]]} c0 1
+  ab k=3: rank sigma=0 ord(pq)=3 trace(pq)=4 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  ac k=2: rank sigma=1 ord(pq)=10 trace(pq)=3 det(pq)=1 sigma=[[2, 1], [1, 3]]
+  ae k=5: rank sigma=0 ord(pq)=5 trace(pq)=2 det(pq)=1 sigma=[[0, 0], [0, 0]]
+  db k=2: rank sigma=1 ord(pq)=2 trace(pq)=0 det(pq)=4 sigma=[[0, 0], [4, 2]]
+  [a,d]=1? False
+  [b,c]=1? False
+  [b,e]=1? True
+  [c,e]=1? True
+  [a,b]=1? False

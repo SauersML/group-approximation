@@ -295,3 +295,29 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
     - **Next step.** A rigid, minimal, topologically free SFT over such a `Γ` whose ball languages
       have no uniform recursive bound. Candidates would be tree-end SFTs decorated along the `H^2`
       direction. Nothing was attempted there.
+13. **Dimension kill: finite-`cd` acting groups die at `G = F` (2026-09-19, lane swarm-0917-w19-w19-bh-pull,
+    cohomology-index).** *Class kill, and a new necessary shape. The target stays OPEN.* Invariant: the Hirsch
+    length of poly-`Z` subgroups of `G`, read through an Ore-localized Hochschild resolution.
+    - `poly-z-subgroups-bound-cantor-crossed-host-dimension` (ESTABLISHED, unreviewed). Suppose `k[G]` embeds
+      unitally in `M_r(LC(X, k) ⋊ P)`. Then `cd_k P >= h(H)` for every poly-`Z` subgroup `H <= G`.
+      - This holds for any `X` and any action. Finite presentation, simplicity and freeness are not used.
+      - Proof: tensor with `D(kH)^op`. The diagonal resolution over the von Neumann regular
+        `LC(X, D^op)` gives `w.gl.dim <= cd P`. The induced Hochschild resolution of `kH` gives a top `Tor`
+        containing `H_h(H; k) ≠ 0`.
+    - **Killed class.** Thompson's `F` is finitely presented, torsion-free and decidable, and contains every
+      `Z^m`. So any witness at `G = F` has `cd_(F_2) P = ∞`. This kills, as universal constructions:
+      - every `P` of finite dimension (`Z^2`, `Z^2 × F_d`, hyperbolic groups, finite-dimensional CAT(0) groups,
+        torsion-free lattices, the `PSL_2(Z[1/p])` congruence hosts of Attempt 12, right-angled Artin groups,
+        solvable groups of finite Hirsch length);
+      - every tower of boundary products (Attempt 10) over such a seed, since each step raises `cd` by at most
+        one.
+      - Failing step: the unital embedding of `F_2[Z^m]` for `m > cd P`.
+    - Beyond commuting rank: `UT_3(Z)` already forces `cd P >= 3`, and `SL_n(Z)` forces
+      `cd P >= n(n-1)/2`.
+    - **Surviving shape.** Witnesses for inputs with unbounded poly-`Z` rank need finitely presented
+      torsion-free Farrell–Jones groups of infinite `cd_(F_2)`. Among recalled Farrell–Jones classes these come
+      from solvable groups of infinite Hirsch length, such as Baumslag's metabelian group `⊇ Z ≀ Z`, and from
+      subgroups of products with them. Amenable ones meet the linear-soficity gate of Attempt 3. This census is
+      heuristic.
+    - Does not reach the units-only weakening `decidable-groups-embed-in-cantor-crossed-leavitt-tensor-units`.
+      There `L_2^x ⊇ V ⊇ Z^m`, although `k[Z^2]` is not in `L_2`.

@@ -80,3 +80,19 @@ non-LEF sofic models are compulsory.
   - Which arguments die: every argument from intrinsic properties of `K` alone (torsion-free,
     Kazhdan, quotientless, sofic). It would answer Gromov's residual finiteness question.
   - What (EKL1) must use: `ψ`, finite presentation of `K ⋊_ψ Z`, or the exact radical.
+- **Finite-image exact models add nothing beyond stage lifts (finite-models, 2026-09-19,
+  swarm-0917-w19-titz-follow).** Class kill: `finite-image-exact-kazhdan-torus-models-reduce-to-stage-lifts`.
+  - The setting: covariant corona models of `K ⋊_φ Z` whose kernel lifts are exact on a finite Shalom
+    presentation `R_Γ` of a Kazhdan cover of `K` and have finite images. No spectral gap is assumed, and
+    character fields and element orders are arbitrary (Weil or cuspidal representations, for example).
+  - The mechanism:
+    - a wrap of defect below `κ` forces an exact multiplicity-free wrap, so the stage automorphism is an
+      isometry;
+    - the Frobenius core `<{m : ‖m-1‖ < 1/2}>` is then abelian, normal and invariant;
+    - dividing by it produces finite stage lifts of a `φ`-invariant quotient `K/N`.
+  - The consequence: any such model that is nontrivial on `K` yields a LEF torus quotient `(K/N) ⋊ Z` with
+    `N ≠ K`. So a proof of (EKL1) through finite-image exact models is no stronger than the combinatorial
+    stage-lift criterion.
+  - What (EKL1) must still use: infinite exact images, which are dense Kazhdan subgroups of compact
+    semisimple groups (genuine representations of the finitely presented `G_Γ`), or lifts that are exact on no
+    finitely presented Kazhdan cover. (EKL1) stays **open**.

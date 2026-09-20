@@ -1,0 +1,6 @@
+n 4 j 2 trials 150 fields [0, 2, 3] violations deep<B: 0
+  (law, deep, max_F B) = (1, 1, 0) count 85
+  (law, deep, max_F B) = (1, 1, 1) count 18
+  (law, deep, max_F B) = (2, 2, 0) count 27
+  (law, deep, max_F B) = (2, 2, 1) count 6
+  (law, deep, max_F B) = (3, 3, 0) count 14

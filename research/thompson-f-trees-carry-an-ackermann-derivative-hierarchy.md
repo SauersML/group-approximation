@@ -84,3 +84,58 @@ Moore's Lemma 4.2.
   regrouping moves, `w(T/u ∪ T/v) > w(T/u) + w(T/v)` quantitatively, and grows like
   `Ack_{k−1}` of the leaf count. Leaf count is additive and fails. The parenthesised-word length
   in `F`'s normal form is untested.
+- **Leaf-grafting inflations (swarm-0917-w21-w21-f-pull, 2026-09-20; family symbolic-dynamics).**
+  - *Result:* the super-doubling death above is now a theorem, proved without marginality
+    machinery: `tree-grafting-inflations-kill-superlinear-ratio-derivatives`.
+  - *Inflation Lemma:* a one-sided equivariant `σ : 𝒯 → 𝒯` satisfies `bd(σ_*μ) ≤ 2bd(μ)`.
+    Examples are `T ↦ δ^{j(|T|)}T` (refine every leaf to depth `j`) and grafting at the `k`-th
+    leaf.
+  - *Consequence:* a thin bad set must contain at most `2cε` of every inflated Følner measure.
+  - *Kill:* take any coarsening derivative (`∂T` dominated by `T`) whose consecutive interior
+    leaves satisfy `|T/v| ≥ φ(|T/u|)`, or the mirror, with `sup φ(x)/x = ∞`.
+    - (E′) for `x0, x1` forces the crossing pair (last leaf under `01`, first leaf under `10`)
+      to be interior.
+    - On `δ^{j}T` its size ratio is `< 8|T|`, while its sizes are `≥ 2^{j−3}`.
+    - So `B ⊇ δ^{j(·)}(𝒯)`, and `B` is thin only if `F` is non-amenable.
+  - *Sharp:* the kill fails at linear `φ`, which is Moore's case. Ratio conditions certify at most
+    `Ack_2` contraction non-vacuously.
+  - *New necessary condition for `H_k`, `k ≥ 3`:* the good set must be essentially closed under
+    grafting inflations.
+  - *Survivors:*
+    - index-graded ratios `f(i)·|T/u_i| ≤ |T/u_{i+1}|` with `f → ∞`. These are not decided by
+      the uniform test, because the index of the crossing pair is unbounded. Neither the
+      analogue of Lemma 5.5 nor uniqueness of the maximal `U` (Moore's Lemma 5.2 and condition 3)
+      has been checked.
+    - conditions on height differences, which shift uniformly under `δ^j`.
+- **Normal form for the whole coarsening class (swarm-0917-w23-w23-f-last1, 2026-09-20;
+  family reframing).**
+  - *Result:* `coarsening-derivatives-are-block-rigid-and-window-avoiding` (ESTABLISHED, with
+    a brute-force check to 9 leaves). For every datum with `∂T` dominated by `T`:
+    - the definedness half of (E′) is exactly *window avoidance*: no leaf of `∂T` in
+      `{∅,0,1,10,11}` carries a nontrivial block;
+    - the equivariance half says that the leaf-index interval partition and the block shapes
+      are constant along every edge leaving `A`. So a coarsening datum *is* a colouring of each
+      level `𝒯_n` by window-avoiding block partitions, and `B` must contain the colouring's
+      interfaces;
+    - *spine count:* an `A`-segment `T, T·x0, …, T·x0^{ℓ−1}` forces `|∂T| ≥ ℓ − 1`, since each
+      left-spine subtree passes through the window node `10`. Hence on every `ε`-Følner measure
+      more than half the mass has `|∂T| ≥ Ω_c(1/ε)`.
+  - *What it kills:* pointwise inflation kills stop at the contraction requirement. On every
+    `σ_β(V)` with `V ∈ Full_m`, block partition, window avoidance, (E′) and `|T| ≥ ψ(|∂T|)` all
+    hold together for any `ψ`. So the grafting method of w21 can only refute *extra* defining
+    conditions (ratios), never coarsening `H_k` itself.
+  - *Where the attempted kill of coarsening `H_3` dies:*
+    - The spine count gives Følner trees of size `≥ Ack_k(Ω(1/ε))` in one step. Theorem A
+      already gives `Ack_{k+1}(Ω(log 1/ε))`, which is larger, so there is no contradiction.
+    - A contradiction needs `|∂T| ≥ f(|T|)` with `f ≫ Ack_k^{-1}` on Følner mass. That is an
+      upper bound on Følner tree sizes against `ε`, which is a Følner-function upper bound and is
+      not available.
+  - *Also checked:* index-graded ratios with `inf f > 2` put every window-full tree with
+    `2/λ < |T/10|/|T/01| < λ/2` into `B` (crossing-pair argument). Uniform-by-index grafts cannot
+    push measures into that balanced set: the interval-sum ratio `Σ_{[q,s)} w / Σ_{[p,q)} w` is
+    unbounded over `p < q < s` for every weight sequence. So this survivor stays undecided, and it
+    only concerns `Ack_2`-level constants anyway.
+  - *Survivors for `H_k`, `k ≥ 3`:*
+    - non-coarsening data, where `∂T` is not dominated by `T` (none is known);
+    - coarsening colourings whose interfaces are shown thin by a global argument that is not
+      pointwise on inflated trees.

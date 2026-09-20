@@ -1,0 +1,1 @@
+STATS malr2 1 {'trials': 376, 'nontriv': 7, 'certified': 0, 'big': 0, 'JcontainsB': 6}

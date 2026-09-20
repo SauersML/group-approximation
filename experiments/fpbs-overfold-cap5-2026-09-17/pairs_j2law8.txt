@@ -1,0 +1,6 @@
+|P| 1, 0 lawful: ell histogram 0:1044 1:0 2:0 3:0 4:0 5:0
+|P| 1, 1 lawful: ell histogram 0:0 1:12 2:0 3:0 4:0 5:0
+|P| 2, 0 lawful: ell histogram 0:542502 1:1836 2:108 3:0 4:0 5:0
+|P| 2, 1 lawful: ell histogram 0:0 1:12528 2:0 3:0 4:0 5:0
+|P| 2, 2 lawful: ell histogram 0:0 1:0 2:66 3:0 4:0 5:0
+PAIRS lawful reps 12 overfold reps 1044; O-rel violations (|P|<=2) 0

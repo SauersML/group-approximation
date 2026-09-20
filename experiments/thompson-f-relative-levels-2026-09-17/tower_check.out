@@ -1,0 +1,14 @@
+(c) realizability: failures for n <= 60: 0
+(m,d)=(0,1) width=1: words=1  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(0,2) width=2: words=2  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(1,1) width=2: words=2  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(0,3) width=3: words=5  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(1,2) width=3: words=5  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(2,1) width=3: words=3  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(0,4) width=4: words=14  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(1,3) width=4: words=14  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(2,2) width=4: words=9  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(3,1) width=4: words=4  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(1,4) width=5: words=42  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(2,3) width=5: words=28  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0
+(m,d)=(0,5) width=5: words=42  (a) consecutive intervals OK  (b) size/depth formula failures over 20 random forests = 0

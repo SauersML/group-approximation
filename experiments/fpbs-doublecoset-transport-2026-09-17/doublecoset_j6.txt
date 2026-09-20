@@ -1,0 +1,6 @@
+j 1 level>=1 types of C_2 1 realised in C' 1 | types of C' = C_1 1 SET EQUAL
+j 2 level>=1 types of C_3 12 realised in C' 12 | types of C' = C_2 12 SET EQUAL
+j 3 level>=1 types of C_4 88 realised in C' 88 | types of C' = C_3 88 SET EQUAL
+j 4 level>=1 types of C_5 560 realised in C' 560 | types of C' = C_4 560 SET EQUAL
+j 5 level>=1 types of C_6 3381 realised in C' 3381 | types of C' = C_5 3381 SET EQUAL
+j 6 level>=1 types of C_7 19992 realised in C' 19992 | types of C' = C_6 19992 SET EQUAL

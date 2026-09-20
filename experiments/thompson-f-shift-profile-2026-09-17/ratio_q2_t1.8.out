@@ -1,0 +1,6 @@
+# ratio_shift q=2 tau=1.8 restarts=3 iters=1500; float search, upper bounds on D_n only
+q L n     e(R1)    e(R2)    e(c)     C
+2 2 8     0.61256  0.56532  3.4016   2.3565  rand
+2 3 16    0.60365  0.55651  3.4201   2.3803  warm
+2 4 32    0.60365  0.55651  3.4201   2.3803  warm
+2 5 64    0.60363  0.55650  3.4201   2.3803  warm

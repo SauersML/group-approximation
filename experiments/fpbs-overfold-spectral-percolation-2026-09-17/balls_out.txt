@@ -1,0 +1,20 @@
+j 1 n 40000 radius 1 R 12  balls 5203 (tree-shaped 5203, size 5)
+F(ball x types) over tree-shaped balls: [50, 51, 52]  ratio F/|A| = [0.8333, 0.85, 0.8667]
+lawful layer F_LLL/|X| over tree-shaped balls: [0.0]
+whole packing: |A|/n = 7.804, F(A)/|A| = 0.8334
+j 1 n 40000 radius 2 R 12  balls 966 (tree-shaped 966, size 17)
+F(ball x types) over tree-shaped balls: [226, 227, 228, 229, 230, 234, 236, 240, 246, 262]  ratio F/|A| = [1.1078, 1.1127, 1.1176, 1.1225, 1.1275, 1.1471, 1.1569, 1.1765, 1.2059, 1.2843]
+lawful layer F_LLL/|X| over tree-shaped balls: [0.0, 0.0588]
+whole packing: |A|/n = 4.927, F(A)/|A| = 1.1085
+j 1 n 40000 radius 3 R 12  balls 171 (tree-shaped 166, size 53)
+F(ball x types) over tree-shaped balls: [761, 762, 763, 764, 765, 767, 768, 769, 771, 774, 775, 789]  ratio F/|A| = [1.1965, 1.1981, 1.1997, 1.2013, 1.2028, 1.206, 1.2075, 1.2091, 1.2123, 1.217, 1.2186, 1.2406]
+lawful layer F_LLL/|X| over tree-shaped balls: [0.0377, 0.0566]
+whole packing: |A|/n = 2.717, F(A)/|A| = 1.1990
+j 0 n 40000 radius 2 R 1  balls 966 (tree-shaped 966, size 17)
+F(ball x types) over tree-shaped balls: [5, 6]  ratio F/|A| = [0.2941, 0.3529]
+lawful layer F_LLL/|X| over tree-shaped balls: [0.2941, 0.3529]
+whole packing: |A|/n = 0.411, F(A)/|A| = 0.2944
+j 2 n 10000 radius 2 R 88  balls 236 (tree-shaped 234, size 17)
+F(ball x types) over tree-shaped balls: [4808, 4812, 4813, 4814, 4815, 4816, 4817, 4818, 4821, 4822, 4823, 4824, 4826, 4829, 4832, 4833, 4836, 4840, 4841, 4843, 4846, 4847, 4848, 4849, 4850, 4853, 4854, 4860, 4869, 4874, 4940, 4941, 4952, 5125, 5128]  ratio F/|A| = [3.2139, 3.2166, 3.2172, 3.2179, 3.2186, 3.2193, 3.2199, 3.2206, 3.2226, 3.2233, 3.2239, 3.2246, 3.2259, 3.2279, 3.2299, 3.2306, 3.2326, 3.2353, 3.236, 3.2373, 3.2393, 3.24, 3.2406, 3.2413, 3.242, 3.244, 3.2447, 3.2487, 3.2547, 3.258, 3.3021, 3.3028, 3.3102, 3.4258, 3.4278]
+lawful layer F_LLL/|X| over tree-shaped balls: [0.0, 0.0588]
+whole packing: |A|/n = 35.288, F(A)/|A| = 3.2219

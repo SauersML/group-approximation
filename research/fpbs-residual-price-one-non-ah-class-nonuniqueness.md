@@ -144,3 +144,18 @@ and nonamenable, and their amenable subgroups are all finite
   available for `B(m,N)` is `rho(G_k) <= rho(B(m,N)) < 1`, which certifies only
   `S = {o}`, above `1/(d rho)`. The spark M3 (artifact Section 7) records the
   uniform-margin statement that would suffice.
+* **Place single `B(m,n)` in (α) (swarm-0917-w21, 2026-09-17).** Established
+  `fpbs-free-burnside-groups-lie-in-kesten-half`.
+  * The first ingredient is a lemma: finite centralizers rule out nontrivial
+    finite normal subgroups.
+  * For `m >= 3` the witness is the retraction kernel `<<x_1>>`.
+  * For `m = 2` the witness is the kernel of `B(2,n) -> B(2,d)`, for a proper
+    divisor `d >= 1003`.
+  * So these single members need only `fpbs-percolation-kesten-normal-gap`,
+    and the named (β) core is just the Tarski monsters.
+
+  **Where it stops:** `B(2,p)` with `p` prime. The quotient onto an exponent-`p`
+  Tarski monster would place it in (α), but the existence and nonamenability of
+  that monster for each large prime is not imported verbatim. Placement is
+  structure, not a percolation estimate; the Kesten normal gap itself stays
+  open.

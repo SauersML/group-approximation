@@ -1,0 +1,13 @@
+[U] |V| = 81, Pbar cosets 320 [2s]
+[U] Schreier gens 2881, relators 11400, twist vectors 180 [2s]
+[U] twist reduction {'centralizer_sizes': [5, 4, 5, 4, 4, 5, 5, 4, 4, 5], 'twist_vectors': 180}
+[pbar-U] after unit elimination 21 gens, 6280 relators [15s]
+[pbar-U] H_1 = Z^16 + [3, 3, 3, 3, 3] [15s]
+[pbar-U] classes 50, W rank 34, gcd aug 10 [15s]
+[pbar-U] {"label": "pbar-U", "cosets": 320, "schreier_gens": 2881, "gens_after_unit_elim": 21, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [2, 4, 8], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 14, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], "seconds": 20}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/.pbar-U-tmp.json
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/w-U.json
+  box: {'rows': 34, 'max_row_l1': 12, 'box_size': 1, 'row_option_counts': [1]}
+[U] distance: {'rows': 34, 'max_row_l1': 12, 'box_size': 1, 'row_option_counts': [1], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[U] positive floor: {'certified': False, 'reason': 'no interior point found'}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/exact-U.json

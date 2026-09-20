@@ -333,3 +333,74 @@ and finite-entropy Cantor hosts cannot.
   Theorem 5.1 item (3) is "Right-angled Artin groups". The survey text says "Boone–Higman
   embeddings for right-angled Artin groups are now known (see Theorem 5.1)". Remark 5.4 adds only
   the types `A_n, B_n = C_n, D_n, I_2(m), Ã_n` and the Euclidean triangle Artin groups.
+
+## Attempt (bh-last1-w21, 2026-09-20): wedge Hall hosts and star-shaped kernels
+
+This attempt is on the one-sided free case `G = F_2 *_{φ : A -> B}`, with `[F:A] = k` and
+`[F:B] = ∞`. That is the `χ >= 0` case left untouched above. Details and proofs are in
+`wedge-hall-hosts-have-no-star-shaped-kernels`.
+
+- **The complement map must be designed.** Random Hall hosts, with random `L_0` and random
+  `α`, do have kernels. Hosts with a two-peak kernel:
+  - 6 of 20 for `k = 2`;
+  - 6 of 20 for `k = 3`.
+
+  In each such host an explicit cyclically reduced word was Britton-verified to die in `H`.
+  So "any `α`" is false. An exact decision procedure for two-peak kernels in any Hall host
+  runs on the pair graph of `Γ_Q`.
+- **Wedge design (ESTABLISHED on paper).** Take `S = Φ^-1(L_0) = b π' b^-1` inside the
+  `F`-component of `q_0 · b`, so that `M = <F, S> = F * S`. Then every kernel element needs a
+  **cascading pinch**. In the dual tree of its Britton matching, some valley `s^-1 X s` has
+  content `X ∉ F`.
+  - Star-shaped kernels (all valleys pinching directly) die by a free-product normal-form
+    argument in `F * S`.
+  - This includes every two-peak kernel and every `(t f t^-1 g)^p` whose valleys pinch
+    directly.
+  - Census: 0 wedge hosts of 40 have a two-peak kernel. A brute-force census found 0 kernel
+    words among about 1.58M words of shapes `(+-+-)`, `(++--+-)` and `(+-+-+-)`.
+- **Why it does not close (finite-orbit obstruction).** `G ≅ M *_{Q -> B̄}` with `Q = A * S`.
+  - `P = F * S` always has `P ∩ C_2 ⊋ B̄`, because finite `S`-orbits in `Σ_2` have nontrivial
+    stabilizers. Also `P ∩ C_1 ⊋ Q` when `k >= 2`.
+  - So the one-step HNN-subgroup criterion never holds, and the cascading pinches draw on
+    `Φ(C_1 ∩ M) \ B̄`, which the wedge does not control.
+  - This agrees with the endless folds of the bh-last1 Attempt.
+- **Remaining hole.** Design the complement of `L_0` in `C_2` level by level, so that no
+  cascading pinch closes. For example, require at each level `j` that
+  `<F, S_1, ..., S_j>` is a free product with the next pullback `S_{j+1}`. A proof would
+  need this tower to stay free product at every level (a limit argument).
+- **Artifact.** `experiments/hall-host-kernels-2026-09-17/hall_kernel_census.py`. Run it
+  with arguments `20 0 2` or `20 0 3` for the exact two-peak test, or `4 2` for the
+  brute-force census.
+## Attempt (swarm-0917-w22-w22-bh-last1, 2026-09-20): L2 obstruction for the `χ > 0` free case
+
+*Class kill, not a proof. The hole stays OPEN.*
+`one-sided-free-hnn-inputs-have-positive-second-l2-betti` (ESTABLISHED, lane proof, not reviewed)
+handles the sign that bh-last1 left untouched.
+
+- **The input side.** Take `G = F*_φ` with `F` free of rank `r`. Its standard 2-complex gives
+  `b_2^(2)(G) >= χ(G) = rk A - r`. For every non-ascending one-sided input, that is `[F:A] = m >= 2`
+  and `r >= 2`, this is `(m-1)(r-1) > 0`. The Artin reduction `F_3 *_{F_7}` has `χ = 4`.
+- **The host side.** In a group with a finite 2-dimensional `K(π,1)` and `b_2^(2) = 0`, every
+  subgroup has `b_2^(2) = 0`: a kernel element evaluates to a square-summable 2-cycle on the
+  universal cover.
+- **What dies.** Every strategy that embeds such an input into one of the following hosts and then
+  quotes that host's BH result:
+  - an ascending HNN extension of a free group, or a free-by-cyclic group
+    (`ascending-hnn-of-free-groups-satisfy-boone-higman`);
+  - a torsion-free one-relator group (Sapir--Spakulova route,
+    `almost-all-one-relator-groups-satisfy-boone-higman`);
+  - a GBS or tubular group, or any graph of free groups with cyclic edge groups;
+  - a 3-manifold group (Scott core plus `χ <= 0`).
+
+  Every such strategy dies at the placement step, and the invariant is `b_2^(2)`.
+- **Explicit instance.** `x^2 -> x^2`, `y -> y^2`, `xyx^-1 -> xy^2x^-1` on `F(x,y)` gives `χ = 1`
+  and contains `BS(1,2)`, so right-angled Artin hosts die as well. Checked by
+  `experiments/l2-one-sided-hnn-2026-09-17/stallings_check.py`.
+- **What survives.** The Hall hosts `Y*_Φ ∈ BS_{F_2}` of bh-free-05, with
+  `χ = (M-1) r > 0`, are consistent with the invariant, and are now the only 2-dimensional
+  candidates of known BH type left for this case.
+- **Combined picture.** With bh-last1, the free case is pinned from both sides:
+  - `χ < 0` forces infinitely generated stabilizers in locally finite tree hosts;
+  - `χ > 0` forces `b_2^(2) > 0` in 2-dimensional hosts.
+
+  The w21 kernel census on Hall hosts is therefore the live direction for the one-sided case.

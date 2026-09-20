@@ -1,0 +1,7 @@
+V 96 n 12 seeds 144 auts 12 threads 1 ALL SEEDS
+level 1: no goal; 144 extensions tested; 12 new states stored
+level 2: no goal; 1728 extensions tested; 828 new states stored
+level 3: no goal; 119232 extensions tested; 30595 new states stored
+  level 4 progress 4096/30595 states
+level 4: no goal; 4405680 extensions tested; 0 new states stored
+no goal within 4 seeds

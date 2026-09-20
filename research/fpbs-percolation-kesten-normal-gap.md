@@ -166,3 +166,167 @@ direction is used here.
   same node records a second point: submultiplicative weight tilts pulled back
   from `Q` have infinite tilted susceptibility at `p_c` on unimodular graphs,
   so Hutchcroft-type tilting needs a cocycle.
+* **Operator-algebras transplant (transplanter, 2026-09-19, swarm-0917 w18,
+  `research/artifacts/fpbs-cluster-gram-fibre-operator-2026-09-17.md`).**
+  **Dictionary:** the fibre operator `A_p = lambda_Q(sigma_p)` is a positive
+  operator affiliated with `L(Q)`.
+  - `chi^N_p = tr A_p`.
+  - The gap asks for `A_p ∈ L^1` for some `p > p_c`.
+  - Critical fibre l2 is `A_(p_c) ∈ L(Q)`.
+  - Trichotomy type (ii) is `L^1` without `L^infinity`.
+
+  **What survives (ESTABLISHED,
+  `fpbs-normal-fibre-mass-cluster-gram-representation`).** Mass transport gives
+  the Gram form `A_p = E[|K_o|^{-1} lambda_Q(a)^* lambda_Q(a)]` for the cluster
+  profile `a(u) = |K_o ∩ u~N|`, for every normal `N`. From it:
+  - `sigma_p` is positive definite for every normal `N`, for `p <= p_c`;
+  - `sigma_p(u) <= chi^N_p` for every `p` and every normal `N`, which settles
+    open point 1 of the 2026-09-16 amenable artifact;
+  - `||sigma_(p_c)||_Q <= liminf_{p ↑ p_c} E_p[|K_o| r(a)^2]`, where `r` is the
+    Kesten ratio of the profile.
+
+  This is a new sufficient decomposition, recorded as the route
+  `fpbs-kesten-gap-via-profile-kesten-ratio` with the OPEN premise
+  `fpbs-critical-profile-kesten-ratio-integrable`. Numerical lower bounds on
+  critical `T_3` clusters grow slowly and show no forbidden `|K|^(1/2)` growth.
+
+  **Where the dictionary breaks.** An invariant finite-cluster partition of
+  `F_2 x Z` into renewal blocks along `<a>`, with `N = Z`, has `tr A = 1` and
+  `||A|| = infinity`, and it satisfies the Gram form. **Invariant:** the
+  size-biased squared Kesten ratio `E[|K| r(a)^2]`, which equals `E|K| = infinity`
+  on that partition. **Failing step:** the upgrade `L^1 -> L^infinity`. It cannot
+  follow from invariance and partition structure, so a proof must use Bernoulli
+  input that keeps critical shadows off amenable pieces of `Q`.
+
+  Calibration: positive definiteness of `tau` alone does not give fibre
+  maximality for nonamenable `N`. There is an example on `F_2 x Z/2` with
+  `sigma(1) = 1.08 > sigma(0) = 1`.
+* **Approximation and transfer at isolated pairs (stability-approximation,
+  2026-09-20, swarm-0917 w20,
+  `fpbs-isolated-pairs-defeat-amenable-kernel-approximation`, ESTABLISHED).**
+  The transfer lemma of `fpbs-l2-gap-transfers-to-kesten-normal-gap` extends
+  to every limit of amenable-kernel pairs (AA pairs). That class does not
+  cover the half (alpha).
+  - `V x V`, with `V` Thompson's group, lies in (alpha), with witnesses
+    `V x 1` and `1 x V`, and these are its only proper nontrivial normal
+    subgroups.
+  - Every marking of `V x V` is isolated, and each witness pair is isolated
+    among marked pairs.
+  - A kernel that contains a finitely presented, infinite, simple, nonamenable
+    subgroup is never a limit of amenable kernels.
+
+  **Invariant:** isolation of the witness pair. **Failing step:** Step 2 (the
+  tower) of `fpbs-l2-gap-transfers-to-kesten-normal-gap-proof`. Every argument
+  of the following kinds reduces to the gap at `(V x V, V x 1)` itself:
+  - local convergence, or lower semicontinuity of `chi^N` or `p_c`;
+  - compactness of `X_(k,eta)`, or Baire density;
+  - finite models;
+  - Følner compression.
+
+  Corollary B and the uniform Kesten law are silent there. Følner compression
+  along the amenable wq-normal subgroup `<g> x 1` certifies only the global l2
+  gap, which already gives `p_c < p_u`. The gap on `V x V` stays open. A proof
+  of (alpha) must work at isolated pairs directly.
+* **Aizenman--Newman pivotal lower bound toward Claim E (swarm-0917 w21,
+  transplanter).** Aim: prove `E` on the window `(p^Q_(2->2), p_c(N;G))`,
+  where it has content, by transplanting the mean-field lower bound
+  `d chi/dp >= c chi^2`. On finite truncations, Russo gives
+  `d chi^N/dp = (1/p) sum_(x in N) sum_e P(e pivotal for o<->x)`. Condition
+  on `C(o)` off `e=(u,v)` and use BK:
+  `P(v<->x off C) >= tau(v,x) - sum_(w in C) tau(v,w) tau(w,x)`.
+  - The main term is `M_p = d <sigma_p, mu_Q * sigma_p>_(l2(Q))`. It uses
+    that `sigma_N(u) = sum_(x in N) tau(u,x)` is constant on cosets and that
+    `sigma(q^(-1)) = sigma(q)`.
+  - After the tree-graph bound, the error is at most
+    `sum_(z,w) tau(o,z) B_p(z,w) sigma_N(w)`, where
+    `B_p(z,w) = tau(z,w) (T_p D T_p)(z,w)`.
+
+  To close, this needs the `sigma_N`-weighted triangle
+  `W_p = sup_z sum_w B_p(z,w) sigma_N(w)/sigma_N(z)` to be `< 1`. Then
+  finite `chi^N` on an interval forces `M_p < infinity` there, which is the
+  `m=2` case of the diagonal formula. **Where it dies:** twice.
+  - **Triangle step.** `W_p` is at least the unweighted in-fibre triangle,
+    and it is small only in a triangle / mean-field regime. On `T_3`,
+    `nabla_p` is finite exactly for `p < 1/sqrt 2 = p_(2->2)` (tripod count
+    `2^(a+b+c) p^(2(a+b+c))`). So the error is not controlled beyond
+    `p_(2->2) >= p^Q_(2->2)`, and finiteness alone does not give `W_p < 1`
+    below it.
+  - **Order step.** Even with `W_p` small, a first derivative reaches only
+    `m=2`. `E` needs `chi^(N,m) <= C^m` for all `m`, i.e. derivatives of every
+    order of a monotone function known only to be finite. Order `m-1`
+    derivatives carry `m-1` compounded weighted-triangle errors and are not
+    controlled by finiteness of `chi^N`.
+
+  **Invariant:** the weighted triangle `W_p`, together with derivative order.
+  AN-type derivative domination is therefore itself a critical-l2 / triangle
+  method and cannot establish `E` or `E'` outside that regime. No node or
+  artifact written; this record is the only output.
+* **Group-rings transplant: positivity of the fibre kernel in the gap window
+  (transplanter, 2026-09-20, swarm-0917 w22).** This treats `sigma^N_p` as an
+  element of the Fourier--Stieltjes algebra `B(Q)` and asks which part of it
+  Claim E of `fpbs-relative-threshold-is-quotient-l2-threshold` really
+  controls.
+  - **Proved** (`fpbs-fibre-mass-positive-definite-in-gap-window`,
+    ESTABLISHED). Whenever `chi^N_p < infinity`, so on the whole window
+    `p_c < p < p_c(N;G)`:
+    - `sigma^N_p` is positive definite on `Q` and maximal at `e`, for every
+      normal `N`;
+    - its finite-cluster part is a coefficient of the regular representation.
+
+    The key identity is a coset mass transport with a probability weight `pi`
+    on `Q`:
+    `sigma(u^(-1)w) = sum_v pi_v E[A(u) A(w) / W_pi]`, with `W_pi = sum_r pi_r A(r)`.
+    This replaces the `1/|K|` root, which does not exist on infinite clusters.
+    Exact enumeration on `D_4` and `D_6` confirms the identity and refutes the
+    naive `A(e)`-normalised root.
+  - **New decomposition.** The chain is
+    E ⇒ E1 (`fpbs-gap-window-fibre-mass-in-fourier-algebra`, OPEN: `sigma_p`
+    in `A(Q)` below `p_c(N;G)`) ⇒ positive definiteness (proved). Each link
+    can fail on its own. On tree products, E1 already forces the pointwise
+    square-root law `beta_fib >= 1/2`, and finite clusters obey that law
+    unconditionally. So a counterexample to Claim E there must come from
+    infinite-cluster fibre mass decaying slower than `(k-1)^(-n/2)`.
+  - **Where it dies.** The step from positive definiteness to boundedness of
+    convolution. Positivity plus the other soft properties proved (maximal at
+    `e`, radial, not summable) are all shared by complementary-series
+    spherical functions `phi_z`, `z < 1/2`, and those violate E1. So this
+    route proves nothing about the premise `p_c < p_c(N;G)` itself.
+  - **Invariant.** The singular mass `dist_B(sigma_p, A(Q)) <= sigma^inf_p(e)`,
+    which is carried entirely by infinite clusters. Any proof of E must
+    produce a `Q`-equivariant square-root vector for the infinite-cluster
+    fibre mass. The positive root found here is not equivariant, and its
+    equivariant version has weight `|C| = infinity`.
+
+* **Radial pointwise certificates and the half-growth floor (swarm-0917 w23,
+  group-rings dispatch pivoted to host-geometry).** The idea was to bound
+  `chi^N_p <= sum_(n ∈ N) C e^(-a|n|)` using a radial two-point bound, which
+  would give the gap for normal subgroups of relative growth `v_N < e^a`.
+  The candidate rate was the half-growth rate `a = (1/2) log gr`.
+  **Where it dies:** conjugation counting gives
+  `v_N >= sqrt(gr) / growth(C_Gamma(n0))` for every `n0 ∈ N \ {e}`
+  (`fpbs-normal-subgroup-half-growth-floor`, ESTABLISHED). Moreover
+  `sum_(n ∈ N) gr^(-|n|/2) = infinity` once some `n0 ∈ N` has a centralizer of
+  linear growth. So the half-growth route fails already at `p_c`, for every
+  infinite normal `N` of an acylindrically hyperbolic `Gamma`.
+  **Invariant:** the growth of centralizers of elements of `N`.
+  What survives is essentially the product case, which tree products already
+  cover. The method also stalls on two further points: the pointwise
+  half-growth bound itself is unproved (Hutchcroft's bound controls only the
+  worst pair `kappa`), and so is right-continuity of the rate above `p_c`.
+  Radial rates close to `log gr`, as on trees, are not excluded.
+* **Quotient group-ring transplant, state level (transplanter via group-rings,
+  2026-09-20, swarm-0917 w24).** The idea was to prove the gap from Q-side
+  structure of the fibre profile `sigma_p`: positive definiteness,
+  `S_p` on `l2(Q)`, Kesten's `rho_Q < 1`, and Harris and infinite-volume
+  Russo--BK for `tau_p`. `fpbs-relative-gap-state-axioms-admit-collapse`
+  (ESTABLISHED) kills this on **every** pair `(G,N)`. The two-point collapse
+  state of `fpbs-two-point-state-axioms-admit-collapse` obeys (T1)--(T8),
+  equals Bernoulli up to `p_c`, and has `f_p >= theta(p)^2`, so its fibre
+  mass is infinite on every coset of every infinite subgroup for all
+  `p > p_c`. **Invariant:** the uniform atom `inf_x g_p(x)`. **Failing
+  step:** the continuation of `chi^N` from `p_c` to `p_c + delta`. On
+  type-(i) pairs the ESTABLISHED implication "critical fibre l2 implies gap"
+  is false for `f`, so its truncated majorant is the load-bearing step. Any
+  proof must use finite-volume or event-level inputs. Open refinement: a
+  state family with `||G_p|| < infinity` just above `p_c` but infinite
+  fibre mass along a nonamenable `N`.

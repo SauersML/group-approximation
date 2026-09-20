@@ -1,0 +1,13 @@
+N=3 start 0  Phi_4=0.953389
+N=3 start 1  Phi_4=0.953389
+N=3 start 2  Phi_4=0.949903
+N=3 best Phi_4=0.953389
+N=4 start 0  Phi_4=0.955400
+N=4 start 1  Phi_4=0.955400
+N=4 start 2  Phi_4=0.949903
+N=4 best Phi_4=0.955400
+N=5 start 0  Phi_4=0.956702
+N=5 start 1  Phi_4=0.956702
+N=5 start 2  Phi_4=0.942809
+N=5 best Phi_4=0.956702
+N=6: stopped for time before the first start finished

@@ -1,0 +1,9 @@
+B = ['a', 'baBB'] rank 2 malnormal True
+rho 1 ((0, 1, 3, 2), (1, 2, 0, 3)) rkX 25 words tested 39156 hits so far 0
+rho 2 ((0, 1, 3, 2), (1, 2, 3, 0)) rkX 25 words tested 39156 hits so far 0
+rho 3 ((0, 2, 3, 1), (1, 0, 2, 3)) rkX 25 words tested 39156 hits so far 0
+rho 4 ((0, 2, 3, 1), (1, 3, 0, 2)) rkX 25 words tested 39156 hits so far 0
+rho 5 ((1, 2, 3, 0), (0, 1, 3, 2)) rkX 25 words tested 39156 hits so far 0
+rho 6 ((1, 2, 3, 0), (0, 3, 1, 2)) rkX 25 words tested 39156 hits so far 0
+rho 7 ((1, 2, 3, 0), (1, 3, 0, 2)) rkX 25 words tested 39156 hits so far 0
+DONE L1 S4 9 distinct kernels 7 hits 0

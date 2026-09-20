@@ -1,0 +1,48 @@
+{
+ "label": "pbar-max1",
+ "cosets": 960,
+ "schreier_gens": 8641,
+ "gens_after_unit_elim": 165,
+ "h1_rank": 28,
+ "h1_torsion": [
+  3,
+  3,
+  3,
+  3
+ ],
+ "classes": 140,
+ "class_coset_counts": [
+  32,
+  288
+ ],
+ "W_rank": 112,
+ "gcd_aug_W": 10,
+ "d": "1/30",
+ "theta_values": [
+  "3/10"
+ ],
+ "cert_l1": 12,
+ "cert_aug": 10,
+ "A_plus": 20,
+ "A_plus_support": 16,
+ "A_plus_multiplicities": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2,
+  2
+ ],
+ "seconds": 864,
+ "V_order": 27
+}

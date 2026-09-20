@@ -1,0 +1,6 @@
+n 12 deep<= 1 law>= 4
+n 12 deep<= 1 law>= 8
+n 12 deep<= 2 law>= 8
+n 12 deep<= 3 law>= 10
+n 25 deep<= 1 law>= 11
+n 25 deep<= 1 law>= 13

@@ -1,0 +1,11 @@
+B rank 3 malnormal True
+Q = point: deep 1 law 2
+witness seed: base and vertex read by AbA closure contains ker: True
+L_1 = <a, baBB>        rank 2 malnormal True
+L_2 = <a, phi(t_1)>    rank 2 malnormal True
+<a, t^2>               rank 2 malnormal False
+<ab, ba>               rank 2 malnormal False
+<a, baaB>              rank 2 malnormal False
+<a, baBaB>             rank 2 malnormal True
+<a^2, b, aba^-1>       rank 3 malnormal False
+B above                rank 3 malnormal True

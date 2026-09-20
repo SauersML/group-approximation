@@ -1,0 +1,39 @@
+round 0: cols=200 value=2.70276 best reduced cost=-4.04
+round 1: cols=201 value=2.29167 best reduced cost=-2.79
+round 2: cols=202 value=2.20196 best reduced cost=-2.47
+round 3: cols=203 value=2.11575 best reduced cost=-2.73
+round 4: cols=204 value=2.04554 best reduced cost=-2.59
+round 5: cols=205 value=1.90754 best reduced cost=-2.19
+round 6: cols=206 value=1.84803 best reduced cost=-2.1
+round 7: cols=207 value=1.78388 best reduced cost=-2.58
+round 8: cols=208 value=1.70307 best reduced cost=-1.73
+round 9: cols=209 value=1.67731 best reduced cost=-1.83
+round 10: cols=210 value=1.63787 best reduced cost=-2.13
+round 11: cols=211 value=1.55968 best reduced cost=-2.31
+round 12: cols=212 value=1.53045 best reduced cost=-1.81
+round 13: cols=213 value=1.48424 best reduced cost=-1.75
+round 14: cols=214 value=1.42063 best reduced cost=-1.73
+round 15: cols=215 value=1.40258 best reduced cost=-1.46
+round 16: cols=216 value=1.35055 best reduced cost=-2.12
+round 17: cols=217 value=1.29174 best reduced cost=-1.55
+round 18: cols=218 value=1.26274 best reduced cost=-1.74
+round 19: cols=219 value=1.24921 best reduced cost=-2.17
+round 20: cols=220 value=1.22759 best reduced cost=-1.5
+round 21: cols=221 value=1.2069 best reduced cost=-1.57
+round 22: cols=222 value=1.19722 best reduced cost=-2
+round 23: cols=223 value=1.16667 best reduced cost=-2.03
+round 24: cols=224 value=1.15285 best reduced cost=-1.32
+round 25: cols=225 value=1.14655 best reduced cost=-1.35
+round 26: cols=226 value=1.13878 best reduced cost=-1.28
+round 27: cols=227 value=1.1304 best reduced cost=-1.98
+round 28: cols=228 value=1.12517 best reduced cost=-1.28
+round 29: cols=229 value=1.12 best reduced cost=-1.4
+round 30: cols=230 value=1.11394 best reduced cost=-1.57
+round 31: cols=231 value=1.10646 best reduced cost=-1.11
+round 32: cols=232 value=0 best reduced cost=0
+FINAL (m,d)=(0,4) order-only LP exact min violation = 0
+  p=1.0000 perms=((0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2), (0, 1, 2))
+
+real	0m12.831s
+user	0m12.017s
+sys	0m0.133s

@@ -8,6 +8,8 @@ distinct_from:
   dkkms-2to1-instances-satisfy-selector-decoding-hypotheses: that verifies the list-decoding hypotheses (E) and (M=) for honest encodings of global assignments; this asks for a structure theorem about arbitrary labellings of value near 1.
   two-to-two-games-theorem: that is the 1 percent soundness statement of Khot--Minzer--Safra, which decodes labellings of value delta to a list; this is a 99 percent statement asking for agreement on all but zeta_1 of the mass with one patchwork, with explicit constant outer value 15/16.
   efficient-branch-selector-on-proved-2to1-instances: that asks for a polynomial-time orientation with YES lift value near 1; by Corollary B of the high-advantage node, this claim together with that one gives NP in RP.
+artifacts:
+  - experiments/dkkms-sound-point-rigidity-2026-09-17/check_density_comparison.py
 ---
 
 **OPEN.**
@@ -95,3 +97,69 @@ val_(Phi_k)(lambda) >= 15/16      and      d_kappa(lambda) <= 1/64.
   uniform Grassmann test proves `T2`. Whether `T2` is true stays OPEN.
   Suggestion: narrow the quantifier to certified points, which is all the DKKMS
   soundness chain uses, and post `T2` separately if anything needs it.
+* **Density comparison (2026-09-19, swarm-0917-w17-w17-ugc-follow).** This
+  attempt tried to move `T1` into `T2` by comparing the DKKMS per-tuple
+  B-subspace law `P0` with the uniform law `U` on `Gr(F_2^(3k), l-1)`, using the
+  density `rho = dP0/dU` instead of total variation. The approach is DEAD. What
+  was checked:
+  - **Pointwise sandwich.** `phi <= rho <= K0 phi`, where
+    `phi(Q) = prod_i ((1-beta) + (beta/3) 4^(l-1) N_i(Q))`,
+    `N_i(Q) = #{v : pi_i(Q) <= <e_v>}` takes values in `{0,1,3}`, and
+    `K0 = prod_j (1 - 2^-(n-2m-j))^-1`. The bounds come from the
+    Gaussian-binomial ratio `[3k, l-1] / [3k-2m, l-1]`, which lies in
+    `[4^(m(l-1)), K0 4^(m(l-1))]`.
+  - **Law of `N_i`.** `P(N=3) = 8^(1-l)` and `P(N=1) = 3(2^(l-1)-1) 8^(1-l)`.
+    So `E N = 3 * 4^(1-l)`, `E N^2 = 3 * 4^(1-l) + 6 * 8^(1-l)`, and each factor
+    of `phi` has mean exactly `1`.
+  - **Second moment.** For iid blocks,
+    `E phi^2 = (1 + beta^2 (4^(l-1)(1+2^(2-l))/3 - 1))^k`, which is about
+    `e^S`. The invariant is `S = k beta^2 4^(l-1)/3 = SD1^2/768`, where
+    `SD1 = beta sqrt(k) 2^(l+3)`. `E rho^2 >= E phi^2` holds exactly on every
+    enumerated case.
+  - **Why it fails.** A Cauchy–Schwarz transfer of a bad event from `U` to `P0`
+    loses `||rho||_2`, which is about `e^(S/2)`. A reverse transfer through
+    `min rho >= (1-beta)^k`, about `1/ln k`, is not uniform. At `q = 1`,
+    `beta = ln ln k / k`, the script gives:
+
+    | `l` | `S` at `k_A` | `S` at `k_T = 4^(l-1)/12` | `S = 1` at | `k_0` |
+    |---|---|---|---|---|
+    | 20 | 47.7 | 40.2 | `k ~ 2^39.9` | `k ~ 2^83.3` |
+    | 60 | 1.8e8 | 76.5 | `k ~ 2^120.7` | `k ~ 2^163.7` |
+
+    Corollary SC of `dkkms-2to1-value-is-at-least-seed-concentration` bounds
+    only `k beta^2 = O(l)`, so `S` is unbounded there. So `S` is the invariant
+    that separates `T1` from `T2`: every coupling, covering or density transfer
+    from a uniform Grassmann test dies at the step where it pays `e^(S/2)`, on
+    `{S >> 1}`.
+  - **Side remark, not established.** The comparison would extend `T1` from
+    `SD* <= 10^(-5)` to `{S <= S_0}`, about `k >~ 4^l (ln ln k)^2`, which is a
+    factor of about `2^43` below `k_0`. That shrinks `T2` to about
+    `[k_A, polylog * k_T]`, matching Theorem W of
+    `dkkms-seed-law-is-uniform-in-regime-and-far-in-window` up to polylog
+    factors. It closes nothing load-bearing: `T2` contains no certified point,
+    and certified points (`k >= 2^(4l^2+12)`) have `log10 S <= -468` at
+    `l = 20`, where `T1` already applies.
+  - **Artifact.**
+    `experiments/dkkms-sound-point-rigidity-2026-09-17/check_density_comparison.py`
+    prints ALL PASS. It checks the law of `N_i` for `l = 2..6` and the
+    Gaussian-binomial sandwich exactly for `k = 2..8`. It also enumerates `rho`
+    exactly at six tiny `(k,l,beta)`, checking `E rho = 1`, `rho >= phi` and
+    `E rho^2 >= E phi^2`, and it tabulates `S` on the window for
+    `l = 20, 25, 30, 40, 60`.
+* **Quotient covering (2026-09-20).** Route
+  `dkkms-local-rigidity-via-quotient-covering` through
+  `dkkms-quotient-covering-proves-99-percent-rigidity` proves this claim, and
+  so `T2`, with `eta_1 = 10^(-5)`, `zeta_1 = 1/128` and `l_0 = 66`. This holds
+  for every `q >= 1`, both log readings and every smoothing law. The **OPEN**
+  line above is superseded by that route.
+  - Every event of the per-tuple argument is `H_U`-invariant: the rejection of
+    two extensions and the disagreement with `lambda_U`. So the class labels
+    descend to a linear table on `Gr(X_U/H_U, l)`.
+  - There the image of the seed law has
+    `chi^2 <= (1 - 2^(l-1-k))^(-2) exp(k beta^2 (2^(l-1) - 1)) - 1`.
+    That goes to `0` on the whole window, because `k_A ~ e^l` beats `2^l`.
+  - The "no covering transfer" conclusion of the previous entry holds only
+    for transitive tests on `Gr(X_U, .)`. The class kill of the seed-law node
+    is exactly that class, and the quotient test lies outside it.
+  - Still not covered: `3 <= l <= 65` at the admissible points with
+    `SD^cl > 10^(-5)`.

@@ -1,0 +1,9 @@
+Frattini quotient of U: F_3^2; 4 maximal subgroups
+[max2] |V| = 27, Pbar cosets 960 [10s]
+[max2] Schreier gens 8641, relators 34560, twist vectors 9600 [11s]
+[pbar-max2] after unit elimination 212 gens, 21261 relators [751s]
+[pbar-max2] H_1 = Z^16 + [3, 3, 3, 3, 3] [972s]
+[pbar-max2] classes 50, W rank 34, gcd aug 10 [1018s]
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+[pbar-max2] {"label": "pbar-max2", "cosets": 960, "schreier_gens": 8641, "gens_after_unit_elim": 212, "h1_rank": 16, "h1_torsion": [3, 3, 3, 3, 3], "classes": 50, "class_coset_counts": [96, 192, 288], "W_rank": 34, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 12, "A_plus_multiplicities": [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2], "seconds": 1024}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/pbar-max2.json

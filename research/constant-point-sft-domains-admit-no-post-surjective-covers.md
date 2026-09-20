@@ -13,6 +13,9 @@ artifacts:
   - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
   - research/artifacts/pointed-pre-injective-sections-2026-09-18.md
   - research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md
+  - research/artifacts/affine-cover-pairs-direct-finiteness-2026-09-19.md
+  - research/artifacts/erasable-pattern-avoiding-cover-pairs-2026-09-19.md
+  - research/artifacts/coset-lift-tube-shifts-2026-09-20.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -200,3 +203,102 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
     model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
     argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.
+- **Affine decoders (swarm-0917-w18-w18-gs-pull, 2026-09-19; stability-approximation). This is a class kill plus
+  the exact linear shadow.** Artifact: `research/artifacts/affine-cover-pairs-direct-finiteness-2026-09-19.md`.
+  - *Landed (ESTABLISHED, unreviewed).* `affine-decoders-admit-no-proper-cover-pairs`. Let `F = L + b` be affine
+    over `V = R^k`, with `R` a finite commutative ring, and let it have lifts at a single point `p` of an
+    arbitrary closed `X`. Then `M_k(R[G])` directly finite forces `X = V^G`. Conversely, a one-sided inverse gives
+    a proper constant-point linear SFT cover pair. Direct finiteness holds at every surjunctive group, and wherever
+    `F_p[G]` is stably finite.
+  - *Class kill.*
+    - The class: pairs whose decoder is affine after independent recodings of source and target as `R^k`. This
+      includes nonlinear domains (arrow-type, bounded-defect) carrying linear decoders. So it is strictly more
+      than `linear-proper-domain-duality-is-stable-finiteness`.
+    - Invariant: affine-ness of the decoder. The domain is only used through closedness, and the constant point
+      is not used at all.
+    - Dying step: the lifts of the `k` free generators `e_i δ_e` of `V[G]` assemble into a finite-memory right
+      inverse `T`. Surjunctivity makes `T` onto, so `p + V[G] ⊆ X`.
+    - Hence any `CP_col(U)` counterexample at a surjunctive `U`, and any counterexample at a sofic group or a
+      Kun–Thom wreath, has a decoder that is non-affine under every such recoding.
+  - *What it does not reach.* For a nonaffine decoder the lift set has no module structure. Assembling a local
+    right inverse from generator lifts is then exactly a local section, i.e. PRUNE (36774ad3), which stays open.
+    Homomorphic decoders over non-free abelian or nonabelian group alphabets are also not covered.
+  - Stays **OPEN**.
+- **Dual failures give CP pairs (swarm-0917-w19-w19-gs-pull, 2026-09-19; symbolic-dynamics). This is a new
+  implication plus a class obstruction for the converse. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `dual-failures-give-constant-point-cover-pairs` (Theorem D).
+    - Any post-surjective, non-pre-injective `F : A^G → A^G` restricts to a counterexample to this claim at `G`.
+      The domain is `X_{w'}`, the configurations avoiding one non-constant pattern, and it contains every
+      constant.
+    - `w' = u' ∪ c` pads the collision pattern `u'` of an asymptotic pair with a random context `c`. The context is
+      chosen so that swapping `u' → u` at an occurrence of `w'` preserves `F` and creates no new occurrence.
+    - Lifts in `A^G` (Doucha–Gismatullin) contain finitely many occurrences, and swapping them out one at a time
+      terminates.
+  - *Consequences.*
+    - This claim at `G` implies dual surjunctivity at `G`. So this claim over all groups implies
+      `every-group-is-dual-surjunctive`, by the new route `dual-surjunctivity-via-constant-point-domains`.
+    - This strengthens `CP ⇒ NPE`. The single hub now feeds both Gottschalk and its dual.
+    - Over a surjunctive `G` the pair collides at every constant, so `Gottschalk(G) ∧ ¬DualSurj(G) ⇒ ¬CP_col(G)`.
+  - *Class obstruction (needs 36774ad3 and 06d50d0e).*
+    - Invariant: the Theorem D pair, which exists at every group with a dual failure.
+    - Dying step: every proof of `Gottschalk(G) ⇒` this claim at `G` must dispose of it. So it proves
+      `surjunctive-groups-are-dual-surjunctive` at `G`, which is OPEN.
+    - PRUNE and the coset lift are therefore at least as hard as "surjunctive ⇒ dual surjunctive". The Theorem D
+      pairs are not in general deficient, so the deficiency kill does not already cover them.
+  - *Spark.* If `c` can be chosen so that `X_{w'}` is strongly irreducible, then
+    `PSD(G) ∧ Gottschalk(G) ⇒ DualSurj(G)` as well. This is unchecked.
+  - Artifact: `research/artifacts/erasable-pattern-avoiding-cover-pairs-2026-09-19.md`.
+- **The colliding fragment is all of CP (swarm-0917-w20-w20-gs-pull, 2026-09-20; calibration, dispatched as
+  stability-approximation). This is an equivalence and a class kill. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cp-is-equivalent-to-its-colliding-fragment`.
+    - Step 4 of `bounded-defect-domain-dual-failure-proof` accepts any base point `y0 ∈ Y`, and every constant
+      lies in `Y`. So the route pair `(X_R, σ)` collides at every constant.
+    - Hence `CP_col(G) ⇒ Gottschalk(G)` and `CP ⟺ CP_col ⟺ CP_col^∃`, per group.
+    - The w15 split `CP ⟺ Gottschalk ∧ CP_col` has a redundant conjunct. Its remark that "CP_col is a surplus
+      the route never uses" is wrong: the route pair is a `CP_col` pair.
+    - Over all groups, `CP ⟺ CP_col(U)` at the fixed tester, with no `Gottschalk(U)` conjunct.
+  - *Correct surplus.* `CP ⟺ Gottschalk ∧ CP_nosec`, where `CP_nosec` forbids sectionless pairs. Sectioned and
+    sectionless pairs both collide at every constant, so section existence is the only separating invariant.
+  - *Class kill.*
+    - Approach: restrict CP by profile data (SI, `D = ∅`, all constants, collisions at every constant,
+      non-pre-injectivity, window size) and hope for something weaker than Gottschalk.
+    - Every such restriction still implies Gottschalk, because `(X_R, σ)` realises that profile.
+    - So collision-counting, Garden-of-Eden and deficiency arguments cannot split CP below Gottschalk. Only
+      section-sensitive data (needs 36774ad3, 06d50d0e) can.
+- **2026-09-20, swarm-0917-w21-w21-gs-last1 [symbolic-dynamics]: the coset lift on one tube; tube-internal
+  lifts are dead. This claim stays OPEN.** Artifact: `research/artifacts/coset-lift-tube-shifts-2026-09-20.md`.
+  - *Target.* Need 06d50d0e: the `⟨e⟩`-coset lift of Corollary S4 (`cover-pair-sections-localize-to-the-symmetric-locus`).
+  - *Landed (ESTABLISHED, unreviewed).* `coset-lifts-are-tube-sft-fixed-points`. Fix `e ∈ E \ {1}` of infinite
+    order, `z ∈ Fix(e)` with `a = z(1)`, `x ∈ X ∩ Fix(e)` and a finite `K ⊇ Φ`.
+    - The repairs of `x` supported on `⟨e⟩K` that are exact along `⟨e⟩` form a nonempty `Z`-SFT `Y_K`. It is
+      nonempty by sequential single-site lifts and compactness, and `e` acts on it as the shift.
+    - `e^p`-invariant repairs always exist, with `p ≤ |A|^{D|K|}` uniformly in `z`.
+    - `e`-invariant repairs are exactly the shift-fixed points of `Y_K`. Whether one exists is a clopen, local test.
+  - *Class kill (tube-internal coset lifts).*
+    - The class: arguments for the coset lift that repair inside one tube and use only the one-dimensional axioms
+      of the tube system. The axioms are:
+      - a `Z`-SFT;
+      - a strongly post-surjective code with lifts;
+      - a fixed point, namely `x` itself;
+      - a nonempty fibre with bounded-period points.
+    - This covers entropy, Garden-of-Eden and period arguments along `⟨e⟩`.
+    - Invariant: the number of shift-fixed points of the fibre `π^-1(a^Z)`, i.e. the trace of the fibre transition
+      matrix.
+    - Dying step: extraction of period `1`.
+    - Witness: a phase-alternation tube (2-block SFT, 1-block code, single-site lifts) with fibre traces
+      `tr M_a = 0` and `tr M_a^2 = 6`. It is checked by machine in `experiments/coset-lift-tubes-2026-09-17/`. The
+      same example on `Z/n` kills the finite-order case.
+  - *New decomposition of the tube-repair route to need 06d50d0e.* The route has two prerequisites, each of which
+    can fail on its own. They are sufficient for the route, not necessary for a section, since a section need not
+    arise from tube repairs of a given seed.
+    - (a) The pointwise fixed-point test of T5 passes at every `(z, ξ(z))` for some finite `K`. The phase tube shows
+      that tube axioms cannot give this.
+    - (b) The local repairs at the cosets `h⟨e⟩`, `h ∈ C(e)`, can be scheduled together. Exactness on `Fix(e)`
+      forces exactness on the whole centralizer `C(e)`, by (∗) of Theorem S, and not only on `⟨e⟩`.
+
+    Part (b) is only sketched, not proved. For central `e`, (a) and (b) together are a `G/⟨e⟩`-equivariant
+    section of the fold `X ∩ Fix(e) → A^{G/⟨e⟩}`. The fold is not a cover pair, because a one-site change
+    downstairs is a coset change upstairs.
+  - *Where it dies.* At period `1`. Any proof of need 06d50d0e must use `G` across the tube, through unbounded `K`
+    or the `C(e)`-coupling. For a given seed, prerequisite (a) fails exactly when the fibre over `a^Z` has no
+    shift-fixed point for every `K`, i.e. a phase-type tube at every width at one point of `Fix(e)`.

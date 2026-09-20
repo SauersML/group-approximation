@@ -1,0 +1,7 @@
+pairs 3000 n 1 seed 41 maxk 4 rB 2 sA 2 LB 5 LA 3 gaps 0 hist [((0, 0), 2318), ((1, 1), 682)]
+pairs 3000 n 1 seed 42 maxk 4 rB 2 sA 3 LB 5 LA 3 gaps 0 hist [((1, 1), 3000)]
+pairs 2000 n 1 seed 43 maxk 4 rB 2 sA 2 LB 6 LA 4 gaps 0 hist [((0, 0), 1051), ((1, 1), 920), ((2, 2), 29)]
+pairs 500 n 2 seed 45 maxk 4 rB 2 sA 2 LB 5 LA 3 gaps 0 hist [((0, 0), 370), ((1, 1), 115), ((2, 2), 15)]
+pairs 300 n 3 seed 46 maxk 4 rB 2 sA 2 LB 5 LA 3 gaps 0 hist [((0, 0), 224), ((1, 1), 58), ((2, 2), 18)]
+pairs 400 n 2 seed 47 maxk 4 rB 2 sA 3 LB 5 LA 3 gaps 0 hist [((1, 1), 364), ((2, 2), 36)]
+pairs 200 n 3 seed 48 maxk 4 rB 2 sA 3 LB 5 LA 3 gaps 0 hist [((1, 1), 178), ((2, 2), 18), ((3, 3), 4)]

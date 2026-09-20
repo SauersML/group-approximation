@@ -1,0 +1,20 @@
+BEAM V 240 n 12 seeds 1056 auts 12 B 2000 rng 3 ALL SEEDS, LEVEL 1 OVERFOLD ONLY
+level 0 defect 144
+level 1: 1056 extensions; min defect 144; kept 87 states (defect 144..144)
+level 2: 91872 extensions; min defect 108; kept 2000 states (defect 108..144)
+level 3: 2112000 extensions; min defect 92; kept 2000 states (defect 92..112)
+level 4: 2112000 extensions; min defect 72; kept 2000 states (defect 72..92)
+level 5: 2112000 extensions; min defect 56; kept 2000 states (defect 56..76)
+level 6: 2112000 extensions; min defect 36; kept 2000 states (defect 36..56)
+level 7: 2112000 extensions; min defect 20; kept 2000 states (defect 20..40)
+level 8 GOAL reached (beam)
+WITNESS 8 seeds (original vertex pairs, lawful flag):
+  168 235 lawful
+  82 128 overfold
+  74 135 overfold
+  142 147 overfold
+  103 147 overfold
+  14 33 overfold
+  168 185 lawful
+  35 29 overfold
+RECHECK goal on literal seed set: YES

@@ -1,0 +1,1 @@
+STATS mal A4 7 80 12 {'B': 80, 'kernels': 320, 'nonext_kernels': 121, 'hits': 0}

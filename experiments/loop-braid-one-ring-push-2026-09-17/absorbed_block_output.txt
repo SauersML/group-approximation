@@ -1,0 +1,16 @@
+n=6: theta(gens) pass the P_vw test and commute with A_vc: True
+n=6 tally (rank test, model equality): {('rank-FAIL', 'model-NEQ'): 985, ('rank-pass', 'model-eq'): 815}
+   example ('rank-FAIL', 'model-NEQ'): g = k5-through-cable^-1, type (4, 5)
+   example ('rank-pass', 'model-eq'): g = k5-through-cable^-1, type (4, 6)
+n=7: theta(gens) pass the P_vw test and commute with A_vc: True
+n=7 tally (rank test, model equality): {('rank-FAIL', 'model-NEQ'): 334, ('rank-pass', 'model-eq'): 386}
+   example ('rank-FAIL', 'model-NEQ'): g = A35^-1, type (4, 5)
+   example ('rank-pass', 'model-eq'): g = A35^-1, type (4, 6)
+n=6: theta(gens) pass the P_vw test and commute with A_vc: True
+n=6 tally (rank test, model equality): {('rank-pass', 'model-eq'): 739, ('rank-FAIL', 'model-NEQ'): 1061}
+   example ('rank-FAIL', 'model-NEQ'): g = cable-through-5, type (4, 5)
+   example ('rank-pass', 'model-eq'): g = A43^-1, type (4, 5)
+n=7: theta(gens) pass the P_vw test and commute with A_vc: True
+n=7 tally (rank test, model equality): {('rank-FAIL', 'model-NEQ'): 293, ('rank-pass', 'model-eq'): 427}
+   example ('rank-FAIL', 'model-NEQ'): g = A35^-1, type (4, 5)
+   example ('rank-pass', 'model-eq'): g = A35^-1, type (4, 6)

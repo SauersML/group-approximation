@@ -1,0 +1,87 @@
+{
+ "label": "phi",
+ "classes": 180,
+ "W_rank": 150,
+ "gcd_aug_W": 10,
+ "short_generated": false,
+ "basis_row_types_abs_aug_l1": [
+  [
+   0,
+   6
+  ],
+  [
+   0,
+   8
+  ],
+  [
+   0,
+   10
+  ],
+  [
+   0,
+   12
+  ],
+  [
+   0,
+   14
+  ],
+  [
+   0,
+   16
+  ],
+  [
+   0,
+   18
+  ],
+  [
+   0,
+   20
+  ],
+  [
+   0,
+   22
+  ],
+  [
+   0,
+   24
+  ],
+  [
+   10,
+   16
+  ],
+  [
+   10,
+   18
+  ],
+  [
+   10,
+   22
+  ]
+ ],
+ "short_generated_general": false,
+ "sg_split": {
+  "w1_l1": 16,
+  "w1_nonneg": false,
+  "W0_rank": 149,
+  "W0_max_l1": 24,
+  "SG": true
+ },
+ "short_generated_split": true,
+ "distance_ge_1/30": {
+  "rows": 150,
+  "max_row_l1": 24,
+  "box_size": 2,
+  "row_option_counts": [
+   1,
+   2
+  ],
+  "certified": true,
+  "min_leaf_bound": "1/30",
+  "seconds": 0
+ },
+ "mass10_exclusion_test": {
+  "certified": false,
+  "reason": "no interior point found"
+ },
+ "seconds": 54
+}

@@ -1,0 +1,30 @@
+m=1: 0 actions tested; solved subsets so far: []
+m=2: 1 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=3: 6 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=4: 16 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=5: 31 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=6: 139 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=7: 315 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=8: 941 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=9: 2957 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=10: 8887 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=11: 24125 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+m=12: 93485 actions tested; solved subsets so far: [(), (1,), (2,), (1, 2)]
+
+SUMMARY (smallest degree of a nontrivial action satisfying S exactly):
+  {}               m=  2 orbits=[2] c=[1, 0]
+  {r5}             none with m<=12
+  {r6}             m=  2 orbits=[2] c=[1, 0]
+  {r7}             m=  2 orbits=[2] c=[1, 0]
+  {r8}             none with m<=12
+  {r5,r6}          none with m<=12
+  {r5,r7}          none with m<=12
+  {r5,r8}          none with m<=12
+  {r6,r7}          m=  2 orbits=[2] c=[1, 0]
+  {r6,r8}          none with m<=12
+  {r7,r8}          none with m<=12
+  {r5,r6,r7}       none with m<=12
+  {r5,r6,r8}       none with m<=12
+  {r5,r7,r8}       none with m<=12
+  {r6,r7,r8}       none with m<=12
+  {r5,r6,r7,r8}    none with m<=12

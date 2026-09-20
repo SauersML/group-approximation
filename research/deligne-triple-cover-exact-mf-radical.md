@@ -141,3 +141,21 @@ z in Rad_MF(E_3).                                      (DER2)
   - *Checked against the graph.* Bounded-mass detecting-cycle certificates are already known to die along the
     congruence tower (the systole grows; see `deligne-class-finite-action-norms-vanish`), so they are not repeated
     here.
+- **2026-09-19, swarm-0917-w18-w18-deligne-break (calibration).** See
+  `sl2-half-triple-cover-mf-iff-twisted-iwahori-opnorm-matching`, whose Theorems A-D are proved there.
+  - *Setting.* The twin world is `G = SL_2(Z[1/2])`, which has no property T, with Deligne-type covers
+    `W_m = G~/<z^m>`.
+  - *Criterion (Theorem A).* `W_m` is MF iff `Delta(pi/m) = 0`. Here `Delta(theta)` is the infimum, over pairs of
+    exact unitary `PSL_2(Z)` representations, of the operator-norm defect of the twisted Iwahori square-root gluing
+    `SR ~ gamma (sr)^2`, `s r^-1 ~ gamma^-1 (S R^-1)^2`, with `gamma = e^(-i theta/6)`.
+  - *Structure.* `Z(Delta)` is a closed subgroup containing `pi` (exactly, via `SL_2(F_3)`). The determinant winding
+    gives `delta_n(pi/3) >= 2 sin(dist(n pi/18, (pi/3) Z)/(2n))`.
+  - *Belief change.* The natural guess `Delta(pi/3) = 2 sin(pi/36) = 0.1743` is the scalar optimum, and it is sharp
+    for `n <= 3`. It is **false**. Mixing exact `theta = pi` and `theta = 0` pieces of the `SL_2(F_3)` permutation
+    representation in the ratio 1 : 2 cancels the winding obstruction, and gives a certified `n = 12` witness with
+    `delta = 0.13265`.
+  - *What it means here.* The finite-`n` winding (first Chern class, the twin of
+    `deligne-triple-cover-via-sublinear-windings`) is not a rigid obstruction in the property-T-free twin. Any
+    argument for this flagship that does not use a feature of `Sp_4(Z)` absent from `SL_2(Z[1/2])` must also decide
+    `Delta(pi/3)`.
+  - *Not decided.* Whether `Delta(pi/3) = 0` remains open.

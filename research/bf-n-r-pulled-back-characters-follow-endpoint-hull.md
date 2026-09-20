@@ -40,3 +40,17 @@ arXiv:1502.02620).
     HNN decompositions over deferred subgroups generalizing Case 3 of
     arXiv:1803.02717 Theorem 5.1 (needs `F_infinity` for deferred subgroups of
     `bF_{n,r}`).
+- 2026-09-20 (swarm-0917, host-geometry): (a) closed, unreviewed. The `m = 1` bullet is
+  now `bf-n-r-pulled-back-sigma-one-misses-only-endpoint-characters`, with proof in
+  `research/artifacts/zp-bf-n-r-sigma1-pullbacks-2026-09-20.md`. The missing idea was
+  that `s(y)` centralizes the winding of cable `I` around cable `J` whenever `y`
+  preserves `I` and `J`, even if `y` is not affine on them. So a germ at `0` supported
+  inside the first leaf commutes with the first-leaf windings. The arc then follows from
+  Koban–McCammond–Meier Lemma 1.9 (connected and dominating); `[-chi_i]` follows from
+  the extension lemma; the holes follow from BGK Theorem 2.1 on the strictly ascending
+  `F_n(1) * x_0`, with no BNS citation.
+  Route `bf-n-r-pulled-back-characters-follow-endpoint-hull-by-degree` leaves one open
+  prerequisite: (b), now `bf-n-r-pulled-back-sigma-m-lifts-off-endpoint-hull`.
+  Obstructions to (b) are in artifact §6: Lemma 5.5 of arXiv:1502.02620 fails for braided
+  disks; the deferred HNN route needs contractibility of an `n`-ary restricted Stein
+  complex.

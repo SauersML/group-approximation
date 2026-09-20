@@ -112,3 +112,26 @@ such that `a` dies in `(V * <t>)/<<w>>`.
      - Permutation ratio models reduce to soficity by tensor amplification.
      - Unitary rank and HS ratio models are the new format.
      - The existing dead Følner and compression routes do not reach them.
+6. **Symbolic-dynamics transplant: linearize the Cantor action into `O_2` (2026-09-17, swarm-0917-w21).** No violation
+   found. The transplant produces roots, not a violation.
+   - **Dictionary.** Cones become the isometries `s_u`. `g in V` becomes `U_g = sum s_(v_i) s_(u_i)^*`, a faithful copy
+     in `U(O_2)` (Step 1 of `kl-holds-over-thompson-v-via-approximate-cuntz-roots`). A permutation of the leaves `l` of a
+     code becomes `Phi_l(P)` with `Phi_l : M_n -> O_2` unital. A candidate root may be `Phi_l(X)` with `X` any unitary.
+   - **The orbit-type invariant dies under linearization.** This is the only invariant known to block roots with V
+     coefficients. For `w0 = ctataT`, where Attempt 4 kills every Higman--Thompson and every `Sym` root, `U(O_2)` has
+     the exact root `Phi_l(1 ⊕ r)`. Here `r` is a reflection of the standard `S_3`-plane, with entries in
+     `Q(cos 2 pi/9)` (`thompson-v-census-word-has-an-exact-cuntz-unitary-root`). The same holds in every unital
+     C\*-ambient for every equation with finite coefficient subgroup.
+   - **Where the violation search dies.** A violation can be witnessed by no invariant of a finite coefficient subgroup,
+     and by no homotopy invariant of `U(O_2)`:
+     - `U(O_2)` is path-connected, so every word map is homotopic to `t ↦ t^m`;
+     - it is weakly contractible if Zhang's `pi_k(U(A)) = K_(k+1)(A)` is imported.
+   - **New necessary condition.** A violating `w` must make
+     `thompson-v-equations-have-approximate-cuntz-unitary-roots` fail. That means a uniform gap
+     `inf_(T in U(O_2)) ||w(U, T) - 1|| > 0` in the operator norm, since that claim implies `kl-holds-over-thompson-v`
+     through `kl-holds-over-thompson-v-via-approximate-cuntz-roots`. With the Kirchberg--Phillips uniqueness theorem
+     (recalled, not imported), the gap must hold in every separable exact C\*-algebra containing `A_can = C*(U(V))`
+     unitally.
+   - **Where the positive side stalls.** Perturbing the coefficients to finite-dimensional ones inside `O_2` proves `V` is
+     MF (item 3 of that claim), so it is no new route. Re-embedding is vacuous by Kirchberg--Phillips uniqueness.
+     Degree arguments have no fundamental class.

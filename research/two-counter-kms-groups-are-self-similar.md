@@ -8,7 +8,7 @@ distinct_from:
   self-similar-higman-routes-meet-krull-dimension-two: that attempt record localizes the ascending-HNN route; this is the named crux it arrives at.
   two-counter-kms-top-has-no-affine-self-similar-action: that kills affine realizations of the two-counter KMS top; this asks for a non-affine realization of the whole group, or of an fp self-similar overgroup.
   kms-configuration-modules-carry-self-similar-structures: that is the lamp-digit premise, made false by kms-configuration-modules-have-trivial-coinvariants; this allows any recursion on digits and any finitely presented self-similar overgroup.
-  hard-self-similar-groups-via-self-similar-kms-modules: that route needs the dead lamp-digit premise; this is the same payoff through any faithful recursion.
+  kms-tops-are-fp-transitive-self-similar-for-odd-p: that makes the top Q of every KMS group with p odd finitely presented and self-similar; this asks for the whole group G(M) = T x| Q, so the configuration layer T is what remains. (The route hard-self-similar-groups-via-self-similar-kms-modules, formerly listed here, needs the dead lamp-digit premise; this is the same payoff through any faithful recursion.)
 ---
 
 **OPEN (named crux, lane bh-gate1-abstract, 2026-09-19).**
@@ -86,6 +86,58 @@ hard as the halting problem for `M`.
    BR-conjoint letter `x ↦ x(a − 1)`. That is the smallest step toward a two-counter configuration module.
 
 ## Attempts
+
+- **Both first tests, lane bh-kd2p, 2026-09-19** (`kms-tops-embed-in-fp-self-similar-metabelian-groups`; lane proof
+  resting on Kochloukova–Sidki Theorem D, not independently reviewed). The crux stays **OPEN** for the whole group
+  `G(M)`, but its metabelian top is not an obstruction.
+  - **Test 1, kill: negative.** The Kochloukova–Luiz ideal-preservation argument uses characteristic 0 in
+    hypotheses (1)–(2) and in Step 5 of its proof. It does not transfer to characteristic `p`: Kochloukova–Sidki
+    Theorem D (arXiv:1710.04745) gives finitely presented, characteristic-`p`, Krull-dimension-`d`, transitive
+    self-similar metabelian groups `⊗ F_p[x_i^{±1}, 1/g(x_i)] ⋊ ℤ^{2d}`. K–L flag this themselves.
+  - **Test 2, start: superseded, and positive.** No need to grow `C_p ≀ Z^2` one letter at a time.
+    - For `p` odd, `s_i ↦ −x_i` identifies the KMS top `B_K` with an index-2 subgroup of Theorem D's group for
+      `g = 1 + x`, extended by the central scalar `−1`. That extension is finitely presented and transitive
+      self-similar.
+    - The KMS choice `g = x − 1` is exactly the case Theorem D excludes. The substitution moves the relevant point
+      from `1` to `−1`.
+    - The affine kill (bh-free-25) assumes all of `U_K` acts linearly. Theorem D's domain meets the counters in a
+      subgroup of index `p^2`, a Frobenius-twisted cyclic shift of the counters.
+  - **Remaining crux, sharpened.** Lift a Kochloukova–Sidki-type structure from `B_0` to the full top `Q` and
+    through the exponent-`p` configuration module `T` of `G(M) = T ⋊ Q`. The coinvariants kill applies only to
+    lamp-digit shapes, not to actions that mix lamps with positions. For `p = 2` the KMS top is not covered by
+    this route.
+
+**Attempt 1 (2026-09-19, lane paradigm/decomposition, family linear-characteristic): both first tests are
+resolved, and the crux is localized to `T`.** See `kms-tops-are-fp-transitive-self-similar-for-odd-p`
+(ESTABLISHED).
+
+- **The identification.** Relation G4 says that `ã_i^{-1}` acts on the lamp `A_0` as `1 + (ã_i')^{-1}`. With
+  `x_i = (ã_i')^{-1}` and `y_i = ã_i^{-1}`, this identifies:
+  - `B_0 ≅ KS_K(1 + x)`, the Kochloukova–Sidki Theorem D group with `g = 1 + x`;
+  - `B_i ≅ KS_1(1 + x)`.
+
+  This is the Möbius substitution `x = s^{-1} − 1` on `R_K`.
+- **The top.** For `p` odd, the whole top `Q` is finitely presented and transitive self-similar, by KS Lemma 7.2,
+  Lemma 7.4 and products.
+- **Test 1 dies.** `B_0` with `K = 2` satisfies the characteristic-`p` analogues of Kochloukova–Luiz conditions 1,
+  3 and 4, and it is self-similar. It is the reduction mod `p` of their own non-self-similar Example 2.
+- **Test 2 is answered positively.** The Dantas–Sidki map survives the BR-conjoint letter after localization at
+  `1 + x`.
+- **Where the crux now sits.** `Q` is a retract of `G(M)`, but a simple virtual endomorphism of `G(M)` need not
+  restrict to a simple one of `Q`. So this is not a step of a route. What it shows is that no obstruction to
+  KD2_p can come from the top alone. Any obstruction lives in `T` and in its gluing by G5–G8.
+- **Unfinished observation on the gluing (not established).**
+  - The Kochloukova–Sidki map cycles the counters of `B_0`: `ã_1^p ↦ ã_2`, and so on.
+  - On `B_i` it sends `a_i^p ↦ a_i`.
+  - G6 makes `c_i = a_i ã_i^{-1}` centralize every `x_{q_j}`.
+  - A `T`-preserving extension `φ` with this top part would send `C_T(c_1^p) ∩ H` into `C_T(a_1 ã_2^{-1})`. On
+    unmarked configurations, `a_1 ã_2^{-1}` acts as `a_1 a_2^{-1}`, which has no nonzero fixed points on the free
+    part of the counter module.
+  - So such an extension would have to push the unmarked configurations into marked ones, or into its kernel.
+  - A counter-cycling top therefore seems incompatible with G6 unless the extension is very degenerate. The
+    remaining option is a top map on `B_0` matched coordinatewise to the `B_i`, which is not simple on `B_0` alone.
+  - This was not carried to a proof.
+- **`p = 2` is not covered.** The identification needs `g(1) ≠ 0`.
 
 - **Both first tests, lane bh-kd2p, 2026-09-19** (`kms-tops-embed-in-fp-self-similar-metabelian-groups`; lane proof
   resting on Kochloukova–Sidki Theorem D, not independently reviewed). The crux stays **OPEN** for the whole group

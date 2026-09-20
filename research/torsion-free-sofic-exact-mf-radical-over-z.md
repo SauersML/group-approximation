@@ -337,6 +337,50 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
   - *Surviving region.* (IO) kernels must be neither relatively hyperbolic nor non-parabolically
     embeddable in an MF relatively hyperbolic group. Acylindrically hyperbolic kernels and hosts are
     not covered: Drutu--Sapir finiteness is not available there.
+- **2026-09-19, swarm-0917-w17-w17-titz-break (breaker, calibration).  Status: OPEN.**
+  - *Scope.* A screen of four remaining breaker ideas against the graph. None closes a hole. One
+    elementary necessary condition on the (XMF) branch is recorded, with proof.
+  - *Screened and discarded, with reasons.*
+    - Congruence/torsion-free repair of `EL_3(LC(X,Z) ⋊ Z)`: already dead by
+      `filtered-torsion-certificates-die-on-perfect-kernels`. Every separated filtration forces
+      residual nilpotence, and a perfect kernel admits none.
+    - MCG or `Out(F_n)` hosts: they are residually finite, so the Kazhdan kernel would have finite
+      quotients. That contradicts `mapping-torus-mf-radical-lies-in-finite-residual`.
+    - A `Σ^2` characterization of (IO): by Bieri--Renz, (IO) says only that one of `±χ` lies
+      outside `Σ^2(G)`. This merely restates "`K` is not finitely presented", which (IO) already
+      assumes, so it gives no new decomposition.
+    - Kazhdan-corner reformulation. Write `p` for the Kazhdan projection of `K`, which is central
+      and `φ`-invariant in `C*(G) = C*(K) ⋊_φ Z`, and put `B = (1-p)C*(K)`. Then `Rad_MF(G) = K`
+      iff `B ⋊_φ Z` has no nonzero `*`-homomorphism into any `∏M_{k_n}/⊕M_{k_n}`, and
+      `Rad_MF(K) = K` iff `B` has none.
+      - Proof: if `ρ(p) = e ≠ 1`, then `1-e` lifts to projections, so its corner is again of
+        this form. Conversely, `σ(g(1-p)) + (1-σ(1-p))` defines a group homomorphism.
+      - This is the C*-form of `mapping-torus-mf-radical-descends-through-kernel-radical` together
+        with (XMF). Stably finite targets cannot see it
+        (`kazhdan-mapping-tori-have-proper-stably-finite-radical`). So it is not new leverage.
+  - *Necessary condition (RET, exact return kills).* Let `Q = K/Rad_MF(K)`, with the induced
+    automorphism `ψ`. Suppose that for some nontrivial `ρ : Q -> U(C)`, with
+    `C = ∏M_{k_n}/⊕M_{k_n}`, some `m ≥ 1` and some `W ∈ U(C)`, we have `ρ∘ψ^m = Ad(W)∘ρ`. Then
+    `Rad_MF(G) ≠ K`.
+    - Proof, step 1: put `π = diag(ρ, ρψ, ..., ρψ^(m-1))` on `M_m(C)`, which is again of the form
+      `∏M/⊕M`.
+    - Step 2: let `T` have entries `T_(j,j+1) = 1` for `j < m-1`, `T_(m-1,0) = W`, and zeros
+      elsewhere. Then `T` is unitary.
+    - Step 3: `T π(q) T* = π(ψ(q))`, so `t ↦ T` extends `π` to a homomorphism of `Q ⋊_ψ Z`. This
+      homomorphism is nontrivial on `Q`, and composing it with `G -> Q ⋊_ψ Z` gives the claim.
+    - So in any (XMF) witness, `ψ` acts on the unitary-equivalence classes of nontrivial corona
+      representations of `Q` without periodic points.
+    - This recovers the finite-outer-order kill: take `ψ^m = Ad(k)` and `W = ρ(k)`.
+    - RET is the exact-return case of periodization. The approximate-return version is recorded
+      dead in the Attempts on `mf-kazhdan-quotientless-mapping-torus-exact-radical`: operator-norm
+      error at the wraparound block does not vanish. The exact case is valid, but it applies to
+      fewer pairs.
+    - Survivors: pairs `(Q, ψ)` whose corona dual has no `ψ`-periodic class. Every nontrivial `ψ`
+      of infinite outer order on the LEF subshift groups `EL_3(LC(X,F_q) ⋊ Z)` remains untested.
+  - *Next falsifiable step.* Test RET on the `(HH)` pair of need `a111e246`, namely
+    `Z wr_(Z[1/2]) BS(1,2)` with `Γ_0 = Z wr Z` and `α = Ad(τ)`. Specifically: does the natural LEF
+    corona representation have a `τ`-periodic unitary class? If it does, that candidate dies by
+    RET.
 - **2026-09-19, swarm-0917-w17-w17-titz-last1 (last mile, class kill).  Status: OPEN.**
   - *Target.* The acylindrical extension that w17-titz-break left open. Does (HI) `ψφ^m = c_hψ`
     hold for acylindrically hyperbolic hosts? If it did, it would clear (IO) of acylindrically
@@ -361,3 +405,172 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
   - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
     refuted, because MF of `N` is unknown.
+- **2026-09-20, swarm-0917-w20-w20-titz-break (breaker, reframing and calibration).  Status: OPEN.**
+  - New ESTABLISHED (unreviewed) claim `mapping-torus-radical-is-pseudo-orbit-recurrence`, with
+    route `-proof`. For `G = <S, t | R_0, t s t^-1 = w_s>` and `g ∈ K`: `g ∉ Rad_MF(G)` iff for
+    some `δ` and every `ε`, the substitution map `W_d(b) = (w_s(b))_s` on `U(d)^S` has, in some
+    dimension `d`, an `ε`-pseudo-orbit of `ε`-quasi-solutions of `R_0` that are `δ`-nontrivial at
+    `g`, of length above the covering number of `U(d)^S`. The chain is closed by pigeonhole and
+    wrapped by the cyclic block shift.
+    - *Witness form.* The obligation is uniform transience of `W_d` on `δ`-nontrivial
+      quasi-solutions, at one scale `ε(g, δ)` for all `d`.
+    - *Correction.* The death of Attempt 1 of `mf-kazhdan-quotientless-mapping-torus-exact-radical`
+      (accuracy on balls of radius `λ^J`) comes from using exact orbits. Re-projected chains need
+      only `R_0`, and they are the universal form of every MF approximation of `G`.
+  - *Screened, no new node.*
+    - (a) Pimsner--Voiculescu `K_0` certificates `n[1 − p] ∈ Im(φ_* − 1)`, with `p` the Kazhdan
+      projection of an infinite `K`. They die at the regular trace of `G`: it is `φ`-invariant,
+      and `τ(1 − p) = 1`. This is subsumed by `kazhdan-mapping-tori-have-proper-stably-finite-radical`.
+    - (b) Degree-4 almost-flat Chern invariants. Already (R4) of
+      `mf-radical-is-blind-to-degree-two-windings`.
+    - (c) Congruence and Minkowski torsion kills. A duplicate of
+      `filtered-torsion-certificates-die-on-perfect-kernels`.
+    - (d) Need `a111e246`. Dead, since its (HH) input is refuted by
+      `automorphic-compressions-have-no-approximable-hilbert-hotel`.
+  - *Next falsifiable step.* Find a candidate `(K, ψ)` for which one can compute
+    `Q_ε ∩ N_δ(g)` in small `d` and test the almost-invariant-set condition (4) numerically.
+- **2026-09-20, swarm-0917-w20-w20-titz-follow (follow-through on w19, stability-approximation).
+  Status: OPEN.**
+  - *Step taken.* Of the two w19 survivors of
+    `finite-image-exact-kazhdan-torus-models-reduce-to-stage-lifts`, (S1) is killed and (S2) is made
+    quantitative.
+  - *New ESTABLISHED claim.* `locally-mf-stable-kazhdan-kernels-collapse-torus-radicals`, with route
+    `-proof`. Call a finite set `R` of relators of `K` G-complete if it contains `R_Γ` and
+    `<S, t | R, t s t^-1 = w_s> = G`. Such sets exist because `G` is finitely presented.
+  - *Theorem D.* Suppose a corona model of `G` has kernel lifts that are `o(1)`-close to exact
+    representations of `<S | R>`, along the indices where it sees `k ∈ K`. Then Theorem A gives an
+    exact multiplicity-free wrap, and (GC) makes this a genuine finite-dimensional representation of
+    `G`. So `k ∉ Rad_fin(G)` by Mal'cev.
+  - *Corollaries.*
+    - (D1) If `K` is Kazhdan and locally MF-stable, then
+      `Rad_MF(G) = Rad_LEF(G) = Rad_fd(G) = Rad_fin(G)`.
+    - (D2) An MF group that is locally MF-stable is LEF.
+    - (D3) If `K` is Kazhdan, locally MF-stable and quotientless, then `Rad_MF(K ⋊_φ Z) = K` for every
+      `φ` with a finitely presented torus.
+    - (D4) For a witness, every model nontrivial on `K` has stability defect `σ_R > 0` for every
+      G-complete `R`.
+  - *Class killed.* Every rounding construction of MF models of a torus with `Rad_fin(G) = K`, of any
+    image, character field, gap or wrap. The invariant is `dist_R` to `Hom(<S | R>, U(n))`. Every
+    member dies at Theorem A plus (GC).
+  - *What survives.* (S1) and (S2) merge into (S\*): lifts uniformly far from exact representations
+    of every G-complete cover. The surviving part of (S1) is an instability of the finitely presented
+    pair `(<S | R_Γ>, <S | R>)`.
+  - *New decomposition.* A new route, `exact-mf-radical-over-z-via-locally-mf-stable-kernel`, with
+    the single OPEN hole `torsion-free-sofic-quotientless-locally-mf-stable-kazhdan-kernel`. Its
+    conditions are (P1'), (Q), (LS) and (P2).
+    - (Q) is necessary. (LS) is not.
+    - `Rad_MF(K) = K` implies (Q) and (LS), so the route contains the automorphic route.
+    - A solution with an MF kernel would be LEF, so it would also refute (EKL1).
+  - *Next falsifiable step.* Decide whether a Kazhdan group without finite quotients that is MF, for
+    example the LEF group `EL_3(LC(X, F_q) ⋊ Z)` of the EKL2 correction, can be locally MF-stable.
+    Otherwise, prove that (LS) together with (Q) forces `Rad_MF(K) = K`, which would show that the
+    new route is no weaker than the automorphic one.
+- **2026-09-20, swarm-0917-w21-w21-titz-last1 (last mile, class kill, cohomology-index).  Status:
+  OPEN.**
+  - *Target.* The MF half of the w20 hole `torsion-free-sofic-quotientless-locally-mf-stable-kazhdan-kernel`,
+    which is on the landing branch. Its condition (LS) is local MF-stability.
+  - New ESTABLISHED (unreviewed) claim `mf-stable-kernels-lack-lef-nonsplit-central-extensions`,
+    with route `-proof`. It has no prerequisites.
+    - Theorem (WK): if a central `Z`-extension `Ktilde` of `K` is LEF and `<t>` meets
+      `[Ktilde, Ktilde]`, then `K` is not LS. The rounding already fails for one relator
+      `zhat ∈ N ∩ [F,F]`.
+  - *Invariant and death step.* The invariant is the integer winding `(1/2πi) Tr log zhat`.
+    - Scalar-twisted irreducibles of the finite LEF approximations of `Ktilde` are asymptotic
+      representations of `K` with winding `n_i d / m_i ≠ 0`.
+    - Exact tuples on `{zhat}` have winding `0`, and a geodesic homotopy preserves the winding.
+    - So the approach dies at the (LS) rounding step for `R = {zhat}`.
+    - Sanity check: for `Z^2` and the Heisenberg group this is Voiculescu's pair.
+  - *Consequence.* Every w20 kernel is perfect, since it is Kazhdan with (Q). So it has **no nonsplit
+    LEF central `Z`-extension**.
+    - In the MF regime the kernel is LEF (D2). The MF half now needs a LEF, perfect, quotientless
+      Kazhdan group none of whose nonsplit central `Z`-extensions is LEF.
+    - Or it needs `Hom(H_2(K;Z), Z) = 0`.
+  - *Not decided.* Whether an MF model of `Ktilde`, rather than a LEF one, already gives a nonzero
+    winding. See remark (R2) of the route.
+- **2026-09-20, swarm-0917-w21-w21-titz-break (host-geometry, breaker): witnesses split only as
+  their own mapping torus. Class kill; the goal stays OPEN.**
+  - *Established.* `exact-radical-witnesses-split-only-as-mapping-tori`. For every pair with
+    `K` normal, nontrivial, torsion-free and Kazhdan, and `G/K = Z`:
+    - FA of `K` makes `Fix(K)` a `G`-invariant subtree;
+    - so every minimal `G`-tree is a point or the `chi`-line, with all stabilizers equal to `K`;
+    - so `G` is one-ended, is not a nontrivial amalgam and is not a strictly ascending HNN
+      extension, and every Bieri--Strebel base and associated subgroup equals `K`.
+  - *Class killed.* Every splitting-based construction or certificate of a witness:
+    graph-of-groups assemblies, strictly ascending (Bartholdi-type) HNN models, and every attempt
+    to read finite presentation of `K` off a Bieri--Strebel base. The invariant is FA of the
+    normal kernel; the death step is the `G`-invariance of `Fix(K)`.
+  - *Screened and discarded.* All of these are already in the graph:
+    - "fp HNN with f.g. base implies fp base" is false. The Ollivier--Wise kernels are
+      infinitely presented, which is exactly region (IO).
+    - Central torsion removal is covered by
+      `torsion-free-central-cover-forces-abelian-finite-subgroups`.
+    - Kazhdan compressor hulls are covered by
+      `sofic-defect-cores-have-non-kazhdan-compressor-hull`.
+    - The `Sigma^2` restatement is the w17 tautology.
+  - *Not changed.* No route leaf moves. The breaker found no counterexample to any load-bearing
+    prerequisite.
+- **2026-09-20, swarm-0917-w23-w23-titz-break (breaker, calibration audit).  Status: OPEN.**
+  - *Target.* Look for a false load-bearing step among the kills that currently shape the (IO)
+    region, and in this node's own body text. No new claim was produced. One body-text error was
+    found (item 1); the two audited kills (items 2 and 3) stand.
+  - **1. The body paragraph "Moreover, the kernel can never be LEF" is false as written.**
+    - Its proof uses "every infinite operator-MF Kazhdan group has an infinite residually finite
+      quotient". That is `mf-kazhdan-group-without-finite-quotients-is-trivial`, which
+      `lef-kazhdan-group-without-finite-quotients-exists` refutes. The 2026-09-12 correction inside
+      `exact-kazhdan-radical-kernel-cannot-be-lef` already records that (EKL2) is false and (EKL1)
+      is open.
+    - So the paragraph's three conclusions do not hold:
+      - "the required kernel is sofic but non-LEF";
+      - "no marked limit of finite groups can supply it";
+      - "this closes the former alternating-mother branch".
+    - They also contradict this node's own w12 decomposition: the route
+      `torsion-free-sofic-exact-mf-radical-via-lef-kernel` has an LEF kernel, which is a marked
+      limit of finite groups.
+    - Correct reading of that region:
+      - `K` is sofic, Kazhdan and quotientless;
+      - `K` is LEF **iff** `G ∈ 𝒫`, by `permanence-closure-radical-witnesses-have-lef-kernels`;
+      - the LEF case is exactly `torsion-free-lef-kazhdan-kernel-with-exact-mapping-torus-radical`.
+    - The alternating-mother branch is still live for (L1): the torsion-free alternating-mother
+      limits are listed there as a program. Only its quotient-permuting (L2) test case is dead
+      (Attempt 1 of that node).
+    - Readers should treat body lines "Moreover, the kernel can never be LEF ... See
+      `exact-kazhdan-radical-kernel-cannot-be-lef`" as superseded.
+  - **2. Audit of `relation-gaps-forbid-fp-mapping-tori` (w15): the kill stands.** It is
+    load-bearing, because it removes every graded small cancellation kernel from (IO), including
+    the Kazhdan Tarski monster. Checked:
+    - Lemma 0 uses surjectivity of `ᾱ` to normalize words to `u t^k`, and it is supplied.
+    - Step 2 needs `R ≥ L² + 1`, so that `α(v_x)x^{-1}` and `β(w_x)x^{-1}` lie in the truncation
+      and `ᾱ` is an automorphism. `R_1` includes it.
+    - Step 3 is a genuine sandwich, because `R_fin ⊆ N_{≤R}` for `R ≥ R_1`.
+    - Part C, Step 4 uses exactly `Q_3` (`max|R_n| = O(ρ_n)`) and Lemma `asc` (c), (d) from the
+      verbatim OOS import, and nothing else. This gives `λ_n/m_n → ∞`.
+    - Part D uses only the hyperbolicity of `G(0)` and the Tarski property.
+    - No gap was found. Belief is unchanged: (IO) kernels have `L_ψ`-bounded gaps over every finite
+      generating set.
+  - **3. Independent check of the w22 bus lemma `kazhdan-multiplicity-rigidity-kills-exact-cover-models`
+    (not landed at this writing).** Its key input is true, with a constant that is uniform in the
+    dimension.
+    - Setting: `Λ = ⟨S⟩` has Kazhdan constant `κ` for `S`, and `ε = κ²/(4|S|)`.
+    - Claim: if `ρ, σ` are finite-dimensional unitary representations of `Λ` on the same space
+      with `max_s ‖ρ(s) − σ(s)‖ ≤ δ_0`, where `δ_0 = 1/(2k)` and `2(1−ε)^k < 1/2`, then `ρ ≅ σ`.
+    - Proof sketch:
+      - Let `A = (2|S|)^{-1} Σ_s (s + s^{-1})` and `M = (1 + A)/2`.
+      - In every unitary representation, the orthocomplement of the invariant vectors has
+        `⟨(1−A)v, v⟩ = (2|S|)^{-1} Σ_s ‖sv − v‖² ≥ κ²/(2|S|)` for unit `v`. So `‖M^k − P‖ ≤ (1−ε)^k`,
+        where `P` is the projection onto the invariant vectors.
+      - For an irreducible `π`, the representations `ρ ⊗ π̄` and `σ ⊗ π̄` are still `δ_0`-close on
+        `S`. So `‖M^k_{ρ⊗π̄} − M^k_{σ⊗π̄}‖ ≤ k δ_0 = 1/2`.
+      - Their invariant projections are then at distance `< 1`, so they have equal rank. That
+        rank is the multiplicity of `π`.
+      - Hence `m_π(ρ) = m_π(σ)` for every `π`, and so `ρ ≅ σ`.
+    - So the exact-cover-model kill cannot be broken at this step.
+  - **Ideas screened and not pursued, because they are already in the graph:**
+    - Wang finiteness gives quasirandom LEF models (`kazhdan-bounded-unitary-types-are-finite`,
+      `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`);
+    - conditional (L1) via the OOS monster (`hyperbolic-rf-gives-torsion-free-lef-quotientless-kazhdan`);
+    - "LEF plus finitely presented implies RF", which forces (IO) on the LEF route (already in the
+      forced structure of the LEF hole).
+  - *What would change belief next.* Take an (IO) candidate kernel with `L`-bounded gaps that is
+    not graded small cancellation, such as a finitely `L`-presented branch-type Kazhdan group.
+    Exhibit its LEF models, and test (L2) against the w22 rigidity. That rigidity forces any MF
+    periodization to use models that are not exact covers.

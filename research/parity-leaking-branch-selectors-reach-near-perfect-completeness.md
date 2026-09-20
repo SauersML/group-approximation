@@ -340,3 +340,100 @@ a cycle of equations through the window.
   **Still alive:** cross-input and global hypotheses, average-case
   hypotheses (only in their exact form), and decoders that query `S` on
   other inputs.
+
+- **2026-09-17, swarm-0917-w19-w19-ugc-last1 (probability-random,
+  last-mile).** Attacked the DKKMS window between Theorem S of
+  `near-perfect-selectors-on-rigid-dkkms-instances-put-np-in-rp` and Corollary
+  SC of `dkkms-2to1-value-is-at-least-seed-concentration`, where H1's DKKMS-form
+  instances are still undecided. Result:
+  `dkkms-class-seed-threshold-is-sqrt-l-over-2-to-half-l` (ESTABLISHED).
+  - **Ceiling lowered.** Bernstein on the kept-block variance `12*2^(-l)`
+    lowers the soundness ceiling from `beta = O(sqrt(l/k))` to
+    `O(sqrt(l/(2^l k)) + l/k)`. Every DKKMS-form instance family above it has
+    NO value near `1`, so it cannot carry H1.
+  - **Sharp.** A chi-square bound on the class posterior (GL_l-averaging to
+    `E_ref max` of `H` mean-one products) shows that the class seed law is flat
+    below `t = beta sqrt(k) 2^(l/2)/sqrt(l) <~ 2.03`. So no seed-guessing
+    labelling pushes the ceiling lower (Corollary TH, the thresholds are within
+    a factor of `12` in `t`).
+  - **Decomposition.** Corollary D names a band that contains published-rate
+    points of the window `[k_A, k_T]`. There, covering, seed identification
+    and Theorem S all provably fail. Any decision on H1 there needs a tool that
+    reads the per-tuple information which folding removes.
+  - **Where it stops:** H1 stays OPEN. The band `t <~ 2`, outside (R), is
+    untouched by every recorded tool.
+* **Robust uniqueness replaces the refuted exact-kernel class (2026-09-20,
+  swarm-0917-w20-w20-ugc-pull, finite-models / transplanter).** This is a
+  **decomposition** of the constant-bias kill after (SF_P) was refuted by
+  `exact-kernel-rank-does-not-exclude-flip-violators`.
+  - **Lemma RU** (`robust-uniqueness-bounds-robust-kernel-rank`, ESTABLISHED,
+    with a brute-force check of its finite core). Suppose every assignment of
+    value `>= 1 - eps - delta_K` is `rho`-close to one coset `x* + C` with
+    `dim C <= r0`. Then every `delta_K`-approximate kernel map of rank
+    `> r0` fails to be onto `X_V` on a `1 - 12 k rho` mass of tuples.
+    Robustly unique YES inputs therefore lie in `P^delta_(r0)`, and the flip
+    orientation of Theorems O and O' has no kernel to act on there.
+  - **Converse.** A generic approximate kernel of rank `n` gives `2^n`
+    near-solutions at pairwise distance `(1 - beta)/(3k)`.
+  - **Testability.** Robust testability of the homogeneous system with a
+    constant ratio `> (3 gamma' + 24 k eps)/(1 - beta0)` implies robust
+    uniqueness.
+  - **New route.** `constant-bias-dkkms-selectors-put-np-in-rp-via-robust-uniqueness`
+    targets `constant-bias-dkkms-selectors-put-np-in-rp`. It has two
+    independent OPEN prerequisites:
+    `gap3lin-hard-with-robustly-unique-yes-solutions` (P1^RU), a purely
+    source-side hardness statement, and
+    `dkkms-orientations-admit-star-lists-on-robustly-unique-inputs`
+    (P2^RU).
+  - **Recorded obstruction.** Gadget padding that is satisfiable for every
+    assignment to the source extends every source near-kernel linearly. So at
+    constant source share it cannot create robust uniqueness, and (P1^RU)
+    must come from the PCP itself.
+
+  **Where it stops:** no hardness for robustly unique Gap3Lin is known. The
+  Håstad image needs a Label Cover with few far-apart near-optimal labellings.
+  Deterministic Karp reductions onto few-solution promises are open, and a
+  randomized version of Corollary D has not been checked.
+* **2026-09-20, swarm-0917-w21-w21-ugc-pull (finite-models / obstruction).**
+  I attacked the hardness half (P1^RU) of the robust-uniqueness route to the
+  constant-bias kill through its natural source, Håstad's 3LIN images. It
+  fails there. See `hastad-images-are-never-robustly-unique` (ESTABLISHED).
+  - *Construction.* Take a satisfying `sigma` and a clean `W`. Replace
+    `B_W = chi_(sigma_W)` by `chi_({sigma_W} ∪ Q)`, where `Q` is the product
+    of one-variable flip pairs on `m` private clauses.
+  - *Why it is cheap.* By Fourier evaluation of the test, the acceptance
+    deficit is only `2^m eps + 3^(-m)/2` per touched equation, because
+    `pi_2(Q)` is empty unless `U` picks every flipped variable. The table
+    still moves by distance `1/2`.
+  - *The consequence.* The pigeonhole with `2^(r0)+1` disjoint mass-`1/(4k)`
+    modifications gives that RU fails for every `x*`, every `C` with
+    `dim C <= l+1` and every `rho < 1/(12k)`. This holds on every large
+    satisfiable formula, in the DKKMS regime.
+  - *Where it dies.* The inner test's testing ratio, `3 Delta -> 0`, is far
+    below the `~0.36` of Proposition T. The failure is independent of Label
+    Cover uniqueness, so isolation cannot help.
+
+  **Still alive:** (P1^RU) from a smooth or non-collapsing outer PCP whose
+  inner test has constant testing ratio at every scale. The spark is that
+  the same `W`-local family may give (P2^rob) violators on Håstad images.
+* **Alphabet price from CMM low-value rounding (2026-09-20,
+  swarm-0917-w23-w23-ugc-pull, transplanter).** **A kill on alphabet-efficient
+  reductions only; the claim stays OPEN.** See
+  `selector-bias-is-capped-by-the-cmm-alphabet-soundness-exponent`
+  (ESTABLISHED). It uses `cmm-unique-games-low-value-rounding`, a new import of
+  CMM Theorem 3.1.
+  - **Theorem K.** It is instance-free and witness-free. Take any 2-to-1
+    reduction with left alphabet `K` and soundness `delta`, and any selector
+    with YES lift value `c`. If `delta < K^(-(1-c)/(1+c) - o(1))`, then the
+    source is in RP. The proof runs CMM on the lift, pulls the labelling back
+    through the sandwich, and accepts iff its value is above `delta`.
+  - **The price.** Bias `c` needs `K >= delta^(-(1+c)/(1-c) + o(1))`.
+  - **The trivial orientation.** It sits at exponent `1/3`, which is CMM's
+    d-to-1 bound at `d = 2`. So on a 2-to-1 family with `s >= 1/3`, no bias
+    above `1/2` survives.
+  **Where it dies:** the YES lift is CMM-roundable above `delta` whenever
+  `log(1/delta)/log K > (1-c)/(1+c)`.
+  **Still alive:** DKKMS, and every family where `l` can grow at fixed `delta`.
+  There `s -> 0` and the price is vacuous at every bias, which is the same
+  escape as for the spectral gate. The constant-bias cell must therefore live
+  on alphabet-inefficient instances, with `s <= (1-c)/(1+c)`.

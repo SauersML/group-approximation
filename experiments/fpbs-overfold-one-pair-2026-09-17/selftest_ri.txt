@@ -1,0 +1,3 @@
+non-malnormal psi-host: rk X = 7 violating pairs: 72
+L_1 host: rk X = 7 violating pairs: 0
+selftest OK

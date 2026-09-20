@@ -1,0 +1,7 @@
+KVIOL host=['baBBabb', 'AbAAA', 'bbAB'] |G|=24 perms=[[2, 3, 1, 0], [0, 3, 2, 1], [2, 3, 1, 0]] pair=(0,24) rk X,Y=49,3
+KVIOL host=['baBBabb', 'AbAAA', 'bbAB'] |G|=24 perms=[[2, 3, 1, 0], [0, 3, 2, 1], [2, 3, 1, 0]] pair=(6,25) rk X,Y=49,5
+KVIOL host=['baBBB', 'Aba', 'BBAAb'] |G|=6 perms=[[2, 1, 0], [1, 0, 2], [0, 2, 1]] pair=(0,6) rk X,Y=13,3
+KVIOL host=['BBBaBa', 'BabaB', 'bbab'] |G|=6 perms=[[1, 2, 0], [1, 0, 2], [1, 0, 2]] pair=(0,6) rk X,Y=13,3
+KVIOL host=['abABA', 'BaaBAB', 'AAbAA'] |G|=6 perms=[[1, 0, 2], [2, 1, 0], [1, 2, 0]] pair=(0,7) rk X,Y=13,3
+KVIOL host=['abAba', 'abA', 'bbAbbab'] |G|=6 perms=[[0, 2, 1], [1, 2, 0], [0, 1, 2]] pair=(0,6) rk X,Y=13,3
+KVIOL host=['aaBBAAA', 'aBBAB', 'aaba'] |G|=6 perms=[[1, 2, 0], [2, 1, 0], [0, 1, 2]] pair=(0,6) rk X,Y=13,3

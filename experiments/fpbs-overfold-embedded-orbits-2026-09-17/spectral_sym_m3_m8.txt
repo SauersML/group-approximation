@@ -1,0 +1,6 @@
+m 3 |Sym(m)| 6 lambda_2 0.25 1-lambda_2 0.75
+m 4 |Sym(m)| 24 lambda_2 0.809017 1-lambda_2 0.190983
+m 5 |Sym(m)| 120 lambda_2 0.906194 1-lambda_2 0.093806
+m 6 |Sym(m)| 720 lambda_2 0.945831 1-lambda_2 0.054169
+m 7 |Sym(m)| 5040 lambda_2 0.965698 1-lambda_2 0.034302
+m 8 |Sym(m)| 40320 lambda_2 0.976862 1-lambda_2 0.023138

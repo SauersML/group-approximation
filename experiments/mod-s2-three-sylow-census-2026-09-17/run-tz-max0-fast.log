@@ -1,0 +1,18 @@
+[max0] stage 1: 2881 Schreier gens of M_U, 11520 relators, 3200 twist words [2s]
+  tietze: 200 eliminated, 2681 gens, 11320 rels, total length 70289, max twist word 6 [0s]
+  tietze: 400 eliminated, 2481 gens, 11119 rels, total length 70214, max twist word 8 [0s]
+  tietze: 600 eliminated, 2281 gens, 10919 rels, total length 72507, max twist word 11 [0s]
+  tietze: 800 eliminated, 2081 gens, 10719 rels, total length 75609, max twist word 11 [0s]
+  tietze: 1000 eliminated, 1881 gens, 10517 rels, total length 81099, max twist word 14 [1s]
+  tietze: 1200 eliminated, 1681 gens, 10314 rels, total length 87509, max twist word 16 [1s]
+  tietze: 1400 eliminated, 1481 gens, 10113 rels, total length 95011, max twist word 17 [1s]
+  tietze: 1600 eliminated, 1281 gens, 9911 rels, total length 106432, max twist word 24 [2s]
+[max0] Tietze: 1161 gens, 9787 relators, total length 115082, twist word lengths up to 27 [4s]
+Frattini quotient of U: F_3^2; 4 maximal subgroups
+[max0] 960 Pbar cosets, centralizer sizes [5, 4, 5, 4, 4, 5, 5, 4, 4, 5], 350 twist representatives [6s]
+[tz-max0-fast] stage 2: 3 cosets of M_V' in M_U, 3481 Schreier gens, 29085 relator rows, 350 twist vectors
+[tz-max0-fast] after unit elimination 28 gens, 21565 relators [94s]
+[tz-max0-fast] H_1 = Z^18 + [3, 3, 3, 3, 3, 3, 3, 3, 3, 3] [95s]
+[tz-max0-fast] classes 100, W rank 82, gcd aug 10 [95s]
+[tz-max0-fast] {"label": "tz-max0-fast", "cosets": 960, "schreier_gens": 3481, "gens_after_unit_elim": 28, "h1_rank": 18, "h1_torsion": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], "classes": 100, "class_coset_counts": [2, 4, 12], "W_rank": 82, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 12, "cert_aug": 10, "A_plus": 20, "A_plus_support": 18, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2], "seconds": 106}
+saved /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-64/experiments/mod-s2-three-sylow-census-2026-09-17/tz-max0-fast.json

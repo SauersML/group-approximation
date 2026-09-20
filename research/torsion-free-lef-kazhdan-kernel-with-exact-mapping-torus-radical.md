@@ -12,6 +12,8 @@ distinct_from:
 artifacts:
   - research/quotient-permuting-and-ambient-inner-mapping-tori-are-lef.md
   - research/char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless.md
+  - research/kazhdan-gapped-mapping-torus-models-are-lef-quotients.md
+  - research/kazhdan-multiplicity-rigidity-kills-exact-cover-models.md
 ---
 
 **OPEN.** There exist a nontrivial finitely generated group `K` and `φ ∈ Aut(K)` such that
@@ -113,3 +115,115 @@ this class; the claim stays OPEN.**
   - Coefficient rings in which the lamp corner is null for every invariant rank function, which is
     the Hilbert-hotel, rank-function-free side. There, soficity of the kernel is the open problem.
   - Proofs of (LK3) that do not go through compression certificates at all.
+
+**Attempt 3 (swarm-0917 w17-titz-follow): gapped corona models of `G`, with an arbitrary wrap
+unitary. Dead for this class. (LK3) splits into a gapped half and a non-gapped half; the claim stays
+OPEN.**
+
+- **The class.** Homomorphisms `π : G -> U(Q)` whose kernel part lifts to spectrally gapped
+  representations `U_i` of the free group `F(S)`. Gapped means that `‖U_i(g) − 1‖ ≥ c` whenever
+  `U_i(g) ≠ 1`. The unitary `π(t)` is arbitrary. The class contains:
+  - permutation models, including `ℓ²(Π/Λ)` blocks and Gassmann pairs;
+  - sums of regular representations of any LEF sequence of `K`;
+  - rational-character and bounded-exponent models;
+  - wraps that are neither permutations nor block-monomial.
+
+  It contains the regular-block class of `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`,
+  together with two of its three survivors.
+- **Where every member dies.** The kill is `kazhdan-gapped-mapping-torus-models-are-lef-quotients`.
+  - (SR1): any unitary `T` with `max_s ‖T U(s) T* − U(w_s)‖ < κ` gives `Supp U = Supp (U ∘ ŵ)`.
+    Here `U` is any finite-dimensional representation of Shalom's finitely presented Kazhdan cover
+    `K~`, and `κ` is its Kazhdan constant.
+  - The proof: property (T) on `HS(H_σ, H)`, applied to the almost invariant vector `T J`.
+  - Hence `ker U = ker (U ∘ ŵ)`, and `ŵ` induces an automorphism of the image `U(F)`.
+  - With a gap, the relators of `K` become exact, and the images converge to a `φ`-invariant
+    quotient `K/N` carrying stage lifts. By `lef-mapping-torus-iff-stage-liftable-automorphism`,
+    `(K/N) ⋊ Z` is LEF, and `k ∉ N`.
+- **What this kills.** For a witness, no gapped model of `K`, for instance the LEF embedding
+  `[λ_(F_i)]`, is `φ`-covariant in `Q`, under any unitary. Exactly:
+
+  ```text
+  gapped MF residual of G on K  =  LEF residual  (SR3).
+  ```
+
+- **The new decomposition.** (LK3) is equivalent to (LK3-gap) together with (LK3-ng). Each can fail
+  on its own.
+  - **(LK3-gap)** is equivalent to (NSL+): for every `φ`-invariant `N ⊊ K`, `φ̄` is not stage-liftable
+    on `K/N`. This is purely combinatorial. It is (NSL) strengthened to every invariant quotient.
+  - **(LK3-ng)** says that no non-gapped homomorphism is nontrivial on `K`.
+- **What survives.** Kernel models with no gapped lift, where the MF-ness must come from spectral
+  clustering at `1`:
+  - lifts in which the relators hold only approximately;
+  - exact lifts with finite images of growing order and irrational characters;
+  - exact lifts with infinite images.
+
+  So (EKL1) needs either (NSL+) to fail, which is combinatorial, or a non-gapped covariant model.
+  No argument confined to permutation, regular or rational models can prove (EKL1) otherwise.
+**Attempt 3 (swarm-0917 w22-titz-last1, stability-approximation): multiplicity rigidity at the
+wrap. The exact-cover class is dead. (LK3) is reformulated as relative liftability. The claim
+stays OPEN.** See `kazhdan-multiplicity-rigidity-kills-exact-cover-models` (ESTABLISHED).
+
+- **The class.** Operator-norm models of `G` whose `K`-part lifts to exact representations of the
+  finite-radius cover `K~_1 = <S | R_0 ∪ ŵ(R_0)>`. Blocks, images and the wrap unitary `T` are
+  arbitrary. For LEF `K`, this includes `[π_n ∘ ι_n]` for local embeddings `ι_n` into finite
+  groups `Q_n` and any representations `π_n` of `Q_n`. That covers the very models of
+  `lef-implies-operator-mf` which make `K` MF. By (GP), it also includes `R_0`-exact permutation
+  blocks, Gassmann blocks among them, with any `T`. This removes the block-monomial and regularity
+  hypotheses of `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`.
+- **The invariant.** The multiplicities `m_σ` over irreducible `σ` of the Kazhdan cover. The
+  operator-norm Kazhdan projection on `ρ ⊗ σ̄` moves by less than `1` under a perturbation of size
+  `δ_0 = 1/⌈4q ln 4/κ²⌉`, in every dimension.
+- **Where every member dies.** At the wrap. `T U T*` and `U ∘ ŵ` are exact representations of
+  `K~`, so they are equivalent, and `T` can be replaced by an exact intertwiner. The pair then
+  satisfies the finite presentation of `G`, so it factors through `K`. Malcev (or finiteness of
+  the image) then kills a quotientless `K`.
+- **What this gives for (LK3).** By (RL), with (LK1) and (LK2) given, (LK3) is equivalent to the
+  following: every norm-corona model of `G` lifts, on `K`, exactly on the finite set `R_1`. So a
+  refutation of (LK3) for a candidate needs a model whose `K`-part is norm-unstable for `K~_1`: an
+  asymptotic representation not asymptotic to genuine ones. LEF-type exact local data never gives
+  one.
+- **What survives.** Genuinely non-exact almost-representations of `K~_1`. (MR) says nothing about
+  them. The obstruction to (LK3) is therefore exactly norm instability of a finitely presented
+  Kazhdan cover at points factoring through `K`.
+
+**Attempt 4 (swarm-0917 w23-titz-follow, operator-algebras): audit of the survivors of Attempt 3.
+No new class is killed. Two lifting reformulations coincide, and the lifting and winding shortcuts
+are dead. The claim stays OPEN.**
+
+- **(U) ucp form of (RL).** Let `K` be Kazhdan and quotientless, `φ` arbitrary (no finite
+  presentation needed). Then `Rad_MF(G) ⊇ K` iff every norm-corona model `Θ` of `G` has
+  `Θ|_(C*(K))` ucp-liftable to `∏ M_(k_n)`. Forward: a model trivial on `K` lifts by `x ↦ ε(x)·1`.
+  Backward: a ucp lift of a *-homomorphism into `∏/⊕` is asymptotically multiplicative, so Remark W
+  of `local-mf-stability-splits-into-rounding-gap-and-path-connection` gives `Θ(u_s) = 1`.
+  Together with (RL), for one model: R_1-liftable on `K` ⟺ ucp-liftable on `C*(K)` ⟺ trivial on `K`.
+  So the survivors of Attempt 3 are exactly the models that are not ucp-liftable on `C*(K)`. For
+  LEF `K` such kernel models exist, by `quotientless-lef-kazhdan-corona-trace-has-no-ucp-lift`.
+  What is open is whether one of them extends over `φ`.
+- **Dead shortcut 1: the LLP.** If `C*(G)` or `C*(K)` had Kirchberg's LLP, every `Θ` would lift:
+  local ucp lifts on finite-dimensional operator systems `E_j ↑`, extended to `C*(K)` by Arveson
+  in each `M_(k_n)`, glue diagonally. By (U), `Rad_MF(G) ⊇ K` would then hold for every `φ`. But
+  `C*(K)` is a conditionally expected subalgebra of `C*(G)`, so both cases give the LLP for `C*(K)`.
+  `K` is Kazhdan and not residually finite, so `llp-non-rf-kazhdan-group-is-non-hyperlinear` makes
+  it non-hyperlinear. That contradicts (LK1), since `K` is sofic. So every witness has
+  `C*(G)` without the LLP, and (LK3) needs a lifting property of norm-corona models only. That
+  property is not a C*-property of `C*(G)`.
+- **Dead shortcut 2: windings.** A winding functional of a `G`-model is a homomorphism on
+  `H_2(K; Z)` with `W ∘ φ_* = W`. So it factors through `H_2(G) ≅ H_2(K)_φ`, by the Wang sequence
+  and `H_1(K) = 0`. `mf-radical-is-blind-to-degree-two-windings` makes every survivor
+  winding-free after realification. So no winding certifies that a survivor is trivial, and none
+  certifies that it is nontrivial.
+- **Dead shortcut 3: torus-level (WK).** Take any central extension `1 -> Z -> G~ -> G -> 1`.
+  `[K~, K~]` of the preimage `K~` of `K` is a nontrivial perfect central extension of `K`. It is
+  quotientless: a finite quotient, modulo the image of the centre, is a finite quotient of `K`, so it
+  is cyclic, and being perfect it is trivial. `G~` is finitely presented, so if it were LEF it would
+  be residually finite, and so would its nontrivial quotientless subgroup `[K~, K~]`. That is
+  impossible. So LEF central-extension refutations in the style of
+  `mf-stable-kernels-lack-lef-nonsplit-central-extensions` never apply to the torus. They apply
+  only to `K` itself, which is not finitely presented.
+- **Next falsifiable step.** Every LEF-derived kernel model is R_1-liftable, so Attempt 3 already
+  kills its wraps. This includes the non-ucp-liftable model of
+  `quotientless-lef-kazhdan-corona-trace-has-no-ucp-lift`. A refutation of (LK3) therefore needs a
+  kernel model `Θ_0` that is neither R_1-liftable nor ucp-liftable, together with a corona unitary
+  `T` such that `T Θ_0(s) T* = Θ_0(w_s)`. The first test is a sharper question: is some
+  asymptotic `K`-representation of a LEF candidate at positive distance from every exact
+  representation of `K~_1`? If there is none, (LK3) holds for that candidate.

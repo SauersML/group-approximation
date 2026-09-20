@@ -1148,3 +1148,216 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### Far cross relators of the cone cover are uniformly small (swarm-0917-w18-w18-nh-last1, decomposition, group-rings, 2026-09-19)
+
+- **Attempt.** This is the next falsifiable step of the previous entry: stability of `ker Phi_P ∩ K`. The
+  relators named there, the cross-commutators `[x_ij(a), x_kl(b)]` and the middle-index coherence of `x_ik(ab)`,
+  were only `delta`-trivial one relator at a time, with constants depending on the word lengths of `a` and `b`.
+- **Result, ESTABLISHED:** `leavitt-cone-cover-far-cross-relators-are-uniformly-small`, with route
+  `leavitt-cone-cover-far-cross-relators-uniform-proof`. There is one constant `C_1 = 4 N_0 / kappa^2` such that,
+  for every unitary `rho` into any tracial von Neumann algebra:
+  - `(U1)` `||[rho(g), rho(h)] - 1||_2 <= C_1 delta` for all `g in G_I^+`, `h in G_J^-`, with `I`, `J` disjoint blocks;
+  - `(U2)` every far cross relator `[x_ij(a), x_kl(b)]` is at most `4 C_1 delta`;
+  - `(U3)` every middle-index coherence relator is at most `5 C_1 delta`.
+  - *Proof:* double Kazhdan averaging. The finitely many generator commutators `[x_ij(c), x_kl(c')]` lie in `K`
+    and cost at most `N_0 delta`. `(T)` of `St_m(R_+)` (EJK) spreads this over `G_I^+`; `(T)` of `St_m(R_-)` spreads
+    it over `G_J^-`. The overlap and same-root cases go through `R_0`-elements `x_im(1)` and a conjugation-transfer
+    lemma.
+- **Class killed (refutation side).** Every counterexample family to `(QC)` whose gap comes from the
+  `ker Phi_P` relators on *long* ring words is dead. This includes twisted gluings `(sigma_+, U sigma_- U^*)`
+  whose twist is invisible on the generators. *Invariant:* `kappa` together with `N_0`. *Death step:* double
+  averaging.
+- **Obstruction, proved.** Averaging stops at the halves. Every `(T)` subgroup of `Gamma` has FA and is
+  conjugate into `Delta_+` or `Delta_-`. The same-block mixed group `<G_I^+, G_I^->` is not Kazhdan, since
+  `x_12(s_1) x_12(t_1)` is hyperbolic on the Bass--Serre tree. The ring-shadow head bound consumes exactly the
+  uniformity over mixed alternations that this lacks.
+- **Target stays OPEN.**
+- **Next target (MW), not a proved reduction.** For every word `w = g_1 h_1 ... g_m h_m` in one block `I`, the
+  unitary `rho(w) rho(x_IK(M)) rho(w)^(-1)` should depend, up to `C delta` uniformly in `m`, only on the image of
+  `w` in `EL_I(R)`.
+  - It fails if some family with `delta -> 0` has a dependence error growing with `m`.
+  - It is open even for `m = 1`, because Leavitt reductions `t_i s_j = delta_ij` cost normal generators.
+### Exact half compressions force the head bound; mixed compressors cannot enter (swarm-0917-w18-w18-ptl-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+- **Attempt.** Attack the non-ring-gluing survivor above without any stability theorem. Use a rigid compression
+  defect (Kun–Thom / OpenAI type) directly in genuine representations of the cone cover `Gamma`, where the
+  relators hold exactly on each half.
+- **Result: a new decomposition and a class kill, ESTABLISHED (unreviewed).** Recorded as
+  `cone-half-compression-defects-force-head-bound`, with route `cone-half-compression-defects-force-head-bound-proof`.
+  - *Bass–Serre localization.* Edge groups of `Gamma` are finite. By Watatani, an infinite Kazhdan `L <= Gamma`
+    fixes exactly one vertex, and any `u` with `u L u^-1 <= L` fixes that vertex too. So exact Kazhdan
+    compression pairs of `Gamma` live in one conjugate of `Delta_+` or `Delta_-`.
+  - *Hilbert–Schmidt transfer (HT).* For every finite-dimensional unitary `rho`:
+    `||rho([u c u^-1, l]) - 1||_2 <= (2/kappa) max_s ||rho([s, c]) - 1||_2`.
+    - `Ad rho(u)` maps the finite-dimensional algebra `span rho(L)` into itself, hence onto itself, so it
+      preserves the commutant `rho(L)'`.
+    - The Kazhdan inequality on `(M_d, ||.||_2)` then does the rest.
+  - *Decomposition.* `(QC) <= (HEC)`, with a linear modulus. Here `(HEC)` is the purely algebraic statement
+    `leavitt-cone-half-carries-rigid-compression-defect` (OPEN): a Kazhdan `L <= Delta_+` and `u ∈ Delta_+` with
+    `u L u^-1 <= L`, and `c ∈ C_Delta(L)` with `[u c u^-1, l] ≠ 1`. So `(HEC) + (HR)` implies `Delta` is not
+    hyperlinear.
+  - *Class killed.* Every mixed-compressor certificate for `(QC)`, including the nine-leaf Kun–Thom configuration
+    of `openai-leavitt-unit-nonsofic`.
+    - *Invariant:* the Bass–Serre tree.
+    - *Death step:* the exact lift of `u L u^-1 <= L` to `Gamma`. Off a half it holds only modulo `K`, and
+      approximate `Ad` control is false in HS (`hs-analogue-of-normal-kazhdan-criterion-is-false`).
+- **Constraints on (HEC) witnesses** (proved in the OPEN node).
+  - The compressor has infinite order.
+  - The compression is strict and profinitely invisible in the residually finite `Delta_+`.
+  - `c` lies outside every residually finite overgroup of `<L, u>`.
+  - **Corner kill.** Every `L` whose commutant is `B + eMe` (`B` finite-dimensional, `e` over `R_+`) is rigid: no
+    `u ∈ Delta_+` moves `C_Delta(L)`. Block copies `E_k(S)` with `s_1, s_2 ∈ S` are of this type, since
+    `C_R(s_1, s_2) = F_2`.
+    - *Invariant:* stable finiteness of `M_20(R_+)`, from `depth-monotone-leavitt-subalgebras-are-stably-finite`.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Decide whether some `u ∈ Delta_+` strictly compresses `E_3(F_2[s_1])`, or a Kazhdan
+  overgroup of it inside `Delta_+`. Its commutant `C_R(s_1) E + (1-E) M (1-E)` is not of corner type.
+  - A *yes* with a moving centralizer proves `(QC)`.
+  - Showing that every Kazhdan subgroup of `Delta_+` has a `Delta_+`-rigid centralizer kills this route.
+* **Two-place (tdlc) envelope of the Toeplitz Haar relation: dead, no new finite models (swarm-0917-w18-w18-nh-pull, 2026-09-19, finite-models).**
+  This attempt targeted the Toeplitz survivor class through `jacobson-haar-relation-lifts-into-bilateral-relation`.
+  - **Identification (elementary, checked by hand).** Put `A = F_2[x, x^(-1)]`, `K_inf = F_2((1/x))` and `K_0 = F_2((x))`.
+    - `A` is a cocompact lattice in `K_inf x K_0`, with fundamental domain `D x F_2[[x]]`. So
+      `T = (K_inf x K_0)^n / A^n ≅ F_2^(Z x n)` is the bilateral space of `bilateral-laurent-haar-relation-is-sofic`.
+    - `A` is dense in `K_0`, and a translation `(0, a)` acts on `T` as the finitely supported translation `(-a, 0)`.
+      So that sofic relation `R'` is the orbit relation of the dense countable subgroup `A^n x| SL_n(A)` of the
+      unimodular tdlc group `H = K_0^n x| SL_n(A)`.
+    - With `U = F_2[[x]]^n` compact open, `R_n` (the Haar relation of `EL_n(J)`) is the `U`-quotient, i.e. the
+      cross-section, relation of `H` on `T`. The transversal is the leaf `D x {0}`, and the compensating
+      translations `[gu]_(>=0)` have bounded support.
+    - The quotient map `T -> T/U = D` carries `R'` onto `R_n` class-surjectively. Its fibres are the
+      `F_2[x]^n`-orbits.
+  - **Death step.** This envelope is exactly the coordinate-projection picture of
+    `bilateral-lift-at-coordinate-projection-is-mirror-cocycle-lift`, so it adds no finite models. Soficity of the
+    `H`-action is soficity of `R_n` by stable orbit equivalence of cross-sections, so the question is only renamed.
+    - The periodic points `T[f]` are `SL_n(A)`-invariant, but `K_0^n` does not preserve them.
+    - Cross-sectioning a periodic model `X_m` along `{y|_[0,w) = 0}` recovers the finite Toeplitz truncation.
+      There, exact `TS = 1` in finite dimension forces `ST = 1`, which kills the head `x_13(1 - ST)`. Breaking `TS = 1`
+      at one boundary vector makes the relator `[x_12(T), x_23(S)] x_13(1)^(-1)` a rank-one transvection, which moves
+      half of the points.
+    - The invariant is stable finiteness of finite-dimensional `J`-modules. It is already recorded on the
+      finite-model side.
+  - **Tensor-swindle variant also dead.** Take the ambient `(X_+ x X_-)^N` with the genuine diagonal bilateral action.
+    This is still sofic by periodic points.
+    - The auxiliary factors carry a genuine `Q`-action, so they act only as a free extension.
+    - The cocycle defect of the induced `beta` sits entirely on the `X_-` factor next to the boundary. It is the same
+      `L_-`-valued boundary defect, and that is exactly (ML).
+    - The infinite tensor product of per-factor inner corrections is not inner, so no swindle absorbs it.
+  - **Status.** The target stays OPEN, and nothing is ESTABLISHED here. The Toeplitz branch remains
+    (HS)/(G2) of `mirror-extension-lifts-over-every-amenable-subgroup`.
+### swarm-0917-w18-w18-nh-follow (reframing): graded density kills every half compression defect
+
+- **Question.** The parallel w18-ptl-pull lane (not landed here) reduced `(QC)` to (HEC). (HEC) asks for a Kazhdan
+  `L <= Delta_+`, a compressor `u ∈ Delta_+` with `u L u^-1 <= L`, and `c ∈ C_Delta(L)`, `l ∈ L` with
+  `[u c u^-1, l] ≠ 1`. This is the node `leavitt-cone-half-carries-rigid-compression-defect`, which comes with
+  constraints C0-C4 and the next test `E_3(F_2[s_1])`.
+- **Result.** (HEC) is false. This is ESTABLISHED as `cone-half-compressions-have-graded-rigid-commutants`.
+  - Let `u ∈ GL_20(R)` with `u, u^-1` of nonnegative degree, for example any `u ∈ Delta_+`, and let `L <= GL_20(R_+)`
+    be any subgroup with `u L u^-1 <= L`.
+  - Then `C_Delta(u L u^-1) = C_Delta(L)`, with or without (T).
+- **Proof.** Let `A = F_2 L`.
+  - The degree-0 parts satisfy `u_0 (u^-1)_0 = 1`, so leading terms transform by the injective map
+    `x_j ↦ u_0 x_j u_0^-1`.
+  - The graded pieces of `M_20(R_+)` have finite dimension `400 · 2^(j+1)`, so `gr(u A u^-1) = gr(A)`. Hence
+    `u A u^-1` is degree-dense in `A`.
+  - Commutation with a fixed matrix of bounded degree range is continuous for the valuation filtration, and
+    `∩ F_k = 0`. So `(u A u^-1)' = A'`.
+  - (KH2) identifies `St_20` with `GL_20`.
+- **Class killed.** Every exact rigid-compression-defect certificate for `(QC)`.
+  - *Invariant:* the Z-grading, under which each cone has finite-dimensional graded pieces.
+  - *Death step:* `C_Delta(u L u^-1) ≠ C_Delta(L)`.
+  - Together with the Bass-Serre localization of exact Kazhdan compression pairs of `Gamma` into one half, this covers
+    every exact configuration. It subsumes the corner kill C4 and explains the profinite invisibility C2 as
+    invisibility modulo degree truncations.
+- **Target stays OPEN.** `(QC)` must now come from relations of `Gamma` that hold only modulo `K`, through
+  approximate relators or rounding. That is the regime of (HR) and of the mixed-block coherence (MW) of the w18-nh-last1
+  lane.
+- **Recommendation.** When the w18-ptl-pull nodes land, mark `leavitt-cone-half-carries-rigid-compression-defect`
+  REFUTED, and mark the route `(QC) <= (HEC)` dead, citing this node.
+### swarm-0917-w20-w20-nh-last1 (decomposition): uniform Leavitt reduction and a head bound linear in shadow dimension
+
+- **Hole attacked.** `(QC)` of `leavitt-st20-nonhyperlinear-iff-cone-bound-and-half-rounding`. The mixed-block
+  coherence `(MW)` of `leavitt-cone-cover-far-cross-relators-are-uniformly-small` was recorded as open "even for
+  `m = 1`", because Leavitt reductions cost normal generators.
+- **Result (ESTABLISHED as `leavitt-cone-head-bound-is-linear-in-shadow-dimension`).**
+  - **(LR).** One Leavitt letter inside a mixed commutator reduces at a fixed cost:
+    `rho(P^b(u t_j, s_j' v)) ~ rho(g) rho(P^a(delta_jj' u, v)) rho(g)^(-1)`, with error `(6 C_1 + 4 c_0) delta`,
+    uniformly in `u in R_-` and `v in R_+`.
+  - The proof uses two far cross relators from `(U2)`, one generator-level Leavitt defect, and exact half relations.
+    The word identities are machine-checked by `experiments/leavitt-reduction-cost-2026-09-17/verify_leavitt_reduction.py`.
+  - **Chain.** Start from `z = P^4(q, 1)`, which is exact in `Delta_0`. Run `L` backward reductions, then an exact
+    swap of `s_omega` for a word `s_omega'` colliding with it modulo the shadow ideal `J_+`. Forward reductions end
+    at the first mismatch, where `eps = 0`. This gives `||rho(z) - 1||_2 <= 2 L*(J_+) c_L delta <= 2(d + 1) c_L delta`.
+- **Class killed.** Every `(QC)` counterexample with bounded shadow dimension, or bounded Cuntz-word collision depth,
+  on either half, whatever its dimension, multiplicity or twist. The suggested `M_2(F_2)` twisted-gluing test is
+  covered, with `D <= 4`.
+  - *Invariant:* the collision depth `L*(J_+-)`.
+  - *Death step:* the `(LR)` chain ending on an exactly killed root element.
+- **Belief change.** `(QC)` now has an explicit rate in each dimension, `delta = eps / (2(d + 1) c_L)`. A
+  counterexample needs `D_+-, d >= eps / (2 c_L delta) - 1`. The only remaining obstruction is linear accumulation
+  along reduction chains.
+- **New decomposition (OPEN).** `(QC) <= (LD)`, recorded as `leavitt-cone-long-leavitt-defects-are-uniformly-small`.
+  `(LD)` asks that the long Leavitt defects `[x_ab(s_omega^*), x_bc(s_omega')] x_ac(delta)^(-1)` be uniformly
+  `C delta`-small. Under `(LD)`, the chain has two steps.
+- **Target stays OPEN.**
+### Root-code bound: the head is a codeword sum of long Leavitt defects (swarm-0917-w21-w21-nh-last1, linear-characteristic, 2026-09-20)
+
+- **Landed (ESTABLISHED, unreviewed):** `leavitt-cone-head-is-bounded-by-root-code-leavitt-defects`, with route
+  `leavitt-cone-head-root-code-bound-proof`.
+  - *Setting.* For every unitary `rho` of `Gamma`, depth `N`, and `c ∈ {1,q}`:
+    - `C_N(rho)` is the binary code of `S ⊆ {1,2}^N` with `sum_S t_w ∈ I_-`.
+    - The long Leavitt relators are `l^c_(w,w') = [x_12(t_w), x_23(s_(w') c)] x_13(δ c)^(-1) ∈ K`.
+  - *Bound (RC).* `||rho(x_13(c)) - 1|| <= sum_(w∈S) ||rho(l^c_(w,w_0)) - 1||` for every codeword `S` and every
+    `w_0 ∈ S`.
+  - There is an `η`-approximate version, in which `η` is a `μ`-weighted Hamming weight on the characters of
+    `x_12(B_-)`, and a mirror version on `I_+`.
+  - A collision codeword always exists at depth `k_- + 1 <= d + 1`. With a per-letter defect bound, this recovers the
+    linear shadow-dimension head bound from one weight-2 codeword.
+  - The Cohn shadow is located exactly. All depth-1 relators and `kappa` are trivial. A weight-1 codeword
+    `t_2 t_1 -> 0` at depth 2 makes `l^q_(12,12)` carry the head `sqrt 2`.
+- **Decomposition.** `(QC) <= (LD_N) ∧ (BW)`, and each prerequisite can fail on its own.
+  - `(LD_N)`: depth-`N` long defects are `O_N(delta)`.
+  - `(BW)`: small `k_i` force an `η`-near root codeword of bounded weight and depth.
+- **Class killed: exact-code uniformization at bounded depth.**
+  - *Invariant:* the truncation shadows `R_-/R_-^(>M)`. `R_-` is graded with basis `{t_w, q t_w}`, so these codes
+    vanish at every depth `<= M` while `q` survives.
+  - *Death step:* choosing a codeword at depth `<= N_0` when `M >= N_0`.
+- **Census** (`experiments/leavitt-root-code-2026-09-17`): shadows `R_- -> M_k(F_2)` for `k <= 4` have weight-depth
+  cost at most 8.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Decide `(BW)` on non-ring gluings. Do `delta`-small cross relators force two words of
+  depth `O(1)` whose `x_12(t_w)` images are `η`-close in the `μ`-Hamming metric?
+  - A *no* needs a spectral measure `μ` on `B_-` in which all `2^N` depth-`N` word images are `1/4`-separated, for
+    `N` growing with `d`, glued with small `k_i`.
+### Delta is a quotient of its Kazhdan cone half; (QC) leaves the stability route (swarm-0917-w22-w22-nh-last1, reframing, 2026-09-20)
+
+- **Result.** ESTABLISHED `leavitt-st20-is-a-quotient-of-its-kazhdan-cone-half`, with route
+  `leavitt-st20-quotient-of-cone-half-proof`. This checks and completes the w21 spark.
+  - `R_+ = <s_1, s_2, q>` is the free path algebra of the two-vertex quiver.
+  - `R` is 2-generated, via `R ≅ M_16(R)`.
+  - So there is a unital `φ : R_+ ->> R` with `φ(q) = q`, and `φ_* : Delta_+ ->> Delta` is the
+    identity on `Delta_0`.
+- **Head bound for the quotient cover.** `(QN)` is proved with linear modulus. Every
+  finite-dimensional unitary `λ` of `Delta_+` with `||λ(x_ij(a_k)) - 1||_2 <= δ`, for the finitely
+  many ideal generators `a_k` of `ker φ`, has `||λ(g) - 1||_2 <= 2δ/κ` on all of `Delta_+`.
+  - `κ` is a Kazhdan constant of `E_20(R_+ x_R R_+)`.
+  - The mechanism is an intertwiner between the two coordinate pullbacks. It is finished by the
+    fact that `Delta_+ / E_20(R_+, ker φ)` has no finite quotients, since `R` is simple.
+- **Split.** `Delta` is not hyperlinear iff `(PR)`: pullbacks `σ_n ∘ φ_*` of asymptotic
+  representations round flexibly on `Delta_+`.
+  - Flexible HS-stability of `Delta_+` implies `(PR)`, hence the flagship and `(QC)`.
+  - New route `leavitt-cone-half-pullback-route-to-nonhyperlinear`. Its single open prerequisite is
+    `leavitt-cone-half-pullback-rounding`.
+- **Bearing on this node.**
+  - `(QC)`, and with it the non-ring-gluing survivor above, is no longer on the stability route to
+    the flagship.
+  - `(LNC3)` itself is untouched and stays **OPEN**. It is strictly stronger than
+    non-hyperlinearity.
+- **Class killed.** Every hyperlinear approximation of `Delta` has a pullback to `Delta_+` that is
+  not flexibly close to genuine representations.
+  - *Invariant:* property (T) of the fibre-product ring's `E_20`, and simplicity of `R`.
+- **Next falsifiable step.** Decide `(PR)`. Test whether an asymptotic representation of `E_20(F_2 Q)`
+  that tends to 1 pointwise on `N = ker φ_*` must tend to 1 everywhere.
+  - For genuine representations this is `(QN)`, which is proved, even with only the finite set `x_ij(a_k)`.
+  - For asymptotic representations it is equivalent to non-hyperlinearity of `Delta`.

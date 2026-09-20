@@ -1,0 +1,3 @@
+progress nonmal {'inst': 25, 'Yneq': 108, 'A_fail': 0, 'B_fail': 0, 'both_ok': 108, 'fibre_pairs_max': 56}
+progress nonmal {'inst': 50, 'Yneq': 238, 'A_fail': 0, 'B_fail': 0, 'both_ok': 238, 'fibre_pairs_max': 64}
+analyze nonmal seed 12 {'inst': 60, 'Yneq': 263, 'A_fail': 0, 'B_fail': 0, 'both_ok': 263, 'fibre_pairs_max': 64}

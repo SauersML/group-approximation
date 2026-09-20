@@ -104,3 +104,19 @@ per dyadic scale. In the right coordinates that top level becomes affine (`D_2`)
 (the zoom `x+1`) becomes a *carry map* with bends at the lattice. Its bend-local pictures generate
 Thompson-type groups. So a PL tower host of the chain group is never a soluble or "small" group, and
 its finiteness has to be settled with Thompson-group technology, not with soluble-group technology.
+
+## Attempts
+
+1. **Decay order on the open finite-presentation question (swarm-0917-w23-w23-bh-follow,
+   2026-09-20).** The open question is finite presentation of `Q`. ESTABLISHED
+   `pl-chain-germ-group-has-empty-bns-invariant`:
+   - In the coordinates of item 1, every `h ∈ ker χ` is `y + q + E(y)` with `E = O(2^(-y/2^κ))`.
+   - The decay order `κ` is ultrametric, so it is bounded on finitely generated subgroups.
+   - Conjugation by `s = D_2` raises `κ` by exactly `1`.
+   - Hence `Q` is not an ascending HNN extension of any finitely generated subgroup, with either sign
+     (`Σ^1(Q) = ∅`). This kills the Thompson-style ascending engines named under "What this changes",
+     not only the soluble ones.
+   - With Bieri–Strebel: if `Q` is finitely presented, then `F_2 <= M_0`, the bounded-displacement
+     germs.
+
+   So finite presentation of `Q` now needs a free subgroup in `M_0`, which is open.

@@ -253,4 +253,129 @@ swarm-0917 w12).**
       C2 tests;
     - normal subgroups of `A * H` not containing `[A,H]`, where the fibre sum
       is an alternating word sum in two non-commuting kernels.
+* **Every normal subgroup of complete-block free products (2026-09-19,
+  swarm-0917-w17-w17-bs-follow, operator-algebras).** This settles the second
+  remaining test above for finite factors and lines. The result is
+  `fpbs-complete-block-free-products-satisfy-identity-e` (ESTABLISHED; route
+  `fpbs-complete-block-free-products-identity-e-proof`).
+  - *Class.* `Gamma = A_1 * ... * A_m`. Each factor is either finite with
+    generators `A_i \ {e}` (a `K_n` block) or `Z` with `+-1`. `N` is any
+    infinite normal subgroup, with no commutation hypothesis. This includes
+    `PSL_2(Z)` with `{s, r, r^2}` along every infinite quotient.
+  - *Result.* On `Gamma`, `tau_p = c_p G_(mu_p)` for all `p < p_(2->2)(G)`.
+    Here `mu_p` has explicit factor weights `w_i(p)`, and the local identity
+    `(delta - mu_p) * tau_p = c_p delta` holds for every `p`. Pushing forward
+    gives `sigma^N_p = c_p G_(pi_* mu_p)` on `Q`. Then Kesten plus Brouwer
+    invariance of domain in weight space give
+    `p_c(N;G) = p^Q_(2->2) = min{p : ||lambda_Q(pi_* mu_p)|| = 1}`.
+    The pair is of type (i) iff `Q` is nonamenable and of type (iii) otherwise;
+    type (ii) never occurs on this class.
+  - *Invariant.* Green representability: `tau_p` is the Green function of a
+    finite-range walk in a finite-parameter family `W(t)`, and `W` is injective.
+  - *Where the method dies in general.* At Step 1 of the route, the local
+    identity with finitely many free weights. It comes from the cut vertices
+    of the block tree. On a graph with cycles through several blocks,
+    `tau_p` is not the Green function of any finite-range walk, and the
+    softer positivity and variational facts do not replace this.
+    Theorem B of the new node states the abstract mechanism that any other
+    class would need.
+* **Harris chain domination of the multi-chain powers (2026-09-19,
+  swarm-0917-w20-w20-bs-pull, probability-random; dead, obstruction
+  recorded).**
+  - *Idea.* Prove `E'` by bounding `sigma_p^(*m)(e)` exponentially in `m` at
+    some `p >= p_c`, through Harris--FKG
+    `prod tau <= P(all chain points in one cluster)`. The bound would use the
+    finite fibre mass or relative sharpness in a gap window.
+  - *Result.* `fpbs-harris-chain-majorant-is-superexponential`
+    (ESTABLISHED) proves that the majorant
+    `H_m(p) = E_p[|K_o|^(m-1)|K_o ∩ N|]` is infinite when `theta(p) > 0`, and
+    that `H_m(p) >= (m p)^(m-1)` at every `p`, on every infinite transitive
+    graph and for every `N` containing `o`. For `p < p_c` the true chain sum is
+    at most `chi_p^m`. The same holds for any single-parameter count of tuples
+    in one cluster, including superposition of the factors.
+  - *Where it dies.* At the passage from `sigma^(*m)(e) <= E_(p')[Phi_m(K_o)]`
+    to `C^m`, for every `p'`. The invariant is the ratio of ordered tuples in
+    one cluster to chains of independent connections, which grows like
+    `(m p/chi_p)^m`. It dies even on trees and below `p_c`, where the
+    statement is trivial.
+  - *Consequence.* BK and Reimer bound `sigma^(*m)(e)` only from below. So a
+    proof of `E'` or of critical fibre l2 cannot come from correlation
+    inequalities on events. It needs a product-preserving identity (renewal or
+    resolvent) or a spectral cluster functional (the Gram bound of the w18
+    bus lemma, which is not yet in this tree).
 
+* **Nonunimodular calibration (2026-09-19, swarm-0917-w19-w19-bs-pull,
+  calibration).** Result: `fpbs-nonunimodular-level-sets-break-identity-e`
+  (ESTABLISHED).
+  - *Setting.* A transitive nonunimodular `Gamma ⊆ Aut(G)` and
+    `N_Delta = ker(gamma -> Delta(o, gamma o))`. This is normal, contains every
+    stabilizer, has abelian quotient `D`, and its orbits are the infinite
+    level sets of `Delta`.
+  - *Result.* The fibre kernel satisfies `sigma(c^(-1)) = c sigma(c)`, so
+    `||S_p||_(l2(D)) = chi_p`. The chain is
+    `p^(l2) = p_T <= p_c < p_t <= p^(diag) <= p_c(L;G)` (Hutchcroft
+    `thm:pcpt`). On `T_k` it is `1/(k-1) < 1/sqrt(k-1)` with no import.
+  - *What fails off Cayley graphs.* C3 fails (abelian quotient, strict gap).
+    E and E' fail: every such pair is literally type (ii). The sandwich
+    diagonal formula fails on the whole window `(p_c, p_t)`.
+  - *Invariant.* The modular function, seen as the defect of `sigma` under
+    inversion.
+  - *Step where every member dies.* Any proof of C3 or of E (l2 form) that
+    does not use unimodular mass transport would prove a false statement on
+    `(T_k, Aut(T_k)_xi, N_Delta)`. The recorded proofs use it at Step 5 of the
+    C3 proof and at (0d) of the sandwich proof.
+  - *Survivor.* `E_diag`: `p_c(N;G) = p^(diag)(N;G)`, the multi-chain
+    formulation. It equals E on Cayley graphs and holds on `T_k`.
+* **Every tree Cayley graph, every infinite normal N (2026-09-19,
+  swarm-0917-w20-w20-bs-break, census-computation).** E holds on the whole
+  class: `fpbs-tree-cayley-graphs-satisfy-identity-e` (ESTABLISHED).
+  - *Class.* Every `(Gamma,S)` whose Cayley graph is the `(q+1)`-regular tree:
+    `F_d` on a free basis, `(Z/2)^{*b}`, and the mixed products
+    `Z^{*a} * (Z/2)^{*b}`. `N` is any infinite normal subgroup, in particular
+    one not containing `[A,H]`. This is the w17 "next test" for factors `Z`
+    and `Z/2`, and it turns item 2 of the Evidence into a proof.
+  - *Result.* The pointwise identity `s^|x| = phi(s) G_(w(s))(e,x)` on the
+    tree pushes forward to
+    `sigma_p = phi(p) (1 - w(p) lambda_Q(mu_Q))^(-1) delta_e`, so
+    `||sigma_p||_Q = phi(p)/(1 - w(p) rho_Q)` for `p < s_N`, and
+    `p_c(N;T) = p^Q_(2->2)(N;T) = s_N`. The pair is type (i) iff `Q` is
+    nonamenable, and type (iii) otherwise. No tree pair is type (ii).
+  - *Census outcome.* No normal subgroup of a tree group escapes the
+    resolvent form. The alternating word sums in two non-commuting kernels,
+    which the renewal method of w17 could not handle, are resolvents here,
+    because `tau_p` is already a Green function on `Gamma` before the
+    quotient is taken.
+  - *Invariant for a disproof.* Green representability of `tau_p` on `Gamma`
+    by a single symmetric walk. Where it holds up to `p^Q_(2->2)`, every
+    quotient inherits a resolvent, and E follows. So a type-(ii) pair must
+    live on a graph whose two-point function in the window
+    `(p_c, p_c(N;G))` is not a Green function of any one walk on `Gamma`.
+    Among the tested classes this rules out trees, free products along
+    commuting quotients (w17) and, per the w17 follow-up on the live bus,
+    complete-block free products. What remains are one-ended graphs
+    (`F_2 x F_2` along the diagonal-free normal subgroups, `T x H`) and
+    amalgams over infinite amenable `C`.
+* **Green threshold of the pushed DT measure splits E (2026-09-20,
+  swarm-0917-w23-w23-bs-follow, reframing).** Result:
+  `fpbs-relative-dt-green-threshold-splits-identity-e` (ESTABLISHED).
+  - *Object.* `p^G(N;G)`, the sup of the `p` at which some finite `S` has a
+    summable Green function `D_p(S) = sum_k (mu_{S,p}^{*k} * a_S)(e_Q)` of
+    the pushed DT boundary measure. The condition is a return rate, not an
+    operator norm.
+  - *Result.* `p_c <= p^Q <= p^G <= p_c(N;G)`. So E is the conjunction of
+    **(E-a)** `p^G = p_c(N;G)` (`fpbs-relative-dt-sharpness`, OPEN; for
+    `Q` trivial this is DT's `p~_c = p_c`) and **(E-b)** `p^G = p^Q`
+    (`fpbs-finite-volume-no-drift`, OPEN). The set
+    `{p : some S has r_p(S) < 1}` is the open interval `[0, p^G)`, so a
+    critical Green certificate `r_{p_c}(S) < 1` gives `p_c < p_u`. Under (E-a)
+    it is equivalent to the Kesten gap along `N`. Also under (E-a), the type (ii) pairs of C1 are
+    exactly the drift gaps: return rate below one with `l2(Q)` spectral radius
+    at least one, at `p_c`.
+  - *Calibration.* On `T_k` horocycles, `p^G(L) = p_t = p_c(L;T_k)`, by an
+    explicit ball certificate `Phi_R(p) = (p sqrt(k-1))^(R+1)(2 + R(k-2)/(k-1))`.
+    So the known off-Cayley failure of E is purely a failure of (E-b), while
+    (E-a) holds.
+  - *Where each half dies.* (E-a): the invariant is `inf_S r_p(S)`, and DT's
+    one-step inequality controls only total mass. (E-b): the invariant is the gap
+    `r(mu)^2 < r(mu * mu~)`, and the Cayley symmetry of `sigma^N` is not
+    inherited by `mu_{S,p}`.

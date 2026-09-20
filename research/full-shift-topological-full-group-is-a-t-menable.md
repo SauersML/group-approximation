@@ -95,3 +95,162 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
     The permutation representation on them therefore has almost invariant vectors and no
     base-invariant vector. So that module fails relative (T) directly.
+- **2026-09-19 (swarm-0917-w17-w17-nv-follow): the overgroup `M_2` is `RTM(2,1)`; where the
+  cubical kill switches on (calibration plus new prerequisite).**
+  - **Result.** `lebesgue-preserving-subgroup-of-2v-is-the-turing-machine-group` (ESTABLISHED).
+    - Under `Φ`, the Lebesgue-preserving subgroup `M_2 ⊇ [[X]]` of `2V` is exactly the
+      moving-tape group `RTM_fix(2, 1)`: a Jacobian-zero brick table on `(r, r)`-bricks is a
+      Turing-machine local rule, and conversely.
+    - So Callard–Salo's Theorem D places an element with `|f^N| = O(log^4 N)` in `M_2`. That
+      answers the question left open in `nv-cocycle-kernel-is-jacobian-kernel-meet-diagonal`.
+    - It follows that `M_n` has no proper commensurating action, and the "proper on `M_n`" half
+      of the Jacobian split has no cubical witness.
+  - **Calibration for this claim.** `[[X]]` embeds in `W(Z)` by a dense orbit, so by item 3 of
+    `heisenberg-not-in-wobbling-groups-of-quadratic-growth-graphs` (`d = 1`) it has no distorted
+    element.
+    - So the Callard–Salo/Haglund cubical kill does not reach this claim. Cubical and
+      commensurating proofs of it remain open.
+    - It does reach the intermediate group `RTM(2, 1)`. The kill switches on exactly when tape
+      overwriting (homoclinic moves) is added to the shift.
+  - **New prerequisite.** `reversible-turing-machine-groups-are-a-t-menable` (OPEN).
+    - It is necessary for the goal via `turing-machine-group-a-t-menable-from-nv`.
+    - It is sufficient for this claim via `full-shift-full-group-a-t-menable-from-turing-machines`.
+  - **Not done.**
+    - No cnd function on `[[X]]` was constructed.
+    - Whether the Callard–Salo element (or any distorted element of `M_2`) has a power in
+      `[[X]]` is not decided. If one had, the relative capture lemma would make every cubical
+      function on `M_2` that is proper modulo `[[X]]` impossible to rule out by this route.
+- **2026-09-19 (swarm-0917-w19-w19-nv-break): refutation by any relative-(T) subgroup pair
+  (class-kill, host-geometry).**
+  - Normality is removed from the w17 kill.
+    `relative-t-subgroup-pairs-have-uniform-invariant-projection` imports Cornulier's Theorem 2.2.3
+    (arXiv:math/0505193), checked verbatim: for a countable group, relative (T) of a subgroup or a
+    subset gives uniform convergence of positive definite functions on it. With the lemma of the
+    centre, this gives the quantitative projection that w17 derived from normality.
+  - Hence `wobbling-relative-t-subgroups-are-locally-finite`: in every subgroup of `[[X]]` (indeed
+    every countable subgroup of `W(Z)`), every `H` with `(Γ, H)` relative (T), normal or not, is
+    locally finite. Examples are non-normal copies of `Z`, of surface groups and of free groups.
+  - *Where every member dies.* The invariant is the uniform almost invariance of interval vectors
+    in `ℓ²(Z)`. Each member dies at the bounded-jump density count: an orbit of a finitely generated
+    subgroup with jumps at most `c` is `c`-dense in its span.
+  - *Survivors.*
+    - (S1) Infinite locally finite `H`. The candidate is `Γ_p`, now possibly with a non-normal `H`.
+    - (S2) Subset witnesses that generate no relative-(T) subgroup. Cornulier's
+      `SO_n(Z[2^{1/3}]) ⋉ Z[2^{1/3}]^n`, `n = 3, 4`, shows that these occur. For (S2) only the
+      necessary shape `|xI Δ I| < δ²|I|` (uniform in `x ∈ X`, for long intervals) is derived.
+  - Status of this node: still OPEN. The TH alternative is open in general.
+- **2026-09-20 (swarm-0917-w20-w20-nv-last1, host-geometry): witnesses extended from the orbit
+  wobbling group (die; class-kill).**
+  - *Class.* `ψ = ψ̃ ∘ ι`, where `ι: [[X]] → W(Y)` restricts to any σ-invariant set `Y` of aperiodic
+    points (one dense orbit, several, or all of them), and `ψ̃` is any cnd function on the whole
+    orbit wobbling group `W(Y)`. This includes half-line commensurating actions, wall sums over
+    orbit cuts, and finite sums of pullbacks along several orbits. It also answers the Known remark
+    that "Haagerup for `W(Z)` would imply this claim": that hypothesis is not merely unproved, it
+    is false in the strongest sense.
+  - **Result.** `wobbling-group-cnd-functions-are-bounded-on-displacement-balls` is ESTABLISHED,
+    with Cornulier 2006 imported verbatim. Every cnd function on `W(Y)` is bounded on each
+    displacement ball of constant flux. The flux of `ι(g)` is a continuous σ-invariant function,
+    hence constant.
+  - **Invariant.** The displacement bornology is bounded for every Hilbert action. The route is
+    flux, then a factorisation as a product of two block permutations, then `S_L^J ⊆ A_L^J · A_{2L}^J · A_{2L}^J`
+    with each factor strongly bounded.
+  - **Where every member dies.** On the involutions `g_m ∈ B_1` above, which have
+    `‖k_{g_m}‖_∞ = 1`.
+  - **Surviving.** Cnd functions on `[[X]]` that do not extend to `W(Y)`, such as countable orbit
+    sums `Σ_i ψ_i ∘ ι_i` whose bounds on `B_r` diverge but which are finite on `[[X]]`. Any proper
+    witness must use the continuity of the local rules `k_g`, that is, the coherence of the action
+    across orbits, and not only bounded displacement along each orbit.
+- **2026-09-20 (swarm-0917-w20-w20-nv-pull): local (germ-wise) cocycles (die; class-kill).**
+  Full statement and proof: `full-shift-full-group-local-cocycles-are-displacement-bounded`
+  (ESTABLISHED, `requires: []`).
+  - *Class.* 1-cocycles `b` of a unitary representation carrying a covariant spectral measure `P`
+    on `X` (`π(g)P(A)π(g)^* = P(gA)`) that are local: `P(gB)b(g) = P(hB)b(h)` whenever
+    `k_g = k_h` on the clopen `B`. This class contains:
+    - measured walls over *any* `Z`-extension `Ω → X` with *any* `τ`-invariant σ-finite measure.
+      These include the w16 invariant-measure walls, the periodic-point sums, walls over arbitrary
+      or quasi-invariant `ν` (via `m(A × {t}) = ν(σ^t A)`), and Maharam skew products;
+    - `ℓ²` of unions of orbits, with arbitrary `η`, which includes pattern-weighted cut walls;
+    - orbit-wise sums with divergent separate bounds;
+    - direct sums, integrals and pointwise limits of all of these.
+  - **Reduction.** Locality splits `b(g)` orthogonally over the images of the germ pieces:
+    `b(g) = Σ_k P(σ^k L_k) b(σ^k)`, where `L_k = {k_g = k}`. Hence
+    `ψ(g) ≤ ψ(σ) Σ_{k ∈ k_g(X)} k²`.
+  - **Where every member dies.** On `B_1 = {|k_g| ≤ 1}`, where `ψ ≤ 2ψ(σ)`. This set contains all
+    swaps `s_U` (an infinite elementary abelian 2-group) and the w16 involutions `g_m`.
+  - **Invariant:** germ subadditivity. Only three germ types have displacement at most one, but
+    infinitely many elements are built from them.
+  - **Calibration.** The same lemma kills every local cocycle on `V` (the family `g_W`, with
+    `ψ(g_W) ≤ ψ(t)`). `V` is Haagerup (Farley), so this is *not* evidence against the claim. It
+    shows that a witness must be non-local, like Farley's.
+  - **Surviving:**
+    - (S1) representations with no covariant spectral measure on `X`: configuration spaces, the
+      clopen algebra, Farley-type cube complexes that are not brick charts;
+    - (S2) non-local cocycles on covariant representations, which must put mass over the points
+      that stabilizer elements fix.
+
+    The parallel w20 node on orbit wobbling groups kills the restrictions of cnd functions on
+    `W(Y)`. Together the two nodes leave only witnesses that are non-local and do not extend to
+    `W(Y)`.
+  - *Correction to the w16 "Surviving" line.* Its two named survivors (quasi-invariant measured
+    walls, and pattern-weighted orbit walls) are local. So they die here.
+- **2026-09-20 (swarm-0917-w21-w21-nv-break): relative-(T) refutations are confined to one
+  displacement ball (class-kill; the claim stays OPEN).**
+  - *Class.* Refutation witnesses `(Γ, H)` with `Γ ≤ [[X]]` f.g., `H ≤ Γ` infinite and
+    `(Γ, H)` relative (T). More generally, relative-FH subsets `Y ⊆ Γ`. Normality is not assumed.
+  - **Result.** `wobbling-relative-fh-subsets-lie-in-displacement-balls` (ESTABLISHED, route
+    `wobbling-relative-fh-displacement-ball-proof`) proves `Y ⊆ B_K = {‖k_f‖_∞ ≤ K}` for one `K`.
+    So a relative-(T) subgroup `H` is locally finite, and its exponent divides `(2K+1)!`.
+  - **Invariant:** recurrence of `Z` (a point has zero capacity), the cut-space mechanism of
+    extensive amenability.
+  - **Where every member dies.**
+    - Let `μ_{m,n}` be the law of the cut `[m,∞)` smeared independently over `|y − m| < 2n`. Its
+      square root moves by `‖·‖² ≤ 4r²/n` under each generator.
+    - It moves by exactly `2` under an element that jumps a point from distance `≥ 2n` on one side
+      of `m` to distance `≥ 2n` on the other, because the two laws are mutually singular.
+    - A Lemma-Q uniformity (`sup_Y ψ ≤ C·max_Q ψ` for all cnd `ψ`) then bounds the displacement on
+      every aperiodic orbit at once.
+  - This closes the w17 survivor "non-normal relative-(T) subsets" for subsets with relative FH,
+    with no appeal to Jolissaint's quantitative relative (T).
+  - **Surviving:** a bounded-exponent witness whose whole base lies in a single `B_K`. The char-p
+    candidate `EL_2(F_p[t,t^{-1}]) ⋉ F_p[t,t^{-1}]²` of
+    `full-shift-full-group-has-infinite-normal-relative-t-subgroup` has exponent `p`, and must
+    realize its entire base inside one ball. The next test is `Γ`-almost-invariant vectors in the
+    monomial block representation `⊕_B ℓ²_0(B)` over `H`-orbit blocks, which is unresolved.
+    Not claimed: that the absence of infinite relative-FH subsets implies Haagerup.
+- **2026-09-20 (swarm-0917-w21-w21-nv-follow): diagonal-pair test (class-kill; target stays
+  OPEN).**
+  - *Result.* `full-shift-relative-fh-subsets-have-no-far-reading-density` (ESTABLISHED,
+    unreviewed). It uses Følner vectors on pairs of distinct orbits in `ℓ²(X × X)`. Any `Y` with
+    positive far-reading density `Θ(Y)` is unbounded for some cnd function on `[[X]]`.
+  - *Class killed.* Relative-FH refutation witnesses with `Θ(Y) > 0`. This includes the infinite
+    Boolean group `H_E ≤ B_1` generated by `s_{E ∩ {y_M = 0}}`. These are the first cnd functions
+    on `[[X]]` unbounded on an infinite subset of `B_1`, which no orbit wobbling group can give.
+  - *Invariant:* `Θ`. *Death step:* elements with a fixed window slide the diagonal Følner
+    vector along the diagonal, and a far-reading element knocks a `Θ` fraction of it off.
+  - *Surviving:* sparse or `O(1)`-per-interval far-reading families, namely the w16 involutions
+    `g_m` and the run-length group `H_run`, which both have `Θ = 0`. A proper function must be
+    unbounded on them.
+- **2026-09-20 (swarm-0917-w23-w23-nv-follow): tent test (class-kill of the whole relative-FH
+  lane; target stays OPEN).**
+  - *Result.* `full-shift-full-group-has-no-infinite-relative-fh-subsets` (ESTABLISHED,
+    unreviewed; route `full-shift-full-group-no-infinite-relative-fh-pair-tent-proof`). Every
+    infinite `Y ⊆ [[X]]` is unbounded for some cnd function on `[[X]]`.
+  - *How.* Replace the flat Følner vector of the w21 test by a tent of radius `R`.
+    - When `Y` has unbounded windows, put the tent on the diagonal orbit of two aperiodic points
+      that differ at one site at distance `w(y)`, and that `y` moves by different amounts.
+    - When `Y` has unbounded displacement, put it on one orbit.
+    - Each fixed `g` slides the tent at cost `≤ (2R + 2K_g)K_g²/R²`, and `y` knocks the peak off
+      at cost `≥ 1`. Then glue.
+  - *Class killed.* Every relative-FH or relative-(T) refutation witness inside `[[X]]`: subsets,
+    subgroups, normal or not, in any `B_K`. This includes `g_m` and `H_run`. In particular
+    `full-shift-full-group-has-infinite-normal-relative-t-subgroup` is false, and
+    `two-v-not-haagerup-from-full-shift-normal-relative-t` dies.
+  - *Invariant.* Recurrence of the orbit `Z`: a point has zero capacity. *Death step.* The tent
+    peak is split off the diagonal by the far read, while the energy is `O(1/R)`.
+  - *Numerics.* `experiments/pair-tent-2026-09-17/check_pair_tent.py`.
+  - *Surviving.* Only non-relative-FH obstructions to properness can refute this claim.
+    - A positive proof needs one proper function.
+    - Averaging tents over the `2^{2n+1}` scale-`n` patterns fails: `g_m` is seen only on a
+      cylinder of measure `≈ 4^{−m}`, and the needed weights `λ_m ≳ 4^m` then blow up at `σ`, whose
+      scale-`n` defect is `≈ 1/n`.
+    - Not claimed: that the absence of infinite relative-FH subsets implies Haagerup.

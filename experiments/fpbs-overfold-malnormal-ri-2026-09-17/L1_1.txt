@@ -1,0 +1,1 @@
+STATS L1 1 {'trials': 356, 'nontriv': 17, 'certified': 0, 'big': 0, 'JcontainsB': 15}

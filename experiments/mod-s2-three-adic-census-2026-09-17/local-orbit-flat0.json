@@ -1,0 +1,1 @@
+{"orbit": "flat0", "Y": [[0, 0, 0, 0], [1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], "n_Y": 0, "modulus": 81, "method": "Z/3-equivariant over (Z/3^m)[Z/3]", "r_gens": 103681, "r_gens_after_unit_elim": 24, "stab_orbits": 90, "c_m": 72, "smaller_invariants": [], "b1_upper_bound": 72, "sec_setup": 139.8, "sec_elim": 15.6, "seconds": 155.7}

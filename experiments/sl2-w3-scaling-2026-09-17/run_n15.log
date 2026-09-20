@@ -1,0 +1,51 @@
+seed=['O3', 'E3', 'E3', '1', '1', '1'] tensor=[] load=None n=15 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-2.0), np.float64(2.0))
+  adam p=8 delta=0.201392
+  adam p=32 delta=0.192062
+  adam p=128 delta=0.190087
+  adam p=256 delta=0.189561
+  p=8 regressed (0.201); restored
+ restart 0: delta=0.189561 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=84
+  adam p=8 delta=0.222770
+  adam p=32 delta=0.206691
+  adam p=128 delta=0.203772
+  adam p=256 delta=0.203115
+  p=8 regressed (0.223); restored
+ restart 1: delta=0.203115 rel=3.9e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=87
+  adam p=8 delta=0.174312
+  adam p=32 delta=0.174312
+  adam p=128 delta=0.174311
+  adam p=256 delta=0.174311
+  p=8 delta=0.174311 rel=3.4e-14
+  p=32 regressed (0.174); restored
+ restart 2: delta=0.174311 rel=2.5e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=97
+  adam p=8 delta=0.711507
+  adam p=32 delta=0.704592
+  adam p=128 delta=0.702569
+  adam p=256 delta=0.701539
+  p=8 regressed (0.712); restored
+ restart 3: delta=0.701539 rel=2.6e-14 w=(np.float64(-8.0), np.float64(8.0)) secs=54
+  adam p=8 delta=0.200982
+  adam p=32 delta=0.189479
+  adam p=128 delta=0.187301
+  adam p=256 delta=0.186610
+  p=8 regressed (0.201); restored
+ restart 4: delta=0.186610 rel=3.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=47
+  adam p=8 delta=1.414327
+  adam p=32 delta=1.414214
+  adam p=128 delta=1.414214
+  adam p=256 delta=1.414214
+  p=8 regressed (1.41); restored
+ restart 5: delta=1.414214 rel=2.0e-14 w=(np.float64(-2.0), np.float64(8.0)) secs=52
+  adam p=8 delta=0.258235
+  adam p=32 delta=0.241338
+  adam p=128 delta=0.237333
+  adam p=256 delta=0.236536
+  p=8 regressed (0.258); restored
+ restart 6: delta=0.236536 rel=2.8e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=74
+  adam p=8 delta=1.414259
+  adam p=32 delta=1.414214
+  adam p=128 delta=1.414214
+  adam p=256 delta=1.414214
+  p=8 regressed (1.41); restored
+ restart 7: delta=1.414214 rel=2.3e-14 w=(np.float64(4.0), np.float64(8.0)) secs=68
+BEST n=15 delta=0.174311 profile 2sin(pi/36)=0.174311

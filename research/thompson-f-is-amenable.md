@@ -548,6 +548,22 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     - The periodic case where the leaf is not in `𝒜`.
     - Finite windows of product families. The limit proof does not cover them; a float relaxation
       gives `2.00, 2.51, 2.70, 2.80, 2.88` at `n = 4, 8, 12, 16, 20`, still well below `3.5`.
+- **von Neumann rigidity invariants cannot decide the root (swarm-0917-w17-w17-f-pull, 2026-09-19, transplanter, operator-algebras).**
+  The question: can Popa/Ozawa deformation–rigidity certify either answer for `F`?
+  - *Established:* `f-vn-rigidity-invariants-cannot-decide-amenability`. The kill is two-sided.
+    - (A) Each of the following is *equivalent* to the root: solidity of `L(F)`, the
+      normalizer-injectivity form of strong solidity, Ozawa's (AO), and any hereditary
+      product-rigid property holding for all amenable groups.
+    - (B) `F` is inner amenable and `L(F)` has Γ, in-graph via a Gaussian CLT central sequence
+      built from the disjointly supported `x_0`-conjugates `g_k`. `L(F)` is not prime, since it is
+      McDuff (Jolissaint, quoted). All of this holds in both worlds.
+  - *Invariant:* the commuting pair `⟨c⟩ × F_{[1/2,1]} ≤ F`, with `L(F_{[1/2,1]})` inside
+    `L(⟨c⟩)' ∩ L(F)`, and the `x_0`-shift on disjoint supports near 0.
+  - *Dies at:* for solidity-type certificates, at the inclusion
+    `L(F_{[1/2,1]}) ⊆ L(⟨c⟩)' ∩ L(F)`. For prime, full, non-Γ and non-inner-amenable
+    certificates, at the `x_0`-conjugate central sequence.
+  - *Survivor:* only injectivity itself, `L(F) ≅ R` ⇔ amenable. Bi-exactness is covered through
+    the recalled implication "bi-exact ⇒ (AO)" (Brown–Ozawa Ch. 15), which was not quoted.
 - **Pointer-window subsets of Belk–Brown sets stall at about 3.5006 (swarm-0917-w17-w17-f-break, 2026-09-19, belief-breaker, computation).**
   The question: does the survivor of the product kill beat 3.5 by much? That survivor is pointer
   membership correlated with a window of neighbouring trees.
@@ -564,3 +580,39 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     `δ/2`; their ratio is `≥ 3/2` and their mass is `≈ 0.034^j`. `Q_5` (`> 3.6`) is out of reach for
     bounded pointer windows.
   - *Open:* a rigorous uniform-in-width dual certificate; non-local (multi-scale) membership conditions.
+- **Finite-dimensional nonpositively curved hosts always have a copy of F in a stabilizer
+  (swarm-0917-w19-w19-f-pull, 2026-09-19, obstruction-miner, host-geometry).**
+  - *Recorded (ESTABLISHED, lane):* `thompson-f-finite-rank-median-actions-fix-a-copy-of-f`.
+    - Fioravanti's Tits alternative (arXiv:1708.01215, Theorem E and the proof of Theorem A) puts a
+      finite-index `Γ_0 ≤ F` over an abelian quotient with a locally finite-orbit kernel `N`.
+    - `F'` is simple, so it lies in `Γ_0` and in `N`.
+    - Kato's criterion (arXiv:1804.10506, Theorems 1.1 and 1.2) gives the same for semi-simple actions
+      on complete CAT(0) spaces of finite dimension.
+  - *Invariant:* a point whose `F`-stabilizer contains a subgroup of index at most `2^dim` in a copy
+    `F_I ≅ F`.
+  - *Dies at:* "stabilizers are amenable". This covers Fioravanti's Theorem A(3), cubical
+    amenable-stabilizer criteria, proper finite-dimensional hosts, and stabilizer-exactness. Each of
+    these presupposes the root (or exactness of `F`), for `F` and for every host `G ≥ F`.
+  - *Survivors:* infinite-rank hosts (Farley), non-semi-simple finite-dimensional CAT(0) actions, and
+    non-NPC hosts.
+- **Near-eigenvectors need log-scale pointer spread (swarm-0917-w20-w20-f-break, 2026-09-20, belief-breaker, probability-random).**
+  This proves the "comonotone" survivor condition, which `thompson-f-product-forest-vectors-stay-below-71-72`
+  records as a heuristic.
+  - *Established:* `thompson-f-near-eigenvectors-need-log-scale-pointer-spread`. Let `f ≥ 0` be a unit
+    vector on `R` with Rayleigh value `4 − δ`. Let `s` be the pointer size and `r` the neighbour size.
+    Then:
+    - `μ(s ≤ t < s+r) ≤ 2√δ`;
+    - `μ(r ≤ t < r+s) ≤ 4√δ`;
+    - `μ(min(s,r) ≤ 2^J) ≤ 6(J+1)√δ`.
+
+    The proof uses the pointer-right/merge split `<f,Kf> = 2a_0 + 2a_1` and one-sided transport of
+    the size law.
+  - *Class killed:* every vector, with any amplitudes, whose pointer trees have at most `N` leaves on
+    mass `c`. Such a vector has `δ ≥ c^2/(36(⌈log_2 N⌉+1)^2)`.
+    - *Invariant:* the law of `log_2 min(s,r)`.
+    - *Dies at:* the merge and pointer-right edges, which allow only `6√δ` of crossing mass per
+      dyadic scale.
+  - *Consequence:* Kesten witnesses have median `log_2 min(s,r) ≥ 1/(12√δ) − 2`. Any certificate that
+    reaches `4 − δ` needs truncation `N ≥ 2^{c/√δ}`.
+  - *Survivor:* the scale-limit families (log-scale continuum, Markov chains). They satisfy the
+    necessary condition, so this caps neither.

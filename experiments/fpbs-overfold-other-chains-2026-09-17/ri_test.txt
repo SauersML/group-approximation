@@ -1,0 +1,13 @@
+# rank 3 control
+trials 5000 seed 1 rB 3 LB 4 sX 2 LX 3 k 1 Lg 4 mal False violations 982 hist(coker) [(0, 1756), (1, 2262), (2, 416), (3, 566)]
+trials 5000 seed 3 rB 3 LB 5 sX 2 LX 3 k 1 Lg 5 mal True violations 146 hist(coker) [(0, 4169), (1, 685), (2, 94), (3, 52)]
+# rank 2
+trials 20000 seed 2 rB 2 LB 4 sX 2 LX 3 k 1 Lg 4 mal False violations 0 hist(coker) [(0, 14235), (1, 5765)]
+trials 20000 seed 4 rB 2 LB 6 sX 2 LX 4 k 1 Lg 6 mal False violations 0 hist(coker) [(0, 16566), (1, 3434)]
+trials 20000 seed 5 rB 2 LB 6 sX 1 LX 4 k 1 Lg 6 mal False violations 0 hist(coker) [(0, 15496), (1, 4504)]
+trials 20000 seed 6 rB 2 LB 6 sX 3 LX 4 k 2 Lg 6 mal False violations 0 hist(coker) [(0, 15895), (1, 3801), (2, 304)]
+trials 20000 seed 7 rB 2 LB 8 sX 2 LX 5 k 2 Lg 8 mal False violations 0 hist(coker) [(0, 15451), (1, 3777), (2, 772)]
+trials 20000 seed 8 rB 2 LB 8 sX 3 LX 3 k 3 Lg 8 mal False violations 0 hist(coker) [(0, 16966), (1, 2896), (2, 89), (3, 49)]
+trials 20000 seed 9 rB 2 LB 6 sX 2 LX 4 k 1 Lg 6 mal True violations 0 hist(coker) [(0, 16283), (1, 3717)]
+trials 20000 seed 10 rB 2 LB 8 sX 2 LX 5 k 2 Lg 8 mal True violations 0 hist(coker) [(0, 16009), (1, 3136), (2, 855)]
+trials 10000 seed 11 rB 2 LB 10 sX 3 LX 4 k 2 Lg 10 mal True violations 0 hist(coker) [(0, 9301), (1, 620), (2, 79)]

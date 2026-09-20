@@ -1,0 +1,23 @@
+progress k1 rand seed 11 {'inst': 25, 'J': 11986, 'Yneq': 58, 'YB': 27, 'viol': 0, 'pair': 58}
+progress k1 rand seed 11 {'inst': 50, 'J': 21296, 'Yneq': 143, 'YB': 50, 'viol': 0, 'pair': 143}
+progress k1 rand seed 11 {'inst': 75, 'J': 27516, 'Yneq': 183, 'YB': 78, 'viol': 0, 'pair': 183}
+progress k1 rand seed 11 {'inst': 100, 'J': 44521, 'Yneq': 271, 'YB': 102, 'viol': 0, 'pair': 271}
+progress k1 rand seed 11 {'inst': 125, 'J': 52820, 'Yneq': 320, 'YB': 129, 'viol': 0, 'pair': 320}
+progress k1 rand seed 11 {'inst': 150, 'J': 61493, 'Yneq': 376, 'YB': 163, 'viol': 0, 'pair': 376}
+progress k1 rand seed 11 {'inst': 175, 'J': 67806, 'Yneq': 451, 'YB': 193, 'viol': 0, 'pair': 451}
+progress k1 rand seed 11 {'inst': 200, 'J': 72766, 'Yneq': 499, 'YB': 232, 'viol': 0, 'pair': 499}
+progress k1 rand seed 11 {'inst': 225, 'J': 85481, 'Yneq': 580, 'YB': 255, 'viol': 0, 'pair': 580}
+progress k1 rand seed 11 {'inst': 250, 'J': 90913, 'Yneq': 632, 'YB': 289, 'viol': 0, 'pair': 632}
+progress k1 rand seed 11 {'inst': 275, 'J': 97990, 'Yneq': 699, 'YB': 319, 'viol': 0, 'pair': 699}
+progress k1 rand seed 11 {'inst': 300, 'J': 106154, 'Yneq': 771, 'YB': 344, 'viol': 0, 'pair': 771}
+progress k1 rand seed 11 {'inst': 325, 'J': 111245, 'Yneq': 831, 'YB': 373, 'viol': 0, 'pair': 831}
+progress k1 rand seed 11 {'inst': 350, 'J': 117005, 'Yneq': 905, 'YB': 403, 'viol': 0, 'pair': 905}
+progress k1 rand seed 11 {'inst': 375, 'J': 129853, 'Yneq': 981, 'YB': 425, 'viol': 0, 'pair': 981}
+progress k1 rand seed 11 {'inst': 400, 'J': 139757, 'Yneq': 1037, 'YB': 457, 'viol': 0, 'pair': 1037}
+progress k1 rand seed 11 {'inst': 425, 'J': 148206, 'Yneq': 1097, 'YB': 484, 'viol': 0, 'pair': 1097}
+progress k1 rand seed 11 {'inst': 450, 'J': 157643, 'Yneq': 1184, 'YB': 514, 'viol': 0, 'pair': 1184}
+progress k1 rand seed 11 {'inst': 475, 'J': 165657, 'Yneq': 1259, 'YB': 535, 'viol': 0, 'pair': 1259}
+progress k1 rand seed 11 {'inst': 500, 'J': 181357, 'Yneq': 1342, 'YB': 558, 'viol': 0, 'pair': 1342}
+progress k1 rand seed 11 {'inst': 525, 'J': 192864, 'Yneq': 1406, 'YB': 581, 'viol': 0, 'pair': 1406}
+progress k1 rand seed 11 {'inst': 550, 'J': 201220, 'Yneq': 1476, 'YB': 608, 'viol': 0, 'pair': 1476}
+k1 rand seed 11 {'inst': 562, 'J': 205029, 'Yneq': 1500, 'YB': 620, 'viol': 0, 'pair': 1500}

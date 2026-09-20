@@ -1,0 +1,14 @@
+|<rho_2(a), rho_2(b)>| = 120
+a -> a2, b -> b2 extends to a homomorphism G -> 2I (checked on the Cayley graph)
+9 candidate reps: orthonormal characters, sum of dim^2 = 120 -> complete list of irreps of G
+irrep               dim         d1         d2          D
+Sym^0 rho_2           1   0.000000   0.000000   0.000000
+Sym^1 rho_2           2   0.000000   0.618034   0.618034
+Sym^2 rho_2           3   0.000000   1.175571   1.175571
+Sym^3 rho_2           4   0.000000   1.618034   1.618034
+Sym^4 rho_2           5   0.000000   1.902113   1.902113
+Sym^5 rho_2           6   0.000000   2.000000   2.000000
+rho_2'                2   0.000000   1.618034   1.618034
+Sym^2 rho_2'          3   0.000000   1.902113   1.902113
+rho_2 (x) rho_2'      4   0.000000   1.902113   1.902113
+min over nontrivial irreps: 0.618033988750 at Sym^1 rho_2 ; (sqrt5-1)/2 = 0.618033988750

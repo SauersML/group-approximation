@@ -1,0 +1,12 @@
+Part A: constant chain verified for k = 3..200 (198 values)
+Part B: q' = 3(1-2p)^2 (max numeric deviation 8.04e-09); q increasing on [0,1]; q = (1-(1-2p)^3)/2 exactly
+Part C: max n*|q_n(w)-q(w/n)| over n<=240 is 1.5556 <= 3
+Part D: n=12 D=2 k=2 m=8: 34 legitimate tuples; m*omega in [0.941,1.176] within [0.250,4.000]
+Part D: n=15 D=2 k=2 m=10: 62 legitimate tuples; m*omega in [0.968,1.129] within [0.400,2.500]
+Part D: n=18 D=2 k=3 m=12: 564 legitimate tuples; m*omega in [0.851,1.106] within [0.000,144.000]
+Part D: n=21 D=2 k=3 m=14: 1068 legitimate tuples; m*omega in [0.891,1.101] within [0.082,12.250]
+Part D: n=15 D=3 k=2 m=15: 128 legitimate tuples; m*omega in [0.938,1.172] within [0.400,2.500]
+Part E: n=18 D=12 m=72 viol(x*)=2 min viol=2; min odd fraction at weight 1..9: 0.17 0.17 0.22 0.25 0.25 0.28 0.28 0.25 0.28; max weight of a+x* among a with viol <= viol(x*)+t*m: t=0.05: 0, t=0.1: 0, t=0.15: 1
+Part E: n=18 D=24 m=144 viol(x*)=2 min viol=2; min odd fraction at weight 1..9: 0.17 0.24 0.29 0.32 0.31 0.33 0.33 0.35 0.32; max weight of a+x* among a with viol <= viol(x*)+t*m: t=0.05: 0, t=0.1: 0, t=0.15: 1
+Part E: n=21 D=16 m=112 viol(x*)=0 min viol=0; min odd fraction at weight 1..10: 0.14 0.18 0.23 0.23 0.27 0.30 0.32 0.29 0.29 0.27; max weight of a+x* among a with viol <= viol(x*)+t*m: t=0.05: 0, t=0.1: 0, t=0.15: 1
+ALL CHECKS PASSED

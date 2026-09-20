@@ -1,0 +1,5 @@
+(1) Fox row formulas, 2 <= l <= 14: True
+(2) living-edge factors have one +-1 word per level: True
+(3) random reduction check: {'compared': 400, 'agree': 400, 'skipped': 22, 'nonzero_h1': 39, 'with_dead_edges': 151, 'with_dead_vertices': 133, 'control_drop_dead_changes_answer': 56, 'control_drop_virt_changes_answer': 14, 'control_drop_dd_changes_answer': 2}
+    disagreements: 0
+(4) K_q odd, (q, m', dim H_1 full, dim coker reduced): [(3, 2, 0, 0), (3, 3, 0, 0), (5, 2, 0, 0), (5, 5, 0, 0), (7, 2, 0, 0), (7, 7, 0, 0)]

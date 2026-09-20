@@ -1,0 +1,35 @@
+V 192 n 24 seeds 288 auts 24 threads 4 ALL SEEDS
+level 1: no goal; 288 extensions tested; 12 new states stored
+level 2: no goal; 3456 extensions tested; 1704 new states stored
+level 3: no goal; 490752 extensions tested; 142906 new states stored
+level 4: no goal; 41156928 extensions tested; 8777155 new states stored
+  level 5 progress 4096/8777155 states
+  level 5 progress 266240/8777155 states
+  level 5 progress 528384/8777155 states
+  level 5 progress 790528/8777155 states
+  level 5 progress 1052672/8777155 states
+  level 5 progress 1314816/8777155 states
+  level 5 progress 1576960/8777155 states
+  level 5 progress 1839104/8777155 states
+  level 5 progress 2101248/8777155 states
+  level 5 progress 2363392/8777155 states
+  level 5 progress 2625536/8777155 states
+  level 5 progress 2887680/8777155 states
+  level 5 progress 3149824/8777155 states
+  level 5 progress 3411968/8777155 states
+  level 5 progress 3674112/8777155 states
+  level 5 progress 3936256/8777155 states
+  level 5 progress 4198400/8777155 states
+  level 5 progress 4460544/8777155 states
+  level 5 progress 4722688/8777155 states
+  level 5 progress 4984832/8777155 states
+  level 5 progress 5246976/8777155 states
+  level 5 progress 5509120/8777155 states
+  level 5 progress 5771264/8777155 states
+  level 5 progress 6033408/8777155 states
+  level 5 progress 6295552/8777155 states
+  level 5 progress 6557696/8777155 states
+  level 5 progress 6819840/8777155 states
+  level 5 progress 7081984/8777155 states
+  level 5 progress 7344128/8777155 states
+  level 5 progress 7606272/8777155 states

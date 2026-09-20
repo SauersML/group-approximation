@@ -1,0 +1,6 @@
+      2s rules=538 new=1281 residues: {'r6': 28, 'r7': 26, 'r8': 37}
+    120s rules=8289 new=13500 residues: {'r6': 28, 'r7': 26, 'r8': 37}
+    775s rules=36244 new=42122 residues: {'r6': 28, 'r7': 26, 'r8': 37}
+r6 reduces to 'acbcbaBcBcbcabcBcaBacBcbcbaB' (inconclusive)
+r7 reduces to 'aBcbcaBaBcbcBaBcBcbabcBcaB' (inconclusive)
+r8 reduces to 'caBcBcbacabacbcBcaBcabcBcBacbacbcBcaB' (inconclusive)

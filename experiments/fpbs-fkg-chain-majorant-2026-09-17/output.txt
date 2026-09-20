@@ -1,0 +1,24 @@
+p=0.2: mass=1.000000000000 chi_num=2.0000000000 chi_exact=2.0000000000
+  m= 1  (E|K|^m)^(1/m)/chi =    1.0000   lower bound m*p/chi =  0.1000
+  m= 2  (E|K|^m)^(1/m)/chi =    1.2472   lower bound m*p/chi =  0.2000
+  m= 4  (E|K|^m)^(1/m)/chi =    1.8700   lower bound m*p/chi =  0.4000
+  m= 8  (E|K|^m)^(1/m)/chi =    3.2914   lower bound m*p/chi =  0.8000
+  m=12  (E|K|^m)^(1/m)/chi =    4.7964   lower bound m*p/chi =  1.2000
+  m=16  (E|K|^m)^(1/m)/chi =    6.3391   lower bound m*p/chi =  1.6000
+  m=20  (E|K|^m)^(1/m)/chi =    7.9036   lower bound m*p/chi =  2.0000
+p=0.35: mass=1.000000000000 chi_num=4.5000000000 chi_exact=4.5000000000
+  m= 1  (E|K|^m)^(1/m)/chi =    1.0000   lower bound m*p/chi =  0.0778
+  m= 2  (E|K|^m)^(1/m)/chi =    1.4994   lower bound m*p/chi =  0.1556
+  m= 4  (E|K|^m)^(1/m)/chi =    2.7549   lower bound m*p/chi =  0.3111
+  m= 8  (E|K|^m)^(1/m)/chi =    5.6692   lower bound m*p/chi =  0.6222
+  m=12  (E|K|^m)^(1/m)/chi =    8.7898   lower bound m*p/chi =  0.9333
+  m=16  (E|K|^m)^(1/m)/chi =   12.0041   lower bound m*p/chi =  1.2444
+  m=20  (E|K|^m)^(1/m)/chi =   15.2723   lower bound m*p/chi =  1.5556
+p=0.45: mass=0.999999999499 chi_num=14.4999992017 chi_exact=14.5000000000
+  m= 1  (E|K|^m)^(1/m)/chi =    1.0000   lower bound m*p/chi =  0.0310
+  m= 2  (E|K|^m)^(1/m)/chi =    2.1287   lower bound m*p/chi =  0.0621
+  m= 4  (E|K|^m)^(1/m)/chi =    5.3675   lower bound m*p/chi =  0.1241
+  m= 8  (E|K|^m)^(1/m)/chi =   13.3884   lower bound m*p/chi =  0.2483
+  m=12  (E|K|^m)^(1/m)/chi =   21.9649   lower bound m*p/chi =  0.3724
+  m=16  (E|K|^m)^(1/m)/chi =   30.0918   lower bound m*p/chi =  0.4966
+  m=20  (E|K|^m)^(1/m)/chi =   37.2435   lower bound m*p/chi =  0.6207

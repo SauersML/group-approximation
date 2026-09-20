@@ -150,8 +150,54 @@ is a special case of that claim.
   (LL) holds on all nonamenable groups is untested beyond the tree-like `F_2`
   move, where it holds (`1/3 <= 0.4626`), and by the second point it would not
   decide this claim.
+* **Superset uniqueness certificate refuted (minimal counterexample,
+  2026-09-20, swarm-0917 w23)**
+  (`fpbs-superset-pu-certificate-fails-on-237-triangle-group`, ESTABLISHED).
+
+  Every threshold-comparison certificate above proves the Remove step through
+  `(R*) p_c(T \ {t^±}) < p_u(T)` together with `p_u(S) >= p_u(T)`. `(R*)`
+  along the Remove-only chain of `fpbs-removal-descendants-of-gapped-sets`
+  would give the goal.
+
+  `(R*)` is false. Take `Delta(2,3,7) = <x,y | x^2,y^3,(xy)^7>`,
+  `S = {x, y^±}` and `T = S ∪ {(xy)^±}`, with `t = x·y`. Both graphs are
+  planar, one-ended and nonamenable, so both are gapped by
+  `fpbs-bs-planar-transitive-dual-threshold-identity` (BS Theorem 3.8, quoted
+  from the paper body). The dual of `Cay(Delta,T)` has only 3-, 3- and 7-faces,
+  so its non-backtracking root is `2.5424`. Hence
+  `p_u(T) = 1 - p_c(T†) <= 0.60667`, while a detour-weighted walk count gives
+  `p_c(S) >= p* = 0.63728`, the root of `2p^2(1+p-p^2) = 1`.
+
+  **Where it dies:** the step `p_u(S) >= p_u(T)`. Here `p_u` jumps by more
+  than `0.03` under one Remove move, and the old and new windows are disjoint.
+  **Invariant:** the dual threshold `p_c(T†) = 1 - p_u(T)`, which rises when
+  chords cut the large faces.
+
+  The Remove half itself holds on this example. It is not refuted. Any proof of
+  it must lower-bound `p_u(S)` intrinsically, through `S`'s own geometry or
+  dual, and never through `p_u` of the gapped superset. This is the missing
+  "non-spectral lower bound on `p_u`" of the Remove-chain decomposition, now
+  shown not to be obtainable from `T`.
 
 Details for the first three attempts are in Section 4 of
 `research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md`. Details for
 the last three are in Sections 4–7 of
 `research/artifacts/fpbs-single-product-move-2026-09-12.md`.
+
+* **Source-margin calibration of all power-map certificates (2026-09-20,
+  swarm-0917-w21-w21-bs-break; class killed, target stays OPEN).**
+  Established: `fpbs-power-map-transfer-needs-beyond-l2-nonuniqueness`.
+  - *The invariant.* A power-map certificate from a source `T` (Add, Remove,
+    a chain of moves, or the relative version along an amenable wq-normal
+    subgroup) needs `mu(T) = p_u(T)^2 - p_c(T) > 0`. The reason is that the
+    composite map is at most `p^2`. So it needs `p_u(T) > sqrt(p_c(T)) >= p_2(T)`.
+  - *Where it dies.* On every Hutchcroft--Pan product `T_k □ H`,
+    `p_(2->2) = p_u` gives `mu <= 0`. These are the natural gapped sources for
+    this claim, and they sit exactly in the residual band. No spectral lower
+    bound on `p_u` can certify `mu > 0`, because
+    `(1/sigma(Lambda))^2 <= 1/(d-1) <= p_c`.
+  - *Hybrids.* A hybrid certificate from a source with `mu(T) <= 0` needs an
+    intrinsic target bound that beats the source's own opposite threshold:
+    either `p_c(G) < p_c(T)` or `p_u(G) > sqrt(p_c(T))`.
+  - *What remains.* Any proof of this claim must certify something about the
+    target itself, with no comparison through the move.

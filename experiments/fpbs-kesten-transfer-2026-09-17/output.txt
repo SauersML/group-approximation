@@ -1,0 +1,6 @@
+k=  2 (3419 eta values): max chi_bound/M = 0.0322 (<= 1 required); min exact margin/delta = 8.000 (>= 1 required)
+k=  3 (3604 eta values): max chi_bound/M = 0.0733 (<= 1 required); min exact margin/delta = 6.000 (>= 1 required)
+k=  4 (3687 eta values): max chi_bound/M = 0.1030 (<= 1 required); min exact margin/delta = 5.333 (>= 1 required)
+k=  6 (3768 eta values): max chi_bound/M = 0.1400 (<= 1 required); min exact margin/delta = 4.800 (>= 1 required)
+k= 10 (3835 eta values): max chi_bound/M = 0.1752 (<= 1 required); min exact margin/delta = 4.444 (>= 1 required)
+k= 50 (3936 eta values): max chi_bound/M = 0.2275 (<= 1 required); min exact margin/delta = 4.082 (>= 1 required)

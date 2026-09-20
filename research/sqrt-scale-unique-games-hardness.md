@@ -163,3 +163,74 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     soundness certification.
   - *Survivor.* Unchanged: (P2) needs a rate superlinear in `λγ`. No published
     expander bound on record (AKKSTV, Raz–Rosen) has one.
+* **Correlated and heterogeneous products (2026-09-19, swarm-0917,
+  `w19-ugc-pull`, reframing).** **Dead for bounded base alphabet.** This closes
+  two of the survivors listed two attempts above.
+  - *Class.* Routes that output a µ-product `H` of polynomial-time computed
+    factors `G_1, ..., G_l`:
+    - the factors may differ, and each may be repeated;
+    - `µ` is any coupling of their constraint sets whose coordinate marginals
+      have density at most `D` (independent, heterogeneous, partial,
+      expander-walk, sampler and diagonal couplings);
+    - completeness is certified by the union bound `Σ_j (1 − opt(G_j)) <= η_Σ`.
+  - *Result.* `correlated-products-cannot-substitute-rounds-for-alphabet`
+    (ESTABLISHED) shows that `sdp+` tensorizes coupling-blindly:
+    `sdp+(H) >= 1 − D Σ_j (1 − sdp+(G_j))`. It uses the new import
+    `steurer-hellinger-relaxation-rounding` (Theorems 3 and 8 of Steurer).
+    Hence `opt(H) >= 1 − C_+ sqrt(D ln K Σ_j (1 − sdp(G_j)))`, and the base
+    SDPs decide the route. Unless `P = NP`, the ratio against `η_cert = D η_Σ`
+    is at most `sqrt(12 C_3 ln K)`, uniformly in `l` and `µ`.
+  - *Invariant and step.* The invariant is the Hellinger deficit, which is
+    subadditive over coordinates for every coupling. The route dies at output
+    soundness.
+  - *What would survive.*
+    - Set-indexed (unordered) direct products and fortification.
+    - Couplings whose YES completeness beats the union bound by a growing
+      factor. The diagonal coupling has `η_out = η_Σ/l`, but it does not
+      amplify soundness either.
+    - Composition or alphabet reduction after the product.
+    - Base alphabet `ln K >= C^2/(12 C_3)`.
+* **Set-indexed (unordered) repetition** (2026-09-20, swarm-0917, w21,
+  `swarm-0917-w21-w21-ugc-last1`). The hole stays OPEN. The new node is
+  `set-indexed-repetition-escapes-the-base-sdp-bound`, which is ESTABLISHED.
+  - *Construction.* Repeat `n` times but hand each player an unordered set of
+    questions, `G^{{n}}`, so that the coordinate matching is hidden.
+  - *Result (A).* On the tagged odd cycle `G_{m,M}` with `M >= n^2`, the
+    set-indexed value is at most
+    `2[2m/n + 2m e^{-n/(8m)} + 6(3/4)^{n/(2m)}]`. At `n = m^{3/2}` this is
+    `O(m^{-1/2})`, while `n (1 - sdp) -> 0` and the ordered value tends to 1.
+    So (S1) and the rounds-versus-alphabet kill do not apply to set-indexed
+    amplifiers.
+  - *Mechanism.* Tag anonymity: exchangeable Bob tags cost `1/C(n_z, r_z)` at
+    every mixed position, and the odd cycle forces a mixed position.
+  - *Where it dies (B).* A universal set bound still dies. On disjoint copies
+    of `C_m` the copy index is a public order, so Raz's strategy runs and
+    `F_set(gamma, n) >= 1 - 4 B gamma sqrt(n)`. The sqrt-scale kill therefore
+    transfers verbatim.
+  - *Survivor.* An anonymity-certified set repetition: a tagged-set soundness
+    bound for the reduction's own tagged instances at `n ~ eps'/eta` and
+    `gamma = o(sqrt eta)`. This is the first independently failable
+    prerequisite.
+* **Keyed hosts for set-indexed repetition** (2026-09-20, swarm-0917, w23,
+  `swarm-0917-w23-w23-ugc-follow`). The hole stays OPEN. The new node is
+  `set-indexed-repetition-obeys-the-base-sdp-bound-on-keyed-hosts`, which is
+  ESTABLISHED.
+  - *Result.* A key `κ` on the host `G` gives a public order. With key cost
+    `z_n(G) = min_κ [n θ(κ) + C(n,2) q_A(κ)]` (cut plus collision), the set
+    value of `G^{{n}}` and of every tagged blow-up is at least
+    `opt(G^n) - z_n(G)`, uniformly in the tag count `M` (Theorem K). So
+    Steurer's base-SDP bound returns on keyed hosts:
+    `val >= 1 - C_+ sqrt(n ln k (1 - sdp)) - z_n`.
+  - *Where it dies.* A set-indexed route whose NO hosts satisfy
+    `z_n <= ζ < Γ - C_+ sqrt(1.5 η_Σ ln K)` is decided by the base SDP alone
+    (Theorem D). Tagging is inert, since it changes the set value by at most
+    the collision mass `c_n(G)` (Proposition T). The tagged-odd-cycle
+    anonymity mechanism of w21 therefore lives only in repeated vertices, and
+    the odd cycle is keyless for `n^3 >= 4m` (Lemma C), which is consistent
+    with w21 (A).
+  - *Survivor.* The w21 prerequisite splits in two, each able to fail on its
+    own. (P1) is keyless NO hosts, `z_n > 1 - δ' - C_+ sqrt(3 ε' ln k)` at
+    `n ~ ε'/η`. This is a small-set-expansion condition at measure
+    `(η/ε')^2` (Lemma S). On noisy cubes, subcube keys show it needs
+    `η <= ε' 2^(-Ω(1/ε'))`. (P2) is set soundness on those keyless hosts, by
+    expansion rather than by tags.

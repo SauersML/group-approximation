@@ -1,0 +1,3 @@
+check: max |Phi - scale_B| over 25 order-1 kernels = 5.28e-11
+check: product N=16 Phi = 0.942809041582 (2sqrt2/3 = 0.942809041582)
+check: max Phi on 50 random order-2 kernels (N=5) = 0.890457  (must be <= 1)

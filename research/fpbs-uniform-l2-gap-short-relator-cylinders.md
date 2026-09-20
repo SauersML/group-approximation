@@ -75,3 +75,33 @@ Section 4 of `research/artifacts/fpbs-l2-baire-kernel-2026-09-17.md`.
   free-product theorem gives each `G_R` a gap. So the piece is not refuted.
   To refute it, one would need a family in the piece with `slack -> 0`, and
   free products with Z/2 cannot supply one.
+* **Transfer to the relative susceptibility through towers of the kernel
+  (swarm-0917-w19-w19-bs-follow, reframing, 2026-09-19).**
+  `fpbs-l2-gap-transfers-to-kesten-normal-gap` (ESTABLISHED) proves the
+  following. Let `N ◁ Gamma` be residually amenable in `Gamma`: a
+  `Gamma`-normal tower `N_j <= N` with `N/N_j` amenable and `∩ N_j = {e}`,
+  for example the derived series of a residually solvable `N`.
+  - Then `Gamma/N_j -> Gamma`. Every `Gamma/N_j` keeps the quotient `Q`, and
+    so has `rho <= rho_Q`.
+  - On the approximants, Følner compression to the amenable kernel `N/N_j`
+    gives `chi^(N/N_j) <= ||T||`.
+  - Window agreement then carries any fixed `(M, delta)` bound on the
+    approximants to `chi^N <= M` on `[0, p_c(Gamma) + delta]`.
+
+  **What it gives for this node.**
+  - *A necessary condition that can fail on its own.* If the piece
+    `Z_(k,eta,w)` has constants `(M_w, delta_w)`, then every pair `(Gamma,N)`
+    with `w = e` in `Gamma`, `N` residually amenable in `Gamma` and
+    `rho_Q <= 1 - eta` has `chi^N <= M_w` at `p_c + delta_w`. Here `N` may be
+    nonamenable, and `||T^Gamma||` gives no control of `chi^N`. So any proof
+    of a piece must prove a uniform percolation Kesten law on that piece.
+    That law is split off as `fpbs-uniform-kesten-law-residually-amenable-pairs`.
+    A family of such pairs with vanishing margin refutes the piece.
+  - *Calibration.* Outside the pieces, at girth at least `L(eta)`, the law
+    holds with the constants of `fpbs-high-girth-uniform-l2-patch`. On `F_k`
+    it is consistent with Grigorchuk's cogrowth formula.
+
+  **Where it stops.** It is a reduction and a falsifier, not a proof. No
+  pair with vanishing margin under fixed `eta` is known.
+  `fpbs-kesten-margin-collapses-near-lamplighter` has `rho_Q -> 1`, so it
+  does not qualify. No piece is decided.

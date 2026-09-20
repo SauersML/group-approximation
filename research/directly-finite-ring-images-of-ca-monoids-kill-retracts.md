@@ -28,3 +28,15 @@ functionals. Restricted to linear automata over `F_p^n`, a separating `rho` prov
 directly finite.
 
 Proof: artifact Section 3, route `directly-finite-ring-images-kill-retracts-proof`.
+
+## Attempts
+
+- **Markov hull of the Koopman image** (swarm-0917 w22, 2026-09-20). Question: does direct finiteness
+  survive in the smallest positive hull of the pullback representation? It does not, already on `Z`.
+  - The xor automaton has an equivariant, faithful, Bernoulli-preserving, window-shrinking Markov section
+    `T` with `T xor^* = 1` and `xor^* T != 1`. The same holds on every group with an element of infinite
+    order (`stochastic-automaton-sections-do-not-force-injectivity`).
+  - So representations that factor through equivariant Markov operators cannot separate idempotents.
+    The idempotent `1 - xor^* T` has `K_0` class 0.
+  - The relaxation with the Markov operator on the decoder side is equivalent to surjunctivity. A
+    separating `rho` must therefore use multiplicativity of the encoder's image.

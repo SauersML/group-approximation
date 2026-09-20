@@ -1,0 +1,55 @@
+Half-cube bubble adversaries H_q (research/halfcube-bubbles-cannot-beat-five-halves.md)
+swarm-0917-w19-w19-ugc-break, 2026-09-19
+
+HC(k) = min over radius laws q on {0..K/2-1} of max over length-one edges of
+K Pr[H_q cuts e].  Five-halves value 5/2 - 2^(1-k).
+
+Checks of the pricer
+  brute_check.py (k=3, from the bare definition, all t, x, j, i, tau, B):
+    folding and pin violations: 0
+    closed-form price mismatches: 0
+  crosscheck.py (C integer pricer vs Fraction pricer, mode all):
+    k 2 C classes 1 python classes 1 equal True
+    k 3 C classes 2 python classes 2 equal True
+    k 4 C classes 7 python classes 7 equal True
+
+Exact lower-bound certificates (cert_dual.py; integer prices scaled by 2^K)
+  k=2: single class (32, 26)/16 -> prices (2, 13/8); HC(2) = 13/8 at t = 1.
+  k=3: edge set = halfcube_price.c 3 all
+    exact certificate: min_t y.C(t) = 9/4 >= target 9/4 : True
+      weight 7/12 class (256, 896, 928, 392)
+      weight 5/12 class (1024, 128, 128, 968)
+  k=4: edge set = halfcube_price.c 4 all
+    exact certificate: min_t y.C(t) = 19/8 >= target 19/8 : True
+      weight 45/464 class (65536, 65536, 65536, 425984, 262144, 245760, 192640, 75162)
+      weight 25/116 class (65536, 65536, 65536, 425984, 499712, 32768, 32768, 178586)
+      weight 55/208 class (65536, 65536, 458752, 32768, 32768, 442368, 175616, 89498)
+      weight 165/728 class (65536, 491520, 32768, 32768, 32768, 32768, 527872, 92288)
+      weight 11/56 class (524288, 32768, 32768, 32768, 32768, 32768, 32768, 522368)
+  k=5: edge set = halfcube_price.c 5 with modes
+         near 30 1 1; near 30 2 2; near 30 3 4; near 30 4 6; near 30 5 8;
+         near 40 6 10; near 40 7 12; rand 100 8; near 2 9 0;
+         struct 1 0 1; struct 2 0 1; struct 3 0 1; struct 4 3000 1
+       (sort -u), numerical dual value 2.4375 = 39/16
+    exact certificate: min_t y.C(t) = 39/16 >= target 39/16 : True
+      13 support classes; weights 775/23232, 31/242, 958861/33105600,
+      39587/331056, 16601189347/738519724800, 140459171/13427631360,
+      3793687/36416160, 3804172950167/67322786731200,
+      4743039823933/67322786731200, 713/6048, 713/6496, 713/6960, 23/240
+      (full class vectors: rerun cert_dual.py on the edge set above)
+  Optimal law in every case k=3,4,5: q uniform on t = 0..K/4-1 (LP output).
+
+Upper bound for every k: the uniform law on t < K/4 is the five-halves
+adversary of hadamard-gadget-deletion-ratio-window item 2 (proof in the node).
+Hence HC(3) = 9/4, HC(4) = 19/8, HC(5) = 39/16 exactly.
+
+k=6 (numerical, long-double pricer halfcube_price_ld.c, float LP lp_file.py --float)
+  cutting plane: LP over edge classes, alternated with single-coordinate
+  hill-climb separation (mode climb, seeds from near-pin and struct starts)
+  final: k 6 classes 6608 LP value 2.46875  (= 5/2 - 1/32 = 79/32)
+  optimal q: uniform on t = 0..15 (= K/4 - 1); later climbs found no violator.
+  exact-integer rerun (EXACT build, cpx6.sh) reached 2.4413 at 3696 classes
+  when this file was written; exact certificate for 79/32 not completed.
+
+k=7 (numerical, fixed edge set, 12700 classes): LP value 2.0778, a weak
+  lower bound only; cutting plane not converged.

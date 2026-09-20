@@ -81,3 +81,18 @@ only a minimal effective action, and the one open finiteness step has an audit s
 proof set-up uses freeness only as uniqueness of local translation labels. So the correct gate is
 this topologically free E3′. It is the first form of the gate with proved instances, and both
 instances are boundary (compression) codings over non-amenable groups.
+
+## Attempts
+
+- 2026-09-19 (swarm-0917-w19-w19-bh-last1, family minimal-counterexample; isotropy side).
+  **The isotropy worry above is resolved: infinitely generated point stabilizers do not block
+  finite presentation.** `f-infinity-v-times-sft-hosts-can-have-non-fg-isotropy` (ESTABLISHED
+  from `cocompact-tree-end-shift-hosts-are-f-infinity` and
+  `locally-finite-tree-end-shifts-are-quantum-rigid-sfts`) takes the Z² HNN extension
+  `⟨x,y,t | [x,y], t⁻¹xt = x², t⁻¹y²t = y⟩`. Its end-shift host is `F_∞` and simple, and at
+  uncountably many points its germ group and end stabilizer are `Z[1/2]`.
+  - Every refutation of E3′ of the form "finite presentation forces finiteness of germ groups,
+    then exhibit bad isotropy" dies at the necessity step. This is unlike the shell and almost-V
+    settings.
+  - E3′ remains OPEN. Any counterexample has to come from the filling side: the nonlinear
+    one-scale upgrade of quantum rigidity over amenable hosts.

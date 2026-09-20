@@ -22,6 +22,8 @@ distinct_from:
   ckn-forces-nonsofic-incompressible-affine-coset-wreath: That proves the chain-in-Kazhdan-envelope normalization input for killing (EK1) implies nonsoficity of an explicit affine coset wreath containing the summit wreath; this is the construction problem that input was meant to kill.
   finite-scale-compressors-preserve-kazhdan-fixed-algebras: That proves, by mass transport along the bijection sigma(u), that a compressor preserves the Kazhdan fixed algebra whenever the cluster sizes live on finitely many scales, with no period bound; this is the construction problem, whose witness must therefore defeat that scale hypothesis or survive at the centralizer level.
   twisted-lef-tower-order-budget-kills-compression-defects: That proves D_G(L)=1 whenever K has phi-twisted LEF towers of subexponential order, so a LEF kernel here must pay exponential tower order; this is the construction problem that must meet that budget.
+  stacked-models-force-lef-witnesses-into-doubling-towers: That proves the stacked sofic models of a LEF kernel's twisted towers carry every defect witness as a strict doubling tower with liminf lambda log|Y| >= log 2, so for LEF kernels fixed-algebra invariance on stacked models already kills the defect; this is the construction problem, whose LEF witnesses must therefore defeat fixed-algebra invariance.
+  clifford-witness-refutes-kazhdan-profile-regularization: That proves no sofic representation of the Clifford witness satisfies any normalizing property at (Gamma, t), so every regularize-then-normalize route fails and its chain-envelope form is summit-strength; this is the construction problem those routes aimed to kill.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -585,3 +587,182 @@ must build genuinely Hamming-approximate sofic models.
     - Replace the finite group `F` by the `sigma(L)`-invariant blocks of a Hamming model,
       and bound the order of the block groups by the number of exactly invariant blocks.
     - Test the bound on the lamp calibration of the new node.
+
+23. **Finite-scale profiles kill W1 and W2 in the Hamming regime (2026-09-19,
+    stability-approximation transplant, swarm-0917-w17-w17-titz-pull).** This carries out the
+    second next step of Attempt 21 and answers the non-LEF survivor of Attempt 22.
+    - *Where the ambient group was spent.* The Kun--Thom Section 4 audit (route
+      `ambient-decomposition-kun-thom-normalization-audit`) locates every ambient input in two
+      places: the Proposition 3.1 matching inside Lemma 4.3, and the two calls of Lemma 4.4 for
+      the orbit size `o_n` and the isotropy order `k_n`.
+    - *Replacement.* Established `finite-scale-sofic-profiles-kill-compression-defects`, with
+      route `...-proof`.
+      - A tight-cluster matching built by mass transport of `log |Q|` under (FS-size) replaces
+        the first input. It depends only on `sigma|_L` and `u_n`, so its error can be
+        prescribed before the cluster scales are chosen.
+      - Item 3 of `finite-scale-compressors-preserve-kazhdan-fixed-algebras`, applied to
+        `log o_n` and `log k_n`, replaces the second.
+      - The index step (index `< 2`, hence `1`) then goes through for every compressor. So
+        `sigma(<Comp_G(L)>)` normalizes `C(sigma(L))`, and `D_G(L) = 1`.
+      - The hypothesis is on `sigma|_L` alone. The compressors may be arbitrary, non-Kazhdan
+        and of unbounded period, and no ambient expander decomposition is needed.
+    - *Invariant and death.* The three log-profiles of `sigma|_L`: cluster size, groupoid orbit
+      size and isotropy order. Every witness with one sofic representation whose three
+      profiles are finite-scale dies at Kun--Thom's index step (K6).
+    - *New necessary condition.* For every nonprincipal `U` and every sofic representation of
+      `K semidirect Z`, some profile of `sigma|_L` is multi-scale. That means a doubling tower
+      (item 4 of the fixed-algebra node) in size, orbit or isotropy, which the compressors
+      traverse across unboundedly many scales. This holds for LEF and non-LEF `K` alike, so it
+      replaces the non-LEF survivor of Attempt 22.
+
+    This node stays OPEN.
+
+    Next steps: the open reduction (PR) of the new node. It asks whether every sofic group
+    containing a Kazhdan `L` has a sofic representation with a finite-scale profile on `L`.
+    Direct sums over scales are not `G`-invariant, and tensor products add log-sizes, so
+    neither regularizes the profile. A positive answer refutes (EK1).
+23. **Stacked models: every LEF witness is a doubling tower at the fixed-algebra level
+    (2026-09-19, operator-algebra transplant and decomposition,
+    swarm-0917-w19-w19-titz-pull).**
+    - *Result.* ESTABLISHED as
+      `stacked-models-force-lef-witnesses-into-doubling-towers`, with route
+      `stacked-models-doubling-tower-proof` and the check
+      `experiments/stacked-doubling-2026-09-17/stack_check.py`.
+      - The twisted towers of Attempt 22 are stacked into sofic models of `G` itself:
+        `Y = Z/P × F`, `sigma(k t^j)(m, f) = (m + j mod P, rho_(m+j)(k) f)`. They are
+        sofic, and the only error is the wrap, of mass `|j|/P`.
+      - The cells `{m} × Pi_m f` form an exact Kazhdan cluster frame. A compressor maps
+        each cell into one cell whose size ratio is `1` or `>= 2`.
+      - A surviving defect generator `[s z s^-1, l]` makes every interior layer strictly
+        double. The frame loss then satisfies `liminf lambda log|Y| >= log 2`, which is
+        exactly the constant of the doubling-tower example of
+        `finite-scale-compressors-preserve-kazhdan-fixed-algebras`. `Ad sigma(s)` moves
+        a `±1` diagonal function a distance `>= |J|/(2P)` off the fixed algebra.
+    - *Decomposition.* For a LEF kernel, the (W1)/(W2) split of Attempt 21 collapses to W1
+      on stacked models. Fixed-algebra invariance (the Kun--Thom Proposition 3.1 level) on
+      stacked models kills the defect. No centralizer-level input `(KT*)` is needed.
+    - *Invariant and death (of the programme "exclude doubling towers").* The invariant is
+      the frame loss times log order, `lambda log|Y|`, on stacked models. By (UP) and (LOW)
+      it is squeezed between `(|J| log 2)/P - o(1)` and `|a|(log P + log|F|)/P`. The
+      conservation identity alone returns `P <= |a| log_2|F| + 2(|a| + |b|)`, which is the
+      budget (OB4). So on LEF kernels, "no stacked doubling tower" is equivalent to the
+      twisted order budget `(SUB)`. It is not a weaker, independent prerequisite, and it
+      cannot be proved by mass transport without first bounding `|F|`.
+    - *Survivors.* The survivors are unchanged in shape but sharper in level:
+      - a LEF `K` whose towers are exponential; its witness is visible to the fixed algebra
+        on stacked models;
+      - a non-LEF sofic `K`. Stacking still gives sofic models with loss
+        `<= |a|/P + O(epsilon)`, but the Lagrange dichotomy is lost, so W2 is not excluded.
+
+    This node stays OPEN.
+
+    Next steps:
+    - Prove fixed-algebra invariance for stacked models of exponential towers directly,
+      using that each layer is a Cayley graph of a finite group, with no edits.
+    - Find a Hamming substitute for the index dichotomy `1` or `>= 2`, for the non-LEF case.
+24. **What the Lagrange step really consumes: free fibers, not an index dichotomy (2026-09-20,
+    operator-algebra transplant and calibration, swarm-0917-w20-w20-titz-pull).** Numbered 24
+    because another Attempt 23 is in flight on a sibling branch. This targets the second half of
+    the live need 629464fa: "the non-LEF analogue needs a Hamming substitute for the index
+    dichotomy 1 or >= 2".
+    - *The index dichotomy is free.* Let `H <= L` act on a finite set. Let `C` be an `L`-orbit
+      split into `H`-orbits `c_1, ..., c_k`. The trace-preserving expectation from the functions
+      constant on `H`-orbits onto the functions constant on `L`-orbits has Kosaki--Watatani index
+      `sum_i |C|/|c_i|` on `C`. By Cauchy--Schwarz this is `>= k^2`, so its local values lie in
+      `{1} u [4, infinity)`. This holds in every model, exact or not. So a Hamming substitute for
+      the *index* dichotomy exists and says nothing: the budget of Attempt 22 does not use index.
+      It uses *size*, `|Pi_(m+a)| >= 2 |Pi_m|`, that is, log-cluster-size growth `>= log 2` per
+      strict layer.
+    - *The size dichotomy fails for honest finite actions of a Kazhdan group and its compressed
+      copy (calibration, proved).* Take `L = SL_n(F_p[t])` with `n >= 3`, which is Kazhdan (a
+      lattice in `SL_n(F_p((1/t)))`). Take the Frobenius self-embedding `alpha(f) = f^p` with
+      proper image `H = SL_n(F_p[t^p])`, realized by the stable letter of `L *_alpha`. Let `L` act
+      on the unimodular vectors of `(F_p[t]/t^2)^n` through `SL_n(F_p[t]/t^2) = E_n`. This action
+      is transitive, on `p^n (p^n - 1)` points.
+      - `H` acts through the constants `SL_n(F_p)`, since `t^p = 0` mod `t^2`.
+      - Its orbits on `v = v_0 + t v_1` are: the independent pairs `(v_0, v_1)`, one orbit of
+        relative size `1 - p^(1-n)`; and `p` orbits `v_1 = c v_0`.
+      - So `alpha(L)` splits an `L`-orbit with ratio `|C|/|c| = 1/(1 - p^(1-n))`. This is `4/3`
+        for `(p, n) = (2, 3)` and tends to `1` as `n` grows.
+      - `experiments/frobenius-uneven-splits-2026-09-17/split_check.py` computes all the
+        `alpha(L)`-orbits for level `t^N`, `N <= 5`. The largest suborbit stays at exactly `3/4`
+        for `p = 2`, `n = 3`. The fixed-point proportions of `e_12(1)` and `e_12(t)` halve with
+        each level, so these actions are asymptotically free on each fixed element.
+    - *Where the dichotomy comes from.* In the stacked LEF models, each fiber is the regular
+      action of the finite group `F`. So `alpha`-suborbits of a cell are cosets of
+      `c_x(Pi_m) <= Pi_(m+a)`, and Lagrange applies. The calibration shows that "ratio 1 or
+      `>= 2`" is a property of *free fiber actions of the image group*, not of the pair
+      `(L, sLs^-1)`: it fails as soon as the finite image acts with stabilizers.
+    - *Measure caveat (not a refutation of the budget).* Vector-stacked sofic models of
+      `SL_3(F_2[t^(1/2^infinity)]) semidirect_Frob Z` do exist, with the same `L` and compressor
+      `t`. I checked this by hand; it is not written as a node. In them, the uneven `4/3`-splits
+      live only on the vectors with coordinates in the `F_2[u_(m+1)]`-summand, a set of vanishing
+      measure. Generic tuples have trivial stabilizer in the finite image, so they split into
+      cosets. (The defect there is trivial anyway: `C_G(L)` is trivial.)
+    - *Invariant and death.* The invariant is the size ratio `|C|/|c|` of compressed suborbits.
+      Every argument that feeds the Attempt 22 budget with a dichotomy derived from the pair
+      `(sigma|_L, sigma|_(sLs^-1))` alone dies at the orbit-splitting step, as shown by the
+      Frobenius pair.
+    - *Restated need.* A Hamming Lagrange must bound the measure of points whose
+      `sigma(L)`-cluster is acted on with nontrivial stabilizer by the cluster's local image. This
+      is a *cluster-freeness* statement.
+      - Heuristic, not proved: where cluster-freeness holds with loss `delta`, the strict layers
+        should double on measure about `1 - delta`. The chain count of Attempt 22 would then run
+        with `log|Y|` in place of `log|F|`.
+      - That is the shape of the scale hypothesis `(LOG)` of Attempt 21, so I expect no gain
+        beyond `(LOG)`.
+      - Expected reduction of need 629464fa: for non-LEF `K`, to `(LOG)` for sofic models of
+        `K semidirect Z`; for LEF `K`, to `(SUB)`. I see no third route.
+
+    This node stays OPEN. Nothing here is established beyond the calibration lemma and its
+    computation.
+25. **Relation-host reframing of the kernel gate (2026-09-20, transplanter via reframing,
+    swarm-0917-w21-w21-titz-pull).** Any kernel `K` here witnesses the (SQK) gate
+    (`torsion-free-sofic-quotientless-kazhdan-group-exists`). By Elek (arXiv:1211.0621, Thm 1),
+    (SQK) is equivalent to an injective homomorphism `rho : K -> [R]` into the full group of a
+    sofic p.m.p. relation. (With Elek--Lippner, the Bernoulli relation of `K` is such a host.) So the transplant asked whether a known sofic relation can host `K`.
+    Established `quotientless-kazhdan-relation-hosts-collapse-to-subgroups` (with its proof route).
+    For torsion-free, quotientless, Kazhdan `K`:
+    - finite `rho(K)`-orbits are fixed points;
+    - every ergodic action of `K` is weakly mixing, so there are no compact or profinite models;
+    - hyperfinite hosts and hosts inside free Haagerup-group orbit relations force `rho = 1`;
+    - a diffuse-base Bernoulli relation of `K` inside a free orbit relation of `H` forces
+      `K <= H` (Popa untwisting, with torsion-freeness killing the kernel). So it is impossible
+      for every residually finite, linear, amenable or Haagerup `H`.
+
+    *Where the class dies.*
+    - Amenable relation hosts die at clause 3.
+    - Haagerup free hosts die at clause 4.
+    - Elek--Lippner Bernoulli embeddings die at clause 5: they return the subgroup certificate
+      unchanged.
+    - Compact and exact-periodic actions die at clause 2.
+
+    *Survivors.* A weakly mixing, strongly ergodic, non-malleable `rho` into a non-hyperfinite
+    relation that is not inside any Haagerup free orbit relation. Examples of such hosts are the
+    orbit relation of `SL_3(Z) ↷ T^3`, or a relation generated by no free action.
+
+    *Effect here.* This removes the "relation host" reframing as a cheap source of torsion-free
+    witnesses. No clause of (EK1) is touched, and the node stays OPEN.
+25. **Regularization is refuted by the Clifford witness (2026-09-20, calibration,
+    swarm-0917-w23-w23-titz-pull).** Established
+    `clifford-witness-refutes-kazhdan-profile-regularization`. It tests every route of the form
+    "find a well-behaved sofic representation, then normalize". An example is the open reduction
+    (PR) of the session-branch node `finite-scale-sofic-profiles-kill-compression-defects`:
+    "every sofic `G` containing a Kazhdan `L` has a sofic representation with `sigma|_L`
+    finite-scale".
+    - In `W = Cl(X) ⋊ V`, `c_(x_0)` centralizes `Gamma` and `[t c_(x_0) t^-1, a] != 1`. So in
+      every sofic representation, `sigma(t) C(sigma Gamma) sigma(t)^-1 = C(sigma Gamma')`
+      strictly contains `C(sigma Gamma)`.
+    - Hence, for every property `P` whose presence forces `sigma(u)` to normalize
+      `C(sigma L)`, `W` has no `P`-representation at `(Gamma, t)`. With FSK1 this makes (PR)
+      false: every sofic representation of `W` is multi-scale on `Gamma`. With (KT\*) it makes
+      `t` wild. So the FSK3 and Attempt 20 survivor shapes occur in a real sofic group.
+    - The chain-envelope form `(Reg_P^env)` implies (CKN) by injectivity, hence that
+      `W_aff,p` is nonsofic (summit-strength).
+
+    Invariant and death:
+    - *Invariant.* The Kazhdan defect of `W`, carried by the lamp `c_(t x_0)`.
+    - *Where every member dies.* The regularization step.
+
+    Survivor: only `(Reg_P^K)`, whose proof must use that `K` is the normal Kazhdan kernel, or
+    that it has no finite quotient. This node stays OPEN.

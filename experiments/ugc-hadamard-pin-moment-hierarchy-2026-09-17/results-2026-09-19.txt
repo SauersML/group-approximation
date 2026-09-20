@@ -1,0 +1,29 @@
+Pin-moment hierarchy, k = 3 (research/hadamard-certificates-blind-below-planes.md)
+=================================================================================
+
+Run: python3 scan_k3.py   (relaxed s-t min-cut pricing over invariant w = (WA, WB))
+k=3: 1024 edges, 2 edge orbits under G, sizes [128, 896]
+lin lines [(0, 224), (0, 448), (8, 168), (16, 112), (64, 0)]
+quad lines [(0, 288), (0, 448), (24, 168), (64, 0)]
+cub lines [(0, 280), (0, 448), (7, 231), (14, 182), (28, 112), (64, 0)]
+RESULT true: K*max = 11/8 ~ 1.375000 at lam=WA/(WA+WB)=5/6; K*m = lin:1, quad:3/2, cub:21/16
+RESULT mom7: K*max = 21/16 ~ 1.312500 at lam=5/6; K*m = lin:1, quad:3/2, cub:21/16
+RESULT mom3: K*max = 1 at lam=7/10; K*m = lin:1, quad:1, cub:1
+(lines = (cut count in orbit A, cut count in orbit B) of relaxed minimisers)
+
+Run: python3 verify_k3.py   (full log in verify_k3.log)
+1. pattern orbits: {'lin': 16, 'quad': 112, 'cub': 128} ; cub = all odd-weight patterns
+2a. plane average Phi = 1, -1/7, 0 on lin, quad, cub
+2b. odd-pattern law is 7-wise uniform (not 8-wise); dictator law is 3-wise uniform, first failure on a plane (0, 1, 2, 3)
+3. certificate w=(5,1): K m^U = {'lin': '1', 'quad': '3/2', 'cub': '21/16'} => R_4(3) >= 21/16
+4. folded odd-class adversaries [(14, 182), (28, 112)] ; symmetrised 1/2-1/2 mixture cuts every edge w.p. 21/128 => R_7(3) <= 21/16
+VERIFIED: R_3(3) <= 1, R_4(3) = ... = R_7(3) = 21/16 < 11/8 = R_8(3) = R*(3)
+
+Summary of exact values:
+  R_1(3) = R_2(3) = R_3(3) = 1
+  R_4(3) = R_5(3) = R_6(3) = R_7(3) = 21/16 = R_odd(3)
+  R_even(3) >= 23/16  (from R*(3) <= (R_odd + R_even)/2)
+  R_8(3) = R*(3) = 11/8
+
+Note: pin_moment_k3.py also contains an exact folded MILP pricer (`price`);
+it takes ~400 s per call at k=3 and is not used by the verification.

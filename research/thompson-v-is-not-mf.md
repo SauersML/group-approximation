@@ -163,3 +163,95 @@ inside `V` is finite with trivial defect, in every ambient group.
        solutions have finite image, which is impossible for V below 1/2.
    - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
      identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.
+4. **2026-09-19, swarm-0917 w18 (ptl-last1), reframing: small-defect witnesses are dense in one simple adjoint group, which splits the hole into three classical gaps.** The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proof).** Claim: `thompson-v-mf-witnesses-are-dense-in-simple-adjoint-groups`,
+     via `thompson-v-mf-witnesses-are-dense-in-simple-adjoint-groups-proof`.
+     - Let `sigma` be a nontrivial irreducible with `D < 1/2`. Every simple ideal `h` of `[l, l]` (`l = Lie` of the
+       closure) is invariant under the closure.
+     - `g -> Ad(sigma(g))|_h` lands in `Inn(h)` with dense image, has defect at most `2D`, and satisfies
+       `delta_(dim h) <= 2D`.
+     - Conversely, nontrivial homomorphisms `G0 -> Inn(h_j)` with defect `-> 0` make V MF.
+   - **Mechanism.**
+     - Lemma O at `2D < sqrt 2`, with the transfer tool, fixes each ideal.
+     - A principal-logarithm lemma shows that an orthogonal automorphism within `sqrt 3` of `1` has eigenangles
+       below `2 pi/3`, so its logarithm is a derivation, which is inner.
+     - The transfer tool kills the finite group `Ad(K)|_h / Inn(h)`.
+   - **New decomposition** (route `thompson-v-not-mf-via-classical-adjoint-trichotomy`). By the classification
+     (finitely many exceptional types), this target is equivalent to the conjunction of three open holes:
+     - `thompson-v-gap-on-dense-projective-unitary-images`, for `PSU(k)`;
+     - `thompson-v-gap-on-dense-orthogonal-adjoint-images`, for `SO(k)/{+-1}`;
+     - `thompson-v-gap-on-dense-symplectic-adjoint-images`, for `Sp(k)/{+-1}`.
+
+     Each hole is implied by the target, so the reformulation is exact.
+   - **Kills (below `D < 1/2`).** A witness cannot use any of the following:
+     - a torus factor;
+     - a disconnected closure acting nontrivially on `h`;
+     - products or permutations of simple factors;
+     - outer automorphisms, including the transpose of `SU` and the triality of `so(8)`.
+   - **Where it stops.** Nothing here bounds the defect of a dense homomorphism into `PSU(k)` uniformly in `k`. The
+     natural next test is the SU hole in its projective form: do lifts of `r5..r8` in a dense projective
+     representation `G0 -> PU(k)` stay a uniform distance from the scalars?
+4. **swarm-0917 w18 (ptm-break, operator-algebras): the Cuntz/Fock Calkin lane to "V is MF" is dead, a class kill.**
+   The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proofs).**
+     - `thompson-v-unitaries-generate-cuntz-algebra`: the prefix-replacement unitaries of V generate all of
+       `O_2`. The proof is self-contained, with no simplicity input.
+       - A transposition of the cones `00`, `1` gives the projection `E = (1-u_t)/2`.
+       - `E B E` is shown to equal `E O_2 E` using the other cone transpositions, through
+         `(s_00 - s_1)^*(s_{00g} - s_{1d}) = s_g + s_d`.
+       - Four V-translates of the corner give `h = sum v_i v_i^*` with `h >= 1/400`.
+     - `cuntz-calkin-lifts-of-thompson-v-have-no-compression`: take any unital `theta : O_2 -> Q(H)`
+       and any lift of the Calkin model `theta o u`. Then no lift admits isometries `W_n` with `W_n W_n^* -> 0`
+       strongly that asymptotically commute with it.
+   - **Where every member dies.** The asymptotically commuting compression descends to a unital
+     *-homomorphism `theta(O_2) -> prod M_k / sum M_k`. The corona has no infinite unit, so the Cuntz
+     relations force `T_1 = 0`.
+   - **Kills.**
+     - Quasidiagonal and far-block compressions of the tree (Fock) near-permutation model of V, for every
+       completion of the undefined vertices and every compact perturbation.
+     - The same compressions of the quasi-regular representation of any Cantor orbit, and of the
+       Bernoulli Koopman representation. The C*-algebra of each is a copy of `O_2`, so each is not QD, not MF
+       and not stably finite.
+   - **What survives.** An infinite-dimensional source of MF models for V must be a Calkin, or modulo-ideal,
+     representation that is **not** a quotient of `O_2` along the prefix-replacement embedding. So no Cuntz
+     family can implement it modulo the compressed-away ideal. Entries 2--3 remain the constraints on
+     finite-dimensional witnesses.
+4. **swarm-0917 w21 (nh-break, census-computation), 2026-09-20: which relators can carry the gap.** The hole
+   stays **OPEN**.
+   - **Result (ESTABLISHED, exact computation).** Claim: `thompson-v-single-relator-quotients-have-no-small-images`.
+     Put `Gamma_S = G0/<<S>>` for `S` inside `{r5,...,r8}`.
+     - `eta(r5) = eta(r8) = -1` and `eta(r6) = eta(r7) = +1`, so `Gamma5` and `Gamma8` are perfect.
+     - `Gamma5` and `Gamma8` have no nontrivial homomorphism to `PGL(2,F)` for any field `F`. This is exact
+       in characteristic 0 and in every characteristic `p`, including 2 and 3.
+     - They have no nontrivial action on at most 16 points (9593374 actions at `m = 16`).
+     - They have no nontrivial map to `U3(3)`, `L3(4)`, `U4(2)`, `U3(4)`, `U3(5)`, `J1` or `L3(5)`.
+     - Hence every nontrivial finite quotient has a simple quotient of order at least `|M22| = 443520`.
+     - Files: `experiments/thompson-v-relator-blind-2026-09-17/`.
+   - **Class kill: gap proofs that use only `r6`, `r7`.**
+     - *Invariant:* the sign character `eta`.
+     - *Death step:* `eta` is a nontrivial exact representation with `eta(r6) = eta(r7) = 1`. So no bound on
+       `max(||sigma(r6) - 1||, ||sigma(r7) - 1||)` alone can be uniform.
+     - Every proof of the gap of entry 2 must read `r5` or `r8`, in every dimension.
+     - `r6` and `r7` are individually weak words. In each simple group above they have 20 to 300 times the
+       random-word solution count.
+   - **New decomposition: one-relator strengthenings.**
+     - `Gap(r5)`: there is `epsilon > 0` with `||sigma(r5) - 1|| >= epsilon` for every nontrivial irreducible
+       unitary `sigma` of `G0`. `Gap(r8)` is the same for `r8`.
+     - Each implies this claim.
+     - Every exact obstruction to them tested so far is absent.
+     - If `Gamma5` has no nontrivial finite quotient, entry 3's form (A) gives `Gap(r5)` at `1/2` on the whole
+       virtually solvable-image locus, without using that V is simple.
+   - **Calibration (the evidence is weak).**
+     - `chi(G0) = -7/24`.
+     - `r5` and `r8` hit zero exactly as random words would: about 1 expected solution per simple group.
+     - So the computation does **not** distinguish "`Gamma5 = V`" from "`Gamma5` is a large one-relator group
+       with no small quotients". Do not extend the finite census to larger simple groups expecting it to
+       decide this.
+   - **Next hole.** Decide whether `Gamma5 = V`, that is, whether `r6, r7, r8` lie in `<<r5>>` in `G0`.
+     - If yes, V is a one-relator quotient of `S4 *_Z2 S3`, and this claim is exactly `Gap(r5)` for a single
+       word. That would be the most compressed form of the hole.
+     - If no, look for a nontrivial finite-dimensional unitary representation of `Gamma5`. It would kill `Gap(r5)`
+       but not this claim, and it would show which of `r6`, `r7`, `r8` the gap must read.
+     - A bounded shortlex Knuth--Bendix run (`kb_r5.py`, rule length at most 22, 36244 rules) reduced none of
+       the three words, whose residues kept lengths 28, 26 and 37. The system is not confluent, so this is
+       inconclusive. Do not repeat it at this scale.

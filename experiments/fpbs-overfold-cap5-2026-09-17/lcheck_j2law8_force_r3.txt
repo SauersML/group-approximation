@@ -1,0 +1,19 @@
+LCHECK V 240 n 12 lawful seeds 12 |P| 8
+  seed 0: 168 235 lawful
+  seed 1: 82 128 overfold
+  seed 2: 74 135 overfold
+  seed 3: 142 147 overfold
+  seed 4: 103 147 overfold
+  seed 5: 14 33 overfold
+  seed 6: 168 185 lawful
+  seed 7: 35 29 overfold
+  O-STEP VIOLATION mask 6 ell 2
+  O-STEP VIOLATION mask 18 ell 2
+  O-STEP VIOLATION mask 1e ell 4
+  O-STEP VIOLATION mask a0 ell 2
+  O-STEP VIOLATION mask a6 ell 4
+  O-STEP VIOLATION mask b8 ell 4
+  O-STEP VIOLATION mask be ell 6
+O-pair violations 0; max ell(P)-ell(P-A)-|A| by |A|: 1:1 2:2 3:3 4:3 5:3 6:2 7:1 8:0
+ell(P) 8 for |P| 8; ell(overfold part) 6 for 6 overfold seeds
+subsets 256; max ell(P)-|P| 0; O-rel violations 0; O-step violations 7

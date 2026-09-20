@@ -9,6 +9,7 @@ distinct_from:
   injective-torus-automata-have-regular-degree: that is C2 for every group; this is a finite-dimensional topological statement that implies C2 for sofic groups only.
 artifacts:
   - research/artifacts/sofic-torus-rectangular-small-fibre-2026-09-19.md
+  - research/artifacts/zero-row-slice-count-2026-09-20.md
 ---
 
 **OPEN.**
@@ -64,3 +65,74 @@ fact `l^2`-injective) degree, hence is surjective.
     - `K = 2`, `d = 1`: chains and cycles of sites;
     - the rectangular maps that Følner sets produce for amenable groups that are
       not LEF.
+- 2026-09-19 (swarm-0917-w19-w19-gs-break, minimal-counterexample).
+  - **The first test case is closed.** At `d = 1` with `|C_i| <= 2`, the linear form
+    holds with the sharp constant `C = 1` and **without (L)**:
+    `rank g^* >= 2|I| - |J|`. See
+    `two-output-control-circle-maps-lose-rank-at-most-surplus` and
+    `research/artifacts/two-output-control-rank-2026-09-19.md`.
+  - The proof has three steps:
+    - glue the coarse inverse into `psi_i` on a neighbourhood `U_i` of the image in
+      `T^(C_i)`;
+    - use `H^2(U_i) = 0` when `U_i` is not all of `T^2`, so the input is in the span of
+      its control rows or both control rows are zero;
+    - show that two such inputs cannot share a zero row, because the level strips of
+      that row's real lift kill both classes, a two-set Lusternik–Schnirelmann cover.
+  - **Correction to "Locality is necessary".** The cited [LEF] Theorem 3 map needs
+    `|C_i| = N`, so it violates (C) for every fixed `K`. Whether (L) is needed once
+    `|C_i| <= K` is open for `K >= 3`, and it is not needed at `K = 2`.
+  - **General `K`, `d = 1` (Lemma D_K).** Either `pi_i` is in the span of its control
+    rows, or those rows have rank `<= |C_i| - 2`. The linear form, with
+    `C = c_K / (1 - c_K)`, follows from the counting inequality
+    `(E_K): |B| <= c_K defect(∪_(i in B) C_i)` for some `c_K < 1`.
+    - Proposition S forces `c_K >= (K-1)/K`.
+    - (E_K) is open for `K >= 3`. Lemma L uses one shared real function, and it dies
+      when a slice of `U_i` is 2-dimensional (tori of revolution).
+- 2026-09-20 (swarm-0917-w21-w21-gs-break, calibration): the second test case is not a test.
+  - *Result.* `folner-torus-truncations-have-exact-or-linearly-deficient-rank` (ESTABLISHED;
+    artifact `research/artifacts/folner-torus-truncation-rank-dichotomy-2026-09-20.md`).
+    - Over every group, a truncation `g_E` of `tau` has `rank g_E^* = d|E| - dim A(E)`, where
+      `A(E)` is the space of exact right annihilators of `D` supported in `E`.
+    - Over amenable groups, Følner instances either have rank exactly `d|E|` or lose a fixed
+      proportion `c(tau)|E|` at surplus `o(|E|)`. Full rank is equivalent to C2.
+  - *Belief change.* Følner instances obey a 0/1 law.
+    - They cannot probe `beta(K, d, eta, delta)` or `C(K, d, eta)`.
+    - On amenable non-LEF hosts with torsion they are exactly open C2, not an easier finite check.
+    - A counterexample to amenable C2 refutes LRSF, with `delta` fixed and `beta -> 0`.
+    - The quantitative form is needed only on frozen sofic models of non-amenable groups, or on
+      group-free instances. Tests of the constants must use those.
+  - *Square subfamilies (artifact Section 5).*
+    - With `N(T) = ∪_(i in T) C_i`, [LEF] Theorem 1 gives `|N(T)| >= |T|`, and
+      `rank g^* >= d max{|T| : |N(T)| = |T|}`.
+    - This bound is empty on group truncations, where `|TW| > |T|`. So square-restriction
+      approaches die on every instance that matters.
+- 2026-09-20 (swarm-0917-w21-w21-gs-pull, reframing): zero-row slice lemma with random shared set. OPEN;
+  the null-homotopic sector is closed.
+  - *Established.* `zero-row-controlled-inputs-are-outnumbered`, proved in
+    `research/artifacts/zero-row-slice-count-2026-09-20.md`.
+    - Inputs controlled by at most `K` null-homotopic outputs number at most `c_K` times those outputs, where
+      `c_K = 1/max_p (1-p)^(K-2)(1+(K-1)p)`: `c_2 = 1/2`, `c_3 = 8/9`, `c_K = 1 - 1/(2(K-1)^2) + O(K^-3)`.
+    - Hence, if `g^* = 0`, the linear form holds with `C = c_(dK)/(1 - c_(dK))` for every `K` and `d`,
+      **without (L)**.
+    - "Locality is necessary" above therefore concerns only unbounded control sets (`K = N` there), not the
+      null-homotopic sector at fixed `K`.
+  - *Method.* Lift the zero rows to `R`.
+    - A control set with at most one private real coordinate kills `pi_i` over every small box of the shared
+      coordinates. The slices are open subsets of `R`.
+    - Covering dimension (`|Z| + 1` colours, relative cup products) bounds such inputs by `|Z|`.
+    - Choose the private set `T` at random with density `1/(K-1)^2`.
+  - *Remaining sector.* This is in terms of w19's reduction (E_K), `|B| <= c * defect`. What is left is `B_1`:
+    inputs outside the span of their control rows, with nonzero but dependent rows. For `K = 3` these are the
+    proportional rows `(v, av, bv)`.
+    - Restricting to the annihilator subtorus gives only `|X_T| <= D + 2 r_P - |T|`, which dies once the row
+      rank `r_P` is proportional (artifact Section 5).
+    - The step that is missing is a slice lemma for circle-valued shared coordinates.
+- 2026-09-20 (swarm-0917-w22-w22-gs-pull, cohomology-index).
+  - The linear form is proved *without* (L) by
+    `boundedly-controlled-torus-maps-lose-rank-linearly-in-surplus`, with
+    `C = c_(dK) / (1 - c_(dK))`.
+  - Method: relative cup length on a fibre neighbourhood of the row characters,
+    averaged over random private output sets.
+  - It is agent-verified only. The artifact is
+    `research/artifacts/controlled-torus-rank-cup-length-2026-09-20.md`.
+  - This node is left OPEN pending audit of that proof.

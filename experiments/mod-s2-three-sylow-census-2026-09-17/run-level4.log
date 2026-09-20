@@ -1,0 +1,11 @@
+[gamma4] Pbar cosets 512 [0s]
+[gamma4] Schreier gens 4609, relators 18432, twist vectors 5120 [0s]
+[gamma4] after unit elimination 58 gens, 9526 relators [17s]
+[gamma4] H_1 = Z^54 + [] [18s]
+[gamma4] classes 160, W rank 106, gcd aug 10 [18s]
+[gamma4] {"label": "gamma4", "cosets": 512, "schreier_gens": 4609, "gens_after_unit_elim": 58, "h1_rank": 54, "h1_torsion": [], "classes": 160, "class_coset_counts": [32], "W_rank": 106, "gcd_aug_W": 10, "d": "1/30", "theta_values": ["3/10"], "cert_l1": 10, "cert_aug": 10, "A_plus": 10, "A_plus_support": 10, "A_plus_multiplicities": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "seconds": 25}
+[gamma4] short generation (SG): True, general (SG*): True; row types [(0, 6), (0, 8), (0, 12), (0, 14), (0, 16), (0, 18), (10, 10), (10, 14), (10, 16), (10, 18)]
+  box: {'rows': 106, 'max_row_l1': 18, 'box_size': 1, 'row_option_counts': [1]}
+[gamma4] distance: {'rows': 106, 'max_row_l1': 18, 'box_size': 1, 'row_option_counts': [1], 'certified': True, 'min_leaf_bound': '1/30', 'seconds': 0}
+[gamma4] mass-10 exclusion test: {'certified': False, 'reason': 'no interior point found'}
+saved gamma4 [25s]

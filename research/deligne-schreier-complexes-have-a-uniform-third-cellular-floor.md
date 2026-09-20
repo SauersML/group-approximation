@@ -148,3 +148,35 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   - *Left.* (NFA): no finitely approximable space carries a continuous untwisting. A connected compact space and a
     free compact space carry untwistings that are not cohomologous to discrete ones (step 6 of the proof). So (C2)
     alone cannot prove this claim, and whether such spaces are finitely approximable is the open core.
+- **2026-09-19, swarm-0917-w19-w19-deligne-last1 (quantifier-shift): (NFA) is about one explicit affine system**
+  (`deligne-untwisted-spaces-pull-back-from-one-affine-system`, ESTABLISHED).
+  - *Proved.* Every continuous untwisting of a class `[beta]` in `H^2(Gamma; T)` on any compact space is pulled
+    back, along the continuous `Gamma`-map `y -> [h -> -c(h^(-1), y)]`, from one universal system. That system is
+    `U_beta = T^Gamma / T` with the twisted shift `(g.omega)(h) = omega(g^(-1) h) + beta(h^(-1), g)` and the
+    untwisting `omega(e) - omega(g^(-1))`.
+  - *Consequences.* Finite approximability passes to continuous images. So this claim is equivalent to one
+    statement: the affine torus system `U_(theta_D)` has no approximate periodic orbits, with a uniform
+    `delta_0 > 0`. Its linear part has dense exact periodic points. The classes whose `U` is finitely approximable
+    form a subgroup `M(Gamma)` of `H^2(Gamma; T)`, which contains the metaplectic class.
+  - *Effect on the search.* The quantifier over all compact spaces in (NFA) is gone. A refutation needs only
+    approximately equivariant maps from finite `Gamma`-sets into `U_(theta_D)`. A proof must separate
+    `U_(theta_D)` from `U_(theta_M)`, which has the same linear part, by the translation class alone.
+  - *Not decided.* This is a reformulation. The difficulty is unchanged, and the claim stays OPEN.
+- **2026-09-19, swarm-0917-w20-w20-deligne-pull (host-geometry): Lie-homogeneous circle-bundle models die at the
+  lattice residual** (`deligne-homogeneous-bundle-models-die-at-lattice-residual`, ESTABLISHED; part (b) under CSP).
+  - *Proved.* Take a homogeneous model: `Lambda <= L_t` with `Lambda cap T` finite over a lattice
+    `Lambda_0 <= Sp_4(R)`, and `rho~ : E_3 -> L_t` lifting `Sp_4(Z)` with `rho~(z)` rotating the fibres of
+    `L_t / Lambda` by order 3. Here `L_t` is the circle extension of `Sp_4(R)` with parameter `t`. Then:
+    - (L3), `D(Gamma) <= 2`, pins the reduced parameter `t'` to order `n in {3, 6}`;
+    - the section `Lambda_0 -> Lambda'` is a character `f` with `f(z) = -t'`, which embeds the `n`-fold cover
+      `Lambda_(0,n)` in `Lambda_0 x U(1)`, so by Malcev it is residually finite.
+    This contradicts (DR2) when `Lambda_0` is commensurable with a conjugate of `Sp_4(Z)`, and contradicts
+    Stover's Thm 3.3 for every lattice when the associated group has CSP.
+  - *Where it dies.* At the lattice-splitting step. The invariant is `Res_fin(Lambda_(0,n)) >= <z^2>`. So
+    `Sp_4(R) / Lambda_0` with an algebraic circle bundle, approximated by `Lambda_0 / Lambda_0(N)`, is not a
+    refutation of this claim.
+  - *Calibration.* Only the parameter `t' = 1/2` survives the method, matching `|mu(k)| = 2` and the residually
+    finite metaplectic cover. (H1) excludes it for `E_3`.
+  - *Not decided.* The (NFA) core is untouched for non-homogeneous spaces and for other Lie hosts. The compact
+    quotients rely on CSP for anisotropic forms (Kneser, via `B_2 = C_2`, not imported verbatim). This claim stays
+    OPEN.

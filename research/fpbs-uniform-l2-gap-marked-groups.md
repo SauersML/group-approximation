@@ -60,3 +60,29 @@ fixed `(M,delta)` on an open set of marked groups. No counterexample is known.
   `eta`, spectral radius and expansion do not force `p_c (d-1) rho < 1`. Any
   proof in the small-`eta` range must use geometry beyond the two spectral
   numbers, as the girth patch does.
+
+* **Fibre-truncation towers: the conjecture contains the Kesten gap
+  (2026-09-20, swarm-0917-w24, finite-models, established implication).**
+  - Established `fpbs-uniform-l2-gap-forces-uniform-kesten-gap-on-towers`.
+  - Along a tower `H_j` of a normal subgroup `H`, the truncations
+    `Cay(Gamma/H_j)` are `k`-marked groups with spectral radius at most
+    `rho(Gamma/H)`. The finite fibre `pi_j(H)` is a test vector with
+    `||T^(G_j)_p|| >= chi^(j)(p)`, and `chi^(j)` increases to `chi^H_G`.
+  - So (U)`_(k,eta)(M,delta)` gives `chi^H_G(p_c + delta') <= M`, where
+    `delta' = min(delta, eta/(1+eta))`. That is a percolation Kesten gap along
+    every towerable `H` with `rho(Gamma/H) <= 1 - eta`, uniform in `(k,eta)`.
+  - Every normal subgroup of a residually finite group is towerable.
+  - On `F_2`, the cogrowth node caps the constant:
+    `delta' <= s_N - 1/3`, with `s_N - 1/3 >= (2/3)(1 - rho_N)` and
+    asymptotic to it. So `delta(2,eta) = O(eta)` is forced. This is consistent
+    with the `eta/12` of the girth patch.
+  - At any fixed `p` in `(1/3, 1/sqrt 3)`, `||T_p||` is not locally bounded at
+    the tree. So only the `p_c + delta` form can be locally uniform.
+
+  **Where it stops:** this is hardness transfer, not progress toward (U).
+  - Any proof of (U), even of its cylinder piece containing the tower
+    `F_2 x (F_2/K_j)`, proves the relative gap for `F_2 x F_2` along a factor,
+    where the Kesten-route attempts stop.
+  - The truncations are high-girth only when `Gamma` is free, so the girth
+    patch covers item 3 but not the product case.
+  - Status stays OPEN.

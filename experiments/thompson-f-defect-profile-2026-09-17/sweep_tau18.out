@@ -1,0 +1,9 @@
+{"group": "BG", "n": 4, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.13613653126604497, "sep_at_best": 2.2235010551088568, "secs": 104.3}
+{"group": "F", "n": 4, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.2977784503242127, "sep_at_best": 3.0984330329560117, "secs": 114.5}
+{"group": "H4", "n": 4, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.14939240823706168, "sep_at_best": 2.4596419024540275, "secs": 162.8}
+{"group": "BG", "n": 8, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.015333790854356044, "sep_at_best": 1.982373059989226, "secs": 73.5}
+{"group": "F", "n": 8, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.2104225635207544, "sep_at_best": 1.802551376318422, "secs": 86.2}
+{"group": "H4", "n": 8, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.05318902634939082, "sep_at_best": 2.097610791698339, "secs": 125.0}
+{"group": "BG", "n": 16, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.0032533860742605114, "sep_at_best": 2.0826178449148065, "secs": 108.6}
+{"group": "F", "n": 16, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.14391339567876882, "sep_at_best": 1.800395821287639, "secs": 118.2}
+{"group": "H4", "n": 16, "tau": 1.8, "restarts": 4, "steps": 1500, "seed": 20260917, "D_upper": 0.05961426069732623, "sep_at_best": 2.0022324633941433, "secs": 80.0}

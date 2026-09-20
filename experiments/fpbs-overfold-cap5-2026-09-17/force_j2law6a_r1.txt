@@ -1,0 +1,9 @@
+BEAM V 240 n 12 seeds 1056 auts 12 B 2000 rng 1 ALL SEEDS, LEVEL 1 OVERFOLD ONLY
+level 0 defect 144
+level 1: 1056 extensions; min defect 144; kept 87 states (defect 144..144)
+level 2: 91872 extensions; min defect 128; kept 2000 states (defect 128..144)
+level 3: 2112000 extensions; min defect 96; kept 2000 states (defect 96..112)
+level 4: 2112000 extensions; min defect 80; kept 2000 states (defect 80..96)
+level 5: 2112000 extensions; min defect 48; kept 2000 states (defect 48..80)
+level 6: 2112000 extensions; min defect 32; kept 2000 states (defect 32..48)
+no goal within 6 seeds (beam, not exhaustive)

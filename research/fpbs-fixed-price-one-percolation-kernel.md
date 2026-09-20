@@ -123,3 +123,60 @@ title: Every Cayley graph of a nonamenable fixed-price-one group has strict perc
   case must have every infinite, finitely generated, infinite-index subgroup of
   finite "height" in the sense that some finite intersection of its conjugates
   is finite. This is where soft arguments might still live.
+
+- **Finite-component forests force treeability (2026-09-19,
+  swarm-0917-w18-w18-bs-break, operator-algebras).** Established node
+  `fpbs-price-one-forests-have-infinitely-many-components`, with route
+  `fpbs-price-one-forests-have-infinitely-many-components-proof`.
+
+  If an invariant random spanning forest on a Cayley graph of `Γ` has exactly
+  `k<∞` components, then its coset lift with hairs to the marked tree is a
+  treeing of a free p.m.p. action of cost `1+(E deg/2-1)/k`. So `Γ` is
+  treeable and `C_*(Γ)` equals that value. For nonamenable `Γ` with `C_*=1`,
+  Gaboriau's Corollary 2.26 then gives a contradiction. Hence on every Cayley
+  graph of every group in this kernel, the FMSF, WMSF, FUSF, WUSF and every
+  other invariant spanning forest have infinitely many components almost
+  surely.
+
+  **Invariant:** `C_*(Γ)=1`, that is, non-treeability. **Step where every
+  member dies:** the hair treeing of the coset lift.
+
+  This is a class-killing obstruction for routes that try to reach `p_c<p_u`
+  through a connected, or finite-component, invariant or FIID forest. Examples
+  are a connected FMSF, one tree per finite-index coset, and a connected
+  spanning forest inside `H_{R,M}`. Every such route is vacuous on the whole
+  kernel, so an FMSF-excess proof (`fpbs-msf-excess-equals-nonuniqueness`) must
+  control `δ_G` with infinitely many trees. The kernel stays **OPEN**.
+* **Derive spines from invariant Cayley cost one through forests
+  (host-geometry, 2026-09-19, swarm-0917 w19).** Established
+  `fpbs-sparse-spines-iff-sparse-one-ended-forest-connectors`:
+  - Sparse spines give sparse inter-tree connectors for *every* one-ended
+    invariant forest.
+  - Conversely, one-ended forests whose `|desc(o)|` laws are uniformly tight,
+    together with `beta`-sparse connectors for every `beta`, give spines.
+
+  Every such pair `F ∪ E'` is a connected spanning graph of cost
+  `<= 1 + |S| beta/2`. So spines are exactly invariant Cayley cost one at `S`
+  *plus uniform tightness of the descendant tails*.
+
+  The attempted route was to take cheap `H_eps` (expected degree `2+2eps`),
+  a spanning forest `F_eps` of `H_eps` of expected degree 2 (for example the
+  wired forest), and `E' = H_eps \ F_eps`, which has endpoint density
+  `<= 2eps`. **Where it dies:** at uniformity in `eps`. Nothing controls
+  `P(|desc_(F_eps)(o)| > n)` as `eps -> 0`. `F_eps` may also have two-ended
+  components, whose trunks carry no density bound.
+
+  Intrinsic pruning cannot give tightness. In the unimodular (non-Cayley)
+  subdivided 3-regular tree, cost tends to 1, but every invariant connected
+  infinite subgraph has density 1. This follows from the MTP: such a subgraph
+  must contain the whole of every subdivision path it enters. So spines cannot
+  be extracted from `H_eps` alone, and a proof must use `G`-edges outside
+  `H_eps` as shortcuts. `fpbs-quantitative-routing-tail-bound` records the
+  same pressure as long `H`-routes.
+
+  **Invariant:** tightness of descendant tails of one-ended forests inside
+  cost-`(1+eps)` graphs. **Step:** `eps -> 0` with fixed tails.
+
+  A counterexample to spines on a survivor with `c_inv(S)=1` must have
+  descendant tails that escape as the price tends to one. The kernel stays
+  OPEN.

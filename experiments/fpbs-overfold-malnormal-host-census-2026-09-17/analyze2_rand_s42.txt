@@ -1,0 +1,4 @@
+progress rand {'inst': 10, 'Yneq': 136, 'X->Z:pair': 132, 'Z->Y:eq': 136, 'cert<=1': 132, 'X->Z:pair+1': 4, 'cert<=2': 4}
+progress rand {'inst': 20, 'Yneq': 223, 'X->Z:pair': 217, 'Z->Y:eq': 223, 'cert<=1': 217, 'X->Z:pair+1': 6, 'cert<=2': 6}
+progress rand {'inst': 30, 'Yneq': 413, 'X->Z:pair': 397, 'Z->Y:eq': 413, 'cert<=1': 397, 'X->Z:pair+1': 16, 'cert<=2': 16}
+analyze2 rand seed 42 npairs 2 {'inst': 37, 'Yneq': 483, 'X->Z:pair': 466, 'Z->Y:eq': 483, 'cert<=1': 466, 'X->Z:pair+1': 17, 'cert<=2': 17}

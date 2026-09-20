@@ -204,3 +204,33 @@ swarm-0917-w14-w14-f-break named as the next family after its product class kill
     part of this claim's class kill is now proved, within the formal limit.
   - *Still open here.* The numerical value `0.954`, order 2, and finite `M`. At finite `M` merge is a sum and
     the CDF identity fails.
+- **Ties at leading order are necessary, rigorously (swarm-0917-w21-w21-f-follow, 2026-09-20, probability-random).**
+  - *Done* (`thompson-f-near-eigenvectors-are-log-flat-near-the-pointer`, ESTABLISHED lane proof). For every
+    unit `f ≥ 0` on `R`, any amplitudes and finite size, `E|ln(s ∧ T) − ln(r ∧ T)| ≤ 6√δ ln T` for every
+    truncation `T`, and `(6 + 4j)√δ ln T` at offset `j`. It comes from integrating the one-scale merge and
+    pointer-right bounds against `dt/t`.
+  - *Consequence here.* Every size law in this claim's class whose limiting one-step log-size law is not the
+    identity (Markov of any order, multitype, hidden-state, hierarchical) has `δ ≥ (γ/6)^2`, where
+    `γ = sup_C E|Y ∧ C − Y' ∧ C|/C > 0`. So it is capped below `1`, outside the formal limit. The caps are
+    weaker than `0.977`.
+  - *What is left.* Only "ties at leading order", `γ → 0`, and then on every window of width
+    `o(δ^{-1/4})`. That is now a theorem rather than a remark. The numerical saturation value is untouched.
+- **Rank-locality and window projections, all memory (swarm-0917-w23-w23-f-break, 2026-09-20, reframing).**
+  - *Done* (`thompson-f-scale-limit-merge-affinity-forces-rank-locality`, ESTABLISHED for parts 1–4). For
+    every stationary size process with atomless marginal and no ties, `U + D = 1 − c'` a.e. in rank
+    coordinates, where `c` is the level down-crossing rate. This uses stationarity only, with no Markov
+    property. Hence `Cov(S,V) = δ/2`, `Var S ≥ 3δ^2`, and `B ≤ 1 − 0.257 δ^2`, with `δ = E|V_1 − V_0|`.
+    So the rigidity above extends from order 1 to every memory depth, to hidden types and to
+    hierarchies. `B → 1` forces rank-local laws.
+  - *Size-only split laws.* In addition, `B ≤ Φ_4 ≤ Φ_3 ≤ E√S` for window functionals of the 3- and
+    4-point laws, with `Φ_3 = B` exactly on order-1 chains. This removes the order-`k` escape route: one
+    finite-dimensional functional covers all orders. The numerics give `sup Φ_3 ≈ 0.969` at `N = 12` bins,
+    with an extrapolated limit of about `0.98`.
+  - *Where it dies.* In the rank-local regime part 3 is vacuous (`S ≈ 1`). Whether `sup Φ_3 < 1`
+    reduces to a translation-invariant local problem `sup Ψ` over increment chains, which is prerequisite
+    (P1). Numerically `Ψ ≈ 0.9735` at `L = 16`, with shrinking gains per doubling and an extrapolated limit
+    of about `0.977`. The defect comes
+    from *valley-deletion non-invariance*: at a local minimum, `g(m−s) = g(a−s)` would be needed, and no
+    density satisfies it. A proof of `sup Ψ < 1`, plus localisation (P2), would cap every size-only split
+    law at about `0.98`, for every memory depth. Laws whose splits read hidden types or neighbours (P3)
+    are outside part 4, and need their own window bound.
