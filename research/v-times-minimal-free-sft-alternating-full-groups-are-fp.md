@@ -169,3 +169,25 @@ metallic mean Wang shifts.** *P2 refuted, pending review.*
 - *Also shown.* By part 1 of `fp-crossed-products-force-connected-differences`, the same `X` is not
   quantum rigid, over any field. This is not a counterexample to
   `free-minimal-z2-sft-is-quantum-rigid`, which is existential.
+
+**Attempt (2026-09-19, swarm-0917-w20-w20-bh-break): can the hard Durand--Romashchenko hosts meet
+coarse connectivity?** *This answers need 8f6fb97d in part. The condition is made local, and
+measure-theoretic kills are ruled out for hierarchical hosts. The hard lift itself is not decided.*
+- *Local form.* `sft-connected-differences-iff-flexible-sets-stay-close`. An SFT has
+  `m`-connected difference sets iff no point is flexible on two regions at distance `> m`.
+  - Flexible means the point can be changed inside the region and nowhere else.
+  - Products die as soon as one factor has an `n`-half-space pair and the other a
+    `(-n)`-half-space pair. The golden-silver kill is the case `n = e_2`.
+  - `X × X^rev` dies for every infinite `Z^2`-SFT.
+  - So any restricted P2 must exclude layered hosts whose independent layers have opposed
+    half-space pairs.
+- *Pointwise determinism.* `connected-difference-zd-sfts-are-a-e-half-space-determined`. Take a
+  restricted-P2 host over `Z^d` and any direction `n`. For every ergodic measure, almost every
+  point is determined, among all points of `X`, by each of its half-spaces on one fixed side.
+  The lowest flexible level is an equivariant height, and no invariant measure carries one.
+- *Consequence for the need.* Hierarchical hosts that are a.e. one-to-one over an
+  equicontinuous factor pass the a.e. test. That is expected, but not checked, for the lift. A kill of the hard lift in
+  `minimal-free-z2-sfts-have-arbitrarily-hard-row-languages` must therefore be one fault
+  configuration that is flexible on two far regions: two opposite quadrants of a fault cross, or
+  the two sides of a thick fault line. That is the remaining test. No measure, entropy or
+  generic-point argument can decide it.
