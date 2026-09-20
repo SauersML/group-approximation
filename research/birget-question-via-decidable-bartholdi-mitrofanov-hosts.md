@@ -2,13 +2,14 @@
 rg: 2
 id: birget-question-via-decidable-bartholdi-mitrofanov-hosts
 kind: claim
-title: Decidable Bartholdi–Mitrofanov groups beyond every time bound whose relator kernel is a finitely generated lift ideal; they would answer Birget's question through Röver–Nekrashevych hosts, a route that no cap on finitely presented self-similar groups can block
+title: A hard Bartholdi–Mitrofanov group whose relator kernel is a finitely generated lift ideal would answer Birget's cap question negatively (no cap), since Zaremsky's embedding transfers verbatim to lift-ideal kernels; the route needs no finitely presented self-similar group, and the only open item is the lift-ideal condition
 distinct_from:
-  fp-simple-groups-with-arbitrarily-complex-word-problem: that is Birget's question itself; this is a sufficient condition for it, through V_d(G) for a functionally recursive G, and it never needs a finitely presented self-similar group.
-  fp-self-similar-groups-with-arbitrarily-hard-word-problem: that asks for finitely presented self-similar (hence residually finite) hard groups; this asks for non-finitely-presented functionally recursive hard groups with a finitely presented V_d(G), which is never residually finite.
-  decidable-fg-self-similar-groups-embed-in-fp-self-similar: that is the self-similar Higman step; its test-input section says the graph does not establish that decidable hard functionally recursive groups exist, and items (a) and (b) here are exactly that existence question for one explicit family.
+  fp-simple-groups-with-arbitrarily-complex-word-problem: that is the "no cap" form of Birget's question; this is a sufficient condition for it, through V_d(G) for a functionally recursive G, and never needs a finitely presented self-similar group.
+  fp-self-similar-groups-with-arbitrarily-hard-word-problem: that asks for finitely presented self-similar (hence residually finite) hard groups; this asks only for functionally recursive hard groups with a finitely generated lift ideal, a strictly weaker hypothesis on the input.
+  fp-self-similar-groups-embed-in-fp-simple-groups: that imports Zaremsky's theorem for finitely presented self-similar groups; the lemma here extends it to finitely generated self-similar groups whose relator kernel is a finitely generated lift ideal.
+  decidable-fg-self-similar-groups-embed-in-fp-self-similar: that is the self-similar Higman step; this bypasses it, and its test-input section asks for exactly the decidable hard functionally recursive groups that (a) and (c) here would supply.
   two-counter-kms-groups-are-self-similar: that starts from KMS groups, which are finitely presented and residually finite but not known to be self-similar; this starts from Bartholdi–Mitrofanov groups, which are functionally recursive by construction but not finitely presented.
-  finite-recursion-gives-no-computable-depth-bound: that uses the undecidable Bartholdi–Mitrofanov group to show depth is unbounded; this asks for decidable members of the same family.
+  finite-recursion-gives-no-computable-depth-bound: that uses the undecidable Bartholdi–Mitrofanov group to show depth is unbounded; this asks for decidable members of the same family, and shows the undecidable one has no finitely generated lift ideal.
   nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups: that keeps the whole free group and gets a finitely presented non-faithful host with a non-recursive kernel; this asks for the faithful quotient V_d(G) to be finitely presented.
 ---
 
@@ -17,108 +18,250 @@ distinct_from:
 `finite-recursion-gives-no-computable-depth-bound`) such that
 
 - **(a)** `WP(G)` has no algorithm running in time `C·T(C·l) + C·l + C` for any `C`;
-- **(b)** `WP(G)` is solvable;
 - **(c)** the relator kernel `N = ker(F_S -> G)` is a finitely generated lift ideal.
 
-Lane bh-birget, 2026-09-19. Nothing below is independently reviewed; no priority is claimed.
+Lane bh-birget, 2026-09-19. Referee bh-ref-e: PASS with repairs (03514e0598); the repairs are applied below.
+The transfer lemma and the three tests were added afterwards and are **not independently reviewed**. No priority
+is claimed.
 
-## Why it would answer Birget's question (sketch; one transfer unchecked)
+**Payoff.** By the transfer lemma below, (a) and (c) give, for every recursive `T`, a finitely presented simple
+group whose word problem cannot be decided in time `≤ T`. Birget asks, verbatim (arXiv:math/0310335, §1): "Is
+there some cap on the computational complexity of the word problem of finitely presented simple groups?" So this
+route would answer him **negatively: there is no cap**.
+- It does not give the stronger conjecture Birget attributes to Higman, which is Boone–Higman.
+- The earlier item (b), "`WP(G)` is solvable", is redundant. It follows from (c) and the transfer lemma, since
+  finitely generated subgroups of finitely presented simple groups have solvable word problem (Kuznetsov). This
+  was observed by bh-ref-e.
 
-1. By (c) and `lift-ideal-criterion-sufficiency-holds-for-infinite-state` (item 1, referee PASS),
-   `V_d(G)` is finitely presented.
-2. `[V_d(G), V_d(G)]` is simple for every self-similar `G`
-   (`rover-nekrashevych-finite-presentation-criteria`, item S).
-3. Zaremsky's regrouping and wreath steps (same node, item R; arXiv:2405.09722, proof of Theorem 1.1) then
-   place `G` inside a finitely presented simple commutator subgroup of finite index. **Not checked:** those
-   steps are stated for finitely presented `G`; here they must be rerun with "relator kernel a finitely
-   generated lift ideal" in place of "finitely presented". Regrouping keeps the sections, so it should keep a
-   finite lift-generating set, but nobody has verified this.
-4. The upward transfer of `arbitrarily-complex-fp-simple-via-hard-self-similar-groups` (step 3) then carries
-   (a) to the simple host.
+## Transfer lemma: Zaremsky's embedding works for lift-ideal kernels
 
-## What is known toward (a), (b), (c)
+Lane proof.
 
-**The family.** Bartholdi–Mitrofanov, arXiv:1710.10109 (Groups Geom. Dyn. 2020), §2, attach to every
-two-counter Minsky machine `M` a functionally recursive group `⟨Φ_M⟩`. Read via the ar5iv rendering of the
-arXiv source on 2026-09-19, as a paraphrase, not verbatim; a referee should check it at source.
-- Configurations `(s_i, m, n)` are encoded by the words `s_i x^(2^m) y^(2^n)`. Sections simulate the moves
-  of `M`, and a halting marker is written when `M` reaches its halting state (their Prop. 2.3).
-- A commutator `w_n` built from the encoding of `(s_*, 0, n)` has length `O(2^n)`. It is trivial for exactly
-  one of the two outcomes "M halts from `(s_*, 0, n)`" or "it does not" (their Prop. 2.4).
-- Theorem A″ takes a universal `M`.
+**Lemma.** Let `G ≤ Aut(T_d)` be finitely generated by `S`, with word-level sections in `S^{±1}` (a finite
+wreath recursion). If the relator kernel `N` is a finitely generated lift ideal, then `G` embeds in a finitely
+presented simple group.
 
-**(a) holds for every member where the halting set is hard.** This uses only that `w_n`'s triviality records
-halting, not which way. Let `X = {n : M halts from (s_*, 0, n)}`. An algorithm for `WP(⟨Φ_M⟩)` in time `T(l)`
-decides `X` in time `T(C·2^n) + O(2^n)`. By the time hierarchy theorem, some decidable `X` beats every
-recursive bound of this form. Minsky's simulation gives a two-counter `M` that halts exactly on `X`: it runs
-a decider for `X`, halts on accept and enters an explicit loop on reject. If `WP` is undecidable, (a) holds
-trivially.
+**Proof.** Zaremsky's proof of Theorem 1.1 (arXiv:2405.09722) uses finite presentation of `G` exactly once: to
+get `V_(md)(G)` finitely presented through Scott's theorem (his Citation 2.3). The other ingredients hold for
+every finitely generated self-similar `G`:
+- simplicity of `[V, V]` (his Citation 2.4, Nekrashevych 2018);
+- his own abelianization computation inside the proof: the relation `ḡ = m(ḡ_1 + ⋯ + ḡ_d)` in `V_(md)(G)^ab`,
+  plus the choice of an even `m` with `1/m` not an eigenvalue of `A`. It uses only the generators and their
+  word-level sections (attribution corrected per bh-ref-c, ab22b01462);
+- his Proposition 2.5, stated for any self-similar `G`;
+- the Kaloujnine–Krasner embedding `G ↪ (G/H) ≀ H` with `H = G ∩ [V, V]`.
 
-**(b) is open.**
-- **What is automatic.** Nontriviality is r.e., because the action is computable and faithful. By
-  `finite-recursion-gives-no-computable-depth-bound`, (b) is equivalent to a computable bound on the depth
-  function.
-- **Where it can fail.** Bartholdi–Mitrofanov analyze only configuration words. Other words, such as
-  `s_i x^k` with `k` not a power of `2`, or products of several encodings, run `M`-like dynamics from
-  configurations that `M` never reaches, and some of those runs may never halt.
-- **The natural hypothesis.** "Halting of `M` from every configuration is decidable, and every word's
-  section dynamics is a finite superposition of configuration runs." This mirrors the sym-universally
-  halting machines that Kharlampovich–Myasnikov–Sapir needed for residual finiteness (arXiv:1204.6506), and
-  their machine lemma is the likely input. It is not checked.
+So it suffices to show `V_(md)(G)` is finitely presented.
 
-**(c) is open.** A heuristic, not proved:
-- In `⟨Φ_M⟩` the section map *is* one machine step. So lifting a relator of an encoded configuration
-  produces relators of the next configurations of the same run.
-- That suggests `N_M` is lift-generated by finitely many transition-local relators, plus relators for the
-  halting configurations `(s_†, m, n)`.
-- This contrasts with persistent actions (`persistent-actions-make-lift-ideals-normal-closures`), where
-  lifting gives nothing. It also meets the design constraint of bh-invent-03 (182261ea21): relators must
-  contract while elements do not, since here the elements' encodings grow along runs.
+Zaremsky's regrouping `ψ_m` is `g ↦ σ^(⊕m)(g_1, …, g_d, …, g_1, …, g_d)`. It has the same word-level sections
+as `ψ`: `w|_(j,x) = w|_x` for every block `j`. Its root permutation `σ_w^(⊕m)` is trivial iff `σ_w` is. So "`w`
+has trivial root permutation and all its sections lie in `M`" means the same thing for `ψ_m` as for `ψ`. Hence:
+- the lift ideals for `ψ` and for `ψ_m` are the same subgroups of `F_S`;
+- the relator kernel is the same, because the `T_(md)` action projects onto the `T_d` action and fixes block
+  indices.
+
+So `N` is a finitely generated lift ideal for `ψ_m` too. Then
+`lift-ideal-criterion-sufficiency-holds-for-infinite-state` (item 1, referee PASS) makes `V_(md)(G)` finitely
+presented. ∎
+
+Zaremsky's own introduction remarks that the proof adapts to contracting `G`. The lemma is that remark with the
+lift ideal as the hypothesis.
+
+## The family, read at source
+
+Bartholdi–Mitrofanov, arXiv:1710.10109 (Groups Geom. Dyn. 2020), §2, read in the arXiv HTML rendering on
+2026-09-19. Short quotes:
+- **Default convention.** "Whenever a value of Φ_M is unspecified, we take it to mean Φ_M(a,s)=(s,a)."
+- **Alphabet.** "four letters 0, 1, †₁ and †₂; for each state sᵢ ∈ S₀ of type I, a letter 𝐢₁", and further
+  letters for the other instruction types.
+- **Rules for `t`, `u`, `s_†`.**
+  - `Φ(†₁,t)=(ε,†₂)`, `Φ(†₂,t)=(ε,†₁)`;
+  - `Φ(0,u)=(u,1)`, `Φ(1,u)=(u,0)`;
+  - `Φ(0,s†)=(ε,†₁)`, `Φ(†₁,s†)=(ε,0)`, `Φ(†₂,s†)=(ε,†₂)`.
+- **Rules for a type I (increment) state `s_i -> s_j`.** `Φ(0,sᵢ)=(sⱼ,𝐢₁)`, `Φ(𝐢₁,sᵢ)=(ϵ,0)`,
+  `Φ(𝐢₁,x)=(x²,𝐢₁)`, `Φ(𝐢₁,y)=(y,𝐢₁)`.
+- **Proposition 2.4.** "The Minsky machine 𝐌 halts if and only if [(s*xy)t(s*xy)^-1,u]≠1 in ⟨Φ𝐌⟩". So `w_n` is
+  **nontrivial iff `M` halts** from `(s_*, 0, n)`, as the proof of Theorem A″ applies it (bh-ref-e confirmed this
+  at source).
+
+**(a), repaired as bh-ref-e showed.** A two-counter machine cannot read its input directly as a counter value
+(Schroeppel). So:
+- Let `D` be a multi-counter machine deciding a set `X`, total, and looping explicitly on rejection.
+- Minsky's two-counter simulation `M` of `D` satisfies "`M` halts from `(s_*, 0, 2^x)` iff `x ∈ X`". The words
+  `w_(2^x)` have length `Θ(2^(2^x))`.
+- An algorithm for `WP(⟨Φ_M⟩)` in time `T(l)` therefore decides `X` in time `T(C·2^(2^x)) + O(2^(2^x))`.
+- By the time hierarchy theorem, some decidable `X` beats every such bound, so (a) holds for that `M`.
+
+## Tests on (c), smallest first
+
+Lane computations by hand, not independently reviewed.
+
+**Correction (2026-09-19).** An earlier version of these tests missed Bartholdi–Mitrofanov's explicit rule
+"for all g∈S∖{u} we put Φ_M(1,g)=(ϵ,1)" (§2.1). So the letter `1` is a **wall**, not transparent: every
+generator except `u` fixes it with trivial section. The recursions below are corrected. Test 1's conclusion and
+Test 2's non-contraction survive. The earlier "crux", that every relator of `P` is its own section at `1`, was
+false and is withdrawn.
+
+1. **Calibration: the machine with `s_* = s_†` and no instructions. (c) holds.** Here `A = {0,1,†₁,†₂}`.
+   - `x` and `y` preserve every letter, so both act trivially.
+   - In left wreath notation, with sections listed at `0, 1, †₁, †₂`:
+     - `u = (0 1)(u,u,u,u)`;
+     - `t = (†₁ †₂)(t,1,1,1)`, which is bounded;
+     - `s = s_† = (0 †₁)(1,1,1,1)`, which is finitary.
+   - `u` normalizes `K = ⟨s, s^u, t, t^u⟩`, where `t^u = (†₁ †₂)(1, t^u, 1, 1)` is bounded.
+   - `K` is a bounded automaton group, hence contracting (Bondarenko–Nekrashevych). Since `u|_a = u`, `G = K⟨u⟩`
+     is contracting too.
+   - Nekrashevych's FP2 and the necessity half of `rover-nekrashevych-fp-iff-finite-lift-presentation` then give
+     (c), with `x, y ∈ R`, since `x|_0 = x` puts `x ∉ K_∞`.
+   - As expected, this calibration says nothing about hardness.
+2. **Increment-only machines: FP2 no longer applies.** Take the one-state loop `s_* -> s_*` that increments
+   forever. `A = {0,1,†₁,†₂,𝐢₁}`, with sections listed at `0, 1, †₁, †₂, 𝐢₁`.
+   - **Recursions.**
+     - `s_* = (0 𝐢₁)(s_*, 1, s_*, s_*, 1)`: an odometer on the digit letters `𝐢₁ = 0-bit`, `0 = 1-bit`. It skips
+       the markers `†₁, †₂` and stops at the wall `1`.
+     - `s_† = (0 †₁)(1,1,1,1,s_†)`.
+     - `t = (†₁ †₂)(t,1,1,1,t)`.
+     - `u = (0 1)(u,u,u,u,u)`.
+     - `x` and `y` preserve every letter, so both act trivially.
+   - **Not contracting.** `s_*` fixes `†₁` with section `s_*`, so `s_*^k|_(†₁) = s_*^k`. Then `⟨s_*⟩ ≅ Z` lies
+     in the nucleus.
+   - Hence (c) is decided here only by the lift-ideal criterion. By Theorem A (finite-state, both directions),
+     (c) is equivalent to `V_5(G_1)` being finitely presented, and it holds if `G_1` is finitely presented (Scott).
+     **Open**: this is the first informative case.
+   - **Relations** (lane, by hand).
+     - `[s_*, t] = 1`: before the first wall `1`, each preserves every letter's class (digit or marker) and reads
+       only its own class.
+     - `⟨s_†, t⟩` is dihedral of order 12, acting on 9 head states.
+   - **The core as a ternary automaton group.** On the subtree over `{d0 = 𝐢₁, d1 = 0, m1 = †₁}`, which avoids
+     the wall and `†₂`, with sections at `d0, d1, m1`:
+     - `a = s_* = (d0 d1)(1, a, a)` and `b = s_† = (d1 m1)(b, 1, 1)`.
+     - `a² = (a, a, a²)` and `ab = (d0 d1 m1)(b, a, a)`, so `(ab)^3` has sections conjugate to `a²b`.
+     - `a²b = (d1 m1)(ab, a², a)` fixes `d0` with section `ab` there. So `ord(a²b) ≥ ord(ab) = 3·ord(a²b)`,
+       and `ab` has infinite order.
+     - **On the number–hole pair.** On this subtree, `⟨a, b⟩` acts on pairs `(n, H)`, with `n` the 2-adic
+       digit number and `H` the multiset of hole gaps, by piecewise-affine maps of slope `2^(±1)`: `a` is
+       `n ↦ n + 1`. With `k = v_2(n)` and `h_0 = min H`, `b` acts by
+       - `(n, H) ↦ ((n − 2^k)/2, {k} ∪ (H − 1))` if `k < h_0`;
+       - `(n, H) ↦ (2n + 2^(h_0), (H ∖ {h_0}) + 1)` if `h_0 ≤ k`.
+     - **Self-replicating but not contracting.** The virtual endomorphism at `d0` is `a² ↦ a`, `b ↦ b`, so
+       `Q = ⟨a, b⟩` is self-replicating at `d0`. At `m1` it is isometric (`a ↦ a`), which is why `Q` is not
+       contracting.
+     - `([a, bab], 1, 1) ∈ Q` is nontrivial, since `a·bab` and `bab·a` differ at `d0^∞`. So `Q` has nontrivial rigid
+       vertex stabilizers. Bartholdi's non-finite-presentation theorem for branch groups needs contraction, so it
+       does not apply.
+   - **Theorem (lane proof, unreviewed): (c) holds for the core. `N_Q = ⟨⟨b²⟩⟩_lift`, so `V_3(Q)` is
+     finitely presented, and `Q` embeds in a finitely presented simple group.** Write `0, 1, h` for
+     `d0, d1, m1`, so that `a = (0 1)(1,a,a)` and `b = (1 h)(b,1,1)`.
+     - *Descent.* `b²` has trivial root permutation and free-word sections `(b², 1, 1)`. So the recursion
+       descends to `Γ = F(a,b)/⟨⟨b²⟩⟩ = ⟨a⟩ * ⟨b | b²⟩`.
+     - *Length.* On cyclically reduced normal forms `b a^(i_1) b ⋯ b a^(i_m)` in `Γ`, let
+       `L = m + Σ|i_j|`.
+     - *The kernel `N̄ ≤ Γ`.*
+       - `a` has infinite order.
+       - `b a^i` has nontrivial root permutation `(1 h)(0 1)^i`.
+       - So every nontrivial cyclically reduced element of `N̄` has `m ≥ 2`, with all `i_j ≠ 0`.
+     - *Sections.* `a^(2k) = (a^k, a^k, a^(2k))` and `a^(2k+1) = (0 1)(a^k, a^(k+1), a^(2k+1))`, so sections of
+       `a^i` have length `≤ |i|`. The section of `b` is `b` at `0` and trivial elsewhere.
+     - *Strict decrease at every vertex.* Apply `w` right to left at a vertex `x`.
+       - A `b` survives, contributing itself, only if it reads `0`, and then the letter stays `0`.
+       - `a^i` maps `0` to `0` iff `i` is even.
+       - So either some `b` dies, or `a^(i_m)(x) = 0` and every interior exponent `i_1, …, i_(m−1)` is even.
+         There are `m − 1 ≥ 1` of them, and each is replaced by `i_j/2`.
+       - Either way `L(w|_x) ≤ L(w) − 1`.
+     - *Induction on `L`.* Lift a cyclically reduced relator `w̄ ∈ N̄` to `ŵ ∈ F`. Its free-word sections are
+       relators whose `Γ`-images have smaller `L`, so they lie in `M = ⟨⟨b²⟩⟩_lift` by induction. `ŵ` has trivial
+       root permutation, so `ŵ ∈ M` by lift-closure. Relators trivial in `Γ` lie in `⟨⟨b²⟩⟩ ⊆ M`.
+     - *Conclusion.* `N_Q = M`. `lift-ideal-criterion-sufficiency-holds-for-infinite-state` gives `V_3(Q)`
+       finitely presented, and the transfer lemma gives the simple host.
+     - *What it shows.* `Q` is not contracting (`a^k|_(h^j) = a^k`), so FP2 does not apply. Whether `Q` is
+       finitely presented is unknown, so FP1 may not apply either. The hole mechanism of Bartholdi–Mitrofanov is
+       therefore **compatible with (c)**: halving of the digit exponents supplies the contraction that the
+       isometric branch at `h` lacks.
+   - **Still open for the full increment loop `G_1`.** The same survival analysis applies after adding `t`, `u`,
+     the wall `1`, and `x, y ∈ R`.
+     - Write `a' = u a u` etc. Along `†`-paths, only `⟨s_*, s_*^u⟩` persists: every other generator dies at a
+       `†`.
+     - So (c) for `G_1` reduces to controlling the relators of the two-odometer group `⟨s_*, s_*^u⟩`. Its
+       digits are `{0, 𝐢₁}` and `{1, 𝐢₁}`, and each odometer is stopped by the other's private digit.
+     - The finitely many persistent relators, such as `[s_*, t]`, go into `R`.
+   - **The two-odometer group** (lane, by hand, unreviewed; addendum 2026-09-19). Put `α = s_*` and
+     `β = s_*^u`.
+     - *Its own tree.* Both fix `†₁, †₂` and have themselves as sections there, so the markers are transparent to
+       `O = ⟨α, β⟩`. On `{0, 1, 𝐢₁}^*`, with sections at `0, 1, 𝐢₁`, `O` is the bounded automaton group
+       `α = (0 𝐢₁)(α, 1, 1)`, `β = (1 𝐢₁)(1, β, 1)`.
+     - *Consequences.*
+       - `O` is contracting (Bondarenko–Nekrashevych) and amenable (Bartholdi–Kaimanovich–Nekrashevych), so it is
+         not free.
+       - `α² = (α, 1, α)` and `β² = (1, β, β)`, so `[α², β²] = (1, 1, [α, β])` with `[α, β] ≠ 1`. So `O` has
+         nontrivial rigid stabilizers.
+       - On its own tree, FP2 gives `V_3(O)` finitely presented.
+     - *The obstruction inside `G_1`.* In `G_1`'s 5-letter recursion, every word `w` in `α, β` satisfies
+       `w|_(†₁) = w`, since both letters pass `†₁` with themselves as section.
+       - So relators of `O` are **persistent**: lift-closure can never produce one from its own sections.
+       - For (c) in `G_1`, all relators of `O` must therefore lie in the normal closure of finitely many
+         relators and of lift-derived words involving `t`, `s_†`, `u`.
+       - Contracting weakly branch groups are typically not finitely presented (Bartholdi's L-presentation
+         theorem; whether its hypotheses hold for `O` is not checked). If `O` is not finitely presented, then
+         `t`, `s_†`, `u` must supply infinitely many independent relations, and **(c) plausibly fails for `G_1`.**
+         Not proved either way.
+   - **What the increment loop teaches for a hard machine.**
+     - The hole dynamics of `s_†` is harmless for (c): the core theorem above.
+     - The danger is the rule convention. Counter and state generators pass the markers `†` with themselves as
+       section, by BM's default. So the whole counter subgroup of any machine is persistent along `†`-paths and
+       must be finitely presented on its own terms.
+     - *Design lever for a hard machine.* Make `†₁, †₂` walls for the state and counter generators, as BM already
+       do for the letter `1`: `Φ(†,g) = (ε,†)` for `g ∉ {t, s_†, u}`. That removes the persistent branch, while
+       the halting marker is still written and toggled at the head.
+     - Whether Propositions 2.3–2.4 survive this change is **unchecked**. The reverse run `(s_* x y)^(-1)` must
+       still reach and undo the prefix before the marker. This is the next concrete step toward a hard machine
+       with (c).
+3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
+   finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
+   finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
+   finitely generated lift ideal.
+   - For Bartholdi–Mitrofanov groups, (c) implies a decidable word problem, so any proof of (c) must use a
+     decidability hypothesis on `M`.
+   - The natural candidate is decidable halting from every configuration, the analogue of the sym-universally
+     halting machines Kharlampovich–Myasnikov–Sapir needed (arXiv:1204.6506).
+   - Whether finite presentation of `V_d(G)` also fails there is not settled. The necessity half of the
+     criterion is proved only for finite-state `G`.
+
+**Heuristic for (c), not proved.** In `⟨Φ_M⟩` the section map is one machine step. So lifting a relator of one
+configuration yields relators of the next configurations of the same run. That suggests a finite set of
+transition-local relators, plus finitely many halting relators, when `M` halts decidably from every
+configuration.
 
 ## Robustness: this route survives any cap on finitely presented self-similar groups
 
-Elementary, lane proof.
-1. **A cap for finitely presented simple groups refutes Boone–Higman.** A negative answer to Birget's
-   question would give one recursive bound for all finitely presented simple groups. By
-   `complex-fp-simple-groups-from-boone-higman`, that refutes Boone–Higman, so a negative answer is exactly
-   as strong as a counterexample to Boone–Higman.
+Elementary, lane proof; bh-ref-e checked items 2–4.
+1. **A cap refutes Boone–Higman.** A cap, i.e. a positive answer to Birget's question, would give one
+   recursive bound for all finitely presented simple groups. By `complex-fp-simple-groups-from-boone-higman`,
+   that refutes Boone–Higman.
 2. **A cap for finitely presented self-similar groups is not known to conflict with Boone–Higman.**
    - Those groups are residually finite (`self-similar-hosts-contain-only-residually-finite-groups`).
    - Boone–Higman's hosts are infinite simple, hence never residually finite.
-   - No implication from Boone–Higman to hard finitely presented self-similar groups is known.
 3. **What such a cap would kill.**
-   - It would kill `fp-self-similar-groups-with-arbitrarily-hard-word-problem`, the route
-     `arbitrarily-complex-fp-simple-via-hard-self-similar-groups`, and the payoff of
-     `two-counter-kms-groups-are-self-similar`.
-   - With (a) and (b), it would refute `decidable-fg-self-similar-groups-embed-in-fp-self-similar`: a
-     finitely presented self-similar host of `G` would beat every bound.
-4. **It would not touch this route.** `V_d(G)` contains `V_d`, so it is never residually finite, and it lies
-   outside the capped class.
+   - It would kill `fp-self-similar-groups-with-arbitrarily-hard-word-problem` and the route
+     `arbitrarily-complex-fp-simple-via-hard-self-similar-groups`.
+   - With (a) and (c), it would refute `decidable-fg-self-similar-groups-embed-in-fp-self-similar`.
+4. **It would not touch this route.** `V_d(G) ⊇ V_d` is never residually finite.
 
 ## Classical hard groups are not inputs to either self-similar channel
 
 Collins–Miller's aspherical constructions, Boone–Britton groups, and S-machine groups (Sapir–Birget–Rips;
-Birget–Olshanskii–Rips–Sapir, Annals 2002) give finitely presented groups with any prescribed degree or
-complexity. But every subgroup of `Aut(T_d)` is residually finite, and KMS state that their groups are "the
-first examples of an algorithmically complex finitely presented residually finite groups" (arXiv:1204.6506,
-abstract). So as of 2013 none of the classical families was known to be residually finite. They can enter
-neither the self-similar channel nor this one as they stand. They matter only for the non-self-similar
-channels the root already tracks: type (A) actors and Leavitt unit groups.
-
-## First tests
-
-1. **Calibrate (c) on the smallest machine,** one halting state and no instructions: is `N_M` a finitely
-   generated lift ideal?
-2. **The same for a one-counter loop,** checking whether the halting-configuration relators
-   `(s_†, m, n)`, for all `m, n`, are lift-generated by finitely many.
-3. **Read Bartholdi–Mitrofanov §2 at source,** and settle what non-configuration words do. That decides
-   whether (b) needs more than decidable halting from every configuration.
+Birget–Olshanskii–Rips–Sapir) give finitely presented groups of any prescribed degree or complexity.
+- Every subgroup of `Aut(T_d)` is residually finite.
+- KMS call their groups "the first examples of an algorithmically complex finitely presented residually finite
+  groups" (arXiv:1204.6506, abstract). So as of 2013 none of the classical families was known to be residually
+  finite.
+- They matter only for the non-self-similar channels the root already tracks.
 
 ## Credit
 
-- **The family and the simulation:** Bartholdi and Mitrofanov.
-- **The machine hypotheses:** Kharlampovich–Myasnikov–Sapir.
-- **The lift-ideal criterion:** bh-invent-03 (refereed by bh-ref-q12).
-- **Naming the V_d route as untested:** bh-gate1-abstract (ed3dbbb573).
-- **Birget's question:** arXiv:math/0310335 §1, quoted in `research/artifacts/hl-bh-hard-simple-2026-09-13.md`.
-- **The finite-presentation inputs:** Scott, Nekrashevych and Zaremsky.
+- **The family and Proposition 2.4:** Bartholdi and Mitrofanov.
+- **The embedding proof that the transfer lemma reruns:** Zaremsky.
+- **FP2 and the abelianization formula:** Nekrashevych. **FP1:** Scott.
+- **The lift-ideal criterion:** bh-invent-03, refereed by bh-ref-q12.
+- **Naming the V_d route as untested:** bh-gate1-abstract.
+- **The encoded-input repair, the redundancy of (b) via Kuznetsov, and the polarity fix:** bh-ref-e.
+- **Machine hypotheses:** Kharlampovich–Myasnikov–Sapir.

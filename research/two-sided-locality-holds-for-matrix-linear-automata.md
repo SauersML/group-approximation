@@ -13,8 +13,13 @@ distinct_from:
 ---
 
 **Status.**
-- Items 1–4(a) are ESTABLISHED (lane bh-invent-16, 2026-09-19; elementary; not reviewed; no priority
-  claimed).
+- Items 1–4(a) are ESTABLISHED (lane bh-invent-16, 2026-09-19; elementary; no priority claimed).
+- Referee bh-ref-d (6e0fb29940): PASS with three one-line fixes, applied by bh-ra-t2 as the (RA_free) owner:
+  - 2-transitivity needs at least 3 points;
+  - the inverse step is argued through `R_x(δ_0 · 1)` and continuity;
+  - 4(a)'s last line goes through the dense set of all-closed-path points.
+
+  `End(R)` means the additive endomorphism ring `End_Z(R, +)`, a finite ring.
 - Items 4(b)–(d) are design statements, not proved.
 - The recalled inputs are:
   - Salo's finitary Ryan theorem (arXiv:1610.05487, abstract read);
@@ -30,7 +35,8 @@ distinct_from:
      transitively of all orders on finite points.
    - These constrain particular subgroups, not every pair one might choose. Commuting non-abelian pairs
      exist, for instance on independent tracks.
-   - The relative that bites: **a 2-transitive permutation group has trivial centralizer.** So the
+   - The relative that bites: **a 2-transitive permutation group on at least 3 points has trivial
+     centralizer** (`S_2` shows the bound is needed). So the
      transport group must be far from highly transitive, of regular type, as in the next item.
 2. **The pair.** Take the alphabet `R = M_2(F_2)`. For `u = Σ_j a_j t^j` in `M_2(F_2)[t, t^(-1)]` put:
    - `(L_u x)_k = Σ_j a_j x_(k−j)` (left multiplication);
@@ -57,8 +63,8 @@ distinct_from:
      the skeleton's coordinates up to some finite level `N(n)`. Then each level-`n` label layer is a
      minimal equicontinuous factor on which the lifts act by translations. So the commutator subgroup of
      the lifted group acts trivially, and a free lifted group is not faithful.
-   - (b) **The escape (design).** Transports must read the colours of **arbitrarily high-level**
-     boundaries crossed. Those colours are locally visible, and they make the transport cocycle
+   - (b) **The escape (design).** Transports must read the colors of **arbitrarily high-level**
+     boundaries crossed. Those colors are locally visible, and they make the transport cocycle
      continuous over the tiling but discontinuous over the odometer, at the seams. The label layer is then
      a finite extension of the skeleton that need not be equicontinuous, which is the Sturmian `×_c S_3`
      phenomenon.
@@ -77,8 +83,10 @@ distinct_from:
 **2(a).** The rules are linear with finitely many nonzero coefficients, so they are cellular automata,
 and they commute with the shift. Composition is convolution with matrix coefficients: `L_u L_v x = u(vx)`
 and `R_u R_v x = (xv)u`. Commutation is associativity, `u(xv) = (ux)v`. `L_(u^(-1))` inverts `L_u`. If
-`L_u` is invertible, its inverse is a cellular automaton commuting with all `R_v` and with the shift,
-and applying it to `δ_0 · 1` shows it equals `L_w` with `wu = 1`.
+`L_u` is invertible, its inverse `ι` is a cellular automaton commuting with all `R_v` and with the shift.
+Every finitely supported `x` equals `R_x(δ_0 · 1)`, so `ι(x) = R_x(ι(δ_0 · 1)) = w · x` with
+`w = ι(δ_0 · 1)`. This holds on a dense set, hence everywhere by continuity, and `ι = L_w` with `wu = 1`
+(fix from bh-ref-d).
 
 **2(b).** `SL_2(F_2[t]) ⊆ U` is a nontrivial amalgam (Nagao), so it contains non-abelian free subgroups.
 Alternatively, it is a linear group that is not virtually solvable, and the Tits alternative applies.
@@ -111,7 +119,10 @@ Alternatively, it is a linear group that is not virtually solvable, and the Tits
 - *Equicontinuity.* By Theorem 1 of the collapse node (a finite group is profinite), `Y_n` is
   equicontinuous. It is minimal as a factor of `Y`, hence a rotation of a compact abelian group, and its
   automorphisms are translations. So the lifted group acts on every `Y_n` through an abelian group.
-- *Conclusion.* Lifts change only labels, so commutators act trivially on `Y`. ∎
+- *Conclusion.* Lifts change only labels. On points whose paths are all closed, a configuration is
+  determined by the skeleton and all loop labels, so commutators act trivially there. In a minimal `Y` such
+  points have dense orbits, and commutators commute with the shifts. So by continuity they act trivially on
+  all of `Y` (fix from bh-ref-d). ∎
 
 ## Lesson for general BH
 
@@ -124,7 +135,7 @@ Alternatively, it is a linear group that is not virtually solvable, and the Tits
   two-sided locality. This matches the earlier infinite-dimensionality requirement from the other side.
 
 **What the data layer must be.**
-- Transports must be driven by skeleton features of unbounded level (seam colours), not by finitely many
+- Transports must be driven by skeleton features of unbounded level (seam colors), not by finitely many
   hierarchy levels.
 - The layer must sit above the proximal skeleton, not over the maximal equicontinuous factor. This is
   where neither the profinite collapse nor the commutator squeeze applies.
