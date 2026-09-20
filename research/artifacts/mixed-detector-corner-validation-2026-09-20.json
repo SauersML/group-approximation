@@ -1,0 +1,58 @@
+{
+  "revision": "1168db287f0819f9aa331bf3bca7ad86981e623e",
+  "seconds": 8.72,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "lcs-perfect-quantum-completeness-re-hardness": "OPEN",
+    "lcs-weighted-conjugacy-halting-gap-source": "OPEN",
+    "hrf-mixed-detectors-have-balanced-edge-spectra": "ESTABLISHED",
+    "hrf-mixed-nine-dimensional-maps-kill-five-mark": "ESTABLISHED",
+    "lcs-auth-three-controls-lose-common-corner-weight": "ESTABLISHED"
+  },
+  "touched_nodes": [
+    "hrf-mixed-detectors-have-balanced-edge-spectra",
+    "hrf-mixed-detectors-have-balanced-edge-spectra-proof",
+    "hrf-mixed-nine-dimensional-maps-kill-five-mark",
+    "hrf-mixed-nine-dimensional-maps-kill-five-mark-proof",
+    "lcs-auth-three-controls-lose-common-corner-weight",
+    "lcs-auth-three-controls-lose-common-corner-weight-proof",
+    "lcs-weighted-conjugacy-halting-gap-source"
+  ],
+  "duplicates": [],
+  "surviving_status_changes": {},
+  "removed_nodes": [],
+  "added_nodes": [
+    "hrf-mixed-detectors-have-balanced-edge-spectra",
+    "hrf-mixed-detectors-have-balanced-edge-spectra-proof",
+    "hrf-mixed-nine-dimensional-maps-kill-five-mark",
+    "hrf-mixed-nine-dimensional-maps-kill-five-mark-proof",
+    "lcs-auth-three-controls-lose-common-corner-weight",
+    "lcs-auth-three-controls-lose-common-corner-weight-proof"
+  ],
+  "archived_route_bytes_identical": {},
+  "schema_hygiene_status_changes": {},
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "frontier_output": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X/mixed-corner-FRONTIER.md",
+  "frontier_lock_policy": "empty snapshot lock map; actual pinned Git history, no fabricated baseline",
+  "node_count": 34289,
+  "baseline_revision": "b7fd1c7284f9839d55e1a92ea31f029bedb349f8",
+  "source_commit": "2d55562521",
+  "validated_tree": "21a8978fd6829f8f307902c8ec72b667baf90423",
+  "source_commit_tree_matches_validation": true,
+  "mathematical_review": "The three new claims have complete written proofs and internal cross-review, with no new numerical experiment. The degree-nine result depends on the previously independently checked Sym4 certificates. No Lean or external human certification.",
+  "baseline_source_commit": "e6c57d4ad3",
+  "baseline_source_tree": "1fd09b13980716fa99de049103a83c6aff7755ff"
+}

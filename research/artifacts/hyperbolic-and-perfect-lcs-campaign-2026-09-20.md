@@ -287,3 +287,20 @@ tr(P)<=3/N+9 beta^m, beta<1, with an approximate version as well.
 The density and quantitative arguments passed independent internal
 review. They do not exclude new observables or nonreducing decoders,
 and supply no HALT-positive source. Both main targets remain OPEN.
+
+The [mixed-detector/common-corner validation report](mixed-detector-corner-validation-2026-09-20.json)
+binds commit `2d55562521` to tree
+`21a8978fd6829f8f307902c8ec72b667baf90423`: 34,289 nodes, six added
+nodes, zero schema errors, no duplicates, and no pre-existing status
+changes. Its one-CPU MSI check took 8.720 seconds. The three new
+claims are ESTABLISHED; both main roots and the weighted halting
+source remain OPEN. New mathematics in this tranche is symbolic,
+not a newly run numerical search.
+
+Next constructive tests: on the triangle side, the first unexcluded
+characteristic-19 mixed placements have dimension ten, with vertex
+types drawn from 2L4, L0+L8, and L2+L6, not all 2L4. On the source
+side, a genuinely different decoder must avoid requiring a uniformly
+positive corner reducing all the fixed controlled ports while preserving
+every honest model. Neither this particular model-preservation property
+nor reduction of these ports follows from bare YES-instance completeness.
