@@ -3,14 +3,24 @@ rg: 2
 id: halting-core-mark-is-forced-at-pointer-exits
 kind: claim
 title: In every anchored configuration the halting core mark on E-cosets is forced in both directions by transport plus one exit rule at the top vertex of each E-coset's subtree; the exit rule needs no computation for outgoing pointers (P ⊆ A°) and only a rope-and-residue split reader for incoming pointers, so the machine enters only at the sink
-requires:
-  - digit-paths-only-transport-the-halting-core-mark
-  - reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
-  - coupled-rope-reader-has-nested-one-bit-fibres
 distinct_from:
   digit-paths-only-transport-the-halting-core-mark: that computes the core bit of an E-coset with nonempty trace at the sink vertex and leaves cosets with empty trace open; this forces the bit for every E-coset, empty trace included, by exit rules at non-sink vertices.
   coupled-rope-reader-has-nested-one-bit-fibres: that couples the free chains of the numeral reader on K_M; this uses its forced rope marks as the only input of the incoming-pointer exit rule, and records why its linking pattern cannot be copied onto E-cosets.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - digit-paths-only-transport-the-halting-core-mark
+  - reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
+  - coupled-rope-reader-has-nested-one-bit-fibres
+```
 
 **ESTABLISHED for Theorem 1 and Lemma 2 (lane proof, bh-g1-universal-point, 2026-09-19; elementary, not
 reviewed).** Part 3 is OPEN. This is the digit-path half of the core-mark split on seed-tower.md.

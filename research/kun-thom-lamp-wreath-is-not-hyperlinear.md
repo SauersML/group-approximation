@@ -13,15 +13,18 @@ distinct_from:
   kun-thom-wreath-is-not-rational-character-approximable: that excludes approximation by rational characters, which is weaker than excluding all hyperlinear approximations.
   kun-thom-wreath-weak-mf: that concerns operator-norm (weak MF) approximation of the same wreath; this concerns normalized Hilbert--Schmidt approximation.
 artifacts:
+  - research/artifacts/liu-analytic-leaves-proof-acceptance-2026-09-20.md
+  - research/artifacts/liu-section-six-acceptance-and-thom-bypass-2026-09-20.md
+  - research/artifacts/kun-thom-exact-hyperlinear-radical-2026-09-20.md
   - research/artifacts/gq-nh-record-consistency-sweep.md
   - research/artifacts/liu-cairn-integration-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
   - research/artifacts/liu-internality-normalization-audit-2026-09-20.md
 ---
 
-**OPEN (proof claimed, under review).**
+**ESTABLISHED through the checked written Liu internality chain, Thom's conditional normalization theorem, and the explicit lamp argument.** This is not a new Lean certificate or external human review of the paper. The stronger one-model normalization theorem in Liu Section 7 remains a separate open import and is bypassed here.
 
-J. Liu, *Nonhyperlinear groups exist*, dated September 20, 2026, posted at
+Jihao Liu, *Nonhyperlinear groups exist*, dated September 20, 2026, posted at
 https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf, claims the
 unconditional theorem below.
 
@@ -31,17 +34,14 @@ unconditional theorem below.
   reviews; the records contain no formal proof-assistant certification or external human
   verification."
 
-This node records the claim. It stays OPEN until independent reviews of the proof are
-complete: §§3–5, and §§6–8 checked against Thom's preprint.
+The initial record kept the claim open pending separate reviews. Full written reconstructions of the required §§3–6 inputs, independent assembly review, and a checked Thom bypass now close the graph derivation. The exact fibre-parity hyperlinear radical is recorded separately as a stronger consequence for this same wreath.
 
 **Integrated review update, 2026-09-20.** Three targeted audits now cover the
 block construction, internality/normalization (including Thom comparison), and
 the separate Leavitt application. They found no concrete gap in the inspected
 steps but do not certify the entire paper or all imported inputs. The shared
 analytic claim is `kazhdan-commutants-are-internal`, explicitly credited to
-Jihao Liu. Conditional routes now connect it through all-trace normalization
-to this exact marked-lamp statement and the existing root. The long imports
-remain OPEN rather than being accepted by a blanket citation route.
+Jihao Liu. That first-pass uncertainty is superseded by the acceptance supplements cited above. The routes through all-trace normalization now derive this exact marked-lamp statement and the existing root. No blanket citation route was used to accept the whole paper.
 
 ## Statement
 
@@ -80,7 +80,7 @@ Theorem 8.3, verbatim, with `‖x‖_(2,d) = (Tr(x*x)/d)^(1/2)`:
 
 ## Credit
 
-- **J. Liu (Danus system), 2026-09-20:**
+- **Jihao Liu (Danus system), 2026-09-20:**
   - Theorem 1.2 = Theorem 6.7, internality of Kazhdan commutants in tracial matrix
     ultraproducts, in the original dimensions. The paper presents it as a positive answer to
     Alekseev--Thom, arXiv:2608.05362, Open Problem 6.2(a), the centralizer problem.

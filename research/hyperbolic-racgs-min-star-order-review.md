@@ -4,10 +4,17 @@ id: hyperbolic-racgs-min-star-order-review
 kind: claim
 title: Referee review of 3b86cb5549 (every non-elementary hyperbolic RACG, and its commensurability class, is a contracting RSG) — the cone-vertex splitting, the corrected "every simplex is a state" (r ∉ St(s) suffices), Lemma K and the reachability induction are all correct; the resulting state graph is strongly connected and not a cycle, which is exactly the (IRR) criterion the refereed spread-nerve proof used; the hexagon-disk example and its bad order check
 distinct_from:
-  hyperbolic-racgs-contracting-rsg-via-min-star-order: that is the lane proof under review; this checks it line by line against the refereed spread-nerve proof.
-  hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof: that is the refereed proof under the spread condition (a); this confirms the new proof reuses its Steps 1, 2 and 4 legitimately and reaches the same (IRR) criterion without (a).
   kourovka-18-48-d-adic-review: that reviews the 18.48 node; this reviews the RACG node.
 ---
+
+## Route comparison record
+
+The following comparisons were formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Their text is preserved without
+adding a proof dependency or accepting a route:
+
+- [hyperbolic-racgs-contracting-rsg-via-min-star-order](hyperbolic-racgs-contracting-rsg-via-min-star-order.md): that is the lane proof under review; this checks it line by line against the refereed spread-nerve proof.
+- [hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof](hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof.md): that is the refereed proof under the spread condition (a); this confirms the new proof reuses its Steps 1, 2 and 4 legitimately and reaches the same (IRR) criterion without (a).
 
 **ESTABLISHED (referee bh-ref-c, 2026-09-19; review of `hyperbolic-racgs-contracting-rsg-via-min-star-order` and
 `hyperbolic-racgs-are-contracting-rsgs` in 3b86cb5549, lane bh-q11-beyond).** Verdict: **PASS.**

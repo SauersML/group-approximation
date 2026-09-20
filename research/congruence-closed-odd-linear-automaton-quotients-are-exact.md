@@ -3,13 +3,23 @@ rg: 2
 id: congruence-closed-odd-linear-automaton-quotients-are-exact
 kind: claim
 title: Conditionally on strong approximation and the normal-subgroup structure of SL_2 over local fields, every quotient of a finitely generated Zariski-dense subgroup of SL_2(F_q[t^±1]) (q odd, q ≥ 5) by a normal subgroup closed in the congruence topology is exact; since the periodic topology of matrix-linear automata is that congruence topology, one-sided T2 with odd-characteristic linear lifts lifts only exact groups, and Q_lin stays open only in characteristic 2
-requires:
-  - one-sided-t2-lift-groups-are-periodically-closed-quotients
-  - two-sided-locality-holds-for-matrix-linear-automata
 distinct_from:
   one-sided-t2-lift-groups-are-periodically-closed-quotients: that poses Q_lin and shows the regular exactness argument fails for sections; this answers the odd-characteristic analogue of Q_lin negatively, conditionally, by a different argument through strong approximation and normal subgroups of SL_2 over local rings.
   pointer-encodings-give-non-linear-two-sided-locality: its item 4 proves exactness of lifts commuting with linear regular transports, via subgroups of bounded-degree linear groups; this handles quotients by congruence-closed normal subgroups, where only sections are available.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - one-sided-t2-lift-groups-are-periodically-closed-quotients
+  - two-sided-locality-holds-for-matrix-linear-automata
+```
 
 **CONDITIONAL** (lane bh-ra-t2, 2026-09-19; lane proof, not reviewed; no priority claimed). It holds
 under three inputs. Source status, from bh-ref-d's check (c976a1368e):

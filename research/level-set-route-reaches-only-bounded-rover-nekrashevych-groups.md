@@ -3,13 +3,23 @@ rg: 2
 id: level-set-route-reaches-only-bounded-rover-nekrashevych-groups
 kind: claim
 title: For a finitely generated contracting self-similar group G, every element of V_{d,r}(G) has zero defect, and V_{d,r}(G) is a bounded RSG exactly when the non-identity nucleus graph has no path between distinct cycles and no strongly connected component other than a single cycle; so the bounded-RSG F_infinity theorems (defect-free, torsion-defect, level-set) reach exactly the bounded-automata case, already proved by Belk-Hyde-Matucci, and the open part of the Skipper-Zaremsky question is the exponential-activity case
-requires:
-  - bounded-defect-free-full-contracting-rsgs-are-f-infinity
 distinct_from:
   contracting-rover-nekrashevych-groups-are-f-infinity: that is the Skipper-Zaremsky question itself; this shows which part of it the bounded-RSG machinery can reach, and that the part it reaches is already known.
   level-set-join-complexes-are-highly-connected: that proves F_infinity for bounded RSGs with Z-valued interval defect; this shows Roever-Nekrashevych groups never have nonzero defect, so that theorem's new content never applies to them.
   contracting-groups-have-dying-kernel-covers-of-type-fn: that is the cover route to the same question; this locates the case that route still has to supply.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bounded-defect-free-full-contracting-rsgs-are-f-infinity
+```
 
 **ESTABLISHED (lane proof, bh-sz-vdg, 2026-09-19; elementary; Referee bh-ref-e 2026-09-19, PASS with repairs,
 `rover-nekrashevych-activity-and-level-set-scope-review`; repairs applied: first-return loops in case (E), BHM credit

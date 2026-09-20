@@ -3,14 +3,24 @@ rg: 2
 id: elliptic-singularity-is-a-marker-mismatch
 kind: claim
 title: For a finite-order element g whose nontrivial powers are generators, the atoms of the neighborhoods of the orbit <g> form a g-invariant chain that interleaves both the atoms of the balls around 1 and their g-translates, and g is singular at a point exactly when the two markers in these intervals disagree infinitely often; a fixed tree with Cantor boundary can carry continuum many singular points, so a bounded host for a Kazhdan group needs more than the shape of its fixed trees
-requires:
-  - bbmz-singularity-is-a-recurrent-coincidence
-  - racg-generators-are-singular-over-their-wall-trees
-  - generalized-triangle-group-hosts-reduce-to-fixed-trees
 distinct_from:
   bbmz-singularity-is-a-recurrent-coincidence: that proves the sandwich and the RACG coincidence criterion; this gives a criterion for elliptic generators in any hyperbolic group, built from the orbit of the generator instead of walls.
   generalized-triangle-group-hosts-reduce-to-fixed-trees: that reduces H_31 to its generators and computes their fixed trees; this replaces the two sides of a wall by the orbit and records that fixed-tree shape alone cannot decide boundedness.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bbmz-singularity-is-a-recurrent-coincidence
+  - racg-generators-are-singular-over-their-wall-trees
+  - generalized-triangle-group-hosts-reduce-to-fixed-trees
+```
 
 **Status.**
 - **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; not reviewed): Proposition H and Remark I.

@@ -5,9 +5,16 @@ kind: claim
 title: Referee review of 43a9564ac4 (Kourovka 19.46 — the CT(Z) subshift-factor route and the recurrent-tail obstruction) — PASS with minor repairs; the problem text matches, Matte Bon's input is confirmed at source, items 1–6 of the recurrent-tails node check (periodic points are rational or lie in pointwise-periodic classes; bounded-scale recurrence closes into an affine-isometric set), and the north-south element's f.g. periodic subgroups are finite
 distinct_from:
   ct-p-z-recurrent-slope-tails-force-isometric-minimal-sets: that is a lane node under review; this checks it item by item.
-  ct-z-periodic-groups-via-subshift-factors-of-elements: that is the lane route under review; this checks its lifting step and its input.
   ct-z-has-an-infinite-finitely-generated-periodic-subgroup: that is the OPEN target node; this checks its problem text and its "What is known" bullets.
 ---
+
+## Route comparison record
+
+The following comparison was formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Its text is preserved without
+adding a proof dependency or accepting a route:
+
+- [ct-z-periodic-groups-via-subshift-factors-of-elements](ct-z-periodic-groups-via-subshift-factors-of-elements.md): that is the lane route under review; this checks its lifting step and its input.
 
 **ESTABLISHED (referee bh-ref-e, 2026-09-19; review of three lane nodes by bh-1946, landed in
 43a9564ac4).**

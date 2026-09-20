@@ -225,6 +225,122 @@ class HeadBaselineTests(unittest.TestCase):
         self.assertIn("left-claim", cycles[0])
         self.assertIn("right-claim", cycles[0])
 
+    def test_missing_requires_cannot_establish_target_or_consumers(self):
+        self.claim("target-claim")
+        self.claim("consumer-claim")
+        self.claim("valid-claim")
+        self.route("valid-proof", "valid-claim")
+        self.route("consumer-proof", "consumer-claim", ["target-claim"])
+        self.write("bad-proof", "---\nrg: 2\nid: bad-proof\nkind: route\n"
+                   "title: Unfinished proof\ntarget: target-claim\nstatus: OPEN\n"
+                   "---\nOutstanding proof obligations.\n")
+        graph, errors = self.current()
+        self.assertTrue(any(rule == "requires" for _, rule, _ in errors))
+        self.assertTrue(any(rule == "unknown-key" for _, rule, _ in errors))
+        self.assertEqual(graph.nodes["bad-proof"].status, "INVALIDATED")
+        self.assertIn("schema-invalid route", graph.nodes["bad-proof"].status_reasons[0])
+        self.assertEqual(graph.nodes["target-claim"].status, "OPEN")
+        self.assertEqual(graph.nodes["consumer-claim"].status, "OPEN")
+        self.assertEqual(graph.nodes["valid-claim"].status, "ESTABLISHED")
+        self.assertNotIn("target-claim", graph.provenance)
+        self.assertIn("target-claim", graph.frontier)
+
+    def test_invalid_route_metadata_never_becomes_a_direct_proof(self):
+        self.claim("target-claim")
+        self.claim("known-claim")
+        self.route("known-proof", "known-claim")
+        base = ("---\nrg: 2\nid: bad-proof\nkind: route\ntitle: Proposed proof\n"
+                "target: target-claim\nrequires: []\n---\nProof text.\n")
+        cases = {
+            "unknown premise": ("requires: []", "requires: [missing-claim]"),
+            "mixed unknown premise": ("requires: []", "requires: [known-claim, missing-claim]"),
+            "route premise": ("requires: []", "requires: [known-proof]"),
+            "null premises": ("requires: []", "requires: null"),
+            "scalar premises": ("requires: []", "requires: known-claim"),
+            "integer premise": ("requires: []", "requires: [17]"),
+            "duplicate premises": ("requires: []", "requires: [known-claim, known-claim]"),
+            "self target premise": ("requires: []", "requires: [target-claim]"),
+            "missing target": ("target: target-claim\n", ""),
+            "unknown target": ("target: target-claim", "target: missing-claim"),
+            "route target": ("target: target-claim", "target: known-proof"),
+            "list target": ("target: target-claim", "target: [target-claim]"),
+            "unknown key": ("requires: []", "requires: []\nstatus: OPEN"),
+            "wrong schema": ("rg: 2", "rg: 1"),
+            "missing title": ("title: Proposed proof\n", ""),
+            "wrong title type": ("title: Proposed proof", "title: [bad, title]"),
+            "missing artifact": ("requires: []", "requires: []\nartifacts: [missing.md]"),
+        }
+        for name, (old, new) in cases.items():
+            with self.subTest(name=name):
+                self.write("bad-proof", base.replace(old, new))
+                graph, errors = self.current()
+                self.assertTrue(any(sev == "error" for sev, _, _ in errors))
+                self.assertEqual(graph.nodes["bad-proof"].status, "INVALIDATED")
+                self.assertEqual(graph.nodes["target-claim"].status, "OPEN")
+                self.assertEqual(graph.nodes["known-claim"].status, "ESTABLISHED")
+                self.assertNotIn("target-claim", graph._solve({"known-claim"})[0])
+                if name == "mixed unknown premise":
+                    self.assertEqual(graph.route_requires["bad-proof"],
+                                     ["known-claim", "missing-claim"])
+
+    def test_raw_graph_and_unhashable_premises_fail_closed(self):
+        self.claim("target-claim")
+        self.route("bad-proof", "target-claim")
+        nodes = cairn.load_nodes([], str(self.research), str(self.repo))
+        nodes["bad-proof"].meta["requires"] = [{"not": "an id"}]
+        errors = []
+        cairn.lint_nodes(nodes, errors, str(self.repo))
+        self.assertTrue(any(rule == "ref" for _, rule, _ in errors))
+        # Even callers constructing Graph without lint must not admit a proof.
+        graph = cairn.Graph(nodes, [], str(self.repo))
+        self.assertEqual(graph.nodes["bad-proof"].status, "INVALIDATED")
+        self.assertEqual(graph.nodes["target-claim"].status, "OPEN")
+
+    def test_invalid_route_does_not_create_a_false_refutation_conflict(self):
+        self.claim("target-claim")
+        self.claim("refuter-claim")
+        self.route("refuter-proof", "refuter-claim")
+        target = self.research / "target-claim.md"
+        target.write_text(target.read_text().replace(
+            "root: true", "root: true\nrefuted_by: [refuter-claim]"))
+        self.write("bad-proof", "---\nrg: 2\nid: bad-proof\nkind: route\n"
+                   "title: Unfinished proof\ntarget: target-claim\n---\nPending.\n")
+        graph, errors = self.current()
+        self.assertEqual(graph.nodes["target-claim"].status, "REFUTED")
+        self.assertFalse(any(rule == "contradiction" for _, rule, _ in errors))
+
+    def test_head_baseline_preserves_schema_invalidation(self):
+        self.claim("target-claim")
+        self.write("bad-proof", "---\nrg: 2\nid: bad-proof\nkind: route\n"
+                   "title: Unfinished proof\ntarget: target-claim\n---\nPending.\n")
+        self.commit()
+        self.route("bad-proof", "target-claim")
+        current, _ = self.current()
+        previous, errors = cairn.head_graph(current)
+        self.assertEqual(current.nodes["target-claim"].status, "ESTABLISHED")
+        self.assertEqual(previous.nodes["target-claim"].status, "OPEN")
+        self.assertEqual(previous.nodes["bad-proof"].status, "INVALIDATED")
+        self.assertTrue(any(rule == "requires" for _, rule, _ in errors))
+
+    def test_cached_route_lint_errors_still_disable_derivation(self):
+        self.claim("target-claim")
+        self.route("bad-proof", "target-claim")
+        route = self.research / "bad-proof.md"
+        route.write_text(route.read_text().replace(
+            "requires: []", "requires: []\nartifacts: [missing.md]"))
+        current, errors = self.current()
+        self.assertTrue(any(rule == "artifact" for _, rule, _ in errors))
+        cache = self.repo / ".cairn"
+        cache.mkdir(exist_ok=True)
+        with mock.patch.object(cairn, "CACHE_DIR", str(cache)):
+            cairn.write_node_cache(current)
+            cached, cached_errors = cairn.read_graph_cache(
+                str(self.research), str(self.repo))
+        self.assertTrue(cached.cache_hit)
+        self.assertEqual(cached.nodes["target-claim"].status, "OPEN")
+        self.assertEqual(cached.nodes["bad-proof"].status, "INVALIDATED")
+        self.assertEqual(cached_errors, errors)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -3,13 +3,23 @@ rg: 2
 id: pcf-rational-nekrashevych-groups-are-f-infinity
 kind: claim
 title: For every post-critically finite rational map f of degree d >= 2, including sub-hyperbolic maps with critical points in the Julia set, V_{d,r}(IMG f) has type F_infinity; the cover is the orbifold fundamental group of Thurston's orbifold, and its kernel dies because short orbifold loops are elliptic while the kernel is torsion-free
-requires:
-  - wreath-recursion-thompson-groups-inherit-fn
 distinct_from:
   hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity: that covers hyperbolic PCF maps (no postcritical point in the Julia set), where the cover is the ordinary fundamental group of a planar surface; this covers every PCF map, where postcritical points in the Julia set force torsion into the cover, and replaces Nekrashevych's short-loop lemma by an orbifold version.
   contracting-rover-nekrashevych-groups-are-f-infinity: that is the Skipper-Zaremsky question for all contracting G; this settles the class of iterated monodromy groups of PCF rational maps, whatever their activity growth.
   contracting-groups-have-dying-kernel-covers-of-type-fn: that asks for dying-kernel F_n covers of every contracting group; this supplies them, of type F_infinity, for IMGs of PCF rational maps.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - wreath-recursion-thompson-groups-inherit-fn
+```
 
 **ESTABLISHED (lane proof, bh-sz-vdg, 2026-09-19).** Refereed as follows:
 - **This node:** referee bh-ref-g, PASS with repairs (`pcf-rational-nekrashevych-f-infinity-review`, 78f3553770).

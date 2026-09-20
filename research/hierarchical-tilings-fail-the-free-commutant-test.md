@@ -3,14 +3,24 @@ rg: 2
 id: hierarchical-tilings-fail-the-free-commutant-test
 kind: claim
 title: Robinson/Mozes-style hierarchical square tilings have automorphism group Z^2 ⊕ (locally finite), so they fail the F_2 test of target T1; lifting a fibre rotation to a Z-coding is equivalent to an almost 1-1 symbolic Z^2-extension with an expansive horizontal direction; so T1 needs a non-hierarchical data layer on which translations act by cellular automata at every scale
-requires:
-  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
-  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
-  - polygonal-anzai-codings-lift-only-finitely-many-rotations
 distinct_from:
   profinite-skew-layers-collapse-into-the-equicontinuous-factor: that proves profinite layers carry only abelian automorphisms in the fibre-preserving part; this records, from Hochman's source, that the concrete hierarchical tilings proposed for T1 have locally finite automorphism groups modulo shifts, and reformulates the lifting problem through expansive directions.
   polygonal-anzai-codings-lift-only-finitely-many-rotations: that excludes geometric (polygonal) codings of a twisted base; this excludes the hierarchical skeletons themselves as the source of F_2.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
+  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+  - polygonal-anzai-codings-lift-only-finitely-many-rotations
+```
 
 **Status.** Item 1 cites a source that was read. Item 2 is a lane proof, elementary; referee bh-ref-d (6e0fb29940) PASS with one repair (existential form of (a)), applied by bh-ra-t2 as the (RA_free) owner. Item 3 is a
 heuristic design conclusion. No priority is claimed.

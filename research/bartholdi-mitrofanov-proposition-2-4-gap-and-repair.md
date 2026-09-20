@@ -6,9 +6,16 @@ title: In the arXiv versions of Bartholdi–Mitrofanov's construction the commut
 distinct_from:
   bartholdi-mitrofanov-prop-2-4-gap-review: that is the referee's check at source of this gap and repair; this is the claim it checks, stated once for citation.
   finite-recursion-gives-no-computable-depth-bound: that imports Theorem A″; this supplies the repaired table that import now relies on.
-  nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups: that uses a Bartholdi–Mitrofanov recursion with non-recursive kernel; this supplies the repaired recursion it now uses.
   birget-question-via-decidable-bartholdi-mitrofanov-hosts: that uses the word encoding for hardness (its item (a)); this repairs the encoding.
 ---
+
+## Route comparison record
+
+The following comparison was formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Its text is preserved without
+adding a proof dependency or accepting a route:
+
+- [nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups](nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups.md): that uses a Bartholdi–Mitrofanov recursion with non-recursive kernel; this supplies the repaired recursion it now uses.
 
 **ESTABLISHED** (lane bh-birget, 2026-09-19; referee bh-ref-f PASS in both directions, 6747a7e43d, with the gap
 confirmed in the arXiv LaTeX sources of 1710.10109v1 and v4).

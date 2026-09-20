@@ -3,11 +3,21 @@ rg: 2
 id: word-codings-of-t2-force-finite-presentation
 kind: claim
 title: A two-sided cellular encoding by normal-form words with bounded end rewriting forces the lift group to be finitely presented (the combing argument), and fails on every finite quotient at the loop closure; so Osajda's infinitely presented non-exact groups have no word coding, and T2 through word codings would need a finitely presented, residually finite, non-exact group (none is known to us); the known encodings realize relators by local identities, spatial separation, periodicity or linear convolution, so an Osajda-type T2 needs a fifth, non-linear mechanism
-requires:
-  - pointer-encodings-give-non-linear-two-sided-locality
 distinct_from:
   pointer-encodings-give-non-linear-two-sided-locality: that constructs pointer and linear two-sided encodings and reduces T2 to a non-exact group with a two-sided encoding; this tests the natural input, Osajda's groups, proves the natural word coding cannot work, and names which relator mechanisms the known encodings use.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - pointer-encodings-give-non-linear-two-sided-locality
+```
 
 **Status.**
 - Items 1–2 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; Referee bh-ref-q12 2026-09-19: items 1 and 2(a)–(b) PASS; the "open problem" wording and item 3's classification need repairs; see the Referee section).

@@ -4,6 +4,7 @@ id: internal-corners-exhaust-kazhdan-commutants
 kind: claim
 title: "Uniform expectation lifts turn exhaustion by internal corners into full internality"
 artifacts:
+  - research/artifacts/liu-section-six-acceptance-and-thom-bypass-2026-09-20.md
   - research/artifacts/liu-internality-normalization-audit-2026-09-20.md
 ---
 
@@ -17,4 +18,4 @@ Neither nested corners nor a scalar gap uniform in k is assumed. Adjoin scalars 
 
 ## Attempts
 
-2026-09-20: equation-level inspection is recorded in the cited audit. No concrete gap was found in the inspected steps, but this import remains OPEN pending completion of its independent review. No empty-premise citation route is supplied.
+2026-09-20, initial pass: the partial audit left this claim open. The full written proof in `internal-corner-exhaustion-by-uniform-expectations` now establishes the exact conditional assertion, with Jihao Liu's authorship retained. Its stated hypotheses are not inferred by this route: the graph supplies their existence separately. This is written-proof acceptance, not new Lean verification.

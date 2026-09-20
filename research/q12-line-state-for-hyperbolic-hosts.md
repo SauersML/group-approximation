@@ -3,6 +3,18 @@ rg: 2
 id: q12-line-state-for-hyperbolic-hosts
 kind: claim
 title: State of the BBMZ Question 1.2 line for hyperbolic hosts (09-19); bounded full contracting RSGs are F_infinity for finite or rank-one interval defect, the Z^r extension needs bounded defect families, and boundaries without local cut points (all Kazhdan hyperbolic groups) have uncountable shear frontiers, so their hosts are expected to be unbounded and need a new finiteness theorem
+distinct_from:
+  hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups: that is Zaremsky's open question; this is the status record of one attack on its F_infinity half (through BBMZ Question 1.2), with grades.
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - level-set-join-complexes-are-highly-connected
   - countable-sets-never-separate-continua-without-local-cut-points
@@ -12,9 +24,7 @@ requires:
   - elliptic-singularity-is-a-marker-mismatch
   - free-z-factor-transfers-singularity
   - generalized-triangle-group-hosts-reduce-to-fixed-trees
-distinct_from:
-  hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups: that is Zaremsky's open question; this is the status record of one attack on its F_infinity half (through BBMZ Question 1.2), with grades.
----
+```
 
 **Status record** (bh-finf-hyp, 2026-09-19). Each row gives the node, its grade, and the landing.
 

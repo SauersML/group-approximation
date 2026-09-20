@@ -3,12 +3,22 @@ rg: 2
 id: shortlex-adjacent-refinement-fails-for-a-virtually-free-racg
 kind: claim
 title: One-level (indeed any bounded-level) refinement of ShortLex descent trees at adjacent bases fails for a virtually free right-angled Coxeter group with a suitable generator order, so hypothesis (M1) of the far-base node is a property of the ordered generating set, not a consequence of hyperbolicity; the obstruction is a late large letter that commutes with a blocked infinite word
-requires:
-  - shortlex-far-base-finiteness-is-the-contracting-lemma
 distinct_from:
   shortlex-far-base-finiteness-is-the-contracting-lemma: that derives rationality and the contraction criterion from (M1); this shows (M1) can fail for hyperbolic groups, so that node stays conditional.
   shortlex-cone-tiles-certify-upstream-leaving-crossing: that proves exact cone tiles (true for every group); this concerns the relation between trees at different bases, which needs more.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - shortlex-far-base-finiteness-is-the-contracting-lemma
+```
 
 **ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q12 2026-09-19: PASS, one
 repair, see the Referee section).

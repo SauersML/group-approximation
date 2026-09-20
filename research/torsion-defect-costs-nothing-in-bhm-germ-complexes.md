@@ -3,11 +3,21 @@ rg: 2
 id: torsion-defect-costs-nothing-in-bhm-germ-complexes
 kind: claim
 title: Nonzero germ defect is not a finiteness obstruction when the defects are torsion; a bounded full contracting RSG with finite defect group is F_infinity, because defect only splits the portraits of the BHM germ complex into finitely many orbits; defects at fixed singular points are always torsion, and a two-point half-shift element over the 3-shift gives an F_infinity example with defect 1 in Z/2
-requires:
-  - bounded-defect-free-full-contracting-rsgs-are-f-infinity
 distinct_from:
   bounded-defect-free-full-contracting-rsgs-are-f-infinity: that needs zero defect for BHM's localization axiom; this drops the axiom, shows BHM's complex still works when defects are torsion, and so generalizes that theorem.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bounded-defect-free-full-contracting-rsgs-are-f-infinity
+```
 
 **ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS with repairs.
 Step 3 of the proof is wrong as written and is replaced, and the Example's `τ` is not a homeomorphism of the

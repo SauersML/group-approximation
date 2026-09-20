@@ -7,19 +7,21 @@ artifacts:
   - GroupApproximation/Computability/HyperlinearUndecidabilityRoute.lean
   - GroupApproximation/Computability/HyperlinearEnumeratedHardness.lean
 distinct_from:
-  approximation-property-recognition-dichotomy: that is the established two-sided theorem; this is the assertion that side (B) is the true side, which is open and equivalent to the goal.
+  approximation-property-recognition-dichotomy: that is the established two-sided theorem; this selects side (B) using a now-established nonhyperlinear negative seed.
   non-hyperlinear-group: that asks for a group; this asks for an algorithmic impossibility, and the two are equivalent by the dichotomy, so this is the goal seen from the computability side, where MIP-star-equals-RE-style reductions can be attempted.
-  mf-recognition-undecidable: that is the MF statement and is established; this is the hyperlinear statement, which is open because no non-hyperlinear group is known.
+  mf-recognition-undecidable: that concerns operator-norm approximation; this concerns normalized Hilbert--Schmidt approximation and uses the separately proved nonhyperlinear seed.
 ---
 
-OPEN.  The set `HYP_fp` of finite presentation codes whose group is
+ESTABLISHED via `hyperlinear-undecidable-from-leavitt-negative-seed`. The set `HYP_fp` of finite presentation codes whose group is
 hyperlinear is not computable.
+
+The new negative seed uses Jihao Liu's [Theorem 1.2/6.7](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf), through the credited Cairn Leavitt application (and Andreas Thom's conditional normalization theorem on that route), with Huynh Viet Khanh's finite-presentation import kept separate. This is a consequence of the existing Rice theorem, not new compiler machinery. Pi^0_2-completeness on **finite** presentations remains a separate open assertion; the positive branch has not been supplied.
 
 By [[approximation-property-recognition-dichotomy]] this is equivalent to
 the existence of a non-hyperlinear group (the converse direction, a
 non-hyperlinear group makes hyperlinearity Markov, is clause (a) of
-[[second-level-rice-theorem-for-local-approximation-properties]] and is not
-recorded as a route so that the graph stays acyclic), and once true it automatically
+[[second-level-rice-theorem-for-local-approximation-properties]] and was not
+previously recorded as a route so that the graph stayed acyclic; the new route instead uses the independently established specific Leavitt seed), and it automatically
 strengthens to `Pi^0_2`-completeness of hyperlinearity on two-generator
 recursive presentations.  The value of stating it separately is the attack
 surface: a proof need not exhibit a group.

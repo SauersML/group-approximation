@@ -3,16 +3,26 @@ rg: 2
 id: separable-subgroups-are-z-semilocal-root-closed
 kind: claim
 title: A homomorphism from Z_(S) into a residually finite group is determined by the image of 1, and every separable subgroup containing f(a) contains f(aZ_(S)); so tree actions with separable vertex stabilizers always put Z_(S) in a vertex group, and edges with infinitely many relative root primes help (SL) only through non-separable vertex groups
-requires:
-  - z-semilocalized-embeds-in-fp-rf-group
-  - z-localized-fixes-a-vertex-or-end-of-every-tree
-  - finite-root-prime-splittings-never-create-z-semilocal
-  - bounded-root-primes-close-under-extensions-and-geometry
 distinct_from:
   finite-root-prime-splittings-never-create-z-semilocal: that puts the smaller copy Z_(S ∪ P) in a vertex group when the edge inclusions have finitely many relative root primes P, while Z_(S) itself may climb a ray at primes of P; this does it when the vertex groups are separable, whatever the edge inclusions, and so settles route (b) outside non-separable splittings.
   bounded-root-primes-close-under-extensions-and-geometry: that is a census by root counting; this is a profinite mechanism, so it applies to separable subgroups of any group and to every residually finite quotient.
   z-semilocalized-embeds-in-fp-rf-group: that records that 1 in Z_(S) has S-order in every finite quotient; this turns that fact into uniqueness of Z_(S)-structures and root-closure of separable subgroups.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - z-semilocalized-embeds-in-fp-rf-group
+  - z-localized-fixes-a-vertex-or-end-of-every-tree
+  - finite-root-prime-splittings-never-create-z-semilocal
+  - bounded-root-primes-close-under-extensions-and-geometry
+```
 
 **ESTABLISHED** (lane proof; bh-invent-12, 2026-09-19; elementary; not independently reviewed). Items 1–2 are
 folklore in spirit: they sharpen the standard facts that residually finite groups have no nontrivial divisible

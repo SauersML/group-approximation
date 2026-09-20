@@ -3,15 +3,25 @@ rg: 2
 id: hierarchical-recursion-relaxes-t2-to-one-sided-locality
 kind: claim
 title: Realizing level-k relators on level-k supertiles (Robinson/Mozes-style recursion) is compatible with the commutator squeeze and leaves the tower law ample room, but collapses by the profinite theorem unless transports read seams of unbounded level; its real gain is that a self-simulating layer can verify transports as computable relations, so T2 needs only ONE-sided locality (local lifts), and the combing obstruction survives there, so the crux becomes a one-sided periodic-orbit coding of a non-exact group
+distinct_from:
+  word-codings-of-t2-force-finite-presentation: that classifies relator mechanisms in local two-sided encodings; this tests the hierarchical candidate and finds that it relaxes the transport side from local rules to computable relations, rather than being a new relator mechanism on the lift side.
+  two-sided-locality-holds-for-matrix-linear-automata: that requires transports given by local rules (its 4(b)-(c)); this shows a self-simulating verification layer removes that requirement, provided the lifted system is the sofic label factor.
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - word-codings-of-t2-force-finite-presentation
   - pointer-encodings-give-non-linear-two-sided-locality
   - residual-towers-constrain-non-lie-commutant-layers
   - two-sided-locality-holds-for-matrix-linear-automata
-distinct_from:
-  word-codings-of-t2-force-finite-presentation: that classifies relator mechanisms in local two-sided encodings; this tests the hierarchical candidate and finds that it relaxes the transport side from local rules to computable relations, rather than being a new relator mechanism on the lift side.
-  two-sided-locality-holds-for-matrix-linear-automata: that requires transports given by local rules (its 4(b)-(c)); this shows a self-simulating verification layer removes that requirement, provided the lifted system is the sofic label factor.
----
+```
 
 **Status.**
 - Items 1 and 2 follow from landed nodes. Item 1 is elementary arithmetic. Item 2 applies item 4(a) of

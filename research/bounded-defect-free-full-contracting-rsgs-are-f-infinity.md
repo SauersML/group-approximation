@@ -3,14 +3,24 @@ rg: 2
 id: bounded-defect-free-full-contracting-rsgs-are-f-infinity
 kind: claim
 title: A full contracting RSG in which every element is a canonical similarity near all but finitely many points, and whose singular germs have zero defect in the groupoid homology of the SFT, is of type F_infinity with F_infinity finite-set stabilizers, so its twisted Brin-Thompson envelope is an F_infinity simple group; the defect obstructs BHM localization and is carried only by nucleus germs that are non-surjective or change the H_0 class (attribution: Belk-Hyde-Matucci Remark 2.13)
-requires:
-  - twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family
-  - contracting-rsgs-have-fp-full-closures
 distinct_from:
   twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family: that reduces F_n of SV_L to F_n of the RSG family; this proves F_infinity of the family for the bounded, defect-free subclass.
   contracting-rover-nekrashevych-groups-are-f-infinity: that is the Röver–Nekrashevych question (all RN groups have surjective nucleus, so zero defect); this covers the bounded RSG analogue and isolates what non-surjective nuclei add.
   finite-germ-extensions-with-singular-blocks-are-f-n: that generalizes BHM to singular blocks and shows blocks do not exist in full groups; this stays with singular points and adds the defect condition that BHM's localization axiom needs.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family
+  - contracting-rsgs-have-fp-full-closures
+```
 
 **Status.**
 - **Theorem 1: ATTRIBUTION to Belk–Hyde–Matucci, Remark 2.13** (arXiv:2407.03149: "any full, bounded, contracting

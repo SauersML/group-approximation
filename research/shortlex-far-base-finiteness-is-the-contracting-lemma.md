@@ -3,12 +3,22 @@ rg: 2
 id: shortlex-far-base-finiteness-is-the-contracting-lemma
 kind: claim
 title: For an ordered generating set of a hyperbolic group whose ShortLex descent trees at adjacent bases refine each other with bounded delay (not automatic), induction along a geodesic makes the group a rational similarity group on the ShortLex boundary with offsets bounded linearly in word length; far-base finiteness is exactly a uniform offset bound, i.e. the contracting property, so on this route the F_infinity question is BBMZ Question 1.2 again, for hyperbolic buildings as well
-requires:
-  - shortlex-cone-tiles-certify-upstream-leaving-crossing
 distinct_from:
   shortlex-cone-tiles-certify-upstream-leaving-crossing: that proves exact finite-type cone tiles and, by one computation, one-level mutual refinement at adjacent bases; this runs the induction to far bases, derives rationality and the RSG property, and identifies far-base finiteness with contraction.
   hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups: that is Zaremsky's open F_infinity question; this shows the tile-and-operad route to it reduces to BBMZ Question 1.2 in the ShortLex coding too, and does not bypass it.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - shortlex-cone-tiles-certify-upstream-leaving-crossing
+```
 
 **Status.**
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q11 2026-09-19: PASS for Lemmas 1–2 and Theorem 3.1–3.3, conditional on (M1); item 4 needs Busemann normalization, see the Referee section):** Lemmas 1–2 and Theorem 3,

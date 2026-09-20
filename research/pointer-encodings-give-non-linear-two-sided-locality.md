@@ -3,13 +3,23 @@ rg: 2
 id: pointer-encodings-give-non-linear-two-sided-locality
 kind: claim
 title: Pointer encodings realize the left and right regular actions of every lamplighter F wr Z as commuting cellular automata on loop data, so two-sided locality lifts groups that are not virtually linear; the lifted group is only a quotient of the full-shift group its rules generate, so exactness of Aut(B^Z) is no obstruction to T2; but in regular designs linear transports force linear, hence exact, lifts, so T2 needs a non-exact group with a two-sided cellular encoding and both sides non-linear
-requires:
-  - loop-labels-reduce-t2-to-two-sided-locality
-  - two-sided-locality-holds-for-matrix-linear-automata
 distinct_from:
   two-sided-locality-holds-for-matrix-linear-automata: that builds the one linear commuting pair (Laurent polynomial matrices) and proves linear lift groups are exact; this builds non-linear commuting pairs (pointer encodings), shows the lift group can be a proper quotient of its full-shift group, and proves that ANY lifts commuting with uniformly linear regular transports are exact, so non-linearity is needed on the transport side too.
   loop-labels-reduce-t2-to-two-sided-locality: that reduces minimal loop designs to a commuting pair; this answers its first test (a pair lifting a group that is not virtually linear) and sharpens the remaining crux to a property of the lifted group alone.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - loop-labels-reduce-t2-to-two-sided-locality
+  - two-sided-locality-holds-for-matrix-linear-automata
+```
 
 **Status.**
 - Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; no priority claimed; Referee bh-ref-q12 2026-09-19: items 1, 3 and 4 PASS, item 2 PASS with a repair to the padding argument, and the Caveat to item 4 is wrong as stated; see the Referee section). All three repairs are applied: common

@@ -3,12 +3,22 @@ rg: 2
 id: algebraic-t1-needs-failure-of-char-p-measure-rigidity
 kind: claim
 title: The two natural candidates for the T1 subset of Ledrappier's square fail (algebraic subsystems contain periodic points; generic orbit closures are not Z^2-minimal), and any valid subset carries a non-algebraic ergodic measure invariant under F_2 × Z^2, so the algebraic face of (RA_free) is a positive-characteristic Benoist–Quint problem
-requires:
-  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
-  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
 distinct_from:
   algebraic-rows-carry-rigid-free-commutants-but-never-minimality: that reduces T1 on algebraic rows to a free, minimal, uniquely ergodic subset invariant under a free group of algebraic automorphisms; this rules out the algebraic and the generic candidates, and shows that any valid subset is a counterexample to measure rigidity for the joint action.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
+```
 
 **Status.** Items 1–3 are lane proofs, elementary given the recalled inputs; not reviewed. **The subset is
 not found.**

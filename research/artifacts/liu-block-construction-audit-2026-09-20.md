@@ -6,6 +6,15 @@ Proposition 3.1, Theorems 3.2, 4.3, 5.1, and Lemmas 5.2-5.4 (printed
 pages 5-29). It is not a certification of the full paper, an independent
 proof of nonhyperlinearity, or an instruction to promote Cairn status.
 
+Subsequent acceptance pass: the four exact analytic interfaces for
+Theorems 3.2 and 4.3 and Lemmas 5.2-5.4 now have fully reconstructed
+written proofs in [the scoped acceptance supplement](liu-analytic-leaves-proof-acceptance-2026-09-20.md).
+That supplement, not the “no concrete gap located” finding of this
+earlier partial audit, supports their direct proof routes. It retains
+the explicit standard finite-algebra imports and does not accept the
+Theorem 5.1 assembly or the full paper on that basis. The earlier audit
+record below is preserved as such.
+
 The mathematical results and construction audited in Sections 1-3 are
 Jihao Liu's, from [*Nonhyperlinear groups exist*, September 20, 2026](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
 Proposition 3.1, Theorems 3.2, 4.3 and 5.1, and Lemmas 5.2-5.4.

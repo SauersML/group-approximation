@@ -3,13 +3,23 @@ rg: 2
 id: one-sided-t2-lift-groups-are-periodically-closed-quotients
 kind: claim
 title: In the one-sided (computable-transport) form of T2, the lift group is a quotient of a finitely generated group of cellular automata by a normal subgroup closed in its periodic-point topology, and for linear automata its chain quotients are sections of GL_d over the period rings with d fixed; beyond closure the lift side imposes only a kernel-realization condition, so T2 splits into a periodic congruence question and a kernel-realization question; no residually finite, finitely presented, non-exact group was found in the literature
-requires:
-  - hierarchical-recursion-relaxes-t2-to-one-sided-locality
-  - word-codings-of-t2-force-finite-presentation
 distinct_from:
   hierarchical-recursion-relaxes-t2-to-one-sided-locality: that relaxes T2 to one-sided locality as a design statement; this proves the structural constraint the one-sided lift side imposes, shows that the linear exactness argument no longer applies there, and records the literature status of the finitely presented input.
   pointer-encodings-give-non-linear-two-sided-locality: its item 4 (linear regular transports force exact lifts) needs regular two-sided structure; in the one-sided setting the linear lifts' orbit quotients are sections, not subgroups, of bounded-degree linear groups, and that argument does not apply.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - hierarchical-recursion-relaxes-t2-to-one-sided-locality
+  - word-codings-of-t2-force-finite-presentation
+```
 
 **Status.**
 - Item 1 and item 2(a) are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; not reviewed).

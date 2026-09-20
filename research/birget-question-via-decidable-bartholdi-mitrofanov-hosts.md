@@ -10,8 +10,15 @@ distinct_from:
   decidable-fg-self-similar-groups-embed-in-fp-self-similar: that is the self-similar Higman step; this bypasses it, and its test-input section asks for exactly the decidable hard functionally recursive groups that (a) and (c) here would supply.
   two-counter-kms-groups-are-self-similar: that starts from KMS groups, which are finitely presented and residually finite but not known to be self-similar; this starts from Bartholdi–Mitrofanov groups, which are functionally recursive by construction but not finitely presented.
   finite-recursion-gives-no-computable-depth-bound: that uses the undecidable Bartholdi–Mitrofanov group to show depth is unbounded; this asks for decidable members of the same family, and shows the undecidable one has no finitely generated lift ideal.
-  nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups: that keeps the whole free group and gets a finitely presented non-faithful host with a non-recursive kernel; this asks for the faithful quotient V_d(G) to be finitely presented.
 ---
+
+## Route comparison record
+
+The following comparison was formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Its text is preserved without
+adding a proof dependency or accepting a route:
+
+- [nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups](nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups.md): that keeps the whole free group and gets a finitely presented non-faithful host with a non-recursive kernel; this asks for the faithful quotient V_d(G) to be finitely presented.
 
 **OPEN.** For every recursive `T: N -> N` there is a functionally recursive group
 `G = ⟨Φ⟩ ≤ Aut(T_d)` (a finite map `Φ: A × S -> F_S × A`, in the notation of

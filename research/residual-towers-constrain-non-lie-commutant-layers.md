@@ -3,13 +3,23 @@ rg: 2
 id: residual-towers-constrain-non-lie-commutant-layers
 kind: claim
 title: For a residually finite group lifted through a product of compact Lie groups built from its finite quotients, the commutator squeeze is replaced by a tower law — the projected singular set at level N must have measure at least the minimal pattern frequency at radius (generator radius × systole of the level-N kernel) — which is consistent with a null singular set (an explicit set meeting it: loop-labels-reduce-t2-to-two-sided-locality, item 1 as repaired), so the non-Lie layer (target T2, and T1 run through a product) is the escape the squeeze constrains least
+distinct_from:
+  commutator-squeeze-bounds-lifted-lie-translations: that kills free lifted groups of Lie translations under polynomial repetitivity and tame singular sets; this shows the mechanism does not reach product layers, and derives the constraint that remains there, stated through the finite-quotient tower of the lifted group.
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - commutator-squeeze-bounds-lifted-lie-translations
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
   - decidable-residually-finite-non-exact-group-exists
-distinct_from:
-  commutator-squeeze-bounds-lifted-lie-translations: that kills free lifted groups of Lie translations under polynomial repetitivity and tame singular sets; this shows the mechanism does not reach product layers, and derives the constraint that remains there, stated through the finite-quotient tower of the lifted group.
----
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; referee bh-ref-d 6e0fb29940 PASS with repairs, applied; no priority
 claimed). This is a design law, not an obstruction. **T1 and T2 are not built.**

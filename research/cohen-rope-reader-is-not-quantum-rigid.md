@@ -3,16 +3,26 @@ rg: 2
 id: cohen-rope-reader-is-not-quantum-rigid
 kind: claim
 title: Over the rigid scaling seed, x-positions on descendant cosets are extension data; with Cohen's absorbing rope automaton the reader can sit at "bad" everywhere, and then the positional digits of far-apart subtrees switch independently, so the coupled rope reader is not quantum rigid at any scale
-requires:
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
-  - coupled-rope-reader-has-nested-one-bit-fibres
-  - free-bit-components-are-central-iff-they-see-the-base
 distinct_from:
   free-bit-components-are-central-iff-they-see-the-base: that proves centrality from visibility and states, in Corollary C, rigidity of the coupled reader under a hypothesis (H); this shows (H2) fails, because positions are not base data, and that the reader is in fact not rigid.
   coupled-rope-reader-has-nested-one-bit-fibres: that proves linking and pointwise rigidity with the positional layer frozen; this puts the positional layer back into the fibre and finds independent switches there.
   absorbing-rope-readers-are-not-pointwise-rigid: that retracted node blamed merging words for unlinked reader bits, wrongly; this finds the real failure of absorbing readers, in the positional layer they fail to couple.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - locally-finite-splittings-preserve-rigid-sft-compactifications
+  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
+  - coupled-rope-reader-has-nested-one-bit-fibres
+  - free-bit-components-are-central-iff-they-see-the-base
+```
 **ESTABLISHED** (lane proof, bh-invent-15, 2026-09-19; elementary; not reviewed). It answers the
 coordinator's request to prove (H) of `free-bit-components-are-central-iff-they-see-the-base`:
 - **(H1)** holds;

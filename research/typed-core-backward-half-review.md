@@ -5,8 +5,15 @@ kind: claim
 title: Referee review of Attempt 4 of convex-cores-inherit-greedy-coding-na (8e6ce89420) — PASS; (b) predecessors are realized by the same boundary point (four-quadrant check), (c) Theorem B's backward induction runs under (S1) and (S2) with the global order u < V∖St(u) < lk(u), (d) cone links with at least two vertices violate (S2) for every u, and (e) typed trees satisfy (IRR) via the non-backtracking graph; the forward half (Fill) is correctly left open
 distinct_from:
   convex-cores-inherit-greedy-coding-na: that is the lane node whose Attempt 4 is under review; this checks items (a)–(f) of that attempt.
-  hyperbolic-racgs-contracting-rsg-via-min-star-order: that proves Claims A and B in the Davis complex; this checks their transfer to typed cores.
 ---
+
+## Route comparison record
+
+The following comparison was formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Its text is preserved without
+adding a proof dependency or accepting a route:
+
+- [hyperbolic-racgs-contracting-rsg-via-min-star-order](hyperbolic-racgs-contracting-rsg-via-min-star-order.md): that proves Claims A and B in the Davis complex; this checks their transfer to typed cores.
 
 **ESTABLISHED (referee bh-ref-e, 2026-09-19; review of Attempt 4 by bh-q11-bridge, landed in 8e6ce89420).** No priority
 claimed.

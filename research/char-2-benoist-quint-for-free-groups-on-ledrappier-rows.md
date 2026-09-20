@@ -3,12 +3,22 @@ rg: 2
 id: char-2-benoist-quint-for-free-groups-on-ledrappier-rows
 kind: claim
 title: (BQ_2, open crux) For a free subgroup F of GL_2(A) acting with the shifts on Ledrappier's square, every ergodic probability measure invariant under F × Z^2 is Haar measure on a coset of a closed subgroup; if true, the algebraic route to T1 is dead, and if it fails with a Z^2-minimal support, (RA_free) is refuted
-requires:
-  - algebraic-t1-needs-failure-of-char-p-measure-rigidity
-  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
 distinct_from:
   algebraic-t1-needs-failure-of-char-p-measure-rigidity: that proves the implication (BQ_2) ⇒ no algebraic T1 and rules out the natural candidates; this states (BQ_2) itself as the open crux, records the literature status, and separates the two outcomes.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - algebraic-t1-needs-failure-of-char-p-measure-rigidity
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+```
 
 **OPEN.** Crux for the time-lift face of (RA_free) on algebraic rows (lane bh-invent-16, 2026-09-19).
 

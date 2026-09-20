@@ -3,16 +3,26 @@ rg: 2
 id: ct-p-z-order-is-decided-by-elliptic-reduction
 kind: claim
 title: In Kohl's CT_P(Z) an element has finite order iff every prime is elliptic (its degree cocycle is a continuous coboundary); elliptic primes can be conjugated away and collapsed, so torsion certificates hold unless at least two parabolic-or-hyperbolic primes survive, and a minimal element of CT_{3}(Z) must be non-elliptic in both primes (doubly parabolic if uniquely ergodic)
-requires:
-  - ct-z-torsion-reduces-to-hyperbolic-primes
-  - hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
-  - conway-amusical-permutation-is-the-full-three-shift
-  - brin-thompson-torsion-has-clopen-fixed-sets
 distinct_from:
   ct-z-torsion-reduces-to-hyperbolic-primes: that collapses primes whose slopes are all units; this first conjugates away every prime whose degree cocycle is a coboundary, which the unit collapse cannot touch, and then collapses it.
   brin-thompson-torsion-has-clopen-fixed-sets: that gives the coboundary criterion for finite subgroups of nV (item 4); this is the single-element criterion for arithmetic k-graph hosts, split prime by prime, and used as an induction.
   hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z: that certifies hyperbolic recurrent elements; this handles elliptic primes and locates the residual class exactly.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - ct-z-torsion-reduces-to-hyperbolic-primes
+  - hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
+  - conway-amusical-permutation-is-the-full-three-shift
+  - brin-thompson-torsion-has-clopen-fixed-sets
+```
 
 **ESTABLISHED** (lane proof, not independently reviewed). The one recalled input is the dynamics of
 Higman–Thompson elements (infinite order implies an attracting periodic orbit: Brin's revealing

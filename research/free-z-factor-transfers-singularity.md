@@ -3,12 +3,22 @@ rg: 2
 id: free-z-factor-transfers-singularity
 kind: claim
 title: The horofunction boundary of G embeds in that of G * Z as the root copy, the atoms of G * Z around root-copy points are the preimages of the atoms of G under the first-syllable map, and so every generator of G that is singular at a point in the host of G is singular at the corresponding root-copy point in the host of G * Z
-requires:
-  - bbmz-singularity-is-a-recurrent-coincidence
-  - generalized-triangle-group-hosts-reduce-to-fixed-trees
 distinct_from:
   generalized-triangle-group-hosts-reduce-to-fixed-trees: that works inside the host of G * Z (cocycle lemma, sing(t) empty); this transfers singular points from the host of G into it, which the claims about G * Z hosts built from G-host computations need.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bbmz-singularity-is-a-recurrent-coincidence
+  - generalized-triangle-group-hosts-reduce-to-fixed-trees
+```
 
 **Status.**
 - **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS). It closes the transfer gap found by

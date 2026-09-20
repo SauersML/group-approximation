@@ -3,11 +3,21 @@ rg: 2
 id: wall-flux-is-not-a-houghton-obstruction
 kind: claim
 title: The integer wall flux of a bounded full contracting RSG lives only on transfer germs; germ stabilizers see no flux, so every cell stabilizer of the germ complex is commensurable with an F_infinity group; Brown's Houghton obstruction needs flux at fixed ends over a locally finite base with boundedly many ends, and none of these holds, so the flux is absorbed by the zero-sum-completable germ complex, whose sublevels are cocompact, leaving one combinatorial lemma
-requires:
-  - torsion-defect-costs-nothing-in-bhm-germ-complexes
 distinct_from:
   torsion-defect-costs-nothing-in-bhm-germ-complexes: that handles torsion defects and records the pentagon's infinite-order flux as open; this analyses whether that flux can obstruct F_n, finds no Houghton-type obstruction, and reduces F_infinity to a connectivity lemma for bounded-sum joins.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - torsion-defect-costs-nothing-in-bhm-germ-complexes
+```
 
 **Status.**
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: items 1, 2 and 4 PASS

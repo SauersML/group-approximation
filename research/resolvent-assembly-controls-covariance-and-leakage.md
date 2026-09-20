@@ -4,6 +4,7 @@ id: resolvent-assembly-controls-covariance-and-leakage
 kind: claim
 title: "Monotone resolvent assembly has outcome-free covariance and range-leakage bounds"
 artifacts:
+  - research/artifacts/liu-analytic-leaves-proof-acceptance-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
 ---
 
@@ -31,4 +32,4 @@ for every projection e. Thus negligible bad corners have negligible TOTAL leakag
 
 ## Attempts
 
-2026-09-20: equation-level inspection is recorded in the cited audit. No concrete gap was found in the inspected steps, but this import remains OPEN pending completion of its independent review. No empty-premise citation route is supplied.
+2026-09-20, initial pass: the partial audit left this claim open. Superseded by the full reconstruction in the acceptance supplement and the direct route `resolvent-assembly-controls-covariance-and-leakage-proof`. The exact assertion is now established by a checked written proof of Jihao Liu's argument, including its quantified error estimates and named background imports. This is not a Lean certificate or external human-referee verdict; authorship remains Liu's.

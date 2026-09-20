@@ -6,6 +6,7 @@ title: "Quotient gap yields arbitrarily large physical scalar-expanding block de
 distinct_from:
   hs-one-level-expander-block-decomposition: "That asks for a stronger fixed-gap decomposition for compressed original generators as discarded trace vanishes; this allows a tolerance-dependent gap and doubled perturbed generators."
 artifacts:
+  - research/artifacts/liu-theorem-five-assembly-cross-review-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
 ---
 
@@ -23,4 +24,4 @@ Ranks and outcome counts are unrestricted. Epsilon is fixed BEFORE the ultrafilt
 
 ## Attempts
 
-2026-09-20: equation-level inspection is recorded in the cited audit. No concrete gap was found in the inspected steps, but this import remains OPEN pending completion of its independent review. No empty-premise citation route is supplied.
+2026-09-20: the initial partial audit is superseded by acceptance of the four analytic inputs and an independent review of their assembly in Liu Theorem 5.1. The route `large-scalar-blocks-from-repair-and-resolvents` has no remaining open premise. The cross-review checks every transported half-rank test, summed covariance and range leakage, and the fixed-tolerance order of limits. This is a checked written proof, not a new Lean verification.

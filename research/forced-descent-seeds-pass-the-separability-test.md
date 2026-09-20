@@ -3,12 +3,22 @@ rg: 2
 id: forced-descent-seeds-pass-the-separability-test
 kind: claim
 title: In a seed SFT with forced outward labels and one-step diamonds (the Ã₂, phase and C̃_n building seeds), every point has a cofinal descending ray, and any other point differs from it on a tail of that ray; so these seeds and all their subshifts pass the separability test at every scale, including the opposite-type wall-stratum configuration, and quantum rigidity reduces to one covering statement
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - a2-lattices-carry-finite-type-seeds
   - cn-building-lattices-carry-locally-forced-seeds
   - rigid-seed-constructions-pass-the-separability-test
   - cross-layer-separable-modifications-kill-quantum-rigidity
----
+```
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-19; elementary; not reviewed): Theorems A and B.
 **OPEN:** the covering statement (COV) of §3, which implies quantum rigidity here.

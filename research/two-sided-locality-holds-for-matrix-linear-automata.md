@@ -3,14 +3,24 @@ rg: 2
 id: two-sided-locality-holds-for-matrix-linear-automata
 kind: claim
 title: Ryan-type theorems do not forbid the commuting pair; left and right multiplication by Laurent polynomial matrices over M_2(F_2) are commuting groups of cellular automata, each containing F_2, acting regularly on growing towers of periodic configurations; but every group of linear automata over a finite ring is exact, so this solves two-sided locality for T1 and never for T2; and hierarchy-level-bounded transports collapse, so transports must be seam-sensitive
-requires:
-  - loop-labels-reduce-t2-to-two-sided-locality
-  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
-  - commutator-squeeze-bounds-lifted-lie-translations
 distinct_from:
   loop-labels-reduce-t2-to-two-sided-locality: that reduces minimal loop-label designs to a commuting pair of local actions; this constructs such a pair, proves that the construction only ever lifts exact groups, and proves which transports collapse.
   profinite-skew-layers-collapse-into-the-equicontinuous-factor: that proves profinite layers directly over the MEF collapse; this applies the same theorem to transports that are continuous over the skeleton's odometer, and locates the escape in transports that are continuous only over the skeleton.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - loop-labels-reduce-t2-to-two-sided-locality
+  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+  - commutator-squeeze-bounds-lifted-lie-translations
+```
 
 **Status.**
 - Items 1–4(a) are ESTABLISHED (lane bh-invent-16, 2026-09-19; elementary; no priority claimed).

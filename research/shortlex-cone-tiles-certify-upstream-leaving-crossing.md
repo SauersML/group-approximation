@@ -3,15 +3,25 @@ rg: 2
 id: shortlex-cone-tiles-certify-upstream-leaving-crossing
 kind: claim
 title: For a hyperbolic group, lex-least descent turns the horofunction compactification into a radius-one factor subshift whose ShortLex cone tiles split exactly into translates contained in the tile, with finitely many types; so upstream certification is not the F_infinity gate, and what remains is crossing, i.e. square filling between descent trees at different bases, which for Kazhdan inputs cannot come from a median join
-requires:
-  - hyperbolic-groups-have-sft-horofunction-compactifications
-  - v-stabilized-horofunction-hosts-need-upstream-certification
-  - v-times-subshift-full-group-finiteness-is-horizontal
 distinct_from:
   v-stabilized-horofunction-hosts-need-upstream-certification: that shows ball-pattern tiles of horofunctions fail upstream certification (UC) because descents branch, and names UC as the missing insight; this removes branching by a canonical (lex-least) descent, proves UC exactly for the resulting cone tiles, and locates the real gate in crossing.
   hyperbolic-groups-lie-in-the-rigid-compactification-class: that proves rigidity of the distance-gradient SFT via drop chains along one geodesic; this is about finiteness, and the chains along one geodesic are the nesting chains of cone tiles, while the open part is between different geodesics.
   pentagon-reflection-group-fails-cone-matching-at-wall-ends: that finds the failure of atom matching at branch points; this is the same failure, now isolated as crossing of two exact tile trees rather than as inexact tiles.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - hyperbolic-groups-have-sft-horofunction-compactifications
+  - v-stabilized-horofunction-hosts-need-upstream-certification
+  - v-times-subshift-full-group-finiteness-is-horizontal
+```
 
 **Status.**
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; elementary; not reviewed):** Theorem items 1–3.

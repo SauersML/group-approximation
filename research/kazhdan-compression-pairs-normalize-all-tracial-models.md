@@ -6,6 +6,7 @@ title: "Every tracial-ultraproduct model of a Kazhdan compression pair normalize
 distinct_from:
   kt-centralizer-normalization-hs: "That is formulated for trace-preserving hyperlinear representations; this includes every homomorphism, which the finitary and CE countermodel consumers need."
 artifacts:
+  - research/artifacts/liu-section-six-acceptance-and-thom-bypass-2026-09-20.md
   - research/artifacts/liu-internality-normalization-audit-2026-09-20.md
 ---
 
@@ -21,4 +22,4 @@ No canonical-trace or injectivity condition is imposed. This is the universal-tr
 
 ## Attempts
 
-2026-09-20: specialize universal internality to Gamma and apply the conditional compression-normalization theorem. Both inputs remain explicit in the route; the unconditional conclusion is not yet imported.
+2026-09-20: established through `all-trace-normalization-via-thom-no-drift`, using the now accepted universal internality theorem of Jihao Liu and Andreas Thom's checked conditional no-drift argument. Thom's proof uses internality of both subgroup and ambient commutants. This bypasses Liu Section 7; the alternate route using its stronger single-model hypothesis remains visible and does not need to be accepted to prove this claim. No canonical-trace or injectivity restriction has been introduced.

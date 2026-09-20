@@ -6,6 +6,7 @@ title: "Couple relative repair, monotone selection, in-place rounding and prunin
 target: quotient-gap-gives-large-scalar-expanding-blocks
 requires: [quotient-gap-gives-uniform-relative-projection-repair, low-energy-povms-round-equivariantly-in-place, resolvent-assembly-controls-covariance-and-leakage, defective-block-expansion-prunes-to-doubled-gaps]
 artifacts:
+  - research/artifacts/liu-theorem-five-assembly-cross-review-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
 ---
 

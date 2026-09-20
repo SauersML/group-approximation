@@ -3,10 +3,6 @@ rg: 2
 id: free-bit-components-are-central-iff-they-see-the-base
 kind: claim
 title: In an SFT extension over a rigid base, a fibre marginal is base-central whenever, in every base configuration, the sites it transfers to by local rules (thickened by 2D) determine the base point; a free switch whose thickened support does not determine the base gives a noncommuting family in dimension 2
-requires:
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
-  - coupled-rope-reader-has-nested-one-bit-fibres
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
 invalidates:
   - absorbing-rope-readers-are-not-pointwise-rigid-via-prereqs
 distinct_from:
@@ -14,6 +10,20 @@ distinct_from:
   extension-rigidity-is-base-centrality-plus-pointwise-rigidity: that reduces rigidity of an extension to (C_D) plus pointwise rigidity; this gives a sufficient condition for (C_D), and a matching obstruction.
   coupled-rope-reader-has-nested-one-bit-fibres: that proves pointwise rigidity of the coupled reader and leaves (C_D) open; this proves (C_D) for it.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
+  - coupled-rope-reader-has-nested-one-bit-fibres
+  - locally-finite-splittings-preserve-rigid-sft-compactifications
+```
 **ESTABLISHED** for Theorems A and B (lane proof, bh-invent-15, 2026-09-19; not reviewed). Both
 hold in every dimension and over every field.
 - **Corollary C is REFUTED** (09-19, by its author): see `cohen-rope-reader-is-not-quantum-rigid`.

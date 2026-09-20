@@ -3,14 +3,24 @@ rg: 2
 id: char-2-benoist-quint-needs-the-homogeneous-form
 kind: claim
 title: The crux (BQ_2) as stated is false for every F (period-3 orbits) and fails with positive entropy for Frobenius-twisted F (a four-subgroup measure); its correct form (BQ_2') asks for Haar measure on one Γ-orbit of cosets, which under a non-square-trace condition (NS) means Haar or finitely supported, equivalently that every ergodic measure of infinite support is invariant under infinitely many translations; (BQ_2') still rules out algebraic T1
-requires:
-  - char-2-benoist-quint-for-free-groups-on-ledrappier-rows
-  - algebraic-t1-needs-failure-of-char-p-measure-rigidity
-  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
 distinct_from:
   char-2-benoist-quint-for-free-groups-on-ledrappier-rows: that states (BQ_2) with "algebraic" meaning Haar measure on one coset; this shows that form is false, states the corrected homogeneous form (BQ_2'), determines which homogeneous measures exist (Haar and finite orbits under (NS), Frobenius-subfield families otherwise), and turns (BQ_2') under (NS) into a translation-invariance statement.
   algebraic-t1-needs-failure-of-char-p-measure-rigidity: that proves "(BQ_2) implies no algebraic T1" for the one-coset notion; this proves the implication from the weaker hypothesis (BQ_2'), with finite unions of cosets and finite-index stabilizers.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - char-2-benoist-quint-for-free-groups-on-ledrappier-rows
+  - algebraic-t1-needs-failure-of-char-p-measure-rigidity
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+```
 
 **ESTABLISHED (lane bh-bq2, 2026-09-19; lane proof, elementary given Kitchens–Schmidt as read at source in
 `algebraic-t1-needs-failure-of-char-p-measure-rigidity`; not independently reviewed; no priority claimed).**

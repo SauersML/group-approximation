@@ -3,13 +3,23 @@ rg: 2
 id: bbmz-hosts-with-higher-dimensional-boundary-are-unbounded
 kind: claim
 title: For a cocompact hyperbolic reflection group of dimension at least 3, a reflection is singular at every horofunction over the boundary sphere of its wall, so the horofunction RSG has uncountable singular sets; the bounded germ-extension route to F_infinity (BHM, level-set lemma, any Z^r extension of it) therefore stops at 1-dimensional boundaries, and Kazhdan groups with boundary of dimension at least 2 are expected to be on the unbounded side, while Menger-boundary Kazhdan groups are the decisive open case
-requires:
-  - level-set-join-complexes-are-highly-connected
-  - hyperbolic-cone-matching-holds-off-the-branch-locus
 distinct_from:
   level-set-join-complexes-are-highly-connected: that proves F_infinity for bounded RSGs with integer flux; this shows that bounded is exactly what fails once the boundary has dimension at least 2, so the Z^r generalization cannot reach Kazhdan inputs on its own.
   bounded-defect-free-full-contracting-rsgs-are-f-infinity: that records exponential activity for boundary dimension >= 2 as expected; this gives the mechanism, a lane-proof sketch for reflection groups, and the precise conjecture for Kazhdan groups.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - level-set-join-complexes-are-highly-connected
+  - hyperbolic-cone-matching-holds-off-the-branch-locus
+```
 
 **Status.**
 - **Section 1 is a lane proof sketch** (bh-finf-hyp, 2026-09-19; not reviewed). It uses the half-space identity

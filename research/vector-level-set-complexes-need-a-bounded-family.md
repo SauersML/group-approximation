@@ -3,11 +3,21 @@ rg: 2
 id: vector-level-set-complexes-need-a-bounded-family
 kind: claim
 title: The Z^r version of the level-set lemma is false without a bounded family of defect sets (h generic directions summing to zero give a disconnected complex for every h); it holds with linear connectivity when the defect sets lie in independent rank-one directions, by joins of rank-one complexes, which is the form needed when each flux direction is carried by one orbit of singular points
-requires:
-  - level-set-join-complexes-are-highly-connected
 distinct_from:
   level-set-join-complexes-are-highly-connected: that proves the rank-one lemma; this shows the naive Z^r statement fails, proves the decoupled Z^r case, and states the bounded-family conjecture that RSG applications need.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - level-set-join-complexes-are-highly-connected
+```
 
 **ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q12 2026-09-19: items 1 and 2 PASS): items 1 and 2. **OPEN:**
 item 3.

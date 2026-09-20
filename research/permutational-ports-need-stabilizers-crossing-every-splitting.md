@@ -3,17 +3,27 @@ rg: 2
 id: permutational-ports-need-stabilizers-crossing-every-splitting
 kind: claim
 title: If a virtually abelian subgroup has finitely many orbits on an orbit of an action, the point stabilizers there have unbounded orbits in every general-type action of the group on a hyperbolic space; so Houghton ports, like type (A) actions, can never be pulled up through a splitting, and for Osajda's non-exact group the permutational route needs a finitely presented overgroup whose port stabilizers contain elements hyperbolic on its Bass–Serre tree
-requires:
-  - cofinite-abelian-subgroups-give-relative-pbh
-  - type-a-stabilizers-are-hyperbolically-full
-  - osajda-decidable-nonexact-group-satisfies-boone-higman
-  - higman-clapham-envelopes-are-hnn-over-machine-times-input
 distinct_from:
   cofinite-abelian-subgroups-give-relative-pbh: that proves Houghton ports give relative PBH, and that port actions have finitely many ends, which excludes vertex actions on locally finite trees; this excludes elliptic stabilizers in every general-type hyperbolic action, including the non-locally-finite Bass–Serre trees of Higman envelopes and acylindrical actions.
   type-a-stabilizers-are-hyperbolically-full: that is the same conclusion when there are finitely many pair orbits (type (A)); this is the cofinite-subgroup version the port criterion needs, where pair orbits may be infinite.
   locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions: that treats type (A) actions of hyperbolic groups through their Cayley graphs; this treats Houghton ports and arbitrary general-type actions.
   osajda-decidable-nonexact-group-satisfies-boone-higman: that is Boone–Higman for Osajda's group; this records what its permutational route needs, and what cannot supply it.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - cofinite-abelian-subgroups-give-relative-pbh
+  - type-a-stabilizers-are-hyperbolically-full
+  - osajda-decidable-nonexact-group-satisfies-boone-higman
+  - higman-clapham-envelopes-are-hnn-over-machine-times-input
+```
 
 **ESTABLISHED** (lane bh-ra-counter, 2026-09-19; elementary; not reviewed; very likely folklore, so
 no priority is claimed).

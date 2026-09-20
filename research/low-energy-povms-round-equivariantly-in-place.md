@@ -7,6 +7,7 @@ distinct_from:
   low-energy-povms-yield-flexible-projection-cuts: "That supplies overlapping cuts and auxiliary repairs; this produces an orthogonal original-dimensional partition with independently vanishing energy."
   outcome-count-free-subpovm-completion: "That controls ordinary rounding error; this requires vanishing summed equivariance error even at fixed positive purity deficit."
 artifacts:
+  - research/artifacts/liu-analytic-leaves-proof-acceptance-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
 ---
 
@@ -23,4 +24,4 @@ No group relations or spectral gap are assumed. The purity deficit need not vani
 
 ## Attempts
 
-2026-09-20: equation-level inspection is recorded in the cited audit. No concrete gap was found in the inspected steps, but this import remains OPEN pending completion of its independent review. No empty-premise citation route is supplied.
+2026-09-20, initial pass: the partial audit left this claim open. Superseded by the full reconstruction in the acceptance supplement and the direct route `low-energy-povms-round-equivariantly-in-place-proof`. The exact assertion is now established by a checked written proof of Jihao Liu's argument, including its quantified error estimates and named background imports. This is not a Lean certificate or external human-referee verdict; authorship remains Liu's.

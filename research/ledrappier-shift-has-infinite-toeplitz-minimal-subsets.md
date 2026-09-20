@@ -3,14 +3,24 @@ rg: 2
 id: ledrappier-shift-has-infinite-toeplitz-minimal-subsets
 kind: claim
 title: Ledrappier's shift has infinite minimal subsets, so (FL) is false; an explicit non-periodic Toeplitz point is built from F_4-twisted Sierpinski gaskets shifted by a non-rational 2-adic integer, untwisted by the trace against ζ^(v_1 − v_2). Toeplitz points with only odd-index period lattices are periodic and those with only 2-power lattices accumulate on 0, so a mixed period with the prime 2 and some odd prime is forced; the examples are almost automorphic, so they cannot carry T1
-requires:
-  - ledrappier-shift-has-only-finite-minimal-subsets
-  - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
-  - algebraic-t1-sets-carry-free-distal-commutator-actions
 distinct_from:
   ledrappier-shift-has-only-finite-minimal-subsets: that states (FL) as an open crux; this refutes it with an explicit Toeplitz point, and shows why every Toeplitz example must have a period mixing the prime 2 with some odd prime.
   free-minimal-triangle-permutive-sft-exists: that seeks free minimal sub-SFTs of quasigroup spacetimes; the minimal sets here are subshifts, not claimed to be SFTs, and they are Toeplitz, so the sub-SFT question is untouched.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - ledrappier-shift-has-only-finite-minimal-subsets
+  - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
+  - algebraic-t1-sets-carry-free-distal-commutator-actions
+```
 
 **ESTABLISHED (lane bh-bq2, 2026-09-19; refereed PASS by bh-ref-c, a7b6ad0f7b, no prior found; no priority
 claimed).**

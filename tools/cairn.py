@@ -229,7 +229,7 @@ NON_NODE_FILES = {"README.md", "FRONTIER.md"}
 KINDS = ("claim", "route")
 CACHE_FORMAT = 2
 
-__version__ = "2.13.1"
+__version__ = "2.13.2"
 
 EXIT_OK, EXIT_DUP, EXIT_LEASE, EXIT_INVALID, EXIT_USAGE = 0, 2, 3, 4, 64
 
@@ -414,9 +414,9 @@ def load_node_text(text, path, nodes, errors, relroot=REPO):
     if nid in nodes:
         errors.append(("error", "duplicate-id", f"{rel}: duplicate id {nid} (also {nodes[nid].relpath})"))
         return
-    if not meta.get("title"):
+    if kind != "route" and not meta.get("title"):
         errors.append(("error", "title", f"{rel}: missing title"))
-    if meta.get("rg") != 2:
+    if kind != "route" and meta.get("rg") != 2:
         errors.append(("error", "schema", f"{rel}: missing or unsupported schema version (want 'rg: 2')"))
     nodes[nid] = node
 
@@ -448,6 +448,49 @@ def existing_git_objects(repo, objects):
             if not line.endswith(" missing") and len(line.split()) >= 3}
 
 
+def route_schema_errors(node, nodes):
+    """Structural proof eligibility, shared by lint and the in-memory solver."""
+    errors = []
+
+    def fail(rule, message):
+        errors.append(("error", rule, f"{node.relpath}: {message}"))
+
+    extra = set(node.meta) - ALLOWED_KEYS["route"]
+    if extra:
+        fail("unknown-key", f"unknown keys for route: {sorted(extra)}")
+    if not isinstance(node.meta.get("title"), str) or not node.meta["title"].strip():
+        fail("title", "missing or malformed title (want a nonempty string)")
+    if node.meta.get("rg") != 2:
+        fail("schema", "missing or unsupported schema version (want 'rg: 2')")
+    tgt = node.meta.get("target")
+    if not isinstance(tgt, str) or tgt not in nodes or nodes[tgt].kind != "claim":
+        fail("target", f"target must name an existing claim, got {tgt!r}")
+    if "requires" not in node.meta:
+        fail("requires", "requires is mandatory (requires: [] asserts a complete direct proof)")
+    elif not isinstance(node.meta["requires"], list):
+        fail("requires", "requires must be a list (use [] for a complete direct proof)")
+    reqs = node.meta.get("requires")
+    if not isinstance(reqs, list):
+        return errors
+    seen = set()
+    for q in reqs:
+        if not isinstance(q, str) or not ID_RE.match(q):
+            fail("ref", f"requires: malformed id {q!r}")
+            continue
+        if q in seen:
+            fail("requires", "duplicate entries in requires")
+        seen.add(q)
+        if q not in nodes:
+            fail("ref", f"requires: unknown node {q}")
+        elif q == node.id:
+            fail("ref", "requires: self-reference")
+        elif nodes[q].kind != "claim":
+            fail("ref", f"requires: {q} is a {nodes[q].kind}, want a claim")
+    if isinstance(tgt, str) and tgt in seen:
+        fail("requires", "target appears in its own requires")
+    return errors
+
+
 def lint_nodes(nodes, errors, repo=REPO):
     pinned = [p for node in nodes.values() for p in node.get_list("artifacts")
               if isinstance(p, str) and ":" in p
@@ -466,7 +509,7 @@ def lint_nodes(nodes, errors, repo=REPO):
 
     for node in nodes.values():
         extra = set(node.meta) - ALLOWED_KEYS[node.kind]
-        if extra:
+        if extra and node.kind != "route":
             errors.append(("error", "unknown-key", f"{node.relpath}: unknown keys for {node.kind}: {sorted(extra)}"))
         for p in node.get_list("artifacts"):
             if not isinstance(p, str):
@@ -499,18 +542,11 @@ def lint_nodes(nodes, errors, repo=REPO):
                             errors.append(("error", "distinct-from", f"{node.relpath}: distinct_from: {k} needs a reason"))
         else:
             tgt = node.meta.get("target")
-            if not isinstance(tgt, str) or tgt not in nodes or nodes[tgt].kind != "claim":
-                errors.append(("error", "target", f"{node.relpath}: target must name an existing claim, got {tgt!r}"))
-            if "requires" not in node.meta:
-                errors.append(("error", "requires", f"{node.relpath}: requires is mandatory "
-                               "(requires: [] asserts a complete direct proof)"))
-            reqs = node.get_list("requires")
-            for q in reqs:
-                ref(node, "requires", q, "claim")
-            if len(reqs) != len(set(reqs)):
-                errors.append(("error", "requires", f"{node.relpath}: duplicate entries in requires"))
-            if isinstance(tgt, str) and tgt in reqs:
-                errors.append(("error", "requires", f"{node.relpath}: target appears in its own requires"))
+            route_errors = route_schema_errors(node, nodes)
+            errors.extend(route_errors)
+            if route_errors:
+                continue
+            reqs = node.meta["requires"]
             # restatement dressed as reduction: a single-prerequisite route
             # whose prerequisite reads like its target renames the problem
             if (len(reqs) == 1 and reqs[0] in nodes and isinstance(tgt, str)
@@ -552,7 +588,7 @@ class Graph:
 
     def _solve(self, forced=frozenset()):
         """Return (established, refuted, invalidated, provenance, stable)."""
-        prev_inv, prev_ref, seen = set(), set(), []
+        prev_inv, prev_ref, seen = set(self.schema_invalid_routes), set(), []
         for _ in range(64):
             est, prov = set(forced) - prev_ref, {}
             changed = True
@@ -571,6 +607,7 @@ class Graph:
                        for target in self.refutes_from.get(refuter, [])}
             inv = {rid for claim in est
                    for rid in self.invalidates_from.get(claim, [])}
+            inv.update(self.schema_invalid_routes)
             inv.update(rid for claim in refuted
                        for rid in (self.routes_into.get(claim, [])
                                    + self.required_by.get(claim, [])))
@@ -586,15 +623,31 @@ class Graph:
     def compile(self):
         self.route_target = {}
         self.route_requires = {}
+        # Keep malformed source visible, but never treat it as mathematical
+        # evidence. Include all route-owned lint errors (e.g. missing artifacts)
+        # as well as structural checks even when Graph is called without lint.
+        errors_by_path = {}
+        for severity, _, message in self.errors:
+            if severity == "error":
+                path = message.split(":", 1)[0]
+                errors_by_path.setdefault(path, []).append(message)
+        self.schema_invalid_routes = {}
         for rid, r in self.routes.items():
+            reasons = list(errors_by_path.get(r.relpath, []))
+            reasons.extend(message for _, _, message in route_schema_errors(r, self.nodes)
+                           if message not in reasons)
+            if reasons:
+                self.schema_invalid_routes[rid] = reasons
             tgt = r.meta.get("target")
-            self.route_target[rid] = tgt
-            self.route_requires[rid] = [q for q in r.get_list("requires")
-                                        if q in self.claims]
+            self.route_target[rid] = tgt if isinstance(tgt, str) else None
+            # Preserve declared premises: dropping an unknown premise can turn
+            # a malformed implication into an apparently unconditional proof.
+            self.route_requires[rid] = r.get_list("requires")
             if isinstance(tgt, str) and tgt in self.claims:
                 self.routes_into.setdefault(tgt, []).append(rid)
             for q in self.route_requires[rid]:
-                self.required_by.setdefault(q, []).append(rid)
+                if isinstance(q, str) and q in self.claims:
+                    self.required_by.setdefault(q, []).append(rid)
         self.invalidates_from = {
             cid: [rid for rid in claim.get_list("invalidates")
                   if rid in self.routes]
@@ -634,6 +687,12 @@ class Graph:
             else:
                 c.status = "OPEN"
         for rid, r in self.routes.items():
+            if rid in self.schema_invalid_routes:
+                r.status = "INVALIDATED"
+                r.status_reasons = ["schema-invalid route: " + reason
+                                    for reason in self.schema_invalid_routes[rid]]
+                r.blocked_on = []
+                continue
             if rid in inv:
                 r.status = "INVALIDATED"
                 reasons = [f"invalidated by established claim {c}"
@@ -654,6 +713,8 @@ class Graph:
         # a route already killed by an obstruction or a refuted premise is not.
         for cid in sorted(refuted):
             for rid in self.routes_into.get(cid, []):
+                if rid in self.schema_invalid_routes:
+                    continue
                 r = self.routes[rid]
                 reqs = [q for q in r.get_list("requires") if q in self.claims]
                 if (not self.invalidated_by.get(rid)
@@ -835,7 +896,7 @@ def read_graph_cache(research_dir=RESEARCH_DIR, repo=REPO):
     finally:
         if db is not None:
             db.close()
-    graph = Graph(nodes, [], repo)
+    graph = Graph(nodes, list(cached_errors), repo)
     graph.errors[:] = cached_errors
     graph.compile_errors = list(cached_errors)
     graph.source_manifest = cached_manifest

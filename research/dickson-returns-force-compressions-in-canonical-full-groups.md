@@ -3,13 +3,23 @@ rg: 2
 id: dickson-returns-force-compressions-in-canonical-full-groups
 kind: claim
 title: In CT_P(Z), nV and every group of canonical box maps, an invariant probability that charges the set of points whose forward degree walk is bounded below forces a compression or an open periodic box (Dickson's lemma); so minimal elements have almost every orbit expanding without bound in some prime, forward and backward
-requires:
-  - ct-p-z-order-is-decided-by-elliptic-reduction
-  - hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
 distinct_from:
   ct-p-z-order-is-decided-by-elliptic-reduction: that reduces order to elliptic primes and shows minimal elements of CT_{3}(Z) are non-elliptic in both primes; this constrains the degree walk of every invariant measure of a minimal (or compression-free) element, through a well-quasi-order argument.
   hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z: that closes hyperbolic orbits (all exponents nonzero); this needs no exponents and covers the zero-exponent (parabolic) regime left open there.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - ct-p-z-order-is-decided-by-elliptic-reduction
+  - hyperbolic-measures-give-hyperbolic-periodic-points-in-ct-p-z
+```
 
 **ESTABLISHED** (lane proof, elementary: Poincaré recurrence and Dickson's lemma; not independently
 reviewed; no priority claimed). **OPEN:** does `CT_{3}(Z)` have a minimal element? Items 2–3

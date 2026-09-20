@@ -3,12 +3,22 @@ rg: 2
 id: racg-generators-are-singular-over-their-wall-trees
 kind: claim
 title: In the right-angled Coxeter group of a graph of girth at least 5, a standard generator s whose link vertices each have a second neighbor is singular in the BBMZ horofunction host at two horofunctions over every limit point of its wall; so s has continuum many singular points as soon as its link has three vertices; the Petersen-graph group has an unbounded host, and the pentagon's four singular chains are recovered exactly
-requires:
-  - bbmz-singularity-is-a-recurrent-coincidence
 distinct_from:
   bbmz-singularity-is-a-recurrent-coincidence: that proves the recurrent-coincidence criterion (Theorem D); this verifies the criterion along every limit point of a generator's wall in girth-5 right-angled Coxeter groups, which settles boundedness for them.
   bbmz-hosts-with-higher-dimensional-boundary-are-unbounded: that sketches singularity along wall spheres of cocompact reflection groups of dimension at least 3; this is a complete proof in the 2-dimensional right-angled case, where boundaries are 1-dimensional.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bbmz-singularity-is-a-recurrent-coincidence
+```
 
 **Status.**
 - **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; not reviewed). The proof is a direct verification of

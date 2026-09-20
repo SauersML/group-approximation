@@ -3,12 +3,22 @@ rg: 2
 id: generalized-triangle-group-hosts-reduce-to-fixed-trees
 kind: claim
 title: For the BBMZ host of G * Z, singular sets are controlled by the generators and the free generator is never singular, so the uncountable form of Conjecture U for a hyperbolic group G is a statement about finitely many generators of G; for the Kazhdan group H_31 these all have order 5, each fixes a tree in the CAT(-1) triangle complex with Cantor boundary (vertex degrees 5, 12, 25 for a and b, 5-regular for c), the analogue of the wall tree, and whether a generator is singular over its fixed tree is open
-requires:
-  - bbmz-singularity-is-a-recurrent-coincidence
-  - racg-generators-are-singular-over-their-wall-trees
 distinct_from:
   racg-generators-are-singular-over-their-wall-trees: that proves singularity over the whole wall tree in girth-5 right-angled Coxeter groups, using halfspaces; this reduces the Kazhdan case for H_31 to its three torsion generators and computes their fixed trees, which play the role of wall trees but come with no halfspace structure.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bbmz-singularity-is-a-recurrent-coincidence
+  - racg-generators-are-singular-over-their-wall-trees
+```
 
 **Status.**
 - **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; not reviewed): Lemma 1, Lemma 2, Corollary 3 and

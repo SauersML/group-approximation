@@ -3,16 +3,26 @@ rg: 2
 id: profinite-skew-layers-collapse-into-the-equicontinuous-factor
 kind: claim
 title: A skew product of a minimal equicontinuous system by a continuous cocycle into a profinite group is equicontinuous; so profinite layers over the maximal equicontinuous factor collapse, fibre-preserving automorphisms of a row that is proximal over a principal distal layer embed in a connected compact group, a non-exact one needs an infinite-dimensional connected layer, and every lifted translation commensurates the singular set
-requires:
-  - time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows
-  - minimal-system-automorphisms-fix-every-proximal-factor
-  - automorphisms-of-hierarchical-rows-are-virtually-abelian
-  - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
 distinct_from:
   time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows: that shows a non-exact commutant of a rigid row needs infinite fibres over the equicontinuous factor and proposes a profinite distal layer; this proves the profinite layer collapses into the equicontinuous factor, so the layer must be connected and, for a non-exact commutant, infinite-dimensional.
   automorphisms-of-hierarchical-rows-are-virtually-abelian: that bounds Aut for rows finite-to-one over their rotation; this treats rows with infinite fibres and bounds the fibre-preserving part by a compact structure group.
   minimal-system-automorphisms-fix-every-proximal-factor: that kills automorphisms along proximal fibres; this handles the distal layer that remains.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows
+  - minimal-system-automorphisms-fix-every-proximal-factor
+  - automorphisms-of-hierarchical-rows-are-virtually-abelian
+  - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, with two repairs to item 3; no priority
 claimed). Items 1–4 are standard-style topological dynamics. The recalled inputs are:

@@ -4,6 +4,7 @@ id: quotient-gap-gives-uniform-relative-projection-repair
 kind: claim
 title: "Quotient spectral gap repairs every small-energy projection in a common large corner"
 artifacts:
+  - research/artifacts/liu-analytic-leaves-proof-acceptance-2026-09-20.md
   - research/artifacts/liu-block-construction-audit-2026-09-20.md
 ---
 
@@ -21,4 +22,4 @@ There is no lower bound on rank(p)/d_n. This is Liu Theorem 3.2, not merely addi
 
 ## Attempts
 
-2026-09-20: equation-level inspection is recorded in the cited audit. No concrete gap was found in the inspected steps, but this import remains OPEN pending completion of its independent review. No empty-premise citation route is supplied.
+2026-09-20, initial pass: the partial audit left this claim open. Superseded by the full reconstruction in the acceptance supplement and the direct route `quotient-gap-gives-uniform-relative-projection-repair-proof`. The exact assertion is now established by a checked written proof of Jihao Liu's argument, including its quantified error estimates and named background imports. This is not a Lean certificate or external human-referee verdict; authorship remains Liu's.

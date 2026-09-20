@@ -3,17 +3,27 @@ rg: 2
 id: ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
 kind: claim
 title: A non-amenable finitely generated group of automorphisms of a minimal free quantum-rigid Z^d-SFT, meeting the shifts trivially and fixing an invariant measure, refutes (RA_free); so (RA_free) forces uniquely ergodic rigid rows to have amenable commutants and no free subgroups, the SU(2) target T1, if built, refutes (RA_free) rather than calibrating it, and the infinite-fibre time-lift line and the finite-fibre Toeplitz line are two measured instances of one refutation principle
+distinct_from:
+  time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows: that shows a non-EXACT commutant refutes (RA′); this shows a non-AMENABLE commutant that fixes an invariant measure already refutes the stronger (RA_free), and derives the amenability consequence for uniquely ergodic rows.
+  rigid-subshifts-over-free-factors-are-tight-almost-everywhere: that shows invariant measures over Λ_0 × F_n force tightness and leaves tight spacetimes open; this identifies the time lifts of rigid rows as tight spacetimes and reduces the measured (RA_free) for them to amenability of commutants.
+  quantum-rigid-subshifts-are-determined-by-thick-collars: that records that finite fibres carry an invariant measure, so the finite-fibre case of (CC′) is the non-existence statement (RA_fin); this is the infinite-fibre, time-lift counterpart.
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
   - time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
   - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
   - quantum-rigid-subshifts-are-determined-by-thick-collars
-distinct_from:
-  time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows: that shows a non-EXACT commutant refutes (RA′); this shows a non-AMENABLE commutant that fixes an invariant measure already refutes the stronger (RA_free), and derives the amenability consequence for uniquely ergodic rows.
-  rigid-subshifts-over-free-factors-are-tight-almost-everywhere: that shows invariant measures over Λ_0 × F_n force tightness and leaves tight spacetimes open; this identifies the time lifts of rigid rows as tight spacetimes and reduces the measured (RA_free) for them to amenability of commutants.
-  quantum-rigid-subshifts-are-determined-by-thick-collars: that records that finite fibres carry an invariant measure, so the finite-fibre case of (CC′) is the non-existence statement (RA_fin); this is the infinite-fibre, time-lift counterpart.
----
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary given the cited nodes; no
 priority claimed). **Referee PASS** (bh-ref-q11, 2026-09-19) for the mathematics, with a scope correction: read (RA) as its free form (RA_free); see the Referee section.

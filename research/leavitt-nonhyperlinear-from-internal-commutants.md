@@ -10,6 +10,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/liu-leavitt-direct-internality-cross-review-2026-09-20.md
   - research/artifacts/liu-leavitt-direct-internality-and-consequences-2026-09-20.md
   - research/artifacts/liu-leavitt-consequences-audit-2026-09-20.md
   - research/artifacts/leavitt-central-height-and-coordinate-swap-gap-2026-09-08.md

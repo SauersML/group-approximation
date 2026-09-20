@@ -3,14 +3,24 @@ rg: 2
 id: algebraic-t1-sets-carry-free-distal-commutator-actions
 kind: claim
 title: In characteristic 2 a nontrivial torsion-free element of SL_2 has no eigenvalue 1, so on every infinite Z^2-minimal F-invariant subset M of Ledrappier's square the group F ∩ SL_2(A) acts freely, each element uniformly away from the identity; the commutator subgroup moves points inside their fibres over the maximal equicontinuous factor, so M is not a proximal extension of it; no character, coset or translation is compatible with M; and algebraic T1 is equivalent to a module embedding of A^2 into C(N, F_2)
-requires:
-  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
-  - char-2-benoist-quint-needs-the-homogeneous-form
 distinct_from:
   algebraic-rows-carry-rigid-free-commutants-but-never-minimality: that isolates minimality as the missing property of T1 and shows every fibre of M over its maximal equicontinuous factor is infinite; this shows F ∩ SL_2(A) acts freely on M with each element uniformly distal from the identity, that [F,F] acts freely inside every fibre, and that M is not even a proximal extension of that factor.
   minimal-system-automorphisms-fix-every-proximal-factor: that shows automorphisms of general minimal systems are trivial on proximal factors; this uses the linear structure of Ledrappier's square to force a free, fibrewise, uniformly distal action, which any algebraic T1 set must carry.
   profinite-skew-layers-collapse-into-the-equicontinuous-factor: that constrains fibre-preserving automorphisms through profinite and connected layers; this derives the dynamical constraint (freeness and uniform distality from the identity) directly from characteristic 2.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+  - char-2-benoist-quint-needs-the-homogeneous-form
+```
 
 **ESTABLISHED (lane bh-bq2, 2026-09-19; lane proof, elementary; not independently reviewed; no priority
 claimed).**

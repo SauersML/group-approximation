@@ -3,14 +3,24 @@ rg: 2
 id: commutator-squeeze-bounds-lifted-lie-translations
 kind: claim
 title: If a polynomially repetitive Z^d-subshift has a factor carrying a free action of a compact Lie group whose translations lift to automorphisms, and the coding's singular set has positive codimension along the orbits, then the lifted translations form a virtually abelian group; so target T1 is impossible for linearly repetitive rows with tame singular sets
-requires:
-  - hierarchical-tilings-fail-the-free-commutant-test
-  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
-  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
 distinct_from:
   polygonal-anzai-codings-lift-only-finitely-many-rotations: that uses slope bookkeeping for one abelian polygonal example; this uses measure and group structure (commutators contract displacement quadratically while cellular-automaton radius at most doubles), for every compact Lie group and every singular set of positive codimension, with no smoothness.
   hierarchical-tilings-fail-the-free-commutant-test: that shows hierarchical skeletons alone fail the F_2 test and reduces lifting to expansive slabs; this bounds what any continuous Lie data layer can lift, given polynomial repetitivity.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - hierarchical-tilings-fail-the-free-commutant-test
+  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
+  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, with three precisions; no priority
 claimed). The recalled inputs are:

@@ -3,6 +3,19 @@ rg: 2
 id: algebraic-rows-carry-rigid-free-commutants-but-never-minimality
 kind: claim
 title: The square of Ledrappier's shift is a quantum-rigid zero-entropy Z^2-SFT whose automorphism group contains GL_2 of its endomorphism ring, hence F_2, all Haar-preserving; it is never minimal or free, but every closed invariant subset inherits rigidity, so target T1 is exactly an F_2-invariant, free, minimal, uniquely ergodic subset of an algebraic rigid row
+distinct_from:
+  two-sided-locality-holds-for-matrix-linear-automata: that builds commuting free lift and transport groups on periodic data; this puts the free lift inside the automorphism group of a rigid algebraic SFT, where rigidity and an invariant measure come for free, and isolates minimality as the one missing property.
+  group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp: that shows rigid group subshifts over non-amenable groups are measure-preserving, non-amenable and never minimal; this realizes that case as the time lift of an explicit Z^2-row, and turns the minimality defect into a precise target.
+---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
 requires:
   - ledrappier-crossed-product-is-finitely-presented
   - permutive-triangle-sfts-are-quantum-rigid
@@ -12,10 +25,7 @@ requires:
   - two-sided-locality-holds-for-matrix-linear-automata
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
   - minimal-system-automorphisms-fix-every-proximal-factor
-distinct_from:
-  two-sided-locality-holds-for-matrix-linear-automata: that builds commuting free lift and transport groups on periodic data; this puts the free lift inside the automorphism group of a rigid algebraic SFT, where rigidity and an invariant measure come for free, and isolates minimality as the one missing property.
-  group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp: that shows rigid group subshifts over non-amenable groups are measure-preserving, non-amenable and never minimal; this realizes that case as the time lift of an explicit Z^2-row, and turns the minimality defect into a precise target.
----
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary given the cited nodes; not
 reviewed). The Pontryagin duality facts for algebraic `Z^2`-actions are recalled, not re-read

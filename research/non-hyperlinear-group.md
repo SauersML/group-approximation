@@ -6,6 +6,10 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/liu-analytic-leaves-proof-acceptance-2026-09-20.md
+  - research/artifacts/liu-theorem-five-assembly-cross-review-2026-09-20.md
+  - research/artifacts/liu-section-six-acceptance-and-thom-bypass-2026-09-20.md
+  - research/artifacts/liu-leavitt-direct-internality-cross-review-2026-09-20.md
   - research/artifacts/liu-cairn-integration-2026-09-20.md
   - research/artifacts/leavitt-full-character-classification-2026-09-08.md
   - research/artifacts/leavitt-packet-perfect-kernel-and-finite-amalgam-obstruction-2026-09-08.md
@@ -53,15 +57,9 @@ The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
 
-**Integrated Liu connection, 2026-09-20.** The proposed analytic input is
+**ESTABLISHED, 2026-09-20 — checked written derivations, not a new Lean certificate.** The essential analytic input is
 Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
-Theorem 1.2/6.7 (`kazhdan-commutants-are-internal`). Its conditional graph now
-reaches this root through the Kun–Thom lamp obstruction and, separately,
-through the earlier Cairn Leavitt two-use heat argument. Thom retains credit
-for the conditional normalization/construction bridge. Audits, exact scopes,
-consequences and non-consequences are in the linked integration guide. The
-long analytic imports remain OPEN; this update does not declare the root
-established or claim a new Lean verification.
+Theorem 1.2/6.7 (`kazhdan-commutants-are-internal`). Full written reconstructions of its analytic inputs, independently checked block assembly, and the matching/exhaustion proof now close that claim. This root follows through Andreas Thom's conditional double theorem, the Kun–Thom lamp obstruction, and separately the native Leavitt argument. Thom retains priority for conditional normalization and the double; Kun and Thom for the explicit pair and lamps. The direct Leavitt application removes the earlier heat/SOS machinery; its independent cross-review is cited above. Audits, exact scopes, named background imports and consequences are in the integration guide. Liu's stronger single-model normalization theorem remains separately under review and is not needed by these completed paths. The historical progress entries below describe earlier open states, not the current derived status. Global Cairn schema errors elsewhere in the repository remain a separate validation issue and are not evidence of mathematical certification here.
 
 **September 8, full Leavitt character classification.** The written
 proof `binary-leavitt-full-character-simplex` establishes that every

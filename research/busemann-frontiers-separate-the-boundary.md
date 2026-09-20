@@ -3,12 +3,22 @@ rg: 2
 id: busemann-frontiers-separate-the-boundary
 kind: claim
 title: For every element g of a non-elementary hyperbolic group, the set of boundary points over which the Busemann difference h(g) - h(1) takes two values separates the Gromov boundary; when countable closed sets do not separate it (spheres of dimension at least 2, and expectedly the Menger curve), this frontier is uncountable, so random groups, the Menger-boundary Kazhdan case, are expected to have unbounded BBMZ hosts as well
-requires:
-  - bbmz-hosts-with-higher-dimensional-boundary-are-unbounded
-  - horofunction-boundary-homology-reduces-to-the-branch-locus
 distinct_from:
   bbmz-hosts-with-higher-dimensional-boundary-are-unbounded: that proves uncountable singular sets for reflection groups of dimension at least 3 and leaves Menger-boundary Kazhdan groups as the decisive open case; this gives a general separation theorem for the shear frontier and shows that boundary dimension is not the issue; separation by countable sets is.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - bbmz-hosts-with-higher-dimensional-boundary-are-unbounded
+  - horofunction-boundary-homology-reduces-to-the-branch-locus
+```
 
 **Status.**
 - **Theorem 1: ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary; not reviewed).

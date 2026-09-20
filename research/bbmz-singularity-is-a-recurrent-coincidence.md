@@ -3,16 +3,26 @@ rg: 2
 id: bbmz-singularity-is-a-recurrent-coincidence
 kind: claim
 title: In a BBMZ horofunction host, an element is singular only over the fibers of its offset frontier, and over a frontier point it is singular exactly when two kinds of atom splitting coincide at infinitely many depths (in right-angled Coxeter groups, a wall crossing the frontier wall and a wall that does not); in every hyperbolic group the singular set is the set of points whose pair-type path in a finite graph visits a finite set infinitely often, so it is countable or of the size of the continuum, decided by a finite graph
-requires:
-  - hyperbolic-cone-matching-holds-off-the-branch-locus
-  - horofunction-atom-configurations-have-finitely-many-types
-  - k-local-distance-functions-on-hyperbolic-groups-are-global
-  - busemann-frontiers-separate-the-boundary
 distinct_from:
   bbmz-hosts-with-higher-dimensional-boundary-are-unbounded: that sketches singularity along wall spheres of reflections; this proves the exact criterion (recurrent coincidence) in right-angled Coxeter groups, shows frontier membership alone does not give it, and proves a general finite-graph description of singular sets.
   busemann-frontiers-separate-the-boundary: that proves the shear frontier separates and poses persistence; this proves the inclusion of singular sets in frontier fibers and replaces persistence by a decidable coincidence condition.
   hyperbolic-cone-matching-holds-off-the-branch-locus: that proves regularity off the branch locus with a fixed level shift; Theorem A here weakens the hypothesis to a single offset value on the fiber.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - hyperbolic-cone-matching-holds-off-the-branch-locus
+  - horofunction-atom-configurations-have-finitely-many-types
+  - k-local-distance-functions-on-hyperbolic-groups-are-global
+  - busemann-frontiers-separate-the-boundary
+```
 
 **Status.**
 - **ESTABLISHED (lane proof, bh-q12-kazhdan, 2026-09-19; Referee bh-ref-q12 2026-09-19: Lemma B, Proposition C, Theorem D and Theorem E PASS, with a repair to the uncountability criterion; Theorem A checked only in its changed step):** Theorem A, Lemma B, Proposition C,

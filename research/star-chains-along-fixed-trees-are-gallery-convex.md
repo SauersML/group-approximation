@@ -3,12 +3,22 @@ rg: 2
 id: star-chains-along-fixed-trees-are-gallery-convex
 kind: claim
 title: The union of the vertex stars along a geodesic edge path of the CAT(-1) triangle complex of H_31 is convex in the chamber graph (OPEN); hyperbolicity localizes gallery distances near a ray of the fixed tree only to a tube of radius of order 8 delta, which is far too large to compute, and this sharp convexity is the one geometric input needed to turn events (A)/(B) and the one-orbit-per-sector assumption into a finite exact computation; no property-(T) input is needed for it
-requires:
-  - elliptic-singularity-is-a-marker-mismatch
-  - generalized-triangle-group-hosts-reduce-to-fixed-trees
 distinct_from:
   elliptic-singularity-is-a-marker-mismatch: that reduces singularity of an elliptic generator to recurrent chamber events (A)/(B); this isolates the geometric lemma that would make those events computable along rays of the fixed tree.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - elliptic-singularity-is-a-marker-mismatch
+  - generalized-triangle-group-hosts-reduce-to-fixed-trees
+```
 
 **OPEN.** Let `X` be the CAT(−1) triangle complex of `𝓗_31` (CCKW arXiv:2011.09276, Theorem 1.2), `𝒞` its chamber
 graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of `Fix(a)`. The claim is:

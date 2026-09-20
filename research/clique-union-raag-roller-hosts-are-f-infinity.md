@@ -3,16 +3,26 @@ rg: 2
 id: clique-union-raag-roller-hosts-are-f-infinity
 kind: claim
 title: For a free product of at least two free abelian groups (a RAAG whose graph is a disjoint union of cliques, e.g. Z^2 * Z), the V-stabilized full group of the Roller boundary action is of type F_infinity, via a Thumann operad of orthant tiles and coordinate peels; E3' holds for the one-edge case of the cubulated route
-requires:
-  - special-cube-complex-groups-lie-in-fp-members-of-class-c
-  - cocompact-tree-end-shift-hosts-are-f-infinity
-  - roller-compactifications-of-cube-complexes-are-sfts
 distinct_from:
   cocompact-tree-end-shift-hosts-are-f-infinity: that is the edgeless case (trees, one split per tile); this adds flats, where a tile has one peel per coordinate of its cube and the tiles form a Brin-Thompson-like product system glued along a tree.
   raag-cube-codings-fail-li-multiplicity-at-every-power: that shows Li's multiplicity condition (t<d) fails for RAAG cube codings at every power; this avoids (t<d) altogether, since the V factor makes the operad color-tame (Thumann), which is the loop-richness Li needs.
   greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs: that uses greedy (normal) cube paths to make cubulated hyperbolic groups contracting RSGs; this uses the same normal cube paths as the uniform refinements of a finiteness proof for a host with flats.
   special-cube-complex-groups-lie-in-fp-members-of-class-c: that reduces the cubulated route to E3' and records it as open whenever the graph has an edge; this proves E3' when the graph is a disjoint union of cliques, and isolates the lemma needed for general graphs.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - special-cube-complex-groups-lie-in-fp-members-of-class-c
+  - cocompact-tree-end-shift-hosts-are-f-infinity
+  - roller-compactifications-of-cube-complexes-are-sfts
+```
 
 **ESTABLISHED** (lane proof, bh-one-relator, 2026-09-19; not reviewed; no priority claimed). The finiteness
 input is Thumann's Theorem `41762` (arXiv:1409.1085; definitions `81202`, `79040`, `13449`, `24121`, `26536`,

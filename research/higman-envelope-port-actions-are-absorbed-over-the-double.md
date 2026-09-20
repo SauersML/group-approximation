@@ -3,15 +3,25 @@ rg: 2
 id: higman-envelope-port-actions-are-absorbed-over-the-double
 kind: claim
 title: In any action of a Higman–Clapham envelope with finitely generated stabilizers, all but finitely many base orbits in each orbit are absorbed into the double F *_N F′, and the input acts freely on them; if no base orbit is absorbed, a finite-index subgroup of the input embeds in a finite product of normalizer sections N(Q)/Q of the double
-requires:
-  - higman-clapham-envelopes-are-hnn-over-machine-times-input
-  - permutational-ports-need-stabilizers-crossing-every-splitting
-  - cofinite-abelian-subgroups-give-relative-pbh
 distinct_from:
   permutational-ports-need-stabilizers-crossing-every-splitting: that shows type (A) and port stabilizers must be hyperbolic on the envelope's tree; this describes the whole shape of any action of the envelope with finitely generated stabilizers, which both criteria require.
   higman-clapham-envelopes-are-hnn-over-machine-times-input: that builds the envelope and transfers decidability; this classifies the permutation structure an envelope action must have.
   amalgams-of-orbit-finite-actions-are-type-a2: that computes stabilizers of amalgam actions from orbit-finite edge groups; this is the converse analysis for one HNN, where edge groups need not be orbit-finite.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - higman-clapham-envelopes-are-hnn-over-machine-times-input
+  - permutational-ports-need-stabilizers-crossing-every-splitting
+  - cofinite-abelian-subgroups-give-relative-pbh
+```
 
 **ESTABLISHED** (lane bh-ra-counter, 2026-09-19; elementary Bass–Serre theory; not reviewed; no
 priority claimed). It is progress on SYNTHESIS v8 gate #4, a type (A) overgroup of Osajda's group,

@@ -3,15 +3,25 @@ rg: 2
 id: products-of-trees-refute-cap-coherence-join-caps-restore-it
 kind: claim
 title: Cap coherence fails at every point of the rigid, minimal, topologically free, amenable SFT ∂T_m ⊠ ∂T_n, so (CC′) is false; k-fold join caps (nearest points of intersections of k modification supports) still give amenability, and for a product of trees they cohere at the level of the number of factors and at no lower level
-requires:
-  - rigid-subshift-amenability-from-coherent-variation-caps
-  - free-group-boundary-shifts-are-quantum-rigid
-  - quantum-rigidity-is-product-stable
 distinct_from:
   rigid-subshift-amenability-from-coherent-variation-caps: that proves (CC) ⇒ amenability and proposes (CC′) (minimal + topologically free + rigid ⇒ (CC)) as the route to (RA′); this refutes (CC′) at a product of trees and replaces caps by join caps, which do reach the amenable examples.
   roller-compactifications-of-cube-complexes-are-quantum-rigid: that proves rigidity of cube Roller SFTs; this tests the Reiter side of (RA′) on the simplest cube complex that is not a tree, T_m × T_n, and isolates what the Reiter functions need there: joins of independent modification directions.
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is (RA)/(RA′); this removes one proposed reduction and puts the join dimension in its place.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - rigid-subshift-amenability-from-coherent-variation-caps
+  - free-group-boundary-shifts-are-quantum-rigid
+  - quantum-rigidity-is-product-stable
+```
 
 **ESTABLISHED** (lane proof, elementary; bh-star-b, 2026-09-19; not reviewed; no priority claimed):
 Theorems 1–3. Section 4 records expectations, which are marked as such. The framework (variation sets,

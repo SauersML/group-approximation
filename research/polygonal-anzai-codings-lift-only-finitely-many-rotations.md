@@ -3,14 +3,24 @@ rg: 2
 id: polygonal-anzai-codings-lift-only-finitely-many-rotations
 kind: claim
 title: In a subshift that is an almost 1-1 extension of the Anzai skew product (x,y) ↦ (x+α, y+x) with polygonal singular set, only finitely many fibre rotations lift to automorphisms, because rotations preserve slopes while the dynamics shears them; this suggests (heuristically, not proved) that the targets T1/T2 need singular sets containing pieces of unboundedly many tilts (hierarchical, simulation-type codings), and T1 would also give a minimal zero-entropy free Z^d-SFT with a free group of automorphisms
-requires:
-  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
-  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
-  - quantum-rigid-subshifts-are-determined-by-thick-collars
 distinct_from:
   profinite-skew-layers-collapse-into-the-equicontinuous-factor: that shows lifted fibre translations must commensurate the singular set Z_1; this shows that for tame (polygonal) Z_1 over a twisted base the commensurating rotations form a finite group, identifying the twist-versus-symmetry tension that T1 must overcome.
   ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows: that shows T1, if built, refutes (RA_free); this rules out the geometric codings as a way to build it, and records its zero-entropy consequence.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
+  - quantum-rigid-subshifts-are-determined-by-thick-collars
+```
 
 **ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19 for item 1; no priority
 claimed). It is a calibration for targets T1 and T2 (Line I). The circle fibre is abelian, so this says

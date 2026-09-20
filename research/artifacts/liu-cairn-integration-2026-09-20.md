@@ -1,8 +1,6 @@
 # Liu's internality argument inside the Cairn program
 
-Integrated on 2026-09-20. This is the reading map for the canonical claim/route
-subgraph, not a new assertion that the nonhyperlinearity problem has been
-independently certified here.
+Integrated and updated on 2026-09-20. The nonhyperlinear root now has closed written-proof derivations. This is the reading map and trust ledger for the canonical subgraph, not a Lean build certificate or an external human referee report.
 
 ## Attribution
 
@@ -15,7 +13,7 @@ normalization argument and double construction. The group pair and lamp
 construction are due to **Gábor Kun and Andreas Thom**, building on the earlier
 OpenAI compression mechanism, as Liu's paper explains.
 
-The Leavitt and other Cairn consequences below are conditional applications of
+The Leavitt and other Cairn consequences below are applications of
 Liu's analytic theorem through previously recorded Cairn arguments. They are
 not presented as theorems Liu states in his paper, nor as independent discoveries
 of his analytic results. Independently checking or restating a proof does not
@@ -36,17 +34,15 @@ uniform conditional expectations. The complete combined construction was not
 located in the earlier sources inspected. This is neither an exhaustive priority
 claim nor evidence that Liu accessed the repository.
 
-The graph now separates mathematical implications from acceptance of the long
-analytic imports. The central claim
+The graph separates mathematical implications from acceptance of their analytic inputs. The central claim
 [`kazhdan-commutants-are-internal`](../kazhdan-commutants-are-internal.md)
-remains OPEN. Its conditional consequences are wired now, so accepting or
-refuting a precise prerequisite will propagate through the existing program.
-No route simply declares the whole paper proved.
+is now **ESTABLISHED by a checked written chain**, and the existing nonhyperlinear root derives from it. The four exact analytic leaves have full proof reconstructions, Theorem 5.1 assembly has an independent cross-review, and matching/exhaustion have full proof routes. No route simply declares the whole paper proved. Standard finite-von-Neumann-algebra imports remain identified; no fresh Lean check or external human review is claimed.
+
+The general compression conclusion is obtained through **Thom's** checked conditional theorem. Liu's stronger one-model theorem, assuming only internality of the subgroup commutant, remains separately OPEN and is not needed for the completed routes. This prevents acceptance of an unreviewed stronger statement merely because a consequence is proved.
 
 The [integrated consequences figure](../../output/figures/cairn-liu-integrated-consequences.svg)
 is also available as a [PNG](../../output/figures/cairn-liu-integrated-consequences.png).
-It condenses the canonical routes and labels extra inputs rather than hiding
-them. Purple imports and amber consequences remain conditional.
+It condenses canonical routes and labels their extra inputs. The proof ledger distinguishes written acceptance, retained literature imports, and genuinely open statements.
 
 ## The analytic chain
 
@@ -58,13 +54,13 @@ representations.
 | Interface | What is actually supplied | Review boundary |
 |---|---|---|
 | [Coordinate expectation lift](../quotient-gap-expectations-have-coordinate-lifts.md) | One model-dependent averaging schedule works on every bounded sequence; equality of expectations is a uniform infinity-to-2 norm statement | A full written witness/diagonal proof is supplied and separately checked; not a universal schedule across all models |
-| [Relative repair](../quotient-gap-gives-uniform-relative-projection-repair.md) | One large corner and relative error sequence work for every eligible projection, however small its rank | Liu 3.2; open import |
-| [In-place rounding](../low-energy-povms-round-equivariantly-in-place.md) | Orthogonal partition in the original dimension; output energy vanishes even at fixed purity deficit | Liu 4.3; open import |
-| [Resolvent assembly](../resolvent-assembly-controls-covariance-and-leakage.md) | Summed covariance and actual range-leakage estimates without a factor counting the outcomes | Liu 5.2-5.3; open import |
-| [Defect pruning](../defective-block-expansion-prunes-to-doubled-gaps.md) | Summable defects yield scalar gaps after pruning and doubling nearby generators | Liu 5.4; open import |
-| [Large expanding blocks](../quotient-gap-gives-large-scalar-expanding-blocks.md) | For each fixed discarded-trace tolerance, a positive gap on retained physical blocks | Conditional assembly of the preceding four imports; the gap may depend on tolerance |
-| [Matching](../scalar-expanding-kazhdan-blocks-give-internality.md) | Unequal approximate blocks are aligned into coherent multiplicity algebras, including off-diagonal intertwiners | Liu 6.4-6.5; open import |
-| [Exhaustion](../internal-corners-exhaust-kazhdan-commutants.md) | Nearly full internal corners plus one uniform expectation lift give full internality | Liu 6.6; open import; no nested corners or uniform gap required |
+| [Relative repair](../quotient-gap-gives-uniform-relative-projection-repair.md) | One large corner and relative error sequence work for every eligible projection, however small its rank | Liu 3.2; full written reconstruction accepted |
+| [In-place rounding](../low-energy-povms-round-equivariantly-in-place.md) | Orthogonal partition in the original dimension; output energy vanishes even at fixed purity deficit | Liu 4.3; full written reconstruction with Houdayer–Vaes and Ioana imports |
+| [Resolvent assembly](../resolvent-assembly-controls-covariance-and-leakage.md) | Summed covariance and actual range-leakage estimates without a factor counting the outcomes | Liu 5.2-5.3; full written reconstruction accepted |
+| [Defect pruning](../defective-block-expansion-prunes-to-doubled-gaps.md) | Summable defects yield scalar gaps after pruning and doubling nearby generators | Liu 5.4; full written reconstruction accepted |
+| [Large expanding blocks](../quotient-gap-gives-large-scalar-expanding-blocks.md) | For each fixed discarded-trace tolerance, a positive gap on retained physical blocks | Assembly independently cross-reviewed; all four inputs accepted |
+| [Matching](../scalar-expanding-kazhdan-blocks-give-internality.md) | Unequal approximate blocks are aligned into coherent multiplicity algebras, including off-diagonal intertwiners | Liu 6.4-6.5; full written proof of the supplied-block implication |
+| [Exhaustion](../internal-corners-exhaust-kazhdan-commutants.md) | Nearly full internal corners plus one uniform expectation lift give full internality | Liu 6.6; full written proof; no nested corners or uniform gap required |
 
 The principal AND-route is
 [`kazhdan-internality-from-blocks-and-exhaustion`](../kazhdan-internality-from-blocks-and-exhaustion.md).
@@ -97,12 +93,12 @@ also matches several early ingredients closely. The
 already considers overlapping positive sums, but leaves expansion-compatible
 selection open. Neither is a proof of the complete internality conclusion.
 
-## Two downstream routes, with different requirements
+## Completed downstream routes, with different requirements
 
 ### Compression and the Kun-Thom wreath
 
-Universal internality plus the
-[conditional normalization theorem](../internal-kazhdan-commutants-normalize-under-compressors.md)
+Universal internality through
+[Thom's conditional no-drift theorem](../all-trace-normalization-via-thom-no-drift.md)
 gives
 [normalization for every tracial model](../kazhdan-compression-pairs-normalize-all-tracial-models.md).
 This strengthens the existing `kt-centralizer-normalization-hs` interface and
@@ -132,7 +128,7 @@ Strength matters downstream:
 
 ### Native heat and the binary Leavitt unit group
 
-The other route does not need Liu's normalization theorem. Internality for
+The original alternate route does not need Liu's normalization theorem. Internality for
 every canonical Kazhdan model supplies finite-algebra rounding of its admissible
 heat maps, uniformly on the operator unit ball of each coordinate sequence.
 The existing Leavitt two-use argument then applies:
@@ -149,6 +145,12 @@ relation budget, reverse witness, central-height estimate and native generation
 identity. The algebraic property-(T), simplicity and SOS inputs remain named
 dependencies, not conclusions of Liu's paper.
 
+**A shorter internality-only proof is now wired.** The [direct bounded-Poincare route](../leavitt-nonhyperlinear-from-internal-commutants.md) transfers the quotient inequality to uniform coordinate slack, then selects one physical-weight component with small gap, relation and trace defects. This obtains the scalar full commutant directly. Applying internality to the native subgroup gives the forward and reverse expectation defects directly, so the existing finite central-height contradiction applies. It removes heat, SOS certificates, time schedules, and the separate Proposition 3.1 interface from the downstream argument. [Independent cross-review](liu-leavitt-direct-internality-cross-review-2026-09-20.md) checked those replacements.
+
+**A shorter group-side proof uses normalization.** The [native compressor route](../leavitt-nonhyperlinear-from-compressor-normalization.md) verifies H=<L,u,k_+,k_-> with three actual compressors. Normalization kills x_13(e), a nonidentity elementary matrix. It needs no scalar-commutant selection, character classification, simplicity, finite presentation, or central-height lemma. With simplicity added, every tracial-matrix-ultraproduct homomorphism of the F_2 unit group is trivial.
+
+The [every-field extension](../binary-leavitt-units-over-any-field-are-not-hyperlinear.md) descends the required elementary factorizations to a finitely generated subring and uses k_+ to kill x_24(a). It reaches characteristic zero and uncountable fields through a countable finitely generated witness; it does not assert property (T), simplicity or finite presentation for each full unit group.
+
 This route does NOT establish
 `bistochastic-near-idempotents-round-dimension-free`: arbitrary channels need
 not arise from fixed Kazhdan group generators and their SOS certificates. The
@@ -156,7 +158,7 @@ existing broad channel-rounding route remains a distinct sufficient route.
 
 ## Consequences and non-consequences
 
-Conditional on the shared analytic premise and the displayed structural inputs:
+With the accepted shared analytic premise and the displayed structural inputs:
 
 - The existing nonhyperlinear root is reached through the wreath and independently
   through the Leavitt argument.
@@ -188,11 +190,7 @@ Conditional on the shared analytic premise and the displayed structural inputs:
 - [Sections 6-8: internality, normalization, Thom comparison](liu-internality-normalization-audit-2026-09-20.md).
 - [Leavitt and host consequences](liu-leavitt-consequences-audit-2026-09-20.md).
 
-These are substantial targeted textual audits. They found no concrete gap in
-the inspected steps. They are not a Lean build, an external human referee
-report, or a complete independent certification of all imported results. This
-is why the long imports remain open in the graph rather than being converted
-into unconditional theorems by a metadata edit.
+Those three initial audits have now been supplemented by [complete analytic leaf reconstructions](liu-analytic-leaves-proof-acceptance-2026-09-20.md), [independent Theorem 5.1 assembly review](liu-theorem-five-assembly-cross-review-2026-09-20.md), [Section 6 acceptance and the Thom bypass](liu-section-six-acceptance-and-thom-bypass-2026-09-20.md), and [independent direct Leavitt review](liu-leavitt-direct-internality-cross-review-2026-09-20.md). These supply actual written proof routes, rather than converting “no gap found” into acceptance by metadata alone. They remain textual mathematical work with credited imports, not a Lean build or external human referee verdict.
 
 The branch merge preceding this integration also exposed unrelated schema
 errors already present in the source history. Validation compares the new

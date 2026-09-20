@@ -3,12 +3,22 @@ rg: 2
 id: ledrappier-shift-has-only-finite-minimal-subsets
 kind: claim
 title: (FL, REFUTED 2026-09-19) Every Z^2-minimal subset of Ledrappier's shift is finite, equivalently every nonempty closed invariant subset contains a periodic point; a characteristic-2, topological analogue of Furstenberg's x2 x3 theorem for minimal sets, which would rule out algebraic T1 on every Ledrappier power
-requires:
-  - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
 distinct_from:
   algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier: that proves (FL) rules out algebraic T1 and gathers partial evidence; this states (FL) as the open crux, with its equivalent forms and first tests.
   free-minimal-triangle-permutive-sft-exists: that asks for, and conjectures against, a free minimal sub-SFT; (FL) concerns all closed invariant subsets, not only sub-SFTs, and implies the conjectured refutation form.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
+```
 
 **REFUTED** (lane bh-bq2, 2026-09-19, lane proof, not reviewed): `ledrappier-shift-has-infinite-toeplitz-minimal-subsets` builds a non-periodic Toeplitz point of `X_L`, so `X_L` has infinite minimal subsets. The statement is kept below for the record.
 

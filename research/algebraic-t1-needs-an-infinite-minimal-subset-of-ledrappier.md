@@ -3,15 +3,25 @@ rg: 2
 id: algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
 kind: claim
 title: Every infinite Z^2-minimal subset of a power of Ledrappier's shift projects onto an infinite minimal subset of Ledrappier's shift itself; so if Ledrappier's shift has only finite minimal subsets (FL, a Furstenberg-type question in which no free group appears), algebraic T1 fails on every Ledrappier power for every F, and a T1 set forces an infinite minimal N ⊆ X_L with a minimal self-joining J obeying a Zariski-dense family of linear equations {a z_1 + b z_2 : (z_1, z_2) ∈ J} = c_0 N
-requires:
-  - algebraic-t1-sets-carry-free-distal-commutator-actions
-  - char-2-benoist-quint-needs-the-homogeneous-form
-  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
 distinct_from:
   char-2-benoist-quint-needs-the-homogeneous-form: that reduces the measure crux (BQ_2') to an infinite translation stabilizer; this finds a sufficient condition for killing algebraic T1 that involves neither the free group nor measures, namely that Ledrappier's shift itself has only finite minimal subsets.
   free-minimal-triangle-permutive-sft-exists: that conjectures every nonempty sub-SFT of Ledrappier's shift has a periodic point; (FL) is the stronger statement for all closed invariant subsets, and it is the one that controls T1.
   algebraic-t1-sets-carry-free-distal-commutator-actions: that constrains the free-group action on a T1 set; this shows every row projection of a T1 set is itself an infinite minimal subset of Ledrappier's shift, and turns the free group into linear equations on one self-joining.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - algebraic-t1-sets-carry-free-distal-commutator-actions
+  - char-2-benoist-quint-needs-the-homogeneous-form
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+```
 
 **ESTABLISHED (lane bh-bq2, 2026-09-19; lane proof, elementary; not independently reviewed; no priority
 claimed).** The question (FL) itself is **OPEN**.

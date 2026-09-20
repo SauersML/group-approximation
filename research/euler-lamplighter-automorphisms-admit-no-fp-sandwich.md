@@ -3,14 +3,24 @@ rg: 2
 id: euler-lamplighter-automorphisms-admit-no-fp-sandwich
 kind: claim
 title: The base M of the Euler lamplighter G_l is its Fitting subgroup, Aut(G_l) is the soluble group Z^1(H,M) ⋊ (Z_(l)^× × ⟨x, δ⟩) with δ the Pochhammer automorphism, and by Bieri–Strebel no finitely presented subgroup of Aut(G_l) contains Inn(G_l); so G_l is dead as an Aut-sandwich candidate for (SL)
-requires:
-  - separable-subgroups-are-z-semilocal-root-closed
-  - z-localized-embeds-in-fg-rf-soluble-group
-  - z-semilocalized-embeds-in-fp-rf-group
 distinct_from:
   separable-subgroups-are-z-semilocal-root-closed: that reformulates (SL) as a finitely presented P with Inn(G) ≤ P ≤ Aut(G) and names G_l as the live candidate; this computes Aut(G_l) completely and kills that candidate.
   z-localized-embeds-in-fg-rf-soluble-group: that builds G_l and proves it is residually finite; this determines its automorphism group.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - separable-subgroups-are-z-semilocal-root-closed
+  - z-localized-embeds-in-fg-rf-soluble-group
+  - z-semilocalized-embeds-in-fp-rf-group
+```
 
 **ESTABLISHED** (lane proof; bh-invent-12, 2026-09-19; elementary, plus two recalled theorems of Bieri–Strebel;
 not independently reviewed; no priority claimed). It settles the question posed in

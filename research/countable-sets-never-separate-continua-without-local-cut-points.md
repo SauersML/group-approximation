@@ -3,11 +3,21 @@ rg: 2
 id: countable-sets-never-separate-continua-without-local-cut-points
 kind: claim
 title: No countable closed set separates a Peano continuum without local cut points; so for every one-ended hyperbolic group that is not virtually Fuchsian and does not split over a two-ended subgroup (every infinite Kazhdan hyperbolic group, and a random group at density below 1/2 with overwhelming probability), the shear frontiers of loxodromic elements are uncountable
-requires:
-  - busemann-frontiers-separate-the-boundary
 distinct_from:
   busemann-frontiers-separate-the-boundary: that proves the shear frontier separates the boundary and needs the topological input (T0), recalled only for spheres; this proves (T0) for all Peano continua without local cut points and applies it to Kazhdan and random groups.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - busemann-frontiers-separate-the-boundary
+```
 
 **ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; elementary point-set topology; Referee bh-ref-q12 2026-09-19: Lemma PASS, and the application to Kazhdan and random groups PASS with two wording repairs). The statement is
 probably classical (in the style of Whyburn's *Analytic Topology*). No priority is claimed, and the literature was

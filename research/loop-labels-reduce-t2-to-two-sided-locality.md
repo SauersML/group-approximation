@@ -3,14 +3,24 @@ rg: 2
 id: loop-labels-reduce-t2-to-two-sided-locality
 kind: claim
 title: In Z^2, closed loops of a hierarchical square tiling let a free group of full-shift cellular automata act locally at every scale, so loop-labelled tilings carry F_2 ≤ Aut; in any minimal loop-label design the lifts centralize a transitive transport group on each level's labels, so target T2 reduces to two-sided locality (commuting non-abelian transport and lift actions, both given by local rules); the tower law itself is met by an explicit product singular set
-requires:
-  - residual-towers-constrain-non-lie-commutant-layers
-  - hierarchical-tilings-fail-the-free-commutant-test
-  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
 distinct_from:
   residual-towers-constrain-non-lie-commutant-layers: that states the tower law as a necessary condition; this exhibits a concrete singular set meeting it, a concrete local realization of the lifts, and the exact remaining obstruction to minimality.
   hierarchical-tilings-fail-the-free-commutant-test: that shows the bare skeleton has locally finite Aut; this adds free loop labels, which realize F_2, and then identifies what minimality costs.
 ---
+
+## Proposed dependency record (not an accepted route)
+
+The following rejected claim-level metadata is preserved verbatim as a
+proposed dependency record. It is not a compiled route, does not establish
+this claim, and requires individual mathematical review before any route
+is accepted. The historical mathematical prose below is unchanged.
+
+```yaml
+requires:
+  - residual-towers-constrain-non-lie-commutant-layers
+  - hierarchical-tilings-fail-the-free-commutant-test
+  - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+```
 
 **Status.**
 - Items 1 and 2 are elementary lane proofs, unreviewed. Item 2 is an explicit form of Hochman's embedding

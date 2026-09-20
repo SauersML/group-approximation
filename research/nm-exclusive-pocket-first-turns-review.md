@@ -3,9 +3,16 @@ rg: 2
 id: nm-exclusive-pocket-first-turns-review
 kind: claim
 title: Referee review of the exclusive-pocket route for Osin 9.7(b) — the source claims check at Osin v3; the route is sound on paper given nonempty source and target arcs of the two extreme regions, R-cell-free regions and at least two of them; it bypasses p10LS_SelectionArcStatement rather than proving it, and its Lean target is a first-turn PocketFaceSet producer feeding the proved first-turn pinch
-distinct_from:
-  nm-exclusive-pocket-first-turns: that is the route under review; this checks its source claims at Osin v3, its turn-by-turn argument, its open items, and its fit with the Lean interfaces.
 ---
+
+## Route comparison record
+
+The following comparison was formerly misplaced in `distinct_from`,
+which accepts claim ids, not route ids. Its text is preserved without
+adding a proof dependency or accepting a route. The targetless document
+is now retained in the notes tier pending individual review:
+
+- [nm-exclusive-pocket-first-turns](../notes/cairn-schema-pending/nm-exclusive-pocket-first-turns.md): that is the route under review; this checks its source claims at Osin v3, its turn-by-turn argument, its open items, and its fit with the Lean interfaces.
 
 **ESTABLISHED (referee bh-ref-t0, 2026-09-19; review of nm-switch-core's notes 6ba8cac61a, ce74d6fd09).**
 Non-MF-critical. This is a review of a paper route, not of Lean code; no build was run.
