@@ -1270,3 +1270,26 @@ the whole Haagerup-infinite branch for `V`.
    - MF-specific mechanisms survive the fence: eigencorners, K-theory, and non-compact operator-norm steps.
 4. **Status.** The target stays OPEN. As a (T)-free shortcut, the code approach is recorded dead at the
    colouring step: it is strictly harder than the goal requires.
+
+**2026-09-20 (swarm-0917 w23, ptl-follow, operator-algebras): the stable-finiteness sub-prerequisite is purely spectral.**
+1. **Result.** `unconfined-quasi-regular-algebras-lack-algebraic-infiniteness` is ESTABLISHED (written proof).
+   - `Stab(e_n)` is unconfined in `EL_n(L_(F_2)(1,2))`. So are `L=EL_3` and `M=uLu^-1`.
+   - The proof uses Neumann's covering lemma over `F_2`, and the fact that `cR` is infinite for every `c!=0`.
+   - Hence `lambda_E` is weakly contained in `lambda_(E/M)`, and `A_q(E,L,u)` surjects onto `C*_lambda(E)`.
+2. **Class killed.** No (T)-free argument can make `A_q` or `C*_max(E)` infinite through any of these:
+   - group-ring identities;
+   - finite-subgroup projections;
+   - V-style compressible involutions;
+   - trace-visible defects.
+   Every isometry is unitary modulo `J_q=ker(A_q->C*_lambda(E))`. Thompson's `V`, where point
+   stabilisers are confined, shows that the hypothesis is needed.
+3. **Decomposition.** The w22 sub-prerequisite (`A_q` not stably finite) is bracketed by two
+   single-representation spectral statements:
+   `MSG_L(lambda_(E/M)) => A_q infinite => GQE(lambda_(E/M))`.
+   - `MSG_L(lambda_(E/M))` is a uniform Kesten gap for the Schreier graphs `L/(L cap yMy^-1)`, over the
+     double cosets `LyM`.
+   - `GQE` asks for a gapped piece of quasi-regular spectrum that `lambda_E` does not have.
+
+   The next attack is the uniform gap on that double-coset family. (T) of `L` implies it, and it concerns one
+   representation.
+4. **Status.** The goal stays OPEN.
