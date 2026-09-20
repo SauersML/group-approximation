@@ -203,3 +203,13 @@ the detector certificates have exact remote arithmetic verification.
 These checks are not formal proof certification or a literature-priority
 claim. Neither a persistent hyperbolic class nor the required halting
 source family has been constructed. Both main targets remain OPEN.
+
+The [constructive-wave MSI report](constructive-lcs-detector-validation-2026-09-20.json)
+pins source commit `ea0a876529` and tree
+`4ff0947a70e9d65307a7b8875189c3667c781f59`: 34,247 canonical nodes,
+zero schema errors, no duplicate findings, ten added nodes, and no status
+changes among pre-existing nodes. The four new auxiliary claims are
+ESTABLISHED; both targets and the weighted halting source remain OPEN.
+The standard parser/linter/compiler check took 8.175 seconds on one
+low-priority MSI CPU. The report retains the full-CLI and proof-review
+limitations.

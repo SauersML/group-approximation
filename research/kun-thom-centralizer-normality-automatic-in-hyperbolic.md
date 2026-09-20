@@ -44,8 +44,11 @@ The statement is about the *conclusion* of Theorem B, not about its proof, and
 it is not a criticism of the theorem: outside the hyperbolic category the
 conclusion is exactly as informative as Kun--Thom make it, and this graph uses
 it there (`kt-centralizer-normalization-hs`, `wreath-not-sofic`).  What is
-special about hyperbolic ambient groups is that centralizers of the subgroups
-in question are finite, and finiteness alone forces the normality.
+special about hyperbolic ambient groups is that a non-elementary subgroup
+has finite centralizer. If the property-(T) subgroup is instead finite,
+its infranormality makes it normal by the finite-subgroup argument, and
+the centralizer of a normal subgroup is normal. Its centralizer need not
+be finite. Infinite virtually cyclic subgroups cannot have property (T).
 
 It also says nothing about Kun--Thom Theorem A, which produces non-sofic
 *wreath products* — those contain `ℤ^2` and are not hyperbolic, so Theorem A

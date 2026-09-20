@@ -60,7 +60,10 @@ non-elementary subgroups at all.  Whether they do is a separate question; the
 point here is that the answer does not matter, because the architecture dies
 either way.
 
-The hypothesis that cannot be dropped is non-elementarity.  For elementary
-`Γ` the centralizer can be infinite (take `Γ = ⟨g⟩` inside its own elementary
-closure) and the equality can fail; but then `Γ` has no property (T) and
-carries none of the rigidity the architecture consumes.
+Non-elementarity is used here to make the centralizer finite. For finite
+`Γ`, the same equality follows by a different argument: the inclusion
+`tΓt^(-1) <= Γ` is equality by cardinality, so conjugation preserves its
+centralizer even if that centralizer is infinite. Finite groups do have
+property (T). Infinite virtually cyclic groups do not, so a property-(T)
+subgroup is covered by either the finite case or the non-elementary case.
+No failure assertion about arbitrary elementary subgroups is needed here.

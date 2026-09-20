@@ -6,16 +6,25 @@ title: Pull back a fixed Deligne central cover along a Belegradek-Osin Rips exte
 target: hyperbolic-rf-central-prime-center-equivalence
 requires:
   - central-pullback-finite-image-center-criterion
-  - hyperbolic-rf-vtf-kazhdan-equivalence
+  - kapovich-wise-rf-iff-finite-quotients
 artifacts:
   - research/artifacts/rips-central-pullback-finite-image-centers-2026-09-12.md
 ---
 
-Fix a prime `p`. The established RF--Kazhdan equivalence turns a
-non-residually-finite hyperbolic group into an infinite hyperbolic group
-without nontrivial finite quotients. This group satisfies assertion 2 for
-every `p`. It is non-elementary because virtually cyclic groups are
-residually finite.
+Fix a prime `p`. Kapovich--Wise's Theorem 1.2 states that every
+word-hyperbolic group is residually finite if and only if every
+**nontrivial** word-hyperbolic group has a **nontrivial** finite quotient.
+Contrapositively, a non-residually-finite hyperbolic group yields a
+nontrivial hyperbolic group without nontrivial finite quotients. This
+group is infinite, since any nontrivial finite group maps onto itself,
+and non-elementary, since virtually cyclic groups are residually finite.
+It satisfies assertion 2 for every `p`. This step needs neither the
+virtual-torsion-freeness equivalence nor a Kazhdan refinement. Theorem 1.2
+was rechecked on printed p. 565 of the
+[published paper uploaded by Ilya Kapovich](https://www.researchgate.net/publication/223118363_The_Equivalence_of_some_Residual_Properties_of_Word-Hyperbolic_Groups)
+on 2026-09-20: I. Kapovich and D. T. Wise, *The equivalence of some
+residual properties of word-hyperbolic groups*, J. Algebra **223** (2000),
+562--583, DOI `10.1006/jabr.1999.8104`.
 
 Conversely, let `H` satisfy assertion 2. Put `Q=Sp_4(Z)`. Let `E_infty`
 be the inverse image of `Q` under the universal covering homomorphism of
@@ -37,7 +46,7 @@ image of `N` has center of order prime to `p`. The pullback criterion
 applied to `E_p x_Q G` now gives a word-hyperbolic group with a central
 order-`p` element in its finite residual. It is not residually finite.
 
-The two literature inputs are used with their exact hypotheses:
+The two further literature inputs are used with their exact hypotheses:
 
 - P. Deligne, *Extensions centrales non residuellement finies de groupes
   arithmetiques*, C. R. Acad. Sci. Paris **287** (1978), 203--208, opening

@@ -1,0 +1,66 @@
+{
+  "revision": "c1150f7c22cb856ac9878ccbdd263439c0c724f9",
+  "seconds": 8.175,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "lcs-perfect-quantum-completeness-re-hardness": "OPEN",
+    "lcs-weighted-conjugacy-halting-gap-source": "OPEN",
+    "lcs-construct-weighted-conjugacy-to-lcs": "ESTABLISHED",
+    "ce-affine-decoder-positive-model-forces-safe-support": "ESTABLISHED",
+    "lcs-anchor-shared-pauli-splitters-have-k4-model": "ESTABLISHED",
+    "hrf-break-sym4-five-twists-have-no-detectors": "ESTABLISHED"
+  },
+  "touched_nodes": [
+    "ce-affine-decoder-positive-model-forces-safe-support",
+    "ce-affine-positive-model-quotient-proof",
+    "ce-exact-affine-compilers-force-nonhyperlinear-corners",
+    "hrf-break-sym4-five-twists-have-no-detectors",
+    "hrf-break-sym4-five-twists-have-no-detectors-proof",
+    "lcs-anchor-shared-pauli-splitters-have-k4-model",
+    "lcs-anchor-shared-pauli-splitters-k4-proof",
+    "lcs-construct-weighted-conjugacy-to-lcs",
+    "lcs-construct-weighted-conjugacy-to-lcs-proof",
+    "lcs-perfect-hardness-from-weighted-conjugacy-source",
+    "lcs-perfect-quantum-completeness-re-hardness",
+    "lcs-weighted-conjugacy-halting-gap-source"
+  ],
+  "duplicates": [],
+  "surviving_status_changes": {},
+  "removed_nodes": [],
+  "added_nodes": [
+    "ce-affine-decoder-positive-model-forces-safe-support",
+    "ce-affine-positive-model-quotient-proof",
+    "hrf-break-sym4-five-twists-have-no-detectors",
+    "hrf-break-sym4-five-twists-have-no-detectors-proof",
+    "lcs-anchor-shared-pauli-splitters-have-k4-model",
+    "lcs-anchor-shared-pauli-splitters-k4-proof",
+    "lcs-construct-weighted-conjugacy-to-lcs",
+    "lcs-construct-weighted-conjugacy-to-lcs-proof",
+    "lcs-perfect-hardness-from-weighted-conjugacy-source",
+    "lcs-weighted-conjugacy-halting-gap-source"
+  ],
+  "archived_route_bytes_identical": {},
+  "schema_hygiene_status_changes": {},
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "frontier_output": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X/constructive-FRONTIER.md",
+  "frontier_lock_policy": "empty snapshot lock map; actual pinned Git history, no fabricated baseline",
+  "node_count": 34247,
+  "baseline_revision": "81ceedc9681e35306fcba146525f24eaca03318f",
+  "source_commit": "ea0a87652964cbad4d07cf7a6cea2bf1b6277449",
+  "validated_tree": "4ff0947a70e9d65307a7b8875189c3667c781f59",
+  "source_commit_tree_matches_validation": true,
+  "mathematical_review": "Written proofs and internal cross-review; exact input-bound polynomial certificates checked independently on MSI; no Lean or external human certification."
+}
