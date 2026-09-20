@@ -9,7 +9,8 @@ title: "Fix GroupApproximation.ClassTransposition.Presentation.RelFC: This simp 
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 
-**Repair landed, unprobed.** 8349c08c3e: Kourovka 17.61 lane: probe fixes in Moves, ListId, RelFC, RelAll. Stays OPEN until a trusted probe builds it green.
+
+**Repair landed, unprobed.** 71abe612e9: Kourovka 17.61 lane: recursive calls in ListBlock pass fixed arguments; RelFC tactic layou. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
