@@ -57,3 +57,20 @@ matrix algebra, and the reason must not use `(T)`.
     or not. The proof is a finite-codimension fixed space in the induced module together with Malcev and simplicity.
     So no exact finite model can refute or witness the hole.
   - **What a proof must do.** A Kazhdan-free proof must control indefinite asymptotic representations of `Delta`.
+    (Withdrawn by the next entry.)
+- **Calibration of the Krein split (swarm-0917-w21-w21-ptl-follow, 2026-09-20). The split is not a decomposition, and
+  the hole stays OPEN as a T-free statement.** See `krein-corner-modules-unitarize-on-the-root-centralizer`
+  (ESTABLISHED, written proof).
+  - **Odd-part unitarization.** In every definite-corner Krein module over any unital C*-algebra, of any signature,
+    `C_Delta(z)` preserves the rank-one odd line `xi D` and acts on it by a unitary representation
+    `u(h) = rho(P_z h P_z)` with `u(z) = -1`. This is Step 1 of `leavitt-mf-null-root-corner-is-equivalent-to-the-goal-proof`,
+    written on modules.
+  - **Consequence via (T).** `M_18`, a copy of `Delta` inside `C_Delta(z)`, is killed by `Rad_MF(Delta) = Delta`, and
+    the Steinberg commutator chain then kills `z`. So (R+), including countably generated modules, and (R-) both hold
+    via (T). The earlier entry's "not known to follow from (T)" is false, and the equivalence node's "Property (T)
+    corollary" stands: the Statement above, which has no T-free clause, is a theorem.
+  - **Class obstruction withdrawn.** "Unitarize first" does not die at positivity. A complete proof in that class
+    unitarizes only on the centralizer, where it is automatic. The `D_inf` witness has centralizer `<z>`.
+  - **What a proof must do.** (R+) and (R-) both follow from the single unitary statement `z in Rad_MF(C_Delta(z))`,
+    which is T-freely equivalent to the goal. So the T-free content of this hole is exactly the goal, and no control of
+    indefinite representations is needed.
