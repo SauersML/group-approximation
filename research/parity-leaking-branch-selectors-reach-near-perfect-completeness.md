@@ -340,3 +340,35 @@ a cycle of equations through the window.
   **Still alive:** cross-input and global hypotheses, average-case
   hypotheses (only in their exact form), and decoders that query `S` on
   other inputs.
+* **Robust uniqueness replaces the refuted exact-kernel class (2026-09-20,
+  swarm-0917-w20-w20-ugc-pull, finite-models / transplanter).** This is a
+  **decomposition** of the constant-bias kill after (SF_P) was refuted by
+  `exact-kernel-rank-does-not-exclude-flip-violators`.
+  - **Lemma RU** (`robust-uniqueness-bounds-robust-kernel-rank`, ESTABLISHED,
+    with a brute-force check of its finite core). Suppose every assignment of
+    value `>= 1 - eps - delta_K` is `rho`-close to one coset `x* + C` with
+    `dim C <= r0`. Then every `delta_K`-approximate kernel map of rank
+    `> r0` fails to be onto `X_V` on a `1 - 12 k rho` mass of tuples.
+    Robustly unique YES inputs therefore lie in `P^delta_(r0)`, and the flip
+    orientation of Theorems O and O' has no kernel to act on there.
+  - **Converse.** A generic approximate kernel of rank `n` gives `2^n`
+    near-solutions at pairwise distance `(1 - beta)/(3k)`.
+  - **Testability.** Robust testability of the homogeneous system with a
+    constant ratio `> (3 gamma' + 24 k eps)/(1 - beta0)` implies robust
+    uniqueness.
+  - **New route.** `constant-bias-dkkms-selectors-put-np-in-rp-via-robust-uniqueness`
+    targets `constant-bias-dkkms-selectors-put-np-in-rp`. It has two
+    independent OPEN prerequisites:
+    `gap3lin-hard-with-robustly-unique-yes-solutions` (P1^RU), a purely
+    source-side hardness statement, and
+    `dkkms-orientations-admit-star-lists-on-robustly-unique-inputs`
+    (P2^RU).
+  - **Recorded obstruction.** Gadget padding that is satisfiable for every
+    assignment to the source extends every source near-kernel linearly. So at
+    constant source share it cannot create robust uniqueness, and (P1^RU)
+    must come from the PCP itself.
+
+  **Where it stops:** no hardness for robustly unique Gap3Lin is known. The
+  Håstad image needs a Label Cover with few far-apart near-optimal labellings.
+  Deterministic Karp reductions onto few-solution promises are open, and a
+  randomized version of Corollary D has not been checked.
