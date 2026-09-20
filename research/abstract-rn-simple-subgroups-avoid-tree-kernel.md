@@ -44,6 +44,13 @@ Let `ψ` be injective and let `S ≤ V_d(G, ψ)` be a simple group.
 The structural fact behind 2 and 3: `K_ψ` is the directed union, over cone partitions `P`, of
 subgroups `K_P ≅ (ker ρ_ψ)^P`.
 
+**Every recursion (referee's extension, credit bh-ref-q12).** Injectivity of `ψ` is not needed.
+Quotienting `G` by the union `L_∞` of the iterated kernels gives an injective recursion
+`ψ̄` on `G / L_∞` with `V_d(G, ψ) ≅ V_d(G / L_∞, ψ̄)`, the same `H`, and tree kernel
+`ker ρ_ψ / L_∞`. So the theorem holds for every `ψ`, with `ker ρ_ψ` in items 2 and 3 replaced by
+the subquotient `ker ρ_ψ / L_∞` of `G`. See the Referee section for the argument; unlike the
+padding of Remark 2, this does not change the group.
+
 ## Consequences
 
 1. **Non-faithful recursions give no new simple hosts.** Let `X ≤ S ≤ V_d(G, ψ)` with `ψ`
