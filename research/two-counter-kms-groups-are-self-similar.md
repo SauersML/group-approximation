@@ -33,13 +33,28 @@ hard as the halting problem for `M`.
 - **Infinitely many states.** Finite-state groups have word problem in PSPACE, by item 4 of
   `fp-self-similar-groups-with-arbitrarily-hard-word-problem`.
 - **Non-affine on digits.** This follows from `affine-self-similar-groups-are-function-field-linear` and
-  `two-counter-kms-top-has-no-affine-self-similar-action`.
+  `two-counter-kms-top-has-no-affine-self-similar-action`. It holds only in the sense of that node, where every
+  counter acts by a causal linear map. Kochloukova–Sidki-type actions, in which some counters move the root, escape
+  it: see Attempts.
 - **Depth-preserving extensions only.** In any ascending-HNN step inside `Aut(T_d)`, every level profile is
   preserved (`self-similar-higman-routes-meet-krull-dimension-two`, Lemma 1).
 - **Two counters, so Krull dimension at least 2, in characteristic `p`.**
+  - For the top factor this is computed: `R_K = F_p[s_i^{±1}, (1 − s_i)^{-1} : i ≤ K]` is a localization of
+    `F_p[s_1, …, s_K]`, so it has Krull dimension `K` (`two-counter-kms-top-has-no-affine-self-similar-action`).
+    For the configuration module it is a heuristic.
+  - One counter is easy: one-counter automata have NL-complete reachability for unary updates
+    (Lafourcade–Lugiez–Treinen 2004, as stated in the counter-automata literature), while two counters are Turing
+    complete (Minsky 1967).
   - The characteristic-0 analogue has non-self-similar finitely presented metabelian examples (Kochloukova–Luiz,
-    arXiv:2509.05798).
-  - Krull dimension 1 is self-similar (Kochloukova–Sidki 2020, as quoted there), but one counter is easy.
+    arXiv:2509.05798, Main Theorem). Their hypotheses, verbatim, are: `G = A ⋊ Q` with `Q ≅ ℤ^s`, `s ≥ 2`, and
+    (1) "A is a cyclic ℤQ-module, say A≃ℤQ/I, A is a ℤ-torsion-free integral domain and Krulldim(A)=2";
+    (2) "for every prime number p the ring A/pA is an infinite integral domain"; (3) "the image of a non-trivial
+    element of Q in the field of fractions of A is not algebraic over ℚ. In particular C_Q(A)=1_Q"; (4) "G is
+    finitely presented".
+  - Krull dimension 1 is self-similar (Kochloukova–Sidki, arXiv:1710.04745, Theorem C), but one counter is easy.
+  - **Characteristic `p` in Krull dimension `d ≥ 2` is also self-similar.** Kochloukova–Sidki's Theorem D in the
+    same paper covers it, and for `p` odd it contains the KMS tops `B_K`, embedded with index 2 in finitely
+    presented self-similar groups: `kms-tops-embed-in-fp-self-similar-metabelian-groups`.
 - **Residual `W_d` and depth are no obstruction.**
   - `G(M)` acts faithfully on `T_7` for `p = 2` (`finite-class-kms-groups-act-on-regular-rooted-trees`).
   - Any such action has super-recursive nontriviality depth
@@ -66,5 +81,28 @@ hard as the halting problem for `M`.
    must preserve nontrivial ideals. Does that step survive for `F_p`-modules of Krull dimension 2? If it does,
    KD2_p dies for metabelian tops, and the two-counter KMS top would need a non-metabelian overgroup.
 2. **Characteristic-`p` Krull-dimension-2 self-similarity is possible in principle.** `C_p ≀ Z^2` is self-similar
-   (Dantas–Santos–Sidki; recalled, not re-read). Test whether its virtual endomorphism survives adding one
+   on the `p^2`-adic tree (Dantas–Sidki, arXiv:1505.05165, J. Algebra 2018; for `d ≥ 2` there is none on the
+   `p`-adic tree). It is not finitely presented, so it is only a starting point. Test whether its virtual endomorphism survives adding one
    BR-conjoint letter `x ↦ x(a − 1)`. That is the smallest step toward a two-counter configuration module.
+
+## Attempts
+
+- **Both first tests, lane bh-kd2p, 2026-09-19** (`kms-tops-embed-in-fp-self-similar-metabelian-groups`; lane proof
+  resting on Kochloukova–Sidki Theorem D, not independently reviewed). The crux stays **OPEN** for the whole group
+  `G(M)`, but its metabelian top is not an obstruction.
+  - **Test 1, kill: negative.** The Kochloukova–Luiz ideal-preservation argument uses characteristic 0 in
+    hypotheses (1)–(2) and in Step 5 of its proof. It does not transfer to characteristic `p`: Kochloukova–Sidki
+    Theorem D (arXiv:1710.04745) gives finitely presented, characteristic-`p`, Krull-dimension-`d`, transitive
+    self-similar metabelian groups `⊗ F_p[x_i^{±1}, 1/g(x_i)] ⋊ ℤ^{2d}`. K–L flag this themselves.
+  - **Test 2, start: superseded, and positive.** No need to grow `C_p ≀ Z^2` one letter at a time.
+    - For `p` odd, `s_i ↦ −x_i` identifies the KMS top `B_K` with an index-2 subgroup of Theorem D's group for
+      `g = 1 + x`, extended by the central scalar `−1`. That extension is finitely presented and transitive
+      self-similar.
+    - The KMS choice `g = x − 1` is exactly the case Theorem D excludes. The substitution moves the relevant point
+      from `1` to `−1`.
+    - The affine kill (bh-free-25) assumes all of `U_K` acts linearly. Theorem D's domain meets the counters in a
+      subgroup of index `p^2`, a Frobenius-twisted cyclic shift of the counters.
+  - **Remaining crux, sharpened.** Lift a Kochloukova–Sidki-type structure from `B_0` to the full top `Q` and
+    through the exponent-`p` configuration module `T` of `G(M) = T ⋊ Q`. The coinvariants kill applies only to
+    lamp-digit shapes, not to actions that mix lamps with positions. For `p = 2` the KMS top is not covered by
+    this route.

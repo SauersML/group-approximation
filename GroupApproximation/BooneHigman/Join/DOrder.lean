@@ -53,8 +53,7 @@ theorem dlt_total {x y : Cantor (Fin d)} (h : x ≠ y) : DLt x y ∨ DLt y x := 
   classical
   have hex : ∃ k, x k ≠ y k := by
     by_contra hc
-    push_neg at hc
-    exact h (funext hc)
+    exact h (funext fun k => by_contra fun hk => hc ⟨k, hk⟩)
   have hne : x (Nat.find hex) ≠ y (Nat.find hex) := Nat.find_spec hex
   have hlt : ∀ i < Nat.find hex, x i = y i := fun i hi => by
     by_contra hc
@@ -160,7 +159,7 @@ theorem DMono.inv {f : Equiv.Perm (Cantor (Fin d))} (hf : DMono f) : DMono f⁻�
   rcases dlt_total hne with h' | h'
   · exact h'
   · have h'' := hf _ _ h'
-    simp only [Equiv.Perm.apply_inv_self] at h''
+    simp only [perm_apply_inv_self] at h''
     exact (dlt_asymm h h'').elim
 
 #audit_axioms GroupApproximation.BooneHigman.Join.DMono.inv

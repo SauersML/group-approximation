@@ -119,7 +119,8 @@ theorem mem_GR {f : Equiv.Perm (ℕ × Cantor (Fin (n + 2)))} : f ∈ GR n ↔ �
 
 /-- The germ exponent `b - a`. -/
 noncomputable def chiR (f : ↥(GR n)) : ℤ :=
-  (Classical.choose (Classical.choose_spec (mem_GR.mp f.2)) : ℤ) - Classical.choose (mem_GR.mp f.2)
+  ((Classical.choose (Classical.choose_spec (mem_GR.mp f.2)) : ℕ) : ℤ) -
+    ((Classical.choose (mem_GR.mp f.2) : ℕ) : ℤ)
 
 #audit_axioms GroupApproximation.BooneHigman.Join.chiR
 
