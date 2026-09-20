@@ -1,0 +1,65 @@
+---
+rg: 2
+id: star-chains-along-fixed-trees-are-gallery-convex
+kind: claim
+title: The union of the vertex stars along a geodesic edge path of the CAT(-1) triangle complex of H_31 is convex in the chamber graph (OPEN); hyperbolicity localizes gallery distances near a ray of the fixed tree only to a tube of radius of order 8 delta, which is far too large to compute, and this sharp convexity is the one geometric input needed to turn events (A)/(B) and the one-orbit-per-sector assumption into a finite exact computation; no property-(T) input is needed for it
+requires:
+  - elliptic-singularity-is-a-marker-mismatch
+  - generalized-triangle-group-hosts-reduce-to-fixed-trees
+distinct_from:
+  elliptic-singularity-is-a-marker-mismatch: that reduces singularity of an elliptic generator to recurrent chamber events (A)/(B); this isolates the geometric lemma that would make those events computable along rays of the fixed tree.
+---
+
+**OPEN.** Let `X` be the CAT(−1) triangle complex of `𝓗_31` (CCKW arXiv:2011.09276, Theorem 1.2), `𝒞` its chamber
+graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of `Fix(a)`. The claim is:
+
+> **(G)** every geodesic gallery between two chambers of `U_ρ = ⋃_{w ∈ ρ} star(w)` stays in `U_ρ`.
+
+## What is known
+
+- **Trivial case.** At a `C`-type vertex the star is `C_5 × C_5`: 25 chambers `(i, j)`, with link `K_{5,5}`.
+  - Gallery distance in the star is 1 if `i = i'` or `j = j'`, and 2 otherwise.
+  - Two chambers sharing only the vertex are never adjacent, since adjacency means sharing an edge.
+  - So the star is convex.
+- **Automatic localization, too large to compute.** `𝒞` is quasi-isometric to `X`, which is hyperbolic. By the Morse
+  lemma, geodesic galleries between chambers within distance `r_0` of `ρ` stay within `r_0 + C` of it, with `C`
+  depending on `δ(𝒞)` and the quasi-isometry constants.
+  - BBMZ locality (`prop:PropertiesSets`(iv)) needs `r_0 ≳ R'(δ)`, of order `8δ + 2`.
+  - Every chamber has 12 neighbors, so a tube of that radius has on the order of `11^{8δ}` chambers per step. For any
+    `δ(𝒞) ≥ 1` that is beyond `10^{10}`: exact, but out of reach.
+- **Why (G) would suffice.** Every ray of `Fix(a)` alternates `A`-type vertices with `B`- or `C`-type ones (Proposition
+  4 of `generalized-triangle-group-hosts-reduce-to-fixed-trees`). So `U_ρ` has about `14880 + 625` or
+  `14880 + 25` chambers per step.
+  - Along a periodic well-sectored ray (`gq-bh-q12-kazhdan-fixed-tree-link-geometry.md`), a few periods give a model
+    of order `10^5` chambers.
+  - In that model, gallery distances, the atoms `Z_m`, `Y_m`, `E_m` of Proposition H near the ray, and hence events
+    (A)/(B), become an exact periodic computation.
+  - The same model decides the fiber over the ray's end, and with it the one-orbit-per-sector assumption.
+  - That would require (G) for `U_ρ` thickened by the BBMZ window at the front. So the precise statement needed is
+    (G) for a bounded thickening of `U_ρ`, with an explicit bound.
+
+## What a proof needs
+
+- **A combinatorial Gauss–Bonnet argument for galleries.**
+  - A shortest gallery leaving `U_ρ` and returning bounds, together with a path inside `U_ρ`, a disc diagram in `X`.
+  - In that diagram every interior vertex has angle sum at least `2π`. The girths `10, 8, 4` of the links are
+    exactly `2π` divided by the angles `π/5, π/4, π/2`, so vertices are flat at their shortest link cycles.
+  - The only strict negative curvature is that of the hyperbolic triangles, with defect `π/20` each.
+  - The argument must show that the outside detour is never shorter. It must also handle the corners where `ρ` bends,
+    where the link distance exceeds the flat value.
+- **A model case.** In Euclidean buildings the analogous statement is the convexity of residues (Tits). Its proof
+  uses walls, which are absent here. So the building proof does not apply, and a wall-free argument is needed.
+
+## Which inputs are needed
+
+- **No property-(T) input.** (G), events (A)/(B) and the fiber over a ray's end are statements about the local
+  geometry of `X`: link girths, angles, and which link vertices the order-5 element fixes. The spectral input that
+  gives (T) (the Ershov–Jaikin-Zapirain criterion) plays no role.
+- **Where (T) does enter.** Only in the bounded direction: the non-separation of `X` by `Fix(a)` (Niblo–Roller, plus
+  cocompactness of the stabilizer, both recalled).
+
+## Lesson for general BH
+
+For wall-free hyperbolic groups, the exact finiteness questions (bounded hosts, singular sets) turn on a gallery
+convexity property of star chains along fixed trees. Hyperbolicity alone localizes them, but only at the scale
+`8δ`. A sharp combinatorial convexity lemma, which buildings get from walls, is the missing tool.
