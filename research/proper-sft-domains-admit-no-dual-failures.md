@@ -118,3 +118,15 @@ kind would refute the claim on that group.
     shows that translates of the explicit perfect point already fail to glue across a perfect shell. The
     deficiency histogram is `{0: 42, 1: 101, 2: 18}` at `n = 5`. This suggests a further tree-branch flux
     invariant, which has not been proved.
+- **2026-09-20, swarm-0917-w22-w22-gs-last1 [census-computation]: SI SFTs on `F_2` without periodic points. The
+  claim stays OPEN.** See `free-group-bank-sfts-path-mix-but-are-not-strongly-irreducible` (ESTABLISHED).
+  - **Target.** The `F_2` gap above: a counterexample must be an SI SFT without periodic points.
+  - **Result.** On `F_2`, SI of a nearest-neighbour SFT is exactly half-tree mixing, which is computable. Path
+    mixing is strictly weaker.
+  - The bank SFTs have no periodic points, no invariant measure and no sofic microstates, by bank conservation.
+    They are path-mixing (constant 8 at `K = 4`), but they are not SI: far patterns pin the root symbol at every
+    depth.
+  - The exact census is 5206 SI pairs at `n = 3` and 1577 at `n = 4`, all periodic.
+  - **Where it dies.** No SI `F_2`-SFT without periodic points was found, so there is still no `F_2` kill-test
+    domain. The Farkas certificate alone does not contradict half-tree mixing, so proving that SI forces periodic
+    points on `F_2` needs a new idea.
