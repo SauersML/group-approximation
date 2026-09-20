@@ -72,6 +72,7 @@ theorem consSet_four_cases {P : Perm (Fin 5) → Prop}
   · exact h0
   · exact h1
   · exact h2
+  · exact absurd hj (by norm_num)
 
 section Subshift
 
@@ -202,7 +203,7 @@ theorem good_left {G : Subgroup (Perm S.carrier)} {p R N : ℕ} (hR : SepRadius 
       exact congrArg z (by ring)
     have hV : Good S G (cyl S (fun n => (fun n => z (-1 + n)) (1 + n)) (-(j : ℤ)) b) := by
       convert ih z b hb using 2
-      all_goals first | exact funext hz | exact (funext hz).symm
+      all_goals exact funext hz
     have hstep := (good_step S hR hp (z := fun n => z (-1 + n)) (a := -(j : ℤ)) (c := b)
       (by omega) (ih _ b hb) hV).2
     convert hstep using 2
