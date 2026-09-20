@@ -8,10 +8,15 @@ distinct_from:
   self-wreathing-groups-are-not-fp-infinity: that is a finiteness-property obstruction for self-wreathing groups; this is about word growth of dense subgroups of the A_5 iterated wreath product.
 artifacts:
   - research/artifacts/gq-bh-kourovka-scout-candidates-2026-09-19.md
+  - research/artifacts/gq-bh-k2144-kourovka-21-44-state.md
 ---
 
-**OPEN (Kourovka 21.44 itself). Propositions N and S below: lane proof, not independently
-reviewed. Proposition G: literature (Eberhard–Maini–Sabatini–Tracey), attribution.**
+**OPEN (Kourovka 21.44 itself).**
+- **Propositions N and S(a)–(c):** lane proof, referee PASS (bh-ref-t0, d69136082d).
+- **Proposition G:** a result of Eberhard–Maini–Sabatini–Tracey, stated by them; pure
+  attribution.
+- **Proposition D:** lane proof, referee PASS (bh-ref-d, 15b37f96f8).
+- **Length-reduction obstruction:** lane proof, not reviewed.
 
 ## The problem
 
@@ -20,13 +25,8 @@ Kourovka 21.44 (S. Eberhard). Let `W = ··· ≀ A_5 ≀ A_5 ≀ A_5` be the in
 closed subgroup of `Aut(T_5)` all of whose vertex permutations lie in `A_5`. Does `W` contain a
 finitely generated dense subgroup of subexponential word growth?
 
-Source caveat: I did not read the notebook (arXiv:1401.0300v46) at source. The lane rules bar
-reading its PDF locally, and there is no HTML version. The wording above follows the scout's
-transcription (`research/artifacts/gq-bh-kourovka-scout-candidates-2026-09-19.md`) and a
-search-engine summary of Eberhard–Maini–Sabatini–Tracey, which quotes the question as "Let
-`G` be a finitely generated dense subgroup of the infinite iterated wreath product
-`W = ··· ≀ A_5 ≀ A_5 ≀ A_5`. Can `G` have subexponential growth?". A referee should check the
-statement against the notebook text (v46).
+Source: the referee (bh-ref-t0, d69136082d) confirmed the statement verbatim at The Kourovka
+Notebook, arXiv:1401.0300v46, p. 174.
 
 Notation: `W_m` is the finite quotient of `W` acting on the first `m` levels (so `W_1 = A_5`,
 `W_m = W_{m-1}^5 ⋊ A_5` with `A_5` permuting the five level-one subtrees), and `St(k)` is the
@@ -78,9 +78,9 @@ Put `θ := max{1, log diam(A_5)/log log 60}` in the conventions of Eberhard–Ma
 4. The image of `M` in each `W_i` is a nilpotent normal subgroup of index at most `k`. By
    Proposition N it is trivial, so `|W_i| ≤ k` for all `i`. This is absurd. ∎
 
-Credit: this is an immediate consequence of EMST's gap theorem, and EMST appear to state it
-themselves with `β = 1/40`. That is according to the search-engine summary; I could not find
-the sentence in the HTML of v1. **No priority is claimed.**
+Credit: Proposition G is EMST's own stated result, with `β = 1/40` (arXiv:2604.15303v2, p. 33,
+as checked by the referee). The derivation above is included only for completeness. **Pure
+attribution; no priority is claimed.**
 
 ## Proposition S (spinal groups over `A_5`)
 
@@ -203,6 +203,13 @@ conjugates of `d_s` act on level 2 as `s` in any single coordinate.
 This proof does not need `K_i ⊄ K_{i+1}`. The commutator with a rooted conjugate does the job
 that a vanishing letter did in S(c).
 
+Referee PASS (bh-ref-d, 15b37f96f8). Credit: D. Segal, *The finite images of finitely
+generated groups*, Proc. London Math. Soc. 82 (2001), 597–613. Segal constructs finitely
+generated dense subgroups of iterated wreath products of perfect groups from rooted and
+directed automorphisms. I did not check at source whether his construction contains `H`, or
+implies its density. Proposition D may be a special case of his work, and no priority is
+claimed.
+
 **Consequence.**
 - `P`'s growth is at least `H`'s. So if `H` has exponential growth, so does `P`, and if `P` is
   subexponential, so is `H`.
@@ -218,11 +225,78 @@ that a vanishing letter did in S(c).
     directed letters range over a nonabelian group, and whether an analogous contraction
     exists is exactly the open point.
 
+## Length-reduction attempt for `H` (obstruction at depths 1 and 2)
+
+Lane proof, not reviewed.
+
+**Setup.** Weight rooted letters by `α > 0` and directed letters by `β > 0`. A reduced word
+alternates rooted and directed letters, `w = r_0 d_{s_1} r_1 ⋯ d_{s_k} r_k`.
+- Let `π_i` be the prefix permutation before `d_{s_i}`. Then `d_{s_i}` puts the rooted letter
+  `s_i` in coordinate `c_i = π_i(1)` and the directed letter `d_{s_i}` in `e_i = π_i(5)`.
+- The section at coordinate `j` is the ordered stream of those letters. Rooted letters
+  contribute nothing to sections.
+- The only length loss is a **merge**: two letters of the same type adjacent in one stream.
+- In the Fabrykowski–Gupta group, the analogue of the length-reduction argument relies on
+  merges: `Σ_v |w_v|` over depth-`k` sections falls below `η|w|` for all but a sparse set of
+  words.
+
+**Depth 1: zero merges for an exponential family.**
+- *State per coordinate:* the type of its last letter.
+- *Admissible step:* coordinate `c` last received a directed letter (or nothing), and
+  coordinate `e` last received a rooted letter (or nothing).
+- *Invariant:* once all coordinates are touched, the number `a` of directed-last coordinates
+  and `b = 5 − a` are unchanged by admissible steps. So with `a = 2`, `b = 3` there are
+  `a·b = 6` admissible pairs `(c, e)` at every step.
+- Each pair is realized by 3 elements of `A_5`, since `A_5` is sharply transitive on ordered
+  pairs up to the 3-element stabilizer of `{1, 5}`, pointwise. That gives 18 rooted letters
+  per step, and `c` changes at every step, so `r_i ≠ 1` holds automatically.
+
+**Depth 2: still zero merges, still exponential.**
+- The label `s_i` enters stream `c_i` as a rooted letter. It must move that stream's own
+  prefix to one of its 18 admissible permutations.
+- A label's value never affects the depth-1 state of the stream `e_i`, where `d_{s_i}` lands.
+- So the labels can be chosen one at a time, 18 options each.
+- Hence at least `c·324^k` reduced words with `k` directed letters have **no merge at depths
+  1 or 2**. For them, the depth-1 and depth-2 section sums both equal `k(α+β)`, against
+  `|w| = kβ + (k±1)α`. The ratio tends to 1 for every choice of `α, β`.
+
+**Contrast with Fabrykowski–Gupta** (same computation, ℤ/3 on 3 points, `b = (a,1,b)`):
+- A rotation is determined by `c`, and `e = c − 1`, so the invariant state leaves exactly one
+  admissible rooted letter at depth 1.
+- The depth-2 condition then forces every label.
+- So merge-free words at depth 2 number `O(1)` per length: essentially the powers of `ba`,
+  which acts as an odometer.
+- This is why an FG-type argument can contract all remaining words at depth 2. For `H` it
+  cannot. (The FG count is my own computation, not quoted from the literature.)
+
+**Depth 3: reduced to a finite-state condition.**
+- A label now faces a second constraint, from the depth-3 stream `Y` where the rooted `s_i`
+  from `d_{s_i}` lands.
+- Write the two constraints as `s(1) ∈ D'_X ∩ D'_Y` and `s(5) ∈ R'_X ∩ R'_Y`. Here `D'_•`
+  is the 2-set of directed-last coordinates pulled back by the stream prefix, and `R'_•` is its
+  complement.
+- The number of admissible labels is `3·|D'_X ∩ D'_Y|·|R'_X ∩ R'_Y|`, which is 18, 6 or 0.
+- So merges are forced at depth 3 exactly when the adversary cannot keep the pulled-back
+  2-sets intersecting.
+- This is a finite-state question: the states are stream prefixes and last-type patterns. The
+  minimal merge density at depth 3 or 4 is a mean-payoff (minimum mean cycle) computation on
+  that graph. It is not run here.
+
+**Decision.**
+- The type-weighted FG/Bartholdi–Pochon length reduction does not contract at depth ≤ 2 for
+  any weights.
+- A proof of subexponential growth for `H` must either:
+  - find forced merges at depth ≥ 3 (the finite computation above), or
+  - use relations of `H` beyond merges, i.e. show that the merge-free words are far from
+    geodesic.
+- Neither is done. **The growth of `H` stays open.**
+
 ## Attempts
 
 - **Reading EMST for a stated 21.44 corollary.** The HTML of v1 has no occurrence of
-  "Kourovka" or "dense". The corollary with `β = 1/40` is reported only by a search-engine
-  summary, so Proposition G's derivation is written out from Theorem 1.10, which was read at
-  source.
-- **Bartholdi–Šunić with `G_A = A_5`.** `Ω̂` is empty by Proposition S(b). This is why 21.44 is
-  not an immediate corollary of their Theorem 5.1.
+  "Kourovka" or "dense". The referee found the statement in v2, p. 33, with `β = 1/40`.
+- **Bartholdi–Šunić with `G_A = A_5`.** It is excluded twice over:
+  - their standing hypothesis on `G_B` already rules out this case (referee note, d69136082d);
+  - independently, `Ω̂` is empty by Proposition S(b).
+
+  So 21.44 is not a corollary of their Theorem 5.1.

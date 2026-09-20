@@ -65,6 +65,48 @@ such that `[[T]]` contains an infinite finitely generated periodic group `Q`.
 
 - **1 (bh-1946, 09-19): an element of V.** The north-south `ψ ∈ V`, viewed in `CT_{3}(Z)`,
   is aperiodic on `Z_2 × Z_3`. But its minimal sets are the two odometer fibers over `−2/3` and
-  `−1/3`, and its full group is torsion locally finite. It dies where
+  `−1/3`, and every finitely generated periodic subgroup of its full group is finite (the full group itself is not periodic). It dies where
   `ct-p-z-recurrent-slope-tails-force-isometric-minimal-sets` predicts: forward potentials tend
   to `+∞` with no dips.
+- **2 (bh-1946, 09-19): renormalization, four constraints and one resource.** Lane proofs,
+  unreviewed.
+  - **(i) Rank.** `g` needs a slope group of rank `≥ 2`, or a mixed ray.
+    - If every slope of `g` lies in `γ^Z` with `γ ≥ 2` an integer, then the lifted `Q~ ≤ [[ĝ|_U]]`
+      has slopes in `γ^Z`, so it is finite by `periodic-k-graph-subgroups-with-ray-cocycle-are-finite`.
+    - Dynamically it is worse: item 4 of
+      `ct-p-z-recurrent-slope-tails-force-isometric-minimal-sets` puts an odometer minimal set in
+      every clopen invariant `U`.
+  - **(ii) No read-only heads.** No `g` in Conway's full-shift full group `[[α]] ≤ CT_{3}(Z)`
+    works, in any `CT_P(Z)` with `3 ∈ P`.
+    - `α`-periodic points are dense in `Z_2 × Z_3`, so a clopen `U` meets the base orbit `O` of
+      one of them.
+    - `g = α^{k}` pointwise, with `k` depending only on the 2- and 3-residues. So the closed set
+      `π^{-1}(O) ∩ U` is `g`-invariant.
+    - Over the finite set `O`, `g` acts on the remaining coordinates by maps with slopes in
+      `2^Z 3^Z`, which are isometries there. This gives an equicontinuous minimal set.
+  - **(iii) No counter machines.** Suppose every degree change of `g` is supported on a set `S`
+    of primes, and `g` maps `Z_S = {x : x_p = 0 for p ∈ S}` into itself, as in Morita-type
+    counter-machine embeddings where counters are `p`-adic valuations.
+    - Then on `Z_S` every piece of `g` is an isometry between classes of equal radius, chosen by
+      residues of bounded depth.
+    - For `x, y ∈ Z_S` in the same small ball, `d(ĝ^n x, ĝ^n y) = d(x, y)` for all `n`, so
+      `Z_S ∩ U` is equicontinuous whenever it is nonempty.
+    - It is nonempty as soon as the counters on `S` are unbounded simultaneously on `U`, by
+      closedness.
+    - So counter-machine designs die at their exhausted configurations.
+  - **(iv) The mixed-ray condition.** On a mixed ray, (F) needs every forward and backward
+    potential in `U` to be unbounded (item 5 there).
+  - **The resource: writes are translations.** A same-modulus class map `r(m) → s(m)` is
+    `x ↦ x + (s − r)` in every coordinate. So a "write" on the stack of `3` adds a constant to
+    `x_2`.
+    - Repeated writes run the 2-adic odometer on `x_2`, with carries of every length, for free
+      and invisibly.
+    - Carry lengths `v_2(x_2 + 1)` form the ruler sequence, and the ruler sequence mod 3 is
+      exactly the `b/c/d` label of Grigorchuk's Schreier graph.
+  - **The missing part.** A reversible *carry reader*: pop 2-digits down to the first `0`,
+    record the depth mod 3 in the prefix, and push them back.
+    - It must work on all of `U`, including `x_2 = −1`, where the carry never ends and the
+      potential dips forever.
+    - It must avoid (ii) and (iii): its reading must not be a counter test on an exhaustible
+      stack.
+    - Not built.

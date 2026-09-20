@@ -134,7 +134,7 @@ theorem xGroup_span_X_le_ker :
       (ringMap (Polynomial.evalRingHom 0 : Polynomial A →+* A)).ker := by
   refine (Subgroup.closure_le _).mpr ?_
   rintro _ ⟨i, j, hij, s, hs, rfl⟩
-  rw [SetLike.mem_coe, MonoidHom.mem_ker, ringMap_x, evalZero_eq_zero_of_mem_span_X hs, x_zero]
+  exact MonoidHom.mem_ker.mpr (by rw [ringMap_x, evalZero_eq_zero_of_mem_span_X hs, x_zero])
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.RelGen.xGroup_span_X_le_ker
 

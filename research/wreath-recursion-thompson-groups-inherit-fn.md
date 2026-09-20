@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof `bh-free-06`, 2026-09-18, in
-`wreath-recursion-thompson-groups-inherit-fn-proof`; not independently reviewed). No priority
+`wreath-recursion-thompson-groups-inherit-fn-proof`; Referee bh-ref-q12 2026-09-19: PASS, with the standard categorical inputs recalled rather than re-derived and one step (Lemma 7) to be written out; see the Referee section). No priority
 claimed.
 - The faithful case `B = G` is Skipper–Zaremsky arXiv:1709.06524, Corollary `cor:Finfty_inherited`
   (TeX l.1284), and Li arXiv:2110.04505, Corollary `intro:ZS`. Li needs condition (F), which
@@ -113,3 +113,97 @@ the kernel for free when the kernel dies under splitting.**
   contracting RSGs (BBMZ-hyperbolic Q1.2). There the natural cover of the RSG built from a
   hyperbolic group `G` is `G` itself, which has type `F_∞`. This is flagged as the next target, not
   proved here.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS
+
+I checked the proof node section by section. **Hypotheses:** `B` of type `F_n` and any homomorphism
+`ψ : B → B ≀ S_d`. Nothing else is needed. The conclusion about `V_{d,r}(G)` needs, in addition, **dying kernel**
+`J = K`.
+
+**§1, the cloning category: correct.**
+- Composition is the Zappa–Szép rule. "Left cancellation" is cancellation of the first factor: `f∘s = g∘s` implies
+  `f = g`, since `α^*` is a bijection on forests, grafting is cancellative, and `α_*` is an isomorphism.
+- The precomposition stabilizer of `(F, α)` is `σ = 1` with `a_i ∈ K_(T_i)`, and `a_i = 1` at trivial trees.
+
+**§2, Lemmas 1 and 2: correct.**
+- *Ore.* Take a common refinement, then postcompose with `β′β^{-1}`.
+- *The Gabriel–Zisman cancellation axiom* holds with `t = id`.
+- *Filteredness.* `y/L` is filtered, and it is nonempty since `(y, id)` is an object. Quillen A applies. The
+  localization facts are standard and were not re-derived here.
+- *Identification.* `Λ(f) = Λ(g)` forces `F = F′` and `α′ = αk` with `k ∈ K^m`. Then `t∘f = t∘g` iff each
+  `k_ℓ ∈ K_(T_ℓ)`, and `⋃_T K_T = ⋃_j K_j = J`, since `K_T ⊆ K_(depth T)`.
+- *The quotient `B/J`.*
+  - `K_j = ker ψ^j` is normal.
+  - `ψ(K_(j+1)) ⊆ K_j^d` with trivial permutation.
+  - `ψ̄` on `B/J` is injective, since `d` is finite.
+  - So `V_{d,r}(B, ψ) ≅ V_{d,r}(B/J, ψ̄)`. It equals `V_{d,r}(G)` iff `J = K`.
+- This agrees with the referee remark in `abstract-rn-simple-subgroups-avoid-tree-kernel`, where `L_∞ = J`.
+
+**§3, the collage: correct.**
+- There are no arrows from `m` to lower objects (EI). The category of arrows is the Grothendieck construction of the
+  free `Γ_m`-action on `O_m = 𝒞_(<m) ↓ m`.
+- So `B𝒞_(≤m) ≃ B𝒞_(<m) ∪_((L_m)_(hΓ_m)) BΓ_m`. A `(k−1)`-connected `L_m` gives a `k`-connected inclusion.
+- The collage lemma is standard: a category over `[1]` is the homotopy pushout along the category of elements of its
+  profunctor. It was recalled, not re-derived.
+
+**§4, the Stein retraction: correct.**
+- Removing the bottom carets gives `f = e(f) ∘ h_f`.
+- For `g : f_1 → f_2`, the transported bottom carets of `F_2` are bottom carets of `F_1`, because
+  `F_1 = γ^*F_2 ∘ G`. So `u` exists, with elementary forest `E_(F_1) ∖ γ^*E_(F_2)`. Cancellation gives
+  uniqueness and `e(f_2)∘u = e(f_1)`.
+- `r∘i = id`, and `h` is natural and commutes with postcomposition.
+
+**§5, Lemma 4: correct.**
+- `Aut(f) = ∏_(M(f)) K_1`.
+- `Hom(f′, f)` is nonempty iff `M(f) ⊆ M(f′)` with matching decorations. It is then an `Aut(f)`-torsor: `G` is
+  recovered as the carets of `f′` outside `M(f)`, and the remaining freedom is the precomposition stabilizer.
+- Thomason's theorem and the hocolim-of-products-with-projections description of a polyhedral join apply.
+- Grouping decorations per block gives the fibers `Y_I = ⊔ BK_1`. They are nonempty, since `Γ_I` acts simply
+  transitively on `Ω_I`, so `Ω_I ≠ ∅`.
+
+**§6, Lemmas 5 and 6: correct.**
+- *Lemma 5.* Cone off one vertex at a time. The pushout square is
+  `(Z_old ⊇ Y_v ∗ W ⊆ CY_v ∗ W)`, with `W` the polyhedral join over `lk(v)`.
+  - `lk(v)` is wCM of dimension `n−1` and nonempty for `n ≥ 1`, so the induction applies to it with arbitrary
+    nonempty fibers.
+  - The join bound gives `Y_v ∗ W` `(n−1)`-connected, and all cones give `L`.
+- *Lemma 6.* A maximal matching is a `d`-ground (Belk–Matucci Def. 6.1 and Thm 6.2, via Belk–Forrest), and `M_m` is
+  flag.
+  - The `ν(m)` stated is weaker than grounding gives (`⌊⌊m/d⌋/d⌋`), which is harmless.
+  - Links are `M_(m−d(p+1))`, and `⌊(N−p−1)/d⌋ ≥ ⌊N/d⌋ − p − 1`.
+
+**§7, Lemma 7 and the conclusion: correct in outline. This is the one step to write out.**
+- *Why the outline works.* `(L_m)_(hΓ_m) ≃ B(E_m//Γ_m)`.
+  - `E_m//Γ_m` has finitely many isomorphism classes, one per number of carets. `Γ_m` acts transitively on the
+    decorations of a matching shape, because `Γ_I` is simply transitive on `Ω_I`. The infinitely many cosets
+    `Ω_I/ψ(B)` therefore cause no infinite object set.
+  - The automorphism group of an elementary `f` in `E_m//Γ_m` is `Stab_(Γ_c)(F) ≅ (B ≀ S_k) × (B ≀ S_(c−k))`.
+  - The stabilizers of morphisms, under both automorphism groups, are again products `B ≀ S_(k_i)`. The new carets'
+    labels are free, and the old caret roots sit on strands where the action is `a′`.
+  - So every group in the collage induction is a finite extension of a power of `B`, of type `F_n`, and the induction
+    gives finite `n`-type.
+- *The node's own count.* The node computes the same thing as `(BK_1)_(h(B/K_1)) ≃ BB`. Its phrase "morphism sets
+  finite modulo automorphisms" should be replaced by the stabilizer statement above.
+- *The conclusion.* Take `m` with `ν(m) ≥ n`. Every later attachment is `ν(m′) ≥ n`-connected, so
+  `B𝒞_(≤m) → B𝒞_([r]) ≃ BV_{d,r}(B, ψ)` is `n`-connected, from a space of finite `n`-type. Attaching cells of
+  dimension `≥ n+1` gives `F_n`.
+
+**How `F_∞` reaches `V_{d,r}(G)`.** It passes to `V_{d,r}(B, ψ)` by the above. Lemma 2 identifies this group with
+`V_{d,r}(B/J, ψ̄)`, and with `V_{d,r}(G)` exactly when `J = K`. So the cover must be of type `F_n` and have dying
+kernel. For expanding coverings, dying kernel is Nekrashevych, arXiv:1312.5654, Prop. `pr:expandingpi1`, which the
+node quotes at source; I did not re-read it.
+
+**Consistency checks.**
+- *The faithful, injective case* is Skipper–Zaremsky, Cor. `cor:Finfty_inherited`.
+- *SWZ's non-`F_n` groups (persistent actions).* The free cover has `J = K_∞ = 1 ≠ K`, so no conclusion is drawn,
+  consistent with their theorem.
+- *Finite-state `G` with the free cover.* The theorem gives `V_d(F/K_∞)` of type `F_∞`. Its `n = 2` case matches the
+  presentation `V̂` of the lift-ideal Theorem A with `R = ∅`, by that proof's Remark.
+- *The Grigorchuk cover `C_2 ∗ (C_2 × C_2)`.* The length-≤3 relations of the nucleus are
+  `a² = b² = c² = d² = 1` and `bcd = 1`; the length-8 relator `(ad)^4` is not among them.
+
+**Literature.** The non-injective case was not found in SZ, SWZ, Li or BHM (the node's search). Witzel–Zaremsky
+cloning systems are also relevant: I did not check whether their framework allows non-injective cloning maps. No
+priority claimed.
+
+**Verdict: PASS.** Write out Lemma 7's stabilizers.
