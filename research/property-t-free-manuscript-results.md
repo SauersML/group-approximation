@@ -114,3 +114,32 @@ the reduced Li--Nowak--Pooya projections (for example `F_m`) do not
 transport into corona models.  Euler relations in `K_0` reach degree-zero
 corners only through `p_0` or `p_1`.  Degree `>= 2` Laplacians control only
 the upper half of the next lower Laplacian and are not decided.
+
+**Chromatic certificates overshoot to non-weak-soficity and
+non-hyperlinearity (2026-09-20, swarm-0917-w20-w20-ptm-break).**
+`chromatic-codes-kill-marks-in-every-bi-invariant-approximation` (direct
+proof `chromatic-code-bi-invariant-pigeonhole-proof`) shows that the
+pigeonhole behind the three chromatic engines uses only two things: a
+bi-invariant metric and finitely many colours at each scale.  The engines are
+the commutator code, the conjugacy-difference code and the Carmichael
+section.
+
+- **All radicals at once.**  A bounded-area certificate at `z` puts `z` in
+  the weakly sofic, sofic, finite-field linear-sofic, hyperlinear and MF
+  radicals simultaneously.  So a certificate at a nontrivial mark proves the
+  open roots `non-weakly-sofic-group-exists` (Glebsky--Rivera Conjecture 4.5)
+  and `non-hyperlinear-group`.
+  - For the Leavitt route `property-t-free-leavitt-via-chromatic-code` this is
+    recorded as two bridge routes, `non-weakly-sofic-via-leavitt-chromatic-commutator-code`
+    and `nonhyperlinear-via-leavitt-chromatic-commutator-code`.
+  - The same applies to the lifted-Thompson-`T` code leaf (bounty 60).
+- **No MF-only certificate.**  No chromatic certificate can separate MF from
+  hyperlinear, sofic or weakly sofic approximation.
+- **Where certificates cannot exist.**  None exists at a mark that survives in
+  some finite bi-invariant model.  In particular none exists at the sofic
+  non-MF group `E`'s mark, in any finitely presented cover.
+- **What stays open.**  The goal is not decided.  Chromatic routes are
+  calibrated as at least as hard as both roots.  Any Kazhdan-free
+  reproof that separates MF from the finite-group approximation classes must
+  use a mechanism that is specific to the operator norm (not a bi-invariant
+  pigeonhole).
