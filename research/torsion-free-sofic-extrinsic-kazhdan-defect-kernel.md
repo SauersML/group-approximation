@@ -23,6 +23,7 @@ distinct_from:
   finite-scale-compressors-preserve-kazhdan-fixed-algebras: That proves, by mass transport along the bijection sigma(u), that a compressor preserves the Kazhdan fixed algebra whenever the cluster sizes live on finitely many scales, with no period bound; this is the construction problem, whose witness must therefore defeat that scale hypothesis or survive at the centralizer level.
   twisted-lef-tower-order-budget-kills-compression-defects: That proves D_G(L)=1 whenever K has phi-twisted LEF towers of subexponential order, so a LEF kernel here must pay exponential tower order; this is the construction problem that must meet that budget.
   stacked-models-force-lef-witnesses-into-doubling-towers: That proves the stacked sofic models of a LEF kernel's twisted towers carry every defect witness as a strict doubling tower with liminf lambda log|Y| >= log 2, so for LEF kernels fixed-algebra invariance on stacked models already kills the defect; this is the construction problem, whose LEF witnesses must therefore defeat fixed-algebra invariance.
+  clifford-witness-refutes-kazhdan-profile-regularization: That proves no sofic representation of the Clifford witness satisfies any normalizing property at (Gamma, t), so every regularize-then-normalize route fails and its chain-envelope form is summit-strength; this is the construction problem those routes aimed to kill.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -742,3 +743,26 @@ must build genuinely Hamming-approximate sofic models.
 
     *Effect here.* This removes the "relation host" reframing as a cheap source of torsion-free
     witnesses. No clause of (EK1) is touched, and the node stays OPEN.
+25. **Regularization is refuted by the Clifford witness (2026-09-20, calibration,
+    swarm-0917-w23-w23-titz-pull).** Established
+    `clifford-witness-refutes-kazhdan-profile-regularization`. It tests every route of the form
+    "find a well-behaved sofic representation, then normalize". An example is the open reduction
+    (PR) of the session-branch node `finite-scale-sofic-profiles-kill-compression-defects`:
+    "every sofic `G` containing a Kazhdan `L` has a sofic representation with `sigma|_L`
+    finite-scale".
+    - In `W = Cl(X) ⋊ V`, `c_(x_0)` centralizes `Gamma` and `[t c_(x_0) t^-1, a] != 1`. So in
+      every sofic representation, `sigma(t) C(sigma Gamma) sigma(t)^-1 = C(sigma Gamma')`
+      strictly contains `C(sigma Gamma)`.
+    - Hence, for every property `P` whose presence forces `sigma(u)` to normalize
+      `C(sigma L)`, `W` has no `P`-representation at `(Gamma, t)`. With FSK1 this makes (PR)
+      false: every sofic representation of `W` is multi-scale on `Gamma`. With (KT\*) it makes
+      `t` wild. So the FSK3 and Attempt 20 survivor shapes occur in a real sofic group.
+    - The chain-envelope form `(Reg_P^env)` implies (CKN) by injectivity, hence that
+      `W_aff,p` is nonsofic (summit-strength).
+
+    Invariant and death:
+    - *Invariant.* The Kazhdan defect of `W`, carried by the lamp `c_(t x_0)`.
+    - *Where every member dies.* The regularization step.
+
+    Survivor: only `(Reg_P^K)`, whose proof must use that `K` is the normal Kazhdan kernel, or
+    that it has no finite quotient. This node stays OPEN.
