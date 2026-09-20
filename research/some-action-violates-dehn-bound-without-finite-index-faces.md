@@ -39,3 +39,19 @@ negatively (route `zaremsky-1-17-by-no`).
   polynomial. Convex or quasiconvex stabilizers (CAT(0), hyperbolic, Deligne
   complexes of 2-dimensional Artin groups) and products of trees keep `κ_X`
   linear and are ruled out as candidates.
+- 2026-09-17 (`research/artifacts/zp-dehn-finite-cluster-collapse-2026-09-17.md`,
+  claims `finite-infinite-stabilizer-clusters-give-dehn-bound` and
+  `bs1n-actions-satisfy-the-dehn-action-bound`): no counterexample has finite
+  clusters. If the union `X_∞` of cells with infinite stabilizer has only
+  finite components, then collapsing each to a cone vertex gives a complex
+  with finite edge groups. Theorem C applies there and gives (UB), up to an
+  inner constant that disappears for doubling vertex Dehn functions or after
+  enlarging the generating set.
+  - That covers any action whose infinite edge groups have finite index in
+    their vertices and whose infinite vertex groups have finite index in their
+    commensurators.
+  - Every action of `BS(1, q)` satisfies (UB).
+  - A counterexample therefore needs an infinite component of `X_∞`, i.e.
+    percolating infinite stabilizers, with cluster group `G_C` not virtually a
+    vertex group. The triangles of groups with infinite edge groups in the
+    first bullet do have this.
