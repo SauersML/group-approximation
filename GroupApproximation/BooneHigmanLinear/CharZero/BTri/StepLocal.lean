@@ -121,12 +121,16 @@ theorem mem_vstab_iff (i : Fin 3) (γ : SL3 (Localization.Away p)) :
 #audit_axioms mem_vstab_iff
 
 /-- The conjugation `Pᵢ →* P₀`. -/
-noncomputable def toStab0 (i : Fin 3) : vstab (A := A) (p := p) i →* vstab (A := A) (p := p) 0 :=
-  ((slConj (stdMat A p i)).restrict (vstab i)).codRestrict (vstab 0) fun γ =>
-    (mem_vstab_iff i γ).mp γ.2
+noncomputable def toStab0 (i : Fin 3) : vstab (A := A) (p := p) i →* vstab (A := A) (p := p) 0 where
+  toFun γ := ⟨slConj (stdMat A p i) (γ : SL3 (Localization.Away p)),
+    (mem_vstab_iff (A := A) (p := p) i (γ : SL3 (Localization.Away p))).mp γ.2⟩
+  map_one' := Subtype.ext (map_one (slConj (stdMat A p i)))
+  map_mul' γ δ :=
+    Subtype.ext (map_mul (slConj (stdMat A p i)) (γ : SL3 (Localization.Away p)) δ)
 
 @[simp] theorem coe_toStab0 (i : Fin 3) (γ : vstab (A := A) (p := p) i) :
-    (toStab0 i γ : SL3 (Localization.Away p)) = slConj (stdMat A p i) γ :=
+    (toStab0 i γ : SL3 (Localization.Away p)) =
+      slConj (stdMat A p i) (γ : SL3 (Localization.Away p)) :=
   rfl
 
 variable (hinj : Function.Injective (algebraMap A (Localization.Away p)))
@@ -218,8 +222,8 @@ theorem slConj_twist (i : Fin 3) (u : SteinbergGroup (Fin 3) A) :
     ((slConj (stdMat A p i) (elemToSL (projection
         (twist A p i (ringMap (algebraMap A (Localization.Away p)) u)))) : SL3 _) :
       Matrix (Fin 3) (Fin 3) (Localization.Away p)) =
-      ((projection u : elementaryGroup (Fin 3) A) : Matrix (Fin 3) (Fin 3) A).map
-        (algebraMap A (Localization.Away p)) := by
+      (((projection u : elementaryGroup (Fin 3) A) : (Matrix (Fin 3) (Fin 3) A)ˣ) :
+        Matrix (Fin 3) (Fin 3) A).map (algebraMap A (Localization.Away p)) := by
   have h1 : ((projection (twist A p i (ringMap (algebraMap A (Localization.Away p)) u)) :
       elementaryGroup (Fin 3) (Localization.Away p)) : (Matrix (Fin 3) (Fin 3) _)ˣ) =
       stdMat A p i * elementaryMatrixUnitMap (algebraMap A (Localization.Away p))
@@ -249,7 +253,8 @@ theorem twist_proj_mem (i : Fin 3) (u : SteinbergGroup (Fin 3) A) :
       vstab (A := A) (p := p) i := by
   rw [mem_vstab_iff]
   refine (hstab0 _).mpr fun k l =>
-    ⟨((projection u : elementaryGroup (Fin 3) A) : Matrix (Fin 3) (Fin 3) A) k l, ?_⟩
+    ⟨(((projection u : elementaryGroup (Fin 3) A) : (Matrix (Fin 3) (Fin 3) A)ˣ) :
+      Matrix (Fin 3) (Fin 3) A) k l, ?_⟩
   rw [slConj_twist]
   rfl
 
