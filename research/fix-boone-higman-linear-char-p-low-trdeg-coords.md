@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BooneHigmanLinear.CharP.LowTrdegCoords: failed to
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharP/LowTrdegCoords.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-linear-charp.
 
-**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
+**First errors (verbatim; from probe job direct-b1789919140 on main 57f90fce37).**
 
 ```
 error: GroupApproximation/BooneHigmanLinear/CharP/LowTrdegCoords.lean:58:33: failed to synthesize instance of type class
