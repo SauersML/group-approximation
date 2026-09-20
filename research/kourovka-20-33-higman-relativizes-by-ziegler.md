@@ -9,11 +9,14 @@ artifacts:
   - research/artifacts/gq-bh-kourovka-scout-candidates-2026-09-19.md
 ---
 
-**ESTABLISHED** as a literature answer. The key input is Ziegler's generalized Higman
-embedding theorem, quoted below from its restatement in I. Scott, *On effective constructions
-of existentially closed groups*, arXiv:2404.11524v1 (17 April 2024), §5.1–§5.2, pp. 14–16,
-read at source. Ziegler's own paper was not read. The deduction (Lemmas 1 and 2 and the proof
-of the Theorem) is a lane proof, not independently reviewed.
+**ESTABLISHED (literature answer, credited to Ziegler 1980; referee PASS,
+`kourovka-20-33-ziegler-answer-review`, 279d915221).**
+- **Key input.** Ziegler's generalized Higman embedding theorem, quoted below from its
+  restatement in I. Scott, *On effective constructions of existentially closed groups*,
+  arXiv:2404.11524v1 (17 April 2024), §5.1–§5.2, pp. 14–16, read at source.
+- **Not read at source.** Ziegler's own paper, including his Theorem II.3.10.
+- **Lane's part.** The explicit `G_X`, Lemma 2 and the observation that 20.33 is the
+  total-degree case of Ziegler's theorem. The referee checked every step.
 
 The Kourovka Notebook, arXiv:1401.0300v46 (1 September 2026), p. 152, still lists 20.33
 among the unsolved problems, with no comment (read at source). No priority is claimed: the
@@ -21,7 +24,8 @@ observation that Ziegler's theorem answers 20.33 may well be known to experts.
 
 ## Statement
 
-Kourovka 20.33 (A. Bauer; posed by J. Grochow), verbatim:
+Kourovka 20.33, verbatim. It is printed with the attribution "(A. Bauer)" at the start and
+signed "J. Grochow", the proposer, at the end (p. 152, rechecked at source):
 
 > Does Higman's Embedding Theorem relativize in the following way? Is it the case that for
 > every subset X ⊆ ℕ, there is a finitely generated group G_X that has an X-computable
@@ -45,22 +49,28 @@ embeds as a finitely generated subgroup of `G_X^{*k}/⟨⟨R⟩⟩` for some `k 
 
 ## Inputs (Scott 2404.11524v1, read at source)
 
-Notation: `W(G)` is the set of words on a finite generating tuple that are trivial in `G`,
-and `≤_e` is enumeration reducibility (Definition 5.1.1).
+Numbers are the PDF's section-based ones, with the arXiv HTML's sequential numbers in
+brackets.
 
-- **Proposition 5.1.2**, second bullet: "Y is c.e. in X iff Y ≤e X ⊕ Xᶜ."
+Notation: `W(G)` is the set of words on a finite generating tuple that are trivial in `G`,
+and `≤_e` is enumeration reducibility (Definition 5.1.1 [HTML Definition 41]).
+
+- **Proposition 5.1.2** [HTML Proposition 42], second bullet: "Y is c.e. in X iff
+  Y ≤e X ⊕ Xᶜ."
 - **Proposition 5.1.9:** the enumeration degree of `W(G, ḡ)` "does not depend on the choice
   ḡ of generators of G".
-- **Definition 5.2.1:** "We say F is a finitely presented extension of G, or F is finitely
-  presented over G, if there is a finite tuple f̄ and a finite collection of words R(ḡ, f̄)
-  such that F = ⟨ḡ, f̄ | W(G) ∪ R(ḡ, f̄)⟩ and ḡ generates a group isomorphic to G in F."
-- **Theorem 5.2.2** (Generalised Higman's Embedding Theorem), attributed to Ziegler
-  [Zie80, Theorem II.3.10]: "Let G and H be finitely generated groups. Then W(G) ≤e W(H) iff
-  G embeds in a finitely presented extension F of H."
+- **Definition 5.2.1** [HTML Definition 51]: "We say F is a finitely presented extension of
+  G, or F is finitely presented over G, if there is a finite tuple f̄ and a finite collection
+  of words R(ḡ, f̄) such that F = ⟨ḡ, f̄ | W(G) ∪ R(ḡ, f̄)⟩ and ḡ generates a group isomorphic
+  to G in F."
+- **Theorem 5.2.2** [HTML Theorem 52] (Generalised Higman's Embedding Theorem): "Let G and H
+  be finitely generated groups. Then W(G) ≤e W(H) iff G embeds in a finitely presented
+  extension F of H." Scott attributes it to Ziegler [Zie80, Theorem II.3.10], which was not
+  read at source.
 
 Only the forward direction of Theorem 5.2.2 is used.
 
-## Lemma 1 (lane proof): `W(H_S) ≡_e S`
+## Lemma 1 (lane proof, refereed): `W(H_S) ≡_e S`
 
 - **`S ≤_e W(H_S)`.**
   - In `K = F(a, b)`, the elements `a_n` (`n ∈ ℤ`) freely generate the kernel of
@@ -76,7 +86,7 @@ Only the forward direction of Theorem 5.2.2 is used.
   equal to a product of conjugates of `[t, a_n]^{±1}` with `n ∈ D`. For fixed `(w, D)` this is
   a c.e. condition, so it defines an enumeration operator.
 
-Ziegler's theorem quoted as Scott's Theorem 5.1.10 ([Zie76]) gives some f.g. `H` with
+Ziegler's theorem quoted as Scott's Theorem 5.1.10 [HTML Theorem 50] ([Zie76]) gives some f.g. `H` with
 `W(H) ≡_e S` directly; Lemma 1 just makes the group explicit.
 
 **Consequence.** `W(G_X) ≤_e S`. A word in the free product is trivial iff it reduces to the
@@ -84,7 +94,7 @@ empty word by deleting syllables trivial in their factor, which is enumerable fr
 information about `W(H_S)`, and `W(ℤ)` is computable. By Proposition 5.1.2, `W(G_X)` is c.e.
 in `X`. The displayed relator set `{[t, a_n] : n ∈ S}` is decidable in `X`.
 
-## Lemma 2 (lane proof): extensions over `H_S` embed in quotients of `G_X^{*k}`
+## Lemma 2 (lane proof, refereed): extensions over `H_S` embed in quotients of `G_X^{*k}`
 
 Let `F = ⟨ḡ, f_1, …, f_k | W(H_S) ∪ R⟩` be finitely presented over `H_S`, with `k ≥ 1`
 (a dummy generator `f_1` with relator `f_1` allows this). Write `H^{(i)}` and `z_i` for the
@@ -99,7 +109,7 @@ Let `R'` be the image of `R` in `A`. For `R' ⊆ A`,
 
 (universal property of free products). `A/⟨⟨R'⟩⟩_A ≅ F`, so `F` embeds in `G_X^{*k}/⟨⟨R'⟩⟩`.
 
-## Proof of the Theorem (lane proof)
+## Proof of the Theorem (lane proof, refereed)
 
 **(⇒)**
 1. Let `Γ` be f.g. with an X-computable presentation `⟨ȳ | P⟩`, with `P` c.e. in `X`.
