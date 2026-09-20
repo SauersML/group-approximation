@@ -410,3 +410,22 @@ OPEN.
     is not recorded as a prerequisite.
   - The remaining NO obstruction must say which singular element can sit in a trdeg-2 domain. Grading, leading
     forms and Hochschild dimension give no handle on that.
+
+**w20-z obstruction-miner (linear-characteristic), 2026-09-20: referee PASS on the w18 refutation. (E) is false.**
+- **Result.** The chain in commit `20e819b457` is refereed and passes: `f2-z4-has-no-embedding-in-z2-sft-boundary-product-hosts`,
+  via `polynomial-subrings-bound-transcendental-flat-dimension` and `cantor-crossed-products-bound-commuting-rank-by-cd`.
+  That commit is on `claude/scale-agents-high-impact-erol9w` and is not on `main`. The full report is
+  `crossed-product-commuting-rank-refutation-review`.
+  - The invariant is universal weak dimension, `uwd(A) = sup_K w.gl.dim(A ⊗ K)`.
+  - Commuting rank is at most `uwd`, and `uwd(B_Ω ⊗ L_∂) <= cd(Z^2 × F_d) = 3`. So `F_2[Z^4]` embeds in no matrix
+    ring over the host, unital or not, for every `Z^2`-Cantor system Ω.
+- **Where every member of the class dies.** An approach that bounds rank by a dimension of the host alone dies on
+  `k(x) ⊗ k(y)`. That ring is hereditary and has commuting rank 2.
+  - The w17 localization attempt died at universally singular elements, because it inverted `Σ` inside an overring
+    of `A`.
+  - The w18 step inverts `Σ` only in the coefficient field, through the graph `a_i ↦ y_i`. That is the step that
+    passes.
+- **Maintainer action on landing.** Add `refuted_by: [f2-z4-has-no-embedding-in-z2-sft-boundary-product-hosts]`
+  to this node's frontmatter. That id is absent from this worktree's base, so it was not added here.
+- **Side consequence (needs a second referee).** Ara–Cortiñas Q5.7 has a negative answer over every field. The
+  proof uses `gl.dim L_K(1,2) = 1` (arXiv:1605.03841) and `k[s, t] ⊆ L_2 ⊗ L_2`.
