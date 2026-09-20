@@ -1,0 +1,56 @@
+{
+  "group": "T^2 x| C_3, A = [[0,-1],[1,-1]]",
+  "g": "(sqrt 2, sqrt 3) in T^2",
+  "irreducible_dim": 3,
+  "rows": [
+    {
+      "R": 3,
+      "v": [
+        -1,
+        1
+      ],
+      "opnorm_dist_to_omega": 0.502734752647516
+    },
+    {
+      "R": 10,
+      "v": [
+        -6,
+        -3
+      ],
+      "opnorm_dist_to_omega": 0.09275133701988887
+    },
+    {
+      "R": 30,
+      "v": [
+        26,
+        24
+      ],
+      "opnorm_dist_to_omega": 0.06715748424701402
+    },
+    {
+      "R": 100,
+      "v": [
+        -79,
+        11
+      ],
+      "opnorm_dist_to_omega": 0.022907223377430216
+    },
+    {
+      "R": 300,
+      "v": [
+        -126,
+        -252
+      ],
+      "opnorm_dist_to_omega": 0.006570313174883131
+    },
+    {
+      "R": 1000,
+      "v": [
+        -486,
+        -760
+      ],
+      "opnorm_dist_to_omega": 0.0021017632047960005
+    }
+  ],
+  "conclusion": "3-dim continuous irreducibles of a fixed compact group with finite abelianization approach omega I on g, with no exact omega; the gap of (FC1) needs the M-input (ST5 + compactness of Hom(M,U(n)))."
+}
