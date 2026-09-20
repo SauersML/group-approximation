@@ -46,3 +46,30 @@ measure witnessing amenability must lie outside every rung that has been killed.
     - several scales `Δ = {e, b_L : L ≥ 1}`, whose covering probabilities could replace forever-avoidance by a
       summability condition. Such a detector must still beat dense accumulation, and it depends on how much mass
       `µ^{*k}` puts on small bumps at `x`.
+- **2026-09-17, (B) refuted: avoidance is boundary escape (swarm-0917-w20-w20-f-pull, probability-random).**
+  Prerequisite (B) of the w5 decomposition is false, so the (A)+(B) route is dead. This is ESTABLISHED as
+  `thompson-f-induced-chain-avoidance-is-boundary-escape`.
+  - For every generating `µ`, `F ↷ (0,1)` is minimal and every element is a positive word. So from each compact
+    `K ⊂ (0,1)` the chain hits any open `J` within `N` steps with probability at least `c > 0`.
+  - Hence, almost surely, either `d(Z_k) → 0` or the chain enters `J` infinitely often.
+  - Combined with transience and a last-exit count at `x`, this gives
+    `lim_{y↓x} θ_{[x,y]} = (1 − r_x) P_x(d(Z_k) → 0)`.
+  - So (B) holds for `µ` if and only if the induced chain escapes to `{0,1}` with positive probability.
+  - For a walk whose support elements are linear on a uniform `[0,r] ∪ [1−r,1]`, with bounded germ exponents and germ
+    drifts `≥ 0`, the endpoint germ walk cannot drift to `−∞` (weak law or CLT, then Hewitt–Savage). So escape has
+    probability `0`, and `θ_{[x,y]} = 0` for every interval.
+  - This covers every symmetric finitely supported walk, and in particular the simple random walk on
+    `{x0^{±1}, x1^{±1}}`, which has finite entropy and is generating. It also covers the auxiliary `ν`-chain of the
+    (A) proof.
+  - It also covers a symmetric finite-entropy measure with `E|Br| = ∞`: the simple random walk mixed with bumps
+    `k_N` in `[1/4,3/4]`, where `|Br(k_N)| ≥ 4^N` and the weights are `∝ 2^{-N}/N²`. On this measure neither
+    recorded mechanism applies as stated, which makes it a calibration target for this rung.
+  - Invariant: compact recurrence `limsup d(Z_k) > 0`, plus minimality.
+  - Dies at: `θ > 0`. The same happens for every detector that reads forever-avoidance, or eventual avoidance, of a
+    fixed open interval.
+  - The corollary of (A), that a Liouville witness approaches every dyadic from the right, is equivalent to
+    `P(Esc) = 0`. That holds for all symmetric finitely supported walks, so it constrains nothing.
+  - Survivors:
+    - multi-scale first-entry summability for `Δ = {e, b_L}`;
+    - breakpoint-content detectors;
+    - the Green-weighted breakpoint bound, whose value on the calibration family is unchecked.
