@@ -1,0 +1,16 @@
+orders x, y, xy: 2 3 7
+|PSL(2,7)| = 168
+V, E, F, chi = 168 420 248 -4
+face counts by type: {'Y': 56, 'C': 168, 'H': 24}
+dual adjacency type pairs: [('C', 'C'), ('C', 'H'), ('C', 'Y')]
+dual degree patterns: {('Y', ('C', 'C', 'C')): 56, ('C', ('C', 'H', 'Y')): 168, ('H', ('C', 'C', 'C', 'C', 'C', 'C', 'C')): 24}
+dual simple: True
+NB Perron root, finite dual  : np.float64(2.5423742510881384)
+NB Perron root, type matrix  : np.float64(2.542374251088132)
+1/lambda (lower bd p_c(T*))  : np.float64(0.3933331214206569)
+upper bound p_u(T) = 1-1/lam : np.float64(0.6066668785793431)
+p* root of 2p^2(1+p-p^2)=1   : 0.6372776105212632
+margin p* - (1 - 1/lambda)   : np.float64(0.0306107319419201)
+check 2p^2(1+p-p^2) at 0.6067: np.float64(0.9117366589824232)
+exact: chi_M(2.5424) = 383617429449/95367431640625 > 0; 1 - 1/2.5424 = 0.6066708621774701 < 0.6067; w(0.6067) = 0.9118310130333758 < 1
+ALL CHECKS PASSED
