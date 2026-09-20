@@ -1,0 +1,5 @@
+check: psi(K) = 0.834392
+check: strip N=20  Phi_3 = 0.839509
+check: strip N=40  Phi_3 = 0.836812
+check: strip N=80  Phi_3 = 0.835570
+check: iid uniform increments psi = 0.770933

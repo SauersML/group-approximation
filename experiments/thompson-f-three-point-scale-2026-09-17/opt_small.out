@@ -1,0 +1,15 @@
+N=3 start 0  Phi=0.956728  R-bound=(1+Phi)/2=0.978364
+N=3 start 1  Phi=0.956728  R-bound=(1+Phi)/2=0.978364
+N=3 start 2  Phi=0.951516  R-bound=(1+Phi)/2=0.975758
+N=3 start 3  Phi=0.943079  R-bound=(1+Phi)/2=0.971540
+N=3 best Phi=0.956728
+N=4 start 0  Phi=0.960093  R-bound=(1+Phi)/2=0.980047
+N=4 start 1  Phi=0.960093  R-bound=(1+Phi)/2=0.980047
+N=4 start 2  Phi=0.951516  R-bound=(1+Phi)/2=0.975758
+N=4 start 3  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=4 best Phi=0.960093
+N=6 start 0  Phi=0.964118  R-bound=(1+Phi)/2=0.982059
+N=6 start 1  Phi=0.964118  R-bound=(1+Phi)/2=0.982059
+N=6 start 2  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=6 start 3  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=6 best Phi=0.964118

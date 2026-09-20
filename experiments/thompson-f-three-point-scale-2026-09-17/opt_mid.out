@@ -1,0 +1,11 @@
+N=8 start 0  Phi=0.966443  R-bound=(1+Phi)/2=0.983221
+N=8 start 1  Phi=0.966443  R-bound=(1+Phi)/2=0.983221
+N=8 start 2  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=8 start 3  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=8 best Phi=0.966443
+N=12 start 0  Phi=0.969043  R-bound=(1+Phi)/2=0.984521
+N=12 start 1  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=12 start 2  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=12 start 3  Phi=0.942809  R-bound=(1+Phi)/2=0.971405
+N=12 best Phi=0.969043
+N=16 not run (stopped for time; N^3 = 4096 parameters)

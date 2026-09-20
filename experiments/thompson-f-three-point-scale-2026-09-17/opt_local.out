@@ -1,0 +1,18 @@
+L=1 start 0  Psi=0.946825
+L=1 start 1  Psi=0.946825
+L=1 start 2  Psi=0.946825
+L=1 best Psi=0.946825
+L=2 start 0  Psi=0.957130
+L=2 start 1  Psi=0.957130
+L=2 start 2  Psi=0.957130
+L=2 best Psi=0.957130
+L=4 start 0  Psi=0.965728
+L=4 start 1  Psi=0.942809
+L=4 start 2  Psi=0.965728
+L=4 best Psi=0.965728
+L=8 start 0  Psi=0.970840
+L=8 start 1  Psi=0.970840
+L=8 start 2  Psi=0.942809
+L=8 best Psi=0.970840
+L=16 start 0  Psi=0.973539
+L=16: stopped for time after start 0 (best so far Psi=0.973539)
