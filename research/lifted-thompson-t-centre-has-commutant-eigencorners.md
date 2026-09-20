@@ -132,3 +132,51 @@ For some `delta > 0` and every `eta > 0` there are a nonzero projection
   - **Caveat.**  A counterexample to the `K(3,4)` statements refutes only
     this route, not the target: the bad pair need not satisfy the Thompson
     relators.
+
+- **2026-09-20 (swarm-0917-w21-w21-ptm-last1, quantifier-shift).**  Outcome:
+  the flagship does not need (EC) in every representation.  One scalar twist
+  in one representation suffices.  The target stays OPEN.
+  - **Established.**  `lifted-thompson-t-twist-set-is-trivial-or-the-circle`
+    (route `...-proof`).  It concerns two sets:
+    - `Sigma`, the set of `mu` with `sigma(z) = mu 1` for some corona
+      representation `sigma`;
+    - `S`, the union of the spectra `sp(rho(z))`.
+
+    Both are closed subgroups of `S^1`, by tensoring, conjugation and
+    diagonal limits.  Each is either `{1}` or `S^1`.  `Sigma = S^1` if and
+    only if `T` is MF, and `S = S^1` if and only if `T̄` is MF.
+    - For `mu != 1` in `Sigma`, item 1 of
+      `central-eigencorners-die-over-full-radical-quotients` with `P = 1`
+      shows that `T` is not full, so `T` is MF because it is simple.
+    - Conversely, if `T` is MF, the `-1` corner of `pi(r_1)` pulled back
+      along `iota_1` gives `-1 in Sigma`.
+    - The dilation then gives `2^j`-th roots: `sigma(t_j)` is central in
+      `sigma(lambda^j(T̄))` and has finite spectrum.  So `Sigma` is
+      infinite.
+
+    This is the first place where the dilation, listed above as unused
+    structure, does work.  It works on scalar twists and not inside `B`.
+  - **New decomposition.**  The new claim `lifted-thompson-t-mf-descends-to-t`
+    reads (D): `T̄` MF implies `T` MF.  Equivalently:
+    - some representation has an exact eigencorner of `z` with `lambda != 1`;
+    - or some representation sends `z` to `-1`, or to any one chosen
+      `mu != 1`.
+
+    The route `lifted-thompson-t-not-mf-via-mf-descent` gives
+    `flagship <=> thompson-t-has-full-mf-radical AND (D)`.  This target
+    implies (D), via `lifted-thompson-t-mf-descent-via-central-eigencorners`.
+    (D) is the weakest possible second conjunct, it holds outright when `T`
+    is MF, and it fails only in the single world where `T` is full and `T̄`
+    is MF.
+  - **Consequence for this node.**  The obstruction recorded by w16 is about
+    a single representation: arc spectrum, and no projections in
+    `C^*(rho(z))`.  It no longer blocks the flagship.  A proof of (D) may
+    change the representation by tensor powers, subsequences, diagonal
+    limits and precomposition with `lambda^j`.  It need only reach one
+    representation with a scalar corner.
+  - **Where this dies for (EC) itself.**  The twist-set argument produces
+    eigencorners only in *other* representations: corners of
+    `sigma o lambda^j`, and diagonal limits.  It gives nothing for a fixed
+    `rho` with arc spectrum.  So (EC) for all `rho` is not reached, and in
+    the world where `T` is MF it remains a separate open question that the
+    flagship does not need.
