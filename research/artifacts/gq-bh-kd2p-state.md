@@ -43,3 +43,13 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
 - Hardness and contraction are incompatible on the counters (sketch).
 - On the KMS top, non-contracting renormalizations are unfaithful (Hartogs).
 - Faithfulness on the top costs contraction on every cycle, and the leftover core must be absorbed by `T_0`.
+
+## Update (same day): the smallest explicit mixing fails
+
+`kms-lamp-mixing-dies-on-br-relation`: `F(A_0) = tA_0` with `t ∈ T_0` is incompatible with G4.
+- **Why.** G4 is inhomogeneous in `A_0`, and `B_0` centralizes `T_0`. This is proved for domains containing a
+  counter pair `(u, 1 − u)`, as Kochloukova–Sidki's does.
+- **Surviving route.** The mixing goes through the counters: `F(ã_i) = t_i α_i`, a 1-cocycle whose lamp
+  components `t_g(A_0 − 1)` land in `T_0`. Only a nontrivial class in `H^1` helps, since coboundaries are inner.
+- **Next step.** Compute `H^1(F̄(H ∩ B_0), T)` on the counters, for the smallest instance: `K = 2` and the
+  trivial machine.
