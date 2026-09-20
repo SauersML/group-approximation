@@ -84,3 +84,26 @@ Moore's Lemma 4.2.
   regrouping moves, `w(T/u ∪ T/v) > w(T/u) + w(T/v)` quantitatively, and grows like
   `Ack_{k−1}` of the leaf count. Leaf count is additive and fails. The parenthesised-word length
   in `F`'s normal form is untested.
+- **Leaf-grafting inflations (swarm-0917-w21-w21-f-pull, 2026-09-20; family symbolic-dynamics).**
+  - *Result:* the super-doubling death above is now a theorem, proved without marginality
+    machinery: `tree-grafting-inflations-kill-superlinear-ratio-derivatives`.
+  - *Inflation Lemma:* a one-sided equivariant `σ : 𝒯 → 𝒯` satisfies `bd(σ_*μ) ≤ 2bd(μ)`.
+    Examples are `T ↦ δ^{j(|T|)}T` (refine every leaf to depth `j`) and grafting at the `k`-th
+    leaf.
+  - *Consequence:* a thin bad set must contain at most `2cε` of every inflated Følner measure.
+  - *Kill:* take any coarsening derivative (`∂T` dominated by `T`) whose consecutive interior
+    leaves satisfy `|T/v| ≥ φ(|T/u|)`, or the mirror, with `sup φ(x)/x = ∞`.
+    - (E′) for `x0, x1` forces the crossing pair (last leaf under `01`, first leaf under `10`)
+      to be interior.
+    - On `δ^{j}T` its size ratio is `< 8|T|`, while its sizes are `≥ 2^{j−3}`.
+    - So `B ⊇ δ^{j(·)}(𝒯)`, and `B` is thin only if `F` is non-amenable.
+  - *Sharp:* the kill fails at linear `φ`, which is Moore's case. Ratio conditions certify at most
+    `Ack_2` contraction non-vacuously.
+  - *New necessary condition for `H_k`, `k ≥ 3`:* the good set must be essentially closed under
+    grafting inflations.
+  - *Survivors:*
+    - index-graded ratios `f(i)·|T/u_i| ≤ |T/u_{i+1}|` with `f → ∞`. These are not decided by
+      the uniform test, because the index of the crossing pair is unbounded. Neither the
+      analogue of Lemma 5.5 nor uniqueness of the maximal `U` (Moore's Lemma 5.2 and condition 3)
+      has been checked.
+    - conditions on height differences, which shift uniformly under `δ^j`.
