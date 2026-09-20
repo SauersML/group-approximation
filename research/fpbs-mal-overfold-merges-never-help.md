@@ -310,6 +310,30 @@ artifacts:
   - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_mal3_s21.txt
   - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_nonmal2_s33_small.txt
   - experiments/fpbs-overfold-image-claim-2026-09-17/out/kern_mal2_s32_small.txt
+  - research/artifacts/fpbs-overfold-midn-exact-2026-09-20.md
+  - experiments/fpbs-overfold-midn-2026-09-17/rel.c
+  - experiments/fpbs-overfold-midn-2026-09-17/midn.py
+  - experiments/fpbs-overfold-midn-2026-09-17/struct_midn.py
+  - experiments/fpbs-overfold-midn-2026-09-17/anneal.c
+  - experiments/fpbs-overfold-midn-2026-09-17/run_law8.sh
+  - experiments/fpbs-overfold-midn-2026-09-17/run_queue.sh
+  - experiments/fpbs-overfold-midn-2026-09-17/inst12j1_law8.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_p0.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_p1.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_p2.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_p3.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/run_law8_s5.sh
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q0.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q1.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q2.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q4.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q5.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/law8_s5_q6.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/rand_j1_n20.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/rand_j1_n30.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/rand_j2_n12.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/psl23_j1_law5.txt
+  - experiments/fpbs-overfold-midn-2026-09-17/psl23_j1_law6_s3.txt
 ---
 
 **OPEN.** Notation is as in
@@ -1165,3 +1189,53 @@ quotient test of rank-2 relative inertia. OPEN.**
       `X = ker(B → G)`, the image of `<X, g> ∩ B` in `G` is cyclic.
       `⟨⟨X⟩⟩_J ∩ Y = X` suffices. Dehn filling gives this for fixed `J` and
       deep enough `X`, but not uniformly over `J = <X, g>`.
+- **2026-09-20, swarm-0917-w21-w21-fp-break (belief breaker,
+  census-computation): OPEN; exact mid-n certification of deep = law, and
+  the w19 law-8 lead squeezed to near-pure-overfold witnesses. 0
+  violations.** Details are in
+  `research/artifacts/fpbs-overfold-midn-exact-2026-09-20.md`, with code
+  in `experiments/fpbs-overfold-midn-2026-09-17/`.
+  - **Reduction (elementary, proved in the artifact).** Split a witness
+    as `T = P ⊔ L`, with `P` overfold and `L` lawful. Let
+    `lawneed(X)` be the least number of lawful seeds completing `X` to the
+    goal. Then `deep < law` holds iff some overfold `P` with `|P| = s ≥ 1`
+    has `lawneed(cl(P)) ≤ law − 1 − s`.
+    - Testing all `s ≤ smax` decides `deep = law` exactly when
+      `law ≤ smax + 1`.
+    - Otherwise it proves that every witness of size `law − 1` has more
+      than `smax` overfold seeds.
+    - `rel.c` runs this with `P[0]` restricted to orbit representatives
+      under lifted automorphisms, and decides lawneed by exact
+      enumeration of lawful subsets.
+    - Cross-checked against `deep.c` on `inst12` (law 6) and on a random
+      `n = 20` law-4 level.
+  - **Exact deep = law (every level certified).**
+    - `j = 1`, `n = 20`: 300 random transitive levels, law histogram
+      2:3, 3:228, 4:67, 5:2. Up to 9.5·10^7 P's per level.
+    - `j = 1`, `n = 30`: 5 law-4 levels, 5.9·10^6 P's each.
+    - `j = 2`, `n = 12`: 40 random levels, law histogram 2:25, 3:13, 4:2.
+      Up to 1.9·10^8 P's per level.
+  - **w19's law-8 level `inst12j1_law8`.** It has V = 96, 12 lawful and
+    132 overfold seeds, and 11 orbit reps. Exhaustive `s ≤ 5` is clean,
+    with 4,027,595 P's at `s = 4` and 128,883,040 at `s = 5`.
+    - So every 7-seed witness there has at least 6 overfold seeds, i.e.
+      at most 1 lawful one.
+    - With w19's exhaustive `deep ≥ 7` (w19 lane, local commit
+      `d011e9593c`, not on main), a counterexample on this level
+      must be an almost purely overfold 7-set.
+    - `rel` at `s = 6` and `s = 7` would decide deep there exactly, at
+      about 3.3·10^9 and 6.9·10^10 P's: at most about 3 CPU-days and 2
+      CPU-months at the measured rate. `s = 6` is a feasible dedicated
+      job; `s = 7` needs better pruning.
+  - **Structured levels.** On PSL(2,23) acting on P^1 (`n = 24`, `j = 1`),
+    two law-6 levels are clean for `s ≤ 3`, with 3.0·10^6 P's at `s = 3`.
+    So every 5-seed witness there has at least 4 overfold seeds.
+    - High law appears to need structure. Random levels at `n ≤ 30`
+      reach law 5 only rarely, while PSL(2,29) gives law 6 in 3 of 20
+      levels.
+  - **Where it stands.** This is evidence, not proof. Two things matter
+    for the next attack:
+    - small mixtures of overfold and lawful seeds never beat the law in
+      any tested case;
+    - a counterexample, if one exists, is a large, nearly lawful-free
+      overfold family on a high-law structured level.
