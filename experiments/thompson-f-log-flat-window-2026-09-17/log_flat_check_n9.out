@@ -1,0 +1,17 @@
+n=2 perron |S_n|=     3 delta=2.5858 cR=1.0308 cM=1.0308 gamma_T(T=4)=0.1250 (gamma/6)^2=0.00043 worst slack=0.000e+00 OK
+n=2 random |S_n|=     3 delta=3.1394 cR=1.5366 cM=1.0000 gamma_T(T=4)=0.0000 (gamma/6)^2=0.00000 worst slack=0.000e+00 OK
+n=3 perron |S_n|=     9 delta=1.9392 cR=1.0582 cM=0.9423 gamma_T(T=5)=0.1926 (gamma/6)^2=0.00103 worst slack=0.000e+00 OK
+n=3 random |S_n|=     9 delta=3.0427 cR=1.0061 cM=1.4025 gamma_T(T=5)=0.4055 (gamma/6)^2=0.00457 worst slack=0.000e+00 OK
+n=4 perron |S_n|=    28 delta=1.5674 cR=1.1016 cM=0.8803 gamma_T(T=6)=0.2375 (gamma/6)^2=0.00157 worst slack=0.000e+00 OK
+n=4 random |S_n|=    28 delta=3.5116 cR=1.1050 cM=1.4647 gamma_T(T=6)=0.4538 (gamma/6)^2=0.00572 worst slack=0.000e+00 OK
+n=5 perron |S_n|=    90 delta=1.3324 cR=1.0976 cM=0.8309 gamma_T(T=7)=0.2579 (gamma/6)^2=0.00185 worst slack=0.000e+00 OK
+n=5 random |S_n|=    90 delta=3.2443 cR=1.4465 cM=1.4992 gamma_T(T=7)=0.4612 (gamma/6)^2=0.00591 worst slack=0.000e+00 OK
+n=6 perron |S_n|=   297 delta=1.1701 cR=1.0779 cM=0.7982 gamma_T(T=8)=0.2658 (gamma/6)^2=0.00196 worst slack=0.000e+00 OK
+n=6 random |S_n|=   297 delta=3.0864 cR=1.5460 cM=1.5054 gamma_T(T=8)=0.3717 (gamma/6)^2=0.00384 worst slack=0.000e+00 OK
+n=7 perron |S_n|=  1001 delta=1.0513 cR=1.0533 cM=0.7748 gamma_T(T=9)=0.2700 (gamma/6)^2=0.00202 worst slack=0.000e+00 OK
+n=7 random |S_n|=  1001 delta=3.0957 cR=1.5324 cM=1.5310 gamma_T(T=9)=0.4321 (gamma/6)^2=0.00519 worst slack=0.000e+00 OK
+n=8 perron |S_n|=  3432 delta=0.9603 cR=1.0278 cM=0.7578 gamma_T(T=10)=0.2714 (gamma/6)^2=0.00205 worst slack=0.000e+00 OK
+n=8 random |S_n|=  3432 delta=2.8888 cR=1.4945 cM=1.5022 gamma_T(T=10)=0.4567 (gamma/6)^2=0.00579 worst slack=0.000e+00 OK
+n=9 perron |S_n|= 11934 delta=0.8883 cR=1.0030 cM=0.7451 gamma_T(T=11)=0.2716 (gamma/6)^2=0.00205 worst slack=0.000e+00 OK
+n=9 random |S_n|= 11934 delta=2.9479 cR=1.5110 cM=1.4957 gamma_T(T=11)=0.4557 (gamma/6)^2=0.00577 worst slack=0.000e+00 OK
+ALL OK
