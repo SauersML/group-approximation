@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigmanLinear.CharZero.BTri.DomainType: automatically included section variable(s) unused in theorem GroupAppr"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/CharZero/BTri/DomainType.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/BooneHigmanLinear/CharZero/BTri/DomainType.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: fix-bh-b (reassigned 09-19 by the coordinator; the file was fix-bh-a's).
 
-**Repair landed, unprobed.** dad2ded24f: BTri/DomainType: repair the red char-zero building module (red in b1789850259; unprobed). Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

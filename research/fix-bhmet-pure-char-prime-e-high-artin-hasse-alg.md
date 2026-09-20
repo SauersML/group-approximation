@@ -19,13 +19,13 @@ Source changed on main since that build: yes.
 
 
 
-**Repair landed, unprobed.** e35edba33a: BH chain wave 10: ArtinHasseAlg CommRing structure from the scoped IsMulCommutative instan. Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
+**First errors (verbatim; from probe job direct-b1789910605 on main 516e496a4a).**
 
 ```
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:307:4: Type mismatch
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:332:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_exists_units_of_polyFun' depends on axioms outside the classical allowlist: [
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:306:58: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:307:47: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:330:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_exists_units_of_polyFun' depends on axioms outside the classical allowlist: [
 ```
 
 **Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-pure-char-prime-e-high-artin-hasse-alg`, now superseded).

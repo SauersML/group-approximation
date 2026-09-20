@@ -14,7 +14,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 (none in this file: it fails only because red imports fail; see Inputs)
 ```
 
-**Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-piece06-predicate`. Fix those first: errors here may be knock-on.
+
+**Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-piece06-refinement`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessCurveSublistStatement` compile under the repository settings without changing any statement.
 

@@ -5,12 +5,11 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Field: bad import 'GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Sta"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Field.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
+**RESOLVED (516e496a4a, trusted batched probe job direct-b1789910605).** Previously OPEN. Lean module `GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Field.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 
 
-**Repair landed, unprobed.** 41df56f6b6: Horrocks H.L2: fix the reds from batch b1789878900, and add DegOne, B0Maps and HL5Act/Deg0. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
