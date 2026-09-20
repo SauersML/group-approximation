@@ -126,8 +126,8 @@ theorem cAll_le_cOne (third : ThirdIndex I) (M : Ideal A) {i₀ j₀ : I} (h₀ 
       cElt a b hab (Polynomial.C m) (Polynomial.X * η) ∈ relKer I (xPolyIdeal M) ⊔
         Subgroup.closure {g | ∃ (m : A) (η : Polynomial A),
           m ∈ M ∧ cElt i₀ j₀ h₀ (Polynomial.C m) (Polynomial.X * η) = g})
-    (fun p q r hpq hqr hpr hT hpr' => T_col hN hpq hqr hpr' (hT hqr))
-    (fun p q r hpq hqr hpr hT hpr' => T_row hN hpq hqr hpr' (hT hpq))
+    (fun _ _ _ hpq hqr _ hT hpr' => T_col hN hpq hqr hpr' (hT hqr))
+    (fun _ _ _ hpq hqr _ hT hpr' => T_row hN hpq hqr hpr' (hT hpq))
     h₀ (fun _ m hm η => (le_sup_right : _ ≤ relKer I (xPolyIdeal M) ⊔ _)
       (Subgroup.subset_closure ⟨m, η, hm, rfl⟩)) i j hij hij m hm ξ
 
