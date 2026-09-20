@@ -107,3 +107,35 @@ Moore's Lemma 4.2.
       analogue of Lemma 5.5 nor uniqueness of the maximal `U` (Moore's Lemma 5.2 and condition 3)
       has been checked.
     - conditions on height differences, which shift uniformly under `δ^j`.
+- **Normal form for the whole coarsening class (swarm-0917-w23-w23-f-last1, 2026-09-20;
+  family reframing).**
+  - *Result:* `coarsening-derivatives-are-block-rigid-and-window-avoiding` (ESTABLISHED, with
+    a brute-force check to 9 leaves). For every datum with `∂T` dominated by `T`:
+    - the definedness half of (E′) is exactly *window avoidance*: no leaf of `∂T` in
+      `{∅,0,1,10,11}` carries a nontrivial block;
+    - the equivariance half says that the leaf-index interval partition and the block shapes
+      are constant along every edge leaving `A`. So a coarsening datum *is* a colouring of each
+      level `𝒯_n` by window-avoiding block partitions, and `B` must contain the colouring's
+      interfaces;
+    - *spine count:* an `A`-segment `T, T·x0, …, T·x0^{ℓ−1}` forces `|∂T| ≥ ℓ − 1`, since each
+      left-spine subtree passes through the window node `10`. Hence on every `ε`-Følner measure
+      more than half the mass has `|∂T| ≥ Ω_c(1/ε)`.
+  - *What it kills:* pointwise inflation kills stop at the contraction requirement. On every
+    `σ_β(V)` with `V ∈ Full_m`, block partition, window avoidance, (E′) and `|T| ≥ ψ(|∂T|)` all
+    hold together for any `ψ`. So the grafting method of w21 can only refute *extra* defining
+    conditions (ratios), never coarsening `H_k` itself.
+  - *Where the attempted kill of coarsening `H_3` dies:*
+    - The spine count gives Følner trees of size `≥ Ack_k(Ω(1/ε))` in one step. Theorem A
+      already gives `Ack_{k+1}(Ω(log 1/ε))`, which is larger, so there is no contradiction.
+    - A contradiction needs `|∂T| ≥ f(|T|)` with `f ≫ Ack_k^{-1}` on Følner mass. That is an
+      upper bound on Følner tree sizes against `ε`, which is a Følner-function upper bound and is
+      not available.
+  - *Also checked:* index-graded ratios with `inf f > 2` put every window-full tree with
+    `2/λ < |T/10|/|T/01| < λ/2` into `B` (crossing-pair argument). Uniform-by-index grafts cannot
+    push measures into that balanced set: the interval-sum ratio `Σ_{[q,s)} w / Σ_{[p,q)} w` is
+    unbounded over `p < q < s` for every weight sequence. So this survivor stays undecided, and it
+    only concerns `Ack_2`-level constants anyway.
+  - *Survivors for `H_k`, `k ≥ 3`:*
+    - non-coarsening data, where `∂T` is not dominated by `T` (none is known);
+    - coarsening colourings whose interfaces are shown thin by a global argument that is not
+      pointwise on inflated trees.
