@@ -50,10 +50,8 @@ theorem toLaurentNeg_eq : toLaurentNeg A =
     (LaurentPolynomial.invert (R := A)).toRingEquiv.toRingHom.comp Polynomial.toLaurent := by
   apply Polynomial.ringHom_ext
   · intro a
-    simp [toLaurentNeg, RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom,
-      AlgEquiv.toRingEquiv_eq_coe, AlgEquiv.coe_ringEquiv, Polynomial.toLaurent_C]
-  · simp [toLaurentNeg, RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom,
-      AlgEquiv.toRingEquiv_eq_coe, AlgEquiv.coe_ringEquiv, Polynomial.toLaurent_X]
+    simp [toLaurentNeg, RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, Polynomial.toLaurent_C]
+  · simp [toLaurentNeg, RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, Polynomial.toLaurent_X]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.toLaurentNeg_eq
 
@@ -69,9 +67,8 @@ theorem trunc_invert_toLaurent (q : A[X]) :
       LaurentPolynomial.invert_T, LaurentPolynomial.trunc_C_mul_T, Polynomial.coeff_monomial]
     rcases Nat.eq_zero_or_pos n with rfl | hn
     · simp
-    · have h1 : ¬ (0 : ℤ) ≤ -(n : ℤ) := by omega
-      have h2 : n ≠ 0 := by omega
-      simp [h1, h2]
+    · have h2 : n ≠ 0 := by omega
+      simp [h2]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.trunc_invert_toLaurent
 
@@ -81,7 +78,7 @@ theorem polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg {p q : A[X]}
     (h : toLaurentPos A p = toLaurentNeg A q) : p = Polynomial.C (q.coeff 0) := by
   rw [toLaurentPos_eq, toLaurentNeg_eq] at h
   simp only [RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom,
-    AlgEquiv.toRingEquiv_eq_coe, AlgEquiv.coe_ringEquiv] at h
+    AlgEquiv.coe_ringEquiv] at h
   have h' := congrArg LaurentPolynomial.trunc h
   rw [Polynomial.trunc_toLaurent] at h'
   rw [h']
@@ -96,7 +93,7 @@ theorem polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg' {p q : A[X]}
   apply polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg
   rw [toLaurentPos_eq, toLaurentNeg_eq] at h ⊢
   simp only [RingHom.comp_apply, RingEquiv.toRingHom_eq_coe, RingEquiv.coe_toRingHom,
-    AlgEquiv.toRingEquiv_eq_coe, AlgEquiv.coe_ringEquiv] at h ⊢
+    AlgEquiv.coe_ringEquiv] at h ⊢
   rw [h]
   exact (LaurentPolynomial.involutive_invert _).symm
 
@@ -183,20 +180,28 @@ theorem stHorrocksAt_of_const (k : Type) [Field k] {N : ℕ} (hN : 0 < N)
       have hm := congrArg projMat h
       rw [projMat_ringMap, projMat_ringMap] at hm
       exact congrFun (congrFun hm i) j
-    let M : Matrix (Fin N) (Fin N) k := fun i j => (projMat β i j).coeff 0
-    have hPM : projMat α = M.map Polynomial.C := by
-      ext i j
+    obtain ⟨M, hM⟩ : ∃ M : Matrix (Fin N) (Fin N) k, ∀ i j, M i j = (projMat β i j).coeff 0 :=
+      ⟨Matrix.of fun i j => (projMat β i j).coeff 0, fun _ _ => rfl⟩
+    have hPM : projMat α = M.map Polynomial.C := Matrix.ext fun i j => by
+      rw [Matrix.map_apply, hM]
       exact polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg (hentry i j)
-    have hQM : projMat β = M.map Polynomial.C := by
-      ext i j
-      rw [polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg' (hentry i j), hPM, Matrix.map_apply,
-        Polynomial.coeff_C_zero, Matrix.map_apply]
+    have hQM : projMat β = M.map Polynomial.C := Matrix.ext fun i j => by
+      rw [Matrix.map_apply, hM]
+      have e1 := polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg' (hentry i j)
+      have e2 := polynomial_eq_C_of_toLaurentPos_eq_toLaurentNeg (hentry i j)
+      rw [e2, Polynomial.coeff_C_zero] at e1
+      exact e1
     obtain ⟨γ₁, hγ₁⟩ := lift M α hPM
     obtain ⟨γ₂, hγ₂⟩ := lift M β hQM
     have h12 : γ₁ = γ₂ := by
       apply ringMap_laurentC_injective N
-      rw [← toLaurentPos_comp_C, ← ringMap_ringMap, hγ₁, h, ← hγ₂, ringMap_ringMap,
-        toLaurentNeg_comp_C]
+      have e1 : ringMap (LaurentPolynomial.C : k →+* LaurentPolynomial k) γ₁ =
+          ringMap (toLaurentPos k) α := by
+        rw [← hγ₁, ringMap_ringMap, toLaurentPos_comp_C]
+      have e2 : ringMap (LaurentPolynomial.C : k →+* LaurentPolynomial k) γ₂ =
+          ringMap (toLaurentNeg k) β := by
+        rw [← hγ₂, ringMap_ringMap, toLaurentNeg_comp_C]
+      rw [e1, e2, h]
     exact ⟨γ₁, hγ₁, h12 ▸ hγ₂⟩
   refine ⟨?_, ?_, key⟩
   · refine (injective_iff_map_eq_one _).mpr fun α hα => ?_

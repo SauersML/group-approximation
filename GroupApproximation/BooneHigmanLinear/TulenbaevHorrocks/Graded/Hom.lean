@@ -98,7 +98,7 @@ theorem single_mem_horrB {n : ℤ} {c : A} (hc : Allowed 𝔄 (-n) c) :
 
 theorem allowed_coeff {f : LaurentPolynomial A} (hf : f ∈ horrB 𝔄) (n : ℤ) :
     Allowed 𝔄 (-n) (f.coeff n) :=
-  fun h => hf n (by omega)
+  fun h => (mem_horrB.mp hf) n (by omega)
 
 theorem sum_single_eq (f : LaurentPolynomial A) :
     f = ∑ n ∈ f.coeff.support, AddMonoidAlgebra.single n (f.coeff n) := by
