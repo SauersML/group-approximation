@@ -1,4 +1,4 @@
-# Boone–Higman: master route (synthesis v9.5, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.5 (fixed), 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
@@ -167,13 +167,16 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   (`hyperbolic-racgs-are-contracting-rsgs`, 3b86cb5549; review 9348a6f569).
 - **F_∞ simple hosts for all lattices in Sp(n,1) and F_4^(-20): ESTABLISHED**, as an independent second proof
   credited to LISW, arXiv:2510.01952 (`arithmetic-lattices-embed-in-f-infinity-simple-groups`, c477812f8b). These
-  include cocompact hyperbolic Kazhdan groups.
+  include cocompact hyperbolic Kazhdan groups. **Precision (v9.5 fix):** LISW covers every finitely generated
+  Q̄-linear group, so the open F_∞-host cases are the hyperbolic Kazhdan groups not known to be linear, such as
+  𝓗_31 and random groups. Every lattice in Sp(n,1) and F_4^(-20) is arithmetic in any case.
 - **Survey Q4.7 (closed surface groups in V).** Lemma L is refereed (22ee40f8ae, review 020fc76108): one-ended
   hyperbolic subgroups of V are locally fixed. So "surface groups ∉ V" reduces to one compression lemma for locally
   fixed torsion-free subgroups of V (91ed4b24d0).
 - **Birget's question (gate 1).** The lift-ideal transfer passes review (ab22b01462). The question now reduces to
-  (a) + (c) for one hard machine (`birget-question-via-decidable-bartholdi-mitrofanov-hosts`). (c) is claimed for a
-  first non-contracting core, the increment loop (aecdf34e2f, in review).
+  (a) + (c) for one hard machine (`birget-question-via-decidable-bartholdi-mitrofanov-hosts`). **(c) is ESTABLISHED
+  for the increment-loop core Q**, the first non-contracting core (aecdf34e2f, PASS e733763d78). The two-odometer
+  obstruction failed review (e733763d78).
 - **Kourovka.**
   - 20.33 is answered from the literature (Ziegler), refereed (2662055f4a).
   - 21.74(a) is decidable on the neutral-primes positive ray (41b91ef912, PASS). It is reduced to computing the base
@@ -273,9 +276,9 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
    - *Missing insight:* square filling between descent trees at different bases, in Thumann's non-LCM regime. (T)
      forbids walls.
    - *First case:* thick hyperbolic triangle buildings with GQ(q,q) links (3ddb17e3e).
-   - *Done since v9:* all lattices in Sp(n,1) and F_4^(-20), so the cocompact arithmetic Kazhdan hyperbolic groups,
-     have F_∞ simple hosts (c477812f8b; an independent second proof, credit LISW arXiv:2510.01952). What remains is
-     non-arithmetic Kazhdan hyperbolic groups, such as Żuk groups.
+   - *Done since v9:* all lattices in Sp(n,1) and F_4^(-20) have F_∞ simple hosts (c477812f8b; an independent second
+     proof, credit LISW arXiv:2510.01952, which covers every finitely generated Q̄-linear group). What remains is the
+     hyperbolic Kazhdan groups not known to be linear, such as 𝓗_31 and random groups.
    - *Lane:* bh-finf-hyp.
 3. **Closed mapping class groups** (BBMZ 5.3(2)). Either of two insights would do:
    - an amortized damage potential for least-damage tree domination;
