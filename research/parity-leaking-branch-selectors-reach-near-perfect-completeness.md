@@ -416,3 +416,24 @@ a cycle of equations through the window.
   **Still alive:** (P1^RU) from a smooth or non-collapsing outer PCP whose
   inner test has constant testing ratio at every scale. The spark is that
   the same `W`-local family may give (P2^rob) violators on Håstad images.
+* **Alphabet price from CMM low-value rounding (2026-09-20,
+  swarm-0917-w23-w23-ugc-pull, transplanter).** **A kill on alphabet-efficient
+  reductions only; the claim stays OPEN.** See
+  `selector-bias-is-capped-by-the-cmm-alphabet-soundness-exponent`
+  (ESTABLISHED). It uses `cmm-unique-games-low-value-rounding`, a new import of
+  CMM Theorem 3.1.
+  - **Theorem K.** It is instance-free and witness-free. Take any 2-to-1
+    reduction with left alphabet `K` and soundness `delta`, and any selector
+    with YES lift value `c`. If `delta < K^(-(1-c)/(1+c) - o(1))`, then the
+    source is in RP. The proof runs CMM on the lift, pulls the labelling back
+    through the sandwich, and accepts iff its value is above `delta`.
+  - **The price.** Bias `c` needs `K >= delta^(-(1+c)/(1-c) + o(1))`.
+  - **The trivial orientation.** It sits at exponent `1/3`, which is CMM's
+    d-to-1 bound at `d = 2`. So on a 2-to-1 family with `s >= 1/3`, no bias
+    above `1/2` survives.
+  **Where it dies:** the YES lift is CMM-roundable above `delta` whenever
+  `log(1/delta)/log K > (1-c)/(1+c)`.
+  **Still alive:** DKKMS, and every family where `l` can grow at fixed `delta`.
+  There `s -> 0` and the price is vacuous at every bias, which is the same
+  escape as for the spectral gate. The constant-bias cell must therefore live
+  on alphabet-inefficient instances, with `s <= (1-c)/(1+c)`.
