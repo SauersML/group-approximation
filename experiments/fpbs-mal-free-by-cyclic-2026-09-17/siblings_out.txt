@@ -1,0 +1,6 @@
+G0 ok: b_2 = b_1 b_0^-1 b_1 b_0^2 b_1^-2
+N1 ok: y_-2 (y_-1^-1 y_1^-1 y_-1) y_-2^-1 = y_-1^-1 ; y_1 in <y_-2,y_-1,y_0>
+N2 ok: y_3^2 = y_1 y_0^-1 y_1 y_2 ; y_-1 = y_0 y_1 y_2^-2 y_0
+   b_2 F_3-part length 8 b-exponent 1
+   y_1 (N1) F_3-part length 1 b-exponent 1
+   y_3 (N2) F_3-part length 9 b-exponent -1
