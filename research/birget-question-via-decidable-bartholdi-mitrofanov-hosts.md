@@ -184,7 +184,37 @@ false and is withdrawn.
      - So (c) for `G_1` reduces to controlling the relators of the two-odometer group `⟨s_*, s_*^u⟩`. Its
        digits are `{0, 𝐢₁}` and `{1, 𝐢₁}`, and each odometer is stopped by the other's private digit.
      - The finitely many persistent relators, such as `[s_*, t]`, go into `R`.
-     - Not done.
+   - **The two-odometer group** (lane, by hand, unreviewed; addendum 2026-09-19). Put `α = s_*` and
+     `β = s_*^u`.
+     - *Its own tree.* Both fix `†₁, †₂` and have themselves as sections there, so the markers are transparent to
+       `O = ⟨α, β⟩`. On `{0, 1, 𝐢₁}^*`, with sections at `0, 1, 𝐢₁`, `O` is the bounded automaton group
+       `α = (0 𝐢₁)(α, 1, 1)`, `β = (1 𝐢₁)(1, β, 1)`.
+     - *Consequences.*
+       - `O` is contracting (Bondarenko–Nekrashevych) and amenable (Bartholdi–Kaimanovich–Nekrashevych), so it is
+         not free.
+       - `α² = (α, 1, α)` and `β² = (1, β, β)`, so `[α², β²] = (1, 1, [α, β])` with `[α, β] ≠ 1`. So `O` has
+         nontrivial rigid stabilizers.
+       - On its own tree, FP2 gives `V_3(O)` finitely presented.
+     - *The obstruction inside `G_1`.* In `G_1`'s 5-letter recursion, every word `w` in `α, β` satisfies
+       `w|_(†₁) = w`, since both letters pass `†₁` with themselves as section.
+       - So relators of `O` are **persistent**: lift-closure can never produce one from its own sections.
+       - For (c) in `G_1`, all relators of `O` must therefore lie in the normal closure of finitely many
+         relators and of lift-derived words involving `t`, `s_†`, `u`.
+       - Contracting weakly branch groups are typically not finitely presented (Bartholdi's L-presentation
+         theorem; whether its hypotheses hold for `O` is not checked). If `O` is not finitely presented, then
+         `t`, `s_†`, `u` must supply infinitely many independent relations, and **(c) plausibly fails for `G_1`.**
+         Not proved either way.
+   - **What the increment loop teaches for a hard machine.**
+     - The hole dynamics of `s_†` is harmless for (c): the core theorem above.
+     - The danger is the rule convention. Counter and state generators pass the markers `†` with themselves as
+       section, by BM's default. So the whole counter subgroup of any machine is persistent along `†`-paths and
+       must be finitely presented on its own terms.
+     - *Design lever for a hard machine.* Make `†₁, †₂` walls for the state and counter generators, as BM already
+       do for the letter `1`: `Φ(†,g) = (ε,†)` for `g ∉ {t, s_†, u}`. That removes the persistent branch, while
+       the halting marker is still written and toggled at the head.
+     - Whether Propositions 2.3–2.4 survive this change is **unchecked**. The reverse run `(s_* x y)^(-1)` must
+       still reach and undo the prefix before the marker. This is the next concrete step toward a hard machine
+       with (c).
 3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
