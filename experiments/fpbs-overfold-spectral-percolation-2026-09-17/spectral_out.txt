@@ -1,0 +1,20 @@
+j 0 n 3000 R 1 triangle types 1
+row sums of B (hyperedge pair-weight per atom type): [1.]
+lawful type 0 B_LL 1.0
+top eigenvalue of B 1.0
+lam (top eig of P on l2_0 x C^R) 0.8344
+mu 0.1 sup_a bound 0.0851 slack mu - sup 0.0149
+mu 0.25 sup_a bound 0.219 slack mu - sup 0.031
+mu 0.5 sup_a bound 0.4586 slack mu - sup 0.0414
+mu 1.0 sup_a bound 1.0 slack mu - sup 0.0
+j 1 n 3000 R 12 triangle types 42
+row sums of B (hyperedge pair-weight per atom type): [3.333 4.333 8.667 3.    3.333 2.    4.333 2.    3.    3.    2.    3.   ]
+lawful type 2 B_LL 8.667
+top eigenvalue of B 4.2063
+lam (top eig of P on l2_0 x C^R) 3.5481
+mu 0.1 sup_a bound 0.3555 slack mu - sup -0.2555
+mu 0.25 sup_a bound 0.8911 slack mu - sup -0.6411
+mu 0.5 sup_a bound 1.7905 slack mu - sup -1.2905
+mu 1.0 sup_a bound 3.6138 slack mu - sup -2.6138
+
+[exited with code 0]

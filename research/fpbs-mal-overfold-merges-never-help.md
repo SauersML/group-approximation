@@ -127,6 +127,16 @@ artifacts:
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_mixed.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_small.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_ostep.sh
+  - research/artifacts/fpbs-overfold-spectral-percolation-2026-09-19.md
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/hyper.py
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/spectral.py
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/spectral_out.txt
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/balls.py
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/balls_out.txt
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/tree_count.py
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/tree_count_out.txt
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/weighted_lp.py
+  - experiments/fpbs-overfold-spectral-percolation-2026-09-17/weighted_lp_j1_r3.txt
 ---
 
 **OPEN.** Notation is as in
@@ -505,3 +515,39 @@ such as rank 2 and the single lawful component above.
   - **Where it stands.** No proof of (O-step). A single `P` with
     `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
     not (O) itself.
+- **2026-09-20, swarm-0917-w20-w20-fp-break (belief breaker, operator-algebras /
+  spectral): OPEN; the direct route "run the (W) proof on deep" is dead at
+  every `j ≥ 1`.** Details are in
+  `research/artifacts/fpbs-overfold-spectral-percolation-2026-09-19.md`, with
+  scripts in `experiments/fpbs-overfold-spectral-percolation-2026-09-17/`.
+  - **Exact model (proved, validated with 0 mismatches against the fold
+    closure).** `deep_j` is 2-of-3 bootstrap percolation on atoms
+    `Q × {pair types}`, with hyperedges `Q × {triangle types}`.
+    - Triangle types are the components of the distinct-triple graph of
+      `C_{j+1}`. They are finite trees.
+    - Compositions: `j = 1` has 12 atom types and 42 triangle types
+      (1 `LLL`, 23 `LOO`, 18 `OOO`); `j = 2` has 88 and 836. There is never
+      an `LLO` type.
+    - `law_j` only uses the `LLL` type, `(y, y a^{-1}, y t_j^{-1})`.
+  - **Spectral relaxation fails.** The multi-type version of Lemma 2 of
+    (W) needs `λ < 1`. At `j = 1` on a random level, `λ = 3.55`, against
+    `0.83` at `j = 0`. The average pair-weight per atom type is forced
+    to be 7.
+  - **Class kill (Proposition K, exact word count).** In the Cayley tree at
+    `j = 1`, the block `B_2 × {all types}` has 226 full hyperedges on 204
+    atoms.
+    - The ratio is 1.108, 1.197 and 1.225 at radius 2, 3 and 4; at radius 2
+      it is at least 3.21 for `j = 2`. At `j = 0` the ratio tends to 1/3.
+    - Disjoint packings exist on every locally tree-like tower, which
+      includes every essentially free profinite witness. They give sets with
+      `F(A) > |A|` at every size up to about `1.27 n`.
+    - So Lemma 1 plus any upper bound on full hyperedges proves only
+      `deep ≥ O(1)`.
+    - Type weights do not help. An LP over weights against the blocks
+      `B_r × I` has optimum excess `t* = 1.29` for `r ≤ 2` and `t* = 2.36`
+      for `r ≤ 3`.
+  - **Where it dies.** At Lemma 2: the overfold hypergraph is locally
+    supercritical, and increasingly so with `j`. A proof of the floor
+    therefore has to use the order structure of reachable closures, such as
+    (O), (O-step) or (RI). A density or counting certificate cannot work.
+    None of this refutes (O).
