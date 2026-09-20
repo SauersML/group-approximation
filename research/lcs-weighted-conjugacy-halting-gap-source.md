@@ -9,6 +9,9 @@ artifacts:
   - research/artifacts/lcs-constructive-compiler-2026-09-20.md
   - research/artifacts/lcs-auth-controlled-form-audit-2026-09-20.md
   - research/artifacts/lcs-auth-proper-corner-audit-2026-09-20.md
+  - research/artifacts/lcs-fixed-port-ucp-trace-cost-2026-09-20.md
+  - research/artifacts/lcs-frame-hadamard-block-decoder-2026-09-20.md
+  - notes/lcs-source-next-weighted-transport-audit-2026-09-20.md
   - notes/lcs-source-toffoli-word-semantics-audit-2026-09-20.md
 ---
 
@@ -73,3 +76,28 @@ The linked proof includes a finite-conjugator quantitative bound. This
 rules out that universal common-reducing-corner repair, not arbitrary
 nonreducing compressions or replacement observables, and constructs no
 halting reduction.
+
+The UCP extension now excludes a larger fixed-port repair: any unital
+completely positive decoder with vanishing port unitarity variances and
+vanishing decoded b expectation must have trace-density cost diverging
+along those exact amplifications. This permits nonreducing channels but
+still does not constrain arbitrary replacement observables.
+
+A concrete replacement attempt compresses to the X=-1 anchor half and
+rebuilds projections from compressed U gates, with trace cost two. It
+escapes the fixed-port hypothesis because the compressed Z is not
+unitary. However, adding one globally shared Hadamard group frame still
+admits an explicit Fourier model of the unsatisfiable K4 source: every
+word is exact while decoded vertex partitions have squared defect one.
+An actual matrix-linear frame identity would instead give a valid
+source decoder, with a quantitative overlap estimate. Converting that
+operator-addition identity to the permitted syntax is not established.
+Indeed the audit's tensor test excludes its universal enforcement by
+ordinary words when all honest models and these ports must be preserved;
+existence-only completeness and different interfaces are not excluded.
+
+The weighted-transport audit also rules out an unquantified embedding
+shortcut. Exact Tietze subdivision preserves a marked group and
+succinct width-two access but reduces a gap of 1/2 to O(N^-2) in
+explicit two-dimensional matrix models. A family-uniform weighted
+transport bound, not just exact representation equivalence, is required.

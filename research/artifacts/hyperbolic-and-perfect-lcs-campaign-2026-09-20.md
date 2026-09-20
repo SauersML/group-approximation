@@ -311,3 +311,37 @@ That preview includes additional pending working-tree nodes, not just the
 pinned snapshot above. Those concurrent changes were preserved. The
 validation JSON records both hashes and certifies only source commit
 `2d55562521`; it does not certify the other pending nodes in that preview.
+
+## Mixed placement and genuinely different decoder tests
+
+The [ten-dimensional reduction](hrf-ten-mixed-placement-2026-09-20.md)
+proves that a surviving characteristic-19 scalar-mark detector must be
+absolutely irreducible, primitive, and not a 2-by-5 tensor representation.
+The mixed type systems have forty block entries plus one determinant
+saturation variable. Their vertex commutant gauges are smaller than in
+the pure Sym4 case; reusing the old two-block identity normalization
+would discard possible solutions. No mixed detector or all-placement
+exclusion was found, and no pilot computation was launched.
+
+The [UCP extension](lcs-fixed-port-ucp-trace-cost-2026-09-20.md)
+proves a finite-conjugator inequality forcing trace-density costs to
+diverge for fixed-port completely positive decoders whose unitarity
+variances and b expectations vanish. It allows nonreducing channels,
+but not arbitrary replacement observables. The proof and constants
+passed independent internal review.
+
+The [replacement frame attempt](lcs-frame-hadamard-block-decoder-2026-09-20.md)
+uses a genuine trace-cost-two half-space compression, so it is outside
+that UCP obstruction. A global Fourier construction nevertheless gives
+an exact model of its shared-Hadamard words on the unsatisfiable K4
+source, with partition defect squared equal to one. A sufficient
+matrix-linear frame identity and its overlap estimate are proved;
+no permitted word gadget enforcing that identity is supplied.
+
+The [weighted source audit](../../notes/lcs-source-next-weighted-transport-audit-2026-09-20.md)
+gives the necessary weighted certificate for relator transport and an
+explicit width-two, two-dimensional counterexample to preserving a
+uniform gap by Tietze subdivision. These are scoped tests of candidate
+interfaces, not refutations of the HALT-positive source itself. Both
+main targets remain OPEN. This tranche used symbolic mathematics only;
+the graph validation is recorded separately after a pinned remote check.
