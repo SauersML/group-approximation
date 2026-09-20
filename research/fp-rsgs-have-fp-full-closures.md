@@ -176,8 +176,15 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
    - **Consequences.**
      - Finite presentation of `G` plays no role in this case.
      - Question 1.4 holds whenever `H_G` is finitely presented, is contracting, or has relator kernel `K_∞`.
-     - A counterexample over the full shift is either asynchronous, like `Γ_t`, or yields the first
-       finite-state group with a non-finitely-presented Röver–Nekrashevych group.
-   - **Still open.** Realizability: is every finite-state `H` the table group of some finitely presented
-     locally synchronous RSG? A yes would make this case of Question 1.4 equivalent to "every finite-state
-     group has a finitely presented Röver–Nekrashevych group".
+     - A counterexample over the full shift is either asynchronous, like `Γ_t`, or a finitely presented
+       locally synchronous `G` whose finite-state table group has a non-finitely-presented
+       Röver–Nekrashevych group. Such table groups exist: the persistent lamplighter on `T_3` (SWZ Lemma 5.3
+       and Theorem 5.8; [[persistent-actions-make-lift-ideals-normal-closures]]). The first version of the
+       node called that action infinite-state, which was wrong; this is now corrected.
+   - **The concrete open target.** Is there a finitely presented locally synchronous RSG `G` with
+     `H_G = L_pers`? A yes answers Question 1.4 negatively. Such a `G` cannot contain `V_3` together with a
+     single cone copy of a generator.
+   - **Referee note (bh-ref-q12, 2026-09-19).** Theorem S PASSES. Finite-state groups with non-finitely-presented
+     `V_d` already exist: SWZ persistent actions, e.g. the persistent lamplighter on `T_3`. So case (b) is a
+     realizability question for such an `H`. A finitely presented locally synchronous RSG with table group the
+     persistent lamplighter would answer Question 1.4 negatively.

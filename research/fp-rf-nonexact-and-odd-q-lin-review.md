@@ -85,9 +85,49 @@ priority claimed.
   check these two, and Pink's exact theorem, at source needs either a text extraction on acn112 or a
   coordinator exception.
 
+## Source check (addendum, 2026-09-19, texts extracted on MSI under the coordinator's approval)
+
+- **(HJI): verified at source, and stronger than the node assumes.**
+  - Caprace–Stulemeijer, arXiv:1409.8184, Theorem 2.6, read in extracted text: "Let U be an open compact
+    subgroup of H(k), where H is a k-simple, simply connected algebraic k-group, and k is a local field of
+    residue characteristic p. Then U/Z(U) is a non-virtually abelian h.j.i. virtually pro-p group." The
+    proof reduces to Riehm, "The congruence subgroup problem over local fields", *Amer. J. Math.*
+  - There is **no restriction on `p`**. `SL_2`, and any anisotropic inner form `SL_1(D)` at the non-split
+    places of the quasi-model, is simply connected and `k`-simple. So (HJI) holds for **every** `q`,
+    including `q = 3` and characteristic 2. It follows from h.j.i. of `U/Z(U)` because `Z(U) ≤ {±1}` is
+    finite.
+  - Their Example 2.7 shows the failure is for `PSL_2 = SL_2/μ_2` over `F_2((T))`, not for `SL_2`.
+  - **Correction to the node:** (HJI) is not a characteristic-2 obstruction.
+- **(S): verified at secondary source only.**
+  - Knudson, arXiv:math/9801098, Theorem 1.3, quotes Klingenberg (*Amer. J. Math.* 83 (1961), 137–153):
+    "If A is a local ring then for n ≥ 3 the only normal subgroups of SL_n(A) are the congruence
+    subgroups. If n = 2, the same is true as long as the residue characteristic of A is not 2 or the
+    residue field is not F_3." (The intended reading is "not 2 and not F_3".)
+  - For odd `q ≥ 5` this gives the node's form, allowing the central `{±1}` factor. Scalars `λ` with
+    `λ² ≡ 1` are `≡ ±1` by Hensel, so every normal subgroup lies between `SL_2(R, m^j)` and
+    `±SL_2(R, m^j)`.
+  - The primary texts could not be read. Klingenberg's is on JSTOR. Lacroix's (*Canad. J. Math.* 1969,
+    downloaded on MSI) is image-only, and MSI has no OCR.
+  - So (S) is the **only** input that fails in characteristic 2, since Klingenberg's `n = 2` case excludes
+    residue characteristic 2.
+- **(SA): verified in the repaired form.**
+  - Pink's preprint (ETH ftp SA.pdf) was downloaded, but its fonts do not extract to text. Springer is not
+    accessible from MSI.
+  - Breuillard–Cornulier–Lubotzky–Meiri, arXiv:1106.4773, proof of Theorem 6.1, read in extracted text:
+    "By Weisfeiler's theorem [28, Theorem 1.1] (or Pink's version [23] in case of characteristic 2 and 3)
+    there exists a finitely generated subfield K_0 of K … and a K_0-structure on G such that Γ ⊂ G(K_0)
+    and for all p ∈ Spec(O_(K_0)) large enough we have π_p(Γ) = G((K_0)_p)."
+  - That is the quasi-model form of the repair, which bh-ra-t2 landed in 55745e3c4b. For residue
+    characteristic `≥ 5`, Weisfeiler already suffices, and Pink is needed only in characteristics 2 and 3.
+- **Consequence.**
+  - With (HJI) valid everywhere, the `q ≥ 5` hypothesis only serves (S) at places with residue field
+    `F_3`. For each fixed constant field those are finitely many, and they can go into `T`. So the result
+    plausibly holds for **all odd `q`**. This is a suggestion; `T`'s finiteness use is only Step 3's.
+  - The characteristic-2 gap is (S) alone.
+
 ## Verdicts
 
 | node | verdict |
 |---|---|
 | `residually-finite-finitely-presented-non-exact-group` | PASS (OPEN record correct; one citation precision) |
-| `congruence-closed-odd-linear-automaton-quotients-are-exact` | CONDITIONAL status stands; Steps 0–6 PASS given the inputs; (SA) must be restated over the minimal quasi-model; Pink citation corrected; (HJI) and (S) unverified at source |
+| `congruence-closed-odd-linear-automaton-quotients-are-exact` | PASS as CONDITIONAL. Steps 0–6 PASS; (SA) holds in the quasi-model form (repaired in 55745e3c4b); (HJI) is verified at source for every `q`; (S) is verified only through Knudson's quotation of Klingenberg. The only remaining condition is (S) at source. The characteristic-2 gap is (S) alone. |

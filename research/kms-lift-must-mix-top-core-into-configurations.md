@@ -12,7 +12,7 @@ distinct_from:
 **ESTABLISHED (lane bh-kd2p, 2026-09-19):**
 - **Theorem M** is a lane proof.
 - **Parts L and D** are an attempt record.
-- KD2_p stays **OPEN**. Not independently reviewed.
+- KD2_p stays **OPEN**. **Referee (bh-ref-q11, 2026-09-19): Theorem M PASS; the dummy-counter failure is correct; Part D is an attempt record.**
 
 ## Theorem M (mixed exponents)
 
@@ -85,3 +85,25 @@ So a faithful action in this class has at least one contracting cycle.
 machine module.** A hard self-similar KMS group, if it exists, renormalizes the top by a map that is not
 faithful on the top alone. It is rescued by writing configuration elements into the images of the top lamps,
 e.g. `F(A_0) = tA_0` with `t ∈ T_0`.
+
+## Referee (bh-ref-q11, 2026-09-19): Theorem M PASS; Part L correct; Part D an attempt record
+
+**Theorem M: correct, in the product Frobenius–Möbius class.**
+- **Weights.** Integers `w_i ≥ e_i` with `w_(π(i)) ≤ w_i + j_i` exist iff every cycle has `Σ j ≥ 0`. Use the running sums `W + Σ_(m<k) j`; the cycle closes exactly when `Σ j ≥ 0`, and `W` is taken large.
+- **The ideal.**
+  - `h(x) = ∏_(c∈Z_0)(x − c)^N` is Galois-stable, hence in `F_p[x]`.
+  - Ring isomorphisms `R^(i) → R^(π(i))` over `F_p` are automorphisms of `P^1 ∖ {0,1,∞}` (Möbius maps permuting `{0,1,∞}`), so they preserve `Z_0`. Hence `σ_i(𝔞^(i)) = 𝔞^(π(i))`.
+- **`𝔟 ⊆ M`.** For `z ∈ Z`, each `h(x_i)` vanishes to order `≥ N` at `z`, since `z_i ∈ Z_0`. So `𝔞^(i)R ⊆ 𝔪_z^N`, and `𝔟 ⊆ ∏_i 𝔞^(i)R ⊆ ∩_z 𝔪_z^(N′) = ∏_z 𝔪_z^(N′) ⊆ M`.
+- **Invariance.**
+  - `c = ∏ Frob^(w_i)(a_i) ∈ S`, since `w_i ≥ e_i`.
+  - `ψ̃(c) = ∏ Frob^(w_i+j_i)(σ_i a_i)`. Each factor lies in `Frob^(w_(π(i)))(𝔞^(π(i)))`, because `w_i + j_i ≥ w_(π(i))`. So `ψ̃(c) ∈ 𝔟`.
+  - `f(cr) = ψ̃(c)f̂(r)` by the Hartogs extension, which I refereed PASS in `kms-top-renormalizations-must-contract` (b).
+- **The Kochloukova–Sidki calibration** is right: `e_1 = 1`, `j_1 = −1`, and all other `e_i = j_i = 0`.
+- **A strengthening is available from the same proof.** A single non-contracting cycle `C` already suffices: restrict the product to `i ∈ C`, with the other factors equal to 1.
+  - `𝔟_C = ∏_(i∈C) Frob^(w_i)(𝔞^(i))·R` is nonzero, lies in `M` (one factor `h(x_i)` already lies in `𝔪_z^N`), and is `f`-invariant, since `π` permutes `C`.
+  - So **every** cycle must contract. This is the claim of 3860416431.
+
+**Part L (dummy counters): correct.** `R_real ⊗ M_dummy` has codimension `dim R_real · codim M_dummy = ∞`, so `id ⊗ f_KS` is not a virtual endomorphism.
+- The "Open" question of Part L, about partially contracting renormalizations, is answered negatively in this class by the strengthening above.
+
+**Part D:** an attempt record. The algebra checks, including `(tA_0)^p = t·(1 + A_0 + ⋯ + A_0^(p−1)) = t(A_0 − 1)^(p−1)` in characteristic `p`. Its KMS-relation claims (G5c, the relations for `T_0`) were not re-verified against the KMS source.

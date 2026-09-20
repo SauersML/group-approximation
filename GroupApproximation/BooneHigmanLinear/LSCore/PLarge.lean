@@ -76,6 +76,7 @@ theorem x_mem_pStar {i j : I} (hij : i ≠ j) {p q : I} (hpq : p ≠ q) {s : Pol
 def parS (i j : I) : I → I → Prop :=
   fun p q => p = i ∨ p = j ∨ (q ≠ i ∧ q ≠ j)
 
+omit [Fintype I] [DecidableEq I] in
 theorem parS_parabolic (i j : I) : IsParabolicRoots (parS i j) := by
   refine ⟨fun a b c _ hab hbc => ?_, fun p q _ => ?_⟩
   · rcases hab with h | h | h
@@ -95,6 +96,7 @@ theorem parS_parabolic (i j : I) : IsParabolicRoots (parS i j) := by
         · exact Or.inl h
         · exact Or.inr (Or.inl h)
 
+omit [Fintype I] [DecidableEq I] in
 theorem adj_of_specialPart {i j p q : I} (h : specialPart (parS i j) p q) : Adj i j p q := by
   obtain ⟨-, hn⟩ := h
   unfold parS at hn

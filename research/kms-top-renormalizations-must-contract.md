@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED as a lane proof (bh-kd2p, 2026-09-19) for parts (b) and (c); part (a) is a sketch. Not
-independently reviewed.**
+independently reviewed. **Referee (bh-ref-q11, 2026-09-19): (b) and (c) PASS; (a) graded a sketch.**
 
 ## Setting
 
@@ -90,3 +90,32 @@ The increment-only machines of bh-birget's open case (c) are the natural test.
 
 **On the top, faithfulness forces contraction (proved in the Frobenius–Möbius class), and contraction should kill hardness (sketch). Hardness should enter through
 renormalizations that mix the top into the configuration module.**
+
+## Referee (bh-ref-q11, 2026-09-19): (b) PASS, (c) PASS, (a) a sketch; the b5cae104ff repairs are confirmed applied
+
+**The setting.**
+- `ψ` is well defined, because two lifts of `u ∈ U_H` differ by `M`, and `f(M) ⊆ R`.
+- `f(M) ≠ 0`: otherwise `∩_(u∈U/U_H) uM`, a nonzero ideal, lies in the core.
+- `ψ̃` is injective: if `ψ̃(s) = 0`, the nonzero ideal `(∏_u us)𝔞 ⊆ ker f|_M` lies in the core.
+
+**(b) Hartogs extension: PASS. It applies over `R_K`.**
+- `R/M` is a finite `S`-module, so its annihilator `I ⊆ S` has finite codimension. `S = F_p[U_H]` is a finitely generated domain of dimension `K`, and `R` is integral and finite over it. So `ht I = K ≥ 2`.
+- `ψ` is injective, so `ψ(U_H)` has full rank `2K` in `U`, and `R` is finite over `ψ̃(S) = F_p[ψ(U_H)] ≅ S`.
+- `R_K` is regular, hence Cohen–Macaulay. For the finite map, `depth_I(R_ψ) = depth_(IR)(R) = ht(IR) = K ≥ 2`.
+- So `Ext^0` and `Ext^1(S/I, R_ψ)` vanish, and `Hom_S(I, R_ψ) = R_ψ`.
+- `i ↦ f(ir)` is `S`-linear, since `IR ⊆ M` and `f` is `ψ̃`-semilinear on `M`. So `f̂` exists, is unique, extends `f`, and is additive and semilinear.
+- For `K = 1` the height is 1 and the argument fails, correctly (compare `D(f) = (f−f(0))/X`).
+
+**(c): PASS under its hypotheses** (uniform `e` and `j`, and a global Frobenius–Möbius form).
+- `S = Frob^e(R)`, because `R` is the `F_p`-span of `U` and Frobenius is additive.
+- `σ` is `F_p`-linear, so it permutes the finite set of closed points of residue degree `≤ r`. Hence `σ(𝔞) = 𝔞`.
+- `𝔟 = Frob^e(𝔞)R ⊆ 𝔞 ⊆ M`. `ψ̃(a^(p^e)) = (σ(a)^(p^j))^(p^e) ∈ Frob^e(𝔞)`, so `f(𝔟) ⊆ 𝔟`.
+- `𝔟` is a nonzero ideal, hence normal in `B_K`, and it lies in the core.
+
+**(a): a SKETCH, as labelled.** It needs two things that are plausible but not proved:
+- a precise functoriality statement: `Ψ` maps the Bieri–Groves set `Σ^c = T^K` onto itself under a finite dominant `ψ̃^*`;
+- that a linear automorphism of `R^(2K)` preserving `|T^K|` is monomial (it permutes the `3K` rays).
+
+The unit-equation step is only indicated.
+
+**The repairs from my b5cae104ff review of `kms-configuration-lift-needs-non-contracting-counters` are all applied** in this landing: the Part 0 statement, the Part 2 "informal" status, the Part 3 "sketch" status, and the title.
