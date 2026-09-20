@@ -1,0 +1,2 @@
+SUMMARY box 11 {'done': 2933, 'skipped': 67, 'h2free': 1, 'hits': 0, 'maxresid': 0} 1105.5
+SUMMARY hexpair 11 {'done': 2933, 'skipped': 67, 'h2free': 343, 'hits': 0, 'maxresid': 0} 2123.2

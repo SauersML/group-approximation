@@ -1,0 +1,3 @@
+PROGRESS octa 7 100 {'done': 70, 'skipped': 30, 'h2free': 0, 'hits': 0, 'maxresid': 0} 86.9
+PROGRESS octa 7 200 {'done': 141, 'skipped': 59, 'h2free': 0, 'hits': 0, 'maxresid': 0} 300.1
+SUMMARY octa 7 {'done': 214, 'skipped': 86, 'h2free': 0, 'hits': 0, 'maxresid': 0} 435.7
