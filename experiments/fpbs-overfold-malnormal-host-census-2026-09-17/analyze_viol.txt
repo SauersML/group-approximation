@@ -1,0 +1,23 @@
+FAIL A=True B=False host=['baB', 'BAb'] X=('reg', 6) pair=(0,6) rkX=7 rkY=2 rkZ=2 [(0, 6)]
+FAIL A=True B=False host=['baB', 'BAb'] X=('reg', 6) pair=(6,12) rkX=7 rkY=2 rkZ=2 [(6, 12)]
+analyze viol:baB/BAb seed 0 {'inst': 1, 'Yneq': 6, 'A_fail': 0, 'B_fail': 2, 'both_ok': 4, 'fibre_pairs_max': 15}
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(0,24) rkX=25 rkY=2 rkZ=2 [(0, 24)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(0,28) rkX=25 rkY=5 rkZ=5 [(0, 28)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(0,35) rkX=25 rkY=5 rkZ=5 [(0, 35)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(1,31) rkX=25 rkY=5 rkZ=5 [(1, 31)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(1,39) rkX=25 rkY=5 rkZ=5 [(1, 39)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(4,24) rkX=25 rkY=5 rkZ=5 [(4, 24)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(4,42) rkX=25 rkY=5 rkZ=5 [(4, 42)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(9,24) rkX=25 rkY=5 rkZ=5 [(9, 24)]
+FAIL A=True B=False host=['BAbb', 'BAba'] X=('reg', 24) pair=(9,28) rkX=25 rkY=5 rkZ=5 [(9, 28)]
+analyze viol:BAbb/BAba seed 0 {'inst': 1, 'Yneq': 25, 'A_fail': 0, 'B_fail': 9, 'both_ok': 16, 'fibre_pairs_max': 69}
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(0,24) rkX=25 rkY=2 rkZ=2 [(0, 24)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(0,29) rkX=25 rkY=5 rkZ=5 [(0, 29)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(0,32) rkX=25 rkY=5 rkZ=5 [(0, 32)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(0,35) rkX=25 rkY=5 rkZ=5 [(0, 35)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(0,36) rkX=25 rkY=5 rkZ=5 [(0, 36)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(1,28) rkX=25 rkY=5 rkZ=5 [(1, 28)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(1,36) rkX=25 rkY=5 rkZ=5 [(1, 36)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(2,27) rkX=25 rkY=5 rkZ=5 [(2, 27)]
+FAIL A=True B=False host=['aba', 'AAB'] X=('reg', 24) pair=(3,32) rkX=25 rkY=5 rkZ=5 [(3, 32)]
+analyze viol:aba/AAB seed 0 {'inst': 1, 'Yneq': 25, 'A_fail': 0, 'B_fail': 9, 'both_ok': 16, 'fibre_pairs_max': 92}

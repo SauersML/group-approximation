@@ -1,0 +1,15 @@
+FAIL A=True B=False host=['bbA', 'Baaa'] X=('reg', 8) pair=(31,46) rkX=9 rkY=3 rkZ=3 [(31, 46), (12, 18)]
+FAIL A=True B=False host=['bbA', 'Baaa'] X=('reg', 8) pair=(6,5) rkX=9 rkY=2 rkZ=2 [(6, 5), (43, 46)]
+FAIL A=True B=False host=['AbaBAAb', 'abAbAAb'] X=('reg', 6) pair=(38,26) rkX=7 rkY=2 rkZ=2 [(38, 26), (56, 53)]
+FAIL A=True B=False host=['AABa', 'Bababba'] X=('reg', 6) pair=(29,44) rkX=7 rkY=2 rkZ=2 [(29, 44), (6, 3)]
+FAIL A=True B=False host=['AABa', 'Bababba'] X=('reg', 6) pair=(7,12) rkX=7 rkY=2 rkZ=2 [(7, 12), (4, 1)]
+FAIL A=True B=False host=['BAAAAA', 'babaaB'] X=('reg', 12) pair=(45,60) rkX=13 rkY=3 rkZ=3 [(45, 60), (6, 3)]
+FAIL A=True B=False host=['AbaBa', 'aabb'] X=('reg', 10) pair=(53,16) rkX=11 rkY=2 rkZ=2 [(53, 16), (15, 51)]
+FAIL A=True B=False host=['AbABBaB', 'bbA'] X=('reg', 12) pair=(95,89) rkX=13 rkY=2 rkZ=2 [(95, 89), (58, 22)]
+FAIL A=True B=False host=['ABab', 'abABA'] X=('reg', 12) pair=(32,20) rkX=13 rkY=2 rkZ=2 [(32, 20), (29, 38)]
+progress rand {'inst': 25, 'Yneq': 309, 'A_fail': 0, 'B_fail': 9, 'both_ok': 300, 'fibre_pairs_max': 100}
+FAIL A=True B=False host=['abaab', 'AABA'] X=('reg', 20) pair=(65,29) rkX=21 rkY=2 rkZ=2 [(65, 29), (12, 18)]
+FAIL A=True B=False host=['abaab', 'AABA'] X=('reg', 20) pair=(41,60) rkX=21 rkY=3 rkZ=3 [(41, 60), (59, 7)]
+FAIL A=True B=False host=['abaab', 'AABA'] X=('reg', 20) pair=(7,1) rkX=21 rkY=3 rkZ=3 [(7, 1), (30, 48)]
+FAIL A=True B=False host=['abaab', 'AABA'] X=('reg', 20) pair=(6,79) rkX=21 rkY=2 rkZ=2 [(6, 79), (19, 13)]
+analyze rand seed 32 {'inst': 37, 'Yneq': 440, 'A_fail': 0, 'B_fail': 13, 'both_ok': 427, 'fibre_pairs_max': 100}

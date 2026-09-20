@@ -1,0 +1,15 @@
+progress k2 L1overL2 seed 21 {'inst': 10, 'J': 2795, 'Yneq': 1331, 'YB': 17, 'gt1': 136, 'cand': 0} certs {'pair+1': 136}
+progress k2 L1overL2 seed 21 {'inst': 20, 'J': 4995, 'Yneq': 2160, 'YB': 36, 'gt1': 175, 'cand': 0} certs {'pair+1': 175}
+progress k2 L1overL2 seed 21 {'inst': 30, 'J': 7767, 'Yneq': 3387, 'YB': 56, 'gt1': 237, 'cand': 0} certs {'pair+1': 237}
+progress k2 L1overL2 seed 21 {'inst': 40, 'J': 10380, 'Yneq': 4509, 'YB': 76, 'gt1': 273, 'cand': 0} certs {'pair+1': 273}
+progress k2 L1overL2 seed 21 {'inst': 50, 'J': 12636, 'Yneq': 5320, 'YB': 96, 'gt1': 278, 'cand': 0} certs {'pair+1': 278}
+progress k2 L1overL2 seed 21 {'inst': 60, 'J': 15249, 'Yneq': 6462, 'YB': 116, 'gt1': 333, 'cand': 0} certs {'pair+1': 333}
+progress k2 L1overL2 seed 21 {'inst': 70, 'J': 17722, 'Yneq': 7467, 'YB': 136, 'gt1': 357, 'cand': 0} certs {'pair+1': 357}
+progress k2 L1overL2 seed 21 {'inst': 80, 'J': 20541, 'Yneq': 8770, 'YB': 154, 'gt1': 440, 'cand': 0} certs {'pair+1': 440}
+progress k2 L1overL2 seed 21 {'inst': 90, 'J': 23397, 'Yneq': 10083, 'YB': 174, 'gt1': 465, 'cand': 0} certs {'pair+1': 465}
+progress k2 L1overL2 seed 21 {'inst': 100, 'J': 25369, 'Yneq': 10752, 'YB': 193, 'gt1': 505, 'cand': 0} certs {'pair+1': 505}
+progress k2 L1overL2 seed 21 {'inst': 110, 'J': 27831, 'Yneq': 11797, 'YB': 212, 'gt1': 563, 'cand': 0} certs {'pair+1': 563}
+progress k2 L1overL2 seed 21 {'inst': 120, 'J': 30810, 'Yneq': 13249, 'YB': 229, 'gt1': 686, 'cand': 0} certs {'pair+1': 686}
+progress k2 L1overL2 seed 21 {'inst': 130, 'J': 33063, 'Yneq': 14120, 'YB': 248, 'gt1': 729, 'cand': 0} certs {'pair+1': 729}
+progress k2 L1overL2 seed 21 {'inst': 140, 'J': 35415, 'Yneq': 15067, 'YB': 266, 'gt1': 823, 'cand': 0} certs {'pair+1': 823}
+k2 L1overL2 seed 21 {'inst': 140, 'J': 35415, 'Yneq': 15067, 'YB': 266, 'gt1': 823, 'cand': 0} certs {'pair+1': 823}

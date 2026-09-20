@@ -1,0 +1,3 @@
+progress rand {'inst': 25, 'Yneq': 69, 'A_fail': 0, 'B_fail': 0, 'both_ok': 69, 'fibre_pairs_max': 96}
+progress rand {'inst': 50, 'Yneq': 120, 'A_fail': 0, 'B_fail': 0, 'both_ok': 120, 'fibre_pairs_max': 96}
+analyze rand seed 35 {'inst': 55, 'Yneq': 129, 'A_fail': 0, 'B_fail': 0, 'both_ok': 129, 'fibre_pairs_max': 96}

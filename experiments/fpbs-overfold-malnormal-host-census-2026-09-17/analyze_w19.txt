@@ -1,0 +1,2 @@
+FAIL A=True B=False host=['b', 'abbA'] X=('reg', 6) pair=(0,6) rkX=7 rkY=2 rkZ=2 [(0, 6)]
+analyze w19 seed 0 {'inst': 1, 'Yneq': 8, 'A_fail': 0, 'B_fail': 1, 'both_ok': 7, 'fibre_pairs_max': 15}

@@ -1,0 +1,26 @@
+progress k1 nonmal seed 12 {'inst': 25, 'J': 4474, 'Yneq': 108, 'YB': 47, 'viol': 0, 'pair': 108}
+progress k1 nonmal seed 12 {'inst': 50, 'J': 9533, 'Yneq': 238, 'YB': 93, 'viol': 0, 'pair': 238}
+progress k1 nonmal seed 12 {'inst': 75, 'J': 12228, 'Yneq': 338, 'YB': 147, 'viol': 0, 'pair': 338}
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(0,24) rkX=25 rkJ=2 rkY=2 YB=True
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(0,28) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(0,35) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(1,31) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(1,39) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(4,24) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(4,42) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(9,24) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['BAbb', 'BAba'] C=['BAbb', 'BAba'] X=('reg', 24, [[0, 4, 2, 3, 1], [1, 4, 0, 3, 2]]) pair=(9,28) rkX=25 rkJ=5 rkY=5 YB=False
+progress k1 nonmal seed 12 {'inst': 100, 'J': 15711, 'Yneq': 449, 'YB': 195, 'viol': 9, 'pair': 440, None: 9}
+progress k1 nonmal seed 12 {'inst': 125, 'J': 19111, 'Yneq': 541, 'YB': 237, 'viol': 9, 'pair': 532, None: 9}
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(0,24) rkX=25 rkJ=2 rkY=2 YB=True
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(0,29) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(0,32) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(0,35) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(0,36) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(1,28) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(1,36) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(2,27) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['aba', 'AAB'] C=['aba', 'AAB'] X=('reg', 24, [[4, 0, 2, 3, 1], [0, 1, 2, 4, 3]]) pair=(3,32) rkX=25 rkJ=5 rkY=5 YB=False
+K1-VIOLATION B=['baB', 'BAb'] C=['baB', 'BAb'] X=('reg', 6, [[2, 0, 1], [0, 2, 1]]) pair=(0,6) rkX=7 rkJ=2 rkY=2 YB=True
+K1-VIOLATION B=['baB', 'BAb'] C=['baB', 'BAb'] X=('reg', 6, [[2, 0, 1], [0, 2, 1]]) pair=(6,12) rkX=7 rkJ=2 rkY=2 YB=True
+k1 nonmal seed 12 {'inst': 148, 'J': 29227, 'Yneq': 703, 'YB': 272, 'viol': 20, 'pair': 683, None: 20}

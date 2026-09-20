@@ -1,0 +1,4 @@
+progress L1 {'inst': 10, 'Yneq': 31, 'X->Z:pair': 27, 'Z->Y:eq': 31, 'cert<=1': 27, 'X->Z:pair+1': 4, 'cert<=2': 4}
+progress L1 {'inst': 20, 'Yneq': 103, 'X->Z:pair': 79, 'Z->Y:eq': 103, 'cert<=1': 79, 'X->Z:pair+1': 24, 'cert<=2': 24}
+progress L1 {'inst': 30, 'Yneq': 122, 'X->Z:pair': 98, 'Z->Y:eq': 122, 'cert<=1': 98, 'X->Z:pair+1': 24, 'cert<=2': 24}
+analyze2 L1 seed 44 npairs 3 {'inst': 30, 'Yneq': 122, 'X->Z:pair': 98, 'Z->Y:eq': 122, 'cert<=1': 98, 'X->Z:pair+1': 24, 'cert<=2': 24}

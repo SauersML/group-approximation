@@ -1,0 +1,17 @@
+progress k1 L1 seed 13 {'inst': 25, 'J': 2309, 'Yneq': 105, 'YB': 33, 'viol': 0, 'pair': 105}
+progress k1 L1 seed 13 {'inst': 50, 'J': 5054, 'Yneq': 219, 'YB': 61, 'viol': 0, 'pair': 219}
+progress k1 L1 seed 13 {'inst': 75, 'J': 6268, 'Yneq': 304, 'YB': 91, 'viol': 0, 'pair': 304}
+progress k1 L1 seed 13 {'inst': 100, 'J': 7857, 'Yneq': 392, 'YB': 128, 'viol': 0, 'pair': 392}
+progress k1 L1 seed 13 {'inst': 125, 'J': 9842, 'Yneq': 490, 'YB': 161, 'viol': 0, 'pair': 490}
+progress k1 L1 seed 13 {'inst': 150, 'J': 11169, 'Yneq': 581, 'YB': 193, 'viol': 0, 'pair': 581}
+progress k1 L1 seed 13 {'inst': 175, 'J': 12225, 'Yneq': 665, 'YB': 222, 'viol': 0, 'pair': 665}
+progress k1 L1 seed 13 {'inst': 200, 'J': 14519, 'Yneq': 773, 'YB': 251, 'viol': 0, 'pair': 773}
+progress k1 L1 seed 13 {'inst': 225, 'J': 15685, 'Yneq': 850, 'YB': 289, 'viol': 0, 'pair': 850}
+progress k1 L1 seed 13 {'inst': 250, 'J': 16479, 'Yneq': 916, 'YB': 322, 'viol': 0, 'pair': 916}
+progress k1 L1 seed 13 {'inst': 275, 'J': 18582, 'Yneq': 1017, 'YB': 355, 'viol': 0, 'pair': 1017}
+progress k1 L1 seed 13 {'inst': 300, 'J': 19656, 'Yneq': 1088, 'YB': 389, 'viol': 0, 'pair': 1088}
+progress k1 L1 seed 13 {'inst': 325, 'J': 21997, 'Yneq': 1184, 'YB': 423, 'viol': 0, 'pair': 1184}
+progress k1 L1 seed 13 {'inst': 350, 'J': 22513, 'Yneq': 1242, 'YB': 460, 'viol': 0, 'pair': 1242}
+progress k1 L1 seed 13 {'inst': 375, 'J': 24323, 'Yneq': 1339, 'YB': 488, 'viol': 0, 'pair': 1339}
+progress k1 L1 seed 13 {'inst': 400, 'J': 26765, 'Yneq': 1446, 'YB': 520, 'viol': 0, 'pair': 1446}
+k1 L1 seed 13 {'inst': 400, 'J': 26765, 'Yneq': 1446, 'YB': 520, 'viol': 0, 'pair': 1446}
