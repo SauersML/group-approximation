@@ -1,0 +1,4 @@
+j 1 RMAX 3 types 12 triangle types 42 constraints 12405
+status 0 Optimization terminated successfully. (HiGHS Status 7: Optimal)
+t* (per ball point) = 2.358491
+optimal weights w: [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
