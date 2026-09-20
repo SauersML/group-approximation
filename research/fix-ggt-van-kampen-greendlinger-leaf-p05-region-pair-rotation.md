@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.Rota
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P05RegionPair/Rotation.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P05RegionPair/Rotation.lean:66:7: Variable name `x` is not explicitly referenced.

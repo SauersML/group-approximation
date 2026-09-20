@@ -14,6 +14,7 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 (none in this file: it fails only because red imports fail; see Inputs)
 ```
 
+
 **Inputs (nearest red imports).** `fix-boone-higman-linear-k2-poly-field-symbol-gen`, `fix-boone-higman-linear-rel-gen-tits`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.BooneHigmanLinear.RelGen.LocalK2` compile under the repository settings without changing any statement.

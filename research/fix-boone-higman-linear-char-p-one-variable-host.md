@@ -29,6 +29,8 @@ unbuilt under the 09-18 "everything on main, red OK" order). Neither is root-imp
 **First error.** No build yet. The trusted probe (Slurm job 1325363, msismall) was still PENDING on
 priority at 16:25 CDT. The status is unknown, not green.
 
+**Inputs (nearest red imports).** `fix-bhmet-elem-fpk2-poly-deg-const`, `fix-bhmet-elem-fpnk2-core-slice`, `fix-bhmet-vd-k-row-ext-field`, `fix-boone-higman-linear-char-p-low-trdeg-coords`. Fix those first: errors here may be knock-on.
+
 **What it needs.**
 1. Its closure (464 modules) contains modules that were red at 10:40 and are unchanged since:
    `BooneHigman.Metabelian.AbsorptionSuslinEuclidKill` and `BooneHigman.Metabelian.AffineFP{Model,Identities}`

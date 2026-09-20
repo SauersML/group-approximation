@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.StableRange.Instances: Type mismatch"
 **OPEN.** Lean module `GroupApproximation/StableRange/Instances.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: fix-bh-a.
 
-**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/StableRange/Instances.lean:53:2: Type mismatch

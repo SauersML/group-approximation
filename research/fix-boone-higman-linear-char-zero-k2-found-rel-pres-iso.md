@@ -14,7 +14,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 (none in this file: it fails only because red imports fail; see Inputs)
 ```
 
-**Inputs (nearest red imports).** `fix-boone-higman-linear-char-zero-k2-found-rel-pres`. Fix those first: errors here may be knock-on.
+
+**Inputs (nearest red imports).** `fix-boone-higman-linear-char-zero-k2-found-rel-pres-act`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.BooneHigmanLinear.CharZero.K2Found.RelPresIso` compile under the repository settings without changing any statement.
 

@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.WordProb
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/WordProblemToLanguage.lean` is red on main at 516e496a4a (trusted batched probe, job direct-b1789910605). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: unowned.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/WordProblemToLanguage.lean:127:80: Application type mismatch: The argument

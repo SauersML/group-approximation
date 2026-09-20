@@ -14,7 +14,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 (none in this file: it fails only because red imports fail; see Inputs)
 ```
 
-**Inputs (nearest red imports).** `fix-bhmet-char-zero-host-host`, `fix-bhmet-elem-fpk2-poly-deg-spans`, `fix-bhmet-elem-fpk2-surj-stab-vec`, `fix-bhmet-envelope-higman-vc-tau-d2-class-a`, `fix-bhmet-envelope-higman-vc-tau-d2-class-ab`, `fix-bhmet-envelope-higman-vc-tau-d2-class-ob`, `fix-bhmet-envelope-higman-vc-tau-hop-f2-hop`, `fix-bhmet-pure-char-prime-e-high-artin-hasse-alg`, `fix-bhmet-suslin-r2-ind-dilate`. Fix those first: errors here may be knock-on.
+
+**Inputs (nearest red imports).** `fix-bhmet-char-zero-coords-assembly`, `fix-bhmet-elem-fpk2-poly-deg-const`, `fix-bhmet-elem-fpnk2-core-slice`, `fix-bhmet-pure-char-prime-e-high-artin-hasse-alg`, `fix-bhmet-suslin-r2-ind-lift`, `fix-bhmet-vd-k-row-ext-field`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.BooneHigmanLinear.CharZero.RouteNoSuslin` compile under the repository settings without changing any statement.
 
