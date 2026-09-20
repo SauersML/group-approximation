@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9.5 (fixed), 2026-09-19)
+# Boone–Higman: master route (synthesis v9.6, 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5, v9.3 adds §0.6, v9.4 marks Kourovka 21.73 and 21.74(b),(c) solved, and v9.5 adds §0.7.
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5, v9.3 adds §0.6, v9.4 marks Kourovka 21.73 and 21.74(b),(c) solved, v9.5 adds §0.7, and v9.6 adds §0.8.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -186,10 +186,30 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   - 18.48, d-adic case: orders {1, 2, 3, 4, 6, ∞} (9435671f1d, PASS with repairs 6a7953752c).
 - **KD2_p.** The KMS top must contract on every counter cycle. The live route is an H¹ class
   (3860416431; state artifact `research/artifacts/gq-bh-kd2p-state.md`).
-- **Skipper–Zaremsky (RN groups).** F_∞ passes for polynomial activity via the BHM main theorem. The question is open
+- **Skipper–Zaremsky (RN groups).** F_∞ passes for polynomial activity via the BHM main theorem (see §0.8 for the v9.6 update). The question is open
   only for exponential activity (965e1aa19e, 18b43406c6).
 - **𝓗_31.** It reduces to the gallery lemma G (c9cc87fe9b). G0 was only partly proved: it fails at C-type apexes
   (15b37f96f8), and it is restated for star chains without A–B edges (852934fcfc).
+
+### 0.8 v9.6 additions (summarized from referee verdicts, not re-refereed)
+
+- **Skipper–Zaremsky: ESTABLISHED in two families.**
+  - Every contracting group of polynomial activity: V_d(G) is F_∞ (965e1aa19e, 18b43406c6).
+  - V_{d,r}(IMG f) for every post-critically finite rational map f (7d34855ee4; reviews 78f3553770 and
+    ca350037cb, the latter for the wreath-recursion transfer theorem).
+  - Open: non-dynamical groups of exponential activity.
+- **GL_n(Q), 5.3(5): the conditional theorem is refereed** (e90e47361d, c66e82095e). If H is finitely presented,
+  locally faithful and contains Z_(2), then 2V_H is a finitely presented simple host of Q ⋊ ⟨2⟩. The crux is
+  constructing H (state ee6069cd35, lane bh-glnq-fresh). This is the (SL) bottleneck again, now as a sufficient
+  condition.
+- **Kourovka 18.47.**
+  - (P2) is REFUTED by an explicit two-class-transposition product with finite cycles and infinite order
+    (82aa08a416). So the 3-generator case of 18.47(a) is open again.
+  - 18.47(a) for finitely many class transpositions is undecidable (1311695095, in review).
+- **Birget route.** A possible proof gap in Bartholdi–Mitrofanov Prop. 2.4 has been found, with a repair using a
+  partner supported on 0*1A^ω (8a7ca6bacd, 3e2cc67b22). Both are under independent review. The A″-dependent
+  nodes are marked conditional until it passes.
+- **Q4.7.** Lemma B passes (7ff5a6abf0). The compression lemma is the one remaining step.
 
 ## 1. Gate ranking v9
 

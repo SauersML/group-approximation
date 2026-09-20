@@ -2,7 +2,7 @@
 rg: 2
 id: ledrappier-shift-has-only-finite-minimal-subsets
 kind: claim
-title: (FL, open) Every Z^2-minimal subset of Ledrappier's shift is finite, equivalently every nonempty closed invariant subset contains a periodic point; a characteristic-2, topological analogue of Furstenberg's x2 x3 theorem for minimal sets, which would rule out algebraic T1 on every Ledrappier power
+title: (FL, REFUTED 2026-09-19) Every Z^2-minimal subset of Ledrappier's shift is finite, equivalently every nonempty closed invariant subset contains a periodic point; a characteristic-2, topological analogue of Furstenberg's x2 x3 theorem for minimal sets, which would rule out algebraic T1 on every Ledrappier power
 requires:
   - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
 distinct_from:
@@ -10,7 +10,7 @@ distinct_from:
   free-minimal-triangle-permutive-sft-exists: that asks for, and conjectures against, a free minimal sub-SFT; (FL) concerns all closed invariant subsets, not only sub-SFTs, and implies the conjectured refutation form.
 ---
 
-**OPEN** (lane bh-bq2, 2026-09-19).
+**REFUTED** (lane bh-bq2, 2026-09-19, lane proof, not reviewed): `ledrappier-shift-has-infinite-toeplitz-minimal-subsets` builds a non-periodic Toeplitz point of `X_L`, so `X_L` has infinite minimal subsets. The statement is kept below for the record.
 
 ## Statement
 
@@ -67,3 +67,15 @@ The first and second forms are equivalent because every closed invariant set con
 The algebraic face of (RA_free) on Ledrappier rows is decided by a characteristic-2 Furstenberg question for
 minimal sets. It needs no free group, no measures and no homogeneous dynamics: it is a question about three-dot
 spacetimes.
+
+## Attempts
+
+- **bh-bq2 (2026-09-19): refuted.** `ledrappier-shift-has-infinite-toeplitz-minimal-subsets` builds an explicit
+  non-periodic Toeplitz point of `X_L`, with period lattices `2^K{λ : λ_1 ≡ λ_2 mod 3}`:
+  - `F_4`-twisted Sierpinski gaskets, `(1 + ζX_1 + ζ^2X_2)^(2^(k+1) − 1)`, are periodic points of the twisted rule;
+  - they are shifted by a non-rational 2-adic integer and summed;
+  - the sum is untwisted by `Tr(· ζ^(v_1 − v_2))`.
+
+  First test 1 is answered negatively: a point constant on one coset of an odd-index lattice is periodic, so odd
+  Toeplitz points are periodic. The mixed 2-power × 3 structure succeeds. Consequence:
+  killing algebraic T1 now requires the distal/non-almost-automorphic layers; see that node.
