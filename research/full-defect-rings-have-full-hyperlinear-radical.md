@@ -8,6 +8,7 @@ distinct_from:
   cohn-rank-four-has-full-hyperlinear-radical: "That is the universal finitely generated Kazhdan source; this transfers its annihilation to arbitrary countable full-defect rings and rank two."
 artifacts:
   - research/artifacts/full-defect-ring-hyperlinear-radical-audit-2026-09-20.md
+  - research/artifacts/full-defect-hyperlinear-independent-crossreview-2026-09-20.md
 ---
 
 Let R be a countable nonzero unital associative ring with s,t in R
@@ -25,11 +26,14 @@ assert that every homomorphism from the entire unit group is trivial.
 ## Attribution
 
 The new analytic input is Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf)
-(2026-09-20), Theorems 1.2/6.7 and 1.3/7.4, and Andreas Thom's
-conditional internality-to-normalization implication. The full-defect
+(2026-09-20), Theorem 1.2/6.7, followed by Andreas Thom's
+conditional internality-to-normalization implication. Liu also states
+normalization as Theorem 1.3/7.4; the accepted route here does not need
+the stronger one-model version still under separate review. The full-defect
 ring theorem and rank-two normal-generation transfer for MF targets
-are earlier Cairn/OpenAI manuscript algebra. This is their conditional
-hyperlinear upgrade, not a ring theorem claimed to appear in Liu's paper.
+are earlier Cairn/OpenAI manuscript algebra. This is their derived
+hyperlinear upgrade with named analytic inputs, not a ring theorem
+claimed to appear in Liu's paper.
 
 ## Attempts
 

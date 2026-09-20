@@ -10,12 +10,13 @@ requires:
   - elementary-rank-descent-to-two
 artifacts:
   - research/artifacts/full-defect-ring-hyperlinear-radical-audit-2026-09-20.md
+  - research/artifacts/full-defect-hyperlinear-independent-crossreview-2026-09-20.md
 ---
 
 ## Attribution
 
 Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf)
-(2026-09-20), Theorems 1.2/6.7 and 1.3/7.4, with Andreas Thom's
+(2026-09-20), Theorem 1.2/6.7, with Andreas Thom's
 conditional normalization theorem, supplies the analytic contribution
 through the universal Cohn prerequisite. The present descent is earlier
 Cairn/OpenAI algebra in `non_mf_groups_exist.tex`, now applied to

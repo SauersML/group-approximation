@@ -1,56 +1,99 @@
+// Static scientific dependency overview; render and inspect on MSI.
 digraph LiuCairn {
-  graph [rankdir=TB, newrank=true, bgcolor="#ffffff", pad="0.3", nodesep="0.38", ranksep="0.52", splines=polyline, fontname="Helvetica", fontsize=22, labelloc=t, label="Liu → Cairn: one analytic theorem, two group routes\nIntegrated conditional consequences · 20 September 2026"];
-  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.17,0.13", fillcolor="#f5f7fa", color="#bbc5cf", fontcolor="#152b3c"];
-  edge [fontname="Helvetica", fontsize=10, color="#687889", fontcolor="#465767", arrowsize=0.65];
+  graph [
+    rankdir=LR, newrank=true, bgcolor="white", pad="0.30",
+    nodesep="0.42", ranksep="0.65", splines=polyline,
+    fontname="DejaVu Sans", fontsize=22, labelloc=t, labeljust=l,
+    label="Liu → Cairn: accepted written proofs and explicit structural inputs\n20 September 2026 · Nonhyperlinear root: ESTABLISHED by written proofs, not Lean certification\nPurple: Liu/Thom analysis · Green: deductions · Notes: extra inputs · Alternate proof is labelled"
+  ];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans",
+    fontsize=12, margin="0.16,0.13", fillcolor="#EAF4EF",
+    color="#83A896", fontcolor="#152535", penwidth=1.1];
+  edge [fontname="DejaVu Sans", fontsize=10, color="#586A7B",
+    fontcolor="#405367", arrowsize=0.65];
 
   subgraph cluster_analytic {
-    label="JIHAO LIU · Nonhyperlinear groups exist · §§3–6"; fontsize=14; fontcolor="#664589"; color="#d6c6e5"; style=rounded; margin=17;
-    inputs [label="§§3–5 · four open analytic imports\nRelative repair + in-place rounding\nResolvent covariance / leakage + pruning", fillcolor="#f4edfa"];
-    blocks [label="Theorem 5.1 · large physical blocks\nFix tolerance first; gap may depend on it\nOriginal dimensions; doubled nearby generators", fillcolor="#f4edfa"];
-    inputs -> blocks [label="conditional assembly"];
-    match [label="§6 · matching and exhaustion\nUnequal ranks → coherent multiplicity algebras\nDiagonalize expectations, not spectral gaps", fillcolor="#f4edfa"];
-    blocks -> match;
-    expect [label="Proposition 3.1 · expectation lift\nFull bounded-sequence uniformity\nWritten proof independently checked", fillcolor="#edf6ef", color="#96b79e"];
-    expect -> match [label="shared uniformity input"];
-    internal [label="LIU THEOREM 1.2 / 6.7 · OPEN / UNDER REVIEW\nEvery Kazhdan commutant is internal\nNo injectivity or regular-trace assumption", fillcolor="#e9dcf4", color="#9770ba", penwidth=1.7, fontsize=15];
-    match -> internal;
+    label="JIHAO LIU · NONHYPERLINEAR GROUPS EXIST · §§3–6";
+    fontsize=13; fontcolor="#4C3372"; color="#D8CBE7"; style=rounded; margin=16;
+    liu_steps [label="§§3–5: repair, rounding, physical blocks\n§6: matching + expectation exhaustion\nOriginal matrix dimensions throughout",
+      fillcolor="#F2ECF8", color="#8663A5",
+      URL="https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf"];
+    internal [label="THEOREM 1.2 / 6.7\nEvery Kazhdan commutant is internal\nAll homomorphisms; full commutant",
+      fillcolor="#E8DCF3", color="#8663A5", penwidth=1.7,
+      tooltip="kazhdan-commutants-are-internal"];
+    liu_steps -> internal;
   }
 
-  subgraph cluster_kt {
-    label="COMPRESSION / KUN–THOM ROUTE"; fontsize=13; fontcolor="#465767"; color="#d5dde5"; style=rounded; margin=17;
-    norm [label="All-trace compression normalization\n+ conditional normalization theorem\nThom priority; Liu Theorem 7.4", fillcolor="#fff3df", color="#c6a15f"];
-    uniform [label="Uniform finite-window compression\nRules out CE normalization countermodels", fillcolor="#fff3df", color="#c6a15f"];
-    wreath [label="Kun–Thom binary wreaths\nDistinct lamps collapse in every model\n⇒ nonhyperlinear", fillcolor="#fff3df", color="#c6a15f"];
-    double [label="Group double is nonhyperlinear\n+ recorded wreath / double equivalence", fillcolor="#fff3df", color="#c6a15f"];
-    reduced [label="Reduced C*-algebra is not MF\n+ unique-trace input for q = 2\nDoes NOT refute group weak MF", fillcolor="#fff3df", color="#c6a15f"];
-    norm -> uniform;
-    norm -> wreath;
-    wreath -> double -> reduced;
-  }
-
-  subgraph cluster_leavitt {
-    label="CAIRN'S LEAVITT APPLICATION OF LIU'S THEOREM"; fontsize=13; fontcolor="#465767"; color="#d5dde5"; style=rounded; margin=17;
-    heat [label="Sequential Kazhdan heat rounding\n+ fixed SOS / admissible-time argument\nNOT arbitrary-channel rounding", fillcolor="#fff3df", color="#c6a15f"];
-    two [label="Earlier Cairn two-use argument\nGlobal heat: select scalar commutant\nNative heat: nonzero central witness", shape=hexagon, fillcolor="#edf6ef", color="#96b79e"];
-    leavitt [label="Binary Leavitt unit group\nH = L_(F₂)(1,2)× is nonhyperlinear", fillcolor="#fff3df", color="#c6a15f"];
-    stable [label="Existing stable Steinberg branch\n+ recorded stability equivalence", fillcolor="#fff3df", color="#c6a15f"];
-    boundary [label="Characteristic-two boundary groups\n+ recorded embedding / equivalence", fillcolor="#fff3df", color="#c6a15f"];
-    fp [label="The SAME H is finitely presented,\ninfinite simple, Kazhdan, nonhyperlinear\n+ Khanh and existing structural inputs", fillcolor="#fff3df", color="#c6a15f"];
-    heat -> two -> leavitt;
-    leavitt -> stable;
-    leavitt -> boundary;
-    leavitt -> fp;
-  }
-
+  norm [label="ANDREAS THOM: NORMALIZATION\nKazhdan ambient group generated by\nsubgroup + finitely many compressors\nStronger Liu §7 version: separately OPEN",
+    fillcolor="#E8DCF3", color="#8663A5",
+    tooltip="kazhdan-compression-pairs-normalize-all-tracial-models; Andreas Thom has priority",
+    URL="https://andreasthom.github.io/pdf/nonhyperlinear.pdf"];
   internal -> norm;
-  internal -> heat;
-  {rank=same; norm; heat;}
-  {rank=same; wreath; leavitt;}
-  root [label="EXISTING CAIRN ROOT · STILL OPEN\nExhibit an explicit nonhyperlinear group", fillcolor="#243e52", color="#243e52", fontcolor="#ffffff", fontsize=16];
-  wreath -> root [constraint=false];
-  fp -> root;
-  stable -> root;
-  {rank=same; reduced; boundary; fp;}
-  legend [shape=plaintext, style="", fontsize=11, fontcolor="#566675", label="Purple: Liu's analytic results; long imports remain open.\nGreen: checked / existing written implications. Amber: conditional conclusions.\nArrows condense named Cairn routes with their stated extra inputs.\nCredit: Jihao Liu (analytic theorem); Andreas Thom (conditional normalization);\nKun–Thom (pair and lamps). Leavitt: Cairn's conditional application of Liu.\nNo full-paper or Lean certification claimed."];
-  root -> legend [style=invis];
+
+  direct [label="ALTERNATE DIRECT-INTERNALITY PROOF\nScalar-commutant selection + central height\nH = L_F₂(1,2)× is nonhyperlinear\nNo heat rounding or normalization theorem",
+    fillcolor="#EEF4F8", color="#8595A5",
+    tooltip="leavitt-nonhyperlinear-from-internal-commutants"];
+  internal -> direct [label="+ native Leavitt structural inputs"];
+
+  subgraph cluster_ring {
+    label="EARLIER CAIRN/OPENAI COMPRESSION ALGEBRA";
+    fontsize=13; fontcolor="#244F49"; color="#C7DDD5"; style=rounded; margin=16;
+    cohn [label="Universal integral two-copy Cohn ring C\nRad_hyp(EL₄(C)) = EL₄(C)\nExplicit elementary compressors + EJZ",
+      tooltip="cohn-rank-four-has-full-hyperlinear-radical"];
+    full [label="FULL-DEFECT RINGS · n ≥ 2\nR countable, nonzero, unital; ts = 1\ne = 1 − st, ReR = R\nEvery EL_n(R) → hyperlinear group is trivial",
+      fillcolor="#DAEDE3", color="#638D78", penwidth=1.6,
+      tooltip="full-defect-rings-have-full-hyperlinear-radical"];
+    f2_trivial [label="THE SAME BINARY LEAVITT UNIT GROUP\nH = L_F₂(1,2)×\nAll tracial-ultraproduct images are trivial\nHence H is nonhyperlinear",
+      fillcolor="#DAEDE3", color="#638D78",
+      tooltip="binary-leavitt-tracial-ultraproduct-images-are-trivial"];
+    all_fields [label="EVERY FIELD k\nL_k(1,2)× is nonhyperlinear\nCountable full-defect subring witness\nNot a collapse theorem for arbitrary unit groups",
+      fillcolor="#DAEDE3", color="#638D78",
+      tooltip="Countable-subring argument also handles uncountable coefficient fields"];
+    cohn -> full [label="two copies + rank-two descent"];
+    full -> f2_trivial [label="+ GL₄ = EL₄ and prefix isomorphism"];
+    full -> all_fields [label="embed a countable witness"];
+  }
+  norm -> cohn [label="+ checked universal Cohn pair"];
+
+  khanh [label="SEPARATE INPUTS FOR THE SAME H\nKhanh: finite presentation + integral acyclicity\nExisting algebra: infinite simple + Kazhdan\nEJZ supplies property (T)",
+    shape=note, fillcolor="#F8F2E8", color="#BBA785",
+    tooltip="Khanh arXiv:2609.08428v1, Theorems 4.4 and 6.1; existing simplicity and elementary-group inputs",
+    URL="https://arxiv.org/abs/2609.08428v1"];
+  f2_profile [label="ONE SPECIFIED GROUP H\nFinitely presented · infinite simple · Kazhdan\nIntegrally acyclic · nonhyperlinear",
+    fillcolor="#DAEDE3", color="#638D78", penwidth=1.6,
+    tooltip="Properties of L_F₂(1,2)× itself, not an unspecified envelope"];
+  f2_trivial -> f2_profile;
+  direct -> f2_profile [label="alternative negative proof", constraint=false];
+  khanh -> f2_profile [label="additional structure"];
+
+  subgraph cluster_other {
+    label="DISTINCT GROUPS · KEEP THEIR PROFILES SEPARATE";
+    fontsize=13; fontcolor="#405367"; color="#D4DDE5"; style=rounded; margin=16;
+    kt_radical [label="KUN–THOM BINARY WREATH FAMILY\nRad_hyp(W) = Rad_sof(W) = Res_fin(W) = K\nK: even parity in fibres G/Γ → G/⟪Γ⟫\nThe explicit quotient W/K is residually finite",
+      tooltip="kun-thom-wreath-hyperlinear-radical-is-fibre-parity; every q and r,d ≥ 3"];
+    d6_inputs [label="RANK-SIX STRUCTURAL INPUTS\nFull Laurent K₂(6,R) = K₂(R) = ℤ³\nSteinberg fp + finitely generated edge\nRF actor + surjunctive-double theorem",
+      shape=note, fillcolor="#F8F2E8", color="#BBA785",
+      tooltip="Earlier Cairn rank-six presentation and surjunctivity proofs; exact q=2,r=6,d=3 pair"];
+    d6 [label="EXACT q = 2, r = 6, d = 3 DOUBLE D₆\nFinitely presented · surjunctive\nNonhyperlinear",
+      fillcolor="#DAEDE3", color="#638D78", penwidth=1.5,
+      tooltip="fp-surjunctive-nonhyperlinear-group-exists"];
+    ow_inputs [label="OLLIVIER–WISE + LEAVITT PAIR\nTorsion-free fp cover G, cd_Z(G) ≤ 2\nLifted nonnormal Kazhdan subgroup H is fg\n+ Leavitt fp and nine-leaf configuration",
+      shape=note, fillcolor="#F8F2E8", color="#BBA785",
+      tooltip="ollivier-wise-kazhdan-rips-construction and explicit Leavitt structural inputs",
+      URL="https://arxiv.org/abs/math/0409203"];
+    tf [label="RIPS DOUBLE P = G *_H G\nFinitely presented · torsion-free\nNonhyperlinear · cd_Z(P) ≤ 3\nNo exact dimension-three assertion",
+      fillcolor="#DAEDE3", color="#638D78", penwidth=1.5,
+      tooltip="fp-torsion-free-nonhyperlinear-group-of-cd-at-most-three"];
+    d6_inputs -> d6;
+    ow_inputs -> tf;
+  }
+  norm -> kt_radical [label="+ Kun–Thom pair + fibre-quotient proof"];
+  norm -> d6 [label="+ q = 2 double-family obstruction"];
+  norm -> tf [label="Thom's killed word in the lifted double"];
+
+  // Extra inputs are shown explicitly; an arrow is not a claim of novelty.
+  // Analytic credit: Jihao Liu. Conditional normalization/doubles: Andreas Thom.
+  // Pairs: Gabor Kun–Andreas Thom. Ring algebra and surjunctivity: Cairn/OpenAI.
+  {rank=same; cohn; khanh; d6_inputs; ow_inputs;}
+  {rank=same; f2_profile; all_fields; kt_radical; d6; tf;}
 }

@@ -1,0 +1,43 @@
+// Five-step scientific proof map; render and inspect on MSI.
+digraph FullDefectDescent {
+  graph [rankdir=TB, newrank=true, bgcolor="white", pad="0.30",
+    nodesep="0.55", ranksep="0.55", splines=polyline,
+    fontname="DejaVu Sans", fontsize=22, labelloc=t, labeljust=l,
+    label="Full defect → full hyperlinear radical in every elementary rank\nFive-step written proof · 20 September 2026 · Not a Lean certification"];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans",
+    fontsize=14, margin="0.21,0.16", fillcolor="#EAF4EF",
+    color="#83A896", fontcolor="#152535", penwidth=1.2];
+  edge [fontname="DejaVu Sans", fontsize=11, color="#586A7B",
+    fontcolor="#405367", arrowsize=0.75, penwidth=1.15];
+
+  source [label="1 · UNIVERSAL COHN SOURCE WITH ELEMENTARY COMPRESSORS\nC = ℤ⟨s,a,t,b | ts = ba = 1, ta = bs = 0⟩; e = 1 − st; bea = 1\nG = EL₄(C), L = diag(EL₃(C),1): finitely generated Kazhdan groups (EJZ)\nu_i = x₄ᵢ(t−1)xᵢ₄(1)x₄ᵢ(s−1)xᵢ₄(−t), u = u₃u₂u₁ ∈ G\nk₊ = [x₄₁(a),x₁₄(t³)], k₋ = [x₄₁(s³),x₁₄(b)] ∈ C_G(L)\nuLu⁻¹ ⊆ L and G = ⟨L,u,k₊,k₋⟩\nNo relation st + ab = 1 and no GL = EL theorem are used",
+    tooltip="cohn-full-hyperlinear-radical-from-normalization; all-coefficient elementary-root generation"];
+
+  kill [label="2 · LIU–THOM NORMALIZATION KILLS A NORMAL GENERATOR\nFor every ρ:G → U(M), ρ(G) normalizes D = ρ(L)′ ∩ M\nc = [x₄₁(e),x₁₄(t)] centralizes L; ucu⁻¹ = x₁₂(e)\nHence ρ([ucu⁻¹,x₂₃(1)]) = ρ(x₁₃(e)) = 1\nTwo root commutators put x₄₂(bea) = x₄₂(1) in its normal closure\nSigned permutations + root commutators give the whole G\nEvery tracial-ultraproduct homomorphism of G is trivial",
+    fillcolor="#E8DCF3", color="#8663A5",
+    tooltip="Jihao Liu, Theorem 1.2/6.7; Andreas Thom's conditional normalization; stronger Liu 7.4 not needed",
+    URL="https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf"];
+
+  ring [label="3 · THE EXACT RING HYPOTHESIS SUPPLIES A MAP C → R\nR is COUNTABLE, NONZERO, ASSOCIATIVE AND UNITAL\nts = 1; e = 1 − st is FULL: 1 = Σⱼ αⱼeβⱼ (0 ≤ j < m)\nv₀ = sᵐ, w₀ = tᵐ; v₁ = Σⱼ sʲeβⱼ, w₁ = Σⱼ αⱼetʲ\ne tⁱsʲ e = δᵢⱼe implies wᵢvⱼ = δᵢⱼ1\nThus C → R is unital; injectivity is NOT required\nThe two copies need not exhaust the identity",
+    fillcolor="#F8F2E8", color="#BBA785",
+    tooltip="full-idempotent-ring-has-properly-infinite-unit; manuscript two-copies lemma"];
+
+  rank_two [label="4 · A CORNER MAP TRANSFERS THE KILL TO RANK TWO\nFour length-two pairs satisfy TᵢSⱼ = δᵢⱼ1; put p = Σᵢ SᵢTᵢ\nj(A) = 1 − p + Σᵢⱼ SᵢAᵢⱼTⱼ; Ψ(A) = diag(j(A),1)\nΨ:EL₄(R) ↪ EL₂(R), since Ψ(xᵢⱼ(r)) = [x₁₂(Sᵢr),x₂₁(Tⱼ)]\nEL₄(C) → EL₄(R) → EL₂(R) contains D* = diag(1 + S₁T₂,1)\nD* normally generates EL₂(R); every hyperlinear-target map kills D*\nEvery hyperlinear image of EL₂(R) is trivial",
+    fillcolor="#DAEDE3", color="#638D78", penwidth=1.6,
+    tooltip="elementary-rank-descent-to-two; properly-infinite-unit-rank-two-normal-generator"];
+
+  conclusion [label="5 · ALL RANKS, WITH THE UNIT-GROUP BOUNDARY EXPLICIT\nEvery elementary root of EL_n(R), n ≥ 3, lies in a two-coordinate EL₂(R)\nTherefore Rad_hyp(EL_n(R)) = EL_n(R) for EVERY n ≥ 2\nThe embedding j:EL₄(R) ↪ R× also makes R× nonhyperlinear\nThis does NOT say that every homomorphism from all of R× is trivial\nNo property (T) of EL₂(R), field hypothesis or characteristic restriction",
+    fillcolor="#DAEDE3", color="#638D78", penwidth=1.7,
+    tooltip="full-defect-rings-have-full-hyperlinear-radical"];
+
+  source -> kill [label="actual Kazhdan pair + finite-compressor generation"];
+  source -> ring [label="universal ring to be mapped"];
+  {rank=same; kill; ring;}
+  kill -> rank_two [label="composite into a hyperlinear target is trivial"];
+  ring -> rank_two [label="two copies + induced elementary-group map"];
+  rank_two -> conclusion [label="root generation; subgroup inheritance"];
+
+  credit [shape=plaintext, style="", fontsize=11, fontcolor="#405367",
+    label="Jihao Liu, Nonhyperlinear groups exist (20 September 2026), Theorem 1.2/6.7: internality.\nAndreas Thom: conditional internality → normalization; stronger Liu 7.4 is not needed here.\nEarlier Cairn/OpenAI manuscript: compression cell, fullness and rank-two normal generation. EJZ: property (T).\nAccepted written synthesis; no new Lean certification. Source: full-defect-ring-hyperlinear-radical-audit-2026-09-20.md"];
+  conclusion -> credit [style=invis];
+}

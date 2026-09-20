@@ -27,7 +27,7 @@ ultraproducts. The group-level lamp route was already present. Several analytic
 pieces were also present, including low-energy cuts, soft overlapping selection,
 and transporting expansion tests back into their tested corner.
 
-The proposed additional mechanism is a coupled construction with a vanishing
+The additional mechanism is a coupled construction with a vanishing
 global error budget: physical equivariant rounding; monotone-resolvent seed
 assembly and range-leakage control; unequal-rank matching; and exhaustion through
 uniform conditional expectations. The complete combined construction was not
@@ -160,6 +160,42 @@ existing broad channel-rounding route remains a distinct sufficient route.
 
 With the accepted shared analytic premise and the displayed structural inputs:
 
+### Full-defect rings: the strongest algebraic extension
+
+The [full-defect theorem](../full-defect-rings-have-full-hyperlinear-radical.md) says that for a countable nonzero unital associative ring R,
+
+```
+ts=1 and R(1-st)R=R
+    ==> every homomorphism EL_n(R) -> a hyperlinear group is trivial,
+        for every n>=2.
+```
+
+Fullness means a finite sum of two-sided multiples of the defect equals 1. It is essential: one-way invertibility alone is not the theorem. This is total collapse of every hyperlinear image, not merely absence of an injective model. The [complete algebraic audit](full-defect-ring-hyperlinear-radical-audit-2026-09-20.md) checks the universal Cohn ring, actual elementary factorizations of the compressors, ambient generation, killing and normal generation of the defect, and the independent rank-two transfer. The analytic input is Liu's internality followed by Thom's normalization; the old operator-norm obstruction alone does not imply it.
+
+The construction first kills every image of EL_4 of the universal two-copy Cohn ring. Fullness supplies a map of that ring into R. A matrix-to-corner embedding transfers a killed normal generator into EL_2(R); two-coordinate copies then cover every higher elementary rank. No property (T) of EL_2(R) is assumed. An [independent algebraic cross-review](full-defect-hyperlinear-independent-crossreview-2026-09-20.md) rederives the compressor and rank-two calculations, including the conjugation-back step. The [rank-descent figure](../../output/figures/cairn-full-defect-rank-descent.png) isolates these steps.
+
+For the actual binary F_2 Leavitt unit group, its identification with EL_4(R) gives [triviality of every tracial matrix-ultraproduct image](../binary-leavitt-tracial-ultraproduct-images-are-trivial.md). For arbitrary full-defect rings, the unit group is nonhyperlinear because it contains the obstruction; total collapse of the entire unit group is NOT claimed. The [countable-core route](../leavitt-all-fields-from-countable-full-defect-core.md) also gives nonhyperlinearity of binary Leavitt units over every field, including uncountable fields, without imposing Kazhdan or finite-presentation hypotheses on those larger unit groups.
+
+### Exact radicals and stronger specified examples
+
+The [exact radical theorem](../kun-thom-wreath-hyperlinear-radical-is-fibre-parity.md) applies to the whole binary Kun–Thom family. If N is the normal closure of the polynomial subgroup in the Laurent actor, then the hyperlinear radical, sofic radical and finite residual all equal the finite configurations with even parity on each fibre of G/Gamma -> G/N. The surviving quotient is residually finite. Thus the result describes every forced collapse, not only Liu's marked pair of lamps. [Proof and parameter audit](kun-thom-exact-hyperlinear-radical-2026-09-20.md).
+
+Three profiles refer to different groups and must not be conflated:
+
+| Specified witness | Combined conclusion | Additional input beyond Liu–Thom |
+|---|---|---|
+| Binary F_2 Leavitt unit group | Infinite simple, finitely presented, Kazhdan, integrally acyclic, nonhyperlinear; all tracial images trivial | Existing simplicity/property-(T)/rank identification; Huynh Viet Khanh Theorems 6.1 and 4.4 for finite presentation and acyclicity |
+| Rank-six polynomial/Laurent double D_6 | Finitely presented, surjunctive, nonhyperlinear | Existing fold-surjunctivity theorem, Steinberg finite presentation, full stable rank-six K_2 kernel calculation |
+| Ollivier–Wise cover doubled over the lifted Leavitt subgroup | Finitely presented, torsion-free, nonhyperlinear, integral cohomological dimension at most 3 | Ollivier–Wise cover, Leavitt finite presentation, Bass–Serre dimension argument |
+
+The corresponding [Leavitt profile](../binary-leavitt-is-fp-simple-kazhdan-nonhyperlinear.md), [surjunctive double proof](fp-surjunctive-nonhyperlinear-double-audit-2026-09-20.md), and [torsion-free double proof](torsion-free-nonhyperlinear-rips-double-2026-09-20.md) keep these inputs explicit. The latter does not assert dimension exactly 3. Neither double profile establishes torsion-freeness or surjunctivity of the simple Leavitt group. Khanh's preprint inputs remain separate literature dependencies, not theorems proved by Liu.
+
+The existing [four-generator, eighteen-relator presentation](../thompson-steinberg-presentation-of-leavitt-unit-group.md) gives a compact description of the Leavitt witness, with its written completeness review and dependencies retained. The three-generator/sixteen-relator and two-generator/fifteen-relator reductions are still unreviewed; no status promotion is made here. A compact presentation is not an explicit numerical Hilbert–Schmidt gap.
+
+The new [recognition route](../hyperlinear-undecidable-from-leavitt-negative-seed.md) feeds the finitely presented Leavitt negative seed into the existing hereditary-approximation Rice theorem, proving undecidability of hyperlinearity on finite presentations. The stronger finite-presentation Pi^0_2-completeness target still needs the compiler's hyperlinear positive branch. Supplying a negative seed does not supply that branch.
+
+### Other connections and limits
+
 - The existing nonhyperlinear root is reached through the wreath and independently
   through the Leavitt argument.
 - The Leavitt negative statement selects the existing stable Steinberg branch.
@@ -192,18 +228,18 @@ With the accepted shared analytic premise and the displayed structural inputs:
 
 Those three initial audits have now been supplemented by [complete analytic leaf reconstructions](liu-analytic-leaves-proof-acceptance-2026-09-20.md), [independent Theorem 5.1 assembly review](liu-theorem-five-assembly-cross-review-2026-09-20.md), [Section 6 acceptance and the Thom bypass](liu-section-six-acceptance-and-thom-bypass-2026-09-20.md), and [independent direct Leavitt review](liu-leavitt-direct-internality-cross-review-2026-09-20.md). These supply actual written proof routes, rather than converting “no gap found” into acceptance by metadata alone. They remain textual mathematical work with credited imports, not a Lean build or external human referee verdict.
 
-The branch merge preceding this integration also exposed unrelated schema
-errors already present in the source history. Validation compares the new
-subgraph against that baseline; it must not describe the whole repository as
-clean until those errors are separately repaired. The generated FRONTIER index
-is explicitly marked stale while full regeneration is refused.
+The branch merge exposed unrelated schema errors and a fail-open kernel hazard: a malformed route with a missing premise list could accidentally count as a proof with no premises. The kernel now invalidates malformed routes before propagation, including when loading caches. Eighteen regression tests passed on MSI. The [schema audit](cairn-schema-hygiene-audit-2026-09-20.md) records conservative repairs: proposed dependencies remain unaccepted prose, and four malformed documents were preserved intact as notes rather than supplied invented proofs. The unrelated class-transposition target is correctly OPEN, not silently preserved as a false positive.
 
-### Validation checkpoint
+### Current validation checkpoint
+
+The [MSI validation record](liu-proof-acceptance-validation-2026-09-20.json) checks pinned commit `3fb72da3f6`: 34,194 nodes, zero schema/artifact errors, and zero duplicate findings among 102 touched canonical nodes. The root, internality, normalization, full-defect theorem and displayed group consequences derive ESTABLISHED without counterfactual assumptions. The stronger one-model normalization claim and compiler positive branch remain OPEN. All 61 schema-hygiene-affected claims preserve their status under the fail-closed kernel, and all four archived documents are byte-identical. The tracked FRONTIER was refreshed. Standard parser, linter, compiler and duplicate checks ran on streamed Git blobs with pinned-tree artifact validation; this was not a full CLI/app build or Lean verification.
+
+### Historical validation checkpoint
 
 The [machine-readable check](liu-cairn-integration-validation-2026-09-20.json)
 records 37 new canonical claim/route nodes, no new schema errors against the
 merged-main baseline, and no duplicate-node findings. The 70 baseline schema
-errors remain unchanged. Counterfactual compilation confirms that internality
+errors remained unchanged at that earlier checkpoint. Counterfactual compilation confirmed that internality
 alone activates the Leavitt route, while adding the conditional normalization
 theorem activates the wreath family and its matched refutations. Merely assuming
 the single-wreath result does not activate universal normalization. These are

@@ -1,0 +1,63 @@
+{
+  "revision": "3fb72da3f6",
+  "seconds": 10.654,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "non-hyperlinear-group": "ESTABLISHED",
+    "kazhdan-commutants-are-internal": "ESTABLISHED",
+    "kazhdan-compression-pairs-normalize-all-tracial-models": "ESTABLISHED",
+    "binary-leavitt-unit-group-is-not-hyperlinear": "ESTABLISHED",
+    "full-defect-rings-have-full-hyperlinear-radical": "ESTABLISHED",
+    "cohn-rank-four-has-full-hyperlinear-radical": "ESTABLISHED",
+    "binary-leavitt-tracial-ultraproduct-images-are-trivial": "ESTABLISHED",
+    "kun-thom-wreath-hyperlinear-radical-is-fibre-parity": "ESTABLISHED",
+    "fp-surjunctive-nonhyperlinear-group-exists": "ESTABLISHED",
+    "fp-torsion-free-nonhyperlinear-group-of-cd-at-most-three": "ESTABLISHED",
+    "hyperlinear-recognition-undecidable": "ESTABLISHED",
+    "internal-kazhdan-commutants-normalize-under-compressors": "OPEN",
+    "mf-compiler-positive-branch-is-hyperlinear": "OPEN",
+    "class-transposition-relations-present-ct-p-z": "OPEN"
+  },
+  "duplicates": [],
+  "removed_nodes": [
+    "fix-classtransposition-presentation",
+    "fix-nmn-tww-extension-absorb-quasicentral-step",
+    "fix-nmn-tww-std-operator-algebra-complete",
+    "nm-exclusive-pocket-first-turns"
+  ],
+  "archived_route_bytes_identical": {
+    "fix-classtransposition-presentation": true,
+    "fix-nmn-tww-extension-absorb-quasicentral-step": true,
+    "fix-nmn-tww-std-operator-algebra-complete": true,
+    "nm-exclusive-pocket-first-turns": true
+  },
+  "schema_hygiene_status_changes": {},
+  "baseline_revision": "1f7bd2d0fe",
+  "baseline_schema_error_count": 70,
+  "baseline_error_rules": {
+    "unknown-key": 57,
+    "distinct-from": 7,
+    "requires": 3,
+    "target": 3
+  },
+  "baseline_kernel": "same fail-closed 2.13.2 kernel overlay",
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "frontier_output": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X/FRONTIER.md",
+  "frontier_lock_policy": "empty snapshot lock map; actual pinned Git history, no fabricated baseline",
+  "touched_node_count": 102,
+  "added_node_count": 25,
+  "surviving_status_change_count": 102,
+  "schema_hygiene_compared_count": 61
+}

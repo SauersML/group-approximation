@@ -9,14 +9,16 @@ requires:
   - elementary-groups-over-fg-rings-have-property-t
 artifacts:
   - research/artifacts/full-defect-ring-hyperlinear-radical-audit-2026-09-20.md
+  - research/artifacts/full-defect-hyperlinear-independent-crossreview-2026-09-20.md
 ---
 
 ## Attribution
 
 Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf)
-(2026-09-20), Theorems 1.2/6.7 and 1.3/7.4, supplies the analytic
-internality/normalization chain, with Andreas Thom credited for the
-conditional normalization implication. This is a Cairn application of
+(2026-09-20), Theorem 1.2/6.7, supplies internality. Andreas Thom's
+conditional normalization theorem supplies the next implication;
+Liu's stronger one-model Theorem 1.3/7.4 is not needed on this route.
+This is a Cairn application of
 that explicit prerequisite to its earlier universal-ring compression
 algebra, not a new proof of Liu's theorem or a consequence claimed in
 his paper.

@@ -5,7 +5,7 @@ kind: claim
 title: The binary Leavitt unit group is finitely presented, infinite simple, Kazhdan, integrally acyclic and nonhyperlinear
 distinct_from:
   binary-leavitt-unit-group-is-not-hyperlinear: This additionally assembles finite presentation, infinite simplicity, property T and integral acyclicity for the same specified witness, retaining their separate structural inputs.
-  nonhyperlinear-existence-is-two-generator-simple: That supplies a possibly infinitely presented simple envelope; this names one group having all four properties together.
+  nonhyperlinear-existence-is-two-generator-simple: That supplies a possibly infinitely presented simple envelope; this names one group having the entire displayed profile together.
 artifacts:
   - research/artifacts/liu-leavitt-direct-internality-and-consequences-2026-09-20.md
   - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
@@ -24,7 +24,8 @@ Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhy
 (2026-09-20), Theorem 1.2/6.7. The Leavitt two-use deduction is the earlier
 Cairn argument, now with a direct internality-only simplification, not a theorem asserted in Liu's paper. Finite presentation and integral acyclicity
 are the separate Huynh Viet Khanh Theorems 6.1 and 4.4 imports recorded in
-`leavitt-unit-group-finitely-presented`; the other structural results keep
+`leavitt-unit-group-finitely-presented` and
+`binary-leavitt-unit-group-integrally-acyclic`; the other structural results keep
 their recorded credits and trust boundaries.
 
 ## Attempts

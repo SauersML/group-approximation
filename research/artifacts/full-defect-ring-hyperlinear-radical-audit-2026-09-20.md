@@ -206,7 +206,9 @@ The identities fv=wf=0 give z^2=1 and zf=vf. The diagonal matrix
 h=diag(z,z) is elementary, by the usual six-transvection identity
 for diag(z,z^-1). Since
 `h x_12(fr) h^-1=x_12(vfrz)`, the normal closure also contains
-x_12(fR). The decomposition `r=vwr+fr` supplies all x_12(r), and an
+x_12(fR): the right side is already in the known subgroup x_12(vR),
+and conjugating it back by h gives x_12(fr). This does not assume
+membership of the left side in advance. The decomposition `r=vwr+fr` supplies all x_12(r), and an
 elementary Weyl matrix supplies all x_21(r). Thus D normally generates
 EL_2(R). Apply this with (v,w,a,b)=(S_1,T_1,S_2,T_2).
 
