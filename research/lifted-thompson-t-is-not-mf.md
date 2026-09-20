@@ -73,3 +73,21 @@ virtual-torsion corner.
   circle: the Bloch decomposition of the Koopman representation of `T̄` on
   `L^2(R)`.  So no fibrewise argument that holds in `B(H)` can force
   `pi(z) = 1`.
+
+## Attempts
+
+- **Linear area certificates on conjugate templates (sw-0917-w22,
+  2026-09-20).**  This is dead as a class, by
+  `thompson-template-area-sees-only-faithful-coefficients`.
+  - The edge word `[k c k^(-1), h]` of any conjugate template satisfying
+    (N) differs in area by a constant from `[lambda, h]`.  Here `lambda` is
+    the null-homotopic conjugacy loop.
+  - Its relation-module class is a constant plus `(1-h) cl(lambda)`.
+  - Every linear lower bound whose coefficient module is not faithful
+    modulo `<z>` is therefore constant on the `Sh_3(N)` template, whatever
+    words are chosen.  Such bounds include central extensions (Euler, GV,
+    `H_2` torus classes), cocycles from abelian or residually finite
+    quotients, and all finite-rank twisted Schreier norms.
+  - What remains is (D1), homological area or a permutation module
+    `ell^1(T-bar/D)`, or (D2), a genuinely nonabelian obstruction in the
+    kernel of `P_omega -> T-bar^omega`.
