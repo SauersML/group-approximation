@@ -127,6 +127,25 @@ artifacts:
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_mixed.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_small.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_ostep.sh
+  - research/artifacts/fpbs-overfold-one-pair-joins-2026-09-19.md
+  - experiments/fpbs-overfold-one-pair-2026-09-17/folding.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/test_lemma1.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/test_lemma1.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/expansion.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/expansion_check.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/monphi_k1.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/run_s2_g5_l8.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/run_s3_g3_l10.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/run_s4_g6_l5.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/witness.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/witness_W.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/ri_k1.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/ri_j1_s11.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/ri_j2_s13.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/selftest_ri.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/selftest_ri.txt
+  - experiments/fpbs-overfold-one-pair-2026-09-17/transfer.py
+  - experiments/fpbs-overfold-one-pair-2026-09-17/transfer2.py
 ---
 
 **OPEN.** Notation is as in
@@ -505,3 +524,42 @@ such as rank 2 and the single lawful component above.
   - **Where it stands.** No proof of (O-step). A single `P` with
     `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
     not (O) itself.
+- **2026-09-20, swarm-0917-w20-w20-fp-last1 (logic-computability): OPEN;
+  the k = 1 layer of the chain (RI_{L_j}) ⇒ (G_j) ⇒ (O) is now finite and
+  exact, and (W) is refuted.** Full write-up:
+  `research/artifacts/fpbs-overfold-one-pair-joins-2026-09-19.md`.
+  - **Lemma 1 (one-pair lemma), proved.** For f.g. `X` and any `g`, the
+    join `<X, g>` falls in one of two cases.
+    - Arc case: `Γ_X` embeds in `Γ_{<X,g>}` and the rank goes up by one.
+    - One-pair case: `Γ_{<X,g>} = fold(Γ_X / (u ~ w))` for two vertices
+      `u, w`.
+
+    Validated by direct folding: 1846 one-pair and 1110 arc cases,
+    0 mismatches.
+  - **Arcs are harmless.** For every rank-2 host `B`, malnormal or not, an
+    arc join satisfies `rk(J ∩ B : X) ≤ 1`. The proof uses SHN
+    (`rk Y ≤ rk X + 1`) and Kurosh (`X` is a free factor of `Y`).
+  - **Exact decidability.** (RI_B) at `k = 1`, E(2), (Mon_φ) at `k = 1`
+    and (W) each reduce to at most `C(|V|, 2)` folds, with no bound on
+    `|g|`. This supersedes the `|g| ≤ 7` searches of w18 and w19.
+  - **Lemma 2 (φ-expansion dictionary).** It gives `Γ_{φ X_0}` in closed
+    form, verified on 3000 random cases.
+  - **Type lemma.** Same-type pairs of the expansion give joins inside
+    `L_1`. Only the three mixed double cosets can reach `F`.
+  - **(W) of w19-follow is REFUTED.** Take `X_0 = <aBAB, ABaba>`. Then
+    `g = AbbbaBBa` (`|g| = 8`) gives `<φX_0, g> = F`, while
+    `<X_0, a> ≠ F` and `<X_0, b> ≠ F`. The exact censuses found 302
+    violations in total. Proof routes through "`a` or `t` completes" are
+    dead.
+  - **Exact censuses, all `g` at once (0 violations).**
+    - (Mon_φ) at `k = 1`: 0 violations in 35498 E(2)-hits.
+    - (RI_{L_1}) at `k = 1`: 0 violations in 146567 one-pair joins,
+      including 18,909 with `Y ≠ X`.
+    - (RI_{L_2}) at `k = 1`: 0 violations in 18313 joins, including 491
+      with `Y ≠ X`.
+    - Self-test: the same code finds 72 violating one-pair folds for
+      w19-last1's non-malnormal host and 0 for `L_1`.
+  - **Gap.**
+    - `k ≥ 2`: arc-then-fold joins form an infinite family.
+    - A proof of (Mon_φ) at `k = 1`, as a transfer for mixed collapsing
+      pairs. Simple projection works in only 142 of 283 hits.
