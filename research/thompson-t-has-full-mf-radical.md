@@ -268,3 +268,40 @@ separate points.  Two remarks limit the search.
   - *Next falsifiable step.* Search only on the T-line with `a` near `0`,
     that is balanced types, at `n = 8, 16, 24`. Alternatively, prove an
     effective version of item 3 of the constraint that is uniform in `n`.
+- **2026-09-20 (swarm-0917-w23-w23-ptl-last1, census-computation /
+  probability-random): an explicit balanced upper bound, and a documented
+  blind spot in numerical search; target still open.**
+  - *Setup.* The claim is equivalent to a uniform lower bound on the defect
+    `D` of nontrivial irreducible exact pairs
+    (`thompson-t-mf-iff-opnorm-z4-z3-defect-gap-vanishes`). The sector that
+    matters for a `D -> 0` sequence converging to the regular trace is the
+    balanced one: all eigenvalues of `A` and of `B` have equal multiplicity.
+    This reduction was posted on the bus in wave 22 and is not a node here.
+  - *Established* (`thompson-t-balanced-irreducible-pair-with-defect-0636`).
+    - There is an irreducible exact balanced pair in `U(12)` with
+      `D <= 0.6360452410185`. It is certified by polar correction and a
+      Lipschitz bound. All three relators are active at it, and
+      `||[A^2, B] - 1|| = 1.376`, so it is not near-central. Its commutant
+      margin is `0.238`.
+    - Hence `delta_bal(12k) <= 0.63605` for all `k`.
+    - Every balanced sum of blocks of dimension at most 2 has `D >= 0.99`.
+  - *Obstruction to the numerical route.* Fixed-spectrum Riemannian descent
+    with basin hopping cannot estimate `lim delta_bal(n)` at `n >= 24`.
+    - It is calibrated at `n = 2`, and at `n = 12` with spinor spectra.
+    - At `n = 24`, the planted double witness has `D = 0.636`. Random starts
+      end at `1.01`-`1.23`, and perturbations of size at least `0.1` of the
+      planted point polish to `0.665`-`0.688`, not back to `0.636`.
+    - At `n = 6` and `n = 24` with spinor spectra, every start is captured by
+      direct sums of a spurious critical point of the 2-dimensional spinor
+      curve (`t = 2.2816`, `D = 1.3126`, with `r_1 = 1` exactly). The true
+      value is `0.3491`.
+  - *So a census cannot decide* whether `delta_bal(n)` stays bounded below
+    along `n = 12k`. Any census-based lower-bound conjecture at `n >= 24` must
+    first recover the planted double.
+  - *Next falsifiable step.* Either of the following:
+    - a structured ansatz, for example `A` with `A^2` block-diagonal over a
+      `Z/2`-grading, or pairs induced from finite quotients of `Z/4 * Z/3`,
+      that beats `0.636` in some `n = 12k`;
+    - a proof that balanced irreducible pairs have `D >= c > 0`, for some
+      explicit `c`, via the spectral constraint `mult(B = 1) > mult(A = 1)`
+      that the block count in item 2 of the new claim exploits.
