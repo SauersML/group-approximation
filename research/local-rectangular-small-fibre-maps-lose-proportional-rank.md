@@ -87,3 +87,21 @@ fact `l^2`-injective) degree, hence is surjective.
     - Proposition S forces `c_K >= (K-1)/K`.
     - (E_K) is open for `K >= 3`. Lemma L uses one shared real function, and it dies
       when a slice of `U_i` is 2-dimensional (tori of revolution).
+- 2026-09-20 (swarm-0917-w21-w21-gs-break, calibration): the second test case is not a test.
+  - *Result.* `folner-torus-truncations-have-exact-or-linearly-deficient-rank` (ESTABLISHED;
+    artifact `research/artifacts/folner-torus-truncation-rank-dichotomy-2026-09-20.md`).
+    - Over every group, a truncation `g_E` of `tau` has `rank g_E^* = d|E| - dim A(E)`, where
+      `A(E)` is the space of exact right annihilators of `D` supported in `E`.
+    - Over amenable groups, Følner instances either have rank exactly `d|E|` or lose a fixed
+      proportion `c(tau)|E|` at surplus `o(|E|)`. Full rank is equivalent to C2.
+  - *Belief change.* Følner instances obey a 0/1 law.
+    - They cannot probe `beta(K, d, eta, delta)` or `C(K, d, eta)`.
+    - On amenable non-LEF hosts with torsion they are exactly open C2, not an easier finite check.
+    - A counterexample to amenable C2 refutes LRSF, with `delta` fixed and `beta -> 0`.
+    - The quantitative form is needed only on frozen sofic models of non-amenable groups, or on
+      group-free instances. Tests of the constants must use those.
+  - *Square subfamilies (artifact Section 5).*
+    - With `N(T) = ∪_(i in T) C_i`, [LEF] Theorem 1 gives `|N(T)| >= |T|`, and
+      `rank g^* >= d max{|T| : |N(T)| = |T|}`.
+    - This bound is empty on group truncations, where `|TW| > |T|`. So square-restriction
+      approaches die on every instance that matters.
