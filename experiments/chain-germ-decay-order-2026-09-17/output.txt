@@ -1,0 +1,16 @@
+$ python3 experiments/chain-germ-decay-order-2026-09-17/check.py
+coordinate identities: e0 mismatches 0 | T_1 mismatches 0 | D_2 mismatches 0 | e0 bound failures 0 | points 4070
+decay order of g_k = D_2^k e0 D_2^-k: ratio -log2(res)*2^k/y (tends to 1)
+  k = 0 [0.9917, 0.9959, 0.9979]
+  k = 1 [0.971, 0.9854, 0.9927]
+  k = 2 [0.948, 0.974, 0.987]
+  k = 3 [0.924, 0.962, 0.981]
+  k = 4 [0.8995, 0.9498, 0.9749]
+conjugation checks (ratio with the stated order K should tend to 1)
+  e0 g_3 e0^-1 at y = 640.3333333333334 ratio(K=3) = 0.962
+  e0 g_3 e0^-1 at y = 1280.3333333333333 ratio(K=3) = 0.981
+  e0 g_3 e0^-1 at y = 2560.3333333333335 ratio(K=3) = 0.9905
+  T_1/2 e0 T_-1/2 at y = 40.333333333333336 ratio(K=0) = 0.9669
+  T_1/2 e0 T_-1/2 at y = 80.33333333333333 ratio(K=0) = 0.9834
+  T_1/2 e0 T_-1/2 at y = 160.33333333333334 ratio(K=0) = 0.9917
+ALL EXACT CHECKS PASS
