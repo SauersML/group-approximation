@@ -8,7 +8,12 @@ distinct_from:
   kourovka-18-48-for-d-adic-class-transpositions: that computes the orders of products of two class transpositions when all moduli are powers of one integer (Kourovka 18.48); this asks whether finite cycles alone force finite order, for all moduli.
 ---
 
-**OPEN** (crux, bh-k1847, 2026-09-19). The two lemmas and the equivalence below are lane proofs, not
+**REFUTED** (2026-09-19, lane proof, not reviewed) by `two-transposition-product-finite-cycles-infinite-order`:
+`τ_{1(12),0(4)}·τ_{0(2),1(4)}` has only finite cycles, of every even length, so it has infinite order.
+(P2) and (P2)′ are both false; Lemmas T and S below are unaffected. The d-adic case of (P2) stays
+proved (14fbd68c56). See the final section.
+
+Originally **OPEN** (crux, bh-k1847, 2026-09-19). The two lemmas and the equivalence below are lane proofs, not
 independently reviewed. No priority claimed.
 
 - **Why it matters.**
@@ -89,3 +94,22 @@ cycle. The same holds if `σ^k(C) ⊋ C`: apply the lemma to `σ^{-1}`.
     has an infinite cycle" separately.
 - **What remains open:** pairs with mixed moduli, where itinerary loops can cross classes
   transversally instead of nesting. bh-scout-thompson owns that as part of 18.48.
+
+## Update 2026-09-19: refuted in the mixed-moduli case (bh-p2)
+
+- **Counterexample** (`two-transposition-product-finite-cycles-infinite-order`, lane proof, not
+  reviewed): for `a = τ_{0(2),1(4)}` and `b = τ_{1(12),0(4)}`, every orbit of `⟨a, b⟩` is a finite
+  path or a finite cycle. The component of `2^α 3^β u`, with `gcd(u, 6) = 1`, is a path with
+  `2(α + β)` vertices. So `ba` has cycles of every length `2S` and infinite order.
+- **Mechanism:** on `0(4)` the two-step map `e ↦ 2e/3` runs for `v_3(e)` steps and its inverse
+  `e ↦ 3e/2` for `v_2(e) − 1` steps, and both runs stop at endpoints of the orbit graph. This is the
+  transversal crossing the "Suggested attack" above hoped to exclude. The loop has multiplier `2/3`,
+  but no class is mapped properly into itself.
+- **Consequences:**
+  - "Every wild product has an infinite cycle" and (P2)′ are false.
+  - The obstruction in `class-transposition-groups-finite-orbits-is-undecidable` to compressing to
+    three generators is removed, and whether `F_M` is conjugate to a two-transposition product is
+    open again.
+  - Kourovka 18.48 is unaffected, since it concerns finite orders only.
+- **Credit:** infinite order of this product is covered by Bardakov–Iskra, arXiv:2504.08595 (their
+  slanted, equal-residue case); only the finiteness of every cycle is new here.
