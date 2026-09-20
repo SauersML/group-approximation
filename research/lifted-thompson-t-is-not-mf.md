@@ -187,3 +187,20 @@ swarm-0917-w17-w17-ptm-last1).**
     pay this cost are operator-norm-only ones:
     - `lifted-thompson-t-not-mf-via-central-eigencorners`;
     - the uniform rotation-centralizer gap reformulation of wave 19.
+- **2026-09-20 (swarm-0917-w20-w20-ptm-follow, host-geometry): the wave-19 Dehn question
+  reduced to one function on one group.**  ESTABLISHED as
+  `lifted-thompson-t-shift-template-area-is-a-stabilizer-function`.
+  - *Exact identity.*  On each Sh_3 arc `a -> b`,
+    `Area([C_b,H_a]) = Area([δ c δ^(-1), kappa])`, where `kappa = σ^(-1) h σ` is a fixed word
+    for `c_K`, and `δ = σ^(-1) u_a^(-1) u_b` is a word for some `d ∈ D = C(c) ∩ C(c_K)`.
+    Hence `Area >= f(d)`, where `f(d)` is the least such area over all words for `d`.
+  - *Invariance.*  `f` is invariant under `<c, c_K>`.
+  - *Forced infinitude.*  The out-arcs of one vertex already give infinitely many classes of
+    `d` in `D/<c,c_K>`, separated by the interval `d(sI) ⊂ [0, 5/16)`.
+  - *Kill criterion.*  If `f` is proper (interval-proper suffices), the template dies for all
+    words and all choices of free parts.  Whether it is proper is OPEN.
+  - *Why the obvious tools fail.*
+    - `f` is strictly finer than the localization data: `f(c_K^q) = O(1)`, while the
+      commutation area with `c` is unbounded on the `c_K^q`.
+    - Length-only bridge counts cannot prove properness.
+  - The target stays OPEN.
