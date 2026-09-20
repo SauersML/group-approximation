@@ -85,3 +85,20 @@ finite groups is recalled, not checked here.)
   - Such maps exist and clash with nothing. Belk–Bleak–Matucci embed every hyperbolic group in the rational group `R` through its horofunction boundary, a Cantor set carrying a continuous, finite-to-one, equivariant surjection onto `∂Γ`. I recalled this and did not read it at source.
   - The Bowen–Series coding of a surface group gives the same picture.
   - So connectedness of `∂Γ` alone gives no obstruction. A negative answer to Q4.7 must see the difference between `V` and `R`, that is, synchronous against asynchronous transducers, and not just the Cantor-versus-circle topology.
+- **bh-scout-bbmz, 09-19 (orbit Schreier graphs; partial, lane proof, not reviewed):** `topologically-free-fg-subgroups-of-v-are-virtually-free`.
+  - **Input:** Hyde–Skipper–Zaremsky arXiv:2605.20564v2, Theorem A: every orbit Schreier graph of a finitely generated subgroup of `V` is quasi-isometric to a tree.
+  - **Consequence:** an embedding of `π_1(Σ_2)` in `V`
+    - has no free orbit and is never topologically free;
+    - leaves only a countable set `K` of points that are not interior fixed points of some nontrivial element;
+    - gives each point of `K` an infinite cyclic stabilizer `⟨c⟩`, with `Γ/⟨c⟩` quasi-isometric to a tree.
+  - **Why it matters:** this is the first invariant used here that separates `V` from the rational group `R`, which the remark above says any negative answer needs.
+  - **Open:** Lemma L (`Γ/⟨c⟩` is not a quasi-tree, which would give `K = ∅`) and a compression step for the case `K = ∅`. Both are stated in that node's route.
+  - **Refereed.** bh-ref-t0 passed the partial at 6a216bf0dc.
+  - **Lemma L proved (later, 09-19; lane proof, not reviewed):** `one-ended-hyperbolic-subgroups-of-v-are-locally-fixed`. The argument is a bottleneck argument, using high paths over an arc in `∂Γ ∖ {c^±}`. So if `π_1(Σ_2) ≤ V`:
+    - every point of `C` has a neighborhood fixed pointwise by a nontrivial element;
+    - no two nontrivial elements have disjoint supports;
+    - no element has north–south dynamics on `C`.
+  - **What a "no" needs now:** only the compression lemma stated in that node's route, for elements with several attractors or a periodic region.
+  - **Compression target stated (09-19):** `locally-fixed-torsion-free-subgroups-of-v-have-disjoint-supports` (OPEN). It says a torsion-free f.g. subgroup of `V` fixing a neighborhood of every point has a disjoint-support pair; with the locally-fixed node this gives a negative answer here.
+    - Calibration: torsion cannot be dropped (`S_3` and `S_3 × Z` permuting three cones are counterexamples). `Z²`, `F_n × F_m`, `F`, `T` and `V` are consistent, and so are the tested free subgroups.
+    - Decisive test: three-cone generators `x_AB`, `x_BC`, `x_AC`; ping-pong is excluded.

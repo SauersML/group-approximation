@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9.4, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.5 (fixed), 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5, v9.3 adds §0.6, and v9.4 marks Kourovka 21.73 and 21.74(b),(c) solved.
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5, v9.3 adds §0.6, v9.4 marks Kourovka 21.73 and 21.74(b),(c) solved, and v9.5 adds §0.7.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -161,6 +161,36 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
     and 6, which are published.
   - bh-free-58's hand-off for 21.73/21.74, 20.44, 19.45/19.46 and 21.140 is ce7ab8f74.
 
+### 0.7 v9.5 additions (summarized from referee verdicts, not re-refereed)
+
+- **BBMZ Q1.1: ESTABLISHED for every non-elementary hyperbolic RACG and its commensurability class**
+  (`hyperbolic-racgs-are-contracting-rsgs`, 3b86cb5549; review 9348a6f569).
+- **F_∞ simple hosts for all lattices in Sp(n,1) and F_4^(-20): ESTABLISHED**, as an independent second proof
+  credited to LISW, arXiv:2510.01952 (`arithmetic-lattices-embed-in-f-infinity-simple-groups`, c477812f8b). These
+  include cocompact hyperbolic Kazhdan groups. **Precision (v9.5 fix):** LISW covers every finitely generated
+  Q̄-linear group, so the open F_∞-host cases are the hyperbolic Kazhdan groups not known to be linear, such as
+  𝓗_31 and random groups. Every lattice in Sp(n,1) and F_4^(-20) is arithmetic in any case.
+- **Survey Q4.7 (closed surface groups in V).** Lemma L is refereed (22ee40f8ae, review 020fc76108): one-ended
+  hyperbolic subgroups of V are locally fixed. So "surface groups ∉ V" reduces to one compression lemma for locally
+  fixed torsion-free subgroups of V (91ed4b24d0).
+- **Birget's question (gate 1).** The lift-ideal transfer passes review (ab22b01462). The question now reduces to
+  (a) + (c) for one hard machine (`birget-question-via-decidable-bartholdi-mitrofanov-hosts`). **(c) is ESTABLISHED
+  for the increment-loop core Q**, the first non-contracting core (aecdf34e2f, PASS e733763d78). The two-odometer
+  obstruction failed review (e733763d78).
+- **Kourovka.**
+  - 20.33 is answered from the literature (Ziegler), refereed (2662055f4a).
+  - 21.74(a) is decidable on the neutral-primes positive ray (41b91ef912, PASS). It is reduced to computing the base
+    splitting (5af911309f, PASS), which is torsion-hard (2fc65d7aac).
+  - 20.44 and 20.47 have consolidated state nodes (1cf87649e0, 42d2249205). 20.47 partial PASS, credit Le Boudec
+    Lemma 4.3 (c982cd4efa).
+  - 18.48, d-adic case: orders {1, 2, 3, 4, 6, ∞} (9435671f1d, PASS with repairs 6a7953752c).
+- **KD2_p.** The KMS top must contract on every counter cycle. The live route is an H¹ class
+  (3860416431; state artifact `research/artifacts/gq-bh-kd2p-state.md`).
+- **Skipper–Zaremsky (RN groups).** F_∞ passes for polynomial activity via the BHM main theorem. The question is open
+  only for exponential activity (965e1aa19e, 18b43406c6).
+- **𝓗_31.** It reduces to the gallery lemma G (c9cc87fe9b). G0 was only partly proved: it fails at C-type apexes
+  (15b37f96f8), and it is restated for star chains without A–B edges (852934fcfc).
+
 ## 1. Gate ranking v9
 
 | Rank | Gate | Lanes |
@@ -200,7 +230,8 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   - Z_(S) is not additive in automaton groups (5b76fcccb).
   - Contracting groups bound roots at periodic points (8ef5b0e59, 6d6fc15f9).
   - Separable subgroups are Z-semilocal root-closed (fed477ec7).
-- **BBMZ Q1.1.** Hyperbolic RACGs with spread nerves are claimed (36cb962fb). The RSG property passes to
+- **BBMZ Q1.1.** ESTABLISHED for every non-elementary hyperbolic RACG and its commensurability class (3b86cb5549,
+  review 9348a6f569; supersedes the spread-nerve claim 36cb962fb). The RSG property passes to
   finite-index and quasiconvex subgroups (0866cd809) and to finite-index overgroups (32d05a324).
 - **CT_P(Z).**
   - Order is decided by elliptic reduction (2f2045a98, referee c79baedd2).
@@ -245,6 +276,9 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
    - *Missing insight:* square filling between descent trees at different bases, in Thumann's non-LCM regime. (T)
      forbids walls.
    - *First case:* thick hyperbolic triangle buildings with GQ(q,q) links (3ddb17e3e).
+   - *Done since v9:* all lattices in Sp(n,1) and F_4^(-20) have F_∞ simple hosts (c477812f8b; an independent second
+     proof, credit LISW arXiv:2510.01952, which covers every finitely generated Q̄-linear group). What remains is the
+     hyperbolic Kazhdan groups not known to be linear, such as 𝓗_31 and random groups.
    - *Lane:* bh-finf-hyp.
 3. **Closed mapping class groups** (BBMZ 5.3(2)). Either of two insights would do:
    - an amortized damage potential for least-damage tree domination;
