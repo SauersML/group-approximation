@@ -8,7 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.PaninAffine.Main: fails through
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/PaninAffine/Main.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**Repair landed, unprobed.** 13604e7553: K2 program, GEO/F.4: compile fixes from probe b1789846523 (unprobed). Stays OPEN until a trusted probe builds it green.
+
+**Repair landed, unprobed.** 1665cc7ace: K2 program, GEO/Cor 2.9/F.4: compile fixes from batch b1789856358 (unprobed). Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
