@@ -1,0 +1,5 @@
+OK 1  gamma, delta in SL_2(Z), trace 3, delta = tau gamma tau^-1
+OK 2  breakpoints are the hyperbolic fixed points (1+-sqrt5)/2, (3+-sqrt5)/2
+OK 3  one-bump: supp f = (a1,b1), supp g = (a2,b2), both move points right
+OK 4  a1 < a2 < b1 < b2: 2-chain of intervals (KKL Setting 1.1)
+OK 5  sampled monotonicity and continuity at breakpoints
