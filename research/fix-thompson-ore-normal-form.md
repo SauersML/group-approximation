@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.ThompsonOre.NormalForm: failed to synthesize instance of type class"
 ---
 
-**OPEN.** Lean module `GroupApproximation/ThompsonOre/NormalForm.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (1f7bd2d0fe, trusted batched probe job 1290512).** Previously OPEN. Lean module `GroupApproximation/ThompsonOre/NormalForm.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-integrate.
 
-**Repair landed, unprobed.** d47c7bd008: ThompsonOre.NormalForm, NormalFormD: fix toAdd_chi_val (first probe: the only 2 errors). Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

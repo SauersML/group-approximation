@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Refinement
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Refinement.lean` is red on main at 516e496a4a (trusted batched probe, job direct-b1789910605). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
+**First errors (verbatim; from probe job 1290512 on main 1f7bd2d0fe).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Refinement.lean:235:31: Application type mismatch: The argument

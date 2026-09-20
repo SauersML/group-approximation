@@ -21,6 +21,14 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 
 
 
+
+
+
+
+
+
+
+
 **Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-piece06-refinement`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessStepSubStatement` compile under the repository settings without changing any statement.

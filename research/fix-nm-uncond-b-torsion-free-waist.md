@@ -16,6 +16,7 @@ Both come from the induction step of Osin, arXiv:math/0411039v3, Lemma 9.7(b). N
 
 Every other input of the section is already closed on main. Hull Corollary 5.7 and Lemmas 3.5 and 5.8 are closed; the embedded bridge behind Hull Corollary 7.4 is closed; Kotowski–Ollivier, the Hyde–Lodha group, DGO 2.35 and Gerasimova–Osin 1.1 are applied closed. So these two residuals are the only open input. The reduction is the work of the GL lanes (GL06 through GL06h8, GL03D, GL03DKept, GL03DKeptProof, P10*). This module only names the interface.
 
+
 **Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-p01-cell-junction-value-hol`, `fix-ggt-van-kampen-greendlinger-leaf-p05-region-pair-rotation`, `fix-nm-full-gl03-d-kept-walk`, `fix-nm-full-gl06b-outer-side-transport`, `fix-nm-full-gl06d-outer-monogon-diagram`. Fix those first: errors here may be knock-on.
 
 **What it needs.**
