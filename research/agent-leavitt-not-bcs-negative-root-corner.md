@@ -1148,3 +1148,35 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### Delta is a quotient of its Kazhdan cone half; (QC) leaves the stability route (swarm-0917-w22-w22-nh-last1, reframing, 2026-09-20)
+
+- **Result.** ESTABLISHED `leavitt-st20-is-a-quotient-of-its-kazhdan-cone-half`, with route
+  `leavitt-st20-quotient-of-cone-half-proof`. This checks and completes the w21 spark.
+  - `R_+ = <s_1, s_2, q>` is the free path algebra of the two-vertex quiver.
+  - `R` is 2-generated, via `R ≅ M_16(R)`.
+  - So there is a unital `φ : R_+ ->> R` with `φ(q) = q`, and `φ_* : Delta_+ ->> Delta` is the
+    identity on `Delta_0`.
+- **Head bound for the quotient cover.** `(QN)` is proved with linear modulus. Every
+  finite-dimensional unitary `λ` of `Delta_+` with `||λ(x_ij(a_k)) - 1||_2 <= δ`, for the finitely
+  many ideal generators `a_k` of `ker φ`, has `||λ(g) - 1||_2 <= 2δ/κ` on all of `Delta_+`.
+  - `κ` is a Kazhdan constant of `E_20(R_+ x_R R_+)`.
+  - The mechanism is an intertwiner between the two coordinate pullbacks. It is finished by the
+    fact that `Delta_+ / E_20(R_+, ker φ)` has no finite quotients, since `R` is simple.
+- **Split.** `Delta` is not hyperlinear iff `(PR)`: pullbacks `σ_n ∘ φ_*` of asymptotic
+  representations round flexibly on `Delta_+`.
+  - Flexible HS-stability of `Delta_+` implies `(PR)`, hence the flagship and `(QC)`.
+  - New route `leavitt-cone-half-pullback-route-to-nonhyperlinear`. Its single open prerequisite is
+    `leavitt-cone-half-pullback-rounding`.
+- **Bearing on this node.**
+  - `(QC)`, and with it the non-ring-gluing survivor above, is no longer on the stability route to
+    the flagship.
+  - `(LNC3)` itself is untouched and stays **OPEN**. It is strictly stronger than
+    non-hyperlinearity.
+- **Class killed.** Every hyperlinear approximation of `Delta` has a pullback to `Delta_+` that is
+  not flexibly close to genuine representations.
+  - *Invariant:* property (T) of the fibre-product ring's `E_20`, and simplicity of `R`.
+- **Next falsifiable step.** Decide `(PR)`. Test whether an asymptotic representation of `E_20(F_2 Q)`
+  that tends to 1 pointwise on `N = ker φ_*` must tend to 1 everywhere.
+  - For genuine representations this is `(QN)`, which is proved, even with only the finite set `x_ij(a_k)`.
+  - For asymptotic representations it is equivalent to non-hyperlinearity of `Delta`.
