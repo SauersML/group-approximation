@@ -3,7 +3,6 @@ rg: 2
 id: hadamard-gadget-crosses-padding-line
 kind: claim
 title: Some Had_k -> Max-2Lin(2) gadget has deletion ratio s/c > 2 (equivalently R*(k) > 2); necessarily k >= 7 (hadamard-gadget-ratio-below-two-at-k6), s/c < 5/2, and the soundness must be true soundness, not Wiman's relaxation
-title: Some Had_k -> Max-2Lin(2) gadget has deletion ratio s/c > 2 (equivalently R*(k) > 2); necessarily k >= 7 (hadamard-gadget-ratio-is-below-two-at-k6), s/c < 5/2, and the soundness must be true soundness, not Wiman's relaxation
 distinct_from:
   hadamard-gadget-deletion-ratio-window: that proves R*(k) < 2 for k <= 5 and R*(k) <= 5/2 - 2^(1-k); this is the open statement that the window reaches above 2 for some larger k.
   unique-games-np-hard-below-the-padding-line: that is the milestone for any unique-games point; this is one sufficient gadget-level statement, feeding it through padding-line-hardness-from-hadamard-gadget.
