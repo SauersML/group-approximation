@@ -505,3 +505,32 @@ such as rank 2 and the single lawful component above.
   - **Where it stands.** No proof of (O-step). A single `P` with
     `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
     not (O) itself.
+- **2026-09-20, swarm-0917-w23-w23-fp-last1 (linear-characteristic): OPEN;
+  homological bounds at every depth computed exactly and killed as a class.**
+  Details are in `fpbs-mal-depth-homology-certificates-are-fox-kernel-gaps`
+  (ESTABLISHED), with scripts in `experiments/fpbs-transitive-retract-2026-09-17/`.
+  - *Certificate (proved).* For every finite `Q`, every `j` and every field,
+    `deep_j(Q) ≥ k_{u_{j+1}}(Q) − k_{u_j}(Q)`, where `u_i = ∂t_i/∂b`. This is
+    the full content of charging merges for components joined plus
+    `H_1(Sch(Q))`-image gained.
+    - It proves `deep = law` on any level where it equals `law`. That
+      happens on 33/200 random levels (`n = 5`, `j = 1`) and 24/150
+      (`n = 4`, `j = 2`), all with `law = 1`.
+    - Exact search found 0 violations.
+  - *Where it dies.*
+    - The chain rule `u_{j+1} = φ^j(u_1) u_j` bounds the certificate by
+      `k_{u_1}(Q^{(j)})`, the depth-0 Fox annihilator of the transported
+      level.
+    - That is `o(n)` along every Farber tower in characteristic 0 (by
+      Elek–Szabó and Linnell), and 0 on `p`-levels.
+    - In characteristic `p` it is `o(n)` unless sofic Lück approximation
+      fails for `u_1`.
+    - Numerically, `B_j ≤ 2` up to `n = 400`, while `law_1 ≈ 0.114 n`.
+    - So no field-coefficient homology count can give the weak form
+      `deep ≥ c · law` on towers. Invariant: the Sylvester rank of `u_1`.
+  - *Retract route (G), all levels.* By Hopficity, `K'` is never a retract or
+    a free factor of `S`, or of any single-seed overfold hit, on any
+    `L_j`-transitive level. This extends the w17-pull single-level kill.
+    - The `H_1`-split part does not die universally.
+      `det(H_1 K' → H_1 S) = ±1` on 3192/9504 `L_1`-transitive pairs at
+      `n = 5`.

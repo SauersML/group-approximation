@@ -1,0 +1,6 @@
+n 5 j 1 trials 200 fields [0, 2, 3, 5] violations deep<B: 0
+  (law, deep, max_F B) = (1, 1, 0) count 43
+  (law, deep, max_F B) = (1, 1, 1) count 33
+  (law, deep, max_F B) = (2, 2, 0) count 35
+  (law, deep, max_F B) = (2, 2, 1) count 72
+  (law, deep, max_F B) = (3, 3, 0) count 17
