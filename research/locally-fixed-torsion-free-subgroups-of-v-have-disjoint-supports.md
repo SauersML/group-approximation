@@ -67,6 +67,14 @@ locally fixed everywhere.
     `Fix(x_AC) ⊇ B`, so it lies in `A`, which `x_BC` fixes.
   - Whether some other construction works is open. A yes refutes (COMP), and then Q4.7 needs one-endedness a second
     time.
+  - **Update (09-19, later): the piece-permuting half is settled in favor of (COMP)**
+    (`block-permuting-local-fixers-force-disjoint-supports`, lane proof).
+    - If the three generators map cones onto cones, as for labeled transpositions (the torsion-free analogue of
+      `S_3`), the group is never torsion-free with cyclic centralizers, so never free.
+    - The proof is an iterated commutator: `[x_AB^6, x_BC^6]` is the identity on `A` and on `C'`. If it is trivial,
+      the common-power trick gives an element supported in `B`. Either way it has disjoint support from `x_AC`.
+    - What is left of the test: generators that mix cones, i.e. map some cone onto a clopen set that is not a union of
+      cones. For those, the commutator loses its vanishing on the second cone.
 
 ## Where a proof must work
 
