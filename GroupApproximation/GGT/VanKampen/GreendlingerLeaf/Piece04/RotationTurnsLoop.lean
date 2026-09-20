@@ -98,7 +98,7 @@ theorem facePerm_mem_of_isChain {γ : List M.Dart} (hchain : γ.IsChain fun a b 
     M.facePerm a ∈ γ := by
   obtain ⟨s, t, rfl⟩ := List.append_of_mem ha
   cases t with
-  | nil => exact hne (by simpa using h₁)
+  | nil => exact (hne (by simpa using h₁)).elim
   | cons b t =>
     have hab : M.facePerm a = b := List.isChain_iff_forall_rel_of_append_cons_cons.mp hchain rfl
     rw [hab]

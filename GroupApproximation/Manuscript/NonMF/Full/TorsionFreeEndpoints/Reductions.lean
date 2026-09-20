@@ -216,6 +216,8 @@ theorem introReducedAlgebraSentence_of_greendlinger
 
 /-! ## Every zero-parameter torsion-free endpoint, bundled -/
 
+-- The bundle keeps its established name `TorsionFreeEndpoints.TorsionFreeEndpoints`.
+set_option linter.dupNamespace false in
 /-- **Every zero-parameter torsion-free endpoint of `non_mf_groups_exist.tex`.**
 
 The conjuncts, in order:

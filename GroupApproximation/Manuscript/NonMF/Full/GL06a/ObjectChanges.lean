@@ -50,6 +50,7 @@ theorem exists_objects_of_mem_objectChanges (P : OsinLemma94RealizedPolygons S)
     s < P.sideCount k ∧ ∃ o o' : Option (Fin S.diagram.rCellCount), o ≠ o' ∧
       OsinLemma94RealizedPolygons.sideObject (P.kind k s) = some o ∧
       OsinLemma94RealizedPolygons.sideObject (P.kind k ((s + 1) % P.sideCount k)) = some o' := by
+  classical
   obtain ⟨hcont, hnb⟩ := Finset.mem_filter.mp hs
   have hlong : s ∈ P.longTransitions k := (Finset.mem_filter.mp hcont).1
   have hrun : s ∈ P.runEnds k := (Finset.mem_filter.mp hlong).1

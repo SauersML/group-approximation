@@ -59,7 +59,7 @@ noncomputable def collapsedEmbedding : (collapsedMap S.family).Dart ↪
     (collapsedMap (CellSideThickening.sectionFamilyOfArcs S f j hlen hf havoid).family).Dart where
   toFun x := ⟨(transport S f j hlen hf havoid).darts x.1,
     (keepEmbed S f j hlen hf havoid x.1).mpr x.2⟩
-  inj' x y h :=
+  inj' _ _ h :=
     Subtype.ext ((transport S f j hlen hf havoid).darts.injective (congrArg Subtype.val h))
 
 /-- The doubled dart in the old collapsed map. -/

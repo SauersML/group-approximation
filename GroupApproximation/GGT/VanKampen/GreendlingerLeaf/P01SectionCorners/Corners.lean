@@ -59,7 +59,7 @@ theorem outerArc_getElem? (S : GloballyDistinguishedSectionFamily D lambda c eps
   have hlt : arc.start.1 + i < (S.diagram.faceBoundary S.diagram.outerFace).darts.length := by
     omega
   have hdrop : i < ((Embedded.targetDarts S.diagram none).drop arc.start.1).length := by
-    rw [List.length_drop, hcyc]
+    rw [List.length_drop]
     omega
   have hrev : arc.start.1 + i <
       (S.diagram.faceBoundary S.diagram.outerFace).darts.reverse.length := by
