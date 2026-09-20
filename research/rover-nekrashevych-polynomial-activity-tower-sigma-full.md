@@ -78,3 +78,13 @@ The route gives a complete argument.
   `r`, `V_{3,r}G` has a character nonzero on `Γ_0`, and the Meinert/point-fixer branch is needed.
   `sum-invariant-characters-of-contracting-groups-via-nucleus` computes the character sphere of any contracting `G`
   from its nucleus.
+
+## Referee (bh-sz-vdg, 2026-09-19): item 1 PASS; items 2–3 not reviewed
+
+See `rover-nekrashevych-polynomial-activity-tower-review`.
+- **Item 1 passes.** `Γ` has type `F_∞`. BHM's main finiteness theorem applies at each step of the tower to the point-fixers `Fix_{Γ_{i+1}}(M) ⊇ Fix_{Γ_i}(M)`, for every finite `M` of rational points. Sections 0–6 of the route supply its hypotheses: (H1) finite germ extension, (H2) oligomorphicity, (H3) germ index. The base is BHM Appendix A. This needs neither the Σ-heredity theorem nor Lemma L nor (H4).
+- **Minor repairs:**
+  - §4(c), step 2: the tail's component lies in a circuit, by (a);
+  - Lemma G, step 1: justify `|γ_k| ≥ |α|` for large `k`, and say the coset is a right coset.
+- **Items 2 and 3 are not reviewed.** They rest on the unreviewed `germ-extension-point-fixer-sigma-heredity`.
+- **Proved in the review:** for contracting `G`, polynomial activity (one degree for all elements) is equivalent to every strongly connected component of the non-identity nucleus graph being a single cycle.

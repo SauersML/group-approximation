@@ -17,6 +17,11 @@ distinct_from:
   mechanism: positive entropy and dense minimal points put `Aut` of the full shift inside (ETDS 2010,
   Theorem 3). It is credited to him, and no priority is claimed.
 - Item 3 is a lane proof for the stated class of designs.
+- Referee bh-ref-d (6e0fb29940): PASS with repairs. All three are applied by bh-ra-t2 as the (RA_free)
+  owner:
+  - the adapted product set in item 1;
+  - the path-structure fact in item 2;
+  - the non-faithfulness line in item 3.
 - **T2 is not built.** The construction passes the `F_2` test and fails minimality and freeness.
 
 ## Statement
@@ -27,9 +32,16 @@ distinct_from:
    - `Z_1` is closed, nowhere dense and null;
    - `ν(Z_1 · K_(>N)) = ∏_(i≤N) β_i = 1/(N+1)`.
 
-   Since `log I_N ≥ N log 2`, this meets the tower law `ν(Z_1 · K_(>N)) ≳ (log I_N)^(-a)` for every
-   repetitivity exponent `a ≥ 1`, in particular `a = d = 2`. So the inequality itself is never the
-   obstruction.
+   Since `log I_N ≥ N log 2` along a strictly decreasing chain, this meets only the *logarithmic
+   consequence* `ν ≳ (log I_N)^(-a)` of the tower law, not the law itself (bh-ref-d, 6e0fb29940).
+
+   **Adapted set (repair, applied by bh-ra-t2 as (RA_free) owner).**
+   - Put `f(N) = ψ(R_S · sys(N_N))` and `f(0) = 1`. This is non-increasing and tends to 0, because
+     `sys → ∞` and `ψ(R) → 0` for an infinite subshift.
+   - Take `β_i = f(i)/f(i−1)`, and closed `B_i ⊆ K_i` of Haar measure `β_i`, with `B_i ≠ K_i` whenever
+     `β_i < 1`. That happens for infinitely many `i`.
+   - Then `ν(Z_1 · K_(>N)) = f(N)` exactly, and `Z_1` is still closed, nowhere dense and null.
+   - So the tower law itself is met, and the measure side is never the obstruction.
 2. **Loops make free cellular-automaton groups local at every scale.** Let `X` be Hochman's
    nested-square-path `Z^2`-SFT (ETDS 2010, §6), and let `X_B` be the SFT that adds a free label from `B`
    to every path cell. Let `Γ ≤ Aut(B^Z)` be free of rank 2; such subgroups exist for `|B| ≥ 2`
@@ -71,10 +83,15 @@ distinct_from:
 ## Proof
 
 **1.** `Z_1` is closed, being a product of closed sets. It is nowhere dense: every basic open set
-constrains finitely many coordinates, and `B_i ≠ K_i` for the others. `ν(Z_1) = ∏ β_i = 0`. Also
+constrains finitely many coordinates, and `B_i ≠ K_i` for infinitely many others. For the adapted set,
+`∏_(i≤N) β_i` telescopes to `f(N)`, and `ν(Z_1) = lim f(N) = 0`. `ν(Z_1) = ∏ β_i = 0`. Also
 `Z_1 · K_(>N) = M × ∏_(i≤N) B_i × K_(>N)`, of measure `∏_(i≤N) β_i = 1/(N+1)`.
 
 **2.**
+- *Path structure* (added at bh-ref-d's request). In every point of Hochman's `X`, every path is closed or
+  bi-infinite, with no endpoints and no one-sided rays. So each path carries a cyclic or bi-infinite word,
+  on which a cellular automaton acts. This is recalled from the construction of `X` (ETDS 2010, §6), not
+  re-verified at source.
 - Arrows determine each path cell's successor, so `φ_γ` has a local rule of the radius of `γ`, read along
   the path. It maps `X_B` onto itself because labels are unconstrained, and `φ_(γ^(-1))` inverts it.
 - *Faithfulness.* If `γ ≠ 1`, pick `x ∈ B^Z` with `γ(x)(0) ≠ x(0)`. Label an infinite path of an
@@ -87,7 +104,10 @@ constrains finitely many coordinates, and `B_i ≠ K_i` for the others. `ν(Z_1)
 - *(b)* In one point, all level-`n` labels lie in one `H_n`-orbit. A limit of such points has labels in
   the same finite orbit, so each orbit spans a closed invariant set. Minimality leaves one orbit.
 - *(c)* The centralizer of a transitive permutation group `H` on `O` is `N_H(H_x)/H_x`. For abelian
-  transitive `H`, the action is regular and the centralizer is `H` itself, which is abelian. ∎
+  transitive `H`, the action is regular and the centralizer is `H` itself, which is abelian.
+- *Non-faithfulness* (line added at bh-ref-d's request). `φ_([γ,δ])` acts trivially on points whose paths
+  are all closed, since there it acts through the abelian centralizers. In a minimal `Y` such a point has a
+  dense orbit, and `φ_([γ,δ])` commutes with the shifts, so by continuity it is trivial on `Y`. ∎
 
 ## Lesson for general BH
 
