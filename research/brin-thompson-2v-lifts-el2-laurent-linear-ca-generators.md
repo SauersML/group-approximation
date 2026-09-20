@@ -53,3 +53,16 @@ cannot be used to test it.
   - *What a realization now needs.* A lift of `h` that is not piecewise baker, or a variant without
     a torus element (the one-sided `F_p[t]` version, which needs countably many lifts). Both are
     untested.
+- 2026-09-20 (swarm-0917-w23-w23-z-follow): `one-sided-three-shear-lamp-criterion-drops-the-torus`
+  (ESTABLISHED) reframes this claim as a strictly weaker, torus-free lifting problem.
+  - *Criterion.* Lifting three one-sided linear CAs of `(F_p^2)^N` through one affinely spanning
+    `φ` already refutes Haagerup for `nV`, for every `p` including `p = 2`. The CAs are
+    `e_12(1)`, `e_12(t)` and `e_21(t)`. For `p ≥ 3` two suffice.
+  - *Relative (T).* For `Γ_0 = ⟨e_12(1), e_12(t), e_21(t)⟩`, a mean on the nonzero dual that is
+    invariant would put mass `1/2` on each of the sectors `deg x − deg y = ±1`, and then mass
+    `1/2` more on `= 0`.
+  - *Restriction.* Any realization of this claim restricts to one of that criterion by forgetting
+    negative indices. So the wave-22 survivor "one-sided variant, countably many lifts" becomes
+    three lifts, and the side-split kill (which needs `h`) does not reach it.
+  - *Not done.* No lifts are constructed. Whether a piecewise-baker lift of a hyperbolic element
+    such as `e_12(1)e_21(t)` forces a virtually abelian linear group is left as a spark.
