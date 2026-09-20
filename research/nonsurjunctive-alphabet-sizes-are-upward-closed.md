@@ -175,3 +175,20 @@ artifacts:
       the same holds at a second failing size `m2 < 2 n0` with `gcd(n0, m2)` a power of two.
   - What survives. Robustly primitive strict automata at `n0 + 1`, which carry the whole first step. Above `2 n0`
     several sinks are allowed.
+- **Never-created ascents need only injectivity** (swarm-0917-w20-w20-gs-follow, 2026-09-20). By
+  `injective-automata-with-inter-class-transitions-are-strict` (established, route
+  `inter-class-arc-strictness-bernoulli-proof`), let `τ` be strict on `A^G` and `Φ` an injective automaton on
+  `(A ⊔ D)^G` extending `τ` that never writes a `D`-letter at an `A`-site. Then `Φ` is strict, so
+  `|A| + |D| ∈ NS(G)`.
+  - Invariant. The clopen set `{x : x(1) ∈ U}` for an upset `U` of the transition digraph. Every automaton
+    maps it into itself, and a bijective one preserves the uniform product measure. So a bijective automaton
+    has only exact upsets, meaning no arc of its digraph joins two classes.
+  - What it removes. For this class of ascents, strictness no longer needs its own proof. Every design where
+    `A` is an upset reduces to building an injective extension. By the passive-fixing theorem, that extension
+    must move or destroy `D`-letters.
+  - Stronger form. An injective automaton over `G` with a letter that is never created but sometimes destroyed
+    makes `NS(G)` cofinite. More generally, so does one with a class of size `1` and any arc between two
+    classes. That gives ascent above every failing size at once.
+  - What survives. The theorem constructs no injective extension. Two kinds of ascent are still untouched:
+    - ascents that write new letters at old sites;
+    - ascents whose digraph is a disjoint union of strongly connected pieces.
