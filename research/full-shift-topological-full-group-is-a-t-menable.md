@@ -193,3 +193,27 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
     `W(Y)`.
   - *Correction to the w16 "Surviving" line.* Its two named survivors (quasi-invariant measured
     walls, and pattern-weighted orbit walls) are local. So they die here.
+- **2026-09-20 (swarm-0917-w21-w21-nv-break): relative-(T) refutations are confined to one
+  displacement ball (class-kill; the claim stays OPEN).**
+  - *Class.* Refutation witnesses `(Γ, H)` with `Γ ≤ [[X]]` f.g., `H ≤ Γ` infinite and
+    `(Γ, H)` relative (T). More generally, relative-FH subsets `Y ⊆ Γ`. Normality is not assumed.
+  - **Result.** `wobbling-relative-fh-subsets-lie-in-displacement-balls` (ESTABLISHED, route
+    `wobbling-relative-fh-displacement-ball-proof`) proves `Y ⊆ B_K = {‖k_f‖_∞ ≤ K}` for one `K`.
+    So a relative-(T) subgroup `H` is locally finite, and its exponent divides `(2K+1)!`.
+  - **Invariant:** recurrence of `Z` (a point has zero capacity), the cut-space mechanism of
+    extensive amenability.
+  - **Where every member dies.**
+    - Let `μ_{m,n}` be the law of the cut `[m,∞)` smeared independently over `|y − m| < 2n`. Its
+      square root moves by `‖·‖² ≤ 4r²/n` under each generator.
+    - It moves by exactly `2` under an element that jumps a point from distance `≥ 2n` on one side
+      of `m` to distance `≥ 2n` on the other, because the two laws are mutually singular.
+    - A Lemma-Q uniformity (`sup_Y ψ ≤ C·max_Q ψ` for all cnd `ψ`) then bounds the displacement on
+      every aperiodic orbit at once.
+  - This closes the w17 survivor "non-normal relative-(T) subsets" for subsets with relative FH,
+    with no appeal to Jolissaint's quantitative relative (T).
+  - **Surviving:** a bounded-exponent witness whose whole base lies in a single `B_K`. The char-p
+    candidate `EL_2(F_p[t,t^{-1}]) ⋉ F_p[t,t^{-1}]²` of
+    `full-shift-full-group-has-infinite-normal-relative-t-subgroup` has exponent `p`, and must
+    realize its entire base inside one ball. The next test is `Γ`-almost-invariant vectors in the
+    monomial block representation `⊕_B ℓ²_0(B)` over `H`-orbit blocks, which is unresolved.
+    Not claimed: that the absence of infinite relative-FH subsets implies Haagerup.

@@ -1,0 +1,2 @@
+(1) upper bound ||g xi - xi||^2 <= 4 r^2 / n: 959 trials, max ratio 0.3099
+(2) far crossing gives ||g xi - xi||^2 = 2 exactly: 9 cases
