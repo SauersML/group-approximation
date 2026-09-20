@@ -85,6 +85,16 @@ having disjoint supports.
 So `2V_H` is perfect. Under item 6, Matui's `simple2` makes `D(2V_H) = 2V_H` simple. Finally,
 `u (τ_c × id) u^-1 = τ_(2c) × id = (τ_c × id)^2` gives `[u, τ_c × id] = τ_c × id`.
 
+**Item 8.** This is the quoted text of Li's Example `ex:ZS`. It uses only the degree setting and
+`𝔡(g.a) = 𝔡(a)`, both of which hold here.
+
 **Corollary.** Item 3 puts `Q ⋊ ⟨2⟩` in `2V_H`. Li's Example `ex:ZS` (III), with the conditions checked in
-items 5 and 6 and (Inv) assumed, gives `F_2` for `2V_H` from `F_2` of `St(H, v) = H`. Items 6 and 7 give
-simplicity.
+items 5, 6 and 8, gives `F_2` for `2V_H` from `F_2` of `St(H, v) = H`. Items 6 and 7 give simplicity.
+
+**Item 9.** From `σ τ_a σ^-1 = τ_b`, `σ(x + na) = σ(x) + nb` for all `n ∈ Z`. Since `a` is a unit, `Za` is dense
+in `Z_2`. `σ` is continuous, so `σ(x + ta) = σ(x) + tb` for all `t ∈ Z_2`. Taking `x = 0` and `t = y/a` gives
+`σ(y) = σ(0) + (b/a) y`.
+
+**Item 10.** Every translation and every gluing element supplied by item 9 is a Möbius map over `Q_2`, and so
+is every element of the pieces. So the generated group is a finitely generated subgroup of `PGL_2(Q_2)`. By
+`fg-linear-groups-have-roots-at-finitely-many-primes`, `τ` has roots in it at only finitely many primes.

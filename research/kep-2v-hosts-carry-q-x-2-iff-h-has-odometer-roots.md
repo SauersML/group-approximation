@@ -81,9 +81,34 @@ not reviewed).
    `2V_H = D(2V_H)` is simple, and the copy `Q ⋊ ⟨2⟩` of item 3 lies in it. Moreover every `a = τ_c × id`
    satisfies `a = [u, a]`, since `u a u^-1 = a^2`.
 
-**Conditional corollary.** Let `H ≤ Aut(T_2)` be self-similar, with `τ ∈ H`, `T_H ⊇ Z_(2)`, `H` finitely
-presented and locally faithful, and Li's (Inv) satisfied. Then `2V_H` is a finitely presented simple group
-containing `Q ⋊ ⟨2⟩`. (Inv) is the one condition not checked here.
+8. **(Inv) is automatic too.** Li defines (Inv) at l.2332 of the e-print: "`𝔊.𝔖 ⊆ 𝔖𝔆^*`", `X(g.𝔳; g.𝔢) ∈ 𝔛`
+   whenever `X(𝔳; 𝔢) ∈ 𝔛`, and `g.γ ∈ Γ 𝔆^*`. Example `ex:ZS` (l.2372) proves exactly these three
+   properties for every degree-preserving self-similar action in the degree setting: "we have
+   `𝔊.𝔖 ⊆ 𝔖𝔆^*`. Moreover, if `𝔛` and `Γ` are constructed as in §`s:Gars-deg`, then … `X(g.𝔳;g.𝔢) ∈ 𝔛`,
+   and … `g.γ ∈ Γ𝔆^*`." So (Inv) holds for every `H` here, including the rational Iwahori group.
+
+**Conditional corollary.** Let `H ≤ Aut(T_2)` be self-similar, with `τ ∈ H` and `T_H ⊇ Z_(2)`, and let `H`
+be finitely presented and locally faithful. Then `2V_H` is a finitely presented simple group containing
+`Q ⋊ ⟨2⟩`. Every condition of Li and Matui is now accounted for (items 5–8). What remains is the existence
+of such an `H`.
+
+## The remaining gap: a finitely presented, locally faithful, non-linear `H`
+
+9. **Conjugators between odometer roots are affine.** Let `σ ∈ Aut(T_2)` and `σ τ_a σ^-1 = τ_b` with
+   `a ∈ Z_2^×`. Then `σ(x) = σ(0) + (b/a) x`. So inside `Aut(T_2)`, an element carrying a root `τ_(1/ℓ)` to a
+   root `τ_(1/ℓ')` is the affine map `x ↦ (ℓ/ℓ') x + z`, and it rescales all translations by the same
+   factor.
+10. **Consequence for amalgams of Iwahori-type pieces.** Build `H` from finitely generated Möbius pieces,
+    each seeing finitely many primes, glued along elements that carry roots of one piece to roots of
+    another. By item 9 every such gluing element is a Möbius map (affine) over `Q_2`. So the glued group lies
+    in `PGL_2(Q_2)`, it is linear, and by `fg-linear-groups-have-roots-at-finitely-many-primes` it has roots
+    at only finitely many primes. **Realized inside `Aut(T_2)`, prime-moving amalgams collapse to linear
+    groups.**
+    - An abstract amalgam or HNN extension is not residually finite in general, so it does not act faithfully
+      on `T_2`.
+    - The translations `τ_(1/ℓ)` of a working `H` must therefore arise from **non-conjugation words**:
+      products of non-affine elements that happen to equal a translation.
+    - The `Q ⋊ ⟨2⟩` rung of the `GL_n(Q)` programme now comes down to exactly this one construction problem.
 
 The one-coordinate group `V_2(H)` is finitely presented when `H` is a finitely presented self-similar group
 (Scott), and its commutator subgroup is simple (`rover-nekrashevych-finite-presentation-criteria`). But no
