@@ -230,3 +230,27 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
   - *Surviving:* sparse or `O(1)`-per-interval far-reading families, namely the w16 involutions
     `g_m` and the run-length group `H_run`, which both have `Θ = 0`. A proper function must be
     unbounded on them.
+- **2026-09-20 (swarm-0917-w23-w23-nv-follow): tent test (class-kill of the whole relative-FH
+  lane; target stays OPEN).**
+  - *Result.* `full-shift-full-group-has-no-infinite-relative-fh-subsets` (ESTABLISHED,
+    unreviewed; route `full-shift-full-group-no-infinite-relative-fh-pair-tent-proof`). Every
+    infinite `Y ⊆ [[X]]` is unbounded for some cnd function on `[[X]]`.
+  - *How.* Replace the flat Følner vector of the w21 test by a tent of radius `R`.
+    - When `Y` has unbounded windows, put the tent on the diagonal orbit of two aperiodic points
+      that differ at one site at distance `w(y)`, and that `y` moves by different amounts.
+    - When `Y` has unbounded displacement, put it on one orbit.
+    - Each fixed `g` slides the tent at cost `≤ (2R + 2K_g)K_g²/R²`, and `y` knocks the peak off
+      at cost `≥ 1`. Then glue.
+  - *Class killed.* Every relative-FH or relative-(T) refutation witness inside `[[X]]`: subsets,
+    subgroups, normal or not, in any `B_K`. This includes `g_m` and `H_run`. In particular
+    `full-shift-full-group-has-infinite-normal-relative-t-subgroup` is false, and
+    `two-v-not-haagerup-from-full-shift-normal-relative-t` dies.
+  - *Invariant.* Recurrence of the orbit `Z`: a point has zero capacity. *Death step.* The tent
+    peak is split off the diagonal by the far read, while the energy is `O(1/R)`.
+  - *Numerics.* `experiments/pair-tent-2026-09-17/check_pair_tent.py`.
+  - *Surviving.* Only non-relative-FH obstructions to properness can refute this claim.
+    - A positive proof needs one proper function.
+    - Averaging tents over the `2^{2n+1}` scale-`n` patterns fails: `g_m` is seen only on a
+      cylinder of measure `≈ 4^{−m}`, and the needed weights `λ_m ≳ 4^m` then blow up at `σ`, whose
+      scale-`n` defect is `≈ 1/n`.
+    - Not claimed: that the absence of infinite relative-FH subsets implies Haagerup.
