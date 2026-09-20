@@ -65,10 +65,9 @@ under sections, containing `1`). `Γ = V_{d,r}(G)`. By BBMZ, Γ is a full contra
      loops at `v`. Their free concatenations give `2^ℵ₀` infinite paths.
 4. **Consequence.** Item 1 gives zero defect, so `bounded-defect-free-full-contracting-rsgs-are-f-infinity`
    (Theorem 1, itself an attribution to BHM Remark 2.13) applies whenever Γ is bounded, i.e. in case (B).
-   - Case (B) is the circuit description of Sidki's bounded automorphisms: circuits are disjoint and joined by no
-     path. This identification is recalled, not re-read (S. Sidki, *Automorphisms of one-rooted trees: growth,
-     circuit structure, and acyclicity*, 2000). The node does not depend on it, since (B) is stated directly on
-     `𝒩`.
+   - Case (B) is exactly BHM's class of bounded automata groups. Their definition is that each `g` has only
+     finitely many infinite words with all sections nontrivial, i.e. finite `sing(g)` by item 2. The proof is in
+     `rover-nekrashevych-polynomial-activity-tower-review`.
    - The torsion-defect and level-set theorems also assume boundedness, so they reach no further. ∎
 
 ## What this leaves for Skipper–Zaremsky
@@ -76,11 +75,12 @@ under sections, containing `1`). `Γ = V_{d,r}(G)`. By BBMZ, Γ is a full contra
 | Case | Status for `V_{d,r}(G)` |
 |---|---|
 | (B) bounded | `F_∞`: Belk–Hyde–Matucci. Röver's group is also re-proved on main by `wreath-recursion-thompson-groups-inherit-fn` |
-| (P) polynomial | `F_∞` claimed by `rover-nekrashevych-polynomial-activity-tower-sigma-full` (lane proof, **unreviewed**) |
+| (P) polynomial | `F_∞` by `rover-nekrashevych-polynomial-activity-tower-sigma-full`, item 1. **Refereed PASS** in `rover-nekrashevych-polynomial-activity-tower-review`, via BHM's main finiteness theorem along the activity tower. Its Σ items are unreviewed |
 | (E) exponential | **open** in general. `F_∞` via dying-kernel covers for IMGs of hyperbolic PCF rational maps and expanding coverings of compact aspherical spaces (`hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity`) |
 
-- (P) coincides with Sidki's polynomial activity. That identification is recalled, and it is the only link from
-  this table to that node's hypotheses, so it should be checked when that node is reviewed.
+- (B) ∪ (P) is exactly polynomial activity growth in that node's sense, one degree for all elements. This is proved
+  in `rover-nekrashevych-polynomial-activity-tower-review`. So after that review, V_{d,r}(G) is `F_∞` for every
+  contracting G in cases (B) and (P), and the Skipper–Zaremsky question is open exactly in case (E).
 - **Lesson.** For Röver–Nekrashevych groups the singular-set trichotomy is the activity trichotomy. Defect is
   always zero, so the question is purely about the cardinality of singular sets. The BBMZ-host phenomenon of
   nonzero defect at branch points does not arise.
