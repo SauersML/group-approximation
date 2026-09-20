@@ -143,3 +143,31 @@ where `P_{Z^2}` should lie in `B`: a universal `N`-fixed projection forces
 Relative (T) leaves eigenvectors of the nontrivial characters of
 `Z^2/2Z^2` unexcluded, exactly the `(Z^d, 2Z^d)` failure mode of the
 note's section 7.
+**Chromatic certificates overshoot to non-weak-soficity and
+non-hyperlinearity (2026-09-20, swarm-0917-w20-w20-ptm-break).**
+`chromatic-codes-kill-marks-in-every-bi-invariant-approximation` (direct
+proof `chromatic-code-bi-invariant-pigeonhole-proof`) shows that the
+pigeonhole behind the three chromatic engines uses only two things: a
+bi-invariant metric and finitely many colours at each scale.  The engines are
+the commutator code, the conjugacy-difference code and the Carmichael
+section.
+
+- **All radicals at once.**  A bounded-area certificate at `z` puts `z` in
+  the weakly sofic, sofic, finite-field linear-sofic, hyperlinear and MF
+  radicals simultaneously.  So a certificate at a nontrivial mark proves the
+  open roots `non-weakly-sofic-group-exists` (Glebsky--Rivera Conjecture 4.5)
+  and `non-hyperlinear-group`.
+  - For the Leavitt route `property-t-free-leavitt-via-chromatic-code` this is
+    recorded as two bridge routes, `non-weakly-sofic-via-leavitt-chromatic-commutator-code`
+    and `nonhyperlinear-via-leavitt-chromatic-commutator-code`.
+  - The same applies to the lifted-Thompson-`T` code leaf (bounty 60).
+- **No MF-only certificate.**  No chromatic certificate can separate MF from
+  hyperlinear, sofic or weakly sofic approximation.
+- **Where certificates cannot exist.**  None exists at a mark that survives in
+  some finite bi-invariant model.  In particular none exists at the sofic
+  non-MF group `E`'s mark, in any finitely presented cover.
+- **What stays open.**  The goal is not decided.  Chromatic routes are
+  calibrated as at least as hard as both roots.  Any Kazhdan-free
+  reproof that separates MF from the finite-group approximation classes must
+  use a mechanism that is specific to the operator norm (not a bi-invariant
+  pigeonhole).
