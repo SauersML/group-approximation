@@ -1,0 +1,5 @@
+(1) subadditivity: max over 300 trials of F(XY)-F(X)-F(Y) = 0.0000  (must be <= 0)
+(2) d=120 eps=0.001: S_1 ratio max_r L_1(r)/L_1(sigma) = 0.088; eta = 0.0167; full-space L_2(sigma)^2 = 0.0667
+    localized dim D = 4; on E: max_r L_2(r)^2 = 6.23e-08, L_2(sigma)^2 = 2.000
+(2) d=200 eps=5e-05: S_1 ratio max_r L_1(r)/L_1(sigma) = 0.007; eta = 0.0100; full-space L_2(sigma)^2 = 0.0400
+    localized dim D = 4; on E: max_r L_2(r)^2 = 3.62e-11, L_2(sigma)^2 = 2.000
