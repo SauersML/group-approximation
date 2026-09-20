@@ -1,0 +1,33 @@
+== 1. Z^2 twisted by M = [[2,1],[1,1]] ==
+pair [(0, 0), (1, 0)] free through k=16
+pair [(0, 0), (0, 1)] free through k=16
+pair [(0, 0), (1, -1)] free through k=16
+pair [(0, 0), (2, 3)] free through k=16
+pair [(1, 2), (-3, 1)] free through k=16
+triple [(0, 0), (1, 0), (0, 1)] -> collision at k=2: (0, 1) vs (1, 2); distinct parts 8 of 9
+triple [(0, 0), (1, 0), (2, 0)] -> collision at k=4: (0, 2, 2, 0) vs (1, 0, 0, 1); distinct parts 77 of 81
+triple [(0, 0), (1, 0), (-1, 0)] -> collision at k=4: (0, 1, 1, 0) vs (1, 2, 2, 1); distinct parts 77 of 81
+triple [(0, 0), (1, 1), (5, -2)] -> collision at k=5: (0, 1, 0, 0, 1) vs (1, 0, 1, 2, 0); distinct parts 242 of 243
+  k= 1  #distinct parts=     3  3^k=     3  ratio to 2.618^k=1.15
+  k= 2  #distinct parts=     8  3^k=     9  ratio to 2.618^k=1.17
+  k= 3  #distinct parts=    21  3^k=    27  ratio to 2.618^k=1.17
+  k= 4  #distinct parts=    55  3^k=    81  ratio to 2.618^k=1.17
+  k= 5  #distinct parts=   144  3^k=   243  ratio to 2.618^k=1.17
+  k= 6  #distinct parts=   377  3^k=   729  ratio to 2.618^k=1.17
+  k= 7  #distinct parts=   987  3^k=  2187  ratio to 2.618^k=1.17
+  k= 8  #distinct parts=  2584  3^k=  6561  ratio to 2.618^k=1.17
+  k= 9  #distinct parts=  6765  3^k= 19683  ratio to 2.618^k=1.17
+  k=10  #distinct parts= 17711  3^k= 59049  ratio to 2.618^k=1.17
+== 2. Z^2, t central ==
+pair collision: (2, (0, 1), (1, 0), 3, 4)
+== 3. Heisenberg, t central ==
+pair ((1, 0, 0), (0, 1, 0)) first collision (4, (0, 1, 1, 0), (1, 0, 0, 1))
+pair ((1, 0, 0), (1, 1, 0)) first collision (4, (0, 1, 1, 0), (1, 0, 0, 1))
+pair ((2, 1, 0), (1, 3, 5)) first collision (4, (0, 1, 1, 0), (1, 0, 0, 1))
+pair ((1, 0, 0), (0, 0, 1)) first collision (2, (0, 1), (1, 0))
+== 4. BS(1,2) calibration: U_n = {x y^i} ==
+U_2 free through the tested lengths
+U_3 free through the tested lengths
+U_4 free through the tested lengths
+U_5 free through the tested lengths
+ALL CHECKS PASSED
