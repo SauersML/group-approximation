@@ -1,0 +1,36 @@
+Periodic strip patterns: twisted Betti numbers of R_r(M + Zv)/Z at r = 1, mod p = 2147483629.
+Run from this directory. "h2" = patterns with b_2 > 0 at lam = 1 or generic lam;
+"hits" = patterns whose b_2 differs between lam = 1, lam = -1 and a random lam
+(a necessary condition for H_2 torsion at lam = +-1, since d_2 <= Delta b_2).
+
+$ python3 test_periodic.py
+S2xR (expect lam=1: [1,1,1], else [0,0,0]): ([6, 42, 104, 108], {1: [1, 1, 1], 12345: [0, 0, 0], 2147483628: [0, 0, 0]})
+rand: ([10, 28, 29, 13], {1: [1, 1, 0], 777: [0, 0, 0], 2147483628: [0, 0, 0]}) 0.01
+
+$ python3 random_search.py 11 3000 hexa
+SUMMARY hexa 11 {'done': 2928, 'skipped': 72, 'h2': 108, 'hits': 0} 694.6
+$ python3 random_search.py 11 3000 box
+SUMMARY box 11 {'done': 2920, 'skipped': 80, 'h2': 1, 'hits': 0} 670.4
+$ python3 random_search.py 11 3000 rows
+SUMMARY rows 11 {'done': 2941, 'skipped': 59, 'h2': 0, 'hits': 0} 598.0
+$ python3 random_search.py 2 30 lattice
+SUMMARY lattice 2 {'done': 30, 'skipped': 0, 'h2': 0, 'hits': 0} 0.7
+$ python3 random_search.py 5 150 lattice
+SUMMARY lattice 5 {'done': 150, 'skipped': 0, 'h2': 0, 'hits': 0} 4.7
+$ python3 random_search.py 9 1500 lattice
+SUMMARY lattice 9 {'done': 1500, 'skipped': 0, 'h2': 0, 'hits': 0} 71.5
+$ python3 random_search.py 7 60 octa
+SUMMARY octa 7 {'done': 38, 'skipped': 22, 'h2': 0, 'hits': 0} 116.0
+$ timeout 1500 python3 random_search.py 21 200 octa
+(killed by the timeout before its summary line; no HIT line was printed, but the
+run gives no count. Dense octa tracks are slow: up to ~12,500 4-clique orbits.)
+
+Bending check (periodic-planar-rips-patterns-bend-to-finite-quotients):
+$ python3 bend_check.py 3 400
+pattern k 12 v (2.046986501915999, 0.0) margin 0.0037 twisted b(lam=1) [1, 1, 1] b(generic) [0, 0, 1]
+  N 8 graphs equal False finite b [1, 1, 0] N*generic b2 8
+  N 16 graphs equal False finite b [1, 1, 0] N*generic b2 16
+  N 32 graphs equal True finite b [1, 1, 32] N*generic b2 32
+  N 64 graphs equal True finite b [1, 1, 64] N*generic b2 64
+(N = 8, 16 are below N_0 for this small margin; for N >= 32 the bent r-graph is
+the quotient graph and b_2 = N * rank H_2, as the lemma and the Wang sequence predict.)
