@@ -1,0 +1,15 @@
+n 24 E defect 0 orbit sizes Counter({2: 12})
+setup 480 vertices 12 orbits 0.0 s
+law of one orbit 1
+  block (0, 1) V 80 seeds 34 cross 32 deepc=law
+  block (0, 2) V 80 seeds 34 cross 32 deepc=law
+  block (0, 3) V 80 seeds 32 cross 30 deepc=law
+  block (0, 4) V 80 seeds 32 cross 30 deepc=law
+  block (0, 5) V 80 seeds 34 cross 32 deepc=law
+  block (0, 6) V 80 seeds 34 cross 32 deepc=law
+  block (0, 7) V 80 seeds 24 cross 22 deepc=law
+  block (0, 8) V 80 seeds 36 cross 34 deepc=law
+  block (0, 9) V 80 seeds 24 cross 22 deepc=law
+  block (0, 10) V 80 seeds 36 cross 34 deepc=law
+  block (0, 11) V 80 seeds 50 cross 48 deepc=law
+SUMMARY {'deepc=law': 11}
