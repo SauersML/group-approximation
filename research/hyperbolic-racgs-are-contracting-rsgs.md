@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `hyperbolic-racgs-contracting-rsg-via-min-star-order` (lane `bh-q11-beyond`, 2026-09-19; lane
-proof, elementary, **not independently reviewed**; no priority claimed). The analytic input is the refereed conditional
+proof, elementary; no priority claimed). **Referee PASS** (bh-ref-c, 2026-09-19, no repairs, no prior statement found;
+`research/hyperbolic-racgs-min-star-order-review.md`, landed 9348a6f569). The analytic input is the refereed conditional
 theorem `greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs` and Steps 1, 2 and 4 of the refereed
 `hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof`. The new part is purely combinatorial.
 
