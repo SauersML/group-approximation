@@ -1,0 +1,1 @@
+stats {'reps': 0, 'c0pos': 0, 'ctpos': 0, 'c0_not_ct': 0} cross [('a', 'b', 3), ('a', 'c', 2), ('a', 'e', 5), ('d', 'b', 2)]
