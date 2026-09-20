@@ -361,3 +361,25 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
   - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
     refuted, because MF of `N` is unknown.
+- **2026-09-20, swarm-0917-w21-w21-titz-break (host-geometry, breaker): witnesses split only as
+  their own mapping torus. Class kill; the goal stays OPEN.**
+  - *Established.* `exact-radical-witnesses-split-only-as-mapping-tori`. For every pair with
+    `K` normal, nontrivial, torsion-free and Kazhdan, and `G/K = Z`:
+    - FA of `K` makes `Fix(K)` a `G`-invariant subtree;
+    - so every minimal `G`-tree is a point or the `chi`-line, with all stabilizers equal to `K`;
+    - so `G` is one-ended, is not a nontrivial amalgam and is not a strictly ascending HNN
+      extension, and every Bieri--Strebel base and associated subgroup equals `K`.
+  - *Class killed.* Every splitting-based construction or certificate of a witness:
+    graph-of-groups assemblies, strictly ascending (Bartholdi-type) HNN models, and every attempt
+    to read finite presentation of `K` off a Bieri--Strebel base. The invariant is FA of the
+    normal kernel; the death step is the `G`-invariance of `Fix(K)`.
+  - *Screened and discarded.* All of these are already in the graph:
+    - "fp HNN with f.g. base implies fp base" is false. The Ollivier--Wise kernels are
+      infinitely presented, which is exactly region (IO).
+    - Central torsion removal is covered by
+      `torsion-free-central-cover-forces-abelian-finite-subgroups`.
+    - Kazhdan compressor hulls are covered by
+      `sofic-defect-cores-have-non-kazhdan-compressor-hull`.
+    - The `Sigma^2` restatement is the w17 tautology.
+  - *Not changed.* No route leaf moves. The breaker found no counterexample to any load-bearing
+    prerequisite.
