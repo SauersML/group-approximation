@@ -127,6 +127,16 @@ artifacts:
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_mixed.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_small.sh
   - experiments/fpbs-overfold-cascade-2026-09-17/run_ostep.sh
+  - research/artifacts/fpbs-overfold-sym-covers-2026-09-20.md
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/covers.py
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/rel.c
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/all_j1_k2_s3.txt
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/lawge5_j1_k2_s4.txt
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/run_law6.sh
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_0_s5.txt
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_1_s5.txt
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_2_s5.txt
+  - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_3_s5.txt
 ---
 
 **OPEN.** Notation is as in
@@ -505,3 +515,33 @@ such as rank 2 and the single lawful component above.
   - **Where it stands.** No proof of (O-step). A single `P` with
     `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
     not (O) itself.
+- **2026-09-20, swarm-0917-w22-w22-fp-last1 (census-computation): OPEN;
+  first test of (O) on proper covers of the Sym base `B_1 = Cay(Sym 3)`,
+  0 violations, and exact on every double cover.** Details are in
+  `research/artifacts/fpbs-overfold-sym-covers-2026-09-20.md`, with scripts
+  and outputs in `experiments/fpbs-overfold-sym-covers-2026-09-17/`.
+  - **Target.** This is the restriction (O|B) that the w21-fp-pull route needs:
+    `deep_j ≥ c_1 law_j` on covers of `B_j`. Until now only the bases
+    themselves had been tested.
+  - **Method.** Every 2-sheeted permutation-voltage cover of `B_1` was
+    built, gauge-fixed on a spanning tree (128 choices), and run through the
+    exact relative solver `rel` (w21-fp-break) at `j = 1`.
+  - **Result.**
+    - There are 127 transitive covers in 31 isomorphism classes. (E) holds
+      on all of them.
+    - The classes have `law` 3, 4, 5 or 6 (8, 14, 5 and 4 classes
+      respectively).
+    - **`deep_1 = law_1` holds exactly on all 31 classes.**
+      - This is computer-checked: every `s ≤ law − 1` was run, and the exact
+        reduction from w21-fp-break was applied.
+      - The `law 6` classes needed all 5-sets of overfold seeds: 1.29 or
+        3.87 · 10^8 sets each, in `law6_*_s5.txt`.
+      - No saving appeared in any run.
+    - `B_2` itself has `law_2 = 12` and is clean for `s ≤ 2`.
+    - On double covers of `B_2` (`V = 960`), `rel` does not finish computing
+      `law` in 300 s.
+  - **Where it dies.**
+    - This is finite-size evidence at `j = 1` only. It bounds no `θ_j` and
+      gives no uniform `c_1`.
+    - Exactness at `s = law − 1` costs about `C(#overfold, law − 1)`
+      closures, which already puts `j = 2` (`law 12`) out of reach.
