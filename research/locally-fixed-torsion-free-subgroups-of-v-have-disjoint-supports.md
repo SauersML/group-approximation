@@ -109,3 +109,20 @@ a power it must preserve every piece. Refinement cannot produce that for fixers 
 **Natural next step.** Find, inside `Γ`, an element with a single attractor and a single repeller, as a product of
 elements whose attractor and repeller sets are in general position (in the style of the convergence-group lemma). Or
 show that locally fixed torsion-free groups in `V` cannot have one.
+
+## Attempt: germ commutators and a stabilizer criterion (bh-q47-comp, 09-19)
+
+Landed as `fixers-of-attractor-and-repeller-sets-force-disjoint-supports` (lane proof, not reviewed).
+- **Criterion (Proposition C), no local fixedness needed.** Take `γ` with normal form `(γ', P, F, A, R)`. If some
+  `h ≠ 1` fixes a neighborhood of `R`, and some `f ≠ 1` fixes `P` pointwise and a neighborhood of `A`, then `f` and
+  `γ'^n h γ'^{-n}` have disjoint supports for large `n`. The north–south case is `P = ∅` with `A`, `R` singletons.
+- **Germ commutators (Lemma S).** Germs of `V` at a point form an abelian group (F2). So
+  `[Γ_X, Γ_X]` fixes a neighborhood of every finite `X`, and `[γ', b]` is the identity on `P` when `b(P) = P`.
+- **Stabilizer form.** For torsion-free `Γ` with cyclic centralizers, every `γ` has `Γ_R` cyclic or
+  `Γ_A ∩ Stab(P) ⊆ C(γ')`, and the same with `A` and `R` swapped.
+- **What is left for Q4.7.** The remaining input is (STAB): some `γ` whose repeller set has a non-cyclic pointwise
+  stabilizer, and whose attractor set, together with `P`, has a stabilizer element not commuting with `γ'`. Lemma L
+  gives the one-point version only.
+
+Lemma B's consequence for (COMP) needs cyclic centralizers, per its review (7ff5a6abf0); that scope is now stated in
+`block-permuting-local-fixers-force-disjoint-supports`.
