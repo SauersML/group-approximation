@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.ClassTransposition.Presentation.Conc: Unknown ide
 **OPEN.** Lean module `GroupApproximation/ClassTransposition/Presentation/Conc.lean` is red on main at 516e496a4a (trusted batched probe, job direct-b1789910605). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
+**First errors (verbatim; from probe job direct-b1789919140 on main 57f90fce37).**
 
 ```
 error: GroupApproximation/ClassTransposition/Presentation/Conc.lean:34:34: Unknown identifier `lev_split`

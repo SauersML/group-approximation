@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.Tri
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P01EmptyTwoGon/TriangleCorner.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim; from probe job direct-b1789915961 on main 1f7bd2d0fe).**
+**First errors (verbatim; from probe job direct-b1789919140 on main 57f90fce37).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P01EmptyTwoGon/TriangleCorner.lean:86:71: unsolved goals

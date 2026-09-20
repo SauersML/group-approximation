@@ -17,6 +17,7 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 ```
 
 
+
 **Inputs (nearest red imports).** `fix-ggt-van-kampen-greendlinger-leaf-p01-cell-junction-value-hol`, `fix-ggt-van-kampen-greendlinger-leaf-p05-region-pair-rotation`, `fix-nm-full-gl03-d-kept-walk`, `fix-nm-full-gl06b-outer-side-transport`, `fix-nm-full-gl06d-outer-monogon-diagram`. Fix those first: errors here may be knock-on.
 
 **What it needs.** Make `GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.HyperbolicHost` compile under the repository settings without changing any statement.
