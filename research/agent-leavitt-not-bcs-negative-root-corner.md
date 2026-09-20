@@ -1148,3 +1148,33 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### Root-code bound: the head is a codeword sum of long Leavitt defects (swarm-0917-w21-w21-nh-last1, linear-characteristic, 2026-09-20)
+
+- **Landed (ESTABLISHED, unreviewed):** `leavitt-cone-head-is-bounded-by-root-code-leavitt-defects`, with route
+  `leavitt-cone-head-root-code-bound-proof`.
+  - *Setting.* For every unitary `rho` of `Gamma`, depth `N`, and `c ∈ {1,q}`:
+    - `C_N(rho)` is the binary code of `S ⊆ {1,2}^N` with `sum_S t_w ∈ I_-`.
+    - The long Leavitt relators are `l^c_(w,w') = [x_12(t_w), x_23(s_(w') c)] x_13(δ c)^(-1) ∈ K`.
+  - *Bound (RC).* `||rho(x_13(c)) - 1|| <= sum_(w∈S) ||rho(l^c_(w,w_0)) - 1||` for every codeword `S` and every
+    `w_0 ∈ S`.
+  - There is an `η`-approximate version, in which `η` is a `μ`-weighted Hamming weight on the characters of
+    `x_12(B_-)`, and a mirror version on `I_+`.
+  - A collision codeword always exists at depth `k_- + 1 <= d + 1`. With a per-letter defect bound, this recovers the
+    linear shadow-dimension head bound from one weight-2 codeword.
+  - The Cohn shadow is located exactly. All depth-1 relators and `kappa` are trivial. A weight-1 codeword
+    `t_2 t_1 -> 0` at depth 2 makes `l^q_(12,12)` carry the head `sqrt 2`.
+- **Decomposition.** `(QC) <= (LD_N) ∧ (BW)`, and each prerequisite can fail on its own.
+  - `(LD_N)`: depth-`N` long defects are `O_N(delta)`.
+  - `(BW)`: small `k_i` force an `η`-near root codeword of bounded weight and depth.
+- **Class killed: exact-code uniformization at bounded depth.**
+  - *Invariant:* the truncation shadows `R_-/R_-^(>M)`. `R_-` is graded with basis `{t_w, q t_w}`, so these codes
+    vanish at every depth `<= M` while `q` survives.
+  - *Death step:* choosing a codeword at depth `<= N_0` when `M >= N_0`.
+- **Census** (`experiments/leavitt-root-code-2026-09-17`): shadows `R_- -> M_k(F_2)` for `k <= 4` have weight-depth
+  cost at most 8.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Decide `(BW)` on non-ring gluings. Do `delta`-small cross relators force two words of
+  depth `O(1)` whose `x_12(t_w)` images are `η`-close in the `μ`-Hamming metric?
+  - A *no* needs a spectral measure `μ` on `B_-` in which all `2^N` depth-`N` word images are `1/4`-separated, for
+    `N` growing with `d`, glued with small `k_i`.
