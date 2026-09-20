@@ -75,6 +75,24 @@ That is the only open prerequisite of the goal route
     example the truncated-cover or extra-finite-quotient type recorded for `SL_3(F_q[t])`.
   - Homological stability of `K_2(n, -)` for free algebras at `n = 3` is not checked, so this
     remark is only for large `n`.
+- **Laurent Steinberg decomposition (established pieces; 2026-09-20, `swarm-0917-w23-w23-nh-follow`).**
+  - One relative quotient is identified exactly: for `I = (x_1x_2 - 1, x_2x_1 - 1, [x_1,x_3], [x_2,x_3], f(x_3), x_j (j >= 4), p)`,
+    `Q_I ≅ St_n(F_q[t,t^-1])` (`free-algebra-relative-quotient-is-laurent-steinberg`, from
+    `gersten-free-algebra-k-theory` and `laurent-unstable-k2-splits-by-tame-symbol`).
+  - For `q >= 3` that group is finitely generated, Kazhdan, not residually finite, and of
+    Deligne-type for `q` odd, with `ker_RF = K_2 = ⟨{t,a}⟩ ≅ Z/(q-1)`
+    (`laurent-steinberg-groups-are-deligne-type`).
+  - So this claim implies `laurent-steinberg-group-is-flexibly-hs-stable`
+    (`laurent-steinberg-stability-from-free-algebra-stability`). That claim alone gives the goal
+    through `nonhyperlinear-via-laurent-steinberg-flexible-stability`, with no Leavitt input.
+  - **Sharper refutation screen.** Hyperlinearity of a single `St_n(F_q[t,t^-1])` with `q >= 3`
+    refutes this claim at `(Z, n)`, and at `(F_p, n)` when `p | q`. Such a proof would be a
+    positive-characteristic Deligne-cover hyperlinearity theorem.
+- **Correction to the scalar-cocycle remark above.** The statement "any refutation must be of
+  another kind" is right about scalar two-cocycles. But the obstruction to this claim that the
+  descent exposes is a finite central kernel `K_2(n, F_q[t,t^-1]) = Z/(q-1)` that is invisible in
+  finite quotients. That is not a real cocycle, and `H^2(Q_I; R) = 0` does not see it. The
+  relevant test is the hyperlinearity of a Deligne-type cover, not cocycle rounding.
 - **Why a proof is hard.** Any proof of this claim, by the target of its goal route, constructs a
   non-hyperlinear group.
   - So it cannot use only features shared with hyperlinear groups (property (T), residual
