@@ -39,3 +39,21 @@ matrix algebra, and the reason must not use `(T)`.
 
 - **No-CE corner certificate (swarm-0917-w10-w10-ptm-pull, 2026-09-18). Dead as a class** for hyperlinear `Delta`, by
   part (C) of `mf-null-corner-criterion-needs-faithful-ce-trace`. Such a certificate forces `non-hyperlinear-group`.
+- **Krein induction of the algebraic corner (swarm-0917-w20-w20-ptl-break, 2026-09-20). Reformulation plus two class
+  obstructions; the hole stays OPEN.** See `root-corner-star-reps-are-definite-krein-modules` (ESTABLISHED, written
+  proof).
+  - **Reformulation.** A unital star map `P_z C[Delta] P_z -> Q_k` is exactly a `Delta`-module over `Q_k` with an
+    invariant, possibly indefinite, `Q_k`-valued hermitian form whose `z`-odd part is free of rank one and positive.
+    This hole is therefore the conjunction of two statements:
+    - (R+): no unitary Hilbert-`Q_k`-module representation with a rank-one free odd part;
+    - (R-): no indefinite one.
+  - **Unitary rigidity only reaches part of (R+).** The Property (T) theorem proves (R+) only for finitely generated
+    projective modules. It says nothing about countably generated modules or about (R-).
+  - **Correction.** So this hole is not known to follow from (T), and the sentence "This is the role Property (T)
+    plays" in the criterion node is a heuristic.
+  - **Class obstruction: unitarize first.** Positivity `rho(P x* Q x P) >= 0` fails for general involution corners.
+    For example, for `D_inf` the corner is `C[T]` and `T -> t` with `|t| > 1` is non-positive.
+  - **Class obstruction: finite models.** `P_z C[Delta] P_z` has no nonzero finite-dimensional representation, star
+    or not. The proof is a finite-codimension fixed space in the induced module together with Malcev and simplicity.
+    So no exact finite model can refute or witness the hole.
+  - **What a proof must do.** A Kazhdan-free proof must control indefinite asymptotic representations of `Delta`.
