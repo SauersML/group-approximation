@@ -190,3 +190,24 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
       amplify soundness either.
     - Composition or alphabet reduction after the product.
     - Base alphabet `ln K >= C^2/(12 C_3)`.
+* **Set-indexed (unordered) repetition** (2026-09-20, swarm-0917, w21,
+  `swarm-0917-w21-w21-ugc-last1`). The hole stays OPEN. The new node is
+  `set-indexed-repetition-escapes-the-base-sdp-bound`, which is ESTABLISHED.
+  - *Construction.* Repeat `n` times but hand each player an unordered set of
+    questions, `G^{{n}}`, so that the coordinate matching is hidden.
+  - *Result (A).* On the tagged odd cycle `G_{m,M}` with `M >= n^2`, the
+    set-indexed value is at most
+    `2[2m/n + 2m e^{-n/(8m)} + 6(3/4)^{n/(2m)}]`. At `n = m^{3/2}` this is
+    `O(m^{-1/2})`, while `n (1 - sdp) -> 0` and the ordered value tends to 1.
+    So (S1) and the rounds-versus-alphabet kill do not apply to set-indexed
+    amplifiers.
+  - *Mechanism.* Tag anonymity: exchangeable Bob tags cost `1/C(n_z, r_z)` at
+    every mixed position, and the odd cycle forces a mixed position.
+  - *Where it dies (B).* A universal set bound still dies. On disjoint copies
+    of `C_m` the copy index is a public order, so Raz's strategy runs and
+    `F_set(gamma, n) >= 1 - 4 B gamma sqrt(n)`. The sqrt-scale kill therefore
+    transfers verbatim.
+  - *Survivor.* An anonymity-certified set repetition: a tagged-set soundness
+    bound for the reduction's own tagged instances at `n ~ eps'/eta` and
+    `gamma = o(sqrt eta)`. This is the first independently failable
+    prerequisite.
