@@ -59,7 +59,7 @@ theorem isFinitelyPresented_prod (A B : Type) [Group A] [Group B] [Group.IsFinit
   · refine Subgroup.normalClosure_le_normal ?_
     rintro _ ⟨a, _, b, _, rfl⟩
     rw [SetLike.mem_coe, MonoidHom.mem_ker]
-    simp [Coprod.toProd_apply_inl, Coprod.toProd_apply_inr]
+    ext <;> simp [Coprod.toProd_apply_inl, Coprod.toProd_apply_inr]
   · intro w hw
     let mA : A →* Coprod A B ⧸ Subgroup.normalClosure R := (QuotientGroup.mk' (Subgroup.normalClosure R)).comp Coprod.inl
     let mB : B →* Coprod A B ⧸ Subgroup.normalClosure R := (QuotientGroup.mk' (Subgroup.normalClosure R)).comp Coprod.inr

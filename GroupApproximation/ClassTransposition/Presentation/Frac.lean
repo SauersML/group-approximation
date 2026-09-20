@@ -81,6 +81,7 @@ theorem fracFun_inv {b c : List Box} (hb : IsPart b) (hc : IsPart c)
   conv_lhs => rw [← B.eq_of_mem hn]
   rw [h1, h2, B.eq_of_mem hn]
 
+open Classical in
 /-- The permutation mapping the ordered partition `b` onto `c` box by box (the identity when
 `b, c` are not ordered partitions of the same length). -/
 noncomputable def frac (b c : List Box) : Perm ℤ :=

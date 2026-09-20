@@ -97,8 +97,6 @@ theorem rel_eval (P : Set ℕ) :
     show swap g.A g.B g.disj = _
     rw [← swap_split g.disj k hk]
     congr 1
-    refine List.map_congr_left fun j _ => ?_
-    exact (FreeGroup.lift_apply_of (f := evalGen P) (x := g.kid k j (hc j).1 (hc j).2)).symm
 
 /-- The evaluation map `t(A,B) ↦` the class transposition of `A` and `B`. -/
 noncomputable def eval (P : Set ℕ) : TranspGroup P →* Perm ℤ :=

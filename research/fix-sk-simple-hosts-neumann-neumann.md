@@ -5,8 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann: This simp argument is unused:"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleHosts/NeumannNeumann.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (eae37b23a2, trusted batched probe job direct-b1789842431).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleHosts/NeumannNeumann.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
+
 
 **First errors (verbatim).**
 

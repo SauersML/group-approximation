@@ -133,6 +133,18 @@ Only the moduli `2` and `p` occur.
   makes room.
 - **Superseded content.** The first landed version (18ebf78dc) recorded a failed
   piece-count induction. That gap is not needed by this argument.
+- **Lean (09-19).** `GroupApproximation.Kourovka1759.kourovka_17_59` proves `CT(Z) = RCWA^+(Z)`
+  with Mathlib only and no hypotheses (11 modules in `GroupApproximation/Kourovka1759/`, built
+  green under `warningAsError`, no `sorry`). `Palomar/BooneHigmanSolution.lean` uses it for the
+  config's `kourovka_17_59`. The formal route follows this node, with three changes.
+  - The relation `≈` is on multisets of boxes (`MEq`). A *type* `Ty P k M` says that `P` is `≈`
+    to the chain with root arity `k` and lower arities `M`. Lemma 4 becomes: splitting any leaf
+    of a chain equals, up to at most three exchanges, inserting that arity below the root.
+  - Lemma 5 is one equality of multisets: the `k`-split refined by `q` and the `q`-split refined
+    by `k` are both the classes mod `kq`.
+  - Lemma 1 is replaced by a two-level refinement. Split class `j` mod `L` and its image box
+    `B_j` by `N/m(B_j)`. The target is then the partition mod `N`, and both sides have a type
+    and the same number of pieces.
 
 ## Lesson for general BH
 

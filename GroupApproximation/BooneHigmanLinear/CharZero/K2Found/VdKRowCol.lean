@@ -22,6 +22,13 @@ the `r`-th coordinate. This file proves:
 Nothing here assumes that a column is unimodular.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
@@ -279,30 +286,31 @@ def colE (r : I) (i : I → A) : (Matrix I I A)ˣ :=
 
 theorem rowE_single_self (r : I) (b : A) : rowE r (Pi.single r b) = 1 := by
   apply Units.ext
-  show 1 + Matrix.vecMulVec (Pi.single r (1 : A)) (Pi.single r b - Pi.single r (Pi.single r b r)) = 1
+  show 1 + Matrix.vecMulVec (Pi.single r (1 : A)) (Pi.single r b - Pi.single r ((Pi.single r b : I → A) r)) = 1
   rw [Pi.single_eq_same, sub_self, Matrix.vecMulVec_zero, add_zero]
 
 theorem colE_single_self (r : I) (b : A) : colE r (Pi.single r b) = 1 := by
   apply Units.ext
-  show 1 + Matrix.vecMulVec (Pi.single r b - Pi.single r (Pi.single r b r)) (Pi.single r (1 : A)) = 1
+  show 1 + Matrix.vecMulVec (Pi.single r b - Pi.single r ((Pi.single r b : I → A) r)) (Pi.single r (1 : A)) = 1
   rw [Pi.single_eq_same, sub_self, Matrix.zero_vecMulVec, add_zero]
 
 theorem rowE_val_single_ne {r s : I} (h : r ≠ s) (b : A) :
     ((rowE r (Pi.single s b) : (Matrix I I A)ˣ) : Matrix I I A) = 1 + Matrix.single r s b := by
-  show 1 + Matrix.vecMulVec (Pi.single r (1 : A)) (Pi.single s b - Pi.single r (Pi.single s b r)) =
+  show 1 + Matrix.vecMulVec (Pi.single r (1 : A)) (Pi.single s b - Pi.single r ((Pi.single s b : I → A) r)) =
     1 + Matrix.single r s b
   rw [Pi.single_eq_of_ne h, Pi.single_zero, sub_zero, vecMulVec_single_single]
 
 theorem colE_val_single_ne {r p : I} (h : p ≠ r) (b : A) :
     ((colE r (Pi.single p b) : (Matrix I I A)ˣ) : Matrix I I A) = 1 + Matrix.single p r b := by
-  show 1 + Matrix.vecMulVec (Pi.single p b - Pi.single r (Pi.single p b r)) (Pi.single r (1 : A)) =
+  show 1 + Matrix.vecMulVec (Pi.single p b - Pi.single r ((Pi.single p b : I → A) r)) (Pi.single r (1 : A)) =
     1 + Matrix.single p r b
   rw [Pi.single_eq_of_ne (Ne.symm h), Pi.single_zero, sub_zero, vecMulVec_single_single', mul_one]
 
 theorem rowE_add (r : I) (u v : I → A) : rowE r (u + v) = rowE r u * rowE r v := by
-  rw [rowE, rowE, rowE, eUnit_mul (Pi.single r 1) (u - Pi.single r (u r)) (v - Pi.single r (v r))
-    (sub_single_dotProduct_single r u) (sub_single_dotProduct_single r v) (by
-      rw [add_dotProduct, sub_single_dotProduct_single, sub_single_dotProduct_single, add_zero])]
+  have h₃ : ((u - Pi.single r (u r)) + (v - Pi.single r (v r))) ⬝ᵥ Pi.single r (1 : A) = 0 := by
+    rw [add_dotProduct, sub_single_dotProduct_single, sub_single_dotProduct_single, add_zero]
+  rw [rowE, rowE, rowE, eUnit_mul _ _ _ (sub_single_dotProduct_single r u)
+    (sub_single_dotProduct_single r v) h₃]
   exact eUnit_congr (sub_single_add r u v) _ _
 
 /-- vdK's first relation for `e` in its column form: `e(u, w) e(v, w) = e(u + v, w)` if `w u = 0`
@@ -317,15 +325,16 @@ theorem eUnit_mul_left (u v w : I → A) (hu : w ⬝ᵥ u = 0) (hv : w ⬝ᵥ v 
   abel
 
 theorem colE_add (r : I) (u v : I → A) : colE r (u + v) = colE r u * colE r v := by
-  rw [colE, colE, colE, eUnit_mul_left (u - Pi.single r (u r)) (v - Pi.single r (v r))
-    (Pi.single r 1) (single_dotProduct_sub_single r u) (single_dotProduct_sub_single r v) (by
-      rw [dotProduct_add, single_dotProduct_sub_single, single_dotProduct_sub_single, add_zero])]
+  have h₃ : Pi.single r (1 : A) ⬝ᵥ ((u - Pi.single r (u r)) + (v - Pi.single r (v r))) = 0 := by
+    rw [dotProduct_add, single_dotProduct_sub_single, single_dotProduct_sub_single, add_zero]
+  rw [colE, colE, colE, eUnit_mul_left _ _ _ (single_dotProduct_sub_single r u)
+    (single_dotProduct_sub_single r v) h₃]
   exact eUnit_congr_left (sub_single_add r u v) _ _
 
 /-- `π(x_r(j)) = 1 + ε_r j'`. -/
 theorem mat_rowProd (r : I) (j : I → A) :
     ((projection (rowProd r j) : elementaryGroup I A) : (Matrix I I A)ˣ) = rowE r j := by
-  refine eq_of_add_of_single (f := fun j => ((projection (rowProd r j) : elementaryGroup I A) :
+  refine eq_of_add_of_single (f := fun j : I → A => ((projection (rowProd r j) : elementaryGroup I A) :
     (Matrix I I A)ˣ)) (g := rowE r) (fun u v => ?_) (fun u v => rowE_add r u v) (fun s b => ?_) j
   · show ((projection (rowProd r (u + v)) : elementaryGroup I A) : (Matrix I I A)ˣ) =
       ((projection (rowProd r u) : elementaryGroup I A) : (Matrix I I A)ˣ) *
@@ -346,7 +355,7 @@ theorem mat_rowProd (r : I) (j : I → A) :
 /-- `π(x(i)_r) = 1 + i' ε_rᵀ`. -/
 theorem mat_colProd (r : I) (i : I → A) :
     ((projection (colProd r i) : elementaryGroup I A) : (Matrix I I A)ˣ) = colE r i := by
-  refine eq_of_add_of_single (f := fun i => ((projection (colProd r i) : elementaryGroup I A) :
+  refine eq_of_add_of_single (f := fun i : I → A => ((projection (colProd r i) : elementaryGroup I A) :
     (Matrix I I A)ˣ)) (g := colE r) (fun u v => ?_) (fun u v => colE_add r u v) (fun p b => ?_) i
   · show ((projection (colProd r (u + v)) : elementaryGroup I A) : (Matrix I I A)ˣ) =
       ((projection (colProd r u) : elementaryGroup I A) : (Matrix I I A)ˣ) *
@@ -410,8 +419,8 @@ theorem rowConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hqr : q ≠ r) :
       Matrix.vecMulVec_mulVec, single_dotProduct, Pi.single_eq_of_ne hqr, mul_zero,
       MulOpposite.op_zero, zero_smul, add_zero]
   rw [matInv_x]
-  refine eq_of_add_of_single (f := fun j => x p q hpq a * rowProd r j * (x p q hpq a)⁻¹)
-    (g := fun j => rowProd r ((j - Pi.single r (j r)) ᵥ* (1 - Matrix.single p q a)))
+  refine eq_of_add_of_single (f := fun j : I → A => x p q hpq a * rowProd r j * (x p q hpq a)⁻¹)
+    (g := fun j : I → A => rowProd r ((j - Pi.single r (j r)) ᵥ* (1 - Matrix.single p q a)))
     (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) j
   · show x p q hpq a * rowProd r (u + v) * (x p q hpq a)⁻¹ =
       x p q hpq a * rowProd r u * (x p q hpq a)⁻¹ * (x p q hpq a * rowProd r v * (x p q hpq a)⁻¹)
@@ -422,7 +431,7 @@ theorem rowConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hqr : q ≠ r) :
         rowProd r ((v - Pi.single r (v r)) ᵥ* (1 - Matrix.single p q a))
     rw [sub_single_add, Matrix.add_vecMul, rowProd_add]
   · show x p q hpq a * rowProd r (Pi.single s b) * (x p q hpq a)⁻¹ =
-      rowProd r ((Pi.single s b - Pi.single r (Pi.single s b r)) ᵥ* (1 - Matrix.single p q a))
+      rowProd r ((Pi.single s b - Pi.single r ((Pi.single s b : I → A) r)) ᵥ* (1 - Matrix.single p q a))
     by_cases hs : r = s
     · subst hs
       rw [rowProd_single_self, mul_one, mul_inv_cancel, Pi.single_eq_same, sub_self,
@@ -507,8 +516,8 @@ theorem colConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hpr : p ≠ r) :
       Matrix.vecMul_vecMulVec, single_dotProduct, Pi.single_eq_of_ne (Ne.symm hpr), mul_zero,
       zero_smul, add_zero]
   rw [mat_x]
-  refine eq_of_add_of_single (f := fun i => x p q hpq a * colProd r i * (x p q hpq a)⁻¹)
-    (g := fun i => colProd r ((1 + Matrix.single p q a) *ᵥ (i - Pi.single r (i r))))
+  refine eq_of_add_of_single (f := fun i : I → A => x p q hpq a * colProd r i * (x p q hpq a)⁻¹)
+    (g := fun i : I → A => colProd r ((1 + Matrix.single p q a) *ᵥ (i - Pi.single r (i r))))
     (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) i
   · show x p q hpq a * colProd r (u + v) * (x p q hpq a)⁻¹ =
       x p q hpq a * colProd r u * (x p q hpq a)⁻¹ * (x p q hpq a * colProd r v * (x p q hpq a)⁻¹)
@@ -519,7 +528,7 @@ theorem colConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hpr : p ≠ r) :
         colProd r ((1 + Matrix.single p q a) *ᵥ (v - Pi.single r (v r)))
     rw [sub_single_add, Matrix.mulVec_add, colProd_add]
   · show x p q hpq a * colProd r (Pi.single s b) * (x p q hpq a)⁻¹ =
-      colProd r ((1 + Matrix.single p q a) *ᵥ (Pi.single s b - Pi.single r (Pi.single s b r)))
+      colProd r ((1 + Matrix.single p q a) *ᵥ (Pi.single s b - Pi.single r ((Pi.single s b : I → A) r)))
     by_cases hs : s = r
     · subst hs
       rw [colProd_single_self, mul_one, mul_inv_cancel, Pi.single_eq_same, sub_self,

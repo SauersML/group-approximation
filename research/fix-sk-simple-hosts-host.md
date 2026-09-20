@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleHosts.Host: failed to synthesize instance of type class"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleHosts/Host.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
+**RESOLVED (eae37b23a2, trusted batched probe job direct-b1789842431).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SimpleHosts/Host.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: unowned.
 
-**Repair landed, unprobed.** 0ae9f61a14: SK root closure: repair HalflineB.Represent and SimpleHosts.Host (built clean in trusted u. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

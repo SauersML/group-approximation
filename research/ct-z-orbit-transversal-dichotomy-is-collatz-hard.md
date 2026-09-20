@@ -8,7 +8,7 @@ distinct_from:
   periodic-k-graph-subgroups-with-ray-cocycle-are-finite: that bounds periodic subgroups by one-stack pumping; this counts orbits through the stopping-time law of the 3x+1 cocycle.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). Elementary.
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-q11 2026-09-19). Elementary.
 - **What it settles.** Kourovka 20.44 itself is **not** settled. The node proves that an
   affirmative answer implies an open finiteness statement for the 3x+1 map. It also
   proves that infinitely many 3x+1 components on Z would give a negative answer.
@@ -159,3 +159,26 @@ points or pairs, as type (A) requires) must get that finiteness from the host's 
 action, as `CT_P(Z)` does on its unit space. They must not get it by verifying orbit counts
 of an embedded subgroup's restricted action, because such counts carry the full difficulty of
 Collatz-type problems.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS
+
+**Step 1.** Checked in all residues.
+- `f` on `0,1,2,3 (4)` equals `ca`, `c`, `b` and `aba` respectively. For example, `c(1+4k) = 2+6k = (3n+1)/2`.
+- `f(r(n)) = r(T(n))` for `n ≡ 1,…,5 (6)`: the values are `3n−1`, `n−1`, `3n−1`, `n−2`, `3n−1`. For `n = 6j`, `a(f(r(n))) = 6j − 2 = r(3j)`.
+- `r` is injective, and `r(Z) ∩ {2k, 2k+1} = {r(k+1)}`. So `Z = r(Z) ⊔ a(r(Z))`.
+
+**Step 2.** All six identities check. For example, `s(c(2+6k)) = s(1+4k) = 2k+1` and `T(2k+1) = 3k+2 = s(2+6k)`. `s(a(n)) = s(n)`, and `s` is onto `Z`.
+
+**Step 3.** Both maps are well defined and onto, so the number of orbits equals the number of components, finite or not.
+
+**Step 4 (Terras–Everett on `Z`).** Correct.
+- Signs are preserved and `T^(−1)(0) = {0}`, so each component has a unique element of least absolute value, and it lies in `E`.
+- The parity-vector bijection mod `2^k` holds, and so does `0 ≤ ρ ≤ 3^k − 2^k` (all odd steps give the maximum).
+- If `3^j ≤ 2^(k−1)` and `|x| > 2(3/2)^k`, then `|T^k x| ≤ |x|/2 + (3/2)^k < |x|`.
+- `p_k → 0`, since `log 2/log 3 > 1/2`.
+
+**Step 5.** `|r(x)| ≥ 2|x| − 2` gives `|x| ≤ (N+3)/2`. Distinct orbits receive distinct components, so `ν(N) = o(N)`.
+
+**Consequences now unconditional.** This node is the input to the `G_T` corollary of `ct-z-frozen-tails-anywhere-give-kourovka-20-44` (`G_T` is totally consumable), and to item 3 of `ct-z-totally-consumable-core-of-kourovka-20-44`. Both were refereed PASS modulo this node, and both are now unconditional.
+
+**Credit.** As stated: Kohl (the group, `r`, `s`, `f`), Terras and Everett (parity vectors), Lagarias (survey).

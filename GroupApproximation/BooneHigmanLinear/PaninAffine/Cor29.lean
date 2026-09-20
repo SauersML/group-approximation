@@ -147,9 +147,11 @@ def Cor29FinitaryAt (R : Type) [CommRing R] [IsDomain R] (P : Ideal R) [P.IsPrim
     ringMap (Polynomial.mapRingHom (fracMap P)) α = 1 →
       ∃ (g : R) (hg : g ∉ P) (h : R), h ≠ 0 ∧
         ∃ α₁ : SteinbergGroup (Fin N) (Polynomial (Localization.Away g)),
-          ringMap (Polynomial.mapRingHom (awayToAtPrime P hg)) α₁ = α ∧
-            ringMap (Polynomial.mapRingHom (algebraMap (Localization.Away g)
-              (Localization.Away (algebraMap R (Localization.Away g) h)))) α₁ = 1
+          ringMap (S := Polynomial (Localization.AtPrime P))
+            (Polynomial.mapRingHom (awayToAtPrime P hg)) α₁ = α ∧
+            ringMap (S := Polynomial (Localization.Away (algebraMap R (Localization.Away g) h)))
+              (Polynomial.mapRingHom (algebraMap (Localization.Away g)
+                (Localization.Away (algebraMap R (Localization.Away g) h)))) α₁ = 1
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.Cor29FinitaryAt
 
@@ -207,7 +209,7 @@ theorem finSuccEquiv_C_C (c : K) :
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.finSuccEquiv_C_C
 
 /-- `𝔭 = ker (C → R/M)`: the prime of `C = K[s₁..sₙ]` below `M` in the coordinates `φ`. -/
-abbrev fibrePrime : Ideal (MvPolynomial (Fin n) K) := RingHom.ker (fibreMap M φ)
+noncomputable abbrev fibrePrime : Ideal (MvPolynomial (Fin n) K) := RingHom.ker (fibreMap M φ)
 
 instance fibrePrime_isPrime : (fibrePrime M φ).IsPrime := RingHom.ker_isPrime _
 
@@ -370,16 +372,20 @@ variable (w : MvPolynomial (Fin (n + 1)) K)
 /-- `R_w → C_𝔭[X][s₀]_w`. -/
 noncomputable def kappa0 : Localization.Away w →+* Localization.Away (liftHom M φ w) :=
   IsLocalization.Away.lift w
-    (g := (algebraMap _ (Localization.Away (liftHom M φ w))).comp (liftHom M φ))
-    (IsLocalization.Away.algebraMap_isUnit (S := Localization.Away (liftHom M φ w))
-      (liftHom M φ w))
+    (g := (algebraMap (Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
+      (Localization.Away (liftHom M φ w))).comp (liftHom M φ))
+    (by
+      rw [RingHom.comp_apply]
+      exact IsLocalization.Away.algebraMap_isUnit (S := Localization.Away (liftHom M φ w))
+        (liftHom M φ w))
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.kappa0
 
 /-- `R_w[X] → C_𝔭[X][s₀]_w`, `X ↦ X`. -/
 noncomputable def kappa : Polynomial (Localization.Away w) →+* Localization.Away (liftHom M φ w) :=
   Polynomial.eval₂RingHom (kappa0 M φ w)
-    (algebraMap _ (Localization.Away (liftHom M φ w)) (Polynomial.C Polynomial.X))
+    (algebraMap (Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
+      (Localization.Away (liftHom M φ w)) (Polynomial.C Polynomial.X))
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.kappa
 
@@ -448,8 +454,9 @@ theorem eq_one_of_monicFibre {r : ℕ}
   have hb : liftHom M φ g ≠ 0 := by
     rw [liftHom_apply]
     exact (Polynomial.map_ne_zero_iff Polynomial.C_injective).mpr hG
-  have hab : IsCoprime (liftHom M φ f) (liftHom M φ g) :=
-    hFG.map (Polynomial.mapRingHom Polynomial.C)
+  have hab : IsCoprime (liftHom M φ f) (liftHom M φ g) := by
+    rw [liftHom_apply, liftHom_apply]
+    exact hFG.map (Polynomial.mapRingHom Polynomial.C)
   have hunit : IsUnit (((IsLocalization.Away.awayToAwayLeft (liftHom M φ g) (liftHom M φ f) :
       Localization.Away (liftHom M φ g) →+*
         Localization.Away (liftHom M φ f * liftHom M φ g)).comp (kappa M φ g))

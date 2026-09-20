@@ -5,8 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.ClassTransposition.Presentation.Presented: No goals to be solved"
 ---
 
-**OPEN.** Lean module `GroupApproximation/ClassTransposition/Presentation/Presented.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
+**RESOLVED (b576f069a9, trusted batched probe job direct-b1789846523).** Previously OPEN. Lean module `GroupApproximation/ClassTransposition/Presentation/Presented.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
+
 
 **First errors (verbatim).**
 

@@ -35,7 +35,8 @@ theorem hatH_split_two_out {i n : ℕ} (h : ¬ i + 1 < n) : hatH P (.split i 2) 
   rw [hatH, e, map_one]
 
 theorem layer_two (j p : ℕ) : layer j 2 p = [.split j p, .split (j + p) p] := by
-  simp [layer, List.range_succ]
+  rw [layer, show List.range 2 = [0, 1] from rfl]
+  simp
 
 section Le
 
@@ -84,6 +85,7 @@ theorem nh_normal : (NH hpos hP2).Normal :=
     rw [map_mul, map_mul, map_inv]
     exact conj_mem hB hP2 hpos hprime h hn⟩
 
+omit hB in
 theorem swap_mem_nh (k n : ℕ) : hatH P (.swap k) n ∈ NH hpos hP2 := by
   by_cases hk : k + 1 < n
   · obtain ⟨n, rfl⟩ : ∃ n', n = n' + 1 := ⟨n - 1, by omega⟩
@@ -97,19 +99,20 @@ theorem swap_mem_nh (k n : ℕ) : hatH P (.swap k) n ∈ NH hpos hP2 := by
       (smooth_of_isPN hprime (isPN_comb hpos n E hE)) (smooth_of_isPN hprime (isPN_comb hpos n F hF)))
   · rw [hatH_swap_out hk]; exact Subgroup.one_mem _
 
+omit hB in
 theorem swaps_mem_nh (n i : ℕ) : ∀ w : List ℕ, toH P n (swaps i w) ∈ NH hpos hP2
   | [] => by rw [show swaps i [] = [] from rfl, toH_nil]; exact Subgroup.one_mem _
   | k :: w => by
     rw [show swaps i (k :: w) = .swap (i + k) :: swaps i w from rfl, toH_cons, lev_swap]
-    exact Subgroup.mul_mem _ (swap_mem_nh hB hP2 hpos hprime _ _) (swaps_mem_nh n i w)
+    exact Subgroup.mul_mem _ (swap_mem_nh hP2 hpos hprime _ _) (swaps_mem_nh n i w)
 
 theorem two_mem_nh (j : ℕ) (h2 : 2 ∈ P' P) : gH (tX 2 h2) (j + 1) ∈ NH hpos hP2 := by
   have e := dk1_all hB h2 (j + 2) j (by omega)
   rw [toH_cons, lev_swap, toH_single, hatH_split_tail_two (show j + 1 + 1 = j + 2 by omega),
     mul_one, toH_cons, hatH_split_front (show j + 1 < j + 2 by omega) h2] at e
   rw [eq_mul_inv_of_mul_eq e.symm]
-  exact Subgroup.mul_mem _ (swap_mem_nh hB hP2 hpos hprime _ _)
-    (Subgroup.inv_mem _ (swaps_mem_nh hB hP2 hpos hprime _ _ _))
+  exact Subgroup.mul_mem _ (swap_mem_nh hP2 hpos hprime _ _)
+    (Subgroup.inv_mem _ (swaps_mem_nh hP2 hpos hprime _ _ _))
 
 theorem split_two_mem_nh (i n : ℕ) : hatH P (.split i 2) n ∈ NH hpos hP2 := by
   by_cases h : i + 1 < n
@@ -124,7 +127,7 @@ theorem cheap_mem_nh : ∀ (w : List Move) (n : ℕ),
     rw [toH_cons]
     refine Subgroup.mul_mem _ ?_ (cheap_mem_nh w _ fun m' hm' => h m' (List.mem_cons_of_mem _ hm'))
     rcases h m List.mem_cons_self with ⟨k, rfl⟩ | ⟨i, rfl⟩
-    · exact swap_mem_nh hB hP2 hpos hprime k n
+    · exact swap_mem_nh hP2 hpos hprime k n
     · exact split_two_mem_nh hB hP2 hpos hprime i n
 
 end Le

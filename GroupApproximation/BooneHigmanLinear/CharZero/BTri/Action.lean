@@ -36,8 +36,8 @@ def glLin (γ : Matrix.GeneralLinearGroup (Fin 3) B) : (Fin 3 → B) →ₗ[A] (
 theorem glLin_injective (γ : Matrix.GeneralLinearGroup (Fin 3) B) :
     Function.Injective (glLin A B γ) := by
   intro v w h
-  have h' := congrArg (fun u => ((γ⁻¹ : Matrix.GeneralLinearGroup (Fin 3) B) :
-    Matrix (Fin 3) (Fin 3) B) *ᵥ u) h
+  have h' := congrArg (fun u => Matrix.mulVec ((γ⁻¹ : Matrix.GeneralLinearGroup (Fin 3) B) :
+    Matrix (Fin 3) (Fin 3) B) u) h
   simp only [glLin, LinearMap.coe_restrictScalars, Matrix.mulVecLin_apply, Matrix.mulVec_mulVec,
     ← Units.val_mul, inv_mul_cancel, Units.val_one, Matrix.one_mulVec] at h'
   exact h'

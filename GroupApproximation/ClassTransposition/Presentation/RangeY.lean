@@ -48,8 +48,8 @@ theorem odd_mem_nh {p : ℕ} (hp : p ∈ P) (m : ℕ) :
         lev_split p (show j < j + 2 by omega)]
     rw [L, R] at e
     have e' := congrArg φ e
-    rw [map_mul, map_mul, h0 _ (swap_mem_nh hB hP2 hpos hprime _ _),
-      h0 _ (swaps_mem_nh hB hP2 hpos hprime _ _ _), one_mul, mul_one] at e'
+    rw [map_mul, map_mul, h0 _ (swap_mem_nh hP2 hpos hprime _ _),
+      h0 _ (swaps_mem_nh hP2 hpos hprime _ _ _), one_mul, mul_one] at e'
     exact e'.symm
   -- (c) with `q = 2` at the tail
   have hc : ∀ j, φ (gH (tY p hp) (j + 1)) =
@@ -73,7 +73,7 @@ theorem odd_mem_nh {p : ℕ} (hp : p ∈ P) (m : ℕ) :
       cheap_mem_nh hB hP2 hpos hprime (layer j p 2) _ fun m hm => Or.inr (by
         obtain ⟨t, -, rfl⟩ := List.mem_map.1 hm; exact ⟨_, rfl⟩)
     have e' := congrArg φ e
-    rw [map_mul, map_mul, map_mul, h0 _ (swaps_mem_nh hB hP2 hpos hprime _ _ _), h0 _ hl2,
+    rw [map_mul, map_mul, map_mul, h0 _ (swaps_mem_nh hP2 hpos hprime _ _ _), h0 _ hl2,
       mul_one, mul_one] at e'
     exact e'
   -- the shift
@@ -114,10 +114,10 @@ theorem gen_mem_nh (t : Ty P) (j : ℕ) : gH t (j + 1) ∈ NH hpos hP2 := by
   · cases b
     · show gH tPi (j + 1) ∈ NH hpos hP2
       rw [← hatH_swap_front (show j + 2 < j + 3 by omega)]
-      exact swap_mem_nh hB hP2 hpos hprime j (j + 3)
+      exact swap_mem_nh hP2 hpos hprime j (j + 3)
     · show gH tRho (j + 1) ∈ NH hpos hP2
       rw [← hatH_swap_tail (show j + 2 = j + 2 from rfl)]
-      exact swap_mem_nh hB hP2 hpos hprime j (j + 2)
+      exact swap_mem_nh hP2 hpos hprime j (j + 2)
 
 /-- **The image of `evalH` lies in `CT_P(ℤ)`.** -/
 theorem range_le : (evalH hpos hP2).range ≤ classTranspositionGroupOver P := by

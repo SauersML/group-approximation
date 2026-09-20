@@ -67,7 +67,7 @@ theorem coeffMap_map_mul (ℓ : L →ₗ[K] K) (f : MvPolynomial σ K) (u : MvPo
 theorem map_dvd_of_forall_dvd_coeffMap {g : MvPolynomial σ K} {u : MvPolynomial σ L}
     (h : ∀ ℓ : L →ₗ[K] K, g ∣ coeffMap ℓ u) : map (algebraMap K L) g ∣ u := by
   classical
-  let b := Basis.ofVectorSpace K L
+  let b := Module.Basis.ofVectorSpace K L
   let J := u.support.biUnion fun α => (b.repr (u.coeff α)).support
   have h' : ∀ j, ∃ c, coeffMap (b.coord j) u = g * c := fun j => h (b.coord j)
   choose t ht using h'
@@ -130,7 +130,7 @@ theorem isRelPrime_map_of_isRelPrime {f g : MvPolynomial σ K} (h : IsRelPrime f
     nth_rw 1 [hu]
     rw [hv]
     ring
-  exact isUnit_of_mul_eq_one d v (mul_left_cancel₀ hg' h2).symm
+  exact IsUnit.of_mul_eq_one v (mul_left_cancel₀ hg' h2).symm
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.isRelPrime_map_of_isRelPrime
 
@@ -138,7 +138,7 @@ theorem isRelPrime_map_of_isRelPrime {f g : MvPolynomial σ K} (h : IsRelPrime f
 theorem exists_coeffMap_ne_zero {P : MvPolynomial σ L} (hP : P ≠ 0) :
     ∃ ℓ : L →ₗ[K] K, coeffMap ℓ P ≠ 0 := by
   obtain ⟨d, hd⟩ := MvPolynomial.ne_zero_iff.mp hP
-  let b := Basis.ofVectorSpace K L
+  let b := Module.Basis.ofVectorSpace K L
   have hb : b.repr (P.coeff d) ≠ 0 := fun h0 => hd (b.repr.map_eq_zero_iff.mp h0)
   obtain ⟨j, hj⟩ := Finsupp.ne_iff.mp hb
   refine ⟨b.coord j, fun h0 => hj ?_⟩
@@ -186,7 +186,7 @@ section Chart
 variable {κ : Type*} [Field κ] {n : ℕ}
 
 /-- The exponent map of the blow-up chart: `α ↦ α + (α₁ + ⋯ + αₙ) • e₀`. -/
-def chartExp (n : ℕ) : (Fin (n + 1) →₀ ℕ) →+ (Fin (n + 1) →₀ ℕ) where
+noncomputable def chartExp (n : ℕ) : (Fin (n + 1) →₀ ℕ) →+ (Fin (n + 1) →₀ ℕ) where
   toFun α := α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1
   map_zero' := by simp
   map_add' α β := by
@@ -195,13 +195,13 @@ def chartExp (n : ℕ) : (Fin (n + 1) →₀ ℕ) →+ (Fin (n + 1) →₀ ℕ) 
 
 theorem chartExp_apply_succ (α : Fin (n + 1) →₀ ℕ) (j : Fin n) :
     chartExp n α j.succ = α j.succ := by
-  show (α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1) j.succ = α j.succ
+  show ((α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1 : Fin (n + 1) →₀ ℕ)) j.succ = α j.succ
   rw [Finsupp.add_apply, Finsupp.smul_apply, Finsupp.single_eq_of_ne (Fin.succ_ne_zero j),
     smul_zero, add_zero]
 
 theorem chartExp_apply_zero (α : Fin (n + 1) →₀ ℕ) :
     chartExp n α 0 = α 0 + ∑ j : Fin n, α j.succ := by
-  show (α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1) 0 = _
+  show ((α + (∑ j : Fin n, α j.succ) • Finsupp.single 0 1 : Fin (n + 1) →₀ ℕ)) 0 = _
   rw [Finsupp.add_apply, Finsupp.smul_apply, Finsupp.single_eq_same, smul_eq_mul, mul_one]
 
 theorem chartExp_injective : Function.Injective (chartExp n) := by
@@ -290,12 +290,12 @@ theorem chart_apply (p : MvPolynomial (Fin (n + 1)) κ) :
     · rw [chart_X_zero, chartMono_X_zero, finSuccEquiv_X_zero]
     · rw [chart_X_succ, chartMono_X_succ, map_mul, finSuccEquiv_X_succ, finSuccEquiv_X_zero,
         mul_comm]
-  refine MvPolynomial.induction_on p ?_ ?_ ?_
-  · intro c
+  induction p using MvPolynomial.induction_on with
+  | C c =>
     rw [chart_C, chartMono_C, finSuccEquiv_C']
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [map_add, hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [map_mul, hp, hX]
 
 theorem chart_injective : Function.Injective (chart κ n) := by
@@ -313,12 +313,12 @@ theorem chart_coeff_zero (q : MvPolynomial (Fin (n + 1)) κ) :
     refine Fin.cases ?_ (fun j => ?_) i
     · rw [chart_X_zero, Polynomial.coeff_X_zero]
     · rw [chart_X_succ, Polynomial.mul_coeff_zero, Polynomial.coeff_X_zero, zero_mul]
-  refine MvPolynomial.induction_on q ?_ ?_ ?_
-  · intro c
+  induction q using MvPolynomial.induction_on with
+  | C c =>
     rw [chart_C, Polynomial.coeff_C_zero, constantCoeff_C]
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [map_add, Polynomial.coeff_add, hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [map_mul, Polynomial.mul_coeff_zero, hp, hX, mul_zero, constantCoeff_X, map_zero]
 
 /-- Every element of `κ[A][X]` times a power of `X` lies in the image of the chart. -/
@@ -327,17 +327,20 @@ theorem exists_X_pow_mul_eq_chart (r : Polynomial (MvPolynomial (Fin n) κ)) :
   have hC : ∀ a : MvPolynomial (Fin n) κ, ∃ (m : ℕ) (D : MvPolynomial (Fin (n + 1)) κ),
       Polynomial.X ^ m * Polynomial.C a = chart κ n D := by
     intro a
-    refine MvPolynomial.induction_on a ?_ ?_ ?_
-    · intro c
+    induction a using MvPolynomial.induction_on with
+    | C c =>
       exact ⟨0, C c, by rw [pow_zero, one_mul, chart_C]⟩
-    · rintro a b ⟨m, D, hD⟩ ⟨m', D', hD'⟩
+    | add a b ha hb =>
+      obtain ⟨m, D, hD⟩ := ha
+      obtain ⟨m', D', hD'⟩ := hb
       refine ⟨m + m', X 0 ^ m' * D + X 0 ^ m * D', ?_⟩
       have e : chart κ n (X 0 ^ m' * D + X 0 ^ m * D') =
           Polynomial.X ^ m' * chart κ n D + Polynomial.X ^ m * chart κ n D' := by
         simp [chart_X_zero]
       rw [e, ← hD, ← hD', Polynomial.C_add]
       ring
-    · rintro a j ⟨m, D, hD⟩
+    | mul_X a j ha =>
+      obtain ⟨m, D, hD⟩ := ha
       refine ⟨m + 1, D * X j.succ, ?_⟩
       rw [show chart κ n (D * X j.succ) = chart κ n D * (Polynomial.X * Polynomial.C (X j)) by
         rw [map_mul, chart_X_succ], ← hD, Polynomial.C_mul]
@@ -398,7 +401,7 @@ theorem isRelPrime_chart {p q : MvPolynomial (Fin (n + 1)) κ} (h : IsRelPrime p
   have hu' : IsUnit (chart κ n D₀) := hu.map _
   have hXmd : Polynomial.X ^ m * d = Polynomial.X ^ e * chart κ n D₀ := by
     rw [hD, hDe, map_mul, map_pow, chart_X_zero]
-  rcases le_or_lt m e with hme | hem
+  rcases le_or_gt m e with hme | hem
   · obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hme
     have h2 : d = Polynomial.X ^ k * chart κ n D₀ := by
       apply mul_left_cancel₀ (pow_ne_zero m (Polynomial.X_ne_zero (R := MvPolynomial (Fin n) κ)))

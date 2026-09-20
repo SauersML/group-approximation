@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.K2Poly.FieldNagao: fails throug
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/K2Poly/FieldNagao.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job direct-b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** f47b0a3483: K2 program: FieldNagao subgroup defs noncomputable (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

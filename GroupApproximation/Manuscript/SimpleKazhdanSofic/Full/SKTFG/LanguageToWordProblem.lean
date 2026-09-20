@@ -124,7 +124,8 @@ def shape (d : ℕ) : Fin 125 → List ShapeLetter := shapeStep^[d] shapeInit
 
 theorem shape_succ (d : ℕ) (i : Fin 125) :
     shape (d + 1) i = wordComm (shape d (pick i).1) (shapeShift (shape d (pick i).2)) := by
-  rw [shape, Function.iterate_succ_apply']
+  show (shapeStep^[d + 1] shapeInit) i = _
+  rw [Function.iterate_succ_apply']
   rfl
 
 theorem primrec_shapeShift : Primrec shapeShift :=
@@ -176,9 +177,7 @@ theorem letterIdx_succ (z : ℤ → A) (j : ℕ) (t : Fin 125) :
     letterIdx e z (j + 1) t = letterIdx e (fun n => z (1 + n)) j t := by
   have h : (fun n : Finset.Icc (0 : ℤ) N => z (((j + 1 : ℕ) : ℤ) + n)) =
       fun n => z (1 + ((j : ℤ) + n)) := funext fun n => by
-    push_cast
-    congr 1
-    ring
+    exact congrArg z (by push_cast; ring)
   exact congrArg (fun w => e (w, labAlt t)) h
 
 theorem substWord_shapeShift (z : ℤ → A) (w : List ShapeLetter) :
@@ -195,6 +194,7 @@ theorem substWord_wordComm (z : ℤ → A) (a b : List ShapeLetter) :
 
 variable [TopologicalSpace A] (S : Subshift A ℤ)
 
+open Classical in
 theorem genPerm_eq_of_disj (w : Finset.Icc (0 : ℤ) N → A)
     (σ : alternatingGroup (Fin 5))
     (h : TowerDisj (SimpleKazhdanSofic.subshiftHomeo S).toEquiv (cylW S N w) 4) :
@@ -290,8 +290,7 @@ theorem mem_listLanguage_iff_exists_append {L : List A} (hL : ∀ a, a ∈ L) {X
     · have ht' : v.length ≤ (t : ℕ) := Nat.le_of_not_lt ht
       rw [List.get_eq_getElem, List.getElem_append_right ht', List.getElem_ofFn]
       show x ((t : ℕ) : ℤ) = x ((v.length + ((t : ℕ) - v.length) : ℕ) : ℤ)
-      congr 1
-      omega
+      exact congrArg x (by omega)
   · rintro ⟨u, -, x, hx, h⟩
     refine ⟨x, hx, fun t => ?_⟩
     have ht : (t : ℕ) < (v ++ u).length := by
@@ -333,8 +332,9 @@ theorem wordValue_substWord_ne_one_iff (hinf : Infinite S.carrier)
     rw [← coe_wordValue]
     exact ⟨fun h => congrArg Subtype.val h, fun h => Subtype.ext h⟩
   rw [h1, wordValue_substWord_shape e S hR hN hDG _ _ rootLab rootLab_valid hd,
-    towerPerm_eq_one_iff (fun j hj y => SK05.subshiftHomeo_zpow_apply_ne_self S hinf hmin hj y)
-      hd labPerm_rootLab_zero]
+    towerPerm_eq_one_iff (fun j hj y => by
+      rw [toEquiv_zpow_apply]
+      exact SK05.subshiftHomeo_zpow_apply_ne_self S hinf hmin hj y) hd labPerm_rootLab_zero]
   exact Set.nonempty_iff_ne_empty.symm.trans (cyl_nonempty_iff S a₀ v (by omega))
 
 end Reduction
@@ -361,8 +361,7 @@ theorem letterIdx_getD (a₀ : A) (v : List A) (j : ℕ) (t : Fin 125) :
   have h : (fun n : Finset.Icc (0 : ℤ) N => v.getD ((j : ℤ) + n).toNat a₀) =
       fun n => v.getD (j + (n : ℤ).toNat) a₀ := funext fun n => by
     have := (Finset.mem_Icc.mp n.2).1
-    congr 1
-    omega
+    exact congrArg (fun i => v.getD i a₀) (by omega)
   exact congrArg (fun w => e (w, labAlt t)) h
 
 theorem bigWordL_eq (a₀ : A) (v : List A) :

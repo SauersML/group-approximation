@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.GGT.VanKampen.SurgeryPathRibbon: Application type mismatch: The argument"
 ---
 
-**OPEN.** Lean module `GroupApproximation/GGT/VanKampen/SurgeryPathRibbon.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (eae37b23a2, trusted batched probe job direct-b1789842431).** Previously OPEN. Lean module `GroupApproximation/GGT/VanKampen/SurgeryPathRibbon.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**Repair landed, unprobed.** 24d67ff26e: Fix the two face-cycle chain steps in SurgeryPathRibbon. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
