@@ -2,17 +2,17 @@
 rg: 2
 id: ledrappier-shift-has-infinite-toeplitz-minimal-subsets
 kind: claim
-title: Ledrappier's shift has infinite minimal subsets, so (FL) is false; an explicit non-periodic Toeplitz point is built from F_4-twisted Sierpinski gaskets shifted by a non-rational 2-adic integer, untwisted by the trace against ζ^(v_1 − v_2). Toeplitz points with only odd-index period lattices are periodic and those with only 2-power lattices accumulate on 0, so mixing 2 and 3 is forced; the examples are almost automorphic, so they cannot carry T1
+title: Ledrappier's shift has infinite minimal subsets, so (FL) is false; an explicit non-periodic Toeplitz point is built from F_4-twisted Sierpinski gaskets shifted by a non-rational 2-adic integer, untwisted by the trace against ζ^(v_1 − v_2). Toeplitz points with only odd-index period lattices are periodic and those with only 2-power lattices accumulate on 0, so a mixed period with the prime 2 and some odd prime is forced; the examples are almost automorphic, so they cannot carry T1
 requires:
   - ledrappier-shift-has-only-finite-minimal-subsets
   - algebraic-t1-needs-an-infinite-minimal-subset-of-ledrappier
   - algebraic-t1-sets-carry-free-distal-commutator-actions
 distinct_from:
-  ledrappier-shift-has-only-finite-minimal-subsets: that states (FL) as an open crux; this refutes it with an explicit Toeplitz point, and shows why every Toeplitz example must mix a 2-power and an odd period.
+  ledrappier-shift-has-only-finite-minimal-subsets: that states (FL) as an open crux; this refutes it with an explicit Toeplitz point, and shows why every Toeplitz example must have a period mixing the prime 2 with some odd prime.
   free-minimal-triangle-permutive-sft-exists: that seeks free minimal sub-SFTs of quasigroup spacetimes; the minimal sets here are subshifts, not claimed to be SFTs, and they are Toeplitz, so the sub-SFT question is untouched.
 ---
 
-**ESTABLISHED (lane bh-bq2, 2026-09-19; lane proof, elementary; not independently reviewed; no priority
+**ESTABLISHED (lane bh-bq2, 2026-09-19; refereed PASS by bh-ref-c, a7b6ad0f7b, no prior found; no priority
 claimed).**
 - The construction is in the spirit of the automatic space-time diagrams of linear cellular automata
   (Rowland–Yassawi, arXiv:1811.01256) and of the Pascal/Sierpinski structure of `x ↦ x + σx`.
@@ -41,7 +41,7 @@ Let `X_L = {x ∈ F_2^(Z^2) : x(v) + x(v+e_1) + x(v+e_2) = 0}`, `F_4 = F_2(ζ)` 
    - (b) **2-power lattices are dead too.** A Toeplitz point with 2-power periods has `0` in its orbit closure
      (`ledrappier-shift-has-only-finite-minimal-subsets`, Evidence).
 
-   The example uses periods `3·2^K` in an essential way.
+   So some period must mix the prime 2 with an odd prime; the example uses `3·2^K`.
 3. **Consequence for T1.** These minimal sets are almost automorphic, since they are Toeplitz. By
    `algebraic-t1-sets-carry-free-distal-commutator-actions`, an algebraic T1 set is never a proximal extension
    of its maximal equicontinuous factor. So no T1 set lies over them in the sense of
