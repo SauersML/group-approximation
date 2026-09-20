@@ -1,0 +1,24 @@
+Priority-ball adversary class P_eta for Had_k -> Max-2Lin(2)
+(research/priority-ball-carvings-cannot-refute-hadamard-crossing.md)
+
+RIGOROUS (exact Fraction arithmetic)
+$ python3 rigorous_threshold.py 2.05 2.055 2000
+T(C_lo) in [0.25137305, 0.25146860]
+T(C_hi) in [0.24861717, 0.24871067]
+certified C_lo < C* < C_hi: True 2.05 2.055
+
+$ python3 rigorous_threshold.py 2.052 2.053 3000
+T(C_lo) in [0.25028547, 0.25034862]
+T(C_hi) in [0.24973423, 0.24979711]
+certified C_lo < C* < C_hi: True 2.052 2.053
+
+High-precision quadrature (mpmath, dps 30, not interval): C* = 2.05257492888760...
+
+FLOATING POINT / HEURISTIC (not claimed)
+equal_distance_ode.py (explicit Euler, ds = 5e-5; slightly biased low):
+  m4   (M in {1,4})            : threshold ~ 2.05228  (exact integral: 2.05257)
+  pow4 (M in {1,4,16,...})     : threshold ~ 2.25284
+  all M <= (1-2s)^-2           : C = 2.3 survives, C = 2.4 hits zero at s ~ 0.3465
+continuum_minimax.py (smax 0.4, 14 rounds) : best profile worst-case ~ 2.6447
+  profile g on grid: 1, .8146, .6421, .4818, .3328, .1954, .0744, 0, ...
+continuum_explore.py           : truncated exponential profiles worst 5.7 - 7.3

@@ -155,3 +155,15 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
     `k >= 4`. The next prerequisite is whether `R_{K/2-1}(k) <= 2`, the
     easiest hyperplane-parity syndrome. If it holds, every crossing
     certificate must read `>= K/2` pins jointly.
+* **Random-priority pin-ball carvings.** Done 2026-09-20 by
+  swarm-0917-w21-w21-ugc-break. It leaves this node OPEN and kills that
+  adversary class as a refutation.
+  * **The result.** `priority-ball-carvings-cannot-refute-hadamard-crossing`
+    covers a common radius law with support `<= (1/2 - eta) K`, uniform
+    priorities and a backbone. Every such adversary has
+    `K max_e Pr[cut] >= C* - o(1)`, with `2.052 < C* < 2.053` certified
+    exactly.
+  * **Where it dies.** Take the plateaued points `f(L i)` with `f = u1 u2`,
+    under uniform per-fiber flips. They keep four pins equidistant up to
+    `K/2`, and priority sharing caps the hazard at `-g'/2 <= phi_4(g)`.
+  * **What is left open.** Pin-dependent or correlated radius laws.
