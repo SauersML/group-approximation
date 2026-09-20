@@ -220,3 +220,31 @@ For some `delta > 0` and every `eta > 0` there are a nonzero projection
     `rho` with arc spectrum.  So (EC) for all `rho` is not reached, and in
     the world where `T` is MF it remains a separate open question that the
     flagship does not need.
+- 2026-09-20 swarm-0917-w23-w23-ptm-last1 (calibration).  Outcome: a class
+  kill.  The target stays OPEN.
+  - **Established on the way.**
+    `thompson-t-escapes-quotient-free-mf-permanence-closure`: the class
+    `D_T` of groups with no copy of `T` contains `T̄` and all amenable,
+    residually finite, linear, hyperbolic, LEF and LEA groups.  It is closed
+    under subgroups, arbitrary extensions, arbitrary graphs of groups,
+    colimits, unrestricted products, ultraproducts and local embeddings.  FA
+    for `T` comes from `alpha^4 = beta^3 = (beta alpha)^5 = 1` and Serre's
+    bridge lemma, which is proved in full.  So every homomorphism from `T`
+    to such a group is trivial.
+  - **What it kills.**  Any argument for descent (`T̄` MF implies `T` MF),
+    or for the negation of `thompson-t-has-full-mf-radical`, that builds a
+    host group from `T̄` and the known MF classes by these operations.  The
+    step where every such argument dies is that none of the operations
+    creates a copy of `T`.  The only exit is a quotient of `T̄`, and these
+    are exactly the central quotients `T̄/<z^j>`.  In corona terms, the exit
+    is a representation with `rho(z)` scalar or of finite order, which is
+    this node's eigencorner.
+  - **Structural fact noted, not used.**  `T̄ = D · F̄` is an exact
+    factorization, a Zappa--Szép product.  Here `D ≅ Z[1/2]` is the group
+    of dyadic translations and `F̄` is the periodic extension of `F`: write
+    `g = (x + g(0)) ∘ f` with `f(0) = 0`.  So `B = rho(D)' ∩ rho(F̄)' ∩ Q`.
+    Also, `D` is the intersection of the dilation tower
+    `C(t_k) ≅ T̄`, where `t_k = x + 2^(-k)`.  Neither fact produces a
+    projection in `B` on an arc of `sp(rho(z))`.  `F̄` does not normalize
+    `D`, so the spectral projections of `rho(D)` do not commute with
+    `rho(F̄)`.
