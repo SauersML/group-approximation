@@ -2,7 +2,7 @@
 rg: 2
 id: arithmetic-lattices-embed-in-f-infinity-simple-groups
 kind: claim
-title: Every group commensurable with an irreducible arithmetic lattice in a semisimple Lie group, in particular every lattice in Sp(n,1) or F_4^(-20) and so every such cocompact hyperbolic Kazhdan group, embeds in a simple group of type F_∞
+title: Every group commensurable with an irreducible arithmetic lattice in a linear semisimple Lie group, in particular every lattice in Sp(n,1) or F_4^(-20) and so every such cocompact hyperbolic Kazhdan group, embeds in a simple group of type F_∞
 distinct_from:
   arithmetic-lie-lattices-have-faithful-bs-members: that supplies the faithful Hecke member and concludes only membership in the permutational class B_A (finitely presented simple envelopes), for lattices in groups with trivial center; this feeds that member into the F_n form of Bux–Llosa Isenrich–Wu Theorem 11.1 for every n, gets one envelope of type F_∞, and passes to finite center through commensurability.
   surface-generalized-bs-groups-satisfy-boone-higman: that is the same F_∞ upgrade for closed surface groups only; this runs it for every arithmetic lattice and names the Kazhdan hyperbolic consequence.
@@ -13,12 +13,14 @@ artifacts:
   - research/artifacts/gq-bh-q12-alt-host-routes.md
 ---
 
-**OPEN (proof claimed, under review).** The claimed proof is
+**ESTABLISHED (independent second proof; credited to Llosa Isenrich–Schesler–Wu).** The proof is
 `arithmetic-lattices-embed-in-f-infinity-simple-groups-proof`, a lane proof assembling landed nodes.
-A referee (bh-ref-t0) is checking it.
+Referee bh-ref-t0: **PASS** for linear `L`, `research/arithmetic-lattices-f-infinity-hosts-review.md`
+(ef3d1e47a6). The two repairs it asked for are applied: the scope is restricted to linear `L`, and
+the arithmeticity citation is fixed.
 
 **Priority: attribution to Llosa Isenrich–Schesler–Wu.** Their arXiv:2510.01952, Theorem 1.4 with
-Remark 1.5, as quoted by a summarizing fetch of the arXiv HTML and not read at source, says:
+Remark 1.5, verified at source by the referee, says:
 
 > "Let H be a finitely generated subgroup of GL_n(ℚ). There exists a simple group G that has the
 > same finiteness properties as H, H is a subgroup of G, and G admits a quasi-retract onto H."
@@ -32,7 +34,7 @@ rather than Röver–Nekrashevych groups, and claims no priority.
 
 ## Statement
 
-Let `L` be a connected semisimple real Lie group with finite center and no compact factors, and let
+Let `L` be a connected **linear** semisimple real Lie group with no compact factors, and let
 `Γ ≤ L` be an irreducible arithmetic lattice. Then every group `K ∈ BS_Γ` (Bux–Llosa Isenrich–Wu:
 fundamental groups of finite graphs of groups whose vertex and edge groups are abstractly
 commensurable with `Γ`, with finite-index edge inclusions) embeds in a simple group of type `F_∞`.
@@ -42,14 +44,15 @@ In particular `Γ` itself, and every group abstractly commensurable with `Γ`, d
 
 1. **Kazhdan hyperbolic lattices.** Every lattice in `Sp(n,1)` or `PSp(n,1)`, `n ≥ 2`, and every
    lattice in `F_4^{(-20)}`, embeds in a simple group of type `F_∞`. All these lattices are
-   arithmetic (Corlette 1992 for `Sp(n,1)`, Gromov–Schoen 1992 for `F_4^{(-20)}`; cited, not
-   re-read). The cocompact ones are hyperbolic groups with property (T): hyperbolic because they act
+   arithmetic, for both families by Corlette (Ann. of Math. 135, 1992) together with Gromov–Schoen
+   (Publ. IHÉS 76, 1992), cited and not re-read. `Sp(n,1)` and `PSp(n,1)` are linear, and so is
+   `F_4^{(-20)}`. The cocompact ones are hyperbolic groups with property (T): hyperbolic because they act
    geometrically on a negatively curved symmetric space, Kazhdan because `Sp(n,1)`, `n ≥ 2`, and
    `F_4^{(-20)}` have (T) (Kostant; cited). So these Kazhdan hyperbolic groups have `F_∞` simple
    hosts. Such groups are never cubulated (Niblo–Reeves), so the `2V` route through special cube
    complexes does not reach them.
-2. **Higher rank.** Every irreducible lattice in real rank `≥ 2` (Margulis arithmeticity, cited),
-   for example `SL_n(Z)` and `Sp_{2n}(Z)` for `n ≥ 3` and `n ≥ 2`.
+2. **Higher rank.** Every irreducible lattice in a linear group of real rank `≥ 2` (Margulis
+   arithmeticity, cited), for example `SL_n(Z)` and `Sp_{2n}(Z)` for `n ≥ 3` and `n ≥ 2`.
 3. **Arithmetic real and complex hyperbolic lattices** in `SO(n,1)` and `SU(n,1)`.
 
 ## Scope and limits
@@ -65,5 +68,8 @@ In particular `Γ` itself, and every group abstractly commensurable with `Γ`, d
   is not settled here; this node gives a different host for the lattice subclass of the
   hyperbolic inputs, which is the part of BBMZ survey Problem 5.3 ("even of type `F_∞`?") it
   touches.
+- **Non-linear `L` is excluded.** Deligne (C. R. Acad. Sci. Paris 287, 1978) shows that for `n ≥ 2`, finite-index
+  subgroups of the preimage of `Sp_{2n}(Z)` in non-linear finite covers of `Sp_{2n}(R)` are not residually
+  finite, so Step 1 of the proof has no torsion-free finite-index subgroup to work with there.
 - **Trust surface.** Bux–Llosa Isenrich–Wu Theorems 10.5 and 11.1 and their `n`-independence (proofs
   not re-checked here), and the cited arithmeticity and property (T) theorems.

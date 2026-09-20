@@ -12,9 +12,10 @@ artifacts:
   - research/artifacts/gq-bh-bh-free-extensions-bliw-section-11-12.md
 ---
 
-Let `L`, `Γ` be as in the target. Write `Z = Z(L)`, which is finite, and `π : L → L/Z`.
+Let `L`, `Γ` be as in the target, with `L` linear. Write `Z = Z(L)`, which is finite because `L` is
+linear, and `π : L → L/Z`.
 
-**Step 1 (a center-free model).** `Γ` is finitely generated and linear through `Ad`, so by Selberg's
+**Step 1 (a center-free model).** `Γ` is finitely generated and linear, since `L` is, so by Selberg's
 lemma it has a torsion-free normal subgroup `Γ_0` of finite index. `Γ_0 ∩ Z` is a finite subgroup of
 a torsion-free group, hence trivial, so `π` maps `Γ_0` isomorphically onto `π(Γ_0)`.
 - `L/Z` is a connected semisimple Lie group with trivial center and no compact factors.
@@ -51,7 +52,8 @@ group contains `K` and is of type `F_n` for every `n`, that is, of type `F_∞`.
 
 **Step 5 (instances).** `K = Γ` is the one-vertex graph with no edges, so `Γ ∈ BS_Γ`. The instance
 list of the target uses only:
-- the cited arithmeticity theorems (Corlette; Gromov–Schoen; Margulis);
+- the cited arithmeticity theorems: Corlette together with Gromov–Schoen for both `Sp(n,1)` and
+  `F_4^{(-20)}`, and Margulis in higher rank;
 - Kostant's property (T) for `Sp(n,1)`, `n ≥ 2`, and `F_4^{(-20)}`, inherited by lattices;
 - hyperbolicity of cocompact lattices in rank one, by the Švarc–Milnor lemma on a negatively curved
   symmetric space.
