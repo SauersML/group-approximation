@@ -227,3 +227,37 @@ direction is used here.
   along the amenable wq-normal subgroup `<g> x 1` certifies only the global l2
   gap, which already gives `p_c < p_u`. The gap on `V x V` stays open. A proof
   of (alpha) must work at isolated pairs directly.
+* **Aizenman--Newman pivotal lower bound toward Claim E (swarm-0917 w21,
+  transplanter).** Aim: prove `E` on the window `(p^Q_(2->2), p_c(N;G))`,
+  where it has content, by transplanting the mean-field lower bound
+  `d chi/dp >= c chi^2`. On finite truncations, Russo gives
+  `d chi^N/dp = (1/p) sum_(x in N) sum_e P(e pivotal for o<->x)`. Condition
+  on `C(o)` off `e=(u,v)` and use BK:
+  `P(v<->x off C) >= tau(v,x) - sum_(w in C) tau(v,w) tau(w,x)`.
+  - The main term is `M_p = d <sigma_p, mu_Q * sigma_p>_(l2(Q))`. It uses
+    that `sigma_N(u) = sum_(x in N) tau(u,x)` is constant on cosets and that
+    `sigma(q^(-1)) = sigma(q)`.
+  - After the tree-graph bound, the error is at most
+    `sum_(z,w) tau(o,z) B_p(z,w) sigma_N(w)`, where
+    `B_p(z,w) = tau(z,w) (T_p D T_p)(z,w)`.
+
+  To close, this needs the `sigma_N`-weighted triangle
+  `W_p = sup_z sum_w B_p(z,w) sigma_N(w)/sigma_N(z)` to be `< 1`. Then
+  finite `chi^N` on an interval forces `M_p < infinity` there, which is the
+  `m=2` case of the diagonal formula. **Where it dies:** twice.
+  - **Triangle step.** `W_p` is at least the unweighted in-fibre triangle,
+    and it is small only in a triangle / mean-field regime. On `T_3`,
+    `nabla_p` is finite exactly for `p < 1/sqrt 2 = p_(2->2)` (tripod count
+    `2^(a+b+c) p^(2(a+b+c))`). So the error is not controlled beyond
+    `p_(2->2) >= p^Q_(2->2)`, and finiteness alone does not give `W_p < 1`
+    below it.
+  - **Order step.** Even with `W_p` small, a first derivative reaches only
+    `m=2`. `E` needs `chi^(N,m) <= C^m` for all `m`, i.e. derivatives of every
+    order of a monotone function known only to be finite. Order `m-1`
+    derivatives carry `m-1` compounded weighted-triangle errors and are not
+    controlled by finiteness of `chi^N`.
+
+  **Invariant:** the weighted triangle `W_p`, together with derivative order.
+  AN-type derivative domination is therefore itself a critical-l2 / triangle
+  method and cannot establish `E` or `E'` outside that regime. No node or
+  artifact written; this record is the only output.
