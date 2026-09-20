@@ -23,7 +23,7 @@ namespace BooneHigmanLinear
 namespace LSCore
 
 open GroupApproximation.SteinbergGroup
-open GroupApproximation.BooneHigmanLinear.RelGen
+open GroupApproximation.BooneHigmanLinear.RelGen (zElt relKer zSet ThirdIndex Thm42Statement)
 open GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl (w h)
 
 /-- The index set `I ∖ {i, j}`. -/
