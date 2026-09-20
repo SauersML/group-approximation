@@ -207,3 +207,13 @@ remains:
      convex core of a quasiconvex subgroup, by Helly. So quasiconvex subgroups of hyperbolic RACGs need only (IRR).
    - **Open.** (NA) for a general hyperbolic 3-manifold group's own cubulation (parallel surfaces with commensurable
      stabilizers). Also (IRR) for convex cores.
+11. **2026-09-19 (lane `bh-q11-beyond`), every hyperbolic right-angled Coxeter group (lane proof, not reviewed).**
+   - **Landed.** `hyperbolic-racgs-are-contracting-rsgs`, via `hyperbolic-racgs-contracting-rsg-via-min-star-order`.
+     Every non-elementary hyperbolic RACG, and every group commensurable with one, is a contracting RSG. The spread
+     condition (a) and the connectivity condition (b) of attempt 9 are dropped.
+   - **Mechanism.** Split off cone vertices, which form a finite direct factor. Then order the generators as
+     `u_1 < S ∖ St(u_1) < lk(u_1)`, where `St(u_1)` is inclusion-minimal. A no-square lemma shows every simplex is
+     reachable from a singleton, so the greedy state graph is strongly connected.
+   - **Lesson.** (IRR) depends on the order. A bad order on a hexagon-disk nerve gives a second recurrent component.
+   - **What remains.** Non-right-angled hyperbolic Coxeter groups (via Niblo–Reeves cubulations), virtually special
+     groups not commensurable with a RACG, and Kazhdan groups.
