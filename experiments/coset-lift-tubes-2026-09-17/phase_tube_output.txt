@@ -1,0 +1,3 @@
+q=2: lifts ok; fibre tr(M)=0, tr(M^2)=6; cycles 3..8 nonempty, no fixed point
+q=3: lifts ok; fibre tr(M)=0, tr(M^2)=6; cycles 3..8 nonempty, no fixed point
+q=4: lifts ok; fibre tr(M)=0, tr(M^2)=6; cycles 3..8 nonempty, no fixed point
