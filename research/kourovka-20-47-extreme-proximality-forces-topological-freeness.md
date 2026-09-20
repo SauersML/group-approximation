@@ -9,9 +9,17 @@ distinct_from:
 
 **ESTABLISHED (partial answer to Kourovka 20.47).** Theorems 1 and 2 and Corollary 3 are lane
 proofs and have not been independently reviewed. Corollary 4 depends on a structure theorem for
-circle actions that I recalled but did not re-read. Kourovka 20.47 itself stays **OPEN**. No
-priority is claimed: the commuting-supports trick is standard in the work of Le Boudec and Matte
-Bon, and the proposers very likely know Theorem 2.
+circle actions that I recalled but did not re-read. Kourovka 20.47 itself stays **OPEN**.
+
+**Attribution.** For minimal actions, Theorem 2 follows at once from A. Le Boudec,
+*Amenable uniformly recurrent subgroups and lattice embeddings*, arXiv:1802.04736v4, Lemma 4.3,
+read at source through its HTML version. Under the standing hypothesis (EP), that Γ acts on Z
+"faithful, minimal and extremely proximal", Lemma 4.3 reads: "If the action of Γ on Z is not
+topologically free, then it is micro-supported." In a micro-supported action, two disjoint
+nonempty open sets have nontrivial rigid stabilizers, and elements of those stabilizers have
+disjoint supports. Theorem 1 forbids this for 𝒵-groups. So the new content here is only Theorem 1,
+a short standard observation, together with the removal of minimality. Credit Le Boudec. The
+proposers of 20.47 certainly know this case.
 
 ## The problem
 
@@ -95,6 +103,21 @@ minimal action on S¹ is either
   proximal, hence topologically free. If some g ≠ 1 fixed an open arc upstairs pointwise, its
   image would be nontrivial and fix the projected arc downstairs, a contradiction. ∎
 
+## Corollary 4′ (dendrites; conditional on the cited theorem)
+
+Let G ∈ 𝒵 act on a dendrite D with no invariant proper sub-dendrite. Then the action of G on the
+unique minimal closed invariant subset of D is topologically free.
+
+This depends on Duchesne–Monod, *Group actions on dendrites and curves* (arXiv:1609.00303; Ann.
+Inst. Fourier). As quoted in the secondary sources I found, and as used in Le Boudec
+arXiv:1802.04736 §4, it says that such an action has a unique minimal closed invariant set and that
+the action on it is extremely proximal. I did not read Duchesne–Monod's own statement.
+
+*Proof, given that theorem.* Apply Theorem 2 to the minimal set. ∎
+
+So neither a dendrite nor a Ważewski-type universal dendrite gives a counterexample, which closes
+the dendrite route to a counterexample.
+
 ## Proposition 5 (what a counterexample must look like)
 
 Let G ∈ 𝒵, for instance G = F_n, act faithfully, minimally and strongly proximally on a compact
@@ -135,6 +158,16 @@ V on the Cantor set and T on S¹. Both groups contain Z², which is consistent w
   free actions of free groups. Checked Ma–Wang–Yang arXiv:2510.05669 (CAT(0) boundaries), Alam–
   Gondek–Kalantar–Pham arXiv:2602.15009 (growth conditions), Le Boudec–Matte Bon arXiv:1906.05744,
   and Caprace–Le Boudec–Matte Bon arXiv:2107.07765. I found no answer to 20.47.
-- **Not done:** Le Boudec–Matte Bon, *Subgroup dynamics and C*-simplicity of groups of
-  homeomorphisms*, was not read in text form, because only the PDF was available and lane rules
-  bar reading it locally. Whether Theorem 2 is stated there is therefore unchecked.
+- **Le Boudec–Matte Bon, arXiv:1605.01651** (HTML read; the text was truncated at §3.2): defines
+  extreme boundary actions, and its Theorem 1.2 classifies uniformly recurrent subgroups of such
+  actions. The visible part does not state Theorem 2.
+- **Le Boudec, arXiv:1802.04736v4, Lemma 4.3** (read): gives Theorem 2 for minimal actions, as
+  credited above.
+- **Constructive side, not attempted beyond a map of the constraints:**
+  - by Corollaries 3, 4 and 4′, circles, tree boundaries and dendrites are all excluded;
+  - by Kennedy's characterisation and C*-simplicity of F_n, the stabilizer URS of a counterexample
+    would have to be a non-amenable, nontrivial URS whose members contain elements with open fixed
+    sets, any two of which have intersecting supports (Theorem 1).
+
+  A candidate needs a Cantor-type space built for the purpose, with no commuting pair of disjointly
+  supported elements. No such construction is known to me.
