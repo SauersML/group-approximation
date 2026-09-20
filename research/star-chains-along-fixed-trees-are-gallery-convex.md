@@ -64,6 +64,20 @@ graph, and `ρ` a geodesic edge path in `X`, for instance a segment of a ray of 
   - At an outer vertex `u`, the chambers of `star(w)` containing `u` are the 5 chambers around the edge `uw`, and they
     are pairwise adjacent. So moving along the outer boundary of `star(w)` costs one step per outer vertex inside the
     star.
+- **Lemma G0 (proved, lane): star chains are CAT(0)-convex.** Let `ρ` be a geodesic edge path. `U_ρ` is a closed,
+  connected subcomplex, and it is locally convex. Hence it is convex in `X` (local-to-global for closed connected
+  locally convex subsets of CAT(0) spaces; standard, recalled).
+  - At interior points of outer edges, `U_ρ` occupies a half-plane.
+  - Let `u` be an outer vertex adjacent to one vertex `w` of `ρ`. The directions at `u` into `U_ρ` form the one-edge
+    ball around the link vertex `(uw)` in `L_u`. Two directions at distances `t, t'` from `(uw)` are joined through it by a
+    path of length `t + t'`, while any other path has length at least `2π − (t + t')`, because girth times angle is
+    `2π`. So this set is `π`-convex. Equality occurs only when `t = t'` is `π/2` at a `C`-type `u`, which is allowed.
+  - If `u` is adjacent to two consecutive vertices `w_i, w_{i+1}` of `ρ`, the directions form the union of the
+    one-edge balls around two adjacent link vertices. The same count gives in-union paths of length at most
+    `t + ε + t'`, where `ε` is one edge, against at least `2π − (t + ε + t')` for any other path. So the set is again
+    `π`-convex.
+  - This is CAT(0)-convexity. It does **not** give (G): the chamber-graph metric is not the CAT(0) metric, and
+    nearest-point projection does not map chambers to chambers.
 - **Missing: the curvature count.** A bound on outside excursions by in-star lengths is not proved. It would come
   from Gauss–Bonnet on the reduced disc diagram filling the closed gallery, with flat interior vertices and defect
   `π/20` per triangle. This is not done, even for one `A`- or `B`-type star. So (G) stands as the recorded crux of
