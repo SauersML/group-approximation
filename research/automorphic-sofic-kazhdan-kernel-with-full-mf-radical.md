@@ -61,6 +61,30 @@ node's Attempts 16 to 19 all concern defects created by the mapping torus. The p
 
 ## Attempts
 
+**Attempt 1 (swarm-0917 w14-titz-pull, operator-algebras): orbit-full-group certificates for (P1).
+Profinite hosts are dead. The claim stays OPEN.**
+
+- **The class.** `permanence-closure-radical-witnesses-have-lef-kernels` shows that a (P1) group needs a
+  soficity certificate from outside the permanence closure. Orbit full groups are the first survivor
+  it names. The certificate is to embed `K` in a full group `[R]` of a sofic relation `R`.
+- **Killed: profinite hosts.** `kazhdan-subgroups-of-profinite-orbit-full-groups-are-rf` proves that
+  every Kazhdan subgroup of `[R_H]` is residually finite, for `R_H` the orbit relation of any ergodic
+  profinite action of any countable group `H`. The proof is self-contained, with no imports. A (P1)
+  group has no nontrivial finite quotient, so every homomorphism from it to such a full group is
+  trivial.
+  - The invariant is the normalized same-atom indicator `sqrt(n_i) 1_(Y_i)` in `L^2(X x X)`.
+  - Every member dies at the finite action of `K` on the clusters of the fibre measure of the
+    Kazhdan projection of that indicator.
+- **Already dead in the graph.**
+  - Amenable acting groups: `kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`.
+  - Haagerup acting groups when `K` is IRS-rigid:
+    `irs-rigid-kazhdan-groups-avoid-haagerup-orbit-full-groups`.
+- **What survives.** Non-profinite, for example mixing, actions of sofic groups `H` that are neither
+  amenable nor Haagerup. These include Bernoulli shifts of residually finite Kazhdan groups, which have
+  sofic orbit relations. The proof breaks exactly at its almost-invariance step (AI), because a mixing
+  action has no generating refining sequence of `H`-permuted finite partitions. A (P1) group inside the
+  full group of a Bernoulli shift of an RF Kazhdan group is the concrete remaining target for this
+  certificate.
 1. **Lacunary hyperbolic kernels (Hull--Osin and sparse hyperbolic-stage limits).** Dead at (P2)
    for the intended infinitely presented design (swarm-0917 w16, host-geometry). See
    `lacunary-hyperbolic-witness-kernels-are-non-rf-hyperbolic`, which is ESTABLISHED from a verbatim

@@ -2,8 +2,9 @@
 rg: 2
 id: virtually-torsion-free-host-no-ce-augmentation-corner
 kind: claim
-refuted_by: virtually-torsion-free-mf-radical-is-torsion-free
 title: Realize a no-CE algebra in a finite-subgroup augmentation corner of a virtually torsion-free recursively presented host, off the finite radical
+refuted_by:
+  - virtually-torsion-free-mf-radical-is-torsion-free
 distinct_from:
   nonhyperlinear-bloop-finite-augmentation-corner: that allows any countable host and any finite subgroup, and feeds the explicit-witness endpoint; this additionally demands a finitely generated recursively presented virtually torsion-free host and a finite subgroup with infinite normal closure, which is exactly what makes the same corner feed the torsion-free seed.
   agent-leavitt-not-bcs-negative-root-corner: that fixes the binary-Leavitt Steinberg host, which has no proper finite-index subgroup and so can never be virtually torsion-free; this excludes that host by hypothesis.
@@ -60,6 +61,16 @@ so one construction feeds two endpoints.
     models) uses residual finiteness of the base.  For the simple
     Burger--Mozes lattices, which have no finite quotients, it does not
     obviously apply.  That is untested.
+- 2026-09-19 (swarm-0917-w14-w14-ptm-last1, finite-models): REFUTED by
+  `virtually-torsion-free-mf-radical-is-torsion-free`.
+  - Death step: `K` meets the torsion-free core `N = Core_H(E)` trivially,
+    so it injects into the finite group `H/N`.
+  - The left-regular representation of `H/N` sends `q_K` to a nonzero
+    projection of rank `n(1 - 1/|K|)`.
+  - So any `Phi` gives `B` a matrix, hence Connes-embeddable, tracial
+    state.  This holds for every host and every `K != 1`.
+  - The class kill `radical-calculus-misses-virtually-torsion-free-groups`
+    closes the whole (C)+(I) gate, including multi-host derivations.
 - 2026-09-18 (swarm-0917-w14-w14-ptm-last1, finite-models): **REFUTED**
   for every host, by `virtually-torsion-free-mf-radical-is-torsion-free`.
   - `K` is finite and nontrivial, and it meets the torsion-free normal core

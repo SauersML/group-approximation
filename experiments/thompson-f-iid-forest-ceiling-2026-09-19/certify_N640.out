@@ -1,0 +1,5 @@
+N=640 K=24 scale=2^40  sha256(alpha|beta int64)=5d7403c5aa2dadcb73d82180932ffd6a4912ced6f82cf989cb2f9863739f773c
+exact convolution: CRT bound, x=1, x=-1, 3 random points mod 2^61-1, float cross-check OK
+J_lo = 3.8265948694   ||P|| >= J_lo/4 = 0.9566487173
+J_lo/4 > 19/20 : True
+J_lo digits: numerator 84, denominator 83

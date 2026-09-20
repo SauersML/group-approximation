@@ -441,6 +441,27 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     - *Invariant:* the Hellinger idempotence gap `H(nu, nu*nu) >= 1/8` of the bulk size law.
     - *Dies at:* the merge move.
     - *Survivors:* test vectors with correlated neighbouring tree sizes.
+- **The i.i.d. forest proxy is capped; the lower bound crosses every estimate
+  (swarm-0917-w14-w14-f-break, 2026-09-19, belief-breaker).** This answers the w13 proxy question: no.
+  - *Established (class kill):* `thompson-f-iid-forest-vectors-cannot-reach-norm-one`.
+    - *Exact reduction.* Take any i.i.d. product vector `Y(T_i) prod_{j≠i} X(T_j)` on pointed-forest
+      windows, with any shapes and any cutoff `N`. As `n -> ∞` its quotient is at most `J(alpha,beta)/4`,
+      with `J = 2 BC(alpha,beta)^2 + 2 sum sqrt(beta_j (alpha*beta)_j)`. Split shapes attain it.
+    - *Ceiling.* `J <= 4 - 1/20`, so the whole family is capped at `79/80`.
+    - *Invariant:* the Laplace transform of the size laws at `psi_beta = 1/2`.
+    - *Dies at the merge step:* `psi_{alpha*beta} = psi_alpha psi_beta` forces
+      `TV(alpha,beta) + 2 TV(alpha*beta,beta) >= 1/2`. An independent sum of sizes cannot be
+      self-similar in law.
+    - *Heuristic value of the family:* the continuum optimum is `≈ 0.9744`.
+  - *Established (belief change):* `thompson-f-norm-bound-from-iid-size-laws`, `||P|| > 0.9698`.
+    - Two 24-knot size laws at `N = 10^6`, evaluated in the exact `n -> ∞` limit by NTT convolution.
+    - `mu > 15.048` and `||A+A^{-1}+B+B^{-1}|| > 3.879`. These lie above Elvey Price–Guttmann's
+      `mu ≈ 15.0` and HHR's `≈ 3.87`.
+    - Every published numerical estimate is now below a certified floor. The gap to amenability is
+      `< 0.0302`.
+  - *Survives:* test vectors whose neighbouring trees have correlated sizes, such as a Markov chain
+    of sizes along the forest or a pointer tree coupled to its neighbour. Any Følner-type forest
+    family must be of this kind. OPEN.
 - **Log-scale forest limit and the product-form cap (swarm-0917-w14-w14-f-break, 2026-09-19,
   belief-breaker, entropy-measure).** This continues the w13 entry above and answers its open proxy.
   - *Established:* `thompson-f-norm-bound-from-log-scale-forest-limit`,

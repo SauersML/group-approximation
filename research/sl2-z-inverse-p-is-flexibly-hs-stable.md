@@ -35,3 +35,35 @@ By `sl2-pq-exact-vertex-pairs-have-uniform-linear-repair`, such a sequence is
 also the only way to refute `sl2-z-inverse-pq-is-flexibly-hs-stable` through
 its q-adic amalgam decomposition. A pair of exact vertex representations can
 never witness a refutation.
+
+## Attempts
+
+* **Refutation through the homogeneous crossed product (swarm-0917-w14-w14-nh-follow, 2026-09-19, reframing).**
+  The outcome is OPEN. Nothing new is decided. The attempt records where the refutation side stands.
+  * **Gate.** `f2xf2-crossed-products-ce-make-sl2-centralizer-hnn-hyperlinear` (item 3) covers this node at
+    every `p`. If this node holds, the explicit action `(FX2)` of `F_2 x F_2` has a crossed product that is
+    not Connes-embeddable. Contrapositive: CE of all essentially free `F_2 x F_2` crossed products refutes
+    this node for every `p`.
+  * **Direct chain, checked here.** Take any homomorphism `rho : A -> prod_omega M_(d_n)`.
+    1. Stability gives exact `pi_n` of dimension `D_n`, with `D_n/d_n -> 1`, and isometries `V_n` such
+       that `pi_n(g) V_n ≈ V_n rho_n(g)`.
+    2. The `pi_n` are congruence representations of level prime to `p`. So Selberg `(tau)` for `C`, as in
+       item 3 of `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`, moves a `C`-almost-commuting `X_n`
+       to `pi_n(A)'` with linear loss. This gives `rho(C)' cap M_omega = rho(A)' cap M_omega`.
+    3. `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse` (HQ2)-(HQ4) then shows that
+       `M_2^(p) = L^infinity(L/Lambda') rtimes A` is not CE for any cocompact `Lambda'`.
+    So this node implies the negation of `sl2-homogeneous-quotient-crossed-product-is-connes-embeddable`
+    (at `p = 2`). It therefore also implies the negation of
+    `dyadic-homogeneous-quotient-admits-topological-microstates`, because the action is uniquely ergodic.
+  * **Collapse extends to smaller subgroups.** The same argument works with `C` replaced by any
+    finite-index `Gamma <= C` that surjects onto every `SL_2(Z/m)` with `p` not dividing `m`. Examples are
+    `Gamma_0(p)` and `Gamma(p^k)`. The collapse then reaches down to `Gamma(p^k)'` for every `k`. The
+    matching leak is the indicator of a `K(p^k)`-orbit on `L/Lambda'`, which is smaller, so this gives no
+    new kill. The `(tau)` constant depends on `k`.
+  * **Checked and dead as refutations.** Both routes are already recorded in the graph as dead.
+    * DKP amalgam soficity needs an amenable edge relation, and `R_(Gamma_0)` is not amenable.
+    * Treeability fails because `beta_2^(2)(A) > 0`.
+
+    The congruence models are excluded (`expanding-matchings-need-a-shared-stabilizer`).
+  * **What is left.** Either side reduces to Connes embeddability of the one explicit algebra `M_2^(p)`,
+    equivalently of `(FX2)`. The graph has no route to either sign of that question.

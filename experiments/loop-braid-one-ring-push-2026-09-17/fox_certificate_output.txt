@@ -1,0 +1,7 @@
+n=5  rho.p=(1, 1, 1, 0, 0)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=162 c_v!=c_w: True
+n=6  rho.p=(1, 1, 1, 0, 0, 1)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=486 c_v!=c_w: True
+n=7  rho.p=(1, 1, 1, 0, 0, 1, 1)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=1458 c_v!=c_w: True
+n=8  rho.p=(1, 1, 1, 0, 0, 1, 1, 1)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=4374 c_v!=c_w: True
+n=9  rho.p=(1, 1, 1, 0, 0, 1, 1, 1, 1)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=13122 c_v!=c_w: True
+n=10  rho.p=(1, 1, 1, 0, 0, 1, 1, 1, 1, 1)  (a) True  (b) |orbit_K|=2 c_v=c_w: True  (c) |orbit_H|=39366 c_v!=c_w: True
+ALL PASS

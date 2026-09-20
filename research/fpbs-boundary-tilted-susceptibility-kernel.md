@@ -12,6 +12,8 @@ distinct_from:
 artifacts:
   - experiments/boundary-tilt-2026-09-17/check_boundary_tilt.py
   - experiments/boundary-tilt-2026-09-17/check_boundary_tilt.out
+  - experiments/boundary-tilt-audit-2026-09-17/check_duality_affine.py
+  - experiments/boundary-tilt-audit-2026-09-17/check_duality_affine.out
 ---
 
 **ESTABLISHED.** Proof in `fpbs-boundary-tilted-susceptibility-kernel-proof`.
@@ -184,3 +186,57 @@ fibre-uniform estimate that fails on `H`.
   `fpbs-lq-two-point-infinite-cluster-reduction`.
 - *Where (K) stays open.* It remains open wherever the window is known only
   through cost (Lyons' fixed-price-above-one groups).
+
+## Attempts
+
+1. **Refutation audit, survives (2026-09-19, swarm-0917
+   w18c-bs-audit, family calibration).** The aim was to break items 1–6 by
+   finding a false step, a misused citation or a calibration that fails. No
+   break was found. What was checked:
+   - *Item 1.* Rederived `d nu_(gy)/d nu_(gx)(zeta) = Delta_(g^(-1) zeta)(x,y)`
+     and the tilted mass transport by the substitution `eta = y^(-1) zeta`.
+     Only countability and simple transitivity are used. Unimodularity and a
+     modular function are not needed, so the Hutchcroft analogy is a heuristic
+     and not an imported hypothesis.
+   - *Item 2.* Duality is equivalent to the pointwise identity
+     `phi_(1-lambda)(y) = phi_lambda(y^(-1))` together with `tau(o,y) = tau(o,y^(-1))`.
+     It was checked independently on the non-tree, non-measure-preserving
+     calibration used in item 6 (BS(1,2) acting affinely on `R`, with the
+     Cauchy law), for 13 words, by quadrature. The worst error was `1.8e-14`.
+     `phi_0 = phi_1 = 1`, log-convexity in `lambda` and `phi_(1/2) <= 1` also
+     held. Artifact:
+     `experiments/boundary-tilt-audit-2026-09-17/check_duality_affine.py`
+     (output in `.out`).
+   - *Item 3.* `kappa_p(n) <= tau_p(o,y_n) <= S(zeta) Delta_zeta(o,y_n)^(-1/2)`
+     is valid for any `zeta` with `S(zeta) < infinity`, which holds a.e. by
+     Tonelli. The bound `p^nu_t <= p_u` needs `nu(h_nu > 0) > 0`, and the claim
+     assumes it there.
+   - *Item 4.* The weak-containment norm bound and the identification
+     `||lambda(tau_p(o,.))|| = ||T_p||_(2->2)` were checked: under `J` the
+     kernel `tau(o, x w^(-1))` becomes `tau(x,w)`.
+   - *Item 5.* Rederived: the RN derivative `(d-1)^(-b_zeta)`, the Harish-Chandra
+     formula with `q = d-1`, and `p^nu_c(lambda) = (d-1)^(-(1-m))`. This is
+     consistent with `p_(2->2)(T_d) = (d-1)^(-1/2)` through item 4. The
+     original artifact was rerun and passes.
+   - *Item 6.* The affine relation holds for the standard left action. Two
+     points of wording: the growth word is evaluated as a composition applied
+     right to left, not "left to right" as the proof says, and the formula
+     `2^n x + sum b_i 2^i` is right under that convention. `g_n = a^(-m) t^n`
+     acts as `x -> 2^n x - m`. Neither point affects the conclusion.
+     Consistency check: amenability gives `pi_nu ≺ lambda` (Hulanicki), so item 4
+     gives `chi^nu_(1/2) <= ||T_p|| = chi_p`, in line with (iii).
+   - *Verdict.* Every step is elementary (Tonelli, the chain rule, Hölder) apart
+     from the `h_nu` and Harris–FKG inputs, and every one checks. The open
+     content sits entirely in `fpbs-boundary-half-tilt-above-pc-universal`.
+   - *Also audited in the same pass, each survives:*
+     - `fpbs-replica-meet-threshold-sandwich`: Lemma 1.1 needs only a
+       transitive invariant law, not unimodularity.
+     - `fpbs-hp-relative-burton-keane`: rechecked against arXiv:2409.12283v1,
+       Theorem 1.7. That theorem holds for any subgroup, normal or not,
+       finitely generated or not, so it covers the non-normal free factors
+       used in the meet-cap claims.
+     - `fpbs-free-product-commuting-quotients-satisfy-identity-e`: the renewal
+       formula follows from cut-vertex factorisation. The strict Kesten
+       inequality uses the fact that `supp f` generates `Q`.
+     - `fpbs-sublinear-zero-interpolant-iff-flat-rate`: the Montel and
+       Schwarz-reflection steps are sound.

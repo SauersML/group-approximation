@@ -1,0 +1,111 @@
+Source: W. Huang, L. Xu and Y. Yi, "Asymptotic pairs, stable sets and chaos in positive entropy systems",
+arXiv:1409.0275v1 [math.DS], 1 Sep 2014 (J. Funct. Anal. 268 (2015)). PDF read on 2026-09-19 from
+https://arxiv.org/pdf/1409.0275 and converted to text with pypdf. The passages below are verbatim from that
+text; line breaks, sub/superscripts and hyphenation artefacts of the extraction are kept, with the
+extraction's split super/subscripts noted in [brackets].
+
+--- Introduction, p. 2 (definition of algebraic past) ---
+G is said to be left-orderable if there exists a linear ordering in G which is invariant under
+left translations. The group G is left-orderable if and only if it contains a subset Φ, called an
+algebraic past of G ([32]), with the following properties:
+(1) Φ ∩ Φ −1 = ∅,
+(2) Φ ∪ Φ −1 ∪ {eG} = G,
+(3) Φ · Φ ⊆ Φ .
+Indeed, with respect to the algebraic past Φ, one obtains the desired linear ordering on G as
+follows: g1 is less than g2 (write g1 <Φ g2), if g−1
+2 g1 ∈ Φ.
+[the extraction splits "g_2^{-1} g_1 ∈ Φ"]
+
+--- Section 1, p. 1 ---
+Throughout the paper, we let G be a countable, discrete, inﬁnite amenable group.
+
+--- Section 2.1, p. 7-8 (entropy of a partition, conditional entropy) ---
+Given α ∈ P µ
+X and a sub- σ-algebra A of Bµ
+X, deﬁne
+Hµ(α|A) =
+∑
+A∈α
+∫
+X
+−Eµ(1A|A) logEµ(1A|A)dµ,
+whereEµ(1A|A) is the expectation of 1 A with respect to A. One standard fact is that Hµ(α|A)
+increases with respect to α and decreases with respect to A.
+...
+Given µ ∈ M (X, G) and α ∈ P µ
+X . The measure-theoretic entropy of µ relative to α is
+deﬁned by
+hµ(G, α) = lim
+n→+∞
+1
+|Fn| Hµ(
+⋁
+g∈Fn
+g−1α),
+where Fn is a Fløner sequence in the group G. As shown in [28, Theorem 6. 1] (see also
+[24, 30]), the limit exists and is independent of Følner sequ ences.
+...
+For the
+conditional entropy of α ∈ P µ
+X with respect to a G-invariant sub σ-algebra A of Bµ
+X we deﬁne
+hµ(G, α|A) = lim
+n→+∞
+1
+|Fn| Hµ(
+⋁
+g∈Fn
+g−1α|A),
+
+--- Section 3, Theorem 3.1, p. 9 ---
+Theorem 3.1. (Pinsker formula) Let G be a countable discrete inﬁnite amenable group with
+algebraic past Φ , (X, G) be a G-system, µ ∈ M(X, G), and A be a G-invariant sub- σ-algebra
+of Bµ
+X. Then for any α, β ∈ P µ
+X ,
+hµ(G, α ∨ β|A) = hµ(G, β|A) + Hµ(α|βG ∨ αΦ ∨ A),
+where βG = ⋁
+g∈G gβ and αΦ = ⋁
+g∈Φ gα. In particular, hµ(G, α|A) = Hµ(α|αΦ ∨ A).
+
+--- Section 3, remark after the proof, p. 10 ---
+Let ( X, G) be a G-system and µ ∈ M (X, G) be as in the theorem above, it is already
+known that hµ(G, α) = Hµ(α|αΦ ), α ∈ P µ
+X (see [31, 32]). The Pinsker formula is also shown
+in [8] for the case G =Zd and in [19, Theorem 4.1] when G is a ﬁnitely-generated, nilpotent
+group.
+
+--- Section 3, proof of Theorem 3.1, first step (shows the convention for the order) ---
+Proof. Let ( Fn)n≥1 be a Følner sequence of G. Denote F −1
+n = {gn,j}|Fn|
+j=1 such that
+gn,1 <Φ gn,2 · · · <Φ gn,|Fn|.
+...
+Hµ
+(
+gn,iα|
+i−1⋁
+j=1
+gn,j α ∨
+⋁
+g∈Fn
+g−1β ∨ A
+)
+= 1
+|Fn|
+|Fn|∑
+i=1
+Hµ
+(
+α|
+i−1⋁
+j=1
+g−1
+n,i gn,j α ∨
+...
+≥ 1
+|Fn|
+|Fn|∑
+i=1
+Hµ(α|αΦ ∨ βG ∨ A)
+[so the conditioning in α_Φ is on the translates g α with g <Φ e_G, i.e. the strict past of the identity]

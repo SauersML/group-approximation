@@ -337,6 +337,29 @@ anywhere refutes it.
   - **Open.**
     - A pattern that is finite-monoid embeddable but neither finite-group embeddable nor finite-core graded.
     - Which configurations of `EL_D(R)` (`openai-leavitt-unit-nonsofic`) embed.
+- **Past-conditioned domination holds on amenable-realizable orders (swarm-0917-w14-w14-gs-pull, 2026-09-19, class kill of D-refutation searches).**
+  Node: `past-conditioned-domination-holds-on-locally-amenable-orders` (ESTABLISHED), proof in
+  `past-conditioned-domination-locally-amenable-proof`, files in `experiments/past-conditioned-domination-2026-09-17/`.
+  - **Theorem.** On an amenable left-ordered `G`, every code gives `I(x_1 ; y_G | x_{<1}) = h(y) <= H(y_1)`.
+    - The proof applies the Huang-Xu-Yi Pinsker formula (arXiv:1409.0275, Thm 3.1) to `(α, β)` and to `(β, α)`,
+      where `α` is the partition by `x_1` and `β` the partition by `y_1`.
+    - Monotonicity then gives `D` for every finite `F`.
+  - **Transfer.** The `D`-quantity depends only on the ordered incidence pattern of `S = FE ∪ {1}`, so `D` holds
+    on a configuration whenever `<E ∪ F>` maps into an amenable left-ordered group injectively on `S`, keeping
+    the sign of every site.
+    - Every central-series order has such maps into its nilpotent quotients, including the Magnus order on `F_n`.
+    - So `D` holds for every code, linear or not, on `F_2` in the Magnus order, with no size limit on the window.
+      This closes the case left open under "Where it stops" in the entry above.
+    - Exact check: 13188 nonlinear cases on `F_2`, all with gap `<= 0`.
+  - **Invariant that kills the class.** Order-preserving realizability of the finite ordered pattern in an
+    amenable left-ordered group.
+    - Any `D`-census on a host with this property (`Z`, `Z^d`, torsion-free nilpotent groups, `F_n` in the Magnus
+      or any other central-series order) cannot refute `D`. The dying step is the Pinsker formula of the
+      realizing host.
+    - Such hosts are LEA and hence sofic, so `D` there adds nothing to this root.
+  - **What remains for the D route.** A counterexample, or a proof, must use a left-ordered group with a
+    finite ordered pattern that no amenable left-ordered group realizes. Among left orders on `F_2` that are not
+    central-series orders, it is open which ones have this property.
 - **Descent through finite central kernels (swarm-0917-w15-w15-gs-pull).** The attempt was to push positive entropy from `X/N` over `Q = G/N` back to `X` over `G`, for finite central `N`. That is the missing direction of `rokhlin-maximality-ascends-finite-normal-extensions`.
   - **Dying step.** A generating partition for `Q` on `X/N` sees each `N`-orbit only up to an unknown `N`-translate at every coset. Recovering `X` needs the alignment cocycle `b(q,y) in N`, and no finite-entropy coding of `b` exists in general.
   - **Invariant.** The additive `r log |N|` slack in `rokhlin-entropy-quotient-formula-for-finite-normal-subgroups`, where `r` is the number of generators. That slack is realized exactly. Take `F_r x Z/2` on the 2-shift over `F_r`, with `Z/2` acting by the global flip. The Ornstein–Weiss map gives `X/N` = the `2^r`-shift, so `h_Q(X/N) = r log 2`, while `h_W(X) <= log 2`.

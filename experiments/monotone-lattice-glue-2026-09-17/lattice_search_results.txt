@@ -1,0 +1,7 @@
+2x2: |L|=4 monotone idempotent rules=1296 injective=4 copies=2
+  2x2 injective rules that are layerwise translations: 4 of 4
+M3: |L|=5 monotone idempotent rules=816958 injective=2 copies=2
+N5: |L|=5 monotone idempotent rules=280592 injective=2 copies=2
+V: |L|=3 monotone idempotent rules=25 injective=2 copies=2
+bowtie: |L|=4 monotone idempotent rules=2 injective=2 copies=2
+1+2x2: |L|=5 monotone idempotent rules=247009 injective=2 copies=2

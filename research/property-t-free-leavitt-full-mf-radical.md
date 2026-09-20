@@ -78,6 +78,10 @@ artifacts:
   - research/binary-jacobson-steinberg-head-root-is-mf-invisible.md
   - research/property-t-free-leavitt-via-jacobson-head-root.md
   - research/infinite-orthogonal-mark-orbit-is-mf-compatible.md
+  - research/property-t-free-leavitt-via-thompson-v-not-mf.md
+  - research/binary-leavitt-mark-is-conjugate-to-thompson-cone-swap.md
+  - research/binary-leavitt-mark-is-conjugate-to-thompson-cone-swap-proof.md
+  - research/thompson-v-not-mf.md
   - research/binary-leavitt-single-root-character-orbit-has-zero-gap.md
   - research/properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group.md
   - research/group-algebra-corners-exclude-traceless-leavitt-inputs.md
@@ -1098,6 +1102,38 @@ The hole itself is not closed here.
    A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
    Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
    `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
+
+**2026-09-19 (swarm-0917 w14, belief breaker): the mark is a Thompson transposition, and the goal reduces to "V is not MF" with no (T) anywhere.**
+This follows up w13 item 5, which asked for a test that genuinely avoids (T). The result is pure algebra plus one hole. The
+goal stays OPEN.
+1. **Conjugacy lemma, ESTABLISHED.** `binary-leavitt-mark-is-conjugate-to-thompson-cone-swap`.
+   - For incomparable cones `a`, `b`, put `tau = 1 + s_a t_b` and `h = 1 + s_b t_a`. Then `h tau h = tau h tau` is the
+     cylinder swap `sigma` of `V`, and `<tau, h> ~= S_3`.
+   - Transported through Khanh's comparison and the prefix-code isomorphism, `z` becomes such a `tau`. So `z` is
+     conjugate in `Delta` to a cone transposition of the embedded `V`.
+   - `R^x = <V, V^h>`: two conjugate copies of the Haagerup group `V` generate the Kazhdan target.
+2. **New route, OPEN with a single hole.** `property-t-free-leavitt-via-thompson-v-not-mf`.
+   - It has one hole, `thompson-v-not-mf`.
+   - Every other prerequisite is established and (T)-free: the Khanh comparison, `GL = EL`, internal root-detection
+     simplicity, and the cylinder-swap embedding `V <= Delta`.
+   - The kill: restricting a corona representation to `V` gives a representation that is not injective. It is therefore
+     trivial by simplicity of `V`, and so trivial on the simple group `Delta`.
+3. **Why this hole is typed correctly, unlike the three that w13 flagged.**
+   - `V` is Haagerup, so its Kazhdan subgroups are finite and the compression engine cannot run inside it.
+   - Corona representations of `V` need not extend to any Kazhdan overgroup.
+   - So `thompson-v-not-mf` is not a (T)-theorem. It is a real approximation question, open in both directions.
+   - Its uniform finite form: some `eps` has every `eps`-representation of the Bleak--Quick presentation with
+     `||a - 1||_op < 1`. The symmetry gap `{0, 2}` for involutions in a corona makes this exact.
+4. **Obstruction.** The goal asks whether `sigma` dies in the corona representations of `<V, V^h>`. The hole asks the same
+   question for `V`. No group lies strictly between them: any subgroup containing `V` and one monomial transvection is all
+   of `Delta`, which is Kazhdan. So a (T)-free proof either works inside `V`, which is exactly this hole, or uses the
+   gluing relations between `V` and `V^h`. Those relations already generate a Kazhdan group, so a proof of the second
+   kind can avoid (T) only as a proof-method restriction, which is Ozawa-SOS-certifiable in principle
+   (`property-t-laplacian-sos-certificate`).
+5. **Not done.** I did not establish the operator-norm analogue of
+   `thompson-v-hyperlinear-iff-unitary-s4-s3-gluings-fix-long-words`: V is MF iff exact S4 and S3 representations,
+   glued on `a`, nearly satisfy `r5`--`r8` in operator norm. That analogue needs an imported verbatim statement of
+   Kazhdan's operator-norm epsilon-representation theorem for finite groups (1982), and no such node exists yet.
 
 **2026-09-19 (swarm-0917 w14, last mile): the stable-finiteness step of the compression criterion cannot use an amenable subgroup, and over a Haagerup subgroup it needs an infinite projection.**
 `k-amenable-compressors-need-infinite-projections` is ESTABLISHED. It is a method obstruction, not a route: it does not settle this goal.

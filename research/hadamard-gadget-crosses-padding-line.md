@@ -60,6 +60,29 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
   `k <= 5` (2026-09-18, swarm-0917-w11-w11-ugc-break). It is inconclusive
   from `k = 7` on, because random words sit at normalized distance about
   `0.374` from `RM(1,7)`, above the threshold of about `0.337`.
+* **Whole single-owner radial class (2026-09-19, swarm-0917-w14-w14-ugc-break).**
+  Proved in `single-owner-radial-adversaries-stall-at-decoder-bound`: no
+  adversary in the class certifies `R*(k) < 2` for any `k >= 7`.
+  * **The class.** Zones of radius below `K/4`. Inside a zone, the label
+    `+-C_p` or `+-tau x_i` depends only on the distance to the zone centre.
+    Outside, the dictator `tau x_i`. The coupling of `(i, tau)` with `xi` is
+    arbitrary.
+  * **The bound.** Every adversary in the class has value at least
+    `1 + delta_k (3 - 4/K)`. For `k >= 7` this is above `2.047`.
+  * **Why it fails.** The dual weights `w_d ~ 1/((K-1-d)(K-2-d))` charge
+    `4 - 4/K` for the forced class crossing of the disagree branch, wherever
+    that crossing happens.
+  * **Consequence.** Refuting this node for `k >= 7` needs an adversary that
+    leaves the class: hand-offs between codewords, or labels that are not
+    radial.
+  * **Hand-offs change the picture.** A geodesic LP with hand-offs has value
+    `1`, so the midpoint obstruction disappears.
+  * **Shifted-ball hand-off adversaries** (random radii on `[0, T]`, a `D`
+    fallback) are inconclusive. The law that is optimal for the radial
+    constraint blows up at crowded quadratic points (cost `12.4` at
+    `T = 0.36`). A density vanishing like `(1-2t)^2` at the top of its support
+    is needed. The numbers are in
+    `experiments/ugc-hadamard-margin-adversary-2026-09-17/results-2026-09-19.txt`.
 * **Folding-gap decomposition and a k = 4 census.** Done 2026-09-19 by
   swarm-0917-w16-w16-ugc-break. It leaves this node OPEN, with a new
   necessary condition.

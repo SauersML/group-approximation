@@ -159,3 +159,41 @@ z in Rad_MF(E_3).                                      (DER2)
     argument for this flagship that does not use a feature of `Sp_4(Z)` absent from `SL_2(Z[1/2])` must also decide
     `Delta(pi/3)`.
   - *Not decided.* Whether `Delta(pi/3) = 0` remains open.
+- **2026-09-19, swarm-0917-w18c-w18c-deligne-audit (calibration): referee audit of the 2026-09-18/19 ESTABLISHED
+  inputs to the live routes. Nothing breaks, one small gap is closed, and the flagship stays OPEN.**
+  - *Audited, each with its proof read line by line.*
+    - `sp4-quasirep-windings-budget-and-saturation`.
+    - `sp4-winding-ratio-sharp-constant-is-gromov-dual`. Checked:
+      - Lemma L, by homotopy, needs only `sum ||U_m - 1|| < 2`;
+      - the local cocycle identity;
+      - LP duality for `beta*_W`;
+      - `H_2(Gamma;R) = R` for 4(b);
+      - `nu > 0` from the BBHIW quasimorphism;
+      - `N_W` decreasing to `nu`, through 3-chains with faces in `T(W)`.
+    - `sp4-winding-ratio-is-an-infimum-over-scales`, where tensor products give superadditivity and so
+      `lim = inf`.
+    - `sp4-winding-deficit-fails-in-twisted-tracial-algebras`.
+    - `deligne-monomial-parameter-group-is-governed-by-maslov-slope`. Checked:
+      - the Diophantine form;
+      - `m(1/2) = 0` from `Res_fin = <z^2>`;
+      - `P_mon <= P_op` by word expansion;
+      - MP4.
+    - `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`. Checked:
+      - L1-L3, with `D in {1,2}` from Deligne;
+      - K2, where `f_R = lambda kappa_R` forces `lambda in 1 + 3Z` or `1 + (3/2)Z`, so `|lambda| >= 1/2`;
+      - K1 and K3.
+    - `mod-s2-real-untwisting-identifies-deligne-norm-parameters`.
+    - `mod-s2-prime-to-three-torelli-constituents-are-large`, with Clifford and Mal'cev for honest `rho`.
+    - `mod-s2-near-scalar-torelli-closure-dichotomy`, checking CD1-CD5 via Peter-Weyl and determinants.
+    - `deligne-lattice-non-mf-forces-finite-parameter-group`.
+  - *Calibrations.*
+    - On `Z^2` with the Heisenberg cocycle, `nu = 0` and Voiculescu pairs give ratio about `1/(2 pi B_W)`, which
+      tends to 0. This matches `Theta_inf <= nu/(2 pi)`.
+    - The Meyer value `phi(t_s) = 4/5` gives `r = 1/5`, which matches the real-untwisting dictionary.
+    - The monoid, non-unimodular and end-fixing-automaton calibrations do not apply, since every input is about the
+      lattice `Sp_4(Z)` or `Mod(S_2)`.
+  - *Gap closed.* `sp4-tracial-winding-ratio-is-pinned-at-the-gromov-ceiling`, ESTABLISHED. The twisted-tracial kill
+    gave only lower bounds in tracial algebras. A determinant-free Lemma L (via `d/ds tau(log U) = tau(U^-1 U')`)
+    extends the ceiling `a(eps) N_W` to every tracial C*-algebra. So the tracial supremum is pinned at the ceiling,
+    `Theta^tr_inf = nu/(2 pi)`, unconditionally. The winding-deficit route is exactly a strict matricial-versus-tracial
+    gap, `Theta_inf < Theta^tr_inf`.

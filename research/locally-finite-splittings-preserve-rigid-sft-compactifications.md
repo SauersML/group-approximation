@@ -73,3 +73,34 @@ So the E1′+E2 gate (★𝒞) lives entirely in two places: infinite-index edge
 The natural next invention is a **relative seed**: an SFT on `A` whose seed-forced point has stabilizer exactly
 `C ≤ A`, so that its orbit is `A/C`. With relative seeds, HNN extensions over infinite-index `C` would enter `𝒞`.
 Those are the extensions that Higman-type embeddings are built from.
+
+## Attempts
+
+- **2026-09-19, audit (swarm-0917-w18c-w18c-bh-audit, calibration/referee): SURVIVES.** Waves 14–17 ran
+  without a referee, so this lane tried to break `locally-finite-splittings-rigid-compactification-proof`.
+  - **Structure.** Rule (X) is an iff, so it forces every tree edge to be oriented exactly one way.
+    Without the iff, the outward split on a line would be a valid SFT point outside the orbit closure,
+    which would break (C2). With it, the SFT points are exactly the unique-`a`-sink points and the
+    end-pointing points.
+  - **Ends.** Every end is a limit of `a`-type sinks, since every vertex is at bounded distance from an
+    `a`-vertex. This covers rays that avoid `a`-vertices, as can happen in a graph with a loop at a
+    non-`a` vertex.
+  - **(C1).** Checked.
+  - **Transport.** Rule (T) is equivariant on `V_u/C_ε` and well defined on cosets, since
+    `t_ε^(-1) C_ε t_ε ≤ V_(u')`.
+  - **(L1)–(L4) and the sink compression `F_ℓ`.** Checked. `F_ℓ` is a `D`-family for `Y_A`: its
+    `(1 − Σ_v)` part carries the point `z`.
+  - **Non-`a` pointers.** Checked independently for `Z^2 = Z ⋊ Z`: the row operators
+    `U_(n+1) ≤ U_n = 1 − D_(n+1)` form a chain.
+  - **One gap, repaired.** (L0) is stated for patterns on sets of diameter `≤ 2D`. That form is
+    **false**: a column of `Z × Z/5` at `D = 1` is a counterexample. Every use in the proof, though, is
+    on a set inside a `D`-ball, where the lemma holds. See `quantum-pattern-vanishing-needs-a-d-ball`.
+  - **Verdict.** No counterexample. Also audited, with no break, as consumers on the nearest
+    Boone–Higman routes:
+    - `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`
+    - `quantum-rigidity-is-product-stable`
+    - `fp-v-times-subshift-full-groups-force-quantum-rigidity`, whose representation of `Γ` needs every
+      relator window inside one `D`-ball; this is the same point as the (L0) repair
+    - `v-times-ample-full-groups-are-generated-by-transpositions`
+    - `just-infinite-over-simple-subgroup-gives-fp-simple-host`
+    - `cantor-crossed-hosts-are-closed-under-boundary-products`

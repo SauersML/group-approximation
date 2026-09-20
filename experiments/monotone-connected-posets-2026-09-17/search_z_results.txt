@@ -1,0 +1,22 @@
+Output of `python3 search_z.py` (exit 0), 2026-09-19.
+Window {0,1} over Z. Monotone rules mu: L^2 -> L fixing constants. Injectivity is tested by the pair graph:
+an off-diagonal pair lies on a bi-infinite path iff the rule is not injective.
+"cover-property violations" counts contexts (l,a,r) and covers a<.b where Claim C fails, that is where a single-site
+cover move does not change the image at exactly one site by a cover.
+
+chain3: monotone constant-fixing rules 64, injective 2, cover-property violations 0
+V: monotone constant-fixing rules 25, injective 2, cover-property violations 0
+N: monotone constant-fixing rules 196, injective 2, cover-property violations 0
+crown22: monotone constant-fixing rules 2, injective 2, cover-property violations 0
+M2=2x2: monotone constant-fixing rules 1296, injective 4, cover-property violations 0
+Y: monotone constant-fixing rules 963, injective 2, cover-property violations 0
+bot+3: monotone constant-fixing rules 5778, injective 2, cover-property violations 0
+M3: monotone constant-fixing rules 816958, injective 2, cover-property violations 0
+N5: monotone constant-fixing rules 280592, injective 2, cover-property violations 0
+fence5: monotone constant-fixing rules 2809, injective 2, cover-property violations 0
+
+Reading: in every case the injective rules are exactly the coordinate copies (x_0 and x_1). For the Boolean square
+2x2 they are the four choices of one copy per layer.
+
+search_z_height1.py (fence6, fence7, crown6, the first open cases) was started and stopped after about 25 minutes
+with no line printed, since the naive backtracking is too slow at six letters. No result for those posets is claimed.

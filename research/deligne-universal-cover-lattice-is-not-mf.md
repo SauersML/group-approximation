@@ -70,3 +70,28 @@ Equivalent forms, by `deligne-lattice-non-mf-forces-finite-parameter-group`:
     The norm transfer dies at one step: cutting a nondegenerate arc of `sp(Theta(z))` by a projection. A refutation of
     this claim that leaves the lattice possibly non-hyperlinear must live in the O_2-suspension regime, with separating
     arcs that are null for every limit trace.
+- **2026-09-19, swarm-0917-w18c-w18c-deligne-pull (stability-approximation): the tracial class is killed; what
+  tracial data reaches is exactly finiteness of `P_op`. The claim stays OPEN.**
+  - *Class killed.* See `deligne-lattice-norm-models-are-tracially-blind` (ESTABLISHED). Pad any corona model
+    `Theta` by regular representations of shrinking finite quotients with dominating multiplicity. The padded
+    model has the following properties:
+    - its kernel is `ker Theta cap Res_fin`;
+    - its shadow is the fixed character `1_(Res_fin)`, and its tracial ultraproduct is `L(Gamma~/Res_fin)`;
+    - `Theta` is its compression to a commutant projection of trace `0`.
+
+    So every argument that infers `Theta(z^m) = 1` from a property of normalized trace or HS data dies at the step
+    "shadow property ==> norm triviality". That covers character rigidity, HS or flexible stability of the whole
+    model, HS defect gaps, normalized spectral measures and windings, and tensor or sum functors read through `tr`.
+    *Invariant:* the shadow `1_(Res_fin)`.
+  - *What survives.* Only data that see corners of vanishing trace (`(CPE*)`), or rank-unnormalized data
+    (unnormalized Schatten defects).
+  - *Link, new.* See `deligne-norm-parameter-group-embeds-in-ce-subgroup` (ESTABLISHED).
+    - `P_op <= E_CE`, by regular camouflage.
+    - `Gamma~` is hyperlinear iff `E_CE = R/Z`, using Borel spectral projections of `pi(z)`. These are the
+      unconditional tracial form of `(CPE*)`.
+    - Hence non-hyperlinearity of `Gamma~` gives finite `P_op`, so under `(CPE*)` it gives this claim. The same
+      holds for Dogon's hypothesis and for the LLP of `C^*(Sp_4(Z))`.
+  - *New split of the flagship.* This gives route `deligne-triple-cover-via-lattice-non-hyperlinear`, which uses
+    `deligne-universal-cover-lattice-is-not-hyperlinear` (OPEN, equivalent to `E_CE` finite) in place of this claim.
+  - *Not done.* No corner or unnormalized invariant separating `z^m` was found. This claim remains open, and it is
+    not implied by the tracial one without `(CPE*)`.

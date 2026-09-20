@@ -100,3 +100,26 @@ Near `p_c(G_k)` one has `p ≈ 1/d` and `chi_B ≳ 1/(p d_H)`.
 * No rigorous upper bound on `L_p` has been computed. The script
   `experiments/fibre-renormalized-certificate-2026-09-17/saw_triangle_deficit.py`
   shows only that the unrenormalized deficit does not vanish for these graphs.
+* The claim that `F_2 × Z` has `p_c < p_u` "by nonunimodularity" is unsupported.
+  Cayley graphs are unimodular.
+
+**Bounded-width fibre branching is dead (2026-09-19, swarm-0917-w18c-bs-pull,
+calibration).** See `fpbs-product-fibre-bounded-width-branching-fails`
+(ESTABLISHED).
+
+* For any factor `B` of degree `D` and any `p <= 1/(D-1)`, the tail bound
+  `P(|C| >= n) <= 12 n^{-1/2}` holds. Hence an `s`-landing set is nonempty with
+  probability at most `24 sqrt(p)`.
+* Consequently every exploration that keeps at most `M` child clusters per
+  child fibre has mean offspring at most `24 M d_H sqrt(p) -> 0`.
+* Above `p_c(G)`, Theorem B forces `chi >= 1/(p d_H)`. So the share of `chi`
+  from clusters of size `o(1/p^2)` vanishes.
+* This proves that the claim concerns landing sets of about `1/p` points coming
+  from one fibre cluster of size about `1/p^2`. Those points must reach mostly
+  distinct child clusters. The loss term `p(nabla_B - 1)` is the right size
+  only if this many-point estimate holds.
+  - *Invariant:* bounded width.
+  - *Step where it dies:* mean offspring.
+* Calibration on `Z^k × F_2`:
+  `experiments/fibre-bounded-width-2026-09-17/landing_width.py`.
+* **Open:** the window `(1/(D-1), p_c(B))`, of width `O(k^{-3})` on `Z^k`.

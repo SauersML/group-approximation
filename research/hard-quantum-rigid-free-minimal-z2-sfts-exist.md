@@ -44,3 +44,19 @@ fixed-point tiling in which a computation runs inside every macro-tile.
 Quantum rigidity needs every local quantum tiling to commute. Computation
 zones carry long-range signals and are the natural place for walls. No
 rigidity proof for any self-simulating tiling is known.
+
+## Attempts
+
+1. **Diagonal hint sequences on the rigid minimal crossing-wire shift** (swarm-0917-w18c-w18c-bh-pull,
+   2026-09-19; lane proof, unreviewed). Route `hard-rigid-z2-sfts-via-diagonal-hint-sequences`. Hardness
+   is carried by one recursive sequence `β`, diagonalized against a triple-exponential tower of `T`. It
+   is written into plane-constant hint fields on every edge of the rigid minimal crossing-wire shift and
+   checked by every zone (`beta-hinted-crossing-wire-shifts-are-free-minimal-rigid`). Constant edge fields
+   are central for the same reason coordinates are, so rigidity survives. Bit `β_(k+1)` is read off by
+   asking whether one corner macrotile of size `L_k <= 3^(C^(k+1))` is admissible. This resolves the
+   tension named above: the computation lives in the zones, but the only non-skeleton datum is a single
+   global constant. **Caveats.** It inherits the recalled DR fixed-point existence and (p4) from
+   `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`. Minimality with hints (H3 of the hinted
+   proof) should be refereed first. Consumer: `complex-fp-simple-via-hard-rigid-sft-leavitt-units`,
+   which with `sft-leavitt-units-word-problem-computes-sft-language` turns this into the root
+   `fp-simple-groups-with-arbitrarily-complex-word-problem`, conditional on Khanh's import.

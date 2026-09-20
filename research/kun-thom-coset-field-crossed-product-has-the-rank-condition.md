@@ -91,6 +91,28 @@ per coset and to every `G`-stable subfield.
       lamps, but this is not checked.
     - A linear-sofic model that is base-faithful. Group-faithfulness does not suffice: on `F_p[Z^2]`, the rank
       over the curve `x + y + 1 = 0` is group-faithful but kills `x + y + 1`.
+- **Matrix-model barrier (swarm-0917-w14-w14-gs-follow, stability-approximation, 2026-09-19). The class is
+  converted: every approximable supplier either dies or yields a new group. The node stays OPEN.**
+  See `approximable-base-faithful-lamp-ranks-force-linear-sofic-defects` (ESTABLISHED).
+  - **Answer to wave 13's question.** `W = Z wr_H G` is not sofic. `z = x_o` centralizes `Gamma`, and
+    `[u z u^(-1), gamma] = x_(uo) x_(gamma u o)^(-1) != 1`, so no sofic rank function exists.
+  - **Invariant:** the rank `rk(x_(uo) - x_(gamma u o))` of a lamp difference. Under any matrix model it is
+    the rank distance from `1` of the rigid defect in the image group `Q`.
+  - **Where it dies or converts.** Let `rk` be any rank function on `F_p[W]` that is approximable over
+    characteristic `p` and gives that difference positive rank. Then `Q` is an `F_p`-linear sofic,
+    nonsofic group with defect distance `rk(x_(uo) - x_(gamma u o))`, which equals `1` if `rk` is
+    base-faithful. The step to `F_p` is specialization by Zariski's lemma followed by restriction of
+    scalars.
+  - **Consequences.**
+    - If `DD(F_p-linear sofic)` holds, which for `p = 2` is the open row
+      `f2-linear-sofic-groups-kill-rigid-compression-defects`, then `R_p` has no matrix model and a proof
+      of the rank condition needs a non-approximable rank function.
+    - Monomial and permutation models kill the lamp difference unconditionally.
+    - A matrix model of `R_p` would prove the rank condition and separate sofic from `F_p`-linear sofic at
+      once.
+  - **What is left.**
+    - A non-approximable characteristic-`p` dimension, for example on `L^0(Omega, F_p((t))) x| G`.
+    - On the other side, a diagonal factorization in `F_p[W]`.
 - **Rigid-defect rank length (swarm-0917-w14-w14-gs-follow, stability-approximation, 2026-09-19).
   Both remaining suppliers settled as a class kill plus a transfer; the node stays OPEN.**
   See `kun-thom-lamp-rank-certificates-force-linear-sofic-defects` (ESTABLISHED, unreviewed).

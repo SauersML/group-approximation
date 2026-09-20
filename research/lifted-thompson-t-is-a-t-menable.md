@@ -302,6 +302,31 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
   - *Correction.* `T̄ ⊇ Z[1/2]`, so by Higman (verbatim in
     `hall-quotient-avoids-v-circle-groups-and-periodic-ends`) `T̄` is not a subgroup of `V` at
     all. The frontmatter wording is updated to match.
+- **2026-09-19 (swarm-0917-w14-w14-nv-last1, local-designs): step (b) dies for every weight.**
+  - *Result (ESTABLISHED, `thompson-boundary-density-forms-are-extractable`).* Every
+    `π_λ`-invariant Hermitian form on `θ`-quasi-periodic dyadic step functions,
+    `F ↦ (g^{-1})'^λ F∘g^{-1}`, is classified, for all `λ ∈ C` and all `θ`:
+    - `0` for generic `λ`;
+    - a multiple of Lebesgue `∫_0^1 FḠ` when `Re λ = 1/2`;
+    - a real multiple of an explicit kernel `B^1_θ` when `λ ≡ 1`; it is indefinite for `θ ∉ Z`
+      and equal to `|mass|²` for `θ ∈ Z`;
+    - jump forms at dyadic points when `λ ≡ 0`.
+  - *Mechanism.* For fixed `Q`, invariance and the two-children relation give
+    `φ_I = 2^{1−λ} φ_I` and `φ_{L,R} = 2^{-λ}(φ_{L,R} + φ_I)`. Here the subscripts are the
+    edge types of a normalized brick in the complement of `Q`. On the diagonal,
+    `c = 2^{1−2Re λ} c`.
+  - *Consequence.*
+    - The complementary-series weights `0 < |s| < 1/2` carry no nonzero invariant form at all.
+    - Every positive form gives a twisted Koopman, jump-orbit (`ℓ²` of `Z[1/2]`) or trivial
+      representation. The first two have covariant PVMs on `S^1`.
+    - So all cocycles into their direct sums are bounded on `⟨z⟩`, by
+      `lifted-thompson-t-extractable-cocycles-bounded-on-centre`.
+    - The same classification holds for `nV` on `C^n`, and there only Koopman or trivial
+      representations occur.
+  - *Forced shape (sharpened).* A witness for this claim cannot come from any density weight on
+    a single boundary point. What remains open is configuration spaces of `k ≥ 2` boundary
+    points with non-convex kernels, and non-locally-constant models such as Ptolemy–Thompson.
+  - Unchanged: this does not decide the claim, which stays OPEN.
 - 2026-09-19 (swarm-0917-w15-w15-nv-break, stability-approximation): the order-type
   configuration class dies. Status stays OPEN.
   - *Class-kill (established).* `lifted-thompson-t-order-type-kernels-bounded-on-centre`, proved

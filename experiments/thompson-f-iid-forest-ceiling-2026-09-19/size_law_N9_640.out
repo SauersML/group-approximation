@@ -1,0 +1,9 @@
+N=      9  sup R = 0.8777084   BC(a,b)=0.99155  alpha(1)=0.3316 beta(1)=0.2375  E_alpha|T|=2.68  E_beta|T|=3.16
+N=     20  sup R = 0.9117940   BC(a,b)=0.99299  alpha(1)=0.2202 beta(1)=0.1532  E_alpha|T|=4.53  E_beta|T|=5.41
+N=     40  sup R = 0.9289667   BC(a,b)=0.99397  alpha(1)=0.1614 beta(1)=0.1108  E_alpha|T|=7.45  E_beta|T|=8.94
+N=     80  sup R = 0.9400204   BC(a,b)=0.99469  alpha(1)=0.1228 beta(1)=0.0835  E_alpha|T|=12.57  E_beta|T|=15.15
+N=    160  sup R = 0.9475037   BC(a,b)=0.99523  alpha(1)=0.0964 beta(1)=0.0652  E_alpha|T|=21.64  E_beta|T|=26.15
+N=    320  sup R = 0.9527880   BC(a,b)=0.99563  alpha(1)=0.0776 beta(1)=0.0522  E_alpha|T|=37.88  E_beta|T|=45.85
+N=    640  sup R = 0.9566521   BC(a,b)=0.99593  alpha(1)=0.0637 beta(1)=0.0428  E_alpha|T|=67.17  E_beta|T|=81.41
+
+[exited with code 0]

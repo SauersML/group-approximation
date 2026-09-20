@@ -8,6 +8,7 @@ distinct_from:
   free-minimal-z2-sft-is-quantum-rigid: that asks for one quantum rigid free minimal Z^2-SFT over some field; this asks, over F_2, for a family of them whose boundary tensors contain every decidable group algebra.
 artifacts:
   - research/artifacts/cantor-crossed-host-boundary-products-2026-09-17.md
+refuted_by: [cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank]
 ---
 
 **OPEN.** Let `G` be a finitely generated group with solvable word problem.
@@ -221,6 +222,32 @@ not make `G` linear sofic through a rank model, because the host has none.
 
 **Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
 (ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
+
+**Frobenius–Cartier model kill (swarm-0917-w14-w14-z-pull, obstruction-miner / linear-characteristic, 2026-09-19).**
+This attempt targets the YES side of fork (i), `F_2[Z^2] ⊂ L_∂ ≅ L_{F_2}(1,2)`.
+
+- **The model.** Take a char-2 field `K` with p-basis `t`, e.g. `F_2(t)`. Put
+  `S_i f = t^i f^2` and let `S_i^*` be the Cartier coordinates. This is a faithful
+  unital model of `L_{F_2}(1,2)`, or of `L(1,2^d)` for a p-basis of size `d`.
+  - Commuting multiplication operators by `K` are the obvious source of Laurent
+    rings.
+  - Multiplication by `t` satisfies only the infinite recursion
+    `m_t = S_1 S_0^* + S_0 m_t S_1^*`.
+- **Result.** `cartier-model-semilinear-leavitt-elements-are-gauge-homogeneous`
+  (ESTABLISHED, unreviewed) proves:
+  - a Frobenius-semilinear operator of twist `k` lies in `π(L)` exactly when it
+    comes from the gauge component `L_k`;
+  - the only multiplication operators in `π(L)` are `0` and `1`.
+- **Consequence.** Together with `algebraic-core-gradings-bound-homogeneous-laurent-rank` (A),
+  this kills every semilinear construction:
+  - multiplication operators;
+  - twisted Frobenius or Cartier maps;
+  - `K^{2^N}`-linear (Hasse-type) operators.
+
+  Every member dies at the Artin-independence step, which forces gauge homogeneity.
+- **Where it stops.** A YES witness must mix at least two Frobenius twists in
+  every such model. Non-homogeneous units remain untouched, and the claim stays
+  OPEN.
 **Attempt (faithful point column transplant, swarm-0917-w14; OPEN).** This transplants the
 probability/random-walk habit of reading an operator through one random starting point to the regular
 representation of the host. The result is `steinberg-ore-domains-have-faithful-point-columns`, ESTABLISHED
@@ -506,3 +533,20 @@ OPEN.
 - **Where it dies.** A local-Koszul upgrade would localize at `k[a, b] ∖ m` and run the Koszul resolution of
   `R/m` through `B ⊗_R -`. That needs `B` flat over `R = k[a, b]_m`, which fails at zero divisors, and
   zero divisors are exactly what `S` may contain. Nothing here selects which prime carries `S`.
+
+1. **Refuted by Hochschild dimension (swarm-0917-w18c-w18c-bh-follow, 2026-09-19).** The claim is
+   false at `G = Z^6`.
+   - `polynomial-rank-is-at-most-hochschild-dimension` (ESTABLISHED, new): an algebra of Hochschild
+     dimension `d` has no `d + 1` commuting algebraically independent elements. The proof bounds
+     `l.gl.dim(A ⊗ k(y))` from below by a diagonal Koszul complex on `a_i - y_i`, and from above by
+     `hd(A)`.
+   - `cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank` (ESTABLISHED, new):
+     `hd(LC(X)) <= 1` and `hd(A ⋊ P) <= hd(A) + cd(P)`. So `hd(B_Ω ⊗ L_∂) <= 3 + 2 = 5`, uniformly
+     in `Ω` and `d`.
+   - `F_2[Z^6] ⊇ F_2[x_1..x_6]` therefore has no embedding. `Z^6` is decidable. So
+     `refuted_by: [cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank]`, and route
+     `cantor-crossed-hosts-via-boundary-products-of-z2-sft-hosts` is invalidated.
+   - The body line **OPEN.** above is stale. It is left for the orchestrator, because only the
+     frontmatter and Attempts may be edited.
+   - Class kill: every host `LC(X) ⋊ P` with `cd(P) < ∞` misses `F_2[Z wr Z]`.
+   - The Z^4 test (bound 5 against rank 4) is not settled by this.

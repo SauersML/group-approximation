@@ -1,0 +1,7 @@
+n=2 |G|=2 |Kbar|=2 t=1 |N/M|=1
+n=3 |G|=3 |Kbar|=3 t=1 |N/M|=8
+n=4 |G|=4 |Kbar|=4 t=1 |N/M|=5
+n=5 |G|=5 |Kbar|=5 t=1 |N/M|=11
+n=6 |G|=6 |Kbar|=6 t=1 |N/M|=None
+n=7 |G|=7 |Kbar|=7 t=1 |N/M|=29
+n=8 |G|=8 |Kbar|=8 t=1 |N/M|=None

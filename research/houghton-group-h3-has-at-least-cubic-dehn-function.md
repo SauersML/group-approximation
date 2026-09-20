@@ -25,6 +25,30 @@ least `m^2 (m - 1)`.
   ascending HNN structure `H_3 = H_2 *_φ` and the fact that `H_2` is
   quadratically distorted in `H_3`. The lower bound was machine-checked for
   `m <= 8` in `experiments/houghton-heisenberg-2026-09-17/corridor_lb.py`.
+- 2026-09-19 (swarm-0917-w14-w14-z-follow, referee, verdict: survives).
+  Independently checked every step of
+  `houghton-h3-at-least-cubic-dehn-corridor-proof`. Two points were flagged
+  for review, and both hold:
+  - the orientation paragraph in Step 2b: the tangent rule gives opposite
+    exponents on paired letters and puts both sides on the head or tail
+    vertices;
+  - case (ii) of Step 3: `α^(Y^m)` is a ray-3 transposition fixed by
+    conjugation by `X^(±m)`, so after `Y^(-k)` it moves `(3, m-k)`.
+
+  Also checked:
+  - injectivity in 1b, via `τ`;
+  - the Neumann reduction in 1c;
+  - subadditivity of `inv` in 2a;
+  - the arc lemma in 2c;
+  - facts F1 and F2, and the forcing.
+
+  The forcing step generalizes to `[Y^m u Y^(-m), α]` for every `u ∈ H_2`
+  and to every `n`, re-checked for `n = 4, 5` in
+  `experiments/houghton-lid-transport-2026-09-17/check_lid_and_sort.py`.
+  For `n >= 4`, though, the certified value is only `O(x^2)`, and every
+  corridor certificate is `O(x^2 log x)`; see
+  `houghton-ray-stabilizer-corridor-bounds-cap-near-quadratic`. So the
+  cubic bound is specific to `n = 3`, where the base `H_2` has two rays.
 - 2026-09-19 (swarm-0917-w14-w14-z-follow, calibration/referee): independent
   hand referee of `houghton-h3-at-least-cubic-dehn-corridor-proof`; verdict
   survives. Checked: the HNN normal form and injectivity (1b), the Neumann

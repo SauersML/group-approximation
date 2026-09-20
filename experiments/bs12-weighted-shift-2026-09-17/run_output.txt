@@ -1,0 +1,12 @@
+1. Bernoulli cokernel identity holds for all odd N < 400: True
+2. setting identities, N=27 s=0.3: max err 4.81e-15, relator defect 0.1390 (bound 4 pi s/N = 0.1396)
+3. random exact class-V pairs, N=45: residual 1.3e-15, max |a_0 - mean a| 8.5e-16
+3b. N=25: max over cycles |avg_cycle a - mean a| = 6.9e-16
+3b. N=27: max over cycles |avg_cycle a - mean a| = 4.0e-16
+3b. N=35: max over cycles |avg_cycle a - mean a| = 7.6e-16
+3b. N=45: max over cycles |avg_cycle a - mean a| = 7.1e-16
+3b. N=63: max over cycles |avg_cycle a - mean a| = 1.6e-15
+4. LP class-V angle distance t*/s (lower bound proved: 1; 1.5 if 3|N)
+   s=0.05: N=27: 1.5000, N=81: 1.5000, N=243: 1.5000, N=729: 1.5000, N=25: 1.2500, N=35: 1.2500, N=125: 1.2500
+   s=0.1: N=27: 1.5000, N=81: 1.5000, N=243: 1.5000, N=729: 1.5000, N=25: 1.2500, N=35: 1.2500, N=125: 1.2500
+   s=0.3: N=27: 1.5000, N=81: 1.5000, N=243: 1.5000, N=729: 1.5000, N=25: 1.2500, N=35: 1.2500, N=125: 1.2500

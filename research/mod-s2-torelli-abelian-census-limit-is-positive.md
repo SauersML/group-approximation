@@ -109,6 +109,30 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
   - `Gamma(8)` (`2^20 * 60` cosets of `H`) is out of reach of this pipeline.
 - **Status.** OPEN.
 
+### 2026-09-19, swarm-0917-w14-w14-deligne-follow (host-geometry): block sums below Gamma(2), and the whole index-two layer above Gamma(4)
+
+- **What was proved.** See `mod-s2-level-eight-index-two-torelli-census`, established through
+  `mod-s2-level-eight-index-two-torelli-census-proof`.
+  - *(BS).* For every `Gamma' <= Gamma(2)`, pushing a relation forward to `Gamma(2)`, where
+    `W = Z (1, ..., 1)`, forces the ten block sums over the level-two splittings to be equal.
+  - Hence `aug(W) <= 10 Z`, and `||w||_1 >= 10` for every certificate.
+  - `A_+ = 10` if and only if a transversal relation exists, and then `d = 1/30`.
+  - Below `Gamma(2)`, (TAP) at the conjectured value `1/30` becomes: a transversal relation exists at
+    every level (or a better non-sparse certificate).
+- **What was computed.**
+  - `H_1(Gamma(4)) = (Z/4)^6 + (Z/8)^4`. So the 1023 index-two subgroups of `Gamma(4)` are exactly
+    the hyperplanes of `Gamma(4)/Gamma(8)`. They fall into 15 conjugacy classes.
+  - Reidemeister-Schreier over Artin's presentation of `PB_5/<Delta^2>` needs only 1024 cosets per
+    subgroup, not 122880. The 122880-coset run did not fit in memory.
+  - For all 1023 subgroups: `d = 1/30`, a transversal relation exists, and `aug(W) = 10 Z`.
+  - One class of 45 subgroups has `H_1(M'') = Z^54 + Z/2` and 192 classes. This is the first
+    2-torsion character of the 2-adic tower, and it does not lower `d`.
+- **Reading.** The sparse transversal lift survives the first layer of `Gamma(4)/Gamma(8)`
+  everywhere.
+- **Where it stops.**
+  - `Gamma(8)` itself needs 524288 cosets of `PB_5/<Delta^2>`, which is feasible only with a
+    compiled Reidemeister-Schreier.
+  - No geometric relation in `M` producing the transversal is identified.
 ### 2026-09-19, swarm-0917-w15-w15-deligne-pull (census-computation): index-two layer below Gamma(4) computed, d = 1/30, b_1(M_8) = 54
 
 - **What was computed.** See `mod-s2-gamma4-index-two-torelli-census`, established through
@@ -266,4 +290,42 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
     `W` and `d` are not.
   - The next rung is the second layer `G_Y cap G_Y'` over `(Z/3^m)[Z/3 x Z/3]`, which is still local.
   - No uniform argument is given.
+- **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w18c-w18c-deligne-follow (census-computation): first odd-index step Gamma(6), no transversal relation modulo 3, so the mass-10 certificate dies and A_+(Gamma(6)) >= 20
+
+- **What was computed.** See `mod-s2-level-six-torelli-census-has-no-transversal` (OPEN).
+  - `M'' = pi^(-1) Gamma(6)` embeds in `K2` as a point stabiliser of `Sp_4(F_3)/{+-1}`, which has
+    25920 cosets. After exact unit elimination the Reidemeister–Schreier matrix has 3466 columns.
+  - The rank is 3358 modulo each of eight primes, so `dim H_1(M''; F_p) = 108`.
+  - There are 900 twist classes, 90 over each level-two splitting, labelled by the ordered mod-3
+    splitting. The index is `720 * 51840 / (36 * 576 * 2) = 900`.
+  - An exhaustive meet-in-the-middle search (`mitm.cpp`, `2 * 90^5` half-sums) runs over all `90^10`
+    one-per-block choices.
+- **Results.**
+  - No choice sums to 0 in `H_1(M''; F_3)`. Since `W_p = W + p Z^900`, `W(Gamma(6))` has no
+    transversal relation.
+  - The same exhaustive search modulo 5 and modulo 7 also finds none.
+  - Modulo 2 there are exactly 7626240 transversals, and every one checked fails modulo 3.
+  - The linear relaxation holds, so `aug(W) = 10 Z` and `d(Gamma(6)) <= 1/30`.
+  - Controls:
+    - at `Gamma(4)` the same code finds 1024 transversals, all valid at every prime, including the
+      known exact one;
+    - a planted mod-3 transversal is recovered.
+- **Reading.**
+  - By (BS3), `A_+(Gamma(6)) >= 20`. Every `w in W` with `3 not| aug(w)` has `||w||_1 >= 12`.
+  - The mass-10 positive certificate gives `d = 1/30` at every level computed so far (`Gamma(2)`,
+    `Gamma(4)`, its index-two layer, `Gamma(4,8)`). It is absent at the first odd step.
+  - So `d_inf = 1/30` cannot be proved uniformly through transversal relations, and a sparse
+    certificate here needs support at least 12, where level three needs 5.
+  - This does not refute `d_inf > 0`. It removes the one positive certificate that was uniform
+    along the 2-adic tower.
+- **Where it stops.**
+  - `d(Gamma(6))` is not computed. It lies in `[?, 1/30]`, and it is at least `1/60` if a positive
+    relation of augmentation 20 exists.
+  - Real characters need an integral basis of `W^perp`. The rational reconstruction from two 31-bit
+    primes has denominators up to 2.8e7.
+  - The next tests:
+    - a mod-3 search for `w >= 0` with all block sums 2, which asks whether `A_+ = 20`;
+    - characters of order dividing 30030.
 - **Status.** OPEN.

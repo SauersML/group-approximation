@@ -155,3 +155,25 @@ nothing: the flagship then needs a torsion-free sofic Kazhdan kernel with
      neither quasidiagonal nor nuclear-contained, with the implementing unitary
      built directly in the corona. The periodizations of Attempt 1 are of this
      kind. (XMF) stays OPEN.
+8. **Uniform conjugacy gap (2026-09-19, stability-approximation, reframing).**
+   `kazhdan-mapping-torus-exact-radical-iff-uniform-conjugacy-gap`
+   (established) proves an equivalence for every Kazhdan `Q` and every `psi`.
+   `Rad_MF(Q semidirectProduct_psi Z) = Q x {0}` holds iff some `eps_0 > 0`
+   bounds `d(rho o psi, rho)` from below, where:
+   - `rho` ranges over all nontrivial corona representations of `Q`;
+   - `d` is the operator-norm conjugacy distance on a Kazhdan set.
+
+   The same condition is equivalent to having no closed `eps_0`-pseudo-orbit
+   of `psi^*`.  When `Q` is quotientless, it is also equivalent to point-norm
+   matricial stability of the mapping torus.
+   - *What dies.*  Any `psi` with a power that is exactly or approximately
+     inner on one nontrivial corona representation, for example inner in an
+     MF overgroup.  Also any `psi^*`-orbit that is precompact for `d`.
+   - *Invariant.*  `eps`-chain recurrence of `psi^*` on the nontrivial MF
+     dual.
+   - *What survives.*  A proof of (XMF) must give a uniform
+     `eps_0`-separation of every `psi^*`-orbit, uniformly over coronas and all
+     powers.
+   - *Consequence.*  Attempt 1's periodization is not merely one refutation
+     tool: success at every scale is equivalent to refuting (XMF).  Every
+     flagship witness is matricially stable.

@@ -56,6 +56,25 @@ ring, and indeed no commutative domain, of transcendence degree `s + 1`.
    - Bilich–Hazrat–Nam (arXiv:2512.09241) embed condition-(L) LPAs into `L_K(1, 2)`, and show that
      Steinberg algebras omit the Weyl relation.
    - That does not bear on group algebras: `F_2[G]` has a trace, so it contains no Weyl pair.
+3. **Mechanism (ii) is dead; the principal case of the conjecture holds** (swarm-0917-w14-w14-bh-follow,
+   2026-09-19). See `ore-domains-in-free-crossed-products-grow-like-the-group`.
+   - **Result.** In a principal ample groupoid algebra with compact unit space, an Ore domain `C` has a
+     unit `e_x` of the orbit module on which `c ↦ c·e_x` is injective. So `dim C_(≤n)` is at most the
+     size of one source fibre of `K^n`.
+   - **Consequences for this claim.**
+     - `B_Ω`, its corners and its matrix algebras contain no `F[Z^3]`, over any field and for every free
+       `Z^2` Cantor system, not only SFTs. So route (ii) of (E) is closed.
+     - This proves the commutative-rank heuristic above in the case where the cocycle kernel is trivial
+       and the groupoid is principal, with `s` the growth degree.
+   - **Constraint on YES.** An embedding `F_2[Z^4] → B_Ω ⊗ L_∂` needs the `L_∂`-values of its coefficient
+     functions to generate an algebra of GKdim at least 2. Coefficients from `LC(∂F_d)`, `F[u^±]` or
+     `M_n(F[u^±])` fail. So YES must come from mechanism (i), a two-variable Laurent ring in a Leavitt
+     corner, or from (iii), an entangled embedding with genuinely noncommutative Leavitt coefficients.
+   - **Invariant:** the growth of one source fibre of an annihilator-free unit of the orbit module.
+   - **Where it dies:** the groupoid of `L_∂` is not principal, because it has isotropy at eventually
+     periodic boundary points. So the orbit module is not faithful on its Steinberg algebra, and the
+     fibres of `K^n` grow exponentially. The AF-kernel case of the conjecture is therefore genuine
+     Leavitt content, and is not reached by this count.
 3. **Gauge-homogeneous embeddings: dead** (swarm-0917-w14-w14-bh-follow, 2026-09-19). By
    `finite-field-polynomial-growth-hosts-bound-commuting-rank`, the argument works over every finite field
    and for every `Z^2`-Cantor system `Ω`.

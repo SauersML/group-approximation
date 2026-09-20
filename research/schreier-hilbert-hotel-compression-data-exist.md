@@ -3,7 +3,7 @@ rg: 2
 id: schreier-hilbert-hotel-compression-data-exist
 kind: claim
 title: Some finitely generated group has an automorphism, an invariant approximable coset space and a compressed subgroup with a finite image orbit outside the image of the base orbit
-refuted_by: [automorphic-compressions-have-no-approximable-hilbert-hotel]
+refuted_by: [finite-actions-kill-schreier-hilbert-hotel-data, automorphic-compressions-have-no-approximable-hilbert-hotel]
 distinct_from:
   schreier-hilbert-hotel-data-give-matricial-compression-rings: that proves (HH) implies R1-R5; this asks whether (HH) data exist at all.
   matricial-compression-ring-exists: that is the ring gate; this is a strictly combinatorial sufficient condition for it, stated for permutation groups.
@@ -114,6 +114,19 @@ Steps 8-9, and in the Attempts below):
    - By item 4, `H` must be normalized by `tau` without containing it.
 
    Whether such an `H` gives a finite `A`-orbit off `A x_0` is **open**.
+7. **Periodicity of precomposition on finite actions (2026-09-19, swarm-0917-w14-w14-titz-follow,
+   REFUTED in general).**
+   - *Invariant.* For a finite set `F`, the permutation `rho -> rho o alpha` of the finite set
+     `Hom(Gamma, Sym(F))` has finite order `k`. With `alpha^k(Gamma_0) <= A <= Gamma_0` this forces
+     `rho(A) = rho(Gamma_0)` on every finite `Gamma`-set.
+   - *Death step.* The finite orbit `A g x_0` is copied exactly into a finite approximant `Gamma/H_n`.
+     There it is an `A`-orbit, hence a `Gamma_0`-orbit, so it contains the base point. Injectivity on
+     the ball gives `x_0 in A g x_0`, contradicting `g notin A H`.
+   - *Casualties.* Every instance of (HH), for every host, including the candidate
+     `Z wr_(Z[1/2]) BS(1,2)` of item 6 and the ascending HNN candidate
+     `<a, b, tau | [tau, a], tau b tau^(-1) = b^2>` with `alpha = Ad(tau)`. The item 6 list of
+     "what survives" is empty.
+   - Proof: `finite-actions-kill-schreier-hilbert-hotel-data`.
 7. **Profinite density of automorphic compressions (2026-09-19, swarm-0917-w14-w14-titz-follow,
    refutation).** This claim is **false**. See `automorphic-compressions-have-no-approximable-hilbert-hotel`,
    proved in `automorphic-compression-orbit-rigidity-proof`.

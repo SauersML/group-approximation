@@ -234,6 +234,39 @@ are not excluded. The survivors are exactly the propagation-sensitive
 channels: T_L, the L-filled Laplacian, and Morse matchings. What would be
 needed is a controlled, propagation-L rank theory for A.
 
+Transplant limit and computability transfer (swarm-0917-w18c,
+logic-computability; `fpbs-max-cost-finite-index-scaling-is-coset-descent`,
+artifact `research/artifacts/fpbs-max-cost-finite-index-scaling-2026-09-17.md`).
+
+*The plan.* Move the equality `C(b) = 1 + beta_1` along group operations
+that the target treats uniformly: marked-group limits, local certificates
+and finite-index passage. The hope was to prove it on a dense or closed
+class and carry it everywhere.
+
+**Where the marked-limit version dies.** Both sides are upper
+semicontinuous along convergent marked groups.
+- `beta_1` is upper semicontinuous by Pichot.
+- Bernoulli cost is upper semicontinuous by finite-radius rules.
+- Two upper bounds of the same sign give no inequality on the gap
+  `g = C(b) - 1 - beta_1` at the limit, so passing to the limit carries no
+  information about the gap. Along finite-quotient sequences, the jump
+  equality is the target itself.
+- This attempt recorded only a sketch. The marked-group entries below
+  give the separate established semicontinuity node and later obstructions.
+
+**What finite-index passage gives (established).** The target, applied to
+`Gamma` and to `H`, forces VS: `C^*(H) - 1 = [Gamma:H] (C^*(Gamma) - 1)`.
+- VS is equivalent to the single descent `C(b x Gamma/H) >= C(b)`.
+- VS already forces chain-independent rank gradient equal to `C^* - 1`.
+- On `B(2,n)`, VS is equivalent to fixed price one.
+
+So VS is a necessary prerequisite that can fail on its own, and it has no
+L2 content. It dies at the same q-point cost-descent step as
+`fpbs-compact-extensions-preserve-cost`. Weak-containment monotonicity
+cannot cross that step, because `Gamma/H` is not weakly contained in `b`
+for nonamenable `Gamma` (strong ergodicity of `b|H`).
+
+
 ### Marked-group limits (logic-computability transplant, swarm-0917-w19, 2026-09-19)
 
 *Dictionary.* The logician's move is to treat a finitely generated group as a limit of its finitely presented

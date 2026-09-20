@@ -115,3 +115,30 @@ excluded too.
       breakpoint set, which is virtually cyclic;
     - item 4 of `mean-free-amenable-actions-residually-amenable-and-sofic` then applies.
     - Not written up, since it duplicates their entries.
+- 2026-09-19 (swarm-0917-w14-w14-nv-follow, operator-algebras): new decomposition through
+  symplectic Gaussian spaces, with one class killed. (MT) is still OPEN.
+  - *Established lemmas.*
+    - `symplectic-gaussian-actions-split-area-cocycles`: an affine `Sp_res` action whose area
+      cocycle is `a·ε + dβ₀`, `a ≠ 0`, splits the extension measurably over each nonsingular
+      Gaussian space `X_t`, with an explicit Paley–Wiener splitting.
+    - `thompson-t-dirichlet-space-restricted-symplectic-model`: `PPSL_2(Z)` is `C^1`,
+      so the smoothed `T` is Weil–Petersson and acts on `H^{1/2}/R` in `Sp_res`. Its displacement
+      cocycle has area `−ε + dβ_A`, so `a = −1`.
+  - *Decomposition.* (MT) ⇐ (G_aff),
+    `thompson-t-affine-dirichlet-koopman-almost-invariant` (OPEN), via the
+    route `thompson-t-euler-splitting-via-affine-dirichlet-gaussian`. The space and the splitting
+    are explicit, and only the almost invariant vectors are missing.
+    - (F2) would kill (G_aff) if some `X_t` mapped equivariantly to `S^1`. No such map is known,
+      and none was looked for.
+    - (F1) and (F3) become constraints (A3) and (A4) on the vectors.
+  - *Kill.* `thompson-t-linear-gaussian-koopman-has-spectral-gap` (ESTABLISHED). The linear
+    Koopman representation `κ₀` has no almost invariant vectors, so the "`t → 0` from `κ₀`" branch
+    (part 3 of the lemma) is dead.
+    - *Invariant:* `PSL_2(Z)` acts by Moebius maps, and its chaos representation is tempered, since
+      it sits inside tensor powers of the weight-2 discrete series. This gives spectral gap on
+      `1^⊥`.
+    - *Step where it dies:* the non-Moebius element `g_0` moves the vacuum by a fixed Hellinger
+      amount.
+    - This answers negatively, in this model, the w13 spark on almost invariant vectors of
+      `M ⊗ M̄` (the identification is a remark).
+    - The cocycle is unbounded on `⟨P⟩`, so the kill does not reach `t ≠ 0`.

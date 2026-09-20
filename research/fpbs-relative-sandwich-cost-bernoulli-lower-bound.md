@@ -105,3 +105,40 @@ census-computation).**
   analogue of compressed-implies-independent is known from Antolín and
   Jaikin-Zapirain (not imported, not checked here), but the Fox cocycle on
   `[[E_a]]` has no analogue.
+
+**Free-group slice closed; complementary split (September 19, 2026,
+w18c-fp-alt, group-rings).**
+- **Proved** (`fpbs-free-group-sandwich-cost-is-minimal-overgroup-rank`).
+  For `Δ = F_q` of finite rank, every finite `F` and every free action `a`:
+  `p^Δ_F(a) = min{rk L : ⟨F⟩ ≤ L ≤ Δ}`.
+  - The lower bound is the Fox rank bound `C(E) ≥ rk_{N(F)}(A)`.
+  - The rank `rk_{N(F)}(A)` is identified with the least overgroup rank for
+    every `H`, compressed or not. This uses Jaikin-Zapirain's Theorem `pibar`
+    (`jaikin-zapirain-minimal-overgroup-rank-formula`, arXiv:2403.09515,
+    quoted verbatim), which gives
+    `π̄(H ≤ F) = rk F − β_0^{Q[F]}(I_{Q[F]}/^F I_{Q[H]})`.
+  - The upper bound is the subgroup treeing of a minimal-rank overgroup.
+  - So the "First test" above, and the whole free ambient slice, hold with
+    an action-independent value.
+- **New decomposition** (route
+  `fpbs-rsb-from-bernoulli-cost-and-subgroup-attainment`).
+  RSB follows from three inputs:
+  - `fpbs-free-action-cost-at-least-bernoulli-cost` (the H core);
+  - Abért–Weiss (`fpbs-bernoulli-maximal-cost`);
+  - a new OPEN claim `fpbs-sandwich-cost-attained-by-subgroup-relations`
+    (SAS): `p^Δ_F(a) ≥ inf{C(a|Δ') : Δ' fg, ⟨F⟩ ≤ Δ' ≤ Δ}` in each single
+    action.
+
+  SAS is vacuous at `⟨F⟩ = Δ`, and H is exactly that case. So the two open
+  inputs are complementary. SAS makes no comparison between actions. SAS
+  alone gives `PC = σ` (passage artifact, Proposition A) for all free
+  actions of all countable groups.
+- **Partial answer to the open question above.** Fixed price for all
+  finitely generated groups implies RSB modulo SAS. It is still unknown
+  whether it implies SAS.
+- **Where it stops.** SAS beyond free groups. The first open test is a
+  surface group with `F` generating a rank-2 free subgroup of infinite index,
+  where `q = 2`. The free-group argument needs two ingredients there:
+  - a Fox-type `L²` bound for sandwiches inside a one-relator group;
+  - `L²`-subgroup rigidity of surface groups. Jaikin-Zapirain conjectures
+    this for all locally indicable groups.

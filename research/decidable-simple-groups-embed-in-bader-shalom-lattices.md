@@ -160,3 +160,65 @@ together with the established imports, implies Boone–Higman.
    **Status after this attempt:** OPEN. Belief in P1 should drop. Every
    lattice class named in Attempt 1 is dead as a host of `H_P`: the linear ones
    by (a), and the tree and building products on one side alone.
+
+3. **Every hosting factor is totally disconnected and carries a compact-embeddable uniform lattice (swarm-0917 w18c-bh-alt, 2026-09-19).**
+   Attempt 2 assumed informally that the survivors are tdlc. This attempt proves
+   it, for every input and not only for the probes, and extracts lattice data
+   from it (`bader-shalom-hosting-factors-are-totally-disconnected`).
+
+   - **(d) Factors with nontrivial identity component die, linear or not.**
+     - *Invariant:* the identity component `G_j^0`, then the adjoint
+       representation of a connected Lie quotient.
+     - *Step where it dies:* suppose `G_j^0 ≠ 1`.
+       - Just-non-compactness makes `G_j/G_j^0` compact.
+       - Minimal almost periodicity pushes `p_j(S)` into `G_j^0`.
+       - Gleason–Yamabe (`gleason-yamabe-and-van-dantzig-structure-theorems`,
+         verbatim through Tao's notes) gives a compact normal `K` with
+         `G_j^0/K` a connected Lie group. `S` avoids `K`, again by minimal almost
+         periodicity, and avoids the centre, being nonabelian.
+       - So `Ad` embeds `S` in `GL_n(R)`, and Malcev gives the contradiction
+         (`almost-connected-groups-omit-fg-infinite-simple-groups`).
+     - *The injective projection:* supplied by NST item 2.
+     - *What this upgrades:* 1(a) covered only factors that are already linear.
+       Now every factor that is not totally disconnected dies, whatever the
+       input.
+   - **(e) Lattice data in the survivors.**
+     - *Construction:* with `U_1 ≤ G_1` compact open (van Dantzig),
+       `Γ ∩ (U_1 × G_2)` projects isomorphically onto a cocompact lattice `Δ_2`
+       of `G_2`.
+     - *Properties:* `Δ_2` embeds, through `p_1`, in the profinite `U_1`; it is
+       commensurated by the dense `p_2(Γ)`; and it has infinite index there. The
+       same holds with the factors exchanged.
+     - *Class kill:* a factor with no uniform lattice that embeds in a compact
+       group, for instance a factor with no lattice at all, cannot occur on
+       either side.
+   - **(f) Position of `S`.**
+     - For compact open `U_i`, `S ∩ p_i^{-1}(U_i)` is a commensurated subgroup of
+       infinite index that embeds in a compact group.
+     - Either `p_i(S)` is discrete in `G_i`, or this subgroup is infinite.
+
+   **Survivors, upgraded again.** Each factor of a lattice hosting `H_P` is:
+   - a non-discrete, compactly generated, just-non-compact, non-linear,
+     non-Haagerup, totally disconnected group;
+   - containing a uniform lattice that embeds in a profinite group, with dense
+     commensurator;
+   - with the probes `H` and `P` each either discrete in it or meeting its
+     compact open subgroups in infinite commensurated subgroups.
+
+   A candidate is therefore the closure of the commensurator, in a tdlc group, of
+   a residually compact uniform lattice. Neretin-type groups without lattices
+   (Bader–Caprace–Gelander–Mozes; named, not quoted) die by (e) independently of
+   the Haagerup trust level used in Attempt 2.
+
+   **Next test.**
+   - Is there an infinite finitely generated simple decidable group, for example
+     one of `V`, `T` or `H_P`, all of whose commensurated subgroups that embed in
+     compact groups are finite?
+   - For such an input, (f) forces `p_1(S)` and `p_2(S)` to be discrete in both
+     factors. This is a separate, falsifiable hole: it is not known to
+     contradict the lattice structure.
+
+   **Status after this attempt:** OPEN. The attempt is a class kill of all
+   non-totally-disconnected factors plus a reduction of the survivors to
+   commensurator completions of residually compact uniform lattices. It
+   establishes no positive embedding.

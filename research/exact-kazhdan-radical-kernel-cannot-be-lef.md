@@ -96,3 +96,31 @@ non-LEF sofic models are compulsory.
   - What (EKL1) must still use: infinite exact images, which are dense Kazhdan subgroups of compact
     semisimple groups (genuine representations of the finitely presented `G_Γ`), or lifts that are exact on no
     finitely presented Kazhdan cover. (EKL1) stays **open**.
+- **Elementary kernels via the unit-torus radical (2026-09-19, swarm-0917-w14-titz-last1, family
+  group-rings).** This gives a new refutation decomposition. (EKL1) stays OPEN.
+  - Established: `unit-radical-saturates-elementary-mapping-torus`. For `K = E_n(S)`, `n >= 3`, with the
+    entrywise `sigma`:
+    - the MF radical of the unit torus `C semidirect_sigma Z` pushes into the first diagonal slot;
+    - commutators with root elements put `c - 1` into a `sigma`-invariant level ideal of
+      `Rad_MF(K semidirect Z)`;
+    - so `E_n(S, I_C) <= Rad_MF`.
+
+    If `I_C = S`, the radical is exactly `K x {0}`. `K` is then LEF whenever `S` is a LEF ring, and it is
+    Kazhdan by EJK whenever `S` is finitely generated.
+  - So (EKL1) is refuted by `lef-ring-with-saturating-unit-torus-radical`. That claim has two
+    prerequisites, each of which can fail:
+    - (Q1) a non-MF `Z`-extension of a LEF unit group of a finitely generated LEF ring;
+    - (Q2) saturation of the ideal, which is automatic for `sigma`-simple `S`, or for minimal full-group
+      units.
+  - Class kills proved there:
+    - rings with a nonzero finite quotient die at the finite residual, including residually finite
+      rings and group rings (augmentation);
+    - amenable `C` dies by TWW, which includes commutative units and minimal `Z`-subshift full groups;
+    - `sigma` with a power inner in a LEF overring dies. Equivalently, the skew Laurent ring must not
+      be LEF.
+  - Unresolved:
+    - (Q1) itself;
+    - the dynamical instantiation with proper colourings of the `alpha`-orbit of a generating set, where
+      the colouring graph has infinite degree and the obvious finite-model argument breaks;
+    - whether the non-finitely-generated kernel of `mf-not-closed-under-integer-extensions` embeds
+      `sigma`-equivariantly in the derived full group of a finitely generated LEF crossed product.

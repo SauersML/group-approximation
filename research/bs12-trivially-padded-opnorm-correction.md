@@ -154,6 +154,31 @@ now exactly a published open question.
 - *Where the remaining difficulty sits.* Any proof or counterexample must address
   the unpadded conjugator problem itself.
 
+2026-09-19 (cohomology-index, swarm-0917-w14-w14-ptm-break, belief breaker).
+Class kill on the open test family; the node stays **OPEN**.
+- *Result, ESTABLISHED* in
+  `bs12-fourier-monomial-corrections-need-equal-cycle-holonomies`.  Consider
+  exact pairs monomial in the Fourier basis, `C = W e^(ia(V))` and
+  `Z = D e^(it(V))`.  Their exactness is the cocycle equation
+  `t_(2m) + t_(2m-1) - t_m = a_(m-1) - a_m`.
+  - Pairing it with translated Bernoulli `B_1` vectors from the cokernel
+    forces `avg_gamma(a) = mean(a)` on every doubling cycle `gamma` of
+    `m -> 2m`, and it eliminates the base weights `t`.
+  - So reweighting `(A_s, D)` costs at least `2 sin(s/2)`, and at least
+    `2 sin(3s/4)` when `3 | N`, uniformly in `N`.
+  - Linear programming gives exactly `1.5 s` for `3 | N` and `1.25 s` for
+    `N = 25, 35, 125`.
+  - `Z` keeps the spectrum of `D` exactly.
+- *Class killed.*  This covers every correction that moves base and conjugator
+  only by Fourier-diagonal weights, arbitrary and discontinuous.  That
+  includes all Fourier-diagonal gauges and the first-order Livsic gauge
+  recorded above.  The invariant is the conjugator's cycle holonomy
+  normalized by `det(W^* C)^(1/N)`.  Every member dies at the exact cocycle
+  equation over `R`.
+- *What survives.*  A correction within `o(s)` must make `Z` non-monomial in
+  the Fourier basis.  Fixed-base corrections (arbitrary `C`, `Z = D`) are
+  already dead at about `s/2`.  So the next test is exact pairs
+  `(U W_u U^*, U D U^*)` with `U` monomial in neither basis.
 2026-09-19 (census-computation, swarm-0917-w14-w14-ptm-last1).  **Test
 family `(A_s, D)`: moving the base beats the fixed-base floor, and the
 distance keeps falling in `N`.**  Details are in

@@ -344,6 +344,17 @@ artifacts:
   - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_1_s5.txt
   - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_2_s5.txt
   - experiments/fpbs-overfold-sym-covers-2026-09-17/law6_3_s5.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/single_nb.py
+  - experiments/fpbs-overfold-threshold-2026-09-17/single_nb_out.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/type_sizes.py
+  - experiments/fpbs-overfold-threshold-2026-09-17/type_sizes_out.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/type_levels.py
+  - experiments/fpbs-overfold-threshold-2026-09-17/type_levels_out.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/phi_types.py
+  - experiments/fpbs-overfold-threshold-2026-09-17/phi_types_out.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/exh_n3_j4.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/exh_n3_j5.txt
+  - experiments/fpbs-overfold-threshold-2026-09-17/exh_n4_j3.txt
 ---
 
 **OPEN.** Notation is as in
@@ -545,6 +556,106 @@ such as rank 2 and the single lawful component above.
 
     For the same reason, the 1-dimensional local-system bound on `law` does
     not bound `deep`.
+
+- **2026-09-19, swarm-0917-w18c-w18c-fp-follow (follow-through). Seed levels,
+  φ-transport, and a reduction of (O) to level-0 seeds.** Status stays OPEN.
+  Scripts and outputs are in `experiments/fpbs-overfold-threshold-2026-09-17/`.
+  - *Levels.* Take a same-fibre pair `(c, c')` of `C_{j+1}` that is not
+    lawful. Its **level** is the largest `ℓ < j` such that the images of `c`
+    and `c'` in `C_ℓ` coincide. Equivalently, `h = u_c u_{c'}^{-1}` lies in
+    `L_ℓ` but not in `L_{ℓ+1}`. `type_levels.py` asserts that every seed
+    type (a component of the off-diagonal pair graph) has a single level.
+    Each entry below is `(#types, max|T|, total pairs)`
+    (`type_levels_out.txt`):
+
+    | depth | lawful | ℓ = 3 | ℓ = 2 | ℓ = 1 | ℓ = 0 |
+    |---|---|---|---|---|---|
+    | j = 1 | (1, 7, 7) | – | – | – | (11, 3, 21) |
+    | j = 2 | (1, 16, 16) | – | – | (11, 7, 43) | (76, 3, 131) |
+    | j = 3 | (1, 38, 38) | – | (11, 16, 93) | (76, 7, 261) | (472, 3, 784) |
+    | j = 4 | (1, 91, 91) | (11, 38, 215) | (76, 16, 556) | (472, 7, 1540) | (2821, 3, 4619) |
+
+    Two patterns are exact for `j ≤ 4`:
+    - the number of level-ℓ types at depth `j` is `N_{j−ℓ}`, where
+      `N = 11, 76, 472, 2821`;
+    - the largest level-ℓ type is exactly the lawful type of depth `ℓ`.
+    Level-0 types have at most 3 pairs.
+  - *φ-transport (computed for j ≤ 3).* Map a seed type `L_j h L_j` of depth
+    `j−1` to `L_{j+1} φ(h) L_{j+1}`. `phi_types.py` checks that this map is a
+    bijection from the depth-(j−1) seed types onto the level-≥1 seed types
+    of depth `j`: the counts are `1 → 1`, `12 → 12` and `88 → 88`
+    (`phi_types_out.txt`). It checks four things:
+    - every image is realised, with no vertex outside the two copies;
+    - distinct types go to distinct types;
+    - the image is exactly the set of level-≥1 types;
+    - lawful types go to lawful types.
+
+    *Caveat.* This holds only at the level of double cosets. The naive graph
+    map "read `φ(w)`" from `Γ_j(Q^{(1)})` to `Γ_{j+1}(Q)` is not defined.
+    The substitution of `Γ_j(Q^{(1)})` is `Γ_{j+1}(Q)` plus hanging
+    backtracking spurs, and some real vertices land on spurs. One example is
+    the vertex of `C_2` reached by `b a b^{-1} a b^{-1}`. So a proof for all
+    `j` must work with double cosets, or prune spurs.
+  - *Reduction (conditional on φ-transport for all j).* Work in the
+    relative-rank form for `L_{j+1}`-transitive `Q`, where
+    `S = Stab(p)`, `K = S∩L_{j+1}` and `K' = S∩L_j`. Write
+    `S^{(1)} = φ^{-1}(S∩L_1)`, which is the stabiliser of `p` in `Q^{(1)}`.
+    - Since `L_j ⊆ L_1` and `φ(L_{i}) = L_{i+1}`, we get `K = φ(S^{(1)}∩L_j)`
+      and `K' = φ(S^{(1)}∩L_{j−1})`. These are exactly `φ` of the depth-(j−1)
+      data of `Q^{(1)}`.
+    - A seed of level ≥ 1 is `g ∈ S∩L_1` whose double coset is a seed type.
+      By φ-transport it is `φ(g₀)` with `g₀` a depth-(j−1) seed of
+      `Q^{(1)}`. Since `φ` is injective, `⟨K, φ(g₀)⟩ ⊇ K'` holds iff
+      `⟨K^{(1)}, g₀⟩ ⊇ K'^{(1)}`. Hence
+      `deep_j^{≥1}(Q) = deep_{j−1}(Q^{(1)})`, where `deep^{≥1}` counts only
+      level-≥1 seeds.
+    - Also `law_j(Q) = r(Q^{(j)}) = law_{j−1}(Q^{(1)})`.
+    - By induction on `j` (at `j = 0` every seed is lawful), (O) at all
+      depths is equivalent to **(O_0)**: level-0 seeds, meaning `g ∈ S ∖ L_1`,
+      are never needed, i.e. `deep_j = deep_j^{≥1}`.
+    - A sufficient condition for (O_0) is the monotonicity
+      **(M1)** `d_seed(H∩L_1 : B) ≤ d_seed(H : B)` for seed-generated
+      witnesses `H` over `B = K`. The witness `H∩L_1` still contains `K'`.
+      (M1) is not proved.
+
+    This isolates the whole difficulty at the base scale. Level-0 types are
+    tiny (`|T| ≤ 3`); all larger types come from lower depths via `φ`.
+  - *Obstruction: the weak form does not reduce.* Suppose one only had
+    `deep_j ≥ c · deep_j^{≥1}`. Iterating the reduction then gives
+    `deep_j ≥ c^j · law_j`, which is useless for the uniform-in-`j` route.
+    So this reduction serves only the exact (O), or a level-0 bound with
+    constant 1.
+  - *Kill: base-scale local bootstraps.*
+    - `single_nb.py` (`single_nb_out.txt`, `j ≤ 4`) shows that no single
+      neighbour fibre can push forward a relation containing `ker ι`, for any
+      letter. At `j = 4`, 29, 30, 20 and 21 of the 49 nontrivial `ι`-classes
+      meet the complement of `Im_k` for `k = a, a^{-1}, b, b^{-1}`.
+    - `type_sizes.py` (`type_sizes_out.txt`) shows that the lawful type
+      touches `|T| = 7, 16, 38, 91` fibres, against `|C_j| = 3, 8, 20, 49`.
+      That ratio tends to about 1.86. Meanwhile the median overfold type has
+      `|T| = 2`.
+    - So any argument that bootstraps the kernel fibre by fibre with a bounded
+      neighbourhood in `Sch(Q)` cannot be uniform in `j`. A lawful seed acts
+      at the scale of `Q^{(j)}`, not of `Q`. With the reduction above, the
+      right scale for (O_0) is one twist, `Q` against `Q^{(1)}`.
+  - *Census.* `exhaustive.py`, run over all transitive `n = 3` levels at
+    `j = 4` and `j = 5` (`exh_n3_j4.txt`, `exh_n3_j5.txt`), finds 7 classes
+    at each depth. The histogram of `(law, deep)` is `(1,1)` four times and
+    `(2,2)` three times, with 2 classes not `L_j`-transitive and 0 flags.
+    At `n = 4`, `j = 3` (`exh_n4_j3.txt`) there are 26 classes, with
+    histogram `(1,1)` 16 times, `(2,2)` 8 times and `(3,3)` twice, 5 classes
+    not `L_j`-transitive, and 0 flags.
+  - *Remaining gap.* Three things are still missing:
+    - a proof of φ-transport for all `j`, at the double-coset level;
+    - (O_0), or (M1);
+    - the multi-orbit version of the reduction, for levels that are not
+      `L_{j+1}`-transitive.
+
+  *Subsequent development.* The all-depth φ-transport gap recorded in this
+  attempt is addressed by the w18-fp-pull host-geometry entry below and
+  `research/artifacts/fpbs-doublecoset-transport-all-depths-2026-09-19.md`.
+  The target remains OPEN.
+
 - **2026-09-19, swarm-0917-w17-w17-fp-pull (reframer + compute scout):
   OPEN; one lemma proved, one route killed, exact checks made
   `Q`-universal.** Details are in

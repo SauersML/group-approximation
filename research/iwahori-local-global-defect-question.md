@@ -587,3 +587,31 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   Universally available flat directions with the required cancellation
   are not supplied by that chart, and the dilution obstruction rules
   out the stated universally sixth-flat square-root repair scheme.
+- **One congruence vertex suffices; the negative side must avoid congruence
+  on both vertices (2026-09-17, swarm-0917, stability-approximation).**
+
+  `iwahori-congruence-capture-transfers-across-one-edge` proves
+  `A_cong(pi) <= 2 A_+(pi) + C sqrt(def(pi) + A_+(pi))`, uniformly in dimension
+  and level. Here `A_+` is the distance of the first vertex alone to
+  congruence representations. The proof has three steps:
+  1. The transported first vertex `pi_+ o sigma^(-1)` is trivial on
+     `Gamma(2m)`, so its induction to `SL_2(Z)` is a level-`2m`
+     representation.
+  2. That induction is `O(def)`-close to `Ind Res pi_-`, which contains
+     `pi_-` exactly as a trace-`1/3` summand.
+  3. Selberg `(tau)` on the conjugation representation rounds that summand to
+     an exact congruence subrepresentation, at cost `O(sqrt def)`.
+
+  With `congruence-repair-bypasses-koopman-cycle-firewalls`, the question is
+  therefore **equivalent** to one-vertex capture
+  `iwahori-one-vertex-congruence-capture`, recorded by the route
+  `iwahori-question-from-one-vertex-congruence-capture`. The earlier (DCC3)
+  needed both vertices, jointly paired.
+
+  Negative-side obstruction: a countersequence has `A_+` and `A_-` both
+  eventually bounded below. So no construction that keeps either vertex
+  congruence, or asymptotically congruence, can answer the question
+  negatively, including constructions that vary only one vertex against a
+  fixed finite-quotient partner. The remaining open input is non-congruence
+  in nature. `(tau)` says nothing about infinite-image constituents of
+  `pi_+`.

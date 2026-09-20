@@ -474,6 +474,32 @@ Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
   - (D1) deep-label arguments.
 
   The claim stays OPEN.
+
+**Non-abelian certificates as a fold triple group (September 19, 2026,
+swarm-0917-w14-w14-fp-follow, minimal-counterexample).**
+- **Shape tested.** First, a strongly ergodic action with `Q_0 = 0` built from
+  self-presented levels, the pushout `L *_K ...`. At `t = 1` levels
+  `relC(E_L; E_K) = relC(E_N; E_{K cap N})/|G|`, which only reproduces an
+  equal-rank malnormal pair, so there was no free lunch. This was dropped.
+  Second, a direct attack on the w13 survivor `d(N_m/<<K cap N_m>>^L)`.
+- **Result.** New node
+  `fpbs-mal-nonabelian-certificates-are-fold-triple-group-rank`, ESTABLISHED.
+  - Exact identity: `H/M_H = T_V/<<t-1 generators>>`, with
+    `T_V = <y_w | y_w = y_{wab^-1} y_{wa}>`. This is deficiency zero, with one
+    fold triple relation per point.
+  - Sandwich: `k_u <= d(T_V) <= min(level count, 2-of-3 seed number)`.
+  - Cyclic levels give Fibonacci-type groups. `F(2,n)` is reproduced by
+    direct coset enumeration for `n <= 8`.
+- **Where the class dies.**
+  - `p`-quotient certificates are at most `k_u` (Burnside).
+  - Finite-index `H_1` (Schreier) certificates are at most
+    `t/|V| + k_u(V')/|V'|` at a covering level `V'`. The dying step is
+    `M_{H'} <= M_H`. Covers of free-tower levels are sofic, so these die under
+    the same sofic Lück statement as the Fox class.
+- **What survives.**
+  - Low-dimensional irreducible twisted ranks of `T_V`.
+  - Non-abelian simple colorings `Epi(T_V, S)`.
+  - (D1).
 **Relative rank gradient: an exact finite form of (D0) (September 19, 2026,
 swarm-0917-w14-w14-fp-break, finite-models).** New node
 [[fpbs-profinite-relcost-equals-relative-rank-gradient]], ESTABLISHED.

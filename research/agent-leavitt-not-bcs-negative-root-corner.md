@@ -743,6 +743,27 @@ group is locally finite, so it is amenable.
   non-hyperlinearity of `EL_20(J)`.
 - **Next falsifiable step (refutation side).** Exhibit approximations of `EL_20(J)` whose Heisenberg defect grows with
   the Toeplitz degree while `tr pi_k(z)` stays `<= 1/2`.
+
+### Finite-dimensional index kills every matrix-coefficient shadow (swarm-0917-w14-w14-ptm-pull, cohomology-index, 2026-09-19)
+
+*Approach tried.*  Use the Fredholm index of `S` (equal to `-1` in `J`) as an obstruction invariant for
+finite models of the Toeplitz survivor class `EL_20(J)`.
+
+*Result* (`jacobson-matrix-coefficient-shadows-pay-head-by-index`, established).
+- Send `x_ij(1), x_ij(S), x_ij(T)` to `X_ij(1), X_ij(A), X_ij(B)` in `GL_(nN)(F)`, with `char F = 2`,
+  arbitrary `A, B`, and any unitary or permutation post-composition `sigma`.
+- Then `||sigma rho(z) - 1|| <= 2 ||sigma rho(r) - 1||`, where `r = [x_12(T),x_23(S)] x_13(1)^(-1)`.
+- Reason: `rho(z) = X_13(1-BA) X_13(1-AB)` exactly. `rk(1-AB) = rk(1-BA)` (index zero), and a block-diagonal
+  conjugation makes the two factors conjugate.
+- This subsumes the truncated-shift audit and every other shared-coefficient choice.
+
+*Where it dies (approach DEAD for the hole).*  The index is defined only when the root images are elementary
+over one coefficient algebra.
+- A general `eps`-homomorphism into `U(d)` or `Sym(d)` has no coefficient pair. The permutation models of
+  `<GL_fin, u>` are an example.
+- Extracting such a pair would be a Steinberg-relation stability theorem, which is again flagship-level.
+- So head-seeing approximations, if they exist, must be non-elementary on the root letters. This is
+  consistent with the wall-rigidity requirement recorded above.
 **Bounded-depth symmetric models are sofic approximations (swarm-0917-w14-w14-nh-pull, 2026-09-18, family
 stability-approximation, obstruction-miner).** Landed as `bounded-depth-symmetric-models-are-sofic-approximations`
 (established, unreviewed, route `-proof`). It settles the `A_m`-on-configurations step above for bounded

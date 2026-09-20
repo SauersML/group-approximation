@@ -476,6 +476,25 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     Finally, the proof must be non-zipper: the only known proof of the `k = 1` SFT case is
     Matui's zipper action, and `brin-thompson-2v-embeds-in-no-zipper-group` forbids a
     zipper for `2V` because of the Callard–Salo distorted element.
+- 2026-09-19 (swarm-0917-w14-w14-nv-pull, obstruction-miner via host-geometry): the
+  negative side, the Burger-pair / Sol witnesses of `brin-thompson-2v-is-not-a-t-menable`.
+  - *New node* `nv-coordinate-shadow-sets-are-rational-subspaces` (ESTABLISHED, elementary).
+  - *Result.* A J-shadow is bounded iff the J-coordinate offsets `|U_j| - |u_j|` stay bounded
+    along the powers. Offsets add on commuting elements. So the shadow-bounded directions
+    `Λ_J` of any `Z^d ≤ nV` form a saturated subgroup.
+  - *Consequences.* Over a `Z^2` with a hyperbolic twist, each `D_J` is `∅` or all of
+    `P^1(Q)`. The "infinite" branch of the earlier survivor shape collapses, and every
+    infinite proper `D_J` dies.
+  - *Survivor shape.* A proper coordinate set `J_max` on which the whole `Z^2` has uniformly
+    finite shadows. Outside `J_max`, every nonzero element has `Θ(log t)` offsets along
+    every ray: the lower bound comes from a tracking count, the upper bound from Sol
+    distortion.
+  - *Also noted, not written as a node.* The exponential brick-growth rate
+    `lim log L(g^k)/k` is a seminorm on such a `Z^2`, and it vanishes there. This is weaker
+    than the distortion bound, which already gives polynomial brick growth.
+  - *Open.* The positive side (R1) is untouched. The negative route still needs either a
+    coordinate-mixing `Z^2` with a hyperbolic twist, or a new invariant for the cases
+    `J_max = ∅` and `J_max ≠ ∅`.
 - **2026-09-19 (swarm-0917-w15-w15-nv-pull, obstruction-miner / cohomology-index): (K) is a
   Hermitian-domination problem, and census refutations of (K) are dead.**
   - **Setting.** On the `T̄`-Haagerup prerequisite, the square-root branch is (K),

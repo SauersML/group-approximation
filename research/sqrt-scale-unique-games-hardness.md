@@ -96,9 +96,13 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     λ-gapped unique games that is superlinear in `λγ` and superquadratic in
     `γ`, for example `sqrt(λ)·γ` when `γ^2 << λ`. Soundness analyses that use
     more than `(λ, γ)` also survive.
-  - *Unchecked.* Raz–Rosen (CCC 2012) proves strong repetition for projection
-    games on expanders. It is killed here if its `c(λ)` is `O(λ)`, and it is a
-    (P2) candidate otherwise. Its exact form was not verified.
+  - *Checked (w14).* Raz–Rosen (CCC 2012) proves strong repetition for
+    projection games on expanders. Its proved rates are
+    `ε λ⁴/log(2/λ)` for projection games and `ε² λ²/log²(2/λ)` for general
+    games (`raz-rosen-expander-parallel-repetition-bound`). They lie in
+    `Rate(0, κ)` and `Rate(K, 0)` respectively, so it is killed here. See
+    "Raz–Rosen expander repetition, checked against the verbatim proof" below
+    for the later proof-level calibration of this formerly unchecked item.
   - *Related failed attempt.* Moshkovitz, arXiv 2103.08743, amplified UG on
     small-set expanders, and the paper is withdrawn. The stated reason is "SSE
     requires simulation conditioned on falling into the small set, which is not
@@ -122,7 +126,7 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     alphabet `ln k >= C^2/(4C_1^2)`, and (R2) a per-round rate `ψ` valid on all
     its NO instances, SDP-fooling ones included, in the window
     `0.79 C <= ψ/η <= 7.51 C_1^2 ln k`. Each can fail on its own.
-  - *Raz–Rosen, re-checked.* The previous attempt's "Unchecked" item. Search
+  - *Raz–Rosen, re-checked.* The previous attempt's formerly unchecked item. Search
     snippets (the PDF was unreachable) give, for projection games on graphs of
     spectral gap `λ`, a strong bound `(1 − γ)^Ω(c(λ) n)` with `c(λ) = poly(λ)`.
     That is a rate `a c(λ) γ`, linear in `γ`. If `c` is read literally as a
@@ -234,3 +238,47 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     `(η/ε')^2` (Lemma S). On noisy cubes, subcube keys show it needs
     `η <= ε' 2^(-Ω(1/ε'))`. (P2) is set soundness on those keyless hosts, by
     expansion rather than by tags.
+* **Ceiling on (λ, γ)-certified rates (2026-09-19, swarm-0917, `w14-ugc-last1`).**
+  This attacks survivor (P2) of the expansion-certified repetition attempt.
+  - *Construction.* Take the odd-cycle consistency game and add a
+    complete-graph layer of weight `2λ` that agrees with the integral optimum.
+    Call this `D(w, L)`. It is λ-gapped and keeps value `<= 1 − γ`, but its
+    SDP needs to rotate over only a wall `1/sqrt(λ)` links wide. So
+    `sdpval >= 1 − 37 sqrt(λ)γ` whenever `γ² <= λ/128` and `λ <= 1/4`.
+  - *Result.* BHHRRS Theorem 1.2 (`bhhrrs-xor-repetition-sdp-lower-bound`)
+    then caps every rate certified from `(λ, γ)` alone at
+    `ψ <= 3300 sqrt(λ)γ`. It also caps the output constant of every such
+    amplifier at `C'^2 < 1184 sqrt(λ)γ/η`, which the gate turns into
+    `< 1.9·10^6/sqrt(λ)`. See
+    `lambda-gamma-repetition-rates-capped-at-sqrt-gap`.
+  - *Where it dies.* At the rate-certification step. The candidate rate
+    `sqrt(λ)γ` is the best possible, so it is not refuted, only shown to be
+    extremal.
+  - *What survives.* (P2) at exactly `Θ(sqrt(λ)γ)`. On XOR games this is, up
+    to constants and unimported Feige–Lovász/BHHRRS Theorem 1.3, the SDP
+    inequality `δ_sdp >= c sqrt(λ)γ` on λ-gapped games. (P1) must supply hard
+    sources with `λ → 0` and `sqrt(λ)γ/η → ∞`, which lie in the thin band
+    `ω(η/sqrt(λ)) <= γ <= 1592η/λ`. Certificates that see more than
+    `(λ, γ)` and exclude domain walls also survive.
+* **Sqrt-gap repetition from expanding XOR sources (2026-09-19, swarm-0917, `w14-ugc-pull`).**
+  This attacks the (P2) candidate `sqrt(λ)·γ` of the previous attempt, at alphabet 2.
+  - *Construction.* Prove the XOR Cheeger inequality
+    `δ_sdp >= sqrt(λ)γ/27` for every signed graph
+    (`xor-cheeger-sdp-deficit-at-least-sqrt-gap-times-frustration`, ESTABLISHED,
+    tight up to the constant on the odd cycle). Combined with AKKSTV Lemma 4.2,
+    it gives expanding XOR games the repetition rate `sqrt(λ)γ/54`. So (P2)
+    holds at `k = 2`.
+  - *Where it dies.* At the source, by
+    `lambda-gapped-xor-sources-cannot-feed-sqrt-rate-repetition` (ESTABLISHED).
+    The same inequality makes the basic SDP a gate: unless `P = NP`, hard
+    λ-gapped alphabet-2 sources have `sqrt(λ)γ <= 40.5η`. Every rate
+    `ψ <= Kγ^2 + κ sqrt(λ)γ` then certifies `R <= 2Kγ^2/η + 81κ`. (P1) and (P2)
+    are incompatible at alphabet 2.
+  - *What would survive at this stage.* Sources of alphabet `k >= 3` whose hard NO hosts are
+    λ-gapped basic-SDP integrality gaps with `δ_sdp/(sqrt(λ)γ) -> 0`. The open
+    decomposition question is a fixed-`k` XOR-Cheeger inequality
+    `δ_sdp >= c_k sqrt(λ)γ`. It is false uniformly in `k`, since Khot–Vishnoi
+    suggests `c_k ≲ 1/sqrt(log k)`. If it is true at each fixed `k`, then only
+    growing-alphabet sources survive. The later bounded-alphabet repetition
+    obstruction above independently rules out reaching unbounded output
+    ratios by repetition of a fixed-alphabet base.

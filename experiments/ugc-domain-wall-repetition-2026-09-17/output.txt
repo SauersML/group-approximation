@@ -1,0 +1,9 @@
+(a) max sigma2 - (1 - w/2) = -6.708e-05  (must be <= 1e-12)
+(c) max delta / (sqrt(w)/L) = 1.7415  (must be <= 3.24)
+(b) w=0.5 L=3: val=0.916667  bound=0.916667  ok
+(b) w=0.2 L=3: val=0.866667  bound=0.866667  ok
+(b) w=0.5 L=5: val=0.950000  bound=0.950000  ok
+(b) w=0.1 L=5: val=0.910000  bound=0.910000  ok
+(b) w=0.3 L=7: val=0.950000  bound=0.950000  ok
+(d) max delta / (sqrt(lam) gam) = 7.9920  (must be <= 37)
+ALL OK

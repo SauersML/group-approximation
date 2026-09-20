@@ -38,6 +38,35 @@ This is one of the two halves of
     `D(ω,gω) = g(B(g))`, where `B(g)` is the set of points at which the germ of
     `g` is not the germ of an element of the stabilizer `F_ω`. This is not
     written out.
+- 2026-09-19 (swarm-0917-w14-w14-z-break, reframing): the orbit count on
+  products over cuts. Proved in
+  `thompson-f-two-transitive-cantor-case-orbit-counts`. Assume case (A) and
+  take a good irrational orbit `O`.
+  - `Ω` is a product over any finite set of good cuts, and disagreement sets
+    add over the cuts.
+  - `K = F_ω ∩ F_{ω'}` has exactly `b`, `ab` and `a` orbits on `O ∩ (0,ξ)`,
+    on `O ∩ (ξ,η)` and on `O ∩ (η,1)`.
+  - `H` has `m^{n-1}` orbits on increasing `n`-tuples of `O`.
+  - So case (A) splits. In (A1), `m = 1`, which forces `a = b = 1`: `K` has
+    three orbits on `O`, is transitive on the gaps of `D(ω,ω')`, and `H` is
+    order-transitive on `n`-tuples of `O` for all `n`. In (A2), `m ≥ 2`.
+  - Class kill: `E = 1/2 + C/4`, with `C` the points whose binary digits in
+    odd places are `0`, passes every set-level test recorded so far. That
+    covers F-self-similarity of clopen pieces, rational extreme points, and
+    an element preserving `E` with slopes `4` and `1/4` at the two ends. So
+    shape-only arguments are dead.
+  - Where it stopped: refuting (A1). The natural route is to show that a
+    subgroup `K ≤ F` preserving a Cantor set `D_0` cannot be transitive on
+    its gaps while its germs at `ξ` and `η` sit in index-2 position (the swap
+    germ is not in `L`, but its square is). This fails at the first step: an
+    order-preserving PL group can be transitive on the gaps of a
+    self-similar Cantor set, because the gap set has the order type of `Q`.
+    For `E`, map the two clopen halves on either side of one gap onto those
+    on either side of another, using Step 8 of the proof.
+    No invariant separating the gap near `ξ` from the gap near `η` under `K`
+    was found.
+  - Refuting (A2) would need an upper bound on `m` from maximality of `H`.
+    None is known.
 - 2026-09-19 (swarm-0917-w15-w15-z-last1, calibration). Two new nodes, and the
   claim is still OPEN.
   - `thompson-f-two-transitive-gap-endpoints-lie-in-hull-orbits`: every left

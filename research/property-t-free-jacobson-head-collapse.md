@@ -717,6 +717,99 @@ The claim stays OPEN.
 
   The claim stays OPEN.
 
+- **reframing, swarm-0917 (swarm-0917-w14-w14-ptl-pull): the spark group
+  `H_mix` and its S-oriented envelope split into two LEF halves along the
+  symbol extension. Non-LEF lives only in the extension class.**
+
+  *Proposal.* Answer the w13 spark "is `H_mix` LEF or MF?" by locating where
+  its non-LEF witness lives.
+
+  *Result.* `h-mix-is-an-extension-of-two-lef-halves` (established, route
+  `h-mix-is-an-extension-of-two-lef-halves-proof`, script
+  `experiments/h-mix-dihedral-window-2026-09-17/check_dihedral_window.py`).
+  1. **The LEF half of the spark is answered: no.** The five-generator
+     witness of `p22-double-parabolic-is-not-lef` lies in `H_mix`. So
+     `H_mix`, and `P^S = M_2(J) x| (EL_2(J) x EL_2(F[S]))`, are not LEF.
+  2. **Dihedral splitting.** `<x_34(1), x_43(S)>` is `D_inf`, and
+     `c = [[1+S,1],[S,1]]` has trace `S`. The head lies in
+     `Rad_MF(H_mix)` iff it lies in `Rad_MF(H')`, for the index-two subgroup
+     `H' = M_2(J) x| (EL_2(J) x <c>)`. This follows by induction of MF
+     models.
+  3. **Finitary half is LEF.** `K = M_2(I) x| (EL_2(J) x EL_2(F[S]))` is LEF
+     and contains the head.
+     - The windows `I_{<=d} = span{S^a Q T^b : b <= d}` are left ideals that
+       are stable under right `F[S]`, because `QS = 0`.
+     - The tensor form `M_2(I_{<=d}) = (JQ)^2 (x) R_d^2`, with the right
+       action through a finite group, reduces this to the column parabolic
+       `J^2 x| EL_2(J)`.
+     - This answers w13's "second window on which `x_43(S)` acts through the
+       down-shift": it exists, but only on the finitary radical.
+  4. **Symbol half is LEF.** `M_2(A) x| (EL_2(J) x EL_2(F[S]))` is LEF, by a
+     linear group times the Levis.
+  5. **Window rigidity.** Every finite-dimensional right `c`-stable subspace
+     of the row module `J^2` lies in `I^2`, and for `A^2` it is `0`. The
+     reason is that `det p(c)` is a nonzero element of `F[S]`, since `S` is
+     transcendental, while the kernel of right `S^k` on `J` is `I_{<k}`.
+     So `M_2(I)` is the locally finite part of `M_2(J)` under the right
+     dihedral group.
+
+  *Invariant.* The `S`-adic order of `det p(c)`. Right `S` is locally
+  nilpotent on `QJ` and has no finite-dimensional invariant pieces on
+  symbols.
+
+  *Where every member dies.* Two kinds of argument die:
+  - An argument for `pi(h) = 1` that uses only relations of `K`. This
+    includes all finitary-radical relations with the full left Levi and the
+    Kazhdan right Levis `EL_l(F[S])`. It dies at `pi(h) = 1`, because `K` has
+    exact models where `||pi(h) - 1|| = 2`.
+  - Any argument that factors through the symbol quotient.
+
+  Every relation that makes `H_mix` non-LEF uses a non-finitary row. The
+  witness uses `(1,0)`, whose dihedral span is infinite-dimensional.
+  Right-invariant row windows cannot see such rows.
+
+  *What is left.* The MF half of the spark, reduced to a `Z`-extension: is
+  `H' = N x|_c Z` MF with `h` surviving, where `N = M_2(J) x| EL_2(J)` is
+  LEF? MF models must be approximate on the symbol part of `M_2(J)` under
+  `c`, and exact nowhere except on `M_2(I)`.
+
+  The claim stays OPEN.
+
+- **operator-algebras, swarm-0917 (swarm-0917-w14-w14-ptl-follow),
+  2026-09-19: periodic-model criterion for `H' = W x|_c Z`.**
+  This is the follow-through on the w14-pull spark "is `H'` MF with the
+  head", where `W = M_2(J) x| EL_2(J)` and `c = x_43(S) x_34(1)`.
+  Established `h-prime-mf-head-iff-alpha-periodic-w-models`, with route and
+  artifact; no (T).
+  1. *Criterion.* For any `W x|_alpha Z` and `h` in `W`: `h` is outside
+     `Rad_MF` iff (PC) holds. (PC) says that on every window some
+     head-keeping approximate model `theta` of `W` has `theta o alpha^m`
+     approximately unitarily equivalent to `theta`, for some `m` depending
+     on the window.
+     - Proof: stack `theta o alpha^n` for `n < m`, and let `c` act by the
+       cyclic block shift twisted by `V` at the seam.
+     - The chain-recurrent (pseudo-orbit) form is the same condition.
+  2. *Reduction.* Suppose one window fails (PC) for `(W, Ad c, x_13(Q))`,
+     and this is proved without (T). Then the flagship holds without (T),
+     through `H' <= P <= EL_4(J) -> EL_20(L_2)`. If (PC) holds on every
+     window, the `H_mix` lane is dead.
+  3. *One-generator trap.* It is verified exactly inside `H'`:
+     `[g,c] = 1`, `g u g^-1 = (c u c^-1)(c^-1 u c)`, `[e,u] = [e,c] = 1`,
+     and `[e, g^-1 u g] = x_13(Q)`. The single element `c` replaces `r1`
+     and `r2`.
+  4. *Class kill.* No (PC) data exist with permutation-matrix blocks and a
+     permutation seam once `2 delta < sqrt(2)`. The invariant is the
+     `sqrt(2)`-separation of permutation matrices. The step where every
+     member dies is exactness of the block model on the relators, which
+     yields a finite quotient of the trap that keeps the head, contrary to
+     the pigeonhole. So LEF models of `W` never glue with monomial seams.
+  5. *Trace invariants are vacuous.* Padding by a trivial summand keeps (PC)
+     and keeps the head, and makes the traces periodic.
+
+  *What is left.* Decide (PC) for non-monomial seams. A (T)-free obstruction
+  must be a property of approximate `W`-models on one fixed window. It must
+  separate `theta o alpha^m` from the unitary orbit of `theta` for all `m`
+  at once, uniformly in the dimension, on head-keeping models.
 - **group-rings, swarm-0917 (swarm-0917-w14-w14-ptl-follow), 2026-09-19:
   both halves of `H_mix` are LEF, and the LEF-factor Schafhauser tool is
   false. The `H_mix` lane reduces to MF of the single amalgam

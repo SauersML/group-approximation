@@ -4,6 +4,7 @@ id: commutant-projection-extraction
 kind: claim
 title: Corner-invisible central unitaries in a matrix corona are trivial
 refuted_by:
+  - cone-fields-refute-commutant-projection-extraction
   - o2-suspension-central-unitary-evades-commutant-corners
 distinct_from:
   corona-corner-detection-criterion: that claim is established and reduces the mechanism to this question; this claim is the residual operator-algebraic hole, stated without any group-theoretic hypothesis beyond centrality.
@@ -174,3 +175,31 @@ mark alone.
     `torsion-free-non-mf-from-infinite-order-mark`. By the real-rank-zero
     reduction above, relative commutants in `A_omega` need not have real
     rank zero along a central unitary.
+- **2026-09-19, minimal counterexample (swarm-0917 w18c, deligne-alt
+   lane): REFUTED as stated.**  See
+   `cone-fields-refute-commutant-projection-extraction`.
+   - The example takes `H = Z x F_4`.  `eps` goes to the central scalar
+     path `e^{i pi t}`, and the free generators go to `e^{i t h_j}` in
+     `C([0,1], O_2)`, where the `h_j` are the real and imaginary parts of
+     the Cuntz isometries.  The generated algebra lies in the unitized cone
+     over `O_2`, so it is QD (Voiculescu homotopy invariance) and embeds
+     unitally in a norm matrix corona.
+   - Its fibers are `C` at `0` and `O_2` for `t > 0`, so it has a
+     **unique** tracial state, evaluation at `0`, where `eps = 1`.
+   - Hence every trace of every corner `qQq` with `q ∈ B` gives
+     `‖q Theta(eps) q − q‖_2 = 0`, while `‖Theta(eps) − 1‖ = 2`.  The
+     approximate form fails as well: no `q ∈ B` at all has
+     `‖(Theta(eps) − lambda) q‖ < |lambda − 1|`.
+   - The spectrum is the upper half-circle, which is exactly the surviving
+     configuration of clause 2 of `corona-corner-detection-criterion`.
+   - Consequences:
+     - the real-rank-zero reduction and the AW\*-masa reduction above both
+       fail in general;
+     - "vanishing of the trace mass off `1`" cannot suffice;
+     - a correct residual hole must name a group hypothesis, for example
+       (T), or be stated per instance.
+   - Remark K of the refuting node shows that the cone mechanism with a
+     finite-dimensional base cannot occur for Kazhdan `H`: the Kazhdan
+     projection of the base subrepresentation is norm-continuous along the
+     field.  The Kazhdan instances, including (CPE\*) at `(Gamma~, z^m)`,
+     stay open.

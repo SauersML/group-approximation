@@ -77,6 +77,33 @@ Earlier ruled-out witness classes are listed under `lifted-thompson-t-is-a-t-men
   - *Next falsifiable step.* Test `Gap_T` on Jones' Pythagorean / planar-algebra representations of
     `T`, where rotations act by explicit unitaries. Either find rotation domination there, or find
     `r_k`-nonfixed vectors with defect `o(1)` under `ι_k(S)`.
+- **2026-09-19 (swarm-0917-w14-w14-nv-break, group-rings / census-computation): finite
+  hermitian-square certificates are dead for this node; it stays OPEN.**
+  - *Attempt.* A Kaluba–Nowak–Ozawa style semidefinite certificate in `R[T̄]`:
+    `Δ_S Δ_z − λΔ_z ∈ Σ²R[T̄]` with `λ > 0`. Since `z` is central, this would give
+    `Δ_S ≥ λ` off the `z`-invariant vectors, i.e. this node, and hence refute
+    `brin-thompson-groups-nv-are-a-t-menable`.
+    - Code: `experiments/lifted-thompson-t-sos-2026-09-17/tbar.py`, exact PL arithmetic in `T̄`
+      with `c̃^3 = z^{-1}` checked.
+    - Code: `experiments/lifted-thompson-t-sos-2026-09-17/sos.py`, the SDP.
+    - Radius 2, generators `x_0, x_1, c̃, z` and their inverses, `|B_2| = 51`: SCS reports
+      `λ* ≈ 0.0033`, with PSD-projected ℓ¹-residual `≈ 5·10^{-4}`
+      (`run-rel-R2-withz.log`).
+  - *Result (ESTABLISHED).* `sos-certificates-cannot-see-an-infinite-central-subgroup` shows
+    that this value is solver error. Every sum of hermitian squares in `ker(z ↦ 1)` equals
+    `Δ_z` times a sum of hermitian squares.
+    - So `Δ_z^m(Δ_S − λ) ∉ Σ²` for every `λ > 0`, at every radius and for every generating set.
+    - `Δ_z^m(Δ_S² − λΔ_S) ∈ Σ²` would give (T) for `T̄`, which is false.
+    - Fixed-support twisted certificates in `C[T̄]/(z − e(θ))` have optimal `λ → 0` as `θ → 0`.
+  - *Invariant.* The trace of `R[T]` (the image under `z ↦ 1`) together with cancellation of the
+    central non-zero-divisor `Δ_z`.
+  - *Where every member dies.* The certificate maps to `0` in `R[T]`. So every square root lies
+    in `(1 − z)R[T̄]`, and `Δ_z` cancels.
+  - *Consequence for breakers.* A proof of this node cannot be a finite computation of this type.
+    It needs an argument uniform in the support radius, such as `Gap_T` proved by representation
+    theory, or a non-central pair. The kill does not reach non-central normal subgroups, such as
+    the coordinate-mixing `Z² ⋊ F_2` of `brin-thompson-2v-is-not-a-t-menable`. The same kill
+    applies verbatim to `cantor-integer-maps-central-direction-has-relative-t`.
 
 - **2026-09-19 (swarm-0917-w16-w16-nv-follow, reframing): Brieskorn-lattice covering. Node stays
   OPEN; one class of proofs killed.**
