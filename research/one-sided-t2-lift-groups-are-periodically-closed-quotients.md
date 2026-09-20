@@ -2,7 +2,7 @@
 rg: 2
 id: one-sided-t2-lift-groups-are-periodically-closed-quotients
 kind: claim
-title: In the one-sided (computable-transport) form of T2, the lift group is a quotient of a finitely generated group of cellular automata by a normal subgroup closed in its periodic-point topology, and for linear automata its chain quotients are sections of GL_d over the period rings with d fixed; this is the only constraint the lift side imposes beyond realizing the orbits, so T2 splits into a periodic congruence question and an orbit-realization question; no residually finite, finitely presented, non-exact group was found in the literature
+title: In the one-sided (computable-transport) form of T2, the lift group is a quotient of a finitely generated group of cellular automata by a normal subgroup closed in its periodic-point topology, and for linear automata its chain quotients are sections of GL_d over the period rings with d fixed; beyond closure the lift side imposes only a kernel-realization condition, so T2 splits into a periodic congruence question and a kernel-realization question; no residually finite, finitely presented, non-exact group was found in the literature
 requires:
   - hierarchical-recursion-relaxes-t2-to-one-sided-locality
   - word-codings-of-t2-force-finite-presentation
@@ -16,6 +16,12 @@ distinct_from:
 - Item 2(b) and item 3 are open questions, precisely stated.
 - Item 4 is a literature report. It was read at source where marked, and is otherwise recalled.
 - No priority claimed. **T2 is not built.**
+- Referee bh-ref-c (db76e030f3): PASS with repairs. All five are applied:
+  - `K = ⋂ K·P_ℓ` and kernel-realization wording;
+  - "not forced by the regular argument";
+  - the Larsen–Pink reason for Q_per;
+  - the Osajda alternating remark dropped;
+  - decidability marked as recalled.
 
 ## Setting
 
@@ -27,7 +33,7 @@ This is the one-sided form of T2 from `hierarchical-recursion-relaxes-t2-to-one-
 - `K_n` is the kernel of `Γ̃` on `X_n`, and the lift group is `Γ = Γ̃ / K` with `K = ⋂_n K_n`.
 
 Let `P_ℓ` be the kernel of `Γ̃` on **all** decorated loop configurations of period `ℓ`. The **periodic
-topology** on `Γ̃` has the normal subgroups `P_ℓ` (for `ℓ ≥ 1`) as a basis of neighbourhoods of `1`. It is
+topology** on `Γ̃` has the normal subgroups `P_ℓ` (for `ℓ ≥ 1`) as a basis of neighborhoods of `1`. It is
 Hausdorff because periodic points are dense and automorphisms are continuous.
 
 ## Statement
@@ -37,32 +43,44 @@ Hausdorff because periodic points are dense and automorphisms are continuous.
    quotient of a finitely generated group of cellular automata by a periodically closed normal subgroup,
    residually finite along quotients of its periodic quotients.
 
-   Conversely, this is the only constraint the lift side imposes on the abstract group. Whether a given
-   periodically closed `K` is realized depends only on whether the `Γ̃`-sets `Γ̃/K_n` occur as unions of
-   orbits on periodic data (item 3).
+   Conversely, a normal subgroup `K` is periodically closed iff `K = ⋂_ℓ K·P_ℓ`. So every closed `K` is the
+   intersection of the open normal chain `K_n = K·P_(ℓ_n)` along a cofinal sequence such as `ℓ_n = n!`
+   (repair from bh-ref-c). Beyond closure, the lift side imposes only a **kernel-realization** condition:
+   some `Γ̃`-invariant set of period-`ℓ_n` data must have kernel exactly `K_n`. It is not required that the
+   `Γ̃`-set `Γ̃/K_n` occur as an orbit. Kernels of invariant sets are intersections of cores of point
+   stabilizers, and `K·P_ℓ` need not have that form.
 2. **Linear lifts.**
    - (a) If `Γ̃` consists of linear cellular automata over a finite ring `R`, then each `Q_n` is a
      **section** (a quotient of a subgroup) of `GL_d(R′[t]/(t^(ℓ_n) − 1))`, with `R′ = End(R)` and `d` fixed.
      The regular two-sided argument (item 4 of `pointer-encodings-give-non-linear-two-sided-locality`) used
-     *subgroups* of bounded-degree linear groups. For sections it does not apply, so exactness of the lift
-     group is **not** forced in the one-sided setting.
+     *subgroups* of bounded-degree linear groups. For sections it does not apply. So exactness of the lift
+     group is **not forced by the regular argument**. Whether it is forced at all is Q_lin (repair from
+     bh-ref-c).
    - (b) **Question Q_lin (open).** Does a free group `F` of linear cellular automata over `F_2`, for
      example in `GL_2(F_2[t^(±1)])`, have a **non-exact** quotient `F/N` with `N` closed in the congruence
      (periodic) topology?
      - Constraint (recalled, Larsen–Pink): the chain quotients' non-abelian composition factors are of Lie
-       type in characteristic 2 of rank bounded in terms of `d`, or of bounded order. So Osajda-type
-       quotients with large alternating factors are excluded along such chains.
-     - Nothing here is known to force exactness.
+       type in characteristic 2 of rank bounded in terms of `d`, or of bounded order. So any chain whose
+       quotients have unbounded alternating composition factors is excluded. (An earlier remark attributing
+       such factors to Osajda's quotients was unsupported and is withdrawn.)
+     - Partial answer: `congruence-closed-odd-linear-automaton-quotients-are-exact` answers the
+       odd-characteristic analogue negatively, conditional on three recalled theorems about `SL_2` over local
+       fields. Characteristic 2 stays open.
+     - In characteristic 2, nothing here is known to force exactness.
 3. **Question Q_per (open): a periodic congruence subgroup property.** Does `Aut(B^Z)` contain a finitely
    generated free group whose periodic topology is its full profinite topology, i.e. every finite-index
    normal subgroup contains some `P_ℓ`?
    - If yes, item 1 is vacuous for that `Γ̃`: every residually finite quotient of it, in particular Osajda's
      groups when `Γ̃` has enough generators, passes the lift-side constraint.
-   - One-sided T2 then reduces entirely to **orbit realization**: making the specific finite `Γ̃`-sets
-     `Γ̃/K_n` appear as orbits on period-`ℓ_n` data, plus the design checks of the hierarchical node.
-   - For the linear pair the answer is no (recalled). Its periodic topology is a congruence topology, and
-     rank-one groups such as `SL_2(F_2[t])` fail the congruence subgroup property (Serre). So free
-     subgroups of them have congruence completions strictly smaller than their profinite completions.
+   - One-sided T2 then reduces entirely to **kernel realization**: making the normal subgroups `K_n` occur
+     as kernels of `Γ̃`-invariant sets of period-`ℓ_n` data, plus the design checks of the hierarchical node.
+   - For every free linear `Γ̃` with `d` fixed, the answer is no (argument from bh-ref-c, replacing an
+     earlier wrong CSP reason).
+     - A free group of rank `≥ 2` maps onto every `Alt(n)`.
+     - If `P_ℓ` lay in such a kernel, `Alt(n)` would be a section of `GL_d(R′[C_ℓ])`. Larsen–Pink excludes
+       that for `n` large in terms of `d`.
+     - (`SL_2(F_2[t^(±1)])` itself essentially has the congruence subgroup property, since `|S| = 2`,
+       Serre. That is why the earlier reason was wrong.)
 4. **Literature: is a residually finite, finitely presented, non-exact group known?** We found none.
    - Osajda's residually finite non-exact groups (arXiv:1703.03791, read at source, pp. 1–3) are
      "defined by infinite graphical small cancellation presentations". They are limits of hyperbolic
@@ -73,9 +91,14 @@ Hausdorff because periodic points are dense and automorphisms are continuous.
      nor checked.
    - The Kharlampovich–Myasnikov–Sapir finitely presented residually finite groups of arbitrary algorithmic
      complexity (arXiv:1204.6506, abstract read) are solvable of class 3, hence amenable and exact.
-   - An embedding theorem that preserves residual finiteness would convert Osajda's (decidable) examples. We
-     know of no such theorem in the needed generality.
-   - We record the question as **not known to us**, not as open in print, pending a fuller check.
+   - An embedding theorem that preserves residual finiteness could apply only to non-exact groups with
+     solvable word problem. Finitely presented residually finite groups, and their finitely generated
+     subgroups, have solvable word problem (McKinsey–Mal'cev). Osajda's groups built from a recursive input
+     sequence are decidable by `decidable-residually-finite-non-exact-group-exists` (ESTABLISHED there,
+     unreviewed). Decidability of his groups in general was not checked here. We know of no such embedding
+     theorem.
+   - Neither we nor bh-ref-c found a printed statement of the question. It is recorded as the OPEN node
+     `residually-finite-finitely-presented-non-exact-group`, phrased as not known to us.
 
 ## Proof
 
@@ -86,8 +109,9 @@ Hausdorff because periodic points are dense and automorphisms are continuous.
 - *Quotients.* `Γ̃/K_n` is a quotient of `Γ̃/P_(ℓ_n)` because `P_(ℓ_n) ≤ K_n`.
 - *Residual finiteness.* `⋂_n (K_n/K) = 1` in `Γ`.
 - *Converse.* The abstract group `Γ̃/K` and its chain `K_n` are determined by `K` and the `K_n`. The lift
-  side needs nothing else but that `Γ̃` act on `X_n` with kernel `K_n`, which is the orbit-realization
-  condition.
+  side needs nothing else but that `Γ̃` act on some invariant `X_n` with kernel `K_n`, which is the
+  kernel-realization condition. Every closed `K` is `⋂_n K·P_(ℓ_n)` for `ℓ_n = n!`, since `K·P_ℓ` decreases
+  along divisibility and a closed set is the intersection of its neighborhoods `K·P_ℓ`.
 
 **2(a).**
 - A linear cellular automaton over `R` is left convolution by an element of `R′[t^(±1)]`. On
@@ -102,10 +126,11 @@ Hausdorff because periodic points are dense and automorphisms are continuous.
 **On the lift side, one-sided T2 is a congruence question.**
 - Once transports are only verified, not implemented, the lift group can be *any* quotient of a
   cellular-automaton group by a normal subgroup closed in the topology of its periodic points.
-- Linearity of the automata then constrains composition factors, but not exactness.
+- Linearity of the automata then constrains composition factors. Whether it forces exactness is Q_lin; in
+  odd characteristic it does, conditionally (`congruence-closed-odd-linear-automaton-quotients-are-exact`).
 - So T2 splits cleanly into three parts:
   - a periodic congruence question (Q_per), or its linear form (Q_lin);
-  - an orbit-realization question;
+  - a kernel-realization question;
   - the design checks: minimality, rigidity of the sofic factor.
 - None of the three currently needs a finitely presented residually finite non-exact group, and none is
   known to us.

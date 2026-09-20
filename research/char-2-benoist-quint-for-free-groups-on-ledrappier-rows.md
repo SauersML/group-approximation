@@ -89,3 +89,17 @@ either direction, decides whether algebraic rigid rows can carry a minimal free 
 - **Lane decision.** This is deep positive-characteristic homogeneous dynamics. bh-invent-16 leaves it
   as a crux and pivots to non-linear two-sided locality (T2). T2 is what BH needs, since algebraic rows
   lift only exact groups.
+
+## Attempts
+
+- **bh-bq2 (2026-09-19): statement corrected, crux sharpened; still open.**
+  - *The one-coset form is false for every `F`.* Orbits of period-3 points have size divisible by 3.
+  - *Frobenius-twisted `F ≤ GL_2(A')` carry a positive-entropy, non-Haar, homogeneous four-subgroup measure.*
+  - *The correct statement is (BQ_2'),* with Haar measure on one `Γ`-orbit of cosets. It still rules out
+    algebraic T1.
+  - *Under the non-square-trace condition (NS)*, (BQ_2') is equivalent to: every ergodic measure of infinite
+    support is invariant under infinitely many translations.
+
+  See `char-2-benoist-quint-needs-the-homogeneous-form`. Any T1 set must carry a free, uniformly distal action
+  of `F ∩ SL_2(A)`, with `[F, F]` acting inside the equicontinuous fibres; see
+  `algebraic-t1-sets-carry-free-distal-commutator-actions`. Neither outcome of (BQ_2') is proved.
