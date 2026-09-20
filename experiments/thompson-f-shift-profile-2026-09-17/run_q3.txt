@@ -1,0 +1,5 @@
+# q=3 restarts=3 iters=600 Adam+cosine, penalty mu=1e3; best found, not certified
+q L c     min_defect  commutator  seed
+3 2 0.1   0.4141      0.0991      rand
+3 2 0.3   0.7436      0.2990      rand
+3 2 0.6   1.0547      0.5990      rand
