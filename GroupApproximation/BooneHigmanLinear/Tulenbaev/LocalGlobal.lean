@@ -1,6 +1,10 @@
 import GroupApproximation.BooneHigmanLinear.Tulenbaev.Components
+import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.LocFinitary
 import Mathlib.RingTheory.Localization.Away.Basic
+import Mathlib.RingTheory.Localization.Algebra
 import Mathlib.RingTheory.Coprime.Lemmas
+import Mathlib.RingTheory.PolynomialAlgebra
+import Mathlib.Tactic.LinearCombination
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -21,9 +25,8 @@ Tulenbaev's §2 has three layers.
 3. Thm 2.1, the **local–global principle**. The `c` with `α_c = 1` form an ideal
    (`goodIdeal`). If that ideal meets every maximal ideal's complement, it is `⊤`, so `α = 1`
    (`eq_one_of_away`, Zariski form).
-   - The form "`α_𝔪 = 1` for every maximal `𝔪`" also needs the finite-stage principle
-     `StAtMaximalFiniteStageStatement`. That is Tulenbaev's Lemma 2.2 at `A_𝔪 = colim A_s`
-     (foundations F.5).
+   - The finite-stage principle at maximal ideals is proved as `stAtMaximalFiniteStage`,
+     using Steinberg groups commuting with localization and polynomial localization.
    - `stLocalGlobal_of_dilation` gives Components' `StLocalGlobalStatementAt n₀`.
 
 **LG-stable** (`diesAfterPadding_of_away`). If `u ∈ St_N(A[X])`, `u(0) = 1`, dies after padding
@@ -138,6 +141,22 @@ def StAtMaximalFiniteStageStatement : Prop :=
       ∃ s ∉ M, ringMap (awayPoly s) α = 1
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.StAtMaximalFiniteStageStatement
+
+attribute [local instance] Polynomial.algebra in
+/-- An equality over `A_𝔪[X]` already holds after inverting one element outside `𝔪`.
+This is the finite-stage principle, with no rank or domain hypothesis. -/
+theorem stAtMaximalFiniteStage : StAtMaximalFiniteStageStatement := by
+  intro A _ N M _ α hα
+  have hL := Polynomial.isLocalization M.primeCompl (Localization.AtPrime M)
+  have hα' : ringMap (algebraMap A[X] (Localization.AtPrime M)[X]) α = 1 := by
+    simpa only [Polynomial.algebraMap_def] using hα
+  obtain ⟨f, hf, hkill⟩ := K2Found.exists_mem_ringMap_eq_one _ (Fin N) hL hα'
+  obtain ⟨s, hs, rfl⟩ := Submonoid.mem_map.mp hf
+  refine ⟨s, hs, hkill _ (awayPoly s) ?_⟩
+  simpa only [awayPoly, Polynomial.coe_mapRingHom, Polynomial.map_C] using
+    (IsLocalization.Away.algebraMap_isUnit s).map Polynomial.C
+
+#audit_closed_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.stAtMaximalFiniteStage
 
 variable {n₀ : ℕ}
 
@@ -342,28 +361,27 @@ theorem eq_one_of_away (hD : StDilationStatementAt n₀) {A : Type} [CommRing A]
 #audit_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.eq_one_of_away
 
 /-- **Tulenbaev, Thm 2.1, kernel form**: `α(0) = 1` and `α_𝔪 = 1` for every maximal `𝔪` give
-`α = 1`, from the dilation and finite-stage principles. -/
+`α = 1`, from the dilation principle. The finite-stage principle is proved above. -/
 theorem eq_one_of_atMaximal (hD : StDilationStatementAt n₀)
-    (hF : StAtMaximalFiniteStageStatement) {A : Type} [CommRing A] {N : ℕ} (hN : n₀ ≤ N)
+    {A : Type} [CommRing A] {N : ℕ} (hN : n₀ ≤ N)
     {α : SteinbergGroup (Fin N) A[X]} (h0 : ringMap (Polynomial.evalRingHom (0 : A)) α = 1)
     (hM : ∀ (M : Ideal A) [M.IsMaximal],
       ringMap (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime M))) α = 1) : α = 1 :=
   eq_one_of_away hD hN h0 fun M hM' => by
     haveI := hM'
-    exact hF A N M α (hM M)
+    exact stAtMaximalFiniteStage A N M α (hM M)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.eq_one_of_atMaximal
 
-/-- **Components' `StLocalGlobalStatementAt n₀`** (constancy form) from the dilation and
-finite-stage principles. -/
-theorem stLocalGlobal_of_dilation (hD : StDilationStatementAt n₀)
-    (hF : StAtMaximalFiniteStageStatement) : StLocalGlobalStatementAt n₀ := by
+/-- **Components' `StLocalGlobalStatementAt n₀`** (constancy form) from dilation alone. -/
+theorem stLocalGlobal_of_dilation (hD : StDilationStatementAt n₀) :
+    StLocalGlobalStatementAt n₀ := by
   intro A _ N hN g hg
   have hevC : (Polynomial.evalRingHom (0 : A)).comp (Polynomial.C : A →+* A[X]) =
       RingHom.id A := RingHom.ext fun c => by simp
   have key : g * (ringMap (Polynomial.C : A →+* A[X])
       (ringMap (Polynomial.evalRingHom (0 : A)) g))⁻¹ = 1 := by
-    apply eq_one_of_atMaximal hD hF hN
+    apply eq_one_of_atMaximal hD hN
     · rw [map_mul, map_inv, ringMap_ringMap (Polynomial.evalRingHom (0 : A)) Polynomial.C, hevC,
         ringMap_id, MonoidHom.id_apply, mul_inv_cancel]
     · intro M _
@@ -421,9 +439,9 @@ theorem diesAfterPadding_of_away (hD : StDilationStatementAt n₀) {A : Type} [C
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.diesAfterPadding_of_away
 
-/-- **LG-stable, maximal-ideal form**, from the dilation and finite-stage principles. -/
+/-- **LG-stable, maximal-ideal form**, from dilation alone. -/
 theorem diesAfterPadding_of_atMaximal (hD : StDilationStatementAt n₀)
-    (hF : StAtMaximalFiniteStageStatement) {A : Type} [CommRing A] {N : ℕ} (hN : n₀ ≤ N)
+    {A : Type} [CommRing A] {N : ℕ} (hN : n₀ ≤ N)
     {u : SteinbergGroup (Fin N) A[X]} (h0 : ringMap (Polynomial.evalRingHom (0 : A)) u = 1)
     (hM : ∀ (M : Ideal A) [M.IsMaximal], ∃ N' : ℕ, ∃ h : N ≤ N',
       ringMap (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime M)))
@@ -432,7 +450,7 @@ theorem diesAfterPadding_of_atMaximal (hD : StDilationStatementAt n₀)
   diesAfterPadding_of_away hD hN h0 fun M hM' => by
     haveI := hM'
     obtain ⟨N', h, hu⟩ := hM M
-    obtain ⟨s, hsM, hs⟩ := hF A N' M _ hu
+    obtain ⟨s, hsM, hs⟩ := stAtMaximalFiniteStage A N' M _ hu
     exact ⟨s, hsM, N', h, hs⟩
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.Tulenbaev.diesAfterPadding_of_atMaximal

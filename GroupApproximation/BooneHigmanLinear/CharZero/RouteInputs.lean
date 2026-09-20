@@ -9,8 +9,8 @@ import GroupApproximation.Meta.AxiomGuard
 with the nil part (`CharZeroK2NilFGPosStatement`). The base part follows from
 `BTri.BuildingInputsStatement` (`BTri.baseFG_of_inputs`). So route A's owed inputs for T1–T3 become:
 * `P1`;
-* the building inputs (the triangle action and `Stab(s₀) = SL₃(A)`, lane fix-bh-a; simple
-  connectivity, lane k2-bt-sc);
+* the building inputs (the triangle action and simple connectivity); the standard-vertex
+  stabilizer is proved in `BTri.DomainStabilizer` and supplied by `BTri.buildingInputs_of`;
 * the Z1 nil part;
 * `H1`.
 -/

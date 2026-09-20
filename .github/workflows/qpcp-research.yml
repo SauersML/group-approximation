@@ -1,0 +1,40 @@
+name: Quantum PCP proof and exact replay checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/**'
+      - 'tools/cairn.py'
+      - '.github/workflows/qpcp-research.yml'
+  pull_request:
+    paths:
+      - 'research/**'
+      - 'tools/cairn.py'
+      - '.github/workflows/qpcp-research.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qpcp-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Cairn's artifact linter resolves historical source pins.
+          fetch-depth: 0
+      - name: Check the QPCP dependency closure and replay all three exact suites
+        run: |
+          python3 research/artifacts/check-qpcp-full-target-integration-2026-09-20.py > qpcp-validation.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('qpcp-validation.json').read_text())
+          print(json.dumps({key: report[key] for key in (
+              'scope_checks_passed', 'global_graph_valid', 'outside_scope_errors',
+              'expected_statuses', 'iteration_route_remaining_prerequisites',
+              'local_links_checked', 'replays')}, indent=2))
+          PY

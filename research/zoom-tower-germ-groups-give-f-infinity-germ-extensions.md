@@ -7,11 +7,21 @@ distinct_from:
   normal-germ-extensions-of-thompson-v-contain-no-sl3z: that treats the Corollary 2.10 regime, where the zoom is normal in the germ group and no Baumslag-Solitar dilation can live in a germ group; this certifies germ extensions outside that regime, where the zoom is dilated, through the SingFix clause of Theorem 2.1.
   bhm-singfix-condition-forces-fp-germ-groups: that shows Theorem 2.1 forces finitely presented germ groups; this gives a class of germ groups for which the SingFix groups are finitely presented, and in fact F_∞, by an explicit HNN structure.
   scale-periodic-bs-chain-germ-representations-are-not-faithful: that is about towers of height two with a non-ascending top letter (the chain); this is the ascending case, where the tower closes up.
+artifacts:
+  - research/artifacts/beyond-polynomial-germs/mapping-tori-and-compact-core.md
 ---
 
 **ESTABLISHED** (lane proof, elementary given Belk–Hyde–Matucci; not reviewed; no priority claimed).
 Belk–Hyde–Matucci is arXiv:2407.03149. Its Theorem 2.1 (`thm:SingFixFiniteness`) and Appendix A
 (`thm:Stabilizers`) are quoted in `research/artifacts/gq-gq-typea-design-u2-germ-implant.md`.
+
+The later OPEN `compact-core-singfix-finiteness` proposal treats
+general faithful annular profiles containing all depth-zero base
+isotropy, and requires actual compact-core products and finite-forest
+restriction groups. The bilateral application also separates the
+eventually-zero and eventually-one species. These new input checks are
+not supplied automatically by this earlier zoom-tower result; its
+existing status and scope remain unchanged. See the linked artifact.
 
 ## Definitions
 

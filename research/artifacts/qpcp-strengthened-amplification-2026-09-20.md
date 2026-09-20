@@ -12,6 +12,11 @@ The accompanying [integration ledger](qpcp-integration-ledger-2026-09-20.md)
 connects the supplied document's other arguments to their canonical Cairn
 claims, analytic imports, literature, and unresolved interfaces.
 
+The subsequent [full-target continuation](qpcp-full-target-continuation-2026-09-20.md)
+tests shared records, coherent encodings, virtual transitions and static
+channel proofs. It preserves this theorem and its conditional status;
+none of those attempts constructs the reducer.
+
 ## 1. Target, normalization and precision
 
 Write `H=(1/m)sum_a h_a`, `0<=h_a<=I`, and `e(H)=lambda_min(H)`.

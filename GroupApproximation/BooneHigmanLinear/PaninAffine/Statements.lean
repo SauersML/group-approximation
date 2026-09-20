@@ -35,6 +35,9 @@ namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace PaninAffine
 
+-- Keep the ring hierarchy consistent for maps between nested polynomial rings.
+attribute [local instance 2000] CommSemiring.toSemiring CommRing.toRing CommRing.toCommSemiring
+
 open GroupApproximation.BooneHigman
 
 section Descent

@@ -124,7 +124,8 @@ theorem dotProduct_sub_single_of {i j : I → A} {r : I} (hji : j ⬝ᵥ i = 0) 
 theorem stU_commutator {i j : I → A} {r : I} (hji : j ⬝ᵥ i = 0) (hjr : j r = 0) :
     stU I A ⁅colProd r i, rowProd r j⁆ =
       eUnit (i - Pi.single r (i r)) j (dotProduct_sub_single_of hji hjr) := by
-  have h0 : (i - Pi.single r (i r)) r = 0 := by rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
+  have h0 : ((i - Pi.single r (i r)) : I → A) r = 0 := by
+    rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
   rw [← colProd_sub_single_self r i (i r), ← xvw_of_apply_eq_zero (j := j) h0]
   exact stU_xvw (dotProduct_sub_single_of hji hjr) hjr
 
@@ -172,7 +173,8 @@ theorem commutator_conj_rowProd {i j : I → A} {r s : I} (hrs : r ≠ s) (hji :
 theorem commutator_conj_colProd {i j : I → A} {r s : I} (hrs : r ≠ s) (hji : j ⬝ᵥ i = 0)
     (hjr : j r = 0) (hjs : j s = 0) (w : I → A) (hjw : j ⬝ᵥ w = 0) :
     ⁅colProd r i, rowProd r j⁆ * colProd r w * ⁅colProd r i, rowProd r j⁆⁻¹ = colProd r w := by
-  have h0 : (w - Pi.single r (w r)) r = 0 := by rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
+  have h0 : ((w - Pi.single r (w r)) : I → A) r = 0 := by
+    rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
   rw [← colProd_sub_single_self r w (w r),
     conj_colProd (commutator_mem_avoid hrs hji hjr hjs).2 h0, mat_commutator hji hjr,
     one_add_vecMulVec_mulVec, dotProduct_sub, hjw, dotProduct_single, hjr, zero_mul, sub_self,
@@ -281,7 +283,7 @@ theorem conj_xvw_x_of_zeros {p q : I} (hpq : p ≠ q) (a : A) {i j : I → A} (h
   have hE : ⁅x p q hpq (i q * a), rowProd q j⁆ = rowProd p ((i q * a) • j) :=
     commutator_x_rowProd hqp (i q * a) hjq hjp
   have hXZ := colProd_conj_rowProd hqp i hZp hZq hZi
-  have hiq : (i + Pi.single p (i q * a)) q = i q := by
+  have hiq : ((i + Pi.single p (i q * a)) : I → A) q = i q := by
     rw [Pi.add_apply, Pi.single_eq_of_ne hqp, add_zero]
   have hcol : colProd q (i + Pi.single p (i q * a)) = colProd q i * x p q hpq (i q * a) := by
     rw [colProd_add, colProd_single_ne q p hpq]

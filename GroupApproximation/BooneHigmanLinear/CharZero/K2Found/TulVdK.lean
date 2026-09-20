@@ -67,7 +67,7 @@ noncomputable def tulX_of_vdk {r : ℕ} (h5 : 5 ≤ r)
   haveI : ∀ (B : Type) [CommRing B],
       Fact (IsLocal (VdK.elements (Fin r) B (by rw [Fintype.card_fin]; omega))) :=
     fun _ _ => ⟨isLocal_elements _⟩
-  tulX_of_elements (fun B _ => VdK.elements (Fin r) B (by rw [Fintype.card_fin]; omega)) hnat h5
+  tulX_of_elements (fun B _ => VdK.elements (Fin r) B (card_fin_ge (by omega))) hnat h5
 
 /-- **k2-vdk's elements are natural** (`VdK.elements_natural`), in the form `EltNatural`. -/
 theorem eltNatural_elements (h4 : 4 ≤ Fintype.card I) {B C : Type*} [CommRing B] [CommRing C]

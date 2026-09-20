@@ -144,6 +144,7 @@ theorem pc_sum_all {v w : I → A} (u : I → A) (hw : w ⬝ᵥ v = 0) :
     ← Finset.sum_smul]
   rfl
 
+attribute [local irreducible] Xa in
 /-- `X_{v,bw}(a)` for `a = u_a v`, `b = u_b v` and any `w ⊥ v`, via the canonical pieces of `w`
 for `u_b`. -/
 theorem Xa_pieces (h4 : 4 ≤ Fintype.card I) {v w : I → A} (ua ub : I → A) (hw : w ⬝ᵥ v = 0) :
@@ -151,7 +152,7 @@ theorem Xa_pieces (h4 : 4 ≤ Fintype.card I) {v w : I → A} (ua ub : I → A) 
       ((∏ pq : I × I, txc hX (smul_dot (ua ⬝ᵥ v) (pc_dot v w ub pq.1 pq.2))
         ((pc_twoZ h4 v w ub pq.1 pq.2).smul (ua ⬝ᵥ v)) : Cv hX v) : SteinbergGroup I A) := by
   rw [← pc_sum_all ub hw]
-  exact Xa_eq_prod hX h4 v ua Finset.univ (fun pq => pc v w ub pq.1 pq.2)
+  exact Xa_eq_prod hX h4 v ua (ι := I × I) Finset.univ (fun pq => pc v w ub pq.1 pq.2)
     (fun pq => pc_dot v w ub pq.1 pq.2) (fun pq => pc_twoZ h4 v w ub pq.1 pq.2)
 
 #audit_axioms Xa_pieces

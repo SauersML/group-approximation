@@ -128,15 +128,15 @@ theorem mem_rest2 {a b t : I} : t ∈ rest2 a b ↔ t ≠ b ∧ t ≠ a := by
   simp [rest2, Finset.mem_erase]
 
 /-- The pairs `(p, q)` for all `p`. -/
-def pairsAt (q : I) : List (I × I) :=
+noncomputable def pairsAt (q : I) : List (I × I) :=
   (Finset.univ : Finset I).toList.map fun p => (p, q)
 
 /-- The pairs `(p, q)` with `q ∉ {a, b}`. -/
-def pairsRest (a b : I) : List (I × I) :=
+noncomputable def pairsRest (a b : I) : List (I × I) :=
   (Finset.univ : Finset I).toList ×ˢ (rest2 a b).toList
 
 /-- All pairs, in vdK's order for 3.18. -/
-def pairsAll (a b : I) : List (I × I) :=
+noncomputable def pairsAll (a b : I) : List (I × I) :=
   pairsAt a ++ pairsAt b ++ pairsRest a b
 
 theorem mem_pairsAt {q : I} (x : I × I) : x ∈ pairsAt q ↔ x.2 = q := by
@@ -374,7 +374,7 @@ theorem conj_xz_of_two_zeros (h4 : 4 ≤ Fintype.card I) {i j : I → A} (hji : 
   obtain ⟨va, hva⟩ : ∃ va : I → A, va = Pi.single t1 1 + Pi.single t2 (i t2 - 1) := ⟨_, rfl⟩
   have hva1 : va t1 = 1 := by
     rw [hva, Pi.add_apply, Pi.single_eq_same, Pi.single_eq_of_ne ht, add_zero]
-  have hvb2 : (i - va) t2 = 1 := by
+  have hvb2 : ((i - va) : I → A) t2 = 1 := by
     rw [Pi.sub_apply, hva, Pi.add_apply, Pi.single_eq_same, Pi.single_eq_of_ne ht.symm, zero_add,
       sub_sub_cancel]
   have hjva : j ⬝ᵥ va = 0 := by
@@ -557,14 +557,15 @@ noncomputable def elements (h4 : 4 ≤ Fintype.card I) : Elements I A where
       vecMul_one_sub_vecMulVec] at hmem
     exact eq_eltOf_of_mem_Xbar h4 (conjPair p q) (conjPair_mem hp hq) hmem
   std p q hpq a := by
-    have hz : (Pi.single q a : I → A) p = 0 := Pi.single_eq_of_ne hpq a
+    have hz : (Pi.single q a : I → A) p = 0 := by rw [Pi.single_eq_of_ne hpq]
     have hdot : (Pi.single q a : I → A) ⬝ᵥ Pi.single p 1 = 0 := by
       rw [dotProduct_single, hz, zero_mul]
     have hone : Pi.single p (1 : A) ⬝ᵥ Pi.single p 1 = 1 := by
       rw [dotProduct_single, Pi.single_eq_same, mul_one]
     obtain ⟨r, s, hrs, hrq, -, hsq, -⟩ := exists_two_ne_of_card h4 q q
-    have hmem := xz_mem_Xbar_of_two_zeros h4 hdot hone hrs (Pi.single_eq_of_ne hrq a)
-      (Pi.single_eq_of_ne hsq a)
+    have hmem := xz_mem_Xbar_of_two_zeros h4 hdot hone hrs
+      (show (Pi.single q a : I → A) r = 0 by rw [Pi.single_eq_of_ne hrq])
+      (show (Pi.single q a : I → A) s = 0 by rw [Pi.single_eq_of_ne hsq])
     rw [xz_eq hdot hz, xvw_std p q hpq a] at hmem
     exact (eq_eltOf_of_mem_Xbar h4 (stdPair p q a) (stdPair_mem hpq a) hmem).symm
   proj p hp := stU_eltOf h4 p hp

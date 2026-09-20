@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checks_total": 5678,
+  "checks_by_category": {
+    "bilateral_exponential_finite_support_defect": 366,
+    "binary_shift_and_bridge": 305,
+    "binary_shift_inverse": 305,
+    "commuting_arithmetic_dilations": 64,
+    "derived_length_three_nonzero_witness": 42,
+    "exponential_recurrence": 300,
+    "fibonacci_recurrence": 60,
+    "germ_inverse_profile": 300,
+    "jordan_binomial_all_integer_times": 125,
+    "mapping_torus_covariance": 900,
+    "nonabelian_lamp_covariance": 64,
+    "noncommutative_germ_composition": 300,
+    "noncommutative_profile_homomorphism": 900,
+    "noncommuting_matrix_profile_commutator": 31,
+    "noninjective_observation_polynomial": 250,
+    "polynomial_exponential_recurrence": 300,
+    "product_recurrence": 60,
+    "top_commutator_at_zero": 42,
+    "twisted_lamp_covariance": 900,
+    "unitriangular_grading_automorphism": 64
+  },
+  "arithmetic": "exact integers, rational fractions, finite permutations",
+  "script_sha256": "8f3e5ec302758e1a85a5db3dc4c5dd0a8b473da85c24ecd615295a672c6f04c7",
+  "note_sha256": "c952abde0fb150b5c1014582df9121b1d29b7fdb5de8210622e5c79533304325",
+  "scope_warning": "Finite sanity checks of displayed formulas only. Not formal verification of finite presentability, finiteness properties, simplicity, nonlinearity, or infinite-group embeddings."
+}

@@ -1,4 +1,4 @@
-import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCSwindleIndep
+import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCSwindleDiag
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,8 +18,9 @@ namespace GroupApproximation.BooneHigman.Metabelian.Envelope
 forces `z ^ (d - 1) = 1`. -/
 theorem higSw_prod_forcing {d : ℕ} (hd : 1 < d) {z : higmanVCCommon_Q d}
     (hz : z ∈ (higmanVCTreeNF_E d).ker)
-    (hprod : ((List.finRange d).map fun a => higSw_phi d [a] z).prod = z) :
+    (hprod : higSw_diag d z = z) :
     z ^ (d - 1) = 1 := by
+  change ((List.finRange d).map fun a => higSw_phi d [a] z).prod = z at hprod
   have a0 : Fin d := ⟨0, lt_trans Nat.zero_lt_one hd⟩
   have hall : ∀ a : Fin d, higSw_phi d [a] z = higSw_phi d [a0] z := fun a =>
     higSw_phi_ker_indep hd (List.cons_ne_nil a []) (List.cons_ne_nil a0 []) hz
@@ -41,7 +42,7 @@ theorem higSw_prod_forcing {d : ℕ} (hd : 1 < d) {z : higmanVCCommon_Q d}
 /-- For `d = 2` the product identity does force `z = 1`. -/
 theorem higSw_prod_forcing_two {z : higmanVCCommon_Q 2}
     (hz : z ∈ (higmanVCTreeNF_E 2).ker)
-    (hprod : ((List.finRange 2).map fun a => higSw_phi 2 [a] z).prod = z) : z = 1 := by
+    (hprod : higSw_diag 2 z = z) : z = 1 := by
   have h := higSw_prod_forcing Nat.one_lt_two hz hprod
   rw [show (2 : ℕ) - 1 = 1 from rfl, pow_one] at h
   exact h

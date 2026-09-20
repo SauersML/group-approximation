@@ -35,8 +35,8 @@ theorem ex_zero_right (r : I) (v : I → A) : ex hX r v 0 = 1 := by
 theorem ex_smul_of_zero {r s : I} (hrs : r ≠ s) {p w : I → A} (hr : w r = 0) (hs : w s = 0)
     (hw : w ⬝ᵥ p = 0) (hpr : p r = 0) (hps : p s = 0) (c : A) :
     ex hX r (c • p) w = ex hX r p (c • w) := by
-  have hsr : (Pi.single r (1 : A)) s = 0 := Pi.single_eq_of_ne hrs.symm 1
-  have hrs' : (Pi.single s (1 : A)) r = 0 := Pi.single_eq_of_ne hrs 1
+  have hsr : (Pi.single r 1 : I → A) s = 0 := Pi.single_eq_of_ne hrs.symm 1
+  have hrs' : (Pi.single s 1 : I → A) r = 0 := Pi.single_eq_of_ne hrs 1
   have hwp : w ⬝ᵥ (c • p) = 0 := by rw [dotProduct_smul, hw, smul_zero]
   have hA := E_frame hX (v := p + Pi.single r 1) (v' := Pi.single s 1) (w := w)
     (u := Pi.single s 1) c
@@ -149,7 +149,8 @@ theorem ex_commute_gen (hL : IsLocal hX) {r t t' : I} (htt : t ≠ t') {v w v' w
       hL _ _ t t' htt hxt hxt' (smul_dot _ hw'1) hu1, hL _ _ t t' htt ht ht' hw'2 hu2,
       ex_add_left hX htt hxt hxt' (smul_dot _ (dot_single ht)) (dot_smul_zero _ hxv),
       ex_add_left hX htt ht ht' (dot_tl ht hw'v' _) (dot_smul_zero _ hw'v),
-      ex_of_apply_one hX (Pi.single_eq_same t (1 : A)), ex_smul_left hX htt hxt hxt' hxv,
+      ex_of_apply_one hX (v := Pi.single t 1) (r := t) (by simp),
+      ex_smul_left hX htt hxt hxt' hxv,
       ex_smul_left hX htt ht ht' hw'v, mul_assoc, hcomm.left_comm,
       ← hadd,
       show w t • (v' t - 1) • w' + ((1 - v' t) * w t) • w' = 0 by module, ex_zero_right, mul_one,

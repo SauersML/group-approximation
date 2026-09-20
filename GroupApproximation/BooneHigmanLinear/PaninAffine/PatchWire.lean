@@ -12,8 +12,8 @@ This module composes two results:
   (T 1.1–1.3).
 
 With k2-vdk's `VdK.elements` (local and natural; `K2Found.TulElem.tulX`, bh-pal-linear-char0),
-`stZariskiExcisionAt` gives Zariski excision for `St_r`, `r ≥ 5`, with no hypotheses. Not
-root-wired.
+`stZariskiExcisionAt` gives Zariski excision for `St_r`, `r ≥ 5`, with no hypotheses. It is
+consumed by `K2Poly.P1Core`.
 -/
 
 namespace GroupApproximation

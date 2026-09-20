@@ -2,6 +2,7 @@ import GroupApproximation.BooneHigmanLinear.PaninAffine.TulX
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.RingTheory.Localization.Away.Basic
 import Mathlib.RingTheory.Coprime.Lemmas
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # Commutative algebra for Zariski patching (lane k2-panin, F.4)
@@ -255,8 +256,7 @@ theorem zariski_split (hab : IsCoprime a b) (c : Localization.Away (a * b)) :
     have hu : IsUnit ((loc (a * b) a * loc (a * b) b) ^ k) :=
       ((isUnit_loc_left a b).mul (isUnit_loc_right a b)).pow k
     apply hu.mul_left_inj.mp
-    rw [map_add, map_mul, map_mul, map_pow, map_mul, map_mul, map_pow, map_pow, ja_loc, jb_loc,
-      ja_loc, jb_loc, jb_loc]
+    simp only [map_mul, map_pow, ja_loc, jb_loc]
     linear_combination hl' - (loc (a * b) l * loc (a * b) y * loc (a * b) b ^ k) * hU
       - (loc (a * b) l * loc (a * b) x * loc (a * b) a ^ (N + k)) * hW
       - loc (a * b) l * hx1

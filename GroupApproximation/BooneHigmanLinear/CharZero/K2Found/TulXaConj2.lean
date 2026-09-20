@@ -42,6 +42,8 @@ theorem conj_prod (y : SteinbergGroup I A) {v v' : I → A} {ι : Type*} (s : Fi
 
 #audit_axioms conj_prod
 
+attribute [local irreducible] Xa
+
 /-- T 1.3(b) for a generator `x_ij(t)`. -/
 theorem Xa_conj_x (h5 : 5 ≤ Fintype.card I) {i j : I} (hij : i ≠ j) (t : A) {v w : I → A}
     (ua ub : I → A) (hw : w ⬝ᵥ v = 0) :
@@ -66,7 +68,8 @@ theorem Xa_conj_x (h5 : 5 ≤ Fintype.card I) {i j : I} (hij : i ≠ j) (t : A) 
       ∑ pq : I × I, pc v w ub pq.1 pq.2 ᵥ* pm (x i j hij t)⁻¹ := by
     rw [← smul_vecMul, ← pc_sum_all ub hw, sum_vecMul]
   rw [Xa_pieces hX h4 ua ub hw, hsum, Xa_eq_prod hX h4 (pm (x i j hij t) *ᵥ v)
-    (ua ᵥ* pm (x i j hij t)⁻¹) Finset.univ (fun pq => pc v w ub pq.1 pq.2 ᵥ* pm (x i j hij t)⁻¹)
+    (ua ᵥ* pm (x i j hij t)⁻¹) (ι := I × I) Finset.univ
+    (fun pq => pc v w ub pq.1 pq.2 ᵥ* pm (x i j hij t)⁻¹)
     hv' h2']
   refine conj_prod hX _ Finset.univ _ _ fun pq => ?_
   rw [coe_txc, coe_txc, tx_conj_x hX h5 hij t (smul_dot (ua ⬝ᵥ v) (pc_dot v w ub pq.1 pq.2))

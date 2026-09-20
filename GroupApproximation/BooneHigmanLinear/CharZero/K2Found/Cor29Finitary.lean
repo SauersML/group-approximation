@@ -1,5 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.LocFinitary
-import GroupApproximation.BooneHigmanLinear.PaninAffine.Cor29
+import GroupApproximation.BooneHigmanLinear.PaninAffine.LocalizationStatements
 import Mathlib.RingTheory.Localization.Algebra
 import Mathlib.RingTheory.Localization.LocalizationLocalization
 import Mathlib.RingTheory.PolynomialAlgebra
@@ -21,6 +21,9 @@ import GroupApproximation.Meta.AxiomGuard
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
+
+-- Use the same ring hierarchy for polynomial/localization maps and `algebraMap`.
+attribute [local instance 2000] CommSemiring.toSemiring CommRing.toRing CommRing.toCommSemiring
 
 open GroupApproximation.SteinbergGroup
 open GroupApproximation.BooneHigman.SteinbergBasic
@@ -47,12 +50,14 @@ theorem awayCMap_comp (g : R) :
 
 attribute [local instance] Polynomial.algebra
 
-variable [IsDomain R] (P : Ideal R) [P.IsPrime]
+variable (P : Ideal R) [P.IsPrime]
 
-/-- **`Cor29FinitaryAt`** for every domain and prime (board piece F.5). -/
-theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
-  intro α hα
-  -- `α` comes from some `R_g[X]`, `g ∉ P`.
+/-- An element over `R_P[X]` is defined over one coefficient localization `R_g[X]`. -/
+theorem exists_away_polynomial_lift (N : ℕ)
+    (α : SteinbergGroup (Fin N) (Polynomial (Localization.AtPrime P))) :
+    ∃ (g : R) (hg : g ∉ P),
+      ∃ α₁ : SteinbergGroup (Fin N) (Polynomial (Localization.Away g)),
+        ringMap (Polynomial.mapRingHom (PaninAffine.awayToAtPrime P hg)) α₁ = α := by
   have hL1 := Polynomial.isLocalization P.primeCompl (Localization.AtPrime P)
   obtain ⟨m, hm, u, f, hf, hu⟩ := exists_mem_ringMap_eq _ (Fin N) hL1 α
   obtain ⟨g, hgP, rfl⟩ := Submonoid.mem_map.mp hm
@@ -67,6 +72,25 @@ theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
   have hα₁ : ringMap (Polynomial.mapRingHom (PaninAffine.awayToAtPrime P hg))
       (ringMap (awayCMap g) u) = α := by
     rw [ringMap_ringMap, hA, hu]
+  exact ⟨g, hg, ringMap (awayCMap g) u, hα₁⟩
+
+#audit_axioms exists_away_polynomial_lift
+
+variable [IsDomain R]
+
+/-- An element over `R_g[X]` that dies over the fraction field dies after inverting one
+nonzero element of the original coefficient ring. -/
+theorem exists_away_fraction_death (N : ℕ) (g : R) (hg : g ∉ P)
+    (α₁ : SteinbergGroup (Fin N) (Polynomial (Localization.Away g)))
+    (hα₁ : ringMap (Polynomial.mapRingHom
+      ((PaninAffine.fracMap P).comp (PaninAffine.awayToAtPrime P hg))) α₁ = 1) :
+    ∃ r : R, r ≠ 0 ∧
+      ringMap (S := Polynomial (Localization.Away (algebraMap R (Localization.Away g) r)))
+        (Polynomial.mapRingHom (algebraMap (Localization.Away g)
+          (Localization.Away (algebraMap R (Localization.Away g) r)))) α₁ = 1 := by
+  have haw : (PaninAffine.awayToAtPrime P hg).comp (algebraMap R (Localization.Away g)) =
+      algebraMap R (Localization.AtPrime P) :=
+    IsLocalization.Away.lift_comp _ _
   -- `Frac R` as an `R_g`-algebra.
   have hg0 : g ≠ 0 := fun h0 => hg (h0 ▸ P.zero_mem)
   have hgF : IsUnit (algebraMap R (FractionRing R) g) := IsUnit.mk0 _ (by
@@ -92,9 +116,9 @@ theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
   -- `α₁` dies once some `h' ∈ R_g⁰` is inverted.
   have h2 := Polynomial.isLocalization (nonZeroDivisors (Localization.Away g)) (FractionRing R)
   have hu2 : ringMap (algebraMap (Localization.Away g)[X] (FractionRing R)[X])
-      (ringMap (awayCMap g) u) = 1 := by
-    rw [Polynomial.algebraMap_def, ← hfr, ← Polynomial.mapRingHom_comp, ← ringMap_ringMap,
-      hα₁, hα]
+      α₁ = 1 := by
+    rw [Polynomial.algebraMap_def, ← hfr]
+    exact hα₁
   obtain ⟨m', hm', hfin⟩ := exists_mem_ringMap_eq_one _ (Fin N) h2 hu2
   obtain ⟨h', hh', rfl⟩ := Submonoid.mem_map.mp hm'
   obtain ⟨n, r, hr⟩ := IsLocalization.Away.surj g h'
@@ -103,7 +127,7 @@ theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
     rw [map_zero] at hr
     exact nonZeroDivisors.ne_zero hh'
       ((IsLocalization.Away.algebraMap_pow_isUnit g n).mul_left_eq_zero.mp hr)
-  refine ⟨g, hg, r, hr0, ringMap (awayCMap g) u, hα₁, ?_⟩
+  refine ⟨r, hr0, ?_⟩
   apply hfin
   rw [Polynomial.coe_mapRingHom, Polynomial.map_C]
   apply IsUnit.map
@@ -117,6 +141,18 @@ theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
     rw [h1]
     exact IsLocalization.Away.algebraMap_isUnit _
   exact isUnit_of_mul_isUnit_left hunit
+
+#audit_axioms exists_away_fraction_death
+
+/-- **`Cor29FinitaryAt`** for every domain and prime (board piece F.5). -/
+theorem cor29FinitaryAt (N : ℕ) : PaninAffine.Cor29FinitaryAt R P N := by
+  intro α hα
+  obtain ⟨g, hg, α₁, hα₁⟩ := exists_away_polynomial_lift P N α
+  have hdeath : ringMap (Polynomial.mapRingHom
+      ((PaninAffine.fracMap P).comp (PaninAffine.awayToAtPrime P hg))) α₁ = 1 := by
+    rw [← Polynomial.mapRingHom_comp, ← ringMap_ringMap, hα₁, hα]
+  obtain ⟨r, hr, hkill⟩ := exists_away_fraction_death P N g hg α₁ hdeath
+  exact ⟨g, hg, r, hr, α₁, hα₁, hkill⟩
 
 #audit_axioms cor29FinitaryAt
 

@@ -9,11 +9,25 @@ distinct_from:
   fg-soluble-minimax-groups-satisfy-boone-higman: that is the finite-rank soluble class, residually finite or not; this group is residually finite but of infinite rank, and is not quasi-linear.
 artifacts:
   - research/artifacts/gq-bh-bh-solvable-status.md
+  - research/artifacts/polynomial-germ-unitriangular-manuscript-2026-09-20.md
 ---
 
 **OPEN.** Let `q >= 2` and let `K_q = V ⋊ ⟨X, T⟩` be as in
 `q-difference-lamplighter-is-not-quasi-linear`. Then `K_q` embeds in a finitely
 presented simple group.
+
+## Attempts
+
+The 2026-09-20 submitted polynomial-germ manuscript proposes a new route:
+identify `K_q=W_{2,q,1}`, embed it in a two-root polynomial valuation
+germ group, and construct a simple `F_∞` twisted Brin–Thompson envelope
+from its clopen action. The detailed argument is in the new artifact;
+`q-difference-lamplighter-via-polynomial-germ-envelope` records the
+conditional implication. Affine RN rational marked stabilizers, the
+punctured BHM induction, clopen actor stabilizers, and the explicit
+embedding remain substantive OPEN proof gates. The finite arithmetic
+replay is not a finiteness proof, and no novelty or Lean certification
+is asserted. This node remains OPEN.
 
 ## Why it is a sharp test case
 

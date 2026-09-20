@@ -7,10 +7,20 @@ target: dynamically-v-separated-groups-satisfy-boone-higman
 requires:
   - germ-complex-and-bux-gonzalez-morse-inputs
   - fp-clopen-transitive-full-cantor-groups-have-type-a-actions
+artifacts:
+  - research/artifacts/beyond-polynomial-germs/mapping-tori-and-compact-core.md
 ---
 
 Notation as on the claim. Put `ρ_n = ρ ∘ φ^n`. Write `B_n = V(C ∖ 0^n C)`, the elements of
 `V` that are the identity on `0^n C`, and `K_p = ⋃_n B_n`.
+
+**Later proposal, not a replacement proof.** The 2026-09-20 manuscript
+in the linked artifact formulates `compact-core-singfix-finiteness`
+for all relevant finite marked sets and all finite-forest restrictions,
+including the entire depth-zero base isotropy. That lemma remains OPEN.
+The present route checks finite presentation via the cases explicitly
+written below; its final higher-finiteness remark is still a remark,
+not a completed proof of the stronger new theorem.
 
 **0. The pieces.**
 - *Generators are local.* `ĝ` preserves every `A_n` and every `0^n C`, is supported in

@@ -5,6 +5,9 @@ kind: claim
 root: true
 title: Constant-locality local Hamiltonian is QMA-hard at a constant relative promise gap
 artifacts:
+  - research/artifacts/check-qpcp-full-target-integration-2026-09-20.py
+  - research/artifacts/qpcp-full-target-validation-2026-09-20.json
+  - research/artifacts/qpcp-full-target-continuation-2026-09-20.md
   - research/artifacts/qpcp-integration-validation-2026-09-20.json
   - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
   - research/artifacts/qpcp-integration-ledger-2026-09-20.md
@@ -163,7 +166,43 @@ consequences without discharging a local QMA compiler. The stronger one-model
 normalization statement is still a separate review item. None of these
 changes closes the quantum-PCP root.
 
+**2026-09-20 full-target continuation.** The
+[continuation proof record](artifacts/qpcp-full-target-continuation-2026-09-20.md)
+adds six scoped claims and their written proofs, with
+[exact replay](artifacts/qpcp-full-target-continuation-replay-2026-09-20.json).
+It tests shared records, coherent encodings, diagonal-penalty virtual
+transitions, and a one-copy channel-state replacement for interaction.
+None constructs the missing reducer, refutes this root, or upgrades the
+conditional iteration theorem. The source manifest distinguishes the
+user-supplied archive audit from checks performed in this live checkout.
+
 ## Attempts
+
+- **Shared classical complementary-basis records.**
+  [[shared-records-obey-complementary-check-uncertainty]] gives the sharp
+  floor `(2-sqrt(2))/4`, even with entangled data and record. Quantum
+  records escape via Bell correlations; small disagreement instead
+  imposes a quantitative commutator requirement.
+- **Coherently recording a classical proof.**
+  [[coherent-records-have-exact-phase-energy]] computes the unchanged
+  data-only phase cost from hypercube edge overlaps. Parity costs `1/2`,
+  AND only `2^(-n)`, so a blanket constant penalty is false.
+  [[distance-code-local-tests-are-label-diagonal]] rules out faithful
+  local phase simulation inside a classical distance code, with arbitrary
+  shared auxiliaries. [[distance-code-leakage-bounds-phase-energy]]
+  bounds normalized energy changes by `sqrt(delta)` with code leakage
+  `delta`. These do not exclude arbitrary ground-energy reductions.
+- **Virtual phase checks through a diagonal code penalty.**
+  [[diagonal-penalty-transitions-have-distance-order]] bounds connecting
+  blocks by `v(v/a)^(r-1)/(1-v/a)` for `r=ceil(d/k)>=2` and
+  `a=Delta-|z|>v=||V||`. This is a total-norm convergent-regime result,
+  not a theorem against nonperturbative or label-mixing constructions.
+- **Uniform one-copy channel legality.**
+  [[one-copy-choi-tests-cannot-enforce-channel-legality]] shows that a
+  Hermitian test accepting all unitary Choi states also accepts a product
+  state with marginal trace distance `1-1/D` from `I/D`. This excludes
+  that static compiler even without locality restrictions; restricted
+  accepted families and channel-dependent proofs are outside its scope.
 
 - **Static exact codes with only correctable data views.**
   [[correctable-data-tests-are-logically-blind]] proves that each test,

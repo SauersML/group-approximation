@@ -7,9 +7,17 @@ distinct_from:
   v-point-stabilizers-are-ascending-hnn-extensions-of-v: that shows the stabilizer of the eventually periodic point 0^∞ in V is an ascending HNN extension of V, hence F_∞; this shows that at non-eventually-periodic points the stabilizer is an ascending union of proper subgroups, hence not finitely generated.
   finitely-singular-tree-hosts-have-no-fg-stabilizers: that kills finitely generated stabilizers for finitary local-rule actions on trees by a singular-depth filtration; this is the Cantor-set statement for prefix-replacement hosts at aperiodic points, by a germ argument.
   twisted-brin-thompson-wp-equals-actor-orbit-problem: that shows point-stabilizer membership of a type (A) actor enters the word problem of SV_G; this shows such stabilizers cannot come from aperiodic points of V-like hosts, where membership would be as hard as computing the point.
+artifacts:
+  - research/artifacts/polynomial-germ-unitriangular-manuscript-2026-09-20.md
 ---
 
 **ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).
+
+The 2026-09-20 polynomial-germ proposal concerns **rational marked
+points with affine germs**, and ultimately an action on clopen subsets.
+Its claimed finite marked stabilizers are still OPEN. This proposal is
+not a counterexample to the local prefix-replacement hypothesis below,
+nor does it prove finite generation of arbitrary aperiodic stabilizers.
 
 ## Statement
 

@@ -50,6 +50,16 @@ kernel.
 
 ## Remarks
 
+- **Direct padded RN refinement (user submission, 2026-09-20).**
+  `padded-abstract-rn-perfect-decidable-nonrecursive-kernel` strengthens this
+  witness to a perfect decidable group with a simple quotient that is not
+  even recursively presentable, directly in the derived subgroup of a padded
+  abstract RN group. The conditional route
+  `unsolvable-relative-quotient-via-direct-padded-rn` feeds this
+  claim without an additional `SV_P` envelope. The new structural theorem is
+  still unresolved; see the edited source reconstruction in
+  `research/artifacts/padded-abstract-rn-manuscript-integration-2026-09-20.md`.
+  The older derivation and referee record below do not certify that refinement.
 - **Kuznetsov's algorithm needs the simple group itself to be finitely presented.** Here `H`
   is finitely presented and has a unique simple quotient, but that quotient's word problem
   is unsolvable. Kuznetsov's argument still enumerates the non-trivial words, since `w ∉ M`

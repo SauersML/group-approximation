@@ -118,11 +118,12 @@ theorem basicRow_single_apply_self (r p q : I) : basicRow (Pi.single r (1 : A)) 
 theorem single_eq_smul_one (q : I) (b : A) : (Pi.single q b : I → A) = b • Pi.single q (1 : A) := by
   rw [← Pi.single_smul', smul_eq_mul, mul_one]
 
-theorem add_single_apply_self (i : I → A) (p : I) (b : A) : (i + Pi.single p b) p = i p + b := by
+theorem add_single_apply_self (i : I → A) (p : I) (b : A) :
+    ((i + Pi.single p b) : I → A) p = i p + b := by
   rw [Pi.add_apply, Pi.single_eq_same]
 
 theorem add_single_apply_of_ne (i : I → A) {p t : I} (htp : t ≠ p) (b : A) :
-    (i + Pi.single p b) t = i t := by
+    ((i + Pi.single p b) : I → A) t = i t := by
   rw [Pi.add_apply, Pi.single_eq_of_ne htp, add_zero]
 
 theorem basicRow_add_single_of_ne (i : I → A) {p r s : I} (hpr : p ≠ r) (hps : p ≠ s) (b : A) :

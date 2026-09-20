@@ -1,4 +1,4 @@
-import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCCommonPush
+import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCCommonConj
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -11,9 +11,9 @@ all-swaps free group `F`.
 `higmanVC_evalAll d` is central modulo the relators (`higmanVCCommon_ker_central`).  Equivalently,
 `r z r⁻¹ z⁻¹ ∈ K` for every `z` (`higmanVCCommon_ker_comm_mem`).
 
-Proof.  Push the deep letters through `r` (`higmanVCCommon_push`).  Because `σ_r = 1`, each
-letter `(x, y)` with `|x|, |y| ≥ N` is fixed under conjugation by `r` in `Q`.  Deep splitting
-(`higmanVCCommon_commute_of_letter`) extends this to every letter.
+Proof. Arbitrary-depth cone conjugation (`higmanVCCommon_conj_mapsCone`) shows directly
+that, because `σ_r = 1`, every incomparable letter is fixed under conjugation by `r`.
+Comparable letters are trivial. Induction then gives commutation with every word.
 
 **Gap: `HigmanVCCommonCentralStatement`.**  This is `HigmanVCAllAntichainStatement` restricted to
 kernel elements that are central modulo `K`.
@@ -39,24 +39,25 @@ kernel elements that are central modulo `K`.
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
 
-/-- A kernel element commutes, modulo the relators, with every sufficiently deep incomparable
-letter. -/
+/-- A kernel element commutes, modulo the relators, with every letter, at any depth. -/
 theorem higmanVCCommon_ker_commute_of {d : ℕ} (hd : 1 < d)
-    {r : FreeGroup (List (Fin d) × List (Fin d))} (hr : r ∈ (higmanVC_evalAll d).ker) :
-    ∃ N, ∀ x y : List (Fin d), N ≤ x.length → N ≤ y.length → ¬ x <+: y → ¬ y <+: x →
-      Commute (higmanVCCommon_mk d r) (higmanVCCommon_mk d (FreeGroup.of (x, y))) := by
-  haveI : Nontrivial (Fin d) := Fin.nontrivial_iff_two_le.mpr (by omega)
-  obtain ⟨N, hN⟩ := higmanVCCommon_push hd r
+    {r : FreeGroup (List (Fin d) × List (Fin d))} (hr : r ∈ (higmanVC_evalAll d).ker)
+    (x y : List (Fin d)) :
+    Commute (higmanVCCommon_mk d r) (higmanVCCommon_mk d (FreeGroup.of (x, y))) := by
   have e : higmanVCCommon_perm d r = 1 := by
     have h := congrArg Subtype.val (MonoidHom.mem_ker.mp hr)
     exact h
-  refine ⟨N, fun x y hx hy hxy hyx => ?_⟩
-  obtain ⟨x', y', hx', hy', _, _, hm⟩ := hN x y hx hy hxy hyx
-  rw [e] at hx' hy'
-  have ex : x' = x := MapsCone.unique hx' (mapsCone_one x)
-  have ey : y' = y := MapsCone.unique hy' (mapsCone_one y)
-  rw [ex, ey, map_mul, map_mul, map_inv] at hm
-  exact (commute_iff_eq _ _).mpr (mul_inv_eq_iff_eq_mul.mp hm)
+  by_cases hxy : ¬ x <+: y ∧ ¬ y <+: x
+  · have hx : MapsCone (higmanVCCommon_perm d r) x x := by
+      rw [e]
+      exact mapsCone_one x
+    have hy : MapsCone (higmanVCCommon_perm d r) y y := by
+      rw [e]
+      exact mapsCone_one y
+    exact (commute_iff_eq _ _).mpr (mul_inv_eq_iff_eq_mul.mp
+      (higmanVCCommon_conj_mapsCone hd r hxy.1 hxy.2 hx hy))
+  · rw [higmanVCCommon_mk_comparable hxy]
+    exact Commute.one_right _
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_ker_commute_of
 
@@ -65,18 +66,17 @@ theorem higmanVCCommon_ker_central {d : ℕ} (hd : 1 < d)
     {r : FreeGroup (List (Fin d) × List (Fin d))} (hr : r ∈ (higmanVC_evalAll d).ker)
     (z : FreeGroup (List (Fin d) × List (Fin d))) :
     Commute (higmanVCCommon_mk d r) (higmanVCCommon_mk d z) := by
-  obtain ⟨N, hN⟩ := higmanVCCommon_ker_commute_of hd hr
   induction z using FreeGroup.induction_on with
   | C1 =>
     rw [map_one]
     exact Commute.one_right _
   | of p =>
     obtain ⟨u, v⟩ := p
-    exact higmanVCCommon_commute_of_letter hN u v
+    exact higmanVCCommon_ker_commute_of hd hr u v
   | inv_of p _ =>
     obtain ⟨u, v⟩ := p
     rw [higmanVCCommon_mk_inv_of]
-    exact higmanVCCommon_commute_of_letter hN u v
+    exact higmanVCCommon_ker_commute_of hd hr u v
   | mul g₁ g₂ ih₁ ih₂ =>
     rw [map_mul]
     exact ih₁.mul_right ih₂

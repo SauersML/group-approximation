@@ -7,10 +7,22 @@ distinct_from:
   rf-groups-have-free-product-germs-over-v: that builds hosts for every residually finite group with germ group G * Z; this shows the Belk--Hyde--Matucci Theorem 2.1 certificate cannot apply to them, and that the ascending alternative is closed to annular finite realizations.
   bhm-singfix-condition-forces-fp-germ-groups: that derives finite presentation of the germ group from finite presentation of SingFix({p},{p}); this shows the converse fails: here the germ group is finitely presented and SingFix({p},{p}) is not.
   orbit-preserving-germ-corollary-extensions-of-v-are-rational: that treats germ groups in which (V)_p is normal, where the host is rational; this treats germ groups in which (V)_p is a free factor.
+artifacts:
+  - research/artifacts/beyond-polynomial-germs/mapping-tori-and-compact-core.md
 ---
 
 **ESTABLISHED** by `annular-free-factor-singfix-colimit-proof` (lane proof, elementary
 apart from the normal form theorem for amalgams; not reviewed; no priority claimed).
+
+The 2026-09-20 bilateral observed-mapping-torus proposal adds exact
+cross-depth relations from an automorphism and an infinite-image
+observation. Its compact-core finiteness and two-species construction
+remain OPEN. Neither contradicts the free-factor obstruction or the
+finite-annular-image obstruction here: a finite-image observation
+cannot bilaterally separate an infinite finitely generated group,
+since there are only finitely many homomorphisms to that fixed finite
+image and their kernel intersection has finite index. The proposal's
+limits and dependencies are recorded in the linked artifact §7.
 
 **Setting.** Notation of `rf-groups-have-free-product-germs-over-v`: `C`, `p = 0^∞`,
 `A_n`, `α_n`, the zoom `τ` with germ `t`. `Γ` is a finite germ extension of `V` with

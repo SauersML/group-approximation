@@ -53,6 +53,16 @@ this claim is ESTABLISHED.
 
 ## Attempts
 
+**Direct padded RN refinement (user submission, 2026-09-20).**
+`padded-abstract-rn-perfect-decidable-nonrecursive-kernel` proposes one perfect,
+decidable, finitely presented group whose clopen action has nonrecursive
+kernel and which is itself relatively simple for that kernel. Its projection
+route is `nonrecursive-a2-kernel-from-direct-padded-rn-witness`. The strengthened
+claim remains conditional on the explicit abstract formal-support structural
+theorem; its source and detailed argument are in
+`research/artifacts/padded-abstract-rn-manuscript-integration-2026-09-20.md`.
+This is an additional route, not a new review of the existing construction.
+
 **Attempt 1 (2026-09-16): normalizer covers.** Take the actors
 `Γ x|_θ F_m ↷ Ω` of `normalizer-extension-of-type-a-actor-is-a2-cover`, where the
 image `ΓQ` can fail to be finitely presented

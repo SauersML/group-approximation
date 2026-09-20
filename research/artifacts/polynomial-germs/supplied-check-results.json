@@ -1,0 +1,24 @@
+{
+  "seed": 20260920,
+  "checks": {
+    "shift_preserves_top_Newton_coefficient": 240,
+    "negative_end_preserves_degree": 240,
+    "Pascal_and_generator_commutators": 21000,
+    "translation_difference_lowers_degree": 210,
+    "germ_composition": 1000,
+    "germ_inverse": 1000,
+    "graded_index_exponent": 5,
+    "delta_is_homomorphism": 300,
+    "dilations_commute": 300,
+    "matrix_inverse": 300,
+    "non_normal_coset_decomposition": 300,
+    "affine_section_integrality": 300,
+    "full_section_formula": 300,
+    "section_reconstruction": 300,
+    "nonabelian_lamp_covariance": 300,
+    "q_difference_Heisenberg_commutator": 201
+  },
+  "total": 26296,
+  "status": "PASS",
+  "scope": "Exact-arithmetic formula checks only; not a formal proof."
+}

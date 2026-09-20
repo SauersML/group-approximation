@@ -1,8 +1,11 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 
-# This metadata describes Palomar/comparator-boone-higman.json only: stage 1 of the
-# Boone-Higman megasubmission, whose four theorems are proved outright.
+# This metadata describes the current four-declaration Comparator checkpoint.
+# The selected final combined scope, including the supplied manuscript results,
+# is recorded in notes/BOONE_HIGMAN_PALOMAR_SELECTED_SCOPE.md. Update the theorem
+# list here together with the final challenge/solution and Comparator manifest
+# only when the corresponding closed Lean declarations exist.
 project:
   name: "Printed Questions around the Boone-Higman Conjecture, Stage 1"
   description: >-

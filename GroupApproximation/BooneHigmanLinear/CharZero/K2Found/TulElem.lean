@@ -35,6 +35,7 @@ variable {I A : Type*} [Fintype I] [DecidableEq I] [CommRing A] (hX : Elements I
 
 section E
 
+open Classical in
 /-- `X(v, w)` as a total function: `hX.elt (v, w)` on `U`, and `1` off `U`. -/
 noncomputable def E (v w : I → A) : SteinbergGroup I A :=
   if h : (v, w) ∈ U I A then hX.elt (v, w) h else 1
@@ -74,7 +75,8 @@ theorem dot_add {v v' w : I → A} (hw : w ⬝ᵥ v = 0) (hw' : w ⬝ᵥ v' = 0)
   rw [dotProduct_add, hw, hw', add_zero]
 
 omit [Fintype I] in
-theorem tl_apply (v : I → A) (r : I) : (v + (1 - v r) • Pi.single r (1 : A)) r = 1 := by
+theorem tl_apply (v : I → A) (r : I) :
+    (v + (1 - v r) • Pi.single r 1 : I → A) r = 1 := by
   simp
 
 theorem E_mul {v w w' : I → A} (hv : IsUnimodular v) (hw : w ⬝ᵥ v = 0) (hw' : w' ⬝ᵥ v = 0) :
@@ -216,7 +218,7 @@ theorem ex_commute {r : I} {v w y : I → A} (hr : w r = 0) (hw : w ⬝ᵥ v = 0
 /-- `X_r(v + c e_r, w) = X(e_r, c w) X_r(v, w)`. -/
 theorem ex_add_single_self {r : I} {v w : I → A} (hr : w r = 0) (c : A) :
     ex hX r (v + c • Pi.single r 1) w = E hX (Pi.single r 1) (c • w) * ex hX r v w := by
-  have h1 : (v + c • Pi.single r (1 : A)) r = v r + c := by simp
+  have h1 : (v + c • Pi.single r 1 : I → A) r = v r + c := by simp
   have h2 : v + c • Pi.single r (1 : A) + (1 - (v r + c)) • Pi.single r 1 =
       v + (1 - v r) • Pi.single r 1 := by module
   rw [ex, ex, h1, h2, ← mul_assoc, E_mul hX (isUnimodular_single r) (smul_dot c (dot_single hr))

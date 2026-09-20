@@ -115,7 +115,7 @@ section SumAction
 variable (Γ₁ Γ₂ S₁ S₂ : Type) [Group Γ₁] [Group Γ₂] [MulAction Γ₁ S₁] [MulAction Γ₂ S₂]
 
 /-- `Γ₁ × Γ₂` acting on `S₁ ⊕ S₂`, each factor on its own summand. -/
-def sumProdAction : MulAction (Γ₁ × Γ₂) (S₁ ⊕ S₂) where
+@[reducible] def sumProdAction : MulAction (Γ₁ × Γ₂) (S₁ ⊕ S₂) where
   smul g x := Sum.map (fun s => g.1 • s) (fun t => g.2 • t) x
   one_smul x := by
     cases x with

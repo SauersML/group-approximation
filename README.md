@@ -28,6 +28,79 @@ Each entry identifies the question, the new argument, and its precise scope.
 | **Guba's Ore equation — Question 1 / survey Question 3.20.** [Original question](https://arxiv.org/abs/2201.02308); [survey](https://gcc.episciences.org/11315/pdf). | **Positive.** For every field `K` and nonzero `b ∈ K[F]`, `(1 − x₁)u = bv` has a nonzero solution. An induction through the nested supports of conjugates of `x₁` extends Guba's `x₀` theorem. This settles the specified equation, not amenability of Thompson's group `F`. | [Complete proof](research/thompson-f-one-minus-x1-is-ore-with-every-element-proof.md); [source and priority check](research/artifacts/guba-q1-novelty-2026-09-12.md). |
 | **A type [A₂] action with non-finitely-presented image — Fournier-Facio–Wu–Zaremsky Question 5.8.** [Problem statement](https://arxiv.org/html/2603.24687v2#S5). | **Positive.** A diagonal Thompson-group normalizer produces a type `[A₂]` action of a finitely presented group whose faithful image is not finitely presented. The construction verifies the stabilizer conditions and computes the action kernel; it answers this question without resolving Boone–Higman. | [Construction and proof](research/a2-non-fp-image-via-diagonal-normalizer-proof.md); [question and scope](research/a2-action-with-non-finitely-presented-image.md). |
 
+## Boone–Higman results and the combined Palomar submission
+
+The repository has written proofs of the following Boone–Higman (BH) results.
+Here BH means embedding in a finitely presented simple group; permutational
+Boone–Higman (PBH) is the stronger property defined using type (A) actions.
+The literature comparison on September 20, 2026 supports these as likely new
+contributions. Internal proof reviews and that comparison do not establish
+external acceptance or completion of the Lean formalization.
+
+| Result | Contribution and prior work | Proof and formalization status |
+| --- | --- | --- |
+| **Every finitely generated linear group over any field satisfies PBH, hence BH.** | Extends [Zaremsky's rational-linear theorem](https://arxiv.org/html/2405.09722v2) to arbitrary fields. Polynomial affine hosts act self-similarly with additional parameter coordinates. | [Written BH proof](research/finitely-generated-linear-groups-satisfy-boone-higman-proof.md). The [Lean route without Suslin absorption](GroupApproximation/BooneHigmanLinear/CharZero/RouteNoSuslin.lean) still takes P1, Z1 and H1; the stronger PBH conclusion also needs its action-theoretic bridge. |
+| **Every finitely generated linear group embeds in a finitely presented self-similar group.** | Answers [Llosa Isenrich–Schesler–Wu Question 1.11](https://arxiv.org/html/2510.01952v1), strengthening the requested finite generation of the host. | [Written result](research/fg-linear-groups-embed-in-fp-self-similar-groups.md); `linearHost_noSuslin` in the [Lean route](GroupApproximation/BooneHigmanLinear/CharZero/RouteNoSuslin.lean) needs P1 and Z1. The [Palomar bridge](GroupApproximation/BHPalomar/LinearSelfSimilar.lean) still uses the older three-input route. |
+| **Every finitely generated metabelian group satisfies PBH.** | A major consequence of the linear theorem, known quasi-linearity and product closure; answers [BBMZ Problem 5.3(7)](https://arxiv.org/html/2306.16356v3). | [Written deduction](research/fp-metabelian-bh-via-quasi-linear-pbh.md). The [existing Palomar solution](Palomar/MetabelianBooneHigmanSolution.lean) is a conditional skeleton. |
+| **PBH is closed under graph products over finite graphs.** | Answers [BFFHZ Question 3.1](https://arxiv.org/html/2503.21882v2), through a new embedding for amalgams over retracts. | [Written proof](research/pbh-graph-product-closure-proof.md). The [Lean endpoint](GroupApproximation/BHPalomar/GraphProducts/Main.lean) still assumes `EnvelopeInput`, encoding the required BFFHZ envelope theorems. |
+| **Every ascending HNN extension of a finite-rank free group satisfies PBH and embeds in a simple group of type F∞.** | A Hall-theorem embedding reduces arbitrary injective endomorphisms to the setting of [Bux–Llosa Isenrich–Wu](https://arxiv.org/html/2408.05673v2). This is a likely new deduction from their machinery; free-by-cyclic groups were already covered. | [Written proof](research/ascending-hnn-of-free-groups-bh-proof.md). No unconditional endpoint is selected by the BH Comparator configuration. |
+
+The linear theorem also gives BH for all spherical Artin groups by their known
+linearity; this is a consequence of the same theorem package. Further candidates
+for the combined submission include the [twisted Brin–Thompson finiteness
+criterion](research/twisted-brin-thompson-type-fn-criterion.md),
+[Thompson T's mixed-identity obstruction](research/thompson-t-mixed-identities-are-not-finitely-normally-generated.md),
+and the [non-removable action-kernel construction](research/a2-pair-with-non-removable-kernel-exists.md).
+Their inclusion requires completion of the proof and formalization checks in the
+[submission plan](notes/BOONE_HIGMAN_PALOMAR_PLAN.md).
+
+Two distinctions matter for credit. The concrete common host `St_10(R_L)` for
+all `GL_n(ℚ)` should be compared with [Mikaelian's earlier announcement of explicit
+overgroups, §1.4](https://arxiv.org/html/2507.04347v8); we do not claim the first
+explicit overgroup. The Titz–Witzel lattice PBH examples already occur in
+[Le Bars–Leibtag–Vigdorovich](https://arxiv.org/html/2609.17129v1).
+The general BH conjecture remains open.
+
+The [September 20 Cairn integration](research/artifacts/boone-higman-cairn-integration-2026-09-20.md)
+adds two proposed developments: a perfect finitely presented decidable group
+with a non-recursively-presentable unique simple quotient, and simple F∞
+envelopes for polynomially twisted unitriangular lamps, including the
+q-difference lamplighter. Their proof artifacts, classical dependencies and
+remaining proof obligations are wired into the graph. They are not independently
+refereed or Lean-certified results. The polynomial formula checker was replayed
+on MSI: **26,296 checks passed**, covering formulas rather than the finiteness
+and simplicity proofs. The audit also corrects two inverse-diagonal embedding
+errors in historical routes.
+
+The connected [Beyond polynomial germs draft](research/artifacts/beyond-polynomial-germs/beyond_polynomial_germs.md)
+adds proposed automorphism mapping-torus embeddings under bilateral observation
+in V, recurrent scalar and noncommuting matrix twists, and an exact
+finite-presentation criterion for scalar germ groups. Its common finite-core
+stabilizer argument is a new explicit proof gate. The proposed three-generator
+nonlinear solvable example and these generalizations are
+[selected for the same combined submission](notes/BOONE_HIGMAN_PALOMAR_SELECTED_SCOPE.md),
+using the supplied manuscripts as working proofs and repairing details during
+formalization. Their Lean proofs remain unfinished. Its
+[fresh MSI replay](research/artifacts/beyond-polynomial-germs/REPLAY.md)
+passed **5,678 formula assertions** with the supplied script hash.
+
+**Release plan: one combined BH Palomar submission**, using
+[`Palomar/comparator-boone-higman.json`](Palomar/comparator-boone-higman.json).
+Its current four selected theorems concern the explicit Steinberg host,
+Kourovka 17.59 and 21.75, and Kohl's factorization conjecture. Their solution
+wrappers have no remaining theorem hypotheses, but this is only an internal
+checkpoint: it does not certify the headline results above or a fresh kernel
+replay. Existing “stage 1” wording describes that checkpoint, not a separate
+planned release. The metabelian and other selected BH results will be integrated
+into this same configuration before submission. The
+[plan](notes/BOONE_HIGMAN_PALOMAR_PLAN.md) records the scope, remaining proof
+dependencies, packaging changes and release checks.
+
+The [September 20 Lean progress report](notes/BOONE_HIGMAN_LEAN_PROGRESS_2026-09-20.md)
+records checked finite-stage descent, the standard building stabilizer,
+Zariski excision, Higman conjugation and relative-action proofs. The headline package still has
+the explicit mathematical obligations listed there.
+
 ## Baum–Connes: integrated further attempt
 
 The [further attempt and proofs](research/artifacts/Cairn_Baum_Connes_General_Attempt.md)
@@ -137,7 +210,15 @@ Blanchard asks, as Question 5.4 of [arXiv:1507.02535](https://arxiv.org/abs/1507
 
 The Palomar registry surface is `Palomar/BlanchardToeplitzChallenge.lean`, `Palomar/BlanchardToeplitzSolution.lean` and `Palomar/comparator-blanchard-toeplitz.json`, with the theorem `BlanchardToeplitz.blanchard_question_5_4`. It uses `propext`, `Classical.choice` and `Quot.sound` and nothing else. The problem was solved by Astra, using a custom proof tool. All prose for this result, this section included, and the Lean formalization were produced by Claude (Anthropic) under the user's direction.
 
-The repository holds one Comparator configuration per submission, and `formalization.yaml` describes one submission at a time, currently `Palomar/comparator-surjunctive-nonsofic.json`; the other configurations receive their metadata when they are submitted. The configurations are `Palomar/comparator-lix.json` for the K1-injectivity result, `Palomar/comparator-surjunctive-nonsofic.json` for the surjunctive non-sofic group, and `Palomar/comparator-pestov91.json`, `Palomar/comparator-type-a2.json`, `Palomar/comparator-guba-thompson.json`, `Palomar/comparator-gkp-commuting-actions.json`, `Palomar/comparator-stw-x1.json`, `Palomar/comparator-stw-xxii.json` and `Palomar/comparator-blanchard-toeplitz.json` for the seven results after it. Each is its own `config` for the `Palomar comparator` workflow. They share the Lean development and no mathematics. Everything here is released under Apache-2.0, in `LICENSE`.
+The repository holds multiple Comparator configurations, each selecting a set of
+theorems. [`formalization.yaml`](formalization.yaml) describes one configuration
+at a time, currently the four-theorem BH checkpoint in
+`Palomar/comparator-boone-higman.json`. The planned BH submission will expand
+that configuration and its metadata together. The separate metabelian skeleton
+and the type [A₂] surface are integration inputs for that submission; their
+presence is not a plan for additional BH entries. Other configurations cover the
+non-BH results described above. Everything here is released under Apache-2.0,
+in `LICENSE`.
 
 ## Lean library
 

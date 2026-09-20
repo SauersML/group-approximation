@@ -1,4 +1,7 @@
-import GroupApproximation.BooneHigmanLinear.PolyFpK2
+import GroupApproximation.BooneHigmanLinear.PolyFpK2Core
+import GroupApproximation.BooneHigman.Metabelian.ElemFPK2RingEquiv
+import GroupApproximation.BooneHigman.Metabelian.ElemFPK2PolyFieldConst
+import Mathlib.RingTheory.Localization.AtPrime.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -175,16 +178,11 @@ theorem tulenbaevPolyFpK2_of_unstableNK (h : UnstableNKPolyFpStatement) :
     refine Metabelian.ElemFP.bhNagaoWire_K2_bot_of_ringEquiv
       (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv ?_
     refine (Subgroup.eq_bot_iff_forall _).mpr fun g hg => ?_
-    have hmem := (SteinbergBasic.K2Map
-        (Polynomial.evalRingHom 0 :
-          Polynomial (MvPolynomial (Fin k) (ZMod p)) →+* MvPolynomial (Fin k) (ZMod p))
-        (⟨g, hg⟩ : SteinbergBasic.K2 (Fin N) (Polynomial (MvPolynomial (Fin k) (ZMod p))))).2
-    rw [ih] at hmem
     have h0 : SteinbergBasic.K2Map
         (Polynomial.evalRingHom 0 :
           Polynomial (MvPolynomial (Fin k) (ZMod p)) →+* MvPolynomial (Fin k) (ZMod p))
         (⟨g, hg⟩ : SteinbergBasic.K2 (Fin N) (Polynomial (MvPolynomial (Fin k) (ZMod p)))) = 1 :=
-      Subtype.ext ((Subgroup.mem_bot).mp hmem)
+      Metabelian.ElemFP.eq_one_of_K2_eq_bot ih _
     exact congrArg Subtype.val (h p hp k N hN _ h0)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.tulenbaevPolyFpK2_of_unstableNK
@@ -194,10 +192,8 @@ theorem gapOver_of_unstableNK (h : UnstableNKPolyFpStatement) :
     ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4 :=
   gapOver_of_oneVar_of_injStab
     (fun p hp k N hN u hu => localNKAt_of_unstableNKAt (h p hp k N (by omega)) u hu)
-    (fun p hp k N hN u _ => by
-      have hmem := u.2
-      rw [tulenbaevPolyFpK2_of_unstableNK h p hp k N hN] at hmem
-      exact Subtype.ext ((Subgroup.mem_bot).mp hmem))
+    (fun p hp k N hN u _ => Metabelian.ElemFP.eq_one_of_K2_eq_bot
+      (tulenbaevPolyFpK2_of_unstableNK h p hp k N hN) u)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.gapOver_of_unstableNK
 

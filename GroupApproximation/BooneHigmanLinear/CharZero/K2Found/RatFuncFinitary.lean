@@ -23,6 +23,9 @@ namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
 
+-- Align the ring hierarchy used by coefficient maps with the one used by `ringMap`.
+attribute [local instance 2000] CommSemiring.toSemiring CommRing.toRing CommRing.toCommSemiring
+
 open GroupApproximation.SteinbergGroup
 open GroupApproximation.BooneHigman.SteinbergBasic
 open scoped Polynomial

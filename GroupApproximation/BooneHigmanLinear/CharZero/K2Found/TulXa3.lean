@@ -95,7 +95,7 @@ theorem pm_coe_prod {v : I → A} {ι : Type*} (s : Finset ι) (F : ι → Cv hX
 /-- `π(X_{v,w}(a)) = 1 + (u v) v w` for `w ⊥ v`. -/
 theorem pm_Xa (h4 : 4 ≤ Fintype.card I) {v w : I → A} (u : I → A) (hw : w ⬝ᵥ v = 0) :
     pm (Xa hX h4 v w u) = 1 + (u ⬝ᵥ v) • vecMulVec v w := by
-  rw [Xa, pm_coe_prod hX Finset.univ
+  rw [Xa, pm_coe_prod hX (ι := I × I) Finset.univ
       (fun pq => txc hX (pc_dot v w u pq.1 pq.2) (pc_twoZ h4 v w u pq.1 pq.2))
       (fun pq => pc v w u pq.1 pq.2)
       (fun pq => by

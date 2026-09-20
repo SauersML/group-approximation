@@ -1,5 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.PaninAffine.PatchFrame
-import GroupApproximation.BooneHigmanLinear.PaninAffine.Cor29
+import GroupApproximation.BooneHigmanLinear.PaninAffine.LocalizationStatements
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

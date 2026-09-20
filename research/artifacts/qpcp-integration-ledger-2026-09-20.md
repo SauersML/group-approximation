@@ -459,3 +459,27 @@ claimed. These bounded checks cannot certify absence of every announcement.
 The final proof state is amplification and obstruction proved, group
 consequences conditional on their named analytic/structural imports, and
 the constant-locality QMA-hardness reduction **not established**.
+
+## 9. Full-target continuation integrated into this ledger
+
+The supplied consolidated record's Part B corresponds to Sections 1–8
+above and the linked complete amplification, group and syndrome proofs.
+Its new Part A is integrated in the
+[full-target continuation](qpcp-full-target-continuation-2026-09-20.md),
+with a section-by-section map preserving the earlier source and trust
+boundaries. Six new scoped claims have proof routes: complementary-record
+uncertainty, coherent-record phase energy, classical-distance label
+compression, leakage control, diagonal-penalty transition order, and
+one-copy Choi legality. The leakage proof depends explicitly on the
+compression claim. The QPCP root and open reducer attempt sections link
+all six; the existing conditional reduction routes remain conditional.
+
+The [continuation replay](qpcp-full-target-continuation-replay-2026-09-20.json)
+comes from the supplied exact suite plus additional rational boundary
+examples. Positive perturbative path sums are distinguished from the
+signed effective-Hamiltonian coefficients. The
+[continuation graph check](qpcp-full-target-validation-2026-09-20.json)
+validates the live dependency closure and OPEN/ESTABLISHED boundaries.
+This is a new validation record, not a rewrite of the earlier pinned
+snapshot receipt. All three QPCP replay scripts and the graph-boundary
+check are wired into `.github/workflows/qpcp-research.yml`.

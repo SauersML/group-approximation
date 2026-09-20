@@ -8,12 +8,23 @@ distinct_from:
   orbit-preserving-germ-corollary-extensions-of-v-are-rational: that treats Belk--Hyde--Matucci Corollary 2.10, where the zoom germs are normal and hosts are rational; here the germ group is an ascending HNN extension, in which the zoom is not normal, and Theorem 2.1 is applied directly.
   rf-groups-have-free-product-germs-over-v: that realizes residually finite groups with germ group G * Z through unrelated finite quotients, which kills finite presentation; this realizes a group through iterates of one representation under one endomorphism.
   f-infinity-tail-ascending-hnns-satisfy-boone-higman: that uses the same mechanism, a one-orbit germ extension whose germ group is an ascending HNN extension, for last-section endomorphisms of subgroups of bounded automata groups over V_d S; this is the abstract version over V itself, for any finitely presented group with an injective endomorphism and a V-representation separating along its orbit, with no automaton.
+artifacts:
+  - research/artifacts/beyond-polynomial-germs/mapping-tori-and-compact-core.md
 ---
 
 **ESTABLISHED** by `dynamically-v-separated-host-singfix-proof` (lane proof. It rests on
 Belk--Hyde--Matucci Theorem 2.1 and on the `F_∞` stabilizers of `V`, both imported in
 `germ-complex-and-bux-gonzalez-morse-inputs`, and on the type (A) criterion named above.
 Not reviewed; no priority claimed).
+
+The 2026-09-20 *Beyond polynomial germs* manuscript proposes the
+stronger OPEN `observed-mapping-tori-have-simple-fk-hosts`: for an
+automorphism with both forward and backward separating observations,
+embed the entire mapping torus and its twisted `V` lamps in a simple
+type `F_k` host. Its two-species realization and uniform compact-core
+SingFix theorem are unverified new gates. The present one-sided
+finite-presentation result retains its existing status and is not
+silently upgraded to that bilateral or higher-finiteness statement.
 
 The mechanism, ascending germ groups at one singular orbit certified by Theorem 2.1,
 is the one of `f-infinity-tail-ascending-hnns-satisfy-boone-higman`. What is new is the

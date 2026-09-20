@@ -108,13 +108,12 @@ theorem tx_conj_x (h5 : 5 ≤ Fintype.card I) {i j : I} (hij : i ≠ j) (t : A) 
     (hyv : y ⬝ᵥ v = 0) {p q : I} (hy : ∀ l, l ≠ p → l ≠ q → y l = 0) :
     x i j hij t * tx hX v y * (x i j hij t)⁻¹ =
       tx hX (pm (x i j hij t) *ᵥ v) (y ᵥ* pm (x i j hij t)⁻¹) := by
-  obtain ⟨r, hr⟩ := exists_not_mem [p, q, i, j] (by simp only [List.length_cons,
-    List.length_nil]; omega)
+  obtain ⟨r, hr⟩ := exists_not_mem [p, q, i, j] (by simpa using h5)
   simp at hr
   obtain ⟨hrp, hrq, hri, hrj⟩ := hr
   have hyr : y r = 0 := hy r hrp hrq
   have hMr : pm (x i j hij t) *ᵥ Pi.single r (1 : A) = Pi.single r 1 := by
-    rw [mulVec_pm_x, single_dotProduct, Pi.single_eq_of_ne hrj.symm, mul_zero, zero_smul,
+    rw [mulVec_pm_x, single_dotProduct, Pi.single_eq_of_ne (Ne.symm hrj), mul_zero, zero_smul,
       add_zero]
   have hMv : (pm (x i j hij t) *ᵥ v) r = v r := by
     rw [mulVec_pm_x, Pi.add_apply, Pi.smul_apply, Pi.single_eq_of_ne hri, smul_zero, add_zero]

@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.RelPresAct
 import GroupApproximation.BooneHigman.SteinbergBasic.Naturality
+import Mathlib.GroupTheory.SemidirectProduct
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -115,7 +116,7 @@ theorem psiX_add (i j : I) (hij : i ≠ j) (a b : A) :
   have hN : X (stdPair i j (a - ι (ρ a))) (rmem_std hij (sub_mem_ker ι ρ hρ a)) *
       X (stdPair i j (b - ι (ρ b))) (rmem_std hij (sub_mem_ker ι ρ hρ b)) =
       X (stdPair i j (a + b - ι (ρ (a + b)))) (rmem_std hij (sub_mem_ker ι ρ hρ (a + b))) := by
-    rw [X_std_add' hij]
+    rw [X_std_add' hij (sub_mem_ker ι ρ hρ a) (sub_mem_ker ι ρ hρ b)]
     exact X_congr (by
       rw [show a - ι (ρ a) + (b - ι (ρ b)) = a + b - ι (ρ (a + b)) by rw [map_add, map_add]; ring])
       _ _

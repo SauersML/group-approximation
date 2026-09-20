@@ -375,6 +375,10 @@ theorem mat_colProd (r : I) (i : I → A) :
 
 /-! ### Conjugation by single generators -/
 
+-- Conjugation uses the proved additive laws, never the finite-product implementation.
+-- Keep elaboration from expanding that implementation while matching group expressions.
+attribute [local irreducible] rowProd colProd
+
 /-- `x_pq(a) x_rp(b) x_pq(a)⁻¹ = x_rp(b) x_rq(-(b a))` for distinct `r, p, q`. -/
 theorem x_conj_x_left (p q r : I) (hpq : p ≠ q) (hrp : r ≠ p) (hrq : r ≠ q) (a b : A) :
     x p q hpq a * x r p hrp b * (x p q hpq a)⁻¹ = x r p hrp b * x r q hrq (-(b * a)) := by
@@ -419,13 +423,15 @@ theorem rowConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hqr : q ≠ r) :
       Matrix.vecMulVec_mulVec, single_dotProduct, Pi.single_eq_of_ne hqr, mul_zero,
       MulOpposite.op_zero, zero_smul, add_zero]
   rw [matInv_x]
-  refine eq_of_add_of_single (f := fun j : I → A => x p q hpq a * rowProd r j * (x p q hpq a)⁻¹)
-    (g := fun j : I → A => rowProd r ((j - Pi.single r (j r)) ᵥ* (1 - Matrix.single p q a)))
-    (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) j
+  with_reducible
+    refine eq_of_add_of_single (I := I) (A := A) (G := SteinbergGroup I A)
+      (f := fun j : I → A => x p q hpq a * rowProd r j * (x p q hpq a)⁻¹)
+      (g := fun j : I → A => rowProd r ((j - Pi.single r (j r)) ᵥ* (1 - Matrix.single p q a)))
+      (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) j
   · show x p q hpq a * rowProd r (u + v) * (x p q hpq a)⁻¹ =
       x p q hpq a * rowProd r u * (x p q hpq a)⁻¹ * (x p q hpq a * rowProd r v * (x p q hpq a)⁻¹)
     rw [rowProd_add]
-    group
+    simp only [mul_assoc, inv_mul_cancel_left]
   · show rowProd r ((u + v - Pi.single r ((u + v) r)) ᵥ* (1 - Matrix.single p q a)) =
       rowProd r ((u - Pi.single r (u r)) ᵥ* (1 - Matrix.single p q a)) *
         rowProd r ((v - Pi.single r (v r)) ᵥ* (1 - Matrix.single p q a))
@@ -516,13 +522,15 @@ theorem colConj_x {r : I} (p q : I) (hpq : p ≠ q) (a : A) (hpr : p ≠ r) :
       Matrix.vecMul_vecMulVec, single_dotProduct, Pi.single_eq_of_ne (Ne.symm hpr), mul_zero,
       zero_smul, add_zero]
   rw [mat_x]
-  refine eq_of_add_of_single (f := fun i : I → A => x p q hpq a * colProd r i * (x p q hpq a)⁻¹)
-    (g := fun i : I → A => colProd r ((1 + Matrix.single p q a) *ᵥ (i - Pi.single r (i r))))
-    (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) i
+  with_reducible
+    refine eq_of_add_of_single (I := I) (A := A) (G := SteinbergGroup I A)
+      (f := fun i : I → A => x p q hpq a * colProd r i * (x p q hpq a)⁻¹)
+      (g := fun i : I → A => colProd r ((1 + Matrix.single p q a) *ᵥ (i - Pi.single r (i r))))
+      (fun u v => ?_) (fun u v => ?_) (fun s b => ?_) i
   · show x p q hpq a * colProd r (u + v) * (x p q hpq a)⁻¹ =
       x p q hpq a * colProd r u * (x p q hpq a)⁻¹ * (x p q hpq a * colProd r v * (x p q hpq a)⁻¹)
     rw [colProd_add]
-    group
+    simp only [mul_assoc, inv_mul_cancel_left]
   · show colProd r ((1 + Matrix.single p q a) *ᵥ (u + v - Pi.single r ((u + v) r))) =
       colProd r ((1 + Matrix.single p q a) *ᵥ (u - Pi.single r (u r))) *
         colProd r ((1 + Matrix.single p q a) *ᵥ (v - Pi.single r (v r)))

@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.K2Poly.FieldSymbolCells
+import GroupApproximation.BooneHigman.Metabelian.ElemFPFieldK2BruhatBigCellEndpoint
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

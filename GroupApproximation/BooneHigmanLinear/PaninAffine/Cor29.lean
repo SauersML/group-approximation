@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.PaninAffine.Geometry
+import GroupApproximation.BooneHigmanLinear.PaninAffine.LocalizationStatements
 import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.RingTheory.Polynomial.Resultant.Basic
@@ -104,59 +105,6 @@ theorem notMem_of_ne_zero_fin_zero {K : Type} [Field K] {M : Ideal (MvPolynomial
 
 end Factor
 
-section Props
-
-/-- The canonical map `R_P → Frac R`. -/
-noncomputable def fracMap {R : Type} [CommRing R] [IsDomain R] (P : Ideal R) [P.IsPrime] :
-    Localization.AtPrime P →+* FractionRing R :=
-  IsLocalization.lift (M := P.primeCompl) (g := algebraMap R (FractionRing R)) fun s =>
-    IsUnit.mk0 _ (((IsFractionRing.injective R (FractionRing R)).ne_iff' (map_zero _)).mpr
-      fun h0 => (show (s : R) ∉ P from s.2) (by rw [h0]; exact P.zero_mem))
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.fracMap
-
-/-- The canonical map `R_s → R_P` for `s ∉ P`. -/
-noncomputable def awayToAtPrime {R : Type} [CommRing R] (P : Ideal R) [P.IsPrime] {s : R}
-    (hs : s ∉ P) : Localization.Away s →+* Localization.AtPrime P :=
-  IsLocalization.Away.lift s
-    (IsLocalization.map_units (Localization.AtPrime P) (⟨s, hs⟩ : P.primeCompl))
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.awayToAtPrime
-
-/-- **Zariski excision for `St_N` at one ring** (F.4: Tulenbaev, Prop 1.4(b), for the trivial
-element on `A_a`; LSV Lemma 2.6 in Zariski form). Let `a, b ∈ A` be comaximal non-zero-divisors.
-Suppose an element of `St_N(A_b)` dies in `St_N(A_{ab})`. Then it comes from an element of
-`St_N(A)` that dies in `St_N(A_a)`. Owner: bh-pal-linear-char0 (F.4). -/
-def StZariskiExcisionAt (A : Type) [CommRing A] (N : ℕ) : Prop :=
-  ∀ a b : A, a ∈ nonZeroDivisors A → b ∈ nonZeroDivisors A → IsCoprime a b →
-    ∀ β : SteinbergGroup (Fin N) (Localization.Away b),
-      ringMap (IsLocalization.Away.awayToAwayLeft b a :
-          Localization.Away b →+* Localization.Away (a * b)) β = 1 →
-        ∃ γ : SteinbergGroup (Fin N) A,
-          ringMap (algebraMap A (Localization.Away a)) γ = 1 ∧
-            ringMap (algebraMap A (Localization.Away b)) γ = β
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.StZariskiExcisionAt
-
-/-- **The finitary step of Cor 2.9** (F.5: Tulenbaev, Lemma 2.2, for `R_P[X] = colim R_g[X]` and
-`Frac(R)[X] = colim (R_g)_h[X]`). Let `α ∈ St_N(R_P[X])` die in `St_N(Frac(R)[X])`. Then `α` comes
-from some `α₁ ∈ St_N(R_g[X])` with `g ∉ P`, and `α₁` dies once some `h ≠ 0` is inverted. -/
-def Cor29FinitaryAt (R : Type) [CommRing R] [IsDomain R] (P : Ideal R) [P.IsPrime] (N : ℕ) :
-    Prop :=
-  ∀ α : SteinbergGroup (Fin N) (Polynomial (Localization.AtPrime P)),
-    ringMap (Polynomial.mapRingHom (fracMap P)) α = 1 →
-      ∃ (g : R) (hg : g ∉ P) (h : R), h ≠ 0 ∧
-        ∃ α₁ : SteinbergGroup (Fin N) (Polynomial (Localization.Away g)),
-          ringMap (S := Polynomial (Localization.AtPrime P))
-            (Polynomial.mapRingHom (awayToAtPrime P hg)) α₁ = α ∧
-            ringMap (S := Polynomial (Localization.Away (algebraMap R (Localization.Away g) h)))
-              (Polynomial.mapRingHom (algebraMap (Localization.Away g)
-                (Localization.Away (algebraMap R (Localization.Away g) h)))) α₁ = 1
-
-#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.Cor29FinitaryAt
-
-end Props
-
 section Death
 
 /-- **Death after inverting `s` is universal.** Let `α ∈ St_N(S[X])` die in `St_N(S_s[X])`. Then
@@ -196,6 +144,10 @@ theorem eq_one_of_excision {A' : Type} [CommRing A'] [IsDomain A'] {N : ℕ}
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.eq_one_of_excision
 
 end Death
+
+-- Keep polynomial/localization semiring instances aligned with the instances used by
+-- `algebraMap`, avoiding the direct-semiring/commutative-semiring elaboration diamond.
+attribute [local instance 2000] CommSemiring.toSemiring CommRing.toRing CommRing.toCommSemiring
 
 section Coordinates
 
@@ -372,7 +324,8 @@ variable (w : MvPolynomial (Fin (n + 1)) K)
 /-- `C_𝔭[X][s₀] → C_𝔭[X][s₀]_w`. -/
 noncomputable abbrev locW : Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))) →+*
     Localization.Away (liftHom M φ w) :=
-  algebraMap _ _
+  algebraMap (Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
+    (Localization.Away (liftHom M φ w))
 
 /-- `R_w → C_𝔭[X][s₀]_w`. -/
 noncomputable def kappa0 : Localization.Away w →+* Localization.Away (liftHom M φ w) :=
@@ -457,7 +410,7 @@ theorem eq_one_of_monicFibre {r : ℕ}
     exact (Polynomial.map_ne_zero_iff Polynomial.C_injective).mpr hG
   have hab : IsCoprime (liftHom M φ f) (liftHom M φ g) := by
     rw [liftHom_apply, liftHom_apply]
-    exact hFG.map
+    exact hFG.map (S := Polynomial (Polynomial (Localization.AtPrime (fibrePrime M φ))))
       (Polynomial.mapRingHom (Polynomial.C (R := Localization.AtPrime (fibrePrime M φ))))
   have hunit : IsUnit (((IsLocalization.Away.awayToAwayLeft (liftHom M φ g) (liftHom M φ f) :
       Localization.Away (liftHom M φ g) →+*

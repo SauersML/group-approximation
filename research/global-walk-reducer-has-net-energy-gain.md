@@ -4,6 +4,7 @@ id: global-walk-reducer-has-net-energy-gain
 kind: claim
 title: A constant-locality reducer loses less than the global tensor-walk gain
 artifacts:
+  - research/artifacts/qpcp-full-target-continuation-2026-09-20.md
   - research/artifacts/qpcp-strengthened-amplification-2026-09-20.md
   - research/artifacts/qpcp-integration-ledger-2026-09-20.md
   - research/artifacts/qpcp-global-walk-amplification-2026-09-11.md
@@ -79,3 +80,30 @@ independently of `t` is unnecessary.
   all-state soundness, completeness and linear resource bounds. Such a
   construction would suffice without satisfying this universal claim;
   none is supplied by the present audit.
+
+## Shared and coherent continuation
+
+The [full-target continuation](artifacts/qpcp-full-target-continuation-2026-09-20.md)
+examines escapes from the private-proof obstruction rather than assuming
+that obstruction covers them. Its proved limitations are:
+
+- [[shared-records-obey-complementary-check-uncertainty]]: a classical
+  shared record pays a fixed complementary-check floor; noncommuting
+  quantum records can evade it.
+- [[coherent-records-have-exact-phase-energy]] and
+  [[distance-code-local-tests-are-label-diagonal]]: coherent records have
+  an exact data-only phase cost, and tests below classical code distance
+  cannot connect logical labels even with shared quantum auxiliaries.
+- [[distance-code-leakage-bounds-phase-energy]]: code leakage `delta`
+  changes positive-contraction energy by at most `sqrt(delta)` after
+  projection and label dephasing.
+- [[diagonal-penalty-transitions-have-distance-order]]: with a diagonal
+  penalty and `Delta-|z|>||V||`, transitions across distance `d` first
+  appear at order at least `ceil(d/k)` and obey the stated geometric bound.
+- [[one-copy-choi-tests-cannot-enforce-channel-legality]]: one static
+  register cannot uniformly test legality while accepting every unitary
+  channel, even with a nonlocal test and fixed auxiliary state.
+
+No result above proves a universal impossibility of this reducer or
+supplies it. Restricted-domain reductions, different encodings and
+channel-dependent auxiliary proofs require their own complete analysis.

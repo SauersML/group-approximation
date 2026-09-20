@@ -1,0 +1,165 @@
+{
+  "arithmetic": "exact integers and fractions.Fraction",
+  "shared_record_operator_identities": 3,
+  "coherent_phase_cases": [
+    {
+      "n": 1,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 1,
+      "record": "and",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 1,
+      "record": "constant",
+      "phase_energy": "0"
+    },
+    {
+      "n": 2,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 2,
+      "record": "and",
+      "phase_energy": "1/4"
+    },
+    {
+      "n": 2,
+      "record": "constant",
+      "phase_energy": "0"
+    },
+    {
+      "n": 3,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 3,
+      "record": "and",
+      "phase_energy": "1/8"
+    },
+    {
+      "n": 3,
+      "record": "constant",
+      "phase_energy": "0"
+    },
+    {
+      "n": 4,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 4,
+      "record": "and",
+      "phase_energy": "1/16"
+    },
+    {
+      "n": 4,
+      "record": "constant",
+      "phase_energy": "0"
+    },
+    {
+      "n": 5,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 5,
+      "record": "and",
+      "phase_energy": "1/32"
+    },
+    {
+      "n": 5,
+      "record": "constant",
+      "phase_energy": "0"
+    },
+    {
+      "n": 6,
+      "record": "parity",
+      "phase_energy": "1/2"
+    },
+    {
+      "n": 6,
+      "record": "and",
+      "phase_energy": "1/64"
+    },
+    {
+      "n": 6,
+      "record": "constant",
+      "phase_energy": "0"
+    }
+  ],
+  "nonorthogonal_phase_cases": 17,
+  "encoded_support_cases": 132,
+  "ghz_and_leakage_cases": {
+    "ghz_matrix_units": 61,
+    "sharp_norm_example": true,
+    "leakage_example": {
+      "delta": "16/25",
+      "energy_change": "12/25"
+    }
+  },
+  "choi_cases": [
+    {
+      "input_dimension": 2,
+      "unitary_choi_states": 4,
+      "effects_checked": 8
+    },
+    {
+      "input_dimension": 4,
+      "unitary_choi_states": 16,
+      "effects_checked": 32
+    }
+  ],
+  "perturbative_cases": [
+    {
+      "repetition_length": 2,
+      "first_nonzero_order": 2,
+      "unsigned_path_sum": "2",
+      "signed_effective_coefficient": "-2"
+    },
+    {
+      "repetition_length": 3,
+      "first_nonzero_order": 3,
+      "unsigned_path_sum": "4",
+      "signed_effective_coefficient": "4"
+    },
+    {
+      "repetition_length": 4,
+      "first_nonzero_order": 4,
+      "unsigned_path_sum": "8",
+      "signed_effective_coefficient": "-8"
+    },
+    {
+      "repetition_length": 5,
+      "first_nonzero_order": 5,
+      "unsigned_path_sum": "16",
+      "signed_effective_coefficient": "16"
+    },
+    {
+      "repetition_length": 6,
+      "first_nonzero_order": 6,
+      "unsigned_path_sum": "32",
+      "signed_effective_coefficient": "-32"
+    },
+    {
+      "repetition_length": 7,
+      "first_nonzero_order": 7,
+      "unsigned_path_sum": "64",
+      "signed_effective_coefficient": "64"
+    },
+    {
+      "repetition_length": 8,
+      "first_nonzero_order": 8,
+      "unsigned_path_sum": "128",
+      "signed_effective_coefficient": "-128"
+    }
+  ],
+  "convergent_schur_sign_example": true,
+  "all_checks_passed": true,
+  "scope": "Finite checks of identities and counterexamples; no full QPCP reduction."
+}

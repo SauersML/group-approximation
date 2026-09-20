@@ -38,7 +38,7 @@ theorem rmem_conjPair_std {𝔄 : Ideal A} {i j : I} (hij : i ≠ j) (t : A)
 theorem comm_inr_inl {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (s : B) {c : A}
     (hc : c ∈ RingHom.ker ρ) :
     ⁅(SemidirectProduct.inr (x i j hij s) : SD I ι ρ),
-      SemidirectProduct.inl (X (stdPair j k c) (rmem_std hjk hc))⁆ =
+      (SemidirectProduct.inl (X (stdPair j k c) (rmem_std hjk hc)) : SD I ι ρ)⁆ =
       SemidirectProduct.inl (X (stdPair i k (ι s * c))
         (rmem_std hik ((RingHom.ker ρ).mul_mem_left (ι s) hc))) := by
   have hP : conjPair (stdPair i j (ι s)) (stdPair j k c) =
@@ -54,7 +54,7 @@ theorem comm_inr_inl {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
   have h₂ : RMem (RingHom.ker ρ) (Pi.single i (1 : A), ι s • Pi.single k c) :=
     (rmem_std hik hc).smul (ι s)
   have hf := X_frame (Pi.single i 1) (Pi.single j 1) (Pi.single k c) (Pi.single j 1) (ι s)
-    (by rw [single_dotProduct, Pi.single_eq_of_ne hij, mul_zero])
+    (by rw [single_dotProduct, Pi.single_eq_of_ne hij.symm, mul_zero])
     (by rw [single_dotProduct, Pi.single_eq_same, mul_one])
     (by rw [single_dotProduct, Pi.single_eq_of_ne hik.symm, mul_zero]) h₁ h₂ (rmem_std hjk hc)
   have hN : stAct ι ρ (x i j hij s) (X (stdPair j k c) (rmem_std hjk hc)) *
@@ -62,7 +62,8 @@ theorem comm_inr_inl {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
       X (stdPair i k (ι s * c)) (rmem_std hik ((RingHom.ker ρ).mul_mem_left (ι s) hc)) := by
     rw [stAct_x ι ρ hij s _ _ hmem, X_congr hP _ h₁, hf, mul_inv_cancel_right]
     exact X_congr (by
-      show (Pi.single i (1 : A), ι s • Pi.single k c) = (Pi.single i 1, Pi.single k (ι s * c))
+      show ((Pi.single i 1, ι s • Pi.single k c) : (I → A) × (I → A)) =
+        (Pi.single i 1, Pi.single k (ι s * c))
       rw [← smul_eq_mul, Pi.single_smul']) _ _
   rw [commutatorElement_def, inr_mul_inl, mul_inv_cancel_right, ← map_inv, ← map_mul, hN]
 
@@ -72,7 +73,7 @@ theorem comm_inr_inl {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
 theorem comm_inl_inr {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (s : B) {a : A}
     (ha : a ∈ RingHom.ker ρ) :
     ⁅(SemidirectProduct.inl (X (stdPair i j a) (rmem_std hij ha)) : SD I ι ρ),
-      SemidirectProduct.inr (x j k hjk s)⁆ =
+      (SemidirectProduct.inr (x j k hjk s) : SD I ι ρ)⁆ =
       SemidirectProduct.inl (X (stdPair i k (a * ι s))
         (rmem_std hik ((RingHom.ker ρ).mul_mem_right (ι s) ha))) := by
   have ht : -(a * ι s) ∈ RingHom.ker ρ := neg_mem ((RingHom.ker ρ).mul_mem_right (ι s) ha)
@@ -96,7 +97,8 @@ theorem comm_inl_inr {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
     rw [← X_neg (Pi.single i 1) (Pi.single k (-(a * ι s))) (rmem_std hik ht)
       (rmem_std hik ht).neg]
     exact X_congr (by
-      show (Pi.single i (1 : A), -Pi.single k (-(a * ι s))) = (Pi.single i 1, Pi.single k (a * ι s))
+      show ((Pi.single i 1, -Pi.single k (-(a * ι s))) : (I → A) × (I → A)) =
+        (Pi.single i 1, Pi.single k (a * ι s))
       rw [← Pi.single_neg, neg_neg]) _ _
   have hN : X (stdPair i j a) (rmem_std hij ha) *
       stAct ι ρ (x j k hjk s) (X (stdPair i j a) (rmem_std hij ha))⁻¹ =
@@ -104,7 +106,7 @@ theorem comm_inl_inr {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k)
     rw [map_inv, stAct_x ι ρ hjk s _ _ hmem, X_congr hP _ hsum, ← hadd, mul_inv_rev,
       ← mul_assoc, hcomm.inv_right.eq, mul_assoc, mul_inv_cancel, mul_one, hneg]
   calc ⁅(SemidirectProduct.inl (X (stdPair i j a) (rmem_std hij ha)) : SD I ι ρ),
-        SemidirectProduct.inr (x j k hjk s)⁆ =
+        (SemidirectProduct.inr (x j k hjk s) : SD I ι ρ)⁆ =
       SemidirectProduct.inl (X (stdPair i j a) (rmem_std hij ha)) *
         (SemidirectProduct.inr (x j k hjk s) *
           SemidirectProduct.inl (X (stdPair i j a) (rmem_std hij ha))⁻¹) *
@@ -126,12 +128,13 @@ theorem psiX_adjacent {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k
   have ht₃ := (RingHom.ker ρ).mul_mem_right (ι (ρ c)) ha
   have c1 := comm_inr_inl ι ρ hij hjk hik (ρ a) hc
   have c2 : ⁅(SemidirectProduct.inl (X (stdPair i j (a - ι (ρ a))) (rmem_std hij ha)) :
-      SD I ι ρ), SemidirectProduct.inl (X (stdPair j k (c - ι (ρ c))) (rmem_std hjk hc))⁆ =
+      SD I ι ρ),
+      (SemidirectProduct.inl (X (stdPair j k (c - ι (ρ c))) (rmem_std hjk hc)) : SD I ι ρ)⁆ =
       SemidirectProduct.inl (X (stdPair i k ((a - ι (ρ a)) * (c - ι (ρ c))))
         (rmem_std hik ((RingHom.ker ρ).mul_mem_left _ hc))) := by
     rw [← map_commutatorElement, X_std_adjacent hij hjk hik ha hc]
   have c3 : ⁅(SemidirectProduct.inr (x i j hij (ρ a)) : SD I ι ρ),
-      SemidirectProduct.inr (x j k hjk (ρ c))⁆ =
+      (SemidirectProduct.inr (x j k hjk (ρ c)) : SD I ι ρ)⁆ =
       SemidirectProduct.inr (x i k hik (ρ a * ρ c)) := by
     rw [← map_commutatorElement, x_commutator]
   have c4 := comm_inl_inr ι ρ hij hjk hik (ρ c) ha
@@ -155,7 +158,9 @@ theorem psiX_adjacent {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k
     (by rw [c1]; exact h1) (by rw [c3]; exact h2) (by rw [c3]; exact h3) (by rw [c4]; exact h4)
   unfold psiX
   rw [key, c1, c2, c3, c4, (commute_inr_inl ι ρ hik hik.symm hik.symm (ρ a * ρ c)
-    (rmem_std hik ht₃)).eq, ← mul_assoc, ← map_mul, ← map_mul, X_std_add', X_std_add']
+    (rmem_std hik ht₃)).eq, ← mul_assoc, ← map_mul, ← map_mul,
+    X_std_add' hik ht₁ ((RingHom.ker ρ).mul_mem_left _ hc),
+    X_std_add' hik (add_mem ht₁ ((RingHom.ker ρ).mul_mem_left _ hc)) ht₃]
   refine congrArg₂ (· * ·) (congrArg _ (X_congr ?_ _ _)) (congrArg _ ?_)
   · rw [show ι (ρ a) * (c - ι (ρ c)) + (a - ι (ρ a)) * (c - ι (ρ c)) +
       (a - ι (ρ a)) * ι (ρ c) = a * c - ι (ρ (a * c)) by rw [map_mul, map_mul]; ring]
@@ -184,7 +189,7 @@ noncomputable def psi : SteinbergGroup I A →* SD I ι ρ :=
           simp only [map_mul, map_inv, map_commutatorElement, FreeGroup.lift_apply_of]
           change ⁅psiX ι ρ hρ i j hij a, psiX ι ρ hρ j k hjk b⁆ *
             (psiX ι ρ hρ i k hik (a * b))⁻¹ = 1
-          rw [psiX_adjacent, mul_inv_cancel])
+          rw [psiX_adjacent ι ρ hρ hij hjk hik, mul_inv_cancel])
 
 theorem psi_x (i j : I) (hij : i ≠ j) (a : A) :
     psi ι ρ hρ (x i j hij a) = psiX ι ρ hρ i j hij a :=

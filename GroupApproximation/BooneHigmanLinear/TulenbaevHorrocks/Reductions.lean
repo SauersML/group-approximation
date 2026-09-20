@@ -278,7 +278,9 @@ theorem stHorrocksAt_of_localGlobal {n₀ : ℕ} (hLG : StLocalGlobalStatementAt
         ringMap (Polynomial.evalRingHom (0 : A)) β := by
       apply ringMap_laurentC_injective N
       have h' := h
-      rw [hα, hβ, ringMap_ringMap, ringMap_ringMap, toLaurentPos_comp_C, toLaurentNeg_comp_C] at h'
+      rw [hα, hβ, ringMap_ringMap (toLaurentPos A) Polynomial.C,
+        ringMap_ringMap (toLaurentNeg A) Polynomial.C,
+        toLaurentPos_comp_C, toLaurentNeg_comp_C] at h'
       exact h'
     rw [h2]
     exact hβ.symm

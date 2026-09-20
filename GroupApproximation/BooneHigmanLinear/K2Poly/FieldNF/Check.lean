@@ -50,13 +50,13 @@ section Defs
 variable (F : Type) [Field F]
 
 /-- `Q = S_K ⊔ V`, the stabilizer of `e_L` expected over `F_p`. -/
-def fnQ (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnQ (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
   fnS F K ⊔ fnV F K L
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.FieldNF.fnQ
 
 /-- The target over a field: `Z ⊔ Q`, with `Z = C(K₂(I, F))` the constant `K₂`. -/
-def fnZQ (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
+noncomputable def fnZQ (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial F)) :=
   fnZ F ⊔ fnQ F K L
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.K2Poly.FieldNF.fnZQ

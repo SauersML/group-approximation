@@ -38,6 +38,8 @@ namespace VdK
 open scoped commutatorElement Matrix
 open GroupApproximation.SteinbergGroup
 
+attribute [local irreducible] rowProd colProd
+
 variable {I A : Type*} [Fintype I] [DecidableEq I] [CommRing A]
 
 /-! ### Group identities -/
@@ -225,13 +227,15 @@ theorem yEl_conj_colProd {r s : I} {l j : I → A} (h : CommSetup r s l j) {v : 
 
 theorem yEl_conj_x_sr {r s : I} {l j : I → A} (h : CommSetup r s l j) (c : A) :
     yEl r l j * x s r h.1.symm c * (yEl r l j)⁻¹ = x s r h.1.symm c := by
-  have hc := yEl_conj_rowProd h (w := Pi.single r c) (Pi.single_eq_of_ne h.1.symm c)
+  have hc := yEl_conj_rowProd h (w := Pi.single r c)
+    (show (Pi.single r c : I → A) s = 0 by rw [Pi.single_eq_of_ne h.1.symm])
     (by rw [single_dotProduct, h.2.1, mul_zero])
   rwa [rowProd_single_ne s r h.1.symm] at hc
 
 theorem yEl_conj_x_rs {r s : I} {l j : I → A} (h : CommSetup r s l j) (c : A) :
     yEl r l j * x r s h.1 c * (yEl r l j)⁻¹ = x r s h.1 c := by
-  have hc := yEl_conj_colProd h (v := Pi.single r c) (Pi.single_eq_of_ne h.1.symm c)
+  have hc := yEl_conj_colProd h (v := Pi.single r c)
+    (show (Pi.single r c : I → A) s = 0 by rw [Pi.single_eq_of_ne h.1.symm])
     (by rw [dotProduct_single, h.2.2.2.1, zero_mul])
   rwa [colProd_single_ne s r h.1 c] at hc
 

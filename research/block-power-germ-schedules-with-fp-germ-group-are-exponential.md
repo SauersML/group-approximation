@@ -67,6 +67,17 @@ reviewed; no priority claimed).
 
 ## What it kills
 
+**Proposed exact extension (2026-09-20).** The third user-supplied
+manuscript adds `recurrence-scalar-germ-fp-iff-recurrent`: for finitely
+many eventually integral scalar profiles, eventual recurrence, finite
+rational shift rank, finite presentation and type `F_∞` are claimed
+equivalent. Its finite-forward-lattice and finite-window HNN lemmas
+are explicit unresolved prerequisites, documented in
+`research/artifacts/beyond-polynomial-germs/recurrence-and-matrix-proofs.md`.
+The existing necessary-growth argument here does not establish that
+new equivalence. Its `n!` and `2^(n²)` examples obstruct scalar germ
+finite presentation only, not Boone–Higman embeddability.
+
 This is Attempt 3 on `kourovka-7-19-explicit-fp-simple-group-with-non-pr-word-problem`.
 
 - **The design.** Place a reversible machine `m` on the annuli around a singular point, and run it `f(d)` steps

@@ -26,6 +26,8 @@ namespace VdK
 open scoped commutatorElement Matrix
 open GroupApproximation.SteinbergGroup
 
+attribute [local irreducible] rowProd colProd
+
 variable {I A B : Type*} [Fintype I] [DecidableEq I] [CommRing A] [CommRing B]
 
 theorem comp_single (f : A →+* B) (s : I) (b : A) :

@@ -10,6 +10,15 @@ requires:
   - fp-decidable-vertex-groups-have-fp-stabilizer-engines
 ---
 
+**Correction, 2026-09-20.** The historical deduction below has an additional
+algebraic error: `g ↦ (g,g⁻¹)` is not a homomorphism for nonabelian inputs.
+`inverse-diagonal-is-homomorphic-iff-abelian` now invalidates this route in
+the graph. Its commutator identity is true elementwise and does not fix the
+map. A perfect decidable finitely presented envelope from
+`mitosis-and-virtually-free-perfect-envelope-proof` supplies a legitimate
+replacement embedding where applicable; the engine premise remains refuted.
+The text below is retained as the historical failed deduction.
+
 Let `G` be a finitely generated group with solvable word problem. We may assume `G` is
 infinite, since finite groups embed in Thompson's `V`.
 
@@ -40,7 +49,7 @@ infinite, since finite groups embed in Thompson's `V`.
 
 ## Lesson for general BH
 
-Simplicity is free here: the engine's derived full group is simple for every infinite `B`, and
-the doubling trick puts any subgroup into the derived subgroup. Finite presentation is the
-whole problem, and it is confined to one emitter with a finitely presented, decidable germ
-group. So Track C is Boone–Higman "for one vertex": no global coding is needed.
+The asserted doubling embedding is invalid, as the correction above explains.
+A valid perfect-envelope construction repairs this algebraic step only.
+Finite presentation of the proposed engine remains a separate, already
+obstructed premise; finitely presented decidable germs do not supply it.

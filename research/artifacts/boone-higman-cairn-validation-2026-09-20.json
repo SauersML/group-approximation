@@ -1,0 +1,134 @@
+{
+  "scope": "Current snapshot Cairn compile, scoped lint/duplicate/Attempts/status checks; not mathematical or Lean verification",
+  "seconds": 17.24,
+  "nodes": 34409,
+  "claims": 17576,
+  "routes": 16833,
+  "scoped_nodes": 67,
+  "missing_scoped_nodes": [],
+  "scoped_findings": [],
+  "scoped_duplicates": [],
+  "missing_attempts": [],
+  "unexpected_statuses": {},
+  "statuses": {
+    "inverse-diagonal-is-homomorphic-iff-abelian": "ESTABLISHED",
+    "inverse-diagonal-homomorphism-criterion-proof": "COMPLETE",
+    "padded-abstract-rn-perfect-decidable-nonrecursive-kernel": "OPEN",
+    "padded-abstract-rn-local-derived-normal-subgroup-theorem": "OPEN",
+    "padded-abstract-rn-perfect-decidable-witness-via-structure": "OPEN",
+    "nonrecursive-a2-kernel-from-direct-padded-rn-witness": "OPEN",
+    "unsolvable-relative-quotient-via-direct-padded-rn": "OPEN",
+    "decidable-polynomial-function-obstruction-via-padded-rn": "OPEN",
+    "affine-rn-groups-and-rational-fixers-are-f-infinity": "OPEN",
+    "polynomial-valuation-germ-induction-preserves-marked-finiteness": "OPEN",
+    "polynomial-valuation-germ-towers-are-f-infinity": "OPEN",
+    "polynomial-valuation-germ-towers-via-marked-induction": "OPEN",
+    "polynomial-germ-clopen-action-structure": "OPEN",
+    "polynomial-unitriangular-lamps-embed-in-polynomial-germ-groups": "OPEN",
+    "polynomial-unitriangular-lamps-have-simple-f-infinity-hosts": "OPEN",
+    "polynomial-unitriangular-envelopes-via-germ-towers": "OPEN",
+    "q-difference-lamplighter-via-polynomial-germ-envelope": "OPEN",
+    "eventual-polynomial-lamp-embeddings-and-finite-actor-extensions": "OPEN",
+    "eventual-quasipolynomial-lamps-have-simple-f-infinity-hosts": "OPEN",
+    "eventual-quasipolynomial-envelopes-via-finite-actor-extensions": "OPEN",
+    "polynomial-radial-recursions-realize-the-full-germ-tower": "OPEN",
+    "noncontracting-polynomial-rn-groups-are-f-infinity": "OPEN",
+    "noncontracting-rn-finiteness-via-polynomial-germs": "OPEN",
+    "boone-higman-conjecture": "OPEN",
+    "boone-higman-via-fp-stabilizer-engines": "INVALIDATED",
+    "boone-higman-via-isolated-stabilizer-engines": "INVALIDATED",
+    "boone-higman-via-ck-maximal-kernel": "INVALIDATED",
+    "boone-higman-via-maximal-quotient-of-the-envelope": "INVALIDATED",
+    "q-difference-lamplighter-satisfies-boone-higman": "OPEN",
+    "shell-prefix-germ-is-not-normal-or-finite-index": "ESTABLISHED",
+    "aperiodic-point-stabilizers-in-germ-extensions-of-v-are-not-fg": "OPEN",
+    "some-a2-action-has-a-nonrecursive-kernel": "ESTABLISHED",
+    "fp-relatively-simple-pair-with-unsolvable-simple-quotient": "ESTABLISHED",
+    "multiscaling-polynomial-germ-towers-have-f-infinity-actors": "OPEN",
+    "multiscaling-lamps-have-simple-f-infinity-hosts": "OPEN",
+    "multiscaling-lamp-envelopes-via-polynomial-actors": "OPEN",
+    "compact-core-singfix-finiteness": "OPEN",
+    "two-species-bilateral-mapping-torus-hosts": "OPEN",
+    "observed-mapping-tori-have-simple-fk-hosts": "OPEN",
+    "observed-mapping-tori-via-compact-core-hosts": "OPEN",
+    "observed-twisted-v-lamps-have-simple-fk-hosts": "OPEN",
+    "observed-v-lamps-via-two-species-compact-cores": "OPEN",
+    "jordan-free-product-observations-separate-both-tails": "OPEN",
+    "jordan-free-product-tori-have-simple-f-infinity-hosts": "OPEN",
+    "jordan-tori-via-bilateral-observations": "OPEN",
+    "recurrence-scalar-germ-fp-iff-recurrent": "OPEN",
+    "integer-recurrence-tails-have-finite-forward-lattices": "OPEN",
+    "finite-window-metabelian-hnn-stabilizes": "OPEN",
+    "recurrence-scalar-germ-criterion-via-finite-windows": "OPEN",
+    "arithmetic-recurrence-germs-realize-compact-core-data": "OPEN",
+    "recurrence-nilpotent-lamps-have-simple-f-infinity-hosts": "OPEN",
+    "recurrence-nilpotent-hosts-via-compact-core": "OPEN",
+    "weighted-recurrence-matrix-germs-form-finite-type-bases": "OPEN",
+    "recurrence-matrix-lamps-have-simple-f-infinity-hosts": "OPEN",
+    "recurrence-matrix-hosts-via-weighted-compact-core": "OPEN",
+    "three-generator-recurrence-lamp-is-nonlinear": "OPEN",
+    "three-gen-nonlinear-recurrence-lamp-has-simple-host": "OPEN",
+    "three-gen-nonlinear-host-via-bilateral-recurrence": "OPEN",
+    "recurrence-radials-realize-rn-full-groups": "OPEN",
+    "recurrence-radial-rn-groups-are-f-infinity": "OPEN",
+    "recurrence-radial-rn-via-compact-core": "OPEN",
+    "polynomial-lamp-hosts-via-recurrence-envelope": "OPEN",
+    "dynamically-v-separated-groups-satisfy-boone-higman": "ESTABLISHED",
+    "dynamically-v-separated-host-singfix-proof": "COMPLETE",
+    "zoom-tower-germ-groups-give-f-infinity-germ-extensions": "ESTABLISHED",
+    "annular-free-factor-germ-extensions-fail-bhm-singfix": "ESTABLISHED",
+    "block-power-germ-schedules-with-fp-germ-group-are-exponential": "OPEN"
+  },
+  "other_findings_by_severity": {
+    "warning": 46
+  },
+  "other_findings_sample": [
+    [
+      "warning",
+      "restatement",
+      "research/artin-twisted-bt-fp-host-via-own-finite-presentation.md: prerequisite every-artin-self-twisted-bt-group-is-finitely-presented reads like a restatement of target every-artin-twisted-brin-thompson-group-embeds-in-fp-group; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-cloning-group-not-in-v-by-period-growth.md: prerequisite some-finite-cloning-system-group-is-not-locally-cocf reads like a restatement of target some-finite-cloning-system-group-does-not-embed-in-v; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-simple-rr0-sr1-via-weak-cancellation.md: prerequisite finite-simple-rr0-algebras-have-weak-cancellation reads like a restatement of target finite-simple-rr0-algebras-have-stable-rank-one; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/finite-simple-rr0-weak-cancellation-via-stable-rank-one.md: prerequisite finite-simple-rr0-algebras-have-stable-rank-one reads like a restatement of target finite-simple-rr0-algebras-have-weak-cancellation; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/quantum-rigidity-passes-to-sub-sfts-proof.md: prerequisite sft-crossed-product-fp-iff-quantum-rigid reads like a restatement of target quantum-rigidity-passes-to-sub-sfts; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/some-gl-n-z-in-no-nv-via-heisenberg.md: prerequisite heisenberg-group-embeds-in-no-brin-thompson-group reads like a restatement of target some-gl-n-z-embeds-in-no-brin-thompson-group; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-1-03-by-yes.md: prerequisite fg-group-qi-to-n-connected-geodesic-space-is-type-fn reads like a restatement of target zaremsky-1-03-qi-to-connected-space-implies-type-fn; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ],
+    [
+      "warning",
+      "restatement",
+      "research/zaremsky-1-19-by-yes.md: prerequisite raag-virtual-fn-kernel-implies-raag-fn-kernel reads like a restatement of target zaremsky-1-19-raag-virtual-fn-kernel-conjecture; if the route only renames the problem, replace the prerequisite with one that can independently fail"
+    ]
+  ],
+  "global_error_count": 0,
+  "bh_declared_closure": {
+    "claim": 244,
+    "route": 257
+  },
+  "bh_direct_routes": 43,
+  "status": "PASS"
+}

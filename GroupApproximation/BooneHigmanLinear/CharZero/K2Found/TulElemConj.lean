@@ -47,7 +47,9 @@ theorem E_conj_st (y : SteinbergGroup I A) {v w : I → A} (h : (v, w) ∈ U I A
           Matrix I I A)) := by
   have h' : ((((projection y : elementaryGroup I A) : (Matrix I I A)ˣ) : Matrix I I A) *ᵥ v,
       w ᵥ* ((((projection y : elementaryGroup I A) : (Matrix I I A)ˣ)⁻¹ : (Matrix I I A)ˣ) :
-        Matrix I I A)) ∈ U I A := RelPres.smulPair_mem_U _ h
+        Matrix I I A)) ∈ U I A :=
+    RelPres.smulPair_mem_U (I := I) (A := A)
+      ((projection y : elementaryGroup I A) : (Matrix I I A)ˣ) h
   rw [E_of_mem hX h, RelPres.elt_conj hX y (v, w) h]
   exact (E_of_mem hX h').symm
 
@@ -86,7 +88,7 @@ theorem ex_of_apply_one {r : I} {v w : I → A} (h : v r = 1) : ex hX r v w = E 
 /-- `x_ij(a) = X_i(e_i, a e_j)`. -/
 theorem x_eq_ex {i j : I} (hij : i ≠ j) (a : A) :
     x i j hij a = ex hX i (Pi.single i 1) (Pi.single j a) := by
-  rw [ex_of_apply_one hX (Pi.single_eq_same i (1 : A)), x_eq_E hX hij]
+  rw [ex_of_apply_one hX (v := Pi.single i 1) (r := i) (by simp), x_eq_E hX hij]
 
 #audit_axioms x_eq_ex
 
@@ -103,20 +105,21 @@ theorem ex_conj_x {i j r : I} (hij : i ≠ j) (hri : r ≠ i) (hrj : r ≠ j) {v
     memU (isUnimodular_of_apply (tl_apply v r)) (dot_tl hr hw _)
   have hsa : (Pi.single j a : I → A) = a • Pi.single j 1 := by
     rw [← Pi.single_smul', smul_eq_mul, mul_one]
-  have hvr : (v + (a * v j) • Pi.single i (1 : A)) r = v r := by
+  have hvr : (v + (a * v j) • Pi.single i 1 : I → A) r = v r := by
     simp [Pi.single_eq_of_ne hri]
-  have hvj : (v + (1 - v r) • Pi.single r (1 : A)) j = v j := by
+  have hvj : (v + (1 - v r) • Pi.single r 1 : I → A) j = v j := by
     simp [Pi.single_eq_of_ne hrj.symm]
   have c1 : Pi.single r (1 : A) + (Pi.single j a ⬝ᵥ Pi.single r 1) • Pi.single i 1 =
       Pi.single r 1 := by
     rw [dotProduct_single_one, Pi.single_eq_of_ne hrj, zero_smul, add_zero]
   have c2 : (v r - 1) • w - (((v r - 1) • w) ⬝ᵥ Pi.single i 1) • Pi.single j a =
-      ((v + (a * v j) • Pi.single i 1) r - 1) • (w - (a * w i) • Pi.single j 1) := by
+      ((v + (a * v j) • Pi.single i 1 : I → A) r - 1) • (w - (a * w i) • Pi.single j 1) := by
     rw [hvr, smul_dotProduct, dotProduct_single_one, smul_eq_mul, hsa]
     module
   have c3 : v + (1 - v r) • Pi.single r (1 : A) +
       (Pi.single j a ⬝ᵥ (v + (1 - v r) • Pi.single r 1)) • Pi.single i 1 =
-      v + (a * v j) • Pi.single i 1 + (1 - (v + (a * v j) • Pi.single i 1) r) • Pi.single r 1 := by
+      v + (a * v j) • Pi.single i 1 +
+        (1 - (v + (a * v j) • Pi.single i 1 : I → A) r) • Pi.single r 1 := by
     rw [single_dotProduct, hvj, hvr]
     module
   have c4 : w - (w ⬝ᵥ Pi.single i 1) • Pi.single j a = w - (a * w i) • Pi.single j (1 : A) := by

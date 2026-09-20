@@ -12,6 +12,10 @@ distinct_from:
   literal-word-problem-solvable: that computes the word problem of one specific group E built in this repository; this quantifies over all finitely generated groups with solvable word problem and asserts an envelope exists for each.
   novikov-boone-fp-group-undecidable-word-problem: that exhibits a finitely presented group whose word problem is undecidable, which is the other side of the same dividing line; this is about the groups on the decidable side and where they can be embedded.
 artifacts:
+  - research/artifacts/boone-higman-cairn-integration-2026-09-20.md
+  - research/artifacts/padded-abstract-rn-manuscript-integration-2026-09-20.md
+  - research/artifacts/polynomial-germ-unitriangular-manuscript-2026-09-20.md
+  - research/artifacts/beyond-polynomial-germs/beyond_polynomial_germs.md
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
   - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
@@ -49,6 +53,28 @@ if and only if `G` can be embedded into a finitely presented simple group."
 
 Only the direction above is open.  The converse is a theorem and is carried
 separately as `simple-envelope-forces-solvable-word-problem`.
+
+## September 20 manuscript integration
+
+The [integration and 43-route audit](artifacts/boone-higman-cairn-integration-2026-09-20.md)
+connects two supplied manuscripts to their actual dependencies. The
+`padded-abstract-rn-perfect-decidable-nonrecursive-kernel` proposal strengthens
+the obstruction to simple-quotient shortcuts; it does not refute this embedding
+conjecture. The polynomial-germ proposal supplies a new conditional route for
+`q-difference-lamplighter-satisfies-boone-higman` and larger unitriangular-lamp
+families. Both retain explicit unreviewed mathematical gates and classical
+inputs. Neither is a complete Lean proof or a universal BH solution.
+
+The inverse-diagonal step in two archived stabilizer-engine routes is now
+explicitly invalidated by `inverse-diagonal-is-homomorphic-iff-abelian`.
+The two identifiers missing from the supplied historical archive audit are
+present in this checkout; its counts are not current-tree measurements.
+
+The subsequent [Beyond polynomial germs integration](artifacts/beyond-polynomial-germs/beyond_polynomial_germs.md)
+adds proposed observed mapping-torus and recurrence-profile families, together
+with a scalar germ finite-presentation classification. The new compact-core
+SingFix theorem and its realizations are explicit unresolved prerequisites.
+These strengthen restricted targets, not the universal BH conclusion here.
 
 ## Why it is a root of this graph
 

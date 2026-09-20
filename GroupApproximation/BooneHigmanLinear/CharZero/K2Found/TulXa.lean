@@ -141,8 +141,8 @@ theorem pc_of_zero (v : I → A) {w : I → A} (u : I → A) {p : I} (h : w p = 
     pc v w u p q = 0 := by
   rw [pc, h, zero_mul, zero_smul]
 
-/-- A zero `l ≠ q` of `w` is a zero of every piece `pc v w u p q`. -/
 omit [Fintype I] in
+/-- A zero `l ≠ q` of `w` is a zero of every piece `pc v w u p q`. -/
 theorem pc_zero_of (v : I → A) {w : I → A} (u : I → A) {l q : I} (hl : w l = 0) (hlq : l ≠ q)
     (p : I) : pc v w u p q l = 0 := by
   by_cases hp : l = p

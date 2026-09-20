@@ -10,6 +10,14 @@ requires:
   - free-product-boundary-groupoids-carry-the-vertex-group-homology
 ---
 
+**Correction, 2026-09-20.** Step 1 below uses an inverse-diagonal map which
+is not a homomorphism for nonabelian G. This route is now explicitly
+invalidated by `inverse-diagonal-is-homomorphic-iff-abelian`, separately from
+the engine obstruction. A Clapham envelope followed by
+`decidable-fp-groups-embed-in-perfect-decidable-fp-groups` can replace that
+embedding step, but cannot prove the isolated-engine premise. The following
+deduction is retained as a historical failed argument.
+
 Let `G` be finitely generated with solvable word problem. We may take `G` infinite.
 
 1. **Doubling.** `G_1 = G ≀ Z/2` is finitely generated with solvable word problem.

@@ -43,7 +43,7 @@ abbrev rowOf (α : SteinbergGroup (Fin r) B) (j : Fin r) : Fin r → B :=
   Pi.single j 1 ᵥ* pMat α
 
 theorem rowOf_dot_colOf (α : SteinbergGroup (Fin r) B) (j i : Fin r) :
-    rowOf α j ⬝ᵥ colOf α i = Pi.single i (1 : B) j := by
+    rowOf α j ⬝ᵥ colOf α i = (Pi.single i (1 : B) : Fin r → B) j := by
   show (Pi.single j 1 ᵥ* pMat α) ⬝ᵥ (pMat α⁻¹ *ᵥ Pi.single i 1) = _
   rw [dotProduct_mulVec, vecMul_vecMul, pMat_mul_inv, vecMul_one, single_one_dotProduct]
 
@@ -76,18 +76,22 @@ theorem vecMul_single' (v : Fin r → B) (k l : Fin r) (e : B) :
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.vecMul_single'
 
 theorem colOf_x_mul (k l : Fin r) (hkl : k ≠ l) (e : B) (α : SteinbergGroup (Fin r) B)
-    (i : Fin r) : colOf (x k l hkl e * α) i = colOf α i + (-e * Pi.single i (1 : B) l) • colOf α k := by
+    (i : Fin r) : colOf (x k l hkl e * α) i =
+      colOf α i + (-e * (Pi.single i (1 : B) : Fin r → B) l) • colOf α k := by
   show pMat (x k l hkl e * α)⁻¹ *ᵥ Pi.single i 1 =
-    pMat α⁻¹ *ᵥ Pi.single i 1 + (-e * Pi.single i (1 : B) l) • (pMat α⁻¹ *ᵥ Pi.single k 1)
+    pMat α⁻¹ *ᵥ Pi.single i 1 +
+      (-e * (Pi.single i (1 : B) : Fin r → B) l) • (pMat α⁻¹ *ᵥ Pi.single k 1)
   rw [mul_inv_rev, pMat_mul, pMat_x_inv, ← mulVec_mulVec, add_mulVec, one_mulVec,
     single_mulVec_eq, mulVec_add, mulVec_smul]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.colOf_x_mul
 
 theorem rowOf_x_mul (k l : Fin r) (hkl : k ≠ l) (e : B) (α : SteinbergGroup (Fin r) B)
-    (j : Fin r) : rowOf (x k l hkl e * α) j = rowOf α j + (e * Pi.single j (1 : B) k) • rowOf α l := by
+    (j : Fin r) : rowOf (x k l hkl e * α) j =
+      rowOf α j + (e * (Pi.single j (1 : B) : Fin r → B) k) • rowOf α l := by
   show Pi.single j 1 ᵥ* pMat (x k l hkl e * α) =
-    Pi.single j 1 ᵥ* pMat α + (e * Pi.single j (1 : B) k) • (Pi.single l 1 ᵥ* pMat α)
+    Pi.single j 1 ᵥ* pMat α +
+      (e * (Pi.single j (1 : B) : Fin r → B) k) • (Pi.single l 1 ᵥ* pMat α)
   rw [pMat_mul, pMat_x, ← vecMul_vecMul, vecMul_add, vecMul_one, vecMul_single', add_vecMul,
     smul_vecMul]
 

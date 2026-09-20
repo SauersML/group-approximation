@@ -152,7 +152,7 @@ theorem conj_xvw_of_avoid {r : I} {y : SteinbergGroup I A} (hy1 : y ∈ colAvoid
   have h1 : y * rowProd r (i r • j) * y⁻¹ = rowProd r ((i r • j) ᵥ* matInv y) :=
     conj_rowProd hy1 (by rw [Pi.smul_apply, hjr, smul_zero])
   have h2 : y * colProd r i * y⁻¹ = colProd r (mat y *ᵥ i) := by
-    have h0 : (i - Pi.single r (i r)) r = 0 := by
+    have h0 : ((i - Pi.single r (i r)) : I → A) r = 0 := by
       rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
     rw [← colProd_sub_single_self r i (i r), conj_colProd hy2 h0, Matrix.mulVec_sub, hsingle,
       colProd_sub_single_self]

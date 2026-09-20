@@ -162,7 +162,8 @@ noncomputable def tulX_of_elements
     obtain ⟨u, rfl⟩ := exists_row_of_mem ht
     have hd := dec_of_adm (by omega) hw
     have hd' : w ∈ Submodule.span B (two0 (c • v)) :=
-      Submodule.span_mono (fun x hx => ⟨dot_smul_zero c hx.1, hx.2⟩) hd
+      Submodule.span_mono (show two0 v ⊆ two0 (c • v) from
+        fun x hx => ⟨dot_smul_zero c hx.1, hx.2⟩) hd
     have hcu : ((c * c) • u) ⬝ᵥ v = c * (u ⬝ᵥ (c • v)) := by
       rw [smul_dotProduct, dotProduct_smul, smul_eq_mul, smul_eq_mul]
       ring
@@ -173,11 +174,14 @@ noncomputable def tulX_of_elements
     obtain ⟨u₁, hu₁⟩ := exists_row_of_mem ht
     obtain ⟨u₂, hu₂⟩ := exists_row_of_mem htc
     have hd0 : w ∈ Submodule.span B (two0 (v + c • v')) :=
-      Submodule.span_mono (fun x hx => ⟨dot_add hx.1 (dot_smul_zero c hx.2.1), hx.2.2⟩) hw
+      Submodule.span_mono (show TwoZero.twoZeroSet v v' ⊆ two0 (v + c • v') from
+        fun x hx => ⟨dot_add hx.1 (dot_smul_zero c hx.2.1), hx.2.2⟩) hw
     have hd1 : w ∈ Submodule.span B (two0 v) :=
-      Submodule.span_mono (fun x hx => ⟨hx.1, hx.2.2⟩) hw
+      Submodule.span_mono (show TwoZero.twoZeroSet v v' ⊆ two0 v from
+        fun x hx => ⟨hx.1, hx.2.2⟩) hw
     have hd2 : w ∈ Submodule.span B (two0 v') :=
-      Submodule.span_mono (fun x hx => ⟨hx.2.1, hx.2.2⟩) hw
+      Submodule.span_mono (show TwoZero.twoZeroSet v v' ⊆ two0 v' from
+        fun x hx => ⟨hx.2.1, hx.2.2⟩) hw
     rw [tX_eq E _ hd0 hu, tX_eq E _ hd1 hu₁, tX_eq E _ hd2 hu₂]
     exact Xa_col_add (E B) _ hw c u u₁ u₂ (hu₁.trans hu.symm) (hu₂.trans (by rw [hu]))
   conj := by

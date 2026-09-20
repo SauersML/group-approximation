@@ -9,6 +9,14 @@ artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
 
+**Current graph status (2026-09-20): INVALIDATED.** The encoded universal
+maximal-kernel premise is refuted by
+`poisoned-ck-envelopes-have-no-fng-maximal-kernel`. The older discussion
+below calling it simply open must be read with this distinction: the clean,
+specific-marking construction still has a separate unresolved kernel problem.
+The conditional deduction below would apply to a justified premise for that
+specific construction; the new padded RN manuscript supplies no such premise.
+
 Let `G` be finitely generated with solvable word problem.
 
 By `boone-higman-thompson-simple-envelope`, applied to `G × Z` so that the
@@ -53,6 +61,16 @@ source for that cover. Finite presentation of the elementary image itself
 has not been established, so it cannot replace the cover in this criterion.
 
 ## What the route does not deliver
+
+**September 20 obstruction.** The proposed
+`padded-abstract-rn-perfect-decidable-nonrecursive-kernel` gives a decidable
+finitely presented perfect envelope with a finitely presented normally
+generating simple core whose unique maximal kernel is not even c.e. See the
+[direct proof artifact](artifacts/padded-abstract-rn-manuscript-integration-2026-09-20.md)
+and its unresolved structural prerequisite. Thus those generic properties
+cannot justify dropping this route's explicit kernel premise. This is not a
+refutation of the construction-specific CK premise and does not invalidate
+the conditional implication above.
 
 No uniformity.  The choice of `M` is by Zorn and is not computable from a
 presentation of `G`, so even if this route closes, it produces no algorithm

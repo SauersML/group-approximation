@@ -36,8 +36,12 @@ theorem actGen_kills (g : elementaryGroup I A) (r : FreeGroup (RGen I A 𝔄))
   | add v w w' h₁ h₂ h₃ =>
       simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
       rw [mul_inv_eq_one]
-      have hs := (smulPair_mem (𝔄 := 𝔄) hG h₁).add (smulPair_mem hG h₂)
-      refine (X_add _ _ _ (smulPair_mem hG h₁) (smulPair_mem hG h₂) hs).trans (X_congr ?_ _ _)
+      have h₁' : RMem 𝔄 ((G : Matrix I I A) *ᵥ v,
+          w ᵥ* ((G⁻¹ : (Matrix I I A)ˣ) : Matrix I I A)) := smulPair_mem hG h₁
+      have h₂' : RMem 𝔄 ((G : Matrix I I A) *ᵥ v,
+          w' ᵥ* ((G⁻¹ : (Matrix I I A)ˣ) : Matrix I I A)) := smulPair_mem hG h₂
+      have hs := h₁'.add h₂'
+      refine (X_add _ _ _ h₁' h₂' hs).trans (X_congr ?_ _ _)
       exact Prod.ext rfl (add_vecMul _ _ _).symm
   | conj p q hp hq hc =>
       simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
@@ -156,7 +160,7 @@ theorem smulPair_elementaryUnit {i j : I} (hij : i ≠ j) (t : A) (q : (I → A)
 
 theorem rmem_std {i j : I} (hij : i ≠ j) {c : A} (hc : c ∈ 𝔄) : RMem 𝔄 (stdPair i j c) := by
   refine ⟨isEColumn_single i, fun k => ?_, ?_⟩
-  · change Pi.single j c k ∈ 𝔄
+  · change (Pi.single j c : I → A) k ∈ 𝔄
     by_cases hk : k = j
     · rw [hk, Pi.single_eq_same]
       exact hc
@@ -170,7 +174,7 @@ theorem rmem_std {i j : I} (hij : i ≠ j) {c : A} (hc : c ∈ 𝔄) : RMem 𝔄
 /-- Two generators commute when the first fixes the pair of the second. -/
 theorem commute_of_conjPair {p q : (I → A) × (I → A)} (hp : RMem 𝔄 p) (hq : RMem 𝔄 q)
     (h : conjPair p q = q) : Commute (X p hp) (X q hq) := by
-  have hc := X_conj p q hp hq (h ▸ hq)
+  have hc := X_conj p q hp hq (by rw [h]; exact hq)
   rw [X_congr h _ hq] at hc
   exact (mul_inv_eq_iff_eq_mul.mp hc)
 
@@ -207,7 +211,8 @@ theorem X_std_adjacent {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ 
           Pi.single j a + -Pi.single k (a * b)
         rw [single_dotProduct, Pi.single_eq_same, mul_one, ← smul_eq_mul, Pi.single_smul',
           sub_eq_add_neg]
-    rw [X_conj (stdPair j k b) (stdPair i j a) (rmem_std hjk hb) (rmem_std hij ha) (hpair ▸ hsum),
+    rw [X_conj (stdPair j k b) (stdPair i j a) (rmem_std hjk hb) (rmem_std hij ha)
+        (by rw [hpair]; exact hsum),
       X_congr hpair _ hsum,
       ← X_neg (Pi.single i 1) (Pi.single k (a * b)) (rmem_std hik hab) htu,
       X_add (Pi.single i 1) (Pi.single j a) (-Pi.single k (a * b)) (rmem_std hij ha) htu hsum]
@@ -216,7 +221,7 @@ theorem X_std_adjacent {i j k : I} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ 
     have hpair : conjPair (stdPair i j a) (stdPair i k (a * b)) = stdPair i k (a * b) :=
       conjPair_std_std hij.symm hik.symm a (a * b)
     rw [X_conj (stdPair i j a) (stdPair i k (a * b)) (rmem_std hij ha) (rmem_std hik hab)
-      (hpair ▸ rmem_std hik hab), X_congr hpair _ (rmem_std hik hab)]
+      (by rw [hpair]; exact rmem_std hik hab), X_congr hpair _ (rmem_std hik hab)]
   have hinv : X (stdPair j k b) (rmem_std hjk hb) * (X (stdPair i j a) (rmem_std hij ha))⁻¹ *
       (X (stdPair j k b) (rmem_std hjk hb))⁻¹ =
       X (stdPair i k (a * b)) (rmem_std hik hab) * (X (stdPair i j a) (rmem_std hij ha))⁻¹ := by

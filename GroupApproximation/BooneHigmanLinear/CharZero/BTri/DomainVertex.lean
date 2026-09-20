@@ -202,7 +202,7 @@ theorem exists_sl_smul_eq_std (hp : Prime p) (x : Vertex A (Localization.Away p)
   have hcong : ((detVal hp g : ℤ) : ZMod 3) = ((i.val : ℤ) : ZMod 3) := by
     have : ((i.val : ℕ) : ZMod 3) = vertexType hp (vertexOf A (Localization.Away p) p g) := by
       rw [hi, stdOfType]
-      exact ZMod.natCast_zmod_val _
+      exact ZMod.natCast_zmod_val (vertexType hp (vertexOf A (Localization.Away p) p g))
     rw [vertexType_vertexOf] at this
     rw [← this]
     exact (Int.cast_natCast _).symm

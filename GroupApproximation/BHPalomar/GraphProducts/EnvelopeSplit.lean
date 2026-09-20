@@ -3,6 +3,7 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import GroupApproximation.BHPalomar.GraphProducts.Main
+import GroupApproximation.BHPalomar.GraphProducts.RelativeAction
 import Mathlib.GroupTheory.Subgroup.Simple
 
 /-!
@@ -20,8 +21,9 @@ each cut down to what is used:
   finitely presented simple group that is mixed-identity-free. Only rank 2 of MIF is required
   (`IsMIF2`); BFFHZ's MIF quantifies over all ranks and implies it.
 * `TheoremE2`: Theorem E at `n = 2`. If `H` is finitely presented, simple and MIF in rank 2, then
-  `Aut_H(H ∗ F₂)` admits an action of type (A). BFFHZ use MIF only for faithfulness
-  (their Lemma "faithful"), and at `n = 2` that proof uses only rank-2 mixed identities.
+  `Aut_H(H ∗ F₂)` admits an action of type (A). The canonical action and its faithfulness
+  and transitivity are proved in `RelativeAction`. Finite presentation, a finitely generated
+  identity-substitution stabilizer, and finitely many diagonal orbits remain to be proved.
 
 `envelopeInput_of_embedding_theoremE2` combines them, and `question31_of_embedding_theoremE2`
 answers Question 3.1 from these two statements alone.
@@ -30,12 +32,6 @@ answers Question 3.1 from these two statements alone.
 namespace GroupApproximation.BHPalomar.GraphProducts
 
 open Monoid
-
-/-- `H` has no mixed identities in two variables: every nontrivial `w ∈ H ∗ F₂` survives some
-`H`-homomorphism `H ∗ F₂ → H` (one that is the identity on `H`). -/
-def IsMIF2 (H : Type) [Group H] : Prop :=
-  ∀ w : Coprod H (FreeGroup (Fin 2)), w ≠ 1 →
-    ∃ φ : Coprod H (FreeGroup (Fin 2)) →* H, (∀ h : H, φ (Coprod.inl h) = h) ∧ φ w ≠ 1
 
 /-- **BFFHZ Theorem C, (i) ⇒ (iv)**, as used: a group with an action of type (A) embeds in a
 finitely presented simple group without mixed identities in two variables. -/
@@ -49,6 +45,19 @@ def EnvelopeEmbedding : Prop :=
 def TheoremE2 : Prop :=
   ∀ (H : Type) [Group H], Group.IsFinitelyPresented H → IsSimpleGroup H → IsMIF2 H →
     ∃ (S : Type) (_ : MulAction (relAut H 2) S), IsTypeA (relAut H 2) S
+
+/-- The canonical action proves Theorem E once its three finiteness conditions are proved.
+Faithfulness is supplied by the checked mixed-identity argument, not an additional input. -/
+theorem theoremE2_of_retractionSpace
+    (hfin : ∀ (H : Type) [Group H], Group.IsFinitelyPresented H → IsSimpleGroup H →
+      IsMIF2 H →
+      Group.IsFinitelyPresented (relAut H 2) ∧
+      (MulAction.stabilizer (relAut H 2) (identityRetraction H)).FG ∧
+      Finite (MulAction.orbitRel.Quotient (relAut H 2)
+        (RetractionSpace H × RetractionSpace H))) : TheoremE2 := by
+  intro H _ hfp hs hM
+  obtain ⟨hfp', hst, horb⟩ := hfin H hfp hs hM
+  exact ⟨RetractionSpace H, inferInstance, hM.isTypeA_retractionSpace hfp' hst horb⟩
 
 /-- The two literature statements give `EnvelopeInput`. -/
 theorem envelopeInput_of_embedding_theoremE2 (hC : EnvelopeEmbedding) (hE : TheoremE2) :

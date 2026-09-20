@@ -25,6 +25,12 @@ Steps 1--3 are correct and are exactly the near-solution.  **Step 4 is
 false.**
 
 Dead at `fp-quotient-iff-kernel-finitely-normally-generated`.
+The [September 20 direct RN manuscript](artifacts/padded-abstract-rn-manuscript-integration-2026-09-20.md)
+proposes a stronger simultaneous obstruction: even decidability, perfectness
+and a finitely presented normally generating simple core can coexist with a
+unique simple quotient that is not recursively presentable. Its new structural
+proof remains a separate review gate; the elementary invalidation of this
+historical route does not depend on that proposed example.
 A quotient of a finitely presented group is finitely presented if and only if
 its kernel is finitely normally generated; for a general normal subgroup it
 is only finitely generated.  The standing counterexample is any surjection

@@ -4,6 +4,7 @@ id: tracial-internality-does-not-supply-local-witness-control
 kind: claim
 title: Tracial norm estimates and abstract commutants alone do not certify all-state energy domination or tensor-site locality
 artifacts:
+  - research/artifacts/qpcp-full-target-continuation-2026-09-20.md
   - research/artifacts/qpcp-integration-ledger-2026-09-20.md
 distinct_from:
   kazhdan-commutants-are-internal: that identifies an entire relative commutant in a fixed tracial matrix ultraproduct; this gives finite-dimensional counterexamples to substituting trace estimates or abstract algebra structure for all-state energy and prescribed tensor support.
@@ -31,3 +32,9 @@ These are specific failed inferences, not a proof that group methods can
 never help quantum PCP. Applying Liu's internality and Thom's normalization
 to local witness verification still needs a finite efficient compiler with
 all-state estimates, specified support, completeness, and resource bounds.
+
+The [full-target continuation](artifacts/qpcp-full-target-continuation-2026-09-20.md)
+explicitly grants the recorded nonhyperlinear consequences and still
+requires the additional state-local compiler. Its shared-record,
+classical-code and Choi tests are finite-dimensional arguments independent
+of the analytic imports; none supplies the missing implication.

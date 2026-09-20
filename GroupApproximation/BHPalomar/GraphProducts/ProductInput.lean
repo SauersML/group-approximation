@@ -51,11 +51,11 @@ theorem isTypeA_sum (h₁ : IsTypeA Γ₁ S₁) (h₂ : IsTypeA Γ₂ S₂) : Is
   obtain ⟨f₁, p₁, s₁, o₁⟩ := h₁
   obtain ⟨f₂, p₂, s₂, o₂⟩ := h₂
   refine ⟨⟨fun {g h} hgh => Prod.ext ?_ ?_⟩, isFinitelyPresented_prod Γ₁ Γ₂, ?_, ?_⟩
-  · refine FaithfulSMul.eq_of_smul_eq_smul fun s => ?_
+  · refine FaithfulSMul.eq_of_smul_eq_smul fun s : S₁ => ?_
     have h1 := hgh (Sum.inl s)
     rw [sum_smul_inl, sum_smul_inl] at h1
     exact Sum.inl_injective h1
-  · refine FaithfulSMul.eq_of_smul_eq_smul fun t => ?_
+  · refine FaithfulSMul.eq_of_smul_eq_smul fun t : S₂ => ?_
     have h1 := hgh (Sum.inr t)
     rw [sum_smul_inr, sum_smul_inr] at h1
     exact Sum.inr_injective h1
@@ -84,9 +84,9 @@ theorem isTypeA_sum (h₁ : IsTypeA Γ₁ S₁) (h₂ : IsTypeA Γ₂ S₂) : Is
     refine finite_orbits_iff.mpr ⟨
       (Prod.map Sum.inl Sum.inl) '' F₁ ∪ (Prod.map Sum.inr Sum.inr) '' F₂ ∪
         (fun p : S₁ × S₂ => ((Sum.inl p.1 : S₁ ⊕ S₂), (Sum.inr p.2 : S₁ ⊕ S₂))) ''
-          (Prod.fst '' F₁ ×ˢ Prod.fst '' F₂) ∪
+          ((Prod.fst '' F₁) ×ˢ (Prod.fst '' F₂)) ∪
         (fun p : S₂ × S₁ => ((Sum.inr p.1 : S₁ ⊕ S₂), (Sum.inl p.2 : S₁ ⊕ S₂))) ''
-          (Prod.fst '' F₂ ×ˢ Prod.fst '' F₁),
+          ((Prod.fst '' F₂) ×ˢ (Prod.fst '' F₁)),
       (((hF₁.image _).union (hF₂.image _)).union (((hF₁.image _).prod (hF₂.image _)).image _)).union
         (((hF₂.image _).prod (hF₁.image _)).image _), ?_⟩
     rintro ⟨x, y⟩
