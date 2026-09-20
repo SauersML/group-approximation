@@ -184,3 +184,24 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     stronger kill of `Γ_p`.
   - Survivors: quotients without FM, e.g. non-amenable groups with an amenable action without finite
     orbits.
+- **2026-09-20 (swarm-0917-w23-w23-nv-break): a free linear part is enough for relative (T) (new
+  witness class; no embedding yet).**
+  - `char-p-burger-pairs-for-nonamenable-subgroups-of-sl2-fq-t` (ESTABLISHED in this lane, not
+    reviewed) proves that `(Λ ⋉ F_q[t]², F_q[t]²)` has relative (T) for *every* non-amenable
+    `Λ ≤ SL_2(F_q[t])`, and in particular for a free `F ≤ SL_2(F_q[t])`. The route is Burger's: an
+    invariant mean on `P¹(F_q((1/t)))`, then the amenable boundary action of the Bruhat–Tits tree.
+  - So a copy of `F ⋉ F_q[t]²` in `[[X]]` suffices. It is a subgroup of `Γ_p`, so it is a strictly
+    weaker target than `Γ_p`. Its base is locally finite, as the forced shape requires.
+  - Its quotient `F` fails (τ) and fails property FM. So the wave 18–21 class kills that need a (τ)
+    or FM quotient do not reach it (live-bus nodes, not in this worktree).
+  - The rank-two affine kill of wave 19 still applies when `F ⋉ F_q[t]²` is finitely generated. It
+    then asks for a uniform spectral gap of `F` on congruence-type finite quotients, which is a
+    super-strong-approximation question for thin subgroups of `SL_2(F_q[t])`. The countable version,
+    with `F_q[t]²` not finitely generated as an `F`-module, is outside that kill.
+  - Not established: relative (T) for a finitely generated `F`-submodule `N ⊂ F_q[t]²` of infinite
+    index. The proof above uses that `M` is all of `R²`, through duality with `K²/R²`.
+  - **Next falsifiable step:** embed the countable group `F ⋉ F_q[t]²` in `W(Z)`, or in `[[X]]`, by a
+    one-sided linear-CA lamp realization over `(F_p²)^N`, in the manner of the lifting criterion of
+    `char-p-burger-lamp-realizations-refute-haagerup`, with the linear part only free.
+    Alternatively, show that every faithful bounded-displacement action of it has amenable
+    character orbits near `0`.
