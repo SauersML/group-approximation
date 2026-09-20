@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BooneHigmanLinear.RelGen.ZTools: Unknown constant
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/RelGen/ZTools.lean` is red on main at 516e496a4a (trusted batched probe, job direct-b1789910605). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/BooneHigmanLinear/RelGen/ZTools.lean:114:19: Unknown constant `Polynomial.mem_map_C_iff`

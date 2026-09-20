@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.Manuscript.NonMF.Full.GL06d.OuterMonogonDiagram: 
 **OPEN.** Lean module `GroupApproximation/Manuscript/NonMF/Full/GL06d/OuterMonogonDiagram.lean` is red on main at 13d4765e1b (trusted batched probe, job direct-b1789850259). It IS in the root closure: the root build is red until it is fixed (top priority).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/Manuscript/NonMF/Full/GL06d/OuterMonogonDiagram.lean:117:2: unsolved goals

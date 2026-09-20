@@ -11,7 +11,7 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 
 
 
-**First errors (verbatim; from probe job direct-b1789910605 on main 516e496a4a).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/BooneHigmanLinear/PaninAffine/Cor29.lean:375:2: Type mismatch

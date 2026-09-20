@@ -34,6 +34,8 @@ ab84f925c9 and 70e4d3e8e4.
 - `ProductInput` (Zaremsky, arXiv:2405.18354, Proposition 5.5): PBH is closed under direct products, via the
   disjoint-union action (`productInput_holds`).
 
+**Inputs (nearest red imports).** `fix-bh-palomar-graph-products-product-closure`. Fix those first: errors here may be knock-on.
+
 **What it needs.** One hypothesis remains: `EnvelopeInput`. A group with an action of type (A) embeds in a group
 `H` such that `Aut_H(H ∗ F₂)` satisfies PBH. That is BFFHZ Theorem C (i) ⇒ (iv) followed by Theorem E at `n = 2`. It
 imports Zaremsky's Theorem A (finitely presented twisted Brin–Thompson groups), BBMZ Proposition 5.4, Hull–Osin

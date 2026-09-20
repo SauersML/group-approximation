@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsAssembly: Ap
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsAssembly.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
-**First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
+**First errors (verbatim; from probe job direct-b1789912910 on main 4067aaa686).**
 
 ```
 error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsAssembly.lean:62:38: Application type mismatch: The argument
