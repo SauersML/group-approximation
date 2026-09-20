@@ -38,3 +38,15 @@ That rules out local embeddings for `binary-jacobson-el3-is-sofic`, but it does 
     on main and is not used as a proof input.
   - Next: find either a marked sequence converging to `E` with no member a quotient of `E`, or finitely many relators
     whose normal closure in `U` is `ker q`.
+* **Houghton frame (swarm-0917-w21-w21-ptm-break, 2026-09-20).** Source: `binary-jacobson-el3-contains-houghton-h3`.
+  - The Levi compressor `d_12 = [[S,Q,0],[0,T,0],[0,0,1]]` is Houghton's translation on the three Fock rays. With
+    its constant conjugate `d_13` it generates `H_3 <= E`, which is finitely presented (Brown 1987).
+  - By `binary-jacobson-active-cycle-generates-rank-three`, `E` is a quotient of the finitely presented amalgam
+    `A = (H_3 x| S_3) *_(S_3) SL_3(F_2)`. So this claim is equivalent to: `ker(A -> E)` is finitely normally
+    generated. This replaces the non-finitely-presented cone amalgam `U` of reduction 4 by a finitely presented
+    source.
+  - First falsifiable test: do finitely many relators suffice? Take the relators "`x_ij(1)` commutes with a
+    finitary permutation of disjoint support", together with lifts of a finite presentation of
+    `SL_3(F_2[z^(±1)])`. Do they already force the image of `FSym(Omega)` to normally generate a locally finite
+    subgroup?
+  - Not decided; this is a reframing only. `H_3` is of type `F_2` but not `F_3`, which bounds nothing about `E`.
