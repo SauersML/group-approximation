@@ -361,3 +361,68 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
   - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
     refuted, because MF of `N` is unknown.
+- **2026-09-20, swarm-0917-w23-w23-titz-break (breaker, calibration audit).  Status: OPEN.**
+  - *Target.* Look for a false load-bearing step among the kills that currently shape the (IO)
+    region, and in this node's own body text. No new claim was produced. One body-text error was
+    found (item 1); the two audited kills (items 2 and 3) stand.
+  - **1. The body paragraph "Moreover, the kernel can never be LEF" is false as written.**
+    - Its proof uses "every infinite operator-MF Kazhdan group has an infinite residually finite
+      quotient". That is `mf-kazhdan-group-without-finite-quotients-is-trivial`, which
+      `lef-kazhdan-group-without-finite-quotients-exists` refutes. The 2026-09-12 correction inside
+      `exact-kazhdan-radical-kernel-cannot-be-lef` already records that (EKL2) is false and (EKL1)
+      is open.
+    - So the paragraph's three conclusions do not hold:
+      - "the required kernel is sofic but non-LEF";
+      - "no marked limit of finite groups can supply it";
+      - "this closes the former alternating-mother branch".
+    - They also contradict this node's own w12 decomposition: the route
+      `torsion-free-sofic-exact-mf-radical-via-lef-kernel` has an LEF kernel, which is a marked
+      limit of finite groups.
+    - Correct reading of that region:
+      - `K` is sofic, Kazhdan and quotientless;
+      - `K` is LEF **iff** `G ∈ 𝒫`, by `permanence-closure-radical-witnesses-have-lef-kernels`;
+      - the LEF case is exactly `torsion-free-lef-kazhdan-kernel-with-exact-mapping-torus-radical`.
+    - The alternating-mother branch is still live for (L1): the torsion-free alternating-mother
+      limits are listed there as a program. Only its quotient-permuting (L2) test case is dead
+      (Attempt 1 of that node).
+    - Readers should treat body lines "Moreover, the kernel can never be LEF ... See
+      `exact-kazhdan-radical-kernel-cannot-be-lef`" as superseded.
+  - **2. Audit of `relation-gaps-forbid-fp-mapping-tori` (w15): the kill stands.** It is
+    load-bearing, because it removes every graded small cancellation kernel from (IO), including
+    the Kazhdan Tarski monster. Checked:
+    - Lemma 0 uses surjectivity of `ᾱ` to normalize words to `u t^k`, and it is supplied.
+    - Step 2 needs `R ≥ L² + 1`, so that `α(v_x)x^{-1}` and `β(w_x)x^{-1}` lie in the truncation
+      and `ᾱ` is an automorphism. `R_1` includes it.
+    - Step 3 is a genuine sandwich, because `R_fin ⊆ N_{≤R}` for `R ≥ R_1`.
+    - Part C, Step 4 uses exactly `Q_3` (`max|R_n| = O(ρ_n)`) and Lemma `asc` (c), (d) from the
+      verbatim OOS import, and nothing else. This gives `λ_n/m_n → ∞`.
+    - Part D uses only the hyperbolicity of `G(0)` and the Tarski property.
+    - No gap was found. Belief is unchanged: (IO) kernels have `L_ψ`-bounded gaps over every finite
+      generating set.
+  - **3. Independent check of the w22 bus lemma `kazhdan-multiplicity-rigidity-kills-exact-cover-models`
+    (not landed at this writing).** Its key input is true, with a constant that is uniform in the
+    dimension.
+    - Setting: `Λ = ⟨S⟩` has Kazhdan constant `κ` for `S`, and `ε = κ²/(4|S|)`.
+    - Claim: if `ρ, σ` are finite-dimensional unitary representations of `Λ` on the same space
+      with `max_s ‖ρ(s) − σ(s)‖ ≤ δ_0`, where `δ_0 = 1/(2k)` and `2(1−ε)^k < 1/2`, then `ρ ≅ σ`.
+    - Proof sketch:
+      - Let `A = (2|S|)^{-1} Σ_s (s + s^{-1})` and `M = (1 + A)/2`.
+      - In every unitary representation, the orthocomplement of the invariant vectors has
+        `⟨(1−A)v, v⟩ = (2|S|)^{-1} Σ_s ‖sv − v‖² ≥ κ²/(2|S|)` for unit `v`. So `‖M^k − P‖ ≤ (1−ε)^k`,
+        where `P` is the projection onto the invariant vectors.
+      - For an irreducible `π`, the representations `ρ ⊗ π̄` and `σ ⊗ π̄` are still `δ_0`-close on
+        `S`. So `‖M^k_{ρ⊗π̄} − M^k_{σ⊗π̄}‖ ≤ k δ_0 = 1/2`.
+      - Their invariant projections are then at distance `< 1`, so they have equal rank. That
+        rank is the multiplicity of `π`.
+      - Hence `m_π(ρ) = m_π(σ)` for every `π`, and so `ρ ≅ σ`.
+    - So the exact-cover-model kill cannot be broken at this step.
+  - **Ideas screened and not pursued, because they are already in the graph:**
+    - Wang finiteness gives quasirandom LEF models (`kazhdan-bounded-unitary-types-are-finite`,
+      `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`);
+    - conditional (L1) via the OOS monster (`hyperbolic-rf-gives-torsion-free-lef-quotientless-kazhdan`);
+    - "LEF plus finitely presented implies RF", which forces (IO) on the LEF route (already in the
+      forced structure of the LEF hole).
+  - *What would change belief next.* Take an (IO) candidate kernel with `L`-bounded gaps that is
+    not graded small cancellation, such as a finitely `L`-presented branch-type Kazhdan group.
+    Exhibit its LEF models, and test (L2) against the w22 rigidity. That rigidity forces any MF
+    periodization to use models that are not exact covers.
