@@ -201,3 +201,29 @@ direction is used here.
   Calibration: positive definiteness of `tau` alone does not give fibre
   maximality for nonamenable `N`. There is an example on `F_2 x Z/2` with
   `sigma(1) = 1.08 > sigma(0) = 1`.
+* **Approximation and transfer at isolated pairs (stability-approximation,
+  2026-09-20, swarm-0917 w20,
+  `fpbs-isolated-pairs-defeat-amenable-kernel-approximation`, ESTABLISHED).**
+  The transfer lemma of `fpbs-l2-gap-transfers-to-kesten-normal-gap` extends
+  to every limit of amenable-kernel pairs (AA pairs). That class does not
+  cover the half (alpha).
+  - `V x V`, with `V` Thompson's group, lies in (alpha), with witnesses
+    `V x 1` and `1 x V`, and these are its only proper nontrivial normal
+    subgroups.
+  - Every marking of `V x V` is isolated, and each witness pair is isolated
+    among marked pairs.
+  - A kernel that contains a finitely presented, infinite, simple, nonamenable
+    subgroup is never a limit of amenable kernels.
+
+  **Invariant:** isolation of the witness pair. **Failing step:** Step 2 (the
+  tower) of `fpbs-l2-gap-transfers-to-kesten-normal-gap-proof`. Every argument
+  of the following kinds reduces to the gap at `(V x V, V x 1)` itself:
+  - local convergence, or lower semicontinuity of `chi^N` or `p_c`;
+  - compactness of `X_(k,eta)`, or Baire density;
+  - finite models;
+  - Følner compression.
+
+  Corollary B and the uniform Kesten law are silent there. Følner compression
+  along the amenable wq-normal subgroup `<g> x 1` certifies only the global l2
+  gap, which already gives `p_c < p_u`. The gap on `V x V` stays open. A proof
+  of (alpha) must work at isolated pairs directly.
