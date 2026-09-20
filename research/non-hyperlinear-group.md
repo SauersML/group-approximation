@@ -3709,3 +3709,20 @@ included -- can feed it; and the naive regeneration of enemies one congruence
 floor down is refuted by an exact Weyl identity
 (`weyl-reverser-blocks-naive-swap-twist-descent`), the same rank-two rigidity
 that closes the coprime sector.  The surviving descent is dihedral only.
+
+## Attempts
+
+- **2026-09-20, Liu's claim (proof claimed, under review).** J. Liu, *Nonhyperlinear groups
+  exist* (September 20, 2026; obtained with the Danus automated reasoning system), claims
+  that the binary Kun--Thom lamp wreath `W = (direct_sum_(G/Gamma) C_2) semidirect G` is not
+  hyperlinear. Here `Gamma = EL_3(F_2[x_1,x_2,x_3]) < G = EL_3(F_2[x^(±1)]) semidirect SL_3(Z)`.
+  The claim is recorded, with full credit, in `kun-thom-lamp-wreath-is-not-hyperlinear`:
+  - Liu: internality of Kazhdan commutants, and the unconditional assembly;
+  - Thom's preprint: the normalization theorem, with priority, and the conditional
+    construction;
+  - Kun--Thom: the pair and the lamps;
+  - OpenAI: the compression criterion.
+
+  This root stays OPEN until independent reviews of that proof pass. The consistency sweep
+  `research/artifacts/gq-nh-record-consistency-sweep.md` found no established node that
+  contradicts the claim.
