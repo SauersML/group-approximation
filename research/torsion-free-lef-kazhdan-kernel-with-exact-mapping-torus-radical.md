@@ -12,6 +12,7 @@ distinct_from:
 artifacts:
   - research/quotient-permuting-and-ambient-inner-mapping-tori-are-lef.md
   - research/char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless.md
+  - research/kazhdan-multiplicity-rigidity-kills-exact-cover-models.md
 ---
 
 **OPEN.** There exist a nontrivial finitely generated group `K` and `φ ∈ Aut(K)` such that
@@ -113,3 +114,30 @@ this class; the claim stays OPEN.**
   - Coefficient rings in which the lamp corner is null for every invariant rank function, which is
     the Hilbert-hotel, rank-function-free side. There, soficity of the kernel is the open problem.
   - Proofs of (LK3) that do not go through compression certificates at all.
+
+**Attempt 3 (swarm-0917 w22-titz-last1, stability-approximation): multiplicity rigidity at the
+wrap. The exact-cover class is dead. (LK3) is reformulated as relative liftability. The claim
+stays OPEN.** See `kazhdan-multiplicity-rigidity-kills-exact-cover-models` (ESTABLISHED).
+
+- **The class.** Operator-norm models of `G` whose `K`-part lifts to exact representations of the
+  finite-radius cover `K~_1 = <S | R_0 ∪ ŵ(R_0)>`. Blocks, images and the wrap unitary `T` are
+  arbitrary. For LEF `K`, this includes `[π_n ∘ ι_n]` for local embeddings `ι_n` into finite
+  groups `Q_n` and any representations `π_n` of `Q_n`. That covers the very models of
+  `lef-implies-operator-mf` which make `K` MF. By (GP), it also includes `R_0`-exact permutation
+  blocks, Gassmann blocks among them, with any `T`. This removes the block-monomial and regularity
+  hypotheses of `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`.
+- **The invariant.** The multiplicities `m_σ` over irreducible `σ` of the Kazhdan cover. The
+  operator-norm Kazhdan projection on `ρ ⊗ σ̄` moves by less than `1` under a perturbation of size
+  `δ_0 = 1/⌈4q ln 4/κ²⌉`, in every dimension.
+- **Where every member dies.** At the wrap. `T U T*` and `U ∘ ŵ` are exact representations of
+  `K~`, so they are equivalent, and `T` can be replaced by an exact intertwiner. The pair then
+  satisfies the finite presentation of `G`, so it factors through `K`. Malcev (or finiteness of
+  the image) then kills a quotientless `K`.
+- **What this gives for (LK3).** By (RL), with (LK1) and (LK2) given, (LK3) is equivalent to the
+  following: every norm-corona model of `G` lifts, on `K`, exactly on the finite set `R_1`. So a
+  refutation of (LK3) for a candidate needs a model whose `K`-part is norm-unstable for `K~_1`: an
+  asymptotic representation not asymptotic to genuine ones. LEF-type exact local data never gives
+  one.
+- **What survives.** Genuinely non-exact almost-representations of `K~_1`. (MR) says nothing about
+  them. The obstruction to (LK3) is therefore exactly norm instability of a finitely presented
+  Kazhdan cover at points factoring through `K`.
