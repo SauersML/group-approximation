@@ -2,7 +2,7 @@
 rg: 2
 id: ct-z-21-74a-reductions-must-move-coarse-components
 kind: claim
-title: "Kourovka 21.74(a) sees only coarse structure: whether g permutes a residue partition depends only on the action of g on the clopen sets fixed by some power of g; machine (FRACTRAN, counter) encodings change only thin sets, and positive-ray elements without neutral primes have computable coarse structure, so an undecidability reduction needs a rank-two family whose invariant clopen structure itself depends on halting"
+title: "Kourovka 21.74(a) sees only coarse structure: whether g permutes a residue partition depends only on the action of g on the clopen sets fixed by some power of g; the known machine (FRACTRAN, counter) encodings change only thin sets, and positive-ray elements without neutral primes have computable coarse structure, so an undecidability reduction needs a rank-two family whose invariant clopen structure itself depends on halting"
 distinct_from:
   ct-z-residue-partitions-cannot-carve-thin-invariant-sets: that proves thin invariant sets cannot contain a co-class; this states the general principle behind it, and says what any reduction must do instead.
   ct-p-z-positive-ray-kourovka-21-74a-is-decidable: that decides the positive ray; this records why the known undecidability techniques cannot reach the rest.
@@ -14,7 +14,7 @@ not a solution.
 
 ## Principle (coarse action)
 
-For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) = W` for some `k ≥ 1`.
+For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) = W` for some `k ≥ 1`. Here `Ẑ` is the full profinite completion of `Z`, since 21.74(a) allows residue classes of any modulus; only then is every part of every partition clopen (referee repair, bh-ref-d, e64cfcbeeb).
 - **Claim.** If `g, g′ ∈ CT(Z)` have `𝒞(g) ⊆ 𝒞(g′)` and `ĝ(W) = ĝ′(W)` for all `W ∈ 𝒞(g)`, then
   YES(`g`) implies YES(`g′`). So YES is a function of the pair `(𝒞(g), ĝ|_(𝒞(g)))`, the *coarse
   action*.
@@ -23,7 +23,7 @@ For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) 
 
 ## Corollaries (the three known routes, and why they stop)
 
-1. **Machine encodings touch only thin sets.**
+1. **The known machine encodings touch only thin sets.** This is scoped to the known counter and FRACTRAN encodings (71b76e027, a95cb1edf); no general theorem is proved (referee repair, bh-ref-d, e64cfcbeeb).
    - Counter-machine and FRACTRAN-type elements are multiplicative, i.e. valuation-coded, as in
      `ct-z-finite-cycle-problems-are-undecidable` and `ct-z-conjugacy-problem-is-undecidable`.
      The sets their computations create lie in valuation strata inside `pZ`.
@@ -32,7 +32,7 @@ For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) 
      change the coarse action.
 2. **The positive ray is computable (without neutral primes).** For slopes in `γ^Z` (`γ` an integer divisible by every modulus prime of `g`), `𝒞(g)` is generated
    by finitely many computable flow components with computable hulls, a finite-order part, and
-   holonomy-bounded fibres (`ct-p-z-positive-ray-kourovka-21-74a-is-decidable`). With neutral primes (`p ∤ γ`), an attractor and a repeller can share a rational fixed point, and the fibre depth is not bounded by that argument, so that case is open.
+   holonomy-bounded fibres (`ct-p-z-positive-ray-kourovka-21-74a-is-decidable`). With neutral primes (`p ∤ γ`), an attractor and a repeller can share a rational fixed point, and the fibre depth is not bounded by that argument. That case is decidable too, by radial truncation around the shared center (`ct-p-z-neutral-primes-kourovka-21-74a-is-decidable`, lane proof).
 3. **Brin–Thompson codings do not transplant.** Belk–Bleak's undecidability in `2V` rests on
    independent prefix writes on two coordinates, which CT(Z) cannot supply
    (`ct-z-torsion-problem-and-the-brin-thompson-transplant`, Theorem 2).
@@ -40,7 +40,7 @@ For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) 
 ## What a reduction would need
 
 - **The requirement.** A computable family `g_M` whose coarse action changes with halting, e.g.
-  two attractor basins whose clopen hulls merge iff `M` halts. By Corollary 2 it must have neutral primes or
+  two attractor basins whose clopen hulls merge iff `M` halts. By Corollary 2 it must have neutral primes (now excluded on a positive ray by `ct-p-z-neutral-primes-kourovka-21-74a-is-decidable`) or
   mixed-sign or rank-two slopes.
 - **The 2V analogue.** Belk–Bleak's Theorem 6.8 (`2V` has an attracting fixed point whose basin
   meets the dyadic points in a non-computable set, recorded in the torsion-problem node) is the
@@ -51,7 +51,7 @@ For `g ∈ CT(Z)`, let `𝒞(g)` be the set of clopen `W ⊆ Ẑ` with `ĝ^k(W) 
 
 ## Lesson for general BH
 
-**YES certificates are coarse; machine encodings touch only thin sets.**
+**YES certificates are coarse; the known machine encodings touch only thin sets.**
 - Box-level (coordinate) questions about an element see only its clopen invariant structure.
 - Computation embedded multiplicatively lives in thin strata, which that structure cannot see.
 - So the undecidable dynamics that CT(Z) supports (finite cycles, conjugacy) is invisible to

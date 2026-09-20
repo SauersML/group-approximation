@@ -1,5 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.HL1.RelMap
-import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Graded.Hom
+import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.HL1.Laurent
 import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Field
 
 /-!
@@ -54,9 +54,9 @@ def StHorrBInjAt (N : ℕ) : Prop :=
 
 #audit_axioms StHorrBInjAt
 
-/-- `𝔪R ⊆ R = A[T, T⁻¹]`. -/
+/-- `𝔪R ⊆ R = A[T, T⁻¹]`: the Laurent polynomials with coefficients in `𝔪`. -/
 abbrev mR : Ideal (LaurentPolynomial A) :=
-  Ideal.map (LaurentPolynomial.C : A →+* LaurentPolynomial A) (IsLocalRing.maximalIdeal A)
+  coeffIdeal (IsLocalRing.maximalIdeal A)
 
 /-- `𝔪R ∩ B`. -/
 abbrev mB : Ideal (horrBm A) :=
@@ -70,8 +70,12 @@ theorem mB_le : mB A ≤ (mR A).comap (horrBm A).subtype :=
   le_rfl
 
 theorem mP_le : mP A ≤ (mR A).comap (toLaurentNeg A) := by
-  refine Ideal.map_le_iff_le_comap.1 (le_of_eq ?_)
-  rw [Ideal.map_map, toLaurentNeg_comp_C]
+  refine Ideal.map_le_iff_le_comap.2 fun a ha => ?_
+  have e := RingHom.congr_fun (toLaurentNeg_comp_C (A := A)) a
+  rw [RingHom.comp_apply] at e
+  show toLaurentNeg A (Polynomial.C a) ∈ mR A
+  rw [e]
+  exact C_mem_coeffIdeal ha
 
 variable (N : ℕ)
 
