@@ -185,3 +185,45 @@ stays OPEN.** See `kazhdan-multiplicity-rigidity-kills-exact-cover-models` (ESTA
 - **What survives.** Genuinely non-exact almost-representations of `K~_1`. (MR) says nothing about
   them. The obstruction to (LK3) is therefore exactly norm instability of a finitely presented
   Kazhdan cover at points factoring through `K`.
+
+**Attempt 4 (swarm-0917 w23-titz-follow, operator-algebras): audit of the survivors of Attempt 3.
+No new class is killed. Two lifting reformulations coincide, and the lifting and winding shortcuts
+are dead. The claim stays OPEN.**
+
+- **(U) ucp form of (RL).** Let `K` be Kazhdan and quotientless, `φ` arbitrary (no finite
+  presentation needed). Then `Rad_MF(G) ⊇ K` iff every norm-corona model `Θ` of `G` has
+  `Θ|_(C*(K))` ucp-liftable to `∏ M_(k_n)`. Forward: a model trivial on `K` lifts by `x ↦ ε(x)·1`.
+  Backward: a ucp lift of a *-homomorphism into `∏/⊕` is asymptotically multiplicative, so Remark W
+  of `local-mf-stability-splits-into-rounding-gap-and-path-connection` gives `Θ(u_s) = 1`.
+  Together with (RL), for one model: R_1-liftable on `K` ⟺ ucp-liftable on `C*(K)` ⟺ trivial on `K`.
+  So the survivors of Attempt 3 are exactly the models that are not ucp-liftable on `C*(K)`. For
+  LEF `K` such kernel models exist, by `quotientless-lef-kazhdan-corona-trace-has-no-ucp-lift`.
+  What is open is whether one of them extends over `φ`.
+- **Dead shortcut 1: the LLP.** If `C*(G)` or `C*(K)` had Kirchberg's LLP, every `Θ` would lift:
+  local ucp lifts on finite-dimensional operator systems `E_j ↑`, extended to `C*(K)` by Arveson
+  in each `M_(k_n)`, glue diagonally. By (U), `Rad_MF(G) ⊇ K` would then hold for every `φ`. But
+  `C*(K)` is a conditionally expected subalgebra of `C*(G)`, so both cases give the LLP for `C*(K)`.
+  `K` is Kazhdan and not residually finite, so `llp-non-rf-kazhdan-group-is-non-hyperlinear` makes
+  it non-hyperlinear. That contradicts (LK1), since `K` is sofic. So every witness has
+  `C*(G)` without the LLP, and (LK3) needs a lifting property of norm-corona models only. That
+  property is not a C*-property of `C*(G)`.
+- **Dead shortcut 2: windings.** A winding functional of a `G`-model is a homomorphism on
+  `H_2(K; Z)` with `W ∘ φ_* = W`. So it factors through `H_2(G) ≅ H_2(K)_φ`, by the Wang sequence
+  and `H_1(K) = 0`. `mf-radical-is-blind-to-degree-two-windings` makes every survivor
+  winding-free after realification. So no winding certifies that a survivor is trivial, and none
+  certifies that it is nontrivial.
+- **Dead shortcut 3: torus-level (WK).** Take any central extension `1 -> Z -> G~ -> G -> 1`.
+  `[K~, K~]` of the preimage `K~` of `K` is a nontrivial perfect central extension of `K`. It is
+  quotientless: a finite quotient, modulo the image of the centre, is a finite quotient of `K`, so it
+  is cyclic, and being perfect it is trivial. `G~` is finitely presented, so if it were LEF it would
+  be residually finite, and so would its nontrivial quotientless subgroup `[K~, K~]`. That is
+  impossible. So LEF central-extension refutations in the style of
+  `mf-stable-kernels-lack-lef-nonsplit-central-extensions` never apply to the torus. They apply
+  only to `K` itself, which is not finitely presented.
+- **Next falsifiable step.** Every LEF-derived kernel model is R_1-liftable, so Attempt 3 already
+  kills its wraps. This includes the non-ucp-liftable model of
+  `quotientless-lef-kazhdan-corona-trace-has-no-ucp-lift`. A refutation of (LK3) therefore needs a
+  kernel model `Θ_0` that is neither R_1-liftable nor ucp-liftable, together with a corona unitary
+  `T` such that `T Θ_0(s) T* = Θ_0(w_s)`. The first test is a sharper question: is some
+  asymptotic `K`-representation of a LEF candidate at positive distance from every exact
+  representation of `K~_1`? If there is none, (LK3) holds for that candidate.
