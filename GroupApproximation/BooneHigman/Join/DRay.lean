@@ -161,9 +161,11 @@ theorem up_injective : Function.Injective (up n) := by
       List.replicate (N' / (n + 1)) (tl n) ++ [fc n (N' % (n + 1))] := by
     by_contra hne
     have hq : N / (n + 1) ≠ N' / (n + 1) ∨ fc n (N % (n + 1)) ≠ fc n (N' % (n + 1)) := by
-      by_contra hc
-      push_neg at hc
-      exact hne (by rw [hc.1, hc.2])
+      by_cases h1 : N / (n + 1) = N' / (n + 1)
+      · by_cases h2 : fc n (N % (n + 1)) = fc n (N' % (n + 1))
+        · exact (hne (by rw [h1, h2])).elim
+        · exact Or.inr h2
+      · exact Or.inl h1
     have hq' : N' / (n + 1) ≠ N / (n + 1) ∨ fc n (N' % (n + 1)) ≠ fc n (N % (n + 1)) := by
       rcases hq with hq | hq
       · exact Or.inl (Ne.symm hq)
@@ -202,7 +204,7 @@ theorem shF_inv {X : Type*} (g : Equiv.Perm (ℕ × Cantor X)) (p : ℕ × Canto
   | zero => rfl
   | succ N =>
     show ((g⁻¹ ((g (N, w)).1, (g (N, w)).2)).1 + 1, (g⁻¹ ((g (N, w)).1, (g (N, w)).2)).2) = _
-    rw [Prod.mk.eta, Equiv.Perm.inv_apply_self]
+    rw [Prod.mk.eta, perm_inv_apply_self]
     all_goals rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Join.shF_inv
@@ -240,7 +242,6 @@ theorem shHom_injective (X : Type*) : Function.Injective (shHom X) := by
   intro g h e
   ext ⟨N, w⟩ : 1
   have e1 := congrArg (fun f : Equiv.Perm (ℕ × Cantor X) => f (N + 1, w)) e
-  simp only at e1
   change ((g (N, w)).1 + 1, (g (N, w)).2) = ((h (N, w)).1 + 1, (h (N, w)).2) at e1
   rw [Prod.mk.injEq] at e1
   exact Prod.ext (by have := e1.1; omega) e1.2
