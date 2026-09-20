@@ -1,0 +1,11 @@
+$ python3 check_va_collapse.py 0
+== census distance certificates (VA-dist) ==
+chain64.npy  N= 64 unitarity_err=4.9e-14 D=0.282726 M=1.999494 dist_to_VA>=0.043455
+chain80.npy  N= 80 unitarity_err=8.8e-14 D=0.282938 M=1.999498 dist_to_VA>=0.043412
+chain96.npy  N= 96 unitarity_err=7.8e-14 D=0.280783 M=1.999501 dist_to_VA>=0.043843
+== generic-phase monomial search: min of D - min(1/2, M) ==
+n= 2 min_margin=-0.000000 at D=0.407319 M=0.407319
+n= 3 min_margin=0.916391 at D=1.416391 M=1.966110
+n= 4 min_margin=0.930428 at D=1.430428 M=1.957614
+n= 6 min_margin=1.137362 at D=1.637362 M=1.999079
+n= 8 min_margin=1.348211 at D=1.848211 M=1.976167

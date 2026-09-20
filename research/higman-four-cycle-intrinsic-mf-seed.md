@@ -291,3 +291,40 @@ construction is currently known; nearby-spectrum mixing is also not covered.
   - *What is left.* The only operation `S` lacks is taking quotients, and
     that is where `(HMF5)` sits. So is the residual (NAQ): f.g. simple
     amenable groups outside the closure `S_0`. **Still OPEN.**
+- **Virtually abelian tuples collapse, with a uniform 1/10 distance bound
+  (2026-09-20, swarm-0917-w23-w23-ptm-break, belief breaker).**  Result:
+  `virtually-abelian-higman-tuples-collapse-opnorm` (ESTABLISHED).
+  - *What was proved.* Cocycle averaging in `1 -> T -> K -> K/T -> 1`, with
+    `T = K^0` a torus, shows that every closed `K <= U(k)` with abelian
+    identity component is the closure of an increasing union of finite
+    subgroups.  So finite-image tuples are norm-dense in virtually abelian
+    tuples, and the finite-image collapse
+    `finite-image-higman-models-collapse-opnorm` passes to the closure.
+    - Every virtually abelian tuple with `D < 1/2` has `M <= D`, which is
+      sharp.
+    - Every tuple has `dist(u, VA) >= min((1/2-D)/5, (M-D)/6)`.
+    - Lifts of any nontrivial corona representation of `Hig` have
+      `limsup dist(u^(n), VA) >= 1/10`.
+  - *Reformulation.* `(HMF5)` holds if and only if (FA) holds: small defect
+    forces uniform operator-norm closeness to a finite-image tuple, or
+    equivalently to a virtually abelian tuple.
+  - *Class killed.*
+    - Monomial tuples with arbitrary, including irrational, phases.  This
+      corrects the reading that a torus-regauge search must use phases that
+      are not roots of unity.
+    - Normalizers of maximal tori.
+    - Clock-and-shift tuples with any angle.
+    - Sums and tensor products of the above.
+    - Any fixed compact group with abelian identity component.
+    - Everything within `1/10` of these along the sequence.
+    - In terms of the sterile class `S` above, every quotient
+      `prod K_n / {x_n -> 1}` with `K_n^0` abelian lies in `S`.  These are
+      quotients, which the closure operations of `S` do not reach.
+  - *Census.* The stored optima `chain64/80/96`, with `D ~ 0.28`, are
+    certified to be at distance `>= 0.043` from every virtually abelian
+    tuple.
+  - *What is left.* Any countermodel must have closures with a nonabelian
+    identity component, so the closure contains compact semisimple
+    subgroups.  The natural next transfer, bounded `dim [K^0,K^0]` through
+    the adjoint representation, meets unbounded highest weights.
+    **Still OPEN.**
