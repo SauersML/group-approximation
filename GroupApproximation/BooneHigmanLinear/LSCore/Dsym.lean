@@ -81,8 +81,7 @@ theorem dsym_mem_zAlpha (h42 : Thm42Statement) (hind : DsymRootIndep I A)
     change _ ∈ K2Found.relSt (Compl2 i j) (Ideal.Quotient.mk M)
     rw [K2Found.mem_relSt, ringMap_dsym, Ideal.Quotient.eq_zero_iff_mem.mpr hm]
     refine dsym_zero_right _ _ ?_
-    simp only [Units.coe_map, MonoidHom.coe_coe, hu, map_add, map_one, map_mul,
-      Ideal.Quotient.eq_zero_iff_mem.mpr hm, mul_zero, add_zero]
+    simp [hu, Ideal.Quotient.eq_zero_iff_mem.mpr hm]
   rw [h42 (Compl2 i j) h3 A M] at hker
   rw [hd]
   have hle : (Subgroup.closure (zSet (Compl2 i j) M fun _ _ => True)).map
