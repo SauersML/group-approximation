@@ -103,3 +103,17 @@ Neither removing exact models nor a fixed qc/qa separation proves this.
 Only the scoped research handoff is included in this integration. Unrelated
 concurrent Lean, Boone--Higman, and quantum-PCP work is not swept into its
 commit. The shared generated frontier is not overwritten.
+
+## Published source and validation
+
+The research source was committed and pushed to `main` as
+`c8f01a67ebca5011df8934ed4fe373b83f1928db`. Its Git tree exactly equals
+the independently checked pinned snapshot tree. The validation receipt is
+`final-handoff-validation-2026-09-20.json`; the three exact replay receipts
+are in `final-handoff-replay-2026-09-20.json`.
+
+The check loaded 34,390 nodes, added 80 nodes relative to the preceding
+validated research snapshot, and found no schema errors, duplicate
+candidates, removed nodes, or changes to surviving nodes' derived statuses.
+Both requested main targets remain OPEN. This final receipt-only update
+does not change any canonical claim, route, or mathematical source.
