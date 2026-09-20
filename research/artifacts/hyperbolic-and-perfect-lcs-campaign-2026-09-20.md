@@ -304,3 +304,10 @@ side, a genuinely different decoder must avoid requiring a uniformly
 positive corner reducing all the fixed controlled ports while preserving
 every honest model. Neither this particular model-preservation property
 nor reduction of these ports follows from bare YES-instance completeness.
+
+Concurrency note: during report commit `ccdeb61596`, another process
+regenerated shared `research/FRONTIER.md` between its download and staging.
+That preview includes additional pending working-tree nodes, not just the
+pinned snapshot above. Those concurrent changes were preserved. The
+validation JSON records both hashes and certifies only source commit
+`2d55562521`; it does not certify the other pending nodes in that preview.

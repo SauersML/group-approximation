@@ -54,5 +54,8 @@
   "source_commit_tree_matches_validation": true,
   "mathematical_review": "The three new claims have complete written proofs and internal cross-review, with no new numerical experiment. The degree-nine result depends on the previously independently checked Sym4 certificates. No Lean or external human certification.",
   "baseline_source_commit": "e6c57d4ad3",
-  "baseline_source_tree": "1fd09b13980716fa99de049103a83c6aff7755ff"
+  "baseline_source_tree": "1fd09b13980716fa99de049103a83c6aff7755ff",
+  "validated_frontier_sha256": "4b0009c04708d849dcf64ca916c6c234d5f2395fedd76912f86cd877e2e1de8c",
+  "shared_frontier_concurrency_note": "The shared research/FRONTIER.md was regenerated concurrently between download and staging of report commit ccdeb61596. That commit's frontier includes additional working-tree nodes and is not the pinned frontier covered by this report. Its changes were preserved; no validation of those additional pending nodes is claimed.",
+  "shared_frontier_sha256_at_report_commit": "800dd091067e3144c1443b0997f7416afe8b8aef35e9a8d7a822b41100b9f17c"
 }
