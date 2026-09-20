@@ -1,0 +1,3 @@
+{"n": 16, "L": 4, "|S|": 1, "tau": 1.8, "restarts": 1, "steps": 1500, "seed": 917, "init": "wit_L4_n8.npy", "D_upper": 0.18071362452684614, "ratio_sq_lower": 9.960510751266565, "sep_min": 1.8107175821110215, "secs": 20.7, "saved": "wit_L4_n16_warm.npy"}
+{"n": 32, "L": 4, "|S|": 1, "tau": 1.8, "restarts": 1, "steps": 1500, "seed": 917, "init": "wit_L4_n16_warm.npy", "D_upper": 0.15480794735588033, "ratio_sq_lower": 11.627310036364406, "sep_min": 1.8137672918098826, "secs": 32.6, "saved": "wit_L4_n32_warm.npy"}
+{"n": 64, "L": 4, "|S|": 1, "tau": 1.8, "restarts": 1, "steps": 1500, "seed": 917, "init": "wit_L4_n32_warm.npy", "D_upper": 0.23104240188496572, "ratio_sq_lower": 7.790777733068264, "sep_min": 1.8065998553210125, "secs": 93.5, "saved": "wit_L4_n64_warm.npy"}
