@@ -37,6 +37,18 @@ the local sectors.
 
 ## Reading
 
+**Why `M` is a bijection in the "permutation" rows.** The order-5 element fixes `p` and `q` and acts freely on the 5
+edges at each, as a 5-cycle, since no link edge is fixed. `M` is equivariant for these two cycles.
+- If every row of `M` has exactly one nonzero entry, the induced map `f` from edges at `p` to edges at `q` satisfies
+  `f(i+1) = f(i)+1` in the cyclic labelling. So it is a translation, hence a bijection.
+- The same holds in the `2 × permutation` rows.
+
+**Girth check (second run, `girth.py`, 09-19).** A direct BFS gives girth 10 for the `PSL_2(31)` coset graph (5952
+vertices) and girth 8 for the `U_4(5)` coset graph (250 vertices).
+- This settles the discrepancy in CCKW, where p. 37 says 14 for `p = 31` and Proposition 2.16 and p. 3 say 10. The
+  value is 10; 14 is the `p = 109` value.
+- The run was on acn112 under the same envelope, RC 0; the output is in `runs/girth.out`.
+
 - **At every flat passage (angle `π`), and at the slightly bent passages `D = 6, 7` at `A`, the five sectors
   propagate bijectively.** The ray then looks locally like a 5-sided wall.
 - **At the more bent passages the sectors merge.** Every sector at `p` reaches 3 to 5 sectors at `q`.
@@ -248,3 +260,51 @@ U_4(5): associative True relators trivial True [b,c,c] != 1 True generated 625 o
    pair type PP: D=6, geodesics=60, nonzero entries per row (4, 4, 4, 4, 4), entry values (2, 4): 100 ordered pairs
    pair type PP: D=6, geodesics=60, nonzero entries per row (5, 5, 5, 5, 5), entry values (2, 4): 100 ordered pairs
 ```
+
+## Referee (bh-ref-q12, 2026-09-19): the computation PASSES; its inputs match CCKW
+
+**The inputs, against CCKW** (arXiv:2011.09276v2, read in the PDF).
+- **`𝓗_31`.** Its presentation (Theorem 1.2) has vertex groups `⟨a,b⟩ ≅ PSL_2(31)`, `⟨c,a⟩ ≅ C_5 × C_5` and
+  `⟨b,c⟩ ≅ 𝒰_4(5)`, the 5-Sylow subgroup of `Sp_4(5)`. Its link girths are `10, 8, 4` (p. 3). So "U_4(5)" here is
+  CCKW's `𝒰_4(5)`.
+- **The matrices.** Proposition 2.16, the `p = 31` tuple, gives `a = [[8,14],[4,11]]` and `b = [[23,0],[14,27]]`,
+  with girth 10. The script uses exactly these, as projective classes mod `±1`.
+  - Both have determinant `1` mod 31.
+  - The generated group has order 14880 = `|PSL_2(31)|`.
+- **The pc-law is the group `⟨b,c | b^5, c^5, [b,c,b], [b,c,c,b], [b,c,c,c]⟩`.** Derived by hand, with
+  `u = [b,c]` and `z = [u,c]`:
+  - `bc = cbu`, `uc = cuz`, `[u,b] = 1`, and `z` central;
+  - `b^i c^j = c^j b^i u^(ij) z^(i·C(j,2))`.
+
+  This gives exactly the multiplication in `umul`. The exponent reductions mod 5 are consistent, since
+  `C(j+5,2) ≡ C(j,2)`. The presented group has order at most `5^4`, and this model realizes `625`, so they are equal.
+  So associativity holds algebraically, not only on the 3000 sampled triples.
+
+**The script computes what is claimed.**
+- *The link* is the coset graph `Γ_V(P, Q)`, with one edge per element. Since `P ∩ Q = 1`, it is simple.
+- *Fixed vertices* are `xE` with `gx ∈ xE`.
+  - The counts `6 + 6` agree with the normalizer: `|N(C_5)| = 30` in `PSL_2(31)`, and `a` is conjugate into
+    `⟨b⟩`.
+  - `25 + 0` agrees with `|C_(𝒰_4(5))(b)| = 125`, and `b` is not conjugate into `⟨c⟩`.
+  - At `B`-vertices the element of `Fix(a)` is a conjugate of some `b^j`, whose fixed cosets are those of `b`.
+- *`M[e][f]`* counts geodesics through the first and last edges. It uses shortest-path counts from `v1` at distance
+  `D − 2`, with the cases `D = 1, 2` handled.
+- *"Bijective"* is inferred correctly, but only implicitly.
+  - The summary shows single-entry rows for both `(p,q)` and `(q,p)` in the same class, and
+    `M(q,p) = M(p,q)^T`. So the columns are single-entry too, and `M` is a permutation, or twice one at `D = 7`.
+  - Say this in the table.
+- *Exits per entry* follow from the pair counts (12/6, 400/25, and so on), with totals `11` and `24`.
+
+**The reading.**
+- **The Cantor set of well-sectored rays: correct.** Every vertex has at least two bijective exits: `2+2+2` at `A`,
+  `16` at `B`, `4` at `C`.
+  - The edge stabilizer `⟨a⟩ ≅ C_5` acts simply transitively on the 5 chambers at each fixed edge.
+  - `M` commutes with that action, since `a` fixes `p` and `q`. So the sectors are permuted cyclically, as stated.
+- **Events (A)/(B) and one orbit per sector are correctly left undecided,** pending the local-to-global gallery
+  lemma.
+
+**A CCKW typo to be aware of.** The proof of Theorem 1.2 (p. 37) says the `p = 31` coset graph "has girth 14".
+Proposition 2.16 and p. 3 give 10, which is what Proposition 6.4 needs and what this run is consistent with (a
+minimum fixed distance of 5).
+
+**Verdict: PASS.**

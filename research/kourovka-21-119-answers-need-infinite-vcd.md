@@ -2,7 +2,7 @@
 rg: 2
 id: kourovka-21-119-answers-need-infinite-vcd
 kind: claim
-title: Any group answering Kourovka 21.119 is of type F_∞ with no torsion-free finite-index subgroup of finite cohomological dimension, and Thompson's group F does not answer it
+title: Any group answering Kourovka 21.119 is of type F_∞ with no torsion-free finite-index subgroup of finite cohomological dimension; for groups all of whose proper quotients are abelian the finite-index subgroups add nothing, so F and every F_{n,∞} fail
 distinct_from:
   zaremsky-1-01-type-fn-groups-embed-in-type-fn-plus-1: that is Kourovka 21.146 (embedding F_{n-1} groups in F_n groups); this is Schesler's 21.119 on kernels of characters of finite-index subgroups.
 artifacts:
@@ -29,6 +29,11 @@ Let `G` answer 21.119. Then:
 1. `G` is of type `F_∞`, and every `f_n` is nonzero.
 2. No finite-index subgroup of `G` is torsion-free of finite cohomological dimension.
 3. `G` is not commensurable with Thompson's group `F`.
+4. **Reduction for groups with only abelian proper quotients.** Let `G_0` be a group in
+   which every proper quotient is abelian and `[G_0, G_0]` is nonabelian. Then a group
+   commensurable with `G_0` answers 21.119 iff the characters `G_0 → ℤ` alone have kernels of
+   every finite finiteness length. The finite-index subgroups contribute nothing new.
+5. `G` is not commensurable with any generalized Thompson group `F_{n,∞}` (`n ≥ 2`).
 
 **Groups excluded by item 2.** Item 2 excludes every virtually torsion-free group of finite
 vcd. Examples:
@@ -89,9 +94,52 @@ Brin–Thompson groups `nV`, have no proper finite-index subgroups. Item 3 exclu
   - For `n ≥ 2`, the restriction of `f_n` to `G_n ∩ A` is nonzero.
   - Its kernel `ker f_n ∩ A` has finite index in `ker f_n`, so it is `F_n` but not `F_{n+1}`.
   - This contradicts the previous bullet, since `G_n ∩ A` is isomorphic to a finite-index
-    subgroup of `F`. ∎
+    subgroup of `F`.
+
+**Item 4.** Put `D = [G_0, G_0]`.
+- **`D` is perfect.**
+  - `[D, D]` is characteristic in `D`, hence normal in `G_0`.
+  - If `[D, D] ≠ 1`, then `G_0/[D,D]` is a proper quotient, hence abelian, so
+    `D ≤ [D, D]`.
+  - `[D, D] = 1` is impossible, since `D` is nonabelian.
+- **Every finite-index `H ≤ G_0` contains `D`.** The normal core of `H` is a nontrivial
+  normal subgroup (as `G_0` is infinite), so `G_0/core` is abelian and `D ≤ core ≤ H`.
+- **So characters of `H` come from `G_0`.**
+  - `D = [D, D] ≤ [H, H] ≤ D`, so `H^{ab} = H/D`, a finite-index subgroup of `G_0/D`.
+  - So every nonzero `f : H → ℤ` is `χ|_H` for a unique `χ : G_0 → ℚ` with `χ(H) ⊆ ℤ`.
+  - Its kernel `ker χ ∩ H` has finite index in `ker χ`, so both kernels have the same
+    finiteness properties. Rescaling `χ` to a map `G_0 → ℤ` does not change its kernel.
+- **Passing to commensurable groups.** This is the argument of item 3 with `F` replaced by
+  `G_0`.
+- **Both directions.** The converse direction takes `G_n = G_0` for every `n`. ∎
+
+**Item 5.** Zaremsky, *On the Σ-invariants of generalized Thompson groups and Houghton
+groups*, arXiv:1502.02620v1, read at source (p. 2), records two facts:
+- "every proper quotient of F_n is abelian [Bro87a, BG98]", where `F_n = F_{n,∞}`;
+- **Theorem A:** "For any n, m ≥ 2, we have Σ^m(F_n) = Σ^2(F_n)."
+
+So every kernel of a character of `F_{n,∞}` is either `F_∞` or not finitely presented.
+Item 4 then excludes the commensurability class. For `n = 2` this is item 3 again. ∎
 
 ## What an answer needs
+
+**The two regimes.** Item 4 splits the search into two regimes, and each points to one
+precise question.
+
+- **Thompson-like groups**, whose proper quotients are all abelian. Here the question is
+  whether one `F_∞` group has infinitely many distinct finite levels
+  `Σ^m ⊋ Σ^{m+1}` on its own character sphere, each witnessed by rational points.
+  - Every computed case stabilizes at `m = 2`: `F` (BGK) and `F_{n,∞}` (Zaremsky).
+  - So a candidate needs a character sphere whose Σ^m do not stabilize.
+- **Profinitely rich groups.** These need infinitely many finite-index subgroups with new
+  characters.
+  - By item 2 they need infinite vcd, or torsion without a torsion-free finite-index
+    subgroup.
+  - `F_∞` groups of infinite vcd in Kropholler's class `H𝔉` are not expected to exist.
+    Kropholler asked whether `FP_∞` groups in `H𝔉` have finite vcd; not rechecked here.
+  - So candidates lie outside `H𝔉`, which is the territory of Kourovka 21.140.
+
+**Further notes.**
 
 - An `F_∞` group of infinite vcd, or one that is not virtually torsion-free, in which
   finite-index subgroups carry characters of every finite finiteness length.

@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **Status.**
-- **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; not reviewed). It closes the transfer gap found by
+- **ESTABLISHED** (lane proof, bh-q12-kazhdan, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS). It closes the transfer gap found by
   bh-ref-c in the claims about `G ∗ Z` hosts.
 - Only the direction needed for uncountability is proved. The converse is not proved and not claimed.
 
@@ -72,3 +72,27 @@ distinct_from:
   of one generator over a Cantor set in `𝓗_31`'s own host.
 - **Not repaired: the converse.** A bounded `H`-host from a bounded `G`-host is not proved. It would need control of
   `s` at points with finite first syllable. It matters only for route 2, a bounded host.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS
+
+- **Part 1: correct.**
+  - `x^{-1}h = (x^{-1}g_1(h)) t^{e_1} ⋯` is a normal form, which gives `d_H(x,h) = d_G(x, g_1 h) + |h| − |g_1 h|`.
+  - Limits along `x_k → σ` therefore give `ι(σ)`. It is injective by restriction to `G`.
+  - Equivariance holds because `g_1(s^{-1}h) = s^{-1}g_1(h)` and the tail length is unchanged.
+- **Part 2: correct.**
+  - *The distance formula.* If `g_1(h) ≠ g`, no `t`-syllables cancel in `y^{-1}h`. If `g_1(h) = g`, then `h = g`,
+    since `|h| ≤ n ≤ |g|`. In both cases the formula for `d_H(y, h)` holds on `B_n^H`.
+  - *The atom relation.* Since `g_1(B_n^H) = B_n^G`, the relation for `|g_1(y′)| ≥ n` reduces to the
+    `B_n^G`-relation.
+  - *The exclusion.* `d_(y′)(g′t^{−sgn e}) − d_(y′)(g′t^{sgn e}) = 2`, while the formula gives 0; this uses that `w`
+    starts with a nontrivial `G`-syllable. The case `g_1(y′) = 1`, `e ≠ 0` is included with `g′ = 1`.
+  - *Shadows.* `Z^H_n(ισ) = π^{-1}(D) ∪ ι(Z^G_n(σ))`. The two parts are disjoint: points with a finite first
+    syllable restrict on `G` to a distance function `d_G(g,·) + c`, and root-copy points restrict to horofunctions
+    of `G`, which are unbounded below.
+- **Part 3: correct.**
+  - A regular `s` sends `Z^H_n(ισ)` to an atom shadow containing `ι sσ`, which is `Z^H_k(ι sσ)`. By the sandwich,
+    `k ∈ [n − 1, n + 1]`, so `k` is large and the shadow formula applies to it.
+  - Left multiplication by `s` preserves both parts of the decomposition, since `|g_1| ≥ n ≥ 2`. Comparing the
+    `ι`-parts and using injectivity of `ι` gives `s Z^G_n(σ) = Z^G_k(sσ)`.
+- **Scope.** The converse is correctly not claimed. The "What it repairs" items follow as stated, given their
+  source nodes.
