@@ -1,0 +1,22 @@
+{
+ "level": "U",
+ "classes": 50,
+ "fibre_sizes": [
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5,
+  5
+ ],
+ "transversals_total": 9765625,
+ "transversals_in_W": 0,
+ "example": null,
+ "A_plus_is_10": false,
+ "conclusion": "no transversal in W, so A_+ >= 20 by (TB2)",
+ "seconds": 0
+}
