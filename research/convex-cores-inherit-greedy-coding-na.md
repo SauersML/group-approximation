@@ -96,3 +96,23 @@ RSG, and a contracting one exactly when it satisfies (IRR).
      `lk_Y(v')`, not in `τ`, and whose far endpoint lies in `Y`. This fails if `v'` is a corner of `Y` where every
      minimal-star edge exits `Y`, so any proof must exploit the choice of core. A thicker convex hull
      (`N_R`-hull) has more edges at each vertex, and that is the natural next attempt.
+3. **2026-09-19 (lane `bh-q11-bridge`): the bridge reformulated, and two facts about corners for (L).** (lane proof, not
+   reviewed)
+   - **The bridge is equivalent to a typing problem.** By `quasiconvex-in-hyperbolic-racgs-iff-square-free-typing`, a
+     group is quasiconvex in a hyperbolic RACG iff it acts geometrically, freely on vertices, on a CAT(0) cube complex
+     with an invariant hyperplane typing into a finite square-free graph. Square-free vertex links are necessary.
+     - The bridge is posed in print by Douba–Fléchelles–Weisman–Zhu (arXiv:2309.03695, §1.2). It is recorded as the
+       open node `cubulated-hyperbolic-groups-are-quasiconvex-in-hyperbolic-racgs`.
+     - For (L), this means the complex `Y` may be **any** `Q`-cocompact typed complex, not only a core inside one fixed
+       ambient.
+   - **Corners never go away by thickening.** If `[W : Q] = ∞`, then no `Q`-cocompact convex `Y` equals `Σ`, since `Σ`
+     is not `Q`-cocompact. So some vertex of `Y` has an ambient edge leaving `Y`, and its link `lk_Y(v)` is a proper full
+     subcomplex of `L`. This holds for every `N_R`-hull.
+   - **Links can be cones.** In any convex `Y`, `lk_Y(v)` is the full subcomplex of `L` on the types whose edges at `v`
+     stay in `Y`. Taking `Y` to be the intersection of the halfspaces, containing `v`, of the hyperplanes of types
+     `O(t) = S ∖ St(t)` at `v` gives `lk_Y(v) = St(t)`, a cone with apex `t`. Lemma K assumes "no cone vertex". So any
+     proof of (L) must either choose `Y` to avoid cone links, or handle cone-link vertex types separately, with orders
+     chosen per `Q`-orbit of vertices.
+   - **Sub-target (L1).** Find a `Q`-cocompact typed `Y` in which no vertex link has a cone vertex. Lemma K then runs
+     inside every link. What would remain is the cross-type consistency of the orders. Whether (L1) is always possible is
+     open.
