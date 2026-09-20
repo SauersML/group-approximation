@@ -54,3 +54,16 @@ the negation of `thompson-v-has-unbounded-compact-unitary-relator-width`.
    `simple-group-classical-width-finite-field-linear-soficity` bound width in finite groups under a nonsoficity or
    non-linear-soficity hypothesis. `U(d)` is not finite, and its conjugacy classes are continua, so those counting arguments
    do not transfer.
+4. **Through the Stolz--Thom profile classification.** Dead as a route. Recorded by swarm-0917-w23-w23-nh-break.
+   - *The route.* Normal closures in `prod_u PU(n_i)` would be profile ideals (Stolz--Thom Theorem 4.16). Then bounded
+     width would follow from profile domination of `a(U)` by `R(U)` with a rank-independent `K`.
+   - *Why it dies.* `pu-ultraproduct-normal-subgroup-lattice-is-not-distributive` refutes Theorems 4.16 and 4.20. A
+     bounded-rank determinant charge separates rank-one elements with equivalent profiles. So no covering lemma that reads
+     only profiles can hold with rank-independent constants, and Dowerk--Thom's `ceil(n/s)` factor is necessary.
+   - *What survives.*
+     - For the simple group `V` the charge is absorbed (part E there).
+     - The profile inequality `ell_(Kt)(a(U)) <= K max_r ell_t(r(U))` is necessary for width `K` (part D), so a profile
+       witness for every `K` would refute this node.
+   - *Open corrected question.* For simple `V`, does "no profile witness" imply bounded width? A proof needs a
+     rank-independent relative covering statement for commutators. It would localize to blocks of dimension
+     `O(rank r(U))` and handle decaying profiles; Dowerk--Thom Theorem 1.1 handles only flat ones.
