@@ -186,3 +186,23 @@ same diagonal, tensor and conjugate argument as (U2).
     this claim.
   - *Where it stops.* Representations where `rho(t_s)` is not central and that are not Torelli-abelian monomial are
     untouched. This includes every representation with nonabelian Torelli image.
+- **2026-09-20, swarm-0917-w21-w21-deligne-break (reframing): TQFT/Galois class kill.** See
+  `mod-s2-tqft-twist-spectra-obey-the-cube-root-gap` (ESTABLISHED for (T1)--(T4), unreviewed).
+  - *Result.* Suppose the spectrum of `rho(t_s)` is `lambda {theta_a : a in L}`, where `L` is a Galois-stable set of
+    labels of a modular category. Then `rho(t_s)` is scalar, or `||rho(t_s) - mu I|| >= sin(pi/24)` for every `mu`.
+    - The constant comes from the sharp bound `max_j ||k j^2/n|| >= 1/24` over units `j`.
+    - The proof uses the Dong--Lin--Ng relation `theta_(sigma^ a)/theta_(sigma^ b) = sigma^2(theta_a/theta_b)`.
+  - *Scope.* Closing under characters, tensor products and finite direct sums, and applying (ML3) to the scalar
+    summands, gives the cube-root gap `sin(pi/24) ~ 0.1305` for this whole class.
+  - *Galois-stable labels.* `Irr(C_ad)` is Galois-stable for pseudounitary `C`, by Gelaki--Nikshych `C_ad = (C_pt)'`.
+  - *Invariant.* The `sigma^2` action on eigenvalue ratios.
+  - *Where every member dies.* "Spectrum near a point" forces "spectrum exactly a point", and that point lies in
+    `mu_10`.
+  - *Survivors.* A witness must have a separating-twist spectrum that is not a Galois-stable set of modular twists. The
+    options are:
+    - transcendental eigenvalues, as in the Jones deformation;
+    - irreducible RT summands that see only part of the channels;
+    - non-modular origin.
+  - *Open point.* The RT reading needs the channel set `{a <= x tensor x*}` to equal `Irr(C_ad)`. This is checked for
+    `SU(2)_k`, pointed and Ising-type categories, but it is not proved in general.
+  - *Status.* This node stays OPEN.
