@@ -11,23 +11,34 @@ distinct_from:
   contracting-groups-have-dying-kernel-covers-of-type-fn: that asks for dying-kernel F_n covers of every contracting group; this supplies them, of type F_infinity, for IMGs of PCF rational maps.
 ---
 
-**OPEN (proof claimed, under review).** The lane proof is by bh-sz-vdg, 2026-09-19. Referees:
-- bh-ref-g for this node;
-- bh-ref-q12 for `wreath-recursion-thompson-groups-inherit-fn`, the unreviewed lane proof it rests on.
-
-The status flips to ESTABLISHED only after both pass. No priority claimed.
+**OPEN (proof claimed; referee bh-ref-g PASS with repairs, `pcf-rational-nekrashevych-f-infinity-review`,
+78f3553770, conditional on the transfer theorem).** The lane proof is by bh-sz-vdg, 2026-09-19.
+- It rests on `wreath-recursion-thompson-groups-inherit-fn`, a lane proof that bh-ref-q12 is refereeing.
+- The status flips to ESTABLISHED once that passes.
+- No priority claimed; the referee also found no prior proof.
 
 **Search status.** The result was not found in:
 - Belk–Hyde–Matucci arXiv:2407.03149, which covers bounded automata;
 - Skipper–Zaremsky arXiv:1709.06524 and 2109.13389;
-- Nekrashevych arXiv:1312.5654, which proves finite presentation and asks the question;
+- Nekrashevych arXiv:1312.5654, which proves finite presentation of `V_f`;
 - a 09-19 web search.
+
+**The question.** The general question, `F_∞` for every contracting `G`, is Skipper–Zaremsky's (arXiv:1709.06524, TeX
+l.1365–1367). The `V_f` form is attributed to Nekrashevych arXiv:1312.5654, TeX l.171–175. That attribution rests on
+lane bh-free-06's reading of the source, recorded in `contracting-rover-nekrashevych-groups-are-f-infinity`, and was
+not re-checked here (repair of bh-ref-g). The abstract states only finite presentation.
+
+**Recalled inputs** (standard, not re-read at source by the lane or the referee):
+- `χ(O_f) ≤ 0`, i.e. Thurston's orbifold is hyperbolic or Euclidean;
+- expansion of PCF maps in the orbifold metric (Douady–Hubbard; Nekrashevych, *Self-similar groups*);
+- boundedness of IMGs of PCF polynomials, used only in the Scope section.
 
 ## Statement
 
-**Lemma 1 (short displacement is elliptic).** Let a group `Γ` act properly, cocompactly and by isometries on a proper
-geodesic space `Y`. Then there is `ε_0 > 0` such that for every `y ∈ Y`, every `γ` with `d(y, γy) < ε_0` lies in the
-stabilizer of some point of `Y`. That stabilizer is a finite subgroup.
+**Lemma 1 (short displacement is elliptic; standard, compare Bridson–Haefliger II.6.10).** Let a group `Γ` act
+properly, cocompactly and by isometries on a proper geodesic space `Y`. Then there is `ε_0 > 0` such that for every
+`y ∈ Y`, every `γ` with `d(y, γy) < ε_0` lies in the stabilizer of some point of `Y`. That stabilizer is a finite
+subgroup.
 
 **Lemma 2 (orbifold dying kernel).** Let `M` be a compact, connected, good 2-orbifold, possibly with boundary, carrying
 an orbifold length metric. Let `M_1 ⊆ M` be a closed suborbifold region, with `ι : M_1 → M` the inclusion, an orbifold
@@ -113,12 +124,15 @@ for every `r ≥ 1`.
 
 **New cases.**
 - Some PCF IMGs were already known to give `F_∞` groups:
-  - PCF polynomials, which have bounded IMGs;
+  - PCF polynomials, which have bounded IMGs (recalled), so BHM applies;
   - hyperbolic PCF maps, by `hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity`;
   - Euclidean-orbifold maps, where the orbifold group is itself `F_∞` and faithful, the Skipper–Zaremsky case.
-- The genuinely new ones are non-polynomial sub-hyperbolic maps, e.g. PCF rational maps whose Julia set is the whole
-  sphere and whose orbifold is hyperbolic, such as `f(z) = ((z−2)/z)^2` (recalled example).
-  - Their limit space is `S^2`, which is not finitely ramified, so they are not bounded.
+- The genuinely new ones are non-polynomial sub-hyperbolic maps with hyperbolic orbifold. An example would be a PCF
+  rational map whose Julia set is the whole sphere and whose orbifold is hyperbolic, i.e. `Σ_p (1 − 1/ν(p)) > 2`.
+  - **Repair (bh-ref-g):** the example `((z−2)/z)^2` given earlier is a Lattès map, with orbifold `(2,4,4)` and
+    `χ = 0`. It is Euclidean, so it is already covered, and it is withdrawn. No verified hyperbolic-orbifold example
+    is given here.
+  - For such a map the limit space is `S^2`, which is not finitely ramified, so its IMG is not bounded.
   - The activity growth of these IMGs is not computed here. The expectation is exponential, i.e. case (E) of
     `level-set-route-reaches-only-bounded-rover-nekrashevych-groups`. That is a check, not a claim.
 
