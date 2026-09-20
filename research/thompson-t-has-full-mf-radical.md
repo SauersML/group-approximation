@@ -98,3 +98,22 @@ separate points.  Two remarks limit the search.
     step is PW. A refutation of PW is a sequence of low-defect pairs with
     `12 kappa_P != 0`, and it would prove that `T` is MF. A proof of PW
     must use `r_2`.
+
+- **2026-09-20 (swarm-0917-w21-w21-ptl-break, calibration): the SL(2, Z)
+  family of corner witnesses is killed; target still open.**
+  - *Kill* (`thompson-t-square-central-quotients-have-no-small-corners`).
+    - Rounding an `eps`-corner to an exact pair moves `gamma = ||[A^2, B]||`
+      by at most `31 eps`. Then the re-derived w17 bound
+      `5 eps_2 + 2 eps_P + 45 gamma >= 2/3` applies to that pair.
+    - This gives `2373 eps + 45 ||P(pi([a^2,b]) - 1)P|| >= 2/3`.
+    - So a group with `a^2` central has no corner below `1/3560`, whatever
+      its size or diameter. This covers every `SL(2, Z/q)` (the test
+      family named by wave 20), `SL(2, Z)`, and every arithmetic model
+      through `Z/4 *_(Z/2) Z/6`.
+    - Invariant: the compressed square-commutator. An MF witness must
+      keep it `>= 2/135 - 52.8 eps` on the corner.
+  - *Side calibration.* No two of `r_1, r_2, r_P` suffice. Each proper
+    sub-presentation has a finite image (`A_5`, `A_6`, `Z/12`) where the
+    dropped relator survives.
+  - *What is left.* Only the far sector, where `a^2` is far from central on
+    the corner, remains open.
