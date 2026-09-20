@@ -457,3 +457,41 @@ group is abelian-by-free and sofic, while its bundle representation carries
 a noncanonical positive trace on a nonidentity two-lamp element.  Thus even
 allowing all countably many coset-lamp Fourier grades does not algebraize the
 IRS unless the normal-Dirac quotient has already solved the problem.
+
+The `F_p`-linear envelopes now face a single invariant fence that contains
+(DHA1), [[linear-haar-microstates-make-module-semidirect-products-sofic]]
+(ESTABLISHED, unreviewed). A module `A` has **linear sofic codes** if, along
+some sofic model `sigma` of the actor on `V`, the following hold at most
+vertices:
+
+- there are linear maps `iota_v : A_0 -> U` with
+  `iota_{sigma(lambda)^{-1}v}(a) = iota_v(lambda a)`;
+- each `iota_v` is injective on `Phi`.
+
+Dually, some subspace `L` of `(F_p^m)^V` has, at most vertices, window
+patterns exactly `K|_D`. Such codes give sofic approximations of
+`A semidirect Lambda` on `V x U` by affine maps
+`(v,u) -> (sigma(lambda)v, u + iota(a))`. Hence the module of any successful
+SL_3(Z) envelope must have **no** linear sofic codes along **any** sofic model
+of the actor.
+
+That one step excludes every module that is any of the following:
+
+- dense-homoclinic (this also upgrades the dense-homoclinic conclusion from CE
+  to soficity);
+- dense-periodic;
+- a submodule or directed union of modules with codes;
+- a permutation module `F_p[Lambda/Delta]` over a LERF actor.
+
+For coset and permutation modules over `SL_3(Z)`, which is not LERF, the
+fence gives a concrete test. A candidate `F_p[SL_3(Z)/Delta]` can survive only
+if the truncated balanced-product code fails. That means some finite Schreier
+ball of `SL_3(Z)/Delta` has a loop subgroup `J_q` that is not profinitely
+separated from the finitely many path elements `c` moving `q` inside the ball.
+
+The converse, that a sofic semidirect product always has linear codes, is the
+new open hole
+[[sofic-module-semidirect-products-have-linear-haar-microstates]]. If it holds,
+this fence loses nothing against soficity. The earlier worry that the converse
+would force every group to be sofic is void: over a free actor, `F_p[F/N]`
+always has codes, by M. Hall's LERF theorem.
