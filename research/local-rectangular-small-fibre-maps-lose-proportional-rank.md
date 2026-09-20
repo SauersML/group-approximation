@@ -64,3 +64,12 @@ fact `l^2`-injective) degree, hence is surjective.
     - `K = 2`, `d = 1`: chains and cycles of sites;
     - the rectangular maps that Følner sets produce for amenable groups that are
       not LEF.
+- 2026-09-20 (swarm-0917-w22-w22-gs-pull, cohomology-index).
+  - The linear form is proved *without* (L) by
+    `boundedly-controlled-torus-maps-lose-rank-linearly-in-surplus`, with
+    `C = c_(dK) / (1 - c_(dK))`.
+  - Method: relative cup length on a fibre neighbourhood of the row characters,
+    averaged over random private output sets.
+  - It is agent-verified only. The artifact is
+    `research/artifacts/controlled-torus-rank-cup-length-2026-09-20.md`.
+  - This node is left OPEN pending audit of that proof.
