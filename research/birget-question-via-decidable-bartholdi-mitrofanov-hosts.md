@@ -149,9 +149,42 @@ false and is withdrawn.
      - `([a, bab], 1, 1) ∈ Q` is nontrivial, since `a·bab` and `bab·a` differ at `d0^∞`. So `Q` has nontrivial rigid
        vertex stabilizers. Bartholdi's non-finite-presentation theorem for branch groups needs contraction, so it
        does not apply.
-     - The clean sub-question: **is the relator kernel of `Q = ⟨(d0 d1)(1,a,a), (d1 m1)(b,1,1)⟩` a finitely
-       generated lift ideal, equivalently is `V_3(Q)` finitely presented?** How `Q` sits in `G_1` is not
-       checked.
+   - **Theorem (lane proof, unreviewed): (c) holds for the core. `N_Q = ⟨⟨b²⟩⟩_lift`, so `V_3(Q)` is
+     finitely presented, and `Q` embeds in a finitely presented simple group.** Write `0, 1, h` for
+     `d0, d1, m1`, so that `a = (0 1)(1,a,a)` and `b = (1 h)(b,1,1)`.
+     - *Descent.* `b²` has trivial root permutation and free-word sections `(b², 1, 1)`. So the recursion
+       descends to `Γ = F(a,b)/⟨⟨b²⟩⟩ = ⟨a⟩ * ⟨b | b²⟩`.
+     - *Length.* On cyclically reduced normal forms `b a^(i_1) b ⋯ b a^(i_m)` in `Γ`, let
+       `L = m + Σ|i_j|`.
+     - *The kernel `N̄ ≤ Γ`.*
+       - `a` has infinite order.
+       - `b a^i` has nontrivial root permutation `(1 h)(0 1)^i`.
+       - So every nontrivial cyclically reduced element of `N̄` has `m ≥ 2`, with all `i_j ≠ 0`.
+     - *Sections.* `a^(2k) = (a^k, a^k, a^(2k))` and `a^(2k+1) = (0 1)(a^k, a^(k+1), a^(2k+1))`, so sections of
+       `a^i` have length `≤ |i|`. The section of `b` is `b` at `0` and trivial elsewhere.
+     - *Strict decrease at every vertex.* Apply `w` right to left at a vertex `x`.
+       - A `b` survives, contributing itself, only if it reads `0`, and then the letter stays `0`.
+       - `a^i` maps `0` to `0` iff `i` is even.
+       - So either some `b` dies, or `a^(i_m)(x) = 0` and every interior exponent `i_1, …, i_(m−1)` is even.
+         There are `m − 1 ≥ 1` of them, and each is replaced by `i_j/2`.
+       - Either way `L(w|_x) ≤ L(w) − 1`.
+     - *Induction on `L`.* Lift a cyclically reduced relator `w̄ ∈ N̄` to `ŵ ∈ F`. Its free-word sections are
+       relators whose `Γ`-images have smaller `L`, so they lie in `M = ⟨⟨b²⟩⟩_lift` by induction. `ŵ` has trivial
+       root permutation, so `ŵ ∈ M` by lift-closure. Relators trivial in `Γ` lie in `⟨⟨b²⟩⟩ ⊆ M`.
+     - *Conclusion.* `N_Q = M`. `lift-ideal-criterion-sufficiency-holds-for-infinite-state` gives `V_3(Q)`
+       finitely presented, and the transfer lemma gives the simple host.
+     - *What it shows.* `Q` is not contracting (`a^k|_(h^j) = a^k`), so FP2 does not apply. Whether `Q` is
+       finitely presented is unknown, so FP1 may not apply either. The hole mechanism of Bartholdi–Mitrofanov is
+       therefore **compatible with (c)**: halving of the digit exponents supplies the contraction that the
+       isometric branch at `h` lacks.
+   - **Still open for the full increment loop `G_1`.** The same survival analysis applies after adding `t`, `u`,
+     the wall `1`, and `x, y ∈ R`.
+     - Write `a' = u a u` etc. Along `†`-paths, only `⟨s_*, s_*^u⟩` persists: every other generator dies at a
+       `†`.
+     - So (c) for `G_1` reduces to controlling the relators of the two-odometer group `⟨s_*, s_*^u⟩`. Its
+       digits are `{0, 𝐢₁}` and `{1, 𝐢₁}`, and each odometer is stopped by the other's private digit.
+     - The finitely many persistent relators, such as `[s_*, t]`, go into `R`.
+     - Not done.
 3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
