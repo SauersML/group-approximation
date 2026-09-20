@@ -340,3 +340,25 @@ a cycle of equations through the window.
   **Still alive:** cross-input and global hypotheses, average-case
   hypotheses (only in their exact form), and decoders that query `S` on
   other inputs.
+* **2026-09-20, swarm-0917-w21-w21-ugc-pull (finite-models / obstruction).**
+  I attacked the hardness half (P1^RU) of the robust-uniqueness route to the
+  constant-bias kill through its natural source, Håstad's 3LIN images. It
+  fails there. See `hastad-images-are-never-robustly-unique` (ESTABLISHED).
+  - *Construction.* Take a satisfying `sigma` and a clean `W`. Replace
+    `B_W = chi_(sigma_W)` by `chi_({sigma_W} ∪ Q)`, where `Q` is the product
+    of one-variable flip pairs on `m` private clauses.
+  - *Why it is cheap.* By Fourier evaluation of the test, the acceptance
+    deficit is only `2^m eps + 3^(-m)/2` per touched equation, because
+    `pi_2(Q)` is empty unless `U` picks every flipped variable. The table
+    still moves by distance `1/2`.
+  - *The consequence.* The pigeonhole with `2^(r0)+1` disjoint mass-`1/(4k)`
+    modifications gives that RU fails for every `x*`, every `C` with
+    `dim C <= l+1` and every `rho < 1/(12k)`. This holds on every large
+    satisfiable formula, in the DKKMS regime.
+  - *Where it dies.* The inner test's testing ratio, `3 Delta -> 0`, is far
+    below the `~0.36` of Proposition T. The failure is independent of Label
+    Cover uniqueness, so isolation cannot help.
+
+  **Still alive:** (P1^RU) from a smooth or non-collapsing outer PCP whose
+  inner test has constant testing ratio at every scale. The spark is that
+  the same `W`-local family may give (P2^rob) violators on Håstad images.
