@@ -371,3 +371,36 @@ This attempt is on the one-sided free case `G = F_2 *_{φ : A -> B}`, with `[F:A
 - **Artifact.** `experiments/hall-host-kernels-2026-09-17/hall_kernel_census.py`. Run it
   with arguments `20 0 2` or `20 0 3` for the exact two-peak test, or `4 2` for the
   brute-force census.
+## Attempt (swarm-0917-w22-w22-bh-last1, 2026-09-20): L2 obstruction for the `χ > 0` free case
+
+*Class kill, not a proof. The hole stays OPEN.*
+`one-sided-free-hnn-inputs-have-positive-second-l2-betti` (ESTABLISHED, lane proof, not reviewed)
+handles the sign that bh-last1 left untouched.
+
+- **The input side.** Take `G = F*_φ` with `F` free of rank `r`. Its standard 2-complex gives
+  `b_2^(2)(G) >= χ(G) = rk A - r`. For every non-ascending one-sided input, that is `[F:A] = m >= 2`
+  and `r >= 2`, this is `(m-1)(r-1) > 0`. The Artin reduction `F_3 *_{F_7}` has `χ = 4`.
+- **The host side.** In a group with a finite 2-dimensional `K(π,1)` and `b_2^(2) = 0`, every
+  subgroup has `b_2^(2) = 0`: a kernel element evaluates to a square-summable 2-cycle on the
+  universal cover.
+- **What dies.** Every strategy that embeds such an input into one of the following hosts and then
+  quotes that host's BH result:
+  - an ascending HNN extension of a free group, or a free-by-cyclic group
+    (`ascending-hnn-of-free-groups-satisfy-boone-higman`);
+  - a torsion-free one-relator group (Sapir--Spakulova route,
+    `almost-all-one-relator-groups-satisfy-boone-higman`);
+  - a GBS or tubular group, or any graph of free groups with cyclic edge groups;
+  - a 3-manifold group (Scott core plus `χ <= 0`).
+
+  Every such strategy dies at the placement step, and the invariant is `b_2^(2)`.
+- **Explicit instance.** `x^2 -> x^2`, `y -> y^2`, `xyx^-1 -> xy^2x^-1` on `F(x,y)` gives `χ = 1`
+  and contains `BS(1,2)`, so right-angled Artin hosts die as well. Checked by
+  `experiments/l2-one-sided-hnn-2026-09-17/stallings_check.py`.
+- **What survives.** The Hall hosts `Y*_Φ ∈ BS_{F_2}` of bh-free-05, with
+  `χ = (M-1) r > 0`, are consistent with the invariant, and are now the only 2-dimensional
+  candidates of known BH type left for this case.
+- **Combined picture.** With bh-last1, the free case is pinned from both sides:
+  - `χ < 0` forces infinitely generated stabilizers in locally finite tree hosts;
+  - `χ > 0` forces `b_2^(2) > 0` in 2-dimensional hosts.
+
+  The w21 kernel census on Hall hosts is therefore the live direction for the one-sided case.

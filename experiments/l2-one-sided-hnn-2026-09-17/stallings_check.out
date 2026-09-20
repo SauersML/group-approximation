@@ -1,0 +1,4 @@
+A V 2 E 4 rank 3 finite index, index 2
+B V 4 E 6 rank 3 infinite index
+chi(G) = rk A - rk F = 1
+rk A == rk B: True
