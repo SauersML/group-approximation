@@ -1,0 +1,14 @@
+TRIPLES overfold reps 1044, orbit reps 87, automorphisms 12
+pair table done
+  orbit rep 8/87 done, triples 4347224
+  orbit rep 16/87 done, triples 8694448
+  orbit rep 24/87 done, triples 13041672
+  orbit rep 32/87 done, triples 17388896
+  orbit rep 40/87 done, triples 21736120
+  orbit rep 48/87 done, triples 26083344
+  orbit rep 56/87 done, triples 30430568
+  orbit rep 64/87 done, triples 34777792
+  orbit rep 72/87 done, triples 39125016
+  orbit rep 80/87 done, triples 43472240
+triples (orbit-reduced on the first seed, each orbit class counted per ordered choice) 47276061: ell histogram 0:46784379 1:490647 2:1035 3:0 4:0 5:0
+TRIPLES O-rel violations 0; O-step violations 0; O-pair violations 0

@@ -1,0 +1,49 @@
+V 240 n 12 seeds 12 auts 12 threads 4 LAWFUL ONLY
+level 1: no goal; 12 extensions tested; 1 new states stored
+level 2: no goal; 12 extensions tested; 8 new states stored
+level 3: no goal; 96 extensions tested; 22 new states stored
+level 4: no goal; 264 extensions tested; 41 new states stored
+level 5: no goal; 492 extensions tested; 55 new states stored
+level 6: no goal; 660 extensions tested; 62 new states stored
+level 7: no goal; 744 extensions tested; 63 new states stored
+level 8 GOAL reached
+WITNESS 8 seeds (original vertex pairs, lawful flag):
+  168 235 lawful
+  168 185 lawful
+  103 224 lawful
+  64 214 lawful
+  1 87 lawful
+  65 82 lawful
+  19 91 lawful
+  4 107 lawful
+RECHECK goal on literal seed set: YES
+V 240 n 12 seeds 12 auts 12 threads 4 LAWFUL ONLY
+level 1: no goal; 12 extensions tested; 1 new states stored
+level 2: no goal; 12 extensions tested; 8 new states stored
+level 3: no goal; 96 extensions tested; 16 new states stored
+level 4: no goal; 192 extensions tested; 23 new states stored
+level 5: no goal; 276 extensions tested; 24 new states stored
+level 6 GOAL reached
+WITNESS 6 seeds (original vertex pairs, lawful flag):
+  94 174 lawful
+  66 186 lawful
+  100 171 lawful
+  92 78 lawful
+  11 49 lawful
+  1 231 lawful
+RECHECK goal on literal seed set: YES
+V 240 n 12 seeds 12 auts 12 threads 4 LAWFUL ONLY
+level 1: no goal; 12 extensions tested; 1 new states stored
+level 2: no goal; 12 extensions tested; 8 new states stored
+level 3: no goal; 96 extensions tested; 16 new states stored
+level 4: no goal; 192 extensions tested; 23 new states stored
+level 5: no goal; 276 extensions tested; 24 new states stored
+level 6 GOAL reached
+WITNESS 6 seeds (original vertex pairs, lawful flag):
+  100 172 lawful
+  72 135 lawful
+  100 182 lawful
+  1 231 lawful
+  73 144 lawful
+  11 49 lawful
+RECHECK goal on literal seed set: YES

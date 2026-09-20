@@ -1,0 +1,19 @@
+V 96 n 12 seeds 12 auts 12 threads 1 LAWFUL ONLY
+level 1: no goal; 12 extensions tested; 1 new states stored
+level 2: no goal; 12 extensions tested; 8 new states stored
+level 3: no goal; 96 extensions tested; 22 new states stored
+level 4: no goal; 264 extensions tested; 41 new states stored
+level 5: no goal; 492 extensions tested; 55 new states stored
+level 6: no goal; 660 extensions tested; 62 new states stored
+level 7: no goal; 744 extensions tested; 63 new states stored
+level 8 GOAL reached
+WITNESS 8 seeds (original vertex pairs, lawful flag):
+  74 77 lawful
+  24 17 lawful
+  66 51 lawful
+  67 72 lawful
+  24 12 lawful
+  55 34 lawful
+  55 29 lawful
+  6 64 lawful
+RECHECK goal on literal seed set: YES
