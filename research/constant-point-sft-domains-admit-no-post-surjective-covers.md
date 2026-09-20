@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
   - research/artifacts/pointed-pre-injective-sections-2026-09-18.md
   - research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md
+  - research/artifacts/coset-lift-tube-shifts-2026-09-20.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -200,3 +201,40 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
     model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
     argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.
+- **2026-09-20, swarm-0917-w21-w21-gs-last1 [symbolic-dynamics]: the coset lift on one tube; tube-internal
+  lifts are dead. This claim stays OPEN.** Artifact: `research/artifacts/coset-lift-tube-shifts-2026-09-20.md`.
+  - *Target.* Need 06d50d0e: the `⟨e⟩`-coset lift of Corollary S4 (`cover-pair-sections-localize-to-the-symmetric-locus`).
+  - *Landed (ESTABLISHED, unreviewed).* `coset-lifts-are-tube-sft-fixed-points`. Fix `e ∈ E \ {1}` of infinite
+    order, `z ∈ Fix(e)` with `a = z(1)`, `x ∈ X ∩ Fix(e)` and a finite `K ⊇ Φ`.
+    - The repairs of `x` supported on `⟨e⟩K` that are exact along `⟨e⟩` form a nonempty `Z`-SFT `Y_K`. It is
+      nonempty by sequential single-site lifts and compactness, and `e` acts on it as the shift.
+    - `e^p`-invariant repairs always exist, with `p ≤ |A|^{D|K|}` uniformly in `z`.
+    - `e`-invariant repairs are exactly the shift-fixed points of `Y_K`. Whether one exists is a clopen, local test.
+  - *Class kill (tube-internal coset lifts).*
+    - The class: arguments for the coset lift that repair inside one tube and use only the one-dimensional axioms
+      of the tube system. The axioms are:
+      - a `Z`-SFT;
+      - a strongly post-surjective code with lifts;
+      - a fixed point, namely `x` itself;
+      - a nonempty fibre with bounded-period points.
+    - This covers entropy, Garden-of-Eden and period arguments along `⟨e⟩`.
+    - Invariant: the number of shift-fixed points of the fibre `π^-1(a^Z)`, i.e. the trace of the fibre transition
+      matrix.
+    - Dying step: extraction of period `1`.
+    - Witness: a phase-alternation tube (2-block SFT, 1-block code, single-site lifts) with fibre traces
+      `tr M_a = 0` and `tr M_a^2 = 6`. It is checked by machine in `experiments/coset-lift-tubes-2026-09-17/`. The
+      same example on `Z/n` kills the finite-order case.
+  - *New decomposition of the tube-repair route to need 06d50d0e.* The route has two prerequisites, each of which
+    can fail on its own. They are sufficient for the route, not necessary for a section, since a section need not
+    arise from tube repairs of a given seed.
+    - (a) The pointwise fixed-point test of T5 passes at every `(z, ξ(z))` for some finite `K`. The phase tube shows
+      that tube axioms cannot give this.
+    - (b) The local repairs at the cosets `h⟨e⟩`, `h ∈ C(e)`, can be scheduled together. Exactness on `Fix(e)`
+      forces exactness on the whole centralizer `C(e)`, by (∗) of Theorem S, and not only on `⟨e⟩`.
+
+    Part (b) is only sketched, not proved. For central `e`, (a) and (b) together are a `G/⟨e⟩`-equivariant
+    section of the fold `X ∩ Fix(e) → A^{G/⟨e⟩}`. The fold is not a cover pair, because a one-site change
+    downstairs is a coset change upstairs.
+  - *Where it dies.* At period `1`. Any proof of need 06d50d0e must use `G` across the tube, through unbounded `K`
+    or the `C(e)`-coupling. For a given seed, prerequisite (a) fails exactly when the fibre over `a^Z` has no
+    shift-fixed point for every `K`, i.e. a phase-type tube at every width at one point of `Fix(e)`.
