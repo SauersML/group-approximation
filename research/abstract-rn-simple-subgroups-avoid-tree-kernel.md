@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `abstract-rn-simple-subgroups-avoid-tree-kernel-proof` (lane bh-glnq-fresh,
-2026-09-19). Elementary. Lane proof, not independently reviewed. No priority claimed.
+2026-09-19). Elementary. Referee bh-ref-q12 2026-09-19: PASS (see the Referee section). No priority claimed.
 It closes one candidate route to `gl-n-q-embeds-in-fp-simple-group`: Nekrashevych-type
 hosts over non-residually-finite structure groups.
 
@@ -111,3 +111,54 @@ Thompson-like groups from group data, faithful or not, is the viewpoint of Witze
 cloning systems (Groups Geom. Dyn. 12 (2018)), with the Röver–Nekrashevych case treated by
 Skipper–Zaremsky; Scott (J. Algebra 90 (1984)), Röver and Nekrashevych for the faithful groups.
 The dichotomy is a two-line normal-subgroup argument and may well be folklore.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS
+
+The proof node was checked step by step.
+- **The kernel description.** A table `(P, Q, β, λ)` acts as the identity iff `β(p) = p` and `ρ_ψ(λ(p)) = 1` for
+  every `p`. So `K_ψ` consists of the classes `[(P, P, id, λ)]` with labels in `N`, and this holds for every
+  representative.
+- **Step 0: correct.** `ρ_ψ(g)(iu) = π_g(i) ρ_ψ(g_i)(u)`.
+- **Step 1: correct.**
+  - Injectivity of `ψ` is exactly what the induction needs. If `π_g ≠ π_h`, every expansion refining level one
+    has different bijections. Otherwise some state differs.
+  - Since equivalence of tables means a common expansion, and the expansion to a given domain partition is unique,
+    `x_g ≠ 1` and `ι_P` is injective.
+  - The labelwise product for `β = id` is the product rule with `β′ = id`.
+- **Step 2: correct.** Expansion preserves the form `(P, P, id, N-labels)` by Step 0. A common refinement collects
+  any finite subset into one `K_P ≅ N^P`.
+- **Step 3: correct.**
+  - Case 1: `S ∩ K_ψ` is normal in `S`.
+  - Case 2: a nontrivial coordinate projection `N^k → N` has kernel meeting `S` in a proper normal subgroup, hence
+    trivially.
+  - Case 3 is Step 2.
+- **Consequences 1–4: correct as stated, for injective `ψ`.**
+  - `SL_m(Q)` for odd `m` has trivial centre, so it equals `PSL_m(Q)` and is simple. It is not finitely generated,
+    so only items 1 and 3 apply to it.
+  - The Deligne transfer needs only case 1 and the cited faithful exclusion.
+  - Consequence 4 is conditional on `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf`, which was not
+    re-reviewed here.
+
+**Extension (referee remark): the injectivity hypothesis can be removed without padding.**
+- *The subgroups `L_k`.* Put `L_0 = 1` and `L_(k+1) = {g : π_g = id, all g_i ∈ L_k}`, and `L_∞ = ⋃ L_k ⊆ N`.
+  `L_∞` is normal, and `ψ` maps it into `(L_∞)^d` with trivial permutation.
+- *`ψ̄` is injective.* `ψ̄ : G/L_∞ → S_d ≀ G/L_∞` is injective, because `d` is finite (the argument of (1d) in the
+  lift-ideal proof).
+- *The isomorphism.* Labels differing by `L_k` agree after `k` expansions. So
+  `V_d(G, ψ) ≅ V_d(G/L_∞, ψ̄)`, with the same `H` and tree kernel `N/L_∞`.
+- *The theorem for arbitrary `ψ`.* It holds with "`S` embeds in `N`" weakened to "`S` embeds in `N/L_∞`", a
+  subquotient of `G`.
+- This is the lift-ideal dictionary: for `G = F/M` with `ψ` from a section-closed `S`, injectivity of `ψ` is
+  lift-closedness of `M`.
+- Remark 2 of the cited node pads to an injective recursion but doubles the alphabet, so it changes the group. The
+  quotient by `L_∞` does not.
+
+**Scope and credit.**
+- The dichotomy is elementary and plausibly folklore, as the node says. It is consistent with the table-group
+  argument (4b)–(4c) of `rover-nekrashevych-fp-iff-finite-lift-presentation-proof`: diagonal tables with nontrivial
+  labels are nontrivial when the recursion is injective.
+- "Exactly the faithful route" should be read as: find a finitely presented simple subgroup of some faithful
+  `V_d(H)`. That `V_d(H)` need not itself be finitely presented; by Theorem A it is iff the relator kernel of `H` is
+  a finitely generated lift ideal.
+
+**Verdict: PASS.**
