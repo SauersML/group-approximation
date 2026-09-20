@@ -345,3 +345,14 @@ uniform gap by Tietze subdivision. These are scoped tests of candidate
 interfaces, not refutations of the HALT-positive source itself. Both
 main targets remain OPEN. This tranche used symbolic mathematics only;
 the graph validation is recorded separately after a pinned remote check.
+
+The [mixed-placement/UCP validation report](mixed-ucp-validation-2026-09-20.json)
+binds source commit `18a4f5d144` to tree
+`b60719eba488d03ccfdd9c110c01d8ecd99534ca`. All 34,310 nodes parsed
+and compiled with zero schema errors or duplicate findings. Relative to
+the separately checked immediate baseline `2ce9f15cb9`, four nodes were
+added and no existing status changed. The two new subsidiary claims are
+ESTABLISHED; both main roots and the HALT-positive source remain OPEN.
+The new snapshot check took 7.319 seconds on one low-priority MSI CPU.
+No full CLI, Lean build, or mathematical computation was run. The shared
+frontier file was deliberately left to its concurrent writer.

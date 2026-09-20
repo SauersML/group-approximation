@@ -1,0 +1,52 @@
+{
+  "revision": "5b98a4caa4f1de71ba2fac8228009cbd3de927cb",
+  "seconds": 7.319,
+  "validation_mode": "streamed canonical git blobs with standard parser/linter/compiler and pinned-tree artifact existence",
+  "schema_error_count": 0,
+  "error_rules": {},
+  "focus": {
+    "non-residually-finite-hyperbolic-group": "OPEN",
+    "lcs-perfect-quantum-completeness-re-hardness": "OPEN",
+    "lcs-weighted-conjugacy-halting-gap-source": "OPEN",
+    "hrf-ten-detectors-are-primitive-and-not-two-by-five": "ESTABLISHED",
+    "lcs-fixed-port-ucp-decoders-have-unbounded-trace-cost": "ESTABLISHED"
+  },
+  "touched_nodes": [
+    "hrf-ten-detectors-are-primitive-and-not-two-by-five",
+    "hrf-ten-primitive-tensor-reduction-proof",
+    "lcs-fixed-port-ucp-decoders-have-unbounded-trace-cost",
+    "lcs-fixed-port-ucp-decoders-trace-cost-proof",
+    "lcs-weighted-conjugacy-halting-gap-source"
+  ],
+  "duplicates": [],
+  "surviving_status_changes": {},
+  "removed_nodes": [],
+  "added_nodes": [
+    "hrf-ten-detectors-are-primitive-and-not-two-by-five",
+    "hrf-ten-primitive-tensor-reduction-proof",
+    "lcs-fixed-port-ucp-decoders-have-unbounded-trace-cost",
+    "lcs-fixed-port-ucp-decoders-trace-cost-proof"
+  ],
+  "archived_route_bytes_identical": {},
+  "schema_hygiene_status_changes": {},
+  "kernel_version": "2.13.2",
+  "execution": {
+    "host": "acn112",
+    "cpu_affinity": [
+      127
+    ],
+    "nice": 19,
+    "timeout_seconds": 60,
+    "storage": "/projects/standard/hsiehph/sauer354/cairn-safety-20260920.NUBe2X"
+  },
+  "cli_deviation": "No full check/preview CLI or app build: standard source parser, lint_nodes, Graph, and duplicate_findings ran directly on pinned blobs; artifact path existence used the exact Git tree, revision pins used git cat-file.",
+  "node_count": 34310,
+  "baseline_revision": "2ce9f15cb999bc5496b0ac1e5d5710079c9810e7",
+  "source_commit": "18a4f5d144495558431c6fef3bdb08f609163f8d",
+  "validated_tree": "b60719eba488d03ccfdd9c110c01d8ecd99534ca",
+  "source_commit_tree_matches_validation": true,
+  "mathematical_review": "Symbolic proofs with internal cross-review of the mixed-placement reductions, UCP finite bound, shared Fourier frame countermodel and weighted transport example. No new numerical or polynomial-certificate computation in this tranche; no Lean or external human certification.",
+  "baseline_check_seconds": 9.169,
+  "frontier_policy": "Shared research/FRONTIER.md was not regenerated or staged by this task, avoiding the concurrent-writer race recorded in the prior report.",
+  "preflight_note": "An initial baseline invocation refused to run because the task-owned bare HEAD named the candidate rather than baseline revision; the baseline ref was corrected before the two successful pinned checks."
+}
