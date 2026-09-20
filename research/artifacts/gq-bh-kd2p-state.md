@@ -113,3 +113,13 @@ Crux: `two-counter-kms-groups-are-self-similar` (KD2_p), **OPEN**. The target is
   `[T, I] ⊆ T_0`. The first test: `K = 2`, trivial machine, top map of Kochloukova–Sidki shape made
   non-contracting on one cycle, and `F|_{T∩H}` any `ψ`-semilinear map compatible with G5a–G6. Does some choice
   push `[T, I]` out of every `F`-invariant subgroup inside `H`?
+
+## Update 4: route (ii) review (bh-ref-g, beaeb35b6a)
+
+`kms-central-lamp-mixing-cannot-separate-top-core` passes with a proof repair.
+- **What was wrong.** A central mixing `τ` vanishes on `𝔫J`, where `𝔫` is the augmentation ideal of `F_p[U_H]`,
+  not on `J ∩ 𝔪_z`. `τ` may have any rank.
+- **The repair.** The core ideal is built inside `𝔫J`: take all fibre points `z_k` in `Z_0`, and raise the exponent
+  to `L + N'`, where `𝔫R ⊇ ∏𝔪_{z_k}^L`.
+- **Status.** The theorem stands. `τ ≠ 0` is possible on power-type domains, but it cannot separate the top core.
+  The live route is still `F` on `T ∩ H` (Update 3).

@@ -77,13 +77,13 @@ theorem good_derived {B : Set S.carrier} (hB : IsClopen B) :
   have hT := toEquiv_mem_fullGroup (SimpleKazhdanSofic.subshiftHomeo S)
   refine good_of_cons S fun hd => consSet_four_cases ?_ ?_ ?_
   · rw [show (adjSwap (⟨0, by norm_num⟩ : Fin 4) * adjSwap (⟨1, by norm_num⟩ : Fin 4) :
-      Perm (Fin 5)) = ⁅swap 0 1, swap 0 2⁆ by decide +kernel]
+      Perm (Fin 5)) = ⁅swap (0 : Fin 5) 1, swap (0 : Fin 5) 2⁆ by decide +kernel]
     exact towerPerm_commutator_mem hT hB hd _ _
   · rw [show (adjSwap (⟨1, by norm_num⟩ : Fin 4) * adjSwap (⟨2, by norm_num⟩ : Fin 4) :
-      Perm (Fin 5)) = ⁅swap 1 2, swap 1 3⁆ by decide +kernel]
+      Perm (Fin 5)) = ⁅swap (1 : Fin 5) 2, swap (1 : Fin 5) 3⁆ by decide +kernel]
     exact towerPerm_commutator_mem hT hB hd _ _
   · rw [show (adjSwap (⟨2, by norm_num⟩ : Fin 4) * adjSwap (⟨3, by norm_num⟩ : Fin 4) :
-      Perm (Fin 5)) = ⁅swap 2 3, swap 2 4⁆ by decide +kernel]
+      Perm (Fin 5)) = ⁅swap (2 : Fin 5) 3, swap (2 : Fin 5) 4⁆ by decide +kernel]
     exact towerPerm_commutator_mem hT hB hd _ _
 
 omit [DiscreteTopology A] [Finite A] in
