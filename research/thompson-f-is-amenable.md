@@ -595,3 +595,24 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     these presupposes the root (or exactness of `F`), for `F` and for every host `G ≥ F`.
   - *Survivors:* infinite-rank hosts (Farley), non-semi-simple finite-dimensional CAT(0) actions, and
     non-NPC hosts.
+- **Near-eigenvectors need log-scale pointer spread (swarm-0917-w20-w20-f-break, 2026-09-20, belief-breaker, probability-random).**
+  This proves the "comonotone" survivor condition, which `thompson-f-product-forest-vectors-stay-below-71-72`
+  records as a heuristic.
+  - *Established:* `thompson-f-near-eigenvectors-need-log-scale-pointer-spread`. Let `f ≥ 0` be a unit
+    vector on `R` with Rayleigh value `4 − δ`. Let `s` be the pointer size and `r` the neighbour size.
+    Then:
+    - `μ(s ≤ t < s+r) ≤ 2√δ`;
+    - `μ(r ≤ t < r+s) ≤ 4√δ`;
+    - `μ(min(s,r) ≤ 2^J) ≤ 6(J+1)√δ`.
+
+    The proof uses the pointer-right/merge split `<f,Kf> = 2a_0 + 2a_1` and one-sided transport of
+    the size law.
+  - *Class killed:* every vector, with any amplitudes, whose pointer trees have at most `N` leaves on
+    mass `c`. Such a vector has `δ ≥ c^2/(36(⌈log_2 N⌉+1)^2)`.
+    - *Invariant:* the law of `log_2 min(s,r)`.
+    - *Dies at:* the merge and pointer-right edges, which allow only `6√δ` of crossing mass per
+      dyadic scale.
+  - *Consequence:* Kesten witnesses have median `log_2 min(s,r) ≥ 1/(12√δ) − 2`. Any certificate that
+    reaches `4 − δ` needs truncation `N ≥ 2^{c/√δ}`.
+  - *Survivor:* the scale-limit families (log-scale continuum, Markov chains). They satisfy the
+    necessary condition, so this caps neither.
