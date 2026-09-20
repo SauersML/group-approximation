@@ -1,0 +1,4 @@
+(A) phi x_k phi^-1 = s_k on 3000 points: ok
+(B) explicit diagram represents phi^-1 E(v) phi on 400 random states: ok
+(C) |L_g / 1^(k+1)0| <= |T_(i+k)| on 2054 (state, k) pairs; equal shape on all 705 pairs with T_(i+k) nontrivial: ok
+(D) merge = right mult by x_1, pointer right = right mult by x_0 (after psi): ok
