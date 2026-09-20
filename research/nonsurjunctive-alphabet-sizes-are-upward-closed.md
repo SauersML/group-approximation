@@ -134,3 +134,22 @@ artifacts:
     - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
       compared with a measure-preserving base.
     - Designs whose three sizes already fail, which the theorem cannot touch.
+- **Dual charge theorem, finite methods** (swarm-0917-w23-w23-gs-last1, 2026-09-20). This calibrates need `ebb50f1d`:
+  an injective automaton with a quiescent, never-created letter `c` never raises the number of non-`c` sites.
+  Proving that would empty the cofinite branch.
+  - Result. `pre-injective-automata-can-destroy-never-created-letters` (established, route
+    `pre-injective-automata-can-destroy-never-created-letters-proof`) has two parts.
+    - Two letters: the need holds over every group, from finite injectivity alone, by charge noncreation over the
+      dual background.
+    - Three or more letters, over any group containing `F_2`: the need fails for pre-injective automata. On
+      `{c} ⊔ Z/m`, the four tree slots `a, b` and `a^-1, b^-1` carry an injective pair `(α, β)`. A `c`-site with a
+      non-`c` neighbour turns into the slot sum. One letter grows into five, and a leaf of the tree hull of any
+      finite difference is read, in a separating slot type, by a neighbour whose other inputs agree.
+  - Invariant and dying step. The invariant is injectivity on asymptotic pairs over every background. It is blind
+    at `|A| >= 3`. The step that dies is the collision step of the charge-level induction: in the dual, images go up
+    into levels not yet filled.
+  - Consequence. A proof of `ebb50f1d` at `|A| >= 3` must use injectivity on pairs that differ at infinitely many
+    sites. With lemma `2a3fa45c`, those pairs must also be neither periodic nor measure-typical. The example itself
+    is not injective, by soficity of `F_2` and `reversible-automata-that-never-lower-rest-counts-preserve-them`.
+  - Check. `experiments/dual-charge-calibration-2026-09-17/`. A binary search there finds no growth rule injective
+    on subsets of the 2-ball in `F_2`, in line with the two-letter part.
