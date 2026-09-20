@@ -2,7 +2,7 @@
 rg: 2
 id: residual-towers-constrain-non-lie-commutant-layers
 kind: claim
-title: For a residually finite group lifted through a product of compact Lie groups built from its finite quotients, the commutator squeeze is replaced by a tower law — the projected singular set at level N must have measure at least the minimal pattern frequency at radius (generator radius × systole of the level-N kernel) — which is satisfiable, so the non-Lie layer (target T2, and T1 run through a product) is the escape the squeeze constrains least
+title: For a residually finite group lifted through a product of compact Lie groups built from its finite quotients, the commutator squeeze is replaced by a tower law — the projected singular set at level N must have measure at least the minimal pattern frequency at radius (generator radius × systole of the level-N kernel) — which is consistent with a null singular set (an explicit set meeting it: loop-labels-reduce-t2-to-two-sided-locality, item 1 as repaired), so the non-Lie layer (target T2, and T1 run through a product) is the escape the squeeze constrains least
 requires:
   - commutator-squeeze-bounds-lifted-lie-translations
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
@@ -11,7 +11,7 @@ distinct_from:
   commutator-squeeze-bounds-lifted-lie-translations: that kills free lifted groups of Lie translations under polynomial repetitivity and tame singular sets; this shows the mechanism does not reach product layers, and derives the constraint that remains there, stated through the finite-quotient tower of the lifted group.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; not reviewed; no priority
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; referee bh-ref-d 6e0fb29940 PASS with repairs, applied; no priority
 claimed). This is a design law, not an obstruction. **T1 and T2 are not built.**
 
 ## Which escape, and why
@@ -58,10 +58,15 @@ Target T1 and the commutator squeeze leave three escapes. This lane takes the **
    `1/log I_N`. This is compatible with `ν(Z_1) = 0`, and with each image of `Z_1` in a Lie quotient
    being thick. The images are projections along infinite-dimensional fibres, and such projections are
    typically large.
-3. **Where the squeeze still bites.** Inside each Lie quotient `Z_N` the squeeze applies to the coding
-   *only if* `Y` codes `Z_N` with a singular set of positive codimension there. So T2 must keep every
-   finite-level image of the singular set thick, of codimension 0. This is the non-Lie version of the
-   codimension-0 escape, and it is forced rather than chosen.
+3. **Every finite-level image of the singular set is thick.** By item 1,
+   `ν_N(image of Z_1 in Z_N) ≥ ψ(R_S · sys(N_N)) > 0` for every `N`. So T2 must keep every finite-level
+   image of the singular set of positive measure (codimension 0), while `ν(Z_1) = 0` is allowed.
+   This is forced rather than chosen.
+   - The earlier reason, that the squeeze applies inside each `Z_N`, was wrong: the lifted image
+     `κ_N(G) ⊆ ∏_(i≤N) Q_i` is **finite**, so the squeeze is vacuous there.
+   - Repair (§2) of bh-ref-d, 6e0fb29940, applied by bh-ra-t2 as the (RA_free) owner.
+   - Compatibility with `ν(Z_1) = 0` is automatic: `Z_1` is compact, so `ν(Z_1 · K_(>N)) ↓ ν(Z_1)` as
+     `K_(>N) ↓ 1`, while the lower bound `ψ(R_S · sys(N_N))` tends to 0.
 
 ## Proof
 
