@@ -113,3 +113,17 @@ a hyperbolic ambient group need not be finite. The finite-subgroup case
 uses equality of a subgroup and its compressed conjugate by cardinality;
 the non-elementary case uses finiteness of the centralizer. Neither
 canonical theorem changes. This distinction matches supplied Section 7.
+
+## Pinned graph validation
+
+The [MSI validation report](problem141-user-integration-validation-2026-09-20.json)
+checks source commit `11e8db82ca`, tree
+`ac6e436ebdeda37b1018b7a8a280ddfbfdd8162f`, using the standard Cairn
+parser, linter, graph compiler and touched-node duplicate check. It covers
+34,253 canonical nodes with zero schema errors or duplicate findings,
+adds six canonical nodes, and changes no pre-existing node status.
+The three integrated subsidiary claims are ESTABLISHED; Problem 141,
+perfect-completeness LCS hardness, and the finite-center construction
+input remain OPEN. The check took 8.596 seconds on one low-priority MSI
+CPU, with no local build. Exact scope and full-CLI limitations are in
+the report. The regenerated frontier uses this pinned graph.
