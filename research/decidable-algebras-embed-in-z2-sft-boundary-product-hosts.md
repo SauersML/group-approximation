@@ -482,3 +482,27 @@ OPEN.
   to this node's frontmatter. That id is absent from this worktree's base, so it was not added here.
 - **Side consequence (needs a second referee).** Ara–Cortiñas Q5.7 has a negative answer over every field. The
   proof uses `gl.dim L_K(1,2) = 1` (arXiv:1605.03841) and `k[s, t] ⊆ L_2 ⊗ L_2`.
+**w21-z obstruction-miner (linear-characteristic), 2026-09-20: the grading hole is now the whole problem; no new kill.** OPEN.
+- **Calibration (from established nodes only).** `leavitt-nonnegative-part-is-matrix-union-over-free-algebra` and
+  `matrices-over-free-fields-have-no-trdeg-two-subfields` are both ESTABLISHED. Together they say `L_(>=0)` (and, by the
+  involution, `L_(<=0)`) contains no two commuting independent elements over any field. So the conclusion of
+  `leavitt-polynomial-pairs-move-to-the-nonnegative-part` is always false. That claim is now *equivalent* to
+  `leavitt-algebras-contain-no-two-variable-polynomial-ring`, not a step towards it. The route
+  `leavitt-rank-one-from-free-field-matrices-and-degree-reduction` has stopped being a decomposition: its only open
+  prerequisite is its target, restated. Work on mechanism (i) should attack Q_2 directly. The "grading half" is not
+  easier, and the w17 isotropy-lag kill of regradings already covers all residual pairs.
+- **Thompson-unit YES witnesses: dead, with an explicit relation.** Take `Z^2 = <a, b> <= V ⊂ L^x`. Every point of
+  `{0,1}^ω` lies in `int Fix(h)` for some `h ≠ 1` in `Z^2`:
+  - on the torsion part a power of `a` is locally trivial;
+  - at an attracting or repelling periodic point, the germ group is `Z`, so `Z^2` has a germ-trivial element;
+  - that element fixes a neighbourhood of the periodic point, and by commutation it fixes the whole basin.
+  By compactness finitely many `h_i` suffice, and then `Π_i (1 - h_i)` vanishes at every groupoid arrow (pair
+  `S` with `S Δ {i}`). So `F_2[Z^2] -> L` is never injective. This is subsumed by
+  `leavitt-thompson-units-have-finite-centralizer-rank` and is recorded only as a check on it.
+- **Saturation of w17's singular set.** For any nonzero ring `B` receiving `L`, the set of elements of `k[a, b]`
+  invertible in `B` is a saturated multiplicative set, because `qr` invertible and `qr = rq` give two-sided inverses
+  of `q` and `r`. Hence the universally singular set `S` of `leavitt-polynomial-pairs-contain-a-universally-singular-element`
+  satisfies `S·k[a, b] ⊆ S ∪ 0`, and `S ∪ 0` is an intersection of unions of primes.
+- **Where it dies.** A local-Koszul upgrade would localize at `k[a, b] ∖ m` and run the Koszul resolution of
+  `R/m` through `B ⊗_R -`. That needs `B` flat over `R = k[a, b]_m`, which fails at zero divisors, and
+  zero divisors are exactly what `S` may contain. Nothing here selects which prime carries `S`.
