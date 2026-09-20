@@ -1,0 +1,7 @@
+X (numeric): [[0.449098785111, -0.293128413857, 0.844029628746], [-0.293128413857, 0.844029628746, 0.449098785111], [0.844029628746, 0.449098785111, -0.293128413857]]
+trace X = 1  det X = -1
+orthogonal True
+symmetric True
+root True
+no_permutation_root True
+PASS
