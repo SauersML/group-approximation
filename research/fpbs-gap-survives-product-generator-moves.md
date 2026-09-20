@@ -155,3 +155,21 @@ Details for the first three attempts are in Section 4 of
 `research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md`. Details for
 the last three are in Sections 4–7 of
 `research/artifacts/fpbs-single-product-move-2026-09-12.md`.
+
+* **Source-margin calibration of all power-map certificates (2026-09-20,
+  swarm-0917-w21-w21-bs-break; class killed, target stays OPEN).**
+  Established: `fpbs-power-map-transfer-needs-beyond-l2-nonuniqueness`.
+  - *The invariant.* A power-map certificate from a source `T` (Add, Remove,
+    a chain of moves, or the relative version along an amenable wq-normal
+    subgroup) needs `mu(T) = p_u(T)^2 - p_c(T) > 0`. The reason is that the
+    composite map is at most `p^2`. So it needs `p_u(T) > sqrt(p_c(T)) >= p_2(T)`.
+  - *Where it dies.* On every Hutchcroft--Pan product `T_k □ H`,
+    `p_(2->2) = p_u` gives `mu <= 0`. These are the natural gapped sources for
+    this claim, and they sit exactly in the residual band. No spectral lower
+    bound on `p_u` can certify `mu > 0`, because
+    `(1/sigma(Lambda))^2 <= 1/(d-1) <= p_c`.
+  - *Hybrids.* A hybrid certificate from a source with `mu(T) <= 0` needs an
+    intrinsic target bound that beats the source's own opposite threshold:
+    either `p_c(G) < p_c(T)` or `p_u(G) > sqrt(p_c(T))`.
+  - *What remains.* Any proof of this claim must certify something about the
+    target itself, with no comparison through the move.
