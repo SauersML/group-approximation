@@ -114,8 +114,8 @@ theorem mem_G0 {f : Equiv.Perm (Cantor (Fin 2))} : f ∈ G0 ↔ ∃ m n, HasGerm
 
 /-- The germ exponent `n - m`. -/
 noncomputable def chi0 (f : ↥G0) : ℤ :=
-  (Classical.choose (Classical.choose_spec (mem_G0.mp f.2)) : ℤ) -
-    Classical.choose (mem_G0.mp f.2)
+  ((Classical.choose (Classical.choose_spec (mem_G0.mp f.2)) : ℕ) : ℤ) -
+    ((Classical.choose (mem_G0.mp f.2) : ℕ) : ℤ)
 
 #audit_axioms GroupApproximation.BooneHigman.Join.chi0
 
@@ -215,8 +215,9 @@ theorem localize_one_mem_W {f : Equiv.Perm (Cantor (Fin 2))} (hf : f ∈ W) :
 /-- The shift of `W`. -/
 noncomputable def wShift : ↥W →* ↥W where
   toFun f := ⟨localize [1] f, localize_one_mem_W f.2⟩
-  map_one' := Subtype.ext (map_one (localize [1]))
-  map_mul' f g := Subtype.ext (map_mul (localize [1]) f g)
+  map_one' := Subtype.ext (map_one (localize ([1] : List (Fin 2))))
+  map_mul' f g := Subtype.ext (map_mul (localize ([1] : List (Fin 2)))
+    (f : Equiv.Perm (Cantor (Fin 2))) (g : Equiv.Perm (Cantor (Fin 2))))
 
 #audit_axioms GroupApproximation.BooneHigman.Join.wShift
 

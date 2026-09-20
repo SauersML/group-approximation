@@ -87,6 +87,8 @@ In `V_d(G, ψ)`, `x_s` is the class of "`s` on the cone `C(1)`, identity elsewhe
 group and Bartholdi–Mitrofanov's recursion. That gives a type [A_2] action with
 non-recursive kernel, and it answers both parts of FFWZ Question 5.9 negatively.
 
+**Correction (2026-09-19).** As printed in the arXiv versions, Bartholdi–Mitrofanov's Theorem A″ rests on their Proposition 2.4, whose proof has a gap. There `[g,u] ≠ 1` for every machine. It is repaired by replacing `u` with a partner `p` supported on `0^*1A^ω`; see `bartholdi-mitrofanov-proposition-2-4-gap-and-repair` (referee bh-ref-f PASS, 6747a7e43d). Theorem A″ holds for the repaired table `G′_M = ⟨Φ_M, p, p′⟩`. The consumer above uses the repaired recursion. The finite-presentation theorem here holds for every finite recursion, so it is unaffected.
+
 ## Lesson for general BH
 
 - **Finite presentation of Röver–Nekrashevych-type hosts costs nothing.** Every finite

@@ -141,7 +141,7 @@ theorem exists_of_le (S : RealizedSectionFamily D lambda c eps Delta cuts)
         K.secondSide = invDarts S.diagram x.2.leftSide ∧
         (∃ X Y T : CyclicArc (cellDarts S.diagram i),
           X.darts = x.2.sourceArc.darts ∧ Y.darts = y.2.sourceArc.darts ∧
-            K.sourceArc.start = X.rest.start ∧ T.start = X.start ∧
+            T.start = X.start ∧
             T.darts = X.darts ++ K.sourceArc.darts ++ Y.darts) ∧
         K.targetArc.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length ∧
         K.targetArc.start.1 + K.targetArc.length = y.2.targetArc.start.1 := by
@@ -162,7 +162,7 @@ theorem exists_of_le (S : RealizedSectionFamily D lambda c eps Delta cuts)
     rw [hYd] at hdY
     exact Finset.disjoint_left.mp (S.pairwise x hxS y hyS hxy)
       (x.2.faceOf_alpha_mem_of_mem_sourceArc d hdX) (y.2.faceOf_alpha_mem_of_mem_sourceArc d hdY)
-  obtain ⟨Gap, T, hGs, hTs, hT⟩ :=
+  obtain ⟨Gap, T, -, hTs, hT⟩ :=
     CyclicArc.exists_spanArc X Y (by rw [hXl]; exact hxsrc) hXY
   have hn := PocketWalk.cut_le_length_outerDarts S j.succ
   obtain ⟨t₂, ht₂s, ht₂l⟩ : ∃ t₂ : CyclicArc (outerDarts S.diagram),
@@ -186,7 +186,7 @@ theorem exists_of_le (S : RealizedSectionFamily D lambda c eps Delta cuts)
       firstSide_norm_le := norm_invDarts_le y.2.rightSide_norm_le
       secondSide_norm_le := norm_invDarts_le x.2.leftSide_norm_le
       lo_le := by omega
-      le_hi := by omega }, rfl, rfl, rfl, ⟨X, Y, T, hXd, hYd, hGs, hTs, hT⟩, ht₂s, hend⟩
+      le_hi := by omega }, rfl, rfl, rfl, ⟨X, Y, T, hXd, hYd, hTs, hT⟩, ht₂s, hend⟩
 
 /-- **The exclusive walk of two exterior regions.**  Two distinct exterior regions of the cell
 `i` to section `j`, ordered as `x`, `y` by the start of their target arcs, give exclusive walk
@@ -203,7 +203,7 @@ theorem exists_of_exteriorAt (S : RealizedSectionFamily D lambda c eps Delta cut
         K.secondSide = invDarts S.diagram x.2.leftSide ∧
         (∃ X Y T : CyclicArc (cellDarts S.diagram i),
           X.darts = x.2.sourceArc.darts ∧ Y.darts = y.2.sourceArc.darts ∧
-            K.sourceArc.start = X.rest.start ∧ T.start = X.start ∧
+            T.start = X.start ∧
             T.darts = X.darts ++ K.sourceArc.darts ++ Y.darts) ∧
         K.targetArc.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length ∧
         K.targetArc.start.1 + K.targetArc.length = y.2.targetArc.start.1 := by

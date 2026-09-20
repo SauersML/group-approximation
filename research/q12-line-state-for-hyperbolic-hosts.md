@@ -7,6 +7,11 @@ requires:
   - level-set-join-complexes-are-highly-connected
   - countable-sets-never-separate-continua-without-local-cut-points
   - bbmz-singularity-is-a-recurrent-coincidence
+  - racg-generators-are-singular-over-their-wall-trees
+  - star-chains-along-fixed-trees-are-gallery-convex
+  - elliptic-singularity-is-a-marker-mismatch
+  - free-z-factor-transfers-singularity
+  - generalized-triangle-group-hosts-reduce-to-fixed-trees
 distinct_from:
   hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups: that is Zaremsky's open question; this is the status record of one attack on its F_infinity half (through BBMZ Question 1.2), with grades.
 ---
@@ -44,6 +49,13 @@ distinct_from:
     splitting events;
   - in every hyperbolic group, `sing(g)` is the set of points whose pair-type path in a finite graph visits a finite
     set of types infinitely often, so it is countable or of the size of the continuum.
+- `racg-generators-are-singular-over-their-wall-trees` (bh-q12-kazhdan):
+  - In girth-5 right-angled Coxeter groups, a generator whose link has at least 3 vertices, each with a second
+    neighbor, is singular over the whole Cantor limit set of its wall.
+  - The Petersen-graph group (expected Menger boundary) therefore has an unbounded host, and the pentagon's 4
+    chains are recovered.
+  - The mechanism is wall-based, and (T) forbids walls, so it does not transfer to Kazhdan groups.
+  - The brute-force finite check for `𝓗_31` is infeasible (`gq-bh-q12-kazhdan-finite-check-feasibility.md`).
 - `gq-bh-finf-hyp-pentagon-three-checks.md`. For the pentagon: true `H_0 = Z^5`, defect rank 5, all `Mor(v)`
   trivial, and boundedness modulo depth.
 - `bbmz-hosts-with-higher-dimensional-boundary-are-unbounded`, a sketch. Reflection groups of dimension ≥ 3 have
@@ -79,6 +91,33 @@ distinct_from:
   `F_∞` question for Kazhdan inputs then needs a finiteness theorem for full contracting RSGs with **uncountable
   singular sets**, whose hidden data are clopen neighbourhoods of a singular subshift. No such theorem exists yet;
   it is the single gate of this line.
+
+## State of the Kazhdan case, 𝓗_31 (bh-q12-kazhdan, 2026-09-19 evening)
+
+1. **Reduced to the generators.** `generalized-triangle-group-hosts-reduce-to-fixed-trees`:
+   - singular sets are a cocycle;
+   - the free `Z` generator is never singular;
+   - singularity transfers from the host of `G` to that of `G ∗ Z` (`free-z-factor-transfers-singularity`).
+
+   So the uncountable form of Conjecture U for `𝓗_31` is about the three order-5 generators, in `𝓗_31`'s own host.
+2. **Where to look.** Each generator fixes a tree with Cantor boundary, with degrees 5, 12, 25 for `a` and `b`, and
+   5-regular for `c`.
+3. **The criterion.** Singularity of an elliptic generator is a marker mismatch between orbit-neighborhood atoms and
+   ball atoms (`elliptic-singularity-is-a-marker-mismatch`, Proposition H). For `𝓗_31` this becomes recurrent
+   chamber events (A)/(B) along rays of the fixed tree.
+4. **Exact link data.** `gq-bh-q12-kazhdan-fixed-tree-link-geometry.md`: there is a Cantor set of well-sectored rays,
+   along which sectors propagate bijectively.
+5. **Controls.**
+   - Cubulated control (`racg-generators-are-singular-over-their-wall-trees`): the Petersen group has an unbounded
+     host.
+   - So a Cantor fixed tree can carry continuum many singular points, and fixed-tree shape alone cannot give a bounded
+     host.
+6. **The crux.** Gallery convexity (G) of star chains along rays
+   (`star-chains-along-fixed-trees-are-gallery-convex`, OPEN).
+   - With (G), events (A)/(B) and the one-orbit-per-sector question become a finite periodic computation.
+   - No property-(T) input is needed for (G). The complex is not systolic (link `K_{5,5}`), so a proof needs a
+     combinatorial Gauss–Bonnet argument with flat vertices and defect `π/20` per triangle.
+   - Brute force is infeasible (`gq-bh-q12-kazhdan-finite-check-feasibility.md`).
 
 ## Lesson for general BH
 
