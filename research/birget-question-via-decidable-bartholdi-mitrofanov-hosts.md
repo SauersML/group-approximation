@@ -44,9 +44,10 @@ presented simple group.
 **Proof.** Zaremsky's proof of Theorem 1.1 (arXiv:2405.09722) uses finite presentation of `G` exactly once: to
 get `V_(md)(G)` finitely presented through Scott's theorem (his Citation 2.3). The other ingredients hold for
 every finitely generated self-similar `G`:
-- Nekrashevych's abelianization formula (Citation 2.4);
-- the choice of an even `m` with `1/m` not an eigenvalue of `A`;
-- simplicity of `[V, V]`;
+- simplicity of `[V, V]` (his Citation 2.4, Nekrashevych 2018);
+- his own abelianization computation inside the proof: the relation `ḡ = m(ḡ_1 + ⋯ + ḡ_d)` in `V_(md)(G)^ab`,
+  plus the choice of an even `m` with `1/m` not an eigenvalue of `A`. It uses only the generators and their
+  word-level sections (attribution corrected per bh-ref-c, ab22b01462);
 - his Proposition 2.5, stated for any self-similar `G`;
 - the Kaloujnine–Krasner embedding `G ↪ (G/H) ≀ H` with `H = G ∩ [V, V]`.
 
@@ -117,6 +118,29 @@ Lane computations by hand, not independently reviewed.
    - `s_*` passes `1, †₁, †₂` with section `s_*`, and acts as an odometer on the `{0, 𝐢₁}` letters.
    - So `s_*^k|_1 = s_*^k` for all `k`: `⟨s_*⟩ ≅ Z` lies in the nucleus, and `G` is **not contracting**.
    - Hence (c) is decided here only by the lift-ideal criterion. **Open**: this is the first informative case.
+   - **Structure found** (lane, by hand, unreviewed; addendum 2026-09-19). `A = {0,1,†₁,†₂,𝐢₁}`, and
+     `G_1 = ⟨s_*, s_†, t, u⟩`, with `x` and `y` trivial. Read the letters as digit bits `𝐢₁ = 0-bit`,
+     `0 = 1-bit`, markers `†₁, †₂`, and the transparent letter `1`.
+     - `s_*` adds `1` to the 2-adic number `n` formed by the digits, skipping markers.
+     - `t` toggles the first marker.
+     - `s_†` acts at the first letter that is neither a `0`-bit nor `1`. It turns a `1`-bit into the hole
+       `†₁` and back, and is blocked by `†₂`.
+   - **Relations.**
+     - `[s_*, t] = 1`: each preserves the digit/marker class of every letter and reads only its own class.
+     - `⟨s_†, t⟩` is dihedral of order 12, acting on 9 head states.
+     - On words without `†₂`, `⟨s_*, s_†⟩` acts on pairs `(n, H)`, with `H` the multiset of hole gaps, by
+       piecewise-affine maps of slope `2^(±1)`. With `k = v_2(n)` and `h_0 = min H`:
+       - if `k < h_0`, then `(n, H) ↦ ((n − 2^k)/2, {k} ∪ (H − 1))`;
+       - if `h_0 ≤ k`, then `(n, H) ↦ (2n + 2^(h_0), (H ∖ {h_0}) + 1)`.
+       - `s_*` is `n ↦ n + 1`.
+   - **The crux.** Every generator of `P = ⟨s_*, s_†, t⟩` fixes the letter `1` and has itself as section there.
+     So every relator `w` of `P` satisfies `w|_1 = w`, and can never be lift-derived from its own sections.
+     - (c) for this machine therefore needs the relators of `P` to lie in the normal closure of finitely many
+       relators together with lift-derived words.
+     - By Theorem A (finite-state, both directions), (c) here is equivalent to `V_5(G_1)` being finitely
+       presented. It holds if `G_1` is finitely presented (Scott).
+     - Whether `P`, and hence `G_1`, is finitely presented is **open**. The slope-`2^(±1)` hole dynamics
+       suggests a Thompson- or Baumslag–Solitar-like group. Deciding this is the next step.
 3. **The universal machine of Theorem A″: (c) fails.** Its word problem is undecidable. If its kernel were a
    finitely generated lift ideal, the transfer lemma would put `G` in a finitely presented simple group, whose
    finitely generated subgroups have solvable word problem (Kuznetsov). So its relator kernel is **not** a
