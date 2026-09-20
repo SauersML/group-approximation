@@ -105,6 +105,7 @@ noncomputable def applyMat {Y : FiniteModel} (C : Matrix Y Y ℂ)
     (x : EuclideanSpace ℂ Y) : EuclideanSpace ℂ Y :=
   (Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) C x
 
+@[simp]
 theorem applyMat_one {Y : FiniteModel} (x : EuclideanSpace ℂ Y) :
     applyMat (1 : Matrix Y Y ℂ) x = x := by
   simp [applyMat]
