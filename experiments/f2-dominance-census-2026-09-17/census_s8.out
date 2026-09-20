@@ -1,0 +1,44 @@
+r=3: 1 classes (up to coordinate permutation)
+r=4: 16 classes (up to coordinate permutation)
+r=5: 15 classes (up to coordinate permutation)
+r=6: 5 classes (up to coordinate permutation)
+r=7: 1 classes (up to coordinate permutation)
+{"C_upper_float": 1.0476190476190477, "r": 7, "S": [0, 1, 2, 4, 8, 16, 32, 64], "lower": "22/21", "upper": "22/21"}
+{"C_upper_float": 1.0476190476190477, "r": 6, "S": [0, 1, 2, 4, 8, 16, 32, 63], "lower": "22/21", "upper": "22/21"}
+{"C_upper_float": 1.03859649122807, "r": 6, "S": [0, 1, 2, 4, 8, 16, 31, 32], "lower": "296/285", "upper": "296/285"}
+{"C_upper_float": 1.03859649122807, "r": 6, "S": [0, 1, 2, 4, 8, 15, 16, 32], "lower": "296/285", "upper": "296/285"}
+{"C_upper_float": 1.032258064516129, "r": 6, "S": [0, 1, 2, 4, 7, 8, 16, 32], "lower": "32/31", "upper": "32/31"}
+{"C_upper_float": 1.032258064516129, "r": 6, "S": [0, 1, 2, 3, 4, 8, 16, 32], "lower": "32/31", "upper": "32/31"}
+{"C_upper_float": 1.0196078431372548, "r": 5, "S": [0, 1, 2, 4, 7, 8, 11, 16], "lower": "52/51", "upper": "52/51"}
+{"C_upper_float": 1.0196078431372548, "r": 5, "S": [0, 1, 2, 3, 4, 7, 8, 16], "lower": "52/51", "upper": "52/51"}
+{"C_upper_float": 1.0196078431372548, "r": 5, "S": [0, 1, 2, 3, 4, 5, 8, 16], "lower": "52/51", "upper": "52/51"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 4, 7, 8, 16, 31], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 4, 7, 8, 16, 25], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 4, 7, 8, 15, 16], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 3, 4, 8, 15, 16], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 3, 4, 8, 13, 16], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0158730158730158, "r": 5, "S": [0, 1, 2, 3, 4, 8, 12, 16], "lower": "64/63", "upper": "64/63"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 4, 8, 15, 16, 31], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 4, 8, 15, 16, 23], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 4, 7, 8, 16, 27], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 3, 4, 8, 16, 31], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 3, 4, 8, 16, 29], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 5, "S": [0, 1, 2, 3, 4, 8, 16, 28], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 4, 7, 8, 11, 15], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 4, 7, 8, 11, 13], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 8, 13, 15], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 8, 13, 14], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 8, 12, 15], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 7, 8, 15], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 7, 8, 13], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 7, 8, 12], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 7, 8, 11], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 8, 15], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 8, 14], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 8, 11], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 8, 10], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 8, 9], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 7, 8], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 4, "S": [0, 1, 2, 3, 4, 5, 6, 8], "lower": "1", "upper": "1"}
+{"C_upper_float": 1.0, "r": 3, "S": [0, 1, 2, 3, 4, 5, 6, 7], "lower": "1", "upper": "1"}
+{"s": 8, "classes": 38, "sup_upper": "22/21", "sup_lower": "22/21"}

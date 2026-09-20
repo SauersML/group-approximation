@@ -120,3 +120,24 @@ that no mixture of subgroups tracks, which is new behaviour for abelian groups.
     `c/2` for the mass-only relaxation. This suggests that `(H)` is the missing
     ingredient. A growing law in the relaxation would refute only the relaxation,
     not this claim.
+* **Span reduction and exact size classes (2026-09-20, swarm-0917-w23, finite-models).**
+  Established in `f2-cayley-dominance-size-eight-class-is-exactly-22-21`.
+  - *Span reduction.* `C(S)` is decided inside `span(S)`, which has dimension at
+    most `s - 1`. So each size class is a finite computation, and the local-search
+    obstruction "cannot reach `k >= 8`" is irrelevant for `s = 8`.
+  - *Size 8.* Over all `|S| = 8` at every `k`, the supremum is exactly `22/21`
+    (38 classes, exact rational certificates).
+  - *Radius-one balls.* `C(B_s) = (s(s-1) - j(j+1))/((s-1)(s-2))`, which equals
+    `22/21` at `s = 8` and `16` and tends to `1` as `c -> infinity`.
+  - *Where it dies.* The exact census for `s = 16` needs `r` up to `15`, where there
+    are about `2^44` subgroups. Beyond the ball family, `s >= 16` is covered only by
+    column-generation search with exact pricing at `k <= 9`. The runs were partial
+    when recorded, and their values are floats from the LP, not certified:
+    - `(8,16)`: `1.0221` with a ball-like start and `1.0208` with a random start,
+      after about 30 accepted steps;
+    - `(8,32)`: `1.0014`;
+    - `(9,16)`: no result recorded.
+
+    All of these are below `22/21`. The `search_*.out` files hold the logs.
+  - *Consequence.* A counterexample, or any set above `22/21`, needs `|S| >= 16`.
+    The data suggest the sharper conjecture `C* = 22/21`, which is not established.
