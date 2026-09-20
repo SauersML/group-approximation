@@ -49,3 +49,23 @@ invariant with `rho >= 1`.
 - The trivial unit `y = 1` satisfies `phi(1) = 1`. It is excluded by the infinite-order hypothesis.
 - The flip `w = s_00 t_00 + s_10 t_01 + s_01 t_10 + s_11 t_11` gives `rho_w = phi`. Its commutant `M_2(F_2)` contains
   only torsion units, consistent with the claim.
+
+**w22 (swarm-0917-w22-w22-bh-pull, cohomology-index): a complete route.** See
+`diagonal-copy-nonconjugacy-from-algebraic-relative-commutants`, which uses
+`leavitt-relative-commutants-are-algebraic-over-every-field` (self-contained route
+`leavitt-relative-commutants-algebraic-via-fraction-field-koszul`, unreviewed).
+- *Mechanism.* Let `y = w phi(y) w^(-1)`. Then `y` commutes with `rho_w(R)`, so `r ⊗ t^j -> rho_w(r) y^j` is a
+  unital map `R ⊗ F_2[t] -> R`. It is injective if `y` is transcendental, because `R` is central simple. Then
+  `F_2[rho_w(s_0), y]` is a polynomial ring in two variables inside `R`.
+- *The invariant.* Suppose `A ⊇ k[a_1..a_n]`, with the `a_i` commuting and independent. Then the fraction-field
+  Koszul complex of `a_i ⊗ 1 - 1 ⊗ y_i` gives `w.gl.dim(A ⊗ k(y_1..y_n)) >= n`, with no flatness of `A`. But
+  `R ⊗ F_2(y_1, y_2) = L_(F_2(y_1,y_2))(1,2)` is hereditary.
+- So `y` is algebraic over `F_2`, hence of finite order.
+- *Relation to w18.* This is the same invariant as the w18 node `leavitt-algebras-contain-no-two-variable-polynomial-ring`
+  (commit 20e819b457, not yet on main). Here it is re-proved in full so that it does not depend on unlanded files.
+- *Effect.* `infinite-order-leavitt-unit-conjugate-to-its-diagonal-copy` is refuted over `F_2`, and its form (b),
+  `L ⊗ k[t^±1] ↪ L`, is refuted over every field. The routes `tensor-square-nonembedding-from-no-diagonal-conjugacy`
+  and `diagonal-copy-nonconjugacy-from-no-rationals` become redundant. The first now fires. The second is
+  unnecessary, and its premise `rationals-do-not-embed-in-binary-leavitt-unit-group` stays OPEN.
+- *Maintainer note.* The body line "**OPEN.**" predates this route. Per the contract, this worker edited only this
+  section.
