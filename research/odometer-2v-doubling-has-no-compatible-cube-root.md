@@ -40,9 +40,21 @@ so `u s u^-1 = s^2`. Elements of `2V_τ` are the homeomorphisms of `X` of the fo
    `⟨s, u⟩` extends to no `Z[1/6] ⋊ ⟨2⟩` and no `Q ⋊ ⟨2⟩` in `2V_τ`, and `u` does not normalize the
    tower `Q_τ` of the host node.
 4. **The general doubling conjugator.** Every `t ∈ 2V_τ` with `t s t^-1 = s^2` has the form `t = u g`
-   with `g ∈ C(s)`. For such `t`, a cube root `r` of `s` with `t r t^-1 = r^2` exists iff `r` and
-   `u^-1 r^2 u` are conjugate inside `C(s) ≅ LC(C, Z) ⋊ V`. This conjugacy question is **open**.
-   So are copies of `BS(1,2)` in `2V_τ` based on elements other than `s`.
+   with `g ∈ C(s)`. So **some** doubling conjugator `t` of `s` admits a cube root `r` of `s` with
+   `t r t^-1 = r^2` iff some cube root `r` of `s` is conjugate in `C(s) ≅ LC(C, Z) ⋊ V` to
+   `u^-1 r^2 u` (wording fixed by bh-ref-t0).
+5. **Single roots: yes.** For every `m ≥ 1` and every `r ∈ 2V_τ` with `r^m = s`, the roots `r` and
+   `u^-1 r^2 u` are conjugate in `C(s)`. So each single root `r` has its own doubling conjugator
+   `t_r = u g_r` with `t_r r t_r^-1 = r^2`. The obstruction of item 2 is specific to `t = u`.
+6. **Towers through the host's dyadic tower: no.** Let `S_2 = ⟨u^-j s u^j : j ≥ 0⟩ ≅ Z[1/2]`, the
+   normal closure of `s` in `⟨s, u⟩ ≅ BS(1,2)`. Then `C_{2V_τ}(S_2) = S_2`. Hence every `t` that acts
+   on `S_2` as multiplication by `2` lies in `u S_2`, and acts on every abelian `A ⊇ S_2` exactly as
+   `u` does. By item 2, no `A ≅ Z[1/6]` or `A ≅ Q` with `S_2 ≤ A` is normalized by any element
+   acting as `×2`. So `2V_τ` contains no `Q ⋊ ⟨2⟩` and no `Z[1/6] ⋊ ⟨2⟩` extending the host's
+   `S_2 ⋊ ⟨u⟩ = BS(1,2)`.
+7. **Still open.** Copies of `Q ⋊ ⟨2⟩` whose square-root tower of `s` is not conjugate in `C(s)` to
+   `S_2`, and copies based at elements other than `s`. A possible invariant separating towers is
+   the unique invariant measure of the tower's `y`-action: `S_2` gives dyadic cone masses.
 
 ## Mechanism
 
@@ -63,5 +75,18 @@ it is fibred over one coordinate with integer translations along the other, so e
 lives in a `Z ≀ V`-type group, and the doubling forces a non-terminating carry.
 - A host for `Q ⋊ ⟨2⟩` needs a divisible element whose centralizer is not of this fibred-integer
   form: for instance a base with `Z_(2)`-valued fibre translations, or a base that is not an odometer.
-- Otherwise it needs a doubling that conjugates roots nontrivially inside the centralizer: the open
-  case of item 4.
+- Otherwise it needs a doubling that conjugates roots nontrivially inside the centralizer. Items 5–6
+  show this works root by root but not along the host's own dyadic tower, whose centralizer is
+  itself.
+
+## Next host
+
+The rule above points past `2V_τ` to a Katsura–Exel–Pardo host `2V_H` whose colour-1 group `H` is
+finitely generated, self-similar and non-affine, and contains a copy of `Z_(2)` along which the
+doubling acts. The affine hosts `2V_(G_N)` reach only `Z[1/2N] ⋊ ⟨2⟩`, by bounded denominators
+(`affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`). A finite-state `H` meets the constraints of
+`contracting-groups-bound-roots-at-periodic-points` and the "exotic odometer" requirement for
+`Z_(S)` in automaton groups. This is the open item "non-affine coefficient groups containing
+`Z_(2)`" of `aff-q-embeds-in-fp-simple-group`, Attempt 9. The `2`-adic analogue of the rational
+Iwahori input (`rational-iwahori-group-lies-in-fp-self-similar-group`) is one candidate source for
+such an `H`.
