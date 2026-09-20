@@ -13,19 +13,35 @@ distinct_from:
 
 **CONDITIONAL** (lane bh-ra-t2, 2026-09-19; lane proof, not reviewed; no priority claimed). It holds
 under three recalled inputs, none verified at source here:
-- **(SA) Strong approximation.** The closure `F̄` of `F` in `SL_2(Â)` contains an open subgroup `∏_v U_v`.
-  Here `Â = ∏_(v ∉ {0,∞}) O_v`, `U_v = SL_2(O_v)` for all `v` outside a finite set `T`, and `U_v` is open in
-  `SL_2(O_v)` for `v ∈ T`.
-  - This is the conclusion of Pink's strong approximation theorem for Zariski-dense finitely generated
-    subgroups in positive characteristic (Ann. of Math. 2000), recalled.
-  - In general it holds after passing to a finite-index subgroup and to the completions of the trace ring.
-    We assume the stated form.
+- **(SA) Strong approximation, over the minimal quasi-model** (repaired per bh-ref-d, 0fe7e96aa4).
+  - *The first statement was false.* It asked the closure of `F` in `SL_2(Â)` to contain an open product
+    over the places of `F_q(t)`. That fails when the trace field is smaller: a Zariski-dense
+    `F ≤ SL_2(F_q[s^(±1)])` with `s = t²` has non-open closure at the places of `F_q(t)`.
+  - *The correct input* is Pink, "Strong approximation for Zariski dense subgroups over arbitrary global
+    fields", Comment. Math. Helv. 75 (2000), 608–643, recalled. Relative to the **minimal quasi-model** of
+    `F` (its trace field `E ⊆ F_q(t)`, with `F_q(t)/E` finite since `F` is infinite, a form of the
+    adjoint group over `E`, and the isogeny, possibly with a Frobenius twist, carrying `F` into its
+    `E`-points), the closure of the image of `F` over the adèles of `E` away from the places below
+    `{0, ∞}` is open.
+  - *How the proof is run* (bh-ref-d's repair (2)). Run Steps 0–6 over the trace ring `A_0` and its places,
+    not over `A` and its places. Put into `T` the finitely many places where the quasi-model is non-split,
+    or where the closure is not the full local group. `U_v` is then the full local group, of `SL_2` type,
+    for `v ∉ T`.
+  - *Topologies* (bh-ref-d's repair (3)). The `A`- and `A_0`-congruence topologies on `F` agree, because
+    `A` is faithfully flat over `A_0`, so `J′A ∩ A_0 = J′` for ideals `J′` of `A_0`. So "closed in the
+    congruence topology" means the same over either ring.
+  - This repair is recorded but not yet independently re-checked in the quasi-model form. The Statement is
+    to be read with `A`, `Â` and the places `v` replaced by `A_0`, `Â_0` and its places, and with
+    `SL_2(O_v)` replaced by the local groups of the quasi-model.
 - **(HJI) Just-infiniteness.** For every `v` and every open `U ≤ SL_2(O_v)`, every closed normal subgroup of
   `U` not contained in `{±1}` is open. This is recalled for odd residue characteristic.
 - **(S) Sandwich.** For `v ∉ T` and every `k`, every normal subgroup of `SL_2(O_v/m_v^k)` has the form
   `SL_2(O_v/m_v^k, m_v^j/m_v^k) · Z_0`, with `Z_0 ≤ {±1}`. This is recalled for residue fields with at least
   5 elements in odd characteristic. It fails for `F_3`, where `SL_2(F_3)` has the normal subgroup `Q_8`,
-  hence `q ≥ 5`.
+  hence `q ≥ 5`. (bh-ref-d notes that places with residue field `F_3` are finite in number and could go
+  into `T`, so `q ≥ 5` may be droppable. This is unchecked.)
+- **Status of the inputs.** bh-ref-d is checking (HJI) and (S) at source. Until that check reports, this
+  node stays CONDITIONAL.
 
 **T2 is not built.** This closes one door conditionally; it opens none.
 
