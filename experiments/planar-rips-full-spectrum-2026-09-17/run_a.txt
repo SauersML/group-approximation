@@ -1,0 +1,2 @@
+SUMMARY hexa 11 {'done': 2944, 'skipped': 56, 'h2free': 111, 'hits': 0, 'maxresid': 0} 671.0
+SUMMARY circ 11 {'done': 2810, 'skipped': 190, 'h2free': 412, 'hits': 0, 'maxresid': 0} 2723.8

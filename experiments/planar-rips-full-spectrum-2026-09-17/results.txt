@@ -1,0 +1,51 @@
+Full-spectrum L-torsion census of H_2 of periodic planar Rips complexes
+(swarm-0917-w23-w23-z-pull, 2026-09-20).  Scale r = 1, closed convention.
+
+L = F_p[t, t^-1], p = 2147483629.  For each pattern Y = M + Z v:
+  1. periodic_graph_from_points -> orbit graph; patterns with duplicate
+     points or distance margin < 1e-6 from r are skipped;
+  2. reduce_periodic (dominated-orbit deletion; an equivariant homology
+     isomorphism, so the L-module H_2 is unchanged);
+  3. full_spectrum.h2_spectrum: exact Smith form over L of d_3 (rows =
+     4-clique orbits, cols = 3-clique orbits) by laurent_smith.py;
+     torsion(H_2) = torsion(coker d_3); invariant factors factored by
+     flint nmod_poly.factor, so EVERY eigenvalue in the algebraic closure
+     of F_p is covered (the 2026-09-17 periodic-strip search tested only
+     lambda = +1, -1).  Patterns with more than CAP 4-clique orbits, or that
+     exceed the prlimit address-space limit (octa), are skipped.
+
+Validation (python3 test_smith.py ; python3 test_full_spectrum.py):
+  L/(t-2); free 1 + L/(t-2); primitive row -> free; t^3 unit;
+  scrambled diag((t-5)(t-7), t-5, 1) -> free 1, (t-5)^2 (t-7);
+  octahedron x Z strong product -> torsion {t-1};
+  orientation-reversing twisted octahedron x Z -> torsion {t+1};
+  random planar pattern before/after reduction -> no torsion.
+
+Commands (from this directory):
+  python3 search.py 11 3000 hexa 6000 ; python3 search.py 11 3000 circ 6000
+  python3 search.py 11 3000 box 6000 ; python3 search.py 11 3000 hexpair 6000
+  python3 search.py 11 3000 dbox 6000 ; python3 search.py 11 3000 rows 6000
+  python3 search.py 11 3000 lattice 6000
+  prlimit --as=1500000000 python3 search.py 7 300 octa 6000
+(raw output: run_a.txt run_b.txt run_c.txt run_d.txt)
+
+SUMMARY hexa    done 2944 skipped  56 h2free 111 hits 0 maxresid 0
+SUMMARY circ    done 2810 skipped 190 h2free 412 hits 0 maxresid 0
+SUMMARY box     done 2933 skipped  67 h2free   1 hits 0 maxresid 0
+SUMMARY hexpair done 2933 skipped  67 h2free 343 hits 0 maxresid 0
+SUMMARY dbox    done 2697 skipped 303 h2free   0 hits 0 maxresid 0
+SUMMARY rows    done 2959 skipped  41 h2free   0 hits 0 maxresid 0
+SUMMARY lattice done 3000 skipped   0 h2free   0 hits 0 maxresid 0
+SUMMARY octa    done  214 skipped  86 h2free   0 hits 0 maxresid 0
+TOTAL           done 22490, hits 0.
+
+h2free = number of patterns with H_2 of positive L-rank (infinitely many
+spheres per period; still consistent with a wedge).
+maxresid 0 = in EVERY computed pattern the unit-pivot stage (pivots that are
+monomials c t^e) alone reduced d_3 to the empty matrix, so coker d_3 and
+hence H_2 are free L-modules, not merely torsion-free at +-1.
+
+Caveat: computed over F_p.  Over Q[t^+-1] the result excludes torsion except
+by a factor f in Z[t] whose reduction mod p is a monomial, i.e. all but one
+coefficient divisible by p ~ 2^31; and it says nothing about Z-torsion of
+H_2 of finite quotients (p-torsion for small primes is not tested).
