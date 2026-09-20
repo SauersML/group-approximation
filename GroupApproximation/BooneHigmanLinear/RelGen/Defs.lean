@@ -108,7 +108,7 @@ def rootGroup (J : Ideal R) (S : I → I → Prop) : Subgroup (SteinbergGroup I 
 
 end Groups
 
-section Poly
+noncomputable section Poly
 
 variable (I : Type*) [Fintype I] [DecidableEq I] {A : Type*} [CommRing A]
 
