@@ -36,6 +36,21 @@ is trivial.
 
 ## Attempts
 
+- **Liu transfer test (2026-09-20): the automatic unitary lift fails.**
+  Let A act on all vectors of F_q^d and let P_A be the corresponding
+  complex permutation matrix. If r=rank(A-I), its normalized trace is
+  q^(-r), and ||P_A-I||_2^2=2(1-q^(-r)). A rank-one transvection has
+  normalized rank 1/d -> 0 but fixed positive unitary displacement.
+  Thus this natural functor does not descend from a rank ultraproduct
+  to a tracial unitary ultraproduct. Fourier conjugation on the finite
+  additive group preserves the same trace and does not repair it.
+  This refutes only this proposed conversion, not every possible lift.
+  Together with `kazhdan-group-rank-models-admit-no-expander-decomposition`,
+  it explains why Liu's Hilbert-space theorem does not close this node.
+  The next input must use the full compressor-compatible model or the
+  joint two-root identities, not just property (T) or finite-group data.
+  Full scope and calculation: `research/artifacts/liu-new-frontiers-2026-09-20.md`.
+
 - **Root identities decide (lane `gk-rk-unipotent`, 685d99751a).**
   - `N_12^2 = 0` and `N_23 N_12 = 0`, with `N_ij = sigma(x_ij(1)) - 1`, already build the
     matrix units, so the matrix-unit theorems apply.

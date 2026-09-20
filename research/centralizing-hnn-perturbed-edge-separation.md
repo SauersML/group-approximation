@@ -2,9 +2,9 @@
 rg: 2
 id: centralizing-hnn-perturbed-edge-separation
 kind: claim
-title: Perturbed non-quotient edge models separate the centralizing HNN rope
+title: Approximate edge models separate the centralizing HNN rope
 distinct_from:
-  centralizing-hnn-sofic-via-regular-edge-centralizer: that claim proves the quotient-model no-go and computes the exact free-edge centralizer; this claim is the missing genuinely approximate separation theorem.
+  centralizing-hnn-sofic-via-regular-edge-centralizer: that excludes quotient models with exact edge centralization and computes their finite-image centralizer; this asks for approximate edge commutation and separation, without requiring the base to leave quotient models.
   sofic-safe-finite-presentation-compiler: that asks for the full two-rope compiler; this is only the inner centralizing HNN separation step.
 ---
 
@@ -24,29 +24,32 @@ and every `epsilon>0`, there are a finite set `X`, an
    Hamming defect at most `epsilon`; and
 2. every `w in W` moves a dimension-independent positive fraction of `X`.
 
-The model must be genuinely non-quotient on `K_e`.  By
-[[centralizing-hnn-sofic-via-regular-edge-centralizer]], every model which
-factors through a finite quotient kills `[v,k]` for each
-`k in closure(L_e) \ L_e`, regardless of the choice of stable letter.
+This proposed route seeks models genuinely non-quotient on `K_e`.
+That is a design choice, not a necessary consequence of
+[[centralizing-hnn-sofic-via-regular-edge-centralizer]]. The latter
+excludes finite-quotient base models only when the stable letter
+**exactly centralizes the whole finite edge image**. It does not exclude
+finite-quotient base models with merely approximate commutation on a
+tested edge generating set, as allowed in condition 1 here.
 
-The proposed live construction perturbs a locally free edge action away
-from quotient models and chooses `sigma_v` from its large wreath-product
-edge centralizer.  What remains is a uniform Britton separation estimate
-for the resulting correlated random permutation products.  Standard
-independence estimates do not apply directly because the centralizer moves
-whole edge orbits and its labels interact with the base action.
+The proposed construction perturbs the edge/base model away from exact
+quotient models. To use a wreath-product edge centralizer afterwards,
+one would first need an exact free action of an appropriate finite edge
+image; approximate freeness does not automatically supply that
+centralizer. Alternatively one could construct a stable letter only
+approximately centralizing the tested edge elements. Neither construction
+nor the subsequent uniform Britton separation estimate is established here.
 
 ## Attempts
 
-- **Exact quotient bases.**  This fails for a theorem, not a missing
-  estimate: the established centralizer/no-go claim shows that every
-  profinite-closure pinch is killed in every finite quotient.
-- **Independent random stable letters.**  A generic random permutation does
-  not approximately centralize the edge action.  Sampling inside the edge
-  centralizer restores the relators but correlates orbit motion and labels,
-  so the usual exposure martingale for independent random permutations does
-  not give Britton separation.
-- **Deferred live lane.**  Perturb the base model on a vanishing Hamming set
-  so closure points separate while the edge remains locally free, then prove
-  a correlated wreath-centralizer word estimate uniform over each fixed
-  finite Britton packet.
+- **Exact quotient bases with exact edge centralization.** This joint
+  model class fails by the no-go theorem. Exact quotient bases with
+  approximately edge-centralizing stable letters are not excluded.
+- **Random stable letters in the original exact centralizer.** For a
+  nonseparable edge these cannot separate closure pinches at all, regardless
+  of the distribution; it is not merely a missing independence estimate.
+- **Deferred live lane.** Find models meeting conditions 1--2, either by
+  a justified non-quotient construction or by approximate centralization
+  in quotient models. A vanishing perturbation of all generator images
+  in the old exact models cannot separate a fixed collapsed word by a
+  positive amount: fixed-word evaluation is Lipschitz in those errors.

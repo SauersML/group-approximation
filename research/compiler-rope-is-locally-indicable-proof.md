@@ -4,11 +4,12 @@ id: compiler-rope-is-locally-indicable-proof
 kind: route
 title: The compiler's ropes retract onto locally indicable groups with free-product kernels
 target: compiler-rope-is-locally-indicable
-requires: [mf-safe-finite-presentation-compiler, bidirectional-hnn-bridge-trivial-value-is-residually-finite, centralizer-hnn-is-free-generalized-wreath]
+requires: [mf-compiler-is-uniform-in-finite-seeds, bidirectional-hnn-bridge-trivial-value-is-residually-finite, centralizer-hnn-is-free-generalized-wreath]
 ---
 
 We use the construction data of `research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`, Section 4,
-items 3--9.  On `e in INF`:
+items 3--9, with an arbitrary finite seed d retained as in the uniform
+compiler premise. Suppress d in the notation. On `e in INF`:
 
 - `K_e = K_e^0 x K^g`, where `K_e^0 = F x F(X_e) x F(X_e)`, `K^g = F x P` and `P = F_2 x F_2`.  All factors are
   finitely generated free groups.

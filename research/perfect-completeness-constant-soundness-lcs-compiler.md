@@ -24,6 +24,15 @@ M halts          =>  J_M != 1 in Gamma_M
 M does not halt  =>  omega_q(L_M) < 1.                                 (PC2)
 ```
 
+**2026-09-20 update.** The literal `(PC1)-(PC2)` interface is now supplied
+by `weak-lcs-compiler-from-fixed-separating-game`: use a constant map to the
+Liu-based separating LCS. This uses only perfect *commuting* completeness,
+so it does not prove perfect quantum completeness or LIN-MIPstar=RE.
+The substantive source-sensitive and halting-distinguishing constructions
+discussed below remain separate research tasks. Earlier wording about a
+missing compiler refers to those historical attempts, not to an additional
+obligation for the weak interface after the new negative seed.
+
 By `re-oriented-lcs-compiler-gives-nonhyperlinear-group` this effectively
 yields an explicit nonhyperlinear solution group `Gamma_(M_*)` for a
 proof-search fixed-point machine `M_*`.  Taller--Vidick prove the stronger

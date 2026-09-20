@@ -3,6 +3,8 @@ rg: 2
 id: kt-pair-hyperlinear-floor-below-normal-closure
 kind: claim
 title: For the Theorem E pair some coset wreath over an intermediate subgroup not containing the normal closure is hyperlinear
+refuted_by:
+  - kt-intermediate-wreaths-missing-normal-core-not-hl
 distinct_from:
   hyperlinear-wreath-model: that is the single case Δ = Γ; this asks for any Δ with Γ ≤ Δ and ⟨⟨Γ⟩⟩ ⊄ Δ, a disjunction strictly implied by it
   theorem-c-separation-iff-infranormal-coset-wreath: that is the general equivalence; this is its open instance for the explicit Kun--Thom pair
@@ -10,7 +12,8 @@ distinct_from:
   kt-hyperlinear-coset-wreath-forces-nonroundable-vertex: that derives HS-instability consequences from a hyperlinear W_K; this is the existence question itself, recast as the only Theorem-C route to a hyperlinear nonsofic action
 ---
 
-**OPEN.** Let `Γ = EL_r(F_q[x_1,…,x_d]) < G = EL_r(F_q[x_1^(±1),…,x_d^(±1)]) ⋊ SL_d(Z)`,
+**Formerly OPEN; refuted by the 2026-09-20 normalization consequence below.**
+The historical assertion was: let `Γ = EL_r(F_q[x_1,…,x_d]) < G = EL_r(F_q[x_1^(±1),…,x_d^(±1)]) ⋊ SL_d(Z)`,
 `r,d ≥ 3` (Kun--Thom Theorem E). There is a subgroup `Δ` with `Γ ≤ Δ ≤ G` and
 `⟨⟨Γ⟩⟩ ⊄ Δ` such that `W_Δ = (⊕_(G/Δ) Z/2) ⋊ G` is hyperlinear. Equivalently
 (`theorem-c-separation-iff-infranormal-coset-wreath`) the hyperlinear floor
@@ -27,6 +30,14 @@ A positive answer also gives a hyperlinear nonsofic **group**, since `W_Δ` is n
 `kt-intermediate-coset-wreaths-are-nonsofic`. So, for this pair, the Theorem-C route to a
 hyperlinear nonsofic action costs exactly as much as the Pestov-level separation for the
 groups `W_Δ`; the action version brings no discount.
+
+## Update (2026-09-20)
+
+The former open assertion above is refuted by
+[[kt-intermediate-wreaths-missing-normal-core-not-hl]], using Jihao Liu's
+internality theorem and Andreas Thom's conditional normalization theorem.
+The earlier search history below is retained as history, not as a live
+request to search for one of these hyperlinear intermediate wreaths.
 
 ## Progress (2026-09-17): the explicit candidates collapse to Δ = Γ
 

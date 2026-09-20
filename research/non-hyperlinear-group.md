@@ -59,7 +59,15 @@ with the normalized Hilbert-Schmidt metric.
 
 **ESTABLISHED, 2026-09-20 — checked written derivations, not a new Lean certificate.** The essential analytic input is
 Jihao Liu, [*Nonhyperlinear groups exist*](https://jihaoliu.org/ai-results/nonhyperlinear-groups-exist-2026-09-20.pdf),
-Theorem 1.2/6.7 (`kazhdan-commutants-are-internal`). Full written reconstructions of its analytic inputs, independently checked block assembly, and the matching/exhaustion proof now close that claim. This root follows through Andreas Thom's conditional double theorem, the Kun–Thom lamp obstruction, and separately the native Leavitt argument. Thom retains priority for conditional normalization and the double; Kun and Thom for the explicit pair and lamps. The direct Leavitt application removes the earlier heat/SOS machinery; its independent cross-review is cited above. Audits, exact scopes, named background imports and consequences are in the integration guide. Liu's stronger single-model normalization theorem remains separately under review and is not needed by these completed paths. The historical progress entries below describe earlier open states, not the current derived status. Global Cairn schema errors elsewhere in the repository remain a separate validation issue and are not evidence of mathematical certification here.
+Theorem 1.2/6.7 (`kazhdan-commutants-are-internal`). Full written reconstructions of its analytic inputs, independently checked block assembly, and the matching/exhaustion proof now close that claim. This root follows through Andreas Thom's conditional double theorem, the Kun–Thom lamp obstruction, and separately the native Leavitt argument. Thom retains priority for conditional normalization and the double; Kun and Thom for the explicit pair and lamps. The direct Leavitt application removes the earlier heat/SOS machinery; its independent cross-review is cited above. Audits, exact scopes, named background imports and consequences are in the integration guide. Liu's stronger single-model normalization theorem remains separately under review and is not needed by these completed paths. The historical progress entries below describe earlier open states, not the current derived status. Graph validation is recorded separately in the integration guide and is not mathematical certification.
+
+**Parallel consequence wave, 2026-09-20.** The integration guide now also
+links the MF-but-nonhyperlinear rank-six double, binary linear-game
+separation, six-generator central-sign seed, all-field stable finiteness,
+and the obstruction for intermediate stabilizers. New geometric and
+quantitative-game targets remain open; the positive compiler branch
+needs seed-uniform relative approximation information. The source audits
+retain Liu, Thom and each additional theorem's authorship.
 
 **September 8, full Leavitt character classification.** The written
 proof `binary-leavitt-full-character-simplex` establishes that every

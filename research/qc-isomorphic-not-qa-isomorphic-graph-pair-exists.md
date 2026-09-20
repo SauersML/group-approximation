@@ -11,7 +11,8 @@ distinct_from:
   mipstar-bcs-tracial-nonru-exists: that is the gap for a general constraint system, which MIP*=RE supplies; this is the gap for isomorphism games, whose algebraic, C* and tracial levels collapse.
 ---
 
-**OPEN.**  Find finite simple graphs `X, Y` whose isomorphism game has a
+**2026-09-20: supplied by `qc-qa-graph-gap-from-liu-lcs`.** There exist
+finite simple graphs `X, Y` whose isomorphism game has a
 perfect `qc`-strategy but no perfect `qa`-strategy.  Equivalently
 (BCEHPSW, arXiv:1812.11474v2, Theorems 2.1 and 4.9):
 
@@ -30,11 +31,18 @@ general graphs.
 
 ## Attempts
 
+- **Liu-based LCS input (2026-09-20).** The finitely presented Leavitt
+  nonhyperlinear group, using Jihao Liu's analytic theorem and the separate
+  finite-presentation input, now supplies the Paddock--Slofstra linear-system
+  gap. The existing AMRSSV/BCEHPSW CFI conversion then gives this graph pair.
+  This is a composition of the credited inputs, not a new graph encoding.
+  No small adjacency-list artifact or numerical game gap is asserted here.
+
 - **CFI pairs from linear systems.**  For `(G_(A,b), G_(A,0))` the `qc`/`qa`
   gap is equivalent to the tracial/non-`R^U` gap of `Ax=b` (BCEHPSW
   Theorem 5.6 and Proposition 5.3), hence to a finitely presented
-  nonhyperlinear group (Paddock--Slofstra Proposition 5.8).  This source dies
-  at the goal itself.
+  nonhyperlinear group (Paddock--Slofstra Proposition 5.8). Historically
+  this source stopped at the negative-group goal; the new route supplies it.
 - **Uniform gadget reductions from NP-hard languages.**
   - A hereditary *-equivalence of games preserves perfect classical strategies
     (BCEHPSW Proposition 5.3 with `t = loc`).

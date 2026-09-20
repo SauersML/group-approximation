@@ -44,6 +44,15 @@ from sofic, because operator-norm separation can be supported on a subspace of
 vanishing normalized rank. The point is the same one that
 `weak-mf-embedding-not-reusable` makes in general.
 
+**2026-09-20 update.** The negative half is now stronger on the binary
+Kun-Thom double family: [[kt-doubles-are-mf-but-not-hyperlinear]] combines
+this MF theorem with Jihao Liu's analytic input and Andreas Thom's
+conditional mechanism. It separates MF from hyperlinear, not hyperlinear
+from sofic. The rank-six same-witness profile is
+[[fp-surjunctive-mf-nonhyperlinear-group]]. The historical statement above
+that the earlier nonsoficity argument alone did not decide hyperlinearity
+remains correct.
+
 ## What it does not cover
 
 The argument is about the **free-lamp amalgam**, not the commuting-lamp wreath.

@@ -3,6 +3,8 @@ rg: 2
 id: mf-trace-gap-defect-ratio-models
 kind: claim
 title: MF groups admit models whose squared defect beats their trace gap
+refuted_by:
+  - kt-doubles-are-mf-but-not-hyperlinear
 distinct_from:
   mf-implies-hyperlinear: This is one explicit analytic profile sufficient for the root claim, not the root claim; it asks for a rate relating the multiplicative defect, the dimension, and the visibility of one element.
   countable-group-mf-conventions: That established claim compares MF formulations at fixed accuracy; this one asks for a quantitative dimension-versus-defect rate that no formulation supplies for free.
@@ -27,6 +29,15 @@ such that
 ```text
 epsilon_n^2/kappa_n -> 0.                                        (P1)
 ```
+
+**2026-09-20: the universal assertion is refuted.** If it held for the
+MF nonhyperlinear double [[kt-doubles-are-mf-but-not-hyperlinear]], the
+accepted phase-cancelled proof [[mf-implies-hyperlinear-via-rank-profile]]
+would make that double hyperlinear. Thus at least one word defeats every
+such selection. This uses Jihao Liu's analytic result and Andreas Thom's
+conditional mechanism for the negative half, and Tatiana Shulman's MF
+amalgamation theorem for the positive half. The calculations below remain
+valid conditional tools, not a live universal model-selection problem.
 
 Two remarks fix the scale.  Operator separation with constant `1` forces
 `kappa_n >= 1/(2 d_n)` for free, so `(P1)` is implied by

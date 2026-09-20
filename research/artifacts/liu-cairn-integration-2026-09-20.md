@@ -194,6 +194,43 @@ The existing [four-generator, eighteen-relator presentation](../thompson-steinbe
 
 The new [recognition route](../hyperlinear-undecidable-from-leavitt-negative-seed.md) feeds the finitely presented Leavitt negative seed into the existing hereditary-approximation Rice theorem, proving undecidability of hyperlinearity on finite presentations. The stronger finite-presentation Pi^0_2-completeness target still needs the compiler's hyperlinear positive branch. Supplying a negative seed does not supply that branch.
 
+### Parallel consequence and problem-development wave
+
+The next wave audits the expanded comparison rather than treating it as
+an already-proved list. Its completed written deductions are:
+
+| Connection | Exact output | Extra premise or remaining boundary |
+|---|---|---|
+| [MF versus hyperlinear](mf-nonhyperlinear-double-separation-2026-09-20.md) | The same rank-six double is finitely presented, surjunctive, MF, and nonhyperlinear | Shulman's symmetric C-star amalgamation theorem plus the faithful RF-group-double bridge; no assertion that the canonical trace is an MF trace |
+| [Linear-constraint games](liu-to-linear-games-and-marked-gap-2026-09-20.md) | A finite binary LCS has perfect commuting play and quantum-approximable value strictly below one | Paddock--Slofstra; the positive gap is existential, not numerical |
+| [Concrete game input](../leavitt-central-sign-seed-for-lcs.md) | Six-generator, 25-relator group with nontrivial central involution invisible in every tracial matrix model | Reviewed four-generator Leavitt presentation; actual game equations and a rational gap remain open |
+| [Surjunctivity and ring finiteness](liu-surjunctivity-permanence-audit-2026-09-20.md) | Liu's wreath and the rank-six double have stably finite group algebras over every field | Phung's ordinary-surjunctivity theorem; no Kaplansky or Gottschalk counterexample |
+| [Intermediate stabilizers](../kt-intermediate-wreaths-missing-normal-core-not-hl.md) | Every stabilizer containing Gamma but missing its normal closure gives a nonhyperlinear binary coset wreath | Applies normalization to Gamma, not to the larger stabilizer; refutes the former intermediate-overgroup search target |
+
+There is also a fixed word invisible in **every** MF model of the
+nonhyperlinear double. This is stronger than padding one bad model:
+universal MF-to-hyperlinear model selection and the two universal rate
+profiles are refuted, while their conditional amplification lemmas
+remain usable for special families. Exact finite-image vertex gluings
+already kill a concrete Laurent difference, explaining why finite
+quotient gluing cannot recover the double's canonical trace.
+
+The [new-frontiers audit](liu-new-frontiers-2026-09-20.md) separates the
+remaining tasks: the actual compiler's relative coset models, a genuine
+rank-metric replacement for analytic internality, and new geometric
+obstructions for hyperbolic or one-relator groups. No such existence
+problem is marked solved. Cross-review also catches a seed-dependence
+issue in older recognition notes: abstract equality of positive bridge
+groups does not identify the effective Higman outputs. The strengthened
+positive-branch hypothesis must retain the seed quantifier.
+
+All nonhyperlinear uses credit Jihao Liu's internality and Andreas
+Thom's conditional mechanism, with Kun--Thom's pair and each further
+source retained. Cross-review of the central HNN seed checks base
+injectivity, genuine centrality, the 25-relator count and the
+dimension-free estimate `kappa_new(delta) <= 2 kappa_source(delta)+delta`.
+This is written mathematics and graph wiring, not a new Lean result.
+
 ### Other connections and limits
 
 - The existing nonhyperlinear root is reached through the wreath and independently

@@ -3,6 +3,8 @@ rg: 2
 id: mf-hs-defect-gap-profile
 kind: claim
 title: Weak MF models admit an intrinsic HS-defect versus trace-gap profile
+refuted_by:
+  - kt-doubles-are-mf-but-not-hyperlinear
 distinct_from:
   mf-trace-gap-defect-ratio-models: That claim requires the square of the operator-norm defect to beat the trace gap; this claim uses the weaker rate condition involving the actual normalized Hilbert--Schmidt defect, the quantity paid by the phase-cancelled tensor amplifier.
   mf-invariant-corner-visibility: That claim demands a dimension-free trace gap in operator-norm models; this claim allows the gap to vanish, provided it dominates the squared normalized Hilbert--Schmidt relation defect.
@@ -56,8 +58,14 @@ to occupy Hilbert--Schmidt mass comparable to the marked trace gap in every
 operator-norm model; mere growth of the ambient dimension or identity-block
 padding cannot do so.
 
-The claim is still genuinely open under the weak Carrión--Dadarlat--Eckhardt
-convention.  Norm-corona injectivity controls a singular value of
+**2026-09-20: the universal claim is refuted.** The Liu-Thom/Shulman
+counterexample [[kt-doubles-are-mf-but-not-hyperlinear]], together with
+the phase-cancelled amplification proof in
+[[mf-hyperlinear-via-hs-defect-gap-profile]], forces some word in an MF
+double to fail this profile for every selection of models. The amplifier
+remains a valid conditional argument; its universal input is false.
+No numerical lower bound is extracted. Historically, the obstacle was:
+norm-corona injectivity controls a singular value of
 `phi_n(g)-1`, while `(HP1)` compares two normalized second moments.  No
 known selection theorem supplies that comparison.
 

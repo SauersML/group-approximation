@@ -40,6 +40,16 @@ property (T) plus a commuting non-LEF subgroup. Two qualifications:
 
 ## Attempts
 
+- **Liu update (2026-09-20).** The accepted internality input now proves
+  nonhyperlinearity of the binary Leavitt unit group and the specified
+  Kun--Thom wreath/double families, so those are no longer candidates
+  for this positive-hyperlinear separation. Their MF models do not
+  supply positive HS models. The existing positive unitary approximation
+  branch must be established independently for any new candidate.
+  Credit for the analytic exclusion is Jihao Liu, through the separately
+  credited Thom normalization/double consequence; no general converse
+  between MF and hyperlinear is being asserted.
+
 - **Trace statistics, stable witnesses and diagonal lamps: dead as separation
   mechanisms** (lane `solve-hyperlinear-not-sofic`, 2026-09-13).
   - *Character signs.* Both approximation classes converge to `delta_e`, and

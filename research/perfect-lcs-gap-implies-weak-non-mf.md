@@ -38,7 +38,10 @@ corner and normalizing that corner by its own rank.  This contradiction
 does not use Property `(T)`, a Kazhdan pair or projection, spectral gap,
 stability, expansion, or any hypothesis on `Gamma(A,b)/<J>`.
 
-This is a conditional endgame, not an existence theorem: no finite LCS with
-the displayed perfect gap is currently known.  Producing one is the
-`epsilon=0` threshold which Taller--Vidick identify with the
-nonhyperlinear-group problem.
+This node is a conditional endgame. As of September 20,
+`binary-lcs-perfect-qc-strict-qa-gap-exists` supplies its hypothesis through
+the Liu-based negative group and the Paddock--Slofstra reduction. The output
+solution group is therefore non-MF even if a different chosen source group
+is MF: neither the central-tag HNN construction nor the solution-group
+embedding asserts preservation of MF. A small displayed game and numerical
+gap remain separate tasks.

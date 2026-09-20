@@ -5,7 +5,7 @@ kind: route
 title: Torsion in an amalgam or an HNN extension is conjugate into a vertex group
 target: mf-compiler-positive-branch-is-torsion-free
 requires:
-  - mf-safe-finite-presentation-compiler
+  - mf-compiler-is-uniform-in-finite-seeds
   - bidirectional-hnn-bridge-trivial-value-is-residually-finite
 ---
 

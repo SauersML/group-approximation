@@ -11,10 +11,10 @@ distinct_from:
 ---
 
 ESTABLISHED.  Let `R_e` be the finitely presented rope produced by
-[[mf-safe-finite-presentation-compiler]] on an input `e` with infinite
-domain (the branch on which the switch group collapses).  Then `R_e` is
-torsion-free.  The statement does not depend on the seed: on the `INF`
-branch the compiler's output is seed-independent.
+[[mf-compiler-is-uniform-in-finite-seeds]] with any finite seed d on an
+input e with infinite domain. Then its actual output R_e(d) is
+torsion-free. The proof is uniform in d; it does not identify outputs
+across different seeds. Below R_e abbreviates R_e(d).
 
 **Proof.**  Read the construction bottom-up and use two classical facts:
 in an amalgamated free product every element of finite order is conjugate

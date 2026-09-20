@@ -11,7 +11,8 @@ distinct_from:
 
 **ESTABLISHED (proposed; unreviewed).**  Derivation: `compiler-rope-is-locally-indicable-proof`.
 
-Let `e in INF` and let
+Fix any finite seed code d and e in INF in
+[[mf-compiler-is-uniform-in-finite-seeds]], suppress d in the notation, and let
 
 ```text
 Gamma_e = < K_e, v | [v, L_e] = 1 > = K_e *_(L_e) (L_e x Z),
@@ -23,8 +24,9 @@ finitely generated free groups, `S_e = F *_(N_e) F^v`, and `H = B3(1)` the kerne
 character of `F_2 x F_2`.  Then `Gamma_e` and `R_e` are **locally indicable**.
 
 **Consequences.**  By Burns--Hale, `R_e` is left-orderable, and it has unique products.  So it is torsion-free,
-and `K[R_e]` is a domain for every field `K`.  None of this depends on the seed, since on `INF` the output is
-seed-independent.
+and `K[R_e]` is a domain for every field `K`. The structural proof uses
+only the displayed positive-branch data, so applies for every d; it
+does not assert that the outputs for different seeds are isomorphic.
 
 **Why it matters for the atlas.**
 - *The orderable cells.*  `R_e` is the one group whose soficity decides the sofic cell of

@@ -4,6 +4,8 @@ id: mf-implies-hyperlinear
 kind: claim
 title: MF implies hyperlinear under the weak norm-corona convention
 root: true
+refuted_by:
+  - kt-doubles-are-mf-but-not-hyperlinear
 distinct_from:
   hyperlinear-not-imply-mf: That established claim refutes the reverse implication; this claim asks whether norm-corona MF groups always admit faithful Hilbert--Schmidt models.
   sofic-implies-hyperlinear: Soficity supplies canonical traces through permutation models; a weak MF corona embedding need not make its coordinate traces faithful.
@@ -16,6 +18,17 @@ artifacts:
 
 Every MF group in the Carrión--Dadarlat--Eckhardt norm-matrix-corona sense is
 hyperlinear.
+
+**2026-09-20 correction: refuted by the binary Kun-Thom doubles.**
+[[kt-doubles-are-mf-but-not-hyperlinear]] combines Tatiana Shulman's
+positive operator-norm amalgamation theorem with Jihao Liu's analytic
+theorem and Andreas Thom's conditional normalization/double mechanism.
+The exact rank-six witness is even finitely presented and surjunctive:
+[[fp-surjunctive-mf-nonhyperlinear-group]]. Thus the universal compiler
+shortcut through this claim is unavailable. This does not refute any
+particular compiler's positive branch or the restricted conversion
+theorems below. The remaining text records the historical frontier,
+not a still-open universal implication.
 
 Operator-norm multiplicativity controls normalized Hilbert--Schmidt defect,
 but the defining MF embedding alone does not ensure faithful coordinate

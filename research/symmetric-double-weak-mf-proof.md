@@ -6,6 +6,7 @@ title: Fell-absorb the regular representation, then apply Shulman's amalgam theo
 target: symmetric-double-weak-mf
 requires: []
 artifacts:
+  - research/artifacts/mf-nonhyperlinear-double-separation-2026-09-20.md
   - notes/WEAK_MF_NONSOFIC_DOUBLE.md
   - notes/FALSE_SHULMAN_TRACE_AUDIT.md
 ---
@@ -19,7 +20,7 @@ one external theorem that this repository has read in the primary source.
 
 The only non-internal input is:
 
-> **Shulman**, arXiv:2603.13564v2, **Theorem 10**: `A *_C A` is MF when `A` is
+> **Shulman**, arXiv:2603.13564v3, **Theorem 10**: `A *_C A` is MF when `A` is
 > separable MF and `C <= A`.
 
 Its role and its limits are audited separately in
@@ -29,6 +30,12 @@ which is why this route reaches weak MF and nothing stronger. Shulman v2 is on
 the repository's deep-verification list in `notes/CREDIT_AND_PRIORITY_AUDIT.md`
 ("Deep-web verification with PDFs in hand (CDE, Dadarlat, Shulman v2, TWW, …)").
 Everything else below is internal.
+
+The v3 statement, Definition 3 and identical-inclusion convention were
+rechecked on 2026-09-20. The new source audit also gives a direct faithful
+regular-representation proof of Step 3; no MF assertion about the full or
+reduced group C-star algebra, and no MF assertion about its regular trace,
+is imported.
 
 ## Step 1 — the MF algebra and its fixed subalgebra
 

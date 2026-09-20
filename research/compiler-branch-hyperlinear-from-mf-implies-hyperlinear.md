@@ -6,19 +6,20 @@ title: The positive rope is MF, so the universal implication covers it
 target: mf-compiler-positive-branch-is-hyperlinear
 requires:
   - mf-implies-hyperlinear
-  - mf-safe-finite-presentation-compiler
+  - mf-compiler-is-uniform-in-finite-seeds
 ---
 
 ## Why sufficient
 
-The compiler's positive branch is operator-MF by
-[[mf-safe-finite-presentation-compiler]] --- that is the compiler's own
-theorem --- so the universal implication [[mf-implies-hyperlinear]]
-applies to it verbatim and makes it hyperlinear.
+For every seed d and e in INF, R_e(d) is operator-MF by
+[[mf-compiler-is-uniform-in-finite-seeds]]. Thus the universal
+implication [[mf-implies-hyperlinear]], if true, would make every such
+output hyperlinear. That premise is now refuted; this is a valid
+conditional implication but no longer an available proof route.
 
 ## Why this is a genuine reduction, not a restatement
 
-The target is a statement about **one** explicit finitely presented group;
+The target concerns **one uniformly constructed family**;
 the prerequisite is the universal implication for **every** MF group.  The
 prerequisite can fail while the target holds (the rope may be hyperlinear
 for its own reasons, for instance by a direct quasidiagonality argument on
