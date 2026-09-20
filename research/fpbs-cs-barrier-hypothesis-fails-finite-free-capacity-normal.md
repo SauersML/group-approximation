@@ -98,3 +98,40 @@ because `k` could then not exceed `#Y`.
 
 * **Generalize the normal-cyclic core lemma by counting.** Done. See the
   route.
+* **Extend the kill to the gate `b(K) = ∞` by weighting instead of counting
+  (2026-09-20, swarm-0917-w21-w21-bs-follow; approach dead, claim unchanged).**
+  The idea: replace `#` in Lemma 2′ by a weight that free sets cannot
+  accumulate, so that `F_2 x F_2` and `F_2 x BS(1,2)` fall too.
+  - *Kraft lemma (proved).* Let `h >= 0` be the growth rate of `(G,S)` and
+    `P(s) = Σ_g e^(-s|g|)`, finite for `s > h`. If `Y` is free, then
+    `F(s) = Σ_(y∈Y) e^(-s|y|)` satisfies `F(s)^k <= P(s)` for every `k`. The
+    length-`k` products are distinct and `|y_1⋯y_k| <= Σ|y_i|`. So
+    `F(s) <= 1` for all `s > h`, and `F(h) <= 1` by monotone convergence.
+    Hence every `r`-roughly branching `B` has Kraft mass
+    `Σ_(β∈B) e^(-h|β|) <= C(r) := #B(r) e^(hr)`, and `D` disjoint barriers
+    `B_i ⊆ B` force `D · min_i w(B_i) <= C(r)`.
+  - *Fibre-path form dies for every weight.* Step (5a) uses only that `B`
+    meets the fibre path of Lemma 3′. Let `w >= 0` be any weight with
+    `w(Y) <= C` for all free `Y`. If `b(K_0) = ∞`, free subsets of `K_0` of
+    size `n` give `inf_(K_0) w <= C/n`, so `inf_(N_c(K)) w = 0`. No lower
+    bound on the mass of the path's hits survives, and a weighted (5a)
+    reduces to counting, which is infinite.
+  - *Capacity form dies for the Kraft weight.* One could instead use the
+    barrier property against all paths: bound `D` by the min-cut
+    `cap_D(κ)`, the least Kraft mass of `D` disjoint barriers between `id`
+    and `κ`. But the spheres `S(κ,j) = κ S(j)`, `j = 1..D`, are disjoint
+    barriers (for `|κ| > D`), of total mass at most
+    `Σ_(j<=D) #S(j) e^(-h(|κ|-j)) -> 0` as `|κ| -> ∞` with `D` fixed. So
+    `inf_(κ∈K_0) cap_D(κ) = 0` for every `D`, and `D · cap <= C(r)` bounds
+    nothing. This holds on every infinite `K_0` when `h > 0`, whatever
+    `b(K)` is. When `h = 0`, the Kraft weight is counting.
+  - *Invariant and failing step.* The Kraft mass of roughly-branching sets
+    is the invariant. It fails at (5a), which needs a lower bound on barrier
+    mass that is uniform over far fibre points `κ`.
+  - *What is left.* A kill of Theorem 2.17 on the gate (`F_2 x F_2`,
+    `F_2 x BS(1,2)`) must use the unique-decodability of `B'` beyond any
+    additive weight, or the magic-lemma quantifier over all finite `A`. On
+    Cayley graphs, (Γ1)+(Γ2) is equivalent to `p_c < p_(2->2)` (Remark A.1 of
+    `research/artifacts/fpbs-acylindrical-l2-gap-2026-09-16.md`). A proof of
+    the hypothesis on `F_2 x F_2` would therefore give `p_c < p_(2->2)` there,
+    which is open.
