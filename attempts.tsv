@@ -379,3 +379,4 @@
 35544912402	2026-09-20T23:32:56Z	GroupApproximation/Sofic/FiniteStageRobustGap.lean	norm_word_displacement_le
 35551692406	2026-09-21T01:42:15Z	GroupApproximation/Sofic/FinitelyPresentedLEF.lean	finitelyPresented_isLEF_residuallyFinite
 35571745972	2026-09-21T07:12:16Z	GroupApproximation/Sofic/FiveRadicalsCoincide.lean	bohrResidual_eq_finiteResidual
+35609962284	2026-09-21T14:08:07Z	GroupApproximation/Sofic/FourRadicalsCoincide.lean	range_fg
