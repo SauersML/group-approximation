@@ -387,3 +387,4 @@
 35728165077	2026-09-22T12:37:30Z	GroupApproximation/Sofic/FreeGroupResiduallyFinite.lean	not_plus_minus
 35759756583	2026-09-22T17:18:51Z	GroupApproximation/Sofic/FreeLampDoubleEmbedding.lean	productDoubleMap_apply
 35780496173	2026-09-22T20:29:49Z	GroupApproximation/Sofic/FreeLampKernelSplitting.lean	lampRetractionMaps_comp
+35796571391	2026-09-22T23:16:57Z	GroupApproximation/Sofic/FreeLampKernelSplitting.lean	isSofic_iterated_of_isSofic_freeLamp
