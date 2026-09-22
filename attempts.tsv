@@ -383,3 +383,4 @@
 35644827867	2026-09-21T19:27:41Z	GroupApproximation/Sofic/FournierFacioHullBridge.lean	nonempty_of_routingLemmaData
 35664626968	2026-09-21T22:53:43Z	GroupApproximation/Sofic/FournierFacioUniversalGroup.lean	universal_comp
 35676350217	2026-09-22T01:36:52Z	GroupApproximation/Sofic/FreeCancellationNesting.lean	mk_pair_cancel
+35696424716	2026-09-22T06:48:27Z	GroupApproximation/Sofic/FreeGroupPFFInterface.lean	isPFF_freeGroup_of_finiteTraceModels
