@@ -54,7 +54,7 @@ variable {α : Type*}
 theorem mk_pair_cancel (x : α × Bool) (B : List (α × Bool)) :
     FreeGroup.mk (x :: invLetter x :: B) = FreeGroup.mk B := by
   rw [mk_cons x (invLetter x :: B), mk_cons (invLetter x) B, ← mk_singleton_inv]
-  group
+  rw [← mul_assoc, mul_inv_cancel, one_mul]
 
 /-- The same in context. -/
 theorem mk_pair_cancel_append (A : List (α × Bool)) (x : α × Bool)
