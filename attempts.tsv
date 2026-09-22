@@ -384,3 +384,4 @@
 35664626968	2026-09-21T22:53:43Z	GroupApproximation/Sofic/FournierFacioUniversalGroup.lean	universal_comp
 35676350217	2026-09-22T01:36:52Z	GroupApproximation/Sofic/FreeCancellationNesting.lean	mk_pair_cancel
 35696424716	2026-09-22T06:48:27Z	GroupApproximation/Sofic/FreeGroupPFFInterface.lean	isPFF_freeGroup_of_finiteTraceModels
+35728165077	2026-09-22T12:37:30Z	GroupApproximation/Sofic/FreeGroupResiduallyFinite.lean	not_plus_minus
