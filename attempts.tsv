@@ -391,3 +391,4 @@
 35806643387	2026-09-23T01:32:43Z	GroupApproximation/Sofic/FreeLampReduction.lean	lampMap_true_apply
 35827790039	2026-09-23T06:40:38Z	GroupApproximation/Sofic/FreeProductMFRadicalRetraction.lean	inr_mem_normMFResidual_iff_of_residual_eq_bot
 35858961828	2026-09-23T12:12:34Z	GroupApproximation/Sofic/FreeProductSignReflection.lean	basepoint_some
+35892188863	2026-09-23T17:12:03Z	GroupApproximation/Sofic/FreeProductSignReflection.lean	mul_linearEquiv_apply
