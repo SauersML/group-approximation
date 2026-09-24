@@ -399,3 +399,4 @@
 35998012027	2026-09-24T12:17:23Z	GroupApproximation/Sofic/FullMFRadicalExtensions.lean	fullMFRadicalCore_eq_top_of_surjective_kernel
 36033020051	2026-09-24T17:20:45Z	GroupApproximation/Sofic/FullMFRadicalLocalization.lean	fullMFRadicalCoreQuotientMap_bijective_of_surjective_of_kernel_eq_top
 36055430631	2026-09-24T20:32:17Z	GroupApproximation/Sofic/FullMFRadicalProducts.lean	mem_fullMFRadicalCore_prod_iff
+36072816438	2026-09-24T23:28:11Z	GroupApproximation/Sofic/FullMFRadicalPullback.lean	fullMFRadicalCore_eq_comap_of_surjective_of_kernel_eq_top
