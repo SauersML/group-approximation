@@ -23,22 +23,17 @@ theorem fullMFRadicalCoreQuotientMap_bijective_of_surjective_of_kernel_eq_top
     (f : G →* H) (hf : Function.Surjective f)
     (hker : fullMFRadicalCore f.ker = ⊤) :
     Function.Bijective (fullMFRadicalCoreQuotientMap f) := by
-  let qG : G →* fullMFRadicalCoreQuotient G :=
-    fullMFRadicalCoreQuotientMk G
-  let qH : H →* fullMFRadicalCoreQuotient H :=
-    fullMFRadicalCoreQuotientMk H
   have hkerCore : f.ker ≤ fullMFRadicalCore G :=
     le_fullMFRadicalCore f.ker
       ((fullMFRadicalCore_eq_top_iff (G := f.ker)).mp hker)
-  have hkerQ : f.ker ≤ qG.ker := by
-    rw [show qG.ker = fullMFRadicalCore G by
-      exact QuotientGroup.ker_mk' (fullMFRadicalCore G)]
+  have hkerQ : f.ker ≤ (fullMFRadicalCoreQuotientMk G).ker := by
+    dsimp [fullMFRadicalCoreQuotientMk]
+    rw [QuotientGroup.ker_mk']
     exact hkerCore
   let s₀ : H →* fullMFRadicalCoreQuotient G :=
-    f.liftOfSurjective hf ⟨qG, hkerQ⟩
-  have hs₀ : s₀.comp f = qG := by
-    dsimp [s₀]
-    exact f.liftOfRightInverse_comp _ _ _
+    f.liftOfSurjective hf ⟨fullMFRadicalCoreQuotientMk G, hkerQ⟩
+  have hs₀ : s₀.comp f = fullMFRadicalCoreQuotientMk G :=
+    f.liftOfRightInverse_comp _ _ _
   obtain ⟨s, hs, _⟩ :=
     existsUnique_fullMFRadicalCoreQuotient_factorization
       (G := H) s₀
@@ -48,16 +43,19 @@ theorem fullMFRadicalCoreQuotientMap_bijective_of_surjective_of_kernel_eq_top
     obtain ⟨g, hg⟩ :=
       QuotientGroup.mk'_surjective (fullMFRadicalCore G) z
     rw [← hg]
-    change s (qH (f g)) = qG g
-    exact (DFunLike.congr_fun hs (f g)).trans
-      (DFunLike.congr_fun hs₀ g)
+    calc
+      s ((fullMFRadicalCoreQuotientMk H) (f g))
+          = (s.comp (fullMFRadicalCoreQuotientMk H)) (f g) := rfl
+      _ = s₀ (f g) := by rw [hs]
+      _ = (s₀.comp f) g := rfl
+      _ = (fullMFRadicalCoreQuotientMk G) g := by rw [hs₀]
   constructor
   · exact hleft.injective
   · intro z
     obtain ⟨h, hh⟩ :=
       QuotientGroup.mk'_surjective (fullMFRadicalCore H) z
     obtain ⟨g, rfl⟩ := hf h
-    refine ⟨qG g, ?_⟩
+    refine ⟨(fullMFRadicalCoreQuotientMk G) g, ?_⟩
     rw [← hh]
     rfl
 
