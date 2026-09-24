@@ -394,3 +394,4 @@
 35892188863	2026-09-23T17:12:03Z	GroupApproximation/Sofic/FreeProductSignReflection.lean	mul_linearEquiv_apply
 35915292022	2026-09-23T20:21:46Z	GroupApproximation/Sofic/FrobeniusPairing.lean	normSq_eq_norm_sq
 35932135733	2026-09-23T23:10:13Z	GroupApproximation/Sofic/FullMFRadicalClosurePullback.lean	actualCoronaMFClosure_eq_comap_map_of_surjective_of_ker_le
+35942687641	2026-09-24T01:24:22Z	GroupApproximation/Sofic/FullMFRadicalCore.lean	le_fullMFRadicalCore
