@@ -404,3 +404,4 @@
 36109369800	2026-09-25T07:52:45Z	GroupApproximation/Sofic/FullMFRadicalReflection.lean	fullMFRadicalCoreQuotientMk_apply
 36138326764	2026-09-25T13:01:50Z	GroupApproximation/Sofic/FullMFRadicalVisibleLocalization.lean	actualCoronaMFVisibleQuotientMap_mk
 36170276699	2026-09-25T17:57:40Z	GroupApproximation/Sofic/FullRadicalClosureProperties.lean	forall_eq_one_of_actualCoronaMFResidual_eq_top
+36192215043	2026-09-25T21:34:46Z	GroupApproximation/Sofic/GeneralModelKazhdanTransport.lean	instead
