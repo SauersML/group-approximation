@@ -410,3 +410,4 @@
 36234036932	2026-09-26T09:52:30Z	GroupApproximation/Sofic/GreendlingerAlphaPlumb.lean	conjugatorAbsorbedSite_of_canonical
 36248625338	2026-09-26T14:29:35Z	GroupApproximation/Sofic/GreendlingerBetaBranch.lean	palindrome_eq_append_reappearance
 36261097016	2026-09-26T18:02:49Z	GroupApproximation/Sofic/GreendlingerBeyond.lean	SubwordBeyond
+36271910609	2026-09-26T21:09:41Z	GroupApproximation/Sofic/GreendlingerCancellation.lean	exists_cancellation_decomposition
