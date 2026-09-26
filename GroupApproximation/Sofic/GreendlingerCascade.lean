@@ -87,7 +87,7 @@ theorem drop_add {β : Type*} :
       cases l with
       | nil => rw [List.drop_nil, List.drop_nil, List.drop_nil]
       | cons a l₁ =>
-          rw [show n + 1 + m = (n + m) + 1 from by omega, List.drop_succ_cons,
+          rw [Nat.succ_add, List.drop_succ_cons,
             List.drop_succ_cons, ih m l₁]
 
 /-! ## The residual word loses a prefix at every stage -/
