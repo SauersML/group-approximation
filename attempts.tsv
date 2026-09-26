@@ -408,3 +408,4 @@
 36203774888	2026-09-26T00:11:16Z	GroupApproximation/Sofic/GeneralizedWreathSofic.lean	isSofic_wreath
 36219302086	2026-09-26T04:57:19Z	GroupApproximation/Sofic/GraphCliffordLamp.lean	sign_sq
 36234036932	2026-09-26T09:52:30Z	GroupApproximation/Sofic/GreendlingerAlphaPlumb.lean	conjugatorAbsorbedSite_of_canonical
+36248625338	2026-09-26T14:29:35Z	GroupApproximation/Sofic/GreendlingerBetaBranch.lean	palindrome_eq_append_reappearance
