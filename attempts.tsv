@@ -416,3 +416,4 @@
 36305222652	2026-09-27T08:08:45Z	GroupApproximation/Sofic/GreendlingerCoincidence.lean	invRev_ne_rotate_of_minimal
 36324170269	2026-09-27T13:58:05Z	GroupApproximation/Sofic/GreendlingerCollapseInduction.lean	length_eq_of_long_arc
 36340403358	2026-09-27T18:23:33Z	GroupApproximation/Sofic/GreendlingerCombinatorics.lean	invLetter_injective
+36352413762	2026-09-27T21:38:36Z	GroupApproximation/Sofic/GreendlingerCompositeWellPosed.lean	wellPosed_of_ne_nil
