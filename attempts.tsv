@@ -421,3 +421,4 @@
 36381559645	2026-09-28T05:22:36Z	GroupApproximation/Sofic/GreendlingerCyclicTwoArc.lean	length_pos_of_longArc
 36418953770	2026-09-28T12:00:11Z	GroupApproximation/Sofic/GreendlingerDeepArc.lean	length_palindrome
 36473794020	2026-09-28T19:40:55Z	GroupApproximation/Sofic/GreendlingerDeepInduction.lean	toWord_conjEval_singleton
+36500585238	2026-09-28T23:57:24Z	GroupApproximation/Sofic/GreendlingerDeepInduction.lean	LocatedSplit.drop_of_le
