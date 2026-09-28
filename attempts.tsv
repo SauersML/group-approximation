@@ -419,3 +419,4 @@
 36352413762	2026-09-27T21:38:36Z	GroupApproximation/Sofic/GreendlingerCompositeWellPosed.lean	wellPosed_of_ne_nil
 36360458902	2026-09-27T23:59:16Z	GroupApproximation/Sofic/GreendlingerConjugation.lean	mk_singleton_inv
 36381559645	2026-09-28T05:22:36Z	GroupApproximation/Sofic/GreendlingerCyclicTwoArc.lean	length_pos_of_longArc
+36418953770	2026-09-28T12:00:11Z	GroupApproximation/Sofic/GreendlingerDeepArc.lean	length_palindrome
