@@ -424,3 +424,4 @@
 36500585238	2026-09-28T23:57:24Z	GroupApproximation/Sofic/GreendlingerDeepInduction.lean	LocatedSplit.drop_of_le
 36527398877	2026-09-29T05:43:08Z	GroupApproximation/Sofic/GreendlingerDeepInvariant.lean	take_append_of_le
 36562601536	2026-09-29T11:35:43Z	GroupApproximation/Sofic/GreendlingerDeepInvariant.lean	greendlingerAtSharp_drop_of_lands
+36601975553	2026-09-29T17:02:41Z	GroupApproximation/Sofic/GreendlingerDeepOverrunCount.lean	RelatorLengthRatioTwo
