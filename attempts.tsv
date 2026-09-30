@@ -426,3 +426,4 @@
 36562601536	2026-09-29T11:35:43Z	GroupApproximation/Sofic/GreendlingerDeepInvariant.lean	greendlingerAtSharp_drop_of_lands
 36601975553	2026-09-29T17:02:41Z	GroupApproximation/Sofic/GreendlingerDeepOverrunCount.lean	RelatorLengthRatioTwo
 36632952806	2026-09-29T21:51:32Z	GroupApproximation/Sofic/GreendlingerDeepOverrunCount.lean	exists_forward_alignment
+36651885233	2026-09-30T00:46:51Z	GroupApproximation/Sofic/GreendlingerDeepTailWindow.lean	take_drop_swap
