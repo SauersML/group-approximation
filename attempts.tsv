@@ -431,3 +431,4 @@
 36715360967	2026-09-30T12:44:20Z	GroupApproximation/Sofic/GreendlingerDeepVacuity.lean	exists_overhang_of_prefix
 36756362042	2026-09-30T18:10:26Z	GroupApproximation/Sofic/GreendlingerDeepVacuitySharp.lean	metricSmallCancellation_of_le
 36784356981	2026-09-30T22:15:08Z	GroupApproximation/Sofic/GreendlingerDeepestMatch.lean	eaten_prefix_orientation
+36800421856	2026-10-01T01:19:02Z	GroupApproximation/Sofic/GreendlingerDehn.lean	DehnReducible
