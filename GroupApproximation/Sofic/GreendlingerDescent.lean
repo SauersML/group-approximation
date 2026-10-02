@@ -39,20 +39,8 @@ variable {α : Type*}
 suffix of that block. -/
 theorem suffix_of_suffix_append {M X Y : List α} (h : M <:+ X ++ Y)
     (hlen : M.length ≤ Y.length) : M <:+ Y := by
-  obtain ⟨s, hs⟩ := h
-  have hXpre : X <+: s ++ M := by
-    rw [hs]
-    exact ⟨Y, rfl⟩
-  have hspre : s <+: s ++ M := ⟨M, rfl⟩
-  have hlenX : X.length ≤ s.length := by
-    have hcount := congrArg List.length hs
-    simp only [List.length_append] at hcount
-    omega
-  obtain ⟨s', hs'⟩ := List.prefix_of_prefix_length_le hXpre hspre hlenX
-  refine ⟨s', ?_⟩
-  have hcancel : X ++ (s' ++ M) = X ++ Y := by
-    rw [← List.append_assoc, hs', hs]
-  exact List.append_cancel_left hcancel
+  have hYsuf : Y <:+ X ++ Y := ⟨X, rfl⟩
+  exact List.suffix_of_suffix_length_le h hYsuf hlen
 
 /-! ## The relator the cancellation never reaches -/
 
