@@ -438,3 +438,4 @@
 36944925356	2026-10-02T00:15:10Z	GroupApproximation/Sofic/GreendlingerDehnSwap.lean	occurrence_cases
 36969817787	2026-10-02T05:39:20Z	GroupApproximation/Sofic/GreendlingerDescent.lean	suffix_of_suffix_append
 37000560680	2026-10-02T11:22:21Z	GroupApproximation/Sofic/GreendlingerEmptyConjCorner.lean	exists_prefix_mem_symmetrization_of_infix
+37036551711	2026-10-02T16:50:41Z	GroupApproximation/Sofic/GreendlingerExpression.lean	IsConjProduct
