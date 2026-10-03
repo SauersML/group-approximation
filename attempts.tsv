@@ -444,3 +444,4 @@
 37100888397	2026-10-03T05:47:14Z	GroupApproximation/Sofic/GreendlingerIsoperimetric.lean	is
 37117155357	2026-10-03T10:40:52Z	GroupApproximation/Sofic/GreendlingerLanding.lean	LandsIn.compose
 37131351070	2026-10-03T14:55:49Z	GroupApproximation/Sofic/GreendlingerLandingConfined.lean	largeSegmentLands_of_nonConfined
+37145097330	2026-10-03T18:41:44Z	GroupApproximation/Sofic/GreendlingerLandingProd.lean	lt_length_of_lt_lam_mul
