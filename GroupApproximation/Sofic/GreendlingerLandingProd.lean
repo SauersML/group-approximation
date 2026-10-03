@@ -169,7 +169,7 @@ theorem lt_length_of_lt_lam_mul {lam : ℚ} (hlam : lam ≤ 1 / 6) {i T : ℕ}
   have h1 : lam * (T : ℚ) ≤ 1 / 6 * (T : ℚ) :=
     mul_le_mul_of_nonneg_right hlam hT
   have h : (i : ℚ) < (T : ℚ) := by linarith
-  exact_mod_cast h
+  exact Nat.cast_lt.mp h
 
 /-- **The offset field, characterized.**  A landing site at the factor in front
 of the block exists at *some* admissible offset exactly when the intrusion
