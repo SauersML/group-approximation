@@ -450,3 +450,4 @@
 37181018768	2026-10-04T05:51:07Z	GroupApproximation/Sofic/GreendlingerMaxConjugator.lean	keeps_of_two_pieces
 37201693604	2026-10-04T12:33:03Z	GroupApproximation/Sofic/GreendlingerMinimal.lean	IsMinimalConjProduct
 37218980663	2026-10-04T17:02:55Z	GroupApproximation/Sofic/GreendlingerMirror.lean	already
+37231158068	2026-10-04T20:12:47Z	GroupApproximation/Sofic/GreendlingerNoDeepCollapse.lean	conjEval_cons_eq_of_tail
