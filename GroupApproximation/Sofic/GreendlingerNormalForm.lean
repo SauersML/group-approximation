@@ -62,8 +62,7 @@ def palindrome (c m : List (α × Bool)) : List (α × Bool) :=
 theorem palindrome_cons (d : α × Bool) (c m : List (α × Bool)) :
     palindrome (d :: c) m = [d] ++ palindrome c m ++ [invLetter d] := by
   unfold palindrome
-  rw [invRev_cons]
-  simp only [List.append_assoc, List.cons_append, List.nil_append]
+  simp [invRev_cons, List.append_assoc]
 
 theorem mk_palindrome (c m : List (α × Bool)) :
     FreeGroup.mk (palindrome c m)
