@@ -458,3 +458,4 @@
 37393451251	2026-10-06T00:24:00Z	GroupApproximation/Sofic/GreendlingerPieceOverlapProof.lean	stalled_regime
 37426137045	2026-10-06T06:52:41Z	GroupApproximation/Sofic/GreendlingerReducedness.lean	rotate_eq_append_singleton
 37476784525	2026-10-06T14:11:54Z	GroupApproximation/Sofic/GreendlingerRegime.lean	exists_swallow_split
+37519614711	2026-10-06T19:32:21Z	GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean	symmetrized_empty
