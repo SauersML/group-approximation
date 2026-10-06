@@ -455,3 +455,4 @@
 37253564889	2026-10-05T02:00:19Z	GroupApproximation/Sofic/GreendlingerOneRelator.lean	ne_nil_of_mem_symmetrization
 37287336616	2026-10-05T09:02:44Z	GroupApproximation/Sofic/GreendlingerOverlap.lean	suffix_split_of_length_le
 37355883791	2026-10-05T18:26:49Z	GroupApproximation/Sofic/GreendlingerPiece.lean	invRev_prefix_of_suffix
+37393451251	2026-10-06T00:24:00Z	GroupApproximation/Sofic/GreendlingerPieceOverlapProof.lean	stalled_regime
