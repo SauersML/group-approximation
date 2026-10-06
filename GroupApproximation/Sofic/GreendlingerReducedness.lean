@@ -39,8 +39,7 @@ variable {α : Type*}
 theorem rotate_eq_append_singleton {t' z : List (α × Bool)} {x : α × Bool}
     {i : ℕ} (hi : i ≤ t'.length) (htake : t'.take i = z ++ [x]) :
     t'.rotate i = (t'.drop i ++ z) ++ [x] := by
-  rw [List.rotate_eq_drop_append_take hi, htake]
-  simp only [List.append_assoc]
+  rw [List.rotate_eq_drop_append_take hi, htake, List.append_assoc]
 
 /-- **L-red.**  In the conjugator-overrun regime the coincidence is void, and
 reducedness of the head palindrome alone refutes it. -/
