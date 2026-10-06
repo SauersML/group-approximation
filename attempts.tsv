@@ -457,3 +457,4 @@
 37355883791	2026-10-05T18:26:49Z	GroupApproximation/Sofic/GreendlingerPiece.lean	invRev_prefix_of_suffix
 37393451251	2026-10-06T00:24:00Z	GroupApproximation/Sofic/GreendlingerPieceOverlapProof.lean	stalled_regime
 37426137045	2026-10-06T06:52:41Z	GroupApproximation/Sofic/GreendlingerReducedness.lean	rotate_eq_append_singleton
+37476784525	2026-10-06T14:11:54Z	GroupApproximation/Sofic/GreendlingerRegime.lean	exists_swallow_split
