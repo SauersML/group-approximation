@@ -70,8 +70,6 @@ At `λ = 1/6` the conclusion is `m < (2/3)·T`, which is the `λ`-free file's
 theorem survivor_le_of_overrun_sharp {lam m q p T : ℚ}
     (hcover : m = q + p) (hhug : 2 * q ≤ T) (hpiece : p < lam * T) :
     m < (1 / 2 + lam) * T := by
-  have hexp : (1 / 2 + lam) * T = T / 2 + lam * T := by ring
-  rw [hexp]
   linarith
 
 /-- **A block that overruns eats only two pieces**, so its own factor keeps more
