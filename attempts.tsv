@@ -461,3 +461,4 @@
 37519614711	2026-10-06T19:32:21Z	GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean	symmetrized_empty
 37545553977	2026-10-06T23:16:44Z	GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean	greendlingerLengthBound_of_slack
 37561902784	2026-10-07T02:26:24Z	GroupApproximation/Sofic/GreendlingerSharpBackLoss.lean	exists_deep_orientation_sharp
+37599460227	2026-10-07T09:17:30Z	GroupApproximation/Sofic/GreendlingerSharpChunks.lean	survivor_le_of_overrun_sharp
