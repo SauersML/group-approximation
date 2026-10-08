@@ -464,3 +464,4 @@
 37599460227	2026-10-07T09:17:30Z	GroupApproximation/Sofic/GreendlingerSharpChunks.lean	survivor_le_of_overrun_sharp
 37653083374	2026-10-07T16:35:25Z	GroupApproximation/Sofic/GreendlingerSharpDeepArc.lean	lam_mul_le_of_deep
 37690461008	2026-10-07T21:36:22Z	GroupApproximation/Sofic/GreendlingerSharpDehn.lean	lt_two_mul_of_sharp_long
+37712357528	2026-10-08T01:20:47Z	GroupApproximation/Sofic/GreendlingerSharpDropGate.lean	sharpGreendlingerGate_of_cascadeLandingDropSharp
