@@ -469,3 +469,4 @@
 37801946222	2026-10-08T15:36:07Z	GroupApproximation/Sofic/GreendlingerSharpInduction.lean	not_hug_overrun_sharp
 37842254574	2026-10-08T20:50:05Z	GroupApproximation/Sofic/GreendlingerSharpInvariant.lean	exists_postJunction_drop_sharp
 37868667218	2026-10-09T01:13:42Z	GroupApproximation/Sofic/GreendlingerSharpLandingAux.lean	greendlingerAtSharp_of_overlap
+37898698546	2026-10-09T07:23:49Z	GroupApproximation/Sofic/GreendlingerSharpLandingProd.lean	eaten_lt_of_long_next_conjugator_sharp
