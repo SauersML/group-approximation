@@ -474,3 +474,4 @@
 37982496823	2026-10-09T19:47:19Z	GroupApproximation/Sofic/GreendlingerSharpMinimal.lean	greendlingerSharp_of_invRev
 38005032307	2026-10-09T23:34:50Z	GroupApproximation/Sofic/GreendlingerSharpOverlap.lean	length_lt_of_isPiece
 38018128862	2026-10-10T02:46:27Z	GroupApproximation/Sofic/GreendlingerSharpReduction.lean	deepOverrunArcSharp_of_windowSharp
+38040098664	2026-10-10T09:05:34Z	GroupApproximation/Sofic/GreendlingerSharpRegime.lean	not_adjacent_prefix_of_minimal_sharp
