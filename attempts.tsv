@@ -476,3 +476,4 @@
 38018128862	2026-10-10T02:46:27Z	GroupApproximation/Sofic/GreendlingerSharpReduction.lean	deepOverrunArcSharp_of_windowSharp
 38040098664	2026-10-10T09:05:34Z	GroupApproximation/Sofic/GreendlingerSharpRegime.lean	not_adjacent_prefix_of_minimal_sharp
 38063305629	2026-10-10T15:22:58Z	GroupApproximation/Sofic/GreendlingerSharpRegime.lean	greendlingerSharp_of_infix
+38080123041	2026-10-10T19:32:18Z	GroupApproximation/Sofic/GreendlingerSharpResidualWiring.lean	cascadeLandingSharp_family_of_sharpResiduals
