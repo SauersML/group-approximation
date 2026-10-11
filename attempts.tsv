@@ -479,3 +479,4 @@
 38080123041	2026-10-10T19:32:18Z	GroupApproximation/Sofic/GreendlingerSharpResidualWiring.lean	cascadeLandingSharp_family_of_sharpResiduals
 38093253636	2026-10-10T22:57:18Z	GroupApproximation/Sofic/GreendlingerSharpThreeFactor.lean	add_le_length_of_three_lam_budget
 38103246140	2026-10-11T01:52:47Z	GroupApproximation/Sofic/GreendlingerSharpTwins.lean	length_lt_of_eaten
+38126082034	2026-10-11T08:48:48Z	GroupApproximation/Sofic/GreendlingerSharpTwins.lean	greendlingerAtSharp_of_maximalJunctionSharp
