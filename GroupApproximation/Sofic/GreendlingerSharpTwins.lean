@@ -114,7 +114,8 @@ theorem length_lt_of_eaten {R : Set (List (α × Bool))} {lam : ℚ}
     (M.length : ℚ) < lam * (t.length : ℚ) := by
   have h := hmetric (FreeGroup.invRev M) hpiece (FreeGroup.invRev t)
     (invRev_mem_symmetrization ht) (invRev_prefix_of_suffix hsuf)
-  rwa [FreeGroup.invRev_length, FreeGroup.invRev_length] at h
+  rw [FreeGroup.invRev_length, FreeGroup.invRev_length] at h
+  exact h
 
 /-- **An empty relator is forbidden, at a general constant.**  The `λ`-twin of
 `ne_nil_of_metricSmallCancellation`: as soon as the symmetrization has two
