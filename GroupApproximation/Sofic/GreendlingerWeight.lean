@@ -70,11 +70,11 @@ def conjEval : List (FreeGroup α × List (α × Bool)) → FreeGroup α
     (e : List (FreeGroup α × List (α × Bool))) :
     conjEval ((c, s) :: e) = c * FreeGroup.mk s * c⁻¹ * conjEval e := rfl
 
-theorem conjEval_cons' (x : FreeGroup α × List (α × Bool))
+@[simp] theorem conjEval_cons' (x : FreeGroup α × List (α × Bool))
     (e : List (FreeGroup α × List (α × Bool))) :
     conjEval (x :: e) = x.1 * FreeGroup.mk x.2 * x.1⁻¹ * conjEval e := by
   obtain ⟨c, s⟩ := x
-  rfl
+  simp [conjEval_cons]
 
 /-- Replacing the two leading factors by two whose product agrees leaves the
 element unchanged. -/
