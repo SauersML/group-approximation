@@ -486,3 +486,4 @@
 38195547182	2026-10-12T02:23:49Z	GroupApproximation/Sofic/GreendlingerSlide.lean	mk_append_mul
 38231951746	2026-10-12T09:46:43Z	GroupApproximation/Sofic/GreendlingerThreeFactor.lean	GreendlingerAt
 38297127525	2026-10-12T19:22:46Z	GroupApproximation/Sofic/GreendlingerThreeFactor.lean	norm_le_of_minimal_sendToEnd
+38332992928	2026-10-13T01:38:18Z	GroupApproximation/Sofic/GreendlingerThreeFactor.lean	greendlinger_of_isMinimalConjExpr
