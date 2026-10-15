@@ -496,3 +496,4 @@
 38662507149	2026-10-15T00:53:38Z	GroupApproximation/Sofic/HilbertSchmidtAdjointGap.lean	signDiagonal_apply
 38689284875	2026-10-15T05:54:55Z	GroupApproximation/Sofic/HilbertUltraproductFaithful.lean	act_eq_zero_of_omegaNull
 38727311078	2026-10-15T11:27:17Z	GroupApproximation/Sofic/HilbertUltraproductInner.lean	ulim_ofReal
+38762856943	2026-10-15T15:44:45Z	GroupApproximation/Sofic/HilbertUltraproductPairing.lean	eq_zero_of_weight_eq_zero
