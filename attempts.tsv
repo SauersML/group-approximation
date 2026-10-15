@@ -493,3 +493,4 @@
 38491168140	2026-10-14T11:05:09Z	GroupApproximation/Sofic/HSDistVanishingWitness.lean	hsDistVanishing_rfl
 38625842229	2026-10-14T20:05:10Z	GroupApproximation/Sofic/HeisenbergCentre.lean	Heis
 38648956092	2026-10-14T22:39:43Z	GroupApproximation/Sofic/HereditaryNonsoficDescent.lean	defectNormal_eq_normalClosure_simpleSubgroup
+38662507149	2026-10-15T00:53:38Z	GroupApproximation/Sofic/HilbertSchmidtAdjointGap.lean	signDiagonal_apply
