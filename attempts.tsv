@@ -500,3 +500,4 @@
 38793487147	2026-10-15T19:24:29Z	GroupApproximation/Sofic/HilbertUltraproductSeparating.lean	exists_sum_normSq_gt
 38818680064	2026-10-15T22:41:06Z	GroupApproximation/Sofic/HilbertUltraproductSpace.lean	uinner_self_eq_zero_of_massNull
 38831296036	2026-10-16T00:46:35Z	GroupApproximation/Sofic/HullPrescribedSaturation.lean	finiteOrder_lifts_comp
+38854061276	2026-10-16T05:07:33Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	gromovProduct_nonneg
