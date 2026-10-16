@@ -499,3 +499,4 @@
 38762856943	2026-10-15T15:44:45Z	GroupApproximation/Sofic/HilbertUltraproductPairing.lean	eq_zero_of_weight_eq_zero
 38793487147	2026-10-15T19:24:29Z	GroupApproximation/Sofic/HilbertUltraproductSeparating.lean	exists_sum_normSq_gt
 38818680064	2026-10-15T22:41:06Z	GroupApproximation/Sofic/HilbertUltraproductSpace.lean	uinner_self_eq_zero_of_massNull
+38831296036	2026-10-16T00:46:35Z	GroupApproximation/Sofic/HullPrescribedSaturation.lean	finiteOrder_lifts_comp
