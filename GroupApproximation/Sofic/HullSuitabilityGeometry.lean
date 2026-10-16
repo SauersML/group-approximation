@@ -1654,32 +1654,14 @@ theorem chain_backtracking_and_progress {δ C L : ℝ}
         rw [hzero]
         exact hCδ
   | succ n ih =>
-      have hed := hedge n
-      have hdist :
-          dist (y 0) (y n) + L - 2 * (C + δ) ≤
-            dist (y 0) (y (n + 1)) := by
-        have hb := ih.2
-        unfold gromovProduct at hb
-        rw [dist_comm (y (n + 1)) (y n)] at hb
-        linarith
+      rcases ih with ⟨hprogress, hback⟩
+      have hstep := chain_progress_step hδ hgap hback (hedge n) (hlocal n)
+      rcases hstep with ⟨hprogress', hback'⟩
       constructor
-      · have hp := ih.1
-        push_cast
-        linarith
-      · have hswap := gromovProduct_add_swap_base (y 0) (y n) (y (n + 1))
-        have hbehind : C + δ <
-            gromovProduct (y 0) (y n) (y (n + 1)) := by
-          linarith [ih.2, hedge n]
-        have hloc := hlocal n
-        have hfar :
-            gromovProduct (y n) (y (n + 2)) (y (n + 1)) + δ <
-              gromovProduct (y 0) (y n) (y (n + 1)) := by
-          linarith
-        have hnext := gromovProduct_le_add_delta_of_lt hδ hfar
-        have hbound :
-            gromovProduct (y 0) (y (n + 2)) (y (n + 1)) ≤ C + δ := by
-          linarith
-        simpa only [Nat.succ_eq_add_one, Nat.add_assoc] using hbound
+      · push_cast
+        simpa [Nat.succ_eq_add_one] using by
+          nlinarith
+      · simpa [Nat.succ_eq_add_one, Nat.add_assoc] using hback'
 
 /-- **One local turn certifies a loxodromic orbit.**
 
