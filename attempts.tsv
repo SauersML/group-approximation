@@ -502,3 +502,4 @@
 38831296036	2026-10-16T00:46:35Z	GroupApproximation/Sofic/HullPrescribedSaturation.lean	finiteOrder_lifts_comp
 38854061276	2026-10-16T05:07:33Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	gromovProduct_nonneg
 38882814798	2026-10-16T09:48:03Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_zpow_neg
+38919007578	2026-10-16T14:51:25Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	isLoxodromic_of_pow_isLoxodromic
