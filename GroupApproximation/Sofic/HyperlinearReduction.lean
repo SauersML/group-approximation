@@ -43,12 +43,9 @@ theorem isSofic_of_local
   classical
   intro F ε hε
   obtain ⟨H, _, ι, hinj, hH, hcov⟩ := h F
-  set ψ : G → H := Function.invFun ι with hψ
-  have hψι : ∀ x : H, ψ (ι x) = x := fun x ↦ Function.leftInverse_invFun hinj x
-  have hιψ : ∀ g ∈ Set.range ι, ι (ψ g) = g := by
-    rintro g ⟨x, rfl⟩
-    rw [hψι]
-  set F' : Finset H := F.image ψ with hF'
+  let ψ : G → H := Function.invFun ι
+  have hιψ : ∀ g ∈ Set.range ι, ι (ψ g) = g := fun g hg ↦ Function.invFun_eq hg
+  let F' : Finset H := F.image ψ
   obtain ⟨M⟩ := hH F' ε hε
   have hmemF' : ∀ g ∈ F, ψ g ∈ F' := fun g hg ↦ Finset.mem_image_of_mem ψ hg
   refine ⟨{
