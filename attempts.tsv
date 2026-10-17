@@ -507,3 +507,4 @@
 38973532848	2026-10-16T22:05:44Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_equal_radius_sides_le_until_opposite
 38986472888	2026-10-17T00:28:50Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_smul_geodesic_point_le
 39004618211	2026-10-17T05:00:54Z	GroupApproximation/Sofic/HullSuitableDefectSubgroup.lean	against
+39020677576	2026-10-17T09:20:03Z	GroupApproximation/Sofic/Hyperlinear.lean	permMatrixC_entry
