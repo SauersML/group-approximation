@@ -510,3 +510,4 @@
 39020677576	2026-10-17T09:20:03Z	GroupApproximation/Sofic/Hyperlinear.lean	permMatrixC_entry
 39035609699	2026-10-17T13:13:34Z	GroupApproximation/Sofic/HyperlinearAmplification.lean	tensorPow_mul
 39049234229	2026-10-17T16:25:06Z	GroupApproximation/Sofic/HyperlinearMetric.lean	permMatrix_sub_entry
+39059846234	2026-10-17T18:51:09Z	GroupApproximation/Sofic/HyperlinearNonScalar.lean	permMatrixC_conjTranspose
