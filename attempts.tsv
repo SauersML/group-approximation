@@ -508,3 +508,4 @@
 38986472888	2026-10-17T00:28:50Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_smul_geodesic_point_le
 39004618211	2026-10-17T05:00:54Z	GroupApproximation/Sofic/HullSuitableDefectSubgroup.lean	against
 39020677576	2026-10-17T09:20:03Z	GroupApproximation/Sofic/Hyperlinear.lean	permMatrixC_entry
+39035609699	2026-10-17T13:13:34Z	GroupApproximation/Sofic/HyperlinearAmplification.lean	tensorPow_mul
