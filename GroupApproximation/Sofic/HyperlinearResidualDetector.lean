@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.NormMFResidualDetector
+import GroupApproximation.Sofic.SoficInvisible
 import GroupApproximation.Sofic.SoficTransfer
 
 /-!
@@ -22,49 +23,6 @@ open scoped commutatorElement
 universe u
 
 variable {G H : Type u} [Group G] [Group H]
-
-/-- An element belongs to the sofic residual: every homomorphism to a sofic
-group kills it.  Targets are allowed to be arbitrary groups in the ambient
-universe; no finiteness or injectivity condition is imposed. -/
-def SoficInvisible (x : G) : Prop :=
-  ∀ (S : Type u) (_ : Group S), IsSofic S → ∀ f : G →* S, f x = 1
-
-/-- The identity is invisible in every target. -/
-theorem soficInvisible_one : SoficInvisible (1 : G) := by
-  intro S _ _ f
-  exact map_one f
-
-/-- Sofic invisibility is closed under taking a commutator with an arbitrary
-group element.  This is the radical-propagation step used by the Kun--Thom
-Clifford phase: once `r` is killed by every sofic target, so is `⁅k,r⁆`. -/
-theorem SoficInvisible.commutator_left (k r : G) (hr : SoficInvisible r) :
-    SoficInvisible ⁅k, r⁆ := by
-  intro S _ hS f
-  rw [map_commutatorElement, hr S inferInstance hS f]
-  simp [commutatorElement_def]
-
-/-- The elements killed by every homomorphism to a sofic group form a
-subgroup.  This is the *sofic residual* (as opposed to a largest normal sofic
-subgroup, which is a different construction). -/
-def soficResidual (G : Type u) [Group G] : Subgroup G where
-  carrier := {x | SoficInvisible x}
-  one_mem' := soficInvisible_one
-  mul_mem' := by
-    intro x y hx hy S _ hS f
-    rw [map_mul, hx S inferInstance hS f, hy S inferInstance hS f, one_mul]
-  inv_mem' := by
-    intro x hx S _ hS f
-    rw [map_inv, hx S inferInstance hS f, inv_one]
-
-@[simp] theorem mem_soficResidual_iff {x : G} :
-    x ∈ soficResidual G ↔ SoficInvisible x :=
-  Iff.rfl
-
-/-- Every map to a sofic group kills the full sofic residual. -/
-theorem map_eq_one_of_mem_soficResidual {S : Type u} [Group S]
-    (hS : IsSofic S) (f : G →* S) {x : G} (hx : x ∈ soficResidual G) :
-    f x = 1 :=
-  hx S inferInstance hS f
 
 /-- If a sofic-residual element survives under a homomorphism, the range of
 that homomorphism is not sofic. -/
