@@ -49,9 +49,10 @@ noncomputable def hsDistSq (Y : FiniteModel) (A B : Matrix Y Y ℂ) : ℝ :=
   (∑ i : Y, ∑ j : Y, Complex.normSq (A i j - B i j)) / Fintype.card Y
 
 /-- Entries of a permutation matrix over `ℂ`. -/
+@[simp]
 theorem permMatrixC_entry (Y : FiniteModel) (σ : Equiv.Perm Y) (x y : Y) :
     (σ.permMatrix ℂ) x y = if σ x = y then (1 : ℂ) else 0 := by
-  simp [Equiv.Perm.permMatrix]
+  simp
 
 /-- A row of the difference contributes `0` when the permutations agree there
 and `2` when they disagree: two distinct standard basis vectors. -/
