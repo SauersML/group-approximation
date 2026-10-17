@@ -505,3 +505,4 @@
 38919007578	2026-10-16T14:51:25Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	isLoxodromic_of_pow_isLoxodromic
 38950094326	2026-10-16T18:49:03Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	chain_backtracking_and_progress
 38973532848	2026-10-16T22:05:44Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_equal_radius_sides_le_until_opposite
+38986472888	2026-10-17T00:28:50Z	GroupApproximation/Sofic/HullSuitabilityGeometry.lean	dist_smul_geodesic_point_le
