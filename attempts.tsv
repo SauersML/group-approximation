@@ -517,3 +517,4 @@
 39104599813	2026-10-18T06:36:53Z	GroupApproximation/Sofic/HyperlinearScalar.lean	hsNormSq_nonneg
 39124359630	2026-10-18T11:43:55Z	GroupApproximation/Sofic/HyperlinearUltraproduct.lean	hsLengthSq_nonneg
 39137776199	2026-10-18T14:51:16Z	GroupApproximation/Sofic/HyperlinearUltraproductBridge.lean	isHyperlinear_of_hyperlinearUltraproductEmbedding
+39152485392	2026-10-18T18:05:37Z	GroupApproximation/Sofic/HyperlinearWeakBridge.lean	hsDistSq_padMatrix_card
