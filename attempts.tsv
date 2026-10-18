@@ -515,3 +515,4 @@
 39078970926	2026-10-17T23:26:32Z	GroupApproximation/Sofic/HyperlinearResidualDetector.lean	SoficInvisible
 39086839878	2026-10-18T01:32:54Z	GroupApproximation/Sofic/HyperlinearResidualDetector.lean	not_isSofic_range_of_soficInvisible
 39104599813	2026-10-18T06:36:53Z	GroupApproximation/Sofic/HyperlinearScalar.lean	hsNormSq_nonneg
+39124359630	2026-10-18T11:43:55Z	GroupApproximation/Sofic/HyperlinearUltraproduct.lean	hsLengthSq_nonneg
