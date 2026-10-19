@@ -523,3 +523,4 @@
 39181078636	2026-10-19T00:31:13Z	GroupApproximation/Sofic/InducedCoronaMF.lean	isOperatorMF_of_finiteIndex_subgroup
 39203989107	2026-10-19T05:20:52Z	GroupApproximation/Sofic/InducedFiniteDimensional.lean	coeff_of_mem
 39243400286	2026-10-19T11:17:07Z	GroupApproximation/Sofic/InfranormalCompressionPair.lean	mem_compressionSubmonoid_of_mem
+39294633527	2026-10-19T17:31:12Z	GroupApproximation/Sofic/IntegerLampSurvival.lean	IsInvariant
