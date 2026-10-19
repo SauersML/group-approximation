@@ -520,3 +520,4 @@
 39152485392	2026-10-18T18:05:37Z	GroupApproximation/Sofic/HyperlinearWeakBridge.lean	hsDistSq_padMatrix_card
 39164354156	2026-10-18T20:41:17Z	GroupApproximation/Sofic/ImplementerCocycle.lean	implementerCocycle_twisted
 39172971830	2026-10-18T22:37:28Z	GroupApproximation/Sofic/InducedCoronaMF.lean	mem_idx
+39181078636	2026-10-19T00:31:13Z	GroupApproximation/Sofic/InducedCoronaMF.lean	isOperatorMF_of_finiteIndex_subgroup
