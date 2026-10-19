@@ -521,3 +521,4 @@
 39164354156	2026-10-18T20:41:17Z	GroupApproximation/Sofic/ImplementerCocycle.lean	implementerCocycle_twisted
 39172971830	2026-10-18T22:37:28Z	GroupApproximation/Sofic/InducedCoronaMF.lean	mem_idx
 39181078636	2026-10-19T00:31:13Z	GroupApproximation/Sofic/InducedCoronaMF.lean	isOperatorMF_of_finiteIndex_subgroup
+39203989107	2026-10-19T05:20:52Z	GroupApproximation/Sofic/InducedFiniteDimensional.lean	coeff_of_mem
