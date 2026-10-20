@@ -525,3 +525,4 @@
 39243400286	2026-10-19T11:17:07Z	GroupApproximation/Sofic/InfranormalCompressionPair.lean	mem_compressionSubmonoid_of_mem
 39294633527	2026-10-19T17:31:12Z	GroupApproximation/Sofic/IntegerLampSurvival.lean	IsInvariant
 39329841277	2026-10-19T21:45:32Z	GroupApproximation/Sofic/IntegralLinearResiduallyFinite.lean	intCast_zmod_natAbs_add_one_ne_zero
+39349077187	2026-10-20T00:42:04Z	GroupApproximation/Sofic/InternalRadicalGap.lean	norm_coordinateBlock_le_inv_mul_of_diagonal_gap
