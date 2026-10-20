@@ -529,3 +529,4 @@
 39374205259	2026-10-20T05:19:48Z	GroupApproximation/Sofic/InternalRadicalGap.lean	norm_ambientEigenbasisMicrostate_mul_defect_eq
 39407775435	2026-10-20T10:26:04Z	GroupApproximation/Sofic/InternalRadicalGap.lean	AmbientMovingCornerSchedule.generator_hsLengthSq_eventually_ge
 39447747832	2026-10-20T15:23:17Z	GroupApproximation/Sofic/IntersectionReduction.lean	Subgroup.exists_countable_subfamily_iInf_eq
+39484683028	2026-10-20T19:35:55Z	GroupApproximation/Sofic/IntrinsicCompressionDefect.lean	t_mem_compressionSet
