@@ -44,9 +44,7 @@ theorem Subgroup.exists_countable_subfamily_iInf_eq [Countable G]
   have hexclude : ∀ g : bad, ∃ i, (g : G) ∉ K i := by
     intro g
     have hg : (g : G) ∉ ⨅ i, K i := by
-      have hbad := g.property
-      change (g : G) ∉ total at hbad
-      simpa only [total] using hbad
+      simpa [bad, total] using g.property
     simpa only [Subgroup.mem_iInf, not_forall] using hg
   let exclude : bad → I := fun g ↦ Classical.choose (hexclude g)
   have hexclude_spec (g : bad) : (g : G) ∉ K (exclude g) :=
@@ -59,7 +57,8 @@ theorem Subgroup.exists_countable_subfamily_iInf_eq [Countable G]
     intro i
     by_contra hgi
     have hbad : g ∈ bad := by
-      simpa only [bad, total, Subgroup.mem_iInf, not_forall] using ⟨i, hgi⟩
+      dsimp [bad, total]
+      simpa only [Subgroup.mem_iInf, not_forall] using ⟨i, hgi⟩
     let gbad : bad := ⟨g, hbad⟩
     have hJ : exclude gbad ∈ J := ⟨gbad, rfl⟩
     have hmem : g ∈ K (exclude gbad) := by
