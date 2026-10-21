@@ -533,3 +533,4 @@
 39509728651	2026-10-20T22:40:54Z	GroupApproximation/Sofic/IntrinsicCompressionFiniteStage.lean	compressorCore_iota
 39524461118	2026-10-21T00:58:54Z	GroupApproximation/Sofic/IntrinsicCompressionMFRadical.lean	eq_in_hyperlinearHom_of_hsSqVanishing
 39552833345	2026-10-21T06:01:50Z	GroupApproximation/Sofic/InvisibleExtensions.lean	fixed_black_hole
+39594381621	2026-10-21T11:46:57Z	GroupApproximation/Sofic/InvolutionCollapseCenter.lean	norm_bVec_le
