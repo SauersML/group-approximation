@@ -30,8 +30,6 @@ theorem eq_in_hyperlinearHom_of_hsSqVanishing
       (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
         hcof h := by
   let S := KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B
-  let rhoHS : E →* UniversalHyperlinear U S.model S.modelNonempty :=
-    S.toUltraproductHom hcof
   have hnull :
       (fun n ↦ S.map n g)⁻¹ * (fun n ↦ S.map n h) ∈
         nullUnitarySubgroup U S.model S.modelNonempty := by
@@ -45,12 +43,7 @@ theorem eq_in_hyperlinearHom_of_hsSqVanishing
         (S.modelNonempty n),
       KazhdanCompressorCorner.hsDistSq_comm]
     exact lt_of_le_of_lt (hN n hn) (by linarith)
-  have heq :
-      QuotientGroup.mk (fun n ↦ S.map n g) =
-        QuotientGroup.mk (fun n ↦ S.map n h) :=
-    QuotientGroup.eq.mpr hnull
-  change rhoHS g = rhoHS h
-  exact heq
+  exact QuotientGroup.eq.mpr hnull
 
 /-- An exact centralizer element gives a bounded sequence in the asymptotic
 commutant. -/
