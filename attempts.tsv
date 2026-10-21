@@ -531,3 +531,4 @@
 39447747832	2026-10-20T15:23:17Z	GroupApproximation/Sofic/IntersectionReduction.lean	Subgroup.exists_countable_subfamily_iInf_eq
 39484683028	2026-10-20T19:35:55Z	GroupApproximation/Sofic/IntrinsicCompressionDefect.lean	t_mem_compressionSet
 39509728651	2026-10-20T22:40:54Z	GroupApproximation/Sofic/IntrinsicCompressionFiniteStage.lean	compressorCore_iota
+39524461118	2026-10-21T00:58:54Z	GroupApproximation/Sofic/IntrinsicCompressionMFRadical.lean	eq_in_hyperlinearHom_of_hsSqVanishing
