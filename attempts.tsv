@@ -540,3 +540,4 @@
 39708118440	2026-10-22T01:52:56Z	GroupApproximation/Sofic/InvolutionCollapseMetric.lean	rank_neg
 39741229870	2026-10-22T07:33:52Z	GroupApproximation/Sofic/InvolutionCollapseProfile.lean	exists_word
 39784724382	2026-10-22T13:12:45Z	GroupApproximation/Sofic/InvolutionMicrostateTools.lean	flatE_sub
+39827255772	2026-10-22T17:59:09Z	GroupApproximation/Sofic/InvolutionOrbitMicrostates.lean	orbitElement_one
