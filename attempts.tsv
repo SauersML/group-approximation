@@ -538,3 +538,4 @@
 39667733754	2026-10-21T20:09:47Z	GroupApproximation/Sofic/InvolutionCollapseCocycle.lean	profile_halmost
 39692434383	2026-10-21T23:47:17Z	GroupApproximation/Sofic/InvolutionCollapseIndexCapture.lean	matMass_reverse_displacement
 39708118440	2026-10-22T01:52:56Z	GroupApproximation/Sofic/InvolutionCollapseMetric.lean	rank_neg
+39741229870	2026-10-22T07:33:52Z	GroupApproximation/Sofic/InvolutionCollapseProfile.lean	exists_word
