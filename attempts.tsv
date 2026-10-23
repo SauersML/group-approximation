@@ -542,3 +542,4 @@
 39784724382	2026-10-22T13:12:45Z	GroupApproximation/Sofic/InvolutionMicrostateTools.lean	flatE_sub
 39827255772	2026-10-22T17:59:09Z	GroupApproximation/Sofic/InvolutionOrbitMicrostates.lean	orbitElement_one
 39858276560	2026-10-22T21:34:47Z	GroupApproximation/Sofic/InvolutionRankMass.lean	matMass_eq_re_trace_conjTranspose_mul
+39876479175	2026-10-23T00:11:25Z	GroupApproximation/Sofic/InvolutiveCentralizerComponents.lean	normalize_involution_map_mul_self
