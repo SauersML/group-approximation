@@ -544,3 +544,4 @@
 39858276560	2026-10-22T21:34:47Z	GroupApproximation/Sofic/InvolutionRankMass.lean	matMass_eq_re_trace_conjTranspose_mul
 39876479175	2026-10-23T00:11:25Z	GroupApproximation/Sofic/InvolutiveCentralizerComponents.lean	normalize_involution_map_mul_self
 39902119922	2026-10-23T04:47:40Z	GroupApproximation/Sofic/InvolutiveTwoSheet.lean	twoSheetDiagonal_mul
+39933194596	2026-10-23T09:38:08Z	GroupApproximation/Sofic/IteratedDoubleAmalgam.lean	iteratedMap_injective
