@@ -65,8 +65,16 @@ variable {Y : ℕ → FiniteModel} {w : ℕ → ℝ} {ω : Ultrafilter ℕ}
 theorem uinner_smul_left (hw : ∀ n, 0 ≤ w n) (c : ℂ) (ξ η : massBounded Y w) :
     uinner (ω := ω) (c • ξ) η
       = (starRingEnd ℂ) c * uinner (ω := ω) ξ η := by
-  rw [← uinner_conj_symm hw (c • ξ) η, uinner_smul_right hw c η ξ, map_mul,
-    uinner_conj_symm hw ξ η]
+  calc
+    uinner (ω := ω) (c • ξ) η
+        = (starRingEnd ℂ) (uinner (ω := ω) η (c • ξ)) := by
+      rw [uinner_conj_symm hw (c • ξ) η]
+    _ = (starRingEnd ℂ) (c * uinner (ω := ω) η ξ) := by
+      rw [uinner_smul_right hw c η ξ]
+    _ = (starRingEnd ℂ) c * (starRingEnd ℂ) (uinner (ω := ω) η ξ) := by
+      rw [map_mul]
+    _ = (starRingEnd ℂ) c * uinner (ω := ω) ξ η := by
+      rw [uinner_conj_symm hw ξ η]
 
 theorem uinner_sub_left (hw : ∀ n, 0 ≤ w n) (ξ η ζ : massBounded Y w) :
     uinner (ω := ω) (ξ - η) ζ
