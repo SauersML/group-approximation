@@ -547,3 +547,4 @@
 39933194596	2026-10-23T09:38:08Z	GroupApproximation/Sofic/IteratedDoubleAmalgam.lean	iteratedMap_injective
 39969722000	2026-10-23T14:27:57Z	GroupApproximation/Sofic/KOmegaHilbert.lean	uinner_smul_left
 40005619729	2026-10-23T18:44:25Z	GroupApproximation/Sofic/KazhdanAsymptoticCommutant.lean	HSSqVanishing
+40028585547	2026-10-23T21:42:30Z	GroupApproximation/Sofic/KazhdanAsymptoticCommutant.lean	transport
