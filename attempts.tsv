@@ -554,3 +554,4 @@
 40097596229	2026-10-24T13:19:39Z	GroupApproximation/Sofic/KazhdanCompressionLayers.lean	comap_normalKazhdanLayer_le_coronaMFResidual
 40113966838	2026-10-24T16:59:07Z	GroupApproximation/Sofic/KazhdanCompressorCorner.lean	capture_vec
 40125463780	2026-10-24T19:29:46Z	GroupApproximation/Sofic/KazhdanCorner.lean	HasHyperlinearCornerRepresentation
+40136189121	2026-10-24T21:54:29Z	GroupApproximation/Sofic/KazhdanCornerCompression.lean	norm_unitary_conjugate
