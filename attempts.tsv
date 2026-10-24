@@ -551,3 +551,4 @@
 40042854274	2026-10-24T00:02:24Z	GroupApproximation/Sofic/KazhdanCliffordEpsilon.lean	relationsEps_finitelyNormallyGenerated
 40062834908	2026-10-24T04:34:34Z	GroupApproximation/Sofic/KazhdanCompressionCore.lean	defect_mem_defectNormal
 40080706296	2026-10-24T09:08:30Z	GroupApproximation/Sofic/KazhdanCompressionFunctorial.lean	map_iota
+40097596229	2026-10-24T13:19:39Z	GroupApproximation/Sofic/KazhdanCompressionLayers.lean	comap_normalKazhdanLayer_le_coronaMFResidual
