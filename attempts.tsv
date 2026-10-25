@@ -559,3 +559,4 @@
 40165070930	2026-10-25T05:19:42Z	GroupApproximation/Sofic/KazhdanCornerMatrices.lean	OpNormVanishing
 40183559955	2026-10-25T10:09:54Z	GroupApproximation/Sofic/KazhdanCornerModel.lean	extendByZero_apply
 40201872403	2026-10-25T14:22:44Z	GroupApproximation/Sofic/KazhdanCornerModel.lean	sum_re_eigenbasisMicrostate_diagonal_eq
+40218496688	2026-10-25T17:52:51Z	GroupApproximation/Sofic/KazhdanCornerPolar.lean	cornerGram_isHermitian
