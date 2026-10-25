@@ -557,3 +557,4 @@
 40136189121	2026-10-24T21:54:29Z	GroupApproximation/Sofic/KazhdanCornerCompression.lean	norm_unitary_conjugate
 40146255585	2026-10-25T00:20:28Z	GroupApproximation/Sofic/KazhdanCornerDiagonal.lean	MovingCornerSetup
 40165070930	2026-10-25T05:19:42Z	GroupApproximation/Sofic/KazhdanCornerMatrices.lean	OpNormVanishing
+40183559955	2026-10-25T10:09:54Z	GroupApproximation/Sofic/KazhdanCornerModel.lean	extendByZero_apply
