@@ -565,3 +565,4 @@
 40253121977	2026-10-26T01:13:48Z	GroupApproximation/Sofic/KunThomDoubleWitness.lean	escapes_of_not_mem_range
 40278487523	2026-10-26T06:13:36Z	GroupApproximation/Sofic/LEF.lean	mono
 40326987152	2026-10-26T13:01:41Z	GroupApproximation/Sofic/LEFMarkedCompression.lean	isLEF_semidirectProduct_of_invariant_finite
+40385390852	2026-10-26T19:18:32Z	GroupApproximation/Sofic/LEFSofic.lean	leftRegular_mul
