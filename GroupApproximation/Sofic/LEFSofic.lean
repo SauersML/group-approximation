@@ -52,7 +52,6 @@ omit [Fintype Q] [DecidableEq Q] in
 omit [Fintype Q] [DecidableEq Q] in
 theorem leftRegular_mul (q r : Q) :
     leftRegular (q * r) = leftRegular q * leftRegular r := by
-  ext x
   simp [leftRegular]
 
 /-- Left translations by distinct elements disagree at every point. -/
