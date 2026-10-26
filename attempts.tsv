@@ -563,3 +563,4 @@
 40232531566	2026-10-25T20:50:04Z	GroupApproximation/Sofic/KazhdanTransportFailureExtraction.lean	exists_gamma_infinite_commutator_defect
 40243902513	2026-10-25T23:16:17Z	GroupApproximation/Sofic/KazhdanTransportFiniteDimensionalInputs.lean	conjugationModel_isometry_unitary
 40253121977	2026-10-26T01:13:48Z	GroupApproximation/Sofic/KunThomDoubleWitness.lean	escapes_of_not_mem_range
+40278487523	2026-10-26T06:13:36Z	GroupApproximation/Sofic/LEF.lean	mono
