@@ -568,3 +568,4 @@
 40385390852	2026-10-26T19:18:32Z	GroupApproximation/Sofic/LEFSofic.lean	leftRegular_mul
 40419137031	2026-10-26T23:22:01Z	GroupApproximation/Sofic/LeavittTraceFloor.lean	hsNorm_nonneg
 40438339678	2026-10-27T02:26:29Z	GroupApproximation/Sofic/LeavittTraceFloor.lean	normTrace_gram_deficiency_product
+40473019417	2026-10-27T08:23:21Z	GroupApproximation/Sofic/LineDouble.lean	lineDoubleMap_injective
