@@ -567,3 +567,4 @@
 40326987152	2026-10-26T13:01:41Z	GroupApproximation/Sofic/LEFMarkedCompression.lean	isLEF_semidirectProduct_of_invariant_finite
 40385390852	2026-10-26T19:18:32Z	GroupApproximation/Sofic/LEFSofic.lean	leftRegular_mul
 40419137031	2026-10-26T23:22:01Z	GroupApproximation/Sofic/LeavittTraceFloor.lean	hsNorm_nonneg
+40438339678	2026-10-27T02:26:29Z	GroupApproximation/Sofic/LeavittTraceFloor.lean	normTrace_gram_deficiency_product
