@@ -37,9 +37,10 @@ theorem p13ToRotation_injective : Function.Injective p13ToRotation := by
   apply eq_of_mul_inv_eq_one
   apply blockEmbed4_eq_one
   rw [map_mul, map_inv]
-  have ha := DFunLike.congr_fun rotationToMat_comp_p13ToRotation a
-  have hb := DFunLike.congr_fun rotationToMat_comp_p13ToRotation b
-  simp only [MonoidHom.comp_apply] at ha hb
+  have ha : rotationToMat (p13ToRotation a) = blockEmbed4 (toSL3 a) := by
+    simpa using DFunLike.congr_fun rotationToMat_comp_p13ToRotation a
+  have hb : rotationToMat (p13ToRotation b) = blockEmbed4 (toSL3 b) := by
+    simpa using DFunLike.congr_fun rotationToMat_comp_p13ToRotation b
   rw [← ha, ← hb, hab, mul_inv_cancel]
 
 /-- The abstract eight-relator rotation group is exactly `SL₃(ℤ)`. -/
