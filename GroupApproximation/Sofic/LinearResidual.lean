@@ -39,11 +39,16 @@ def linearResidual (G : Type u) [Group G] : Subgroup G where
     rw [map_mul, hx F hF d ρ, hy F hF d ρ, one_mul]
   inv_mem' := by
     intro x hx F hF d ρ
-    have hone : ρ x = 1 := hx F hF d ρ
-    have : ρ x * ρ x⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel, map_one]
-    rw [hone, one_mul] at this
-    exact this
+    have h := hx F hF d ρ
+    have hprod : ρ x * ρ x⁻¹ = 1 := by
+      calc
+        ρ x * ρ x⁻¹ = ρ (x * x⁻¹) := by rw [map_mul]
+        _ = ρ 1 := by rw [mul_inv_cancel]
+        _ = 1 := map_one ρ
+    rw [h, one_mul] at hprod
+    exact hprod
 
+@[simp]
 theorem mem_linearResidual_iff {x : G} :
     x ∈ linearResidual G ↔ ∀ (F : Type) (_ : Field F) (d : ℕ)
       (ρ : G →* Matrix (Fin d) (Fin d) F), ρ x = 1 := Iff.rfl
