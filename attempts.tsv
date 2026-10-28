@@ -572,3 +572,4 @@
 40525717686	2026-10-27T14:55:28Z	GroupApproximation/Sofic/LinearResidual.lean	mem_linearResidual_iff
 40574838278	2026-10-27T20:05:50Z	GroupApproximation/Sofic/LiteralAffineCongruenceBase.lean	p13ToRotation_injective
 40604303754	2026-10-27T23:46:22Z	GroupApproximation/Sofic/LiteralAffineCongruenceKazhdan.lean	p_isFinitelyPresented
+40621870335	2026-10-28T02:36:58Z	GroupApproximation/Sofic/LiteralAffineCongruenceSource.lean	baseToRotation_comp_baseCompression
