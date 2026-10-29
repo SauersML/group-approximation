@@ -580,3 +580,4 @@
 40832905198	2026-10-29T07:03:43Z	GroupApproximation/Sofic/LiteralAffineFreeProductBassSerreDisplacement.lean	crossingDefect_displacement_le_four
 40889736453	2026-10-29T14:16:55Z	GroupApproximation/Sofic/LiteralAffineFreeProductBassSerreIndependence.lean	axisConjugator_mem_leftFactor
 40942164855	2026-10-29T19:41:06Z	GroupApproximation/Sofic/LiteralAffineFreeProductBassSerreIndependence.lean	crossing_separated_mixed_displacement_lower
+40974189703	2026-10-29T23:36:28Z	GroupApproximation/Sofic/LiteralAffineFreeProductSource.lean	envelopeEmbedding_injective
