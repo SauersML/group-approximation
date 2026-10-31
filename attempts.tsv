@@ -588,3 +588,4 @@
 41151974846	2026-10-31T00:47:25Z	GroupApproximation/Sofic/LiteralBaseDoublingIndex.lean	x_mem_doubledBase
 41176208827	2026-10-31T06:21:38Z	GroupApproximation/Sofic/LiteralBaseP13Replay.lean	yFromUZXY_eq
 41203940538	2026-10-31T13:05:47Z	GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean	p13GeneratorToRotation_kills
+41225821702	2026-10-31T17:43:36Z	GroupApproximation/Sofic/LiteralBaseP13RotationReplay.lean	rotationStep
