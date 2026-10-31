@@ -589,3 +589,4 @@
 41176208827	2026-10-31T06:21:38Z	GroupApproximation/Sofic/LiteralBaseP13Replay.lean	yFromUZXY_eq
 41203940538	2026-10-31T13:05:47Z	GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean	p13GeneratorToRotation_kills
 41225821702	2026-10-31T17:43:36Z	GroupApproximation/Sofic/LiteralBaseP13RotationReplay.lean	rotationStep
+41239975743	2026-10-31T20:41:01Z	GroupApproximation/Sofic/LiteralBaseP13RotationReplay/O12_13.lean	o12_13Image_eq_one
