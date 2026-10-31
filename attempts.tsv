@@ -586,3 +586,4 @@
 41092209706	2026-10-30T16:42:28Z	GroupApproximation/Sofic/LiteralAffineRangeIndexEight.lean	baseCompression_v1
 41128026515	2026-10-30T21:04:04Z	GroupApproximation/Sofic/LiteralBaseAffineQuotient.lean	matrixBaseGenerator_mem_range
 41151974846	2026-10-31T00:47:25Z	GroupApproximation/Sofic/LiteralBaseDoublingIndex.lean	x_mem_doubledBase
+41176208827	2026-10-31T06:21:38Z	GroupApproximation/Sofic/LiteralBaseP13Replay.lean	yFromUZXY_eq
