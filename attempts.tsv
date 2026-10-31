@@ -585,3 +585,4 @@
 41037308695	2026-10-30T09:59:17Z	GroupApproximation/Sofic/LiteralAffineHullTwoStageBridge.lean	concrete_preHull_inputs
 41092209706	2026-10-30T16:42:28Z	GroupApproximation/Sofic/LiteralAffineRangeIndexEight.lean	baseCompression_v1
 41128026515	2026-10-30T21:04:04Z	GroupApproximation/Sofic/LiteralBaseAffineQuotient.lean	matrixBaseGenerator_mem_range
+41151974846	2026-10-31T00:47:25Z	GroupApproximation/Sofic/LiteralBaseDoublingIndex.lean	x_mem_doubledBase
