@@ -587,3 +587,4 @@
 41128026515	2026-10-30T21:04:04Z	GroupApproximation/Sofic/LiteralBaseAffineQuotient.lean	matrixBaseGenerator_mem_range
 41151974846	2026-10-31T00:47:25Z	GroupApproximation/Sofic/LiteralBaseDoublingIndex.lean	x_mem_doubledBase
 41176208827	2026-10-31T06:21:38Z	GroupApproximation/Sofic/LiteralBaseP13Replay.lean	yFromUZXY_eq
+41203940538	2026-10-31T13:05:47Z	GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean	p13GeneratorToRotation_kills
